@@ -129,7 +129,7 @@ height="52"></a>\n\
 <a class="right" href="http://jigsaw.w3.org/css-validator">\
  <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Correct CSS!" height="31" width="88"></a>\n\
-<address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br>\
+<address><a href="<!-- #author-email -->"><!-- #author --></a><br>\
 Last Updated : <!-- #today --> </address> \n\
 \n\
 <!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \n\
