@@ -125,7 +125,7 @@ error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert %s keine
 error.todo : Leider ist das Feature %s noch nicht implementiert.
 error.incompatible: %s und %s sind inkompatibel
 
-error.media: umbekanntes Medium %s 
+error.media: unbekanntes Medium %s 
 error.page: unbekannte Pseudo-benannte Seite %s
 
 
