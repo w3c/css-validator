@@ -119,6 +119,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssBackgroundQuantity cssBackgroundQuantity;
 	CssBackgroundSpacing cssBackgroundSpacing;
 	CssTextDecorationCSS3 cssTextDecoration;
+	CssWhiteSpaceCSS3 cssWhiteSpace;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1040,6 +1041,16 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssTextDecoration;
 	}
 
+	public CssWhiteSpaceCSS3 getCssWhiteSpace() {
+		if (cssWhiteSpace == null) {
+			cssWhiteSpace =
+				(CssWhiteSpaceCSS3) style.CascadingOrder(
+						new CssWhiteSpaceCSS3(), style, selector);
+		}
+		return cssWhiteSpace;
+	}
+
+
     /**
      * Print this style
      *
@@ -1347,6 +1358,9 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssTextDecoration != null) {
 		cssTextDecoration.print(printer);
+	}
+	if (cssWhiteSpace != null) {
+		cssWhiteSpace.print(printer);
 	}
     }
 
