@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2003/10/15 10:10:14  plehegar
+ * Changes from Yves
+ *
  * Revision 1.4  2002/05/19 03:44:31  plehegar
  * Fixed application/xhtml+xml
  *
@@ -78,7 +81,8 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 			throw (Exception) exception.fillInStackTrace();
 		    }
 		} catch (html.parser.XMLInputException e) {
-		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
+		    XMLStyleSheetHandler handler;
+		    handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(htmlURL);
 		    style = handler.getStyleSheet();
 		    if (style != null) {
@@ -110,11 +114,13 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		}
 		contentType = contentType.toLowerCase();
 		if (Util.onDebug) {
-		    System.err.println( "[DEBUG] content type is [" + contentType + ']');
+		    System.err.println( "[DEBUG] content type is [" + 
+					contentType + ']');
 		}
 
 		if (contentType.indexOf("text/html") != -1) {
-		    HtmlParser htmlParser = new HtmlParser(ac, "html4", urlString);
+		    HtmlParser htmlParser = new HtmlParser(ac, "html4", 
+							   urlString);
 		    try {
 			Util.fromHTMLFile = true;
 			htmlParser.addParserListener(this);
@@ -135,12 +141,13 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    style = parser.getStyleSheet();
 		} else if ((contentType.indexOf("text/xml") == -1)
 			   && (contentType.indexOf("application/xhtml+xml") == -1)) {
-		    throw new IOException("Unknown mime type : " + contentType);
+		    throw new IOException("Unknown mime type : "+ contentType);
 		}
 		
 		if ((contentType.indexOf("text/xml") != -1) || isXML
 		    || (contentType.indexOf("application/xhtml+xml") != -1)) {
-		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
+		    XMLStyleSheetHandler handler;
+		    handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(urlString, connection);
 		    style = handler.getStyleSheet();
 		    if (style != null) {
