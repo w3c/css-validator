@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2002/07/24 14:52:21  sijtsche
+ * compile bug fixed
+ *
  * Revision 1.5  2002/07/22 15:03:33  sijtsche
  * extra pseudoelements, functions and constants added
  *
@@ -353,6 +356,9 @@ public final class CssSelectors implements CssSelectorsConstant {
 			}
 	    }
 
+		if (ac.getProfile().equals("tv")) {
+			throw new InvalidParamException("notfortv", "attributes", ac);
+		}
 
 	    switch (selectorType) {
 	    case ATTRIBUTE_ANY:
@@ -453,16 +459,15 @@ public final class CssSelectors implements CssSelectorsConstant {
 			addPseudoClass(index);
 	    }
 	} else {
+
+		if (ac.getProfile().equals("tv")) {
+			throw new InvalidParamException("pseudo", pseudo, ac);
+		}
+
 	    index = getPseudoElementIndex(pseudo);
 	    if (index != -1) {
 		addPseudoElement(index);
 	    } else {
-		/*CssErrorToken e =
-		    new CssErrorToken(0,
-				      ac.getMsg().getErrorString("pseudo"),
-				      new String[0]);
-				      e.skippedString = pseudo;
-				      ac.getFrame().addError(e); */
 		    throw new InvalidParamException("pseudo", pseudo, ac);
 	    }
 	}
@@ -482,6 +487,12 @@ public final class CssSelectors implements CssSelectorsConstant {
 			if (ac.getProfile().equals("mobile")) {
 			    for (int i = 0; i < PSEUDOCLASS_CONSTANTS_MOBILE.length; i++) {
 					if (pseudo.equals(PSEUDOCLASS_CONSTANTS_MOBILE[i])) {
+					    return i;
+					}
+			    }
+			} else if (ac.getProfile().equals("tv")) {
+			    for (int i = 0; i < PSEUDOCLASS_CONSTANTSTV.length; i++) {
+					if (pseudo.equals(PSEUDOCLASS_CONSTANTSTV[i])) {
 					    return i;
 					}
 			    }
@@ -540,6 +551,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 			if (ac.getProfile() != null) {
 				if (ac.getProfile().equals("mobile")) {
 					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS_MOBILE);
+				} else if (ac.getProfile().equals("tv")) {
+					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSTV);
 				} else {
 					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSCSS2);
 				}
@@ -564,6 +577,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 		if (ac.getProfile() != null) {
 			if (ac.getProfile().equals("mobile")) {
 			    throw new InvalidParamException("notformobile", pseudo, ac);
+			} else if (ac.getProfile().equals("tv")) {
+				throw new InvalidParamException("notfortv", pseudo, ac);
 			}
 		}
 	    pseudofun = pseudo;
