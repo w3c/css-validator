@@ -117,7 +117,7 @@ error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt
 generator.unrecognize: Einlese-Fehler
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontaxt %s vorkommen
+error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontext %s vorkommen
 error.pseudo-class: Die Pseudoklasse .%s kann hier nicht in dem HTML-Kontext %s vorkommen
 error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse
 error.id: ID-Selektor #%s ist ungültig!  Nur ein ID-Selektor kann in einem einfachen Selektor angegeben werden: %s.
