@@ -8,6 +8,9 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
+ * Revision 1.2  2002/04/08 21:24:03  plehegar
+ * New
+ *
  * Revision 1.2  1998/02/22 16:48:11  plehegar
  * *** empty log message ***
  *
@@ -389,8 +392,8 @@ TOKEN : /* basic tokens */
                          ( <H> )? ( <H> )? 
                     ( [ " ", "\t" , "\n" , "\r", "\f" ] )? >
   | < #ESCAPE     : <UNICODE> | ( "\\" [ " "-"~","\200"-"\377" ] ) >
-  | < #NMSTART    : [ "a"-"z" ] | <NONASCII> | <ESCAPE> >
-  | < #NMCHAR	  : ["a"-"z", "0"-"9", "-"] | <NONASCII> | <ESCAPE> >
+  | < #NMSTART    : [ "a"-"z", "_" ] | <NONASCII> | <ESCAPE> >
+  | < #NMCHAR	  : ["a"-"z", "0"-"9", "-", "_"] | <NONASCII> | <ESCAPE> >
   | < #STRINGCHAR : [ "\t"," ","!","#","$","%","&","("-"~" ] 
                     | "\\\n" | "\\\r\n" | <NONASCII> | <ESCAPE> >
   | < #D          : ["0"-"9"] >
