@@ -111,7 +111,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    HtmlParser htmlParser;
 		    htmlParser = new HtmlParser(ac, "html4", urlString,
 						connection);
-//		    InputStream ucis = connection.getInputStream();
+		    InputStream ucis = connection.getInputStream();
 //		    if (ucis.markSupported()) {
 //			ucis.mark(16384);
 //		    }
@@ -130,7 +130,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 //				ucis.reset();
 //			    } catch (IOException ioex) {
 //				try {
-//				    ucis.close();
+				    ucis.close();
 //				} catch (Exception clex) {};
 //				connection = HTTPURL.getConnection(htmlURL,ac);
 //			    }
