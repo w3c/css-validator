@@ -53,34 +53,36 @@ public interface CssParserConstants {
   int TIME = 50;
   int FREQ = 51;
   int RESOLUTION = 52;
-  int DIMEN = 53;
-  int HASH = 54;
-  int IMPORTANT_SYM = 55;
-  int IMPORT_SYM = 56;
-  int MEDIA_SYM = 57;
-  int PAGE_SYM = 58;
-  int FONT_FACE_SYM = 59;
-  int PREF_SYM = 60;
-  int COLOR_PROFILE = 61;
-  int CHARSET_SYM = 62;
-  int ATTOP = 63;
-  int ATRIGHT = 64;
-  int ATBOTTOM = 65;
-  int ATLEFT = 66;
-  int ATCOUNTER = 67;
-  int ATKEYWORD = 68;
-  int RANGE0 = 69;
-  int RANGE1 = 70;
-  int RANGE2 = 71;
-  int RANGE3 = 72;
-  int RANGE4 = 73;
-  int RANGE5 = 74;
-  int RANGE6 = 75;
-  int RANGE = 76;
-  int UNI = 77;
-  int UNICODERANGE = 78;
-  int FUNCTION = 79;
-  int UNKNOWN = 80;
+  int DATE = 53;
+  int DIMEN = 54;
+  int HASH = 55;
+  int IMPORTANT_SYM = 56;
+  int IMPORT_SYM = 57;
+  int MEDIA_SYM = 58;
+  int PAGE_SYM = 59;
+  int FONT_FACE_SYM = 60;
+  int PREF_SYM = 61;
+  int COLOR_PROFILE = 62;
+  int CHARSET_SYM = 63;
+  int ATTOP = 64;
+  int ATRIGHT = 65;
+  int ATBOTTOM = 66;
+  int ATLEFT = 67;
+  int ATCOUNTER = 68;
+  int PHONETIC_ALPHABET_SYM = 69;
+  int ATKEYWORD = 70;
+  int RANGE0 = 71;
+  int RANGE1 = 72;
+  int RANGE2 = 73;
+  int RANGE3 = 74;
+  int RANGE4 = 75;
+  int RANGE5 = 76;
+  int RANGE6 = 77;
+  int RANGE = 78;
+  int UNI = 79;
+  int UNICODERANGE = 80;
+  int FUNCTION = 81;
+  int UNKNOWN = 82;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
@@ -139,6 +141,7 @@ public interface CssParserConstants {
     "<TIME>",
     "<FREQ>",
     "<RESOLUTION>",
+    "<DATE>",
     "<DIMEN>",
     "<HASH>",
     "<IMPORTANT_SYM>",
@@ -154,6 +157,7 @@ public interface CssParserConstants {
     "\"@bottom\"",
     "\"@left\"",
     "\"@counter\"",
+    "\"@phonetic-alphabet\"",
     "<ATKEYWORD>",
     "<RANGE0>",
     "<RANGE1>",
