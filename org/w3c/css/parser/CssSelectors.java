@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2002/07/22 15:03:33  sijtsche
+ * extra pseudoelements, functions and constants added
+ *
  * Revision 1.2  2002/05/23 09:59:20  dejong
  * extra pseudoelements, functions and constants added
  *
@@ -747,7 +750,7 @@ public final class CssSelectors implements CssSelectorsConstant {
 				}
 		    }
 
-	    	for (Enumeration e = getPseudoClass(); e.hasMoreElements();e.nextElement(); ) {
+	    	for (Enumeration e = getPseudoClass(); e.hasMoreElements();e.nextElement() ) {
 		    	specificity += 100;
 		    }
 		}
