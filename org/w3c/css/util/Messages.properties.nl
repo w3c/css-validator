@@ -117,6 +117,7 @@ error.url: %s is geen incorrecte URL
 
 # gebruikt door org.w3c.css.values.CssColor
 error.rgb: %s is geen geldige kleur 3 of 6 hexadecimale getallens
+error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 
 # gebruikt door org.w3c.css.values.CssNumber
 error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen

@@ -100,6 +100,7 @@ error.url: %s ist kein gültiger URL
 
 # used by org.w3c.css.values.CssColor
 error.rgb: %s ist keine gültige Farbe mit 3 oder 6 Hexadezimalzahlen
+error.angle: %s ist kein gueltiger Winkelwert. Wert muß zwischen 0 und 360 liegen.
 
 # used by org.w3c.css.values.CssNumber
 error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.

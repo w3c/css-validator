@@ -135,6 +135,7 @@ error.url: %s n'est pas une URL correcte.
 
 # used by org.w3c.css.values.CssColor
 error.rgb: %s n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexad&eacute;cimaux).
+error.angle: %s n'est pas une angle valide. La valeur doit &ecirc;tre entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. You must put an unit after your number
