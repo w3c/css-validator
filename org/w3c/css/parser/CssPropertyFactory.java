@@ -4,21 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.5  2003/04/13 15:32:16  sijtsche
- * warning instead of error for properties from wrong profile
- *
- * Revision 1.4  2003/01/06 15:54:11  sijtsche
- * value inherit enabled for all CSS3 properties
- *
- * Revision 1.3  2003/01/03 12:08:24  sijtsche
- * functionality added for media queries
- *
- * Revision 1.2  2002/04/08 21:24:12  plehegar
- * New
- *
- */
+
 package org.w3c.css.parser;
 
 import java.lang.reflect.Constructor;
@@ -100,7 +86,7 @@ public class CssPropertyFactory implements Cloneable {
     }
 
     private Vector getVector(String media) {
-	Vector list = new Vector();
+	Vector list = new Vector(4);
 	String medium = new String();
 	StringTokenizer tok = new StringTokenizer(media, ",");
 
@@ -195,20 +181,19 @@ public class CssPropertyFactory implements Cloneable {
 	String classname;
 	String media = atRule.toString();
 	int pos = -1;
-	int pos2 = media.toUpperCase().indexOf("AND");
+	String upperMedia = media.toUpperCase();
+	int pos2 = upperMedia.indexOf("AND");
 
 	if (pos2 == -1) {
 	    pos2 = media.length();
 	}
 
-	if (media.toUpperCase().indexOf("NOT") != -1) {
-	    pos = media.toUpperCase().indexOf("NOT");
+	if ((pos = upperMedia.indexOf("NOT")) != -1) {
 	    media = media.substring(pos + 4, pos2);
-	} else if (media.toUpperCase().indexOf("ONLY") != -1) {
-	    pos = media.toUpperCase().indexOf("ONLY");
+	} else if ((pos = upperMedia.indexOf("ONLY")) != -1) {
 	    media = media.substring(pos + 4, pos2);
 	} else {
-	    pos = media.indexOf(" ");
+	    pos = media.indexOf(' ');
 	    media = media.substring(pos + 1, pos2);
 	}
 
