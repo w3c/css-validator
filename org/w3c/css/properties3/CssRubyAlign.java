@@ -20,7 +20,7 @@ import org.w3c.css.values.CssNumber;
 
 /**
  *  <P>
- *  <EM>Value:</EM> auto || left || center || right || distribute-letter ||
+ *  <EM>Value:</EM> auto || start || left || center || end|| right || distribute-letter ||
  *  distribute-space || line-edge || inherit<BR>
  *  <EM>Initial:</EM>auto<BR>
  *  <EM>Applies to:</EM>all elementes<BR>
@@ -28,15 +28,15 @@ import org.w3c.css.values.CssNumber;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property can be used on any element to control the text alignment of 
+ *  This property can be used on any element to control the text alignment of
  *  the ruby text and ruby base contents relative to each other. It applies to
  *  all the ruby's in the element.
- *  For simple ruby, the alignment is applied to the ruby child element whose 
- *  content is shorter: either the rb element or the rt element [RUBY]. For 
- *  group ruby, the alignment is also applied to the ruby child elements 
- *  whose content is shorter: either the rb element and/or one or two rt 
+ *  For simple ruby, the alignment is applied to the ruby child element whose
+ *  content is shorter: either the rb element or the rt element [RUBY]. For
+ *  group ruby, the alignment is also applied to the ruby child elements
+ *  whose content is shorter: either the rb element and/or one or two rt
  *  elements for each related ruby text and ruby base element within the
- *  rtc and rbc element. 
+ *  rtc and rbc element.
 */
 
 public class CssRubyAlign extends CssProperty {
@@ -45,8 +45,10 @@ public class CssRubyAlign extends CssProperty {
     ApplContext ac;
 
     CssIdent auto = new CssIdent("auto");
+    CssIdent start = new CssIdent("start");
     CssIdent left = new CssIdent("left");
     CssIdent center = new CssIdent("center");
+    CssIdent end = new CssIdent("end");
     CssIdent right = new CssIdent("right");
     CssIdent distributeletter = new CssIdent("distribute-letter");
     CssIdent distributespace = new CssIdent("distribute-space");
@@ -66,7 +68,7 @@ public class CssRubyAlign extends CssProperty {
      * @exception InvalidParamException Values are incorrect
      */
     public CssRubyAlign(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	if (val.equals(auto)) {
@@ -97,6 +99,14 @@ public class CssRubyAlign extends CssProperty {
 	    rubyalign = lineedge;
 	    expression.next();
 	}
+	else if (val.equals(start)) {
+	    rubyalign = start;
+	    expression.next();
+	}
+	else if (val.equals(end)) {
+	    rubyalign = end;
+	    expression.next();
+	}
 	else {
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
@@ -114,13 +124,13 @@ public class CssRubyAlign extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssRubyAlign = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getRubyAlign();
@@ -128,51 +138,51 @@ public class CssRubyAlign extends CssProperty {
 	    return ((Css3Style) style).cssRubyAlign;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssRubyAlign && 
+	return (property instanceof CssRubyAlign &&
                 rubyalign.equals( ((CssRubyAlign) property).rubyalign));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "ruby-align";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return rubyalign;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return rubyalign.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return rubyalign.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return rubyalign == auto;
     }
-    
-}	
+
+}
