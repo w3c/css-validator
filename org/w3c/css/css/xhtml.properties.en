@@ -80,7 +80,7 @@ charset-rule: \
 
 errors : \
 <div id="errors">\n\
-<h2>Errors</a></h2>\n\
+<h2>Errors</h2>\n\
 <!-- #error -->\n\
 </div>
 
