@@ -53,7 +53,7 @@ public class CssRuleList {
 	} else {
 	    if (!atRuleString.equals("")) {
 		ret.append(atRuleString);
-		ret.appent(' ');
+		ret.append(' ');
 		ret.append('{');
 		ret.append('\n');
 		indent = "   ";
