@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/05/22 14:49:14  dejong
+ * transparent is no value anymore, but has become a color itself
+ *
  * Revision 3.1  1997/08/29 13:13:34  plehegar
  * Freeze
  *
@@ -47,9 +50,9 @@ import org.w3c.css.util.ApplContext;
  *   If no color value is specified, the value of the 'color' property of the
  *   element itself will take its place:
  *   <PRE>
- *   P { 
- *     color: black; 
- *     background: white; 
+ *   P {
+ *     color: black;
+ *     background: white;
  *     border: solid;
  *   }
  * </PRE>
@@ -59,14 +62,14 @@ import org.w3c.css.util.ApplContext;
  * @version $Revision$
  */
 public class CssBorderColor extends CssProperty implements CssOperator {
-    
+
     CssBorderTopColor top;
     CssBorderBottomColor bottom;
     CssBorderRightColor right;
     CssBorderLeftColor left;
 
-    private static CssIdent transparent = new CssIdent("transparent");
-    
+    //private static CssIdent transparent = new CssIdent("transparent"); // obsolete, not in CSS3 anymore
+
     /**
      * Create a new CssBorderColor with all four sides
      */
@@ -78,27 +81,28 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	this.bottom = bottom;
 	this.left = left;
 	this.right = right;
-    }  
-    
+    }
+
     /**
      * Create a new CssBorder
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBorderColor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
-	
+
 	setByUser();
-	
+
 	switch (expression.getCount()) {
 	case 1:
 	    CssValue val = expression.getValue();
-	    if (val.equals(transparent)) {
-		top = new CssBorderTopColor();
-		top.face.face = transparent;
-		expression.next();
-	    } else if (val.equals(inherit)) {
+	    //if (val.equals(transparent)) { // obsolete, transparent is a color value now
+		//top = new CssBorderTopColor();
+		//top.face.face = transparent;
+		//expression.next();
+	    //} else
+	    if (val.equals(inherit)) {
 		top = new CssBorderTopColor();
 		top.face.face = inherit;
 		expression.next();
@@ -111,7 +115,7 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(expression.getOperator())).toString()),
 						ac);
 	    top = new CssBorderTopColor(ac, expression);
@@ -121,12 +125,12 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()), 
+		throw new InvalidParamException("operator",
+						((new Character(expression.getOperator())).toString()),
 						ac);
 	    top = new CssBorderTopColor(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(expression.getOperator())).toString()), ac);
 	    right = new CssBorderRightColor(ac, expression);
 	    bottom = new CssBorderBottomColor(ac, expression);
@@ -134,17 +138,17 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    break;
 	default:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(expression.getOperator())).toString()),
 						ac);
 	    top = new CssBorderTopColor(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(expression.getOperator())).toString()),
 						ac);
 	    right = new CssBorderRightColor(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(expression.getOperator())).toString()),
 						ac);
 	    bottom = new CssBorderBottomColor(ac, expression);
@@ -152,21 +156,21 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    break;
 	}
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return top;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-color";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -185,18 +189,18 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    return top + " " + right + " " + bottom + " " + left;
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	top.important = true;
 	right.important = true;
 	left.important = true;
 	bottom.important = true;
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -207,14 +211,14 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 		(left == null || left.important) &&
 		(bottom == null || bottom.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((top != null && right != null &&
 	     left != null && bottom != null) &&
@@ -236,9 +240,9 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    if (bottom != null)
 		bottom.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -261,7 +265,7 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	    left.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -273,25 +277,25 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	left.addToStyle(ac, style);
 	bottom.addToStyle(ac, style);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	throw new IllegalStateException("Can't invoke this method on the property " + 
+	throw new IllegalStateException("Can't invoke this method on the property " +
 					getPropertyName());
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	top.setInfo(line, source);
@@ -299,14 +303,14 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 	left.setInfo(line, source);
 	bottom.setInfo(line, source);
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
 }
