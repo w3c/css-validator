@@ -28,7 +28,7 @@ import org.w3c.css.values.CssLength;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  The 'alignment-adjust' property allows more precise alignment of
- *  elements, such as graphics, that do not have a baseline-table 
+ *  elements, such as graphics, that do not have a baseline-table
  *  or lack the desired baseline in their baseline-table. With the
  *  'alignment-adjust' property, the position of the baseline
  *  identified by the 'alignment-baseline' can be explicitly determined.
@@ -37,9 +37,15 @@ import org.w3c.css.values.CssLength;
 public class CssAlignmentAdjust extends CssProperty {
 
     CssValue alignadjust;
-    
+
     CssIdent auto = new CssIdent("auto");
-    
+
+    private static String[] values = {
+	"auto", "baseline", "before-edge",
+	"text-before-edge", "middle", "central", "after-edge", "text-after-edge",
+	"ideographic", "alphabetic", "hanging", "mathematical", "inherit"
+    };
+
     /**
      * Create a new CssAlignmentAdjust
      */
@@ -47,7 +53,7 @@ public class CssAlignmentAdjust extends CssProperty {
 	alignadjust = auto;
     }
 
-    /** 
+    /**
      * Create a new CssAlignmentAdjust
      *
      * @param expression The expression for this property
@@ -58,13 +64,19 @@ public class CssAlignmentAdjust extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	if (val.equals(inherit)) {
-	    alignadjust = inherit;
-	    expression.next();
-	}
-	else if (val.equals(auto)) {
-	    alignadjust = auto;
-	    expression.next();
+	if (val instanceof CssIdent) {
+		int i = 0;
+		for (; i < values.length; i++) {
+		    if (val.toString().equals(values[i])) {
+				alignadjust = val;
+				expression.next();
+				break;
+	    	}
+		}
+		if (i == values.length) {
+			    throw new InvalidParamException("value", expression.getValue(),
+							    getPropertyName(), ac);
+		}
 	}
 	else if (val instanceof CssPercentage) {
 	    alignadjust = val;
@@ -115,7 +127,7 @@ public class CssAlignmentAdjust extends CssProperty {
 	return (property instanceof CssAlignmentAdjust &&
 		alignadjust.equals(((CssAlignmentAdjust) property).alignadjust));
     }
-    
+
     /**
      * Returns the name of this property
      */

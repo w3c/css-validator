@@ -18,8 +18,8 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM> baseline || auto-script || before-edge || 
- *  text-before-edge || after-edge || text-after-edge || middle || 
+ *  <EM>Value:</EM> baseline || auto-script || before-edge ||
+ *  text-before-edge || after-edge || text-after-edge || middle ||
  *  ideographic || lower || hanging || mathematical || inherit<BR>
  *  <EM>Initial:</EM>baseline<BR>
  *  <EM>Applies to:</EM>inline-level elements<BR>
@@ -28,7 +28,7 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  This property specifies how an inline-level element is aligned with
- *   respect to its parent. 
+ *   respect to its parent.
  */
 
 public class CssAlignmentBaseLine extends CssProperty {
@@ -38,16 +38,16 @@ public class CssAlignmentBaseLine extends CssProperty {
     static CssIdent baseline = new CssIdent("baseline");
 
     private static String[] values = {
-	"baseline", "auto-script", "before-edge",
-	"text-before-edge", "after-edge", "text-after-edge", "middle",
-	"ideographic", "lower", "hanging", "mathematical", "inherit"
+	"baseline", "use-script", "before-edge",
+	"text-before-edge", "after-edge", "text-after-edge", "central", "middle",
+	"ideographic", "alphabetic", "hanging", "mathematical", "inherit"
     };
 
     /**
      * Create a new CssAlignmentBaseLine
      */
     public CssAlignmentBaseLine() {
-	albaseline = baseline;
+		albaseline = baseline;
     }
 
     /**
@@ -110,7 +110,7 @@ public class CssAlignmentBaseLine extends CssProperty {
 	return (property instanceof CssAlignmentBaseLine &&
 		albaseline.equals(((CssAlignmentBaseLine) property).albaseline));
     }
-    
+
     /**
      * Returns the name of this property
      */
