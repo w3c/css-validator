@@ -88,7 +88,8 @@ public final class StyleReportSOAP12 extends StyleReport
 	}
 	this.ac = ac;
 	this.style = style;
-	general = new Properties(setDocumentBase(getDocumentName(ac, document)));
+	general = new Properties(setDocumentBase(getDocumentName(ac,
+								 document)));
 	general.put("file-title", title);
 	warnings = style.getWarnings();
 	errors = style.getErrors();
@@ -202,9 +203,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	out.print(processStyle(prop.getProperty("declaration"), prop));
     }
     
-    public void produceParseException(CssParseException error,
-				      StringBuffer ret) {
-	ret.append(' ');
+    public void produceParseException(CssParseException error) {
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
 	    for (Enumeration e = error.getContexts().elements(); 
@@ -217,53 +216,53 @@ public final class StyleReportSOAP12 extends StyleReport
 		}
 	    }
 	    if (buf.length() != 0) {
-		ret.append(ac.getMsg().getGeneratorString("context"));
-		ret.append(" : <span class='error'>").append(buf);
-		ret.append("</span> ");
+		out.print("parse-error\n</m:errortype>\n<m:context>\n");
+		out.print(buf);
+		out.print("\n</m:context>\n");
 	    }
 	}
-	ret.append("\n<p>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
-	    ret.append(ac.getMsg().getGeneratorString("property"));
-	    ret.append(" : <a href=\"");
-	    ret.append(getURLProperty("@url-base"));
-	    ret.append(getURLProperty(name)).append("\">");
-	    ret.append(name).append("</a>");
+	    out.print("<m:property>\n");
+	    out.print(name);
+	    out.print("\n<m:property>\n");
 	}
 	if ((error.getException() != null) && (error.getMessage() != null)) {
 	    if (error.isParseException()) {
-		ret.append(queryReplace(error.getMessage())).append('\n');
+		out.print("<m:message>\n");
+		out.print(queryReplace(error.getMessage()));
+		out.print("\n</m:message>\n");
 	    } else {
 		Exception ex = error.getException();
 		if (ex instanceof NumberFormatException) {
-		    ret.append(ac.getMsg().getGeneratorString("invalid-number"));
+		    out.print("<m:errorsubtype>\ninvalid-number\n"+
+			      "</m:error-subtype>\n");
 		} else {
-		    ret.append(queryReplace(ex.getMessage()));
+		    out.print("<m:message>\n");
+		    out.print(queryReplace(ex.getMessage()));
+		    out.print("\n</m:message>\n");
 		}
 	    }
 	    if (error.getSkippedString() != null) {
-		ret.append(" : <span>");
-		ret.append(queryReplace(error.getSkippedString()));
-		ret.append("</span>\n");
+		out.print("<m:skippedstring>\n");
+		out.print(queryReplace(error.getSkippedString()));
+		out.print("</m:skippedstring>\n");
 	    } else if (error.getExp() != null) {
-		ret.append(" : ");
-		ret.append(queryReplace(error.getExp().toStringFromStart()));
-		ret.append("<span>");
-		ret.append(queryReplace(error.getExp().toString()));
-		ret.append("</span>\n");		
+		out.print("<m:expression>\n<m:start>\n");
+		out.print(queryReplace(error.getExp().toStringFromStart()));
+		out.print("\n</m:start>\n<m:end>\n");
+		out.print(queryReplace(error.getExp().toString()));
+		out.print("\n</m:end>\n</m:expression>\n");		
 	    }
 	} else {
-	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
-	    ret.append(" - <span class='error'>");
-	    ret.append(queryReplace(error.getSkippedString()));
-	    ret.append("</span>\n");
+	    out.print("<m:errorsubtype>\nunrecognized\n</m:errorsubtype>\n");
+	    out.print("<m:skippedstring>\n");
+	    out.print(queryReplace(error.getSkippedString()));
+	    out.print("</m:skippedstring>\n");
 	}
-	
     }
 
     public void produceError() {
-	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = null;
 	boolean open = false;
 
@@ -277,65 +276,67 @@ public final class StyleReportSOAP12 extends StyleReport
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
 			if (open) {
-			    ret.append("</div>");
+			    out.print("</m:errorlist>\n");
 			}
-			ret.append("\n<div><h3>URI : "
-				   + "<a href=\"");
-			ret.append(file).append("\">");
-			ret.append(file).append("</a></h3><ul>");
+			out.print("<errorlist>\n");
 			open = true;
 		    }
-		    ret.append("\n<li>");
-		    ret.append(ac.getMsg().getGeneratorString("line"));
-		    ret.append(": ").append(error[i].getLine());
+		    out.print("<m:error>\n<m:line>\n");
+		    out.print(error[i].getLine());
+		    out.print("\n<m:line>\n<m:errortype>\n");
 		    if (ex instanceof FileNotFoundException) {
-			ret.append("\n<p>");
-			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<span class='error'>");
-			ret.append(ex.getMessage());
-			ret.append("</span>\n");			
+			out.print("not-found\n");
+			out.print("</m:errortype>\n<m:message>\n");
+			out.print(ex.getMessage());
+			out.print("\n</m:message>\n");			
 		    } else if (ex instanceof CssParseException) {
-			produceParseException((CssParseException) ex, ret);
+			produceParseException((CssParseException) ex);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n<p>");
-			ret.append(queryReplace(ex.getMessage())).append('\n');
+			out.print("invalid-parameter\n");
+			out.print("</m:errortype>\n<m:message>\n");
+			out.print(queryReplace(ex.getMessage()));
+			out.print("\n</m:message>\n");
 		    } else if (ex instanceof IOException) {
-			ret.append("\n<p>");
-			String stringError = ex.toString();
-			int index = stringError.indexOf(':');
-			ret.append(stringError.substring(0, index));
-			ret.append(" : <span class='error'>");
-			ret.append(ex.getMessage()).append("</strong>\n");
+			out.print("IOException\n</m:errortype>\n");
+			out.print("<m:message>\n");
+			out.print(queryReplace(ex.getMessage()));
+			out.print("\n</m:message>\n");
 		    } else if (error[i] instanceof CssErrorToken) {
-			ret.append("\n<p>");
+			out.print("csserror\n</m:errortype>");
 			CssErrorToken terror = (CssErrorToken) error[i];
-			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');
+			out.print("\n<m:description>\n");
+			out.print(terror.getErrorDescription());
+			out.print("\n</m:description>\n");
+			out.print("<m:skippedstring>\n");
+			out.print(terror.getSkippedString());
+			out.print("\n</m:skippedstring>\n");
 		    } else {
-			ret.append("\n<p>");
-			ret.append("<span class='error'>Uncaught error</span>");
-			ret.append(ex).append('\n');
-			
+			out.print("uncaught\n");
+			out.print("</m:errortype>\n<m:message>\n");
+			out.print(queryReplace(ex.getMessage()));
+			out.print("\n</m:message>\n");
 			if (ex instanceof NullPointerException) {
 			    // ohoh, a bug
-			    ex.printStackTrace();
+			    out.print("nullpointer\n");
+			    out.print("</m:errortype>\n<m:message>\n");
+			    ex.printStackTrace(out);
+			    out.print("\n</m:message>\n");
 			}
 		    }
-		    ret.append("</p></li>");
+		    out.print("<m:error>\n");
 		}
-		ret.append("</div>");
+		out.print("</m:errorlist>");
 	    }
-
-	    out.println(ret.toString());
 	} catch (Exception e) {
+	    out.print("<m:processingerror>\n");
 	    out.println(ac.getMsg().getGeneratorString("request"));
-	    e.printStackTrace();
+	    e.printStackTrace(out);
+	    out.print("</m:processingerror>\n");
 	}
     }
     
     public void produceWarning() {
 	boolean open = false;
-	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = "";
 	int oldLine = -1;
 	String oldMessage = "";
@@ -350,42 +351,46 @@ public final class StyleReportSOAP12 extends StyleReport
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
 			    if (open) {
-				ret.append("\n</ul></div>");
+				out.print("</m:warninglist>\n");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div><h3>URI : "
-				       + "<a href=\"");
-			    ret.append(oldSourceFile).append("\">");
-			    ret.append(oldSourceFile).append("</a></h3><ul>");
+			    out.print("<m:warninglist>\n");
 			    open = true;
 			}
 			if (warn.getLine() != oldLine || 
 			    !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<li><span class='warning'>Line : ");
-			    ret.append(oldLine);
+			    out.print("<m:warning>\n<m:line>\n");
+			    out.print(oldLine);
+			    out.print("\n</m:line>\n");
 			    
-			    if (warn.getLevel() != 0) {
-				ret.append(" Level : ");
-				ret.append(warn.getLevel());
-			    }
-			    ret.append("</span> ");
-			    ret.append(oldMessage);
-			    
+			    //    if (warn.getLevel() != 0) {
+			    //	ret.append(" Level : ");
+			    //	ret.append(warn.getLevel());
+			    //}
+			    out.print("<m:level>\n");
+			    out.print(warn.getLevel());
+			    out.print("\n</m:level>\n");
+//			    out.print("<message>");
+//			    out.print(oldMessage);
+//			    out.print("</message>\n");
 			    if (warn.getContext() != null) {
-				ret.append(" : ").append(warn.getContext());
+				out.print("<m:context>\n");
+				out.print(warn.getContext());
+				out.print("\n</m:context>\n");
 			    }
-			    ret.append("</li>");
+			    out.print("</m:warning>\n");
 			}
 		    }
 		}
-		ret.append("</ul></div>");
+		out.print("</m:warninglist>");
 	    }
-	    out.println(ret.toString());
 	} catch (Exception e) {
+	    out.print("<m:processingerror>\n");
 	    out.println(ac.getMsg().getGeneratorString("request"));
-	    e.printStackTrace();
+	    e.printStackTrace(out);
+	    out.print("</m:processingerror>\n");
 	}
     }
     
