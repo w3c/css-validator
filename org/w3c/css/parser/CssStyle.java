@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:24:12  plehegar
+ * New
+ *
  */
 package org.w3c.css.parser;
 
@@ -25,24 +28,24 @@ public class CssStyle {
 
   /**
    * For warnings report.
-   */  
+   */
   protected Warnings warnings;
 
   /**
    * The entire style sheet.
-   */  
+   */
   protected StyleSheet style;
 
   /**
    * The context of this style.
-   */  
+   */
   protected CssSelectors selector;
-  
+
   /**
    * Set the context of this style.
    *
    * @param selectors The context.
-   */  
+   */
   public final void setSelector(CssSelectors selectors) {
       this.selector = selectors;
   }
@@ -51,17 +54,17 @@ public class CssStyle {
    * Set the style sheet of this style.
    *
    * @param style The style sheet.
-   */  
+   */
   public final void setStyleSheet(StyleSheet style) {
     this.style = style;
   }
-    
+
   /**
    * Add a warning definition to this style.
    *
    * @param property The property.
-   */  
-  public final void addRedefinitionWarning(ApplContext ac, 
+   */
+  public final void addRedefinitionWarning(ApplContext ac,
 					   CssProperty property) {
     warnings.addWarning(new Warning(property, "redefinition", 2, ac));
   }
@@ -71,18 +74,18 @@ public class CssStyle {
    *
    * @param property the property to add
    * @param warnings where to add warnings if required
-   */  
+   */
   public final void setProperty(ApplContext ac, CssProperty property, Warnings warnings) {
     this.warnings = warnings;
-    property.addToStyle(ac, this);
+    //property.addToStyle(ac, this);
   }
-  
+
   /**
    * Print this style.
    * Overrides this method to create your own style.
    *
    * @param printer The printer interface.
-   */  
+   */
   public void print(CssPrinterStyle printer) {
     // nothing to do
   }
@@ -93,7 +96,7 @@ public class CssStyle {
    * @param warnings For warnings reports.
    * @param allSelectors All contexts is the entire style sheet.
    */
-  public void findConflicts(ApplContext ac, Warnings warnings, 
+  public void findConflicts(ApplContext ac, Warnings warnings,
 			    Enumeration allSelectors) {
     // nothing to do
   }
