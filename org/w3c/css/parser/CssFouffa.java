@@ -320,11 +320,9 @@ public final class CssFouffa extends CssParser {
 	String surl = url.toString();
 	if (visited == null) {
 	    visited = new Vector(2);
-	    System.out.println("importing 0 level ");
 	} else {
 	    // check that we didn't already got this URL, or that the
 	    // number of imports is not exploding
-	    System.out.println("importing " + visited.size() + " level ");
 	    if (visited.contains(surl)) {
 		CssError cerr = new CssError(new Exception("Import loop"
 							   +" detected in "
