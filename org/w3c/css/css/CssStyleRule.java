@@ -6,6 +6,7 @@
 package org.w3c.css.css;
 
 import java.util.Vector;
+import java.io.PrintWriter;
 
 import org.w3c.css.properties.CssProperty;
 
@@ -50,7 +51,7 @@ public class CssStyleRule {
 	}
 	return ret.toString();
     }
-
+/*
     public String toHTML() {
 	StringBuffer ret = new StringBuffer("<li><span class='selector'>"); 
 	if (selectors != null) {
@@ -72,6 +73,28 @@ public class CssStyleRule {
 	}
 	ret.append("</ul>}</li>\n\n");
 	return ret.toString();
+    }
+*/
+    public void toHTML(PrintWriter out) {
+	out.print("<li><span class='selector'>"); 
+	if (selectors != null) {
+	    out.print(selectors);
+	    out.print("</span> {<ul class='vRule'>\n");
+	}
+
+	for (int i = 0; i < properties.size() ; i++) {
+	    CssProperty property = (CssProperty)properties.elementAt(i);
+	    out.print("<li>");
+	    out.print(property.getPropertyName());
+	    out.print(" : <span class='vPropertyValue'>");
+	    out.print(property.toString());
+	    out.print("</span>");
+	    if (property.getImportant()) {
+		out.print(" !important");
+	    }
+	    out.print(";</li>\n");
+	}
+	out.print("</ul>}</li>\n\n");
     }
     
     private String indent;
