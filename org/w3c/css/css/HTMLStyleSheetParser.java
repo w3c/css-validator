@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2003/10/20 13:28:47  ylafon
+ * reformatting
+ *
  * Revision 1.5  2003/10/15 10:10:14  plehegar
  * Changes from Yves
  *
@@ -81,6 +84,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 			throw (Exception) exception.fillInStackTrace();
 		    }
 		} catch (html.parser.XMLInputException e) {
+			e.printStackTrace();
 		    XMLStyleSheetHandler handler;
 		    handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(htmlURL);
@@ -107,6 +111,11 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		String credential = ac.getCredential();
 
 		connection = HTTPURL.getConnection(htmlURL, ac);
+
+		String httpCL = connection.getHeaderField("Content-Location");
+		if (httpCL != null) {
+		    htmlURL = HTTPURL.getURL(htmlURL, httpCL);
+		}
 
 		contentType = connection.getContentType();
 		if (contentType == null) {

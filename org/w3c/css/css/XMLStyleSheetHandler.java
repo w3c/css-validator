@@ -479,6 +479,11 @@ public class XMLStyleSheetHandler implements ContentHandler,
 
 	connection = HTTPURL.getConnection(url, ac);
 	in = connection.getInputStream();
+	String httpCL = connection.getHeaderField("Content-Location");
+	if (httpCL != null) {
+	    baseURI = HTTPURL.getURL(baseURI, httpCL);
+	    documentURI = baseURI;
+	}
 	String ctype = connection.getContentType();
 	if (ctype != null) {
 	    try {
