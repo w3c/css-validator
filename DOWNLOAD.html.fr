@@ -44,7 +44,7 @@ par la version en ligne. Vous pouvez donc obtenir des r&eacute;sultats diff&eacu
     </p>
     <p>
       Sijtsche a envoy&eacute; des <a
-      href='http://lists.w3.org/Archives/Public/www-validator-css/2003Jan/0037.html'>insrtuctions</a>
+      href='http://lists.w3.org/Archives/Public/www-validator-css/2003Jan/0037.html'>instructions</a>
       pour installer le validateur CSS sur un ordinateur.
     </p>
     <hr />
