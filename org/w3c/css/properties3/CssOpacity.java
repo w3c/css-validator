@@ -37,8 +37,8 @@ import org.w3c.css.values.CssOperator;
 public class CssOpacity extends CssProperty implements CssOperator {
 
    String opaclevel;
-    ApplContext ac;
-    CssIdent none = new CssIdent("none");
+   ApplContext ac;
+
 
     /**
      * Create a new CssOpacity
@@ -62,43 +62,16 @@ public class CssOpacity extends CssProperty implements CssOperator {
        if (val instanceof CssNumber) {
 
 		   CssNumber cssnum = new CssNumber(clampedValue(ac, ((CssNumber) val).getValue()));
-
-	       if (expression.getOperator() == SPACE) {
-			   expression.next();
-			   val = expression.getValue();
-
-			   if (val != null) {
-
-			   		if (val instanceof CssIdent) {
-			   			if (val.equals(none)) {
-							opaclevel = cssnum.toString() + " " + val.toString();
-						} else {
-							throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-						}
-		   	   		} else if (val instanceof CssNumber) {
-					    CssNumber cssnum2 = new CssNumber();
-					    cssnum2.set(val.toString(),ac);
-					    if (cssnum.isInteger() && ((Float)cssnum2.get()).intValue() > 0) {
-							opaclevel = cssnum.toString() + " " + val.toString();
-				   		} else {
-						   throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-				   		}
-			   		}
-
-			   } else {
-				   opaclevel = cssnum.toString();
-			   }
-		   } else {
-			   opaclevel = cssnum.toString();
-		   }
-
+		   opaclevel = cssnum.toString();
 		   expression.next();
        }
        else if (val instanceof CssIdent) {
            if (val.equals(inherit)) {
-	       opaclevel = "inherit";
-	       expression.next();
-           }
+	       	  	opaclevel = "inherit";
+	       	 	expression.next();
+           } else {
+				throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+		   }
        }
        else {
 	   		throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
