@@ -4,45 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2002/05/22 14:47:59  dejong
- * new color values for CSS3 added
- *
- * Revision 3.3  1997/09/09 13:03:38  plehegar
- * Added getColor()
- *
- * Revision 3.2  1997/09/08 14:03:51  plehegar
- * Suppressed a conflict
- *
- * Revision 3.1  1997/08/29 13:13:43  plehegar
- * Freeze
- *
- * Revision 2.2  1997/08/20 11:41:21  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/08 15:52:14  plehegar
- * Nothing
- *
- * Revision 1.6  1997/08/06 17:29:57  plehegar
- * Updated set, now it's a constructor
- *
- * Revision 1.5  1997/07/31 15:44:29  plehegar
- * CssColors --> CssColor
- *
- * Revision 1.4  1997/07/30 13:19:53  plehegar
- * Updated package
- *
- * Revision 1.3  1997/07/22 17:53:08  plehegar
- * Bug fix in documentation
- *
- * Revision 1.2  1997/07/22 11:21:01  plehegar
- * Updated documentation
- *
- * Revision 1.1  1997/07/21 22:07:26  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
@@ -71,10 +33,10 @@ import java.util.Vector;
  *   the <EM>foreground</EM> color). There are different ways to specify red:
  *   <PRE>
  *   EM { color: red }              /* natural language * /
-				     *   EM { color: rgb(255,0,0) }     /* RGB range 0-255   * /
-									 * </PRE>
-									 * @version $Revision$
-									 */
+ *   EM { color: rgb(255,0,0) }     /* RGB range 0-255   * /
+ * </PRE>
+ * @version $Revision$
+ */
 public class CssColor extends CssProperty implements CssOperator {
 
     CssValue color;
@@ -85,7 +47,7 @@ public class CssColor extends CssProperty implements CssOperator {
      * Create a new CssColor
      */
     public CssColor() {
-		color = inherit;
+	color = inherit;
     }
 
     /**
@@ -93,10 +55,14 @@ public class CssColor extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssColor(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssColor(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException 
+    {
+	if (expression.getCount() > 1 ) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 	CssValue val = expression.getValue();
 	setByUser();
-
 	if (val.equals(inherit)) {
 	    color = inherit;
 	    expression.next();
@@ -104,161 +70,161 @@ public class CssColor extends CssProperty implements CssOperator {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssFunction) {
-			CssFunction attr = (CssFunction) val;
-			CssExpression params = attr.getParameters();
+	    CssFunction attr = (CssFunction) val;
+	    CssExpression params = attr.getParameters();
 
-			if (attr.getName().equals("attr")) {
+	    if (attr.getName().equals("attr")) {
 
-				CssValue v1 = params.getValue();
-				params.next();
-				CssValue v2 = params.getValue();
+		CssValue v1 = params.getValue();
+		params.next();
+		CssValue v2 = params.getValue();
 
-			    if ((params.getCount() != 2)) {
-					throw new InvalidParamException("value",
-								params.getValue(),
-								getPropertyName(), ac);
-				} else if (!(v1 instanceof CssIdent)) {
-					throw new InvalidParamException("value",
-								params.getValue(),
-								getPropertyName(), ac);
+		if ((params.getCount() != 2)) {
+		    throw new InvalidParamException("value",
+						    params.getValue(),
+						    getPropertyName(), ac);
+		} else if (!(v1 instanceof CssIdent)) {
+		    throw new InvalidParamException("value",
+						    params.getValue(),
+						    getPropertyName(), ac);
 
-				} else if (!(v2.toString().equals("color"))) {
-					throw new InvalidParamException("value",
-								params.getValue(),
-								getPropertyName(), ac);
-			    } else {
-					attrvalue = "attr(" + v1 + ", " + v2 + ")";
-					expression.next();
-				}
-			} else if (attr.getName().equals("rgba")) {
+		} else if (!(v2.toString().equals("color"))) {
+		    throw new InvalidParamException("value",
+						    params.getValue(),
+						    getPropertyName(), ac);
+		} else {
+		    attrvalue = "attr(" + v1 + ", " + v2 + ")";
+		    expression.next();
+		}
+	    } else if (attr.getName().equals("rgba")) {
 
-				Vector rgbaValues = new Vector();
+		Vector rgbaValues = new Vector();
 
-				char op;
+		char op;
 
-				CssValue v1 = params.getValue();
-				op = params.getOperator();
-				if (v1 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				rgbaValues.add(v1);
-				params.next();
+		CssValue v1 = params.getValue();
+		op = params.getOperator();
+		if (v1 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		rgbaValues.add(v1);
+		params.next();
 
-				CssValue v2 = params.getValue();
-				op = params.getOperator();
-				if (v2 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				rgbaValues.add(v2);
-				params.next();
+		CssValue v2 = params.getValue();
+		op = params.getOperator();
+		if (v2 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		rgbaValues.add(v2);
+		params.next();
 
-				CssValue v3 = params.getValue();
-				op = params.getOperator();
-				if (v3 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				rgbaValues.add(v3);
-				params.next();
+		CssValue v3 = params.getValue();
+		op = params.getOperator();
+		if (v3 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		rgbaValues.add(v3);
+		params.next();
 
-				CssValue v4 = params.getValue();
-				if (v4 == null) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				rgbaValues.add(v4);
+		CssValue v4 = params.getValue();
+		if (v4 == null) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		rgbaValues.add(v4);
 
-				tempcolor.setRGBAColor(rgbaValues, ac);
-				color = tempcolor;
-				expression.next();
-			} else if (attr.getName().equals("hsl")) {
-				Vector hslValues = new Vector();
-				char op;
+		tempcolor.setRGBAColor(rgbaValues, ac);
+		color = tempcolor;
+		expression.next();
+	    } else if (attr.getName().equals("hsl")) {
+		Vector hslValues = new Vector();
+		char op;
 
-				CssValue v1 = params.getValue();
-				op = params.getOperator();
-				if (v1 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslValues.add(v1);
-				params.next();
+		CssValue v1 = params.getValue();
+		op = params.getOperator();
+		if (v1 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslValues.add(v1);
+		params.next();
 
-				CssValue v2 = params.getValue();
-				op = params.getOperator();
-				if (v2 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslValues.add(v2);
-				params.next();
+		CssValue v2 = params.getValue();
+		op = params.getOperator();
+		if (v2 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslValues.add(v2);
+		params.next();
 
-				CssValue v3 = params.getValue();
-				if (v3 == null) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslValues.add(v3);
+		CssValue v3 = params.getValue();
+		if (v3 == null) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslValues.add(v3);
 
-				params.starts(); // set position back to the first value
+		params.starts(); // set position back to the first value
 
-				tempcolor.setHSLColor(hslValues, ac);
-				params.ends();
-				color = tempcolor;
-				expression.next();
+		tempcolor.setHSLColor(hslValues, ac);
+		params.ends();
+		color = tempcolor;
+		expression.next();
 
-			} else if (attr.getName().equals("hsla")) {
+	    } else if (attr.getName().equals("hsla")) {
 
-				Vector hslaValues = new Vector();
+		Vector hslaValues = new Vector();
 
-				char op;
+		char op;
 
-				CssValue v1 = params.getValue();
-				op = params.getOperator();
-				if (v1 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslaValues.add(v1);
-				params.next();
+		CssValue v1 = params.getValue();
+		op = params.getOperator();
+		if (v1 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslaValues.add(v1);
+		params.next();
 
-				CssValue v2 = params.getValue();
-				op = params.getOperator();
-				if (v2 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslaValues.add(v2);
-				params.next();
+		CssValue v2 = params.getValue();
+		op = params.getOperator();
+		if (v2 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslaValues.add(v2);
+		params.next();
 
-				CssValue v3 = params.getValue();
-				op = params.getOperator();
-				if (v3 == null || op != COMMA) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslaValues.add(v3);
-				params.next();
+		CssValue v3 = params.getValue();
+		op = params.getOperator();
+		if (v3 == null || op != COMMA) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslaValues.add(v3);
+		params.next();
 
-				CssValue v4 = params.getValue();
-				if (v4 == null) {
-				    throw new InvalidParamException("invalid-color", ac);
-				}
-				hslaValues.add(v4);
+		CssValue v4 = params.getValue();
+		if (v4 == null) {
+		    throw new InvalidParamException("invalid-color", ac);
+		}
+		hslaValues.add(v4);
 
-				params.starts();
-				tempcolor.setHSLAColor(hslaValues, ac);
-				params.ends();
-				color = tempcolor;
-				expression.next();
+		params.starts();
+		tempcolor.setHSLAColor(hslaValues, ac);
+		params.ends();
+		color = tempcolor;
+		expression.next();
 
-			} else {
-				throw new InvalidParamException("value",
-								params.getValue(),
-								getPropertyName(), ac);
-			}
+	    } else {
+		throw new InvalidParamException("value",
+						params.getValue(),
+						getPropertyName(), ac);
+	    }
 	} else if (val instanceof CssIdent) {
 	    if ("css1".equals(ac.getCssVersion())) {
-			color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
+		color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
 	    } else if ("css2".equals(ac.getCssVersion())) {
-			color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
+		color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
 	    } else if ("css3".equals(ac.getCssVersion())){
-			color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
 	    } else {
-			color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get()); // SVG profiles
-		}
+		color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get()); // SVG profiles
+	    }
 	    //	    color = new org.w3c.css.values.CssColor();
 	    expression.next();
 	} else {
@@ -280,8 +246,8 @@ public class CssColor extends CssProperty implements CssOperator {
     public org.w3c.css.values.CssColor getColor() {
 	if (color.equals(inherit)) {
 	    /*
-	    System.err.println("[ERROR] org.w3c.css.properties.CssColor");
-	    System.err.println("[ERROR] value is inherited");
+	      System.err.println("[ERROR] org.w3c.css.properties.CssColor");
+	      System.err.println("[ERROR] value is inherited");
 	    */
 	    return null;
 	} else {
@@ -301,11 +267,11 @@ public class CssColor extends CssProperty implements CssOperator {
      * Returns a string representation of the object.
      */
     public String toString() {
-		if (attrvalue != null) {
-			return attrvalue;
-		} else {
-			return color.toString();
-		}
+	if (attrvalue != null) {
+	    return attrvalue;
+	} else {
+	    return color.toString();
+	}
     }
 
     /**
@@ -343,13 +309,13 @@ public class CssColor extends CssProperty implements CssOperator {
     public boolean equals(CssProperty property) {
 	return (property instanceof CssColor &&
 		color.equals(((CssColor) property).color));
-    }
+}
 
     /**
      * Returns the name of this property
      */
-    public String getPropertyName() {
-	return "color";
-    }
+public String getPropertyName() {
+    return "color";
+}
 
 }
