@@ -26,6 +26,7 @@ public class CssOverflowY extends CssProperty {
     static CssIdent visible = new CssIdent("visible");
     static CssIdent hidden = new CssIdent("hidden");
     static CssIdent scroll = new CssIdent("scroll");
+    static CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssOverflowY
@@ -58,6 +59,9 @@ public class CssOverflowY extends CssProperty {
 		    overflowY = val;
 		    expression.next();
 		} else if (val.equals(auto)) {
+		    overflowY = val;
+		    expression.next();
+		} else if (val.equals(initial)) {
 		    overflowY = val;
 		    expression.next();
 		} else {

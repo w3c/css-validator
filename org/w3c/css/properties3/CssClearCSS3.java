@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/07/19 20:30:12  sijtsche
+ * files representing CSS3 properties
+ *
  * Revision 1.1  2002/05/08 09:30:52  dejong
  * CSS version 3 specific properties as in March 2002, all modules
  *
@@ -50,32 +53,32 @@ import org.w3c.css.properties.CssProperty;
  *
  * @version $Revision$ */
 public class CssClearCSS3 extends CssProperty {
-    
+
     int value;
-    
-    private static String[] CLEAR = { 
+
+    private static String[] CLEAR = {
 	"none", "left", "right", "both", "inherit",
-	"top", "bottom", "inside", "outside", "start", "end"
+	"top", "bottom", "inside", "outside", "start", "end", "initial", "inherit"
     };
 
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssClearCSS3
      */
     public CssClearCSS3() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new CssClearCSS3
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssClearCSS3(ApplContext ac, CssExpression expression) throws InvalidParamException {
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
 	if ( val instanceof CssIdent) {
 	    int hash = val.hashCode();
@@ -86,24 +89,24 @@ public class CssClearCSS3 extends CssProperty {
 		    return;
 		}
 	}
-	throw new InvalidParamException("value", expression.getValue(), 
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return CLEAR[value];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "clear";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -111,14 +114,14 @@ public class CssClearCSS3 extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == CLEAR.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return CLEAR[value];
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -130,13 +133,13 @@ public class CssClearCSS3 extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssClearCSS3 = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getClearCSS3();
@@ -144,25 +147,25 @@ public class CssClearCSS3 extends CssProperty {
 	    return ((Css3Style) style).cssClearCSS3;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssClearCSS3 && 
+	return (property instanceof CssClearCSS3 &&
 		value == ((CssClearCSS3) property).value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     static {
 	hash_values = new int[CLEAR.length];
 	for (int i = 0; i < CLEAR.length; i++)

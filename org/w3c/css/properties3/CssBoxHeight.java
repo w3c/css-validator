@@ -36,6 +36,7 @@ public class CssBoxHeight extends CssProperty {
     ApplContext ac;
 
     CssIdent auto = new CssIdent("auto");
+    CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssBoxHeight
@@ -51,16 +52,20 @@ public class CssBoxHeight extends CssProperty {
      * @exception InvalidParamException Values are incorrect
      */
     public CssBoxHeight(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(auto)) {
 	    boxheight = auto;
 	    expression.next();
 	}
 	else if (val.equals(inherit)) {
 	    boxheight = inherit;
+	    expression.next();
+	}
+	else if (val.equals(initial)) {
+	    boxheight = initial;
 	    expression.next();
 	}
 	else if (val instanceof CssLength) {
@@ -86,13 +91,13 @@ public class CssBoxHeight extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBoxHeight = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getBoxHeight();
@@ -100,51 +105,51 @@ public class CssBoxHeight extends CssProperty {
 	    return ((Css3Style) style).cssBoxHeight;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBoxHeight && 
+	return (property instanceof CssBoxHeight &&
                 boxheight.equals( ((CssBoxHeight) property).boxheight));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "box-height";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return boxheight;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return boxheight.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return boxheight.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return boxheight == auto;
     }
-    
-}	
+
+}

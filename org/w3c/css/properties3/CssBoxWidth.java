@@ -36,6 +36,7 @@ public class CssBoxWidth extends CssProperty {
     ApplContext ac;
 
     CssIdent auto = new CssIdent("auto");
+    CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssBoxWidth
@@ -51,13 +52,17 @@ public class CssBoxWidth extends CssProperty {
      * @exception InvalidParamException Values are incorrect
      */
     public CssBoxWidth(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(auto)) {
 	    boxwidth = auto;
 	    expression.next();
+	}
+	else if (val.equals(initial)) {
+		boxwidth = initial;
+		expression.next();
 	}
 	else if (val.equals(inherit)) {
 	    boxwidth = inherit;
@@ -86,13 +91,13 @@ public class CssBoxWidth extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBoxWidth = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getBoxWidth();
@@ -100,51 +105,51 @@ public class CssBoxWidth extends CssProperty {
 	    return ((Css3Style) style).cssBoxWidth;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBoxWidth && 
+	return (property instanceof CssBoxWidth &&
                 boxwidth.equals( ((CssBoxWidth) property).boxwidth));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "box-width";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return boxwidth;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return boxwidth.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return boxwidth.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return boxwidth == auto;
     }
-    
-}	
+
+}
