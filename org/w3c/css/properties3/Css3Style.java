@@ -119,6 +119,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssBackgroundSpacing cssBackgroundSpacing;
 	CssTextDecorationCSS3 cssTextDecoration;
 	CssWhiteSpaceCSS3 cssWhiteSpace;
+	CssWordSpacingCSS3 cssWordSpacing;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1040,6 +1041,15 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssWhiteSpace;
 	}
 
+	public CssWordSpacingCSS3 getCssWordSpacing() {
+		if (cssWordSpacing == null) {
+			cssWordSpacing =
+				(CssWordSpacingCSS3) style.CascadingOrder(
+						new CssWordSpacingCSS3(), style, selector);
+		}
+		return cssWordSpacing;
+	}
+
 
     /**
      * Print this style
@@ -1348,6 +1358,9 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssWhiteSpace != null) {
 		cssWhiteSpace.print(printer);
+	}
+	if (cssWordSpacing != null) {
+		cssWordSpacing.print(printer);
 	}
     }
 
