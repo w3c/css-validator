@@ -1,41 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>W3C CSS Validation Service</title>
-    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
-    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <title>The W3C CSS Validation Service</title>
+    <link rev="made" href="mailto:www-validator@w3.org" />
+    <link rev="start" href="./" title="Home Page" />
+    <style type="text/css" media="all">@import "./base.css";</style>
+    <meta name="revision" content="$Id$" />
   </head>
-  <body>
-    <a class="left" href="http://www.w3.org"><img
-	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
-	height="48" /></a>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><img
-	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
-	  border="0" width="94" height="52" /></a>
-    <br />
-    
-    <div class="t1">CSS</div>
-    <div class="t2">Validator</div>
-    
 
-    <h1>W3C CSS Validation Service</h1>
-    
-    <p>
-      Welcome to the W3C CSS Validation Service!
-    </p>
-    <hr />
-    <h2>Validate documents by URI</h2>
-     
-    <p>
-      Enter the URI of a document (HTML with CSS or CSS only)
-      you would like validated:
-    </p>
-    
+  <body>
+  <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C"
+      id="logo" src="http://www.w3.org/Icons/WWW/w3c_home" /></a>
+      CSS Validation Service</h1>
+   </div>
+    <ul class="navbar"  id="menu">
+      <li>
+        <span class="hideme"><a href="#skip" accesskey="s" title="Skip past navigation to main part of page">Skip Navigation</a> |</span>
+        <a href="./" accesskey="h" title="Go to the Home Page for The W3C CSS Validation Service">[<em>Home</em>]</a> <span class="hideme">|</span></li>
+        <li><a href="http://jigsaw.w3.org/css-validator/Email" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="http://jigsaw.w3.org/css-validator/DOWNLOAD.html" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="http://jigsaw.w3.org/css-validator/README.html" title="Documentation for this Service">Docs</a> <span class="hideme">|</span></li>
+        <li><a href="http://jigsaw.w3.org/css-validator/thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+      </ul>
+
+
+    <div id="main"><!-- This DIV encapsulates everything in each actual page. -->
+
+
+    <div id="skip" class="intro">
+      <p>
+        Welcome to the W3C CSS Validation Service; a free service that checks
+        Cascading Style Sheets (CSS) in (X)HTML documents or standalone for conformance
+	to W3C recommendations.
+      </p>
+    </div>
+
+    <div>
+      <h2>Validate Your Style Sheet</h2>
+
+    <fieldset id="validate-by-uri"><legend>Validate by URI</legend>
     <form action="validator" method="get">
-      
-      <input type="text" name="uri"
-	size="60" /><br />
+      <p>
+	Enter the URI of a document (HTML with CSS or CSS only) you would like validated:     
+      </p>
+      <p>Address:
+      <input type="text" name="uri" size="70" /><br />
       
       Warnings :
       <select name="warning"> 
@@ -43,7 +55,7 @@
 	<option selected="selected" value="1">Normal report</option>
 	<option value="0">Most important</option>
 	<option value="no">No warnings</option>
-      </select><br />
+      </select>
       
       Profile :
       <select name="profile">
@@ -52,8 +64,8 @@
 	<option selected="selected" value="css2">CSS version 2</option>
  	<option value="css3">CSS version 3</option>
 	<option value="svg">SVG</option>
-	<option value="svgbasic">SVG basic</option>
-	<option value="svgtiny">SVG tiny</option>	
+	<option value="svgbasic">SVG Basic</option>
+	<option value="svgtiny">SVG Tiny</option>	
 	<option value="mobile">mobile</option>
 	<option value="atsc-tv">ATSC TV profile</option>
 	<option value="tv">TV profile</option>
@@ -72,27 +84,49 @@
 	<option value="tty">tty</option>
 	<option value="tv">tv</option>
 	<option value="presentation">presentation</option>
-      </select><br />
-      
-      <br />
-      <input type="submit" value="Submit this URI for validation" />
-      <input type="reset" name="Reset" value="Reset this form" />
+      </select></p>
+      <p>
+      <input type="submit" value="Check" />
+      </p>
     </form>
-    
-    <br />
-    <br />
-    <p>
-      To work as intended, your CSS style sheet needs a correct document parse
-      tree. This means you should use <a href="http://validator.w3.org/">valid
-      HTML</a>.
+   </fieldset>
+      <p>
+	<strong>Note</strong>: If you want to validate your CSS style sheet embedded 
+	in an (X)HTML document, you should first <a href="http://validator.w3.org/">check 
+	that the (X)HTML you use is valid</a>.
+      </p>
+    </div>
+  </div><!-- End of "main" DIV. -->
+
+<address>
+	<a href="http://validator.w3.org/check/referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10" height="31" width="88"
+        alt="Valid XHTML 1.0!" /></a>
+	<a class="right" href="http://jigsaw.w3.org/css-validator">
+	<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" 
+	alt="Valid CSS!" /></a>
+	<a title="Send Feedback for the W3C Markup Validation Service"
+        href="Email">The W3C CSS Validator Team</a><br />
+      $Date$
+      <!-- SSI Template Version: $Id$ -->
+    </address>
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2003
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+      (<a href="http://www.lcs.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
     </p>
-    
-    <hr />
-    <address><a href="Email.html">validator-css</a></address><br />
-    $Date$
+
+
   </body>
 </html>
-
-
-
-
