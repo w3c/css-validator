@@ -223,7 +223,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         ret.append(" : <a href=\"");
         ret.append(getURLProperty("@url-base"));
         ret.append(getURLProperty(name)).append("\">");
-        ret.append(name).append("</a>");
+        ret.append(name).append("</a> ");
     }
     if ((error.getException() != null) && (error.getMessage() != null)) {
         if (error.isParseException()) {
@@ -360,9 +360,10 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
                 !warn.getWarningMessage().equals(oldMessage)) {
                 oldLine = warn.getLine();
                 oldMessage = warn.getWarningMessage();
-                ret.append("\n<li><span class='warning'>Line : ");
-                ret.append(oldLine);
-                
+                ret.append("\n<li><span class='warning'>");
+                ret.append(ac.getMsg().getGeneratorString("line"));
+                ret.append(" : ");
+                ret.append(oldLine); 
                 if (warn.getLevel() != 0) {
                 ret.append(" Level : ");
                 ret.append(warn.getLevel());
