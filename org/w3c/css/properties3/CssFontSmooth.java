@@ -92,7 +92,7 @@ public class CssFontSmooth extends CssProperty {
 						val.toString(), ac);
 	    }
 	}
-	else if (val instanceof CssIdent) {   
+	else if (val instanceof CssIdent) {
 	    if (val.equals(auto)) {
 		fontsmooth = auto;
 		expression.next();
@@ -109,6 +109,9 @@ public class CssFontSmooth extends CssProperty {
 		fontsmooth = inherit;
 		expression.next();
 	    }
+	} else if (val instanceof CssLength) {
+		fontsmooth = val;
+		expression.next();
 	}
 	else {
 	    throw new InvalidParamException("value", expression.getValue(),
@@ -133,7 +136,7 @@ public class CssFontSmooth extends CssProperty {
 	 *
 	 * @param style The style where the property is
 	 * @param resolve if true, resolve the style to find this property
-	 */  
+	 */
         public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	    if (resolve) {
 		return ((Css3Style) style).getFontSmooth();
@@ -141,14 +144,14 @@ public class CssFontSmooth extends CssProperty {
 		return ((Css3Style) style).cssFontSmooth;
 	    }
 	}
-    
+
        /**
         * Compares two properties for equality.
         *
         * @param value The other property.
-        */  
+        */
        public boolean equals(CssProperty property) {
-	   return (property instanceof CssFontSmooth && 
+	   return (property instanceof CssFontSmooth &&
                 fontsmooth.equals( ((CssFontSmooth) property).fontsmooth));
        }
 
@@ -158,36 +161,36 @@ public class CssFontSmooth extends CssProperty {
 	public String getPropertyName() {
 	    return "font-smooth";
 	}
-   
+
 	/**
 	 * Returns the value of this property
 	 */
 	public Object get() {
 	    return fontsmooth;
 	}
-	
+
 	/**
 	 * Returns true if this property is "softly" inherited
 	 */
 	public boolean isSoftlyInherited() {
 	    return fontsmooth.equals(inherit);
 	}
-	
+
 	/**
 	 * Returns a string representation of the object
 	 */
 	public String toString() {
 	    return fontsmooth.toString();
 	}
-	
+
 	/**
 	 * Is the value of this property a default value
 	 * It is used by all macro for the function <code>print</code>
 	 */
-	public boolean isDefault() {	
+	public boolean isDefault() {
 	    return fontsmooth == auto;
 	}
 
-    }	
+    }
 
-    
+
