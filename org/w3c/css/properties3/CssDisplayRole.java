@@ -18,9 +18,9 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM> none | block | inline | list-item | marker | run-in | compact | 
- *  table-row | table-cell | table-row-group | table-header-group | table-footer-group | 
- *  table-column | table-column-group | table-caption | ruby-text | ruby-base | 
+ *  <EM>Value:</EM> none | block | inline | list-item | marker | run-in | compact |
+ *  table-row | table-cell | table-row-group | table-header-group | table-footer-group |
+ *  table-column | table-column-group | table-caption | ruby-text | ruby-base |
  *  ruby-base-group | ruby-text-group | inherited <BR>
  *  <EM>Initial:</EM>inline<BR>
  *  <EM>Applies to:</EM>all elements<BR>
@@ -36,19 +36,19 @@ public class CssDisplayRole extends CssProperty {
     static CssIdent inline = new CssIdent("inline");
 
     private static String[] values = {
-	"none", "block", "inline", "list-item", "marker", "run-in", "compact", "table-row",
-	"table-cell", "table-row-group", "table-header-group", "table-footer-group", 
-	"table-column", "table-column-group", "table-caption", "ruby-text", "ruby-base", 
-	"ruby-base-group", "ruby-text-group", "inherited" 
+	"none", "block", "inline", "list-item", "run-in", "compact", "table-row",
+	"table-cell", "table-row-group", "table-header-group", "table-footer-group",
+	"table-column", "table-column-group", "table-caption", "ruby-text", "ruby-base",
+	"ruby-base-group", "ruby-text-group", "initial", "inherit"
     };
 
-    /** 
+    /**
      * Create a new CssDisplayRole
      */
     public CssDisplayRole() {
 	role = inline;
     }
-    
+
     /**
      * Create a new CssDisplayRole
      *
@@ -56,7 +56,7 @@ public class CssDisplayRole extends CssProperty {
      * @exception InvalidParamException Incorrect value
      */
     public CssDisplayRole(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -109,7 +109,7 @@ public class CssDisplayRole extends CssProperty {
 	return (property instanceof CssDisplayRole &&
 		role.equals(((CssDisplayRole) property).role));
     }
-    
+
     /**
      * Returns the name of this property
      */

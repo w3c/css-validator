@@ -33,16 +33,16 @@ public class CssDisplayModel extends CssProperty {
     static CssIdent text = new CssIdent("text");
 
     private static String[] values = {
-	"text", "flow", "svg", "math", "table", "ruby", "inherit"
+		"inline-inside", "block-inside", "table", "ruby", "initial", "inherit"
     };
 
-    /** 
+    /**
      * Create a new CssDisplayModel
      */
     public CssDisplayModel() {
 	model = text;
     }
-    
+
     /**
      * Create a new CssDisplayModel
      *
@@ -50,7 +50,7 @@ public class CssDisplayModel extends CssProperty {
      * @exception InvalidParamException Incorrect value
      */
     public CssDisplayModel(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -103,7 +103,7 @@ public class CssDisplayModel extends CssProperty {
 	return (property instanceof CssDisplayModel &&
 		model.equals(((CssDisplayModel) property).model));
     }
-    
+
     /**
      * Returns the name of this property
      */
