@@ -189,12 +189,13 @@ h1 {
   text-decoration: none;
 }
 #banner h1 {font-size: 1.3em;
-border-bottom: 1px solid black;}
+}
 
 #banner {background-image: url(images/header);
 background-repeat: no-repeat;
 background-attachment: scroll;
 height: 50px;
+border-bottom: 1px solid black;
 background-position: right;
 margin:0; padding:0;}
 
