@@ -35,6 +35,8 @@ public class CssGlyphHor extends CssProperty {
 
     CssValue hor;
     ApplContext ac;
+    CssIdent auto = new CssIdent("auto");
+    CssIdent inline = new CssIdent("inline");
 
     /**
      * Create a new CssGlyphHor
@@ -63,6 +65,17 @@ public class CssGlyphHor extends CssProperty {
 	} else if (val instanceof CssAngle) {
 		hor = val;
 		expression.next();
+	} else if (val instanceof CssIdent) {
+		if (val.equals(auto)) {
+			hor = val;
+			expression.next();
+		} else if (val.equals(inline)) {
+			hor = val;
+			expression.next();
+		} else {
+		    throw new InvalidParamException("value", val.toString(),
+					    getPropertyName(), ac);
+		}
 	}
 	else {
 	    throw new InvalidParamException("value", val.toString(),
