@@ -663,6 +663,9 @@ public final class CssFouffa extends CssParser {
 		} else if (profile.equals("atsc-tv")) {
 		    URL url = style.getResource(config.getProperty("atsc-tv"));
 		    properties = new CssPropertyFactory(url);
+		} else if (profile.equals("tv")) {
+			URL url = style.getResource(config.getProperty("tv"));
+			properties = new CssPropertyFactory(url);
 		}
 
 		// aural mode
