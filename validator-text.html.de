@@ -53,7 +53,8 @@
 	<option value="svgbasic">SVG basic</option>
 	<option value="svgtiny">SVG tiny</option>
 	<option value="mobile">mobile</option>
-	<option value="atsc-tv">TV Profil</option>	
+	<option value="atsc-tv">ATSC TV Profil</option>
+	<option value="tv">TV Profil</option>
       </select>
 
       Medium :
