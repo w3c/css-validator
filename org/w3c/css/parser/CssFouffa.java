@@ -332,8 +332,13 @@ public final class CssFouffa extends CssParser {
     public void parseStyle() {
 	try {
 	    parserUnit();
-	} catch (Exception e) {
-	    e.printStackTrace();
+	} catch (Throwable e) {
+	    if (Util.onDebug) {
+		e.printStackTrace();
+	    }
+	    RuntimeException ne = new RuntimeException(e.getMessage());
+	    ne.fillInStackTrace();
+	    throw (ne);
 	}
 
 	// That's all folks, notify all errors and warnings
