@@ -33,7 +33,7 @@
       href='http://www.websitedev.de/css/validator-faq'>questions les
       plus fr&eacute;quemment pos&eacute;es (FAQ)</a> pour
       v&eacute;rifier si votre question n'y apparait pas. Une <a
-      href='BUGS.html'>liste des probl&egrave;mes</a> est
+      href='http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator'>liste des probl&egrave;mes</a> est
       &eacute;galement disponible.
     </p>
     <p>
