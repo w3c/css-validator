@@ -3,7 +3,9 @@
 // (c) COPYRIGHT MIT, INRIA and Keio, 1999.
 // Please first read the full copyright statement in file COPYRIGHT.html
  
-import java.io.*;
+package org.w3c.css.util;
+
+import java.io.IOException;
 
 /**
  * Thrown when a HTTP Get is interrupted
