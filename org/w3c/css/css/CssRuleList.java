@@ -2,17 +2,20 @@
 
 package org.w3c.css.css;
 
+import org.w3c.css.parser.AtRule;
 import java.util.Vector;
 
 public class CssRuleList {
 
-    String atRule;
+    AtRule atRule;
+    String atRuleString;
     Vector rulelist;
     public String pseudopage;
     String indent;
 
     public CssRuleList() {
-	atRule = new String();
+	atRule = null;
+	atRuleString = new String();
 	rulelist = new Vector();
 	String pseudopage = new String();
 	indent = new String();
@@ -26,50 +29,70 @@ public class CssRuleList {
 	return rulelist;
     }
 
-    public void addAtRule(String atRule) {
-	this.atRule = atRule;
+    public void addAtRule(AtRule atRule) {
+		this.atRule = atRule;
+		atRuleString = atRule.toString();
     }
 
     public String getAtRule() {
-	return atRule;
+		return atRuleString;
     }
 
     public String toString() {
 	String ret = new String();
-	if (!atRule.equals("")) {
-	    ret += atRule + " {\n";
-	    indent = "   ";
-	}
-	for (int i = 0; i < rulelist.size() ; i++ ) {
-	    ret += indent + ((CssStyleRule)rulelist.elementAt(i)).toString();
-	}
 
-	if (!atRule.equals("")) {
-	    ret += "}\n";
-	}
+	if (atRule.isEmpty()) {
 
+		if (null != atRule && !atRuleString.equals("")) {
+		    ret += atRuleString + " \n";
+		}
+
+	} else {
+
+		if (!atRuleString.equals("")) {
+		    ret += atRuleString + " {\n";
+		    indent = "   ";
+		}
+		for (int i = 0; i < rulelist.size() ; i++ ) {
+		    ret += indent + ((CssStyleRule)rulelist.elementAt(i)).toString();
+		}
+
+		if (!atRuleString.equals("")) {
+		    ret += "}\n";
+		}
+	}
 	return ret;
     }
 
     public String toHTML() {
 	String ret = new String();
-	if (!atRule.equals("")) {
-	    ret += "<li><span class='atSelector'>" + atRule + "</span> {\n" + 
-		"<ul>\n";
-	}
-	for (int i = 0; i < rulelist.size() ; i++ ) {
-	    ret += ((CssStyleRule)rulelist.elementAt(i)).toHTML();
-	}
 
-	if (!atRule.equals("")) {
-	    ret += "</ul>}</li>\n";
+	if (null != atRule && atRule.isEmpty()) {
+
+		if (!atRuleString.equals("")) {
+		    ret += "<li><span class='atSelector'>" + atRuleString + "</span></li> \n\n";
+		}
+
+	} else {
+
+		if (!atRuleString.equals("")) {
+		    ret += "<li><span class='atSelector'>" + atRuleString + "</span> {\n" +
+			"<ul>\n";
+		}
+		for (int i = 0; i < rulelist.size() ; i++ ) {
+		    ret += ((CssStyleRule)rulelist.elementAt(i)).toHTML();
+		}
+
+		if (!atRuleString.equals("")) {
+		    ret += "</ul>}</li>\n";
+		}
 	}
 
 	return ret;
     }
 
     public void clear() {
-	atRule = "";
+	atRuleString = "";
 	rulelist.clear();
 	pseudopage = "";
     }
