@@ -250,7 +250,7 @@ public class StyleSheet {
 						      properties, important);
 	    if (!atRuleList.isEmpty()) {
 		rulelist = (CssRuleList)atRuleList.lastElement();
-		useless = atRuleList.remove(rulelist);
+		useless = atRuleList.removeElement(rulelist);
 	    } else {
 		rulelist = new CssRuleList();
 	    }

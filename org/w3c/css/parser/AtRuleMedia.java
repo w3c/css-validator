@@ -74,7 +74,7 @@ public class AtRuleMedia extends AtRule {
 	    if (prop.toString() != null) {
 		expression += " : " + prop.toString();
 	    }
-	    mediafeatures.add(expression);
+	    mediafeatures.addElement(expression);
 	}
     }
 

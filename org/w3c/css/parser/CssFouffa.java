@@ -383,7 +383,7 @@ public final class CssFouffa extends CssParser {
 		    return;
 		}
 	    }
-	    visited.add(surl);
+	    visited.addElement(surl);
 	    
 	    if (Util.importSecurity) {
 		throw new FileNotFoundException("[SECURITY] You can't "+

@@ -123,7 +123,7 @@ public class CssRuleList {
 
     public void clear() {
 	atRuleString = "";
-	rulelist.clear();
+	rulelist.removeAllElements();
 	pseudopage = "";
     }
 }

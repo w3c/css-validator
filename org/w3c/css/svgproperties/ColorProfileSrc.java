@@ -78,8 +78,8 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 				}
 
 				if (val instanceof CssURL) {
-					cpSrcs.add(cpSrc);
-					cpSrcs.add(val);
+					cpSrcs.addElement(cpSrc);
+					cpSrcs.addElement(val);
 					cpSrc = null;
 					expression.next();
 				}

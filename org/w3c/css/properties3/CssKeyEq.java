@@ -176,7 +176,7 @@ public class CssKeyEq extends CssProperty {
 	    counter++;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    ks.clear();
+	    ks.removeAllElements();
 	}
 
     }

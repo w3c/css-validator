@@ -107,7 +107,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v1 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		rgbaValues.add(v1);
+		rgbaValues.addElement(v1);
 		params.next();
 
 		CssValue v2 = params.getValue();
@@ -115,7 +115,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v2 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		rgbaValues.add(v2);
+		rgbaValues.addElement(v2);
 		params.next();
 
 		CssValue v3 = params.getValue();
@@ -123,14 +123,14 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v3 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		rgbaValues.add(v3);
+		rgbaValues.addElement(v3);
 		params.next();
 
 		CssValue v4 = params.getValue();
 		if (v4 == null) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		rgbaValues.add(v4);
+		rgbaValues.addElement(v4);
 
 		tempcolor.setRGBAColor(rgbaValues, ac);
 		color = tempcolor;
@@ -144,7 +144,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v1 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslValues.add(v1);
+		hslValues.addElement(v1);
 		params.next();
 
 		CssValue v2 = params.getValue();
@@ -152,14 +152,14 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v2 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslValues.add(v2);
+		hslValues.addElement(v2);
 		params.next();
 
 		CssValue v3 = params.getValue();
 		if (v3 == null) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslValues.add(v3);
+		hslValues.addElement(v3);
 
 		params.starts(); // set position back to the first value
 
@@ -179,7 +179,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v1 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslaValues.add(v1);
+		hslaValues.addElement(v1);
 		params.next();
 
 		CssValue v2 = params.getValue();
@@ -187,7 +187,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v2 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslaValues.add(v2);
+		hslaValues.addElement(v2);
 		params.next();
 
 		CssValue v3 = params.getValue();
@@ -195,14 +195,14 @@ public class CssColor extends CssProperty implements CssOperator {
 		if (v3 == null || op != COMMA) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslaValues.add(v3);
+		hslaValues.addElement(v3);
 		params.next();
 
 		CssValue v4 = params.getValue();
 		if (v4 == null) {
 		    throw new InvalidParamException("invalid-color", ac);
 		}
-		hslaValues.add(v4);
+		hslaValues.addElement(v4);
 
 		params.starts();
 		tempcolor.setHSLAColor(hslaValues, ac);
