@@ -63,10 +63,12 @@
     
     <br />
     <br />
+
     <p>
-      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
-      korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
-      HTML</a>.
+      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, 
+      muss das HTML-Dokument korrekt geparst werden können.  
+      Dies ist nur mit <a href="http://validator.w3.org/">
+      validem HTML</a> gewährleistet.
     </p>
     
     <hr />
