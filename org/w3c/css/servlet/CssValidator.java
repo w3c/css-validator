@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:18:10  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:23:27  plehegar
  * Freeze
  *
@@ -614,7 +617,7 @@ public final class CssValidator extends HttpServlet {
     
 		out.println("<hr />");
 		out.println("<p><img src='images/mwcss.gif' alt='made with CSS'  width='72' height='48' /></p>");
-		out.println("<address><a href='mailto:www-validator-css@w3.org'>www-validator-css</a></address>");
+		out.println("<address><a href='Email.html'>www-validator-css</a></address>");
 		out.println("</body></html>");
 		out.flush();
 		/*

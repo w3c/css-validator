@@ -503,8 +503,8 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 		java.io.InputStream f = url.openStream();
 		properties.load(f);
 		f.close();
-		properties.put("author","Philippe Le H&eacute;garet &amp; Sijtsche de Jong");
-		properties.put("author-email", "www-validator-css@w3.org");
+		properties.put("author","www-validator-css");
+		properties.put("author-email", "Email.html");
 	    } catch (Exception e) {
 		System.err.println("org.w3c.css.css.StyleSheetGenerator: "
 				   + "couldn't load properties " + document);

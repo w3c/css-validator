@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/03/13 19:55:01  plehegar
+ * New
+ *
  *
  * @@HACK
  */
@@ -501,8 +504,8 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		java.io.InputStream f = url.openStream();
 		properties.load(f);
 		f.close();
-		properties.put("author","Philippe Le H&eacute;garet");
-		properties.put("author-email", "www-validator-css@w3.org");
+		properties.put("author","www-validator-css");
+		properties.put("author-email", "Email.html");
 	    } catch (Exception e) {
 		System.err.println("org.w3c.css.css.StyleSheetGenerator: "
 				   + "couldn't load properties " + document);
