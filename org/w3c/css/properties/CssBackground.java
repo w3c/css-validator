@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/05/22 15:04:13  dejong
+ * new property background-size added
+ *
  * Revision 3.2  1997/09/09 13:03:45  plehegar
  * Added getColor()
  *
@@ -42,6 +45,7 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.properties3.CssBackgroundSize;
 
 /**
  *   <H4>
@@ -78,16 +82,18 @@ import org.w3c.css.util.ApplContext;
  * @see CssBackgroundImage
  * @see CssBackgroundRepeat
  * @see CssBackgroundAttachment
- * @see CssBackgroundPosition 
+ * @see CssBackgroundPosition
  */
-public class CssBackground extends CssProperty 
+public class CssBackground extends CssProperty
         implements CssOperator, CssBackgroundConstants {
-    
+
     CssBackgroundColor color;
     CssBackgroundImage image;
     CssBackgroundRepeat repeat;
     CssBackgroundAttachment attachment;
     CssBackgroundPosition position;
+	CssBackgroundSize size;
+	boolean sizedefined;
 
     boolean same;
 
@@ -95,19 +101,20 @@ public class CssBackground extends CssProperty
      * Create a new CssBackground
      */
     public CssBackground() {
-    }  
-    
+    }
+
     /**
      * Set the value of the property
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
-    public CssBackground(ApplContext ac, CssExpression expression) 
+     */
+    public CssBackground(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
+	sizedefined = false;
 	setByUser();
 
 	if (val.equals(inherit)) {
@@ -122,59 +129,67 @@ public class CssBackground extends CssProperty
 	    position = new CssBackgroundPosition();
 	    position.horizontal = inherit;
 	    position.vertical = inherit;
+		size = new CssBackgroundSize();
+		size.value1 = inherit;
 	    same = true;
 	    expression.next();
 	    return;
 	}
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
 
 	    if (val == null) {
-		break;
+			break;
 	    }
-	    
+
 	    if (color == null) {
-		try {
-		    color = new CssBackgroundColor(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    color = new CssBackgroundColor(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
 	    if (!find && image == null) {
-		try {
-		    image = new CssBackgroundImage(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    image = new CssBackgroundImage(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
 	    if (!find && repeat == null) {
-		try {
-		    repeat = new CssBackgroundRepeat(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    repeat = new CssBackgroundRepeat(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
 	    if (!find && attachment == null) {
-		try {
-		    attachment = new CssBackgroundAttachment(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    attachment = new CssBackgroundAttachment(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
 	    if (!find && position == null) {
-		try {
-		    position = new CssBackgroundPosition(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    position = new CssBackgroundPosition(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
 	    if (op != SPACE) {
-		throw new InvalidParamException("operator", 
-						((new Character(op)).toString()),
-						ac);
+
+		    if (op != SLASH) {
+				throw new InvalidParamException("operator",
+							((new Character(op)).toString()),
+							ac);
+		    } else {
+				//try {
+					size = new CssBackgroundSize(ac, expression);
+					sizedefined = true;
+					break;
+				//} catch (InvalidParamException e) {
+					// error!
+				//}
+			}
 	    }
 	}
 
@@ -188,15 +203,18 @@ public class CssBackground extends CssProperty
 	    attachment = new CssBackgroundAttachment();
 	if (position == null)
 	    position = new CssBackgroundPosition();
+    if (!sizedefined)
+    	size = new CssBackgroundSize();
     }
-    
+
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return color;
     }
-    
+
     /**
      * Returns the color
      */
@@ -207,14 +225,14 @@ public class CssBackground extends CssProperty
 	    return color.getColor();
 	}
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "background";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -232,15 +250,17 @@ public class CssBackground extends CssProperty
 	    if (attachment.byUser)
 		ret += " " + attachment.toString();
 	    if (position.byUser)
-		ret += " " + position.toString();
-	    return ret.trim();
+			ret += " " + position.toString();
+	    if (sizedefined)
+			ret += "/" + size.toString();
+		return ret.trim();
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	color.important = true;
 	image.important = true;
@@ -248,7 +268,7 @@ public class CssBackground extends CssProperty
 	attachment.important = true;
 	position.important = true;
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -260,14 +280,14 @@ public class CssBackground extends CssProperty
 		(attachment == null || attachment.important) &&
 		(position == null || position.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((color != null && image != null &&
 	     repeat != null && attachment !=null &&
@@ -278,7 +298,7 @@ public class CssBackground extends CssProperty
 	      !repeat.important &&
 	      !attachment.important &&
 	      !position.important))) {
-	    if (color.byUser || image.byUser || repeat.byUser 
+	    if (color.byUser || image.byUser || repeat.byUser
 		|| attachment.byUser || position.byUser) {
 		printer.print(this);
 	    }
@@ -293,9 +313,9 @@ public class CssBackground extends CssProperty
 		attachment.print(printer);
 	    if (position != null)
 		position.print(printer);
-	}	
+	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -321,7 +341,7 @@ public class CssBackground extends CssProperty
 	    position.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -337,13 +357,13 @@ public class CssBackground extends CssProperty
 	attachment.addToStyle(ac, style);
 	position.addToStyle(ac, style);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBackground();
@@ -351,23 +371,23 @@ public class CssBackground extends CssProperty
 	    return ((Css1Style) style).cssBackground;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; // FIXME
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	color.setInfo(line, source);
@@ -376,5 +396,5 @@ public class CssBackground extends CssProperty
 	attachment.setInfo(line, source);
 	position.setInfo(line, source);
     }
-    
+
 }
