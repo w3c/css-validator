@@ -50,10 +50,28 @@
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option selected="selected" value="css2">CSS version 2</option>
-<!-- 	<option value="css3">CSS version 3 -->
+ 	<option value="css3">CSS version 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG basic</option>
+	<option value="svgtiny">SVG tiny</option>	
 	<option value="mobile">mobile</option>
-<!--	<option value="svg">SVG</option> -->
+	<option value="atsc-tv">TV profile</option>
       </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+      </select><br />
 
       <br />
       <input type="submit" value="このURIを検証する" />
