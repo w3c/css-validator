@@ -217,6 +217,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		    
 		    try {
 			baseURI = new URL(documentURI, href); 
+			documentURI = baseURI;
 		    } catch (MalformedURLException e) {
 			return; // Ignore errors
 		    }
