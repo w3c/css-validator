@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:38:07  plehegar
  * Freeze
  *
@@ -254,6 +257,7 @@ public class CssColorCSS2 extends CssColor {
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
+	boolean isPercent = false;
 
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
@@ -261,8 +265,10 @@ public class CssColorCSS2 extends CssColor {
 	
 	if (val instanceof CssNumber) {
 	    rgb.r = clippedValue(((Float) val.get()).intValue(), ac);
+	    isPercent = false;
 	} else if (val instanceof CssPercentage) {
 	    rgb.r = clippedValue(((Float) val.get()).floatValue(), ac);
+	    isPercent = true;
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -276,8 +282,14 @@ public class CssColorCSS2 extends CssColor {
 	}
 	
 	if (val instanceof CssNumber) {
+	    if (isPercent) {
+		throw new InvalidParamException("percent", val, ac);
+	    }
 	    rgb.g = clippedValue(((Float) val.get()).intValue(), ac);
 	} else if (val instanceof CssPercentage) {
+	    if (!isPercent) {
+		throw new InvalidParamException("integer", val, ac);
+	    }
 	    rgb.g = clippedValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
@@ -292,8 +304,14 @@ public class CssColorCSS2 extends CssColor {
 	}
 	
 	if (val instanceof CssNumber) {
+	    if (isPercent) {
+		throw new InvalidParamException("percent", val, ac);
+	    }
 	    rgb.b = clippedValue(((Float) val.get()).intValue(), ac);
 	} else if (val instanceof CssPercentage) {
+	    if (!isPercent) {
+		throw new InvalidParamException("integer", val, ac);
+	    }
 	    rgb.b = clippedValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
