@@ -58,7 +58,7 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 	<label title="Adresse de la page à valider" for="uri">Adresse :
 	<input type="text" name="uri" id="uri" size="45" value="http://" /></label>
 	<label title="Valider le fichier"><input type="submit" value="Soumettre l'adresse" /></label>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
 </p>
 </form>
 <p>
@@ -73,7 +73,7 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 <p>
 	<label title="Choisissez un fichier local à télécharger vers le serveur et à valider" for="file">Fichier CSS local :</label>
 	<input type="file" id="file" name="file" size="30" />
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
 	<label title="Envoyer le fichier à valider"><input type="submit" value="Soumettre le fichier" /></label>
 </p>
 </form>
@@ -87,7 +87,7 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 <p>Saisissez la feuille de style dont vous souhaitez la validation&nbsp;:</p>
 <p>
 	<textarea name="text" rows="12" cols="75"></textarea>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
 <br />
 	<label title="Envoyer le texte saisi pour validation">
 	<input type="submit" value="Soumettre la saisie" />

@@ -61,7 +61,7 @@
 	<label title="Address of page to Validate" for="uri">Address:
 	<input type="text" name="uri" id="uri" size="45" /></label>
 	<label title="Submit file for validation"><input type="submit" value="Check" /></label>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
       </p>
       </form>
       <p>
@@ -76,7 +76,7 @@
       <p>
 	<label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:</label>
 	<input type="file" id="file" name="file" size="30" />
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
 	<label title="Submit file for validation"><input type="submit" value="Check" /></label>
       </p>
       </form>
@@ -90,7 +90,7 @@
       <p>Enter the CSS you would like validated:</p>
       <p>
 	<textarea name="text" rows="12" cols="75"></textarea>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
         <br />
 	<label title="Submit text for validation">
 	<input type="submit" value="Check" />

@@ -60,7 +60,7 @@
 	<label title="Address of page to Validate" for="uri">Indirizzo:
 	<input type="text" name="uri" id="uri" size="45" /></label>
 	<label title="Invia l'indirizzo al sistema di validazione"><input type="submit" value="Controlla" /></label>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
       </p>
       </form>
       <p>
@@ -74,7 +74,7 @@
       <p>
 	<label title="Seleziona un documento locale da trasferire e validare" for="file">Documento in locale:</label>
 	<input type="file" id="file" name="file" size="30" />
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
 	<label title="Invia il documento al sistema di validazione"><input type="submit" value="Controlla" /></label>
       </p>
       </form>
@@ -88,7 +88,7 @@
       <p>Inserisci il testo del CSS che desideri validare:</p>
       <p>
 	<textarea name="text" rows="12" cols="75"></textarea>
-	<input name="usermedium" value="all" type="hidden"></input>
+	<input name="usermedium" value="all" type="hidden" />
         <br />
 	<label title="Invia il testo al sistema di validazione">
 	<input type="submit" value="Controlla" />
