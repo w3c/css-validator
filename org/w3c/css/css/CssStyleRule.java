@@ -21,7 +21,7 @@ public class CssStyleRule {
     }
 
     public String toString() {
-	String ret = new StringBuffer();
+	StringBuffer ret = new StringBuffer();
 	if (selectors != null) {
 	    ret.append(selectors);
 	    ret.append(' ');
