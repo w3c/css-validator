@@ -28,7 +28,7 @@ import org.w3c.css.properties.CssColor;
 
 /**
  *  <P>
- *  <EM>Value:</EM> &lt;border-style&gt; || &lt;color&gt; || &lt;border-width&gt; || 
+ *  <EM>Value:</EM> &lt;border-style&gt; || &lt;color&gt; || &lt;border-width&gt; ||
  *  inherit<BR>
  *  <EM>Initial:</EM>the value of the color property<BR>
  *  <EM>Applies to:</EM>block-level elements<BR>
@@ -37,9 +37,9 @@ import org.w3c.css.properties.CssColor;
  *  <EM>Media:</EM>:visual
  */
 
-public class CssColumnBorder extends CssProperty 
+public class CssColumnBorder extends CssProperty
 implements CssOperator {
- 
+
     CssValue value;
     /* I should use border-width and border-style here, but I don't see how to implement a
        shorthand property for shorthand properties ... So I splitted it up*/
@@ -52,7 +52,7 @@ implements CssOperator {
     CssBorderLeftStyle bls;
     CssBorderBottomStyle bbs;
     CssColor color;
-    
+
 
     /**
      * Create a new CssColumnBorder
@@ -62,7 +62,7 @@ implements CssOperator {
 
     /**
      * Create a new CssColumnBorder
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -79,9 +79,9 @@ implements CssOperator {
 	} else {
 
 	    while (correct && (val != null) && (maxvalues -- > 0)) {
-		
+
 		correct = false;
-		
+
 		if (btw == null) {
 		    try {
 			btw = new CssBorderTopWidth(ac, expression);
@@ -89,7 +89,7 @@ implements CssOperator {
 		    }
 		    catch (InvalidParamException e) {
 		    }
-		}	
+		}
 		if (!correct && bbw == null) {
 		    try {
 			bbw = new CssBorderBottomWidth(ac, expression);
@@ -130,7 +130,7 @@ implements CssOperator {
 		    }
 		    catch (InvalidParamException e) {
 		    }
-		}	
+		}
 		if (!correct && bbw == null) {
 		    try {
 			bbs = new CssBorderBottomStyle(ac, expression);
@@ -157,14 +157,14 @@ implements CssOperator {
 		}
 
 		if (!correct) {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 
 		val = expression.getValue();
 		op = expression.getOperator();
-		
+
 	    }
 	}
     }
@@ -204,7 +204,7 @@ implements CssOperator {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -223,19 +223,37 @@ implements CssOperator {
      * Returns a string representation of the object
      */
     public String toString() {
-	
+
 	String ret = "";
 
-	/*	if (tls.isByUser()) {
-		ret += " " + tls;
-		}
-		if (tlc.isByUser()) {
-		ret += " " + tlc;
-		}
-		if (tlm.isByUser()) {
-		ret += " " + tlc;
-	    }*/
-	ret = "sorry";
+	if (btw != null) {
+		ret += " " + btw.toString();
+	}
+	if (brw != null) {
+		ret += " " + brw.toString();
+	}
+	if (blw != null) {
+		ret += " " + blw.toString();
+    }
+	if (bbw != null) {
+		ret += " " + bbw.toString();
+    }
+	if (bts != null) {
+		ret += " " + bts.toString();
+    }
+	if (brs != null) {
+		ret += " " + brs.toString();
+    }
+	if (bls != null) {
+		ret += " " + bls.toString();
+    }
+    if (bbs != null) {
+		ret += " " + bbs.toString();
+    }
+    if (color != null) {
+		ret += " " + color.toString();
+    }
+
 	return ret.substring(1);
 
     }
