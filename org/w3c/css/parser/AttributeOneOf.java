@@ -127,14 +127,20 @@ public class AttributeOneOf extends Attribute implements CssSelectorsConstant {
      * Returns a string representation of the object.
      */
     public String toString() {    
-	String ret = "";
+	StringBuffer ret = new StringBuffer();
 	for (int i = 0; i < length; i++) {
 	    if (isClass()) {
-		ret += "." + values[i];
+		ret.append('.');
+		ret.append(values[i]);
 	    } else {
-		ret += "[" + name + "~=" + values[i] + "]";
+		ret.append('[');
+		ret.append(name);
+		ret.append('~');
+		ret.append('=');
+		ret.append(values[i]);
+		ret.append(']');
 	    }
 	}
-	return ret;
+	return ret.toString();
     }
 }
