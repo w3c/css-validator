@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:15  plehegar
+ * New
+ *
  */
 
 package org.w3c.css.util;
@@ -222,6 +225,24 @@ public class Messages {
 	    }
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.util.Messages: couldn't load properties nl");
+	    System.err.println("  " + e.toString() );
+	}
+
+	// ------------------------------------------------
+
+        try {
+	    URL url = Messages.class.getResource("Messages.properties.es");
+	    java.io.InputStream f = url.openStream();
+	    try {
+		tmp = new Properties();
+		tmp.load(f);
+		languages.put("es", tmp);
+		languages.put("es_ES", tmp);
+	    } finally {
+		f.close();
+	    }
+	} catch (Exception e) {
+	    System.err.println("org.w3c.css.util.Messages: couldn't load properties es");
 	    System.err.println("  " + e.toString() );
 	}
 
