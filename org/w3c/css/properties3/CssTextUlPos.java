@@ -25,17 +25,18 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property sets the position of the underline when set through the 
+ *  This property sets the position of the underline when set through the
  *  text-decoration property.
  */
 
 public class CssTextUlPos extends CssProperty {
- 
+
     CssValue ulpos;
 
     static CssIdent autopos = new CssIdent("auto-pos");
-    static CssIdent before = new CssIdent("before");
-    static CssIdent after = new CssIdent("after");
+    static CssIdent beforeedge = new CssIdent("before-edge");
+    static CssIdent afterbaseline = new CssIdent("after-baseline");
+    static CssIdent afteredge = new CssIdent("after-edge");
 
     /**
      * Create a new CssTextUlPos
@@ -46,7 +47,7 @@ public class CssTextUlPos extends CssProperty {
 
     /**
      * Create a new CssTextUlPos
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -58,12 +59,16 @@ public class CssTextUlPos extends CssProperty {
 	    ulpos = autopos;
 	    expression.next();
 	}
-	else if (val.equals(before)) {
-	    ulpos = before;
+	else if (val.equals(beforeedge)) {
+	    ulpos = beforeedge;
 	    expression.next();
 	}
-	else if (val.equals(after)) {
-	    ulpos = after;
+	else if (val.equals(afterbaseline)) {
+	    ulpos = afterbaseline;
+	    expression.next();
+	}
+	else if (val.equals(afteredge)) {
+	    ulpos = afteredge;
 	    expression.next();
 	}
 	else if (val.equals(inherit)) {
@@ -71,8 +76,8 @@ public class CssTextUlPos extends CssProperty {
 	    expression.next();
 	}
 	else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
 
@@ -113,7 +118,7 @@ public class CssTextUlPos extends CssProperty {
 	return (property instanceof CssTextUlPos &&
 		ulpos.equals(((CssTextUlPos) property).ulpos));
     }
-    
+
     /**
      * Returns the name of this property
      */
