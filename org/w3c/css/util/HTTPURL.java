@@ -145,7 +145,7 @@ public class HTTPURL {
 	URLConnection urlC = url.openConnection();
 
 	if (Util.servlet && !(urlC instanceof HttpURLConnection)) {
-	    System.out.println( "[WARNING] : someone is trying to get the file: "
+	    System.err.println( "[WARNING] : someone is trying to get the file: "
 				+ url );
 	    throw new FileNotFoundException("import " + url + 
 					    ": Operation not permitted");
@@ -239,7 +239,7 @@ public class HTTPURL {
 	InputStream in = HTTPURL.getConnection(getURL(args[0])).getInputStream();
 
 	while ((c = in.read()) != -1) {
-	    System.out.print((char) c);
+	    System.err.print((char) c);
 	}
 	System.exit(0);
     }    

@@ -95,7 +95,7 @@ public final class CssFouffa extends CssParser {
 	    try {
 		media.addMedia(ac.getMedium(), ac);
 	    } catch (Exception e) {
-		System.out.println(e.getMessage());
+		System.err.println(e.getMessage());
 		try { 
 		    media.addMedia("all", ac);
 		} catch (InvalidParamException ex) {} //ignore
@@ -177,7 +177,7 @@ public final class CssFouffa extends CssParser {
 	    try {
 		media.addMedia(ac.getMedium(), ac);
 	    } catch (Exception e) {
-		System.out.println(e.getMessage());
+		System.err.println(e.getMessage());
 		try { 
 		    media.addMedia("all", ac);
 		} catch (InvalidParamException ex) {} //ignore
