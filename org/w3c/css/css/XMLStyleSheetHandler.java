@@ -514,7 +514,8 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	    ex.printStackTrace();
 	}
 	xmlParser.setContentHandler(this);
-	InputSource source = new InputSource(connection.getInputStream());
+	InputStream cis = connection.getInputStream();
+	InputSource source = new InputSource(cis);
 	String ctype = connection.getContentType();
 	if (ctype != null) {
 	    try {
@@ -533,7 +534,11 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	    } catch (Exception ex) {}
 	}
 	source.setSystemId(urlString);
-	xmlParser.parse(source);
+	try {
+	    xmlParser.parse(source);
+	} finally {
+	    cis.close();
+	}
     }
     
     Hashtable getValues(String data) {
