@@ -535,7 +535,7 @@ public final class CssValidator extends HttpServlet {
 	    outputMt = MimeType.TEXT_HTML.getClone();
 	} else if (output.equals(soap12)) {
 	    outputMt = new MimeType(soap12);
-//	testing only    outputMt = MimeType.TEXT_PLAIN.getClone();
+//	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	} else {
 	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	}
@@ -549,7 +549,7 @@ public final class CssValidator extends HttpServlet {
 	} else {
 	    res.setHeader("Content-Language", "en");
 	}
-
+	
 	if (styleSheet == null) {
 	    throw new IOException(ac.getMsg().getServletString("process")
 				  + " " + title);
@@ -616,12 +616,17 @@ public final class CssValidator extends HttpServlet {
 		    out.println(e.getMessage());
 		} else if (e instanceof SAXParseException) {
 		    SAXParseException saxe = (SAXParseException) e;
-		    out.println("<p>Please, validate your XML document first!</p>");
+		    out.println("<p>Please, validate your XML document"+
+				" first!</p>");
 		    if (saxe.getLineNumber() != -1) {
-			out.println("<p>Line " + saxe.getLineNumber() + "</p>");
+			out.print("<p>Line ");
+			out.print(saxe.getLineNumber());
+			out.println("</p>");
 		    }
 		    if (saxe.getColumnNumber() != -1) {
-			out.println("<p>Column " + saxe.getColumnNumber() + "</p>");
+			out.print("<p>Column ");
+			out.print(saxe.getColumnNumber());
+			out.print("</p>\n");
 		    }
 		    out.println("<p>" + e.getMessage());
 		} else if (e instanceof NullPointerException) {
@@ -630,12 +635,10 @@ public final class CssValidator extends HttpServlet {
 		} else {
 		    out.println(e.toString());
 		}
-		out.println("</p></div>");
-
-		out.println("<hr />");
-		out.println("<p><img src='images/mwcss.gif' alt='made with CSS' /></p>");
-		out.println("<address><a href='Email.html'>www-validator-css</a></address>");
-		out.println("</body></html>");
+		out.println("</p></div>\n<hr />\n<p><img src='images/mwc"+
+			    "ss.gif' alt='made with CSS' /></p>\n<addres"+
+			    "s><a href='Email.html'>www-validator-css</a"+
+			    "></address>\n</body></html>");
 		out.flush();
 		/*
 		System.err.println("CSS Validator: request failed.");
@@ -644,7 +647,8 @@ public final class CssValidator extends HttpServlet {
 	    }
 	} catch (Exception unknown) {
 	    if (out != null) {
-		out.println("org.w3c.css.servlet.CssValidator: couldn't load  error file");
+		out.println("org.w3c.css.servlet.CssValidator: couldn't "+
+			    "load  error file");
 		out.flush();
 	    }
 	    unknown.printStackTrace();
