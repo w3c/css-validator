@@ -9,7 +9,7 @@
   </head>
   <body>
     <a class="left" href="http://www.w3.org"><img
-	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C"width="72"
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
 	height="48" /></a>
     <a class="right" href="http://www.w3.org/Jigsaw/"><img
 	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
