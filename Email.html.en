@@ -31,7 +31,8 @@
       First, check the <a
       href='http://www.websitedev.de/css/validator-faq'>W3C CSS
       Validator Frequently Asked Questions (FAQ)</a> to see if your
-      question has been answered there.
+      question has been answered there. A list of <a
+      href='BUGS.html'>reported problems</a> is also available.
     </p>
     <p>
       <strong>Note:</strong> due to a change in the Java platform,

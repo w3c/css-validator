@@ -31,8 +31,10 @@
     <p>
       Avant toute chose, consultez la liste des <a
       href='http://www.websitedev.de/css/validator-faq'>questions les
-	plus fr&eacute;quemment pos&eacute;es (FAQ)</a> pour
-      v&eacute;rifier si votre question n'y apparait pas.
+      plus fr&eacute;quemment pos&eacute;es (FAQ)</a> pour
+      v&eacute;rifier si votre question n'y apparait pas. Une <a
+      href='BUGS.html'>liste des probl&egrave;mes</a> est
+      &eacute;galement disponible.
     </p>
     <p>
       <strong>Note:</strong> Suite &agrave; un changement sur la
