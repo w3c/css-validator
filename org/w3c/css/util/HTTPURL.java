@@ -137,27 +137,30 @@ public class HTTPURL {
 	return getConnection(url, count, null);
     }
 
-    private static URLConnection getConnection(URL url, int count, ApplContext ac)
+    private static URLConnection getConnection(URL url, int count, 
+					       ApplContext ac)
 	    throws IOException {
 	if (count > 5) {
-	    throw new ProtocolException("Server redirected too many times (5)");
+	    throw new ProtocolException("Server redirected too many "+
+					"times (5)");
 	}
-
+	
 	if (Util.servlet) {
 	    int port = url.getPort();
 	    String protocol = url.getProtocol();
-
+	    
 	    if (((port < 1024) && (port != 80) && (port > 0))
 		|| (!"http".equalsIgnoreCase(protocol))) {		
-		System.err.println( "[WARNING] : someone is trying to get the file: "
+		System.err.println( "[WARNING] : someone is trying to "
+				    + "get the file: "
 				    + url );
 		throw new FileNotFoundException("import " + url +
 						": Operation not permitted");
 	    }
 	}
-
+	
 	URLConnection urlC = url.openConnection();
-
+	
 	if (Util.onDebug) {
 	    System.err.println( "Accessing " + url);
 	    if (ac.getCredential() != null) {
@@ -169,7 +172,7 @@ public class HTTPURL {
 	urlC.setRequestProperty("Cache-Control", "no-cache");
 	// for the fun
 	urlC.setRequestProperty("User-Agent",
-				"Jigsaw/2.2.0 W3C_CSS_Validator_JFouffa/2.0");
+				"Jigsaw/2.2.3 W3C_CSS_Validator_JFouffa/2.0");
 	// relay authorization information
 	if (ac.getCredential() != null) {
 	    urlC.setRequestProperty("Authorization",ac.getCredential());
@@ -180,10 +183,12 @@ public class HTTPURL {
 	}
 	// should I put an Accept header?
 	urlC.setRequestProperty("Accept",
-				"text/css,text/html,text/xml,application/xhtml+xml,application/xml,image/svg+xml,*/*;q=0");
-
+				"text/css,text/html,text/xml,"
+				+"application/xhtml+xml,application/xml,"
+				+"image/svg+xml,*/*;q=0");
+	
 	urlC.connect();
-
+	
 	if (urlC instanceof HttpURLConnection) {
 	    HttpURLConnection httpURL = (HttpURLConnection) urlC;
 	    int status;
@@ -192,9 +197,9 @@ public class HTTPURL {
 	    } catch (FileNotFoundException e) {
 		e.printStackTrace();
 		throw new FileNotFoundException(url + ": " +
-			    getHTTPStatusCode(404));
+						getHTTPStatusCode(404));
 	    }
-
+	    
 	    switch (status) {
 	    case HttpURLConnection.HTTP_OK:
 		// nothing to do
@@ -202,7 +207,8 @@ public class HTTPURL {
 	    case HttpURLConnection.HTTP_MOVED_PERM:
 	    case HttpURLConnection.HTTP_MOVED_TEMP:
 		try {
-		    return getConnection(getURL(httpURL.getHeaderField("Location")), ac);
+		    URL u = getURL(httpURL.getHeaderField("Location"));
+		    return getConnection(u, count+1, ac);
 		} finally {
 		    httpURL.disconnect();
 		}
@@ -216,10 +222,10 @@ public class HTTPURL {
 		try {
 		    if (httpURL.getResponseMessage() != null) {
 			throw new FileNotFoundException(url + ": " +
-							httpURL.getResponseMessage());
+						 httpURL.getResponseMessage());
 		    } else {
 			throw new FileNotFoundException(url + ": " +
-							getHTTPStatusCode(status));
+						   getHTTPStatusCode(status));
 		    }
 		} finally {
 		    httpURL.disconnect();
@@ -243,7 +249,8 @@ public class HTTPURL {
      */
     public static void main(String[] args) throws Exception {
         int c;
-	InputStream in = HTTPURL.getConnection(getURL(args[0])).getInputStream();
+	InputStream in = HTTPURL.getConnection(
+	                                     getURL(args[0])).getInputStream();
 
 	while ((c = in.read()) != -1) {
 	    System.err.print((char) c);
