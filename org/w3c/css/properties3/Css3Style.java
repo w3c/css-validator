@@ -965,6 +965,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	return cssColumnBorderWidth;
     }
 
+    /*
     public CssColumnSpan getColumnSpan() {
 	if (cssColumnSpan == null) {
 	    cssColumnSpan =
@@ -973,6 +974,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	return cssColumnSpan;
     }
+    */
 /*
     public ACssVolume getACssVolume() {
 	if (cssACssVolume == null) {
