@@ -44,7 +44,8 @@ import org.w3c.css.util.ApplContext;
 /**
  * @version $Revision$
  */
-public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
+public final class StyleSheetGeneratorHTML2 extends StyleReport
+    implements CssPrinterStyle {
 
     StyleSheet style;
     Vector items;
