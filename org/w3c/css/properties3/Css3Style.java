@@ -139,6 +139,15 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssTextHeight cssTextHeight;
 	CssAppearance cssAppearance;
 	CssIcon cssIcon;
+	CssNavIndex cssNavIndex;
+	CssNavUp cssNavUp;
+	CssNavRight cssNavRight;
+	CssNavDown cssNavDown;
+	CssNavLeft cssNavLeft;
+	CssOutlineOffset cssOutlineOffset;
+	CssOverflowX cssOverflowX;
+	CssOverflowY cssOverflowY;
+	CssRubySpan cssRubySpan;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1241,6 +1250,88 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssIcon;
 	}
 
+	public CssNavIndex getNavIndexCSS3() {
+		if (cssNavIndex == null) {
+			cssNavIndex =
+				(CssNavIndex) style.CascadingOrder(
+						new CssNavIndex(), style, selector);
+		}
+		return cssNavIndex;
+	}
+
+	public CssNavUp getNavUpCSS3() {
+		if (cssNavUp == null) {
+			cssNavUp =
+				(CssNavUp) style.CascadingOrder(
+						new CssNavUp(), style, selector);
+		}
+		return cssNavUp;
+	}
+
+	public CssNavRight getNavRightCSS3() {
+		if (cssNavRight == null) {
+			cssNavRight =
+				(CssNavRight) style.CascadingOrder(
+						new CssNavRight(), style, selector);
+		}
+		return cssNavRight;
+	}
+
+	public CssNavDown getNavDownCSS3() {
+		if (cssNavDown == null) {
+			cssNavDown =
+				(CssNavDown) style.CascadingOrder(
+						new CssNavDown(), style, selector);
+		}
+		return cssNavDown;
+	}
+
+	public CssNavLeft getNavLeftCSS3() {
+		if (cssNavLeft == null) {
+			cssNavLeft =
+				(CssNavLeft) style.CascadingOrder(
+						new CssNavLeft(), style, selector);
+		}
+		return cssNavLeft;
+	}
+
+	public CssOutlineOffset getOutlineOffset() {
+		if (cssOutlineOffset == null) {
+			cssOutlineOffset =
+				(CssOutlineOffset) style.CascadingOrder(
+						new CssOutlineOffset(), style, selector);
+		}
+		return cssOutlineOffset;
+	}
+
+	public CssOverflowX getOverflowX() {
+		if (cssOverflowX == null) {
+			cssOverflowX =
+				(CssOverflowX) style.CascadingOrder(
+						new CssOverflowX(), style, selector);
+		}
+		return cssOverflowX;
+	}
+
+	public CssOverflowY getOverflowY() {
+		if (cssOverflowY == null) {
+			cssOverflowY =
+				(CssOverflowY) style.CascadingOrder(
+						new CssOverflowY(), style, selector);
+		}
+		return cssOverflowY;
+	}
+
+	public CssRubySpan getRubySpan() {
+		if (cssRubySpan == null) {
+			cssRubySpan =
+				(CssRubySpan) style.CascadingOrder(
+						new CssRubySpan(), style, selector);
+		}
+		return cssRubySpan;
+	}
+
+
 	/**
      * Print this style
      *
@@ -1608,6 +1699,33 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssIcon != null) {
 		cssIcon.print(printer);
+	}
+	if (cssNavIndex != null) {
+		cssNavIndex.print(printer);
+	}
+	if (cssNavUp != null) {
+		cssNavUp.print(printer);
+	}
+	if (cssNavRight != null) {
+		cssNavRight.print(printer);
+	}
+	if (cssNavDown != null) {
+		cssNavDown.print(printer);
+	}
+	if (cssNavLeft != null) {
+		cssNavLeft.print(printer);
+	}
+	if (cssOutlineOffset != null) {
+		cssOutlineOffset.print(printer);
+	}
+	if (cssOverflowX != null) {
+		cssOverflowX.print(printer);
+	}
+	if (cssOverflowY != null) {
+		cssOverflowY.print(printer);
+	}
+	if (cssRubySpan != null) {
+		cssRubySpan.print(printer);
 	}
 
     }
