@@ -23,65 +23,66 @@ import org.w3c.css.util.ApplContext;
 /**
  * @version $Revision$
  */
-public class Cursor extends CssProperty 
+public class Cursor extends CssProperty
     implements CssOperator {
-    
+
     int value;
     Vector uris = new Vector();
     boolean inheritedValue;
-    
+
     private static String CURSOR[] = {
-	"auto", "crosshair", "default", "pointer", "move", "e-resize", 
-	"ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize", 
-	"s-resize", "w-resize", "text", "wait", "help", "copy", "alias",
-	"context-menu", "cell", "grab", "grabbing", "spinning",
-	"count-up", "count-down", "count-up-down"};
-    
+		"auto", "crosshair", "default", "pointer", "move", "e-resize",
+		"ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize",
+		"s-resize", "w-resize", "text", "wait", "help", "progress", "copy", "alias",
+		"context-menu", "cell", "all-scroll", "col-resize", "row-resize", "no-drop",
+		"not-allowed", "vertical-text"
+	};
+
     private static int[] hash_values;
-    
-    
+
+
     /**
      * Create a new CssCursor
      */
     public Cursor() {
-	value = 0;
+		value = 0;
     }
-    
+
     /**
      * Create a new CssCursor
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public Cursor(ApplContext ac, CssExpression expression) 
+     */
+    public Cursor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
-	
+
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    inheritedValue = true;
 	    expression.next();
 	    return;
 	}
-	
+
 	while ((op == COMMA)
 	       && (val instanceof CssURL)) {
 	    uris.addElement(val);
 	    expression.next();
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	} 
+	}
 	if (val instanceof CssURL) {
-	    throw new InvalidParamException("comma", 
-					    val.toString(), 
+	    throw new InvalidParamException("comma",
+					    val.toString(),
 					    getPropertyName(), ac);
 	}
-	
+
 	if (val instanceof CssIdent) {
 	    int hash = val.hashCode();
-	    
+
 	    for (int i = 0; i < CURSOR.length; i++) {
 		if (hash_values[i] == hash) {
 		    value = i;
@@ -90,25 +91,25 @@ public class Cursor extends CssProperty
 		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", 
+
+	throw new InvalidParamException("value",
 					val.toString(), getPropertyName(), ac);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "cursor";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -116,7 +117,7 @@ public class Cursor extends CssProperty
     public boolean isSoftlyInherited() {
 	return inheritedValue;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -128,14 +129,14 @@ public class Cursor extends CssProperty
 	    int l = uris.size();
 	    String ret = "";
 	    while (i != l) {
-		ret += uris.elementAt(i++) + 
+		ret += uris.elementAt(i++) +
 		    (new Character(COMMA)).toString() + " ";
 	    }
 	    ret += " " + CURSOR[value];
 	    return ret;
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -147,13 +148,13 @@ public class Cursor extends CssProperty
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cursor = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getCursor();
@@ -161,25 +162,25 @@ public class Cursor extends CssProperty
 	    return ((Css2Style) style).cursor;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Cursor 
+	return (property instanceof Cursor
 		&& value == ((Cursor) property).value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     static {
 	hash_values = new int[CURSOR.length];
 	for (int i=0; i<CURSOR.length; i++)
