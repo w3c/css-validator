@@ -1275,7 +1275,7 @@ class Parser implements DTDConstants {
 	// end of added part by Sijtsche de Jong
     
 
-
+	boolean mustClose = true;
 	try {
 	    try {
 		ch = in.read();
@@ -1291,6 +1291,7 @@ class Parser implements DTDConstants {
 		error("exception", e.getClass().getName());
 		throw e;
 	    } catch (XMLInputException e) {
+		mustClose = false;
 		errorContext();
 		error("exception", e.getClass().getName());
 		throw e;
@@ -1310,7 +1311,9 @@ class Parser implements DTDConstants {
 	    }
 	    text = null;
 	    str = null;
-	    in.close();
+	    if (mustClose) {
+		in.close();
+	    }
 	}
     }
 
