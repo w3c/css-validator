@@ -1,0 +1,320 @@
+/*
+   Base Style Sheet for the W3C CSS validation service
+	based on the one for Markup Validation Service.
+
+   Copyright 2000 W3C (MIT, INRIA, Keio). All Rights Reserved.
+   See http://www.w3.org/Consortium/Legal/ipr-notice.html#Copyright
+
+   $Id$
+*/
+
+@import url(navbar.css);  /* CSS for navigation menu. */
+
+
+html, body {
+  line-height:     120%;
+  color:           black;
+  background:      white;
+  font-weight:     normal;
+  font-family:     "Bitstream Vera Sans", sans-serif;
+  font-style:      normal;
+  text-decoration: none;
+  margin:  0;
+  padding: 0;
+  border:  0;
+}
+
+div#main {
+  padding-top: 1em;
+/*   margin-right: 7.6em; */ /* no need for this without the righthand bar */
+margin: 1em;
+}
+
+div#main p, div#main dt {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+dt {
+  margin-top: 1em;
+}
+
+/* Fieldsets in general */
+fieldset {
+  max-width:     80%;
+  margin-left:   1em;
+}
+
+/* The front-page fieldsets */
+fieldset.front {
+  background: inherit;
+  border: 1px dotted #053188;
+}
+
+fieldset.front legend {
+  color: #053188;
+  font-variant: small-caps;
+  padding: .1ex .5ex;
+}
+
+.intro {
+  font-style: italic;
+  text-align: justify;
+}
+
+a:link, a:visited {
+  color: blue;
+}
+
+a:hover {
+  color: blue;
+  background-color: #eee;
+}
+
+a:active {
+  color: red;
+  background-color: yellow;
+}
+
+acronym:hover, abbr:hover {cursor: help}
+abbr[title], acronym[title], span[title], strong[title] {
+  border-bottom: thin dotted;
+  cursor: help;
+}
+
+pre, code, tt {
+  font-family: monospace;
+  line-height: 100%;
+  white-space: pre;
+}
+
+a:link img, a:visited img {border-style: none}
+a img {color: black} /* The only way to hide the border in NS 4.x */
+
+ul.toc {
+  list-style: none;
+}
+
+ol li {
+  padding: .1em;
+}
+
+div.issue {
+  padding: 0.5em;
+  border: none;
+  margin-right: 5%;
+}
+
+.hideme {display: none}
+
+#Notice {
+  border: solid;
+  margin: .2em;
+  padding: .5em;
+  text-align: justify;
+}
+
+/* dt a {color: black} */ /* These are usually targets and not links */
+h3 a {color: black} /* These are usually targets and not links */
+
+img {vertical-align: middle}
+
+
+
+/* done vs. tbc for the TODO list */
+.done { text-decoration: line-through; }
+
+address img {
+  float: right;
+  width: 88px;
+}
+
+address {
+  padding-top:     .5em;
+  padding-right:    1em;
+  padding-left:     1em;
+  padding-bottom:  .5em;
+  margin-top:       3em;;
+  border-top:       1px solid black;
+  background-color: #eee;
+  clear:            right;
+}
+
+address {
+  background-image: url(images/footer);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  height: 50px;
+  background-position: center;
+  margin:0; padding:0;
+}
+
+p.copyright {
+  margin-top:     5em;
+  padding-top:    .5em;
+  font-size:      xx-small;
+  max-width:      85ex;
+  text-align:     justify;
+  text-transform: uppercase;
+  margin-left:    auto;
+  margin-right:   auto;
+  font-family:    monospace;
+  color:          #888;
+  line-height:    120%;
+}
+
+p.copyright a {
+  color: #88f;
+  text-decoration: none;
+}
+
+.stb {clear: left}
+
+div.colophon {
+  margin-left: 2em;
+  font-style: italic;
+}
+
+div.colophon em {
+  font-style: normal;
+}
+
+/* Various header(ish) things. Definitions cribbed from the CORE Styles. */
+h1 {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  font-size: 2em;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+}
+#banner h1 {font-size: 1.3em;
+border-bottom: 1px solid black;}
+
+#banner {background-image: url(images/header);
+background-repeat: no-repeat;
+background-attachment: scroll;
+height: 50px;
+background-position: right;
+margin:0; padding:0;}
+
+h1#title {
+/*  background-color: #eee; 
+  border-bottom: 1px solid black; 
+  padding: .25em;*/
+  padding:0;
+  margin: 0;
+}
+
+/* Used for beta releases. */
+h1#title em {
+  color: red;
+}
+h1, h2 { color: rgb(  0,  79, 147) !important }
+
+h2 {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  margin-top : 2em;
+  margin-bottom : 1em;
+  line-height: 120%;  
+}
+
+h3 {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  font-size: 1.3em;
+  background-color: #eee;
+  text-indent: 2em;
+  padding: .2em;
+  border-top: 1px dotted black;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+}
+
+h4 {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  font-size: 1.1em;
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: underline;
+}
+
+h5, dt {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  text-indent: .5em;
+  margin:0;
+}
+
+h6 {
+  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
+  font-size-adjust: .53;
+  color: #666;
+  text-indent: 1em;
+  font-size: 1em;
+  font-style: italic;
+  margin:0;
+  text-decoration: none;
+}
+
+/* comma tools table */
+
+td.comma-desc {
+  background: #ffeecc;
+  border : 1px solid black;
+  font-family: sans-serif
+}
+
+td.comma-shortcut {
+  background: #e7e7ff; 
+  border : 1px solid black;
+  font-family: monospace;
+}
+
+td.comma-tool {
+  background: #e7e7ff;
+  border: 1px solid black;
+}
+
+kbd {
+  font-weight: bold;
+}
+
+.shout {
+  background: yellow;
+  border: .5ex dotted black;
+  padding: 1em;
+}
+
+.shout strong {
+  display: block;
+  color: red;
+}
+
+input {
+  vertical-align: middle;
+}
+
+input.reset {
+  text-align: center;
+  font-family: monospace;
+}
+
+input.default {
+  text-align: center;
+  font-weight: bold;
+  font-family: monospace;
+}
+
