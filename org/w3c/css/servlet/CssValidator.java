@@ -6,6 +6,14 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2003/10/16 20:56:15  ylafon
+ * character encoding was using Content-Encoding instead of
+ * the charset paremeter in the mime type.
+ * Now fixed.
+ * Also starting to use MimeType class from org.w3c.www.mime, more is planned
+ * to take benefit of fast comparisons and optimisations.
+ * ALso various cosmetic changes were done
+ *
  * Revision 1.5  2002/07/21 14:05:08  sijtsche
  * CSS3, SVG, SVG tiny and SVG basic added as validation options
  *
@@ -72,7 +80,8 @@ import org.w3c.css.css.CssParser;
 import org.w3c.css.css.StyleSheetParser;
 import org.w3c.css.css.HTMLStyleSheetParser;
 import org.w3c.css.css.StyleSheet;
-import org.w3c.css.css.StyleSheetGeneratorHTML2;
+import org.w3c.css.css.StyleReportFactory;
+import org.w3c.css.css.StyleReport;
 import org.w3c.css.aural.ACssStyle;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.FakeFile;
@@ -539,6 +548,9 @@ public final class CssValidator extends HttpServlet {
 	// Here is a little joke :-)
 //	res.setHeader("Server", server_name);
 
+	if (output != null) {
+	    System.out.println("*** output ["+output+"]");
+	}
 	// set the content-type for the response
 	MimeType outputMt = null;
 	if (output.equals(texthtml)) {
@@ -569,14 +581,15 @@ public final class CssValidator extends HttpServlet {
 	    output = "xhtml";
 	} else if ("text/html".equals(output)) {
 	    output = "html";
+	} else if ("application/soap+xml".equals(output)) {
+	    output = "soap12";
 	}
 	styleSheet.findConflicts(ac);
 
-	StyleSheetGeneratorHTML2 style;
-
-	style = new StyleSheetGeneratorHTML2(ac, title, styleSheet,
-					     output,
-					     warningLevel);
+	StyleReport style = StyleReportFactory.getStyleReport(ac, title, 
+							      styleSheet,
+							      output,
+							      warningLevel);
 	if (!errorReport) {
 	    style.desactivateError();
 	}
