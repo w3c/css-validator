@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-fr" xml:lang="en-fr">
+  <head>
+    <title>CSS Validator Project: comments</title>
+
+    <link href="style/page.css" rel="STYLESHEET" />
+    <link rel="STYLESHEET" title="default" media="screen" 
+      href="style/general.css" type="text/css" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org">
+      <img src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>How to Provide Feedback on W3C's CSS Validation Service</h1>
+
+    <p>
+      <strong>If your document doesn't validate, and you don't know why,
+      or you have a question about the CSS validator.</strong>
+    </p>
+
+    <p>
+      First, check the <a
+      href='http://www.websitedev.de/css/validator-faq'>W3C CSS
+      Validator Frequently Asked Questions (FAQ)</a> to see if your
+      question has been answered there.
+    </p>
+    <p>
+      <strong>Note:</strong> due to a change in the Java platform,
+      always add a trailing slash when trying to validate the main page
+      of your web site. Use <code>http:/www.w3.org/</code> instead of
+      <code>http://www.w3.org</code>.
+    </p>
+    <p>
+      You have several CSS related mailing lists, so please pick the
+      right one before asking a question:
+    </p>
+    <dl>
+      <dt><a
+	  href="mailto:www-validator-css@w3.org">www-validator-css@w3.org</a></dt>
+      <dd>
+	<p>
+	  This mailing list is for comments or bug reports on the CSS
+	  validator. This is not the right place to ask questions
+	  regarding CSS itself.
+	</p>
+	<p>
+	  This mailing list is <em><a
+	  href='http://lists.w3.org/Archives/Public/www-validator-css/'>publicly
+	  archived</a></em>.
+	</p>
+	<p>
+	  To post messages to www-validator-css@w3.org, you have to be <a
+	  href="http://www.w3.org/Mail/Request">subscribed</a>. Messages
+	  from non-subscribers are diverted to a human moderator and may
+	  (or may not) appear with a delay.
+	</p>
+      </dd>
+      <dt><a href='mailto:www-style@w3.org'>www-style@w3.org</a></dt>
+      <dd>
+	<p>
+	  This mailing list is for <em>technical discussion</em> on <a
+	  href="http://www.w3.org/Style/">Web Style Sheets</a>. This is
+	  a focused discussion area: all posts to this list must be
+	  about style sheets. The list is also the preferred place for
+	  discussing <a href="http://www.w3.org/TR/">working drafts</a>
+	  that are published by W3C's working group on <a
+	  href="http://www.w3.org/Style/CSS/">CSS (Cascading Style
+	  Sheets)</a>.
+	</p>
+	<p>
+	  This mailing list is <em><a
+	  href='http://lists.w3.org/Archives/Public/www-style/'>publicly
+	  archived</a></em>.
+	</p>
+	<p>
+	  This list is <em>not</em> for posts of the form "How do
+	  I...". For those, please use the Usenet newsgroup <a
+	  href="news:comp.infosystems.www.authoring.stylesheets">
+	  comp.infosystems.www.authoring.stylesheets</a>, or mailing
+	  lists like <a
+	  href="http://www.hwg.org/lists/hwg-style">hwg-style</a> (for
+	  members of the HTML Writers Guild). <a
+	  href="http://www.websitetips.com/css/#newsgroups">Website
+	  Tips</a> has links to more fora.
+	</p>
+	<p>
+	  To post messages to www-style@w3.org, you have to be <a
+	  href="http://www.w3.org/Mail/Request">subscribed</a>. Messages
+	  from non-subscribers are diverted to a human moderator and may
+	  appear with a delay.
+	</p>
+      </dd>
+    </dl>
+
+    <hr />
+    <img src="images/mwcss.gif" alt="made with CSS" />
+    Philippe Le H&eacute;garet<br />
+    $Date$
+  </body>
+</html>

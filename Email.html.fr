@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-fr" xml:lang="en-fr">
+  <head>
+    <title>CSS Validateur: commentaires</title>
+
+    <link href="style/page.css" rel="STYLESHEET" />
+    <link rel="STYLESHEET" title="default" media="screen" 
+      href="style/general.css" type="text/css" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org">
+      <img src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>Comment envoyer des commentaires sur le service de validation
+      CSS du W3C</h1>
+
+    <p>
+      <strong>Si votre document ne valide pas, et si vous ne savez pas pourquoi,
+      ou si vous avez une question sur le validateur CSS.</strong>
+    </p>
+
+    <p>
+      Avant toute chose, consultez la liste des <a
+      href='http://www.websitedev.de/css/validator-faq'>questions les
+	plus fr&eacute;quemment pos&eacute;es (FAQ)</a> pour
+      v&eacute;rifier si votre question n'y apparait pas.
+    </p>
+    <p>
+      <strong>Note:</strong> Suite &agrave; un changement sur la
+      plateforme Java, n'oubliez pas d'ajouter un &laquo;slash&raquo;
+      ('/') lors de la validation de la page principale de votre
+      site. Par exemple, utilisez <code>http:/www.w3.org/</code> au lieu
+      de <code>http://www.w3.org</code>.
+    </p>
+    <p>
+      Il existe plusieurs forums de discussions sur CSS, veuillez s'il
+      vous pla&icirc;t utiliser le forum le plus appropri&eacute; pour
+      demander de l'aide ou des informations:
+    </p>
+    <dl>
+      <dt><a
+	  href="mailto:www-validator-css@w3.org">www-validator-css@w3.org</a></dt>
+      <dd>
+	<p>
+	  Ce forum est destin&eacute; &agrave; recevoir les commentaires
+	  ou des rapports d'erreurs sur le validateur CSS. Pour les
+	  questions relatives au langage CSS, ce n'est pas le forum le
+	  plus appropri&eacute;.
+	</p>
+	<p>
+	  L'archive de ce forum est disponible au <em><a
+	  href='http://lists.w3.org/Archives/Public/www-validator-css/'>public</a></em>.
+	</p>
+	<p>
+	  L'envoi de message dans ce forum est restreint aux <a
+	  href="http://www.w3.org/Mail/Request">personnes souscrites
+	  &agrave; la liste</a>. Si vous n'&ecirc;tes pas souscrit
+	  &agrave; ce forum, les messages seront redirig&eacute;s vers
+	  un op&eacute;rateur humain et peuvent (ou pas)
+	  appara&icirc;tre apr&egrave;s &laquo;un certain
+	  d&eacute;lai&raquo;.
+	</p>
+      </dd>
+      <dt><a href='mailto:www-style@w3.org'>www-style@w3.org</a></dt>
+      <dd>
+	<p>
+	  Ce forum est destin&eacute; aux discussions techniques
+	  relatives aux <a href="http://www.w3.org/Style/">feuille de
+	  style du Web</a> (&laquo;Web Style Sheets&raquo;). Ce forum
+	  est &eacute;galement destin&eacute; aux discussions sur les <a
+	  href="http://www.w3.org/TR/">documents de travail</a>
+	  publi&eacute;s par le groupe de travail du W3C <a
+	  href="http://www.w3.org/Style/CSS/">CSS (&laquo;Cascading
+	  Style Sheets&raquo;)</a>.
+	</p>
+	<p>
+	  L'archive de ce forum est disponible au <em><a
+	  href='http://lists.w3.org/Archives/Public/www-style/'>public</a></em>.
+	</p>
+	<p>
+	  Ce forum <em>n'est pas</em> appropri&eacute; pour les
+	  questions relatives &agrave; l'usage de CSS ("Comment puis-je
+	  faire ...?"). Pour ce type de questions, veuillez utiliser le
+	  forum de discussions <a
+	  href="news:comp.infosystems.www.authoring.stylesheets">
+	  comp.infosystems.www.authoring.stylesheets</a>, ou <a
+	  href="http://www.hwg.org/lists/hwg-style">hwg-style</a>
+	  (accessible aux membres du &laquo;HTML Writers
+	  Guild&raquo;). &laquo;<a
+	  href="http://www.websitetips.com/css/#newsgroups">Website
+	  Tips</a>&raquo; poss&egrave;de une liste de liens vers
+	  d'autres forums.
+	</p>
+	<p>
+	  L'envoi de message dans ce forum est restreint aux <a
+	  href="http://www.w3.org/Mail/Request">personnes souscrites
+	  &agrave; la liste</a>. Si vous n'&ecirc;tes pas souscrit
+	  &agrave; ce forum, les messages seront redirig&eacute;s vers
+	  un op&eacute;rateur humain et peuvent appara&icirc;tre
+	  apr&egrave;s &laquo;un certain d&eacute;lai&raquo;.
+	</p>
+      </dd>
+    </dl>
+
+    <hr />
+    <img src="images/mwcss.gif" alt="made with CSS" />
+    Philippe Le H&eacute;garet<br />
+    $Date$
+  </body>
+</html>
