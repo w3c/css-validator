@@ -109,6 +109,7 @@ error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: 属性 %s 不存在
 error.noexistence-media: 媒体 %s 的属性 %s 不存在
+warning.noexistence-media: 媒体 %s 的属性 %s 不存在
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: 太多值不能识别

@@ -109,6 +109,7 @@ error.zero: \u53ea\u67090\u53ef\u4ee5\u6210\u4e3a %s. \u4f60\u5fc5\u987b\u5728\u
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: \u5c5e\u6027 %s \u4e0d\u5b58\u5728
 error.noexistence-media: \u5a92\u4f53 %s \u7684\u5c5e\u6027 %s \u4e0d\u5b58\u5728
+warning.noexistence-media: \u5a92\u4f53 %s \u7684\u5c5e\u6027 %s \u4e0d\u5b58\u5728
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: \u592a\u591a\u503c\u4e0d\u80fd\u8bc6\u522b
