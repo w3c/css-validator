@@ -70,8 +70,8 @@
     </p>
     
     <hr />
-    <address class="right"><a href="Email.html">validator-css</a></address>
-    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+    <address><a href="Email.html">validator-css</a></address><br />
+    $Date$
   </body>
 </html>
 

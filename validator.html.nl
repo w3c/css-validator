@@ -1,25 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-                      "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html lang="nl">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl" xml:lang="nl">
   <head>
     <title>W3C validatieservice voor CSS</title>
 
-    <meta lang="fr" name="Author" content="Philippe Le Hegaret">
-    <meta lang="nl" name="Translator" content="Sijtsche de Jong">
+    <meta lang="fr" name="Author" content="Philippe Le Hegaret" />
+    <meta lang="nl" name="Translator" content="Sijtsche de Jong" />
 
-    <META NAME="keywords" CONTENT="W3C,validator,css,html,java">
-    <meta name="ROBOTS" content="INDEX, NOFOLLOW">
+    <meta name="keywords" content="W3C,validator,css,html,java" />
+    <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
 
-    <link href="style/general.css" type="text/css" rel="STYLESHEET">
+    <link href="style/general.css" type="text/css" rel="stylesheet" />
   </head>
   <body bgcolor=white>
-    <a class="left" href="http://www.w3.org"><IMG
-	SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c" WIDTH="72"
-	HEIGHT="48"></A>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><IMG
-	  SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered"
-	  BORDER="0" WIDTH="94" HEIGHT="52" lang="en"></a>
-    <br>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="w3c" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" lang="en" /></a>
+    <br />
 
     <div class="t1">CSS</div>
     <div class="t2">Validator</div>
@@ -41,7 +41,7 @@
 	  </a></h2>
     </div>
     
-    <hr><br>
+    <hr /><br />
     
     <div class="forms">
       <h2 class="center">W3C validatieservice voor CSS</h2>
@@ -59,7 +59,7 @@
       </p>
     </div>
 
-    <hr><br>
+    <hr /><br />
     
     <p>
       Om alles naar behoren te laten werken is het noodzakelijk dat
@@ -69,18 +69,18 @@
     </p>
     
     
-    <br>
-    <br>
-    <hr class="large">
+    <br />
+    <br />
+    <hr />
 
 
     <a class="right" href="http://validator.w3.org/">
-      <img src="http://validator.w3.org/images/vh40.gif"
-        alt="HTML 4.0 Valide!"  border="0" width="88" height="31"></a>
+      <img src="http://www.w3.org/Icons/valid-xhtml10" 
+	alt="Valid XHTML 1.0!"  border="0" width="88" height="31" /></a>
     <a class="right" href="http://jigsaw.w3.org/css-validator">
       <img style="border:0;width:88px;height:31px"
         src="http://jigsaw.w3.org/css-validator/images/vcss.gif"
-        alt="CSS Valide!"></a>
+        alt="CSS Valide!" /></a>
 
     <address><a href="Email.html">www-validator-css</a></address><br />
     $Date$

@@ -206,8 +206,7 @@
     
     <hr class="large">
     <img src="images/mwcss.gif" alt="gemaakt met CSS">
-    <address class="right"><a href="mailto:Philippe.Le_Hegaret@sophia.inria.fr">
-	Philippe Le H&eacute;garet</a></address>
+    <address class="right"><a href="Email.html">validator-css</a></address>
   </body>
 </html>
 

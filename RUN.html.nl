@@ -78,7 +78,6 @@ java org.w3c.css.css.StyleSheetCom http://style.verso.com/stylebot.html?family=1
     </P>
     <hr>
     <img src="images/mwcss.gif" alt="made with CSS">
-    <address><a href="mailto:Philippe.Le_Hegaret@sophia.inria.fr">
-	Philippe Le H&eacute;garet</a></address>
+    <address><a href="Email.html">validator-css</a></address>
   </body>
 </html>
