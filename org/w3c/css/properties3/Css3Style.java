@@ -55,7 +55,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
     CssBaselineShift cssBaselineShift;
     CssLineBreak cssLineBreak;
     CssWordBreakCJK cssWordBreakCJK;
-    CssWordBreakWrap cssWordBreakWrap;
     CssWordBreakInside cssWordBreakInside;
     CssWordBreak cssWordBreak;
     CssTextSpace cssTextSpace;
@@ -461,15 +460,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 			    new CssWordBreakCJK(), style, selector);
 	}
 	return cssWordBreakCJK;
-    }
-
-    public CssWordBreakWrap getWordBreakWrap() {
-	if (cssWordBreakWrap == null) {
-	    cssWordBreakWrap =
-		(CssWordBreakWrap) style.CascadingOrder (
-			    new CssWordBreakWrap(), style, selector);
-	}
-	return cssWordBreakWrap;
     }
 
     public CssWordBreakInside getWordBreakInside() {
@@ -1172,9 +1162,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssWordBreakCJK != null) {
 	    cssWordBreakCJK.print(printer);
-	}
-	if (cssWordBreakWrap != null) {
-	    cssWordBreakWrap.print(printer);
 	}
 	if (cssWordBreakInside != null) {
 	    cssWordBreakInside.print(printer);

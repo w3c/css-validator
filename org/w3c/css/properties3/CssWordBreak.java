@@ -19,7 +19,7 @@ import org.w3c.css.values.CssOperator;
 
 /**
  *  <P>
- *  <EM>Value:</EM> normal || &lt;word-break-CJK&gt; || &lt;word-break-wrap&gt; || 
+ *  <EM>Value:</EM> normal || &lt;word-break-CJK&gt; || &lt;word-break-wrap&gt; ||
  *  word-break-inside || inherit<BR>
  *  <EM>Initial:</EM>normal<BR>
  *  <EM>Applies to:</EM>block-level elements<BR>
@@ -27,16 +27,15 @@ import org.w3c.css.values.CssOperator;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  The 'word-break' property is a shorthand property for setting 
- *  'word-break-CJK', 'word-break-wrap' and 'word-break-inside', at the same 
- *  place in the style sheet. 
+ *  The 'word-break' property is a shorthand property for setting
+ *  'word-break-CJK', 'word-break-wrap' and 'word-break-inside', at the same
+ *  place in the style sheet.
  */
 
-public class CssWordBreak extends CssProperty 
+public class CssWordBreak extends CssProperty
 implements CssOperator {
-    
+
     CssWordBreakCJK wbc;
-    CssWordBreakWrap wbw;
     CssWordBreakInside wbi;
     CssValue wordbreak;
 
@@ -45,7 +44,7 @@ implements CssOperator {
      */
     public CssWordBreak() {
     }
-    
+
     /**
      * Create a new CssWordBreak
      *
@@ -53,27 +52,19 @@ implements CssOperator {
      * @exception InvalidParamException Incorrect value
      */
     public CssWordBreak(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	int maxvalues = 3;
 	boolean correct = true;
 	char op = SPACE;
-	
+
 	while (correct && (val != null) && (maxvalues-- > 0)) {
-	 
+
 	    correct = false;
-	    
+
 	    if (wbc == null) {
 		try {
 		    wbc = new CssWordBreakCJK(ac, expression);
-		    correct = true;
-		}
-		catch (InvalidParamException e) {
-		}
-	    }
-	    if (!correct && wbw == null) {
-		try {
-		    wbw = new CssWordBreakWrap(ac, expression);
 		    correct = true;
 		}
 		catch (InvalidParamException e) {
@@ -100,12 +91,9 @@ implements CssOperator {
 	if (wbc == null) {
 	    wbc = new CssWordBreakCJK();
 	}
-	if (wbw == null) {
-	    wbw = new CssWordBreakWrap();
-	}
 	if (wbi == null) {
 	    wbi = new CssWordBreakInside();
-	}   
+	}
 
     }
 
@@ -143,7 +131,7 @@ implements CssOperator {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -167,14 +155,11 @@ implements CssOperator {
 	if (wbc.isByUser()) {
 	    ret += " " + wbc;
 	}
-	if (wbw.isByUser()) {
-	    ret += " " + wbw;
-	}
 	if (wbi.isByUser()) {
 	    ret += " " + wbi;
 	}
 	return ret.substring(1);
-	
+
     }
 
     //    /**
