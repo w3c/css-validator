@@ -70,10 +70,6 @@ public class CssWritingMode extends CssProperty {
 	    mode = tbrl;
 	    expression.next();
 	}
-	else if (val.equals(btrl)) {
-	    mode = btrl;
-	    expression.next();
-	}
 	else if (val.equals(tblr)) {
 	    mode = tblr;
 	    expression.next();
