@@ -15,6 +15,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssOperator;
 
 /**
  *  <P>
@@ -26,21 +27,20 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property describes how to interpret 'column-width'. The 'flexible' 
- *  value indicates that the width of columns can be increased to fill all 
- *  the available space. The 'strict' value indicates that 'column-width' is 
- *  to be honored. 
+ *  This property describes how to interpret 'column-width'. The 'flexible'
+ *  value indicates that the width of columns can be increased to fill all
+ *  the available space. The 'strict' value indicates that 'column-width' is
+ *  to be honored.
  */
 
-public class CssColumnSpaceDistribution extends CssProperty {
+public class CssColumnSpaceDistribution extends CssProperty implements CssOperator {
 
-    CssValue distribution;
+    String distribution = "";
 
     static CssIdent end = new CssIdent("end");
 
     private static String[] values = {
-	"right", "left", "start", "end", "top", "bottom", "inner", "outer", 
-	"between", "outside", "inherit"
+	"start", "end", "inner", "outer", "between", "inherit"
     };
 
     /**
@@ -58,21 +58,36 @@ public class CssColumnSpaceDistribution extends CssProperty {
      */
     public CssColumnSpaceDistribution(ApplContext ac, CssExpression expression) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+		setByUser();
 
-	int i = 0;
-	for (; i < values.length; i++) {
-	    if (val.toString().equals(values[i])) {
-		distribution = val;
-		expression.next();
-		break;
-	    }
-	}
-	if (i == values.length) {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+		CssValue val = expression.getValue();
+		int maxvalues = 2;
+		boolean correct = true;
+		char op = SPACE;
+
+		while (correct && (val != null) && (maxvalues-- > 0)) {
+
+			correct = false;
+
+			for (int i = 0; i < values.length; i++) {
+			    if (val.toString().equals(values[i])) {
+					distribution += " " + val.toString();
+					expression.next();
+					correct = true;
+					break;
+			    }
+			}
+
+		    if (!correct) {
+			throw new InvalidParamException("value", expression.getValue(),
+							getPropertyName(), ac);
+		    }
+
+		    val = expression.getValue();
+		    op = expression.getOperator();
+
+		}
+
     }
 
     /**
@@ -110,7 +125,7 @@ public class CssColumnSpaceDistribution extends CssProperty {
 	return (property instanceof CssColumnSpaceDistribution &&
 		distribution.equals(((CssColumnSpaceDistribution) property).distribution));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -129,14 +144,14 @@ public class CssColumnSpaceDistribution extends CssProperty {
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return distribution.equals(inherit);
+	return distribution.equals("inherit");
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return distribution.toString();
+	return distribution;
     }
 
     /**
@@ -144,7 +159,7 @@ public class CssColumnSpaceDistribution extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return (distribution == end);
+	return (distribution.equals("end"));
     }
 
 }
