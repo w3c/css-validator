@@ -91,6 +91,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		String credential = ac.getCredential();
 
 		connection = HTTPURL.getConnection(htmlURL, ac);
+		htmlURL = connection.getURL();
 
 		String httpCL = connection.getHeaderField("Content-Location");
 		if (httpCL != null) {

@@ -149,7 +149,7 @@ public final class CssFouffa extends CssParser {
      * @exception   IOException  if an I/O error occurs.
      */
     public CssFouffa(ApplContext ac, URL file) throws IOException {
-	this(ac, HTTPURL.getConnection(file, ac), file);
+	this(ac, HTTPURL.getConnection(file, ac));
 	
     }
 
@@ -158,10 +158,10 @@ public final class CssFouffa extends CssParser {
      * internal, to get the URLCOnnection and fill the URL with the relevant
      * one */
 
-    private CssFouffa(ApplContext ac, URLConnection uco , URL file)
+    private CssFouffa(ApplContext ac, URLConnection uco)
 	throws IOException 
     {
-	this(ac, uco.getInputStream(), file, 0);
+	this(ac, uco.getInputStream(), uco.getURL(), 0);
 	String httpCL = uco.getHeaderField("Content-Location");
 	if (httpCL != null) {
 	    setURL(HTTPURL.getURL(getURL(), httpCL));
@@ -274,7 +274,8 @@ public final class CssFouffa extends CssParser {
     public void ReInit(ApplContext ac, URL file) throws IOException {
 	Frame f = new Frame(this, file.toString());
 	ac.setFrame(f);
-	ReInit(ac, HTTPURL.getConnection(file, ac).getInputStream(), file, f);
+	URLConnection urlC = HTTPURL.getConnection(file, ac);
+	ReInit(ac, urlC.getInputStream(), urlC.getURL(), f);
     }
 
     /**
