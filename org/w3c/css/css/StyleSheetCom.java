@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  * Revision 1.1  1998/01/07 13:32:20  plehegar
  * Initial revision
  *
@@ -38,7 +41,7 @@ import org.w3c.css.util.ApplContext;
  * @version $Revision$import javax.servlet.http.HttpServletResponse;
  */
 public class StyleSheetCom implements HtmlParserListener {
-    
+
     /*    ApplContext ac = new ApplContext("ja, en, zh"); */
     ApplContext ac;
     String lang;
@@ -51,12 +54,12 @@ public class StyleSheetCom implements HtmlParserListener {
     String cssversion;
     String profile;
     String contenttype;
-    
+
     // @@ HACK
     static boolean showCSS = false;
 
     private Exception exception;
-    
+
     public void htmlRequest() throws Exception {
 
  	System.err.println( "html request " + htmlURL);
@@ -74,10 +77,10 @@ public class StyleSheetCom implements HtmlParserListener {
 	    Util.fromHTMLFile = false;
 	}
     }
-    
+
     public void xmlRequest() throws Exception {
 	StyleSheet style = null;
-	
+
 	XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
 	handler.parse(htmlURL);
 	style = handler.getStyleSheet();
@@ -87,15 +90,15 @@ public class StyleSheetCom implements HtmlParserListener {
 	if (style != null) {
 	    style.findConflicts(ac);
 	    if (documentBase.startsWith("html")) {
-		StyleSheetGeneratorHTML2 output = 
-		    new StyleSheetGeneratorHTML2(ac, file, 
+		StyleSheetGeneratorHTML2 output =
+		    new StyleSheetGeneratorHTML2(ac, file,
 						 style,
 						 documentBase,
 						 warningLevel);
 		output.print(out);
 	    } else {
-		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file, 
-								       style, 
+		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file,
+								       style,
 								       documentBase,
 								       warningLevel);
 		style2.print(out);
@@ -105,17 +108,17 @@ public class StyleSheetCom implements HtmlParserListener {
 	}
 	ac.setInput("text/xml");
     }
-    
+
     public void cssRequest(CssSelectors selector, String defaultmedium) {
 	CssParser parser = new StyleSheetParser();
 	ac.setMedium(defaultmedium);
-	
+
 	/*
 	  if (defaultmedium != null) {
 	  parser.setDefaultMedium(defaultmedium);
 	  }
 	*/
-	parser.parseURL(ac, htmlURL, null, null, null, 
+	parser.parseURL(ac, htmlURL, null, null, null,
 			StyleSheetOrigin.AUTHOR);
 	parser.getStyleSheet().findConflicts(ac);
 	if (selector != null) {
@@ -124,9 +127,9 @@ public class StyleSheetCom implements HtmlParserListener {
 								       parser.getStyleSheet(),
 								       selector));
 	    CssStyle s = parser.getStyleSheet().getStyle(selector);
-	    CssProperty _sl = 
+	    CssProperty _sl =
 		((org.w3c.css.properties.Css1Style) s).getColor();
-	    
+
 	    s.print(new org.w3c.css.parser.CssPrinterStyle () {
 		    public void print(CssProperty property) {
 			System.out.print(property.getPropertyName());
@@ -136,14 +139,14 @@ public class StyleSheetCom implements HtmlParserListener {
 		    }
 		});
 	} else if (documentBase.startsWith("html")) {
-	    StyleSheetGeneratorHTML2 output = 
-		new StyleSheetGeneratorHTML2(ac, file, 
+	    StyleSheetGeneratorHTML2 output =
+		new StyleSheetGeneratorHTML2(ac, file,
 					     parser.getStyleSheet(),
 					     documentBase,
 					     warningLevel);
 	    output.print(out);
 	} else {
-	    StyleSheetGenerator2 output = 
+	    StyleSheetGenerator2 output =
 		new StyleSheetGenerator2(file,
 					 parser.getStyleSheet(),
 					 documentBase,
@@ -151,17 +154,17 @@ public class StyleSheetCom implements HtmlParserListener {
 	    output.print(out);
 	}
     }
-    
-    public static void main(String args[]) 
+
+    public static void main(String args[])
 	throws IOException, MalformedURLException {
 	int i = 0;
 	CssSelectors selector = null;
-	
+
 	StyleSheetCom style = new StyleSheetCom();
-	
+
 	try {
 	    style.file = args[i];
-	    
+
 	    while (i < args.length && args[i].charAt(0) == '-') {
 		String argument = args[i].substring(1).toLowerCase();
 		if (argument.equals("e")) {
@@ -175,16 +178,14 @@ public class StyleSheetCom implements HtmlParserListener {
 			printAvailableFormat(new PrintWriter(System.err));
 		} else if (argument.startsWith("@")) {
 		    style.defaultmedium = argument;
-		} else if (argument.equals("css1") || argument.equals("css2")) {
+		} else if (argument.equals("css1") || argument.equals("css2")
+		   	   || argument.equals("css3") ||
+			   argument.equals("svg") ||
+			   argument.equals("svgbasic") ||
+			   argument.equals("svgtiny")) {
 		    style.cssversion = argument;
-		    /*
-		      } else if (argument.equals("css1") || argument.equals("css2")
-		      || argument.equals("css3") || 
-		      argument.equals("svg")) {
-		      style.cssversion = argument;
-		      } else if (argument.equals("mobile") || (argument.equals("atsc"))) {
-		      style.profile = argument;
-		    */
+		} else if (argument.equals("mobile") || (argument.equals("atsc"))) {
+		    style.profile = argument;
 		} else {
 		    int idx = argument.lastIndexOf('.');
 		    if(idx >= 0 && idx < argument.length() - 1) {
@@ -207,30 +208,32 @@ public class StyleSheetCom implements HtmlParserListener {
 		style.ac.setCssVersion("css2");
 	    }
 	} catch (Exception e) {
-	    /* System.out.println( "Usage: validator " + 
-	       StyleSheetCom.class.getName() + 
+	    /* System.out.println( "Usage: validator " +
+	       StyleSheetCom.class.getName() +
 				// " [-<your format>] [-fromxml] <url>");
 				" [-s||-e||-<your format>] [<url>|<file>]*");
 	    */
-	    System.out.println( "Usage: validator " + 
+	    System.out.println( "Usage: validator " +
 				" [ -s || -e || -<your format> || -cssversion/profile ] [<url>|<file>]*");
 	    System.out.println( "\t-s\tShow the validated style sheet");
 	    System.out.println( "\t-e\tDo NOT show warnings");
 	    System.out.println( "\tuse the option -format to see"
 				+ " available format.");
-	    System.out.println( "\tCSS version\t-css1 || -css2");
+	    System.out.println( "\tCSS version\t-css1 || -css2 || -css3 || -svg || -svgbasic || -svgtiny");
+	    System.out.println( "\tProfile\t\t -atsc || -mobile");
+	    //System.out.println( "\tCSS version\t-css1 || -css2");
 	    //	    System.out.println( "\tProfile\t\t-svg || -atsc || -mobile");
 	    System.exit(1);
 	}
-	
+
 	String encoding = style.ac.getMsg().getString("output-encoding-name");
 	if(encoding != null) style.out = new PrintWriter(new OutputStreamWriter(System.out, encoding));
 	else style.out = new PrintWriter(new OutputStreamWriter(System.out));
-	
+
 	while (i < args.length) {
 	    try {
 		String doc = args[i];
-		
+
 		try {
 		    style.htmlURL = new URL(doc);
 		    style.file = style.htmlURL.toString();
@@ -240,7 +243,7 @@ public class StyleSheetCom implements HtmlParserListener {
 		    style.htmlURL = new URL("file", null, -1, style.file);
 		}
 		i++;
-		
+
 		String urlLower = style.htmlURL.toString().toLowerCase();
 		if (urlLower.endsWith(".css")) {
 		    style.cssRequest(selector, style.defaultmedium);
@@ -253,7 +256,7 @@ public class StyleSheetCom implements HtmlParserListener {
 		} else {
 		    HttpServletResponse res = null;
 		    URLConnection urlC = HTTPURL.getConnection(style.htmlURL, null);
-		    
+
 		    if (urlC.getContentType() != null) {
 			if (urlC.getContentType().indexOf("text/html") != -1) {
 			    style.htmlRequest();
@@ -272,7 +275,7 @@ public class StyleSheetCom implements HtmlParserListener {
 		    }
 		}
 	    } catch (org.xml.sax.SAXException e) {
-		if (e.getException() != null) {		    
+		if (e.getException() != null) {
 		    e.getException().printStackTrace();
 		}
 	    } catch (Exception e) {
@@ -280,7 +283,7 @@ public class StyleSheetCom implements HtmlParserListener {
 	    }
 	}
     }
-    
+
     /**
      * Notifies root creation.
      *
@@ -288,25 +291,25 @@ public class StyleSheetCom implements HtmlParserListener {
      *
      * @param url the URL being parsed.
      * @param root the new root Tag for this parser.
-     */    
+     */
     public void notifyCreateRoot(URL url, HtmlTag root) {
     }
-    
+
     public void notifyActivity(int lines, long bytes) {
     }
-    
+
     public void notifyConnection(URLConnection cnx) {
     }
-    
+
     /**
      * Notifies successful termination.
      *
      * @param root the root of the current Tree.
-     */    
+     */
     public void notifyEnd(HtmlTag root, String contentType) {
-	
+
 	StyleSheet style = null;
-	
+
 	if (root != null) {
 	    style = ((HtmlTree) root).getStyleSheet();
 	}
@@ -314,15 +317,15 @@ public class StyleSheetCom implements HtmlParserListener {
 	if (style != null) {
 	    style.findConflicts(ac);
 	    if (documentBase.startsWith("html")) {
-		StyleSheetGeneratorHTML2 output = 
-		    new StyleSheetGeneratorHTML2(ac, file, 
+		StyleSheetGeneratorHTML2 output =
+		    new StyleSheetGeneratorHTML2(ac, file,
 						 style,
 						 contenttype,
 						 warningLevel);
 		output.print(out);
 	    } else {
-		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file, 
-								       style, 
+		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file,
+								       style,
 								       contenttype,
 								       warningLevel);
 		style2.print(out);
@@ -332,7 +335,7 @@ public class StyleSheetCom implements HtmlParserListener {
 	}
 	ac.setInput(contentType);
     }
-    
+
     /**
      * Notifies a fatal error.
      *
@@ -346,10 +349,10 @@ public class StyleSheetCom implements HtmlParserListener {
     public void notifyFatalError(HtmlTag root, Exception x, String s) {
 	exception = x;
     }
-    
+
     private static CssSelectors createSelectors(String s) {
 	try {
-	    CssFouffa fouffa = 
+	    CssFouffa fouffa =
 		new CssFouffa(null, new java.io.StringBufferInputStream(s),
 			      new URL("file://nofile"));
 	    return fouffa.parseSelector();
@@ -358,5 +361,5 @@ public class StyleSheetCom implements HtmlParserListener {
 	    return null;
 	}
     }
-    
+
 }
