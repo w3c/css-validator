@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.7  2002/08/19 07:24:39  sijtsche
+ * tv profile restrictions added
+ *
  * Revision 1.6  2002/07/24 14:52:21  sijtsche
  * compile bug fixed
  *
@@ -336,98 +339,92 @@ public final class CssSelectors implements CssSelectorsConstant {
     public void addAttribute(String attName, String value,
 			     int selectorType) throws InvalidParamException {
 
-	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
+		Attribute attr = null;
 
-	    Attribute attr = null;
+		if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
 
-	    if (ac.getProfile().equals("mobile")) {
-			if (selectorType == ATTRIBUTE_CLASS_SEL) {
-				attr = new AttributeOneOf().addValue(value).setName(attName);
-			    addAttribute(attr);
-			    Invalidate();
-			    return;
-			} else if (selectorType == ATTRIBUTE_EXACT) {
-				attr = new AttributeExact().setValue(value).setName(attName);
-			    addAttribute(attr);
-			    Invalidate();
-			    return;
-			} else {
-				throw new InvalidParamException("notformobile", "attributes" , ac);
+		    if (ac.getProfile().equals("mobile")) {
+				if (selectorType == ATTRIBUTE_CLASS_SEL) {
+					attr = new AttributeOneOf().addValue(value).setName(attName);
+				    addAttribute(attr);
+				    Invalidate();
+				    return;
+				} else if (selectorType == ATTRIBUTE_EXACT) {
+					attr = new AttributeExact().setValue(value).setName(attName);
+				    addAttribute(attr);
+				    Invalidate();
+				    return;
+				} else {
+					throw new InvalidParamException("notformobile", "attributes" , ac);
+				}
+		    } else if (ac.getProfile().equals("tv")) {
+				throw new InvalidParamException("notfortv", "attributes", ac);
 			}
-	    }
-
-		if (ac.getProfile().equals("tv")) {
-			throw new InvalidParamException("notfortv", "attributes", ac);
 		}
 
 	    switch (selectorType) {
-	    case ATTRIBUTE_ANY:
-	    if (ac.getCssVersion().equals("css1")) {
-			throw new InvalidParamException("notversion","[" + attName +"]", ac.getCssVersion(), ac);
-		} else {
-			attr = new AttributeAny().setName(attName);
-		}
-		break;
-	    case ATTRIBUTE_EXACT:
-		attr = new AttributeExact().setValue(value).setName(attName);
-		break;
-	    case ATTRIBUTE_BEGIN:
-	    if (ac.getCssVersion().equals("css1")) {
-			throw new InvalidParamException("notversion","[" + attName + "|=" + value + "]", ac.getCssVersion(), ac);
-		} else {
-			attr = new AttributeBegin().setValue(value).setName(attName);
-		}
-		break;
-	    case ATTRIBUTE_ONE_OF:
-		if (value.indexOf(' ') != -1) {
-		    InvalidParamException error =
-			new InvalidParamException("space", value, ac);
-		    ac.getFrame().addError(new CssError(error));
-		    return;
-		}
-		if (ac.getCssVersion().equals("css1")) {
-			throw new InvalidParamException("nocomb", "~=", ac);
-		} else {
-			attr = new AttributeOneOf().addValue(value).setName(attName);
-		}
-		break;
-		case ATTRIBUTE_CLASS_SEL:
-		//if (value.indexOf(' ') != -1) {
-		//    InvalidParamException error =
-		//	new InvalidParamException("space", value, ac);
-		//    ac.getFrame().addError(new CssError(error));
-		//    return;
-		//}
-		attr = new AttributeOneOf().addValue(value).setName(attName);
-		break;
-		case ATTRIBUTE_START:
-		if (ac.getCssVersion().equals("css3")) {
-		    attr = new AttributeStart().setValue(value).setName(attName);
-		    break;
-		} else {
-		    throw new InvalidParamException("nocomb", "^=", ac);
-		}
-	    case ATTRIBUTE_SUFFIX:
-		if (ac.getCssVersion().equals("css3")) {
-		    attr = new AttributeSuffix().setValue(value).setName(attName);
-		    break;
-		} else {
-		    throw new InvalidParamException("nocomb", "$=", ac);
-		}
-	    case ATTRIBUTE_SUBSTR:
-		if (ac.getCssVersion().equals("css3")) {
-		    attr = new AttributeSubstr().setValue(value).setName(attName);
-		    break;
-		} else {
-		    throw new InvalidParamException("nocomb", "*=", ac);
-		}
-	    default:
-		throw new NullPointerException("Invalid access in CssSelectors"
+	    	case ATTRIBUTE_ANY:
+	    		if (ac.getCssVersion().equals("css1")) {
+					throw new InvalidParamException("notversion","[" + attName +"]", ac.getCssVersion(), ac);
+				} else {
+					attr = new AttributeAny().setName(attName);
+				}
+				break;
+	    	case ATTRIBUTE_EXACT:
+				attr = new AttributeExact().setValue(value).setName(attName);
+				break;
+	    	case ATTRIBUTE_BEGIN:
+	    		if (ac.getCssVersion().equals("css1")) {
+					throw new InvalidParamException("notversion","[" + attName + "|=" + value + "]", ac.getCssVersion(), ac);
+				} else {
+					attr = new AttributeBegin().setValue(value).setName(attName);
+				}
+				break;
+	    	case ATTRIBUTE_ONE_OF:
+				if (value.indexOf(' ') != -1) {
+				    InvalidParamException error =
+					new InvalidParamException("space", value, ac);
+				    ac.getFrame().addError(new CssError(error));
+				    return;
+				}
+				if (ac.getCssVersion().equals("css1")) {
+					throw new InvalidParamException("nocomb", "~=", ac);
+				} else {
+					attr = new AttributeOneOf().addValue(value).setName(attName);
+				}
+				break;
+			case ATTRIBUTE_CLASS_SEL:
+				attr = new AttributeOneOf().addValue(value).setName(attName);
+				break;
+			case ATTRIBUTE_START:
+				if (ac.getCssVersion().equals("css3")) {
+				    attr = new AttributeStart().setValue(value).setName(attName);
+				    break;
+				} else {
+				    throw new InvalidParamException("nocomb", "^=", ac);
+				}
+	    	case ATTRIBUTE_SUFFIX:
+				if (ac.getCssVersion().equals("css3")) {
+				    attr = new AttributeSuffix().setValue(value).setName(attName);
+				    break;
+				} else {
+				    throw new InvalidParamException("nocomb", "$=", ac);
+				}
+	    	case ATTRIBUTE_SUBSTR:
+				if (ac.getCssVersion().equals("css3")) {
+				    attr = new AttributeSubstr().setValue(value).setName(attName);
+				    break;
+				} else {
+				    throw new InvalidParamException("nocomb", "*=", ac);
+				}
+	    	default:
+				throw new NullPointerException("Invalid access in CssSelectors"
 					       + (char) selectorType);
 	    }
+
 	    addAttribute(attr);
 	    Invalidate();
-	}
+
     }
 
     public Enumeration getAttributes() {
