@@ -42,7 +42,7 @@
     <div class="forms">
       <h2 class="center">W3C CSS-Validierungsservice</h2>
      <p>
-	Validieren Sie Ihr <span lang="en">Cascading Style Sheet</span> <a href="validator-uri.html">über den
+	Validieren Sie Ihr <span lang="en">Cascading Style Sheet</span> <a href="validator-uri.html">per
 	  URI</a>
       </p>
       <p>
@@ -50,16 +50,15 @@
 	  einem Textfeld</a>
       </p>
       <p>
-	Validieren Sie Ihre <span lang="en">Cascading Style Sheet</span> Datei <a href="validator-upload.html">durch einen Upload</a>
+	Validieren Sie Ihre <span lang="en">Cascading Style Sheet</span> Datei <a href="validator-upload.html">per Upload</a>
       </p>
     </div>
 
     <hr /><br />
     
     <p>
-      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
-      korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
-      HTML</a>.
+      Um wie gew&#252;nscht zu funktionieren, benötigt ihr CSS einen korrekten Parsebaum.
+      Sie sollten deshalb <a href="http://validator.w3.org/">g&#252;ltiges HTML</a> benutzen.
     </p>
     
     

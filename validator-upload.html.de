@@ -23,10 +23,10 @@
       Willkommen beim W3C CSS-Validierungsservice!
     </p>
     <hr />
-    <h2>Validieren Sie Ihr <span lang="en">Cascading Style Sheet</span></h2>
+    <h2>Validieren Sie Ihr <span lang="en">Cascading Style Sheet</span> per Upload</h2>
     
     <p>
-      Geben Sie den Dateinamen des Dokuments an, daß Sie validieren möchten:
+      Geben Sie den Dateinamen der zu validierenden CSS-Quelltextdatei an:
     </p>
     
     <form action="validator" method="post" enctype="multipart/form-data">
@@ -36,30 +36,30 @@
       
       Warnungen:
       <select name="warning"> 
-	<option value="2">Alle Warnungen</option>
+	<option value="2">Alle</option>
 	<option selected="selected" value="1">Normaler Report</option>
-	<option value="0">Die wichtigsten Warnungen</option>
-	<option value="no">Keine Warnungen</option>
+	<option value="0">Die wichtigsten</option>
+	<option value="no">Keine</option>
       </select><br />
       <!-- <input type="checkbox" name="error" value="no">Zeige keine Fehlermeldungen an -->
       
-      Profile :
+      Profil:
       <select name="profile">
-	<option value="none">No special profile</option>
-	<option value="css1">CSS version 1</option>
-	<option selected="selected" value="css2">CSS version 2</option>
- 	<option value="css3">CSS version 3</option>
+	<option value="none">kein besonderes</option>
+	<option value="css1">CSS Version 1</option>
+	<option selected="selected" value="css2">CSS Version 2</option>
+ 	<option value="css3">CSS Version 3</option>
 	<option value="svg">SVG</option>
 	<option value="svgbasic">SVG basic</option>
 	<option value="svgtiny">SVG tiny</option>	
-	<option value="mobile">mobile</option>
-	<option value="atsc-tv">ATSC TV Profil</option>
-	<option value="tv">TV Profil</option>
+	<option value="mobile">mobil</option>
+	<option value="atsc-tv">ATSC-TV-Profil</option>
+	<option value="tv">TV-Profil</option>
       </select>
 
-      Medium :
+      Medium:
       <select name="usermedium">
-	<option selected="selected" value="all">all</option>
+	<option selected="selected" value="all">alle</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
 	<option value="embossed">embossed</option>
@@ -73,8 +73,8 @@
       </select><br />
 
       <br />
-      <input type="submit" value="Übermittle dieses CSS zur Validierung" />
-      <input type="reset" name="Reset" value="Setze dieses Formular zurück" />
+      <input type="submit" value="Datei &#252;bermitteln" />
+      <input type="reset" name="Reset" value="Formular zur&#252;cksetzen" />
       
     </form>
     
@@ -82,11 +82,10 @@
     <br />
     <br />
     <p>
-      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
-      korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
-      HTML</a>.
+      Um wie gew&#252;nscht zu funktionieren, benötigt ihr CSS einen korrekten Parsebaum.
+      Sie sollten deshalb <a href="http://validator.w3.org/">g&#252;ltiges HTML</a> benutzen.
     </p>
-    
+     
     <hr />
     <address><a href="Email.html">validator-css</a></address><br />
     $Date$
