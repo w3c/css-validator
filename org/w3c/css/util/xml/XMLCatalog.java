@@ -70,6 +70,16 @@ public class XMLCatalog extends Properties implements ContentHandler {
 		    e.printStackTrace();
 		}
 	    }
+	} else if ("public".equals(qName)) {
+	    String publicId = atts.getValue("publicId");
+	    String uri = atts.getValue("uri");
+	    if ((publicId != null) && (uri != null)) {
+		try {
+		    setProperty(publicId, (new URL(baseURI, uri)).toString());
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+	    }
 	}
     }
     public void endElement (String namespaceURI, String localName,
