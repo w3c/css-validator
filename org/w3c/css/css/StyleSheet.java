@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/07/30 06:57:39  sijtsche
+ * atrule is passed to rulelist as atrule object
+ *
  * Revision 1.2  2002/04/08 21:16:38  plehegar
  * New
  *
@@ -56,6 +59,7 @@ public class StyleSheet {
     private Vector atRuleList;
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
+    private static final debug boolean = false;
 
     /**
      * Create a new StyleSheet.
@@ -76,7 +80,9 @@ public class StyleSheet {
      * @return The style for the specific context.
      */
     public CssStyle getStyle(CssSelectors context) {
-	Util.verbose("StyleSheet.getStyle("+context+")");
+	if (debug) {
+	    Util.verbose("StyleSheet.getStyle("+context+")");
+	}
 
 	if (getContext(context) != null) {
 	    CssSelectors realContext = (CssSelectors) getContext(context);
@@ -100,9 +106,11 @@ public class StyleSheet {
      * @param property The property to add
      */
     public void addProperty(CssSelectors selector, CssProperty property) {
-	Util.verbose("add property "
-		     + getContext(selector)
-		     + " " + property);
+	if (debug) {
+	    Util.verbose("add property "
+			 + getContext(selector)
+			 + " " + property);
+	}
 	getContext(selector).addProperty(property, warnings);
     }
 
