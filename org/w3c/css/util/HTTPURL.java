@@ -173,7 +173,7 @@ public class HTTPURL {
 	}
 	// should I put an Accept header?
 	urlC.setRequestProperty("Accept",
-				"text/css,text/html,test/xml,application/xml,image/svg+xml,*/*;q=0");
+				"text/css,text/html,test/xml,application/xhtml+xml,application/xml,image/svg+xml,*/*;q=0");
 
 	urlC.connect();
 

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:23:27  plehegar
  * Freeze
  *
@@ -128,15 +131,15 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    throw new IOException("Unknown mime type : " + contentType);
 		}
 		
-		if ((contentType.indexOf("text/xml") != -1) || isXML) {
+		if ((contentType.indexOf("text/xml") != -1) || isXML
+		    || (contentType.indexOf("application/xhtml+xml") != -1)) {
 		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(urlString, connection.getInputStream());
 		    style = handler.getStyleSheet();
 		    if (style != null) {
 			style.setType("text/xml");
 		    }		    
-		}
-	    
+		}	    
 	    } finally {
 		try {
 		    connection.getInputStream().close();
