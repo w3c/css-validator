@@ -2,8 +2,15 @@ H2 {
   font-weight: bold; 
   font-size: large; 
   font-family: helvetica, sans-serif; 
-  color: rgb(136,0,0); 
+  color: #007CBB; 
   margin-top: 2.0%; 
+}
+div#errors H2 {
+  color: #E82848;
+}
+
+#Congrats H2 {
+  color: #0FBC8D;
 }
 BODY {
   font-size: medium; 
