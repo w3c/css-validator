@@ -3,14 +3,20 @@
 
 	<target name="build">
 	
-		<mkdir dir="./classes/css-validator/"/>
+		<mkdir dir="./css-validator"/>
 	
 		<javac 
-			destdir="./classes" 
+			destdir="./css-validator" 
 			srcdir="./org/w3c/css:html"
 			debug="yes">
 		</javac>
-	
+
+		<copy todir="./css-validator">
+		    <fileset dir="./">
+		      <exclude name="**/*.java"/>
+		    </fileset>
+		</copy>
+			
 	</target>
 
 	<target name="javadoc">
