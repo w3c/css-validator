@@ -8,8 +8,8 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
- * Revision 1.2  2002/04/08 21:24:03  plehegar
- * New
+ * Revision 1.2  2002/05/23 09:00:10  dejong
+ * @color-profile rule added, atsc-tv profile commented in, class attribute for selector added with :: (new in CSS3)
  *
  * Revision 1.2  1998/02/22 16:48:11  plehegar
  * *** empty log message ***
@@ -32,8 +32,8 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /* DEBUG_TOKEN_MANAGER = true;
-       DEBUG_PARSER = true; */
+    /*    DEBUG_TOKEN_MANAGER = true;
+	  DEBUG_PARSER = true; */
 	  
 }
 
@@ -71,6 +71,7 @@ import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRuleFontFace;
 import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
+import org.w3c.css.svgproperties.AtRuleColorProfile;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
@@ -154,7 +155,7 @@ public abstract class CssParser {
      * @param ac  the new ac to use for parsing.
      */
     public void ReInit(InputStream stream, ApplContext ac) {
-	ReInit(new CommentSkipperInputStream(stream));
+    	ReInit(new CommentSkipperInputStream(stream));
 	markRule = false;
 	setApplContext(ac);
     }
@@ -188,6 +189,7 @@ public abstract class CssParser {
     public abstract void endOfRule();	
     public abstract void removeThisRule();
     public abstract void removeThisAtRule();
+    public abstract String getUserMedium();
 
     /**
      * Assign an expression to a property.  This function create a new property
@@ -454,6 +456,7 @@ TOKEN :
   | < PAGE_SYM     : "@page"  >
   | < FONT_FACE_SYM: "@font-face" >
   | < PREF_SYM     : "@preference" >
+  | < COLOR_PROFILE: "@color-profile" >
   | < CHARSET_SYM  : "@charset" >
   | < ATTOP	   : "@top" >
   | < ATRIGHT      : "@right" >
@@ -524,11 +527,11 @@ void charset() :
     }
 }
 
-/* Modified by Sijtsche de Jong, preference added for CSS3 */
+/* Modified by Sijtsche de Jong, preference and colorprofile added for CSS3 */
 void afterImportDeclaration() :
 {String ret; }
 {
-  ( ( ruleSet() | media() | page() | fontFace() | preference()
+  ( ( ruleSet() | media() | page() | fontFace() | preference() | colorprofile()
       | ret=skipStatement() 
       { if ((ret == null) || (ret.length() == 0)) {
 	    return; 
@@ -605,9 +608,9 @@ void media() :
      )* 
  {
 	String media = getAtRule().toString();
-	if (ac.getMedium() != null && 
-		!(media.equals(ac.getMedium())) &&
-		!(ac.getMedium().equals("all"))) {
+	if (getUserMedium() != null && 
+		!(media.equals(getUserMedium())) &&
+		!(getUserMedium().equals("all"))) {
 		 
 	     ac.getFrame().addWarning("noothermedium", 
                                        getAtRule().toString());
@@ -802,6 +805,53 @@ void fontFace() :
 }
 
 /*Added by Sijtsche de Jong */
+void colorprofile() :
+{
+ Vector v;
+ AtRule old = getAtRule();
+ setAtRule(new AtRuleColorProfile());
+ CssSelectors s = new CssSelectors(ac);
+ s.setAtRule(getAtRule());
+}
+{
+  try {
+    <COLOR_PROFILE> ( <S> )*
+{
+	if (!ac.getCssVersion().equals("svg")) {
+	    skipStatement();
+	    addError(new InvalidParamException("onlysvg", "", ac),
+						 getAtRule().toString());
+        }
+    	if (ac.getCssVersion().equals("svg")) {
+	    	newAtRule(getAtRule());	
+        }
+
+}
+    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
+    {
+	if (ac.getCssVersion().equals("svg")) {
+	    addProperty(v);
+	    endOfRule();
+	    endOfAtRule();
+	}
+
+        if (v == null) {
+       	    //ac.getFrame().addWarning("medialist");
+        } else {
+            handleRule(s, v);  
+        }
+    }
+   }
+   catch (ParseException e) {
+	if (ac.getCssVersion().equals("svg")) {
+            addError(e, skipStatement());
+	}
+   } finally {
+	setAtRule(old);
+    }
+}
+
+
 void preference() :
 {
  Vector v;
@@ -950,7 +1000,7 @@ void ruleSet() :
           }
      	  setSelectorList(context_set);
           endOfRule();
-        }
+      }
       currentContext = null;
     }
  } catch (ParseException e) {
@@ -1042,19 +1092,35 @@ CssSelectors selector() :
      return null;
  }
  catch (ParseException e) {
-    if(!(ac.getProfile().equals("mobile"))) {
-       Token t = getToken(1);
-       StringBuffer s = new StringBuffer();
-       s.append(getToken(0).image);
-       while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-	 s.append(t.image);
-	 getNextToken();
-	 t = getToken(1);
-     	}
+	System.out.println("ParseException");
+	if (ac.getProfile() != null) {
+	    if(!(ac.getProfile().equals("mobile"))) {
+	       Token t = getToken(1);
+	       StringBuffer s = new StringBuffer();
+	       s.append(getToken(0).image);
+	       while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			 s.append(t.image);
+			 getNextToken();
+			 t = getToken(1);
+     	   }
 
-     addError(e, s.toString());
+     	   addError(e, s.toString());
      
-     return null;
+           return null;
+        }
+    } else {
+	       Token t = getToken(1);
+	       StringBuffer s = new StringBuffer();
+	       s.append(getToken(0).image);
+	       while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+			 s.append(t.image);
+			 getNextToken();
+			 t = getToken(1);
+     	   }
+
+     	   addError(e, s.toString());
+     
+           return null;    	
     }
   }
 }
@@ -1080,6 +1146,7 @@ CssSelectors externalSelector() :
 CssSelectors simple_selector(CssSelectors next) :
 { CssSelectors selector = new CssSelectors(ac, next);
   selector.setAtRule(getAtRule());
+  selector.setUserMedium(getUserMedium());
 }
 {
     element_name(selector) ( hash(selector) | _class(selector)
@@ -1119,7 +1186,7 @@ void _class(CssSelectors s) :
   "." n=<IDENT> { 
       try {
       	  s.addAttribute("class", convertIdent(n.image),
-	     CssSelectors.ATTRIBUTE_ONE_OF); 
+	     CssSelectors.ATTRIBUTE_CLASS_SEL); 
       } catch (InvalidParamException e) {
 	     removeThisRule();
 	     ac.getFrame().addError(new CssError(e));
@@ -1241,9 +1308,26 @@ void attrib(CssSelectors s) :
  */
 void pseudo(CssSelectors s) :
 {Token n;
-Token language; 
+Token language = null;
+CssSelectors param = null;
 }
 {
+  "::" ( ( n=<IDENT>
+	  { 
+		try {
+		     if (ac.getCssVersion().equals("css3")) {
+			     s.addPseudo(convertIdent(n.image).toLowerCase());
+			 } else {
+			 	throw new InvalidParamException("pseudo-element", ":" + convertIdent(n.image).toLowerCase() ,
+			 		ac.getCssVersion() ,ac);
+			 }
+		} catch(InvalidParamException e) {
+		     //e.printStackTrace();	
+		     removeThisRule();
+		     ac.getFrame().addError(new CssError(e));
+		}
+ } ))
+	|  
   ":" ( ( n=<IDENT>
 	  { 
 		try {
@@ -1254,14 +1338,20 @@ Token language;
 		     ac.getFrame().addError(new CssError(e));
 		}
  } )
-	| ( n=<FUNCTION> ( <S> )* (language=<NUMBER> | language=<IDENT>) ( <S> )* ")"
+	| ( n=<FUNCTION> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> | param=simple_selector(null)) ( <S> )* ")"
 	    // :lang(en) is a very special case ...
-	    // since CSS3: contains(String), nth-of-type(n) and nth-child(n) too
+	    // since CSS3: contains(String), nth-of-type(n) and nth-child(n) and not(simple selector) too
 	    { 
 		try {
-			s.setPseudoFun(convertStringIndex(n.image, 0,
-			         n.image.length() -1).toLowerCase(),
-		      	         convertIdent(language.image));
+			if (language != null) {
+				s.setPseudoFun(convertStringIndex(n.image, 0,
+				         n.image.length() -1).toLowerCase(),
+		    	  	         convertIdent(language.image));
+		    } else if (param != null) {
+				s.setPseudoFun(convertStringIndex(n.image, 0,
+				         n.image.length() -1).toLowerCase(),
+		    	  	         param.toString());
+		    }
 		} catch(InvalidParamException e) {
 			removeThisRule();
 			ac.getFrame().addError(new CssError(e));
@@ -1313,7 +1403,7 @@ try {
 						  values, important);
 		// Did the property recognize all values in the expression ?
 
-		if (!values.end() && ac.getMedium() == null) {
+		if (!values.end() && getUserMedium() == null) {
 		        addError(new InvalidParamException("unrecognize", "", ac),
 			     values);
 		} else {
@@ -1423,8 +1513,7 @@ void term(CssExpression exp) :
 CssValue function() :
 {Token n;
  CssExpression exp;
- org.w3c.css.values.CssColor color;
- // org.w3c.css.values.CssColor color = new org.w3c.css.values.CssColor();
+ org.w3c.css.values.CssColor color = new org.w3c.css.values.CssColor();
  org.w3c.css.values.ATSCColor colorATSC = new org.w3c.css.values.ATSCColor();
 }
 {
@@ -1432,21 +1521,14 @@ CssValue function() :
     ")" { 
 
 	if (n.image.toLowerCase().equals("rgb(")) {
-	    /*	    if (!getAtRule().toString().equals("@media atsc-tv")) { */
-	    if ("css1".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS1();
-	    } else if ("css2".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS2();
-	    } else {
-		color = new org.w3c.css.values.CssColorCSS2();
-	    }
-	    color.setRGBColor(exp, ac);
-	    return color;
-	       /*            } else {
+	    if (!getAtRule().toString().equals("@media atsc-tv")) {
+	       color.setRGBColor(exp, ac);
+	       return color;
+            } else {
 	       colorATSC.setRGBColor(exp, ac);
 	       return colorATSC;
-	       } */
-	    /*	} else if (n.image.toLowerCase().equals("atsc-rgba(")) {
+            }
+	} else if (n.image.toLowerCase().equals("atsc-rgba(")) {
 	    if (getAtRule().toString().equals("@media atsc-tv")) {
 	        colorATSC.setATSCrgba(exp, ac);
 	        return colorATSC;
@@ -1454,7 +1536,7 @@ CssValue function() :
 		addError(new InvalidParamException("onlyATSC", "", ac),
 						 getAtRule().toString());
 	        return null;
-		} */
+	    }
 	} else {
 	    CssFunction f = new CssFunction();
 	    f.set(n.image.substring(0, n.image.length() - 1),
