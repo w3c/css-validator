@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/08/21 09:01:24  sijtsche
+ * new values added for list-style-type
+ *
  * Revision 1.3  2002/08/19 07:40:17  sijtsche
  * new values added
  *
@@ -38,7 +41,7 @@ public interface CssListStyleConstants {
       "bengali", "tamil", "telugu", "thai", "lao", "myanmar", "khmer",
       "hangule-consonant", "ethiopic-halehame", "ethiopic-abegede", "ethiopic-numeric",
       "urdu", "oriya",
-      "none", "inherit" };
+      "none", "inherit", "check", "diamond" };
 
     public static String[] LISTSTYLETYPECSS1 = {
 	"disc", "circle", "square", "decimal",

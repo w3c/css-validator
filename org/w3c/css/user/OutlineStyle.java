@@ -21,31 +21,31 @@ import org.w3c.css.util.ApplContext;
  * @version $Revision$
  */
 public class OutlineStyle extends UserProperty {
-    
+
     int value = -1;
-    
+
     static String[] BORDERSTYLE = {
-	"none", "dotted", "dashed", "solid", "double", "groove", 
+	"none", "hidden", "dotted", "dashed", "solid", "double", "groove",
 	"ridge", "inset", "outset", "inherit" };
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new OutlineStyle
      */
     public OutlineStyle() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new OutlineStyle
      *
      * @param expression The expression for this face
      * @exception InvalidParamException The expression is incorrect
-     */  
-    public OutlineStyle(ApplContext ac, CssExpression expression) 
+     */
+    public OutlineStyle(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -59,18 +59,18 @@ public class OutlineStyle extends UserProperty {
 		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", val.toString(), 
+
+	throw new InvalidParamException("value", val.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Returns the internal value
-     */  
+     */
     public Object get() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -78,14 +78,14 @@ public class OutlineStyle extends UserProperty {
     public boolean isSoftlyInherited() {
 	return value == (BORDERSTYLE.length - 1);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -98,13 +98,13 @@ public class OutlineStyle extends UserProperty {
 	}
 	outline.style = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getOutlineStyle();
@@ -112,28 +112,28 @@ public class OutlineStyle extends UserProperty {
 	    return ((Css2Style) style).outline.style;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return ((property instanceof OutlineStyle) 
+	return ((property instanceof OutlineStyle)
 		&& (value == ((OutlineStyle) property).value));
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "outline-style";
     }
-    
+
     static {
 	hash_values = new int[BORDERSTYLE.length];
 	for (int i=0; i<BORDERSTYLE.length; i++)
 	    hash_values[i] = BORDERSTYLE[i].hashCode();
     }
-    
+
 }

@@ -31,41 +31,42 @@ import org.w3c.css.values.CssFunction;
  */
 
 public class CssKeyEq extends CssProperty {
-    
+
     CssValue keyCombi;
     Vector values = new Vector();
 
     CssIdent none = new CssIdent("none");
+    CssIdent listitemmarker = new CssIdent("list-item-marker");
 
     private static String keys[] =
         { " ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
 	  "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
 	  "accesskey", "fn", "fcn", "caps", "cmd", "rcmd", "lcmd", "opt",
 	  "ropt", "lopt", "ctrl", "rctrl", "lctrl", "shift", "rshift",
-	  "lshift", "alt", "ralt", "lalt", "win", "rwin", "lwin", "meta", 
+	  "lshift", "alt", "ralt", "lalt", "win", "rwin", "lwin", "meta",
 	  "rmeta", "lmeta", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8",
 	  "f9", "f10", "f11", "f12", "f13", "f14", "f15", "tab", "esc",
 	  "enter", "return", "menu", "help", "namemenu", "rcl", "snd",
 	  "up", "down", "left", "right", "home", "end", "pgup", "pgdn",
 	  "bs", "del", "ins", "undo", "cut", "copy", "paste", "clr", "sto",
 	  "prtsc", "sysrq", "scrlock", "pause", "brk", "numlock", "pwr"};
-    
+
     private static String systemkeys[] =
-        { "system-new", "system-open", "system-close", "system-save", 
-	  "system-print", "system-quit", "system-terminate-operation", 
-	  "system-undo", "system-redo", "system-cut", "system-copy", 
-	  "system-paste", "system-clear", "system-duplicate", 
-	  "system-select-all", "system-find", "system-find-again", 
-	  "system-ok", "system-cancel", "system-apply" 
+        { "system-new", "system-open", "system-close", "system-save",
+	  "system-print", "system-quit", "system-terminate-operation",
+	  "system-undo", "system-redo", "system-cut", "system-copy",
+	  "system-paste", "system-clear", "system-duplicate",
+	  "system-select-all", "system-find", "system-find-again",
+	  "system-ok", "system-cancel", "system-apply"
 	};
 
-    /** 
+    /**
      * Create a new CssKeyEq
      */
     public CssKeyEq() {
 	keyCombi = none;
     }
-    
+
     /**
      * Create a new CssKeyEq
      *
@@ -92,6 +93,10 @@ public class CssKeyEq extends CssProperty {
 	    keyCombi = inherit;
 	    expression.next();
 	    return;
+	} else if (val.equals(listitemmarker)) {
+		keyCombi = listitemmarker;
+		expression.next();
+		return;
 	}
 	else if (val instanceof CssFunction) {
 	    CssFunction attr = (CssFunction) val;
@@ -123,7 +128,7 @@ public class CssKeyEq extends CssProperty {
 
        	while ((op == CssOperator.SPACE)
 	     && (counter < expression.getCount())) {
-	    kc = val.toString();  
+	    kc = val.toString();
 	    if (kc.indexOf("-") < 0) { // only one key
 		int i = 0;
 		for (;i < keys.length; i++) {
@@ -132,8 +137,8 @@ public class CssKeyEq extends CssProperty {
 		    }
 		}
 		if (i == keys.length) {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 	    }
@@ -143,7 +148,7 @@ public class CssKeyEq extends CssProperty {
 		part = kc.substring(0, hyphenidx).trim();
 		rest = kc.substring(hyphenidx + 1, kc.length());
 		ks.addElement(part);
-	
+
 		while (rest.indexOf("-") >= 0) {
 		    hyphenidx = rest.indexOf("-");
 		    part = rest.substring(0, hyphenidx).trim();
@@ -160,9 +165,9 @@ public class CssKeyEq extends CssProperty {
 			}
 		    }
 		    if (i == keys.length) {
-			throw new InvalidParamException("value", 
-							expression.getValue(), 
-							getPropertyName(), ac);	
+			throw new InvalidParamException("value",
+							expression.getValue(),
+							getPropertyName(), ac);
 		    }
 		}
 	    }
@@ -174,8 +179,8 @@ public class CssKeyEq extends CssProperty {
 	    ks.clear();
 	}
 
-    }    
-    
+    }
+
     /**
      * Add this property to the CssStyle.
      *
@@ -187,13 +192,13 @@ public class CssKeyEq extends CssProperty {
 	((Css3Style) style).cssKeyEq = this;
 
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getKeyEq();
@@ -201,40 +206,40 @@ public class CssKeyEq extends CssProperty {
 	    return ((Css3Style) style).cssKeyEq;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssKeyEq && 
+	return (property instanceof CssKeyEq &&
 		keyCombi.equals( ((CssKeyEq) property).keyCombi));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "key-equivalent";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return values;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	// @@TODO
-	return false; 
+	return false;
 	//values.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -244,13 +249,13 @@ public class CssKeyEq extends CssProperty {
 	else
 	    return values.firstElement().toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return keyCombi == none;
     }
-    
+
 }
