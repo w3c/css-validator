@@ -138,7 +138,7 @@ generator.property: Ungültige Nummer
 generator.line: Zeile
 generator.not-found: Datei nicht gefunden
 generator.doc-html: <p>\
-Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korekten Parsebaum des Dokuments. \
+Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korrekten Parsebaum des Dokuments. \
 Das bedeutet, daß Sie <a href="http://validator.w3.org/check?uri=\
 %s">validiertes HTML</a> verwenden sollten.</p>
 
