@@ -2128,6 +2128,12 @@ CssSelectors param = null;
     } catch (ParseException e) {
      skipAfterExpression(e);
      {if (true) return null;}
+    } catch (NullPointerException e) {
+	// NullPointerException happen if in handling a property
+	// something bad happen (like setting values on sub properties
+	// that had not been initialized (for an unknown reason yet).
+     skipAfterExpression(e);
+     {if (true) return null;}
     }
     throw new Error("Missing return statement in function");
   }
