@@ -3,68 +3,7 @@
  * (c) COPYRIGHT MIT and INRIA, 1997.
  * Please first read the full copyright statement in file COPYRIGHT.html
  *
- * $Log$
- * Revision 1.11  2003/10/24 16:47:45  ylafon
- * Remove dangerous use of statics in CssFouffa and CssSelectorsStyle creation
- * using static and getClones, speed up of the configuration reuse
- * Various stringbuffer optimisation in toString() calls
- * Overall cpu and memory optimization.
- * Figures of memory optimizations (validation of www.w3.org):
- *
- * without optim
- * char[]: +3773K
- * String: +1191K
- * StringBuffer: +614K
- *
- * use of getClone
- * char[] +1914k
- * String: +455k
- * StringBuffer +168k
- *
- * all:
- * char[] +1868k
- * String: +428k
- * StringBuffer +147k
- *
- * Revision 1.10  2003/07/30 07:01:39  sijtsche
- * @phonetic-alphabet rule and date type added
- *
- * Revision 1.9  2003/04/13 16:30:42  sijtsche
- * trailing semicolon requirement bug for @page rule fixed. Bugzilla nr 158
- *
- * Revision 1.8  2003/01/03 15:28:35  sijtsche
- * media query functionality added
- *
- * Revision 1.7  2003/01/03 12:08:24  sijtsche
- * functionality added for media queries
- *
- * Revision 1.6  2002/08/19 07:27:48  sijtsche
- * TV profile added
- *
- * Revision 1.5  2002/07/24 14:50:06  sijtsche
- * compile bug fixed in relation with other sources getUserMedium function deleted
- *
- * Revision 1.4  2002/07/24 09:51:56  sijtsche
- * @color-profile rule added, atsc-tv profile commented in, class attribute for selector added with :: (new in CSS3)
- *
- * Revision 1.2  2002/05/23 09:00:10  dejong
- * @color-profile rule added, atsc-tv profile commented in, class attribute for selector added with :: (new in CSS3)
- *
- * Revision 1.2  1998/02/22 16:48:11  plehegar
- * *** empty log message ***
- *
- * Revision 1.1  1998/02/02 21:05:04  plehegar
- * Initial revision
- *
- * Revision 1.3  1997/11/28 10:02:50  plehegar
- * New version of the grammar.
- * not stable fot the moment
- *
- * Revision 1.2  1997/11/27 14:55:41  plehegar
- * Added error recovery
- *
- * Revision 1.1  1997/11/21 19:16:07  plehegar
- * Initial revision
+ * $Id$
  *
  */
 
@@ -385,7 +324,6 @@ PARSER_END(CssParser)
  * The tokenizer 
  */
 
-
 <DEFAULT>
 TOKEN :
 {
@@ -557,6 +495,12 @@ TOKEN :
     | < #UNI    : <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )? >
     | < UNICODERANGE : "U+" <RANGE>
                         | "U+" <UNI> "-" <UNI> >
+}
+
+<DEFAULT>
+TOKEN:
+{
+  < CLASS : "." <IDENT> >
 }
 
 <DEFAULT>
@@ -1294,9 +1238,10 @@ CssSelectors simple_selector(CssSelectors next) :
 void _class(CssSelectors s) :
 {Token n; }
 {
-  "." n=<IDENT> { 
+/*  "." n=<IDENT> { */
+    n=<CLASS> {
       try {
-      	  s.addAttribute("class", convertIdent(n.image),
+      	  s.addAttribute("class", convertIdent(n.image.substring(1)),
 	     CssSelectors.ATTRIBUTE_CLASS_SEL); 
       } catch (InvalidParamException e) {
 	     removeThisRule();

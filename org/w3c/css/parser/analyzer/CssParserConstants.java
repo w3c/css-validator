@@ -81,8 +81,9 @@ public interface CssParserConstants {
   int RANGE = 78;
   int UNI = 79;
   int UNICODERANGE = 80;
-  int FUNCTION = 81;
-  int UNKNOWN = 82;
+  int CLASS = 81;
+  int FUNCTION = 82;
+  int UNKNOWN = 83;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
@@ -169,6 +170,7 @@ public interface CssParserConstants {
     "<RANGE>",
     "<UNI>",
     "<UNICODERANGE>",
+    "<CLASS>",
     "<FUNCTION>",
     "<UNKNOWN>",
     "\"::\"",
