@@ -27,14 +27,28 @@
       Vergeet niet de <a href="http://www.w3.org/Consortium/Legal/copyright-software.html">Copyright
       NOTITIES</a> te lezen voordat ...
     </p>
-    <ol>
+    
+ <!--    <ol>
       <li><a href="validator.zip">validator.zip</a> Alle classes van de validator. <a href="RUN.html">Hoe te gebruiken?</a></li>
       <li><a href="sites.zip">sites.zip</a> De hele website.</li>
-    </ol>
-
+    </ol>   -->
+    
+    <p>
+      The <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS validator</a> is beschikbaar om te downloaden middels CVS.
+      Volg de <a href='http://dev.w3.org/cvsweb/'>instructies</a> om toegang te krijgen tot de publieke W3C CVS server 
+      en haal 2002/css-validator op. Houd er rekening mee dat de online versie van de CSS validator ouder is dan de CVS versie waardoor 
+      verschillen in de validatieresultaten kunnen ontstaan.
+    </p>
+    <p>
+      Sijtsche heeft <a
+      href='http://lists.w3.org/Archives/Public/www-validator-css/2003Jan/0037.html'>instructies</a> gestuurd hoe de CSS Validator
+      te installeren op een lokale computer.
+    </p>
     <hr />
-    <img src="images/mwcss.gif" alt="gemaakt met CSS" />
+    <a class="right" href="http://jigsaw.w3.org/css-validator">
+      <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" 
+	alt="Correct CSS!" /></a>
     <a href="Email.html">validator-css</a><br />
     $Date$
- </body>
+  </body>
 </html>
