@@ -146,9 +146,11 @@ public final class CssFouffa extends CssParser {
      * @param listeners Works with this listeners
      * @exception       IOException  if an I/O error occurs.
      */
-    private CssFouffa(ApplContext ac, InputStream in, URL url, Vector listeners)
+    private CssFouffa(ApplContext ac, InputStream in, URL url,
+		      Vector listeners, int importnums)
 	throws IOException {
 	this(ac, in, url, 0);
+	this.number_of_imports = importnums;
 	setURL(url);
 	ac.setFrame(new Frame(this, url.toString()));
 	setApplContext(ac);
@@ -340,7 +342,7 @@ public final class CssFouffa extends CssParser {
 	    try {
 		CssFouffa cssFouffa
 		    = new CssFouffa(ac, importURL.getInputStream(), importedURL,
-				    listeners);
+				    listeners, number_of_imports);
 
 		cssFouffa.setOrigin(getOrigin());
 		if (!media.isEmpty()) {
