@@ -471,8 +471,8 @@ projection.font-size:             org.w3c.css.properties.CssFontSizeCSS2
 projection.font-family:           org.w3c.css.properties.CssFontFamilyCSS2
 projection.font-stretch:          org.w3c.css.properties.CssFontStretchCSS2
 projection.font-size-adjust:      org.w3c.css.properties.CssFontSizeAdjustCSS2
-projection.font:                  org.w3c.css.properties.CssFontCSS2CSS2
-projection.color:                 org.w3c.css.properties.CssColorCSS2CSS2
+projection.font:                  org.w3c.css.properties.CssFontCSS2
+projection.color:                 org.w3c.css.properties.CssColorCSS2
 projection.background-color:      org.w3c.css.properties.CssBackgroundColorCSS2
 projection.background-image:      org.w3c.css.properties.CssBackgroundImageCSS2
 projection.background-repeat:     org.w3c.css.properties.CssBackgroundRepeatCSS2
