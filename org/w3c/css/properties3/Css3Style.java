@@ -210,6 +210,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssBorderImageTransform cssBorderImageTransform;
 	CssBorderBreak cssBorderBreak;
 	CssBoxShadow cssBoxShadow;
+	CssTextIndentCSS3 cssTextIndentCSS3;
 
 	//media features for media queries
 
@@ -1971,6 +1972,14 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssBoxShadow;
 	}
 
+	public CssTextIndentCSS3 getTextIndentCSS3() {
+		if (cssTextIndentCSS3 == null) {
+			cssTextIndentCSS3 =
+				(CssTextIndentCSS3) style.CascadingOrder(
+						new CssTextIndentCSS3(), style, selector);
+		}
+		return cssTextIndentCSS3;
+	}
 
 // media features
 
@@ -2816,6 +2825,9 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssBoxShadow != null) {
 		cssBoxShadow.print(printer);
+	}
+	if (cssTextIndentCSS3 != null) {
+		cssTextIndentCSS3.print(printer);
 	}
 
 
