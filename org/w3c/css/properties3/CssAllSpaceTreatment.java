@@ -17,53 +17,40 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.properties.CssProperty;
 
 /**
- * <P>
- * <EM>Value:</EM> auto || perceptual || relative-colorimetric ||
- * saturation || absolute-colorimetric || inherit<BR>
- * <EM>Initial:</EM>auto<BR>
- * <EM>Applies to:</EM>all elements<BR>
- * <EM>Inherited</EM>yes<BR>
- * <EM>Percentages:</EM>no<BR>
- * <EM>Media:</EM>visual
- * <P>
- * This property permits the specification of a color profile rendering intent other than the default.
- * The behavior of values other than auto and inherent are defined by the International Color Consortium standard.
  */
 
-    public class CssHangingPunctuation extends CssProperty {
+    public class CssAllSpaceTreatment extends CssProperty {
 
-	CssValue hangpunct;
+	CssValue spacetreat;
 
-	private static CssIdent none = new CssIdent("none");
-	private static CssIdent start = new CssIdent("start");
-	private static CssIdent end = new CssIdent("end");
-	private static CssIdent both = new CssIdent("both");
+	private static CssIdent preserve = new CssIdent("collapse");
+	private static CssIdent collapse = new CssIdent("preserve");
 
 	/**
-	 * Create a new CssHangingPunctuation
+	 * Create a new CssAllSpaceTreatment
 	 */
-	public CssHangingPunctuation() {
-	    hangpunct = collapse;
+	public CssAllSpaceTreatment() {
+	    spacetreat = collapse;
 	}
 
 	/**
-	 * Create a new CssHangingPunctuation
+	 * Create a new CssAllSpaceTreatment
 	 *
 	 *
 	 */
-	public CssHangingPunctuation(ApplContext ac, CssExpression expression) throws InvalidParamException {
+	public CssAllSpaceTreatment(ApplContext ac, CssExpression expression) throws InvalidParamException {
 	    setByUser();
 	    CssValue val = expression.getValue();
 	    if (val.equals(preserve)) {
-		hangpunct = preserve;
+		spacetreat = preserve;
 		expression.next();
 	    }
 	    else if (val.equals(collapse)) {
-		hangpunct = collapse;
+		spacetreat = collapse;
 		expression.next();
 	    }
 	    else if (val.equals(inherit)) {
-		hangpunct = inherit;
+		spacetreat = inherit;
 		expression.next();
 	    }
 	    else {
@@ -77,9 +64,9 @@ import org.w3c.css.properties.CssProperty;
 	 * @param style The CssStyle
 	 */
 	public void addToStyle(ApplContext ac, CssStyle style) {
-	    if (((Css3Style) style).cssHangingPunctuation != null)
+	    if (((Css3Style) style).cssAllSpaceTreatment != null)
 		style.addRedefinitionWarning(ac, this);
-	    ((Css3Style) style).cssHangingPunctuation = this;
+	    ((Css3Style) style).cssAllSpaceTreatment = this;
 
 	}
 
@@ -91,9 +78,9 @@ import org.w3c.css.properties.CssProperty;
 	 */
         public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	    if (resolve) {
-		return ((Css3Style) style).getHangingPunctuation();
+		return ((Css3Style) style).getAllSpaceTreatment();
 	    } else {
-		return ((Css3Style) style).cssHangingPunctuation;
+		return ((Css3Style) style).cssAllSpaceTreatment;
 	    }
 	}
 
@@ -103,8 +90,8 @@ import org.w3c.css.properties.CssProperty;
 	 * @param value The other property.
 	 */
 	public boolean equals(CssProperty property) {
-	    return (property instanceof CssHangingPunctuation &&
-		    hangpunct.equals( ((CssHangingPunctuation) property).hangpunct));
+	    return (property instanceof CssAllSpaceTreatment &&
+		    spacetreat.equals( ((CssAllSpaceTreatment) property).spacetreat));
 	}
 
 	/**
@@ -118,21 +105,21 @@ import org.w3c.css.properties.CssProperty;
 	 * Returns the value of this property
 	 */
 	public Object get() {
-	    return hangpunct;
+	    return spacetreat;
 	}
 
 	/**
 	 * Returns true if this property is "softly" inherited
 	 */
 	public boolean isSoftlyInherited() {
-	    return hangpunct.equals(inherit);
+	    return spacetreat.equals(inherit);
 	}
 
 	/**
 	 * Returns a string representation of the object
 	 */
 	public String toString() {
-	    return hangpunct.toString();
+	    return spacetreat.toString();
 	}
 
 	/**
@@ -140,7 +127,7 @@ import org.w3c.css.properties.CssProperty;
 	 * It is used by all macro for the function <code>print</code>
 	 */
 	public boolean isDefault() {
-	    return hangpunct == collapse;
+	    return spacetreat == collapse;
 	}
 
     }
