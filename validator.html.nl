@@ -37,13 +37,6 @@
 	<li><a href="thanks.html">Dankwoorden</a></li>
       </ul>
 
-      <h2>Geschiedenis van de versies</h2>
-      <ul class="none">
-	<li> <strong> 30 September 1997 </strong>  1.0
-	  aangepast.</li>
-	<li> <strong> 14 December 1998 </strong>  pre2.0.</li>
-      </ul>
-      
       <h2><a href="DOWNLOAD.html">Download de validator
 	  </a></h2>
     </div>
@@ -89,9 +82,8 @@
         src="http://jigsaw.w3.org/css-validator/images/vcss.gif"
         alt="CSS Valide!"></a>
 
-    <address><a href="mailto:plh@w3.org">Philippe</a>
-      <a href="http://www.w3.org/People/LeHegaret/">Le
-        H&eacute;garet</a></address>
+    <address><a href="Email.html">www-validator-css</a></address><br />
+    $Date$
   </body>
 </html>
 

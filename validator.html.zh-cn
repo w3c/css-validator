@@ -38,12 +38,6 @@
 	<li><a href="thanks.html">感谢</a></li>
       </ul>
 
-      <h2>发行的历史</h2>
-      <ul class="none">
-	<li> <strong> 1997年9月30日 </strong> 发布 1.0。</li>
-	<li> <strong> 1998年12月14日 </strong> 预览 2.0。</li>
-      </ul>
-      
       <h2><a href="DOWNLOAD.html">下载校验器</a></h2>
     </div>
     
@@ -75,7 +69,6 @@
     <br />
     <hr class="large" />
 
-
     <a class="right" href="http://validator.w3.org/">
       <img border="0" src="http://validator.w3.org/images/vh40.gif" 
 	alt="Valid HTML 4.0!" height="31"
@@ -85,6 +78,7 @@
 	alt="Valid CSS!" height="31"
       width="88" /></a>
 
-    <address><a href="Email.html">validator-css</a></address>
+    <address><a href="Email.html">www-validator-css</a></address><br />
+    $Date$
   </body>
 </html>
