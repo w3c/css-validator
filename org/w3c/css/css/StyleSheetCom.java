@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2003/07/02 14:39:03  plehegar
+ * Removed HttpServletResponse import
+ *
  * Revision 1.4  2002/08/19 07:33:36  sijtsche
  * TV profile added
  *
@@ -261,7 +264,6 @@ public class StyleSheetCom implements HtmlParserListener {
 		} else if (urlLower.endsWith(".xml")) {
 		    style.xmlRequest();
 		} else {
-		    HttpServletResponse res = null;
 		    URLConnection urlC = HTTPURL.getConnection(style.htmlURL, null);
 
 		    if (urlC.getContentType() != null) {
