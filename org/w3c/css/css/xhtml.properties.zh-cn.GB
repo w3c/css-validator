@@ -16,7 +16,7 @@ href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
 <p> \
 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
-你用作加入图标到你的网页上的HTML代码：</p><pre class='example'> \n\
+你用作加入图标到你的网页上的XHTML代码：</p><pre class='example'> \n\
 &lt;p>\n\
 \ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
 \ \ &lt;img style="border:0;width:88px;height:31px"\n\

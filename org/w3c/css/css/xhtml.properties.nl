@@ -28,7 +28,7 @@ die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen: <pre class
 </pre>\n\
 <p> \
 Als u wilt, kunt u een kopie van dit plaatje downloaden en in uw locale webdirectory \
-te zetten en in het HTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
+te zetten en in het XHTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
 in plaats van aan die op deze server.</p>\
 \
 <p>Als u een link wilt maken naar deze pagina (i.e. naar dit validatieresultaat \

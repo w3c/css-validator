@@ -17,7 +17,7 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
 <p> \
 Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
 cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
-pages valides. Voici le fragment d'HTML que vous pouvez utiliser pour ajouter \
+pages valides. Voici le fragment de XHTML que vous pouvez utiliser pour ajouter \
 cette ic&ocirc;ne &agrave; votre page Web:</p> <pre class='example'> \n\
 &lt;p>\n\
 \ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\

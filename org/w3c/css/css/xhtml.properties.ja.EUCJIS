@@ -17,7 +17,7 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
 あなたがこのWebページを作るにあたって、\
 高度な相互運用性<span lang="en">(Interoperability)</span>\
 に対する配慮を行った事を読者に示すため、このアイコンを張る事をお勧めします。\
-あなたのWebページにこのアイコンを張るためには、次のHTMLの断片を利用すると良いでしょう。<pre class='example'>\n\
+あなたのWebページにこのアイコンを張るためには、次のXHTMLの断片を利用すると良いでしょう。<pre class='example'>\n\
 &lt;p>\n\
 \ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
 \ \ &lt;img style="border:0;width:88px;height:31px"\n\
