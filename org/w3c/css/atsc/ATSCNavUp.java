@@ -12,6 +12,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssString;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.InvalidParamException;
@@ -33,6 +34,7 @@ public class ATSCNavUp extends CssProperty {
 
     CssValue navup;
     ApplContext ac;
+    CssIdent auto = new CssIdent("auto");
 
     public ATSCNavUp() {
 	// nothing to do
@@ -40,58 +42,29 @@ public class ATSCNavUp extends CssProperty {
 
     /**
      * Create a new ATSCNavUp
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public ATSCNavUp (ApplContext ac, CssExpression expression) 
+    public ATSCNavUp (ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
-	
-	this.ac = ac;
-	setByUser(); // tell this property is set by the user
-	CssValue val = expression.getValue();
-	if (expression.getCount() == 1) {
-	    if (val instanceof CssNumber) {
-		if (((CssNumber)val).getValue() > 0 && 
-		    ((CssNumber)val).getValue() < 32767 && 
-		    ((CssNumber)val).isInteger()) {
-		    navup = val;
-		    expression.next();
-		}
-	    } 
-	    else if (val instanceof CssIdent) {
-		navup = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
-	} else if (expression.getCount() == 2) {
-	    if (val instanceof CssIdent) {
-		navup = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
 
-	    val = expression.getValue();
+		this.ac = ac;
+		setByUser(); // tell this property is set by the user
+		CssValue val = expression.getValue();
 
-	    if (val instanceof CssNumber) {
-		if (((CssNumber)val).getValue() > 0 && 
-		    ((CssNumber)val).getValue() < 32767 && 
-		    ((CssNumber)val).isInteger()) {
-		    navup = val;
-		    expression.next();
+		if (val instanceof CssNumber) {
+			navup = val;
+			expression.next();
+		} else if (val instanceof CssString) {
+			navup = val;
+			expression.next();
+		} else if (val.equals(auto)) {
+			navup = val;
+			expression.next();
 		} else {
-		    throw new InvalidParamException("value", val.toString(), 
-						    getPropertyName(), ac);
+			throw new InvalidParamException("value", val.toString(),
+				getPropertyName(), ac);
 		}
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
-	}
-
     }
 
     /**
@@ -104,13 +77,13 @@ public class ATSCNavUp extends CssProperty {
 	     style.addRedefinitionWarning(ac, this);
 	 ((ATSCStyle) style).navup = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getNavUp();
@@ -118,51 +91,51 @@ public class ATSCNavUp extends CssProperty {
 	    return ((ATSCStyle) style).navup;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCNavUp && 
+	return (property instanceof ATSCNavUp &&
                 navup.equals( ((ATSCNavUp) property).navup));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "atsc-nav-up";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return navup;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return navup.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return false;
     }
-    
+
 }

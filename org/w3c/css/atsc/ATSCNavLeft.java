@@ -11,6 +11,7 @@ package org.w3c.css.atsc;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.Util;
@@ -33,6 +34,7 @@ public class ATSCNavLeft extends CssProperty {
 
     CssValue navleft;
     ApplContext ac;
+    CssIdent auto = new CssIdent("auto");
 
     public ATSCNavLeft() {
 	// nothing to do
@@ -40,58 +42,29 @@ public class ATSCNavLeft extends CssProperty {
 
     /**
      * Create a new ATSCNavLeft
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public ATSCNavLeft (ApplContext ac, CssExpression expression) 
+    public ATSCNavLeft (ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
-	
-	this.ac = ac;
-	setByUser(); // tell this property is set by the user
-	CssValue val = expression.getValue();
-	if (expression.getCount() == 1) {
-	    if (val instanceof CssNumber) {
-		if (((CssNumber) val).getValue() > 0 && 
-		    ((CssNumber) val).getValue() < 32767 && 
-		    ((CssNumber) val).isInteger()) {
-		    navleft = val;
-		    expression.next();
-		}
-	    } 
-	    else if (val instanceof CssIdent) {
-		navleft = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
-	} else if (expression.getCount() == 2) {
-	    if (val instanceof CssIdent) {
-		navleft = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
 
-	    val = expression.getValue();
+		this.ac = ac;
+		setByUser(); // tell this property is set by the user
+		CssValue val = expression.getValue();
 
-	    if (val instanceof CssNumber) {
-		if (((CssNumber) val).getValue() > 0 && 
-		    ((CssNumber) val).getValue() < 32767 && 
-		    ((CssNumber) val).isInteger()) {
-		    navleft = val;
-		    expression.next();
+		if (val instanceof CssNumber) {
+			navleft = val;
+			expression.next();
+		} else if (val instanceof CssString) {
+			navleft = val;
+			expression.next();
+		} else if (val.equals(auto)) {
+			navleft = val;
+			expression.next();
 		} else {
-		    throw new InvalidParamException("value", val.toString(), 
-						    getPropertyName(), ac);
+			throw new InvalidParamException("value", val.toString(),
+				getPropertyName(), ac);
 		}
-	    } else {
-		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
-	    }
-	}
-
     }
 
     /**
@@ -104,13 +77,13 @@ public class ATSCNavLeft extends CssProperty {
 	     style.addRedefinitionWarning(ac, this);
 	 ((ATSCStyle) style).navleft = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getNavLeft();
@@ -118,53 +91,53 @@ public class ATSCNavLeft extends CssProperty {
 	    return ((ATSCStyle) style).navleft;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCNavLeft && 
+	return (property instanceof ATSCNavLeft &&
                 navleft.equals( ((ATSCNavLeft) property).navleft));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "atsc-nav-left";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return navleft;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return navleft.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return false;
     }
-    
+
 }
 
 

@@ -34,6 +34,7 @@ public class ATSCNavIndex extends CssProperty {
 
     CssValue navindex;
     ApplContext ac;
+	CssIdent auto = new CssIdent("auto");
 
     /**
      * Create a new ATSCNavIndex
@@ -44,27 +45,31 @@ public class ATSCNavIndex extends CssProperty {
 
     /**
      * Create a new ATSCNavIndex
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public ATSCNavIndex (ApplContext ac, CssExpression expression) 
+    public ATSCNavIndex (ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 	if (val instanceof CssNumber) {
-	    if (((CssNumber) val).getValue() > 0 && 
-		((CssNumber) val).getValue() < 32767 && 
-		((CssNumber) val).isInteger()) {
-		navindex = val;
-		expression.next();
+	    if (((CssNumber) val).getValue() > 0 &&
+			((CssNumber) val).getValue() < 32767 &&
+			((CssNumber) val).isInteger()) {
+
+			navindex = val;
+			expression.next();
 	    } else {
-		throw new InvalidParamException("value", val.toString(), 
+			throw new InvalidParamException("value", val.toString(),
 						getPropertyName(), ac);
 	    }
+    } else if (val.equals(auto) || val.equals(inherit)) {
+		navindex = val;
+		expression.next();
 	} else {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
     }
@@ -79,13 +84,13 @@ public class ATSCNavIndex extends CssProperty {
 	     style.addRedefinitionWarning(ac, this);
 	 ((ATSCStyle) style).navindex = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getNavIndex();
@@ -93,51 +98,51 @@ public class ATSCNavIndex extends CssProperty {
 	    return ((ATSCStyle) style).navindex;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCNavIndex && 
+	return (property instanceof ATSCNavIndex &&
                 navindex.equals( ((ATSCNavIndex) property).navindex));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "atsc-nav-index";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return navindex;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return navindex.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return false;
     }
-    
+
 }
