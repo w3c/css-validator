@@ -50,12 +50,12 @@
 	<p>
 	  The validator doesn't say "only for block-level elements". The bug
 	  comes from me. I know where it is but don't have time to find a
-	  solution.
+	  solution. (<a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=758">Bug #758</a>)
 	</p>
       </li>
       <li>
 	<p>
-	  "iso-8859-15" not supported.
+	  "iso-8859-15" not supported. (<a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=180">Bug #180</a>)
 	</p>
       </li>
       <li>
@@ -77,7 +77,7 @@
 	  The CSS validator will not acknowledge CSS loaded via a
 	  <code>&lt;link></code> which does not explicitly declare
 	  `type="text/css"', even when the server correctly serves the
-	  stylesheet as text/css.
+	  stylesheet as text/css. (<a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=759">Bug #759</a>)
 	</p>
       </li>
     <li>
@@ -86,6 +86,7 @@
 	  did not generate a warning...
 	</p>
 	<pre>h1 { margin-left: 2%; ; }</pre>
+        <p>(<a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=760">Bug #760</a>)</p>
       </li>
     <li>
 	<p>
@@ -199,15 +200,6 @@
 	  'elem[p="100"] { }', i.e. users get an invalid style sheet
 	  since all values but ident tokens must be quoted. (Reported by
 	  Philip Pawley)
-	</p>
-      </li>
-    <li>
-	<p>
-	  Properties for media the property doesn't apply to marks style
-	  sheet as invalid, e.g. @media screen { voice-family: foo } The
-	  CSS Level 2 recommendation doesn't say such style sheets are
-	  invalid. The error should be turned into a warning. (Reported
-	  by Rob Chandanais)
 	</p>
       </li>
     <li>
