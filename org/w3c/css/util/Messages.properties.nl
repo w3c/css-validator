@@ -190,3 +190,6 @@ error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
 warning.otherprofile : property %s bestaat niet in dit profiel, maar is gevalideerd conform een ander profiel
 warning.deprecated : deze waarde is verouderd en kan beter niet meer worden gebruikt
+
+#used by org.w3c.css.parser.analyzer.CssParser
+error.nocomb: Combinator %s between selectors is not allowed in this profile or version

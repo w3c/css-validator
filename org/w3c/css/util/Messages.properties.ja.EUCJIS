@@ -175,3 +175,5 @@ servlet.process: 指定されたオブジェクトは処理できません
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
+#used by org.w3c.css.parser.analyzer.CssParser
+error.nocomb: Combinator %s between selectors is not allowed in this profile or version

@@ -161,3 +161,5 @@ servlet.process: \u4e0d\u80fd\u5bf9\u5bf9\u8c61\u8fdb\u884c\u5904\u7406
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
+#used by org.w3c.css.parser.analyzer.CssParser
+error.nocomb: Combinator %s between selectors is not allowed in this profile or version

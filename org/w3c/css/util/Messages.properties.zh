@@ -159,3 +159,6 @@ servlet.invalid-request: 你发出了无效的请求
 servlet.process: 不能对对象进行处理
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+
+#used by org.w3c.css.parser.analyzer.CssParser
+error.nocomb: Combinator %s between selectors is not allowed in this profile or version
