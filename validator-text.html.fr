@@ -86,7 +86,7 @@
     </p>
 
     <hr />
-    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <address class="right"><a href="mailto:Email.html">validator-css</a></address>
     <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
   </body>
 </html>
