@@ -14,7 +14,7 @@ couleur de fond
 warning.no-background-color: Vous n'avez pas de couleur de fond d&eacute;finie \
 avec votre couleur
 warning.color.mixed-capitalization: Bien que les noms de couleurs ne d&eacute;pendent pas de la casse,\
-il est recommand&eacute; d'utiliser la capitalisation mixte pour rendre les noms plus lisible: %s
+il est recommand&eacute; d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: %s
 warning.no-generic-family: %s: Vous &ecirc;tes encourag&eacute;s &agrave; proposer une famille \
 g&eacute;n&eacute;rique comme dernier choix
 warning.with-space: Les noms de familles contenant des espaces doivent &ecirc;tre mis entre \
@@ -86,7 +86,7 @@ warning.direction: au lieu de 'direction' pour les &eacute;l&eacute;ments block-
 error.same-value: %s apparait deux fois
 
 error.generic-family.quote: Les noms de familles g&eacute;n&eacute;riques sont des mots-clefs, \
-ils doivent donc &ecirc;tre entre guillemets.
+ils doivent donc &ecirc;tre sans guillemets.
 
 # used by org.w3c.css.properties.CssClip
 error.shape: D&eacute;finition de forme non valide: rect(<haut>,<droit>,<bas>,<gauche>)
@@ -167,11 +167,11 @@ error.page: Page pseudo-nomm&eacute;e %s non reconnue
 
 # used by StyleSheetGeneratorHTML
 generator.context: Contexte
-generator.request: Une erreur c'est produite lors de l'ecriture de votre feuille de style. \
+generator.request: Une erreur s'est produite lors de l'ecriture de votre feuille de style. \
 Veuillez corriger votre requ&egrave;te, ou envoyez un courrier &eacute;lectronique &agrave; plh@w3.org.
 generator.unrecognized: Non reconnu
 generator.invalid-number: Nombre &eacute;rron&eacute;
-generator.property: Nombre &eacute;rron&eacute;
+generator.property: Propri&eacute;t&eacute; &eacute;rron&eacute;
 generator.line: Ligne
 generator.not-found: Fichier introuvable
 generator.doc-html: <p>\
