@@ -40,7 +40,7 @@ public class CssAlignmentBaseLine extends CssProperty {
     private static String[] values = {
 	"baseline", "use-script", "before-edge",
 	"text-before-edge", "after-edge", "text-after-edge", "central", "middle",
-	"ideographic", "alphabetic", "hanging", "mathematical", "inherit"
+	"ideographic", "alphabetic", "hanging", "mathematical", "inherit", "initial"
     };
 
     /**

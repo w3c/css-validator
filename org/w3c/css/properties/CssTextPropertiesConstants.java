@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/08/20 08:42:10  sijtsche
+ * new values added
+ *
  * Revision 1.3  2002/08/19 07:40:17  sijtsche
  * new values added
  *
@@ -36,7 +39,7 @@ public interface CssTextPropertiesConstants {
 
   public static String[] VERTICALALIGN = {
     "auto", "use-script", "baseline", "sub", "super", "top", "text-top",
-    "central", "middle", "bottom", "text-bottom", "inherit" };
+    "central", "middle", "bottom", "text-bottom", "inherit", "initial" };
 
   public static String[] VERTICALALIGNMOB = {
     "baseline", "sub", "super", "inherit" };

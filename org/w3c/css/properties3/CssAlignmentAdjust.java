@@ -43,7 +43,7 @@ public class CssAlignmentAdjust extends CssProperty {
     private static String[] values = {
 	"auto", "baseline", "before-edge",
 	"text-before-edge", "middle", "central", "after-edge", "text-after-edge",
-	"ideographic", "alphabetic", "hanging", "mathematical", "inherit"
+	"ideographic", "alphabetic", "hanging", "mathematical", "inherit", "initial"
     };
 
     /**
