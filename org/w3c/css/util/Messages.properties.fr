@@ -201,10 +201,12 @@ error.notforcss1 : La valeur %s n'existe pas dans le cadre de CSS1
 warning.noothermedium : Certaines propri&eacute;t&eacute;s relatives &agrave; d'autres media peuvent ne pas s'appliquer &agrave; ce medium
 warning.notforusermedium : La propri&eacute;t&eacute; %s n'existe pas pour ce medium d'utilisateur
 error.noatruleyet : Except&eacute; @import, les r&egrave;gles @ ne sont pas support&eacute;s en CSS1 %
-error.notformobile : %s ne peut pas &ecirc;tre utilise pour le profile mobile
+error.notformobile : %s ne peut pas &ecirc;tre utilis&eacute; pour le profile mobile
 
 warning.atsc : il se peut que %s ne soit pas support&eacute; par atsc-tv
 error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
 
 error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
+
+warning.otherprofile : propri&eacute;t&eacute; %s n'existe pas dans ce profile mais est valid&eacute; conforme &agrave; un autre profile

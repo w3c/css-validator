@@ -187,3 +187,4 @@ error.onlyATSC : deze functie is alleen voor @media atsc-tv
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
+warning.otherprofile : property %s bestaat niet in dit profiel, maar is gevalideerd conform een ander profiel

@@ -198,4 +198,4 @@ servlet.process: Can't process the object
 warning.atsc : %s might not be supported by the medium atsc-tv
 error.onlyATSC : %s this function is only for the atsc-tv medium
 
-warning.otherprofile : property %s does not exist for this profile, but is validated conform another profile
+warning.otherprofile : property %s does not exist for this profile, but is validated conforming to another profile
