@@ -445,10 +445,10 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		}
 	    }
 	    uri = catalog.getProperty(publicId);
-	} else if (systemId != null) {
+	} 
+	if (uri == null && systemId != null) {
 	    uri = catalog.getProperty(systemId);
 	}
-	
 	if (uri != null) {
 	    return new InputSource(uri);
 	} else {
