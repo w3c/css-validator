@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2002/07/21 14:05:08  sijtsche
+ * CSS3, SVG, SVG tiny and SVG basic added as validation options
+ *
  * Revision 1.4  2002/07/12 20:58:36  plehegar
  * Removed dimensions for the icon
  *
@@ -75,6 +78,8 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.Messages;
 
+import org.w3c.www.mime.MimeType;
+
 import org.xml.sax.SAXParseException;
 
 /**
@@ -93,7 +98,9 @@ public final class CssValidator extends HttpServlet {
     final static String texthtml    = "text/html";
     final static String textplain   = "text/plain";
     final static String textunknwon = "text/unknown";
-    final static String server_name = "Jigsaw/2.2.0 W3C_CSS_Validator_JFouffa/2.0";
+    final static String soap12      = "application/soap+xml";
+    final static String server_name = "Jigsaw/2.2.2 "+
+                                      "W3C_CSS_Validator_JFouffa/2.0";
 
     /**
      * Create a new CssValidator.
@@ -250,11 +257,11 @@ public final class CssValidator extends HttpServlet {
 	if (profile != null && !"none".equals(profile)) {
 	    if ("css1".equals(profile) || "css2".equals(profile) ||
 	    	"css3".equals(profile) || "svg".equals(profile) ||
-			"svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-				ac.setCssVersion(profile);
+		"svgbasic".equals(profile) || "svgtiny".equals(profile)) {
+		ac.setCssVersion(profile);
 	    } else {
-			ac.setProfile(profile);
-			ac.setCssVersion("css2");
+		ac.setProfile(profile);
+		ac.setCssVersion("css2");
 	    }
 	} else {
 	    ac.setCssVersion("css2");
@@ -263,12 +270,13 @@ public final class CssValidator extends HttpServlet {
 	    System.err.println( "[DEBUG]  profile is : " + ac.getCssVersion()
 				+ " medium is " + usermedium);
 	}
-
+	
 	// verify the request
 	if ((uri == null) && (text == null)) {
-	    // res.sendError(res.SC_BAD_REQUEST, "You have send an invalid request.");
+	    // res.sendError(res.SC_BAD_REQUEST, 
+            //                "You have send an invalid request.");
 	    handleError(res, "No file",
-                   new IOException(ac.getMsg().getServletString("invalid-request")));
+	     new IOException(ac.getMsg().getServletString("invalid-request")));
 	    return;
 	}
 
@@ -306,7 +314,8 @@ public final class CssValidator extends HttpServlet {
 	    // HTML document
 	    try {
 		uri = HTTPURL.getURL(uri).toString();
-		HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac, uri);
+		HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac,
+									  uri);
 		handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
 			      warningLevel, errorReport);
 	    } catch (ProtocolException pex) {
@@ -327,9 +336,10 @@ public final class CssValidator extends HttpServlet {
 	    parser.reInit();
 
 	    try {
-		parser.parseStyleElement(ac, new ByteArrayInputStream(text.getBytes()),
-					 null, usermedium,
-					 new URL("file://localhost/TextArea"), 0);
+		parser.parseStyleElement(ac, 
+				     new ByteArrayInputStream(text.getBytes()),
+				     null, usermedium,
+				     new URL("file://localhost/TextArea"), 0);
 		handleRequest(ac, res,
 			      "file://localhost/TextArea",
 			      parser.getStyleSheet(),
@@ -342,15 +352,17 @@ public final class CssValidator extends HttpServlet {
     }
 
     /**
-     * Performs the HTTP POST operation.  An HTTP BAD_REQUEST error is reported if
+     * Performs the HTTP POST operation.  An HTTP BAD_REQUEST error
+     * is reported if
      * an error occurs. The headers that are set should include content type,
      * length, and encoding.  Setting content length allows the servlet to take
      * advantage of HTTP "connection keep alive".  If content length can not be
      * set in advance, the performance penalties associated with not using keep
-     * alives will sometimes be avoided if the response entity fits in an internal
-     * buffer.  The servlet implementor must write the headers before the response
-     * data because the headers can be flushed at any time after the data starts
-     * to be written.
+     * alives will sometimes be avoided if the response entity fits in an
+     * internal
+     * buffer.  The servlet implementor must write the headers before the
+     * response data because the headers can be flushed at any time after
+     * the data starts to be written.
      *
      * <P> This method does not need to be either "safe" or "idempotent".
      * Operations requested through POST could be ones for which users
@@ -395,7 +407,8 @@ public final class CssValidator extends HttpServlet {
 	int len;
 
 	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true") || Util.onDebug;
+	    Util.onDebug = req.getParameter("debug").equals("true") || 
+		Util.onDebug;
 	    if (Util.onDebug) {
 		System.err.println("SWITCH DEBUG MODE REQUEST");
 	    }
@@ -465,7 +478,7 @@ public final class CssValidator extends HttpServlet {
 	    //	    res.sendError(res.SC_BAD_REQUEST,
 	    //	  "You have send an invalid request");
 	    handleError(res, "No file",
-			new IOException(ac.getMsg().getServletString("invalid-request")));
+	     new IOException(ac.getMsg().getServletString("invalid-request")));
 	    return;
 	}
 
@@ -524,22 +537,26 @@ public final class CssValidator extends HttpServlet {
 	res.setHeader("Cache-Control", "no-cache");
 
 	// Here is a little joke :-)
-	res.setHeader("Server", server_name);
+//	res.setHeader("Server", server_name);
 
 	// set the content-type for the response
+	MimeType outputMt = null;
 	if (output.equals(texthtml)) {
-	    res.setContentType(texthtml);
+	    outputMt = MimeType.TEXT_HTML.getClone();
+	} else if (output.equals(soap12)) {
+	    outputMt = new MimeType(soap12);
 	} else {
-	    res.setContentType(textplain);
+	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	}
+	if (ac.getContentEncoding() != null) {
+	    outputMt.setParameter("charset", ac.getContentEncoding());
+	}
+	res.setContentType(outputMt.toString());
+
 	if (ac.getContentLanguage() != null) {
 	    res.setHeader("Content-Language", ac.getContentLanguage());
 	} else {
 	    res.setHeader("Content-Language", "en");
-	}
-
-	if (ac.getContentEncoding() != null) {
-	    res.setHeader("Content-Encoding", ac.getContentEncoding());
 	}
 
 	if (styleSheet == null) {
@@ -564,7 +581,7 @@ public final class CssValidator extends HttpServlet {
 	    style.desactivateError();
 	}
 	PrintWriter out = getLocalPrintWriter(res.getOutputStream(),
-					      ac.getMsg().getString("output-encoding-name"));
+				ac.getMsg().getString("output-encoding-name"));
 
 	try {
 	    style.print(out);
@@ -575,8 +592,9 @@ public final class CssValidator extends HttpServlet {
 
     private void handleError(HttpServletResponse res,
 			     String title, Exception e) {
-	System.err.println( "[ERROR] " + title);
+	System.err.println( "[ERROR VALIDATOR] " + title);
 	System.err.println( e.toString() );
+        e.printStackTrace();
 
 	// I don't want cache for the response (inhibits proxy)
 	res.setHeader("Pragma", "no-cache"); // @@deprecated
