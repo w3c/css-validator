@@ -177,3 +177,4 @@ warning.atsc : Das Attribut %s ist unter Umst&auml;nden nicht im Funktionsumfang
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
 warning.otherprofile : Die Eigenschaft %s existiert in der angegebenen Version von CSS nicht, ist aber in einer anderen Version vorhanden und valide 
+warning.deprecated : Dieser Wert ist abgelehnt

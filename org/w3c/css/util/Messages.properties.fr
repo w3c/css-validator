@@ -210,3 +210,4 @@ error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
 warning.otherprofile : propri&eacute;t&eacute; %s n'existe pas dans ce profile mais est valid&eacute; conforme &agrave; un autre profile
+warning.deprecated : cette valeur est deconseillée
