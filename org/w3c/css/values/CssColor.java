@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/07/21 13:02:13  sijtsche
+ * added RGBA, HSL, HSLA colors and user prefs for hyperlinks
+ *
  * Revision 1.2  2002/05/08 10:04:25  dejong
  * newer version with the new CSS 3 color descriptors HSL, RGBA and HSLA + new user preferences for hyperlink colors
  *
@@ -27,6 +30,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssNumber;
 
 import java.util.Vector;
 
@@ -479,16 +483,25 @@ public class CssColor extends CssValue
 		color = null;
 		hsl = new HSL();
 
-		CssAngle h = new CssAngle();
+		//CssAngle h = new CssAngle();
+		CssNumber h = new CssNumber();
 		CssPercentage s = new CssPercentage();
 		CssPercentage l = new CssPercentage();
 
 		// no correct InvalidParamException in CssAngle in case of an error, therefore this double catch
+		/*
 		try {
 			h.set((exp.elementAt(0)).toString(), ac);
 		} catch (InvalidParamException e) {
 			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
 		} catch (Exception e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		}
+		*/
+
+		h.set((exp.elementAt(0)).toString(), ac);
+
+		if (((Float)h.get()).intValue() > 360 || ((Float)h.get()).intValue() < 0) {
 			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
 		}
 
@@ -508,17 +521,26 @@ public class CssColor extends CssValue
 		color = null;
 		hsla = new HSLA();
 
-		CssAngle h = new CssAngle();
+		//CssAngle h = new CssAngle();
+		CssNumber h = new CssNumber();
 		CssPercentage s = new CssPercentage();
 		CssPercentage l = new CssPercentage();
 		Float a;
 
 		// no correct InvalidParamException in CssAngle in case of an error, therefore this double catch
+		/*
 		try {
 			h.set((exp.elementAt(0)).toString(), ac);
 		} catch (InvalidParamException e) {
 			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
 		} catch (Exception e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		}
+		*/
+
+		h.set((exp.elementAt(0)).toString(), ac);
+
+		if (((Float)h.get()).intValue() > 360 || ((Float)h.get()).intValue() < 0) {
 			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
 		}
 
@@ -1187,6 +1209,9 @@ public class CssColor extends CssValue
     	definedColors.put("HyperlinkText", "HyperlinkText");
     	definedColors.put("VisitedHyperlink", "VisitedHyperlink");
     	definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
+
+    	//Flavor system color
+    	definedColors.put("flavor","flavor");
 
     }
 
