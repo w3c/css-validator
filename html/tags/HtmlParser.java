@@ -26,16 +26,26 @@ public class HtmlParser extends JmlParser implements Runnable,
   /**
    * The currently parsed URL
    */
-  URL         url          = null;  // 970718 -vm
-  
-  HtmlTree    current      = null;
-  HtmlTree    top          = null;
-  Vector      listeners    = new Vector();
+  URL           url          = null;  // 970718 -vm
+  URLConnection uc           = null;
+  HtmlTree      current      = null;
+  HtmlTree      top          = null;
+  Vector        listeners    = new Vector();
 
   ParserFrame parserFrame  = new ParserFrame(); // 970724 -vm
   
   TagFactory  factory;
   String      urlname;
+
+  public HtmlParser(ApplContext ac,
+		    String dtdName, String urlname, URLConnection uc) 
+      throws ParserException {
+    super(dtdName);
+    this.urlname = urlname;
+    this.uc = uc;
+    parserFrame.ac = ac;
+    setFactory(new SimpleTagFactory());
+  }
 
   public HtmlParser(ApplContext ac,
 		    String dtdName, String urlname) 
@@ -195,45 +205,48 @@ public class HtmlParser extends JmlParser implements Runnable,
   }
 
 
-  public void run() {
-    InputStream input = makeInput(urlname);
-    if (input != null)
-      input = new BufferedInputStream(input);
-
-    try {
-      long tm = System.currentTimeMillis();
-      if (Boolean.getBoolean("html.tags.verbose"))
-	System.out.println("[Parsing " + urlname + ']');
-      parse(input, dtd);
-      tm = System.currentTimeMillis() - tm;
-      if (Boolean.getBoolean("html.tags.verbose"))
-	System.out.println("[Parsed " + urlname + " in " + tm + "ms]");
-    }
-    catch(XMLInputException e) {
-      notifyFatalError(null, e, "");
-    }        
-    catch(Exception e) {
-      if (!Boolean.getBoolean("html.runningServlet")) {
-	System.out.println("uncaught error while parsing");
-	e.printStackTrace();
-      }
-      notifyFatalError(null, e, "");
-    }
+    public void run() {
+	InputStream input = null;
+	if (uc == null) {
+	    input = makeInput(urlname);
+	} else {
+	    input = makeInput();
+	}
+	if (input != null) {
+	    input = new BufferedInputStream(input);
+	}
+	try {
+	    long tm = System.currentTimeMillis();
+	    if (Boolean.getBoolean("html.tags.verbose"))
+		System.out.println("[Parsing " + urlname + ']');
+	    parse(input, dtd);
+	    tm = System.currentTimeMillis() - tm;
+	    if (Boolean.getBoolean("html.tags.verbose"))
+		System.out.println("[Parsed " + urlname + " in " + tm + "ms]");
+	} catch(XMLInputException e) {
+	    notifyFatalError(null, e, "");
+	} catch(Exception e) {
+	    if (!Boolean.getBoolean("html.runningServlet")) {
+		System.out.println("uncaught error while parsing");
+		e.printStackTrace();
+	    }
+	    notifyFatalError(null, e, "");
+	}
         
-    for(int i = 0; i < listeners.size(); i++) {
-      HtmlParserListener l =
-	(HtmlParserListener)listeners.elementAt(i);
-      l.notifyEnd(top, "text/html");
+	for(int i = 0; i < listeners.size(); i++) {
+	    HtmlParserListener l =
+		(HtmlParserListener)listeners.elementAt(i);
+	    l.notifyEnd(top, "text/html");
+	}
+	
+	if (Boolean.getBoolean("html.tags.verbose")) {
+	    System.out.println("\n-------------------");
+	    System.out.println("[StyleSheet dump:]");
+	    parserFrame.styleSheetParser.getStyleSheet().dump();
+	    System.out.println("-------------------");
+	}
     }
-    
-    if (Boolean.getBoolean("html.tags.verbose")) {
-      System.out.println("\n-------------------");
-      System.out.println("[StyleSheet dump:]");
-      parserFrame.styleSheetParser.getStyleSheet().dump();
-      System.out.println("-------------------");
-    }
-  }
-  
+
   public void notifyConnection(URLConnection cnx) {
     for(int i = 0; i < listeners.size(); i++) {
       HtmlParserListener l =
@@ -242,33 +255,61 @@ public class HtmlParser extends JmlParser implements Runnable,
     }
   }
   
-  InputStream makeInput(String urls) {
-    InputStream in = null;
+    InputStream makeInput(String urls) {
+	InputStream in = null;
 
-    try {
-      if (urls.indexOf(':') > 0) {
-	URLConnection urlC = null;
+	try {
+	    if (urls.indexOf(':') > 0) {
+		URLConnection urlC = null;
 
-	urlC = HTTPURL.getConnection(new URL(null, urls), parserFrame.ac);
+		urlC = HTTPURL.getConnection(new URL(null, urls), 
+					     parserFrame.ac);
 
-	parserFrame.url = url = urlC.getURL();
-	in = urlC.getInputStream();
-	HtmlInputStream hin = new HtmlInputStream(in);
-	hin.addHtmlStreamListener(this);
-	in = hin;
-      }
-    } catch (Exception e) {
-	//      if (!Boolean.getBoolean("html.runningServlet")) {
-      if (!Util.servlet) {
-	e.printStackTrace();
-	System.out.println("failed to open: " + urls);
-      }
-      in = null;
-      notifyFatalError(null, e, "");
+		parserFrame.url = url = urlC.getURL();
+		in = urlC.getInputStream();
+		HtmlInputStream hin = new HtmlInputStream(in);
+		hin.addHtmlStreamListener(this);
+		return hin;
+	    }
+	} catch (Exception e) {
+	    //      if (!Boolean.getBoolean("html.runningServlet")) {
+	    if (!Util.servlet) {
+		e.printStackTrace();
+		System.out.println("failed to open: " + urls);
+	    }
+	    try {
+		in.close();
+	    }  catch (Exception ex) {};
+	    in = null;
+	    notifyFatalError(null, e, "");
+	}
+	return null;
     }
-    return in;
-  }
   
+  InputStream makeInput() {
+	InputStream in = null;
+
+	try {
+	    parserFrame.url = url = uc.getURL();
+	    in = uc.getInputStream();
+	    HtmlInputStream hin = new HtmlInputStream(in);
+	    hin.addHtmlStreamListener(this);
+	    return hin;
+	} catch (Exception e) {
+	    //      if (!Boolean.getBoolean("html.runningServlet")) {
+	    if (!Util.servlet) {
+		e.printStackTrace();
+		System.out.println("failed to open: " + url);
+	    }
+	    try {
+		in.close();
+	    } catch (Exception ex) {};
+	    in = null;
+	    notifyFatalError(null, e, "");
+	}
+	return null;
+    }
+    
   String makeURLName(String s) {
     System.out.println("makeURLName: " + s);
     if (s.indexOf(':') > 0) {
