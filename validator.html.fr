@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
@@ -71,8 +71,8 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 <form method="post" enctype="multipart/form-data" action="validator">
 <p>Choisissez le document dont vous souhaitez la validation&nbsp;:</p>
 <p>
-	<label title="Choisissez un fichier local à télécharger vers le serveur et à valider" for="uploaded_file">Fichier CSS local :</label>
-	<input type="file" id="uploaded_file" name="uploaded_file" size="30" />
+	<label title="Choisissez un fichier local à télécharger vers le serveur et à valider" for="file">Fichier CSS local :</label>
+	<input type="file" id="file" name="file" size="30" />
 	<input name="usermedium" value="all" type="hidden"></input>
 	<label title="Envoyer le fichier à valider"><input type="submit" value="Soumettre le fichier" /></label>
 </p>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
@@ -72,8 +72,8 @@
       <form method="post" enctype="multipart/form-data" action="validator">
       <p>Seleziona il documento che desideri validare:</p>
       <p>
-	<label title="Seleziona un documento locale da trasferire e validare" for="uploaded_file">Documento in locale:</label>
-	<input type="file" id="uploaded_file" name="uploaded_file" size="30" />
+	<label title="Seleziona un documento locale da trasferire e validare" for="file">Documento in locale:</label>
+	<input type="file" id="file" name="file" size="30" />
 	<input name="usermedium" value="all" type="hidden"></input>
 	<label title="Invia il documento al sistema di validazione"><input type="submit" value="Controlla" /></label>
       </p>
