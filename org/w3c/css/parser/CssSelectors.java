@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:24:12  plehegar
+ * New
+ *
  * Revision 2.5  1997/08/27 15:31:43  plehegar
  * Desactivated warning on block and inline element ...
  *
@@ -227,6 +230,7 @@ public final class CssSelectors implements CssSelectorsConstant {
 
 	String isHTML = elements.getProperty(element.toUpperCase());
 
+	/*
 	if (Util.fromHTMLFile) {
 	    if (isHTML == null) {
 		ac.getFrame().addWarning("unknown-html", element);
@@ -239,10 +243,12 @@ public final class CssSelectors implements CssSelectorsConstant {
 		}
 	    }
 	}
-	
+	*/
+
 	this.element = element;
 	hashElement = element.hashCode();
 
+	/*
 	if (Util.fromHTMLFile) {
 	    if (hashElement == HTMLCode && next != null) {
 		ac.getFrame().addWarning("html-inside");
@@ -251,7 +257,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 		ac.getFrame().addWarning("body-inside");
 	    }
 	}
-	
+	*/
+
 	verifyPseudoElement(ac);
 	Invalidate();
     }
