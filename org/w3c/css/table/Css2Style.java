@@ -18,7 +18,7 @@ import org.w3c.css.aural.ACssStyle;
  * @version $Revision$
  */
 public class Css2Style extends ACssStyle {
-    
+
     RowSpan rowSpan;
     RowSpanATSC rowSpanATSC;
     ColumnSpan columnSpan;
@@ -34,33 +34,33 @@ public class Css2Style extends ACssStyle {
     EmptyCellsATSC emptyCellsATSC;
     SpeakHeader speakHeader;
     SpeakHeaderATSC speakHeaderATSC;
-        
+
     /**
      * Get the row-span property
      */
     public final RowSpan getRowSpan() {
 	if (rowSpan == null) {
-	    rowSpan = (RowSpan) 
+	    rowSpan = (RowSpan)
 		style.CascadingOrder(new RowSpan(), style, selector);
 	}
 	return rowSpan;
     }
-    
+
     public final RowSpanATSC getRowSpanATSC() {
 	if (rowSpanATSC == null) {
-	    rowSpanATSC = (RowSpanATSC) 
+	    rowSpanATSC = (RowSpanATSC)
 		style.CascadingOrder(new RowSpanATSC(), style, selector);
 	}
 	return rowSpanATSC;
     }
-    
+
     /**
      * Get the column-span property
      */
-    /*
+
     public final ColumnSpan getColumnSpan() {
 	if (columnSpan == null) {
-	    columnSpan = (ColumnSpan) 
+	    columnSpan = (ColumnSpan)
 		style.CascadingOrder(new ColumnSpan(), style, selector);
 	}
 	return columnSpan;
@@ -68,18 +68,18 @@ public class Css2Style extends ACssStyle {
 
     public final ColumnSpanATSC getColumnSpanATSC() {
 	if (columnSpanATSC == null) {
-	    columnSpanATSC = (ColumnSpanATSC) 
+	    columnSpanATSC = (ColumnSpanATSC)
 		style.CascadingOrder(new ColumnSpanATSC(), style, selector);
 	}
 	return columnSpanATSC;
     }
-    */
+
     /**
      * Get the table-layout property
      */
     public final TableLayout getTableLayout() {
 	if (tableLayout == null) {
-	    tableLayout = (TableLayout) 
+	    tableLayout = (TableLayout)
 		style.CascadingOrder(new TableLayout(), style, selector);
 	}
 	return tableLayout;
@@ -87,29 +87,29 @@ public class Css2Style extends ACssStyle {
 
     public final TableLayoutATSC getTableLayoutATSC() {
 	if (tableLayoutATSC == null) {
-	    tableLayoutATSC = (TableLayoutATSC) 
+	    tableLayoutATSC = (TableLayoutATSC)
 		style.CascadingOrder(new TableLayoutATSC(), style, selector);
 	}
 	return tableLayoutATSC;
     }
-    
+
     /**
      * Get the caption-side property
      */
     public final CaptionSide getCaptionSide() {
 	if (captionSide == null) {
-	    captionSide = (CaptionSide) 
+	    captionSide = (CaptionSide)
 		style.CascadingOrder(new CaptionSide(), style, selector);
 	}
 	return captionSide;
     }
-    
+
     /**
      * Get the border-collapse property
      */
     public final BorderCollapse getBorderCollapse() {
 	if (borderCollapse == null) {
-	    borderCollapse = (BorderCollapse) 
+	    borderCollapse = (BorderCollapse)
 		style.CascadingOrder(new BorderCollapse(), style, selector);
 	}
 	return borderCollapse;
@@ -117,18 +117,18 @@ public class Css2Style extends ACssStyle {
 
     public final BorderCollapseATSC getBorderCollapseATSC() {
 	if (borderCollapseATSC == null) {
-	    borderCollapseATSC = (BorderCollapseATSC) 
+	    borderCollapseATSC = (BorderCollapseATSC)
 		style.CascadingOrder(new BorderCollapseATSC(), style, selector);
 	}
 	return borderCollapseATSC;
-    }    
+    }
 
     /**
      * Get the border-spacing property
      */
     public final BorderSpacing getBorderSpacing() {
 	if (borderSpacing == null) {
-	    borderSpacing = (BorderSpacing) 
+	    borderSpacing = (BorderSpacing)
 		style.CascadingOrder(new BorderSpacing(), style, selector);
 	}
 	return borderSpacing;
@@ -136,18 +136,18 @@ public class Css2Style extends ACssStyle {
 
     public final BorderSpacingATSC getBorderSpacingATSC() {
 	if (borderSpacingATSC == null) {
-	    borderSpacingATSC = (BorderSpacingATSC) 
+	    borderSpacingATSC = (BorderSpacingATSC)
 		style.CascadingOrder(new BorderSpacingATSC(), style, selector);
 	}
 	return borderSpacingATSC;
-    }    
+    }
 
     /**
      * Get the emtpy-cells property
      */
     public final EmptyCells getEmptyCells() {
 	if (emptyCells == null) {
-	    emptyCells = (EmptyCells) 
+	    emptyCells = (EmptyCells)
 		style.CascadingOrder(new EmptyCells(), style, selector);
 	}
 	return emptyCells;
@@ -155,18 +155,18 @@ public class Css2Style extends ACssStyle {
 
     public final EmptyCellsATSC getEmptyCellsATSC() {
 	if (emptyCellsATSC == null) {
-	    emptyCellsATSC = (EmptyCellsATSC) 
+	    emptyCellsATSC = (EmptyCellsATSC)
 		style.CascadingOrder(new EmptyCellsATSC(), style, selector);
 	}
 	return emptyCellsATSC;
-    }    
+    }
 
     /**
      * Get the emtpy-header property
      */
     public final SpeakHeader getSpeakHeader() {
 	if (speakHeader == null) {
-	    speakHeader = (SpeakHeader) 
+	    speakHeader = (SpeakHeader)
 		style.CascadingOrder(new SpeakHeader(), style, selector);
 	}
 	return speakHeader;
@@ -174,18 +174,18 @@ public class Css2Style extends ACssStyle {
 
     public final SpeakHeaderATSC getSpeakHeaderATSC() {
 	if (speakHeaderATSC == null) {
-	    speakHeaderATSC = (SpeakHeaderATSC) 
+	    speakHeaderATSC = (SpeakHeaderATSC)
 		style.CascadingOrder(new SpeakHeaderATSC(), style, selector);
 	}
 	return speakHeaderATSC;
     }
-    
+
 
     /**
      * Print this style.
      *
      * @param printer The printer interface.
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
 
@@ -195,12 +195,12 @@ public class Css2Style extends ACssStyle {
 	if (rowSpanATSC != null) {
 	    rowSpanATSC.print(printer);
 	}
-	/*	if (columnSpan != null) {
+	if (columnSpan != null) {
 	    columnSpan.print(printer);
 	}
 	if (columnSpanATSC != null) {
 	    columnSpanATSC.print(printer);
-	    }*/
+	}
 	if (tableLayout != null) {
 	    tableLayout.print(printer);
 	}
