@@ -649,8 +649,8 @@ public final class CssFouffa extends CssParser {
 			if (mode0 != null) {
 			    mode = mode0.equals("true");
 			}
-	    } else if (profile.equals("atsc-tv")) {
-			String classStyle = config.getProperty("styleATSC");
+	    } else if ("atsc-tv".equals(profile)) {
+			String classStyle = config.getProperty("styleatsc");
 			Class style = Class.forName(classStyle);
 			CssSelectors.setStyle(style);
 			URL url = style.getResource(config.getProperty("atsc-tv"));
