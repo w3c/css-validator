@@ -14,54 +14,62 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssURL;
 import org.w3c.css.properties.CssProperty;
 
 /**
  *
  */
 
-    public class CssScript extends CssProperty {
+    public class CssTextOverflowEllipsis extends CssProperty {
 
-	CssValue script;
-
-	private static CssIdent auto = new CssIdent("auto");
-	private static CssIdent none = new CssIdent("none");
+	String overflowellipsis;
 
 	/**
-	 * Create a new CssScript
+	 * Create a new CssTextOverflowEllipsis
 	 */
-	public CssScript() {
-	    script = auto;
+	public CssTextOverflowEllipsis() {
+	    overflowellipsis = "...";
 	}
 
 	/**
-	 * Create a new CssScript
+	 * Create a new CssTextOverflowEllipsis
 	 *
 	 *
 	 */
-	public CssScript(ApplContext ac, CssExpression expression) throws InvalidParamException {
+	public CssTextOverflowEllipsis(ApplContext ac, CssExpression expression) throws InvalidParamException {
 	    setByUser();
 	    CssValue val = expression.getValue();
-	    if (val.equals(auto)) {
-			script = auto;
+	    CssValue val2 = null;
+
+	    if (val instanceof CssIdent) {
+			overflowellipsis = val.toString();
 			expression.next();
 	    }
-	    else if (val.equals(none)) {
-			script = none;
+	    else if (val instanceof CssURL) {
+			overflowellipsis = val.toString();
 			expression.next();
 	    }
-	    else if (val.equals(inherit)) {
-			script = inherit;
-			expression.next();
-	    }
-	    else if (val instanceof CssIdent) {
-			script = val;
-			expression.next();
-		}
 	    else {
 		throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	    }
+
+	    val2 = expression.getValue();
+
+	    if (val2 != null) {
+
+		    if (val2 instanceof CssIdent) {
+				overflowellipsis += " " + val2.toString();
+				expression.next();
+		    }
+		    else if (val2 instanceof CssURL) {
+				overflowellipsis += " " + val2.toString();
+				expression.next();
+		    }
+		    else {
+				throw new InvalidParamException("value", val2.toString(), getPropertyName(), ac);
+		    }
+		}
 	}
 
 	/**
@@ -70,9 +78,9 @@ import org.w3c.css.properties.CssProperty;
 	 * @param style The CssStyle
 	 */
 	public void addToStyle(ApplContext ac, CssStyle style) {
-	    if (((Css3Style) style).cssScript != null)
+	    if (((Css3Style) style).cssTextOverflowEllipsis != null)
 		style.addRedefinitionWarning(ac, this);
-	    ((Css3Style) style).cssScript = this;
+	    ((Css3Style) style).cssTextOverflowEllipsis = this;
 
 	}
 
@@ -84,9 +92,9 @@ import org.w3c.css.properties.CssProperty;
 	 */
         public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	    if (resolve) {
-		return ((Css3Style) style).getScript();
+		return ((Css3Style) style).getTextOverflowEllipsis();
 	    } else {
-		return ((Css3Style) style).cssScript;
+		return ((Css3Style) style).cssTextOverflowEllipsis;
 	    }
 	}
 
@@ -96,36 +104,36 @@ import org.w3c.css.properties.CssProperty;
 	 * @param value The other property.
 	 */
 	public boolean equals(CssProperty property) {
-	    return (property instanceof CssScript &&
-		    script.equals( ((CssScript) property).script));
+	    return (property instanceof CssTextOverflowEllipsis &&
+		    overflowellipsis.equals( ((CssTextOverflowEllipsis) property).overflowellipsis));
 	}
 
 	/**
 	 * Returns the name of this property
 	 */
 	public String getPropertyName() {
-	    return "script";
+	    return "text-overflow-ellipsis";
 	}
 
 	/**
 	 * Returns the value of this property
 	 */
 	public Object get() {
-	    return script;
+	    return overflowellipsis;
 	}
 
 	/**
 	 * Returns true if this property is "softly" inherited
 	 */
 	public boolean isSoftlyInherited() {
-	    return script.equals(inherit);
+	    return overflowellipsis.equals(inherit);
 	}
 
 	/**
 	 * Returns a string representation of the object
 	 */
 	public String toString() {
-	    return script.toString();
+	    return overflowellipsis.toString();
 	}
 
 	/**
@@ -133,7 +141,7 @@ import org.w3c.css.properties.CssProperty;
 	 * It is used by all macro for the function <code>print</code>
 	 */
 	public boolean isDefault() {
-	    return script == auto;
+	    return overflowellipsis.equals("...");
 	}
 
     }
