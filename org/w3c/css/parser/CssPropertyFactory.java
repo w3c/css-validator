@@ -132,15 +132,17 @@ public class CssPropertyFactory implements Cloneable {
 
 	media = media.trim();
 
-	String classname = properties.getProperty("mediafeature" + "." 
+	String classname = properties.getProperty("mediafeature" + "."
 						  + property);
 
 	if (classname == null ) {
 	    if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
 				// I don't know this property
-		throw new InvalidParamException("noexistence-media",
-						property,
-						media, ac);
+		//throw new InvalidParamException("noexistence-media",
+		//				property,
+		//				media, ac);
+			ac.getFrame().addWarning("noexistence-media", property);
+		    classname = allprops.getProperty(property);
 	    } else {
 		// I don't know this property
 		throw new InvalidParamException("noexistence", property,
@@ -253,15 +255,18 @@ public class CssPropertyFactory implements Cloneable {
 	    if (classname == null ) { // && CssFouffa.usermedium == null)
 		if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
 		    // I don't know this property
-		    throw new InvalidParamException("noexistence-media",
+		    /*throw new InvalidParamException("noexistence-media",
 						    property,
-						    media, ac);
+						    media, ac);*/
+			ac.getFrame().addWarning("noexistence-media", property);
+		    classname = allprops.getProperty(property);
+
 		} else {
 		    // I don't know this property
 		    //NEW
 		    if (allprops.getProperty(property) == null) {
 			// I don't know this property
-			throw new InvalidParamException("noexistence", 
+			throw new InvalidParamException("noexistence",
 							property,
 							media, ac);
 		    } else {
@@ -273,7 +278,7 @@ public class CssPropertyFactory implements Cloneable {
 
 	CssIdent initial = new CssIdent("initial");
 
-	if (expression.getValue().equals(initial) && 
+	if (expression.getValue().equals(initial) &&
 	    ac.getCssVersion().equals("css3")) {
 	    try {
 		// create an instance of your property class
@@ -293,7 +298,7 @@ public class CssPropertyFactory implements Cloneable {
 
 	    try {
 		// create an instance of your property class
-		Class[] parametersType = { ac.getClass(), 
+		Class[] parametersType = { ac.getClass(),
 					   expression.getClass() };
 		Constructor constructor =
 		    Class.forName(classname).getConstructor(parametersType);
