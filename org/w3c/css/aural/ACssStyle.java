@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/07/28 14:21:52  sijtsche
+ * new properties and CSS3 property versions added
+ *
  * Revision 1.2  2002/04/08 21:16:56  plehegar
  * New
  *
@@ -71,6 +74,9 @@ public class ACssStyle extends Css1Style {
   ACssVoiceVolume  acssVoiceVolume;
   ACssVoiceBalance acssVoiceBalance;
   ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
+  ACssVoiceRate    acssVoiceRate;
+  ACssVoicePitchRange acssVoicePitchRange;
+  ACssVoiceStress  acssVoiceStress;
 
   /**
    * Get the volume
@@ -336,6 +342,30 @@ public class ACssStyle extends Css1Style {
     return acssVoiceFamilyCSS3;
   }
 
+  public ACssVoiceRate getVoiceRate() {
+    if (acssVoiceRate == null) {
+      acssVoiceRate =
+	(ACssVoiceRate) style.CascadingOrder(new ACssVoiceRate(), style, selector);
+    }
+    return acssVoiceRate;
+  }
+
+  public ACssVoicePitchRange getVoicePitchRange() {
+    if (acssVoicePitchRange == null) {
+      acssVoicePitchRange =
+	(ACssVoicePitchRange) style.CascadingOrder(new ACssVoicePitchRange(), style, selector);
+    }
+    return acssVoicePitchRange;
+  }
+
+  public ACssVoiceStress getVoiceStress() {
+    if (acssVoiceStress == null) {
+      acssVoiceStress =
+	(ACssVoiceStress) style.CascadingOrder(new ACssVoiceStress(), style, selector);
+    }
+    return acssVoiceStress;
+  }
+
   public void print(CssPrinterStyle printer) {
     super.print(printer);
     if (acssVolume != null)
@@ -378,6 +408,14 @@ public class ACssStyle extends Css1Style {
 	  acssVoiceBalance.print(printer);
 	if (acssVoiceFamilyCSS3 != null)
 	  acssVoiceFamilyCSS3.print(printer);
+	if (acssVoiceRate != null)
+	  acssVoiceRate.print(printer);
+	if (acssVoicePitchRange != null)
+	  acssVoicePitchRange.print(printer);
+	if (acssVoiceStress != null)
+	  acssVoiceStress.print(printer);
+
+
   }
 
   /**
