@@ -374,7 +374,7 @@ public final class CssFouffa extends CssParser {
 							       +surl));
 		    ac.getFrame().addError(cerr);
 		    return;
-		} else if (visited.size() > 12) {
+		} else if (visited.size() > 42) {
 		    CssError cerr = new CssError(new Exception("Maximum number"
 							       +" of imports "
 							       +"reached"));
