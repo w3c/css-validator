@@ -317,7 +317,7 @@ public final class CssFouffa extends CssParser {
 
 	number_of_imports++;
 
-	if (number_of_imports > 1000) {
+	if (number_of_imports > 12) {
 		ac.getFrame().addError(new CssError(new Exception("Maximum number of imports reached")));
 	}
 

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/05/19 03:44:31  plehegar
+ * Fixed application/xhtml+xml
+ *
  * Revision 1.3  2002/05/19 01:08:31  plehegar
  * Added application/xhtml+xml
  *
@@ -138,7 +141,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		if ((contentType.indexOf("text/xml") != -1) || isXML
 		    || (contentType.indexOf("application/xhtml+xml") != -1)) {
 		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
-		    handler.parse(urlString, connection.getInputStream());
+		    handler.parse(urlString, connection);
 		    style = handler.getStyleSheet();
 		    if (style != null) {
 			style.setType("text/xml");
