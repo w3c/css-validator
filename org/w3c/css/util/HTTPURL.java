@@ -126,20 +126,24 @@ public class HTTPURL {
 	}
     }
 
-    public static URL getURL(URL base, String url) throws MalformedURLException {
+    public static URL getURL(URL base, String url) 
+	throws MalformedURLException 
+    {
 	//	url = URLEncoder.encode(url);
 
 	return new URL(base, url);
     }
 
     private static URLConnection getConnection(URL url, int count)
-	    throws IOException {
+	throws IOException
+    {
 	return getConnection(url, count, null);
     }
 
     private static URLConnection getConnection(URL url, int count, 
 					       ApplContext ac)
-	    throws IOException {
+	throws IOException 
+    {
 	if (count > 5) {
 	    throw new ProtocolException("Server redirected too many "+
 					"times (5)");
@@ -236,18 +240,22 @@ public class HTTPURL {
     }
 
     public static URLConnection getConnection(URL url)
-	    throws IOException {
+	throws IOException 
+    {
 	return getConnection(url, 0);
     }
 
     public static URLConnection getConnection(URL url, ApplContext ac)
-	    throws IOException {
+	throws IOException 
+    {
 	return getConnection(url, 0, ac);
     }
     /**
      *
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) 
+	throws Exception 
+    {
         int c;
 	InputStream in = HTTPURL.getConnection(
 	                                     getURL(args[0])).getInputStream();
