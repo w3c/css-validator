@@ -18,7 +18,7 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM> auto || start || end || center || justify || 
+ *  <EM>Value:</EM> auto || start || end || center || justify ||
  *  size || inherit<BR>
  *  <EM>Initial:</EM>auto<BR>
  *  <EM>Applies to:</EM>block-level elements<BR>
@@ -28,29 +28,30 @@ import org.w3c.css.util.ApplContext;
  *  <P>
  *  This property describes how the last line of the inline content of a block
  *  is aligned. This also applies to the only line of a block if it contains a
- *  single line, the line preceding a BR element and to last lines of 
+ *  single line, the line preceding a BR element and to last lines of
  *  anonymous blocks. Typically the last line is aligned like the other lines
- *  of the block element, this is set by the 'text-align' property. However, 
- *  in some situations like when the 'text-align' property is set to 
- *  'justify', the last line may be aligned differently. 
+ *  of the block element, this is set by the 'text-align' property. However,
+ *  in some situations like when the 'text-align' property is set to
+ *  'justify', the last line may be aligned differently.
  */
 
 public class CssTextAlignLast extends CssProperty {
 
     CssValue alignlast;
 
-    static CssIdent auto = new CssIdent("auto");
     static CssIdent start = new CssIdent("start");
     static CssIdent end = new CssIdent("end");
     static CssIdent center = new CssIdent ("center");
     static CssIdent justify = new CssIdent("justify");
     static CssIdent size = new CssIdent("size");
+	static CssIdent left = new CssIdent("left");
+	static CssIdent right = new CssIdent("right");
 
     /**
      * Create a new CssTextAlignLast
      */
     public CssTextAlignLast() {
-	alignlast = auto;
+		alignlast = start;
     }
 
     /**
@@ -64,11 +65,7 @@ public class CssTextAlignLast extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	if (val.equals(auto)) {
-	    alignlast = auto;
-	    expression.next();
-	}
-	else if (val.equals(start)) {
+	if (val.equals(start)) {
 	    alignlast = start;
 	    expression.next();
 	}
@@ -91,6 +88,12 @@ public class CssTextAlignLast extends CssProperty {
 	else if (val.equals(inherit)) {
 	    alignlast = inherit;
 	    expression.next();
+	}
+	else if (val.equals(left)) {
+		alignlast = left;
+	}
+	else if (val.equals(right)) {
+		alignlast = right;
 	}
 	else {
 	    throw new InvalidParamException("value", expression.getValue(),
@@ -133,7 +136,7 @@ public class CssTextAlignLast extends CssProperty {
 	return (property instanceof CssTextAlignLast &&
 		alignlast.equals(((CssTextAlignLast) property).alignlast));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -167,10 +170,10 @@ public class CssTextAlignLast extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return alignlast == auto;
+		return alignlast == start;
     }
 
 }
 
 
-		       
+
