@@ -8,6 +8,9 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
+ * Revision 1.8  2003/01/03 15:28:35  sijtsche
+ * media query functionality added
+ *
  * Revision 1.7  2003/01/03 12:08:24  sijtsche
  * functionality added for media queries
  *
@@ -724,11 +727,9 @@ void page() :
 
   ( pseudo_page(newRule) )? <LBRACE> ( <S> )* ( v=pageContent() 
 	{ 
-		for (int i = 0; i < v.size(); i++) {
-			collectv.addElement(v.elementAt(i));
-		}
+		collectv = v;
 	}
- )+ <RBRACE> ( <S> )*
+ ) <RBRACE> ( <S> )*
    {
 	if (!ac.getCssVersion().equals("css1")) {
 	    newAtRule(getAtRule());
@@ -766,9 +767,8 @@ Vector pageContent() :
   Vector v = new Vector();
 }
 {
-	prop=declaration() <SEMICOLON> ( <S> )* 
+	v=declarations()
 	{
-		v.addElement(prop);
 		return v;
 	}
     |   
