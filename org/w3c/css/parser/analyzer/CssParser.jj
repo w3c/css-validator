@@ -3,11 +3,10 @@
  * (c) COPYRIGHT MIT and INRIA, 1997.
  * Please first read the full copyright statement in file COPYRIGHT.html
  *
- * This is the first version of the CSS2 grammar
- * The CSS2 grammar is not stable in specification.
- * I'm waiting for Bert Bos to have a new version.
- *
  * $Log$
+ * Revision 1.9  2003/04/13 16:30:42  sijtsche
+ * trailing semicolon requirement bug for @page rule fixed. Bugzilla nr 158
+ *
  * Revision 1.8  2003/01/03 15:28:35  sijtsche
  * media query functionality added
  *
@@ -72,6 +71,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;
+import org.w3c.css.values.CssDate;
 import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
@@ -87,6 +87,7 @@ import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRuleFontFace;
 import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
+import org.w3c.css.parser.AtRulePhoneticAlphabet;
 import org.w3c.css.svgproperties.AtRuleColorProfile;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
@@ -94,9 +95,9 @@ import org.w3c.css.util.Messages;
 import org.w3c.css.css.StyleSheetCom;
 
 /**
- * A CSS2 parser  
+ * A CSS3 parser  
  *
- * @author Philippe Le Hégaret
+ * @author Philippe Le Hégaret and Sijtsche Smeman
  * @version $Revision$
  */
 public abstract class CssParser {
@@ -214,7 +215,7 @@ public abstract class CssParser {
      */  
     public abstract void handleAtRule(String ident, String string);
 
-	/* added by Sijtsche de Jong */
+	/* added by Sijtsche Smeman */
     public abstract void addCharSet(String charset);
     public abstract void newAtRule(AtRule atRule);
     public abstract void endOfAtRule();
@@ -256,7 +257,7 @@ public abstract class CssParser {
     public abstract void handleRule(CssSelectors selector, 
 				    Vector declarations);
 
-/*Added by Sijtsche de Jong */
+/*Added by Sijtsche Smeman */
 
     /**
      * Returns the source file of the style sheet
@@ -480,6 +481,7 @@ TOKEN :
  | < FREQ   : <NUMBER> "Hz" 
             | <NUMBER> "kHz" >
  | < RESOLUTION : <NUMBER> ("dpi" | "dpcm") >
+ | < DATE   : <NUMBER> "/" <NUMBER> "/" <NUMBER> >
  | < DIMEN  : <NUMBER> <IDENT> >
 }
 
@@ -511,6 +513,7 @@ TOKEN :
   | < ATBOTTOM     : "@bottom" >
   | < ATLEFT       : "@left" >
   | < ATCOUNTER    : "@counter" >
+  | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
   | < ATKEYWORD    : "@" <IDENT> >
 }
 
@@ -575,11 +578,11 @@ void charset() :
     }
 }
 
-/* Modified by Sijtsche de Jong, preference and colorprofile added for CSS3 */
+/* Modified by Sijtsche Smeman, preference, colorprofile and phoneticAlphabet added for CSS3 */
 void afterImportDeclaration() :
 {String ret; }
 {
-  ( ( ruleSet() | media() | page() | fontFace() | preference() | colorprofile()
+  ( ( ruleSet() | media() | page() | fontFace() | preference() | colorprofile() | phoneticAlphabet()
       | ret=skipStatement() 
       { if ((ret == null) || (ret.length() == 0)) {
 	    return; 
@@ -852,7 +855,6 @@ void fontFace() :
  }
 }
 
-/*Added by Sijtsche de Jong */
 void colorprofile() :
 {
  Vector v;
@@ -946,7 +948,39 @@ void preference() :
     }
 }
 
-/*End of part added bij Sijtsche de Jong
+void phoneticAlphabet() :
+{
+ Vector v;
+ AtRule old = getAtRule();
+ AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
+ setAtRule(alphabetrule);
+ Token n;
+}
+{
+ try {
+   <PHONETIC_ALPHABET_SYM> ( <S> )* n=<STRING> ( <S> )* ";"
+   {
+	if (!ac.getCssVersion().equals("css3")) {
+	    skipStatement();
+	    addError(new InvalidParamException("noatruleyet", "", ac),
+						 getAtRule().toString());
+        }
+
+        alphabetrule.addAlphabet(convertIdent(n.image), ac);
+
+    	if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
+	    newAtRule(getAtRule());	
+        }
+        
+   }
+ } catch (ParseException e) {
+	if (!ac.getCssVersion().equals("css1")) {
+	    addError(e, skipStatement()); 
+        }
+ } finally {
+     setAtRule(old);
+ }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -1569,6 +1603,7 @@ void term(CssExpression exp) :
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+    | n=<DATE> { setValue(new CssDate(), exp, operator, n, DATE); }
     | n=<DIMEN> {  
 	addError(new ParseException("Unknown dimension"), n.image); }    
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
