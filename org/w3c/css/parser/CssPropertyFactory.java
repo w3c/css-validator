@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2003/01/06 15:54:11  sijtsche
+ * value inherit enabled for all CSS3 properties
+ *
  * Revision 1.3  2003/01/03 12:08:24  sijtsche
  * functionality added for media queries
  *
@@ -38,13 +41,14 @@ public class CssPropertyFactory {
 
     // all recognized properties are here.
     private Properties properties;
+    private Properties allprops;
 
     private String usermedium;
 
     /**
      * Create a new CssPropertyFactory
      */
-    public CssPropertyFactory(URL url) {
+    public CssPropertyFactory(URL url, URL allprop_url) {
 		properties = new Properties();
 		InputStream f = null;
 		try {
@@ -56,6 +60,23 @@ public class CssPropertyFactory {
 		    try {
 				if (f != null)
 				    f.close();
+		    } catch (Exception e) {
+				e.printStackTrace();
+		    } // ignore
+		}
+
+		//list of all properties
+		allprops = new Properties();
+		InputStream f_all = null;
+		try {
+		    f_all = allprop_url.openStream();
+		    allprops.load(f_all);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+				if (f_all != null)
+				    f_all.close();
 		    } catch (Exception e) {
 				e.printStackTrace();
 		    } // ignore
@@ -209,66 +230,80 @@ public class CssPropertyFactory {
 
 		CssProperty prop = null;
 
+		//System.out.println(allprops.getProperty(property));
+
 		if (classname == null && usermedium != null) {
 		    if (atRule instanceof AtRuleMedia) {
 			// I don't know this property
 			if (!media.equals("all"))
 			    ac.getFrame().addWarning("notforusermedium", property);
-			classname = properties.getProperty(property);
+				classname = properties.getProperty(property);
 		    }
 		    else {
-		    // I don't know this property
-		    throw new InvalidParamException("noexistence", property,
+				//NEW
+				if (allprops.getProperty(property) == null) {
+				   	// I don't know this property
+		    		throw new InvalidParamException("noexistence", property,
 						    media, ac);
+				} else {
+					ac.getFrame().addWarning("otherprofile", property);
+					classname = allprops.getProperty(property);
+				}
 		    }
 		} else
-		if (classname == null ) { // && CssFouffa.usermedium == null) {
-		    if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
-			// I don't know this property
-			throw new InvalidParamException("noexistence-media",
-							property,
-							media, ac);
-		    }
-		    else {
-		    // I don't know this property
-		    throw new InvalidParamException("noexistence", property,
-						    media, ac);
-		    }
-		}
-
-		CssIdent initial = new CssIdent("initial");
-
-		if (expression.getValue().equals(initial) && ac.getCssVersion().equals("css3")) {
-			try {
-			    // create an instance of your property class
-			    Class[] parametersType = { };
-			    Constructor constructor =
-				Class.forName(classname).getConstructor(parametersType);
-			    Object[] parameters = { };
-			    // invoke the constructor
-			    return (CssProperty) constructor.newInstance(parameters);
-			} catch (InvocationTargetException e) {
-			    // catch InvalidParamException
-			    InvocationTargetException iv = e;
-			    Exception ex = (Exception) iv.getTargetException();
-			    throw ex;
+			if (classname == null ) { // && CssFouffa.usermedium == null)
+			    if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
+					// I don't know this property
+					throw new InvalidParamException("noexistence-media",
+								property,
+								media, ac);
+			    } else {
+			    		// I don't know this property
+					//NEW
+					if (allprops.getProperty(property) == null) {
+					   	// I don't know this property
+		    			throw new InvalidParamException("noexistence", property,
+							    media, ac);
+					} else {
+						ac.getFrame().addWarning("otherprofile", property);
+						classname = allprops.getProperty(property);
+					}
+			    }
 			}
-		} else {
 
-			try {
-			    // create an instance of your property class
-			    Class[] parametersType = { ac.getClass(), expression.getClass() };
-			    Constructor constructor =
-				Class.forName(classname).getConstructor(parametersType);
-			    Object[] parameters = { ac, expression };
-			    // invoke the constructor
-			    return (CssProperty) constructor.newInstance(parameters);
-			} catch (InvocationTargetException e) {
-			    // catch InvalidParamException
-			    InvocationTargetException iv = e;
-			    Exception ex = (Exception) iv.getTargetException();
-			    throw ex;
+			CssIdent initial = new CssIdent("initial");
+
+			if (expression.getValue().equals(initial) && ac.getCssVersion().equals("css3")) {
+				try {
+				    // create an instance of your property class
+				    Class[] parametersType = { };
+				    Constructor constructor =
+					Class.forName(classname).getConstructor(parametersType);
+				    Object[] parameters = { };
+				    // invoke the constructor
+				    return (CssProperty) constructor.newInstance(parameters);
+				} catch (InvocationTargetException e) {
+				    // catch InvalidParamException
+				    InvocationTargetException iv = e;
+				    Exception ex = (Exception) iv.getTargetException();
+				    throw ex;
+				}
+			} else {
+
+				try {
+				    // create an instance of your property class
+				    Class[] parametersType = { ac.getClass(), expression.getClass() };
+				    Constructor constructor =
+					Class.forName(classname).getConstructor(parametersType);
+				    Object[] parameters = { ac, expression };
+				    // invoke the constructor
+				    return (CssProperty) constructor.newInstance(parameters);
+				} catch (InvocationTargetException e) {
+				    // catch InvalidParamException
+				    InvocationTargetException iv = e;
+				    Exception ex = (Exception) iv.getTargetException();
+				    throw ex;
+				}
 			}
-		}
-    }
+    	}
 }
