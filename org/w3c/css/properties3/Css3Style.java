@@ -211,6 +211,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssBorderBreak cssBorderBreak;
 	CssBoxShadow cssBoxShadow;
 	CssTextIndentCSS3 cssTextIndentCSS3;
+	CssBlockProgression cssBlockProgression;
 
 	//media features for media queries
 
@@ -1979,6 +1980,15 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 						new CssTextIndentCSS3(), style, selector);
 		}
 		return cssTextIndentCSS3;
+	}
+
+	public CssBlockProgression getBlockProgression() {
+		if (cssBlockProgression == null) {
+			cssBlockProgression =
+				(CssBlockProgression) style.CascadingOrder(
+						new CssBlockProgression(), style, selector);
+		}
+		return cssBlockProgression;
 	}
 
 // media features
