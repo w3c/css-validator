@@ -108,7 +108,7 @@ error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: Die Eigenschaft %s existiert nicht
 error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
-warning.noexistence-media: Property %s doesn't exist for media %s
+warning.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt
@@ -173,7 +173,7 @@ error.notforusermedium : Die Eigenschaft %s existiert nicht f&uuml;r dieses Endg
 error.noatruleyet : Andere @Befehle als @import werden von CSS1 nicht unterst&uuml;tzt.
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
-warning.atsc : Das Attribut %s ist unter Umst&auml;nden nicht im Funktionsumfang von atsc-tv enthalten.
+warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
