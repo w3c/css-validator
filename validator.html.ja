@@ -2,7 +2,7 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
   <head>
-    <title>W3C CSS $B8!>Z%5!<%S%9(B</title>
+    <title>W3C CSS 検証サービス</title>
 
     <meta lang="ja" name="Translator" content="Norio Touyama" />
     
@@ -23,44 +23,44 @@
     <div class="t1">CSS</div>
     <div class="t2">Validator</div>
 
-    <h1>W3C CSS $B8!>Z%5!<%S%9(B</h1>
+    <h1>W3C CSS 検証サービス</h1>
 
     <p>
-      W3C CSS $B8!>Z%5!<%S%9$X$h$&$3$=(B!
+      W3C CSS 検証サービスへようこそ!
     </p>
     
     <div class="main-text">
-      <h2>$B4XO"J8=q(B</h2>
+      <h2>関連文書</h2>
       <ul class="none">	
-	<li><a href="README.html">$B2r@bJ8=q(B</a></li>
-	<li><a href="thanks.html">$B<U<-(B</a></li>
+	<li><a href="README.html">解説文書</a></li>
+	<li><a href="thanks.html">謝辞</a></li>
       </ul>
 
-      <h2><a href="DOWNLOAD.html">validator($B8!>Z%=%U%H(B)$B$N%@%&%s%m!<%I(B</a></h2>
+      <h2><a href="DOWNLOAD.html">validator(検証ソフト)のダウンロード</a></h2>
     </div>
     
     <hr /><br />
     
     <div class="forms">
-      <h2 class="center">W3C CSS $B8!>Z%5!<%S%9(B</h2>
+      <h2 class="center">W3C CSS 検証サービス</h2>
      <p>
-	$B%+%9%1!<%G%#%s%0%9%?%$%k%7!<%H(B(CSS)$B$r(B<a href="validator-uri.html">URL$B$G;XDj(B</a>$B$7$F8!>Z(B
+	カスケーディングスタイルシート(CSS)を<a href="validator-uri.html">URLで指定</a>して検証
       </p>
       <p>
-	$B%+%9%1!<%G%#%s%0%9%?%$%k%7!<%H(B(CSS)$B$r(B<a href="validator-text.html">$B%F%-%9%H%(%j%"$KD>@\F~NO(B</a>$B$7$F8!>Z(B
+	カスケーディングスタイルシート(CSS)を<a href="validator-text.html">テキストエリアに直接入力</a>して検証
       </p>
       <p>
-	$B%+%9%1!<%G%#%s%0%9%?%$%k%7!<%H(B(CSS)$B$r(B<a href="validator-upload.html">$B%=!<%9%U%!%$%k$r%"%C%W%m!<%I(B</a>$B$7$F8!>Z(B
+	カスケーディングスタイルシート(CSS)を<a href="validator-upload.html">ソースファイルをアップロード</a>して検証
       </p>
     </div>
 
     <hr /><br />
     
     <p>
-      CSS$B%9%?%$%k%7!<%H$r0U?^$7$?DL$j$K5!G=$5$;$k$K$O!"(B
-      $B@5$7$$J8=q2r@OLZ$,I,MW$G$9!#$D$^$j!"(B
-      <a href="http://validator.w3.org/">$B@5Ev(B<span lang="en">(valid)</span>
-      $B$J(BHTML</a>
+      CSSスタイルシートを意図した通りに機能させるには、
+      正しい文書解析木が必要です。つまり、
+      <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
+      なHTML</a>
     </p>
     
     
