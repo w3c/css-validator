@@ -179,8 +179,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 
 	Vector atRules = style.newGetRules();
 	for (int idx = 0; idx < atRules.size(); idx++) {
-	    out.print(((CssRuleList)atRules.
-		       elementAt(idx)).toHTML() + "\n");
+	    out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
+	    out.print("\n");
 	}
     }
     
@@ -346,8 +346,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 				ret.append("\n</ul></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div><h3>URI : "
-				       + "<a href=\"");
+			    ret.append("\n<div><h3>URI : ");
+			    ret.append("<a href=\"");
 			    ret.append(oldSourceFile).append("\">");
 			    ret.append(oldSourceFile).append("</a></h3><ul>");
 			    open = true;
@@ -488,8 +488,10 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 	out.println( " -- listing available output format --" );
 	while (e.hasMoreElements()) {
 	    String key = ((String) e.nextElement()).toLowerCase();
-	    out.println( "Format : " + key );
-	    out.println( "   File : " + getDocumentName(null, key) );
+	    out.print( "Format : ");
+	    out.println(key);
+	    out.print( "   File : ");
+	    out.println(getDocumentName(null, key));
 	}
 	out.flush();
     }
