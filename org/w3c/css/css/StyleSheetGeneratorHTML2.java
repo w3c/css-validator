@@ -331,7 +331,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     }
     
     public void produceWarning() {
-        System.out.println("In producewarning");
+
     boolean open = false;
     StringBuffer ret = new StringBuffer(1024);
     String oldSourceFile = "";
