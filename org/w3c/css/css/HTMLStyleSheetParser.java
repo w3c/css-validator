@@ -111,10 +111,10 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    HtmlParser htmlParser;
 		    htmlParser = new HtmlParser(ac, "html4", urlString,
 						connection);
-		    InputStream ucis = connection.getInputStream();
-		    if (ucis.markSupported()) {
-			ucis.mark(16384);
-		    }
+//		    InputStream ucis = connection.getInputStream();
+//		    if (ucis.markSupported()) {
+//			ucis.mark(16384);
+//		    }
 		    try {
 			Util.fromHTMLFile = true;
 			htmlParser.addParserListener(this);
@@ -125,18 +125,18 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 			}
 		    } catch (html.parser.XMLInputException e) {
 			isXML = true;
-			if (ucis.markSupported()) {
-			    try {
-				ucis.reset();
-			    } catch (IOException ioex) {
-				try {
-				    ucis.close();
-				} catch (Exception clex) {};
-				connection = HTTPURL.getConnection(htmlURL,ac);
-			    }
-			} else {
+//			if (ucis.markSupported()) {
+//			    try {
+//				ucis.reset();
+//			    } catch (IOException ioex) {
+//				try {
+//				    ucis.close();
+//				} catch (Exception clex) {};
+//				connection = HTTPURL.getConnection(htmlURL,ac);
+//			    }
+//			} else {
 			    connection = HTTPURL.getConnection(htmlURL, ac);
-			}
+//			}
 		    } finally {
 			Util.fromHTMLFile = false;
 		    }
