@@ -27,6 +27,7 @@ you could use to add this icon to your Web page:</p> <pre class='example'> \n\
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
+(close the img tag with &gt; instead of /&gt; if using HTML <= 4.01)\
 <p> \
 If you like, you can download a copy of this image to keep in your local web \
 directory, and change the XHTML fragment above to reference your local image \
