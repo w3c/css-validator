@@ -179,7 +179,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 
 	Vector atRules = style.newGetRules();
 	for (int idx = 0; idx < atRules.size(); idx++) {
-	    out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
+//	    out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
+	    ((CssRuleList)atRules.elementAt(idx)).toHTML(out);
 	    out.print("\n");
 	}
     }
