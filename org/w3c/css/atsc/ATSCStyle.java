@@ -23,6 +23,7 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
     ATSCNavUp navup;
     ATSCNavDown navdown;
     ATSCNavRight navright;
+    ATSCDynamicRefresh dynamicRefresh;
 
     UnitsPerEmATSC unitsPerEmATSC;
     SrcATSC srcATSC;
@@ -58,7 +59,15 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 	return navindex;
     }
 
-    /** 
+    /**
+     * Get the atsc-nav-index property
+     */
+    public final ATSCDynamicRefresh getDynamicRefresh() {
+		return dynamicRefresh;
+    }
+
+
+    /**
      * Get the atsc-nav-left property
      */
     public final ATSCNavLeft getNavLeft() {
@@ -101,11 +110,11 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
     public final Panose1ATSC getPanose1ATSC() {
 	return panose1ATSC;
     }
-    
+
     public final WidthsATSC getWidthsATSC() {
         return widthsATSC;
     }
-    
+
     public final BboxATSC getBboxATSC() {
 	return bboxATSC;
     }
@@ -116,7 +125,7 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final SlopeATSC getSlopeATSC() {
         return slopeATSC;
-    }  
+    }
 
     public final AscentATSC getAscentATSC() {
 	return ascentATSC;
@@ -129,7 +138,7 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
     public final CapHeightATSC getCapHeightATSC() {
         return capHeightATSC;
     }
-    
+
     public final XHeightATSC getXHeightATSC() {
         return xHeightATSC;
     }
@@ -160,9 +169,9 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBackgroundColorATSC getBackgroundColorATSC() {
 	if (cssBackgroundATSC.color == null) {
-	    cssBackgroundATSC.color = 
+	    cssBackgroundATSC.color =
 		(CssBackgroundColorATSC) style.CascadingOrder(
-					     new CssBackgroundColorATSC(), 
+					     new CssBackgroundColorATSC(),
 					     style, selector);
 	}
 	return cssBackgroundATSC.color;
@@ -170,8 +179,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBackgroundImageATSC getBackgroundImageATSC() {
 	if (cssBackgroundATSC.image == null) {
-	    cssBackgroundATSC.image = 
-		(CssBackgroundImageATSC) style.CascadingOrder(new CssBackgroundImageATSC(), 
+	    cssBackgroundATSC.image =
+		(CssBackgroundImageATSC) style.CascadingOrder(new CssBackgroundImageATSC(),
 							  style, selector);
 	}
 	return cssBackgroundATSC.image;
@@ -179,8 +188,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBackgroundRepeatATSC getBackgroundRepeatATSC() {
 	if (cssBackgroundATSC.repeat == null) {
-	    cssBackgroundATSC.repeat = 
-		(CssBackgroundRepeatATSC) style.CascadingOrder(new CssBackgroundRepeatATSC(), 
+	    cssBackgroundATSC.repeat =
+		(CssBackgroundRepeatATSC) style.CascadingOrder(new CssBackgroundRepeatATSC(),
 							   style, selector);
 	}
 	return cssBackgroundATSC.repeat;
@@ -188,8 +197,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBackgroundAttachmentATSC getBackgroundAttachmentATSC() {
 	if (cssBackgroundATSC.attachment == null) {
-	    cssBackgroundATSC.attachment = 
-		(CssBackgroundAttachmentATSC) style.CascadingOrder(new CssBackgroundAttachmentATSC(), 
+	    cssBackgroundATSC.attachment =
+		(CssBackgroundAttachmentATSC) style.CascadingOrder(new CssBackgroundAttachmentATSC(),
 							       style, selector);
 	}
 	return cssBackgroundATSC.attachment;
@@ -197,8 +206,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBackgroundPositionATSC getBackgroundPositionATSC() {
 	if (cssBackgroundATSC.position == null) {
-	    cssBackgroundATSC.position = 
-		(CssBackgroundPositionATSC) style.CascadingOrder(new CssBackgroundPositionATSC(), 
+	    cssBackgroundATSC.position =
+		(CssBackgroundPositionATSC) style.CascadingOrder(new CssBackgroundPositionATSC(),
 							     style, selector);
 	}
 	return cssBackgroundATSC.position;
@@ -225,17 +234,17 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderTopWidthATSC getBorderTopWidthATSC() {
 	if (cssBorderATSC.getTop().getWidth() == null) {
-	    cssBorderATSC.getTop().width = 
-		(CssBorderTopWidthATSC) style.CascadingOrder(new CssBorderTopWidthATSC(), 
+	    cssBorderATSC.getTop().width =
+		(CssBorderTopWidthATSC) style.CascadingOrder(new CssBorderTopWidthATSC(),
 							 style, selector);
 	}
 	return cssBorderATSC.getTop().width;
     }
-    
+
     public final CssBorderTopStyleATSC getBorderTopStyleATSC() {
 	if (cssBorderATSC.getTop().getStyle() == null) {
-	    cssBorderATSC.getTop().style = 
-		(CssBorderTopStyleATSC) style.CascadingOrder(new CssBorderTopStyleATSC(), 
+	    cssBorderATSC.getTop().style =
+		(CssBorderTopStyleATSC) style.CascadingOrder(new CssBorderTopStyleATSC(),
 							 style, selector);
 	}
 	return cssBorderATSC.getTop().style;
@@ -243,8 +252,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderTopColorATSC getBorderTopColorATSC() {
 	if (cssBorderATSC.getTop().getColor() == null) {
-	    cssBorderATSC.getTop().color = 
-		(CssBorderTopColorATSC) style.CascadingOrder(new CssBorderTopColorATSC(), 
+	    cssBorderATSC.getTop().color =
+		(CssBorderTopColorATSC) style.CascadingOrder(new CssBorderTopColorATSC(),
 							 style, selector);
 	}
 	return cssBorderATSC.getTop().color;
@@ -252,8 +261,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderRightWidthATSC getBorderRightWidthATSC() {
 	if (cssBorderATSC.getRight().getWidth() == null) {
-	    cssBorderATSC.getRight().width = 
-		(CssBorderRightWidthATSC) style.CascadingOrder(new CssBorderRightWidthATSC(), 
+	    cssBorderATSC.getRight().width =
+		(CssBorderRightWidthATSC) style.CascadingOrder(new CssBorderRightWidthATSC(),
 							   style, selector);
 	}
 	return cssBorderATSC.getRight().width;
@@ -261,8 +270,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderRightStyleATSC getBorderRightStyleATSC() {
 	if (cssBorderATSC.getRight().getStyle() == null) {
-	    cssBorderATSC.getRight().style = 
-		(CssBorderRightStyleATSC) style.CascadingOrder(new CssBorderRightStyleATSC(), 
+	    cssBorderATSC.getRight().style =
+		(CssBorderRightStyleATSC) style.CascadingOrder(new CssBorderRightStyleATSC(),
 							   style, selector);
 	}
 	return cssBorderATSC.getRight().style;
@@ -270,8 +279,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderRightColorATSC getBorderRightColorATSC() {
 	if (cssBorderATSC.getRight().getColor() == null) {
-	    cssBorderATSC.getRight().color = 
-		(CssBorderRightColorATSC) style.CascadingOrder(new CssBorderRightColorATSC(), 
+	    cssBorderATSC.getRight().color =
+		(CssBorderRightColorATSC) style.CascadingOrder(new CssBorderRightColorATSC(),
 							   style, selector);
 	}
 	return cssBorderATSC.getRight().color;
@@ -279,8 +288,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderBottomWidthATSC getBorderBottomWidthATSC() {
 	if (cssBorderATSC.getBottom().getWidth() == null) {
-	    cssBorderATSC.getBottom().width = 
-		(CssBorderBottomWidthATSC) style.CascadingOrder(new CssBorderBottomWidthATSC(), 
+	    cssBorderATSC.getBottom().width =
+		(CssBorderBottomWidthATSC) style.CascadingOrder(new CssBorderBottomWidthATSC(),
 							    style, selector);
 	}
 	return cssBorderATSC.getBottom().width;
@@ -288,8 +297,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderBottomStyleATSC getBorderBottomStyleATSC() {
 	if (cssBorderATSC.getBottom().getStyle() == null) {
-	    cssBorderATSC.getBottom().style = 
-		(CssBorderBottomStyleATSC) style.CascadingOrder(new CssBorderBottomStyleATSC(), 
+	    cssBorderATSC.getBottom().style =
+		(CssBorderBottomStyleATSC) style.CascadingOrder(new CssBorderBottomStyleATSC(),
 							    style, selector);
 	}
 	return cssBorderATSC.getBottom().style;
@@ -298,7 +307,7 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
     public final CssBorderBottomColorATSC getBorderBottomColorATSC() {
 	if (cssBorderATSC.getBottom().getColor() == null) {
 	    cssBorderATSC.getBottom().color =
-		(CssBorderBottomColorATSC) style.CascadingOrder(new CssBorderBottomColorATSC(), 
+		(CssBorderBottomColorATSC) style.CascadingOrder(new CssBorderBottomColorATSC(),
 							    style, selector);
 	}
 	return cssBorderATSC.getBottom().color;
@@ -306,8 +315,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderLeftWidthATSC getBorderLeftWidthATSC() {
 	if (cssBorderATSC.getLeft().getWidth() == null) {
-	    cssBorderATSC.getLeft().width = 
-		(CssBorderLeftWidthATSC) style.CascadingOrder(new CssBorderLeftWidthATSC(), 
+	    cssBorderATSC.getLeft().width =
+		(CssBorderLeftWidthATSC) style.CascadingOrder(new CssBorderLeftWidthATSC(),
 							  style, selector);
 	}
 	return cssBorderATSC.getLeft().width;
@@ -315,8 +324,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderLeftStyleATSC getBorderLeftStyleATSC() {
 	if (cssBorderATSC.getLeft().getStyle() == null) {
-	    cssBorderATSC.getLeft().style = 
-		(CssBorderLeftStyleATSC) style.CascadingOrder(new CssBorderLeftStyleATSC(), 
+	    cssBorderATSC.getLeft().style =
+		(CssBorderLeftStyleATSC) style.CascadingOrder(new CssBorderLeftStyleATSC(),
 							  style, selector);
 	}
 	return cssBorderATSC.getLeft().style;
@@ -324,8 +333,8 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 
     public final CssBorderLeftColorATSC getBorderLeftColorATSC() {
 	if (cssBorderATSC.getLeft().getColor() == null) {
-	    cssBorderATSC.getLeft().color = 
-		(CssBorderLeftColorATSC) style.CascadingOrder(new CssBorderLeftColorATSC(), 
+	    cssBorderATSC.getLeft().color =
+		(CssBorderLeftColorATSC) style.CascadingOrder(new CssBorderLeftColorATSC(),
 							  style, selector);
 	}
 	return cssBorderATSC.getLeft().color;
@@ -421,7 +430,7 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
      * Print this style.
      *
      * @param printer The printer interface.
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
 	if (navindex != null) {
@@ -493,7 +502,10 @@ public class ATSCStyle extends org.w3c.css.font.Css2Style {
 	if (ATSCcolor != null) {
 	    ATSCcolor.print(printer);
 	}
-	cssBackgroundATSC.print(printer);    
+	if (dynamicRefresh != null) {
+		dynamicRefresh.print(printer);
+	}
+	cssBackgroundATSC.print(printer);
 	cssBorderATSC.print(printer);
     }
 
