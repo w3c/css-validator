@@ -77,6 +77,6 @@ java org.w3c.css.css.StyleSheetCom http://style.verso.com/stylebot.html?family=1
 <p><a href="./DOWNLOAD.html.ja">戻る</a></p>
     <hr />
     <img src="images/mwcss.gif" alt="made with CSS" width='87' height='30' />
-    <a href="mailto:Email.html">validator-css</a>
+    <a href="Email.html">validator-css</a>
   </body>
 </html>
