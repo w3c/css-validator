@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/08/20 08:42:09  sijtsche
+ * new values added
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -87,6 +90,7 @@ public class CssLineHeight extends CssProperty {
     private static CssIdent normal = new CssIdent("normal");
 	private static CssIdent number = new CssIdent("number");
 	private static CssIdent none = new CssIdent("none");
+	private static CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssLineHeight
@@ -133,6 +137,10 @@ public class CssLineHeight extends CssProperty {
 		return;
 	} else if (none.equals(val)) {
 		value = none;
+		expression.next();
+		return;
+	} else if (initial.equals(val)) {
+		value = initial;
 		expression.next();
 		return;
 	}

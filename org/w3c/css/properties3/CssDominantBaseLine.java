@@ -44,7 +44,7 @@ public class CssDominantBaseLine extends CssProperty {
 	"auto", "use-script", "no-change", "reset-size",
 	"ideographic", "alphabetic", "hanging", "mathematical",
 	"central", "middle", "text-after-edge", "text-before-edge",
-	"inherit"
+	"inherit", "initial"
     };
 
     /**

@@ -28,7 +28,7 @@ import org.w3c.css.values.CssLength;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  The 'baseline-shift' property allows repositioning of the dominant-baseline
- *  relative to the dominant-baseline. The shifted object might be a sub- or 
+ *  relative to the dominant-baseline. The shifted object might be a sub- or
  *  superscript. Within the shifted object, the whole baseline table is offset;
  *  not just a single baseline. For sub- and superscript, the amount of offset
  *  is determined from the nominal font of the parent.
@@ -37,10 +37,11 @@ import org.w3c.css.values.CssLength;
 public class CssBaselineShift extends CssProperty {
 
     CssValue baselineshift;
-    
-    static CssIdent baseline = new CssIdent("baseline");
-    static CssIdent sub = new CssIdent("sub");
-    static CssIdent sup = new CssIdent("super");
+
+    private static CssIdent baseline = new CssIdent("baseline");
+    private static CssIdent sub = new CssIdent("sub");
+    private static CssIdent sup = new CssIdent("super");
+    private static CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssBaselineShift
@@ -75,6 +76,10 @@ public class CssBaselineShift extends CssProperty {
 	else if (val.equals(sup)) {
 	    baselineshift = sup;
 	    expression.next();
+	}
+	else if (val.equals(initial)) {
+		baselineshift = initial;
+		expression.next();
 	}
 	else if (val instanceof CssPercentage) {
 	    baselineshift = val;
@@ -125,7 +130,7 @@ public class CssBaselineShift extends CssProperty {
 	return (property instanceof CssBaselineShift &&
 		baselineshift.equals(((CssBaselineShift) property).baselineshift));
     }
-    
+
     /**
      * Returns the name of this property
      */
