@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/01/08 10:24:47  sijtsche
+ * changes for CSS3 border
+ *
  * Revision 1.2  2002/04/08 21:17:42  plehegar
  * New
  *
@@ -50,10 +53,10 @@ public class CssBorder extends CssProperty implements CssOperator {
     CssValue uri = null;
     CssBorderImageTransform imagetransform = null;
 
-    CssBorderTop top;
-    CssBorderRight right;
-    CssBorderBottom bottom;
-    CssBorderLeft left;
+    CssBorderTop top = new CssBorderTop();
+    CssBorderRight right = new CssBorderRight();
+    CssBorderBottom bottom = new CssBorderBottom();
+    CssBorderLeft left = new CssBorderLeft();
 
     /**
      * Create a new CssBorder

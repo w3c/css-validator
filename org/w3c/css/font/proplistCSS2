@@ -357,6 +357,9 @@ handheld.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 handheld.content:               org.w3c.css.properties.CssContentCSS2
 handheld.counter-reset:         org.w3c.css.properties.CssCounterReset
 handheld.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+handheld.page-break-before:     org.w3c.css.paged.PageBreakBefore
+handheld.page-break-after:      org.w3c.css.paged.PageBreakAfter
+handheld.page-break-inside:     org.w3c.css.paged.PageBreakInside
 
 
 # PRINT
@@ -453,6 +456,9 @@ print.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 print.content:               org.w3c.css.properties.CssContentCSS2
 print.counter-reset:         org.w3c.css.properties.CssCounterReset
 print.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+print.page-break-before:     org.w3c.css.paged.PageBreakBefore
+print.page-break-after:      org.w3c.css.paged.PageBreakAfter
+print.page-break-inside:     org.w3c.css.paged.PageBreakInside
 
 # PROJECTION
 
@@ -548,6 +554,9 @@ projection.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 projection.content:               org.w3c.css.properties.CssContentCSS2
 projection.counter-reset:         org.w3c.css.properties.CssCounterReset
 projection.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+projection.page-break-before:     org.w3c.css.paged.PageBreakBefore
+projection.page-break-after:      org.w3c.css.paged.PageBreakAfter
+projection.page-break-inside:     org.w3c.css.paged.PageBreakInside
 
 # SCREEN
 
@@ -648,6 +657,9 @@ screen.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 screen.content:               org.w3c.css.properties.CssContentCSS2
 screen.counter-reset:         org.w3c.css.properties.CssCounterReset
 screen.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+screen.page-break-before:     org.w3c.css.paged.PageBreakBefore
+screen.page-break-after:      org.w3c.css.paged.PageBreakAfter
+screen.page-break-inside:     org.w3c.css.paged.PageBreakInside
 
 # TTY
 
@@ -748,6 +760,9 @@ tty.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 tty.content:               org.w3c.css.properties.CssContentCSS2
 tty.counter-reset:         org.w3c.css.properties.CssCounterReset
 tty.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+tty.page-break-before:     org.w3c.css.paged.PageBreakBefore
+tty.page-break-after:      org.w3c.css.paged.PageBreakAfter
+tty.page-break-inside:     org.w3c.css.paged.PageBreakInside
 
 
 # TV
@@ -849,3 +864,6 @@ tv.marker-offset:         org.w3c.css.properties.CssMarkerOffset
 tv.content:               org.w3c.css.properties.CssContentCSS2
 tv.counter-reset:         org.w3c.css.properties.CssCounterReset
 tv.counter-increment:     org.w3c.css.properties.CssCounterIncrement
+tv.page-break-before:     org.w3c.css.paged.PageBreakBefore
+tv.page-break-after:      org.w3c.css.paged.PageBreakAfter
+tv.page-break-inside:     org.w3c.css.paged.PageBreakInside
