@@ -39,7 +39,9 @@
       access the W3C CVS public server and get 2002/css-validator.
     </p>
     <hr />
-    <img src="images/mwcss.gif" alt="made with CSS" />
+    <a class="right" href="http://jigsaw.w3.org/css-validator">
+      <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" 
+	alt="Valid CSS!" /></a>
     <a href="Email.html">validator-css</a><br />
     $Date$
   </body>
