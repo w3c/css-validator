@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build" name="CSS validator">
+
+	<target name="build">
+	
+		<mkdir dir="./classes/css-validator/"/>
+	
+		<javac 
+			destdir="./classes" 
+			srcdir="./org/w3c/css:html"
+			debug="yes">
+		</javac>
+	
+	</target>
+
+	<target name="javadoc">
+	
+		<mkdir dir="./javadoc"/>
+	
+		<javadoc 
+			packagenames="org.w3c.*"
+			sourcepath="./"
+			destdir="./javadoc"
+			author="true"
+			version="true"
+			windowtitle="CSS validator Javadoc"/>
+    
+	</target>	
+
+</project>
