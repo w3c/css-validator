@@ -20,32 +20,32 @@ import org.w3c.css.util.ApplContext;
 /**
  */
 public class CssUnicodeBidi extends CssProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent normal = new CssIdent("normal");
-    
+
     private static CssIdent embed = new CssIdent("embed");
-    
+
     private static CssIdent bidi_override = new CssIdent("bidi-override");
-    
+
     /**
      * Create a new CssUnicodeBidi
      */
     public CssUnicodeBidi() {
 	value = normal;
-    }  
-    
+    }
+
     /**
      * Create a new CssUnicodeBidi
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
-    public CssUnicodeBidi(ApplContext ac, CssExpression expression) 
+     */
+    public CssUnicodeBidi(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
 	if (val.equals(inherit)) {
 	    value = inherit;
@@ -59,37 +59,27 @@ public class CssUnicodeBidi extends CssProperty {
 	} else if (val.equals(bidi_override)) {
 	    value = bidi_override;
 	    expression.next();
-	} else if (val instanceof CssNumber) {
-	    if (((CssNumber) val).isInteger()) {
-		value = val;
-		expression.next();
-		return;
-	    } else {
-		throw new InvalidParamException("integer", 
-						val.toString(), 
-						getPropertyName(), ac);
-	    }
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
-	
+
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "unicode-bidi";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -97,14 +87,14 @@ public class CssUnicodeBidi extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -116,7 +106,7 @@ public class CssUnicodeBidi extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssUnicodeBidi = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -130,17 +120,17 @@ public class CssUnicodeBidi extends CssProperty {
 	    return ((Css1Style) style).cssUnicodeBidi;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssUnicodeBidi && 
+	return (property instanceof CssUnicodeBidi &&
 		value.equals(((CssUnicodeBidi) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
@@ -148,5 +138,5 @@ public class CssUnicodeBidi extends CssProperty {
     public boolean isDefault() {
 	return value == normal;
     }
-    
+
 }
