@@ -18,7 +18,7 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM> none || punctuation || punct-and-kana || inherit<BR>
+ *  <EM>Value:</EM> none || punctuation || punctuation-and-kana || inherit<BR>
  *  <EM>Initial:</EM>punctuation<BR>
  *  <EM>Applies to:</EM>block-level elements<BR>
  *  <EM>Inherited:</EM>yes<BR>
@@ -26,20 +26,20 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  This sets the individual font blank space compression permissions for
- *  the text justification algorithm, when 'text-justify' is anything other 
- *  than 'inter-word'. This special type of space compression occurs on the 
- *  font level, i.e. the blank space within the character area itself may be 
- *  reduced without affecting the appearance of the glyph. This applies to 
- *  wide-cell glyphs only. 
+ *  the text justification algorithm, when 'text-justify' is anything other
+ *  than 'inter-word'. This special type of space compression occurs on the
+ *  font level, i.e. the blank space within the character area itself may be
+ *  reduced without affecting the appearance of the glyph. This applies to
+ *  wide-cell glyphs only.
  */
 
 public class CssTextJustifyTrim extends CssProperty {
 
     CssValue trim;
-    
+
     static CssIdent none = new CssIdent("none");
     static CssIdent punctuation = new CssIdent("punctuation");
-    static CssIdent punctkana = new CssIdent("punct-and-kana");
+    static CssIdent punctkana = new CssIdent("punctuation-and-kana");
 
     /**
      * Create a new CssTextJustifyTrim
@@ -55,7 +55,7 @@ public class CssTextJustifyTrim extends CssProperty {
      * @exception InvalidParamException Incorrect value
      */
     public CssTextJustifyTrim(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -116,7 +116,7 @@ public class CssTextJustifyTrim extends CssProperty {
 	return (property instanceof CssTextJustifyTrim &&
 		trim.equals(((CssTextJustifyTrim) property).trim));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -155,4 +155,4 @@ public class CssTextJustifyTrim extends CssProperty {
 
 }
 
-	
+
