@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/08/09 11:41:57  sijtsche
+ * new value for CSS3 white-space property
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -70,7 +73,7 @@ public class CssWhiteSpaceCSS3 extends CssProperty {
     int value;
 
     private static String[] WHITESPACE = {
-	"normal", "pre", "nowrap", "pre-wrap", "inherit" };
+	"normal", "pre", "nowrap", "pre-wrap", "pre-lines", "inherit" };
     private static int[] hash_values;
 
     /**

@@ -29,6 +29,8 @@ import org.w3c.css.properties.CssProperty;
 	private static CssIdent preserve = new CssIdent("preserve");
 	private static CssIdent treatasspace = new CssIdent("treat-as-space");
 	private static CssIdent treataszerowidthspace = new CssIdent("treat-as-zero-width-space");
+	private static CssIdent ignoreifafterlinefeed = new CssIdent("ignore-if-after-linefeed");
+
 
 	/**
 	 * Create a new CssLinefeedTreatment
@@ -63,6 +65,10 @@ import org.w3c.css.properties.CssProperty;
 	    }
 	    else if (val.equals(treataszerowidthspace)) {
 			linefeedtreat = treataszerowidthspace;
+			expression.next();
+	    }
+	    else if (val.equals(ignoreifafterlinefeed)) {
+			linefeedtreat = ignoreifafterlinefeed;
 			expression.next();
 	    }
 	    else if (val.equals(inherit)) {

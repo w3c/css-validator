@@ -25,7 +25,7 @@ import org.w3c.css.properties.CssProperty;
 	CssValue wrapoption;
 
 	private static CssIdent wrap = new CssIdent("wrap");
-	private static CssIdent nowrap = new CssIdent("no-wrap");
+	private static CssIdent softwrap = new CssIdent("soft-wrap");
 	private static CssIdent hardwrap = new CssIdent("hard-wrap");
 	private static CssIdent emergency = new CssIdent("emergency");
 
@@ -48,8 +48,8 @@ import org.w3c.css.properties.CssProperty;
 			wrapoption = wrap;
 			expression.next();
 	    }
-	    else if (val.equals(nowrap)) {
-			wrapoption = nowrap;
+	    else if (val.equals(softwrap)) {
+			wrapoption = softwrap;
 			expression.next();
 	    }
 	    else if (val.equals(hardwrap)) {
