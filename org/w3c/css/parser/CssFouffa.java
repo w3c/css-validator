@@ -333,40 +333,42 @@ public final class CssFouffa extends CssParser {
     public void handleImport(URL url, String file, AtRuleMedia media) {
 	CssError cssError = null;
 
-	String surl = url.toString();
-	if (visited == null) {
-	    visited = new Vector(2);
-	} else {
-	    // check that we didn't already got this URL, or that the
-	    // number of imports is not exploding
-	    if (visited.contains(surl)) {
-		CssError cerr = new CssError(new Exception("Import loop"
-							   +" detected in "
-							   +surl));
-		ac.getFrame().addError(cerr);
-		return;
-	    } else if (visited.size() > 12) {
-		CssError cerr = new CssError(new Exception("Maximum number"
-							   +" of imports "
-							   +"reached"));
-		ac.getFrame().addError(cerr);
-		return;
-	    }
-	}
-	visited.add(surl);
-
 	try {
+	    URL importedURL = HTTPURL.getURL(url, file);
+	    String surl = importedURL.toString();
+	    
+	    if (visited == null) {
+		visited = new Vector(2);
+	    } else {
+		// check that we didn't already got this URL, or that the
+		// number of imports is not exploding
+		if (visited.contains(surl)) {
+		    CssError cerr = new CssError(new Exception("Import loop"
+							       +" detected in "
+							       +surl));
+		    ac.getFrame().addError(cerr);
+		    return;
+		} else if (visited.size() > 12) {
+		    CssError cerr = new CssError(new Exception("Maximum number"
+							       +" of imports "
+							       +"reached"));
+		    ac.getFrame().addError(cerr);
+		    return;
+		}
+	    }
+	    visited.add(surl);
+	    
 	    if (Util.importSecurity) {
 		throw new FileNotFoundException("[SECURITY] You can't "+
 						"import URL sorry.");
 	    }
 
-	    URL importedURL = HTTPURL.getURL(url, file);
 	    URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
 
 	    if (importURL instanceof HttpURLConnection) {
 		HttpURLConnection httpURL = (HttpURLConnection) importURL;
-		if (httpURL.getContentType().toLowerCase().indexOf("text/html") != -1) {
+		String mtype = httpURL.getContentType();
+		if (mtype.toLowerCase().indexOf("text/html") != -1) {
 		    throw new FileNotFoundException(importURL.getURL() +
 						    ": You can't import"+
 						    " an HTML document");
