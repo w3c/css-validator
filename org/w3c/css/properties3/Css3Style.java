@@ -137,6 +137,8 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssLineStackingShift cssLineStackingShift;
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
+	CssAppearance cssAppearance;
+	CssIcon cssIcon;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1221,6 +1223,23 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssTextHeight;
 	}
 
+	public CssAppearance getAppearance() {
+		if (cssAppearance == null) {
+			cssAppearance =
+				(CssAppearance) style.CascadingOrder(
+						new CssAppearance(), style, selector);
+		}
+		return cssAppearance;
+	}
+
+	public CssIcon getIcon() {
+		if (cssIcon == null) {
+			cssIcon =
+				(CssIcon) style.CascadingOrder(
+						new CssIcon(), style, selector);
+		}
+		return cssIcon;
+	}
 
 	/**
      * Print this style
@@ -1583,6 +1602,12 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssTextHeight != null) {
 		cssTextHeight.print(printer);
+	}
+	if (cssAppearance != null) {
+		cssAppearance.print(printer);
+	}
+	if (cssIcon != null) {
+		cssIcon.print(printer);
 	}
 
     }
