@@ -635,47 +635,50 @@ public final class CssFouffa extends CssParser {
 		}
 	    }
 	    else if (version.equals("css1")) {
-		// load the CssStyle
-		String classStyle = config.getProperty("style1");
-		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+			// load the CssStyle
+			String classStyle = config.getProperty("style1");
+			Class style = Class.forName(classStyle);
+			CssSelectors.setStyle(style);
 
-		// load properties
-		URL url = style.getResource(config.getProperty("properties1"));
-		properties = new CssPropertyFactory(url);
-
-		// aural mode
-		String mode0 = config.getProperty("extended-parser");
-		if (mode0 != null) {
-		    mode = mode0.equals("true");
-		}
-	    }
-	    else if (version.equals("css2")) {
-		// load the CssStyle
-		String classStyle = config.getProperty("style2");
-		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
-
-		// load properties
-		if (profile == null || "".equals(profile)) {
-		    URL url = style.getResource(config.getProperty("properties2"));
-		    properties = new CssPropertyFactory(url);
-		} else if (profile.equals("mobile")) {
-		    URL url = style.getResource(config.getProperty("mobile"));
-		    properties = new CssPropertyFactory(url);
-		} else if (profile.equals("atsc-tv")) {
-		    URL url = style.getResource(config.getProperty("atsc-tv"));
-		    properties = new CssPropertyFactory(url);
-		} else if (profile.equals("tv")) {
-			URL url = style.getResource(config.getProperty("tv"));
+			// load properties
+			URL url = style.getResource(config.getProperty("properties1"));
 			properties = new CssPropertyFactory(url);
-		}
 
-		// aural mode
-		String mode0 = config.getProperty("extended-parser");
-		if (mode0 != null) {
-		    mode = mode0.equals("true");
+			// aural mode
+			String mode0 = config.getProperty("extended-parser");
+			if (mode0 != null) {
+			    mode = mode0.equals("true");
+			}
+	    } else if (profile.equals("atsc-tv")) {
+			String classStyle = config.getProperty("styleATSC");
+			Class style = Class.forName(classStyle);
+			CssSelectors.setStyle(style);
+			URL url = style.getResource(config.getProperty("atsc-tv"));
+		    properties = new CssPropertyFactory(url);
 		}
+	    else if (version.equals("css2")) {
+			// load the CssStyle
+			String classStyle = config.getProperty("style2");
+			Class style = Class.forName(classStyle);
+			CssSelectors.setStyle(style);
+
+			// load properties
+			if (profile == null || "".equals(profile)) {
+			    URL url = style.getResource(config.getProperty("properties2"));
+			    properties = new CssPropertyFactory(url);
+			} else if (profile.equals("mobile")) {
+			    URL url = style.getResource(config.getProperty("mobile"));
+			    properties = new CssPropertyFactory(url);
+			} else if (profile.equals("tv")) {
+				URL url = style.getResource(config.getProperty("tv"));
+				properties = new CssPropertyFactory(url);
+			}
+
+			// aural mode
+			String mode0 = config.getProperty("extended-parser");
+			if (mode0 != null) {
+			    mode = mode0.equals("true");
+			}
 	    } else if (version.equals("css3")) {
 			// load the CssStyle
 			String classStyle = config.getProperty("style3");
