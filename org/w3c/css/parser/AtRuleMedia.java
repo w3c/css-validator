@@ -74,8 +74,6 @@ public class AtRuleMedia extends AtRule {
 				expression += " : " + prop.toString();
 			}
 			mediafeatures.add(expression);
-		} else {
-			System.err.println("addMediaFeature : prop is null");
 		}
 	}
 

@@ -8,6 +8,9 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
+ * Revision 1.7  2003/01/03 12:08:24  sijtsche
+ * functionality added for media queries
+ *
  * Revision 1.6  2002/08/19 07:27:48  sijtsche
  * TV profile added
  *
@@ -69,6 +72,7 @@ import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
+import org.w3c.css.values.CssResolution;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.Frame;
 import org.w3c.css.util.ApplContext;
@@ -472,6 +476,7 @@ TOKEN :
             | <NUMBER> "s" >
  | < FREQ   : <NUMBER> "Hz" 
             | <NUMBER> "kHz" >
+ | < RESOLUTION : <NUMBER> ("dpi" | "dpcm") >
  | < DIMEN  : <NUMBER> <IDENT> >
 }
 
@@ -1285,6 +1290,7 @@ Token deprecated_class() :
     | n=<ANGLE> { return n; }
     | n=<TIME> { return n; }
     | n=<FREQ> { return n; }
+    | n=<RESOLUTION> { return n; }
     | n=<DIMEN> { return n; }
 }
 
@@ -1452,7 +1458,6 @@ try {
 	    return p;
 	    	    
 	} catch (InvalidParamException e) {
-		e.printStackTrace();
 		incompatible_error = false;
 		if (null != values) {
 			values.starts();
@@ -1563,6 +1568,7 @@ void term(CssExpression exp) :
     | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
+    | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
     | n=<DIMEN> {  
 	addError(new ParseException("Unknown dimension"), n.image); }    
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
