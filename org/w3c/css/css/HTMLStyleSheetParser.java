@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/05/19 01:08:31  plehegar
+ * Added application/xhtml+xml
+ *
  * Revision 1.2  2002/04/08 21:16:38  plehegar
  * New
  *
@@ -127,7 +130,8 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    parser.parseURL(ac, htmlURL, null, null, media, 
 				    StyleSheetOrigin.AUTHOR);
 		    style = parser.getStyleSheet();
-		} else if (contentType.indexOf("text/xml") == -1) {
+		} else if ((contentType.indexOf("text/xml") == -1)
+			   && (contentType.indexOf("application/xhtml+xml") == -1)) {
 		    throw new IOException("Unknown mime type : " + contentType);
 		}
 		
@@ -150,6 +154,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
     
     /**
      * Notifies root creation.
+
      *
      * Sent when the parser builds the root of the HTML tree.
      *
