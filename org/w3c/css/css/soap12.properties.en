@@ -38,10 +38,10 @@ document: \
 \ \ \ \ <m:validity><!-- #isvalid --><m:validity>\n\
 \ \ \ \ <m:result>\n\
 \ \ \ \ \ \ <m:errors>\n\
-\ \ \ \ \ \ \ \ <m:errornumber><!-- #errors-count --></m:errornumber>\n\
+\ \ \ \ \ \ \ \ <m:errorcount><!-- #errors-count --></m:errorcount>\n\
 \ \ \ \ \ \ </m:errors>\n\
 \ \ \ \ \ \ <m:warnings>\n\
-\ \ \ \ \ \ \ \ <m:warningnumber><!-- #warnings-count --></m:errorcount>\n\
+\ \ \ \ \ \ \ \ <m:warningcount><!-- #warnings-count --></m:warningcount>\n\
 \ \ \ \ \ \ </m:warnings>\n\
 \ \ \ \ </m:result>\n\
 \ \ </env:Body>\n\
