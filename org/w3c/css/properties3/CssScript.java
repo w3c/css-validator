@@ -104,7 +104,7 @@ import org.w3c.css.properties.CssProperty;
 	 * Returns the name of this property
 	 */
 	public String getPropertyName() {
-	    return "script";
+	    return "text-script";
 	}
 
 	/**
