@@ -38,7 +38,14 @@
 	CSS</a> est disponible en t&eacute;l&eacute;chargement via CVS.
       Suivez les <a href='http://dev.w3.org/cvsweb/'>instructions</a>
       pour acc&eacute;der au serveur publique CVS du W3C et
-      t&eacute;l&eacute;chargez la branche 2002/css-validator.
+      t&eacute;l&eacute;chargez la branche 2002/css-validator. La
+version CVS du validateur CSS est plus recente que celle utilis&eacute;e
+par la version en ligne. Vous pouvez donc obtenir des r&eacute;sultats diff&eacute;rents.
+    </p>
+    <p>
+      Sijtsche a envoy&eacute; des <a
+      href='http://lists.w3.org/Archives/Public/www-validator-css/2003Jan/0037.html'>insrtuctions</a>
+      pour installer le validateur CSS sur un ordinateur.
     </p>
     <hr />
     <a class="right" href="http://jigsaw.w3.org/css-validator">

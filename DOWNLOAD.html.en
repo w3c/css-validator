@@ -36,7 +36,14 @@
     <p>
       The <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS validator</a> is available for download using CVS.
       Follow the <a href='http://dev.w3.org/cvsweb/'>instructions</a> to
-      access the W3C CVS public server and get 2002/css-validator.
+      access the W3C CVS public server and get 2002/css-validator. Note
+      that the online version of the CSS Validator is older than the CVS
+      version so we may not have the same results...
+    </p>
+    <p>
+      Sijtsche sent <a
+      href='http://lists.w3.org/Archives/Public/www-validator-css/2003Jan/0037.html'>insrtuctions</a>
+      on to install the CSS Validator on your computer.
     </p>
     <hr />
     <a class="right" href="http://jigsaw.w3.org/css-validator">
