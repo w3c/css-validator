@@ -224,6 +224,10 @@ public final class CssValidator extends HttpServlet {
 	    ac.setCredential(credential);
 	}
 
+	if (usermedium == null || "".equals(usermedium)) {
+		usermedium = "all";
+	}
+
 	InputStream in = req.getInputStream();
 
 	ac.setMedium(usermedium);
@@ -259,10 +263,10 @@ public final class CssValidator extends HttpServlet {
 	    System.err.println( "[DEBUG]  profile is : " + ac.getCssVersion()
 				+ " medium is " + usermedium);
 	}
-	
+
 	// verify the request
 	if ((uri == null) && (text == null)) {
-	    // res.sendError(res.SC_BAD_REQUEST, 
+	    // res.sendError(res.SC_BAD_REQUEST,
             //                "You have send an invalid request.");
 	    handleError(res, "No file",
 	     new IOException(ac.getMsg().getServletString("invalid-request")));
@@ -324,7 +328,7 @@ public final class CssValidator extends HttpServlet {
 	    parser = new StyleSheetParser();
 
 	    try {
-		parser.parseStyleElement(ac, 
+		parser.parseStyleElement(ac,
 				     new ByteArrayInputStream(text.getBytes()),
 				     null, usermedium,
 				     new URL("file://localhost/TextArea"), 0);
@@ -386,7 +390,7 @@ public final class CssValidator extends HttpServlet {
 	String warning = null;
 	String error = null;
 	String profile = null;
-	String usermedium = null;
+	String usermedium = "all";
 
 	ServletInputStream in = req.getInputStream();
 	byte[] buf = new byte[2048];
@@ -395,7 +399,7 @@ public final class CssValidator extends HttpServlet {
 	int len;
 
 	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true") || 
+	    Util.onDebug = req.getParameter("debug").equals("true") ||
 		Util.onDebug;
 	    if (Util.onDebug) {
 		System.err.println("SWITCH DEBUG MODE REQUEST");
@@ -438,27 +442,32 @@ public final class CssValidator extends HttpServlet {
 	    System.arraycopy(general, 0, buf, 0, count);
 	    NVPair[] tmp = Codecs.mpFormDataDecode(buf, req.getContentType());
 	    for (int i = 0; i < tmp.length; i++) {
-		if (tmp[i].getName().equals("file")) {
-		    file = (FakeFile) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("output")) {
-		    output = (String) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("warning")) {
-		    warning = (String) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("error")) {
-		    warning = (String) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("input")) {
-		    XMLinput = ((String) tmp[i].getValue()).equals("XML");
-		} else if (tmp[i].getName().equals("profile")) {
-		    profile = (String) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("usermedium")) {
-		    usermedium = (String) tmp[i].getValue();
-		    ac.setMedium(usermedium);
-		}
+			if (tmp[i].getName().equals("file")) {
+				file = (FakeFile) tmp[i].getValue();
+			} else if (tmp[i].getName().equals("output")) {
+				output = (String) tmp[i].getValue();
+			} else if (tmp[i].getName().equals("warning")) {
+				warning = (String) tmp[i].getValue();
+			} else if (tmp[i].getName().equals("error")) {
+				warning = (String) tmp[i].getValue();
+			} else if (tmp[i].getName().equals("input")) {
+				XMLinput = ((String) tmp[i].getValue()).equals("XML");
+			} else if (tmp[i].getName().equals("profile")) {
+				profile = (String) tmp[i].getValue();
+			} else if (tmp[i].getName().equals("usermedium")) {
+				usermedium = (String) tmp[i].getValue();
+				if (usermedium == null || "".equals(usermedium)) {
+					usermedium = "all";
+				}
+			}
 	    }
 	} catch (Exception e) {
 	    System.out.println("Oups! Error in Util/Codecs.java?!?");
 	    e.printStackTrace();
 	}
+
+	ac.setMedium(usermedium);
+
 	if (output == null) {
 	    output = texthtml;
 	}
@@ -542,7 +551,7 @@ public final class CssValidator extends HttpServlet {
 	} else {
 	    res.setHeader("Content-Language", "en");
 	}
-	
+
 	if (styleSheet == null) {
 	    throw new IOException(ac.getMsg().getServletString("process")
 				  + " " + title);
@@ -558,7 +567,7 @@ public final class CssValidator extends HttpServlet {
 	}
 	styleSheet.findConflicts(ac);
 
-	StyleReport style = StyleReportFactory.getStyleReport(ac, title, 
+	StyleReport style = StyleReportFactory.getStyleReport(ac, title,
 							      styleSheet,
 							      output,
 							      warningLevel);
