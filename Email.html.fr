@@ -115,7 +115,7 @@
 
     <hr />
     <img src="images/mwcss.gif" alt="made with CSS" />
-    Philippe Le H&eacute;garet<br />
+    Philippe Le H&eacute;garet &amp; Sijtsche Smeman<br />
     $Date$
   </body>
 </html>
