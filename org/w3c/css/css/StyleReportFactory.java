@@ -27,9 +27,9 @@ public class StyleReportFactory {
 						warningLevel);
 	}
 	if (document.equals("soap12")) {
-	    return new StyleSheetGeneratorHTML2(ac, title, style,
-						"html",
-						warningLevel);
+	    return new StyleReportSOAP12(ac, title, style,
+					 document,
+					 warningLevel);
 	}
 	return new StyleSheetGeneratorHTML2(ac, title, style,
 					    "html",
