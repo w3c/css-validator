@@ -15,11 +15,6 @@ public class CssStyleRule {
 	this.properties = properties;
 	this.important = important;
 	this.indent = indent;
-	if (indent.length() > 0) {
-	    HTMLindent = "&nbsp;&nbsp;";
-	} else { 
-	    HTMLindent = "";
-	}
     }
 
     public String toString() {
@@ -46,32 +41,26 @@ public class CssStyleRule {
     }
 
     public String toHTML() {
-	String ret = new String("<dt>"); 
+	String ret = new String("<li><span class='selector'>"); 
 	if (selectors != null) {
-	    ret += "<strong>" + selectors + "</strong> {<br>\n";
+	    ret += selectors + "</span> {<ul class='vRule'>\n";
 	}
 
 	for (int i = 0; i < properties.size() ; i++) {
 	    CssProperty property = (CssProperty)properties.elementAt(i);
-	    ret += HTMLindent + "&nbsp;&nbsp;" 
-		+ property.getPropertyName() + " : " + "<em>" 
-		+ property.toString() + "</em>";
+	    ret += "<li>" + property.getPropertyName() + " : "
+		+ "<span class='vPropertyValue'>" 
+		+ property.toString() + "</span>";
 	    if (property.getImportant()) {
-		ret += " important";
+		ret += " !important";
 	    }
-	    ret += ";<br>\n";
+	    ret += ";</li>\n";
 	}
-	if (indent.length() > 0 && selectors != "") {
-	    ret += indent + "}<br>\n";
-	} else if (selectors != null) {
-	    ret += indent + "}<br><br>\n\n";
-	}
-
+	ret += "</ul>}</li>\n\n";
 	return ret;	
     }
 
     private String indent;
-    private String HTMLindent;
     private String selectors;
     private Vector properties;
     private boolean important;

@@ -66,6 +66,8 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.Messages;
 
+import org.xml.sax.SAXParseException;
+
 /**
  * This class is a servlet to use the validator.
  *
@@ -302,10 +304,8 @@ public final class CssValidator extends HttpServlet {
 		    pex.printStackTrace();
 		}
 		res.setHeader("WWW-Authenticate", pex.getMessage());
-		System.err.println( "send error " + pex.getMessage() );
 		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 	    } catch (Exception e) {		
-		e.printStackTrace();
 		handleError(res, uri, e);
 	    }
 	} else {
@@ -575,8 +575,8 @@ public final class CssValidator extends HttpServlet {
 	// Here is a little joke :-)
 	res.setHeader("Server", server_name);
 	res.setHeader("Content-Language", "en");	
-	res.setHeader("Content-Type", "text/html");	
-	res.setHeader("Content-Encoding", "us-ascii");	
+	res.setHeader("Content-Type", "text/html; charset=us-ascii");	
+	// res.setHeader("Content-Encoding", "us-ascii");	
 
 	PrintWriter out = null;
 
@@ -589,20 +589,33 @@ public final class CssValidator extends HttpServlet {
 		    out.print((char) in.readUnsignedByte());
 		}
 	    } catch (EOFException eof) {
-		out.println("<H2>Target: " + title + "</H2>");
+		out.println("<h2>Target: " + title + "</h2>");
 		out.println("<div class=\"error\">");
 		if (e instanceof IOException) {
-		    out.println("I/O Error: ");
+		    out.println("<p>I/O Error: ");
 		    out.println(e.getMessage());
+		} else if (e instanceof SAXParseException) {
+		    SAXParseException saxe = (SAXParseException) e;
+		    out.println("<p>Please, validate your XML document first!</p>");
+		    if (saxe.getLineNumber() != -1) {
+			out.println("<p>Line " + saxe.getLineNumber() + "</p>");
+		    }
+		    if (saxe.getColumnNumber() != -1) {
+			out.println("<p>Column " + saxe.getColumnNumber() + "</p>");
+		    }
+		    out.println("<p>" + e.getMessage());
+		} else if (e instanceof NullPointerException) {
+		    out.println("<p>Oups! Internal error!</p><p>");
+		    e.printStackTrace();
 		} else {
 		    out.println(e.toString());
 		}
-		out.println("</div>");
+		out.println("</p></div>");
     
-		out.println("<hr>");
-		out.println("<img src='images/mwcss.gif' alt='made with CSS'>");
-		out.println("<ADDRESS><a href='mailto:plh@w3.org'>Philippe Le Hégaret</a><BR>");
-		out.println("</BODY></HTML>");
+		out.println("<hr />");
+		out.println("<p><img src='images/mwcss.gif' alt='made with CSS'  width='72' height='48' /></p>");
+		out.println("<address><a href='mailto:www-validator-css@w3.org'>www-validator-css</a></address>");
+		out.println("</body></html>");
 		out.flush();
 		/*
 		System.err.println("CSS Validator: request failed.");

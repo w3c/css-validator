@@ -65,9 +65,7 @@
     <p>
       Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
       korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
-      HTML</a> oder <a class="offsite"
-      href="http://www.xml.com/xml/pub/tools/ruwf/check.html">wohlgeformtes
-      XML</a> verwenden sollten.
+      HTML</a>.
     </p>
     
     

@@ -137,7 +137,7 @@ public class HTTPURL {
 	return getConnection(url, count, null);
     }
 
-    private static URLConnection getConnection(URL url, int count, String credential) 
+    private static URLConnection getConnection(URL url, int count, ApplContext ac) 
 	    throws IOException {
 	if (count > 5) {
 	    throw new ProtocolException("Server redirected too many times (5)");
@@ -153,18 +153,27 @@ public class HTTPURL {
 
 	if (Util.onDebug) {
 	    System.err.println( "Accessing " + url);
-	    if (credential != null) {
-		System.err.println( "with [" + credential + ']');
+	    if (ac.getCredential() != null) {
+		System.err.println( "with [" + ac.getCredential() + ']');
 	    }
 	}
-
+	// avoid all kind of caches
 	urlC.setRequestProperty("Pragma", "no-cache");
 	urlC.setRequestProperty("Cache-Control", "no-cache");
+	// for the fun
 	urlC.setRequestProperty("User-Agent", 
 				"Jigsaw/2.2.0 W3C_CSS_Validator_JFouffa/2.0");
-	if (credential != null) {
-	    urlC.setRequestProperty("Authorization",credential);
+	// relay authorization information
+	if (ac.getCredential() != null) {
+	    urlC.setRequestProperty("Authorization",ac.getCredential());
 	}
+	// relay languages
+	if (ac.getLang() != null) {
+	    urlC.setRequestProperty("Accept-Language",ac.getLang());
+	}
+	// should I put an Accept header?
+	urlC.setRequestProperty("Accept",
+				"text/css,text/html,test/xml,application/xml,image/svg+xml,*/*;q=0");
 
 	urlC.connect();
 
@@ -186,7 +195,7 @@ public class HTTPURL {
 	    case HttpURLConnection.HTTP_MOVED_PERM:
 	    case HttpURLConnection.HTTP_MOVED_TEMP:
 		try {
-		    return getConnection(getURL(httpURL.getHeaderField("Location")));
+		    return getConnection(getURL(httpURL.getHeaderField("Location")), ac);
 		} finally {
 		    httpURL.disconnect();
 		}
@@ -218,9 +227,9 @@ public class HTTPURL {
 	return getConnection(url, 0);
     }
 
-    public static URLConnection getConnection(URL url, String credential) 
+    public static URLConnection getConnection(URL url, ApplContext ac) 
 	    throws IOException {
-	return getConnection(url, 0, credential);
+	return getConnection(url, 0, ac);
     }
     /**
      * 

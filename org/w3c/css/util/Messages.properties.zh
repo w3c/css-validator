@@ -12,7 +12,7 @@ warning.same-colors: 一样的颜色对于 %s 和 %s
 warning.no-color: 你没有为你的背景色设置(前景)颜色
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
 warning.no-background-color: 你没有为你的(前景)颜色设置背景色
-warning.no-generic-family: 建议你指定一个种类族科作为最后的选择
+warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
 warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
 名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
 符号会被转换为单一个空格。
@@ -134,12 +134,12 @@ generator.invalid-number: 无效数字
 generator.property: 无效数字
 generator.line: 行
 generator.not-found: 找不到文件
-generator.doc-html: <hr><br><p>\
+generator.doc-html: <p>\
 若要如期工作，你的CSS样式表需要一个正确的文档解释树。 \
 这意味着你应该使用<a href="http://validator.w3.org/check?uri=\
 %s">正确的HTML</a>。</p>
 
-generator.doc:<hr><br><p>\
+generator.doc:<p>\
 若要正常工作，你的CSS样式表需要一个正确的文档解释树。 \
 这意味着你应该使用<a href="http://validator.w3.org/">正确 \
 的HTML</a>.</p>
@@ -156,3 +156,5 @@ parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
 # used by the servlet
 servlet.invalid-request: 你发出了无效的请求
 servlet.process: 不能对对象进行处理
+
+error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.

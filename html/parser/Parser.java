@@ -1225,9 +1225,14 @@ class Parser implements DTDConstants {
 	if (in.markSupported()) {
 	    in.mark(in.available());
 	    ch1 = in.read();
-	    while (ch1 != '<')
+        /* added infinite loop checking -- yl@w3.org */
+	    while (ch1 != '<') {
+		if (ch1 == -1) {
+		    // at the end, return
+		    return;
+		}
 		ch1 = in.read();
-
+	    }
 	    // now it should have found '<'
 	    
 	    while (!ready) {
@@ -1239,6 +1244,10 @@ class Parser implements DTDConstants {
 		} else {
 		    if (ch2 == '-') { // comment
 			while (ch2 != '<') {
+			    // check EOF, if so, exit -- yl@w3.org
+			    if (ch2 == -1) {
+				return;
+			    }
 			    ch2 = in.read();
 			}
 			// here next '<' is found
@@ -1278,6 +1287,10 @@ class Parser implements DTDConstants {
 		    endTag(true);
 		}
 	    } catch (IOException e) {
+		errorContext();
+		error("exception", e.getClass().getName());
+		throw e;
+	    } catch (XMLInputException e) {
 		errorContext();
 		error("exception", e.getClass().getName());
 		throw e;

@@ -12,7 +12,7 @@ warning.same-colors: Same colors for %s and %s
 warning.no-color: You have no color with your background-color
 warning.no-background-color: You have no background-color with your color
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
-warning.no-generic-family: You are encouraged to offer a generic family as a last alternative
+warning.no-generic-family: %s: You are encouraged to offer a generic family as a last alternative
 warning.with-space: Family names containing whitespace should be quoted. If quoting is omitted, any whitespace \
 characters before and after the name are ignored and any sequence of whitespace characters inside the \
 name is converted to a single space. 
@@ -159,6 +159,7 @@ error.notversion : %s can not be used with this version of CSS : %s
 error.media: unrecognized media %s 
 error.page: unrecognized pseudo named page %s
 
+error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
 # used by StyleSheetGeneratorHTML
 generator.context: Context
@@ -169,12 +170,12 @@ generator.invalid-number: Invalid number
 generator.property: Invalid number
 generator.line: Line
 generator.not-found: File not found
-generator.doc-html: <hr><br><p>\
+generator.doc-html: <p class='vDocHTML'>\
 To work as intended, your CSS style sheet needs a correct document parse \
 tree. This means you should use <a href="http://validator.w3.org/check?uri=\
 %s">valid HTML</a>.</p>
 
-generator.doc:<hr><br><p>\
+generator.doc:<p class='vDocHTML'>\
 To work as intended, your CSS style sheet needs a correct document parse \
 tree. This means you should use <a href="http://validator.w3.org/">valid \
 HTML</a>.</p>

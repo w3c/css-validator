@@ -111,6 +111,9 @@ public class CssBorderFaceColor {
      * @param value The another faces.
      */  
     public boolean equals(CssBorderFaceColor color) {
+	if (this.face == null) {
+	    return (color.face == null);
+	}
 	return this.face.equals(color.face);
     }
 }

@@ -35,7 +35,6 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.css.NewStyleSheet;
 import org.w3c.css.css.StyleSheetCom;
 
 /**
@@ -135,7 +134,7 @@ public final class CssFouffa extends CssParser {
      * @exception   IOException  if an I/O error occurs.
      */
     public CssFouffa(ApplContext ac, URL file) throws IOException {
-	this(ac, HTTPURL.getConnection(file).getInputStream(), file, 0);
+	this(ac, HTTPURL.getConnection(file, ac).getInputStream(), file, 0);
     }
 
     /**
@@ -237,7 +236,7 @@ public final class CssFouffa extends CssParser {
     public void ReInit(ApplContext ac, URL file) throws IOException {
 	Frame f = new Frame(this, file.toString());
 	ac.setFrame(f);
-	ReInit(ac, HTTPURL.getConnection(file).getInputStream(), file, f);
+	ReInit(ac, HTTPURL.getConnection(file, ac).getInputStream(), file, f);
     }
 
     /**
@@ -321,7 +320,7 @@ public final class CssFouffa extends CssParser {
 	    }
 	    
 	    URL importedURL = HTTPURL.getURL(url, file);
-	    URLConnection importURL = HTTPURL.getConnection(importedURL);
+	    URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
 
 	    if (importURL instanceof HttpURLConnection) {
 		HttpURLConnection httpURL = (HttpURLConnection) importURL;
@@ -452,7 +451,7 @@ public final class CssFouffa extends CssParser {
 	try {
 	    Vector properties = declarations();
 	    
-	    if (properties.size() != 0) {
+	    if (properties != null && properties.size() != 0) {
 		handleRule(context, properties);
 	    }
 	} catch (ParseException e) {

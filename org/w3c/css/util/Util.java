@@ -273,7 +273,7 @@ public final class Util {
      *
      * @see #verbose
      */  
-    //    public static boolean onDebug = Boolean.getBoolean("CSS.debug");
-    public static boolean onDebug = false;
+    public static boolean onDebug = Boolean.getBoolean("CSS.debug");
+    //    public static boolean onDebug = false;
 }
 

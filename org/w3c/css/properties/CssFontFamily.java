@@ -190,6 +190,9 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 						getPropertyName(), ac);
 	}
 
+	if (!containsGenericFamily()) {
+	    ac.getFrame().addWarning("no-generic-family", "font-family");
+	}
     }
     
     /**

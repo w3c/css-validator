@@ -242,8 +242,8 @@ public class StyleSheet {
 
     public void setSelectorList(Vector selectors) {
 	String slave = selectors.toString();
-	slave = slave.substring(slave.indexOf("[") + 1, slave.lastIndexOf("]"));
-	selectortext = slave;
+	selectortext = slave.substring(slave.indexOf("[") + 1, 
+				       slave.lastIndexOf("]"));
     }
 
     public void setProperty(Vector properties) {

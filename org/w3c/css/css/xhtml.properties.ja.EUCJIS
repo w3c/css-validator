@@ -1,15 +1,15 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <LI><A HREF="#errors">エラーの表示</A>
-go-warnings: <LI><A HREF="#warnings">警告の表示</A>
-go-rules: <LI><A HREF="#css">入力されたカスケーディングスタイルシート(CSS)の表示</A>
-no-error-or-warning: <HR><H2>エラー及び警告は見つかりませんでした。</H2>
+go-errors: <li><a href="#errors">エラーの表示</a></li>
+go-warnings: <li><a href="#warnings">警告の表示</a></li>
+go-rules: <li><a href="#css">入力されたカスケーディングスタイルシート(CSS)の表示</a></li>
+no-error-or-warning: <div><h2>エラー及び警告は見つかりませんでした。</h2></div>
 
 no-errors: \
-<hr> \
+<div> \
 <p>\
-<img src="http://jigsaw.w3.org/css-validator/images/vcss.gif" alt="Valid CSS!">\
+<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 おめでとうございます！ この文書は正当な<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
   </p>\
@@ -17,12 +17,15 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
 あなたがこのWebページを作るにあたって、\
 高度な相互運用性<span lang="en">(Interoperability)</span>\
 に対する配慮を行った事を読者に示すため、このアイコンを張る事をお勧めします。\
-あなたのWebページにこのアイコンを張るためには、次のHTMLの断片を利用すると良いでしょう。<pre>\n\
-\
-\  &lt;p>&lt;a href="http://jigsaw.w3.org/css-validator">&lt;img style="border:0;width:88px;height:31px" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ alt="Valid CSS!"/>&lt;/a>&lt;/p></pre>\
-\
+あなたのWebページにこのアイコンを張るためには、次のHTMLの断片を利用すると良いでしょう。<pre class='example'>\n\
+&lt;p>\n\
+\ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
+\ \ &lt;img style="border:0;width:88px;height:31px"\n\
+\ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss" \n\
+\ \ \ \ \ \ \ alt="Valid CSS!" />\n\
+\ &lt;/a>\n\
+&lt;/p>\
+</pre>\
 <p> \
 この画像はローカルコピーを使っても構いません。\
 つまり、あなたのWebサーバにこの画像のコピーをダウンロードしてディレクトリに保存し、\
@@ -38,10 +41,9 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
 \ \ \ \ \ \ \ または http://jigsaw.w3.org/css-validator/check/referer (HTML 文書のみに有効)\n\
 \n\
 (もちろん、このページをブックマークやホットリストに追加したのでもよいでしょう。)\
-</pre>
+</pre></div>
 
 no-rules: <H2>スタイルシートが見つかりませんでした。</H2>
-important-style: <STRONG> !重要</STRONG>
 not-css1-style: /* 注意して下さい ! このプロパティはCSS1用ではありません ! */
 
 # You have some predefined entities :
@@ -64,39 +66,24 @@ not-css1-style: /* 注意して下さい ! このプロパティはCSS1用ではありません ! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<hr> \
-<a name="css"></a><h2>検証したスタイルシートを以下に示します :</h2> \
-<dl> \
+<div id="css"><h2>検証したスタイルシートを以下に示します :</h2> \
+<ul> \
 <!-- #rule --> \
-</dl>
-
-rule: \
-<dt><strong><!-- #selectors --></strong> {<br> \
-<!-- #declaration --> \
-}<br><br>
-
-# with contextuals selectors, you can do a special processing
-selectors: \
-<!-- #selector -->
-
-declaration: \
-   <!-- #property-name --> : <em><!-- #property-value --></em><!-- #important-style -->; <br>
+</ul></div>
 
 # How to write errors
 
 errors : \
-<hr> \
-<a name="errors"></a>\
+<div id="errors">\
 <h2>エラー :</h2>\n\
-<!-- #error -->\n
+<!-- #error --></div>\n
 
 # How to write warnings
 
 warnings: \
-<hr> \
-<a name="warnings"></a> \
+<div id="warnings"> \
 <h2>警告 :</h2> \n\
-<!-- #warning -->\n
+<!-- #warning --></div>\n
 
 warning:
 
@@ -110,48 +97,19 @@ document: \
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
 <title>CSS Validator 検証結果</title> \n\
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
-<style type="text/css"><!--\n\
-H2 {\n\
-  font-weight: bold; \
-  font-size: large; \
-  font-family: ゴシック, gothic, helvetica, sans-serif; \
-  color: rgb(136,0,0); \
-  margin-top: 2.0%; \
-}\n\
-BODY {\n\
-  font-size: medium; \
-  font-family: 明朝, mincho, verdana, arial, helvetica, sans-serif; \
-  color: rgb(0,0,0); \
-  background-color: white; \
-}\n\
-ADDRESS {\n\
-  font-weight: bold; \
-  text-align: right; \
-}\n\
-.right { \n\
-  float: right; \
-}\n\
-.left { \n\
-  float: left; \
-}\n\
-HR { \n\
-  margin-top: 2.0%; \
-}\n\
-#rules { margin-left : 2em }\n\
---></style>\n\
+<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css'>\n\
+<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css'>\n\
 </head> \n\
 <body> \n\
-<a class="left" href="http://www.w3.org"><IMG \
- SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c"WIDTH="72" \
- HEIGHT="48"></A> \
-<a style="text-align: right" href="http://www.w3.org/Jigsaw/"><IMG \
- SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered" \
- BORDER="0" WIDTH="94" HEIGHT="52"></a> \
-<br> \
-<h2>W3C CSS Validator による次のオブジェクトの検証結果: \n\
-<A HREF="<!-- #file-title -->"><!-- #file-title --></A>\
- \
-</h2> \n\
+<p>\n\
+<a href="http://www.w3.org"><img\n\
+src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48"></a> <a\n\
+style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
+src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
+height="52"></a>\n\
+</p>\n\
+<h1>W3C CSS Validator による次のオブジェクトの検証結果: \n\
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
 <ul> \n\
 <!-- #go-errors --> \
 <!-- #go-warnings --> \
@@ -160,15 +118,15 @@ HR { \n\
 <a href="http://jigsaw.w3.org/css-validator/">CSS Validator に戻る</a></li>\
 </ul>\n\
 <!-- #no-error-or-warning -->\
-<!-- #errors -->\
 <!-- #no-errors -->\
-<!-- #warnings -->\
 <!-- #hook-html-validator -->\
+<!-- #errors -->\
+<!-- #warnings -->\
 <!-- #rules -->\
 <!-- #no-rules -->\
 <hr> \n\
 <a class="right" href="http://jigsaw.w3.org/css-validator">\
- <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \
+ <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Valid CSS!" height="31" width="88"></a>\n\
 <address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br>\
 Last Updated : <!-- #today --> </address> \n\

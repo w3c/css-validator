@@ -189,7 +189,9 @@ public class CssFontFamilyCSS2 extends CssProperty implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	}
-
+	if (!containsGenericFamily()) {
+	    ac.getFrame().addWarning("no-generic-family", "font-family");
+	}
     }
     
     /**

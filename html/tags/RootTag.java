@@ -47,6 +47,7 @@ public class RootTag extends Block {
 	if (atts != null) {
 	    String xml = atts.get("xmlns");
 	    if (xml != null) {
+		System.err.println( "xmlns is " + xml);
 		throw new XMLInputException(xml);
 	    }
 	}

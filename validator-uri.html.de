@@ -28,10 +28,10 @@
     <h2>Validieren Sie Ihr <span lang="en">Cascading Style
 	Sheet</span> über einen URI</h2>
      
-      <p>
-      Geben Sie den URI des zu validierenden Dokuments an (HTM mit CSS
-      oder CSS alleine):
-      </p>
+    <p>
+      Geben Sie den URI des Dokuments (HTML mit CSS oder CSS alleine),
+      das Sie validieren möchten an:
+    </p>
     
     <form action="validator" method="get">
       
@@ -63,12 +63,10 @@
     
     <br />
     <br />
-
     <p>
-      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, 
-      muss das HTML-Dokument korrekt geparst werden können.  
-      Dies ist nur mit <a href="http://validator.w3.org/">
-      validem HTML</a> gewährleistet.
+      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
+      korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
+      HTML</a>.
     </p>
     
     <hr />

@@ -43,7 +43,7 @@ public class InvalidParamException extends ParseException {
      * @param message the error message
      */
     public InvalidParamException(String message, ApplContext ac) {
-	super(ac.getMsg().getErrorString("error." + message));
+	super(ac.getMsg().getErrorString((message != null)? message : ""));
     }
     
     /**

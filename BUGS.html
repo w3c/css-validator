@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+  <head>
+    <title>CSS Validator Project</title>
+
+    <link href="style/page.css" type="text/css" rel="STYLESHEET">
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    <LINK REL="STYLESHEET" TITLE="default" MEDIA="screen" HREF="style/general.css" TYPE="text/css">
+<META name="ROBOTS" content="NOINDEX, NOFOLLOW">
+</head>
+  <body>
+    <a href="http://www.w3.org"><img src="http://www.w3.org/Icons/w3c_home" alt="w3c" border="0"></a><br>
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1 class="center">CSS Validator version 1.0 : bugs list</h1>
+    
+    <ol>
+      <li>
+	<pre>
+ H1 { 
+  elevation: 50rad; 
+ }
+	</pre>
+	<p>
+	  Here I have an error and a bug.
+	</p>
+	<p>
+	  In first, angle are always convert in degree, and in this case, it
+	  should be not. In second, the validator said 50rad == 50deg, so this
+	  is a big bug.
+	</p>
+      </li>
+      <li>I have problems with multipart/form-data so I integrated an auto-debug
+	in the code ...</li>
+    </ol>
+    
+    <h1 class="center">CSS Validator version 2.0 : bugs list</h1>
+    <ol>
+      <li>
+	<pre>
+ a {
+   text-align: "$";
+ }</pre>
+	<p>
+	  The validator doesn't say "only for block-level elements". The bug
+	  comes from me. I know where it is but don't have time to find a
+	  solution.
+	</p>
+      </li>
+      <li>
+	<p>
+	  Media are not supported at the moment. be careful !
+	</p>
+      </li>
+    </ol>
+
+    <hr class="large">
+    <img src="images/mwcss.gif" alt="made with CSS">
+    <address class="right"><a href="mailto:Philippe.Le_Hegaret@sophia.inria.fr">
+	Philippe Le H&eacute;garet</a></address>
+  </body>
+</html>

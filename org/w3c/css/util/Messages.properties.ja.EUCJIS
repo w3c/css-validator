@@ -14,7 +14,7 @@ warning.no-color: ╗╪─ъд╡дьд┐╟╪╖╩┐з(background-color)д╦┬╨▒■д╣ды┴░╠╠┐з(color)дм╗╪─
 warning.no-background-color: ╗╪─ъд╡дьд┐┴┤╠╠┐з(color)д╦┬╨▒■д╣ды╟╪╖╩┐з(background-color)дм╗╪─ъд╡дьд╞ддд▐д╗дє
 warning.color.mixed-capitalization: ┐зд╬╠╛┴░д╦┬ч╩╕╗·б┐╛о╩╕╗·д╬╢ш╩╠д╧двдъд▐д╗дєдмбв\
 ╠╛┴░дЄдшдъ╢ш╩╠д╖дфд╣дпд╣дыд┐дсбв┬ч╩╕╗·дЄ║од╝д╞╗╚дж╗Ўдм┐ф╛йд╡дьд▐д╣: %s
-warning.no-generic-family: ░ь╚╠е╒ейеєе╚е╒ебе▀еъб╝╠╛\
+warning.no-generic-family: %s: ░ь╚╠е╒ейеєе╚е╒ебе▀еъб╝╠╛\
 (generic font family)дЄ║╟╕хд╬┴к┬Є╗шд╚д╖д╞╔╒д▒▓├дид╞дкдп╗ЎдЄ┐ф╛йд╖д▐д╣
 warning.with-space: ╢ї╟Є╩╕╗·дЄ┤▐дре╒ейеєе╚е╒ебе▀еъб╝╠╛д╧░·═╤╔фд╟░╧др╔м═╫дм\
 двдъд▐д╣бг░·═╤╔фдЄ╛╩╬мд╖д┐╛ь╣чбв╠╛┴░д╬┴░╕хд╬╢ї╟Є╩╕╗·д╧╠╡╗ыд╡дьбвд▐д┐\
@@ -149,13 +149,13 @@ generator.invalid-number: └╡д╖дд┐Ї╗·д╟д╧двдъд▐д╗дє
 generator.property: ╝бд╬е╫еэе╤е╞егдм└╡д╖дпдвдъд▐д╗дє
 generator.line: ╣╘╚╓╣ц
 generator.not-found: е╒ебедеыдм╕лд─длдъд▐д╗дє
-generator.doc-html: <hr><br><p>\
+generator.doc-html: <p>\
 CSSе╣е┐едеые╖б╝е╚дЄ░╒┐▐д╖д┐─╠дъд╦╡б╟╜д╡д╗дыд╦д╧бв└╡д╖дд╩╕╜ё▓Є└╧╠┌дм╔м═╫д╟д╣бг\
 д─д▐дъбв<a href="http://validator.w3.org/check?uri=%s">└╡┼Ў<span lang="en">(valid)</span>\
 д╩HTML</a>д╚╢жд╦бвCSSе╣е┐едеые╖б╝е╚дЄ═╤ддды╔м═╫дмдвдъд▐д╣бг\
 </p>
 
-generator.doc:<hr><br><p>\
+generator.doc:<p>\
 CSSе╣е┐едеые╖б╝е╚дЄ░╒┐▐д╖д┐─╠дъд╦╡б╟╜д╡д╗дыд╦д╧бв└╡д╖дд╩╕╜ё▓Є└╧╠┌дм╔м═╫д╟д╣бг\
 д─д▐дъбв<a href="http://validator.w3.org/">└╡┼Ў<span lang="en">(valid)</span>\
 д╩HTML</a>╩╕╜ёд╚╢жд╦бв\
@@ -171,3 +171,6 @@ CSS2д╟д╧бвд│д╬дшджд╩епеще╣д╧╠д├╬д╬ dimension д╚д╖д╞▓Є└╧д╡дьд▐д╣бг(д│дьд╧бв╛н═ш┐╖
 # used by the servlet
 servlet.invalid-request: └╡д╖ддеъепеие╣е╚д╟д╧двдъд▐д╗дє
 servlet.process: ╗╪─ъд╡дьд┐еке╓е╕езепе╚д╧╜ш═¤д╟днд▐д╗дє
+
+error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+

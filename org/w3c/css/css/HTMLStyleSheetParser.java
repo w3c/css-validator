@@ -70,7 +70,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    }
 		} catch (html.parser.XMLInputException e) {
 		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
-		    handler.parse(htmlURL, ac.getCredential());
+		    handler.parse(htmlURL);
 		    style = handler.getStyleSheet();
 		    if (style != null) {
 			style.setType("text/xml");
@@ -93,7 +93,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		// @@ hum, maybe? (plh, yes probably :-) )
 		String credential = ac.getCredential();
 
-		connection = HTTPURL.getConnection(htmlURL, ac.getCredential());
+		connection = HTTPURL.getConnection(htmlURL, ac);
 
 		contentType = connection.getContentType();
 		if (contentType == null) {

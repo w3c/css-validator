@@ -1,27 +1,31 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <LI><A HREF="#errors">Ga naar Fouten</A>
-go-warnings: <LI><A HREF="#warnings">Ga naar Waarschuwingen</A>
-go-rules: <LI><A HREF="#css">Ga naar uw gevalideerde Cascading Style Sheet</A>
-no-error-or-warning: <HR><H2>Geen fout of waarschuwing gevonden</H2>
+go-errors: <li><a href="#errors">Ga naar Fouten</a></li>
+go-warnings: <li><a href="#warnings">Ga naar Waarschuwingen</a></li>
+go-rules: <li><a href="#css">Ga naar uw gevalideerde Cascading Style Sheet</a></li>
+no-error-or-warning: <div><h2>Geen fout of waarschuwing gevonden</h2></div>
 
 no-errors: \
-<hr> \
+<div> \
+<h2>Gefeliciteerd!</h2>
 <p>\
-<img src="http://jigsaw.w3.org/css-validator/images/vcss.gif" alt="Correct CSS!">\
-Gefeliciteerd, dit document is gevalideerd als <a\ \
+<img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Correct CSS!">\
+Dit document is gevalideerd als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
 <p> \
 Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
 kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
-die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen: <pre> \n\
-\
-\  &lt;p>&lt;a href="http://jigsaw.w3.org/css-validator">&lt;img style="border:0;width:88px;height:31px" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ alt="Correct CSS!"/>&lt;/a>&lt;/p></pre>
-\
+die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen: <pre class='example'> \n\
+&lt;p>\n\
+\ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
+\ \ &lt;img style="border:0;width:88px;height:31px"\n\
+\ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss" \n\
+\ \ \ \ \ \ \ alt="Valid CSS!" />\n\
+\ &lt;/a>\n\
+&lt;/p>\
+</pre>\n\
 <p> \
 Als u wilt, kunt u een kopie van dit plaatje downloaden en in uw locale webdirectory \
 te zetten en in het HTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
@@ -33,11 +37,10 @@ in staat te stellen uw pagina te valideren is de URL:</p><pre>\n\
 \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
 \ \ \ \ \ \ \ of http://jigsaw.w3.org/css-validator/check/referer (alleen voor HTML documenten)\n\
-\n\
-(Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.)</pre>
+</pre>\n\
+<p>(Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.)</p></div>
 
 no-rules: <H2>Geen style sheet gevonden</H2>
-important-style: <STRONG> !belangrijk</STRONG>
 not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
 
 # Er is een aantal voorgedefinieerde entiteiten
@@ -60,39 +63,28 @@ not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
 #   - property-name, property-value, important-style en niet-css1-style entiteiten in de entiteit declaratie
 
 rules: \
-<hr> \
-<a name="css"></a><h2>Uw gevalideerde Cascading Style Sheet :</h2> \
-<dl> \
+<div id="css"><h2>Uw gevalideerde Cascading Style Sheet :</h2> \
+<ul> \
+<!-- #charset-rule --> \
 <!-- #rule --> \
-</dl>
+</ul></div>
 
-rule: \
-<dt><strong><!-- #selectors --></strong> {<br> \
-<!-- #declaration --> \
-}<br><br>
-
-# met contextuele selectors kunt u speciale dingen doen
-selectors: \
-<!-- #selector -->
-
-declaration: \
-   <!-- #property-name --> : <em><!-- #property-value --></em><!-- #important-style -->; <br>
+charset-rule: \
+<li class='vCharset'>@charset <!-- #charset -->;</li>
 
 # Hoe fouten te melden
 
 errors : \
-<hr> \
-<a name="errors"></a>\
-<h2>Fouten :</h2>\n\
-<!-- #error -->\n
+<div id="errors">\
+<h2>Fouten</h2>\n\
+<!-- #error --></div>\n
 
 # Hoe waarschuwingen te melden
 
 warnings: \
-<hr> \
-<a name="warnings"></a> \
+<div id="warnings"> \
 <h2>Waarschuwingen :</h2> \n\
-<!-- #warning -->\n
+<!-- #warning --></div>\n
 
 warning:
 
@@ -106,46 +98,19 @@ document: \
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
 <title>CSS Validator resultaten</title> \n\
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
-<style type="text/css"><!--\n\
-H2 {\n\
-  font-weight: bold; \
-  font-size: large; \
-  font-family: helvetica, sans-serif; \
-  color: rgb(136,0,0); \
-  margin-top: 2.0%; \
-}\n\
-BODY {\n\
-  font-size: medium; \
-  font-family: verdana, arial, helvetica, sans-serif; \
-  color: rgb(0,0,0); \
-  background-color: white; \
-}\n\
-ADDRESS {\n\
-  font-weight: bold; \
-  text-align: right; \
-}\n\
-.right { \n\
-  float: right; \
-}\n\
-.left { \n\
-  float: left; \
-}\n\
-HR { \n\
-  margin-top: 2.0%; \
-}\n\
-#rules { margin-left : 2em }\n\
---></style>\n\
+<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css'>\n\
+<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css'>\n\
 </head> \n\
 <body> \n\
-<a class="left" href="http://www.w3.org"><IMG \
- SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c"WIDTH="72" \
- HEIGHT="48"></A> \
-<a style="text-align: right" href="http://www.w3.org/Jigsaw/"><IMG \
- SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered" \
- BORDER="0" WIDTH="94" HEIGHT="52"></a> \
-<br> \
-<h2>W3C CSS Validator Resultaten met object : \
-<A HREF="<!-- #file-title -->"><!-- #file-title --></A></h2> \n\
+<p>\n\
+<a href="http://www.w3.org"><img\n\
+src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48"></a> <a\n\
+style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
+src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
+height="52"></a>\n\
+</p>\n\
+<h1>W3C CSS Validator Resultaten met object : \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
 <ul> \n\
 <!-- #go-errors --> \
 <!-- #go-warnings --> \
@@ -154,15 +119,15 @@ HR { \n\
 <a href="http://jigsaw.w3.org/css-validator/">Terug naar de CSS Validator</a></li>\
 </ul>\n\
 <!-- #no-error-or-warning -->\
-<!-- #errors -->\
 <!-- #no-errors -->\
-<!-- #warnings -->\
 <!-- #hook-html-validator -->\
+<!-- #errors -->\
+<!-- #warnings -->\
 <!-- #rules -->\
 <!-- #no-rules -->\
 <hr> \n\
 <a class="right" href="http://jigsaw.w3.org/css-validator">\
- <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \
+ <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Correct CSS!" height="31" width="88"></a>\n\
 <address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br>\
 Last Updated : <!-- #today --> </address> \n\

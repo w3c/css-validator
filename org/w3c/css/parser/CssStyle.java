@@ -63,7 +63,7 @@ public class CssStyle {
    */  
   public final void addRedefinitionWarning(ApplContext ac, 
 					   CssProperty property) {
-    warnings.addWarning(new Warning(property, "redefinition", 1, ac));
+    warnings.addWarning(new Warning(property, "redefinition", 2, ac));
   }
 
   /**

@@ -163,6 +163,8 @@ aural.speak-numeral:		org.w3c.css.aural.ACssSpeakNumeral
 aural.speak-time:		org.w3c.css.aural.ACssSpeakTime
 aural.speak:		        org.w3c.css.aural.ACssSpeak
 aural.azimuth:		        org.w3c.css.aural.ACssAzimuth
+aural.display:                  org.w3c.css.properties.CssDisplayCSS2
+
 content:               org.w3c.css.properties.CssContentCSS2
 counter-reset:         org.w3c.css.properties.CssCounterReset
 counter-increment:     org.w3c.css.properties.CssCounterIncrement

@@ -70,10 +70,7 @@
     <p>
       Pour fonctionner comme pr&eacute;vu, votre feuille de style CSS doit
       avoir un arbre grammatical correct, cela implique que vous devriez
-      utiliser de l'<a href="http://validator.w3.org/">HTML valide</a>, ou
-      du <a class="offsite"
-	href="http://www.xml.com/xml/pub/tools/ruwf/check.html">XML bien
-	form&eacute;</a>.
+      utiliser de l'<a href="http://validator.w3.org/">HTML valide</a>.
     </p>
     
     

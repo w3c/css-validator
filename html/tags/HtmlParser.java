@@ -202,6 +202,8 @@ public class HtmlParser extends JmlParser implements Runnable,
 
     try {
       long tm = System.currentTimeMillis();
+      if (Boolean.getBoolean("html.tags.verbose"))
+	System.out.println("[Parsing " + urlname + ']');
       parse(input, dtd);
       tm = System.currentTimeMillis() - tm;
       if (Boolean.getBoolean("html.tags.verbose"))
@@ -209,8 +211,7 @@ public class HtmlParser extends JmlParser implements Runnable,
     }
     catch(XMLInputException e) {
       notifyFatalError(null, e, "");
-    }
-        
+    }        
     catch(Exception e) {
       if (!Boolean.getBoolean("html.runningServlet")) {
 	System.out.println("uncaught error while parsing");
@@ -247,9 +248,8 @@ public class HtmlParser extends JmlParser implements Runnable,
     try {
       if (urls.indexOf(':') > 0) {
 	URLConnection urlC = null;
-	// ugly hack for authentication
-	String credential = parserFrame.ac.getCredential();
-	urlC = HTTPURL.getConnection(new URL(null, urls), credential);
+
+	urlC = HTTPURL.getConnection(new URL(null, urls), parserFrame.ac);
 
 	parserFrame.url = url = urlC.getURL();
 	in = urlC.getInputStream();

@@ -67,9 +67,7 @@
     <p>
       若要如期工作，你的CSS样式表需要一个正确的文档解释树。
       这意味着你应该使用<a href="http://validator.w3.org/">正确的HTML</a>
-      或 <a class="offsite"
-      href="http://www.xml.com/xml/pub/tools/ruwf/check.html">稳健结构的
-      XML</a>.
+      .
     </p>
     
     

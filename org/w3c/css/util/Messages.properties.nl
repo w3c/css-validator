@@ -12,7 +12,7 @@ warning.same-colors: Dezelfde kleuren voor %s en %s
 warning.no-color: U heeft geen kleur voor uw achtergrondkleur opgegeven
 warning.no-background-color: U heeft geen achtergrondkleur opgegeven
 warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
-warning.no-generic-family: Het is beter een algemene font-family op te geven als laatste alternatief
+warning.no-generic-family: %s: Het is beter een algemene font-family op te geven als laatste alternatief
 warning.with-space: Fanmilienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
 Als quotes worden weggelaten wordt elke tussenruimte voor en achter de naam genegeerd en elke groep \
 whitespace-tekens in de naam wordt omgezet naar een spatie.
@@ -153,12 +153,12 @@ generator.invalid-number: Ongeldig getal
 generator.property: Ongeldig getal
 generator.line: Regel
 generator.not-found: Bestand niet gevonden
-generator.doc-html: <hr><br><p>\
+generator.doc-html: <p>\
 Om alles naar behoren te laten werken is het noodzakelijk dat uw document een correcte grammaticale opbouw heeft \
 Dit betekent dat u <a href="http://validator.w3.org/check?uri=\
 %s">correct HTML</a> dient te gebruiken.</p>
 
-generator.doc:<hr><br><p>\
+generator.doc:<p>\
 Om alles naar behoren te laten werken is het noodzakelijk dat uw CSS stylesheet een correcte grammaticale \
 opbouw heeft. Dit betekent dat u <a href="http://validator.w3.org/">correct \
 HTML</a> dient te gebruiken.</p>
@@ -183,3 +183,6 @@ error.noatruleyet : Andere @regels dan @import worden niet ondersteund door CSS1
 error.notformobile : %s kan niet worden gebruikt voor het mobile profiel
 warning.atsc : %s wordt mogelijk niet ondersteund door het medium atsc-tv
 error.onlyATSC : deze functie is alleen voor @media atsc-tv
+
+error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<catalog>
+ <system
+   systemId='http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+   uri='xhtml1.0/xhtml1-transitional.dtd' />
+
+ <system
+   systemId='http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'
+   uri='xhtml1.0/xhtml1-strict.dtd' />
+
+ <system
+   systemId='http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd'
+   uri='xhtml1.0/xhtml1-frameset.dtd' />
+
+</catalog>

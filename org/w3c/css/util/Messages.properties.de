@@ -12,7 +12,7 @@ warning.same-colors: Gleiche Farbe für %s und %s
 warning.no-color: Sie haben keine Vordergrundfarbe zu der Hintergrundfarbe angegeben
 warning.no-background-color: Sie haben keine Hintergrundfarbe zu der Vordergrundfarbe angegeben
 warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
-warning.no-generic-family: Es wird empfohlen, daß Sie eine generische Font-Familie als letzte Alternative angeben
+warning.no-generic-family: %s: Es wird empfohlen, daß Sie eine generische Familie als letzte Alternative angeben
 warning.with-space: Font-Familiennamen, die Leerzeichen enthalten sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Wenn die Anführungszeichen weggelassen werden, werden alle Whitespaces (Leerzeichen, Tabulatoren, etc) vor und nach dem Namen ignoriert und jede Sequenz von Whitespaces innerhalb der Namens wird durch ein einzelnes Leerzeichen ersetzt.
 warning.no-padding: Es wird empfohlen, eine freie Umgebung (padding) mit der Hintergrundfarbe zu haben
 warning.same-colors2: Die gleichen Farben für den Vordergrund und den Hintergrund in den zwei Kontexten %s und %s
@@ -136,12 +136,12 @@ generator.invalid-number: Ungültige Nummer
 generator.property: Ungültige Nummer
 generator.line: Zeile
 generator.not-found: Datei nicht gefunden
-generator.doc-html: <hr><br><p>\
+generator.doc-html: <p>\
 Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korekten Parsebaum des Dokuments. \
 Das bedeutet, daß Sie <a href="http://validator.w3.org/check?uri=\
 %s">validiertes HTML</a> verwenden sollten.</p>
 
-generator.doc:<hr><br><p>\
+generator.doc:<p>\
 Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korekten Parsebaum des Dokuments. \
 Das bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes \
 HTML</a> verwenden sollten.</p>
@@ -172,3 +172,6 @@ error.noatruleyet : Andere @Befehle als @import werden von CSS1 nicht unterst&uu
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
 warning.atsc : Das Attribut %s ist unter Umst&auml;nden nicht im Funktionsumfang von atsc-tv enthalten.
+
+error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+

@@ -61,7 +61,6 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
     private static Properties availableFormat;    
     private static Properties availablePropertiesURL;
     private static Hashtable formats = new Hashtable();
-    // private NewStyleSheet stylesheet3 = new NewStyleSheet();    
     int counter = 0;
 
     /**
@@ -83,7 +82,9 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 	if (document == null) {
 	    document = "html.en";
 	}
-
+	if (Util.onDebug) {
+	    System.err.println( "document format is " + document );
+	}
 	this.ac = ac;
 	this.style = style;
 	general = new Properties(setDocumentBase(getDocumentName(ac, document)));
@@ -108,7 +109,9 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 	        || (!title.startsWith("http://"))) {
 	    general.put("no-errors", "");
 	}
-
+	if (style.charset == null) {
+	    general.put("charset-rule", "");
+	}
 	if (warnings.getWarningCount() == 0 || warningLevel == -1) {
 	    general.put("go-warnings", ""); // remove go-warnings
 	    general.put("warnings", ""); // remove warnings
@@ -173,10 +176,6 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
     // prints the stylesheet at the screen
     public void produceStyleSheet() {
 
-	if (style.charset != null) {
-	    out.print("<dt><strong>@charset " + style.charset + ";</strong>\n<br><br>");
-	}
-
 	Vector atRules = style.newGetRules();
 	for (int idx = 0; idx < atRules.size(); idx++) {
 	    out.print(((CssRuleList)atRules.
@@ -197,6 +196,7 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
     
     public void produceParseException(CssParseException error,
 				      StringBuffer ret) {
+	ret.append(' ');
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
 	    for (Enumeration e = error.getContexts().elements(); 
@@ -210,10 +210,11 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 	    }
 	    if (buf.length() != 0) {
 		ret.append(ac.getMsg().getGeneratorString("context"));
-		ret.append(" : <strong>").append(buf);
-		ret.append("</strong> ");
+		ret.append(" : <span class='error'>").append(buf);
+		ret.append("</span> ");
 	    }
 	}
+	ret.append("\n<p>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
@@ -223,7 +224,6 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 	    ret.append(name).append("</a>");
 	}
 	if ((error.getException() != null) && (error.getMessage() != null)) {
-	    ret.append("\n<dd>");
 	    if (error.isParseException()) {
 		ret.append(queryReplace(error.getMessage())).append('\n');
 	    } else {
@@ -235,22 +235,21 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 		}
 	    }
 	    if (error.getSkippedString() != null) {
-		ret.append(" : <strong>");
+		ret.append(" : <span>");
 		ret.append(queryReplace(error.getSkippedString()));
-		ret.append("</strong>\n");
+		ret.append("</span>\n");
 	    } else if (error.getExp() != null) {
 		ret.append(" : ");
 		ret.append(queryReplace(error.getExp().toStringFromStart()));
-		ret.append("<strong>");
+		ret.append("<span>");
 		ret.append(queryReplace(error.getExp().toString()));
-		ret.append("</strong>\n");		
+		ret.append("</span>\n");		
 	    }
 	} else {
-	    ret.append("\n<dd>");
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
-	    ret.append(" - <strong>");
+	    ret.append(" - <span class='error'>");
 	    ret.append(queryReplace(error.getSkippedString()));
-	    ret.append("</strong>\n");
+	    ret.append("</span>\n");
 	}
 	
     }
@@ -258,55 +257,55 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
     public void produceError() {
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = null;
+	boolean open = false;
 
 	try {
 	    if (errors.getErrorCount() != 0) {
 		int i = 0;
-		ret.append("\n<ul>");
 		for (CssError[] error = errors.getErrors(); 
 		          i < error.length; i++) {
 		    Exception ex = error[i].getException();
 		    String file = error[i].getSourceFile();
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
-			/*			if (i != 0) {
-			    ret.append("</DL>");
-			    }*/
-			ret.append("\n<li><dl> URI : "
-				   + "<a target=\"workspace\" href=\"");
+			if (open) {
+			    ret.append("</div>");
+			}
+			ret.append("\n<div><h3>URI : "
+				   + "<a href=\"");
 			ret.append(file).append("\">");
-			ret.append(file).append("</a>");
+			ret.append(file).append("</a></h3><ul>");
+			open = true;
 		    }
-		    ret.append("\n<dt>");
+		    ret.append("\n<li>");
 		    ret.append(ac.getMsg().getGeneratorString("line"));
 		    ret.append(": ").append(error[i].getLine());
-		    ret.append(' ');
 		    if (ex instanceof FileNotFoundException) {
-			ret.append("\n<dd>");
+			ret.append("\n<p>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<strong>");
+			ret.append("<span class='error'>");
 			ret.append(ex.getMessage());
-			ret.append("</strong>\n");			
+			ret.append("</span>\n");			
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n<dd>");
+			ret.append("\n<p>");
 			ret.append(queryReplace(ex.getMessage())).append('\n');
 		    } else if (ex instanceof IOException) {
+			ret.append("\n<p>");
 			String stringError = ex.toString();
 			int index = stringError.indexOf(':');
-			ret.append("\n<dd>");
 			ret.append(stringError.substring(0, index));
-			ret.append(" : <strong>");
-			ret.append(ex.getMessage()).append("<strong>\n");
+			ret.append(" : <span class='error'>");
+			ret.append(ex.getMessage()).append("</strong>\n");
 		    } else if (error[i] instanceof CssErrorToken) {
+			ret.append("\n<p>");
 			CssErrorToken terror = (CssErrorToken) error[i];
-			ret.append("\n<dd>").append("   ");
 			ret.append(terror.getErrorDescription()).append(" : ");
 			ret.append(terror.getSkippedString()).append('\n');			
 		    } else {
-			ret.append("\n<dd>");
-			ret.append("<strong>Uncaught error</strong>");
+			ret.append("\n<p>");
+			ret.append("<span class='error'>Uncaught error</span>");
 			ret.append(ex).append('\n');
 			
 			if (ex instanceof NullPointerException) {
@@ -314,8 +313,9 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 			    ex.printStackTrace();
 			}
 		    }
+		    ret.append("</p></li>");
 		}
-		ret.append("</dl></ul>");
+		ret.append("</div>");
 	    }
 
 	    out.println(ret.toString());
@@ -326,7 +326,7 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
     }
     
     public void produceWarning() {
-
+	boolean open = false;
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = "";
 	int oldLine = -1;
@@ -335,43 +335,44 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 	    if (warnings.getWarningCount() != 0) {
 		int i = 0;
 		warnings.sort();
-		ret.append("\n<ul>");
 		for (Warning[] warning = warnings.getWarnings(); 
 		     i < warning.length; i++) {
 		    
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
-			    if (i != 0) {
-				ret.append("</dl>");
+			    if (open) {
+				ret.append("\n</ul></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<li><dl><dt> URI : "
-				       + "<a target=\"workspace\" href=\"");
+			    ret.append("\n<div><h3>URI : "
+				       + "<a href=\"");
 			    ret.append(oldSourceFile).append("\">");
-			    ret.append(oldSourceFile).append("</a>");
+			    ret.append(oldSourceFile).append("</a></h3><ul>");
+			    open = true;
 			}
 			if (warn.getLine() != oldLine || 
 			    !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<dd><strong> Line : ");
+			    ret.append("\n<li><span class='warning'>Line : ");
 			    ret.append(oldLine);
 			    
 			    if (warn.getLevel() != 0) {
 				ret.append(" Level : ");
 				ret.append(warn.getLevel());
 			    }
-			    ret.append(" </strong> ");
+			    ret.append("</span> ");
 			    ret.append(oldMessage);
 			    
 			    if (warn.getContext() != null) {
 				ret.append(" : ").append(warn.getContext());
 			    }
+			    ret.append("</li>");
 			}
 		    }
 		}
-		ret.append("</dl></ul>");
+		ret.append("</ul></div>");
 	    }
 	    out.println(ret.toString());
 	} catch (Exception e) {
@@ -436,6 +437,10 @@ public final class StyleSheetGeneratorHTML2 implements CssPrinterStyle {
 		} else if (entity.equals("selector")) {
 		    str = str.substring(lastIndexOfEntity+3);
 		    i = 0;
+		} else if (entity.equals("charset")) {
+		    str = str.substring(lastIndexOfEntity+3);
+		    i = 0;
+		    out.print(style.charset);
 		} else if (entity.equals("declaration")) {
 		    str = str.substring(lastIndexOfEntity+3);
 		    i = 0;

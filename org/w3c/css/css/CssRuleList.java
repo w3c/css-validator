@@ -54,16 +54,15 @@ public class CssRuleList {
     public String toHTML() {
 	String ret = new String();
 	if (!atRule.equals("")) {
-	    ret += "<b><i>" + atRule + "</i></b> {<br>\n" + 
-		"<SPAN id=rules>";
-	    indent = "";
+	    ret += "<li><span class='atSelector'>" + atRule + "</span> {\n" + 
+		"<ul>\n";
 	}
 	for (int i = 0; i < rulelist.size() ; i++ ) {
-	    ret += indent + ((CssStyleRule)rulelist.elementAt(i)).toHTML();
+	    ret += ((CssStyleRule)rulelist.elementAt(i)).toHTML();
 	}
 
 	if (!atRule.equals("")) {
-	    ret += "</SPAN>}<br><br>\n\n";
+	    ret += "</ul>}</li>\n";
 	}
 
 	return ret;
@@ -74,5 +73,4 @@ public class CssRuleList {
 	rulelist.clear();
 	pseudopage = "";
     }
-
 }

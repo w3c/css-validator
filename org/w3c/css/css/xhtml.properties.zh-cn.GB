@@ -7,21 +7,23 @@ go-rules: <LI><A HREF="#css">查看你已经校验的层叠样式表</A>
 no-error-or-warning: <HR><H2>没有找到错误或警告</H2>
 
 no-errors: \
-<hr> \
+<div> \
 <p>\
-<img src="images/vcss.gif" alt="Valid CSS!">\
+<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 恭喜恭喜，此文档已经通过<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
   </p>\
 <p> \
 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
-你用作加入图标到你的网页上的HTML代码：<pre> \n\
-\
-\  &lt;p>&lt;a href="http://jigsaw.w3.org/css-validator">&lt;img style="border:0;width:88px;height:31px" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ alt="Valid CSS!"/>&lt;/a>&lt;/p></pre>\
-\
+你用作加入图标到你的网页上的HTML代码：</p><pre class='example'> \n\
+&lt;p>\n\
+\ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
+\ \ &lt;img style="border:0;width:88px;height:31px"\n\
+\ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss" \n\
+\ \ \ \ \ \ \ alt="Valid CSS!" />\n\
+\ &lt;/a>\n\
+&lt;/p></pre>\
 <p> \
 如果你喜欢的话，你可以下载这个图象到你的网站目录下，并且 \
 改变以上的代码段以关联到你的当地图象而不是这个服务器。 \
@@ -33,10 +35,9 @@ href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
 \ \ \ \ \ \ \ 或 http://jigsaw.w3.org/css-validator/check/referer (仅使用于HTML文档)\n\
 \n\
-(或者，你可以加入当前也到你的书签或列表中。)</pre>
+(或者，你可以加入当前也到你的书签或列表中。)</pre></div>
 
 no-rules: <H2>没有找到样式表</H2>
-important-style: <STRONG> !important</STRONG>
 not-css1-style: /* 请注意！这不是CSS1的属性！ */
 
 # You have some predefined entities :
@@ -59,39 +60,28 @@ not-css1-style: /* 请注意！这不是CSS1的属性！ */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<hr> \
-<a name="css"></a><h2>你已经校验的层叠样式表：</h2> \
-<dl> \
+<div id="css"><h2>你已经校验的层叠样式表：</h2> \
+<ul> \
+<!-- #charset-rule --> \
 <!-- #rule --> \
-</dl>
+</ul></div>
 
-rule: \
-<dt><strong><!-- #selectors --></strong> {<br> \
-<!-- #declaration --> \
-}<br><br>
-
-# with contextuals selectors, you can do a special processing
-selectors: \
-<!-- #selector -->
-
-declaration: \
-   <!-- #property-name --> : <em><!-- #property-value --></em><!-- #important-style -->; <br>
+charset-rule: \
+<li class='vCharset'>@charset <!-- #charset -->;</li>
 
 # How to write errors
 
 errors : \
-<hr> \
-<a name="errors"></a>\
+<div id="errors">\
 <h2>错误：</h2>\
-<!-- #error -->\n
+<!-- #error --></div>\n
 
 # How to write warnings
 
 warnings: \
-<hr> \
-<a name="warnings"></a> \
+<div id="warnings"> \
 <h2>警告：</h2> \
-<!-- #warning -->\n
+<!-- #warning --></div>\n
 
 
 warning:
@@ -106,46 +96,19 @@ document: \
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
 <title>CSS 校验结果</title> \n\
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
-<style type="text/css"><!--\
-H2 {\
-  font-weight: bold; \
-  font-size: large; \
-  font-family: 黑体, helvetica, sans-serif; \
-  color: rgb(136,0,0); \
-  margin-top: 2.0%; \
-}\
-BODY {\
-  font-size: medium; \
-  font-family: verdana, arial, helvetica, sans-serif; \
-  color: rgb(0,0,0); \
-  background-color: white; \
-}\
-ADDRESS {\
-  font-weight: bold; \
-  text-align: right; \
-}\
-.right { \
-  float: right; \
-}\
-.left { \
-  float: left; \
-}\
-HR { \
-  margin-top: 2.0%; \
-}\
-#rules { margin-left : 2em }\n\
---></style>\
-</head> \
-<body> \
-<a class="left" href="http://www.w3.org"><IMG \
- SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c"WIDTH="72" \
- HEIGHT="48"></A> \
-<a style="text-align: right" href="http://www.w3.org/Jigsaw/"><IMG \
- SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered" \
- BORDER="0" WIDTH="94" HEIGHT="52"></a> \
-<br> \
-<h2>W3C CSS 校验器结果： \
-<A HREF="<!-- #file-title -->"><!-- #file-title --></A></h2> \
+<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css' >\n\
+<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css' >\n\
+</head> \n\
+<body> \n\
+<p>\n\
+<a href="http://www.w3.org"><img\n\
+src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" ></a> <a\n\
+style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
+src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
+height="52" ></a>\n\
+</p>\n\
+<h1>W3C CSS 校验器结果： \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \
 <ul> \
 <!-- #go-errors --> \
 <!-- #go-warnings --> \
@@ -154,15 +117,15 @@ HR { \
 <a href="http://jigsaw.w3.org/css-validator/">返回样式表校验器</a></li>\
 </ul>\
 <!-- #no-error-or-warning -->\
-<!-- #errors -->\
 <!-- #no-errors -->\
-<!-- #warnings -->\
 <!-- #hook-html-validator -->\
+<!-- #errors -->\
+<!-- #warnings -->\
 <!-- #rules -->\
 <!-- #no-rules -->\
 <hr> \
 <a class="right" href="http://jigsaw.w3.org/css-validator">\
- <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \
+ <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Valid CSS!" height="31"\
  width="88"></a>\
 <address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br>\

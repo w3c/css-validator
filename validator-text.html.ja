@@ -84,9 +84,7 @@
       CSSスタイルシートを意図した通りに機能させるには、
       正しい文書解析木が必要です。つまり、
       <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
-      なHTML</a>か、
-      <a class="offsite" href="http://www.xml.com/xml/pub/tools/ruwf/check.html">整形式<span lang="en">(well-formed)</span>のXML</a>
-      文書と共に、CSSスタイルシートを用いる必要があります。
+      なHTML</a>
     </p>
     
     <hr />

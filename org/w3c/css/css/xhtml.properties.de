@@ -1,28 +1,31 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <LI><A HREF="#errors">Zu den Fehlern</A>
-go-warnings: <LI><A HREF="#warnings">Zu den Warnungen</A>
-go-rules: <LI><A HREF="#css">Zu Ihrem validierten Cascading Style Sheet</A>
-no-error-or-warning: <HR><H2>Keine Fehler oder Warnungen gefunden</H2>
+go-errors: <li><a href="#errors">Zu den Fehlern</a></li>
+go-warnings: <li><a href="#warnings">Zu den Warnungen</a></li>
+go-rules: <li><a href="#css">Zu Ihrem validierten Cascading Style Sheet</a></li>
+no-error-or-warning: <div><h2>Keine Fehler oder Warnungen gefunden</h2></div>
 
 no-errors: \
-<hr> \
+<div> \
+<h2>Gratulation</h2>\n\
 <p>\
-<img src="http://jigsaw.w3.org/css-validator/images/vcss.gif" alt="Valid CSS!">\
-Gratulation, dieses Dokument wurde als <a\ \
+<img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" />\
+Dieses Dokument wurde als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> validiert! \
   </p>\
 <p> \
 Sie können diese Icon auf jeder validierten Seite darstellen, um zu zeigen, \
 daß Sie sich die Mühe gemacht haben interoperable Web-Seiten zu erstellen.  \
 Nachfolgend finden Sie den HTML-Code, den Sie verwenden können um das Icon \
-in Ihre Web-Seiten einzubauen: <pre> \n\
-\
-\  &lt;P>&lt;A HREF="http://jigsaw.w3.org/css-validator">&lt;IMG style="border:0;width:88px;height:31px" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ SRC="http://jigsaw.w3.org/css-validator/images/vcss.gif" \n\
-\ \ \ \ \ \ \ \ \ \ \ \ \ ALT="Valid CSS!"/>&lt;/A>&lt;/P></pre>\
-\
+in Ihre Web-Seiten einzubauen:</p><pre class='example'> \n\
+&lt;p>\n\
+\ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
+\ \ &lt;img style="border:0;width:88px;height:31px"\n\
+\ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss" \n\
+\ \ \ \ \ \ \ alt="Valid CSS!" />\n\
+\ &lt;/a>\n\
+&lt;/p></pre>\
 <p> \
 Sie können das Bild auch herunterladen und in Ihrem lokalen \
 Web-Verzeichnis speichern.  In diesem Fall müssen sie das \
@@ -34,12 +37,11 @@ Seite zu erleichtern oder um es anderen zu ermöglichen Ihre Seite zu \
 validieren, so verwenden Sie folgenden URI: </p><pre>\n\
 \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML-Dokumente)\n\
-\n\
-(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</pre>
+\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\
+</pre>\n\
+<p>(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p></div>
 
-no-rules: <H2>Kein Stylesheet gefunden</H2>
-important-style: <STRONG> !important</STRONG>
+no-rules: <div><h2>Kein Stylesheet gefunden</h2></div>
 not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 
 # You have some predefined entities :
@@ -62,111 +64,69 @@ not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<hr> \
-<a name="css"></a><h2>Ihr validiertes Cascading Style Sheet:</h2> \
-<dl> \
+<div id="css">\n\
+<h2>Ihr validiertes Cascading Style Sheet:</h2> \
+<ul> \
+<!-- #charset-rule --> \
 <!-- #rule --> \
-</dl>
+</ul></div>
 
-rule: \
-<dt><strong><!-- #selectors --></strong> {<br> \
-<!-- #declaration --> \
-}<br><br>
-
-# with contextuals selectors, you can do a special processing
-selectors: \
-<!-- #selector -->
-
-declaration: \
-   <!-- #property-name --> : <em><!-- #property-value --></em><!-- #important-style -->; <br>
+charset-rule: \
+<li class='vCharset'>@charset <!-- #charset -->;</li>
 
 # How to write errors
 
 errors : \
-<hr> \
-<a name="errors"></a>\
-<h2>Fehler:</h2>\n\
-<!-- #error -->\n
+<div id="errors">\
+<h2>Fehler</h2>\n\
+<!-- #error -->\n\
+</div>
 
 # How to write warnings
 
 warnings: \
-<hr> \
-<a name="warnings"></a> \
+<div id="warnings"> \
 <h2>Warnungen:</h2> \n\
-<!-- #warning -->\n
+<!-- #warning -->\n\
+</div>
 
 warning:
 
 # the beginning of the document
 document: \
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"\
-                      "http://www.w3.org/TR/REC-html40/loose.dtd">\n\
-<html lang="en"> \n\
+<?xml version='1.0' encoding='iso-8859-1'?>\n\
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n\
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\
+<html lang='de' xml:lang='de' xmlns='http://www.w3.org/1999/xhtml'>\n\
 <head> \n\
-<meta lang="fr" name="Author" content="Philippe Le Hegaret">\n\
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" /> \n\
 <title>Ergebnisse des CSS-Validators</title> \n\
-<link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
-<style type="text/css"><!--\n\
-H2 {\n\
-  font-weight: bold; \
-  font-size: large; \
-  font-family: helvetica, sans-serif; \
-  color: rgb(136,0,0); \
-  margin-top: 2.0%; \
-}\n\
-BODY {\n\
-  font-size: medium; \
-  font-family: verdana, arial, helvetica, sans-serif; \
-  color: rgb(0,0,0); \
-  background-color: white; \
-}\n\
-ADDRESS {\n\
-  font-weight: bold; \
-  text-align: right; \
-}\n\
-.right { \n\
-  float: right; \
-}\n\
-.left { \n\
-  float: left; \
-}\n\
-HR { \n\
-  margin-top: 2.0%; \
-}\n\
-#rules { margin-left : 2em }\n\
---></style>\n\
+<link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
+<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css' />\n\
+<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css' />\n\
 </head> \n\
 <body> \n\
-<a class="left" href="http://www.w3.org"><IMG \
- SRC="http://www.w3.org/Icons/w3c_home" BORDER="0" ALT="w3c"WIDTH="72" \
- HEIGHT="48"></A> \
-<a style="text-align: right" href="http://www.w3.org/Jigsaw/"><IMG \
- SRC="http://jigsaw.w3.org/Icons/jigpower.gif" ALT="Jigsaw Powered" \
- BORDER="0" WIDTH="94" HEIGHT="52"></a> \
-<br> \
-<h2>Ergebnisse des W3C CSS-Validator mit Objekt: \
-<A HREF="<!-- #file-title -->"><!-- #file-title --></A></h2> \n\
-<ul> \n\
-<!-- #go-errors --> \
-<!-- #go-warnings --> \
-<!-- #go-rules --> \n\
-<li>\
-<a href="http://jigsaw.w3.org/css-validator/">Zurück zum CSS-Validator</a></li>\
-</ul>\n\
+<p>\n\
+<a href="http://www.w3.org"><img\n\
+src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" /></a> <a\n\
+style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
+src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
+height="52" /></a>\n\
+</p>\n\
+<h1>Ergebnisse des W3C CSS-Validator mit Objekt: \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
 <!-- #no-error-or-warning -->\
+<!-- #no-errors -->\
+<!-- #hook-html-validator -->\
 <!-- #errors -->\
 <!-- #warnings -->\
-<!-- #hook-html-validator -->\
-<!-- #no-errors -->\
 <!-- #rules -->\
 <!-- #no-rules -->\
-<hr> \n\
-<a class="right" href="http://jigsaw.w3.org/css-validator">\
- <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" \
-	alt="Valid CSS!" height="31" width="88"></a>\n\
-<address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br>\
+<hr /> \n\
+<p><a class="right" href="http://jigsaw.w3.org/css-validator/">\
+ <img src="http://jigsaw.w3.org/css-validator/images/vcss" \
+	alt="Valid CSS!" height="31" width="88" /></a>\n\
+</p><address><a href="mailto:<!-- #author-email -->"><!-- #author --></a><br />\
 Zuletzt geändert am: <!-- #today --> </address> \n\
 \n\
 <!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \n\

@@ -17,6 +17,9 @@ import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.EntityResolver;
 import org.xml.sax.Locator;
 import org.xml.sax.InputSource;
 
@@ -25,17 +28,27 @@ import java.net.MalformedURLException;
 import java.io.StringBufferInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.IOException;
 import java.net.URLConnection;
+import java.util.Hashtable;
 
 import org.w3c.css.util.Util;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.Errors;
+import org.w3c.css.util.InvalidParamException;
+
+import org.w3c.css.util.xml.XMLCatalog;
 
 /**
  * @version $Revision$
  * @author  Philippe Le Hegaret
  */
-public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
+public class XMLStyleSheetHandler implements ContentHandler, 
+    LexicalHandler, ErrorHandler, EntityResolver {
+
+    static String XHTML_NS = "http://www.w3.org/1999/xhtml";
 
     private static long autoIdCount;
 
@@ -56,6 +69,8 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
     StringBuffer text = new StringBuffer(255);
 
     Locator locator;
+
+    static XMLCatalog catalog = new XMLCatalog();
 
     /**
      * Creates a new XMLStyleSheetHandler
@@ -107,8 +122,74 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 
     public void processingInstruction (String target, String data)
         throws SAXException {
+	Hashtable atts = getValues(data);
+
+	if ("xml-stylesheet".equals(target)) {
+	    String rel  = (String) atts.get("alternate");
+	    String type  = (String) atts.get("type");
+	    String href = (String) atts.get("href");
+	    
+	    if (Util.onDebug) {
+		System.out.println("<?xml-stylesheet alternate=\"" + rel 
+				   + "\" type=\"" + type
+				   + "\"" + "   href=\"" + href + "\"?>");
+	    }
+
+	    if ("yes".equals(rel)) {
+		rel = "alternate stylesheet";
+	    } else {
+		rel = "stylesheet";
+	    }
+	    if ((type == null) || (href == null)) {
+		int line = -1;
+
+		if (locator != null) {
+		    line = locator.getLineNumber();
+		}
+		CssError er =
+		    new CssError(baseURI.toString(), line,
+				 new InvalidParamException("unrecognized.link", ac));
+		Errors ers = new Errors();
+		ers.addError(er);
+		styleSheetParser.notifyErrors(ers);
+	    }
+
+	    if (type.equals("text/css")) {
+		// we're dealing with a stylesheet...
+		URL url;
+		
+		try { 
+		    if (baseURI != null) {
+			url = new URL(baseURI, href); 
+		    } else {
+			url = new URL(href); 
+		    }
+		} catch (MalformedURLException e) {
+		    return; // Ignore errors
+		}
+		
+		if (Util.onDebug) {
+		    System.out.println("[XMLStyleSheetHandler::initialize(): "
+				       + "should parse CSS url: " 
+				       + url.toString() + "]");
+		}
+		String media = (String) atts.get("media");
+		if (media == null) {
+		    media="all";
+		}
+		styleSheetParser.parseURL(ac,
+					  url, 
+					  (String) atts.get("title"),
+					  rel,
+					  media,
+					  StyleSheetOrigin.AUTHOR);
+		if (Util.onDebug) {
+		    System.out.println("[parsed!]");
+		}
+	    }
+	}
     }
-    
+
     public void skippedEntity (String name)
         throws SAXException {
     }
@@ -121,7 +202,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 	    this.namespaceURI = namespaceURI;
 	    isRoot = false;
 	}
-	if ("http://www.w3.org/1999/xhtml".equals(namespaceURI)) {
+	if (XHTML_NS.equals(namespaceURI)) {
 	    if ("base".equals(localName)) {
 		String href = atts.getValue("href");
 	
@@ -150,10 +231,27 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 				       + "\" type=\"" + type
 				       + "\"" + "   href=\"" + href + "\"");
 		}
+		if (type == null || !type.equals("text/css")) {		    
+		    return;
+		}
+		if (href == null) {
+		    int line = -1;
+		    
+		    if (locator != null) {
+			line = locator.getLineNumber();
+		    }
+		    CssError er =
+			new CssError(baseURI.toString(), line,
+				     new InvalidParamException("unrecognized.link", ac));
+		    Errors ers = new Errors();
+		    ers.addError(er);
+		    styleSheetParser.notifyErrors(ers);
+		    return;
+		}
 	
-		if (((rel != null) && rel.toLowerCase().indexOf("stylesheet") != -1)
-		    || ((type != null) && type.equals("text/css"))) {
+		if ((rel != null) && rel.toLowerCase().indexOf("stylesheet") != -1) {
 		    // we're dealing with a stylesheet...
+		    // @@TODO alternate stylesheet
 		    URL url;
 		    
 		    try { 
@@ -199,8 +297,22 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 				       + "\"" + "   title=\"" + title + "\"");
 		}
 	
-		text.setLength(0);
-		inStyle = true;
+		if (type == null) {
+		    int line = -1;
+		    
+		    if (locator != null) {
+			line = locator.getLineNumber();
+		    }
+		    CssError er =
+			new CssError(baseURI.toString(), line,
+				     new InvalidParamException("unrecognized.link", ac));
+		    Errors ers = new Errors();
+		    ers.addError(er);
+		    styleSheetParser.notifyErrors(ers);
+		} else if (type.equals("text/css")) {		
+		    text.setLength(0);
+		    inStyle = true;
+		}
 	    } else if (atts.getValue(null, "style") != null) {
 		String value = atts.getValue("style");
 
@@ -210,10 +322,11 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 		}		
 	    }
 	} else {
-	    String value = atts.getValue("http://www.w3.org/1999/xhtml", "style");
+	    // the style attribute, recommended by UI Tech TF
+	    String value = atts.getValue(XHTML_NS, "style");
 	    
 	    if (value != null) { // here we have a style attribute
-		String id = atts.getValue("http://www.w3.org/1999/xhtml", "id");
+		String id = atts.getValue(XHTML_NS, "id");
 		handleStyleAttribute(value, id);
 	    }		
 	}
@@ -227,11 +340,11 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 	if (locator != null) {
 	    line = locator.getLineNumber();
 	}
-	if ("http://www.w3.org/1999/xhtml".equals(namespaceURI)) {
+	if (XHTML_NS.equals(namespaceURI)) {
 	    if ("style".equals(localName)) {
-		inStyle = false;
-		if (text.length() != 0) {
-		    if ((type == null) || type.equals("text/css")) {
+		if (inStyle) {
+		    inStyle = false;
+		    if (text.length() != 0) {
 			if (Util.onDebug) {
 			    System.err.println( "PARSE [" + text.toString() + "]" );
 			}
@@ -240,8 +353,8 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 					       new StringBufferInputStream(text.toString()), 
 					       title, media, 
 					       documentURI, line);
-	    }
-	}
+		    }
+		}
 		
 	    }
 	}
@@ -294,7 +407,38 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
         throws SAXException {
     }
 
-    void parse(URL url, String credential) throws Exception {
+    public void error(SAXParseException exception) throws SAXException {
+    }
+
+    public void fatalError(SAXParseException exception) throws SAXException {
+	throw exception;
+    }
+
+    public void warning(SAXParseException exception) throws SAXException {
+    }
+    
+    public InputSource resolveEntity(String publicId, String systemId)
+	throws SAXException, IOException {
+	// I explicitly refuse to support public identifier.
+	if (("-//W3C//DTD XHTML 1.0 Transitional//EN".equals(publicId)
+	     && !"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd".equals(systemId))
+	    || ("-//W3C//DTD XHTML 1.0 Strict//EN".equals(publicId)
+		&& !"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd".equals(systemId))
+	    || ("-//W3C//DTD XHTML 1.0 Frameset//EN".equals(publicId)
+		&& !"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd".equals(systemId))) {
+	    throw new SAXException("Please, fix your system identifier (URI) in the DOCTYPE rule.");
+	}
+
+	String uri = catalog.getProperty(systemId);
+	
+	if (uri != null) {
+	    return new InputSource(uri);
+	} else {
+	    return new InputSource(new URL(baseURI, systemId).toString());
+	}
+    }
+
+    void parse(URL url) throws Exception {
 	InputSource source = new InputSource();
 	URLConnection connection;
 	InputStream in;
@@ -302,12 +446,20 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 	try {
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
 				  this);
+	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true); 
+	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
+	    /*
+	      xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
+				  false);
+	    xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
+				  false);
+	    */
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
 	xmlParser.setContentHandler(this);
 
-	connection = HTTPURL.getConnection(url, credential);
+	connection = HTTPURL.getConnection(url, ac);
 	in = connection.getInputStream();
 	source.setByteStream(in);
 	try {
@@ -322,6 +474,11 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 	try {
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
 				  this);
+	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+ 
+	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
+	    xmlParser.setErrorHandler(this);
+	    xmlParser.setEntityResolver(this);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
@@ -329,5 +486,154 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler {
 	InputSource source = new InputSource(input);
 	source.setSystemId(urlString);
 	xmlParser.parse(source);
+    }
+    
+    Hashtable getValues(String data) {
+	int length = data.length();
+	int current = 0;
+	char c;
+	StringBuffer name = new StringBuffer(10);
+	StringBuffer value = new StringBuffer(128);
+	StringBuffer entity_name = new StringBuffer(16);
+	int state = 0;
+	Hashtable table = new Hashtable();
+
+	while (current < length) {
+	    c = data.charAt(current);
+
+	    switch (state) {
+	    case 0:
+		switch (c) {
+		case ' ': case '\t': case '\n': // \r are normalized per XML spec
+		    // nothing
+		    break;
+		case '"': case '\'':
+		    return table;
+		case 'h': case 't': case 'm': case 'c': case 'a':
+		case 'r':
+		    name.setLength(0); // reset the name
+		    value.setLength(0); // reset the value
+		    name.append(c); // start to build the name
+		    state = 1;
+		    break;
+		default:
+		    // anything else is invalid
+		    return table;
+		}
+		break;
+	    case 1: // in the "attribute" name inside the PI
+		if ((c >= 'a') && (c <= 'z')) {
+		    name.append(c);
+		} else if ((c == ' ') || (c == '\t') || (c == '\n')) {
+		    state = 2;
+		} else if (c == '=') {
+		    state = 3;
+		} else {
+		    // anything else is invalid
+		    state = 0;
+		}
+		break;
+	    case 2: // waiting for =
+		switch (c) {
+		case ' ': case '\t': case '\n':
+		    // nothing
+		    break;
+		case '=':
+		    state = 3;
+		default:
+		    // anything else is invalid
+		    return table;
+		}
+		break;
+	    case 3: // waiting for ' or "
+		switch (c) {
+		case ' ': case '\t': case '\n':
+		    // nothing
+		    break;
+		case '"':
+		    state = 4;
+		    break;
+		case '\'':
+		    state = 5;
+		    break;
+		default:
+		    // anything else is invalid
+		    return table;
+		}
+		break;
+	    case 4: case 5: // in the "attribute" value inside the PI
+		switch (c) {
+		case '&':
+		    // predefined entities amp, lt, gt, quot, apos
+		    entity_name.setLength(0);
+		    state += 10;
+		    break;
+		case '<':
+		    return table;
+		case '"':
+		    if (state == 4) {
+			state = 6;
+		    } else {
+			value.append(c);
+		    }
+		    break;
+		case '\'':
+		    if (state == 5) {
+			state = 6;
+		    } else {
+			value.append(c);
+		    }
+		    break;
+		default:
+		    value.append(c);
+		}
+		break;
+	    case 6: // waiting a white space
+		table.put(name.toString(), value.toString());
+		name.setLength(0); // reset the name
+		value.setLength(0); // reset the value
+		switch (c) {
+		case ' ': case '\n': case '\t':
+		    state = 0;
+		    break;
+		default:
+		    return table;
+		}
+		break;
+	    case 14: case 15: // in the entity
+		switch (c) {
+		case 'a': case 'm': case 'p':
+		case 'l': case 't': case 'g':
+		case 'q': case 'u': case 'o':
+		case 's': 
+		    entity_name.append(c);
+		    break;
+		case ';':
+		    String entity = entity_name.toString();
+		    if ("amp".equals(entity)) {
+			value.append('&');
+		    } else if ("lt".equals(entity)) {
+			value.append('<');
+		    } else if ("gt".equals(entity)) {
+			value.append('>');
+		    } else if ("quote".equals(entity)) {
+			value.append('"');
+		    } else if ("apos".equals(entity)) {
+			value.append('\'');
+		    } else {
+			return table;
+		    }
+		    state -= 10;
+		    break;
+		default:
+		    return table;
+		}
+	    }
+	    current ++;
+	}
+	if (name.length() != 0 && value.length() != 0) {
+	    table.put(name.toString(), value.toString());
+	}
+	return table;
     }
 }

@@ -51,8 +51,6 @@ public final class StyleSheetGenerator2 {
     private static Properties availableFormat;
     private static Hashtable formats = new Hashtable();
 
-    //    private NewStyleSheet stylesheet3 = new NewStyleSheet();
-    
     /**
      * Create a new StyleSheetGenerator2
      *

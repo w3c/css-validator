@@ -14,7 +14,7 @@
 	src="http://www.w3.org/Icons/w3c_home" border="0" alt="w3c" width="72"
 	height="48" /></a>
     <a class="right" href="http://www.w3.org/Jigsaw/"><img
-	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered"
 	  border="0" width="94" height="52" /></a>
     <br />
 
@@ -34,12 +34,6 @@
 	<li><a href="thanks.html">Acknowledgments</a></li>
       </ul>
 
-      <h2>Release History</h2>
-      <ul class="none">
-	<li> <strong> September 30, 1997 </strong>  1.0 released.</li>
-	<li> <strong> December 14, 1998 </strong>  pre2.0.</li>
-      </ul>
-      
       <h2><a href="DOWNLOAD.html">Download the validator</a></h2>
     </div>
     
@@ -66,9 +60,7 @@
     <p>
       To work as intended, your CSS style sheet needs a correct document parse
       tree. This means you should use <a href="http://validator.w3.org/">valid
-      HTML</a> or <a class="offsite"
-      href="http://www.xml.com/xml/pub/tools/ruwf/check.html">well-formed
-      XML</a>.
+      HTML</a>.
     </p>
     
     
@@ -78,13 +70,13 @@
 
 
     <a class="right" href="http://validator.w3.org/">
-      <img src="http://validator.w3.org/images/vh40.gif" 
+      <img src="http://validator.w3.org/images/vh40" 
 	alt="Valid HTML 4.0!"  border="0" width="88" height="31" /></a>
     <a class="right" href="http://jigsaw.w3.org/css-validator">
-      <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" 
+      <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" 
 	alt="Valid CSS!" /></a>
 
-    <address><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <address><a href="mailto:www-validator-css@w3.org">www-validator-css</a></address>
   </body>
 </html>
 
