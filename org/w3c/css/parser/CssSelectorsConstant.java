@@ -7,6 +7,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2002/08/21 09:00:28  sijtsche
+ * pseudo element ::marker added
+ *
  * Revision 1.4  2002/08/19 07:24:39  sijtsche
  * tv profile restrictions added
  *
@@ -30,7 +33,8 @@ public interface CssSelectorsConstant {
       "enabled", "disabled",
       "checked", "indeterminate", "root", "last-child",
       "first-of-type", "last-of-type", "only-of-type",
-      "only-child", "empty" };
+      "only-child", "empty", "valid", "invalid", "required",
+      "optional", "read-only", "read-write" };
 
     public static final String[] PSEUDOCLASS_CONSTANTSCSS2 =
     {
@@ -57,7 +61,7 @@ public interface CssSelectorsConstant {
 
     public static final String[] PSEUDOELEMENT_CONSTANTS =
     { "first-line", "first-letter", "before", "after",
-      "selection", "marker"
+      "selection", "marker", "value", "choices"
     };
 
     // lang is special, and contains and nth-element and nth-type-of
