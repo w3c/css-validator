@@ -58,7 +58,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
     CssWordBreakInside cssWordBreakInside;
     CssWordBreak cssWordBreak;
     CssTextSpace cssTextSpace;
-    CssTextWrap cssTextWrap;
     CssTextEndOverflow cssTextEndOverflow;
     CssTextAfterOverflow cssTextAfterOverflow;
     CssPunctuationTrim cssPunctuationTrim;
@@ -78,14 +77,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
     CssTextOLStyle cssTextOLStyle;
     CssTextOLColor cssTextOLColor;
     CssTextOLMode cssTextOLMode;
-    CssLayoutGridType cssLayoutGridType;
-    CssLayoutGridMode cssLayoutGridMode;
-    CssLayoutGridLine cssLayoutGridLine;
-    CssLayoutGridChar cssLayoutGridChar;
-    CssLayoutGrid cssLayoutGrid;
-    CssPunctuationWrap cssPunctuationWrap;
     CssTextCombine cssTextCombine;
-    CssTextFit cssTextFit;
     CssMedia cssMedia;
     CssDisplayModel cssDisplayModel;
     CssDisplayRole cssDisplayRole;
@@ -490,15 +482,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	return cssTextSpace;
     }
 
-    public CssTextWrap getTextWrap() {
-	if (cssTextWrap == null) {
-	    cssTextWrap =
-		(CssTextWrap) style.CascadingOrder (
-			    new CssTextWrap(), style, selector);
-	}
-	return cssTextWrap;
-    }
-
     public CssTextEndOverflow getTextEndOverflow() {
 	if (cssTextEndOverflow == null) {
 	    cssTextEndOverflow =
@@ -670,60 +653,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	return cssTextOLMode;
     }
 
-    public CssLayoutGridType getLayoutGridType() {
-	if (cssLayoutGridType == null) {
-	    cssLayoutGridType =
-		(CssLayoutGridType) style.CascadingOrder (
-			    new CssLayoutGridType(), style, selector);
-	}
-	return cssLayoutGridType;
-    }
-
-    public CssLayoutGridLine getLayoutGridLine() {
-	if (cssLayoutGridLine == null) {
-	    cssLayoutGridLine =
-		(CssLayoutGridLine) style.CascadingOrder (
-			    new CssLayoutGridLine(), style, selector);
-	}
-	return cssLayoutGridLine;
-    }
-
-    public CssLayoutGridMode getLayoutGridMode() {
-	if (cssLayoutGridMode == null) {
-	    cssLayoutGridMode =
-		(CssLayoutGridMode) style.CascadingOrder (
-			    new CssLayoutGridMode(), style, selector);
-	}
-	return cssLayoutGridMode;
-    }
-
-    public CssLayoutGridChar getLayoutGridChar() {
-	if (cssLayoutGridChar == null) {
-	    cssLayoutGridChar =
-		(CssLayoutGridChar) style.CascadingOrder (
-			    new CssLayoutGridChar(), style, selector);
-	}
-	return cssLayoutGridChar;
-    }
-
-    public CssLayoutGrid getLayoutGrid() {
-	if (cssLayoutGrid == null) {
-	    cssLayoutGrid =
-		(CssLayoutGrid) style.CascadingOrder (
-			    new CssLayoutGrid(), style, selector);
-	}
-	return cssLayoutGrid;
-    }
-
-    public CssPunctuationWrap getPunctuationWrap() {
-	if (cssPunctuationWrap == null) {
-	    cssPunctuationWrap =
-		(CssPunctuationWrap) style.CascadingOrder (
-			    new CssPunctuationWrap(), style, selector);
-	}
-	return cssPunctuationWrap;
-    }
-
     public CssTextCombine getTextCombine() {
 	if (cssTextCombine == null) {
 	    cssTextCombine =
@@ -731,15 +660,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 			    new CssTextCombine(), style, selector);
 	}
 	return cssTextCombine;
-    }
-
-    public CssTextFit getTextFit() {
-	if (cssTextFit == null) {
-	    cssTextFit =
-		(CssTextFit) style.CascadingOrder (
-			    new CssTextFit(), style, selector);
-	}
-	return cssTextFit;
     }
 
     public CssMedia getMedia() {
@@ -1182,9 +1102,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssTextSpace != null) {
 	    cssTextSpace.print(printer);
 	}
-	if (cssTextWrap != null) {
-	    cssTextWrap.print(printer);
-	}
 	if (cssTextEndOverflow != null) {
 	    cssTextEndOverflow.print(printer);
 	}
@@ -1242,29 +1159,8 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssTextOverLine != null) {
 	    cssTextOverLine.print(printer);
 	}
-	if (cssLayoutGrid != null) {
-	    cssLayoutGrid.print(printer);
-	}
-	if (cssLayoutGridType != null) {
-	    cssLayoutGridType.print(printer);
-	}
-	if (cssLayoutGridLine != null) {
-	    cssLayoutGridLine.print(printer);
-	}
-	if (cssLayoutGridMode != null) {
-	    cssLayoutGridMode.print(printer);
-	}
-	if (cssLayoutGridChar != null) {
-	    cssLayoutGridChar.print(printer);
-	}
-	if (cssPunctuationWrap != null) {
-	    cssPunctuationWrap.print(printer);
-	}
 	if (cssTextCombine != null) {
 	    cssTextCombine.print(printer);
-	}
-	if (cssTextFit != null) {
-	    cssTextFit.print(printer);
 	}
 	if (cssMedia != null) {
 	    cssMedia.print(printer);
