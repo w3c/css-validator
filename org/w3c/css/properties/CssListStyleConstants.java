@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2002/12/20 16:03:36  sijtsche
+ * new values added
+ *
  * Revision 1.4  2002/08/21 09:01:24  sijtsche
  * new values added for list-style-type
  *
@@ -30,18 +33,29 @@ package org.w3c.css.properties;
 public interface CssListStyleConstants {
 
   public static String[] LISTSTYLETYPE = {
-      "disc", "circle", "square", "box", "decimal", "decimal-leading-zero",
-      "lower-roman", "upper-roman", "lower-greek", "lower-latin", "upper-latin",
-      "lower-alpha", "upper-alpha", "hebrew", "armenian", "georgian", "cjk-ideographic",
-      "katakana", "katakana-iroha", "hiragana", "hiragana-iroha",
-      "simp-chinese-formal", "simp-chinese-informal", "trad-chinese-formal",
-      "trad-chinese-informal", "japanese-formal", "japanese-informal", "hangul",
-      "hangul-consonant", "cjk-heavenly-stem", "cjk-earthly-branch", "arabic-indic",
-      "persian", "devanagari", "gurmukhi", "gurajati", "kannada", "malayalam",
-      "bengali", "tamil", "telugu", "thai", "lao", "myanmar", "khmer",
-      "hangule-consonant", "ethiopic-halehame", "ethiopic-abegede", "ethiopic-numeric",
-      "urdu", "oriya",
-      "none", "inherit", "check", "diamond" };
+	"box", "check", "circle", "diamond", "disc", "hyphen", "square",
+	"armenian", "cjk-ideographic", "ethiopic-numeric", "georgian", "hebrew",
+    "japanese-formal", "japanese-informal", "lower-armenian", "lower-roman",
+    "simp-chinese-formal", "simp-chinese-informal", "syriac", "tamil", "trad-chinese-formal",
+    "trad-chinese-informal", "upper-armenian", "upper-roman",
+	"arabic-indic", "binary", "bengali", "cambodian", "decimal", "decimal-leading-zero",
+	"devanagari", "gujarati", "gurmukhi", "kannada", "khmer", "lao", "lower-hexadecimal",
+	"malayalam", "mongolian", "myanmar", "octal", "oriya", "persian", "telugu", "tibetan",
+	"thai", "upper-hexadecimal", "urdu",
+	"afar", "amharic", "amharic-abegede", "cjk-earthly-branch", "cjk-heavenly-stem", "ethiopic",
+	"ethiopic-abegede", "ethiopic-abegede-am-et", "ethiopic-abegede-gez", "ethiopic-abegede-ti-er",
+	"ethiopic-abegede-ti-et", "ethiopic-halehame-aa-er", "ethiopic-halehame-aa-et",
+	"ethiopic-halehame-am-et", "ethiopic-halehame-gez", "ethiopic-halehame-om-et", "ethiopic-halehame-sid-et",
+	"ethiopic-halehame-so-et", "ethiopic-halehame-ti-er", "ethiopic-halehame-ti-et", "ethiopic-halehame-tig",
+	"hangul", "hangul-consonant", "hiragana", "hiragana-iroha", "katakana", "katakana-iroha", "lower-alpha",
+	"lower-greek", "lower-norwegian", "lower-latin", "oromo", "sidama", "somali", "tigre", "tigrinya-er",
+	"tigrinya-er-abegede", "tigrinya-et", "tigrinya-et-abegede", "upper-alpha", "upper-greek",
+	"upper-norwegian", "upper-latin",
+	"asterisks", "footnotes",
+	"circled-decimal", "circled-lower-latin", "circled-upper-latin", "dotted-decimal", "double-circled-decimal",
+	"filled-circled-decimal", "parenthesised-decimal", "parenthesised-lower-latin",
+	"normal", "none"
+  };
 
     public static String[] LISTSTYLETYPECSS1 = {
 	"disc", "circle", "square", "decimal",
