@@ -153,11 +153,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssFitPosition cssFitPosition;
 	CssFloatDisplace cssFloatDisplace;
 	CssIndentEdgeReset cssIndentEdgeReset;
-	CssMarginCSS3 cssMarginCSS3;
-	CssMarginBottomCSS3 cssMarginBottomCSS3;
-	CssMarginLeftCSS3 cssMarginLeftCSS3;
-	CssMarginTopCSS3 cssMarginTopCSS3;
-	CssMarginRightCSS3 cssMarginRightCSS3;
 	CssVisibilityCSS3 cssVisibilityCSS3;
 	CssOverflowCSS3 cssOverflowCSS3;
 	CssOverflowClip cssOverflowClip;
@@ -1463,51 +1458,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssIndentEdgeReset;
 	}
 
-	public CssMarginCSS3 getMarginCSS3() {
-		if (cssMarginCSS3 == null) {
-			cssMarginCSS3 =
-				(CssMarginCSS3) style.CascadingOrder(
-						new CssMarginCSS3(), style, selector);
-		}
-		return cssMarginCSS3;
-	}
-
-	public CssMarginRightCSS3 getMarginRightCSS3() {
-		if (cssMarginRightCSS3 == null) {
-			cssMarginRightCSS3 =
-				(CssMarginRightCSS3) style.CascadingOrder(
-						new CssMarginRightCSS3(), style, selector);
-		}
-		return cssMarginRightCSS3;
-	}
-
-	public CssMarginLeftCSS3 getMarginLeftCSS3() {
-		if (cssMarginLeftCSS3 == null) {
-			cssMarginLeftCSS3 =
-				(CssMarginLeftCSS3) style.CascadingOrder(
-						new CssMarginLeftCSS3(), style, selector);
-		}
-		return cssMarginLeftCSS3;
-	}
-
-	public CssMarginBottomCSS3 getMarginBottomCSS3() {
-		if (cssMarginBottomCSS3 == null) {
-			cssMarginBottomCSS3 =
-				(CssMarginBottomCSS3) style.CascadingOrder(
-						new CssMarginBottomCSS3(), style, selector);
-		}
-		return cssMarginBottomCSS3;
-	}
-
-	public CssMarginTopCSS3 getMarginTopCSS3() {
-		if (cssMarginTopCSS3 == null) {
-			cssMarginTopCSS3 =
-				(CssMarginTopCSS3) style.CascadingOrder(
-						new CssMarginTopCSS3(), style, selector);
-		}
-		return cssMarginTopCSS3;
-	}
-
 	public CssVisibilityCSS3 getVisibilityCSS3() {
 		if (cssVisibilityCSS3 == null) {
 			cssVisibilityCSS3 =
@@ -2695,21 +2645,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssIndentEdgeReset != null) {
 		cssIndentEdgeReset.print(printer);
-	}
-	if (cssMarginCSS3 != null) {
-		cssMarginCSS3.print(printer);
-	}
-	if (cssMarginTopCSS3 != null) {
-		cssMarginTopCSS3.print(printer);
-	}
-	if (cssMarginBottomCSS3 != null) {
-		cssMarginBottomCSS3.print(printer);
-	}
-	if (cssMarginLeftCSS3 != null) {
-		cssMarginLeftCSS3.print(printer);
-	}
-	if (cssMarginRightCSS3 != null) {
-		cssMarginRightCSS3.print(printer);
 	}
 	if (cssVisibilityCSS3 != null) {
 		cssVisibilityCSS3.print(printer);
