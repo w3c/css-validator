@@ -271,7 +271,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
 			if (open) {
-			    ret.append("</div>");
+			    ret.append("</ul>\n</div>");
 			}
 			ret.append("\n<div><h3>URI : "
 				   + "<a href=\"");
@@ -316,6 +316,9 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 			}
 		    }
 		    ret.append("</p></li>");
+		}
+		if (open) {
+		    ret.append("\n</ul>");
 		}
 		ret.append("</div>");
 	    }
@@ -373,7 +376,10 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 			}
 		    }
 		}
-		ret.append("</ul></div>");
+		if (open) {
+		    ret.append("\n</ul>");
+		}
+		ret.append("</div>");
 	    }
 	    out.println(ret.toString());
 	} catch (Exception e) {
