@@ -1,0 +1,20 @@
+H2 {
+  font-weight: bold; 
+  font-size: large; 
+  font-family: helvetica, sans-serif; 
+  color: rgb(136,0,0); 
+  margin-top: 2.0%; 
+}
+BODY {
+  font-size: medium; 
+  font-family: verdana, arial, helvetica, sans-serif; 
+  color: rgb(0,0,0); 
+  background-color: white; 
+}
+ADDRESS {
+  font-weight: bold; 
+  text-align: right; 
+}
+HR {
+  margin-top: 2.0%; 
+}

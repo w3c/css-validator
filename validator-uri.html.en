@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>W3C CSS Validation Service</title>
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+    
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+    
+
+    <h1>W3C CSS Validation Service</h1>
+    
+    <p>
+      Welcome to the W3C CSS Validation Service!
+    </p>
+    <hr />
+    <h2>Validate documents by URI</h2>
+     
+    <p>
+      Enter the URI of a document (HTML with CSS or CSS only)
+      you would like validated:
+    </p>
+    
+    <form action="validator" method="get">
+      
+      <input type="text" name="uri"
+	size="60" /><br />
+      
+      Warnings :
+      <select name="warning"> 
+	<option value="2">All</option>
+	<option selected="selected" value="1">Normal report</option>
+	<option value="0">Most important</option>
+	<option value="no">No warnings</option>
+      </select><br />
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+<!-- 	<option value="css3">CSS version 3 -->
+	<option value="mobile">mobile</option>
+<!--	<option value="svg">SVG</option> -->
+      </select>
+
+      <br />
+      <input type="submit" value="Submit this URI for validation" />
+      <input type="reset" name="Reset" value="Reset this form" />
+    </form>
+    
+    <br />
+    <br />
+    <p>
+      To work as intended, your CSS style sheet needs a correct document parse
+      tree. This means you should use <a href="http://validator.w3.org/">valid
+      HTML</a>.
+    </p>
+    
+    <hr />
+    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+  </body>
+</html>
+
+
+
+

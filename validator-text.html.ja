@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+  <head>
+    <meta lang="ja" name="Translator" content="Norio Touyama" />
+    <title>W3C CSS 検証サービス</title>
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+    height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>W3C CSS 検証サービス</h1>
+    
+    <p>
+      W3C CSS 検証サービスへようこそ!
+    </p>
+    <hr />
+    <h2>カスケーディングスタイルシート(CSS)の検証を行います</h2>
+    
+    <p>
+      検証したいCSSをテキストエリアに入力してください:
+    </p>
+    
+    <form action="validator" method="get">
+      
+      <textarea name="text" rows="12" cols="75">
+      </textarea><br />
+      
+      警告を:
+      <select name="warning"> 
+	<option selected="selected" value="2">全て出力</option>
+	<option value="1">一般的なものを出力</option>
+	<option value="0">重要なものだけ出力</option>
+	<option value="no">出力しない</option>
+      </select><br />
+      <!-- <input type="checkbox" name="error" value="no">エラーを出力しない -->
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+<!-- 	<option value="css3">CSS version 3 -->
+	<option value="mobile">mobile</option>
+<!--	<option value="svg">SVG</option> -->
+      </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+<!--	<option value="atsc-tv">ATSC TV</option> -->
+      </select><br />
+
+      <br />
+      <input type="submit" value="このCSSを検証する" />
+      <input type="reset" name="Reset" value="入力フォームをリセットする"
+	/>
+      
+    </form>
+    
+    
+    <br />
+    <br />
+    <p>
+      CSSスタイルシートを意図した通りに機能させるには、
+      正しい文書解析木が必要です。つまり、
+      <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
+      なHTML</a>か、
+      <a class="offsite" href="http://www.xml.com/xml/pub/tools/ruwf/check.html">整形式<span lang="en">(well-formed)</span>のXML</a>
+      文書と共に、CSSスタイルシートを用いる必要があります。
+    </p>
+    
+    <hr />
+    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+  </body>
+</html>
+
+
+

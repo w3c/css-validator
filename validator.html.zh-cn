@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>W3C CSS Validation Service</title>
+
+    <meta lang="zh-cn" name="Translator" content="Water Tang" />
+
+    <meta name="keywords" content="W3C,validator,css,html,java" />
+    <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
+
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">校验器</div>
+
+    <h1>W3C CSS 校验服务</h1>
+    
+    <p>
+      欢迎使用万维网协会(W3C)样式表(CSS)校验服务！
+    </p>
+    <hr />
+    <h2>校验你的层叠样式表</h2>
+    
+    <div class="main-text">
+      <h2>文档</h2>
+      <ul class="none">	
+	<li><a href="README.html">文档文件</a></li>
+	<li><a href="thanks.html">感谢</a></li>
+      </ul>
+
+      <h2>发行的历史</h2>
+      <ul class="none">
+	<li> <strong> 1997年9月30日 </strong> 发布 1.0。</li>
+	<li> <strong> 1998年12月14日 </strong> 预览 2.0。</li>
+      </ul>
+      
+      <h2><a href="DOWNLOAD.html">下载校验器</a></h2>
+    </div>
+    
+    <hr /><br />
+    
+    <div class="forms">
+      <h2 class="center">W3C CSS 校验服务</h2>
+      <p>
+	<a href="validator-uri.html">通过URL</a>校验你的层叠样式表
+      </p>
+      <p>
+	<a href="validator-text.html">使用滚动文本框</a>校验你的层叠样式表
+      </p>
+      <p>
+	<a href="validator-upload.html">通过上载</a>校验你的层叠样式表
+      </p>
+    </div>
+
+    <hr /><br />
+    
+    <p>
+      若要如期工作，你的CSS样式表需要一个正确的文档解释树。
+      这意味着你应该使用<a href="http://validator.w3.org/">正确的HTML</a>
+      或 <a class="offsite"
+      href="http://www.xml.com/xml/pub/tools/ruwf/check.html">稳健结构的
+      XML</a>.
+    </p>
+    
+    
+    <br />
+    <br />
+    <hr class="large" />
+
+
+    <a class="right" href="http://validator.w3.org/">
+      <img border="0" src="http://validator.w3.org/images/vh40.gif" 
+	alt="Valid HTML 4.0!" height="31"
+      width="88" /></a>
+    <a class="right" href="http://jigsaw.w3.org/css-validator">
+      <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" 
+	alt="Valid CSS!" height="31"
+      width="88" /></a>
+
+    <address><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+  </body>
+</html>

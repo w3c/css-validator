@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+  <head>
+    <title>W3C CSS-Validierungsservice</title>
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="w3c" width="72"
+    height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>W3C CSS-Validierungsservice</h1>
+    
+    <p>
+      Willkommen beim W3C CSS-Validierungsservice!
+    </p>
+    <hr />
+    <h2>Validieren Sie Ihr <span lang="en">Cascading Style Sheet</span></h2>
+    
+    <p>
+      Geben Sie das CSS ein, daß Sie validieren möchten:
+    </p>
+    
+    <form action="validator" method="get">
+      
+      <textarea name="text" rows="12" cols="75">
+      </textarea><br />
+      
+      Warnungen:
+      <select name="warning"> 
+	<option value="2">Alle</option>
+	<option selected="selected" value="1">Normaler Report</option>
+	<option value="0">Die wichtigsten Warnungen</option>
+	<option value="no">Keine Warnungen</option>
+      </select><br />
+      <!-- <input type="checkbox" name="error" value="no">Zeige keine Fehlermeldungen an -->
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+<!-- 	<option value="css3">CSS version 3 -->
+	<option value="mobile">mobile</option>
+<!--	<option value="svg">SVG</option> -->
+      </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+<!--	<option value="atsc-tv">ATSC TV</option> -->
+      </select><br />
+
+      <br />
+      <input type="submit" value="Übermittle dieses CSS zur Validierung" />
+      <input type="reset" name="Reset" value="Setze dieses Formular zurück" />
+      
+    </form>
+    
+    
+    <br />
+    <br />
+    <p>
+      Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen
+      korekten Parsebaum des Dokuments.  Dies bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes
+      HTML</a>.
+    </p>
+    
+    <hr />
+    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+  </body>
+</html>

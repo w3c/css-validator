@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+  <head>
+    <meta lang="fr" name="Translator" content="Yves Lafon" />
+    <title>Service de validation CSS du W3C</title>
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+    
+    <div class="t1">CSS</div>
+    <div class="t2">Validateur</div>
+
+    
+
+    <h1>Service de validation CSS du W3C</h1>
+    
+    <p>
+       Bienvenue au service de validation CSS du W3C!
+    </p>
+    <hr />
+    <h2>Validez vos documents par URI</h2>
+     
+    <p>
+	Entrez l'URI du document (de l'HTML avec du CSS ou seulement du
+	CSS) que vous voulez faire valider:
+    </p>
+    
+    <form action="validator" method="get">
+      
+      <input type="text" name="uri"
+	size="60" /><br />
+      
+      Avertissements :
+      <select name="warning"> 
+	<option value="2">Tous</option>
+	<option selected="selected" value="1">Rapport normal</option>
+	<option value="0">Les plus importants</option>
+	<option value="no">Aucun avertissement</option>
+      </select><br />
+      <!-- <input type="checkbox" name="error" value="no">Don't show errors -->
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+<!-- 	<option value="css3">CSS version 3 -->
+	<option value="mobile">mobile</option>
+<!--	<option value="svg">SVG</option> -->
+      </select>
+
+      <br />
+      <input type="submit" value="Soumettre à la validation cette URI" />
+      <input type="reset" name="Reset" value="Remettre a zéro" />
+    </form>
+    
+    <br />
+    <br />
+    <p>
+      Pour fonctionner comme pr&eacute;vu, votre feuille de style CSS doit
+      avoir un arbre grammatical correct, cela implique que vous devriez
+      utiliser de l'<a href="http://validator.w3.org/">HTML valide</a>.
+    </p>
+
+    <hr />
+    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-fr" xml:lang="en-fr">
+  <head>
+    <title>CSS Validator Project</title>
+
+    <link href="style/page.css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <link rel="STYLESHEET" title="default" media="screen"
+          href="style/general.css" type="text/css" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+</head>
+  <body>
+
+    <a class="left" href="http://www.w3.org"><img
+    src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" /></a>
+
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>CSS Validator version 2.0 : RUN</h1>
+    
+    <h2>Command line version</h2>
+
+    <p>
+      The simplest way is the following:
+    </p>
+    <ol>
+	<li>
+	Get a Java interpreter and install it. As of Jigsaw, Java version 1.1
+	is required. You can get Sun's Java intepreter for free from: <a
+	href="http://www.javasoft.com">http://www.javasoft.com</a>
+	</li>
+      <li>
+	Set your CLASSPATH environment variable in order to include
+	validator's classes. To do this:
+	<dl>
+	   <dt>On Windows</dt>
+	  <dd>set CLASSPATH=&lt;instdir>\validator.zip</dd>
+	  <dt>On UNIX</dt>
+	  <dd>export CLASSPATH=&lt;instdir>/validator.zip</dd>
+	</dl>
+	Where &lt;instdir> should be substitued with the absolute path of the
+	directory in which you unpacked validator.
+	</li>
+      <li>
+	Check that your PATH setting allow you to run the Java
+	interpreter. This will usually be the case if you have installed
+	Sun's JDK. 
+</li>
+      <li>
+	Run the validator:
+	<p>
+	  java org.w3c.css.css.StyleSheetCom &lt;your-file-or-URI>
+	</p>
+	<p>
+	  If you launch the validator with no arguments, it gives you all
+	  available arguments on command line. Here is some examples :
+	</p>
+    <pre>
+java org.w3c.css.css.StyleSheetCom http://www.w3.org/
+or
+java org.w3c.css.css.StyleSheetCom http://style.verso.com/stylebot.html?family=1&amp;doc=url4
+    </pre>
+</li>
+    </ol>
+    <h2>Servlet version</h2>
+
+    <p>
+      The servlet class is <a
+      href="org/w3c/css/servlet/CssValidator.java">org.w3c.css.servlet.CssValidator</a>. If
+      you are looking to use Jigsaw, see the <a
+      href="http://www.w3.org/Jigsaw/Doc/Reference/org.w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</a>
+      documentation.
+    </p>
+    <hr />
+    <img src="images/mwcss.gif" alt="made with CSS" />
+    <address><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=x-sjis" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>CSS Validator version 2.0 : $B;H$$J}(B</title>
+<link rel="contents" href="DOWNLOAD.html.ja" />
+    <link href="style/page.css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <link rel="STYLESHEET" title="default" media="screen"
+href="style/general.css" type="text/css" />
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+</head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>CSS Validator version 2.0 : $B;H$$J}(B</h1>
+
+    <h2>$B%3%^%s%I%i%$%s%t%!!&lt;%8%g%s(B</h2>
+
+    <p>$B$D$.$N$H$*$j$K$9$k$N$,$$$A$P$s4JC1$G$9!#(B</p>
+    <ol>
+	<li>JAVA$B%$%s%?%W%j%?$r&lt;j$KF~$l$F%$%s%9%H!<%k$7$^$9!#(BJigsaw$B$HF1MM$K!"(BJava 1.1$B0J9_$,I,MW$G$9!#(B<a
+	href="http://java.sun.com/products/jdk/1.2/ja/jre/">http://java.sun.com/products/jdk/1.2/ja/jre/</a>$B$+$i(BJAVA Runtime Environment$B$,L5NA$G%@%&%s%m!&lt;%I$G$-$^$9!#(B</li>
+      <li>
+	validator$B$N%/%i%9$r;H$&$?$a$K!"(BCLASSPATH$B4D6-JQ?t$r$D$.$N$H$*$j$K@_Dj$7$^$9!#(B
+	<dl>
+	   <dt>Windows$B$G$O!"(B</dt>
+	  <dd>set CLASSPATH=&lt;$B%$%s%9%H!<%k%G%#%l%/%H%j(B&gt;\validator.zip</dd>
+	  <dt>UNIX$B$G$O!"(B</dt>
+	  <dd>export CLASSPATH=&lt;$B%$%s%9%H!<%k%G%#%l%/%H%j(B&gt;/validator.zip</dd>
+	</dl>
+	$B$3$3$G(B&lt;$B%$%s%9%H!<%k%G%#%l%/%H%j(B&gt;$B$O!"(Bvalidator$B$r2rE`$7$?%G%#%l%/%H%j$N@dBP%Q%9$KCV$-49$($F$/$@$5$$!#(B
+</li>
+      <li>PATH$B$N@_Dj$,(BJAVA$B%$%s%?%W%j%?$rF0:n$5$;$k$h$&$K$J$C$F$$$k$+3NG'$7$^$9!#$3$l$O(BSun$B$N(BJDK$B$rF3F~$7$?$H$-$KI,MW$K$J$k$3$H$,$"$j$^$9!#(B
+</li>
+      <li>
+	validator$B$r&lt;B9T$7$^$9!#(B
+	<p>
+	  java org.w3c.css.css.StyleSheetCom &lt;file$B$^$?$O(BURI&gt;
+	</p>
+	<p>$B0z?t$r>JN,$7$F!"(Bvalidator$B$rF0:n$5$;$k$H!"MxMQ2DG=$J0z?t$r$9$Y$FI=<($7$^$9!#$$$/$D$+$NNc$r<($7$^$9!#(B</p>
+
+    <pre>
+java org.w3c.css.css.StyleSheetCom http://www.w3.org/
+or
+java org.w3c.css.css.StyleSheetCom http://style.verso.com/stylebot.html?family=1&amp;doc=url4
+    </pre>
+</li>
+    </ol>
+    <h2>$B%5!<%t%l%C%H%t%!!<%8%g%s(B</h2>
+
+    <p>$B!!%5!<%t%l%C%H%/%i%9$O!"(B<a
+      href="org/w3c/css/servlet/CssValidator.java">org.w3c.css.servlet.CssValidator</a>$B$G$9!#$b$7!"(BJigsaw$B$r;H$&$N$J$i$P!"(B<a
+      href="http://www.w3.org/Jigsaw/Doc/Reference/org.w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</a>$B$b;2>H$7$F$/$@$5$$!#(BJigsaw$B>e$GF0:n$5$;$k>l9g!"%3%^%s%I%i%$%s%t%!!<%8%g%s$K2C$($F<!$N&lt;j=g$,I,MW$G$9!#(B
+    </p>
+<ol>
+<li><a href="http://www.w3.org/Jigsaw/">Jigsaw</a>$B$r%@%&%s%m!<%I$7$F%$%s%9%H!<%k$7$^$9!#(B</li>
+<li><a href="http://java.sun.com/products/jsp/download.html">http://java.sun.com/products/jsp/download.html</a>$B$+$i(BJavaServer Web Development Kit (JSWDK) 1.0.1$B$r%@%&%s%m!<%I$7$F!"2rE`$;$:$K$I$3$+$N%U%)%k%@$K$*$-$^$9!#$3$N(B&lt;$B%$%s%9%H!<%k@h%U%)%k%@(B&gt;jswdk1_0_1-win.zip$B$r(BJigsaw$B5/F0$N%W%m%7%8%c$N(Bclasspath$B$KDI2C$7$^$9!#(B</li>
+<li>$BNc$($P!"(B&lt;Jigsaw$B%$%s%9%H!<%k@h%U%)%k%@(B&gt;Jigsaw\WWW\servlet$B$N2<$K(Bcss-validator$B$H$$$&%G%#%l%/%H%j$r:n@.$7$F!"$3$3$K(Bsite.zip$B$r2rE`$7$^$9!#(B</li>
+<li>validator.zip$B$N$"$j$+$b(BJigsaw$B5/F0$N%W%m%7%8%c$N(Bclasspath$B$KDI2C$7$^$9!#(B</li>
+<li>Jigadmin$B$K$h$C$F!"(Bcss-validator$B$H$$$&%G%#%l%/%H%j$r:n$j!"(Borg.w3c.jigsaw.servlet.ServletDirectoryFrame$B$H$$$&%j%=!<%9$rDI2C$7$^$9!#(B</li>
+<li>org.w3c.jigsaw.servlet.ServletWrapper$B$H$$$&%j%=!<%9$r$D$/$jL>A0$r(Bvalidator$B$H$7$^$9!#(BServlet Class field$B$K$O(Borg.w3c.css.servlet.CssValidator$B$H;XDj$7$^$9!#$3$N%j%=!<%9$K(BServletWrapperFrame$B$rDI2C$7$^$9!#(B</li>
+<li>http://127.0.0.1:8001/servlet/css-validator/validator?uri=http://www.w3c.org$B$H$9$k$H%F%9%H7k2L$,I=<($5$l$^$9!#(B</li>
+</ol>
+    <hr />
+<p><a href="./DOWNLOAD.html.ja">$BLa$k(B</a></p>
+    <hr />
+    <img src="images/mwcss.gif" alt="made with CSS" width='87' height='30' />
+    <a href="mailto:www-validator-css@w3.org">validator-css</a>
+  </body>
+</html>

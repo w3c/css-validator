@@ -1,0 +1,40 @@
+
+Hi,
+
+In this directory you will find a prototype of the HTML parser
+that we are testing for the beta release of HotJava. This code
+is being released to generate some early feedback. It is covered
+by the same licencing agreement as the alpha3 release of HotJava.
+
+The code in html.Parser reads a DTD and parses an html file. HTML
+errors are reported. For example:
+
+	java html.Parser http://java.sun.com/
+
+You can also parse just the DTD as follows:
+
+	java html.DTD html2-net
+
+This will print a complete listing of the DTD.
+
+--
+
+NOTE: It requires that you have installed the alpha3 version of
+HotJava on your machine.
+
+NOTE: This is a prototype. It is by no means complete or bug
+free. Please use it, fix it and let me know what the problems are
+so that I can make sure they get fixed in the beta release.
+
+NOTE: The code reads a properties file from your ~/.hotjava
+directory as well as from the current directory. This means that
+you should run it in the current directory.
+
+--
+
+Send feedback to avh@eng.sun.com.
+
+Have fun,
+
+	Arthur van Hoff
+	avh@eng.sun.com

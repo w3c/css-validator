@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=x-sjis" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>CSS Validator version 2.0 : ダウンロード</title>
+
+    <link rel="contents" href="validator.html.ja" />
+
+    <link href="style/page.css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <link rel="STYLESHEET" title="default" media="screen"
+      href="style/general.css" type="text/css" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org">
+      <img src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1>CSS Validator version 2.0 : ダウンロード</h1>
+    <p>まず、<a
+      href="http://www.w3.org/Consortium/Legal/copyright-software.html">著作権表示</a>を読んでください。</p>
+<!--
+    <ol>
+      <li><a href="validator.zip">validator.zip</a>validatorのクラス全部　<a href="RUN.html.ja">使い方</a></li>
+      <li><a href="sites.zip">sites.zip</a>HTMLを含めたこのサイト全部</li>
+    </ol>
+-->
+    <p>
+      The new CSS validator will be available for download as soon as
+possible. We apologize for the inconvenience.
+    </p>
+
+    <hr />
+<p><a href="./validator.html.ja">戻る</a></p>
+    <hr />
+    <img src="images/mwcss.gif" alt="made with CSS" width='87' height='30' />
+    <a href="mailto:www-validator-css@w3.org">validator-css</a>
+  </body>
+</html>

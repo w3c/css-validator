@@ -1,0 +1,37 @@
+<!--	html-0.dtd
+
+        Document Type Definition for the HyperText Markup Language
+        as used by minimally conforming World Wide Web applications
+	(HTML Level 0 DTD).
+
+	$Id$
+
+	Author: Daniel W. Connolly <connolly@hal.com>
+	See Also: http://www.hal.com/%7Econnolly/html-spec/index.html
+		  http://info.cern.ch/hypertext/WWW/MarkUp2/MarkUp.html
+-->
+
+<!ENTITY % HTML.Version
+	"-//IETF//DTD HTML 2.0 Level 0//EN"
+	-- public identifier for "minimal conformance" version             -- 
+
+        -- Typical usage:
+
+            <!DOCTYPE HTML PUBLIC
+		"-//IETF//DTD HTML Level 0//EN">
+	    <html>
+	    ...
+	    </html>
+	--
+	>
+
+<!-- Feature Test Entities -->
+
+<!ENTITY % HTML.Highlighting "IGNORE">
+<!ENTITY % HTML.Forms "IGNORE">
+
+<!ENTITY % head.extra " ">
+<!ENTITY % linkExtraAttributes " ">
+
+<!ENTITY % html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+%html;

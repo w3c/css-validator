@@ -1,0 +1,159 @@
+# Defines your own error and warning message here
+content-type: text/html; charset=gb2312
+content-language: zh
+output-encoding-name: euc-cn
+
+# You can change the level warning like this (example) :
+# warning.redefinition.level: 5
+#  level is an integer between 0 and 9 (all others values are ignored)
+warning.redefinition: 重定义了 %s
+
+# used by org.w3c.css.properties.Css1Style
+warning.same-colors: 一样的颜色对于 %s 和 %s
+warning.no-color: 你没有为你的背景色设置(前景)颜色
+warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
+warning.no-background-color: 你没有为你的(前景)颜色设置背景色
+warning.no-generic-family: 建议你指定一个种类族科作为最后的选择
+warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
+名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
+符号会被转换为单一个空格。
+warning.no-padding: 建议你使用有背景色的浮白区域(padding area)
+warning.same-colors2: 颜色和背景颜色使用了相同的颜色 %s 和 %s
+warning.relative-absolute: 你在 %s 使用了一些绝对和相对长度。这不是棒的样式表
+
+# used by org.w3c.css.properties.CssSelectors
+warning.unknown-html: %s 不是HTML元素
+warning.html-inside: HTML 元素不能嵌在其它元素中
+warning.body-inside: BODY 元素不能嵌在除了HTML元素的其它元素中
+warning.pseudo-classes: 定位锚伪类 %s 除了对'A'外，在元素上没有效果
+
+# not used by org.w3c.css.properties.CssSelectors for the moment
+warning.noinside: %s 不能嵌在内联元素中
+warning.withblock: 请小心。伪元素只能附于块级元素上
+warning.block-level: 这个属性应用于块级元素
+
+# used by org.w3c.css.parser.Frame
+warning.no-declaration: 在规则中没有声明
+
+# used by org.w3c.css.values.CssColor
+warning.out-of-range: %s 超出范围
+
+warning.marker: The marker-offset property applies on elements with 'display: marker'
+
+# used by org.w3c.css.properties.ACssStyle
+warning.relative: 在属性 %s 使用相对单位令样式表更加棒
+
+# used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
+warning.at-rule: 对不起，'@规则' %s 不能应用
+
+# used by all properties and values
+error.operator: %s 是一个错误的运算符
+error.negative-value: %s 不允许使用负值
+error.few-value: 属性 %s 的值太小
+
+# be careful here, values comes first
+# You can't write something like this : For the color, blue is an incorrect value
+error.value: %s 不是一个 %s 值
+
+error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
+
+# used by org.w3c.css.properties.CssTextDecoration
+error.same-value: %s 重复出现
+
+# used by org.w3c.css.properties.CssClip
+error.shape: 无效的形状定义 rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: 形状定义的分隔符无效，必须为逗号
+
+# used by org.w3c.css.properties.CssContent
+error.attr: 无效的属性定义 attr(X)
+error.counter: 无效的计数器定义 counter(<identifier>[,<list-style-type>]?)
+error.counters: 无效的计数器定义 counters(<identifier>,<string>[,<list-style-type>]?)
+
+# used by org.w3c.css.font.Src
+error.format: 无效的格式定义 format(<string>[,<string>]*)
+error.local: 无效的格式定义 local(<string>|<ident>+)
+
+# used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
+error.unit: %s 是错误的单位
+
+# used by org.w3c.css.aural.ACssAzimuth
+error.degree: 位置必须描述为有效的角度范围
+
+# used by org.w3c.css.aural.ACssElevation
+error.elevation.range: 请指定仰角(elevation)以一个角度值，在'-90deg'和'90deg'之间("deg"为度).
+
+# used by org.w3c.css.aural.ACssPitchRange
+error.range: 此值超出范围。此值必须在'0'和'100'之间
+
+# used by org.w3c.css.properties.CssTextShadow
+error.two-lengths: 一个阴影位移由两个<length>值(一个模糊范围可以选择放于阴影位移之后)
+
+error.integer: This number should be an integer.
+error.comma: 缺少逗号分隔符
+
+# used by org.w3c.css.values.CssPercentage
+error.percent: %s 是错误的百分比
+
+# used by org.w3c.css.values.CssString
+error.string: %s 是错误的字符串
+
+# used by org.w3c.css.values.CssURL
+error.url: %s 是错误的URL
+
+# used by org.w3c.css.values.CssColor
+error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
+
+# used by org.w3c.css.values.CssNumber
+error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
+
+# used by org.w3c.css.parser.CssPropertyFactory
+error.noexistence: 属性 %s 不存在
+error.noexistence-media: 媒体 %s 的属性 %s 不存在
+
+# used by org.w3c.css.parser.CssFouffa
+error.unrecognize: 太多值不能识别
+
+# used by org.w3c.css.parser.CssSelectors
+error.pseudo-element: 伪元素: %s 不能在次处的上下文 %s 中出现
+error.pseudo-class: 伪类 .%s 不能在此处的HTML上下文 %s 中出现
+error.pseudo: 不识别的伪元素或伪类
+error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普通选择符: %s.
+error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
+error.todo : 抱歉，特性 %s 还不能支持
+error.incompatible: %s 和 %s 不兼容
+
+error.media: 不能识别的媒体 %s 
+error.page: 不能职别的伪命名页 %s
+
+
+# used by StyleSheetGeneratorHTML
+generator.context: 上下文
+generator.request: 导出你的样式表时发生错误 \
+请更正你的请求或发送邮件到 plh@w3.org.
+generator.unrecognized: 不能识别的
+generator.invalid-number: 无效数字
+generator.property: 无效数字
+generator.line: 行
+generator.not-found: 找不到文件
+generator.doc-html: <hr><br><p>\
+若要如期工作，你的CSS样式表需要一个正确的文档解释树。 \
+这意味着你应该使用<a href="http://validator.w3.org/check?uri=\
+%s">正确的HTML</a>。</p>
+
+generator.doc:<hr><br><p>\
+若要正常工作，你的CSS样式表需要一个正确的文档解释树。 \
+这意味着你应该使用<a href="http://validator.w3.org/">正确 \
+的HTML</a>.</p>
+
+
+# used by the parser
+parser.semi-colon: 试图寻找属性名前面的冒号。加上！
+
+parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
+除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
+被解释为不识别的尺寸值(以允许将来加入新的单位)
+
+
+# used by the servlet
+servlet.invalid-request: 你发出了无效的请求
+servlet.process: 不能对对象进行处理

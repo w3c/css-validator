@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <meta lang="zh-cn" name="Translator" content="Water Tang" />
+    <title>W3C CSS Validation Service</title>
+    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+  </head>
+  <body>
+    <a class="left" href="http://www.w3.org"><img
+	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
+	height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+    <div class="t1">CSS</div>
+    <div class="t2">校验器</div>
+
+    <h1>W3C CSS 校验服务</h1>
+    
+    <p>
+      欢迎使用万维网协会(W3C)样式表(CSS)校验服务！
+    </p>
+    <hr />
+    <h2>校验你的层叠样式表</h2>
+    
+    <p>
+      输入你希望校验的文档的文件名：
+    </p>
+    
+    <form action="validator" method="post" enctype="multipart/form-data">
+      
+      <p>上载一个CSS源文件</p>
+      <input type="file" name="file" size="60" /><br />
+      
+      警告：
+      <select name="warning"> 
+	<option value="2">所有</option>
+	<option selected="selected" value="1">一般报告</option>
+	<option value="0">最重要的</option>
+	<option value="no">没有警告</option>
+      </select><br />
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+<!-- 	<option value="css3">CSS version 3 -->
+	<option value="mobile">mobile</option>
+<!--	<option value="svg">SVG</option> -->
+      </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv </option>
+	<option value="presentation">presentation</option>
+<!--	<option value="atsc-tv">ATSC TV</option> -->
+      </select><br />
+
+      <br />
+      <input type="submit" value="提交此样式表以校验" />
+      <input type="reset" name="Reset" value="重置此表单" />
+      
+    </form>
+    
+    
+    <br />
+    <br />
+    <p>
+      若要如期工作，你的CSS样式表需要一个正确的文档解释树。
+      这意味着你应该使用<a href="http://validator.w3.org/">正确的HTML</a>.
+    </p>
+    
+    <hr />
+    <address class="right"><a href="mailto:www-validator-css@w3.org">validator-css</a></address>
+    <!-- Created: Thu Jul 24 17:46:39 WET DST 1997 -->
+  </body>
+</html>

@@ -1,0 +1,174 @@
+# Defines your own error and warning message here
+content-type: text/html; charset=ISO-8859-1
+content-language: de
+
+# You can change the level warning like this (example) :
+# warning.redefinition.level: 5
+#  level is an integer between 0 and 9 (all others values are ignored)
+warning.redefinition: Erneute Definition von %s
+
+# used by org.w3c.css.properties.Css1Style
+warning.same-colors: Gleiche Farbe für %s und %s
+warning.no-color: Sie haben keine Vordergrundfarbe zu der Hintergrundfarbe angegeben
+warning.no-background-color: Sie haben keine Hintergrundfarbe zu der Vordergrundfarbe angegeben
+warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
+warning.no-generic-family: Es wird empfohlen, daß Sie eine generische Font-Familie als letzte Alternative angeben
+warning.with-space: Font-Familiennamen, die Leerzeichen enthalten sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Wenn die Anführungszeichen weggelassen werden, werden alle Whitespaces (Leerzeichen, Tabulatoren, etc) vor und nach dem Namen ignoriert und jede Sequenz von Whitespaces innerhalb der Namens wird durch ein einzelnes Leerzeichen ersetzt.
+warning.no-padding: Es wird empfohlen, eine freie Umgebung (padding) mit der Hintergrundfarbe zu haben
+warning.same-colors2: Die gleichen Farben für den Vordergrund und den Hintergrund in den zwei Kontexten %s und %s
+warning.relative-absolute: Sie haben einige absolute und relative Längen in %s. Dies ist dadurch kein robustes Stylesheet.
+
+# used by org.w3c.css.properties.CssSelectors
+warning.unknown-html: %s ist kein HTML-Element
+warning.html-inside: Das HTML-Element kann nicht innerhalb eines anderen Elements vorkommen
+warning.body-inside: Das BODY-Element darf nur direkt innerhalb des HTML-Elements vorkommen
+warning.pseudo-classes: Die Anker-Pseudoklasse %s hat keinen Effekt auf andere Elemente als 'A'
+
+# not used by org.w3c.css.properties.CssSelectors for the moment
+warning.noinside: %s kann nicht innerhalb eines Inline-Elements vorkommen
+warning.withblock: Vorsicht: Pseudoelemente können nur an Elemente auf Block-Level angebunden werden.
+warning.block-level: Diese Eigenschaft gilt für Elemente auf Block-Level.
+
+# used by org.w3c.css.parser.Frame
+warning.no-declaration: Keine Deklaration in der Regel
+
+# used by org.w3c.css.values.CssColor
+warning.out-of-range: %s ist außerhalb des Wertebereichs
+error.invalid-color: Ungültige RGB-Funktion
+
+warning.marker: Die marker-offset Eigenschaft gilt für Elements mit 'display: marker'
+
+# used by org.w3c.css.properties.ACssStyle
+warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft %s führt zu robusteren Stylesheets
+
+# used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
+warning.at-rule: Leider ist die at-rule %s nicht implementiert.
+
+# used by all properties and values
+error.operator: %s ist kein ungültiger Operator
+error.negative-value: %s negative Werte sind nicht erlaubt
+error.few-value: zu wenige Werte für die Eigenschaft %s
+
+# be careful here, values comes first
+# You can't write something like this : For the color, blue is an incorrect value
+error.value: %s ist kein %s-Wert
+
+# used by org.w3c.css.properties.CssTextDecoration
+error.same-value: %s kommt zweimal vor
+
+error.generic-family.quote: Generische Fontfamiliennamen sind Schlüsselwörter und dürfen deshalb nicht in Anführungszeichen eingeschlossen werden.
+
+# used by org.w3c.css.properties.CssClip
+error.shape: Ungültige Gestaltdefinition rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: Ungültiger Seperator in der Gestaltdefinition. Es muß ein Komma verwendet werden.
+
+# used by org.w3c.css.properties.CssContent
+error.attr: Ungültige attr-Definition attr(X)
+error.counter: Ungültige Zählerdefinition counter(<identifier>[,<list-style-type>]?)
+error.counters: Ungültige Zählerdefinition counters(<identifier>,<string>[,<list-style-type>]?)
+
+# used by org.w3c.css.font.Src
+error.format: Ungültige Formatdefinition format(<string>[,<string>]*)
+error.local: Ungültige Formatdefinition local(<string>|<ident>+)
+
+# used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
+error.unit: %s ist keine gültige Einheit
+
+# used by org.w3c.css.aural.ACssAzimuth
+error.degree: Die Position muß mit Gradangaben beschrieben werden.
+
+# used by org.w3c.css.aural.ACssElevation
+error.elevation.range: Spezifiziert die Höhe als Winkel zwischen'-90deg' und '90deg'.
+
+# used by org.w3c.css.aural.ACssPitchRange
+error.range: Der Wert ist außerhalb des gültigen Wertebereichs.  Der wert muß zwischen '0' und '100' liegen.
+
+# used by org.w3c.css.properties.CssTextShadow
+error.two-lengths: Ein Schattenoffset wird durch zwei <length>-Werte spezifiziert (Ein Radius für die Verschwommenheit kann optional nach dem Schattenoffset angegeben werden.)
+
+error.integer: Diese Nummer sollte eine ganze Zahle sein.
+error.comma: Fehlender Komma-Separator.
+
+# used by org.w3c.css.values.CssPercentage
+error.percent: %s ist eine unkorrekte Prozentangabe
+
+# used by org.w3c.css.values.CssString
+error.string: %s ist kein gültiger String
+
+# used by org.w3c.css.values.CssURL
+error.url: %s ist kein gültiger URL
+
+# used by org.w3c.css.values.CssColor
+error.rgb: %s ist keine gültige Farbe mit 3 oder 6 Hexadezimalzahlen
+
+# used by org.w3c.css.values.CssNumber
+error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
+
+# used by org.w3c.css.parser.CssPropertyFactory
+error.noexistence: Die Eigenschaft %s existiert nicht
+error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
+
+# used by org.w3c.css.parser.CssFouffa
+error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt
+
+# used by org.w3c.css.parser.CssFouffa
+generator.unrecognize: Einlese-Fehler
+
+# used by org.w3c.css.parser.CssSelectors
+error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontaxt %s vorkommen
+error.pseudo-class: Die Pseudoklasse .%s kann hier nicht in dem HTML-Kontext %s vorkommen
+error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse
+error.id: ID-Selektor #%s ist ungültig!  Nur ein ID-Selektor kann in einem einfachen Selektor angegeben werden: %s.
+error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert %s keine Leerzeichen enthalten.
+error.todo : Leider ist das Feature %s noch nicht implementiert.
+error.incompatible: %s und %s sind inkompatibel
+
+error.media: umbekanntes Medium %s 
+error.page: unbekannte Pseudo-benannte Seite %s
+
+
+# used by StyleSheetGeneratorHTML
+generator.context: Kontext
+generator.request: Ein Fehler trat während der Ausgabe Ihres Stylesheets auf. \
+Bitte korrigieren Sie Ihre Anfrage oder senden Sie eine E-Mail an plh@w3.org.
+generator.unrecognized: Unbekannt
+generator.invalid-number: Ungültige Nummer
+generator.property: Ungültige Nummer
+generator.line: Zeile
+generator.not-found: Datei nicht gefunden
+generator.doc-html: <hr><br><p>\
+Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korekten Parsebaum des Dokuments. \
+Das bedeutet, daß Sie <a href="http://validator.w3.org/check?uri=\
+%s">validiertes HTML</a> verwenden sollten.</p>
+
+generator.doc:<hr><br><p>\
+Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korekten Parsebaum des Dokuments. \
+Das bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes \
+HTML</a> verwenden sollten.</p>
+
+
+# used by the parser
+parser.semi-colon: Versuche ein Semikolon vor dem Eigenschaftsnamen zu finden. Füge es hinzu.
+
+parser.old_class: In CSS1 konnte ein Klassenname mit einer Ziffer beginnen  (".55ft"), \
+es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden sollche Klassen als \
+unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
+
+
+# used by the servlet
+servlet.invalid-request: Sie haben eine ungültige Anfrage gesendet.
+servlet.process: Kann das Objekt nicht ausführen
+
+error.groupname : %s ist kein gültiger Gruppen-Name. Bitte benutzen Sie einen 
+gültigen Wert.
+
+error.notforcss1 : Die Variable %s ist in CSS1 nicht vorhanden
+error.nogroup : Die Variable %s wurde durch toggle-group nicht gesetzt
+error.anglevalue : Der Wert muss durch 90 teilbar sein und zwischen -360 und 360 (Grad) liegen
+error.percentage : Es wurde ein Prozent-Wert erwartet
+error.noothermedium : Eigenschaften anderer Endger&auml;te k&ouml;nnten f&uuml;r das aktuelle Endger&auml; nicht funktionieren
+error.notforusermedium : Die Eigenschaft %s existiert nicht f&uuml;r dieses Endger&auml;te-Profil
+error.noatruleyet : Andere @Befehle als @import werden von CSS1 nicht unterst&uuml;tzt.
+error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
+
+warning.atsc : Das Attribut %s ist unter Umst&auml;nden nicht im Funktionsumfang von atsc-tv enthalten.
