@@ -135,12 +135,12 @@ public class XMLStyleSheetHandler implements ContentHandler,
 				   + "\"" + "   href=\"" + href + "\"?>");
 	    }
 
-	    if ("yes".equals(rel)) {
+	    if ("yes".equalsIgnoreCase(rel)) {
 		rel = "alternate stylesheet";
 	    } else {
 		rel = "stylesheet";
 	    }
-	    if ((type == null) || (href == null)) {
+	    if (href == null) {
 		int line = -1;
 
 		if (locator != null) {
@@ -154,7 +154,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		styleSheetParser.notifyErrors(ers);
 	    }
 
-	    if (type.equals("text/css")) {
+	    if (type.equalsIgnoreCase("text/css")) {
 		// we're dealing with a stylesheet...
 		URL url;
 		
@@ -231,7 +231,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 				       + "\" type=\"" + type
 				       + "\"" + "   href=\"" + href + "\"");
 		}
-		if (type == null || !type.equals("text/css")) {		    
+		if (!"text/css".equalsIgnoreCase(type)) {
 		    return;
 		}
 		if (href == null) {

@@ -83,7 +83,7 @@ public class LinkTag extends Flow {
 	
 	if ((rel != null || type != null)
 	    && ((rel == null) || rel.toLowerCase().indexOf("stylesheet") != -1)
-	    && ((type == null) || type.equals("text/css"))) {
+	    && ((type == null) || type.equalsIgnoreCase("text/css"))) {
 	    // we're dealing with a stylesheet...
 	    URL url;
 	    

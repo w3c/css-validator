@@ -78,7 +78,7 @@ public class StyleTag extends Block {
 	String text = getChildText(htmlChild);
 	
 	if (text != null) {
-	    if ((type == null) || type.equals("text/css")) {
+	    if ((type == null) || type.equalsIgnoreCase("text/css")) {
 		if (media == null) {
 		    media = "all";
 		}
