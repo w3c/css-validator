@@ -18,24 +18,24 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM>  continuous || words || inherit<BR>
+ *  <EM>Value:</EM>  continuous || skip-white-space || inherit<BR>
  *  <EM>Initial:</EM>continuous<BR>
  *  <EM>Applies to:</EM>all elements<BR>
  *  <EM>Inherited:</EM>no<BR>
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property specifies the mode for the line-through, that is whether the 
- *  line-through is continuous or whether it appears only under words and not 
- *  whitespace. 
+ *  This property specifies the mode for the line-through, that is whether the
+ *  line-through is continuous or whether it appears only under words and not
+ *  whitespace.
  */
 
 public class CssTextLTMode extends CssProperty {
- 
+
     CssValue ltmode;
 
     static CssIdent continuous = new CssIdent("continuous");
-    static CssIdent words = new CssIdent("words");
+    static CssIdent skipwhitespace = new CssIdent("skip-white-space");
 
     /**
      * Create a new CssTextLTMode
@@ -46,7 +46,7 @@ public class CssTextLTMode extends CssProperty {
 
     /**
      * Create a new CssTextLTMode
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -58,8 +58,8 @@ public class CssTextLTMode extends CssProperty {
 	    ltmode = continuous;
 	    expression.next();
 	}
-	else if (val.equals(words)) {
-	    ltmode = words;
+	else if (val.equals(skipwhitespace)) {
+	    ltmode = skipwhitespace;
 	    expression.next();
 	}
 	else if (val.equals(inherit)) {
@@ -67,8 +67,8 @@ public class CssTextLTMode extends CssProperty {
 	    expression.next();
 	}
 	else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
@@ -108,7 +108,7 @@ public class CssTextLTMode extends CssProperty {
 	return (property instanceof CssTextLTMode &&
 		ltmode.equals(((CssTextLTMode) property).ltmode));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -18,24 +18,24 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM>  continuous || words || inherit<BR>
+ *  <EM>Value:</EM>  continuous || skipwhitespace || inherit<BR>
  *  <EM>Initial:</EM>continuous<BR>
  *  <EM>Applies to:</EM>all elements<BR>
  *  <EM>Inherited:</EM>no<BR>
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property specifies the mode for the overline, that is whether the 
- *  overline is continuous or whether it appears only under words and not 
+ *  This property specifies the mode for the overline, that is whether the
+ *  overline is continuous or whether it appears only under skipwhitespace and not
  *  whitespace.
  */
 
 public class CssTextOLMode extends CssProperty {
- 
+
     CssValue olmode;
 
     static CssIdent continuous = new CssIdent("continuous");
-    static CssIdent words = new CssIdent("words");
+    static CssIdent skipwhitespace = new CssIdent("skip-white-space");
 
     /**
      * Create a new CssTextOLMode
@@ -46,7 +46,7 @@ public class CssTextOLMode extends CssProperty {
 
     /**
      * Create a new CssTextOLMode
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -58,8 +58,8 @@ public class CssTextOLMode extends CssProperty {
 	    olmode = continuous;
 	    expression.next();
 	}
-	else if (val.equals(words)) {
-	    olmode = words;
+	else if (val.equals(skipwhitespace)) {
+	    olmode = skipwhitespace;
 	    expression.next();
 	}
 	else if (val.equals(inherit)) {
@@ -67,8 +67,8 @@ public class CssTextOLMode extends CssProperty {
 	    expression.next();
 	}
 	else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
@@ -108,7 +108,7 @@ public class CssTextOLMode extends CssProperty {
 	return (property instanceof CssTextOLMode &&
 		olmode.equals(((CssTextOLMode) property).olmode));
     }
-    
+
     /**
      * Returns the name of this property
      */
