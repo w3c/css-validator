@@ -62,7 +62,7 @@ public final class CssFouffa extends CssParser {
     // origin of the style sheet
     int origin;
 
-    int number_of_imports = 0;
+    Vector visited = null;
 
     /**
      * Create a new CssFouffa with a data input and a begin line number.
@@ -147,10 +147,10 @@ public final class CssFouffa extends CssParser {
      * @exception       IOException  if an I/O error occurs.
      */
     private CssFouffa(ApplContext ac, InputStream in, URL url,
-		      Vector listeners, int importnums)
+		      Vector listeners, Vector urlvisited)
 	throws IOException {
 	this(ac, in, url, 0);
-	this.number_of_imports = importnums;
+	this.visited = urlvisited;
 	setURL(url);
 	ac.setFrame(new Frame(this, url.toString()));
 	setApplContext(ac);
@@ -317,11 +317,29 @@ public final class CssFouffa extends CssParser {
     public void handleImport(URL url, String file, AtRuleMedia media) {
 	CssError cssError = null;
 
-	number_of_imports++;
-
-	if (number_of_imports > 12) {
-		ac.getFrame().addError(new CssError(new Exception("Maximum number of imports reached")));
+	String surl = url.toString();
+	if (visited == null) {
+	    visited = new Vector(2);
+	    System.out.println("importing 0 level ");
+	} else {
+	    // check that we didn't already got this URL, or that the
+	    // number of imports is not exploding
+	    System.out.println("importing " + visited.size() + " level ");
+	    if (visited.contains(surl)) {
+		CssError cerr = new CssError(new Exception("Import loop"
+							   +" detected in "
+							   +surl));
+		ac.getFrame().addError(cerr);
+		return;
+	    } else if (visited.size() > 12) {
+		CssError cerr = new CssError(new Exception("Maximum number"
+							   +" of imports "
+							   +"reached"));
+		ac.getFrame().addError(cerr);
+		return;
+	    }
 	}
+	visited.add(surl);
 
 	try {
 	    if (Util.importSecurity) {
@@ -342,7 +360,7 @@ public final class CssFouffa extends CssParser {
 	    try {
 		CssFouffa cssFouffa
 		    = new CssFouffa(ac, importURL.getInputStream(), importedURL,
-				    listeners, number_of_imports);
+				    listeners, visited);
 
 		cssFouffa.setOrigin(getOrigin());
 		if (!media.isEmpty()) {
