@@ -7,6 +7,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/08/19 07:24:39  sijtsche
+ * tv profile restrictions added
+ *
  * Revision 1.3  2002/07/22 14:19:06  sijtsche
  * new elements and classes added and order of constants changed because of representation errors in output
  *
@@ -54,7 +57,7 @@ public interface CssSelectorsConstant {
 
     public static final String[] PSEUDOELEMENT_CONSTANTS =
     { "first-line", "first-letter", "before", "after",
-      "selection"
+      "selection", "marker"
     };
 
     // lang is special, and contains and nth-element and nth-type-of
