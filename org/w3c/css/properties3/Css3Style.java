@@ -125,6 +125,18 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssColumnRuleStyle cssColumnRuleStyle;
 	CssColumnRuleWidth cssColumnRuleWidth;
 	CssColumnRule cssColumnRule;
+	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
+	CssDropInitialAfterAlign cssDropInitialAfterAlign;
+	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
+	CssDropInitialBeforeAlign cssDropInitialBeforeAlign;
+	CssDropInitialSize cssDropInitialSize;
+	CssDropInitialValue cssDropInitialValue;
+	CssInlineBoxAlign cssInlineBoxAlign;
+	CssLineStacking cssLineStacking;
+	CssLineStackingRuby cssLineStackingRuby;
+	CssLineStackingShift cssLineStackingShift;
+	CssLineStackingStrategy cssLineStackingStrategy;
+	CssTextHeight cssTextHeight;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1101,7 +1113,116 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssColumnRule;
 	}
 
-    /**
+	public CssDropInitialAfterAdjust getDropInitialAfterAdjust() {
+		if (cssDropInitialAfterAdjust == null) {
+			cssDropInitialAfterAdjust =
+				(CssDropInitialAfterAdjust) style.CascadingOrder(
+						new CssDropInitialAfterAdjust(), style, selector);
+		}
+		return cssDropInitialAfterAdjust;
+	}
+
+	public CssDropInitialAfterAlign getDropInitialAfterAlign() {
+		if (cssDropInitialAfterAlign == null) {
+			cssDropInitialAfterAlign =
+				(CssDropInitialAfterAlign) style.CascadingOrder(
+						new CssDropInitialAfterAlign(), style, selector);
+		}
+		return cssDropInitialAfterAlign;
+	}
+
+	public CssDropInitialBeforeAdjust getDropInitialBeforeAdjust() {
+		if (cssDropInitialBeforeAdjust == null) {
+			cssDropInitialBeforeAdjust =
+				(CssDropInitialBeforeAdjust) style.CascadingOrder(
+						new CssDropInitialBeforeAdjust(), style, selector);
+		}
+		return cssDropInitialBeforeAdjust;
+	}
+
+	public CssDropInitialBeforeAlign getDropInitialBeforeAlign() {
+		if (cssDropInitialBeforeAlign == null) {
+			cssDropInitialBeforeAlign =
+				(CssDropInitialBeforeAlign) style.CascadingOrder(
+						new CssDropInitialBeforeAlign(), style, selector);
+		}
+		return cssDropInitialBeforeAlign;
+	}
+
+	public CssDropInitialSize getDropInitialSize() {
+		if (cssDropInitialSize == null) {
+			cssDropInitialSize =
+				(CssDropInitialSize) style.CascadingOrder(
+						new CssDropInitialSize(), style, selector);
+		}
+		return cssDropInitialSize;
+	}
+
+	public CssDropInitialValue getDropInitialValue() {
+		if (cssDropInitialValue == null) {
+			cssDropInitialValue =
+				(CssDropInitialValue) style.CascadingOrder(
+						new CssDropInitialValue(), style, selector);
+		}
+		return cssDropInitialValue;
+	}
+
+	public CssInlineBoxAlign getInlineBoxAlign() {
+		if (cssInlineBoxAlign == null) {
+			cssInlineBoxAlign =
+				(CssInlineBoxAlign) style.CascadingOrder(
+						new CssInlineBoxAlign(), style, selector);
+		}
+		return cssInlineBoxAlign;
+	}
+
+	public CssLineStacking getLineStacking() {
+		if (cssLineStacking == null) {
+			cssLineStacking =
+				(CssLineStacking) style.CascadingOrder(
+						new CssLineStacking(), style, selector);
+		}
+		return cssLineStacking;
+	}
+
+	public CssLineStackingRuby getLineStackingRuby() {
+		if (cssLineStackingRuby == null) {
+			cssLineStackingRuby =
+				(CssLineStackingRuby) style.CascadingOrder(
+						new CssLineStackingRuby(), style, selector);
+		}
+		return cssLineStackingRuby;
+	}
+
+	public CssLineStackingShift getLineStackingShift() {
+		if (cssLineStackingShift == null) {
+			cssLineStackingShift =
+				(CssLineStackingShift) style.CascadingOrder(
+						new CssLineStackingShift(), style, selector);
+		}
+		return cssLineStackingShift;
+	}
+
+	public CssLineStackingStrategy getLineStackingStrategy() {
+		if (cssLineStackingStrategy == null) {
+			cssLineStackingStrategy =
+				(CssLineStackingStrategy) style.CascadingOrder(
+						new CssLineStackingStrategy(), style, selector);
+		}
+		return cssLineStackingStrategy;
+	}
+
+	public CssTextHeight getTextHeight() {
+		if (cssTextHeight == null) {
+			cssTextHeight =
+				(CssTextHeight) style.CascadingOrder(
+						new CssTextHeight(), style, selector);
+		}
+		return cssTextHeight;
+	}
+
+
+	/**
      * Print this style
      *
      * @param printer The printer interface
@@ -1427,6 +1548,43 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssColumnRule != null) {
 		cssColumnRule.print(printer);
 	}
+	if (cssDropInitialAfterAdjust != null) {
+		cssDropInitialAfterAdjust.print(printer);
+	}
+	if (cssDropInitialAfterAlign != null) {
+		cssDropInitialAfterAlign.print(printer);
+	}
+	if (cssDropInitialBeforeAdjust != null) {
+		cssDropInitialBeforeAdjust.print(printer);
+	}
+	if (cssDropInitialBeforeAlign != null) {
+		cssDropInitialBeforeAlign.print(printer);
+	}
+	if (cssDropInitialSize != null) {
+		cssDropInitialSize.print(printer);
+	}
+	if (cssDropInitialValue != null) {
+		cssDropInitialValue.print(printer);
+	}
+	if (cssInlineBoxAlign != null) {
+		cssInlineBoxAlign.print(printer);
+	}
+	if (cssLineStacking != null) {
+		cssLineStacking.print(printer);
+	}
+	if (cssLineStackingRuby != null) {
+		cssLineStackingRuby.print(printer);
+	}
+	if (cssLineStackingShift != null) {
+		cssLineStackingShift.print(printer);
+	}
+	if (cssLineStackingStrategy != null) {
+		cssLineStackingStrategy.print(printer);
+	}
+	if (cssTextHeight != null) {
+		cssTextHeight.print(printer);
+	}
+
     }
 
     /**
