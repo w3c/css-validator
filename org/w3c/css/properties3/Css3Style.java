@@ -149,6 +149,35 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssOverflowY cssOverflowY;
 	CssRubySpan cssRubySpan;
 	CssTextBlink cssTextBlink;
+	CssClearAfter cssClearAfter;
+	CssCrop cssCrop;
+	CssFitPosition cssFitPosition;
+	CssFloatDisplace cssFloatDisplace;
+	CssIndentEdgeReset cssIndentEdgeReset;
+	CssMarginCSS3 cssMarginCSS3;
+	CssMarginBottomCSS3 cssMarginBottomCSS3;
+	CssMarginLeftCSS3 cssMarginLeftCSS3;
+	CssMarginTopCSS3 cssMarginTopCSS3;
+	CssMarginRightCSS3 cssMarginRightCSS3;
+	CssVisibilityCSS3 cssVisibilityCSS3;
+	CssOverflowCSS3 cssOverflowCSS3;
+	CssOverflowClip cssOverflowClip;
+	CssMaxWidthCSS3 cssMaxWidthCSS3;
+	CssMaxHeightCSS3 cssMaxHeightCSS3;
+	CssMinWidthCSS3 cssMinWidthCSS3;
+	CssMinHeightCSS3 cssMinHeightCSS3;
+	CssPaddingCSS3 cssPaddingCSS3;
+	CssPaddingBottomCSS3 cssPaddingBottomCSS3;
+	CssPaddingTopCSS3 cssPaddingTopCSS3;
+	CssPaddingLeftCSS3 cssPaddingLeftCSS3;
+	CssPaddingRightCSS3 cssPaddingRightCSS3;
+	CssHeightCSS3 cssHeightCSS3;
+	CssWidthCSS3 cssWidthCSS3;
+	CssMarquee cssMarquee;
+	CssMarqueeDirection cssMarqueeDirection;
+	CssMarqueeRepetition cssMarqueeRepetition;
+	CssMarqueeSpeed cssMarqueeSpeed;
+	CssMarqueeStyle cssMarqueeStyle;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -1341,6 +1370,268 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssTextBlink;
 	}
 
+	public CssClearAfter getClearAfter() {
+		if (cssClearAfter == null) {
+			cssClearAfter =
+				(CssClearAfter) style.CascadingOrder(
+						new CssClearAfter(), style, selector);
+		}
+		return cssClearAfter;
+	}
+
+	public CssCrop getCrop() {
+		if (cssCrop == null) {
+			cssCrop =
+				(CssCrop) style.CascadingOrder(
+						new CssCrop(), style, selector);
+		}
+		return cssCrop;
+	}
+
+	public CssFitPosition getFitPosition() {
+		if (cssFitPosition == null) {
+			cssFitPosition =
+				(CssFitPosition) style.CascadingOrder(
+						new CssFitPosition(), style, selector);
+		}
+		return cssFitPosition;
+	}
+
+	public CssFloatDisplace getFloatDisplace() {
+		if (cssFloatDisplace == null) {
+			cssFloatDisplace =
+				(CssFloatDisplace) style.CascadingOrder(
+						new CssFloatDisplace(), style, selector);
+		}
+		return cssFloatDisplace;
+	}
+
+	public CssIndentEdgeReset getIndentEdgeReset() {
+		if (cssIndentEdgeReset == null) {
+			cssIndentEdgeReset =
+				(CssIndentEdgeReset) style.CascadingOrder(
+						new CssIndentEdgeReset(), style, selector);
+		}
+		return cssIndentEdgeReset;
+	}
+
+	public CssMarginCSS3 getMarginCSS3() {
+		if (cssMarginCSS3 == null) {
+			cssMarginCSS3 =
+				(CssMarginCSS3) style.CascadingOrder(
+						new CssMarginCSS3(), style, selector);
+		}
+		return cssMarginCSS3;
+	}
+
+	public CssMarginRightCSS3 getMarginRightCSS3() {
+		if (cssMarginRightCSS3 == null) {
+			cssMarginRightCSS3 =
+				(CssMarginRightCSS3) style.CascadingOrder(
+						new CssMarginRightCSS3(), style, selector);
+		}
+		return cssMarginRightCSS3;
+	}
+
+	public CssMarginLeftCSS3 getMarginLeftCSS3() {
+		if (cssMarginLeftCSS3 == null) {
+			cssMarginLeftCSS3 =
+				(CssMarginLeftCSS3) style.CascadingOrder(
+						new CssMarginLeftCSS3(), style, selector);
+		}
+		return cssMarginLeftCSS3;
+	}
+
+	public CssMarginBottomCSS3 getMarginBottomCSS3() {
+		if (cssMarginBottomCSS3 == null) {
+			cssMarginBottomCSS3 =
+				(CssMarginBottomCSS3) style.CascadingOrder(
+						new CssMarginBottomCSS3(), style, selector);
+		}
+		return cssMarginBottomCSS3;
+	}
+
+	public CssMarginTopCSS3 getMarginTopCSS3() {
+		if (cssMarginTopCSS3 == null) {
+			cssMarginTopCSS3 =
+				(CssMarginTopCSS3) style.CascadingOrder(
+						new CssMarginTopCSS3(), style, selector);
+		}
+		return cssMarginTopCSS3;
+	}
+
+	public CssVisibilityCSS3 getVisibilityCSS3() {
+		if (cssVisibilityCSS3 == null) {
+			cssVisibilityCSS3 =
+				(CssVisibilityCSS3) style.CascadingOrder(
+						new CssVisibilityCSS3(), style, selector);
+		}
+		return cssVisibilityCSS3;
+	}
+
+	public CssOverflowCSS3 getOverflowCSS3() {
+		if (cssOverflowCSS3 == null) {
+			cssOverflowCSS3 =
+				(CssOverflowCSS3) style.CascadingOrder(
+						new CssOverflowCSS3(), style, selector);
+		}
+		return cssOverflowCSS3;
+	}
+
+	public CssOverflowClip getOverflowClip() {
+		if (cssOverflowClip == null) {
+			cssOverflowClip =
+				(CssOverflowClip) style.CascadingOrder(
+						new CssOverflowClip(), style, selector);
+		}
+		return cssOverflowClip;
+	}
+
+	public CssMaxHeightCSS3 getMaxHeightCSS3() {
+		if (cssMaxHeightCSS3 == null) {
+			cssMaxHeightCSS3 =
+				(CssMaxHeightCSS3) style.CascadingOrder(
+						new CssMaxHeightCSS3(), style, selector);
+		}
+		return cssMaxHeightCSS3;
+	}
+
+	public CssMaxWidthCSS3 getMaxWidthCSS3() {
+		if (cssMaxWidthCSS3 == null) {
+			cssMaxWidthCSS3 =
+				(CssMaxWidthCSS3) style.CascadingOrder(
+						new CssMaxWidthCSS3(), style, selector);
+		}
+		return cssMaxWidthCSS3;
+	}
+
+	public CssMinHeightCSS3 getMinHeightCSS3() {
+		if (cssMinHeightCSS3 == null) {
+			cssMinHeightCSS3 =
+				(CssMinHeightCSS3) style.CascadingOrder(
+						new CssMinHeightCSS3(), style, selector);
+		}
+		return cssMinHeightCSS3;
+	}
+
+	public CssMinWidthCSS3 getMinWidthCSS3() {
+		if (cssMinWidthCSS3 == null) {
+			cssMinWidthCSS3 =
+				(CssMinWidthCSS3) style.CascadingOrder(
+						new CssMinWidthCSS3(), style, selector);
+		}
+		return cssMinWidthCSS3;
+	}
+
+	public CssPaddingCSS3 getPaddingCSS3() {
+		if (cssPaddingCSS3 == null) {
+			cssPaddingCSS3 =
+				(CssPaddingCSS3) style.CascadingOrder(
+						new CssPaddingCSS3(), style, selector);
+		}
+		return cssPaddingCSS3;
+	}
+
+	public CssPaddingTopCSS3 getPaddingTopCSS3() {
+		if (cssPaddingTopCSS3 == null) {
+			cssPaddingTopCSS3 =
+				(CssPaddingTopCSS3) style.CascadingOrder(
+						new CssPaddingTopCSS3(), style, selector);
+		}
+		return cssPaddingTopCSS3;
+	}
+
+	public CssPaddingBottomCSS3 getPaddingBottomCSS3() {
+		if (cssPaddingBottomCSS3 == null) {
+			cssPaddingBottomCSS3 =
+				(CssPaddingBottomCSS3) style.CascadingOrder(
+						new CssPaddingBottomCSS3(), style, selector);
+		}
+		return cssPaddingBottomCSS3;
+	}
+
+	public CssPaddingLeftCSS3 getPaddingLeftCSS3() {
+		if (cssPaddingLeftCSS3 == null) {
+			cssPaddingLeftCSS3 =
+				(CssPaddingLeftCSS3) style.CascadingOrder(
+						new CssPaddingLeftCSS3(), style, selector);
+		}
+		return cssPaddingLeftCSS3;
+	}
+
+	public CssPaddingRightCSS3 getPaddingRightCSS3() {
+		if (cssPaddingRightCSS3 == null) {
+			cssPaddingRightCSS3 =
+				(CssPaddingRightCSS3) style.CascadingOrder(
+						new CssPaddingRightCSS3(), style, selector);
+		}
+		return cssPaddingRightCSS3;
+	}
+
+	public CssHeightCSS3 getHeightCSS3() {
+		if (cssHeightCSS3 == null) {
+			cssHeightCSS3 =
+				(CssHeightCSS3) style.CascadingOrder(
+						new CssHeightCSS3(), style, selector);
+		}
+		return cssHeightCSS3;
+	}
+
+	public CssWidthCSS3 getWidthCSS3() {
+		if (cssWidthCSS3 == null) {
+			cssWidthCSS3 =
+				(CssWidthCSS3) style.CascadingOrder(
+						new CssWidthCSS3(), style, selector);
+		}
+		return cssWidthCSS3;
+	}
+
+	public CssMarquee getMarquee() {
+		if (cssMarquee == null) {
+			cssMarquee =
+				(CssMarquee) style.CascadingOrder(
+						new CssMarquee(), style, selector);
+		}
+		return cssMarquee;
+	}
+
+	public CssMarqueeDirection getMarqueeDirection() {
+		if (cssMarqueeDirection == null) {
+			cssMarqueeDirection =
+				(CssMarqueeDirection) style.CascadingOrder(
+						new CssMarqueeDirection(), style, selector);
+		}
+		return cssMarqueeDirection;
+	}
+
+	public CssMarqueeRepetition getMarqueeRepetition() {
+		if (cssMarqueeRepetition == null) {
+			cssMarqueeRepetition =
+				(CssMarqueeRepetition) style.CascadingOrder(
+						new CssMarqueeRepetition(), style, selector);
+		}
+		return cssMarqueeRepetition;
+	}
+
+	public CssMarqueeSpeed getMarqueeSpeed() {
+		if (cssMarqueeSpeed == null) {
+			cssMarqueeSpeed =
+				(CssMarqueeSpeed) style.CascadingOrder(
+						new CssMarqueeSpeed(), style, selector);
+		}
+		return cssMarqueeSpeed;
+	}
+
+	public CssMarqueeStyle getMarqueeStyle() {
+		if (cssMarqueeStyle == null) {
+			cssMarqueeStyle =
+				(CssMarqueeStyle) style.CascadingOrder(
+						new CssMarqueeStyle(), style, selector);
+		}
+		return cssMarqueeStyle;
+	}
+
+
 	/**
      * Print this style
      *
@@ -1739,7 +2030,93 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssTextBlink != null) {
 		cssTextBlink.print(printer);
 	}
-
+	if (cssClearAfter != null) {
+		cssClearAfter.print(printer);
+	}
+	if (cssCrop != null) {
+		cssCrop.print(printer);
+	}
+	if (cssFitPosition != null) {
+		cssFitPosition.print(printer);
+	}
+	if (cssFloatDisplace != null) {
+		cssFloatDisplace.print(printer);
+	}
+	if (cssIndentEdgeReset != null) {
+		cssIndentEdgeReset.print(printer);
+	}
+	if (cssMarginCSS3 != null) {
+		cssMarginCSS3.print(printer);
+	}
+	if (cssMarginTopCSS3 != null) {
+		cssMarginTopCSS3.print(printer);
+	}
+	if (cssMarginBottomCSS3 != null) {
+		cssMarginBottomCSS3.print(printer);
+	}
+	if (cssMarginLeftCSS3 != null) {
+		cssMarginLeftCSS3.print(printer);
+	}
+	if (cssMarginRightCSS3 != null) {
+		cssMarginRightCSS3.print(printer);
+	}
+	if (cssVisibilityCSS3 != null) {
+		cssVisibilityCSS3.print(printer);
+	}
+	if (cssOverflowCSS3 != null) {
+		cssOverflowCSS3.print(printer);
+	}
+	if (cssOverflowClip != null) {
+		cssOverflowClip.print(printer);
+	}
+	if (cssMaxWidthCSS3 != null) {
+		cssMaxWidthCSS3.print(printer);
+	}
+	if (cssMaxHeightCSS3 != null) {
+		cssMaxHeightCSS3.print(printer);
+	}
+	if (cssMinWidthCSS3 != null) {
+		cssMinWidthCSS3.print(printer);
+	}
+	if (cssMinHeightCSS3 != null) {
+		cssMinHeightCSS3.print(printer);
+	}
+	if (cssPaddingCSS3 != null) {
+		cssPaddingCSS3.print(printer);
+	}
+	if (cssPaddingTopCSS3 != null) {
+		cssPaddingTopCSS3.print(printer);
+	}
+	if (cssPaddingBottomCSS3 != null) {
+		cssPaddingBottomCSS3.print(printer);
+	}
+	if (cssPaddingLeftCSS3 != null) {
+		cssPaddingLeftCSS3.print(printer);
+	}
+	if (cssPaddingRightCSS3 != null) {
+		cssPaddingRightCSS3.print(printer);
+	}
+	if (cssWidthCSS3 != null){
+		cssWidthCSS3.print(printer);
+	}
+	if (cssHeightCSS3 != null) {
+		cssHeightCSS3.print(printer);
+	}
+	if (cssMarquee != null) {
+		cssMarquee.print(printer);
+	}
+	if (cssMarqueeDirection != null) {
+		cssMarqueeDirection.print(printer);
+	}
+	if (cssMarqueeRepetition != null) {
+		cssMarqueeRepetition.print(printer);
+	}
+	if (cssMarqueeSpeed != null) {
+		cssMarqueeSpeed.print(printer);
+	}
+	if (cssMarqueeStyle != null) {
+		cssMarqueeStyle.print(printer);
+	}
     }
 
     /**
