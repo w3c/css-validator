@@ -99,7 +99,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
     CssColumnWidth cssColumnWidth;
     CssColumnPadding cssColumnPadding;
     CssColumnSpan cssColumnSpan;
-    //ACssVolumeCSS3 cssACssVolume;
 	CssBackgroundClip cssBackgroundClip;
 	CssBackgroundSize cssBackgroundSize;
 	CssBackgroundOrigin cssBackgroundOrigin;
@@ -178,6 +177,76 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssMarqueeRepetition cssMarqueeRepetition;
 	CssMarqueeSpeed cssMarqueeSpeed;
 	CssMarqueeStyle cssMarqueeStyle;
+	CssBorderTopRightRadius cssBorderTopRightRadius;
+	CssBorderBottomRightRadius cssBorderBottomRightRadius;
+	CssBorderBottomLeftRadius cssBorderBottomLeftRadius;
+	CssBorderTopLeftRadius cssBorderTopLeftRadius;
+	CssBorderRadius cssBorderRadius;
+	CssBorderTopImage cssBorderTopImage;
+	CssBorderBottomImage cssBorderBottomImage;
+	CssBorderLeftImage cssBorderLeftImage;
+	CssBorderRightImage cssBorderRightImage;
+	CssBorderImage cssBorderImage;
+	CssBorderTopLeftImage cssBorderTopLeftImage;
+	CssBorderTopRightImage cssBorderTopRightImage;
+	CssBorderBottomLeftImage cssBorderBottomLeftImage;
+	CssBorderBottomRightImage cssBorderBottomRightImage;
+	CssBorderCornerImage cssBorderCornerImage;
+	CssBorderTopFitLength cssBorderTopFitLength;
+	CssBorderBottomFitLength cssBorderBottomFitLength;
+	CssBorderLeftFitLength cssBorderLeftFitLength;
+	CssBorderRightFitLength cssBorderRightFitLength;
+	CssBorderTopFitWidth cssBorderTopFitWidth;
+	CssBorderBottomFitWidth cssBorderBottomFitWidth;
+	CssBorderLeftFitWidth cssBorderLeftFitWidth;
+	CssBorderRightFitWidth cssBorderRightFitWidth;
+	CssBorderTopLeftFitLength cssBorderTopLeftFitLength;
+	CssBorderTopRightFitLength cssBorderTopRightFitLength;
+	CssBorderBottomRightFitLength cssBorderBottomRightFitLength;
+	CssBorderBottomLeftFitLength cssBorderBottomLeftFitLength;
+	CssBorderTopLeftFitWidth cssBorderTopLeftFitWidth;
+	CssBorderTopRightFitWidth cssBorderTopRightFitWidth;
+	CssBorderBottomLeftFitWidth cssBorderBottomLeftFitWidth;
+	CssBorderBottomRightFitWidth cssBorderBottomRightFitWidth;
+	CssBorderFitLength cssBorderFitLength;
+	CssBorderFitWidth cssBorderFitWidth;
+	CssBorderFit cssBorderFit;
+	CssBorderCornerFit cssBorderCornerFit;
+	CssBorderImageTransform cssBorderImageTransform;
+	CssBorderBreak cssBorderBreak;
+	CssBoxShadow cssBoxShadow;
+
+	//media features for media queries
+
+	MediaWidth mediaWidth;
+	MediaMaxWidth mediaMaxWidth;
+	MediaMinWidth mediaMinWidth;
+	MediaHeight mediaHeight;
+	MediaMinHeight mediaMinHeight;
+	MediaMaxHeight mediaMaxHeight;
+	MediaDeviceWidth mediaDeviceWidth;
+	MediaMinDeviceWidth mediaMinDeviceWidth;
+	MediaMaxDeviceWidth mediaMaxDeviceWidth;
+	MediaDeviceHeight mediaDeviceHeight;
+	MediaMinDeviceHeight mediaMinDeviceHeight;
+	MediaMaxDeviceHeight mediaMaxDeviceHeight;
+	MediaDeviceAspectRatio mediaDeviceAspectRatio;
+	MediaMaxDeviceAspectRatio mediaMaxDeviceAspectRatio;
+	MediaMinDeviceAspectRatio mediaMinDeviceAspectRatio;
+	MediaColor mediaColor;
+	MediaMinColor mediaMinColor;
+	MediaMaxColor mediaMaxColor;
+	MediaColorIndex mediaColorIndex;
+	MediaMinColorIndex mediaMinColorIndex;
+	MediaMaxColorIndex mediaMaxColorIndex;
+	MediaMonochrome mediaMonochrome;
+	MediaMinMonochrome mediaMinMonochrome;
+	MediaMaxMonochrome mediaMaxMonochrome;
+	MediaResolution mediaResolution;
+	MediaMinResolution mediaMinResolution;
+	MediaMaxResolution mediaMaxResolution;
+	MediaScan mediaScan;
+	MediaGrid mediaGrid;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -908,27 +977,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	return cssColumnPadding;
     }
 
-
-    /*
-    public CssColumnSpan getColumnSpan() {
-	if (cssColumnSpan == null) {
-	    cssColumnSpan =
-		(CssColumnSpan) style.CascadingOrder(
-			     new CssColumnSpan(), style, selector);
-	}
-	return cssColumnSpan;
-    }
-    */
-/*
-    public ACssVolume getACssVolume() {
-	if (cssACssVolume == null) {
-	    cssACssVolume =
-		(CssACssVolume) style.CascadingOrder(
-			     new CssACssVolume(), style, selector);
-	}
-	return cssACssVolume;
-    }
-*/
 	public CssBackgroundClip getCssBackgroundClip() {
 		if (cssBackgroundClip == null) {
 			cssBackgroundClip =
@@ -1631,6 +1679,612 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssMarqueeStyle;
 	}
 
+	public CssBorderTopRightRadius getBorderTopRightRadius() {
+		if (cssBorderTopRightRadius == null) {
+			cssBorderTopRightRadius =
+				(CssBorderTopRightRadius) style.CascadingOrder(
+						new CssBorderTopRightRadius(), style, selector);
+		}
+		return cssBorderTopRightRadius;
+	}
+
+	public CssBorderBottomRightRadius getBorderBottomRightRadius() {
+		if (cssBorderBottomRightRadius == null) {
+			cssBorderBottomRightRadius =
+				(CssBorderBottomRightRadius) style.CascadingOrder(
+						new CssBorderBottomRightRadius(), style, selector);
+		}
+		return cssBorderBottomRightRadius;
+	}
+
+	public CssBorderBottomLeftRadius getBorderBottomLeftRadius() {
+		if (cssBorderBottomLeftRadius == null) {
+			cssBorderBottomLeftRadius =
+				(CssBorderBottomLeftRadius) style.CascadingOrder(
+						new CssBorderBottomLeftRadius(), style, selector);
+		}
+		return cssBorderBottomLeftRadius;
+	}
+
+	public CssBorderTopLeftRadius getBorderTopLeftRadius() {
+		if (cssBorderTopLeftRadius == null) {
+			cssBorderTopLeftRadius =
+				(CssBorderTopLeftRadius) style.CascadingOrder(
+						new CssBorderTopLeftRadius(), style, selector);
+		}
+		return cssBorderTopLeftRadius;
+	}
+
+	public CssBorderRadius getBorderRadius() {
+		if (cssBorderRadius == null) {
+			cssBorderRadius =
+				(CssBorderRadius) style.CascadingOrder(
+						new CssBorderRadius(), style, selector);
+		}
+		return cssBorderRadius;
+	}
+
+	public CssBorderTopImage getBorderTopImage() {
+		if (cssBorderTopImage == null) {
+			cssBorderTopImage =
+				(CssBorderTopImage) style.CascadingOrder(
+						new CssBorderTopImage(), style, selector);
+		}
+		return cssBorderTopImage;
+	}
+
+	public CssBorderBottomImage getBorderBottomImage() {
+		if (cssBorderBottomImage == null) {
+			cssBorderBottomImage =
+				(CssBorderBottomImage) style.CascadingOrder(
+						new CssBorderBottomImage(), style, selector);
+		}
+		return cssBorderBottomImage;
+	}
+
+	public CssBorderLeftImage getBorderLeftImage() {
+		if (cssBorderLeftImage == null) {
+			cssBorderLeftImage =
+				(CssBorderLeftImage) style.CascadingOrder(
+						new CssBorderLeftImage(), style, selector);
+		}
+		return cssBorderLeftImage;
+	}
+
+	public CssBorderRightImage getBorderRightImage() {
+		if (cssBorderRightImage == null) {
+			cssBorderRightImage =
+				(CssBorderRightImage) style.CascadingOrder(
+						new CssBorderRightImage(), style, selector);
+		}
+		return cssBorderRightImage;
+	}
+
+	public CssBorderImage getBorderImage() {
+		if (cssBorderImage == null) {
+			cssBorderImage =
+				(CssBorderImage) style.CascadingOrder(
+						new CssBorderImage(), style, selector);
+		}
+		return cssBorderImage;
+	}
+
+	public CssBorderTopLeftImage getBorderTopLeftImage() {
+		if (cssBorderTopLeftImage == null) {
+			cssBorderTopLeftImage =
+				(CssBorderTopLeftImage) style.CascadingOrder(
+						new CssBorderTopLeftImage(), style, selector);
+		}
+		return cssBorderTopLeftImage;
+	}
+
+	public CssBorderTopRightImage getBorderTopRightImage() {
+		if (cssBorderTopRightImage == null) {
+			cssBorderTopRightImage =
+				(CssBorderTopRightImage) style.CascadingOrder(
+						new CssBorderTopRightImage(), style, selector);
+		}
+		return cssBorderTopRightImage;
+	}
+
+	public CssBorderBottomLeftImage getBorderBottomLeftImage() {
+		if (cssBorderBottomLeftImage == null) {
+			cssBorderBottomLeftImage =
+				(CssBorderBottomLeftImage) style.CascadingOrder(
+						new CssBorderBottomLeftImage(), style, selector);
+		}
+		return cssBorderBottomLeftImage;
+	}
+
+	public CssBorderBottomRightImage getBorderBottomRightImage() {
+		if (cssBorderBottomRightImage == null) {
+			cssBorderBottomRightImage =
+				(CssBorderBottomRightImage) style.CascadingOrder(
+						new CssBorderBottomRightImage(), style, selector);
+		}
+		return cssBorderBottomRightImage;
+	}
+
+	public CssBorderCornerImage getBorderCornerImage() {
+		if (cssBorderCornerImage == null) {
+			cssBorderCornerImage =
+				(CssBorderCornerImage) style.CascadingOrder(
+						new CssBorderCornerImage(), style, selector);
+		}
+		return cssBorderCornerImage;
+	}
+
+	public CssBorderTopFitLength getBorderTopFitLength() {
+		if (cssBorderTopFitLength == null) {
+			cssBorderTopFitLength =
+				(CssBorderTopFitLength) style.CascadingOrder(
+						new CssBorderTopFitLength(), style, selector);
+		}
+		return cssBorderTopFitLength;
+	}
+
+	public CssBorderBottomFitLength getBorderBottomFitLength() {
+		if (cssBorderBottomFitLength == null) {
+			cssBorderBottomFitLength =
+				(CssBorderBottomFitLength) style.CascadingOrder(
+						new CssBorderBottomFitLength(), style, selector);
+		}
+		return cssBorderBottomFitLength;
+	}
+
+	public CssBorderLeftFitLength getBorderLeftFitLength() {
+		if (cssBorderLeftFitLength == null) {
+			cssBorderLeftFitLength =
+				(CssBorderLeftFitLength) style.CascadingOrder(
+						new CssBorderLeftFitLength(), style, selector);
+		}
+		return cssBorderLeftFitLength;
+	}
+
+	public CssBorderRightFitLength getBorderRightFitLength() {
+		if (cssBorderRightFitLength == null) {
+			cssBorderRightFitLength =
+				(CssBorderRightFitLength) style.CascadingOrder(
+						new CssBorderRightFitLength(), style, selector);
+		}
+		return cssBorderRightFitLength;
+	}
+
+	public CssBorderTopFitWidth getBorderTopFitWidth() {
+		if (cssBorderTopFitWidth == null) {
+			cssBorderTopFitWidth =
+				(CssBorderTopFitWidth) style.CascadingOrder(
+						new CssBorderTopFitWidth(), style, selector);
+		}
+		return cssBorderTopFitWidth;
+	}
+
+	public CssBorderBottomFitWidth getBorderBottomFitWidth() {
+		if (cssBorderBottomFitWidth == null) {
+			cssBorderBottomFitWidth =
+				(CssBorderBottomFitWidth) style.CascadingOrder(
+						new CssBorderBottomFitWidth(), style, selector);
+		}
+		return cssBorderBottomFitWidth;
+	}
+
+	public CssBorderLeftFitWidth getBorderLeftFitWidth() {
+		if (cssBorderLeftFitWidth == null) {
+			cssBorderLeftFitWidth =
+				(CssBorderLeftFitWidth) style.CascadingOrder(
+						new CssBorderLeftFitWidth(), style, selector);
+		}
+		return cssBorderLeftFitWidth;
+	}
+
+	public CssBorderRightFitWidth getBorderRightFitWidth() {
+		if (cssBorderRightFitWidth == null) {
+			cssBorderRightFitWidth =
+				(CssBorderRightFitWidth) style.CascadingOrder(
+						new CssBorderRightFitWidth(), style, selector);
+		}
+		return cssBorderRightFitWidth;
+	}
+
+	public CssBorderTopLeftFitLength getBorderTopLeftFitLength() {
+		if (cssBorderTopLeftFitLength == null) {
+			cssBorderTopLeftFitLength =
+				(CssBorderTopLeftFitLength) style.CascadingOrder(
+						new CssBorderTopLeftFitLength(), style, selector);
+		}
+		return cssBorderTopLeftFitLength;
+	}
+
+	public CssBorderTopRightFitLength getBorderTopRightFitLength() {
+		if (cssBorderTopRightFitLength == null) {
+			cssBorderTopRightFitLength =
+				(CssBorderTopRightFitLength) style.CascadingOrder(
+						new CssBorderTopRightFitLength(), style, selector);
+		}
+		return cssBorderTopRightFitLength;
+	}
+
+	public CssBorderBottomLeftFitLength getBorderBottomLeftFitLength() {
+		if (cssBorderBottomLeftFitLength == null) {
+			cssBorderBottomLeftFitLength =
+				(CssBorderBottomLeftFitLength) style.CascadingOrder(
+						new CssBorderBottomLeftFitLength(), style, selector);
+		}
+		return cssBorderBottomLeftFitLength;
+	}
+
+	public CssBorderBottomRightFitLength getBorderBottomRightFitLength() {
+		if (cssBorderBottomRightFitLength == null) {
+			cssBorderBottomRightFitLength =
+				(CssBorderBottomRightFitLength) style.CascadingOrder(
+						new CssBorderBottomRightFitLength(), style, selector);
+		}
+		return cssBorderBottomRightFitLength;
+	}
+
+	public CssBorderTopLeftFitWidth getBorderTopLeftFitWidth() {
+		if (cssBorderTopLeftFitWidth == null) {
+			cssBorderTopLeftFitWidth =
+				(CssBorderTopLeftFitWidth) style.CascadingOrder(
+						new CssBorderTopLeftFitWidth(), style, selector);
+		}
+		return cssBorderTopLeftFitWidth;
+	}
+
+	public CssBorderTopRightFitWidth getBorderTopRightFitWidth() {
+		if (cssBorderTopRightFitWidth == null) {
+			cssBorderTopRightFitWidth =
+				(CssBorderTopRightFitWidth) style.CascadingOrder(
+						new CssBorderTopRightFitWidth(), style, selector);
+		}
+		return cssBorderTopRightFitWidth;
+	}
+
+	public CssBorderBottomLeftFitWidth getBorderBottomLeftFitWidth() {
+		if (cssBorderBottomLeftFitWidth == null) {
+			cssBorderBottomLeftFitWidth =
+				(CssBorderBottomLeftFitWidth) style.CascadingOrder(
+						new CssBorderBottomLeftFitWidth(), style, selector);
+		}
+		return cssBorderBottomLeftFitWidth;
+	}
+
+	public CssBorderBottomRightFitWidth getBorderBottomRightFitWidth() {
+		if (cssBorderBottomRightFitWidth == null) {
+			cssBorderBottomRightFitWidth =
+				(CssBorderBottomRightFitWidth) style.CascadingOrder(
+						new CssBorderBottomRightFitWidth(), style, selector);
+		}
+		return cssBorderBottomRightFitWidth;
+	}
+
+	public CssBorderFitLength getBorderFitLength() {
+		if (cssBorderFitLength == null) {
+			cssBorderFitLength =
+				(CssBorderFitLength) style.CascadingOrder(
+						new CssBorderFitLength(), style, selector);
+		}
+		return cssBorderFitLength;
+	}
+
+	public CssBorderFitWidth getBorderFitWidth() {
+		if (cssBorderFitWidth == null) {
+			cssBorderFitWidth =
+				(CssBorderFitWidth) style.CascadingOrder(
+						new CssBorderFitWidth(), style, selector);
+		}
+		return cssBorderFitWidth;
+	}
+
+	public CssBorderFit getBorderFit() {
+		if (cssBorderFit == null) {
+			cssBorderFit =
+				(CssBorderFit) style.CascadingOrder(
+						new CssBorderFit(), style, selector);
+		}
+		return cssBorderFit;
+	}
+
+	public CssBorderCornerFit getBorderCornerFit() {
+		if (cssBorderCornerFit == null) {
+			cssBorderCornerFit =
+				(CssBorderCornerFit) style.CascadingOrder(
+						new CssBorderCornerFit(), style, selector);
+		}
+		return cssBorderCornerFit;
+	}
+
+	public CssBorderImageTransform getBorderImageTransform() {
+		if (cssBorderImageTransform == null) {
+			cssBorderImageTransform =
+				(CssBorderImageTransform) style.CascadingOrder(
+						new CssBorderImageTransform(), style, selector);
+		}
+		return cssBorderImageTransform;
+	}
+
+	public CssBorderBreak getBorderBreak() {
+		if (cssBorderBreak == null) {
+			cssBorderBreak =
+				(CssBorderBreak) style.CascadingOrder(
+						new CssBorderBreak(), style, selector);
+		}
+		return cssBorderBreak;
+	}
+
+	public CssBoxShadow getBoxShadow() {
+		if (cssBoxShadow == null) {
+			cssBoxShadow =
+				(CssBoxShadow) style.CascadingOrder(
+						new CssBoxShadow(), style, selector);
+		}
+		return cssBoxShadow;
+	}
+
+
+// media features
+
+
+	public MediaWidth getMediaWidth() {
+		if (mediaWidth == null) {
+			mediaWidth =
+				(MediaWidth) style.CascadingOrder(
+						new MediaWidth(), style, selector);
+		}
+		return mediaWidth;
+	}
+
+	public MediaMinWidth getMediaMinWidth() {
+		if (mediaMinWidth == null) {
+			mediaMinWidth =
+				(MediaMinWidth) style.CascadingOrder(
+						new MediaMinWidth(), style, selector);
+		}
+		return mediaMinWidth;
+	}
+
+	public MediaMaxWidth getMediaMaxWidth() {
+		if (mediaMaxWidth == null) {
+			mediaMaxWidth =
+				(MediaMaxWidth) style.CascadingOrder(
+						new MediaMaxWidth(), style, selector);
+		}
+		return mediaMaxWidth;
+	}
+
+	public MediaHeight getMediaHeight() {
+		if (mediaHeight == null) {
+			mediaHeight =
+				(MediaHeight) style.CascadingOrder(
+						new MediaHeight(), style, selector);
+		}
+		return mediaHeight;
+	}
+
+	public MediaMinHeight getMediaMinHeight() {
+		if (mediaMinHeight == null) {
+			mediaMinHeight =
+				(MediaMinHeight) style.CascadingOrder(
+						new MediaMinHeight(), style, selector);
+		}
+		return mediaMinHeight;
+	}
+
+	public MediaMaxHeight getMediaMaxHeight() {
+		if (mediaMaxHeight == null) {
+			mediaMaxHeight =
+				(MediaMaxHeight) style.CascadingOrder(
+						new MediaMaxHeight(), style, selector);
+		}
+		return mediaMaxHeight;
+	}
+
+	public MediaDeviceWidth getMediaDeviceWidth() {
+		if (mediaDeviceWidth == null) {
+			mediaDeviceWidth =
+				(MediaDeviceWidth) style.CascadingOrder(
+						new MediaDeviceWidth(), style, selector);
+		}
+		return mediaDeviceWidth;
+	}
+
+	public MediaMinDeviceWidth getMediaMinDeviceWidth() {
+		if (mediaMinDeviceWidth == null) {
+			mediaMinDeviceWidth =
+				(MediaMinDeviceWidth) style.CascadingOrder(
+						new MediaMinDeviceWidth(), style, selector);
+		}
+		return mediaMinDeviceWidth;
+	}
+
+	public MediaMaxDeviceWidth getMediaMaxDeviceWidth() {
+		if (mediaMaxDeviceWidth == null) {
+			mediaMaxDeviceWidth =
+				(MediaMaxDeviceWidth) style.CascadingOrder(
+						new MediaMaxDeviceWidth(), style, selector);
+		}
+		return mediaMaxDeviceWidth;
+	}
+
+	public MediaDeviceHeight getMediaDeviceHeight() {
+		if (mediaDeviceHeight == null) {
+			mediaDeviceHeight =
+				(MediaDeviceHeight) style.CascadingOrder(
+						new MediaDeviceHeight(), style, selector);
+		}
+		return mediaDeviceHeight;
+	}
+
+	public MediaMinDeviceHeight getMediaMinDeviceHeight() {
+		if (mediaMinDeviceHeight == null) {
+			mediaMinDeviceHeight =
+				(MediaMinDeviceHeight) style.CascadingOrder(
+						new MediaMinDeviceHeight(), style, selector);
+		}
+		return mediaMinDeviceHeight;
+	}
+
+	public MediaMaxDeviceHeight getMediaMaxDeviceHeight() {
+		if (mediaMaxDeviceHeight == null) {
+			mediaMaxDeviceHeight =
+				(MediaMaxDeviceHeight) style.CascadingOrder(
+						new MediaMaxDeviceHeight(), style, selector);
+		}
+		return mediaMaxDeviceHeight;
+	}
+
+	public MediaDeviceAspectRatio getMediaDeviceAspectRatio() {
+		if (mediaDeviceAspectRatio == null) {
+			mediaDeviceAspectRatio =
+				(MediaDeviceAspectRatio) style.CascadingOrder(
+						new MediaDeviceAspectRatio(), style, selector);
+		}
+		return mediaDeviceAspectRatio;
+	}
+
+	public MediaMinDeviceAspectRatio getMediaMinDeviceAspectRatio() {
+		if (mediaMinDeviceAspectRatio == null) {
+			mediaMinDeviceAspectRatio =
+				(MediaMinDeviceAspectRatio) style.CascadingOrder(
+						new MediaMinDeviceAspectRatio(), style, selector);
+		}
+		return mediaMinDeviceAspectRatio;
+	}
+
+	public MediaMaxDeviceAspectRatio getMediaMaxDeviceAspectRatio() {
+		if (mediaMaxDeviceAspectRatio == null) {
+			mediaMaxDeviceAspectRatio =
+				(MediaMaxDeviceAspectRatio) style.CascadingOrder(
+						new MediaMaxDeviceAspectRatio(), style, selector);
+		}
+		return mediaMaxDeviceAspectRatio;
+	}
+
+	public MediaColor getMediaColor() {
+		if (mediaColor == null) {
+			mediaColor =
+				(MediaColor) style.CascadingOrder(
+						new MediaColor(), style, selector);
+		}
+		return mediaColor;
+	}
+
+	public MediaMinColor getMediaMinColor() {
+		if (mediaMinColor == null) {
+			mediaMinColor =
+				(MediaMinColor) style.CascadingOrder(
+						new MediaMinColor(), style, selector);
+		}
+		return mediaMinColor;
+	}
+
+	public MediaMaxColor getMediaMaxColor() {
+		if (mediaMaxColor == null) {
+			mediaMaxColor =
+				(MediaMaxColor) style.CascadingOrder(
+						new MediaMaxColor(), style, selector);
+		}
+		return mediaMaxColor;
+	}
+
+	public MediaColorIndex getMediaColorIndex() {
+		if (mediaColorIndex == null) {
+			mediaColorIndex =
+				(MediaColorIndex) style.CascadingOrder(
+						new MediaColorIndex(), style, selector);
+		}
+		return mediaColorIndex;
+	}
+
+	public MediaMinColorIndex getMediaMinColorIndex() {
+		if (mediaMinColorIndex == null) {
+			mediaMinColorIndex =
+				(MediaMinColorIndex) style.CascadingOrder(
+						new MediaMinColorIndex(), style, selector);
+		}
+		return mediaMinColorIndex;
+	}
+
+	public MediaMaxColorIndex getMediaMaxColorIndex() {
+		if (mediaMaxColorIndex == null) {
+			mediaMaxColorIndex =
+				(MediaMaxColorIndex) style.CascadingOrder(
+						new MediaMaxColorIndex(), style, selector);
+		}
+		return mediaMaxColorIndex;
+	}
+
+	public MediaMonochrome getMediaMonochrome() {
+		if (mediaMonochrome == null) {
+			mediaMonochrome =
+				(MediaMonochrome) style.CascadingOrder(
+						new MediaMonochrome(), style, selector);
+		}
+		return mediaMonochrome;
+	}
+
+	public MediaMinMonochrome getMediaMinMonochrome() {
+		if (mediaMinMonochrome == null) {
+			mediaMinMonochrome =
+				(MediaMinMonochrome) style.CascadingOrder(
+						new MediaMinMonochrome(), style, selector);
+		}
+		return mediaMinMonochrome;
+	}
+
+	public MediaMaxMonochrome getMediaMaxMonochrome() {
+		if (mediaMaxMonochrome == null) {
+			mediaMaxMonochrome =
+				(MediaMaxMonochrome) style.CascadingOrder(
+						new MediaMaxMonochrome(), style, selector);
+		}
+		return mediaMaxMonochrome;
+	}
+
+	public MediaResolution getMediaResolution() {
+		if (mediaResolution == null) {
+			mediaResolution =
+				(MediaResolution) style.CascadingOrder(
+						new MediaResolution(), style, selector);
+		}
+		return mediaResolution;
+	}
+
+	public MediaMinResolution getMediaMinResolution() {
+		if (mediaMinResolution == null) {
+			mediaMinResolution =
+				(MediaMinResolution) style.CascadingOrder(
+						new MediaMinResolution(), style, selector);
+		}
+		return mediaMinResolution;
+	}
+
+	public MediaMaxResolution getMediaMaxResolution() {
+		if (mediaMaxResolution == null) {
+			mediaMaxResolution =
+				(MediaMaxResolution) style.CascadingOrder(
+						new MediaMaxResolution(), style, selector);
+		}
+		return mediaMaxResolution;
+	}
+
+	public MediaScan getMediaScan() {
+		if (mediaScan == null) {
+			mediaScan =
+				(MediaScan) style.CascadingOrder(
+						new MediaScan(), style, selector);
+		}
+		return mediaScan;
+	}
+
+	public MediaGrid getMediaGrid() {
+		if (mediaGrid == null) {
+			mediaGrid =
+				(MediaGrid) style.CascadingOrder(
+						new MediaGrid(), style, selector);
+		}
+		return mediaGrid;
+	}
 
 	/**
      * Print this style
@@ -1880,9 +2534,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssColumnSpan != null) {
 	    cssColumnSpan.print(printer);
 	}
-	//if (cssACssVolume != null) {
-	//    cssACssVolume.print(printer);
-	//}
 	if (cssBackgroundClip != null) {
 		cssBackgroundClip.print(printer);
 	}
@@ -2116,6 +2767,212 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssMarqueeStyle != null) {
 		cssMarqueeStyle.print(printer);
+	}
+	if (cssBorderTopRightRadius  != null) {
+		cssBorderTopRightRadius.print(printer);
+	}
+	if (cssBorderBottomRightRadius != null) {
+		cssBorderBottomRightRadius.print(printer);
+	}
+	if (cssBorderBottomLeftRadius != null) {
+		cssBorderBottomLeftRadius.print(printer);
+	}
+	if (cssBorderTopLeftRadius != null) {
+		cssBorderTopLeftRadius.print(printer);
+	}
+	if (cssBorderRadius != null) {
+		cssBorderRadius.print(printer);
+	}
+	if (cssBorderTopImage != null) {
+		cssBorderTopImage.print(printer);
+	}
+	if (cssBorderBottomImage != null) {
+		cssBorderBottomImage.print(printer);
+	}
+	if (cssBorderLeftImage != null) {
+		cssBorderLeftImage.print(printer);
+	}
+	if (cssBorderRightImage != null) {
+		cssBorderRightImage.print(printer);
+	}
+	if (cssBorderImage != null) {
+		cssBorderImage.print(printer);
+	}
+	if (cssBorderTopLeftImage != null) {
+		cssBorderTopLeftImage.print(printer);
+	}
+	if (cssBorderTopRightImage != null) {
+		cssBorderTopRightImage.print(printer);
+	}
+	if (cssBorderBottomLeftImage != null) {
+		cssBorderBottomLeftImage.print(printer);
+	}
+	if (cssBorderBottomRightImage != null) {
+		cssBorderBottomRightImage.print(printer);
+	}
+	if (cssBorderCornerImage != null) {
+		cssBorderCornerImage.print(printer);
+	}
+	if (cssBorderTopFitLength != null) {
+		cssBorderTopFitLength.print(printer);
+	}
+	if (cssBorderBottomFitLength != null) {
+		cssBorderBottomFitLength.print(printer);
+	}
+	if (cssBorderLeftFitLength != null) {
+		cssBorderLeftFitLength.print(printer);
+	}
+	if (cssBorderRightFitLength != null) {
+		cssBorderRightFitLength.print(printer);
+	}
+	if (cssBorderTopFitWidth != null) {
+		cssBorderTopFitWidth.print(printer);
+	}
+	if (cssBorderBottomFitWidth != null) {
+		cssBorderBottomFitWidth.print(printer);
+	}
+	if (cssBorderLeftFitWidth != null) {
+		cssBorderLeftFitWidth.print(printer);
+	}
+	if (cssBorderRightFitWidth != null) {
+		cssBorderRightFitWidth.print(printer);
+	}
+	if (cssBorderTopLeftFitLength != null) {
+		cssBorderTopLeftFitLength.print(printer);
+	}
+	if (cssBorderTopRightFitLength != null) {
+		cssBorderTopRightFitLength.print(printer);
+	}
+	if (cssBorderBottomLeftFitLength != null) {
+		cssBorderBottomLeftFitLength.print(printer);
+	}
+	if (cssBorderBottomRightFitLength != null) {
+		cssBorderBottomRightFitLength.print(printer);
+	}
+	if (cssBorderTopLeftFitWidth != null) {
+		cssBorderTopLeftFitWidth.print(printer);
+	}
+	if (cssBorderTopRightFitWidth != null) {
+		cssBorderTopRightFitWidth.print(printer);
+	}
+	if (cssBorderBottomLeftFitWidth != null) {
+		cssBorderBottomLeftFitWidth.print(printer);
+	}
+	if (cssBorderBottomRightFitWidth != null) {
+		cssBorderBottomRightFitWidth.print(printer);
+	}
+	if (cssBorderFitLength != null) {
+		cssBorderFitLength.print(printer);
+	}
+	if (cssBorderFitWidth != null) {
+		cssBorderFitWidth.print(printer);
+	}
+	if (cssBorderFit != null) {
+		cssBorderFit.print(printer);
+	}
+	if (cssBorderCornerFit != null) {
+		cssBorderCornerFit.print(printer);
+	}
+	if (cssBorderImageTransform != null) {
+		cssBorderImageTransform.print(printer);
+	}
+	if (cssBorderBreak != null) {
+		cssBorderBreak.print(printer);
+	}
+	if (cssBoxShadow != null) {
+		cssBoxShadow.print(printer);
+	}
+
+
+	// media features
+
+
+	if (mediaWidth != null) {
+		mediaWidth.print(printer);
+	}
+	if (mediaMinWidth != null) {
+		mediaMinWidth.print(printer);
+	}
+	if (mediaMaxWidth != null) {
+		mediaMaxWidth.print(printer);
+	}
+	if (mediaHeight != null) {
+		mediaHeight.print(printer);
+	}
+	if (mediaMinHeight != null) {
+		mediaMinHeight.print(printer);
+	}
+	if (mediaMaxHeight != null) {
+		mediaMaxHeight.print(printer);
+	}
+	if (mediaDeviceWidth != null) {
+		mediaDeviceWidth.print(printer);
+	}
+	if (mediaMinDeviceWidth != null) {
+		mediaMinDeviceWidth.print(printer);
+	}
+	if (mediaMaxDeviceWidth != null) {
+		mediaMaxDeviceWidth.print(printer);
+	}
+	if (mediaDeviceHeight != null) {
+		mediaDeviceHeight.print(printer);
+	}
+	if (mediaMinDeviceHeight != null) {
+		mediaMinDeviceHeight.print(printer);
+	}
+	if (mediaMaxDeviceHeight != null) {
+		mediaMaxDeviceHeight.print(printer);
+	}
+	if (mediaDeviceAspectRatio != null) {
+		mediaDeviceAspectRatio.print(printer);
+	}
+	if (mediaMinDeviceAspectRatio != null) {
+		mediaMinDeviceAspectRatio.print(printer);
+	}
+	if (mediaMaxDeviceAspectRatio != null) {
+		mediaMaxDeviceAspectRatio.print(printer);
+	}
+	if (mediaColor != null) {
+		mediaColor.print(printer);
+	}
+	if (mediaMinColor != null) {
+		mediaMinColor.print(printer);
+	}
+	if (mediaMaxColor != null) {
+		mediaMaxColor.print(printer);
+	}
+	if (mediaColorIndex != null) {
+		mediaColorIndex.print(printer);
+	}
+	if (mediaMinColorIndex != null) {
+		mediaMinColorIndex.print(printer);
+	}
+	if (mediaMaxColorIndex != null) {
+		mediaMaxColorIndex.print(printer);
+	}
+	if (mediaMonochrome != null) {
+		mediaMonochrome.print(printer);
+	}
+	if (mediaMinMonochrome != null) {
+		mediaMinMonochrome.print(printer);
+	}
+	if (mediaMaxMonochrome != null) {
+		mediaMaxMonochrome.print(printer);
+	}
+	if (mediaResolution != null) {
+		mediaResolution.print(printer);
+	}
+	if (mediaMinResolution != null) {
+		mediaMinResolution.print(printer);
+	}
+	if (mediaMaxResolution != null) {
+		mediaMaxResolution.print(printer);
+	}
+	if (mediaScan != null) {
+		mediaScan.print(printer);
+	}
+	if (mediaGrid != null) {
+		mediaGrid.print(printer);
 	}
     }
 
