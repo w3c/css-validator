@@ -69,7 +69,7 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 
 <fieldset id="validate-by-upload"><legend>Validation par téléchargement du fichier vers le serveur</legend>
 <form method="post" enctype="multipart/form-data" action="validator">
-<p>Choisissez le document dont vous souhaitez la validation&nbsp;:</p>
+<p>Choisissez le document dont vous souhaitez la validation (attention - feuilles de style CSS uniquement)&nbsp;:</p>
 <p>
 	<label title="Choisissez un fichier local à télécharger vers le serveur et à valider" for="file">Fichier CSS local :</label>
 	<input type="file" id="file" name="file" size="30" />

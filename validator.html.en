@@ -72,7 +72,7 @@
 
       <fieldset id="validate-by-upload"><legend>Validate by File Upload</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-      <p>Choose the document you would like validated:</p>
+      <p>Choose the document you would like validated (CSS files only):</p>
       <p>
 	<label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:</label>
 	<input type="file" id="file" name="file" size="30" />

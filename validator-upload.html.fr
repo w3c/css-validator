@@ -46,7 +46,7 @@ Bienvenue sur le service de validation CSS du W3C, un service gratuit pour véri
 <fieldset id="validate-by-upload"><legend>Validation par téléchargement du fichier vers le serveur</legend>
 <form action="validator" method="post" enctype="multipart/form-data">
 <p>
-Choisissez le document dont vous souhaitez la validation :
+Choisissez le document dont vous souhaitez la validation (attention - feuille de style CSS uniquement):
 </p>
 
 <p>Fichier local :
