@@ -42,7 +42,6 @@ import org.w3c.css.util.HTTPURL;
 
 import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.css.CssParser;
-// import org.w3c.css.css.StyleSheetXMLParser;
 import org.w3c.css.css.StyleSheetParser;
 import org.w3c.css.css.HTMLStyleSheetParser;
 import org.w3c.css.css.StyleSheet;
@@ -64,7 +63,6 @@ import org.xml.sax.SAXParseException;
  */
 public final class CssValidator extends HttpServlet {
 
-    private CssParser parser;
     private URL htmlURL;
     private boolean auralMode;
 
@@ -131,7 +129,6 @@ public final class CssValidator extends HttpServlet {
 	} else if (Util.onDebug) {
 	    System.err.println( "RUN IN DEBUG MODE but activated outside the servlet" );
 	}
-	parser = new StyleSheetParser();
 
 	if ((config.getInitParameter("import") != null) &&
 	    (config.getInitParameter("import").equals("false"))) {
@@ -195,6 +192,7 @@ public final class CssValidator extends HttpServlet {
 
 	boolean errorReport = true;
 	int warningLevel = 2;
+	CssParser parser = null;
 
 	String uri = null;
 	try {
@@ -323,8 +321,7 @@ public final class CssValidator extends HttpServlet {
 	    Util.verbose(text);
 	    Util.verbose("- End of TextArea Data");
 
-	    // change to have the right parser
-	    parser.reInit();
+	    parser = new StyleSheetParser();
 
 	    try {
 		parser.parseStyleElement(ac, 
@@ -382,7 +379,7 @@ public final class CssValidator extends HttpServlet {
 	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
 	boolean errorReport = true;
 	int warningLevel = 2;
-
+	CssParser parser = null;
 	FakeFile file = null;
 	String output = null;
 	boolean XMLinput = false;
@@ -493,7 +490,7 @@ public final class CssValidator extends HttpServlet {
 
 	Util.verbose("File : " + file.getName());
 
-	parser.reInit();
+	parser = new StyleSheetParser();
 
 	try {
 	    parser.parseStyleElement(ac, file.getInputStream(),
@@ -507,10 +504,6 @@ public final class CssValidator extends HttpServlet {
 			  warningLevel, errorReport);
 	} catch (Exception e) {
 	    handleError(res, file.getName(), e);
-	}
-
-	if (XMLinput) {
-	    parser = new StyleSheetParser();
 	}
 
 	Util.verbose("CssValidator: Request terminated.\n");
