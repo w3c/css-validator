@@ -152,15 +152,6 @@ public class HTTPURL {
 	if (Util.servlet) {
 	    int port = url.getPort();
 	    String protocol = url.getProtocol();
-	    
-	    if (((port < 1024) && (port != 80) && (port > 0))
-		|| (!"http".equalsIgnoreCase(protocol))) {		
-		System.err.println( "[WARNING] : someone is trying to "
-				    + "get the file: "
-				    + url );
-		throw new FileNotFoundException("import " + url +
-						": Operation not permitted");
-	    }
 	}
 	
 	URLConnection urlC = url.openConnection();
