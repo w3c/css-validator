@@ -28,10 +28,10 @@
     <h2>Validieren Sie Ihr <span lang="en">Cascading Style
 	Sheet</span> über einen URI</h2>
      
-    <p>
-      Geben Sie den URI des Dokuments (HTML mit CSS oder CSS alleine),
-      das Sie validieren möchten an:
-    </p>
+      <p>
+      Geben Sie den URI des zu validierenden Dokuments an (HTM mit CSS
+      oder CSS alleine):
+      </p>
     
     <form action="validator" method="get">
       
