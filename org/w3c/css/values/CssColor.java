@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2003/04/08 09:21:24  sijtsche
+ * SVG color values added for CSS3
+ *
  * Revision 1.4  2002/07/26 14:45:43  sijtsche
  * HSL and HSLA colors have other angle values conform new color spec CSS3
  *
@@ -194,6 +197,7 @@ public class CssColor extends CssValue
 	HSLA hsla = null;
 
     static Hashtable definedColors;
+    static Hashtable deprecatedColors;
     static CssIdent inherit = new CssIdent("inherit");
 
     /**
@@ -400,6 +404,10 @@ public class CssColor extends CssValue
 		}
 	    }
 	    return;
+	} else if (deprecatedColors.get(lower_s) != null) {
+		color = lower_s;
+		ac.getFrame().addWarning("deprecated", s);
+		return;
 	}
 
 	throw new InvalidParamException("value", s, "color", ac);
@@ -613,6 +621,8 @@ public class CssColor extends CssValue
 
     static {
 		definedColors = new Hashtable();
+		deprecatedColors = new Hashtable();
+
 		definedColors.put("aliceblue",
               new RGB(new Integer(240),
 	          new Integer(248),
@@ -1199,37 +1209,38 @@ public class CssColor extends CssValue
 			  new Integer(128),
 			  new Integer(144)));
 
+		//CSS2 System colors deprecated
+        deprecatedColors.put("activeborder", "ActiveBorder");
+        deprecatedColors.put("activecaption", "ActiveCaption");
+        deprecatedColors.put("appworkspace", "AppWorkspace");
+        deprecatedColors.put("background", "Background");
+        deprecatedColors.put("buttonface", "ButtonFace");
+        deprecatedColors.put("buttonhighlight", "ButtonHighlight");
+        deprecatedColors.put("buttonshadow", "ButtonShadow");
+        deprecatedColors.put("buttontext", "ButtonText");
+        deprecatedColors.put("captiontext", "CaptionText");
+        deprecatedColors.put("graytext", "GrayText");
+        deprecatedColors.put("highlight", "Highlight");
+        deprecatedColors.put("highlighttext", "HighlightText");
+        deprecatedColors.put("inactiveborder", "InactiveBorder");
+        deprecatedColors.put("inactivecaption", "InactiveCaption");
+        deprecatedColors.put("inactivecaptiontext", "InactiveCaptionText");
+        deprecatedColors.put("infobackground", "InfoBackground");
+        deprecatedColors.put("infotext", "InfoText");
+        deprecatedColors.put("menu", "Menu");
+        deprecatedColors.put("menutext", "MenuText");
+        deprecatedColors.put("scrollbar", "Scrollbar");
+        deprecatedColors.put("threeddarkshadow", "ThreeDDarkShadow");
+        deprecatedColors.put("threedface", "ThreeDFace");
+        deprecatedColors.put("threedhighlight", "ThreeDHighlight");
+        deprecatedColors.put("threedlightshadow", "ThreeDLightShadow");
+        deprecatedColors.put("threedshadow", "ThreeDShadow");
+        deprecatedColors.put("window", "Window");
+        deprecatedColors.put("windowframe", "WindowFrame");
+        deprecatedColors.put("windowtext", "WindowText");
 
-        definedColors.put("activeborder", "ActiveBorder");
-        definedColors.put("activecaption", "ActiveCaption");
-        definedColors.put("appworkspace", "AppWorkspace");
-        definedColors.put("background", "Background");
-        definedColors.put("buttonface", "ButtonFace");
-        definedColors.put("buttonhighlight", "ButtonHighlight");
-        definedColors.put("buttonshadow", "ButtonShadow");
-        definedColors.put("buttontext", "ButtonText");
-        definedColors.put("captiontext", "CaptionText");
-        definedColors.put("graytext", "GrayText");
-        definedColors.put("highlight", "Highlight");
-        definedColors.put("highlighttext", "HighlightText");
-        definedColors.put("inactiveborder", "InactiveBorder");
-        definedColors.put("inactivecaption", "InactiveCaption");
-        definedColors.put("inactivecaptiontext", "InactiveCaptionText");
-        definedColors.put("infobackground", "InfoBackground");
-        definedColors.put("infotext", "InfoText");
-        definedColors.put("menu", "Menu");
-        definedColors.put("menutext", "MenuText");
-        definedColors.put("scrollbar", "Scrollbar");
-        definedColors.put("threeddarkshadow", "ThreeDDarkShadow");
-        definedColors.put("threedface", "ThreeDFace");
-        definedColors.put("threedhighlight", "ThreeDHighlight");
-        definedColors.put("threedlightshadow", "ThreeDLightShadow");
-        definedColors.put("threedshadow", "ThreeDShadow");
-        definedColors.put("window", "Window");
-        definedColors.put("windowframe", "WindowFrame");
-        definedColors.put("windowtext", "WindowText");
-
-    	// CSS3 user preferences for hyperlink colors
+    	// CSS3 user preferences for hyperlink colors -> removed from spec
+    	/*
     	definedColors.put("ActiveHyperlink", "ActiveHyperlink");
     	definedColors.put("ActiveHyperlinkText", "ActiveHyperlinkText");
     	definedColors.put("HoverHyperlink", "HoverHyperlink");
@@ -1238,6 +1249,7 @@ public class CssColor extends CssValue
     	definedColors.put("HyperlinkText", "HyperlinkText");
     	definedColors.put("VisitedHyperlink", "VisitedHyperlink");
     	definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
+    	*/
 
     	//Flavor system color
     	definedColors.put("flavor","flavor");
