@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2003/07/11 13:48:59  sijtsche
+ * compile error in useless use of HttpServletResponse fixed
+ *
  * Revision 1.5  2003/07/02 14:39:03  plehegar
  * Removed HttpServletResponse import
  *
@@ -169,6 +172,9 @@ public class StyleSheetCom implements HtmlParserListener {
 	CssSelectors selector = null;
 
 	StyleSheetCom style = new StyleSheetCom();
+
+        // Fix for http://www.w3.org/Bugs/Public/show_bug.cgi?id=292
+        style.contenttype = "text";
 
 	try {
 	    style.file = args[i];
