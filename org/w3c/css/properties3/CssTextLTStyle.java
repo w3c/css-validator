@@ -25,18 +25,18 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property specifies the line-through style to use when 
+ *  This property specifies the line-through style to use when
  *  'text-decoration' is set to 'line-through'.
  */
 
 public class CssTextLTStyle extends CssProperty {
- 
+
     CssValue ltstyle;
 
-    static CssIdent solid = new CssIdent("solid");
+    static CssIdent none = new CssIdent("none");
 
     private static String[] values = {
-	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash", 
+	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash",
 	"dot-dot-dash", "wave", "inherit"
     };
 
@@ -44,12 +44,12 @@ public class CssTextLTStyle extends CssProperty {
      * Create a new CssTextLTStyle
      */
     public CssTextLTStyle() {
-	ltstyle = solid;
+	ltstyle = none;
     }
 
     /**
      * Create a new CssTextLTStyle
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -66,8 +66,8 @@ public class CssTextLTStyle extends CssProperty {
 	    }
 	}
 	if (i == values.length) {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
@@ -107,7 +107,7 @@ public class CssTextLTStyle extends CssProperty {
 	return (property instanceof CssTextLTStyle &&
 		ltstyle.equals(((CssTextLTStyle) property).ltstyle));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -141,7 +141,7 @@ public class CssTextLTStyle extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return ltstyle == solid;
+	return ltstyle == none;
     }
 
 }
