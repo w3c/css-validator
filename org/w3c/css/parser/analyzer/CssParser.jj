@@ -4,6 +4,28 @@
  * Please first read the full copyright statement in file COPYRIGHT.html
  *
  * $Log$
+ * Revision 1.11  2003/10/24 16:47:45  ylafon
+ * Remove dangerous use of statics in CssFouffa and CssSelectorsStyle creation
+ * using static and getClones, speed up of the configuration reuse
+ * Various stringbuffer optimisation in toString() calls
+ * Overall cpu and memory optimization.
+ * Figures of memory optimizations (validation of www.w3.org):
+ *
+ * without optim
+ * char[]: +3773K
+ * String: +1191K
+ * StringBuffer: +614K
+ *
+ * use of getClone
+ * char[] +1914k
+ * String: +455k
+ * StringBuffer +168k
+ *
+ * all:
+ * char[] +1868k
+ * String: +428k
+ * StringBuffer +147k
+ *
  * Revision 1.10  2003/07/30 07:01:39  sijtsche
  * @phonetic-alphabet rule and date type added
  *
@@ -1562,7 +1584,13 @@ try {
  } catch (ParseException e) {
      skipAfterExpression(e);
      return null;
- }
+ } catch (NullPointerException e) {
+	// NullPointerException happen if in handling a property
+	// something bad happen (like setting values on sub properties
+	// that had not been initialized (for an unknown reason yet).
+     skipAfterExpression(e);
+     return null;
+  }
 }
 
 /**
