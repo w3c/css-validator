@@ -49,9 +49,12 @@
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option selected="selected" value="css2">CSS version 2</option>
-<!-- 	<option value="css3">CSS version 3 -->
+ 	<option value="css3">CSS version 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG basic</option>
+	<option value="svgtiny">SVG tiny</option>
 	<option value="mobile">mobile</option>
-<!--	<option value="svg">SVG</option> -->
+	<option value="atsc-tv">TV profile</option>
       </select>
 
       Medium :
@@ -67,7 +70,6 @@
 	<option value="tty">tty</option>
 	<option value="tv">tv</option>
 	<option value="presentation">presentation</option>
-<!--	<option value="atsc-tv">ATSC TV</option> -->
       </select><br />
 
       <br />
