@@ -1,4 +1,7 @@
-/* Made by Sijtsche de Jong */
+// $Id$
+// Author: Sijtsche de Jong
+// (c) COPYRIGHT MIT, ERCIM and Keio, 2003.
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.css;
 
@@ -18,48 +21,59 @@ public class CssStyleRule {
     }
 
     public String toString() {
-	String ret = new String();
+	String ret = new StringBuffer();
 	if (selectors != null) {
-	    ret += selectors + " {\n";
+	    ret.append(selectors);
+	    ret.append(' ');
+	    ret.append('{');
+	    ret.append('\n');
 	}
 
 	for (int i = 0; i < properties.size() ; i++) {
 	    CssProperty property = (CssProperty)properties.elementAt(i);
-	    ret += indent + "   " + property.getPropertyName() + " : " + 
-		property.toString();
+	    ret.append(indent);
+	    ret.append("   ");
+	    ret.append(property.getPropertyName());
+	    ret.append(" : ");
+	    ret.append(property.toString());
 	    if (property.getImportant()) {
-		ret += " important";
+		ret.append(" important");
 	    }
-	    ret += ";\n";
+	    ret.append(';');
+	    ret.append('\n');
 	}
 	if (selectors != null) {
-	    ret += indent + "}\n\n";
+	    ret.append(indent);
+	    ret.append('}');
+	    ret.append('\n');
+	    ret.append('\n');
 	}
-
-	return ret;
-
+	return ret.toString();
     }
 
     public String toHTML() {
-	String ret = new String("<li><span class='selector'>"); 
+	StringBuffer ret = new StringBuffer("<li><span class='selector'>"); 
 	if (selectors != null) {
-	    ret += selectors + "</span> {<ul class='vRule'>\n";
+	    ret.append(selectors);
+	    ret.append("</span> {<ul class='vRule'>\n");
 	}
 
 	for (int i = 0; i < properties.size() ; i++) {
 	    CssProperty property = (CssProperty)properties.elementAt(i);
-	    ret += "<li>" + property.getPropertyName() + " : "
-		+ "<span class='vPropertyValue'>" 
-		+ property.toString() + "</span>";
+	    ret.append("<li>");
+	    ret.append(property.getPropertyName());
+	    ret.append(" : <span class='vPropertyValue'>");
+	    ret.append(property.toString());
+	    ret.append("</span>");
 	    if (property.getImportant()) {
-		ret += " !important";
+		ret.append(" !important");
 	    }
-	    ret += ";</li>\n";
+	    ret.append(";</li>\n");
 	}
-	ret += "</ul>}</li>\n\n";
-	return ret;	
+	ret.append("</ul>}</li>\n\n");
+	return ret.toString();
     }
-
+    
     private String indent;
     private String selectors;
     private Vector properties;
