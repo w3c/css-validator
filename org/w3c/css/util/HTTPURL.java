@@ -148,7 +148,7 @@ public class HTTPURL {
 	    String protocol = url.getProtocol();
 
 	    if (((port < 1024) && (port != 80))
-		|| ("http".equalsIgnoreCase(protocol))) {		
+		|| (!"http".equalsIgnoreCase(protocol))) {		
 		System.err.println( "[WARNING] : someone is trying to get the file: "
 				    + url );
 		throw new FileNotFoundException("import " + url +
