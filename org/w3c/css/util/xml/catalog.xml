@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='us-ascii'?>
-<catalog>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
  <system
    systemId='http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
    uri='xhtml1.0/xhtml1-transitional.dtd' />
@@ -11,5 +11,17 @@
  <system
    systemId='http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd'
    uri='xhtml1.0/xhtml1-frameset.dtd' />
+
+  <public
+    publicId="-//W3C//DTD XHTML 1.0 Transitional//EN"
+    uri='xhtml1.0/xhtml1-transitional.dtd' />
+  
+  <public
+    publicId="-//W3C//DTD XHTML 1.0 Strict//EN"
+    uri='xhtml1.0/xhtml1-strict.dtd' />
+
+  <public
+    publicId="-//W3C//DTD XHTML 1.0 Frameset//EN"
+    uri='xhtml1.0/xhtml1-frameset.dtd' />
 
 </catalog>
