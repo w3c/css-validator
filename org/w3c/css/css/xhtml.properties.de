@@ -32,9 +32,9 @@ Web-Verzeichnis speichern.  In diesem Fall müssen sie das \
 obere HTML-Fragment so verändern, daß es auf Ihr lokales Bild verweist. </p>\
 \
 <p>Wenn Sie einen Verweis auf diese Seite anlegen möchten \
-(d.h. auf diese Validierungsergebnis um die erneute Validierung dieser \
+(d.h. auf diese Validierungsergebnis) um die erneute Validierung dieser \
 Seite zu erleichtern oder um es anderen zu ermöglichen Ihre Seite zu \
-validieren, so verwenden Sie folgenden URI: </p><pre>\n\
+validieren, so verwenden Sie folgenden URI:</p><pre>\n\
 \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
 \ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\

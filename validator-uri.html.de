@@ -40,7 +40,7 @@
       Warnungen:
       <select name="warning"> 
 	<option value="2">Alle</option>
-	<option selected="selected" value="1">Normaler Report</option>
+	<option selected="selected" value="1">Normaler Bericht</option>
 	<option value="0">Die wichtigsten</option>
 	<option value="no">Keine</option>
       </select><br />
@@ -82,7 +82,7 @@
     <br />
     <br />
     <p>
-      Um wie gew&#252;nscht zu funktionieren, benötigt ihr CSS einen korrekten Parsebaum.
+      Um wie gew&#252;nscht zu funktionieren, ist ein korrekter Parsebaum erforderlich.
       Sie sollten deshalb <a href="http://validator.w3.org/">g&#252;ltiges HTML</a> benutzen.
     </p>
     

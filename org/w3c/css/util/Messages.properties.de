@@ -13,10 +13,10 @@ warning.no-color: Sie haben keine Vordergrundfarbe zu der Hintergrundfarbe angeg
 warning.no-background-color: Sie haben keine Hintergrundfarbe zu der Vordergrundfarbe angegeben
 warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
 warning.no-generic-family: %s: Es wird empfohlen, daß Sie eine generische Familie als letzte Alternative angeben
-warning.with-space: Font-Familiennamen, die Leerzeichen enthalten sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Wenn die Anführungszeichen weggelassen werden, werden alle Whitespaces (Leerzeichen, Tabulatoren, etc) vor und nach dem Namen ignoriert und jede Sequenz von Whitespaces innerhalb der Namens wird durch ein einzelnes Leerzeichen ersetzt.
+warning.with-space: Namen von Schriftfamilien, die Leerzeichen enthalten, sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Ohne Anführungszeichen werden alle Leerraumzeichen (Leerzeichen, Tabulatoren, etc.) vor und nach dem Namen ignoriert, und jede Sequenz von Leerraumzeichen innerhalb des Namens wird durch ein einzelnes Leerzeichen ersetzt.
 warning.no-padding: Es wird empfohlen, eine freie Umgebung (padding) mit der Hintergrundfarbe zu haben
 warning.same-colors2: Die gleichen Farben für den Vordergrund und den Hintergrund in den zwei Kontexten %s und %s
-warning.relative-absolute: Sie haben einige absolute und relative Längen in %s. Dies ist dadurch kein robustes Stylesheet.
+warning.relative-absolute: Sie haben einige absolute und relative Längen in %s. Das Stylesheet wird dadurch weniger robust.
 
 # used by org.w3c.css.properties.CssSelectors
 warning.unknown-html: %s ist kein HTML-Element
@@ -36,13 +36,13 @@ warning.no-declaration: Keine Deklaration in der Regel
 warning.out-of-range: %s ist außerhalb des Wertebereichs
 error.invalid-color: Ungültige RGB-Funktion
 
-warning.marker: Die marker-offset Eigenschaft gilt für Elements mit 'display: marker'
+warning.marker: Die 'marker-offset'-Eigenschaft gilt für Elemente mit 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
 warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft %s führt zu robusteren Stylesheets
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: Leider ist die at-rule %s nicht implementiert.
+warning.at-rule: Leider ist die At-Regel %s nicht implementiert.
 
 # used by all properties and values
 error.operator: %s ist kein ungültiger Operator
@@ -56,11 +56,11 @@ error.value: %s ist kein %s-Wert
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: %s kommt zweimal vor
 
-error.generic-family.quote: Generische Fontfamiliennamen sind Schlüsselwörter und dürfen deshalb nicht in Anführungszeichen eingeschlossen werden.
+error.generic-family.quote: Namen von generischen Schriftfamilien sind Schlüsselwörter und dürfen deshalb nicht in Anführungszeichen eingeschlossen werden.
 
 # used by org.w3c.css.properties.CssClip
-error.shape: Ungültige Gestaltdefinition rect(<top>,<right>,<bottom>,<left>)
-error.shape-separator: Ungültiger Seperator in der Gestaltdefinition. Es muß ein Komma verwendet werden.
+error.shape: Ungültige rect-Definition rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: Unzulässiges Trennzeichen in rect(...), es muß ein Komma verwendet werden.
 
 # used by org.w3c.css.properties.CssContent
 error.attr: Ungültige attr-Definition attr(X)
@@ -78,13 +78,13 @@ error.unit: %s ist keine gültige Einheit
 error.degree: Die Position muß mit Gradangaben beschrieben werden.
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: Spezifiziert die Höhe als Winkel zwischen'-90deg' und '90deg'.
+error.elevation.range: Spezifiziert die Höhe als Winkel zwischen '-90deg' und '90deg'.
 
 # used by org.w3c.css.aural.ACssPitchRange
 error.range: Der Wert ist außerhalb des gültigen Wertebereichs.  Der wert muß zwischen '0' und '100' liegen.
 
 # used by org.w3c.css.properties.CssTextShadow
-error.two-lengths: Ein Schattenoffset wird durch zwei <length>-Werte spezifiziert (Ein Radius für die Verschwommenheit kann optional nach dem Schattenoffset angegeben werden.)
+error.two-lengths: Ein Schattenoffset wird durch zwei <length>-Werte spezifiziert (ein Unschärfe-Radius kann optional nach dem Schattenoffset angegeben werden.)
 
 error.integer: Diese Nummer sollte eine ganze Zahle sein.
 error.comma: Fehlender Komma-Separator.
@@ -100,7 +100,7 @@ error.url: %s ist kein gültiger URL
 
 # used by org.w3c.css.values.CssColor
 error.rgb: %s ist keine gültige Farbe mit 3 oder 6 Hexadezimalzahlen
-error.angle: %s ist kein gueltiger Winkelwert. Wert muß zwischen 0 und 360 liegen.
+error.angle: %s ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 liegen.
 
 # used by org.w3c.css.values.CssNumber
 error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
@@ -139,9 +139,9 @@ generator.property: Ungültige Nummer
 generator.line: Zeile
 generator.not-found: Datei nicht gefunden
 generator.doc-html: <p>\
-Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korrekten Parsebaum des Dokuments. \
+Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, ist ein korrekter Parsebaum erforderlich. \
 Das bedeutet, daß Sie <a href="http://validator.w3.org/check?uri=\
-%s">validiertes HTML</a> verwenden sollten.</p>
+%s">gültiges HTML</a> verwenden sollten.</p>
 
 generator.doc:<p>\
 Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korrekten Parsebaum des Dokuments. \
@@ -170,7 +170,7 @@ error.anglevalue : Der Wert muss durch 90 teilbar sein und zwischen -360 und 360
 error.percentage : Es wurde ein Prozent-Wert erwartet
 error.noothermedium : Eigenschaften anderer Endger&auml;te k&ouml;nnten f&uuml;r das aktuelle Endger&auml; nicht funktionieren
 error.notforusermedium : Die Eigenschaft %s existiert nicht f&uuml;r dieses Endger&auml;te-Profil
-error.noatruleyet : Andere @Befehle als @import werden von CSS1 nicht unterst&uuml;tzt.
+error.noatruleyet : Andere At-Regeln als @import werden von CSS1 nicht unterst&uuml;tzt.
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
 warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.

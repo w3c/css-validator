@@ -57,7 +57,7 @@
     <hr /><br />
     
     <p>
-      Um wie gew&#252;nscht zu funktionieren, benötigt ihr CSS einen korrekten Parsebaum.
+      Um wie gew&#252;nscht zu funktionieren, ist ein korrekter Parsebaum erforderlich.
       Sie sollten deshalb <a href="http://validator.w3.org/">g&#252;ltiges HTML</a> benutzen.
     </p>
     
