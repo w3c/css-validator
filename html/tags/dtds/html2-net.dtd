@@ -1,0 +1,457 @@
+<!--	html-mcom.dtd
+
+        Document Type Definition for the HyperText Markup Language (HTML DTD)
+	with Mosaic Communications Copr Extensions
+
+	SoftQuad SCCS @(#)html.dtd      @(#)html-net.dtd	1.1 95/01/24
+	$Id$
+
+	Author: Daniel W. Connolly <connolly@hal.com>
+	See Also: html.decl, ISOlat1.sgml
+		  http://home.mcom.com/home/frosting.html
+		  http://www.hal.com/%7Econnolly/html-spec/index.html
+		  http://info.cern.ch/hypertext/WWW/MarkUp2/MarkUp.html
+-->
+
+<!--     Modified by SoftQuad to add BLINK element, and START attribute on
+        UL, LI
+-->
+
+<!ENTITY % HTML.Version
+	"-//Mosaic Comm. Corp.//DTD HTML//EN//2.0mcom"
+
+        -- Typical usage:
+
+            <!DOCTYPE HTML PUBLIC "-//Mosaic Comm. Corp.//DTD HTML//EN">
+	    <html>
+	    ...
+	    </html>
+	--
+	>
+
+
+<!--================== Feature Test Entities ==============================-->
+
+<!ENTITY % HTML.Recommended "IGNORE"
+	-- Certain features of the language are necessary for compatibility
+	   with widespread usage, but they may compromise the structural
+	   integrity of a document. This feature test entity enables
+	   a more prescriptive document type definition that eliminates
+	   the above features.
+	-->
+
+<![ %HTML.Recommended [
+	<!ENTITY % HTML.Deprecated "IGNORE">
+]]>
+
+<!ENTITY % HTML.Deprecated "INCLUDE"
+	-- Certain features of the language are necessary for compatibility
+	   with earlier versions of the specification, but they tend
+	   to be used an implemented inconsistently, and their use is
+	   deprecated. This feature test entity enables a document type
+	   definition that eliminates these features.
+	-->
+
+<!ENTITY % HTML.Highlighting "INCLUDE">
+<!ENTITY % HTML.Forms "INCLUDE">
+
+<!--================== Imported Names =====================================-->
+
+<!ENTITY % Content-Type "CDATA"
+	-- meaning a MIME content type, as per RFC1521
+	-->
+
+<!ENTITY % HTTP-Method "GET | POST"
+	-- as per HTTP specification
+	-->
+
+<!ENTITY % URI "CDATA"
+        -- The term URI means a CDATA attribute
+           whose value is a Uniform Resource Identifier,
+           as defined by 
+	"Universal Resource Identifiers" by Tim Berners-Lee
+	aka http://info.cern.ch/hypertext/WWW/Addressing/URL/URI_Overview.html
+	aka RFC 1630
+
+	Note that CDATA attributes are limited by the LITLEN
+	capacity (1024 in the current version of html.decl),
+	so that URIs in HTML have a bounded length.
+
+        -->
+
+
+<!-- DTD "macros" -->
+
+<!ENTITY % heading "H1|H2|H3|H4|H5|H6">
+
+<!ENTITY % list " UL | OL | DIR | MENU " >
+
+
+<!--================ Character mnemonic entities ==========================-->
+
+<!ENTITY % ISOlat1 SYSTEM "lat1html.ent">
+%ISOlat1;
+
+<!ENTITY amp CDATA "&#38;"     -- ampersand          -->
+<!ENTITY gt CDATA "&#62;"      -- greater than       -->
+<!ENTITY lt CDATA "&#60;"      -- less than          -->
+<!ENTITY quot CDATA "&#34;"    -- double quote       -->
+
+<!ENTITY reg  CDATA "&#174;"    -- registered trademark -->
+<!ENTITY copy CDATA "&#169;"    -- copyright            -->
+
+<!--=================== Text Markup =======================================-->
+
+<![ %HTML.Highlighting [
+
+<!ENTITY % font " TT | B | I | FONT">
+
+<!ENTITY % phrase "EM | STRONG | CODE | SAMP | KBD | VAR | CITE ">
+
+<!ENTITY % text "#PCDATA | A | IMG | BR | WBR | NOBR | CENTER | BASEFONT
+		 | BLINK | %phrase | %font | APPLET | APP">
+
+<!ENTITY % pre.content "#PCDATA | A | HR | BR | IMG | %font | %phrase">
+
+<!ELEMENT (%font;|%phrase) - - (%text)+>
+
+<!ELEMENT basefont - - ANY>
+<!ATTLIST (font|basefont)
+	SIZE CDATA #REQUIRED -- should be NUTOKEN, using size=plus3, e.g.-->
+]]>
+
+<!ENTITY % text "#PCDATA | A | IMG | BR | WBR | NOBR | CENTER">
+
+<!ELEMENT BLINK - - ANY>
+
+<!ELEMENT CENTER - - ANY>
+
+<!ELEMENT BR    - O EMPTY>
+<!ATTLIST BR
+	CLEAR (left|right|all) #IMPLIED>
+
+<!ELEMENT NOBR - - (%text)+>
+<!ELEMENT WBR  - O EMPTY>
+
+<!--================== Link Markup ========================================-->
+
+<![ %HTML.Recommended [
+	<!ENTITY % linkName "ID">
+]]>
+
+<!ENTITY % linkName "CDATA">
+
+<!ENTITY % linkType "NAME"
+	-- a list of these will be specified at a later date -->
+
+<!ENTITY % linkExtraAttributes
+        "REL %linkType #IMPLIED -- forward relationship type --
+        REV %linkType #IMPLIED -- reversed relationship type
+                              to referent data --
+        URN CDATA #IMPLIED -- universal resource number --
+
+        TITLE CDATA #IMPLIED -- advisory only --
+        METHODS NAMES #IMPLIED -- supported public methods of the object:
+                                        TEXTSEARCH, GET, HEAD, ... --
+        ">
+
+<![ %HTML.Recommended [
+	<!ENTITY % A.content   "(%text)+"
+	-- <H1><a name="xxx">Heading</a></H1>
+		is preferred to
+	   <a name="xxx"><H1>Heading</H1></a>
+	-->
+]]>
+
+<!ENTITY % A.content   "(%heading|%text)+">
+
+<!ELEMENT A     - - %A.content -(A)>
+
+<!ATTLIST A
+	HREF %URI #IMPLIED
+	NAME %linkName #IMPLIED
+        %linkExtraAttributes;
+        >
+
+<!--=================== Images ============================================-->
+
+<!ENTITY % img.alt.default "#IMPLIED"
+	-- ALT attribute required in Level 0 docs -->
+
+<!ELEMENT IMG    - O EMPTY --  Embedded image -->
+<!ATTLIST IMG
+        SRC %URI;  #REQUIRED     -- URI of document to embed --
+	ALT CDATA %img.alt.default;
+	ALIGN (left|right|top|texttop|middle|
+		absmiddle|baseline|bottom|absbottom) baseline
+	WIDTH NUMBER #IMPLIED
+	HEIGHT NUMBER #IMPLIED
+	BORDER NUMBER #IMPLIED
+	VSPACE NUMBER #IMPLIED
+	HSPACE NUMBER #IMPLIED
+        ISMAP (ISMAP) #IMPLIED
+        >
+
+
+<!--=================== Paragraphs=========================================-->
+
+<!ELEMENT P     - O (%text)+>
+
+
+<!--=================== Headings, Titles, Sections ========================-->
+
+<!ELEMENT HR    - O EMPTY -- horizontal rule -->
+<!ATTLIST HR
+	SIZE NUMBER #IMPLIED
+	WIDTH NUTOKEN #IMPLIED
+	ALIGN (left|right|center) #IMPLIED
+	NOSHADE (NOSHADE) #IMPLIED>
+
+<!ELEMENT ( %heading )  - -  (%text;)+>
+
+<!ELEMENT TITLE - -  (#PCDATA)
+          -- The TITLE element is not considered part of the flow of text.
+             It should be displayed, for example as the page header or
+             window title.
+          -->
+
+
+<!--=================== Text Flows ========================================-->
+
+<![ %HTML.Forms [
+	<!ENTITY % block.forms "| FORM | ISINDEX">
+]]>
+
+<!ENTITY % block.forms "">
+
+<![ %HTML.Deprecated [
+	<!ENTITY % preformatted "PRE | XMP | LISTING">
+]]>
+
+<!ENTITY % preformatted "PRE">
+
+<!ENTITY % block "P | %list | DL
+	| %preformatted
+	| BLOCKQUOTE %block.forms">
+
+<!ENTITY % flow "(%text|%block)*">
+
+<!ENTITY % pre.content "#PCDATA | A | HR | BR | IMG">
+<!ELEMENT PRE - - (%pre.content)+>
+
+<!ATTLIST PRE
+        WIDTH NUMBER #implied
+        >
+
+<![ %HTML.Deprecated [
+
+<!ENTITY % literal "CDATA"
+	-- special non-conforming parsing mode where
+	   the only markup signal is the end tag
+	   in full
+	-->
+
+<!ELEMENT XMP - -  %literal>
+<!ELEMENT LISTING - -  %literal>
+<!ELEMENT PLAINTEXT - O %literal>
+
+]]>
+
+
+<!--=================== Lists =============================================-->
+
+<!ELEMENT DL    - -  (DT*, DD?)+>
+<!ATTLIST DL
+	COMPACT (COMPACT) #IMPLIED>
+
+<!ELEMENT DT    - O (%text)+>
+<!ELEMENT DD    - O %flow>
+
+<!ELEMENT (OL|UL) - -  (LI)+>
+<!ELEMENT (DIR|MENU) - -  (LI)+ -(%block)>
+<!ATTLIST (UL)
+	COMPACT (COMPACT) #IMPLIED
+	TYPE CDATA #IMPLIED
+        START NUMBER #IMPLIED
+	>
+<!ATTLIST (OL)
+	COMPACT (COMPACT) #IMPLIED
+	TYPE CDATA "1"
+	>
+
+<!ELEMENT LI    - O %flow>
+<!ATTLIST LI
+	TYPE CDATA #IMPLIED
+	VALUE CDATA #implied
+        START NUMBER #IMPLIED
+>
+
+<!--=================== Document Body =====================================-->
+
+<![ %HTML.Recommended [
+	<!ENTITY % body.content "(%heading|%block|HR|ADDRESS)*"
+	-- <h1>Heading</h1>
+	   <p>Text ...
+		is preferred to
+	   <h1>Heading</h1>
+	   Text ...
+	-->
+]]>
+
+<!--ENTITY % body.content "(%heading | %text | %block | HR | ADDRESS)*"-->
+<!ENTITY % body.content "(%heading | %text | %block | HR | ADDRESS)*">
+
+<!ELEMENT BODY O O  %body.content>
+
+<!ELEMENT BLOCKQUOTE - - %body.content>
+
+<![ %HTML.Recommended [
+	<!ENTITY % address.content "(%text)*">
+]]>
+<!ENTITY % address.content "(%text|P)*">
+<!ELEMENT ADDRESS - - %address.content>
+
+
+<!--================ Forms ===============================================-->
+
+<![ %HTML.Forms [
+
+<!ELEMENT FORM - - %body.content -(FORM) +(INPUT|SELECT|TEXTAREA)>
+<!ATTLIST FORM
+	ACTION %URI #REQUIRED
+	METHOD (%HTTP-Method) GET
+	ENCTYPE %Content-Type; "application/x-www-form-urlencoded"
+	>
+
+<!ENTITY % InputType "(TEXT | PASSWORD | CHECKBOX |
+			RADIO | SUBMIT | RESET |
+			IMAGE | HIDDEN )">
+<!ELEMENT INPUT - O EMPTY>
+<!ATTLIST INPUT
+	TYPE %InputType TEXT
+	NAME CDATA #IMPLIED -- required for all but submit and reset --
+	VALUE CDATA #IMPLIED
+	SRC %URI #IMPLIED -- for image inputs -- 
+	CHECKED (CHECKED) #IMPLIED
+	SIZE CDATA #IMPLIED -- like NUMBERS,
+				 but delimited with comma, not space --
+	MAXLENGTH NUMBER #IMPLIED
+	ALIGN (top|middle|bottom) #IMPLIED
+	>
+
+<!ELEMENT SELECT - - (OPTION+)>
+<!ATTLIST SELECT
+	NAME CDATA #REQUIRED
+	SIZE NUMBER #IMPLIED
+	MULTIPLE (MULTIPLE) #IMPLIED
+	>
+
+<!ELEMENT OPTION - O (#PCDATA)>
+<!ATTLIST OPTION
+	SELECTED (SELECTED) #IMPLIED
+	VALUE CDATA #IMPLIED
+	>
+
+<!ELEMENT TEXTAREA - - (#PCDATA)>
+<!ATTLIST TEXTAREA
+	NAME CDATA #REQUIRED
+	ROWS NUMBER #REQUIRED
+	COLS NUMBER #REQUIRED
+	>
+
+]]>
+
+
+<!--================ Document Head ========================================-->
+
+<!ENTITY % head.link "& LINK*">
+
+<![ %HTML.Recommended [
+	<!ENTITY % head.nextid "">
+]]>
+<!ENTITY % head.nextid "& NEXTID?">
+
+<!ENTITY % head.content "TITLE & ISINDEX? & BASE? & STYLE? & META*
+			 %head.nextid
+			 %head.link">
+
+<!ELEMENT HEAD O O  (%head.content)>
+
+<!ELEMENT LINK - O EMPTY>
+<!ATTLIST LINK
+	HREF %URI #REQUIRED
+        %linkExtraAttributes; >
+
+<!ELEMENT ISINDEX - O EMPTY>
+<!ATTLIST ISINDEX
+	PROMPT CDATA "This is a searchable index. Enter search keywords:">
+
+<!ELEMENT BASE - O EMPTY>
+<!ATTLIST BASE
+        HREF %URI; #REQUIRED
+        >
+
+<!ELEMENT NEXTID - O EMPTY>
+<!ATTLIST NEXTID N %linkName #REQUIRED>
+
+<!ELEMENT META - O EMPTY    -- Generic Metainformation -->
+<!ATTLIST META
+        HTTP-EQUIV  NAME    #IMPLIED  -- HTTP response header name  --
+        NAME        NAME    #IMPLIED  -- metainformation name       --
+        CONTENT     CDATA   #REQUIRED -- associated information     --
+        >
+
+<!--  - jml - 12/17/96. -->
+
+
+<!ELEMENT STYLE - O (#PCDATA)>
+<!ATTLIST STYLE
+    type 	CDATA	 #REQUIRED
+    loader 	CDATA	#IMPLIED
+>
+
+<!--  - jml - 12/17/96. -->
+
+<!--================ Document Structure ===================================-->
+
+<![ %HTML.Deprecated [
+	<!ENTITY % html.content "HEAD, BODY, PLAINTEXT?">
+]]>
+<!ENTITY % html.content "HEAD, BODY">
+
+<!ELEMENT HTML O O  (%html.content)>
+<!ENTITY % version.attr "VERSION CDATA #FIXED &#34;%HTML.Version;&#34;">
+
+<!ATTLIST HTML
+	%version.attr;-- report DTD version to application --
+	>
+
+
+<!-- Applets -->
+
+<!ELEMENT APPLET - - (PARAM*, (%text;)*)>
+<!ATTLIST APPLET
+	BASE CDATA #IMPLIED	-- code base --
+	SRC CDATA #IMPLIED	-- code name (class name) --
+	NAME CDATA #IMPLIED	-- the applet name --
+	WIDTH NUMBER #REQUIRED
+	HEIGHT NUMBER #REQUIRED
+	ALIGN (left|right|top|texttop|middle|
+		absmiddle|baseline|bottom|absbottom) baseline
+	VSPACE NUMBER #IMPLIED
+	HSPACE NUMBER #IMPLIED
+>
+
+<!ELEMENT PARAM - O EMPTY>
+<!ATTLIST PARAM
+	NAME NAME #REQUIRED	-- The name of the parameter --
+	VALUE CDATA #IMPLIED	-- The value of the parameter --
+>
+
+<!ELEMENT APP - O EMPTY>
+<!ATTLIST APP
+	CLASS CDATA #IMPLIED
+	SRC CDATA #IMPLIED
+	WIDTH NUMBER #REQUIRED
+	HEIGHT NUMBER #REQUIRED
+>

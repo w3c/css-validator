@@ -1,0 +1,187 @@
+<!-- Mathematical, Greek and Symbolic characters for HTML -->
+
+<!-- Character entity set. Typical invocation:
+     <!ENTITY % HTMLsymbol PUBLIC
+       "-//W3C//ENTITIES Symbolic//EN//HTML">
+     %HTMLsymbol; -->
+
+<!-- Portions (C) International Organization for Standardization 1986:
+     Permission to copy in any form is granted for use with
+     conforming SGML systems and applications as defined in
+     ISO 8879, provided this notice is included in all copies.
+-->
+
+<!-- Relevant ISO entity set is given unless names are newly introduced.
+     New names (ie, not in ISO 8879 list) do not clash with any
+     existing ISO 8879 entity names. Unicode character numbers
+     are given for each character, in hex, and are identical for
+     Unicode 1.1 and Unicode 2.0. CDATA values are decimal conversions 
+     of the Unicode values. Names are Unicode 2.0 names.
+-->
+
+<!-- Latin Extended-B -->
+<!ENTITY fnof     CDATA "&#402;"  -- latin small f with hook, =function, =florin, U0192 ISOtech -->
+
+<!-- Greek -->
+<!ENTITY Alpha    CDATA "&#913;" -- greek capital letter alpha,  U0391 -->
+<!ENTITY Beta     CDATA "&#914;" -- greek capital letter beta,  U0392 -->
+<!ENTITY Gamma    CDATA "&#915;" -- greek capital letter gamma,  U0393 ISOgrk3 -->
+<!ENTITY Delta    CDATA "&#916;" -- greek capital letter delta,  U0394 ISOgrk3 -->
+<!ENTITY Epsilon  CDATA "&#917;" -- greek capital letter epsilon,  U0395 -->
+<!ENTITY Zeta     CDATA "&#918;" -- greek capital letter zeta,  U0396 -->
+<!ENTITY Eta      CDATA "&#919;" -- greek capital letter eta,  U0397 -->
+<!ENTITY Theta    CDATA "&#920;" -- greek capital letter theta,  U0398 ISOgrk3 -->
+<!ENTITY Iota     CDATA "&#921;" -- greek capital letter iota,  U0399 -->
+<!ENTITY Kappa    CDATA "&#922;" -- greek capital letter kappa,  U039A -->
+<!ENTITY Lambda   CDATA "&#923;" -- greek capital letter lambda,  U039B ISOgrk3 -->
+<!ENTITY Mu       CDATA "&#924;" -- greek capital letter mu,  U039C -->
+<!ENTITY Nu       CDATA "&#925;" -- greek capital letter nu,  U039D -->
+<!ENTITY Xi       CDATA "&#926;" -- greek capital letter xi,  U039E ISOgrk3 -->
+<!ENTITY Omicron  CDATA "&#927;" -- greek capital letter omicron,  U039F -->
+<!ENTITY Pi       CDATA "&#928;" -- greek capital letter pi,  U03A0 ISOgrk3 -->
+<!ENTITY Rho      CDATA "&#929;" -- greek capital letter rho,  U03A1 -->
+<!-- (there is no Sigmaf, and no U03A2 character either) -->
+<!ENTITY Sigma    CDATA "&#931;" -- greek capital letter sigma,  U03A3 ISOgrk3 -->
+<!ENTITY Tau      CDATA "&#932;" -- greek capital letter tau,  U03A4 -->
+<!ENTITY Upsilon     CDATA "&#933;" -- greek capital letter upsilon,  U03A5 ISOgrk3 -->
+<!ENTITY Phi      CDATA "&#934;" -- greek capital letter phi,  U03A6 ISOgrk3 -->
+<!ENTITY Chi      CDATA "&#935;" -- greek capital letter chi,  U03A7 -->
+<!ENTITY Psi      CDATA "&#936;" -- greek capital letter psi,  U03A8 ISOgrk3 -->
+<!ENTITY Omega    CDATA "&#937;" -- greek capital letter omega,  U03A9 ISOgrk3 -->
+
+<!ENTITY alpha    CDATA "&#945;" -- greek small letter alpha, U03B1 ISOgrk3 -->
+<!ENTITY beta     CDATA "&#946;" -- greek small letter beta,  U03B2 ISOgrk3 -->
+<!ENTITY gamma    CDATA "&#947;" -- greek small letter gamma,  U03B3 ISOgrk3 -->
+<!ENTITY delta    CDATA "&#948;" -- greek small letter delta,  U03B4 ISOgrk3 -->
+<!ENTITY epsilon     CDATA "&#949;" -- greek small letter epsilon,  U03B5 ISOgrk3 -->
+<!ENTITY zeta     CDATA "&#950;" -- greek small letter zeta,  U03B6 ISOgrk3 -->
+<!ENTITY eta      CDATA "&#951;" -- greek small letter eta,  U03B7 ISOgrk3 -->
+<!ENTITY theta    CDATA "&#952;" -- greek small letter theta,  U03B8 ISOgrk3 -->
+<!ENTITY iota     CDATA "&#953;" -- greek small letter iota,  U03B9 ISOgrk3 -->
+<!ENTITY kappa    CDATA "&#954;" -- greek small letter kappa,  U03BA ISOgrk3 -->
+<!ENTITY lambda   CDATA "&#955;" -- greek small letter lambda,  U03BB ISOgrk3 -->
+<!ENTITY mu       CDATA "&#956;" -- greek small letter mu,  U03BC ISOgrk3 -->
+<!ENTITY nu       CDATA "&#957;" -- greek small letter nu,  U03BD ISOgrk3 -->
+<!ENTITY xi       CDATA "&#958;" -- greek small letter xi,  U03BE ISOgrk3 -->
+<!ENTITY omicron  CDATA "&#959;" -- greek small letter omicron,  U03BF NEW -->
+<!ENTITY pi       CDATA "&#960;" -- greek small letter pi,  U03C0 ISOgrk3 -->
+<!ENTITY rho      CDATA "&#961;" -- greek small letter rho,  U03C1 ISOgrk3 -->
+<!ENTITY sigmaf   CDATA "&#962;" -- greek small letter final sigma,  U03C2 ISOgrk3 -->
+<!ENTITY sigma    CDATA "&#963;" -- greek small letter sigma,  U03C3 ISOgrk3 -->
+<!ENTITY tau      CDATA "&#964;" -- greek small letter tau,  U03C4 ISOgrk3 -->
+<!ENTITY upsilon     CDATA "&#965;" -- greek small letter upsilon,  U03C5 ISOgrk3 -->
+<!ENTITY phi      CDATA "&#966;" -- greek small letter phi,  U03C6 ISOgrk3 -->
+<!ENTITY chi      CDATA "&#967;" -- greek small letter chi,  U03C7 ISOgrk3 -->
+<!ENTITY psi      CDATA "&#968;" -- greek small letter psi,  U03C8 ISOgrk3 -->
+<!ENTITY omega    CDATA "&#969;" -- greek small letter omega,  U03C9 ISOgrk3 -->
+<!ENTITY thetasym    CDATA "&#977;" -- greek small letter theta symbol,  U03D1 NEW -->
+<!ENTITY upsih    CDATA "&#978;" -- greek upsilon with hook symbol,  U03D2 NEW -->
+<!ENTITY piv      CDATA "&#982;" -- greek pi symbol,  U03D6 ISOgrk3 -->
+
+<!-- General Punctuation -->
+<!ENTITY bull     CDATA "&#8226;" -- bullet, =black small circle, U2022 ISOpub  -->
+<!-- bullet is NOT the same as bullet operator, U2219 -->
+<!ENTITY hellip   CDATA "&#8230;" -- horizontal ellipsis, =three dot leader, U2026 ISOpub  -->
+<!ENTITY prime    CDATA "&#8242;" -- prime, =minutes, =feet, U2032 ISOtech -->
+<!ENTITY Prime    CDATA "&#8243;" -- double prime, =seconds, =inches, U2033 ISOtech -->
+<!ENTITY oline    CDATA "&#8254;" -- overline, =spacing overscore, U203E NEW -->
+<!ENTITY frasl    CDATA "&#8260;" -- fraction slash, U2044 NEW -->
+
+<!-- Letterlike Symbols -->
+<!ENTITY weierp   CDATA "&#8472;" -- script capital P, =power set, =Weierstrass p, U2118 ISOamso -->
+<!ENTITY image    CDATA "&#8465;" -- blackletter capital I, =imaginary part, U2111 ISOamso -->
+<!ENTITY real     CDATA "&#8476;" -- blackletter capital R, =real part symbol, U211C ISOamso -->
+<!ENTITY trade    CDATA "&#8482;" -- trade mark sign, U2122 ISOnum -->
+<!ENTITY alefsym  CDATA "&#8501;" -- alef symbol, =first transfinite cardinal, U2135 NEW -->
+<!-- alef symbol is NOT the same as hebrew letter alef, U05D0 although the same glyph
+     could be used to depict both characters -->
+
+<!-- Arrows -->
+<!ENTITY larr     CDATA "&#8592;" -- leftwards arrow, U2190 ISOnum -->
+<!ENTITY uarr     CDATA "&#8593;" -- upwards arrow, U2191 ISOnum-->
+<!ENTITY rarr     CDATA "&#8594;" -- rightwards arrow, U2192 ISOnum -->
+<!ENTITY darr     CDATA "&#8595;" -- downwards arrow, U2193 ISOnum -->
+<!ENTITY harr     CDATA "&#8596;" -- left right arrow, U2194 ISOamsa -->
+<!ENTITY crarr    CDATA "&#8629;" -- downwards arrow with corner leftwards, =carriage return, U21B5 NEW -->
+<!ENTITY lArr     CDATA "&#8656;" -- leftwards double arrow, U21D0 ISOtech -->
+<!-- Unicode does not say that lArr is the same as the 'is implied by' arrow but also 
+     does not have any other character for that function. So ? lArr can be used for 
+     'is implied by' as ISOtech suggests -->
+<!ENTITY uArr     CDATA "&#8657;" -- upwards double arrow, U21D1 ISOamsa -->
+<!ENTITY rArr     CDATA "&#8658;" -- rightwards double arrow, U21D2 ISOtech -->
+<!-- Unicode does not say this is the 'implies' character but does not have another 
+     character with this function so ? rArr can be used for 'implies' as ISOtech suggests -->
+<!ENTITY dArr     CDATA "&#8659;" -- downwards double arrow, U21D3 ISOamsa -->
+<!ENTITY hArr     CDATA "&#8660;" -- left right double arrow, U21D4 ISOamsa -->
+
+<!-- Mathematical Operators -->
+<!ENTITY forall   CDATA "&#8704;" -- for all, U2200 ISOtech -->
+<!ENTITY part     CDATA "&#8706;" -- partial differential, U2202 ISOtech  -->
+<!ENTITY exist    CDATA "&#8707;" -- there exists, U2203 ISOtech -->
+<!ENTITY empty    CDATA "&#8709;" -- empty set, =null set, =diameter, U2205 ISOamso -->
+<!ENTITY nabla    CDATA "&#8711;" -- nabla, =backward difference, U2207 ISOtech -->
+<!ENTITY isin     CDATA "&#8712;" -- element of, U2208 ISOtech -->
+<!ENTITY notin    CDATA "&#8713;" -- not an element of, U2209 ISOtech -->
+<!ENTITY ni       CDATA "&#8715;" -- contains as member, U220B ISOtech -->
+<!-- should there be a more memorable name than 'ni'? -->
+<!ENTITY prod     CDATA "&#8719;" -- n-ary product, =product sign, U220F ISOamsb -->
+<!-- prod is NOT the same character as U03A0 'greek capital letter pi' though the same 
+     glyph might be used for both -->
+<!ENTITY sum      CDATA "&#8721;" -- n-ary sumation, U2211 ISOamsb -->
+<!-- sum is NOT the same character as U03A3 'greek capital letter sigma' though the same 
+     glyph might be used for both -->
+<!ENTITY minus    CDATA "&#8722;" -- minus sign, U2212 ISOtech -->
+<!ENTITY lowast   CDATA "&#8727;" -- asterisk operator, U2217 ISOtech -->
+<!ENTITY radic    CDATA "&#8730;" -- square root, =radical sign, U221A ISOtech -->
+<!ENTITY prop     CDATA "&#8733;" -- proportional to, U221D ISOtech -->
+<!ENTITY infin    CDATA "&#8734;" -- infinity, U221E ISOtech -->
+<!ENTITY ang      CDATA "&#8736;" -- angle, U2220 ISOamso -->
+<!ENTITY and      CDATA "&#8869;" -- logical and, =wedge, U2227 ISOtech -->
+<!ENTITY or       CDATA "&#8870;" -- logical or, =vee, U2228 ISOtech -->
+<!ENTITY cap      CDATA "&#8745;" -- intersection, =cap, U2229 ISOtech -->
+<!ENTITY cup      CDATA "&#8746;" -- union, =cup, U222A ISOtech -->
+<!ENTITY int      CDATA "&#8747;" -- integral, U222B ISOtech -->
+<!ENTITY there4   CDATA "&#8756;" -- therefore, U2234 ISOtech -->
+<!ENTITY sim      CDATA "&#8764;" -- tilde operator, =varies with, =similar to, U223C ISOtech -->
+<!-- tilde operator is NOT the same character as the tilde, U007E, although the same 
+     glyph might be used to represent both  -->
+<!ENTITY cong     CDATA "&#8773;" -- approximately equal to, U2245 ISOtech -->
+<!ENTITY asymp    CDATA "&#8776;" -- almost equal to, =asymptotic to, U2248 ISOamsr -->
+<!ENTITY ne       CDATA "&#8800;" -- not equal to, U2260 ISOtech -->
+<!ENTITY equiv    CDATA "&#8801;" -- identical to, U2261 ISOtech -->
+<!ENTITY le       CDATA "&#8804;" -- less-than or equal to, U2264 ISOtech -->
+<!ENTITY ge       CDATA "&#8805;" -- greater-than or equal to, U2265 ISOtech -->
+<!ENTITY sub      CDATA "&#8834;" -- subset of, U2282 ISOtech -->
+<!ENTITY sup      CDATA "&#8835;" -- superset of, U2283 ISOtech -->
+<!-- note that nsup, 'not a superset of, U2283' is not covered by the Symbol font 
+     encoding and is not included. Should it be, for symmetry? It is in ISOamsn  --> 
+<!ENTITY nsub     CDATA "&#8836;" -- not a subset of, U2284 ISOamsn -->
+<!ENTITY sube     CDATA "&#8838;" -- subset of or equal to, U2286 ISOtech -->
+<!ENTITY supe     CDATA "&#8839;" -- superset of or equal to, U2287 ISOtech -->
+<!ENTITY oplus    CDATA "&#8853;" -- circled plus, =direct sum, U2295 ISOamsb -->
+<!ENTITY otimes   CDATA "&#8855;" -- circled times, =vector product, U2297 ISOamsb -->
+<!ENTITY perp     CDATA "&#8869;" -- up tack, =orthogonal to, =perpendicular, U22A5 ISOtech -->
+<!ENTITY sdot     CDATA "&#8901;" -- dot operator, U22C5 ISOamsb -->
+<!-- dot operator is NOT the same character as U00B7 middle dot -->
+
+<!-- Miscellaneous Technical -->
+<!ENTITY lceil    CDATA "&#8968;" -- left ceiling, =apl upstile, U2308, ISOamsc  -->
+<!ENTITY rceil    CDATA "&#8969;" -- right ceiling, U2309, ISOamsc  -->
+<!ENTITY lfloor   CDATA "&#8970;" -- left floor, =apl downstile, U230A, ISOamsc  -->
+<!ENTITY rfloor   CDATA "&#8971;" -- right floor, U230B, ISOamsc  -->
+<!ENTITY lang     CDATA "&#9001;" -- left-pointing angle bracket, =bra, U2329 ISOtech -->
+<!-- lang is NOT the same character as U003C 'less than' 
+     or U2039 'single left-pointing angle quotation mark' -->
+<!ENTITY rang     CDATA "&#9002;" -- right-pointing angle bracket, =ket, U232A ISOtech -->
+<!-- rang is NOT the same character as U003E 'greater than' 
+     or U203A 'single right-pointing angle quotation mark' -->
+
+<!-- Geometric Shapes -->
+<!ENTITY loz      CDATA "&#9674;" -- lozenge, U25CA ISOpub -->
+
+<!-- Miscellaneous Symbols -->
+<!ENTITY spades   CDATA "&#9824;" -- black spade suit, U2660 ISOpub -->
+<!-- black here seems to mean filled as opposed to hollow -->
+<!ENTITY clubs    CDATA "&#9827;" -- black club suit, =shamrock, U2663 ISOpub -->
+<!ENTITY hearts   CDATA "&#9829;" -- black heart suit, =valentine, U2665 ISOpub -->
+<!ENTITY diams    CDATA "&#9830;" -- black diamond suit, U2666 ISOpub -->

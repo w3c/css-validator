@@ -1,0 +1,946 @@
+<!--
+        This is an EXPERIMENTAL version of HTML (code named Cougar) that
+        extends HTML 3.2 to add support for proposals under review by
+        the W3C HTML Working Group, including style sheets, scripting,
+        the object tag, internationalization and some extensions to
+        forms for improved accessibility by people with disabilities.
+        The frame tags have been added in acknowledgement of their
+        widespread deployment.
+
+            Draft: $Date$
+
+            Authors:
+                Dave Raggett <dsr@w3.org>
+                Arnaud Le Hors <lehors@w3.org>
+
+        This is work in progress, subject to change at any time.
+        It does not imply endorsement by, or the consensus of,
+        either W3C or members of the HTML working group. Further
+        information about Cougar is available at:
+
+            http://www.w3.org/MarkUp/Cougar/.
+-->
+<!ENTITY % HTML.Version "http://www.w3.org/MarkUp/Cougar/Cougar.dtd"
+  -- Typical usage:
+
+    <!DOCTYPE HTML SYSTEM "http://www.w3.org/MarkUp/Cougar/Cougar.dtd">
+    <html>
+    ...
+    </html>
+  --
+>
+
+<!--================== Deprecated Features Switch ========================-->
+
+<!ENTITY % HTML.Deprecated "INCLUDE">
+
+<!--================== Imported Names ====================================-->
+
+<!ENTITY % Content-Type "CDATA"
+    -- meaning a Internet media type, as per [RFC2045]
+    -->
+
+<!ENTITY % HTTP-Method "GET | POST"
+    -- as per HTTP specification
+    -->
+
+<!ENTITY % URL "CDATA"
+    -- The term URL means a CDATA attribute
+       whose value is a Uniform Resource Locator,
+       See [RFC1808] and [RFC1738]
+    -->
+
+<!ENTITY % script "CDATA" -- scriptlet -->
+
+<!-- Parameter Entities -->
+
+<!ENTITY % head.misc "SCRIPT|STYLE|META|LINK" -- repeatable head elements -->
+
+<!ENTITY % heading "H1|H2|H3|H4|H5|H6">
+
+<!ENTITY % list "UL | OL |  DIR | MENU">
+
+<!ENTITY % preformatted "PRE">
+
+<!--================ Character mnemonic entities =========================-->
+
+<!ENTITY % HTMLlat1 PUBLIC
+   "-//W3C//ENTITIES Latin1//EN//HTML">
+%HTMLlat1;
+
+<!ENTITY % HTMLsymbol PUBLIC
+   "-//W3C//ENTITIES Symbols//EN//HTML">
+%HTMLsymbol;
+
+<!ENTITY % HTMLspecial PUBLIC
+   "-//W3C//ENTITIES Special//EN//HTML">
+%HTMLspecial;
+
+<!--=================== Generic Attributes ===============================-->
+
+<!ENTITY % coreattrs
+ "id          ID         #IMPLIED  -- document wide unique id --
+  class       CDATA      #IMPLIED  -- comma list of class values --
+  style       CDATA      #IMPLIED  -- associated style info --
+  title       CDATA      #IMPLIED  -- advisory title/amplification --"
+  >
+
+<!ENTITY % i18n
+ "lang        NAME       #IMPLIED  -- [RFC1766] language value --
+  dir         (ltr|rtl)  #IMPLIED  -- direction for weak/neutral text --"
+  >
+
+<!ENTITY % attrs "%coreattrs %i18n">
+
+<!ENTITY % just "align (left|center|right|justify)  #IMPLIED"
+                   -- default is left for ltr paragraphs, right for rtl --
+  >
+
+<!--=================== Text Markup ======================================-->
+
+<!ENTITY % font
+ "TT | I | B | U | S | STRIKE | BIG | SMALL">
+
+<!ENTITY % phrase "EM | STRONG | DFN | CODE |
+                   SAMP | KBD | VAR | CITE | ACRONYM">
+
+<!ENTITY % special
+   "A | IMG | APPLET | OBJECT | FONT | BASEFONT | BR | SCRIPT |
+    MAP | Q | SUB | SUP | SPAN | BDO | IFRAME">
+
+<!ENTITY % formctrl "INPUT | SELECT | TEXTAREA | LABEL | BUTTON">
+
+<!-- %inline covers inline or text-level elements -->
+<!ENTITY % inline "#PCDATA | %font | %phrase | %special | %formctrl">
+
+<!ELEMENT (%font|%phrase) - - (%inline)*>
+<!ATTLIST (%font|%phrase)
+  %attrs;                          -- id, class, style, lang, dir, title --
+  >
+
+<!-- subscripts and superscripts -->
+<!ELEMENT (SUB|SUP) - - (%inline)*>
+<!ATTLIST (SUB|SUP)
+  %attrs;                          -- id, class, style, lang, dir, title --
+  >
+
+<!ELEMENT SPAN - - (%inline)*     -- generic language/style container -->
+<!ATTLIST SPAN
+  %attrs;                          -- id, class, style, lang, dir, title --
+  >
+
+<!ELEMENT (INS|DEL) - - (%inline)* -- inserted/deleted text -->
+<!ATTLIST (INS|DEL)
+  %attrs                          -- id, class, style, lang, dir, title --
+  cite        %URL      #IMPLIED   -- info on reason for change --
+  date        CDATA     #IMPLIED   -- when changed: ISO date format --
+  >
+
+<!ELEMENT BDO - - (%inline)*      -- I18N BiDi over-ride -->
+<!ATTLIST BDO
+  lang        NAME       #IMPLIED  -- [RFC1766] language value --
+  dir         (ltr|rtl)  #REQUIRED -- directionality --
+  >
+
+<!ELEMENT BASEFONT - O EMPTY>
+<!ATTLIST BASEFONT
+  size        CDATA      #REQUIRED -- base font size for FONT elements --
+  color       CDATA      #IMPLIED  -- #RRGGBB in hex, e.g. red: "#FF0000" --
+  face        CDATA      #IMPLIED  -- comma separated list of font names --
+  >
+
+<!ELEMENT FONT - - (%inline)*   -- local change to font -->
+<!ATTLIST FONT
+  size        CDATA      #IMPLIED  -- [+]nn e.g. size="+1", size=4 --
+  color       CDATA      #IMPLIED  -- #RRGGBB in hex, e.g. red: "#FF0000" --
+  face        CDATA      #IMPLIED  -- comma separated list of font names --
+  >
+
+<!ELEMENT BR - O EMPTY          -- forced line break -->
+<!ATTLIST BR
+  %coreattrs;                      -- id, class, style, title --
+  clear (left|all|right|none) none -- control of text flow --
+  >
+
+<!--================== HTML content models ===============================-->
+
+<!--
+    HTML has two basic content models:
+
+        %inline     character level elements and text strings
+        %block      block-like elements e.g. paragraphs and lists
+-->
+
+<!ENTITY % block-level
+     "P | %heading | %list | %preformatted | DL | DIV | CENTER |
+      NOSCRIPT | NOFRAMES | BLOCKQUOTE | FORM | ISINDEX | HR |
+      TABLE | FIELDSET | ADDRESS">
+
+<!--=================== Document Body ====================================-->
+
+<!ENTITY % block "(%block-level | %inline)*">
+
+<!ENTITY % color "CDATA" -- a color using sRGB: #RRGGBB as Hex values -->
+
+<!-- There are also 16 widely known color names:
+
+    Black  = #000000    Green  = #008000
+    Silver = #C0C0C0    Lime   = #00FF00
+    Gray   = #808080    Olive  = #808000
+    White  = #FFFFFF    Yellow = #FFFF00
+    Maroon = #800000    Navy   = #000080
+    Red    = #FF0000    Blue   = #0000FF
+    Purple = #800080    Teal   = #008080
+    Fuchsia= #FF00FF    Aqua   = #00FFFF
+
+ These colors were originally picked as being the standard
+ 16 colors supported with the Windows VGA palette. The above
+ gives the intended sRGB values in hex (#RRGGBB).
+ -->
+
+<!ENTITY % body-color-attrs "
+  bgcolor %color #IMPLIED
+  text  %color   #IMPLIED
+  link  %color   #IMPLIED
+  vlink %color   #IMPLIED
+  alink %color   #IMPLIED
+  ">
+
+<!ELEMENT BODY O O  (%block) +(INS|DEL)>
+<!ATTLIST BODY
+  %attrs;                          -- id, class, style, lang, dir, title --
+  background  %URL       #IMPLIED  -- texture tile for document background --
+  %body-color-attrs;               -- bgcolor, text, link, vlink, alink --
+  onLoad      %script    #IMPLIED  -- intrinsic event --
+  onUnload    %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!ELEMENT ADDRESS - - ((%inline;) | P)*>
+<!ATTLIST ADDRESS
+  %i18n;                           -- lang, dir --
+  >
+
+<!ELEMENT DIV - - %block>
+<!ATTLIST DIV
+  %attrs;                          -- id, class, style, lang, dir, title --
+  %just;                           -- text alignment --
+  >
+
+<!-- CENTER is a shorthand for DIV with ALIGN=CENTER -->
+<!ELEMENT CENTER - - %block>
+
+<!--================== The Anchor Element ================================-->
+
+<!ENTITY % SHAPE "(rect|circle|poly|default)">
+<!ENTITY % COORDS "CDATA" -- comma separated list of numbers -->
+
+<!ELEMENT A - - (%inline)* -(A)>
+<!ATTLIST A
+  %attrs;                          -- id, class, style, lang, dir, title --
+  name        CDATA      #IMPLIED  -- named link end --
+  href        %URL       #IMPLIED  -- URL for linked resource --
+  target      CDATA      #IMPLIED  -- where to render resource --
+  rel         CDATA      #IMPLIED  -- forward link types --
+  rev         CDATA      #IMPLIED  -- reverse link types --
+  accesskey   CDATA      #IMPLIED  -- accessibility key character --
+  shape       %SHAPE     rect      -- for use with OBJECT SHAPES --
+  coords      %COORDS    #IMPLIED  -- for use with OBJECT SHAPES --
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  onClick     %script    #IMPLIED  -- intrinsic event --
+  onMouseOver %script    #IMPLIED  -- intrinsic event --
+  onMouseOut  %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!--================== Client-side image maps ============================-->
+
+<!-- These can be placed in the same document or grouped in a
+     separate document although this isn't yet widely supported -->
+
+<!ELEMENT MAP - - (AREA)*>
+<!ATTLIST MAP
+  name        CDATA     #IMPLIED
+  >
+
+<!ELEMENT AREA - O EMPTY>
+<!ATTLIST AREA
+  shape       %SHAPE    rect      -- controls interpretation of coords --
+  coords      %COORDS   #IMPLIED  -- comma separated list of values --
+  href        %URL      #IMPLIED  -- this region acts as hypertext link --
+  target      CDATA     #IMPLIED  -- where to render linked resource -- 
+  nohref      (nohref)  #IMPLIED  -- this region has no action --
+  alt         CDATA     #REQUIRED -- description for text only browsers --
+  tabindex    NUMBER    #IMPLIED  -- position in tabbing order --
+  onClick     %script   #IMPLIED  -- intrinsic event --
+  onMouseOver %script   #IMPLIED  -- intrinsic event --
+  onMouseOut  %script   #IMPLIED  -- intrinsic event --
+  >
+
+<!--================== The LINK Element ==================================-->
+
+<!--
+  LINK has been part of HTML since the early days
+  although few browsers as yet take advantage of it.
+
+  Relationship values can be used in principle:
+
+   a) for document specific toolbars/menus when used
+      with the LINK element in document head e.g.
+        start, contents, previous, next, index, end, help
+   b) to link to a separate style sheet (rel=stylesheet)
+   c) to make a link to a script (rel=script)
+   d) by stylesheets to control how collections of
+      html nodes are rendered into printed documents
+   e) to make a link to a printable version of this document
+      e.g. a postscript or pdf version (rel=print)
+
+-->
+
+<!ELEMENT LINK - O EMPTY>
+<!ATTLIST LINK
+  %attrs;                          -- id, class, style, lang, dir, title --
+  href        %URL       #IMPLIED  -- URL for linked resource --
+  rel         CDATA      #IMPLIED  -- forward link types --
+  rev         CDATA      #IMPLIED  -- reverse link types --
+  type    %Content-Type  #IMPLIED  -- advisory Internet content type --
+  media       CDATA      #IMPLIED  -- for rendering on these media --
+  target      CDATA      #IMPLIED  -- where to render linked resource --
+  >
+
+<!--=================== Images ===========================================-->
+
+<!ENTITY % Length "CDATA" -- nn for pixels or nn% for percentage length -->
+<!ENTITY % Pixels "CDATA" -- integer representing length in pixels -->
+
+<!-- Suggested widths are used for negotiating image size
+     with the module responsible for painting the image.
+     align=left or right cause image to float to margin
+     and for subsequent text to wrap around image -->
+
+<!ENTITY % IAlign "(top|middle|bottom|left|right)"  -- center? -->
+
+<!ELEMENT IMG - O EMPTY      --  Embedded image -->
+<!ATTLIST IMG
+  %attrs;                          -- id, class, style, lang, dir, title --
+  src         %URL       #REQUIRED -- URL of image to embed --
+  alt         CDATA      #IMPLIED  -- description for text only browsers --
+  align       %IAlign    #IMPLIED  -- vertical or horizontal alignment --
+  height      %Pixels    #IMPLIED  -- suggested height in pixels --
+  width       %Pixels    #IMPLIED  -- suggested width in pixels --
+  border      %Pixels    #IMPLIED  -- suggested link border width --
+  hspace      %Pixels    #IMPLIED  -- suggested horizontal gutter --
+  vspace      %Pixels    #IMPLIED  -- suggested vertical gutter --
+  usemap      %URL       #IMPLIED  -- use client-side image map --
+  ismap       (ismap)    #IMPLIED  -- use server-side image map --
+  >
+
+<!-- USEMAP points to a MAP element which may be in this document
+  or an external document, although the latter is not widely supported -->
+
+<!--==================== OBJECT tag ======================================-->
+<!-- OBJECT is a powerful character-like element for inserting objects.
+  Element content should provide fall back when object can't be rendered.
+  PARAM elements should precede other content. SGML mixed content model
+  technicality precludes specifying this formally ...
+-->
+
+<!ENTITY % OAlign "(texttop|middle|textmiddle|baseline|
+                             textbottom|left|center|right)">
+
+<!ELEMENT OBJECT - - (PARAM | %block)*>
+<!ATTLIST OBJECT
+  %attrs                           -- id, class, style, lang, dir, title --
+  declare     (declare)  #IMPLIED  -- declare but don't instantiate flag --
+  classid     %URL       #IMPLIED  -- identifies an implementation --
+  codebase    %URL       #IMPLIED  -- some systems need an additional URL --
+  data        %URL       #IMPLIED  -- reference to object's data --
+  type     %Content-Type #IMPLIED  -- Internet content type for data --
+  codetype %Content-Type #IMPLIED  -- Internet content type for code --
+  standby     CDATA      #IMPLIED  -- message to show while loading --
+  align       %OAlign    #IMPLIED  -- positioning inside document --
+  height      %Length    #IMPLIED  -- suggested height --
+  width       %Length    #IMPLIED  -- suggested width --
+  border      %Length    #IMPLIED  -- suggested link border width --
+  hspace      %Length    #IMPLIED  -- suggested horizontal gutter --
+  vspace      %Length    #IMPLIED  -- suggested vertical gutter --
+  usemap      %URL       #IMPLIED  -- reference to image map --
+  shapes      (shapes)   #IMPLIED  -- object has shaped hypertext links --
+  name        %URL       #IMPLIED  -- submit as part of form --
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  >
+
+<!ELEMENT PARAM - O EMPTY       -- named property value -->
+<!ATTLIST PARAM
+  name        CDATA      #REQUIRED -- property name --
+  value       CDATA      #IMPLIED  -- property value --
+  valuetype (DATA|REF|OBJECT) DATA -- How to interpret value --
+  type        CDATA      #IMPLIED  -- Internet media type --
+  >
+
+<!--=================== Java APPLET tag ==================================-->
+<!--
+  This tag is supported by all Java enabled browsers. One of CODE or
+  OBJECT must be present. Place PARAM elements before other content.
+-->
+<!ELEMENT APPLET - - (PARAM | %inline)*>
+<!ATTLIST APPLET
+  codebase    %URL       #IMPLIED   -- optional base URL for applet --
+  archive     CDATA      #IMPLIED   -- comma separated archive list --
+  code        CDATA      #IMPLIED   -- applet class file --
+  object      CDATA      #IMPLIED   -- serialized applet file --
+  alt         CDATA      #IMPLIED   -- description for text only browsers --
+  name        CDATA      #IMPLIED   -- allows applets to find each other --
+  width       %Pixels    #REQUIRED  -- suggested width in pixels --
+  height      %Pixels    #REQUIRED  -- suggested height in pixels --
+  align       %IAlign    #IMPLIED   -- vertical or horizontal alignment --
+  hspace      %Pixels    #IMPLIED   -- suggested horizontal gutter --
+  vspace      %Pixels    #IMPLIED   -- suggested vertical gutter --
+  >
+
+<!--=================== Horizontal Rule ==================================-->
+
+<!ELEMENT HR - O EMPTY>
+<!ATTLIST HR
+  %coreattrs;                      -- id, class, style --
+  align (left|right|center) #IMPLIED
+  noshade     (noshade)  #IMPLIED
+  size        %Pixels    #IMPLIED
+  width       %Length    #IMPLIED
+  >
+
+<!--=================== Paragraphs =======================================-->
+
+<!ELEMENT P - O (%inline)*>
+<!ATTLIST P
+  %attrs;                          -- id, class, style, lang, dir, title --
+  %just;                           -- text alignment --
+  >
+
+<!--=================== Headings =========================================-->
+
+<!--
+  There are six levels of headers from H1 (the most important)
+  to H6 (the least important).
+-->
+
+<!ELEMENT ( %heading )  - -  (%inline;)*>
+<!ATTLIST ( %heading )
+  %attrs;                          -- id, class, style, lang, dir, title --
+  %just;                           -- text alignment --
+  >
+
+<!--=================== Preformatted Text ================================-->
+
+<!-- excludes markup for images and changes in font size -->
+
+<!ENTITY % pre.exclusion "IMG|BIG|SMALL|SUB|SUP|FONT">
+
+<!ELEMENT PRE - - (%inline)* -(%pre.exclusion)>
+<!ATTLIST PRE
+  %attrs;                          -- id, class, style, lang, dir, title --
+  width       NUMBER     #IMPLIED  -- is this widely supported? --
+  >
+
+<!--===================== Inline Quotes ==================================-->
+
+<!ELEMENT Q - - (%inline)*>
+<!ATTLIST Q
+  %attrs;                          -- id, class, style, lang, dir, title --
+  cite        %URL       #IMPLIED  -- URL for source document or msg --
+  >
+
+<!--=================== Block-like Quotes ================================-->
+
+<!ELEMENT BLOCKQUOTE - - %block>
+<!ATTLIST BLOCKQUOTE
+  %attrs;                          -- id, class, style, lang, dir, title --
+  cite        %URL       #IMPLIED  -- URL for source document or msg --
+  >
+
+<!--=================== Lists ============================================-->
+
+<!--
+   HTML allows you to control the sequence number for ordered lists.
+   You can set the sequence number with the START and VALUE attributes.
+   The TYPE attribute may be used to specify the rendering of ordered
+   and unordered lists.
+-->
+
+<!-- definition lists - DT for term, DD for its definition -->
+
+<!ELEMENT DL - -  (DT|DD)+>
+<!ATTLIST DL
+  %attrs;                          -- id, class, style, lang, dir, title --
+  compact     (compact)  #IMPLIED  -- reduced interitem spacing --
+  >
+
+<!ELEMENT DT - O  (%inline)*>
+<!ELEMENT DD - O  %block>
+<!ATTLIST (DT|DD)
+  %attrs                          -- id, class, style, lang, dir, title --
+  >
+
+<!-- Ordered lists (OL) Numbering style
+
+    1   arablic numbers     1, 2, 3, ...
+    a   lower alpha         a, b, c, ...
+    A   upper alpha         A, B, C, ...
+    i   lower roman         i, ii, iii, ...
+    I   upper roman         I, II, III, ...
+
+    The style is applied to the sequence number which by default
+    is reset to 1 for the first list item in an ordered list.
+
+    This can't be expressed directly in SGML due to case folding.
+-->
+
+<!ENTITY % OLStyle "CDATA"      -- constrained to: [1|a|A|i|I] -->
+
+<!ELEMENT OL - -  (LI)+>
+<!ATTLIST OL -- ordered lists --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  type        %OLStyle   #IMPLIED  -- numbering style --
+  compact     (compact)  #IMPLIED  -- reduced interitem spacing --
+  start       NUMBER     #IMPLIED  -- starting sequence number --
+  >
+
+<!-- Unordered Lists (UL) bullet styles -->
+<!ENTITY % ULStyle "disc|square|circle">
+
+<!ELEMENT UL - -  (LI)+>
+<!ATTLIST UL                    -- unordered lists --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  type        (%ULStyle) #IMPLIED  -- bullet style --
+  compact     (compact)  #IMPLIED  -- reduced interitem spacing --
+  >
+
+<!ELEMENT (DIR|MENU) - -  (LI)+ -(%block-level)>
+<!ATTLIST DIR
+  %attrs;                          -- id, class, style, lang, dir, title --
+  compact     (compact)  #IMPLIED
+  >
+<!ATTLIST MENU
+  %attrs;                          -- id, class, style, lang, dir, title --
+  compact     (compact)  #IMPLIED
+  >
+
+<!-- <DIR>              Directory list                  -->
+<!-- <DIR COMPACT>      Compact list style              -->
+<!-- <MENU>             Menu list                       -->
+<!-- <MENU COMPACT>     Compact list style              -->
+
+<!-- The type attribute can be used to change the bullet style
+     in unordered lists and the numbering style in ordered lists -->
+
+<!ENTITY % LIStyle "CDATA" -- constrained to: "(%ULStyle|%OLStyle)" -->
+
+<!ELEMENT LI - O %block -- list item -->
+<!ATTLIST LI
+  %attrs;                          -- id, class, style, lang, dir, title --
+  type        %LIStyle   #IMPLIED  -- list item style --
+  value       NUMBER     #IMPLIED  -- reset sequence number --
+  >
+
+<!--================ Forms ===============================================-->
+<!ELEMENT FORM - - %block -(FORM)>
+<!ATTLIST FORM
+  %i18n;                           -- lang, dir --
+  action      %URL       #REQUIRED -- server-side form handler --
+  method      (GET|POST) GET       -- HTTP method used to submit the form --
+  enctype     %Content-Type; "application/x-www-form-urlencoded"
+  onSubmit    %script    #IMPLIED  -- intrinsic event --
+  target      CDATA      #IMPLIED  -- where to render result --
+  accept-charset CDATA   #IMPLIED  -- list of supported charsets --
+  >
+
+<!-- Each label must not contain more than ONE field -->
+<!ELEMENT LABEL - - (%inline)* -(LABEL) -- field label text -->
+<!ATTLIST LABEL
+  %attrs;                          -- id, class, style, lang, dir, title --
+  for         IDREF      #IMPLIED  -- matches field ID value --
+  disabled    (disabled) #IMPLIED  -- control is unavailable in this context --
+  accesskey   CDATA      #IMPLIED  -- accessibility key character --
+  onClick     %script    #IMPLIED  -- intrinsic event --
+  onFocus     %script    #IMPLIED  -- intrinsic event --
+  onBlur      %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!ENTITY % InputType
+  "(TEXT | PASSWORD | CHECKBOX |
+    RADIO | SUBMIT | RESET |
+    FILE | HIDDEN | IMAGE | BUTTON)"
+   >
+
+<!-- HSPACE and VSPACE missing due to lack of widespread support -->
+<!ELEMENT INPUT - O EMPTY>
+<!ATTLIST INPUT
+  %attrs;                          -- id, class, style, lang, dir, title --
+  type      %InputType   TEXT      -- what kind of widget is needed --
+  name        CDATA      #IMPLIED  -- required for all but submit & reset --
+  value       CDATA      #IMPLIED  -- required for radio and checkboxes --
+  checked   (checked)    #IMPLIED  -- for radio buttons and check boxes --
+  disabled  (disabled)   #IMPLIED  -- control is unavailable in this context --
+  readonly  (readonly)   #IMPLIED  -- for text and passwd --
+  size        CDATA      #IMPLIED  -- specific to each type of field --
+  maxlength   NUMBER     #IMPLIED  -- max chars for text fields --
+  src         %URL       #IMPLIED  -- for fields with images --
+  alt         CDATA      #IMPLIED  -- description for text only browsers --
+  usemap      %URL       #IMPLIED  -- use client-side image map --
+  align       %IAlign    #IMPLIED  -- vertical or horizontal alignment --
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  onClick     %script    #IMPLIED  -- intrinsic event --
+  onFocus     %script    #IMPLIED  -- intrinsic event --
+  onBlur      %script    #IMPLIED  -- intrinsic event --
+  onSelect    %script    #IMPLIED  -- intrinsic event --
+  onChange    %script    #IMPLIED  -- intrinsic event --
+  accept      CDATA      #IMPLIED  -- list of MIME types for file upload --
+  >
+
+<!--
+  In principle, SELECT could be extended for graphical menus by adding
+  SRC attribute to SELECT and SHAPE/COORDS to OPTION (as for AREA).
+-->
+
+<!ELEMENT SELECT - - (OPTION+)>
+<!ATTLIST SELECT
+  %attrs;                          -- id, class, style, lang, dir, title --
+  name        CDATA      #REQUIRED -- field name --
+  size        NUMBER     #IMPLIED  -- rows visible --
+  multiple  (multiple)   #IMPLIED  -- default is single selection --
+  disabled  (disabled)   #IMPLIED  -- control is unavailable in this context --
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  onFocus     %script    #IMPLIED  -- intrinsic event --
+  onBlur      %script    #IMPLIED  -- intrinsic event --
+  onChange    %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!ELEMENT OPTION - O (#PCDATA)*>
+<!ATTLIST OPTION
+  %attrs;                          -- id, class, style, lang, dir, title --
+  selected  (selected)   #IMPLIED
+  disabled  (disabled)   #IMPLIED  -- control is unavailable in this context --
+  value       CDATA      #IMPLIED  -- defaults to element content --
+  >
+
+<!-- Multi-line text input field. -->
+
+<!ELEMENT TEXTAREA - - (#PCDATA)*>
+<!ATTLIST TEXTAREA
+  %attrs;                          -- id, class, style, lang, dir, title --
+  name        CDATA      #REQUIRED
+  rows        NUMBER     #REQUIRED
+  cols        NUMBER     #REQUIRED
+  disabled  (disabled)   #IMPLIED  -- control is unavailable in this context --
+  readonly  (readonly)   #IMPLIED
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  onFocus     %script    #IMPLIED  -- intrinsic event --
+  onBlur      %script    #IMPLIED  -- intrinsic event --
+  onSelect    %script    #IMPLIED  -- intrinsic event --
+  onChange    %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!--
+  #PCDATA is to solve the mixed content problem,
+  HTML specification only allows whitespace there!
+ -->
+
+<!ELEMENT FIELDSET - - (#PCDATA,LEGEND,%block)>
+<!ATTLIST FIELDSET
+  %attrs;                          -- id, class, style, lang, dir, title --
+  >
+
+<!ELEMENT LEGEND - - (%inline;)+>
+<!ENTITY % Legend "(top|bottom|left|right)">
+
+<!ATTLIST LEGEND            -- fieldset legend --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  align       %Legend;   #IMPLIED  -- relative to fieldset --
+  accesskey   CDATA      #IMPLIED  -- accessibility key character --
+  >
+
+<!ELEMENT BUTTON - -
+     (%inline | %block-level)* -(A | %formctrl | FORM | ISINDEX | FIELDSET)>
+<!ATTLIST BUTTON  -- does this need NAME attribute for forms? --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  name        CDATA      #IMPLIED  -- for scripting/forms as submit button --
+  value       CDATA      #IMPLIED  -- gets passed to server when submitted --
+  type    (submit|reset) #IMPLIED  -- for use as form submit/reset button --
+  disabled   (disabled)  #IMPLIED  -- control is unavailable in this context --
+  tabindex    NUMBER     #IMPLIED  -- position in tabbing order --
+  onClick     %script    #IMPLIED  -- intrinsic event --
+  onFocus     %script    #IMPLIED  -- intrinsic event --
+  onBlur      %script    #IMPLIED  -- intrinsic event --
+  >
+
+<!--======================= Tables =======================================-->
+
+<!-- IETF HTML table standard, see [RFC1942] -->
+
+<!--
+ The BORDER attribute sets the thickness of the frame around the
+ table. The default units are screen pixels.
+
+ The FRAME attribute specifies which parts of the frame around
+ the table should be rendered. The values are not the same as
+ CALS to avoid a name clash with the VALIGN attribute.
+
+ The value "border" is included for backwards compatibility with
+ <TABLE BORDER> which yields frame=border and border=implied
+ For <TABLE BORDER=1> you get border=1 and frame=implied. In this
+ case, its appropriate to treat this as frame=border for backwards
+ compatibility with deployed browsers.
+-->
+<!ENTITY % Frame "(void|above|below|hsides|lhs|rhs|vsides|box|border)">
+
+<!--
+ The RULES attribute defines which rules to draw between cells:
+
+ If RULES is absent then assume:
+     "none" if BORDER is absent or BORDER=0 otherwise "all"
+-->
+
+<!ENTITY % Rules "(none | groups | rows | cols | all)">
+  
+<!-- horizontal placement of table relative to window -->
+<!ENTITY % Where "(left|center|right)">
+
+<!-- horizontal alignment attributes for cell contents -->
+<!ENTITY % cell.halign
+  "align (left|center|right|justify|char) #IMPLIED
+   char       CDATA      #IMPLIED  -- alignment char, e.g. char=':' --
+   charoff    CDATA      #IMPLIED  -- offset for alignment char --"
+  >
+
+<!-- vertical alignment attributes for cell contents -->
+<!ENTITY % cell.valign
+  "valign (top|middle|bottom|baseline) #IMPLIED"
+  >
+
+<!ELEMENT TABLE - - (CAPTION?, (COL*|COLGROUP*), THEAD?, TFOOT?, TBODY+)>
+<!ELEMENT CAPTION - - (%inline;)+>
+<!ELEMENT THEAD - O (TR+)>
+<!ELEMENT TFOOT - O (TR+)>
+<!ELEMENT TBODY O O (TR+)>
+<!ELEMENT COLGROUP - O (col*)>
+<!ELEMENT COL - O EMPTY>
+<!ELEMENT TR - O (TH|TD)+>
+<!ELEMENT (TH|TD) - O %block>
+
+<!ATTLIST TABLE                 -- table element --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  align       %Where;    #IMPLIED  -- table position relative to window --
+  bgcolor     %color     #IMPLIED  -- background color for cells --
+  width       CDATA      #IMPLIED  -- table width relative to window --
+  cols        NUMBER     #IMPLIED  -- used for immediate display mode --
+  border      CDATA      #IMPLIED  -- controls frame width around table --
+  frame       %Frame;    #IMPLIED  -- which parts of table frame to include --
+  rules       %Rules;    #IMPLIED  -- rulings between rows and cols --
+  cellspacing CDATA      #IMPLIED  -- spacing between cells --
+  cellpadding CDATA      #IMPLIED  -- spacing within cells --
+  >
+
+<!ENTITY % Caption "(top|bottom|left|right)">
+
+<!ATTLIST CAPTION               -- table caption --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  align       %Caption;  #IMPLIED  -- relative to table --
+  accesskey   CDATA      #IMPLIED  -- accessibility key character --
+  >
+
+<!--
+COLGROUP groups a set of COL elements. It allows you to group
+several columns together.
+-->
+
+<!ATTLIST COLGROUP
+  %attrs;                          -- id, class, style, lang, dir, title --
+  span        NUMBER     1         -- default number of columns in group --
+  width       CDATA      #IMPLIED  -- default width for enclosed COLs --
+  %cell.halign;                    -- horizontal alignment in cells --
+  %cell.valign;                    -- vertical alignment in cells --
+  >
+
+<!--
+ COL elements define the alignment properties for cells in a given
+ column or spanned columns. The WIDTH attribute specifies the
+ width of the columns, e.g.
+
+     width=64        width in screen pixels
+     width=0.5*      relative width of 0.5
+-->
+
+<!ATTLIST COL                   -- column groups and properties --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  span        NUMBER     1         -- number of columns spanned by group --
+  width       CDATA      #IMPLIED  -- column width specification --
+  %cell.halign;                    -- horizontal alignment in cells --
+  %cell.valign;                    -- vertical alignment in cells --
+  >
+
+<!--
+    Use THEAD to duplicate headers when breaking table
+    across page boundaries, or for static headers when
+    TBODY sections are rendered in scrolling panel.
+
+    Use TFOOT to duplicate footers when breaking table
+    across page boundaries, or for static footers when
+    TBODY sections are rendered in scrolling panel.
+
+    Use multiple TBODY sections when rules are needed
+    between groups of table rows.
+-->
+<!ATTLIST (THEAD|TBODY|TFOOT)   -- table section --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  %cell.halign;                    -- horizontal alignment in cells --
+  %cell.valign;                    -- vertical alignment in cells --
+  >
+
+<!ATTLIST TR                    -- table row --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  %cell.halign;                    -- horizontal alignment in cells --
+  %cell.valign;                    -- vertical alignment in cells --
+  bgcolor     %color     #IMPLIED  -- background color for row --
+  >
+
+<!ATTLIST (TH|TD)               -- header or data cell --
+  %attrs;                          -- id, class, style, lang, dir, title --
+  axis        CDATA      #IMPLIED  -- defaults to cell content --
+  axes        CDATA      #IMPLIED  -- list of axis names --
+  nowrap      (nowrap)   #IMPLIED  -- suppress word wrap --
+  bgcolor     %color     #IMPLIED  -- cell background color --
+  rowspan     NUMBER     1         -- number of rows spanned by cell --
+  colspan     NUMBER     1         -- number of cols spanned by cell --
+  %cell.halign;                    -- horizontal alignment in cells --
+  %cell.valign;                    -- vertical alignment in cells --
+  >
+
+<!--================== Document Frames ===================================-->
+
+<!ELEMENT FRAMESET - - (FRAMESET|FRAME)+>
+<!ATTLIST FRAMESET
+  -- absolute pixel values, percentages or relative scales. --
+  rows        CDATA      #IMPLIED  -- if not given, default is 1 row --
+  cols        CDATA      #IMPLIED  -- if not given, default is 1 column --
+  onLoad      CDATA      #IMPLIED  -- intrinsic event -- 
+  onUnload    CDATA      #IMPLIED  -- intrinsic event -- 
+  >
+
+<!-- reserved frame names start with "_" otherwise starts with letter -->
+<!ELEMENT FRAME - O EMPTY>
+<!ATTLIST FRAME
+  name        CDATA      #IMPLIED  -- name of frame for targetting --
+  src         %URL       #IMPLIED  -- source of frame content --
+  frameborder (v1|v0)      v1         -- request frame borders? @@vim --
+  marginwidth %Pixels    #IMPLIED  -- margin widths in pixels --
+  marginheight %Pixels   #IMPLIED  -- margin height in pixels --
+  noresize    (noresize) #IMPLIED  -- allow users to resize frames? --
+  scrolling (yes|no|auto) auto     -- scrollbar or none --
+  >
+
+<!ELEMENT IFRAME - - %block>
+<!ATTLIST IFRAME
+  name        CDATA      #IMPLIED  -- name of frame for targetting --
+  src         %URL       #IMPLIED  -- source of frame content --
+  frameborder (v1|v0)     v1         -- request frame borders? @@vim --
+  marginwidth %Pixels    #IMPLIED  -- margin widths in pixels --
+  marginheight %Pixels   #IMPLIED  -- margin height in pixels --
+  scrolling (yes|no|auto) auto     -- scrollbar or none --
+  align       %IAlign    #IMPLIED  -- vertical or horizontal alignment --
+  height      %Length    #IMPLIED  -- suggested height --
+  width       %Length    #IMPLIED  -- suggested width --
+  >
+
+<!ELEMENT NOFRAMES - - %block>
+
+<!--================ Document Head =======================================-->
+<!-- %head.misc defined earlier on as "SCRIPT | STYLE | META | LINK" -->
+<!ENTITY % head.content "TITLE & ISINDEX? & BASE?">
+
+<!ELEMENT HEAD O O  (%head.content) +(%head.misc)>
+<!ATTLIST HEAD
+  %i18n;                           -- lang, dir --
+  profile     %URL       #IMPLIED  -- named dictionary of meta info --
+  >
+
+<!ELEMENT TITLE - -  (#PCDATA)* -(%head.misc)
+    -- The TITLE element is not considered part of the flow of text.
+       It should be displayed, for example as the page header or
+       window title. Exactly one title is required per document.
+    -->
+<!ATTLIST TITLE %i18n>
+
+<!ELEMENT ISINDEX - O EMPTY>
+<!ATTLIST ISINDEX
+  %i18n;                           -- lang, dir --
+  prompt      CDATA      #IMPLIED  -- prompt message -->
+
+<!--
+    The BASE element gives an absolute URL for dereferencing relative
+    URLs, e.g.
+
+         <BASE href="http://foo.com/index.html">
+         ...
+         <IMG SRC="images/bar.gif">
+
+    The image is deferenced to
+
+         http://foo.com/images/bar.gif
+
+   In the absence of a BASE element the document URL should be used.
+   Note that this is not necessarily the same as the URL used to
+   request the document, as the base URL may be overridden by an HTTP
+   header accompanying the document.
+
+   TARGET attribute sets default for anchors, form submission.
+-->
+
+<!ELEMENT BASE - O EMPTY>
+<!ATTLIST BASE
+  href        %URL       #REQUIRED
+  target      CDATA      #IMPLIED  -- where to render linked resource --
+  >
+
+<!ELEMENT META - O EMPTY        -- Generic Metainformation -->
+<!ATTLIST META
+  %i18n;                           -- lang, dir for use with content string --
+  http-equiv  NAME       #IMPLIED  -- HTTP response header name  --
+  name        NAME       #IMPLIED  -- metainformation name --
+  content     CDATA      #REQUIRED -- associated information --
+  scheme      CDATA      #IMPLIED  -- select form of content --
+  >
+
+<!ELEMENT STYLE - - CDATA      -- style info -->
+<!ATTLIST STYLE
+  %i18n;                           -- lang, dir for use with title --
+  type        CDATA      #REQUIRED -- Internet content type
+                                      for style language --
+  media       CDATA      #IMPLIED  -- designed for use with these media --
+  title       CDATA      #IMPLIED  -- advisory title --
+  >
+
+    
+<!ELEMENT SCRIPT - - CDATA      -- script statements -->
+<!ATTLIST SCRIPT
+  type        CDATA      #IMPLIED  -- Internet content type for
+                                      script language --
+  language    CDATA      #IMPLIED  -- predefined script language name --
+  src         %URL       #IMPLIED  -- URL for an external script --
+  >
+
+<!ELEMENT NOSCRIPT - - (%block)>
+
+<!--================ Document Structure ==================================-->
+<!--
+ The need to be able to omit the BODY start tag, combined with its
+ mixed content model makes it impossible to specify the document
+ structure appropriately. The following is a reasonable compromise.
+-->
+
+<!ENTITY % version.attr "version CDATA #FIXED '%HTML.Version;'">
+
+<!ENTITY % html.content "HEAD, FRAMESET?, BODY">
+
+<!ELEMENT HTML O O (%html.content)>
+<!ATTLIST HTML
+  %version.attr;
+  %i18n;  -- lang, dir --
+  >

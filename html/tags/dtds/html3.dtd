@@ -1,0 +1,1444 @@
+<!--
+        html3.dtd
+
+        Document Type Definition for the HyperText Markup Language (HTML DTD)
+
+        Draft: Fri 24-Mar-95 09:46:33
+
+        Author: Dave Raggett <dsr@hplb.hpl.hp.com>
+
+        W3O is developing a testbed browser to provide practical
+        experience with HTML 3.0 before it becomes a standard.
+        See:  http://www.w3.org/hypertext/WWW/Arena/
+
+        This is an open process and comments are welcomed on the
+        www-html mailing list.
+
+        Please use the following MIME content type:
+        
+        	Content-Type: text/html; version=3.0
+        	
+        This will allow clients to distinguish HTML 3.0 from current
+        HTML documents. This is most easily achieved by saving
+        files with the extension ".html3" or ".ht3" so that servers
+        can easily distinguish these files from HTML 2.0 files.
+        
+        The entity HTML.Recommended can be used to give a more rigorous
+        version of the DTD suitable for use with SGML authoring tools.
+        The default version of the DTD offers a laxer interpretation,
+        e.g. allowing authors to omit leading <P> elements. You can
+        switch on the more rigorous version of the DTD by including
+        the following at the start of your HTML document.
+
+         <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN//"
+            [ <!ENTITY % HTML.Recommended "INCLUDE"> ] >
+
+
+        Design Objectives:
+
+        o   Backwards compatibility with 2.0
+
+        o   Tightening up HTML.Recommended and
+            moving more things to HTML.Deprecated
+
+        o   Keep HTML - simple don't compete with CALS
+
+        o   Make it practical for people to edit HTML 3.0
+            documents directly, i.e. avoid long names.
+
+        o   Tables, figures and math from HTML+
+            with tweaks based on recent experience
+
+        o   Client-side event handling for figures
+            and graphical form selection menus
+
+        o   Add limited presentational controls with
+            a view to use of linked style sheets
+            (style overrides are supported)
+
+        o   Compatibility with ICADD as per Yuri's suggestions
+
+        HTML 3.0 relies on linked style info to give authors
+        control over the appearence of documents. Such info is
+        placed in a linked style sheet, or as overrides in the
+        HTML document head, using the STYLE element. The generic
+        CLASS attribute can be used to subclass elements when
+        you want to use a different style from normal, e.g. you
+        might use <h2 class=bigcaps> for headers with enlarged
+        capital letters. Note that the class attribute has a
+        wider scope than just style changes, e.g. browsers could
+        provide the means for searching through documents,
+        restricting search according to element class values.
+
+        The DTD contains a small number of attributes for direct
+        control of basic alignment parameters; column widths for
+        tables; support for custom bullets, sequence numbering for
+        lists and headers; and text flow. These attributes offer
+        control over appearence which would be inconvenient to
+        express exclusively via associated style sheets.
+
+        The MD attribute for each hypertext or inline link specifies a
+        message digest such as MD5 for the linked object and is needed
+        to ensure someone hasn't tampered with a linked document.
+
+  History:
+  
+    24th March '95
+    
+    Changed ROLE->CLASS for HTML element
+    Added dummy elements to fix problem with mixed
+    content models for BODY, BLOCKQUOTE/BQ and FIG
+    Dropped audio fields from FORMs
+    Reinstated MIN/MAX for range fields
+    Reinstated DISABLED and ERROR attributes for fields
+  
+    22nd March '95
+    
+    Changed from em to en units. The latter
+    is a typographical unit = half point size
+    Merged NEEDS into CLEAR for control of textflow
+  
+    21st March '95
+    
+    Added REL=Banner to LINK element
+    Added BANNER element in place of <DIV CLASS=BANNER>
+    Added RANGE and SPOT elements
+    Added FN in place of <NOTE ROLE=FOOTNOTE>
+    Changed ROLE->CLASS for NOTE element
+
+    17th March '95
+    
+    Fixed bug in PRE content model
+    Changed external references to omit trailling //
+    Dropped <!DOCTYPE HTML [ ... ]> wrapper to avoid problems
+      with "real" sgml parsers
+    Added NOFLOW attribute to FIG and TABLE
+    Fixed typo in IMG ALIGN attribute
+    Made SELECT match IMG for graphic attributes
+    Added decimal alignment for tabs and table cells
+    Added ALIGN attribute to TEXTAREA for parity
+      with IMG and INPUT, including ALIGN=LEFT etc.
+    
+    13th March '95
+    
+    Dropped MARK tag on advice from SGML Open
+    Allowed spaces in table colspec attribute
+    Changed ARRAY element
+    Added CHOOSE tag to BOX element
+    Cleaned up PRE content model
+    Obsoleted tags incompatible with SGML
+    
+    6th March '95
+    
+    Added several tags to MATH: %mathface, %mathvec
+    and improved ROOT, with new SQRT convience tag
+    
+    1st March '95
+    
+    Dropped align attribute from BR element
+    Added indent attribute to TAB
+    Added optional CREDIT to end of BQ
+    Changed FIG to %body.content to allow headers
+    
+    22nd February '95
+    
+    Added align attribute, and dropped before, after, center and right
+      attributes to clean up TAB element
+    Added INS and DEL for legal documents    
+    Added CREDIT to end of FIG element
+    Dropped FN in favor of <NOTE ROLE=FootNote>
+    
+    9th Feburuary '95
+
+    Dropped base attribute mechanism for scoping relative URLs
+    Dropped nofold attribute for disabling whitespace folding
+    Dropped border width attributes for FIG (-> style sheet)
+    Dropped delims attribute from math BOX element
+    Dropped stylistic attributes from OL such as inherit (-> stylesheet)
+    Added baseline to list of valign attribute values for tables.
+    Added DIV element for generic container class and static banners
+    Added MARK element for marked range class
+    Added closed set of LINK REL values for toolbars
+    Added numbering attributes to headers
+    Added bullet attributes to headers
+    Added TERM element to math for style sheet control of term rendering
+    Changed to imagemap=URI for server-side event handling for FIG/OVERLAY
+    Changed delimiter attributes for math arrays
+    Changed ROOT element for maths to allow an arbitrary radix
+    Simplified numbering attributes for ordered lists
+    Simplified STYLE element to leave binding to style language
+-->
+
+<!ENTITY % HTML.Version
+        "-//IETF//DTD HTML 3.0//EN"
+
+        -- Typical usage:
+
+            <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+            <html>
+            ...
+            </html>
+        --
+        >
+
+<!--================== Flags for Marked Sections ==========================-->
+
+<!ENTITY % HTML.Recommended "IGNORE"
+        -- Certain features of the language are necessary for compatibility
+           with widespread usage, but they may compromise the structural
+           integrity of a document. This feature test entity enables
+           a more prescriptive document type definition that eliminates
+           the above features.
+        -->
+
+<![ %HTML.Recommended [
+        <!ENTITY % HTML.Deprecated "IGNORE">
+]]>
+
+<!ENTITY % HTML.Deprecated "INCLUDE"
+        -- Certain features of the language are necessary for compatibility
+           with earlier versions of the specification, but they tend
+           to be used an implemented inconsistently, and their use is
+           deprecated. This feature test entity enables a document type
+           definition that eliminates these features.
+        -->
+        
+<!ENTITY % HTML.Obsoleted "IGNORE"
+        -- The XMP, LISTING and PLAINTEXT tags are incompatible with SGML
+           and derive from very early versions of HTML. They require non-
+           standard parsers and will cause problems for processing
+           documents with standard SGML tools.
+        -->
+
+<!--================== Imported Names =====================================-->
+
+<!ENTITY % Content-Type "CDATA"
+        -- meaning a MIME content type, as per RFC1521
+        -->
+
+<!ENTITY % HTTP-Method "GET | POST"
+        -- as per HTTP specification
+        -->
+
+<!ENTITY % URI "CDATA"
+        -- The term URI means a CDATA attribute
+           whose value is a Uniform Resource Identifier,
+           as defined by
+        "Uniform Resource Identifiers" by Tim Berners-Lee
+        aka http://info.cern.ch/hypertext/WWW/Addressing/URL/URI_Overview.html
+        aka RFC 1630
+
+        Note that CDATA attributes are limited by the LITLEN
+        capacity (1024 in the current version of html.decl),
+        so that URIs in HTML have a bounded length.
+
+        -->
+
+<!ENTITY % REAL "CDATA" -- real numbers (not in SGML) -->
+
+<!ENTITY % SHAPE "CDATA" 
+    -- Shape of hotzone in image.
+
+       All coordinates are assumed to be numbers in the range 0 to 1
+       and interpreted as fractional width/height and measured from
+       the top left corner of the associated image.
+
+       The attribute value is a string taking one of the following forms:
+       
+       		"default"
+       		
+       Used to define a default link for the figure background.
+
+            "circle x, y, r" 
+
+       (x, y) define the center and r the radius.
+
+            "rect x, y, w, h"
+
+       (x, y) defines upper left, and w and h the width and height.
+
+            "polygon x1, y1, x2, y2, ..."
+
+       Given n pairs of x, y coordinates, the polygon is closed by a
+       line linking the n'th point to the first. Intersecting polygons
+       use the non-zero winding number rule to determine if a point lies
+       inside the polygon.I
+    --
+>
+
+<!-- 3.0 Parameter Entities -->
+
+<!ENTITY % heading "H1|H2|H3|H4|H5|H6">
+
+<![ %HTML.Obsoleted [
+    <!ENTITY % preformatted "PRE | XMP | LISTING">
+]]>
+
+
+<![ %HTML.Deprecated [
+    <!ENTITY % list "UL | OL | DIR | MENU">
+    <!ENTITY % blockquote "BLOCKQUOTE | BQ">
+]]>
+
+<!ENTITY % list "UL | OL">
+
+<!ENTITY % blockquote "BQ">
+
+<!ENTITY % preformatted "PRE">
+
+
+<!-- The CLASS attribute is used to subclass HTML elements for
+     rendering purposes, when used with style sheets, e.g. DSSSL lite -->
+
+<!ENTITY % attrs  -- common attributes for elements --
+        'id       ID      #IMPLIED -- as target for hrefs (link ends) --
+         lang     CDATA   "en.us"  -- ISO language, country code --
+         class    NAMES   #IMPLIED -- for subclassing elements --'>
+
+<!-- SGML standard forces different NAMES for all attribute values
+     in the same element, regardless of the attribute name! As a result
+     CDATA is used for CLEAR attribute to avoid clash with ALIGN attribute.-->
+
+<!--
+When text flows around a figure or table in the margin, you sometimes want
+to start an element like a header, paragraph or list below the figure rather
+than alongside it. The CLEAR attribute allows you to move down unconditionally:
+
+	clear=left          move down until left margin is clear
+	clear=right         move down until right margin is clear
+	clear=all           move down until both margins are clear
+
+Alternatively, you can decide to place the element alongside the figure just
+so long as there is enough room. The minimum width needed is specified as:
+
+	clear="40 en"       move down until there is at least 40 en units free
+	clear="100 pixels"  move down until there is at least 100 pixels free
+	
+The style sheet (or browser defaults) may provide default minimum widths for
+each class of block-like elements.
+-->
+
+<!ENTITY % needs -- Attributes for controlling text flow. Used in headers
+                    and other elements to guarantee sufficient room --
+        'clear  CDATA #IMPLIED'>
+
+<!--
+    The following attribute may be included where ever a URL can be given:
+
+    md      message digest e.g. md="md5:jV2OfH+nnXHU8bnkPAad/mSQlTDZ"
+            where the digest is base64 encoded and preceded by a prefix
+            denoting the algorithm (in this case MD5).
+-->
+
+<!ENTITY % url.link -- Attributes associated with URL based links --
+        "md     CDATA  #IMPLIED  -- message digest for linked object --">
+
+<!--================ Character mnemonic entities ==========================-->
+
+<!-- The HTML list of Latin-1 entities includes the full range
+     of characters in widely available Latin-1 fonts, and as such
+     is a mixture of ISOlat1 and other ISO publishing symbols -->
+
+<!ENTITY % HTMLlat1 PUBLIC
+  "-//IETF//ENTITIES Added Latin 1 for HTML//EN">
+%HTMLlat1;
+
+<!--================ Entities for special symbols =========================-->
+
+<!ENTITY emsp   SDATA "[emsp  ]" -- em space -->
+<!ENTITY ensp   SDATA "[ensp  ]" -- en space (1/2-em) -->
+<!ENTITY mdash  SDATA "[ndash ]" -- em dash -->
+<!ENTITY ndash  SDATA "[ndash ]" -- en dash (1/2-em) -->
+<!ENTITY nbsp   SDATA "[nbsp  ]" -- non breaking space -->
+<!ENTITY shy    SDATA "[shy   ]" -- soft hyphen -->
+<!ENTITY copy   SDATA "[copy  ]" -- copyright sign -->
+<!ENTITY trade  SDATA "[trade ]" -- trade mark sign -->
+<!ENTITY reg    SDATA "[reg   ]" -- registered sign -->
+
+<!--================ Entities for standard icons ==========================-->
+
+<!-- a range of standard icons such as &folder; for use
+     in speeding up display of directory listings etc. -->
+
+<!ENTITY % HTMLicons PUBLIC
+  "-//IETF//ENTITIES icons for HTML//EN">
+%HTMLicons;
+
+<!--================ Entities for math symbols ============================-->
+
+<!-- ISO subset chosen for use with the widely available Adobe math font -->
+
+<!ENTITY % HTMLmath PUBLIC
+  "-//IETF//ENTITIES Math and Greek for HTML//EN">
+%HTMLmath;
+
+<!--=================== Text Markup =======================================-->
+
+<!ENTITY % font " U | S | TT | I | BIG | SMALL">
+
+<!ENTITY % phrase "EM | STRONG | CODE | SAMP | KBD | VAR | CITE">
+
+<!ENTITY % misc "Q | LANG | AU | DFN | PERSON | ACRONYM | ABBREV | INS | DEL">
+
+<!ENTITY % special "TAB | MATH | A | IMG | BR">
+
+<!ENTITY % notmath "%font | %phrase | %special | %misc">
+
+<!ENTITY % text "#PCDATA | SUB | SUP | B | %notmath">
+
+
+<!ENTITY % pre.exclusion "TAB|MATH|IMG|BIG|SMALL|SUB|SUP">
+
+<!ELEMENT (%font|B|%phrase|%misc) - - (%text)+>
+<!ATTLIST (%font|B|%phrase|%misc) %attrs;>
+
+<!-- Subscripts and superscripts. The ALIGN attribute is only used for math -->
+
+<!ELEMENT (SUB|SUP) - - (%text)+>
+<!ATTLIST (SUB|SUP)
+        %attrs;
+        align (left|center|right) #IMPLIED
+        >
+
+<!-- Forced line break -->
+
+<!ELEMENT BR    - O EMPTY>
+<!ATTLIST BR
+        %attrs;
+        %needs; -- for control of text flow --
+        >
+
+<!-- Named left, center and right tab stops (independent of '\t' char) -->
+
+<!ELEMENT TAB - O EMPTY>
+<!ATTLIST TAB
+        id       ID       #IMPLIED  -- defines named tab stop --
+        indent   NUMBER   0         -- en units before new tab stop --
+        to       IDREF    #IMPLIED  -- jump to named tab stop --
+        align   (left|center|right|decimal) left
+        dp      CDATA     #IMPLIED  -- decimal point e.g. dp="," --
+        >
+
+<!--================== Link Markup ========================================-->
+
+<!--
+     With HTML 3.0 you can use ID attributes on most elements for named
+     link ends. The use of the NAME attribute on anchors is deprecated.
+
+     Do we want to support arbitrary elements for link starts? This would
+     involve adding HREF and related attributes to most elements.
+-->
+
+<![ %HTML.Deprecated [
+    <!ENTITY % linkName "name CDATA #IMPLIED -- named link end --">
+]]>
+
+<!ENTITY % linkName "">
+
+
+<!ENTITY % ToolBar "home|toc|index|glossary|copyright|
+                    up|previous|next|help|bookmark"
+
+        -- LINK RELationship values which are used to create toolbar
+           buttons or menu items for navigation, where toc stands
+           for table of contents and bookmark provides for an open
+           ended set of links, i.e. you can use multiple bookmarks
+           for key entry points. Use the optional TITLE attribute
+           to override default names.
+        -->
+
+<!ENTITY % linkType "NAME"
+        -- A definitive list will be specified at a later date.
+
+           They are used
+
+                a) by stylesheets to control how collections of
+                   html nodes are rendered into printed documents
+
+                b) for document specific toolbars/menus when used
+                   with the LINK element in document head:
+
+                    "home|toc|index|glossary|copyright|
+                           up|previous|next|help|bookmark"
+
+                   where toc stands for table of contents and
+                   bookmark provides for an open ended set of links,
+                   i.e. you can use several bookmarks for key entry
+                   points. Use the optional TITLE attribute to
+                   override default names.
+
+                c) for hypertext paths or guided tours,
+                   with REL=NODE and REL=PATH. 
+
+                d) to make a link to a style sheet, e.g. rel=stylesheet
+                   (used only with the LINK element).
+                   
+                e) to make a link to a separate banner, e.g. rel=banner
+                   (used only with the LINK element).
+        -->
+
+
+<!ENTITY % linkExtraAttributes -- URN moved to %url.link --
+       "rel %linkType #IMPLIED -- forward relationship type --
+        rev %linkType #IMPLIED -- reversed relationship type
+                                  to referent data --
+        title   CDATA #IMPLIED -- advisory only --
+        methods NAMES #IMPLIED -- supported public methods of the object:
+                                        TEXTSEARCH, GET, HEAD, ... --
+        ">
+
+<![ %HTML.Deprecated [
+    <!ENTITY % A.content "(%heading|%text)+">
+]]>
+
+<!ENTITY % A.content   "(%text)+">
+
+<!ELEMENT A     - - %A.content -(A)>
+
+<!ATTLIST A
+        %attrs;
+        href   %URI;  #IMPLIED
+        %url.link;    -- standard link attributes --
+        %linkName;     -- name attribute is deprecated; use ID instead --
+        shape %SHAPE; #IMPLIED -- for shaped hotzones in FIGs --
+        %linkExtraAttributes;
+        >
+
+<!--=================== Images ============================================-->
+
+<!-- Desired widths are used for negotiating image size
+     with the module responsible for painting the image.
+     align=left or right cause image to float to margin
+     and for subsequent text to wrap around image -->
+
+<!ELEMENT IMG    - O EMPTY --  Embedded image -->
+<!ATTLIST IMG
+        %attrs;
+        src  %URI;  #REQUIRED  -- URI of image to embed --
+        %url.link;             -- standard link attributes --
+        alt CDATA   #IMPLIED   -- for display in place of image --
+        align  (top|middle|bottom|left|right) top -- relative to baseline
+        --         width  NUMBER #IMPLIED -- desired width in en's or pixels --
+        height NUMBER #IMPLIED -- desired height in en's or pixels --
+        units  (en|pixels) pixels -- units for width and height --
+        ismap (ismap) #IMPLIED -- pass clicks to server --
+        >
+
+<!--=================== Paragraphs=========================================-->
+
+<!ELEMENT P     - O (%text)+>
+<!ATTLIST P
+        %attrs;
+        align  (left|center|right|justify) #IMPLIED
+        %needs; -- for control of text flow --
+        nowrap (nowrap) #IMPLIED -- disable wordwrap --
+        >
+
+<!--=================== Headings, Titles, Sections ========================-->
+
+<!ELEMENT HR    - O EMPTY -- customizable horizontal rule -->
+<!ATTLIST HR
+        %attrs;
+        src     %URI;   #IMPLIED -- URI of custom rule graphic --
+        %url.link;               -- standard link attributes --
+        %needs; -- for control of text flow --
+        >
+
+<!--
+  Headers can be numbered, although this is a matter for style sheets.
+  The style sheet controls the numbering style:
+
+     a) whether the parent numbering is inherited, e.g.  5.i.c
+        where 5 is the current sequence number for H1 headers, and
+        1 is the number for H2 headers and 3 for H3 headers.
+
+     b) what style is used for current sequence number
+        e.g. arabic, upperalpha, loweralpha, upperroman, lowerroman
+        or a numbering scheme appropriate for the current language
+
+  The skip attribute is used to skip over sequence numbers for items
+  which have been left out of the list, e.g. skip=3 advances the
+  sequence number past 3 omitted items. The seqnum sets the sequence
+  number to a specified value. Note that the style sheet may take
+  advantage of the sequence number for higher level headers.
+
+  The dingbat or src attributes may be used to specify a bullet like
+  image to be placed adjacent to the header. Defining this in the
+  header element simplifies the document markup and avoids the need
+  to use the clear or needs attribute in the following element to
+  prevent it flowing around this image.
+-->
+
+<!ELEMENT ( %heading )  - -  (%text;)+>
+<!ATTLIST ( %heading )
+        %attrs;
+        align  (left|center|right|justify) #IMPLIED
+        %needs; -- for control of text flow --
+        seqnum   NUMBER   #IMPLIED  -- starting sequence number --
+        skip     NUMBER   0         -- skip seq nums for missing items --
+        dingbat  ENTITY   #IMPLIED  -- dingbat entity from HTMLicons --
+        src      (%URI;)  #IMPLIED  -- bullet defined by graphic --
+        %url.link;                  -- standard link attributes --
+        nowrap   (nowrap)  #IMPLIED -- disable wordwrap --
+        >
+
+<!ELEMENT TITLE - -  (#PCDATA)
+          -- The TITLE element is not considered part of the flow of text.
+             It should be displayed, for example as the page header or
+             window title.
+          -->
+
+<!--=================== Text Flows ========================================-->
+
+<!ENTITY % block
+     "P | %list | DL
+        | %preformatted
+        | %blockquote
+        | FORM | ISINDEX | FN
+        | TABLE | FIG | NOTE">
+
+<!--
+  ((%block)* | (%text)*) would be much nicer as it would avoid the need
+  for a <P> tag when all you want is a few words of text. The problem
+  is that it also prevents: "<LI> <P>some text" since it forbids PCDATA
+  and hence the white space between the <LI> and the <P>.
+-->
+
+<![ %HTML.Recommended [
+    <!ENTITY % flow "(%block)*">
+]]>
+
+<!ENTITY % flow "(%text | %block)*">
+
+<!ELEMENT PRE - - (%text)* -(%pre.exclusion)>
+
+<!ATTLIST PRE
+        %attrs;
+        width NUMBER #implied
+        %needs; -- for control of text flow --
+        >
+
+<![ %HTML.Obsoleted [
+
+<!ENTITY % literal "CDATA"
+        -- special non-conforming parsing mode where
+           the only markup signal is the end tag
+           in full. This will cause problems for
+           standard SGML tools!
+        -->
+
+<!ELEMENT XMP - -  %literal>
+<!ELEMENT LISTING - -  %literal>
+<!ELEMENT PLAINTEXT - O %literal>
+
+]]>
+
+<!--=================== Lists =============================================-->
+
+<!ELEMENT DL    - -  (LH?, (DT|DD)+) -- this is perhaps too lax? -->
+<!ATTLIST DL
+        %attrs;
+        %needs; -- for control of text flow --
+        compact (compact) #IMPLIED -- more compact style --
+        >
+
+<!ELEMENT DT    - O  (%text)+>
+<!ELEMENT DD    - O  %flow;>
+<!ATTLIST (DT|DD)
+        %attrs;
+        %needs; -- for control of text flow --
+        >
+
+
+<!ELEMENT (OL|UL) - -  (LH?, LI+) -- should we allow a list header ? -->
+
+<!-- style sheet controls numbering style
+    a) whether the parent numbering is inherited, e.g.  5.1.c
+    b) what style is used for current sequence number
+        e.g. arabic, upperalpha, loweralpha, upperroman, lowerroman
+        or a numbering scheme for the current language
+-->
+<!ATTLIST OL
+        %attrs;
+        %needs; -- for control of text flow --
+        continue (continue)  #IMPLIED   -- don't restart sequence number --
+        seqnum    NUMBER     #IMPLIED   -- starting sequence number --
+        compact (compact)    #IMPLIED   -- reduced interitem spacing --
+        >
+
+<!-- Unordered lists:
+
+    o   single or multicolumn with
+        horizontal or vertical wrapping
+
+    o   plain or bulletted list items
+
+    o   bullets can be customised via:
+            - entities (dingbats in HTMLicons)
+            - external graphic via URL
+            - individual attributes on LI tags
+-->
+<!ATTLIST UL
+        %attrs;
+        %needs; -- for control of text flow --
+        wrap (vert|horiz|none) none -- multicolumn list style --
+        plain   (plain)  #IMPLIED   -- suppress bullets --
+        dingbat  ENTITY  #IMPLIED   -- dingbat entity from HTMLicons --
+        src     (%URI;)  #IMPLIED   -- bullet defined by graphic --
+        %url.link;                  -- standard link attributes --
+        compact (compact) #IMPLIED  -- reduced interitem spacing --
+        >
+
+<!ELEMENT LH - O (%text;)+ -- list header -->
+<!ATTLIST LH %attrs;>
+
+<!--
+    For unordered lists, you can override the standard bullet with
+    a custom graphic specified via a URI e.g. src="splash.gif" or
+    a reference to one of the HTMLicons graphics e.g. dingbat=folder
+
+    The skip attribute is used with ordered lists to skip over sequence
+    numbers for items which have been left out of the list, e.g. skip=3
+    advances the sequence number past 3 omitted items.
+-->
+
+<!ELEMENT LI - O %flow; -- list item -->
+<!ATTLIST LI
+        %attrs;
+        %needs; -- for control of text flow --
+        dingbat ENTITY #IMPLIED -- dingbat entity from HTMLicons --
+        src  (%URI;) #IMPLIED   -- custom bullet graphic --
+        %url.link;              -- standard link attributes --
+        skip NUMBER 0           -- skip seq nums for missing items --
+        >
+
+<!-- DIR and MENU are now subsumed by UL with type=plain. Use the
+     wrap attribute to control wrapping style for multicolumn lists -->
+
+<![ %HTML.Deprecated [
+    <!ELEMENT (DIR|MENU) - - (LI)+ -(%block)>
+    <!ATTLIST (DIR|MENU)
+        compact (compact) #IMPLIED>
+]]>
+
+<!--=================== Document Body =====================================-->
+
+<![ %HTML.Recommended [
+        <!ENTITY % body.content "(DIV|%heading|%block|HR|ADDRESS)*"
+        -- <h1>Heading</h1>
+           <p>Text ...
+                is preferred to
+           <h1>Heading</h1>
+           Text ...
+        -->
+]]>
+
+<!ENTITY % body.content "(DIV | %heading | %text | %block | HR | ADDRESS)*">
+
+<!ELEMENT BODY O O  (BANNER?, BODYTEXT) +(SPOT)>
+<!ATTLIST BODY
+        %attrs;
+        background %URI; #IMPLIED  -- texture tile for document background --
+        >
+
+<!ELEMENT BODYTEXT O O %body.content -- dummy element -->
+
+<!-- 
+  The BANNER element is used for a banner section which appears at
+  the top of the window and doesn't scroll with window contents.
+  This can be used for corporate logos, copyright statements and
+  disclaimers, as well as customized navigation/search controls.
+-->
+<!ELEMENT BANNER - - %body.content>
+<!ATTLIST BANNER %attrs; >
+
+<!-- SPOT is used to insert IDs at arbitrary places
+     e.g. for end points of a marked range (see RANGE) -->
+<!ELEMENT SPOT - O EMPTY>
+<!ATTLIST SPOT id ID #REQUIRED>
+
+<!ELEMENT (%blockquote) - - (BODYTEXT, CREDIT?)>
+<!ATTLIST (%blockquote)
+        %attrs;
+        %needs; -- for control of text flow --
+        nowrap   (nowrap)  #IMPLIED -- disable wordwrap --
+        >
+
+<!ENTITY % address.content "((%text;)* | P*)">
+
+<!ELEMENT ADDRESS - - %address.content>
+<!ATTLIST ADDRESS
+        %attrs;
+        %needs; -- for control of text flow --
+        >
+        
+<!--
+  DIV can be used with the CLASS attribute to represent different
+  kinds of container, e.g. chapter, section, abstract, appendix.
+-->
+
+<!ELEMENT DIV - - %body.content>
+<!ATTLIST DIV
+        %attrs;
+        %needs; -- for control of text flow --
+        align   (left|center|right) left -- alignment of following text --
+        nowrap   (nowrap)  #IMPLIED -- disable wordwrap --
+        >
+
+<!--================ Forms ===============================================-->
+
+<!--
+    As HTML 2.0 plus a few extensions:
+
+        a)  A RANGE control which varies between pair of values
+            specified with the size attribute, e.g. SIZE="1, 10"
+
+        b)  FILE widget for uploading one or more files to a server
+
+        c)  SCRIBBLE on image widget that sends the "ink" to the server
+
+        d)  SUBMIT/RESET buttons can now be customised with an image.
+            This subsumes the IMAGE type which is now deprecated.
+
+        e)  Graphical SELECTion menus are now supported, using
+            the new SHAPE attribute on OPTION elements.
+
+    Further extensions are in the pipeline (e.g. table entry,
+    multiple data formats for textarea fields and client-side
+    scripts with custom widgets) but will have to wait until
+    the backlog of implementation work diminishes.
+-->
+
+<!ELEMENT FORM - - %body.content -(FORM) +(INPUT|SELECT|TEXTAREA)>
+<!ATTLIST FORM
+        action %URI #REQUIRED -- server-side form handler --
+        method (%HTTP-Method) GET -- see HTTP specification --
+        enctype %Content-Type; "application/x-www-form-urlencoded"
+        script %URI #IMPLIED -- link to client-side script --
+        >
+
+<![ %HTML.Deprecated [
+    <!ENTITY % InputType "(TEXT | PASSWORD | CHECKBOX | RADIO | SUBMIT
+                   | RESET | RANGE | FILE | SCRIBBLE | HIDDEN | IMAGE)">
+]]>
+
+<!ENTITY % InputType "(TEXT | PASSWORD | CHECKBOX | RADIO | SUBMIT
+                   | RESET | RANGE | FILE | SCRIBBLE | HIDDEN)">
+
+<!ELEMENT INPUT - O EMPTY>
+<!ATTLIST INPUT
+        %attrs;
+        type %InputType TEXT
+        name  NAME  #IMPLIED       -- required for all but submit and reset --         
+        value CDATA #IMPLIED       -- required for radio buttons & checkboxes --
+        disabled (disabled) #IMPLIED -- read-only fields --
+        error CDATA #IMPLIED       -- why field is in error --
+        checked (checked) #IMPLIED -- for radio buttons and check boxes --
+        size NUMBER #IMPLIED       -- visible width of TEXT fields --
+        maxlength NUMBER #IMPLIED  -- max number of chars for TEXT fields --
+        min %REAL #IMPLIED         -- lower limit for RANGE fields --
+        max %REAL #IMPLIED         -- upper limit for RANGE fields --
+        accept CDATA #IMPLIED      -- list of MIME types for file fields --
+        src   %URI  #IMPLIED       -- for fields with background images --
+        %url.link;                 -- standard link attributes --
+        align  (top|middle|bottom|left|right) top
+        >
+
+<!--
+  SRC attribute added for graphical selection menus
+  The WIDTH, HEIGHT and UNITS attributes apply to the
+  image specified by the SRC attribute.
+ -->
+
+<!ELEMENT SELECT - - (OPTION+) -(INPUT|TEXTAREA|SELECT)>
+<!ATTLIST SELECT
+        %attrs;
+        name CDATA #REQUIRED
+        multiple (multiple) #IMPLIED
+        disabled (disabled) #IMPLIED -- read-only menu --
+        error CDATA #IMPLIED   -- why selections are in error --
+        src  %URI  #IMPLIED    -- for graphical selection menus --
+        %url.link;             -- standard link attributes --
+        width  NUMBER #IMPLIED -- desired width of in en's or pixels --
+        height NUMBER #IMPLIED -- desired height in en's or pixels --
+        units  (en|pixels) pixels -- units for width and height --
+        align  (top|middle|bottom|left|right) top
+        >
+
+<!ELEMENT OPTION - O (#PCDATA)>
+<!ATTLIST OPTION
+        %attrs;
+        selected (selected) #IMPLIED
+        value  CDATA  #IMPLIED -- default to element content --
+        shape %SHAPE; #IMPLIED -- for graphical selection menus --
+        disabled (disabled) #IMPLIED -- unselectable option --
+        error CDATA #IMPLIED   -- why this choice is in error --
+        >
+
+<!--
+  Multi-line text input field. align=left or right
+  causes the field to float to margin and for
+  subsequent text to wrap around the field.
+-->
+     
+<!ELEMENT TEXTAREA - - (#PCDATA) -(INPUT|TEXTAREA|SELECT)>
+<!ATTLIST TEXTAREA
+        %attrs;
+        name CDATA #REQUIRED
+        rows NUMBER #REQUIRED
+        cols NUMBER #REQUIRED
+        disabled (disabled) #IMPLIED -- read-only field --
+        error CDATA #IMPLIED         -- why field is in error --
+        align  (top|middle|bottom|left|right) top
+        >
+
+<!--======================= Captions ======================================-->
+
+<!ELEMENT CAPTION - - (%text;)+ -- table or figure caption -->
+<!ATTLIST CAPTION
+        %attrs;
+        align (top|bottom|left|right) #IMPLIED
+        >
+<!--======================= Tables ========================================-->
+
+<!--
+    Tables and figures can be aligned in several ways:
+
+    bleedleft   flush left with the left (window) border
+    left        flush left with the left text margin
+    center      centered (text flow is disabled for this mode)
+    right       flush right with the right text margin
+    bleedright  flush right with the right (window) border
+    justify     when applicable the table/figure should stretch
+                to fill space between the text margins
+
+    Note: text will flow around the table or figure if the browser
+    judges there is enough room and the alignment is not centered
+    or justified. The table or figure may itself be part of the
+    text flow around some earlier figure. You can in this case use
+    the clear or needs attributes to move the new table or figure
+    down the page beyond the obstructing earlier figure. Similarly,
+    you can use the clear or needs attributes with other elements
+    such as headers and lists to move them further down the page.
+-->
+
+<!ENTITY % block.align
+        "align  (bleedleft|left|center|right|bleedright|justify) center">
+
+<!--
+    The HTML 3.0 table model has been chosen for its simplicity
+    and the ease in writing filters from common DTP packages.
+
+    By default the table is automatically sized according to the
+    cell contents and the current window size. Specifying the columns
+    widths using the colspec attribute allows browsers to start
+    displaying the table without having to wait for last row.
+
+    The colspec attribute is a list of column widths and alignment
+    specifications. The columns are listed from left to right with
+    a capital letter followed by a number, e.g. COLSPEC="L20 C8 L40".
+    The letter is L for left, C for center, R for right alignment of
+    cell contents. J is for justification, when feasible, otherwise
+    this is treated in the same way as L for left alignment.
+    Column entries are delimited by one or more space characters.
+    
+    The number specifies the width in en's, pixels or as a
+    fractional value of the table width, as according to the
+    associated units attribute. This approach is more compact
+    than used with most SGML table models and chosen to simplify
+    hand entry. The width attribute allows you to specify the
+    width of the table in pixels, en units or as a percentage
+    of the space between the current left and right margins.
+
+    To assist with rendering to speech, row and column headers
+    can be given short names using the AXIS attribute. The AXES
+    attribute is used to explicitly specify the row and column
+    names for use with each cell. Otherwise browsers can follow
+    up columns and left along rows (right for some languages)
+    to find the corresponding header cells.
+
+    Table content model: Braille limits the width of tables,
+    placing severe limits on column widths. User agents need
+    to render big cells by moving the content to a note placed
+    before the table. The cell is then rendered as a link to
+    the corresponding note.
+
+    To assist with formatting tables to paged media, authors
+    can differentiate leading and trailing rows that are to
+    be duplicated when splitting tables across page boundaries.
+    The recommended way is to subclass rows with the CLASS attribute
+    For example: <TR CLASS=Header>, <TR CLASS=Footer> are used for
+    header and footer rows. Paged browsers insert footer rows at
+    the bottom of the current page and header rows at the top of
+    the new page, followed by the remaining body rows.
+-->
+
+<!ELEMENT TABLE - - (CAPTION?, TR*) -- mixed headers and data -->
+<!ATTLIST TABLE
+        %attrs;
+        %needs; -- for control of text flow --
+        border (border) #IMPLIED -- draw borders --
+        colspec CDATA   #IMPLIED -- column widths and alignment --
+        units  (en|pixels|relative) en -- units for column widths --
+        dp      CDATA   #IMPLIED -- decimal point e.g. dp="," --
+        width NUMBER    #IMPLIED -- absolute or percentage width --
+        %block.align;  -- horizontal alignment --
+        noflow (noflow) #IMPLIED -- noflow around table --
+        nowrap (nowrap) #IMPLIED -- don't wrap words --
+        >
+
+<!ENTITY % cell "TH | TD">
+<!ENTITY % horiz.align "left|center|right|justify">
+<!ENTITY % vert.align  "top|middle|bottom|baseline">
+
+<!--
+    Browsers should tolerate an omission of the first <TR>
+    tag as it is implied by the context. Missing trailing
+    <TR>s implied by rowspans should be ignored.
+
+    The alignment attributes act as defaults for rows
+    overriding the colspec attribute and being in turn
+    overridden by alignment attributes on cell elements.
+    Use valign=baseline when you want to ensure that text
+    in different cells on the same row is aligned on the
+    same baseline regardless of fonts. It only applies
+    when the cells contain a single line of text.
+-->
+
+<!ELEMENT TR - O (%cell)* -- row container -->
+<!ATTLIST TR
+        %attrs;
+        align  (%horiz.align) #IMPLIED -- horizontal alignment --
+        valign (%vert.align)  top  -- vertical alignment --
+        dp     CDATA     #IMPLIED  -- decimal point e.g. dp="," --
+        nowrap (nowrap)  #IMPLIED  -- don't wrap words --
+        >
+
+<!--
+    Note that table cells can include nested tables.
+    Missing cells are considered to be empty, while
+    missing rows should be ignored, i.e. if a cell
+    spans a row and there are no further TR elements
+    then the implied row should be ignored.
+-->
+
+<!ELEMENT (%cell) - O %body.content>
+<!ATTLIST (%cell)
+        %attrs;
+        colspan NUMBER    1      -- columns spanned --
+        rowspan NUMBER    1      -- rows spanned --
+        align  (%horiz.align) #IMPLIED -- horizontal alignment --
+        valign (%vert.align) top -- vertical alignment --
+        dp      CDATA    #IMPLIED  -- decimal point e.g. dp="," --
+        nowrap (nowrap)  #IMPLIED  -- don't wrap words --
+        axis CDATA #IMPLIED -- axis name, defaults to element content --
+        axes CDATA #IMPLIED -- comma separated list of axis names --
+        >
+
+<!--====================== Figures ========================================-->
+
+<!--
+  The element contains text for use in non-graphical displays. Note that
+  you can use the shape attribute in anchors to specify hotzones on images.
+  This provides for local processing of pointer clicks and a unified method
+  for dealing with graphical and non-graphical displays.
+
+  Text is flowed around figures when the figure is left or right aligned.
+  You can request the browser to move down until there is enough room for
+  the next element, see the CLEAR and NEED attributes (in %needs)
+
+  Figures offer a path towards embedding arbitrary information formats
+  via some kind of OLE/OpenDoc mechanism.
+-->
+
+<!ELEMENT FIG - - (OVERLAY*, CAPTION?, FIGTEXT, CREDIT?) -(FIG|IMG)>
+<!ATTLIST FIG
+        %attrs;
+        %needs;                  -- for control of text flow --
+        src  %URI;  #REQUIRED    -- URI of document to embed --
+        %url.link;               -- standard link attributes --
+        %block.align;            -- horizontal alignment --
+        noflow (noflow) #IMPLIED -- noflow around figure --
+        width  NUMBER #IMPLIED   -- desired width in units --
+        height NUMBER #IMPLIED   -- desired height in units --
+        units (en|pixels) pixels -- specifies units as en's or pixels --
+        imagemap (%URI) #IMPLIED -- pass background clicks to server --
+        >
+        
+<!ELEMENT FIGTEXT O O %body.content -- dummy element -->
+
+<!--
+    Figure overlays. When combined with local caching, overlays
+    provide a cheap way of modifying a larger base image sent as
+    part of a previous page.
+-->
+
+<!ELEMENT OVERLAY - O EMPTY -- image overlay -->
+<!ATTLIST OVERLAY
+        src  %URI;  #REQUIRED    -- URI of image overlay --
+        %url.link;               -- standard link attributes --
+        units (en|pixels) pixels -- specifies units as en's or pixels --
+        x      NUMBER   0        -- offset from left in units --
+        y      NUMBER   0        -- offset from top in units --
+        width  NUMBER #IMPLIED   -- desired width in units --
+        height NUMBER #IMPLIED   -- desired height in units --
+        imagemap (%URI) #IMPLIED -- pass background clicks to server --
+        >
+
+<!ELEMENT CREDIT - - (%text;)* -- source of image -->
+<!ATTLIST CREDIT
+        %attrs;
+        >
+
+<!--======================== Notes ========================================-->
+
+<!--
+The NOTE element is used for admonishments. The CLASS attribute
+is used to differentiate NOTE's, e.g. Note, Caution or Warning.
+-->
+
+<!ELEMENT NOTE - - %body.content; -- admonishment -->
+<!ATTLIST NOTE
+        %attrs;
+        src %URI;   #IMPLIED  -- URI of custom graphic --
+        %url.link;            -- standard link attributes --
+        %needs; -- for control of text flow --
+        >
+
+<!--======================== Footnotes ====================================-->
+
+<!--
+Typically rendered as popup note. These elements are referenced
+by hypertext links specified with the anchor element.
+-->
+<!ELEMENT FN - - %body.content;>
+<!ATTLIST FN %attrs;>
+
+<!--======================== Math  ========================================-->
+
+<!-- Use &thinsp; &emsp; etc for greater control of spacing. -->
+
+<!-- Subscripts and Superscripts
+
+  <SUB> and <SUP> are used for subscripts and superscripts.
+
+                                          i j
+      X <SUP>i</SUP>Y<SUP>j</SUP>  is   X  Y
+
+  i.e. the space following the X disambiguates the binding.
+  The align attribute can be used for horizontal alignment,
+  e.g. to explicitly place an index above an element:
+                                              i
+        X<sup align=center>i</sup>  produces  X
+
+Short references are defined for superscripts, subscripts and boxes
+to save typing when manually editing HTML math, e.g.
+
+      x^2^    is mapped to   x<sup>2</sup>
+      y_z_    is mapped to   y<sub>z</sub>
+      {a+b}   is mapped to   <box>a + b</box>
+
+Note that these only apply within the MATH element and can't be
+used in normal text!
+-->
+<!ENTITY REF1   STARTTAG   "SUP">
+<!ENTITY REF2   ENDTAG     "SUP">
+<!ENTITY REF3   STARTTAG   "SUB">
+<!ENTITY REF4   ENDTAG     "SUB">
+<!ENTITY REF5   STARTTAG   "BOX">
+<!ENTITY REF6   ENDTAG     "BOX">
+
+<!USEMAP MAP1   MATH>
+<!USEMAP MAP2   SUP>
+<!USEMAP MAP3   SUB>
+<!USEMAP MAP4   BOX>
+
+<!SHORTREF MAP1 "^" REF1
+                "_" REF3
+                "{" REF5 >
+
+<!SHORTREF MAP2 "^" REF2
+                "_" REF3
+                "{" REF5 >
+
+<!SHORTREF MAP3 "_" REF4
+                "^" REF1
+                "{" REF5 >
+
+<!SHORTREF MAP4 "}" REF6
+                "^" REF1
+                "_" REF3
+                "{" REF5 >
+
+<!--
+ The inclusion of %math and exclusion of %notmath is used here
+ to alter the content model for the B, SUB and SUP elements,
+ to limit them to formulae rather than general text elements.
+-->
+
+<!ENTITY % mathvec "VEC|BAR|DOT|DDOT|HAT|TILDE" -- common accents -->
+<!ENTITY % mathface "B|T|BT" -- control of font face -->
+<!ENTITY % math "BOX|ABOVE|BELOW|%mathvec|ROOT|SQRT|ARRAY|SUB|SUP|%mathface">
+<!ENTITY % formula "#PCDATA|%math">
+
+<!ELEMENT MATH - - (#PCDATA)* -(%notmath) +(%math)>
+<!ATTLIST MATH
+        id      ID      #IMPLIED
+        class    NAMES   #IMPLIED -- e.g. class=chem -->
+
+<!-- The BOX element acts as brackets. Delimiters are optional and
+     stretch to match the height of the box. The OVER element is used
+     when you want a line between numerator and denominator. This line
+     is suppressed with the alternative ATOP element. CHOOSE acts like
+     ATOP but adds enclosing round brackets as a convenience for binomial
+     coefficients. Note the use of { and } as shorthand for <BOX> and
+     </BOX> respectively:
+
+                           1 + X
+     {1 + X<OVER>Y}  is   _______
+                             Y
+
+                                 a + b
+     {a + b<ATOP>c - d} is  
+                                 c - d
+
+     The delimiters are represented using the LEFT and RIGHT
+     elements as in:
+
+     {[<LEFT>x + y<RIGHT>]}   is   [ x + y ]
+     {(<LEFT>a<RIGHT>]}       is   (a]
+     {||<LEFT>a<RIGHT>||}     is   || a ||
+
+     Use &lbrace; and &rbrace; for "{" and "}" respectively as
+     these symbols are used as shorthand for BOX, e.g.
+
+     {&lbrace;<LEFT>a+b<RIGHT>&rbrace;}  is  {a+b}
+
+     You can stretch definite integrals to match the integrand, e.g.
+
+     {&int;<SUB>a</SUB><SUP>b</SUP><LEFT>{f(x)<over>1+x} dx}
+
+            b
+            /  f(x)
+            | ----- dx
+            / 1 + x
+            a
+
+     Note the complex content model for BOX is a work around
+     for the absence of support for infix operators in SGML.
+
+     You can get oversize delimiters with the SIZE attribute,
+     for example <BOX SIZE=large>(<LEFT>...<RIGHT>)</BOX>
+
+     Note that the names of common functions are recognized
+     by the parser without the need to use "&" and ";" around
+     them, e.g. int, sum, sin, cos, tan, ...
+-->
+
+<!ELEMENT BOX - - ((%formula)*, (LEFT, (%formula)*)?,
+                   ((OVER|ATOP|CHOOSE), (%formula)*)?,
+                   (RIGHT, (%formula)*)?)>
+<!ATTLIST BOX
+        size  (normal|medium|large|huge) normal -- oversize delims -->
+
+<!ELEMENT (OVER|ATOP|CHOOSE|LEFT|RIGHT) - O EMPTY>
+
+<!-- Horizontal line drawn ABOVE contents
+     The symbol attribute allows authors to supply
+     an entity name for an accent, arrow symbol etc.
+     Generalisation of LaTeX's overline command.
+     
+     e.g. <above sym=ssmile>x</above>
+     places an upwardly turning curve above the "x"
+ -->
+
+<!ELEMENT ABOVE - - (%formula)+>
+<!ATTLIST ABOVE sym ENTITY #IMPLIED>
+
+<!-- Horizontal line drawn BELOW contents
+     The symbol attribute allows authors to 
+     supply an entity name for an arrow symbol etc.
+     Generalisation of LaTeX's underline command.
+ -->
+
+<!ELEMENT BELOW - - (%formula)+>
+<!ATTLIST BELOW sym ENTITY #IMPLIED>
+
+<!-- Convenience tags for common accents:
+     vec, bar, dot, ddot, hat and tilde
+-->
+
+<!ELEMENT (%mathvec) - - (%formula)+>
+
+<!--
+  T and BT are used to designate terms which should
+  be rendered in an upright font (& bold face for BT)
+-->
+
+<!ELEMENT (T|BT) - - (%formula)+>
+<!ATTLIST (T|BT) class NAMES #IMPLIED>
+
+<!-- Roots  e.g. <ROOT>3<OF>1+x</ROOT> -->
+
+<!ELEMENT ROOT - - ((%formula)+, OF, (%formula)+)>
+<!ELEMENT OF - O (%formula)* -- what the root applies to -->
+
+<!ELEMENT SQRT - - (%formula)* -- square root convenience tag -->
+
+<!-- LaTeX like arrays. The COLDEF attribute specifies
+     a single capital letter for each column determining
+     how the column should be aligned, e.g. coldef="CCC"
+
+        "L"     left
+        "C"     center
+        "R"     right
+        
+     An optional separator letter can occur between columns
+     and should be one of + - or =, e.g. "C+C+C+C=C".
+     Whitespace within coldef is ignored. By default, the
+     columns are all centered.
+     
+     The ALIGN attribute alters the vertical position of the
+     array as compared with preceding and following expressions.
+
+     Use LDELIM and RDELIM attributes for delimiter entities.
+     When the LABELS attribute is present, the array is
+     displayed with the first row and the first column as
+     labels displaced from the other elements. In this case,
+     the first element of the first row should normally be
+     left blank.
+
+     Use &vdots; &cdots; and &ddots; for vertical, horizontal
+     and diagonal ellipsis dots. Use &dotfill; to fill an array
+     cell with horizontal dots (e.g. for a full row).
+     Note &ldots; places the dots on the baseline, while &cdots;
+     places them higher up.
+-->
+
+<!ELEMENT ARRAY - - (ROW)+>
+<!ATTLIST ARRAY
+        align (top|middle|bottom) middle -- vertical alignment --
+        coldef  CDATA   #IMPLIED  -- column alignment and separator --
+        ldelim  CDATA   #IMPLIED  -- stretchy left delimiter --
+        rdelim  CDATA   #IMPLIED  -- stretchy right delimiter --
+        labels (labels) #IMPLIED  -- TeX's \bordermatrix style -->
+
+<!ELEMENT ROW - O (ITEM)*>
+<!ELEMENT ITEM - O (%formula)*>
+<!ATTLIST ITEM
+        align   CDATA  #IMPLIED  -- override coldef alignment --
+        colspan NUMBER 1         -- merge columns as per TABLE --
+        rowspan NUMBER 1         -- merge rows as per TABLE -->
+
+<!--================ Document Head ========================================-->
+
+<![ %HTML.Deprecated [
+    <!ENTITY % head.content "TITLE & ISINDEX? & BASE? & STYLE?
+                              & META* & LINK* & RANGE* & NEXTID?">
+]]>
+
+<!ENTITY % head.nextid "">
+
+<!ENTITY % head.content "TITLE & ISINDEX? & BASE? & STYLE?
+                              & META* & LINK* & RANGE*">
+
+<!ELEMENT HEAD O O  (%head.content)>
+
+<!ELEMENT LINK - O EMPTY>
+<!ATTLIST LINK
+        href %URI #REQUIRED
+        %linkExtraAttributes; >
+        
+<!ELEMENT RANGE - O EMPTY>
+<!ATTLIST RANGE
+        id    ID    #IMPLIED  -- for naming marked range --
+        class NAMES #IMPLIED  -- for subclassing --
+        from  IDREF #REQUIRED -- start of marked range --
+        until IDREF #REQUIRED -- end of marked range --
+        >
+
+<!ELEMENT ISINDEX - O EMPTY>
+<!ATTLIST ISINDEX
+        href   %URI  #IMPLIED -- server handling queries --
+        prompt CDATA #IMPLIED -- prompt message -->
+
+<!--
+    The BASE element gives the base URL for
+    dereferencing relative URLs, e.g.
+
+         <BASE href="http://foo.com/images">
+         ...
+         <IMG SRC="bar.gif">
+
+    The image is deferenced to
+
+         http://foo.com/images/bar.gif
+-->
+
+<!ELEMENT BASE - O EMPTY>
+<!ATTLIST BASE
+        id   ID    #IMPLIED
+        href %URI; #REQUIRED
+        >
+
+<![ %HTML.Deprecated [
+    <!ELEMENT NEXTID - O EMPTY>
+    <!ATTLIST NEXTID N CDATA #REQUIRED>
+]]>
+
+<!ELEMENT META - O EMPTY    -- Generic Metainformation -->
+<!ATTLIST META
+        http-equiv  NAME    #IMPLIED  -- HTTP response header name  --
+        name        NAME    #IMPLIED  -- metainformation name       --
+        content     CDATA   #REQUIRED -- associated information     --
+        >
+
+<!--
+    A style sheet can be associated with the document using the
+    LINK element, e.g. <LINK rel=style href="housestyle.dsssl">.
+    Style overrides can be placed in the document head using the
+    STYLE element, e.g.
+
+        <style notation=dsssl-lite>
+           dsss-lite stuff
+        </style>
+
+    Later on in the document you can use:
+
+        <h2 class=bigcaps>Header with bigger than normal capitals</h2>
+        <p class=abstract>A paragraph with a unique style of its own
+        ...
+    
+    Statements in the given style notation 
+        
+    The tag names, class and id attributes are used in the style sheet
+    notation to describe how to render matching elements.
+-->
+
+<!ENTITY % style-notations "dsssl-lite | w3c-style">
+<!NOTATION dsssl-lite PUBLIC
+      "ISO/IEC 10179:1995//NOTATION DSSSL Style Language//EN">
+      
+<!NOTATION w3c-style PUBLIC "IETF/RFC nnn/W3C Style Language//EN">
+
+<!ELEMENT STYLE - O (#PCDATA)>
+<!ATTLIST STYLE
+    notation NOTATION (%style-notations;) #REQUIRED
+>
+
+<!--================ Document Structure ===================================-->
+
+<!ENTITY % html.content "HEAD, BODY">
+
+<!ELEMENT HTML O O  (%html.content)>
+<!ENTITY % version.attr 'VERSION CDATA #FIXED "&HTML.Version;"'>
+
+<!-- suggested roles are: TOC, DOC, DOCPART, HITLIST, DIALOG -->
+
+<!ATTLIST HTML
+        %version.attr;       -- report DTD version to application --
+        urn   CDATA #IMPLIED -- universal resource name for this document --
+        class NAMES #IMPLIED -- role of this document, eg table of contents --
+        >
+
+<!-- The END -->
