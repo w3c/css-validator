@@ -7,6 +7,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/12/24 12:32:47  sijtsche
+ * new values added
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -50,7 +53,7 @@ public class CssDisplay extends CssProperty {
 		"none", "block", "inline", "list-item", "run-in", "compact", "table-row",
 		"table-cell", "table-row-group", "table-header-group", "table-footer-group",
 		"table-column", "table-column-group", "table-caption", "ruby-text", "ruby-base",
-		"ruby-base-group", "ruby-text-group", "initial", "inherit"
+		"ruby-base-group", "ruby-text-group", "initial", "inherit", "inline-block", "icon"
     };
 
     private static int[] hash_values;
