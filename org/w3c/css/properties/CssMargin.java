@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:53  plehegar
  * Freeze
  *
@@ -101,7 +104,9 @@ public class CssMargin extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssMargin(ApplContext ac, CssExpression expression)  throws InvalidParamException {
+    public CssMargin(ApplContext ac, CssExpression expression)  
+	throws InvalidParamException {
+	
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -333,6 +338,10 @@ public class CssMargin extends CssProperty implements CssOperator {
      */  
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
+	// it assumes that values exists, that may not be the case
+	// always. What would be the cause of that, an invalid clause?
+	// in this case a proper exception should be sent 
+	// So... a FIXME
 	top.setInfo(line, source);
 	right.setInfo(line, source);
 	bottom.setInfo(line, source);

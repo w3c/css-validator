@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/01/03 12:06:16  sijtsche
+ * standard value initial added
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -282,7 +285,8 @@ public abstract class CssProperty
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
-    public abstract CssProperty getPropertyInStyle(CssStyle style, boolean resolve);
+    public abstract CssProperty getPropertyInStyle(CssStyle style,
+						   boolean resolve);
 
     /**
      * Returns the source file.
@@ -306,7 +310,8 @@ public abstract class CssProperty
      * @see org.w3c.css.css.CssCascadingOrder
      */
     public final int getExplicitWeight() {
-	// browser < reader < author < browser !important < reader !important < author !important
+	// browser < reader < author < browser !important < reader !important
+	//                                                < author !important
 	// here, I use a little trick :
 	//  1 < 2 < 3 < 4 ( 1 + 3 ) < 5 ( 2 + 3 ) < 6 ( 3 + 3 )
 	return origin + ((important)?AUTHOR:0);

@@ -2,7 +2,8 @@
 // $Id$
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
+// (c) COPYRIGHT 1995-2003  World Wide Web Consortium (MIT, ERCIM, 
+//                                                     Keio University)
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
@@ -19,15 +20,16 @@ import org.w3c.css.values.CssFunction;
 
 /**
  *  <P>
- *  <EM>Value:</EM> none | <url> | attr(X) | down-attr(X) | up-attr(X) | inherit <BR>
+ *  <EM>Value:</EM> none | <url> | attr(X) | down-attr(X) | up-attr(X) |
+ *                                                                 inherit <BR>
  *  <EM>Initial:</EM>none<BR>
  *  <EM>Applies to:</EM>all elements<BR>
  *  <EM>Inherited:</EM>no<BR>
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:all
  *  <P>
- *  Specifies whether an element is the source of a link and where to find the URL 
- *  of the link target.
+ *  Specifies whether an element is the source of a link and where to find 
+ *  the URL of the link target.
  */
 
 public class CssLink extends CssProperty {
@@ -49,7 +51,8 @@ public class CssLink extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssLink(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssLink(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
 
 	setByUser();
 	CssValue val = expression.getValue();

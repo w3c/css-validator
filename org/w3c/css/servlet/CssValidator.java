@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.8  2003/10/17 15:25:48  ylafon
+ * removed trace
+ *
  * Revision 1.7  2003/10/17 13:56:12  ylafon
  * user the StyleReport factory
  *
@@ -557,6 +560,7 @@ public final class CssValidator extends HttpServlet {
 	    outputMt = MimeType.TEXT_HTML.getClone();
 	} else if (output.equals(soap12)) {
 	    outputMt = new MimeType(soap12);
+// testing only	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	} else {
 	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	}
