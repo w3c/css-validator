@@ -6,12 +6,14 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  */
 package org.w3c.css.css;
 
 import java.io.InputStream;
 import java.net.URL;
-import javax.servlet.http.HttpServletResponse;
 
 import org.w3c.css.util.ApplContext;
 

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:24:12  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/08 15:50:53  plehegar
  * Freeze
  *
@@ -18,7 +21,6 @@
  */
 package org.w3c.css.parser;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Vector;
 
 

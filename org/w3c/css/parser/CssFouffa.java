@@ -22,7 +22,6 @@ import java.util.Vector;
 import java.util.Hashtable;
 import java.util.Enumeration;
 import java.util.Properties;
-import javax.servlet.http.HttpServletResponse;
 
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.analyzer.CssParser;

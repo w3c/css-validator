@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/08/19 07:33:36  sijtsche
+ * TV profile added
+ *
  * Revision 1.3  2002/07/22 13:20:38  sijtsche
  * versions CSS3, SVG, SVG basic and SVG tiny added for validation
  *
@@ -28,7 +31,6 @@ import java.net.MalformedURLException;
 
 import html.tags.HtmlTree;
 import html.tags.HtmlParser;
-import javax.servlet.http.HttpServletResponse;
 import html.tags.HtmlParserListener;
 import html.tags.HtmlTag;
 
