@@ -173,7 +173,7 @@ public class HTTPURL {
 	}
 	// avoid all kind of caches
 	urlC.setRequestProperty("Pragma", "no-cache");
-	urlC.setRequestProperty("Cache-Control", "no-cache");
+	urlC.setRequestProperty("Cache-Control", "no-cache, no-store");
 	// for the fun
 	urlC.setRequestProperty("User-Agent",
 				"Jigsaw/2.2.3 W3C_CSS_Validator_JFouffa/2.0");
