@@ -123,12 +123,12 @@ height="52" ></a>\n\
 <!-- #warnings -->\
 <!-- #rules -->\
 <!-- #no-rules -->\
-<hr> \
+<hr /> \
 <a class="right" href="http://jigsaw.w3.org/css-validator">\
  <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Valid CSS!" height="31"\
  width="88"></a>\
-<address><a href="<!-- #author-email -->"><!-- #author --></a><br>\
+<address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
 \u6700\u65b0\u66f4\u65b0\uff1a <!-- #today --> </address> \
 \
 <!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \

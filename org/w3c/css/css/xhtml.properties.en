@@ -4,7 +4,7 @@
 go-errors: <li><a href="#errors">Go to Errors</a></li>
 go-warnings: <li><a href="#warnings">Go to Warnings</a></li>
 go-rules: <li><a href="#css">Go to your validated Cascading Style Sheet</a></li>
-no-error-or-warning: <hr><h2>No error or warning found</h2>
+no-error-or-warning: <hr /><h2>No error or warning found</h2>
 
 no-errors: \
 <div id='congrats'>\n\
