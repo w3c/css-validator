@@ -39,9 +39,11 @@ document: \
 \ \ \ \ <m:result>\n\
 \ \ \ \ \ \ <m:errors>\n\
 \ \ \ \ \ \ \ \ <m:errorcount><!-- #errors-count --></m:errorcount>\n\
+\ \ \ \ \ \ \ \ <!-- #error -->\n\
 \ \ \ \ \ \ </m:errors>\n\
 \ \ \ \ \ \ <m:warnings>\n\
 \ \ \ \ \ \ \ \ <m:warningcount><!-- #warnings-count --></m:warningcount>\n\
+\ \ \ \ \ \ \ \ <!-- #warning -->\n\
 \ \ \ \ \ \ </m:warnings>\n\
 \ \ \ \ </m:result>\n\
 \ \ </env:Body>\n\
