@@ -98,10 +98,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
     CssColumnCount cssColumnCount;
     CssColumnWidth cssColumnWidth;
     CssColumnPadding cssColumnPadding;
-    CssColumnBorder cssColumnBorder;
-    CssColumnBorderColor cssColumnBorderColor;
-    CssColumnBorderStyle cssColumnBorderStyle;
-    CssColumnBorderWidth cssColumnBorderWidth;
     CssColumnSpan cssColumnSpan;
     //ACssVolumeCSS3 cssACssVolume;
 	CssBackgroundClip cssBackgroundClip;
@@ -124,7 +120,11 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssTextOverflowMode cssTextOverflowMode;
 	CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
 	CssWrapOption cssWrapOption;
-
+	CssColumnGap cssColumnGap;
+	CssColumnRuleColor cssColumnRuleColor;
+	CssColumnRuleStyle cssColumnRuleStyle;
+	CssColumnRuleWidth cssColumnRuleWidth;
+	CssColumnRule cssColumnRule;
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -855,41 +855,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	return cssColumnPadding;
     }
 
-    public CssColumnBorder getColumnBorder() {
-	if (cssColumnBorder == null) {
-	    cssColumnBorder =
-		(CssColumnBorder) style.CascadingOrder(
-			     new CssColumnBorder(), style, selector);
-	}
-	return cssColumnBorder;
-    }
-
-    public CssColumnBorderColor getColumnBorderColor() {
-	if (cssColumnBorderColor == null) {
-	    cssColumnBorderColor =
-		(CssColumnBorderColor) style.CascadingOrder(
-			     new CssColumnBorderColor(), style, selector);
-	}
-	return cssColumnBorderColor;
-    }
-
-    public CssColumnBorderStyle getColumnBorderStyle() {
-	if (cssColumnBorderStyle == null) {
-	    cssColumnBorderStyle =
-		(CssColumnBorderStyle) style.CascadingOrder(
-			     new CssColumnBorderStyle(), style, selector);
-	}
-	return cssColumnBorderStyle;
-    }
-
-    public CssColumnBorderWidth getColumnBorderWidth() {
-	if (cssColumnBorderWidth == null) {
-	    cssColumnBorderWidth =
-		(CssColumnBorderWidth) style.CascadingOrder(
-			     new CssColumnBorderWidth(), style, selector);
-	}
-	return cssColumnBorderWidth;
-    }
 
     /*
     public CssColumnSpan getColumnSpan() {
@@ -1091,6 +1056,50 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssWrapOption;
 	}
 
+	public CssColumnGap getColumnGap() {
+		if (cssColumnGap == null) {
+			cssColumnGap =
+				(CssColumnGap) style.CascadingOrder(
+						new CssColumnGap(), style, selector);
+		}
+		return cssColumnGap;
+	}
+
+	public CssColumnRuleColor getColumnRuleColor() {
+		if (cssColumnRuleColor == null) {
+			cssColumnRuleColor =
+				(CssColumnRuleColor) style.CascadingOrder(
+						new CssColumnRuleColor(), style, selector);
+		}
+		return cssColumnRuleColor;
+	}
+
+	public CssColumnRuleStyle getColumnRuleStyle() {
+		if (cssColumnRuleStyle == null) {
+			cssColumnRuleStyle =
+				(CssColumnRuleStyle) style.CascadingOrder(
+						new CssColumnRuleStyle(), style, selector);
+		}
+		return cssColumnRuleStyle;
+	}
+
+	public CssColumnRuleWidth getColumnRuleWidth() {
+		if (cssColumnRuleWidth == null) {
+			cssColumnRuleWidth =
+				(CssColumnRuleWidth) style.CascadingOrder(
+						new CssColumnRuleWidth(), style, selector);
+		}
+		return cssColumnRuleWidth;
+	}
+
+	public CssColumnRule getColumnRule() {
+		if (cssColumnRule == null) {
+			cssColumnRule =
+				(CssColumnRule) style.CascadingOrder(
+						new CssColumnRule(), style, selector);
+		}
+		return cssColumnRule;
+	}
 
     /**
      * Print this style
@@ -1337,18 +1346,6 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssColumnPadding != null) {
 	    cssColumnPadding.print(printer);
 	}
-	if (cssColumnBorder != null) {
-	    cssColumnBorder.print(printer);
-	}
-	if (cssColumnBorderColor != null) {
-	    cssColumnBorder.print(printer);
-	}
-	if (cssColumnBorderStyle != null) {
-	    cssColumnBorderStyle.print(printer);
-	}
-	if (cssColumnBorderWidth != null) {
-	    cssColumnBorderWidth.print(printer);
-	}
 	if (cssColumnSpan != null) {
 	    cssColumnSpan.print(printer);
 	}
@@ -1414,6 +1411,21 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssWrapOption != null) {
 		cssWrapOption.print(printer);
+	}
+	if (cssColumnGap != null) {
+		cssColumnGap.print(printer);
+	}
+	if (cssColumnRuleColor != null) {
+		cssColumnRuleColor.print(printer);
+	}
+	if (cssColumnRuleStyle != null) {
+		cssColumnRuleStyle.print(printer);
+	}
+	if (cssColumnRuleWidth != null) {
+		cssColumnRuleWidth.print(printer);
+	}
+	if (cssColumnRule != null) {
+		cssColumnRule.print(printer);
 	}
     }
 
