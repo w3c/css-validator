@@ -29,55 +29,57 @@ public interface CssParserConstants {
   int LPARAN = 26;
   int RPARAN = 27;
   int COLON = 28;
-  int NONASCII = 29;
-  int H = 30;
-  int UNICODE = 31;
-  int ESCAPE = 32;
-  int NMSTART = 33;
-  int NMCHAR = 34;
-  int STRINGCHAR = 35;
-  int D = 36;
-  int NAME = 37;
-  int STRING = 38;
-  int IDENT = 39;
-  int NUMBER = 40;
-  int _URL = 41;
-  int URL = 42;
-  int PERCENTAGE = 43;
-  int LENGTH = 44;
-  int EMS = 45;
-  int EXS = 46;
-  int ANGLE = 47;
-  int TIME = 48;
-  int FREQ = 49;
-  int DIMEN = 50;
-  int HASH = 51;
-  int IMPORTANT_SYM = 52;
-  int IMPORT_SYM = 53;
-  int MEDIA_SYM = 54;
-  int PAGE_SYM = 55;
-  int FONT_FACE_SYM = 56;
-  int PREF_SYM = 57;
-  int COLOR_PROFILE = 58;
-  int CHARSET_SYM = 59;
-  int ATTOP = 60;
-  int ATRIGHT = 61;
-  int ATBOTTOM = 62;
-  int ATLEFT = 63;
-  int ATCOUNTER = 64;
-  int ATKEYWORD = 65;
-  int RANGE0 = 66;
-  int RANGE1 = 67;
-  int RANGE2 = 68;
-  int RANGE3 = 69;
-  int RANGE4 = 70;
-  int RANGE5 = 71;
-  int RANGE6 = 72;
-  int RANGE = 73;
-  int UNI = 74;
-  int UNICODERANGE = 75;
-  int FUNCTION = 76;
-  int UNKNOWN = 77;
+  int AND = 29;
+  int MEDIARESTRICTOR = 30;
+  int NONASCII = 31;
+  int H = 32;
+  int UNICODE = 33;
+  int ESCAPE = 34;
+  int NMSTART = 35;
+  int NMCHAR = 36;
+  int STRINGCHAR = 37;
+  int D = 38;
+  int NAME = 39;
+  int STRING = 40;
+  int IDENT = 41;
+  int NUMBER = 42;
+  int _URL = 43;
+  int URL = 44;
+  int PERCENTAGE = 45;
+  int LENGTH = 46;
+  int EMS = 47;
+  int EXS = 48;
+  int ANGLE = 49;
+  int TIME = 50;
+  int FREQ = 51;
+  int DIMEN = 52;
+  int HASH = 53;
+  int IMPORTANT_SYM = 54;
+  int IMPORT_SYM = 55;
+  int MEDIA_SYM = 56;
+  int PAGE_SYM = 57;
+  int FONT_FACE_SYM = 58;
+  int PREF_SYM = 59;
+  int COLOR_PROFILE = 60;
+  int CHARSET_SYM = 61;
+  int ATTOP = 62;
+  int ATRIGHT = 63;
+  int ATBOTTOM = 64;
+  int ATLEFT = 65;
+  int ATCOUNTER = 66;
+  int ATKEYWORD = 67;
+  int RANGE0 = 68;
+  int RANGE1 = 69;
+  int RANGE2 = 70;
+  int RANGE3 = 71;
+  int RANGE4 = 72;
+  int RANGE5 = 73;
+  int RANGE6 = 74;
+  int RANGE = 75;
+  int UNI = 76;
+  int UNICODERANGE = 77;
+  int FUNCTION = 78;
+  int UNKNOWN = 79;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
@@ -112,6 +114,8 @@ public interface CssParserConstants {
     "\")\"",
     "\"(\"",
     "\":\"",
+    "<AND>",
+    "<MEDIARESTRICTOR>",
     "<NONASCII>",
     "<H>",
     "<UNICODE>",

@@ -399,27 +399,30 @@ public final class CssFouffa extends CssParser {
 	}
 
 	try {
-	    prop = properties.createProperty(ac, getAtRule(),
+		if (getMediaDeclaration().equals("on") && getAtRule() instanceof AtRuleMedia) {
+			prop = properties.createMediaFeature(ac, getAtRule(), property, expression);
+		} else {
+			prop = properties.createProperty(ac, getAtRule(),
 					     property, expression);
+		}
 
 	} catch (InvalidParamException e) {
 	    throw e;
 	} catch (Exception e) {
 	    if (Util.onDebug) {
-		e.printStackTrace();
+			e.printStackTrace();
 	    }
 	    throw new InvalidParamException(e.toString(), ac);
 	}
 
-	if (expression.end()) {
-	    // set the importance
-	    if (important) {
+	// set the importance
+	if (important) {
 		prop.setImportant();
-	    }
-	    prop.setOrigin(origin);
-	    // set informations for errors and warnings
-	    prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
 	}
+	prop.setOrigin(origin);
+	// set informations for errors and warnings
+	prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
+
 	// ok, return the new property
 
 	return prop;

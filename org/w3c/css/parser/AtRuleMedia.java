@@ -15,10 +15,12 @@ import java.util.Enumeration;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.css.StyleSheetCom;
+import org.w3c.css.properties.CssProperty;
+import java.util.Vector;
 
 /**
  * This class manages all media defines by CSS2
- * 
+ *
  * @version $Revision$
  * @author  Philippe Le Hégaret
  */
@@ -29,7 +31,9 @@ public class AtRuleMedia extends AtRule {
 	"screen", "tty", "tv", "presentation", "atsc-tv"
     };
 
+	String restrictor = new String();
     String[] media = new String[mediaCSS3.length];
+    Vector mediafeatures = new Vector();
 
     boolean empty = true;
 
@@ -37,15 +41,15 @@ public class AtRuleMedia extends AtRule {
      * Adds a medium.
      *
      * @exception InvalidParamException the medium doesn't exist
-     */    
-    public AtRuleMedia addMedia(String medium, 
+     */
+    public AtRuleMedia addMedia(String medium,
 				ApplContext ac) throws InvalidParamException {
 
 	//This medium didn't exist for CSS2
 	//	if ((!cssversion.equals("css3")) && medium.equals("presentation")) {
 	// throw new InvalidParamException("media", medium, ac);
 	//}
-		
+
 	for (int i = 0; i < mediaCSS3.length; i++) {
 	    if (medium.equals(mediaCSS3[i])) {
 		media[i] = mediaCSS3[i];
@@ -57,9 +61,27 @@ public class AtRuleMedia extends AtRule {
 	throw new InvalidParamException("media", medium, ac);
     }
 
+	public void addMediaRestrictor(String restrictor, ApplContext ac) {
+		if (restrictor.toUpperCase().equals("ONLY") || restrictor.toUpperCase().equals("NOT")) {
+			this.restrictor = restrictor;
+		}
+	}
+
+	public void addMediaFeature(CssProperty prop) {
+		if (prop != null) {
+			String expression = prop.getPropertyName();
+			if (prop.toString() != null) {
+				expression += " : " + prop.toString();
+			}
+			mediafeatures.add(expression);
+		} else {
+			System.err.println("addMediaFeature : prop is null");
+		}
+	}
+
     /**
      * Returns the at rule keyword
-     */    
+     */
     public String keyword() {
 	return "media";
     }
@@ -70,7 +92,7 @@ public class AtRuleMedia extends AtRule {
 
     /**
      * The second must be exactly the same of this one
-     */    
+     */
     public boolean canApply(AtRule atRule) {
 	if (atRule instanceof AtRuleMedia) {
 	    AtRuleMedia second = (AtRuleMedia) atRule;
@@ -89,7 +111,7 @@ public class AtRuleMedia extends AtRule {
 
     /**
      * The second must only match this one
-     */    
+     */
     public boolean canMatched(AtRule atRule) {
 	if (atRule instanceof AtRuleMedia) {
 	    AtRuleMedia second = (AtRuleMedia) atRule;
@@ -114,15 +136,30 @@ public class AtRuleMedia extends AtRule {
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "";
-	for (int i = 0; i < media.length; i++) {
-	    if (media[i] != null) {
-		ret += ", " + media[i];
-	    }
-	}
-	return "@" + keyword() + " " + ret.substring(2);
-    }
+		String ret = "";
+		String ret1 = "";
+		String ret2 = "";
 
-    
+		for (int i = 0; i < media.length; i++) {
+		    if (media[i] != null) {
+				ret += ", " + media[i];
+		    }
+		}
+
+		ret1 = "@" + keyword() + " ";
+		if (!restrictor.equals("")) {
+			ret1 += restrictor + " ";
+		}
+
+		if (!ret.equals("")) {
+			ret1 = ret1 + ret.substring(2);
+		}
+
+		for (int i = 0; i < mediafeatures.size(); i++) {
+			ret2 += " and (" + ((String)mediafeatures.elementAt(i)) + ")";
+		}
+
+		return ret1 + ret2;
+	}
 }
 

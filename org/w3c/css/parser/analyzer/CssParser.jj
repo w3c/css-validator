@@ -8,6 +8,9 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
+ * Revision 1.6  2002/08/19 07:27:48  sijtsche
+ * TV profile added
+ *
  * Revision 1.5  2002/07/24 14:50:06  sijtsche
  * compile bug fixed in relation with other sources getUserMedium function deleted
  *
@@ -93,6 +96,7 @@ public abstract class CssParser {
 
     // the current atRule
     protected AtRule atRule;
+    protected String mediaDeclaration = "off";
 
     /**
      * The URL of the document
@@ -143,6 +147,24 @@ public abstract class CssParser {
      */
     public void setAtRule(AtRule atRule) {
         this.atRule = atRule;
+    }
+
+    /**
+     * Set the attribute mediaDeclaration
+     *
+     * @param mediaDeclaration indicator if in a media expression list or not
+     */
+    public void setMediaDeclaration(String mediadeclaration) {
+        this.mediaDeclaration = mediadeclaration;
+    }
+
+    /**
+     * Returns the attribute mediaDeclaration
+     *
+     * @return the value of the attribute
+     */
+    public String getMediaDeclaration() {
+    	return mediaDeclaration;
     }
 
     /**
@@ -391,6 +413,18 @@ TOKEN :
 }
 
 <DEFAULT>
+TOKEN :
+{
+  < AND : "AND" | "and" >
+}  
+
+<DEFAULT>
+TOKEN :
+{
+  < MEDIARESTRICTOR : "ONLY" | "only" | "NOT" | "not" >
+}
+
+<DEFAULT>
 TOKEN : /* basic tokens */
 { 
     < NONASCII    : ["\200"-"\377"] >
@@ -605,13 +639,16 @@ void media() :
   AtRule old = getAtRule();
   AtRuleMedia newRule = new AtRuleMedia();
   setAtRule(newRule);
+  Token n;
+  CssProperty p = null;
  }
 {
  try {
-  <MEDIA_SYM> ( <S> )*
+  <MEDIA_SYM> ( <S> )* (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)?
    medium(newRule) 
-   ( <COMMA> ( <S> )* medium(newRule) 
-     )* 
+   ( <COMMA> ( <S> )* medium(newRule) ( <S> )* )* 
+     (<AND> ( <S> )* <RPARAN> ( <S> )* p=mediadeclaration() { newRule.addMediaFeature(p); } ( <S> )* <LPARAN> ( <S> )* )*
+   
  {
 	String media = getAtRule().toString();
 	if (ac.getMedium() != null && 
@@ -1386,6 +1423,55 @@ void hash(CssSelectors s) :
       }
   }
 }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+CssProperty mediadeclaration() :
+{ String string_property;
+  CssExpression values = null;
+  boolean important = false;
+  setMediaDeclaration("on");
+}
+{
+try {
+      string_property=property() (":" ( <S> )* 
+      values=expr() ( important=prio() )? )?
+    {
+	
+	try {
+	
+	    setImportant(important);
+	
+	    if (incompatible_error) {
+		throw new InvalidParamException("notforcss1", "inherit", ac);
+	    }
+
+	    CssProperty p = handleDeclaration(string_property.toLowerCase(),
+						  values, important);
+	    return p;
+	    	    
+	} catch (InvalidParamException e) {
+		e.printStackTrace();
+		incompatible_error = false;
+		if (null != values) {
+			values.starts();
+		}
+		addError(e, (CssExpression) values);
+	}
+	return null;
+    }
+ } catch (NumberFormatException e) {
+     skipAfterExpression(e);
+     return null;
+ } catch (ParseException e) {
+     skipAfterExpression(e);
+     return null;
+ } finally {
+     setMediaDeclaration("off");
+ }
+}
+
 
 /**
  * @exception ParseException exception during the parse
