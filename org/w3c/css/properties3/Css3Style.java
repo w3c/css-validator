@@ -112,6 +112,19 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssTextDecorationCSS3 cssTextDecoration;
 	CssWhiteSpaceCSS3 cssWhiteSpace;
 	CssWordSpacingCSS3 cssWordSpacing;
+	CssAllSpaceTreatment cssAllSpaceTreatment;
+	CssHangingPunctuation cssHangingPunctuation;
+	CssLineGrid cssLineGrid;
+	CssLineGridMode cssLineGridMode;
+	CssLineGridProgression cssLineGridProgression;
+	CssLinefeedTreatment cssLinefeedTreatment;
+	CssScript cssScript;
+	//CssTextOverflow cssTextOverflow;
+	//CssTextOverflowEllipsis cssTextOverflowEllipsis;
+	CssTextOverflowMode cssTextOverflowMode;
+	CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
+	CssWrapOption cssWrapOption;
+
 
     public CssOpacity getOpacity() {
 	if (cssOpacity == null) {
@@ -970,6 +983,114 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		return cssWordSpacing;
 	}
 
+	public CssAllSpaceTreatment getAllSpaceTreatment() {
+		if (cssAllSpaceTreatment == null) {
+			cssAllSpaceTreatment =
+				(CssAllSpaceTreatment) style.CascadingOrder(
+						new CssAllSpaceTreatment(), style, selector);
+		}
+		return cssAllSpaceTreatment;
+	}
+
+	public CssHangingPunctuation getHangingPunctuation() {
+		if (cssHangingPunctuation == null) {
+			cssHangingPunctuation =
+				(CssHangingPunctuation) style.CascadingOrder(
+						new CssHangingPunctuation(), style, selector);
+		}
+		return cssHangingPunctuation;
+	}
+
+	public CssLineGrid getLineGrid() {
+		if (cssLineGrid == null) {
+			cssLineGrid =
+				(CssLineGrid) style.CascadingOrder(
+						new CssLineGrid(), style, selector);
+		}
+		return cssLineGrid;
+	}
+
+	public CssLineGridMode getLineGridMode() {
+		if (cssLineGridMode == null) {
+			cssLineGridMode =
+				(CssLineGridMode) style.CascadingOrder(
+						new CssLineGridMode(), style, selector);
+		}
+		return cssLineGridMode;
+	}
+
+	public CssLineGridProgression getLineGridProgression() {
+		if (cssLineGridProgression == null) {
+			cssLineGridProgression =
+				(CssLineGridProgression) style.CascadingOrder(
+						new CssLineGridProgression(), style, selector);
+		}
+		return cssLineGridProgression;
+	}
+
+	public CssLinefeedTreatment getLinefeedTreatment() {
+		if (cssLinefeedTreatment == null) {
+			cssLinefeedTreatment =
+				(CssLinefeedTreatment) style.CascadingOrder(
+						new CssLinefeedTreatment(), style, selector);
+		}
+		return cssLinefeedTreatment;
+	}
+
+	public CssScript getScript() {
+		if (cssScript == null) {
+			cssScript =
+				(CssScript) style.CascadingOrder(
+						new CssScript(), style, selector);
+		}
+		return cssScript;
+	}
+/*
+	public CssTextOverflow getTextOverflow() {
+		if (cssTextOverflow == null) {
+			cssTextOverflow =
+				(CssTextOverflow) style.CascadingOrder(
+						new CssTextOverflow(), style, selector);
+		}
+		return cssTextOverflow;
+	}
+
+	public CssTextOverflowEllipsis getTextOverflowEllipsis() {
+		if (cssTextOverflowEllipsis == null) {
+			cssTextOverflowEllipsis =
+				(CssTextOverflowEllipsis) style.CascadingOrder(
+						new CssTextOverflowEllipsis(), style, selector);
+		}
+		return cssTextOverflowEllipsis;
+	}
+*/
+	public CssTextOverflowMode getTextOverflowMode() {
+		if (cssTextOverflowMode == null) {
+			cssTextOverflowMode =
+				(CssTextOverflowMode) style.CascadingOrder(
+						new CssTextOverflowMode(), style, selector);
+		}
+		return cssTextOverflowMode;
+	}
+
+	public CssWhiteSpaceTreatment getWhiteSpaceTreatment() {
+		if (cssWhiteSpaceTreatment == null) {
+			cssWhiteSpaceTreatment =
+				(CssWhiteSpaceTreatment) style.CascadingOrder(
+						new CssWhiteSpaceTreatment(), style, selector);
+		}
+		return cssWhiteSpaceTreatment;
+	}
+
+	public CssWrapOption getWrapOption() {
+		if (cssWrapOption == null) {
+			cssWrapOption =
+				(CssWrapOption) style.CascadingOrder(
+						new CssWrapOption(), style, selector);
+		}
+		return cssWrapOption;
+	}
+
 
     /**
      * Print this style
@@ -1257,6 +1378,43 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	}
 	if (cssWordSpacing != null) {
 		cssWordSpacing.print(printer);
+	}
+	if (cssAllSpaceTreatment != null) {
+		cssAllSpaceTreatment.print(printer);
+	}
+	if (cssHangingPunctuation != null) {
+		cssHangingPunctuation.print(printer);
+	}
+	if (cssLineGrid != null) {
+		cssLineGrid.print(printer);
+	}
+	if (cssLineGridMode != null) {
+		cssLineGridMode.print(printer);
+	}
+	if (cssLineGridProgression != null) {
+		cssLineGridProgression.print(printer);
+	}
+	if (cssLinefeedTreatment != null) {
+		cssLinefeedTreatment.print(printer);
+	}
+	if (cssScript != null) {
+		cssScript.print(printer);
+	}
+	/*
+	if (cssTextOverflow != null) {
+		cssTextOverflow.print(printer);
+	}
+	if (cssTextOverflowEllipsis != null) {
+		cssTextOverflow.print(printer);
+	}*/
+	if (cssTextOverflowMode != null) {
+		cssTextOverflowMode.print(printer);
+	}
+	if (cssWhiteSpaceTreatment != null) {
+		cssWhiteSpaceTreatment.print(printer);
+	}
+	if (cssWrapOption != null) {
+		cssWrapOption.print(printer);
 	}
     }
 
