@@ -30,7 +30,7 @@
     <div class="main-text">
       <h2>Documents</h2>
       <ul class="none">	
-	<li><a href="README.html">Documentations</a></li>
+	<li><a href="README.html">Documentation</a></li>
 	<li><a href="thanks.html">Acknowledgments</a></li>
       </ul>
 
@@ -76,6 +76,7 @@
       <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" 
 	alt="Valid CSS!" /></a>
 
-    <address><a href="Email.html">www-validator-css</a></address>
+    <address><a href="Email.html">www-validator-css</a></address><br />
+    $Date$
   </body>
 </html>
