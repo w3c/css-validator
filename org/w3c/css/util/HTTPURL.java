@@ -22,7 +22,7 @@ public class HTTPURL {
      */
     private HTTPURL() {
     }
-    
+
 
     public static String getHTTPStatusCode(int status) {
 	switch (status) {
@@ -132,12 +132,12 @@ public class HTTPURL {
 	return new URL(base, url);
     }
 
-    private static URLConnection getConnection(URL url, int count) 
+    private static URLConnection getConnection(URL url, int count)
 	    throws IOException {
 	return getConnection(url, count, null);
     }
 
-    private static URLConnection getConnection(URL url, int count, ApplContext ac) 
+    private static URLConnection getConnection(URL url, int count, ApplContext ac)
 	    throws IOException {
 	if (count > 5) {
 	    throw new ProtocolException("Server redirected too many times (5)");
@@ -147,7 +147,7 @@ public class HTTPURL {
 	if (Util.servlet && !(urlC instanceof HttpURLConnection)) {
 	    System.err.println( "[WARNING] : someone is trying to get the file: "
 				+ url );
-	    throw new FileNotFoundException("import " + url + 
+	    throw new FileNotFoundException("import " + url +
 					    ": Operation not permitted");
 	}
 
@@ -161,7 +161,7 @@ public class HTTPURL {
 	urlC.setRequestProperty("Pragma", "no-cache");
 	urlC.setRequestProperty("Cache-Control", "no-cache");
 	// for the fun
-	urlC.setRequestProperty("User-Agent", 
+	urlC.setRequestProperty("User-Agent",
 				"Jigsaw/2.2.0 W3C_CSS_Validator_JFouffa/2.0");
 	// relay authorization information
 	if (ac.getCredential() != null) {
@@ -173,7 +173,7 @@ public class HTTPURL {
 	}
 	// should I put an Accept header?
 	urlC.setRequestProperty("Accept",
-				"text/css,text/html,test/xml,application/xhtml+xml,application/xml,image/svg+xml,*/*;q=0");
+				"text/css,text/html,text/xml,application/xhtml+xml,application/xml,image/svg+xml,*/*;q=0");
 
 	urlC.connect();
 
@@ -208,7 +208,7 @@ public class HTTPURL {
 	    default:
 		try {
 		    if (httpURL.getResponseMessage() != null) {
-			throw new FileNotFoundException(url + ": " + 
+			throw new FileNotFoundException(url + ": " +
 							httpURL.getResponseMessage());
 		    } else {
 			throw new FileNotFoundException(url + ": " +
@@ -222,17 +222,17 @@ public class HTTPURL {
 	return urlC;
     }
 
-    public static URLConnection getConnection(URL url) 
+    public static URLConnection getConnection(URL url)
 	    throws IOException {
 	return getConnection(url, 0);
     }
 
-    public static URLConnection getConnection(URL url, ApplContext ac) 
+    public static URLConnection getConnection(URL url, ApplContext ac)
 	    throws IOException {
 	return getConnection(url, 0, ac);
     }
     /**
-     * 
+     *
      */
     public static void main(String[] args) throws Exception {
         int c;
@@ -242,5 +242,5 @@ public class HTTPURL {
 	    System.err.print((char) c);
 	}
 	System.exit(0);
-    }    
+    }
 }
