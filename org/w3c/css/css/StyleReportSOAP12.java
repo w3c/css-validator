@@ -14,8 +14,10 @@ import java.util.Properties;
 import java.util.Enumeration;
 import java.util.StringTokenizer;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.Locale;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import org.w3c.css.parser.analyzer.ParseException;
@@ -79,7 +81,7 @@ public final class StyleReportSOAP12 extends StyleReport
 
 
 	if (document == null) {
-	    document = "html.en";
+	    document = "soap12.en";
 	}
 	if (Util.onDebug) {
 	    System.err.println( "document format is " + document );
@@ -94,13 +96,21 @@ public final class StyleReportSOAP12 extends StyleReport
 
 	this.warningLevel = warningLevel;
 	
+	general.put("cssversion", ac.getCssVersion());
 	general.put("errors-count", 
 		    Integer.toString(errors.getErrorCount()));
 	general.put("warnings-count", 
 		    Integer.toString(warnings.getWarningCount()));
 	general.put("rules-count", 
 		    Integer.toString(items.size()));
+	general.put("isvalid",(errors.getErrorCount() == 0) ? "true":"false");
 	
+	if (ac.getContentEncoding() != null) {
+	    general.put("encoding",
+			" encoding=\""+ac.getContentEncoding()+"\" ");
+	} else {
+	    general.put("encoding"," ");
+	}
 	if (errors.getErrorCount() == 0) {
 	    desactivateError();
 	}
@@ -137,7 +147,7 @@ public final class StyleReportSOAP12 extends StyleReport
 		df = DateFormat
 		    .getDateTimeInstance(DateFormat.FULL, 
 					 DateFormat.FULL,
-					 new Locale(ac.getLang().substring(0, 2),
+				       new Locale(ac.getLang().substring(0, 2),
 						    "US"));
 	    } catch (Exception e) {
 		df = DateFormat.getDateTimeInstance(DateFormat.FULL, 
@@ -150,6 +160,10 @@ public final class StyleReportSOAP12 extends StyleReport
 	} else {
 	    general.put("today", new Date().toString());
 	}
+	SimpleDateFormat formatter
+	    = new SimpleDateFormat ("yyyy.MM.dd'T'hh:mm:ss'Z'");
+	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+	general.put("currentdate", formatter.format(new Date()));
     }
     
     public void desactivateError() {
@@ -405,7 +419,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	return processStyle(general.getProperty(s), general);
     }
     
-    private String processStyle(String str, Properties prop) {	
+    private String processStyle(String str, Properties prop) {
 	try {
 	    int i = 0;
 	    while ((i = str.indexOf("<!-- #", i)) >= 0) {
