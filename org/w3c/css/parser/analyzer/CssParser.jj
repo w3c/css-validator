@@ -8,6 +8,9 @@
  * I'm waiting for Bert Bos to have a new version.
  *
  * $Log$
+ * Revision 1.4  2002/07/24 09:51:56  sijtsche
+ * @color-profile rule added, atsc-tv profile commented in, class attribute for selector added with :: (new in CSS3)
+ *
  * Revision 1.2  2002/05/23 09:00:10  dejong
  * @color-profile rule added, atsc-tv profile commented in, class attribute for selector added with :: (new in CSS3)
  *
@@ -189,8 +192,7 @@ public abstract class CssParser {
     public abstract void endOfRule();	
     public abstract void removeThisRule();
     public abstract void removeThisAtRule();
-    public abstract String getUserMedium();
-
+    
     /**
      * Assign an expression to a property.  This function create a new property
      * with <code>property</code> and assign to it the expression with the
@@ -608,9 +610,9 @@ void media() :
      )* 
  {
 	String media = getAtRule().toString();
-	if (getUserMedium() != null && 
-		!(media.equals(getUserMedium())) &&
-		!(getUserMedium().equals("all"))) {
+	if (ac.getMedium() != null && 
+		!(media.equals(ac.getMedium())) &&
+		!(ac.getMedium().equals("all"))) {
 		 
 	     ac.getFrame().addWarning("noothermedium", 
                                        getAtRule().toString());
@@ -1092,7 +1094,7 @@ CssSelectors selector() :
      return null;
  }
  catch (ParseException e) {
-	System.out.println("ParseException");
+
 	if (ac.getProfile() != null) {
 	    if(!(ac.getProfile().equals("mobile"))) {
 	       Token t = getToken(1);
@@ -1146,7 +1148,7 @@ CssSelectors externalSelector() :
 CssSelectors simple_selector(CssSelectors next) :
 { CssSelectors selector = new CssSelectors(ac, next);
   selector.setAtRule(getAtRule());
-  selector.setUserMedium(getUserMedium());
+  //selector.setUserMedium(getUserMedium());
 }
 {
     element_name(selector) ( hash(selector) | _class(selector)
@@ -1403,7 +1405,7 @@ try {
 						  values, important);
 		// Did the property recognize all values in the expression ?
 
-		if (!values.end() && getUserMedium() == null) {
+		if (!values.end() && ac.getMedium() == null) {
 		        addError(new InvalidParamException("unrecognize", "", ac),
 			     values);
 		} else {

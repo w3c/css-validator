@@ -149,7 +149,6 @@ public abstract class CssParser implements CssParserConstants {
     public abstract void endOfRule();
     public abstract void removeThisRule();
     public abstract void removeThisAtRule();
-    public abstract String getUserMedium();
 
     /**
      * Assign an expression to a property.  This function create a new property
@@ -653,9 +652,9 @@ public abstract class CssParser implements CssParserConstants {
         medium(newRule);
       }
         String media = getAtRule().toString();
-        if (getUserMedium() != null &&
-                !(media.equals(getUserMedium())) &&
-                !(getUserMedium().equals("all"))) {
+        if (ac.getMedium() != null &&
+                !(media.equals(ac.getMedium())) &&
+                !(ac.getMedium().equals("all"))) {
 
              ac.getFrame().addWarning("noothermedium",
                                        getAtRule().toString());
@@ -1660,7 +1659,6 @@ char connector = ' ';
 
      {if (true) return null;}
     } catch (ParseException e) {
-        System.out.println("ParseException");
         if (ac.getProfile() != null) {
             if(!(ac.getProfile().equals("mobile"))) {
                Token t = getToken(1);
@@ -1735,7 +1733,6 @@ char connector = ' ';
   final public CssSelectors simple_selector(CssSelectors next) throws ParseException {
   CssSelectors selector = new CssSelectors(ac, next);
   selector.setAtRule(getAtRule());
-  selector.setUserMedium(getUserMedium());
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ANY:
     case IDENT:
@@ -2453,7 +2450,7 @@ CssSelectors param = null;
                                                   values, important);
                 // Did the property recognize all values in the expression ?
 
-                if (!values.end() && getUserMedium() == null) {
+                if (!values.end() && ac.getMedium() == null) {
                         addError(new InvalidParamException("unrecognize", "", ac),
                              values);
                 } else {
@@ -2923,20 +2920,6 @@ CssSelectors param = null;
     return retval;
   }
 
-  final private boolean jj_3R_89() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_95()) {
-    jj_scanpos = xsp;
-    if (jj_3R_96()) {
-    jj_scanpos = xsp;
-    if (jj_3R_97()) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
   final private boolean jj_3R_88() {
     if (jj_scan_token(S)) return true;
     if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
@@ -3240,6 +3223,20 @@ CssSelectors param = null;
   final private boolean jj_3R_95() {
     if (jj_scan_token(PLUS)) return true;
     if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3R_89() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_95()) {
+    jj_scanpos = xsp;
+    if (jj_3R_96()) {
+    jj_scanpos = xsp;
+    if (jj_3R_97()) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
     return false;
   }
 
