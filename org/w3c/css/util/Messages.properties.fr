@@ -172,7 +172,7 @@ generator.request: Une erreur s'est produite lors de l'ecriture de votre feuille
 Veuillez corriger votre requ&egrave;te, ou envoyez un courrier &eacute;lectronique &agrave; plh@w3.org.
 generator.unrecognized: Non reconnu
 generator.invalid-number: Nombre &eacute;rron&eacute;
-generator.property: Propri&eacute;t&eacute; &eacute;rron&eacute;
+generator.property: Propri&eacute;t&eacute; &eacute;rron&eacute;e
 generator.line: Ligne
 generator.not-found: Fichier introuvable
 generator.doc-html: <p>\
