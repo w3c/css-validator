@@ -189,11 +189,6 @@ public final class StyleReportSOAP12 extends StyleReport
     // prints the stylesheet at the screen
     public void produceStyleSheet() {
 
-	Vector atRules = style.newGetRules();
-	for (int idx = 0; idx < atRules.size(); idx++) {
-	    out.print(((CssRuleList)atRules.
-		       elementAt(idx)).toHTML() + "\n");
-	}
     }
     
     public void print(CssProperty property) {
@@ -315,7 +310,7 @@ public final class StyleReportSOAP12 extends StyleReport
 			ret.append("\n<p>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');			
+			ret.append(terror.getSkippedString()).append('\n');
 		    } else {
 			ret.append("\n<p>");
 			ret.append("<span class='error'>Uncaught error</span>");
