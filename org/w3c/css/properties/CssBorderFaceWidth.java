@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 2.3  1997/09/09 08:43:07  plehegar
  * Added getValue()
  *
@@ -29,6 +32,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
@@ -62,25 +66,30 @@ public class CssBorderFaceWidth {
    * @param expression The expression for this property
    * @exception InvalidParamException Values are incorrect
    */
-  public CssBorderFaceWidth(ApplContext ac, CssExpression expression) 
+  public CssBorderFaceWidth(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 
     CssValue val = expression.getValue();
+    CssIdent initial = new CssIdent("initial");
 
     if (val instanceof CssLength) {
       float f = ((Float) val.get()).floatValue();
-      if (f >= 0) 
+      if (f >= 0)
 	this.value = val;
       else
 	throw new InvalidParamException("negative-value", val.toString(), ac);
     } else if (val instanceof CssNumber) {
       value = ((CssNumber) val).getLength();
+    } else if (val instanceof CssPercentage) {
+	  value = val;
     } else if (val.equals(thin)) {
       value = thin;
     } else if (val.equals(medium)) {
       value = medium;
     } else if (val.equals(thick)) {
       value = thick;
+    } else if (val.equals(initial)) {
+	  value = initial;
     } else if (val.equals(CssProperty.inherit)) {
 	value = CssProperty.inherit;
     } else {
@@ -88,11 +97,11 @@ public class CssBorderFaceWidth {
     }
 
     expression.next();
-  }  
+  }
 
   /**
    * Returns the internal value
-   */  
+   */
   public CssValue getValue() {
     return value;
   }
@@ -100,8 +109,8 @@ public class CssBorderFaceWidth {
   /**
    * Returns a string representation of the object.
    */
-  public String toString() {  
-      
+  public String toString() {
+
      if (value != null) {
 	 return value.toString();
       } else {
@@ -113,15 +122,15 @@ public class CssBorderFaceWidth {
    * Compares two sides for equality.
    *
    * @param value The another side.
-   */  
+   */
   public boolean equals(CssBorderFaceWidth another) {
     return value.equals(another.value);
   }
-  
+
   private static CssIdent thin = new CssIdent("thin");
   private static CssIdent medium = new CssIdent("medium");
   private static CssIdent thick = new CssIdent("thick");
-  
+
 }
 
 
