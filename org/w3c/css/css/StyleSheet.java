@@ -4,25 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2003/07/30 06:57:39  sijtsche
- * atrule is passed to rulelist as atrule object
- *
- * Revision 1.2  2002/04/08 21:16:38  plehegar
- * New
- *
- * Revision 2.7  1997/08/26 14:25:01  plehegar
- * Updated
- * Supressed getAllApplyContext(CssSelectors selector)
- *
- *
- * Revision 2.1  1997/08/11 08:05:18  plehegar
- * Freeze
- *
- * Revision 1.4  1997/07/21 22:21:49  plehegar
- * Added a lot of stuff
- */
 
 package org.w3c.css.css;
 
@@ -59,7 +40,7 @@ public class StyleSheet {
     private Vector atRuleList;
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
-    private static final debug boolean = false;
+    private static final boolean debug = false;
 
     /**
      * Create a new StyleSheet.
