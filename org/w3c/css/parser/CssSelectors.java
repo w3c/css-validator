@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/07/12 16:39:21  plehegar
+ * Removed HTML tags check.
+ *
  * Revision 1.2  2002/04/08 21:24:12  plehegar
  * New
  *
@@ -623,7 +626,7 @@ public final class CssSelectors implements CssSelectorsConstant {
 		    specificity += 100;
 		}
 	    }
-	    for (Enumeration e = getPseudoClass(); e.hasMoreElements();) {
+	    for (Enumeration e = getPseudoClass(); e.hasMoreElements();e.nextElement(); ) {
 		specificity += 100;
 	    }
 	}
