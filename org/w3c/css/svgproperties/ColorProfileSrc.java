@@ -49,10 +49,7 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 		char op = expression.getOperator();
 		CssValue val = expression.getValue();
 
-		if (val.equals(inherit)) {
-			cpSrc = inherit;
-			expression.next();
-		} else if ((val.toString().toLowerCase()).equals("srgb")) {
+		if ((val.toString().toLowerCase()).equals("srgb")) {
 			cpSrc = sRGB;
 			expression.next();
 		} else if (val instanceof CssFunction) {
