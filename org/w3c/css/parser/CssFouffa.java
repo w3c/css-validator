@@ -704,6 +704,7 @@ public final class CssFouffa extends CssParser {
 	try {
 
 	    URL allprops = CssFouffa.class.getResource("allcss.properties");
+	    URL url = null;
 
 	    if (version == null) {
 		// load the CssStyle
@@ -724,7 +725,12 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("style1");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-
+		
+		if (__s_css1prop == null) {
+		    	    // css1
+		    url = style.getResource(config.getProperty("properties1"));
+		    __s_css1prop = new CssPropertyFactory(url, allprops);
+		}
 		// load properties
 		properties = __s_css1prop.getClone();
 
@@ -737,6 +743,10 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("styleatsc");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
+		if (__s_asc_tvprop == null) {
+		    url = style.getResource(config.getProperty("atsc-tv"));
+		    __s_asc_tvprop = new CssPropertyFactory(url, allprops);
+		}
 		properties = __s_asc_tvprop.getClone();
 	    } else if (version.equals("css2")) {
 		// load the CssStyle
@@ -748,8 +758,18 @@ public final class CssFouffa extends CssParser {
 		if (profile == null || "".equals(profile)) {
 		    properties = __s_css2prop.getClone();
 		} else if (profile.equals("mobile")) {
+		    if (__s_css2mobileprop == null) {
+			url = style.getResource(config.getProperty("mobile"));
+			__s_css2mobileprop = new CssPropertyFactory(url,
+								    allprops);
+		    }
 		    properties = __s_css2mobileprop.getClone();
 		} else if (profile.equals("tv")) {
+		    if (__s_css2tvprop == null) {
+			// css2-tv
+			url = style.getResource(config.getProperty("tv"));
+			__s_css2tvprop = new CssPropertyFactory(url, allprops);
+		    }
 		    properties = __s_css2tvprop.getClone();
 		}
 
@@ -765,6 +785,10 @@ public final class CssFouffa extends CssParser {
 		ac.setCssSelectorsStyle(style);
 
 		// load properties
+		if (__s_css3prop == null) {
+		    url = style.getResource(config.getProperty("properties3"));
+		    __s_css3prop = new CssPropertyFactory(url, allprops);
+		}
 		properties = __s_css3prop.getClone();
 
 		// aural mode
@@ -777,7 +801,11 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("svgstyle");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
+		if (__s_svgprop == null) {
+		    url = style.getResource(config.getProperty("svg"));
+		    __s_svgprop = new CssPropertyFactory(url, allprops);
+		}
 		properties = __s_svgprop.getClone();
 
 		// aural mode
@@ -791,6 +819,10 @@ public final class CssFouffa extends CssParser {
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
 
+		if (__s_svgtinyprop == null) {
+		    url = style.getResource(config.getProperty("svgtiny"));
+		    __s_svgtinyprop = new CssPropertyFactory(url, allprops);
+		}
 		properties = __s_svgtinyprop.getClone();
 
 		// aural mode
@@ -804,8 +836,12 @@ public final class CssFouffa extends CssParser {
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
 
+		if (__s_svgbasicprop == null) {
+		    url = style.getResource(config.getProperty("svgbasic"));
+		    __s_svgbasicprop = new CssPropertyFactory(url, allprops);
+		}
 		properties = __s_svgbasicprop.getClone();
-
+		
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -834,48 +870,14 @@ public final class CssFouffa extends CssParser {
 	    Class style = Class.forName(classStyle);
 	    url = style.getResource(config.getProperty("properties2"));
 	    __s_nullprop = new CssPropertyFactory(url, allprops);
-	    // css1
-	    classStyle = config.getProperty("style1");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("properties1"));
-	    __s_css1prop = new CssPropertyFactory(url, allprops);
-	    // asc-tv
-	    classStyle = config.getProperty("styleatsc");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("atsc-tv"));
-	    __s_asc_tvprop = new CssPropertyFactory(url, allprops);
+
 	    // css2
-	    classStyle = config.getProperty("style2");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("properties2"));
-	    __s_css2prop = new CssPropertyFactory(url, allprops);
-	    // css2-mobile
-	    url = style.getResource(config.getProperty("mobile"));
-	    __s_css2mobileprop = new CssPropertyFactory(url, allprops);
-	    // css2-tv
-	    url = style.getResource(config.getProperty("tv"));
-	    __s_css2tvprop = new CssPropertyFactory(url, allprops);
-	    // css3
-	    classStyle = config.getProperty("style3");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("properties3"));
-	    __s_css3prop = new CssPropertyFactory(url, allprops);
-	    // svg
-	    classStyle = config.getProperty("svgstyle");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("svg"));
-	    __s_svgprop = new CssPropertyFactory(url, allprops);
-	    // svg tiny
-	    classStyle = config.getProperty("svgtinystyle");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("svgtiny"));
-	    __s_svgtinyprop = new CssPropertyFactory(url, allprops);
-	    // svg basic
-	    classStyle = config.getProperty("svgbasicstyle");
-	    style = Class.forName(classStyle);
-	    url = style.getResource(config.getProperty("svgbasic"));
-	    __s_svgbasicprop = new CssPropertyFactory(url, allprops);
-//	    loadConfig("css2", null);
+//	    classStyle = config.getProperty("style2");
+//	    style = Class.forName(classStyle);
+//	    url = style.getResource(config.getProperty("properties2"));
+//	    __s_css2prop = new CssPropertyFactory(url, allprops);
+	    __s_css2prop = __s_nullprop;
+
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
 			       +" load the config");
