@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 10:54:47  plehegar
  * Added getColor, getStyle and getWidth
  *
@@ -34,6 +37,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssURL;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 
@@ -70,68 +74,75 @@ import org.w3c.css.util.ApplContext;
  * @version $Revision$
  */
 public class CssBorderLeft extends CssProperty implements CssOperator {
-    
+
     CssBorderLeftWidth width;
     CssBorderLeftStyle style;
     CssBorderLeftColor color;
-    
+    CssValue uri = null;
+
     /**
      * Create a new CssBorderFace
      */
     public CssBorderLeft() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFace
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderLeft(ApplContext ac, CssExpression expression) throws InvalidParamException {
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if (val == null)
 		break;
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
 						ac);
-	    
+
 	    if (width == null) {
-		try {
-		    width = new CssBorderLeftWidth(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+			try {
+			    width = new CssBorderLeftWidth(ac, expression);
+			    find = true;
+			} catch (InvalidParamException e) {}
 	    }
+
 	    if (!find && style == null) {
-		try {
-		    style = new CssBorderLeftStyle(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		}
+			try {
+			    style = new CssBorderLeftStyle(ac, expression);
+			    find = true;
+			}
+			catch (InvalidParamException e) {}
 	    }
+
 	    if (!find && color == null) {
-		try {
-		    color = new CssBorderLeftColor(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		}
+			try {
+			    color = new CssBorderLeftColor(ac, expression);
+			    find = true;
+			}
+			catch (InvalidParamException e) {}
 	    }
+
+	    if (!find && uri == null) {
+			if (val instanceof CssURL) {
+				uri = val;
+				find = true;
+			}
+		}
 	}
-	
+
 	if (width == null)
 	    width = new CssBorderLeftWidth();
 	if (style == null)
@@ -139,14 +150,14 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	if (color == null)
 	    color = new CssBorderLeftColor();
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -157,7 +168,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -168,7 +179,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -179,7 +190,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -187,26 +198,29 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	String ret = width + " " + style;
 	if (!color.face.isDefault())
 	    ret += " " + color;
+	if (uri != null) {
+		ret += " " + uri.toString();
+	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-left";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	width.important = true;
 	style.important = true;
 	color.important = true;
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -216,15 +230,15 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 		(style == null || style.important) &&
 		(color == null || color.important));
     }
-    
-    
+
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -241,9 +255,9 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -263,7 +277,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -274,13 +288,13 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	this.style.addToStyle(ac, style);
 	color.addToStyle(ac, style);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderLeft();
@@ -288,38 +302,38 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssBorder.getLeft();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	width.setInfo(line, source);
 	style.setInfo(line, source);
 	color.setInfo(line, source);
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderLeft) {
 	    CssBorderLeft left = (CssBorderLeft) property;
-	    return (width.equals(left.width) && style.equals(left.style) 
+	    return (width.equals(left.width) && style.equals(left.style)
 		    && color.equals(left.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

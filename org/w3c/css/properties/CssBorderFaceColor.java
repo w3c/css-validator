@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:41:17  plehegar
  * Freeze
  *
@@ -26,16 +29,17 @@ import org.w3c.css.util.ApplContext;
  * @version $Revision$
  */
 public class CssBorderFaceColor {
-    
+
     CssValue face;
-    
+    CssIdent transparent = new CssIdent("transparent");
+
     /**
      * Create a new CssBorderFaceColor
      */
     public CssBorderFaceColor() {
 	//face = new org.w3c.css.values.CssColor();
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceColor with a color property.
      *
@@ -43,8 +47,8 @@ public class CssBorderFaceColor {
      */
     public CssBorderFaceColor(org.w3c.css.properties.CssColor color) {
 	face = color.color;
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceColor with an another CssBorderFaceColor
      *
@@ -52,48 +56,51 @@ public class CssBorderFaceColor {
      */
     public CssBorderFaceColor(CssBorderFaceColor another) {
 	face = another.face;
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceColor with an expression
      *
      * @param expression The expression for this property.
      * @exception InvalidParamException color is not a color
      */
-    public CssBorderFaceColor(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceColor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof org.w3c.css.values.CssColor) {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
 	    face = CssProperty.inherit;
 	} else if (val instanceof CssIdent) {
-	    face = new org.w3c.css.values.CssColor(ac, (String) val.get());
+		if (val.equals(transparent)) {
+			face = transparent;
+		} else {
+	    	face = new org.w3c.css.values.CssColor(ac, (String) val.get());
+		}
 	} else {
-	    System.out.println("Here I'm thrown");
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 					    "border-color", ac);
 	}
 	expression.next();
     }
-    
+
     /**
      * Returns the internal color
-     */  
+     */
     public CssValue getColor() {
 	return face;
     }
-    
+
     /**
      * Is the value of this face is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false; // @@ FIXME face.isDefault();
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -104,12 +111,12 @@ public class CssBorderFaceColor {
 	    return "";
 	}
     }
-    
+
     /**
      * Compares two faces for equality.
      *
      * @param value The another faces.
-     */  
+     */
     public boolean equals(CssBorderFaceColor color) {
 	if (this.face == null) {
 	    return (color.face == null);
