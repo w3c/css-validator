@@ -347,8 +347,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 				ret.append("\n</ul></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div><h3>URI : ");
-			    ret.append("<a href=\"");
+			    ret.append("\n<div><h3>URI : <a href=\"");
 			    ret.append(oldSourceFile).append("\">");
 			    ret.append(oldSourceFile).append("</a></h3><ul>");
 			    open = true;
