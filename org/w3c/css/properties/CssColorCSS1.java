@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/08/28 19:50:08  plehegar
+ * Bug fix from Sijtsche
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -176,8 +179,8 @@ public class CssColorCSS1 extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssColor &&
-		color.equals(((CssColor) property).color));
+	return (property instanceof CssColorCSS1 &&
+		color.equals(((CssColorCSS1) property).color));
     }
 
     /**
