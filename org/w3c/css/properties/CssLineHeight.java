@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:50  plehegar
  * Freeze
  *
@@ -46,7 +49,7 @@ import org.w3c.css.values.CssPercentage;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 
-/** 
+/**
  *   <H4>
  *     &nbsp;&nbsp; 'line-height'
  *   </H4>
@@ -75,30 +78,37 @@ import org.w3c.css.util.ApplContext;
  *   DIV { line-height: 120%; font-size: 10pt }    /* percentage * /
  * </PRE>
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssLineHeight extends CssProperty {
-    
+
+
+    private CssValue value;
+    private static CssIdent normal = new CssIdent("normal");
+	private static CssIdent number = new CssIdent("number");
+	private static CssIdent none = new CssIdent("none");
+
     /**
      * Create a new CssLineHeight
      */
     public CssLineHeight() {
-	value = normal;
+		value = normal;
     }
-    
+
     /**
      * Creates a new CssLineHeight
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
-    public CssLineHeight(ApplContext ac, CssExpression expression) 
+     */
+    public CssLineHeight(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
 
-	if (val instanceof CssNumber || val instanceof CssLength || 
+	if (val instanceof CssNumber || val instanceof CssLength ||
 	        val instanceof CssPercentage) {
 	    float v = ((Float) val.get()).floatValue();
 	    if (v >= 0) {
@@ -106,7 +116,7 @@ public class CssLineHeight extends CssProperty {
 		expression.next();
 		return;
 	    } else {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						Float.toString(v), ac);
 	    }
 	} else if (inherit.equals(val)) {
@@ -117,12 +127,20 @@ public class CssLineHeight extends CssProperty {
 	    value = normal;
 	    expression.next();
 	    return;
+	} else if (number.equals(val)) {
+		value = number;
+		expression.next();
+		return;
+	} else if (none.equals(val)) {
+		value = none;
+		expression.next();
+		return;
 	}
-	
-	throw new InvalidParamException("value", expression.getValue(), 
+
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -131,14 +149,14 @@ public class CssLineHeight extends CssProperty {
 	    return normal;
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "line-height";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -146,14 +164,14 @@ public class CssLineHeight extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -165,13 +183,13 @@ public class CssLineHeight extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	cssFont.lineHeight = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getLineHeight();
@@ -179,25 +197,23 @@ public class CssLineHeight extends CssProperty {
 	    return ((Css1Style) style).cssFont.lineHeight;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssLineHeight && 
+	return (property instanceof CssLineHeight &&
 		((CssLineHeight) property).value == value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == normal;
     }
-    
-    private CssValue value;
-    private static CssIdent normal = new CssIdent("normal");
+
 }

@@ -18,7 +18,7 @@ import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
- *  <EM>Value:</EM> auto || autosense-script || no-change || reset-size || 
+ *  <EM>Value:</EM> auto || autosense-script || no-change || reset-size ||
  *  ideographic || alphabetic || hanging || mathematical || inherit<BR>
  *  <EM>Initial:</EM>auto<BR>
  *  <EM>Applies to:</EM>inline-level elements<BR>
@@ -28,30 +28,32 @@ import org.w3c.css.util.ApplContext;
  *  <P>
  *  The 'dominant-baseline' property is used:
  *   <UL>
- *     <LI>to determine the dominant baseline 
+ *     <LI>to determine the dominant baseline
  *     <LI>to select the baseline-table
- *     <LI>to establish the font-size used with the baseline-table 
+ *     <LI>to establish the font-size used with the baseline-table
  *   </UL>
  */
 
 public class CssDominantBaseLine extends CssProperty {
 
     CssValue dombaseline;
-    
+
     static CssIdent auto = new CssIdent("auto");
 
     private static String[] values = {
-	"auto", "autosense-script", "no-change", "reset-size",  
-	"ideographic", "alphabetic", "hanging", "mathematical", "inherit"
+	"auto", "use-script", "no-change", "reset-size",
+	"ideographic", "alphabetic", "hanging", "mathematical",
+	"central", "middle", "text-after-edge", "text-before-edge",
+	"inherit"
     };
 
-    /** 
+    /**
      * Create a new CssDominantBaseLine
      */
     public CssDominantBaseLine() {
 	dombaseline = auto;
     }
-    
+
     /**
      * Create a new CssDominantBaseLine
      *
@@ -59,7 +61,7 @@ public class CssDominantBaseLine extends CssProperty {
      * @exception InvalidParamException Incorrect value
      */
     public CssDominantBaseLine(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -112,7 +114,7 @@ public class CssDominantBaseLine extends CssProperty {
 	return (property instanceof CssDominantBaseLine &&
 		dombaseline.equals(((CssDominantBaseLine) property).dombaseline));
     }
-    
+
     /**
      * Returns the name of this property
      */
