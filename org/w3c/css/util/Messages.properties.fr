@@ -143,6 +143,7 @@ error.zero: only 0 can be a %s. You must put an unit after your number
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: La propri&eacute;t&eacute; %s n'existe pas.
 error.noexistence-media: La propri&eacute;t&eacute; %s n'existe pas pour le media %s
+warning.noexistence-media: La propri&eacute;t&eacute; %s n'existe pas pour le media %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Trop de valeurs, ou valeurs non reconnues

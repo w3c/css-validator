@@ -108,6 +108,7 @@ error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: Die Eigenschaft %s existiert nicht
 error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
+warning.noexistence-media: Property %s doesn't exist for media %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt

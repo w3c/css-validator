@@ -125,6 +125,7 @@ error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
 # gebruikt door org.w3c.css.parser.CssPropertyFactory
 error.noexistence: Eigenschap %s bestaat niet
 error.noexistence-media: Eigenschap %s bestaat niet voor media %s
+warning.noexistence-media: Eigenschap %s bestaat niet voor media %s
 
 # gebruikt door org.w3c.css.parser.CssFouffa
 error.unrecognize: Te veel waarden of teveel onbekende waarden
