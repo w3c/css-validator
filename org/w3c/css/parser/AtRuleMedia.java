@@ -27,11 +27,11 @@ import java.util.Vector;
 public class AtRuleMedia extends AtRule {
 
     static final String[] mediaCSS3 = {
-	"all", "aural", "braille", "embossed", "handheld", "print", "projection",
-	"screen", "tty", "tv", "presentation", "atsc-tv"
+	"all", "aural", "braille", "embossed", "handheld", "print", 
+	"projection", "screen", "tty", "tv", "presentation", "atsc-tv"
     };
 
-	String restrictor = new String();
+    String restrictor = new String();
     String[] media = new String[mediaCSS3.length];
     Vector mediafeatures = new Vector();
 
@@ -46,7 +46,7 @@ public class AtRuleMedia extends AtRule {
 				ApplContext ac) throws InvalidParamException {
 
 	//This medium didn't exist for CSS2
-	//	if ((!cssversion.equals("css3")) && medium.equals("presentation")) {
+	// if ((!cssversion.equals("css3")) && medium.equals("presentation")) {
 	// throw new InvalidParamException("media", medium, ac);
 	//}
 
@@ -61,21 +61,22 @@ public class AtRuleMedia extends AtRule {
 	throw new InvalidParamException("media", medium, ac);
     }
 
-	public void addMediaRestrictor(String restrictor, ApplContext ac) {
-		if (restrictor.toUpperCase().equals("ONLY") || restrictor.toUpperCase().equals("NOT")) {
-			this.restrictor = restrictor;
-		}
+    public void addMediaRestrictor(String restrictor, ApplContext ac) {
+	if (restrictor.toUpperCase().equals("ONLY") || 
+	    restrictor.toUpperCase().equals("NOT")) {
+	    this.restrictor = restrictor;
 	}
+    }
 
-	public void addMediaFeature(CssProperty prop) {
-		if (prop != null) {
-			String expression = prop.getPropertyName();
-			if (prop.toString() != null) {
-				expression += " : " + prop.toString();
-			}
-			mediafeatures.add(expression);
-		}
+    public void addMediaFeature(CssProperty prop) {
+	if (prop != null) {
+	    String expression = prop.getPropertyName();
+	    if (prop.toString() != null) {
+		expression += " : " + prop.toString();
+	    }
+	    mediafeatures.add(expression);
 	}
+    }
 
     /**
      * Returns the at rule keyword
@@ -134,30 +135,34 @@ public class AtRuleMedia extends AtRule {
      * Returns a string representation of the object.
      */
     public String toString() {
-		String ret = "";
-		String ret1 = "";
-		String ret2 = "";
-
-		for (int i = 0; i < media.length; i++) {
-		    if (media[i] != null) {
-				ret += ", " + media[i];
-		    }
-		}
-
-		ret1 = "@" + keyword() + " ";
-		if (!restrictor.equals("")) {
-			ret1 += restrictor + " ";
-		}
-
-		if (!ret.equals("")) {
-			ret1 = ret1 + ret.substring(2);
-		}
-
-		for (int i = 0; i < mediafeatures.size(); i++) {
-			ret2 += " and (" + ((String)mediafeatures.elementAt(i)) + ")";
-		}
-
-		return ret1 + ret2;
+	StringBuffer ret  = new StringBuffer();
+	
+	ret.append('@');
+	ret.append(keyword());
+	ret.append(' ');
+	if (!restrictor.equals("")) {
+	    ret.append(restrictor);
+	    ret.append(' ');
 	}
+	boolean f = true;
+	for (int i = 0; i < media.length; i++) {
+	    if (media[i] != null) {
+		if (!f) {
+		    ret.append(',');
+		    ret.append(' ');
+		} else {
+		    f = false;
+		}
+		ret.append(media[i]);
+	    }
+	}
+	
+	for (int i = 0; i < mediafeatures.size(); i++) {
+	    ret.append(" and (");
+	    ret.append(((String)mediafeatures.elementAt(i)));
+	    ret.append(')');
+	}
+	return ret.toString();
+    }
 }
 

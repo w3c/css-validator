@@ -26,6 +26,7 @@ import java.util.Properties;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.analyzer.CssParserTokenManager;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.css.StyleSheetOrigin;
@@ -54,7 +55,19 @@ import org.w3c.css.css.StyleSheetCom;
 public final class CssFouffa extends CssParser {
 
     // all properties
-    static CssPropertyFactory properties;
+    CssPropertyFactory properties     = null;
+    static CssPropertyFactory __s_nullprop       = null;
+    static CssPropertyFactory __s_css1prop       = null;
+    static CssPropertyFactory __s_asc_tvprop     = null;
+    static CssPropertyFactory __s_css2prop       = null;
+    static CssPropertyFactory __s_css2mobileprop = null;
+    static CssPropertyFactory __s_css2tvprop     = null;
+    static CssPropertyFactory __s_css3prop       = null;
+    static CssPropertyFactory __s_svgprop        = null;
+    static CssPropertyFactory __s_svgtinyprop    = null;
+    static CssPropertyFactory __s_svgbasicprop   = null;
+
+    static private Properties config         = null;
     // all listeners
     Vector listeners;
     // all errors
@@ -147,14 +160,15 @@ public final class CssFouffa extends CssParser {
      * @exception       IOException  if an I/O error occurs.
      */
     private CssFouffa(ApplContext ac, InputStream in, URL url,
-		      Vector listeners, Vector urlvisited)
-	throws IOException {
+		      Vector listeners, Vector urlvisited, 
+		      CssPropertyFactory cssfactory) throws IOException {
 	this(ac, in, url, 0);
 	this.visited = urlvisited;
 	setURL(url);
 	ac.setFrame(new Frame(this, url.toString()));
 	setApplContext(ac);
 	this.listeners = listeners;
+	this.properties = cssfactory;
     }
 
     private void ReInit(ApplContext ac, InputStream input,
@@ -362,8 +376,8 @@ public final class CssFouffa extends CssParser {
 	    try {
 		CssFouffa cssFouffa
 		    = new CssFouffa(ac, importURL.getInputStream(),
-				    importedURL, listeners, visited);
-
+				    importedURL, listeners, visited, 
+				    properties);
 		cssFouffa.setOrigin(getOrigin());
 		if (!media.isEmpty()) {
 		    cssFouffa.setAtRule(media);
@@ -433,10 +447,10 @@ public final class CssFouffa extends CssParser {
 	    if (getMediaDeclaration().equals("on") && 
 		(getAtRule() instanceof AtRuleMedia)) {
 		prop = properties.createMediaFeature(ac, getAtRule(), 
-						     property, expression);
+							 property, expression);
 	    } else {
 		prop = properties.createProperty(ac, getAtRule(),
-						 property, expression);
+						     property, expression);
 	    }
 
 	} catch (InvalidParamException e) {
@@ -638,7 +652,7 @@ public final class CssFouffa extends CssParser {
      * Set the style
      */
     public void setStyle(Class style) {
-	CssSelectors.setStyle(style);
+	ac.setCssSelectorsStyle(style);
     }
 
     /**
@@ -654,7 +668,7 @@ public final class CssFouffa extends CssParser {
      *                  style sheet 2 or 3.
      * <OL>
      */
-    public static void loadConfig(String version, String profile) {
+    public void loadConfig(String version, String profile) {
 	try {
 
 	    URL allprops = CssFouffa.class.getResource("allcss.properties");
@@ -663,11 +677,9 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("style2");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
-		// load properties
-		URL url = style.getResource(config.getProperty("properties2"));
-		properties = new CssPropertyFactory(url, allprops);
+		properties = __s_nullprop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -679,11 +691,10 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("style1");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
 		// load properties
-		URL url = style.getResource(config.getProperty("properties1"));
-		properties = new CssPropertyFactory(url, allprops);
+		properties = __s_css1prop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -693,27 +704,21 @@ public final class CssFouffa extends CssParser {
 	    } else if ("atsc-tv".equals(profile)) {
 		String classStyle = config.getProperty("styleatsc");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
-		URL url = style.getResource(config.getProperty("atsc-tv"));
-		properties = new CssPropertyFactory(url, allprops);
-	    }
-	    else if (version.equals("css2")) {
+		ac.setCssSelectorsStyle(style);
+		properties = __s_asc_tvprop.getClone();
+	    } else if (version.equals("css2")) {
 		// load the CssStyle
 		String classStyle = config.getProperty("style2");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
 		// load properties
 		if (profile == null || "".equals(profile)) {
-		    URL url = style.getResource(
-			                    config.getProperty("properties2"));
-		    properties = new CssPropertyFactory(url, allprops);
+		    properties = __s_css2prop.getClone();
 		} else if (profile.equals("mobile")) {
-		    URL url = style.getResource(config.getProperty("mobile"));
-		    properties = new CssPropertyFactory(url, allprops);
+		    properties = __s_css2mobileprop.getClone();
 		} else if (profile.equals("tv")) {
-		    URL url = style.getResource(config.getProperty("tv"));
-		    properties = new CssPropertyFactory(url, allprops);
+		    properties = __s_css2tvprop.getClone();
 		}
 
 		// aural mode
@@ -725,11 +730,10 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("style3");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
 		// load properties
-		URL url = style.getResource(config.getProperty("properties3"));
-		properties = new CssPropertyFactory(url, allprops);
+		properties = __s_css3prop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -740,10 +744,9 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("svgstyle");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
-
-		URL url = style.getResource(config.getProperty("svg"));
-		properties = new CssPropertyFactory(url, allprops);
+		ac.setCssSelectorsStyle(style);
+		
+		properties = __s_svgprop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -754,10 +757,9 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("svgtinystyle");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
-		URL url = style.getResource(config.getProperty("svgtiny"));
-		properties = new CssPropertyFactory(url, allprops);
+		properties = __s_svgtinyprop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -768,10 +770,9 @@ public final class CssFouffa extends CssParser {
 		// load the CssStyle
 		String classStyle = config.getProperty("svgbasicstyle");
 		Class style = Class.forName(classStyle);
-		CssSelectors.setStyle(style);
+		ac.setCssSelectorsStyle(style);
 
-		URL url = style.getResource(config.getProperty("svgbasic"));
-		properties = new CssPropertyFactory(url, allprops);
+		properties = __s_svgbasicprop.getClone();
 
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
@@ -787,20 +788,84 @@ public final class CssFouffa extends CssParser {
 	}
     }
 
-    static private Properties config = new Properties();
-
     /* config by default! */
     static {
 	try {
+	    config = new Properties();
 	    URL url = CssFouffa.class.getResource("Config.properties");
 	    java.io.InputStream f = url.openStream();
 	    config.load(f);
 	    f.close();
-	    loadConfig("css2", null);
+	    // null
+	    URL allprops = CssFouffa.class.getResource("allcss.properties");
+	    String classStyle = config.getProperty("style2");
+	    Class style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("properties2"));
+	    __s_nullprop = new CssPropertyFactory(url, allprops);
+	    // css1
+	    classStyle = config.getProperty("style1");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("properties1"));
+	    __s_css1prop = new CssPropertyFactory(url, allprops);
+	    // asc-tv
+	    classStyle = config.getProperty("styleatsc");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("atsc-tv"));
+	    __s_asc_tvprop = new CssPropertyFactory(url, allprops);
+	    // css2
+	    classStyle = config.getProperty("style2");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("properties2"));
+	    __s_css2prop = new CssPropertyFactory(url, allprops);
+	    // css2-mobile
+	    url = style.getResource(config.getProperty("mobile"));
+	    __s_css2mobileprop = new CssPropertyFactory(url, allprops);
+	    // css2-tv
+	    url = style.getResource(config.getProperty("tv"));
+	    __s_css2tvprop = new CssPropertyFactory(url, allprops);
+	    // css3
+	    classStyle = config.getProperty("style3");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("properties3"));
+	    __s_css3prop = new CssPropertyFactory(url, allprops);
+	    // svg
+	    classStyle = config.getProperty("svgstyle");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("svg"));
+	    __s_svgprop = new CssPropertyFactory(url, allprops);
+	    // svg tiny
+	    classStyle = config.getProperty("svgtinystyle");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("svgtiny"));
+	    __s_svgtinyprop = new CssPropertyFactory(url, allprops);
+	    // svg basic
+	    classStyle = config.getProperty("svgbasicstyle");
+	    style = Class.forName(classStyle);
+	    url = style.getResource(config.getProperty("svgbasic"));
+	    __s_svgbasicprop = new CssPropertyFactory(url, allprops);
+//	    loadConfig("css2", null);
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
 			       +" load the config");
 	    e.printStackTrace();
 	}
     }
+
+    public CssFouffa(java.io.InputStream stream) {
+	super(stream);
+	loadConfig("css2", null);
+    }
+
+    public CssFouffa(java.io.Reader stream) {
+	super(stream);
+	loadConfig("css2", null);
+    }
+
+    public CssFouffa(CssParserTokenManager tm) {
+	super(tm);
+	loadConfig("css2", null);
+    }
+    
+    
+    
 }

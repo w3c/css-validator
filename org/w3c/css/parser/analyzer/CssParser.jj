@@ -4,6 +4,9 @@
  * Please first read the full copyright statement in file COPYRIGHT.html
  *
  * $Log$
+ * Revision 1.10  2003/07/30 07:01:39  sijtsche
+ * @phonetic-alphabet rule and date type added
+ *
  * Revision 1.9  2003/04/13 16:30:42  sijtsche
  * trailing semicolon requirement bug for @page rule fixed. Bugzilla nr 158
  *
@@ -129,7 +132,7 @@ public abstract class CssParser {
      * <code>true</code> if the parser should recognized Aural properties, 
      * <code>false</code> otherwise.
      */  
-    protected static boolean mode;
+    protected boolean mode;
 
     /**
      * <code>true</code> if the parser had recognize a rule,

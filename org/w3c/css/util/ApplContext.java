@@ -24,6 +24,7 @@ public class ApplContext {
     String cssversion;
     String profile;
     String input;
+    Class cssselectorstyle;
 
     int origin = -1;
     String medium;
@@ -52,6 +53,14 @@ public class ApplContext {
 
     public Frame getFrame() {
 	return frame;
+    }
+
+    public Class getCssSelectorsStyle() {
+	return cssselectorstyle;
+    }
+
+    public void setCssSelectorsStyle(Class s) {
+	cssselectorstyle = s;
     }
 
     public Messages getMsg() {

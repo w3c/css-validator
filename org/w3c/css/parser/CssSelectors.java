@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.8  2003/04/08 09:23:41  sijtsche
+ * bug in display of class names fixed
+ *
  * Revision 1.7  2002/08/19 07:24:39  sijtsche
  * tv profile restrictions added
  *
@@ -139,6 +142,7 @@ public final class CssSelectors implements CssSelectorsConstant {
      * Create a new CssSelectors with no previous selector.
      */
     public CssSelectors(ApplContext ac) {
+	style = ac.getCssSelectorsStyle();
 	try {
 	    properties = (CssStyle) style.newInstance();
 	} catch (Exception e) {
@@ -147,13 +151,23 @@ public final class CssSelectors implements CssSelectorsConstant {
 	this.ac = ac;
     }
 
+    private CssSelectors(Class style) {
+	this.style = style;
+	try {
+	    properties = (CssStyle) style.newInstance();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	this.ac = null;
+    }
+
     /**
      * Create a new CssSelectors with a previous selector.
      *
      * @param next the next selector
      */
     public CssSelectors(CssSelectors next) {
-	this((ApplContext) null);
+	this(next.style);
 	this.next = next;
     }
 
@@ -173,7 +187,7 @@ public final class CssSelectors implements CssSelectorsConstant {
      *
      * @param style0 the style
      */
-    public static void setStyle(Class style0) {
+    public void setStyle(Class style0) {
 	Util.verbose("Style is : " + style0);
 	style = style0;
     }
@@ -242,32 +256,32 @@ public final class CssSelectors implements CssSelectorsConstant {
 	String isHTML = elements.getProperty(element.toUpperCase());
 
 /*
-	if (Util.fromHTMLFile) {
-	    if (isHTML == null) {
-		ac.getFrame().addWarning("unknown-html", element);
-	    } else if (isHTML.equals("true")) {
-		isBlock = true;
-		if ((next != null)
-		    && (next.element != null)
-		    && !next.isBlock) {
-		    ac.getFrame().addWarning("noinside", element);
-		}
-	    }
-	}
+  if (Util.fromHTMLFile) {
+  if (isHTML == null) {
+  ac.getFrame().addWarning("unknown-html", element);
+  } else if (isHTML.equals("true")) {
+  isBlock = true;
+  if ((next != null)
+  && (next.element != null)
+  && !next.isBlock) {
+  ac.getFrame().addWarning("noinside", element);
+  }
+  }
+  }
 */
 
 	this.element = element;
 	hashElement = element.hashCode();
 
 /*
-	if (Util.fromHTMLFile) {
-	    if (hashElement == HTMLCode && next != null) {
-		ac.getFrame().addWarning("html-inside");
-	    } else if (hashElement == BODYCode && next != null &&
-		       next.hashElement != 0 && next.hashElement != HTMLCode) {
-		ac.getFrame().addWarning("body-inside");
-	    }
-	}
+  if (Util.fromHTMLFile) {
+  if (hashElement == HTMLCode && next != null) {
+  ac.getFrame().addWarning("html-inside");
+  } else if (hashElement == BODYCode && next != null &&
+  next.hashElement != 0 && next.hashElement != HTMLCode) {
+  ac.getFrame().addWarning("body-inside");
+  }
+  }
 */
 
 	verifyPseudoElement(ac);
@@ -302,7 +316,7 @@ public final class CssSelectors implements CssSelectorsConstant {
 		//		e.printStackTrace();
 		if (ac != null) {
 		    InvalidParamException error =
-			new InvalidParamException("incompatible", old, attr, ac);
+			new InvalidParamException("incompatible", old,attr,ac);
 		    ac.getFrame().addError(new CssError(error));
 		}
 	    }
@@ -320,7 +334,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 	throws InvalidParamException {
 	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
 	    if (ac.getProfile().equals("mobile")) {
-		throw new InvalidParamException("notformobile", "attributes", ac);
+		throw new InvalidParamException("notformobile", "attributes",
+						ac);
 	    }
 	} else {
 	    Attribute attr =
@@ -339,91 +354,98 @@ public final class CssSelectors implements CssSelectorsConstant {
     public void addAttribute(String attName, String value,
 			     int selectorType) throws InvalidParamException {
 
-		Attribute attr = null;
+	Attribute attr = null;
 
-		if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
+	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
 
-		    if (ac.getProfile().equals("mobile")) {
-				if (selectorType == ATTRIBUTE_CLASS_SEL) {
-					attr = new AttributeOneOf().addValue(value).setName(attName);
-				    addAttribute(attr);
-				    Invalidate();
-				    return;
-				} else if (selectorType == ATTRIBUTE_EXACT) {
-					attr = new AttributeExact().setValue(value).setName(attName);
-				    addAttribute(attr);
-				    Invalidate();
-				    return;
-				} else {
-					throw new InvalidParamException("notformobile", "attributes" , ac);
-				}
-		    } else if (ac.getProfile().equals("tv")) {
-				throw new InvalidParamException("notfortv", "attributes", ac);
-			}
+	    if (ac.getProfile().equals("mobile")) {
+		if (selectorType == ATTRIBUTE_CLASS_SEL) {
+		    attr = new AttributeOneOf().addValue(value).setName(
+			                                              attName);
+		    addAttribute(attr);
+		    Invalidate();
+		    return;
+		} else if (selectorType == ATTRIBUTE_EXACT) {
+		    attr = new AttributeExact().setValue(value).setName(
+			                                              attName);
+		    addAttribute(attr);
+		    Invalidate();
+		    return;
+		} else {
+		    throw new InvalidParamException("notformobile",
+						    "attributes" , ac);
 		}
-
-	    switch (selectorType) {
-	    	case ATTRIBUTE_ANY:
-	    		if (ac.getCssVersion().equals("css1")) {
-					throw new InvalidParamException("notversion","[" + attName +"]", ac.getCssVersion(), ac);
-				} else {
-					attr = new AttributeAny().setName(attName);
-				}
-				break;
-	    	case ATTRIBUTE_EXACT:
-				attr = new AttributeExact().setValue(value).setName(attName);
-				break;
-	    	case ATTRIBUTE_BEGIN:
-	    		if (ac.getCssVersion().equals("css1")) {
-					throw new InvalidParamException("notversion","[" + attName + "|=" + value + "]", ac.getCssVersion(), ac);
-				} else {
-					attr = new AttributeBegin().setValue(value).setName(attName);
-				}
-				break;
-	    	case ATTRIBUTE_ONE_OF:
-				if (value.indexOf(' ') != -1) {
-				    InvalidParamException error =
-					new InvalidParamException("space", value, ac);
-				    ac.getFrame().addError(new CssError(error));
-				    return;
-				}
-				if (ac.getCssVersion().equals("css1")) {
-					throw new InvalidParamException("nocomb", "~=", ac);
-				} else {
-					attr = new AttributeOneOf().addValue(value).setName(attName);
-				}
-				break;
-			case ATTRIBUTE_CLASS_SEL:
-				attr = new AttributeOneOf().addValue(value).setName(attName);
-				break;
-			case ATTRIBUTE_START:
-				if (ac.getCssVersion().equals("css3")) {
-				    attr = new AttributeStart().setValue(value).setName(attName);
-				    break;
-				} else {
-				    throw new InvalidParamException("nocomb", "^=", ac);
-				}
-	    	case ATTRIBUTE_SUFFIX:
-				if (ac.getCssVersion().equals("css3")) {
-				    attr = new AttributeSuffix().setValue(value).setName(attName);
-				    break;
-				} else {
-				    throw new InvalidParamException("nocomb", "$=", ac);
-				}
-	    	case ATTRIBUTE_SUBSTR:
-				if (ac.getCssVersion().equals("css3")) {
-				    attr = new AttributeSubstr().setValue(value).setName(attName);
-				    break;
-				} else {
-				    throw new InvalidParamException("nocomb", "*=", ac);
-				}
-	    	default:
-				throw new NullPointerException("Invalid access in CssSelectors"
-					       + (char) selectorType);
+	    } else if (ac.getProfile().equals("tv")) {
+		throw new InvalidParamException("notfortv", "attributes", ac);
 	    }
+	}
 
-	    addAttribute(attr);
-	    Invalidate();
+	switch (selectorType) {
+	case ATTRIBUTE_ANY:
+	    if (ac.getCssVersion().equals("css1")) {
+		throw new InvalidParamException("notversion","[" + 
+						attName +"]", 
+						ac.getCssVersion(), ac);
+	    } else {
+		attr = new AttributeAny().setName(attName);
+	    }
+	    break;
+	case ATTRIBUTE_EXACT:
+	    attr = new AttributeExact().setValue(value).setName(attName);
+	    break;
+	case ATTRIBUTE_BEGIN:
+	    if (ac.getCssVersion().equals("css1")) {
+		throw new InvalidParamException("notversion","[" + attName 
+						+ "|=" + value + "]"
+						, ac.getCssVersion(), ac);
+	    } else {
+		attr = new AttributeBegin().setValue(value).setName(attName);
+	    }
+	    break;
+	case ATTRIBUTE_ONE_OF:
+	    if (value.indexOf(' ') != -1) {
+		InvalidParamException error =
+		    new InvalidParamException("space", value, ac);
+		ac.getFrame().addError(new CssError(error));
+		return;
+	    }
+	    if (ac.getCssVersion().equals("css1")) {
+		throw new InvalidParamException("nocomb", "~=", ac);
+	    } else {
+		attr = new AttributeOneOf().addValue(value).setName(attName);
+	    }
+	    break;
+	case ATTRIBUTE_CLASS_SEL:
+	    attr = new AttributeOneOf().addValue(value).setName(attName);
+	    break;
+	case ATTRIBUTE_START:
+	    if (ac.getCssVersion().equals("css3")) {
+		attr = new AttributeStart().setValue(value).setName(attName);
+		break;
+	    } else {
+		throw new InvalidParamException("nocomb", "^=", ac);
+	    }
+	case ATTRIBUTE_SUFFIX:
+	    if (ac.getCssVersion().equals("css3")) {
+		attr = new AttributeSuffix().setValue(value).setName(attName);
+		break;
+	    } else {
+		throw new InvalidParamException("nocomb", "$=", ac);
+	    }
+	case ATTRIBUTE_SUBSTR:
+	    if (ac.getCssVersion().equals("css3")) {
+		attr = new AttributeSubstr().setValue(value).setName(attName);
+		break;
+	    } else {
+		throw new InvalidParamException("nocomb", "*=", ac);
+	    }
+	default:
+	    throw new NullPointerException("Invalid access in CssSelectors"
+					   + (char) selectorType);
+	}
+
+	addAttribute(attr);
+	Invalidate();
 
     }
 
@@ -444,28 +466,28 @@ public final class CssSelectors implements CssSelectorsConstant {
 
 	int index = getPseudoClassIndex(pseudo);
 	if (index != -1) {
-		if ((getAtRule() != null)
+	    if ((getAtRule() != null)
 		&& getAtRule().toString() != null
 		&& getAtRule().toString().equals("@media atsc-tv")) {
-			if (!pseudo.equals("target")) {
-			    addPseudoClass(index);
-			} else {
-			    throw new InvalidParamException("notforatsc", pseudo, ac);
-			}
+		if (!pseudo.equals("target")) {
+		    addPseudoClass(index);
+		} else {
+		    throw new InvalidParamException("notforatsc", pseudo, ac);
+		}
 	    } else {
-			addPseudoClass(index);
+		addPseudoClass(index);
 	    }
 	} else {
 
-		if (ac.getProfile().equals("tv")) {
-			throw new InvalidParamException("pseudo", pseudo, ac);
-		}
+	    if (ac.getProfile().equals("tv")) {
+		throw new InvalidParamException("pseudo", pseudo, ac);
+	    }
 
 	    index = getPseudoElementIndex(pseudo);
 	    if (index != -1) {
 		addPseudoElement(index);
 	    } else {
-		    throw new InvalidParamException("pseudo", pseudo, ac);
+		throw new InvalidParamException("pseudo", pseudo, ac);
 	    }
 	}
     }
@@ -474,44 +496,44 @@ public final class CssSelectors implements CssSelectorsConstant {
 
 	if (ac.getCssVersion().equals("css3")) {
 	    for (int i = 0; i < PSEUDOCLASS_CONSTANTS.length; i++) {
-			if (pseudo.equals(PSEUDOCLASS_CONSTANTS[i])) {
-			    return i;
-			}
+		if (pseudo.equals(PSEUDOCLASS_CONSTANTS[i])) {
+		    return i;
+		}
 	    }
 	} else if (ac.getCssVersion().equals("css2")) {
 
-		 if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-			if (ac.getProfile().equals("mobile")) {
-			    for (int i = 0; i < PSEUDOCLASS_CONSTANTS_MOBILE.length; i++) {
-					if (pseudo.equals(PSEUDOCLASS_CONSTANTS_MOBILE[i])) {
-					    return i;
-					}
-			    }
-			} else if (ac.getProfile().equals("tv")) {
-			    for (int i = 0; i < PSEUDOCLASS_CONSTANTSTV.length; i++) {
-					if (pseudo.equals(PSEUDOCLASS_CONSTANTSTV[i])) {
-					    return i;
-					}
-			    }
-			} else {
-			    for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
-					if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
-					    return i;
-					}
-			    }
-			}
-		} else {
-	    	for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
-				if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
-				    return i;
-				}
-			}
-		}
-	} else if (ac.getCssVersion().equals("css1")) {
-	    for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS1.length; i++) {
-			if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS1[i])) {
+	    if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
+		if (ac.getProfile().equals("mobile")) {
+		    for (int i=0; i<PSEUDOCLASS_CONSTANTS_MOBILE.length; i++) {
+			if (pseudo.equals(PSEUDOCLASS_CONSTANTS_MOBILE[i])) {
 			    return i;
 			}
+		    }
+		} else if (ac.getProfile().equals("tv")) {
+		    for (int i = 0; i < PSEUDOCLASS_CONSTANTSTV.length; i++) {
+			if (pseudo.equals(PSEUDOCLASS_CONSTANTSTV[i])) {
+			    return i;
+			}
+		    }
+		} else {
+		    for (int i=0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
+			if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
+			    return i;
+			}
+		    }
+		}
+	    } else {
+	    	for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
+		    if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
+			return i;
+		    }
+		}
+	    }
+	} else if (ac.getCssVersion().equals("css1")) {
+	    for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS1.length; i++) {
+		if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS1[i])) {
+		    return i;
+		}
 	    }
 	}
 	return -1;
@@ -542,96 +564,109 @@ public final class CssSelectors implements CssSelectorsConstant {
      */
     public Enumeration getPseudoClass() {
 
-		if (ac.getCssVersion().equals("css3")) {
-			return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
-		} else if (ac.getCssVersion().equals("css2")) {
-			if (ac.getProfile() != null) {
-				if (ac.getProfile().equals("mobile")) {
-					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS_MOBILE);
-				} else if (ac.getProfile().equals("tv")) {
-					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSTV);
-				} else {
-					return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSCSS2);
-				}
-			} else {
-				return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSCSS2);
-			}
-		} else if (ac.getCssVersion().equals("css1")) {
-			return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSCSS1);
+	if (ac.getCssVersion().equals("css3")) {
+	    return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
+	} else if (ac.getCssVersion().equals("css2")) {
+	    if (ac.getProfile() != null) {
+		if (ac.getProfile().equals("mobile")) {
+		    return new PseudoEnumeration(pseudoClass, 
+						 PSEUDOCLASS_CONSTANTS_MOBILE);
+		} else if (ac.getProfile().equals("tv")) {
+		    return new PseudoEnumeration(pseudoClass, 
+						 PSEUDOCLASS_CONSTANTSTV);
 		} else {
-			return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
+		    return new PseudoEnumeration(pseudoClass, 
+						 PSEUDOCLASS_CONSTANTSCSS2);
 		}
+	    } else {
+		return new PseudoEnumeration(pseudoClass, 
+					     PSEUDOCLASS_CONSTANTSCSS2);
+	    }
+	} else if (ac.getCssVersion().equals("css1")) {
+	    return new PseudoEnumeration(pseudoClass, 
+					 PSEUDOCLASS_CONSTANTSCSS1);
+	} else {
+	    return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
+	}
     }
 
     public void setPseudoFun(String pseudo, String param)
     	throws InvalidParamException {
 	if (pseudo.equals("lang")) {
 
-		if (ac.getCssVersion().equals("css1")) {
-			throw new InvalidParamException("notversion", pseudo, ac.getCssVersion(), ac);
-		}
+	    if (ac.getCssVersion().equals("css1")) {
+		throw new InvalidParamException("notversion", pseudo,
+						ac.getCssVersion(), ac);
+	    }
 
-		if (ac.getProfile() != null) {
-			if (ac.getProfile().equals("mobile")) {
-			    throw new InvalidParamException("notformobile", pseudo, ac);
-			} else if (ac.getProfile().equals("tv")) {
-				throw new InvalidParamException("notfortv", pseudo, ac);
-			}
+	    if (ac.getProfile() != null) {
+		if (ac.getProfile().equals("mobile")) {
+		    throw new InvalidParamException("notformobile", pseudo, 
+						    ac);
+		} else if (ac.getProfile().equals("tv")) {
+		    throw new InvalidParamException("notfortv", pseudo, ac);
 		}
+	    }
 	    pseudofun = pseudo;
-		pseudofunval = param;
+	    pseudofunval = param;
 	} else if (pseudo.equals("nth-child")) {
-	    if (ac.getCssVersion().equals("css1") || ac.getCssVersion().equals("css2")) {
-			throw new InvalidParamException("notversion", pseudo, ac.getCssVersion(), ac);
-		}
+	    if (ac.getCssVersion().equals("css1") ||
+		ac.getCssVersion().equals("css2")) {
+		throw new InvalidParamException("notversion", pseudo,
+						ac.getCssVersion(), ac);
+	    }
 
 	    try {
-			Integer i = new Integer(param);
-			pseudofun = pseudo;
-			pseudofunval = param;
+		Integer i = new Integer(param);
+		pseudofun = pseudo;
+		pseudofunval = param;
 		return;
 	    } catch (NumberFormatException nfe) {
-			throw new InvalidParamException("pseudoval", param, ac);
+		throw new InvalidParamException("pseudoval", param, ac);
 	    }
 	} else if (pseudo.equals("nth-of-type")) {
-	    if (ac.getCssVersion().equals("css1") || ac.getCssVersion().equals("css2")) {
-			throw new InvalidParamException("notversion", pseudo, ac.getCssVersion(), ac);
-		}
+	    if (ac.getCssVersion().equals("css1") || 
+		ac.getCssVersion().equals("css2")) {
+		throw new InvalidParamException("notversion", pseudo, 
+						ac.getCssVersion(), ac);
+	    }
 
 	    try {
-			Integer i = new Integer(param);
-			pseudofun = pseudo;
-			pseudofunval = param;
-			return;
+		Integer i = new Integer(param);
+		pseudofun = pseudo;
+		pseudofunval = param;
+		return;
 	    } catch (NumberFormatException nfe) {
-			throw new InvalidParamException("pseudoval", param, ac);
+		throw new InvalidParamException("pseudoval", param, ac);
 	    }
 	} else if (pseudo.equals("nth-last-of-type")) {
-	    if (ac.getCssVersion().equals("css1") || ac.getCssVersion().equals("css2")) {
-			throw new InvalidParamException("notversion", pseudo, ac.getCssVersion(), ac);
-		}
+	    if (ac.getCssVersion().equals("css1") || 
+		ac.getCssVersion().equals("css2")) {
+		throw new InvalidParamException("notversion", pseudo, 
+						ac.getCssVersion(), ac);
+	    }
 
 	    try {
-			Integer i = new Integer(param);
-			pseudofun = pseudo;
-			pseudofunval = param;
-			return;
+		Integer i = new Integer(param);
+		pseudofun = pseudo;
+		pseudofunval = param;
+		return;
 	    } catch (NumberFormatException nfe) {
-			throw new InvalidParamException("pseudoval", param, ac);
+		throw new InvalidParamException("pseudoval", param, ac);
 	    }
 
 	} else if (pseudo.equals("contains")) {
 	    if (param.startsWith("\"") && param.endsWith("\"")) {
-			pseudofun = pseudo;
-			pseudofunval = param;
-			return;
-	    } else {
-			throw new InvalidParamException("pseudoval", param, ac);
-		}
-	} else if (pseudo.equals("not")) {
 		pseudofun = pseudo;
 		pseudofunval = param;
 		return;
+	    } else {
+		throw new InvalidParamException("pseudoval", param, ac);
+	    }
+	} else if (pseudo.equals("not")) {
+	    pseudofun = pseudo;
+	    pseudofunval = param;
+	    return;
 	} else {
 	    CssErrorToken e =
 		new CssErrorToken(0, ac.getMsg().getErrorString("pseudo"),
@@ -642,11 +677,12 @@ public final class CssSelectors implements CssSelectorsConstant {
     }
 
     public String getPseudoFun() {
-		return pseudofun;
+	return pseudofun;
     }
 
-    private int getPseudoElementIndex(String pseudo) throws InvalidParamException {
-
+    private int getPseudoElementIndex(String pseudo) 
+	throws InvalidParamException
+    {
 	if (ac.getCssVersion().equals("css3")) {
 	    for (int i = 0; i < PSEUDOELEMENT_CONSTANTS.length; i++) {
 		if (pseudo.equals(PSEUDOELEMENT_CONSTANTS[i])) {
@@ -654,23 +690,24 @@ public final class CssSelectors implements CssSelectorsConstant {
 		}
 	    }
 	} else if (ac.getCssVersion().equals("css2")) {
-		if (ac.getProfile() != null) {
-			if (ac.getProfile().equals("mobile")) {
-			    throw new InvalidParamException("notformobile", pseudo, ac);
-			} else {
-				for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
-					if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
-					    return i;
-					}
-		    	}
-			}
+	    if (ac.getProfile() != null) {
+		if (ac.getProfile().equals("mobile")) {
+		    throw new InvalidParamException("notformobile", pseudo, 
+						    ac);
 		} else {
-			for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
-				if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
-				    return i;
-				}
-	    	}
+		    for (int i=0; i<PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
+			if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
+			    return i;
+			}
+		    }
 		}
+	    } else {
+		for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
+		    if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
+			return i;
+		    }
+	    	}
+	    }
 	} else if (ac.getCssVersion().equals("css1")) {
 	    for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS1.length; i++) {
 		if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS1[i])) {
@@ -705,15 +742,19 @@ public final class CssSelectors implements CssSelectorsConstant {
      * <p> There is no semi-colon at the beginning of the string.
      */
     public Enumeration getPseudoElement() {
-		if (ac.getCssVersion().equals("css3")) {
-			return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTS);
-		} else if (ac.getCssVersion().equals("css2")) {
-			return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTSCSS2);
-		} else if (ac.getCssVersion().equals("css1")) {
-			return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTSCSS1);
-		} else {
-			return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTS);
-		}
+	if (ac.getCssVersion().equals("css3")) {
+	    return new PseudoEnumeration(pseudoElement, 
+					 PSEUDOELEMENT_CONSTANTS);
+	} else if (ac.getCssVersion().equals("css2")) {
+	    return new PseudoEnumeration(pseudoElement, 
+					 PSEUDOELEMENT_CONSTANTSCSS2);
+	} else if (ac.getCssVersion().equals("css1")) {
+	    return new PseudoEnumeration(pseudoElement, 
+					 PSEUDOELEMENT_CONSTANTSCSS1);
+	} else {
+	    return new PseudoEnumeration(pseudoElement, 
+					 PSEUDOELEMENT_CONSTANTS);
+	}
     }
 
     /**
@@ -727,7 +768,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 	if (properties != null) {
 	    properties.setProperty(ac, property, warnings);
 	} else {
-	    System.err.println("[ERROR] Invalid state in org.w3c.css.parser.CssSelectors#addProperty");
+	    System.err.println("[ERROR] Invalid state in "+
+			       "org.w3c.css.parser.CssSelectors#addProperty");
 	    System.err.println("[ERROR] Please report BUG");
 	}
     }
@@ -743,31 +785,31 @@ public final class CssSelectors implements CssSelectorsConstant {
      */
     public int getSpecificity() {
 
-		if (specificity == 0) {
-		    // compute the specificity
-		    if (next != null) {
-				specificity = next.getSpecificity();
-		    }
+	if (specificity == 0) {
+	    // compute the specificity
+	    if (next != null) {
+		specificity = next.getSpecificity();
+	    }
 
-		    if (element != null) {
-				specificity += 1;
-		    }
+	    if (element != null) {
+		specificity += 1;
+	    }
 
-		    for (Enumeration e = attributes.elements(); e.hasMoreElements();) {
-				Attribute attr = (Attribute) e.nextElement();
-				if (attr.isId()) {
-				    specificity += 10000;
-				} else {
-				    specificity += 100;
-				}
-		    }
-
-	    	for (Enumeration e = getPseudoClass(); e.hasMoreElements();e.nextElement() ) {
-		    	specificity += 100;
-		    }
+	    for (Enumeration e = attributes.elements(); e.hasMoreElements();) {
+		Attribute attr = (Attribute) e.nextElement();
+		if (attr.isId()) {
+		    specificity += 10000;
+		} else {
+		    specificity += 100;
 		}
+	    }
+	    Enumeration e;
+	    for (e = getPseudoClass(); e.hasMoreElements();e.nextElement() ) {
+		specificity += 100;
+	    }
+	}
 
-		return specificity;
+	return specificity;
     }
 
     /**
@@ -779,47 +821,57 @@ public final class CssSelectors implements CssSelectorsConstant {
 	    return atRule.toString() + " ";
 	}
 	if (representation == null) {
-	    representation = "";
-
+	    StringBuffer sbrep = new StringBuffer();
+	    
 	    // I'm in reverse order, so compute the next before the current
 	    if (next != null) {
-		representation += next.toString();
+		sbrep.append(next.toString());
 	    }
 
-	    String local = "";
+	    StringBuffer local = new StringBuffer();
 	    if (element != null) {
-		local += element;
+		local.append(element);
 	    }
 	    for (Enumeration e = attributes.elements(); e.hasMoreElements();) {
-		local += e.nextElement().toString();
+		local.append(e.nextElement().toString());
 	    }
 	    for (Enumeration e = getPseudoClass(); e.hasMoreElements();) {
-		local += ":" + e.nextElement().toString();
+		local.append(':');
+		local.append(e.nextElement().toString());
 	    }
 
 	    if (pseudofun != null) {
-		local += ":" + pseudofun + "(" + pseudofunval + ")";
+		local.append(':');
+		local.append(pseudofun);
+		local.append('(');
+		local.append(pseudofunval);
+		local.append(')');
 	    }
-	    if (ac.getCssVersion().equals("css1") || ac.getCssVersion().equals("css2")) {
-		   	for (Enumeration e = getPseudoElement(); e.hasMoreElements();) {
-				local += ":" + e.nextElement().toString();
+	    if (ac.getCssVersion().equals("css1") || 
+		ac.getCssVersion().equals("css2")) {
+		for (Enumeration e = getPseudoElement();e.hasMoreElements();) {
+		    local.append(':');
+		    local.append(e.nextElement().toString());
 	    	}
-		} else {
-		   	for (Enumeration e = getPseudoElement(); e.hasMoreElements();) {
-				local += "::" + e.nextElement().toString();
+	    } else {
+		for (Enumeration e = getPseudoElement();e.hasMoreElements();) {
+		    local.append(':');
+		    local.append(':');
+		    local.append(e.nextElement().toString());
 	    	}
-		}
+	    }
 	    if (local.length() == 0) {
 		// avoid problem with * { color : red }
-		local = "*";
+		local.append('*');
 	    }
-	    representation += local;
+	    sbrep.append(local.toString());
 	    if (connector != DESCENDANT) {
-		representation += " " + new Character(connector);
+		sbrep.append(' ');
+		sbrep.append(connector);
 	    }
-	    representation += " ";
+	    sbrep.append(' ');
+	    representation = sbrep.toString();
 	}
-
 	return representation;
     }
 
@@ -932,7 +984,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 	}
 	boolean result = canApply(attributes, selector.attributes);
 	// current work - don't touch
-	Util.verbose(getSpecificity() + " canApply this " + this + " selector: " + selector);
+	Util.verbose(getSpecificity() + " canApply this " + this 
+		     + " selector: " + selector);
 	Util.verbose( "connector " + connector);
 	Util.verbose( attributes.toString() );
 	Util.verbose( selector.attributes.toString() );
@@ -947,7 +1000,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 	    // if (for all contexts) !canApply(selector)
 	    //       go and see canApply(selector.getNext())
 	    //
-	    // for further informations, see org.w3c.css.css.CssCascadingOrder#order
+	    // for further informations, 
+	    //                     see org.w3c.css.css.CssCascadingOrder#order
 	    Util.verbose("canApply RETURNS FALSE");
 	    return false;
 	} else {
@@ -1013,37 +1067,37 @@ public final class CssSelectors implements CssSelectorsConstant {
 
     void verifyPseudoElement(ApplContext ac) {
 	/*
-	if (next != null && next.pseudoElement != null) {
-	    // eliminate this error
-	    if (frame != null) {
-		InvalidParamException error =
-		    new InvalidParamException("pseudo"-element",
-					      next.pseudoElement,
-					      this.toString());
-		ac.getFrame().addError(new CssError(error));
-	    }
-	    next.pseudoElement = null;
-	    next.verifyPseudoElement(frame);
-	    next.Invalidate();
-	}
+	  if (next != null && next.pseudoElement != null) {
+	  // eliminate this error
+	  if (frame != null) {
+	  InvalidParamException error =
+	  new InvalidParamException("pseudo"-element",
+	  next.pseudoElement,
+	  this.toString());
+	  ac.getFrame().addError(new CssError(error));
+	  }
+	  next.pseudoElement = null;
+	  next.verifyPseudoElement(frame);
+	  next.Invalidate();
+	  }
 	*/
     }
 
     void verifyPseudoClass(ApplContext ac) {
 	/*
-	if (next != null && next.pseudoClass != null) {
-	    // eliminate this error
-	    if (frame != null) {
-		InvalidParamException error =
-		    new InvalidParamException("pseudo-class",
-					      next.pseudoClass,
-					      this.toString());
-		ac.getFrame().addError(new CssError(error));
-	    }
-	    next.pseudoClass = null;
-	    next.verifyPseudoClass(frame);
-	    next.Invalidate();
-	}
+	  if (next != null && next.pseudoClass != null) {
+	  // eliminate this error
+	  if (frame != null) {
+	  InvalidParamException error =
+	  new InvalidParamException("pseudo-class",
+	  next.pseudoClass,
+	  this.toString());
+	  ac.getFrame().addError(new CssError(error));
+	  }
+	  next.pseudoClass = null;
+	  next.verifyPseudoClass(frame);
+	  next.Invalidate();
+	  }
 	*/
     }
 
@@ -1077,7 +1131,8 @@ public final class CssSelectors implements CssSelectorsConstant {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.properties.CssSelectors: couldn't load properties");
+	    System.err.println("org.w3c.css.properties.CssSelectors: "+
+			       "couldn't load properties");
 	    System.err.println("  " + e.toString() );
 	}
     }
