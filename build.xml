@@ -3,17 +3,27 @@
 
 	<target name="build">
 	
-		<mkdir dir="./css-validator"/>
+		<delete dir="./build"/>
+		<mkdir dir="./build"/>
 	
 		<javac 
-			destdir="./css-validator" 
-			srcdir="./org/w3c/css:html"
+			destdir="./build" 
+			srcdir="./org/w3c:html"
 			debug="yes">
 		</javac>
 
-		<copy todir="./css-validator">
+		<copy todir="./build">
 		    <fileset dir="./">
 		      <exclude name="**/*.java"/>
+		      <exclude name="*.html*"/>
+		      <exclude name="*.css"/>
+		      <exclude name="*.bat"/>
+		      <exclude name="*.bat"/>
+		      <exclude name="*.xml"/>
+		      <exclude name="*.ico"/>
+		      <exclude name="*.cvs"/>
+		      <exclude name="**/style/*"/>
+		      <exclude name="**/images/*"/>
 		    </fileset>
 		</copy>
 			
@@ -32,5 +42,23 @@
 			windowtitle="CSS validator Javadoc"/>
     
 	</target>	
+	
+	<target name="war" depends="build">
+		<delete  file="css-validator.war" />
+		<war warfile="css-validator.war"
+			webxml="web.xml"
+			basedir="."
+			excludes="**/src/**,**/docs/**,**/build/**,**/*.tmp,*.war,**/org/**,**/html/**"
+		>
+			<classes dir="build"/>
+	
+		</war>
+		
+	</target>
+
+	<target name="clean">
+		<delete file="css-validator.war"/>
+		<delete dir="./build"/>
+	</target>
 
 </project>
