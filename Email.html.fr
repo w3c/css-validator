@@ -37,13 +37,6 @@
       &eacute;galement disponible.
     </p>
     <p>
-      <strong>Note:</strong> Suite &agrave; un changement sur la
-      plateforme Java, n'oubliez pas d'ajouter un &laquo;slash&raquo;
-      ('/') lors de la validation de la page principale de votre
-      site. Par exemple, utilisez <code>http:/www.w3.org/</code> au lieu
-      de <code>http://www.w3.org</code>.
-    </p>
-    <p>
       Il existe plusieurs forums de discussions sur CSS, veuillez s'il
       vous pla&icirc;t utiliser le forum le plus appropri&eacute; pour
       demander de l'aide ou des informations:

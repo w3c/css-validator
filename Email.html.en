@@ -35,12 +35,6 @@
       href='BUGS.html'>reported problems</a> is also available.
     </p>
     <p>
-      <strong>Note:</strong> due to a change in the Java platform,
-      always add a trailing slash when trying to validate the main page
-      of your web site. Use <code>http:/www.w3.org/</code> instead of
-      <code>http://www.w3.org</code>.
-    </p>
-    <p>
       You have several CSS related mailing lists, so please pick the
       right one before asking a question:
     </p>
