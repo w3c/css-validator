@@ -25,20 +25,19 @@ import org.w3c.css.util.ApplContext;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property specifies the underline style to use when 'text-decoration' 
+ *  This property specifies the underline style to use when 'text-decoration'
  *  is set to 'underline'.
  */
 
 public class CssTextUlStyle extends CssProperty {
- 
+
     CssValue ulstyle;
 
     static CssIdent solid = new CssIdent("solid");
 
     private static String[] values = {
-	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash", 
-	"dot-dot-dash", "wave", "single-accounting", "double-accounting", 
-	"inherit"
+	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash",
+	"dot-dot-dash", "wave", "inherit"
     };
 
     /**
@@ -50,7 +49,7 @@ public class CssTextUlStyle extends CssProperty {
 
     /**
      * Create a new CssTextUlStyle
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -67,8 +66,8 @@ public class CssTextUlStyle extends CssProperty {
 	    }
 	}
 	if (i == values.length) {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
 
@@ -109,7 +108,7 @@ public class CssTextUlStyle extends CssProperty {
 	return (property instanceof CssTextUlStyle &&
 		ulstyle.equals(((CssTextUlStyle) property).ulstyle));
     }
-    
+
     /**
      * Returns the name of this property
      */
