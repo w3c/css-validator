@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  * Revision 2.7  1997/08/26 14:25:01  plehegar
  * Updated
  * Supressed getAllApplyContext(CssSelectors selector)
@@ -44,7 +47,7 @@ import org.w3c.css.properties.CssProperty;
  * @version $Revision$
  */
 public class StyleSheet {
-    
+
     private CssCascadingOrder cascading;
     private SortedHashtable rules;
     private Errors   errors;
@@ -53,7 +56,7 @@ public class StyleSheet {
     private Vector atRuleList;
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
-    
+
     /**
      * Create a new StyleSheet.
      */
@@ -64,17 +67,17 @@ public class StyleSheet {
 	cascading = new CssCascadingOrder();
 	atRuleList = new Vector();
     }
-    
+
     /**
      * Get a style in a specific context.
      * No resolution are perfomed when this function is called
      *
      * @param context The context for the style
      * @return The style for the specific context.
-     */  
+     */
     public CssStyle getStyle(CssSelectors context) {
 	Util.verbose("StyleSheet.getStyle("+context+")");
-	
+
 	if (getContext(context) != null) {
 	    CssSelectors realContext = (CssSelectors) getContext(context);
 	    CssStyle style = realContext.getStyle();
@@ -87,17 +90,17 @@ public class StyleSheet {
 	    context.getStyle().setSelector(context);
 	    return context.getStyle();
 	}
-	
+
     }
-    
+
     /**
      * Add a property to this style sheet.
      *
      * @param selector The context where the property is defined
      * @param property The property to add
-     */  
+     */
     public void addProperty(CssSelectors selector, CssProperty property) {
-	Util.verbose("add property " 
+	Util.verbose("add property "
 		     + getContext(selector)
 		     + " " + property);
 	getContext(selector).addProperty(property, warnings);
@@ -118,49 +121,49 @@ public class StyleSheet {
 	    return type;
 	}
     }
-    
+
     /**
      * Add some errors to this style.
      *
      * @param errors Some errors.
-     */  
+     */
     public void addErrors(Errors errors) {
 	if (errors.getErrorCount() != 0) {
 	    getErrors().addErrors(errors);
 	}
     }
-    
+
     /**
      * Add some warnings to this style.
      *
      * @param warnings Some warnings.
-     */  
+     */
     public void addWarnings(Warnings warnings) {
 	if (warnings.getWarningCount() != 0)
 	    getWarnings().addWarnings(warnings);
     }
-    
+
     /**
      * Returns all errors.
-     */  
+     */
     public final Errors getErrors() {
 	return errors;
     }
-    
+
     /**
      * Returns all warnings.
-     */  
+     */
     public final Warnings getWarnings() {
 	return warnings;
     }
-    
+
     /**
      * Returns all rules
-     */  
+     */
     public final Hashtable getRules() {
 	return rules;
     }
-    
+
     /**
      * Returns the property for a context.
      *
@@ -169,27 +172,27 @@ public class StyleSheet {
      * @param selector The current context
      * @return the property with the right value
      */
-    public final CssProperty CascadingOrder(CssProperty property, 
-					    StyleSheet style, 
+    public final CssProperty CascadingOrder(CssProperty property,
+					    StyleSheet style,
 					    CssSelectors selector) {
 	return cascading.order(property, style, selector);
     }
-    
+
     /**
      * Find all conflicts for this style sheet.
-     */  
+     */
     public void findConflicts(ApplContext ac) {
 	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
 	    CssStyle style = ((CssSelectors) e.nextElement()).getStyle();
 	    style.findConflicts(ac, warnings, getRules().elements());
 	}
     }
-    
+
     /**
      * Returns the uniq context for a context
      *
      * @param selector the context to find.
-     */  
+     */
     protected CssSelectors getContext(CssSelectors selector) {
 	if (getRules().containsKey(selector)) {
 	    return (CssSelectors) getRules().get(selector);
@@ -202,25 +205,25 @@ public class StyleSheet {
 	    return selector;
 	}
     }
-    
+
     /**
      * dump this style sheet.
-     */  
+     */
     public void dump() {
-	StyleSheetGenerator style = 
+	StyleSheetGenerator style =
 	    new StyleSheetGenerator("", this, "text", -1);
 	style.print(new PrintWriter(System.out));
     }
-    
+
     //part added by Sijtsche de Jong
-    
+
     public void addCharSet(String charset) {
 	this.charset = charset;
     }
 
     public void newAtRule(AtRule atRule) {
 	CssRuleList rulelist = new CssRuleList();
-	rulelist.addAtRule(atRule.toString());
+	rulelist.addAtRule(atRule);
 	atRuleList.addElement(rulelist);
 	indent = "   ";
     }
@@ -242,7 +245,7 @@ public class StyleSheet {
 
     public void setSelectorList(Vector selectors) {
 	String slave = selectors.toString();
-	selectortext = slave.substring(slave.indexOf("[") + 1, 
+	selectortext = slave.substring(slave.indexOf("[") + 1,
 				       slave.lastIndexOf("]"));
     }
 
@@ -254,7 +257,7 @@ public class StyleSheet {
 	CssRuleList rulelist;
 	boolean useless;
 	if (!doNotAddRule) {
-	    CssStyleRule stylerule = new CssStyleRule(indent, selectortext, 
+	    CssStyleRule stylerule = new CssStyleRule(indent, selectortext,
 						      properties, important);
 	    if (!atRuleList.isEmpty()) {
 		rulelist = (CssRuleList)atRuleList.lastElement();
@@ -276,7 +279,7 @@ public class StyleSheet {
     public void removeThisAtRule() {
 	doNotAddAtRule = true;
     }
-    
+
     public Vector newGetRules() {
 	return atRuleList;
     }
