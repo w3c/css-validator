@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/08/07 14:21:31  sijtsche
+ * lining values added
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -23,8 +26,7 @@ package org.w3c.css.properties3;
  */
 public interface CssTextPropertiesConstantsCSS3 {
   public static String[] TEXTDECORATION = {
-    "underline", "overline", "line-through", "blink", "inherit", "none", "solid", "double", "dotted", "thick",
-    "dashed", "dot-dash", "dot-dot-dash", "wave"};
+    "none", "underline", "overline", "line-through", "blink", "inherit" };
 
   public static String[] TEXTDECORATIONMOB = {
     "underline", "inherit" };
