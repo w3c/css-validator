@@ -119,8 +119,8 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	CssLineGridProgression cssLineGridProgression;
 	CssLinefeedTreatment cssLinefeedTreatment;
 	CssScript cssScript;
-	//CssTextOverflow cssTextOverflow;
-	//CssTextOverflowEllipsis cssTextOverflowEllipsis;
+	CssTextOverflow cssTextOverflow;
+	CssTextOverflowEllipsis cssTextOverflowEllipsis;
 	CssTextOverflowMode cssTextOverflowMode;
 	CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
 	CssWrapOption cssWrapOption;
@@ -1045,7 +1045,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		}
 		return cssScript;
 	}
-/*
+
 	public CssTextOverflow getTextOverflow() {
 		if (cssTextOverflow == null) {
 			cssTextOverflow =
@@ -1063,7 +1063,7 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 		}
 		return cssTextOverflowEllipsis;
 	}
-*/
+
 	public CssTextOverflowMode getTextOverflowMode() {
 		if (cssTextOverflowMode == null) {
 			cssTextOverflowMode =
@@ -1400,13 +1400,12 @@ public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 	if (cssScript != null) {
 		cssScript.print(printer);
 	}
-	/*
 	if (cssTextOverflow != null) {
 		cssTextOverflow.print(printer);
 	}
 	if (cssTextOverflowEllipsis != null) {
-		cssTextOverflow.print(printer);
-	}*/
+		cssTextOverflowEllipsis.print(printer);
+	}
 	if (cssTextOverflowMode != null) {
 		cssTextOverflowMode.print(printer);
 	}
