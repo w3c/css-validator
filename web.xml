@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+           "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <servlet>
+    <servlet-name>validator</servlet-name>
+    <servlet-class>org.w3c.css.servlet.CssValidator</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+       <servlet-name>validator</servlet-name>
+       <url-pattern>/validator</url-pattern>
+   </servlet-mapping>
+   
+</web-app>
