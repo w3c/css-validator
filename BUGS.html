@@ -1,16 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-                      "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
     <title>CSS Validator Project</title>
 
-    <link href="style/page.css" type="text/css" rel="STYLESHEET">
-    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-    <LINK REL="STYLESHEET" TITLE="default" MEDIA="screen" HREF="style/general.css" TYPE="text/css">
-<META name="ROBOTS" content="NOINDEX, NOFOLLOW">
-</head>
+    <link href="style/page.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <link rel="stylesheet" title="default" media="screen"
+      href="style/general.css" type="text/css" /> 
+  </head>
   <body>
-    <a href="http://www.w3.org"><img src="http://www.w3.org/Icons/w3c_home" alt="w3c" border="0"></a><br>
+    <a class="left" href="http://www.w3.org"><img
+        src="http://www.w3.org/Icons/w3c_home" border="0" alt="w3c" width="72"
+        height="48" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+          src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered"
+          border="0" width="94" height="52" /></a>
+    <br />
 
     <div class="t1">CSS</div>
     <div class="t2">Validator</div>
@@ -33,17 +39,24 @@
 	  is a big bug.
 	</p>
       </li>
-      <li>I have problems with multipart/form-data so I integrated an auto-debug
-	in the code ...</li>
     </ol>
     
     <h1 class="center">CSS Validator version 2.0 : bugs list</h1>
     <ol>
       <li>
-	<pre>
- a {
+	<p>slash is required after hostnames:
+	  <code>http://www.w3.org/</code> instead of
+	  <code>http://www.w3.org</code>
+	</p>
+	<p>
+	  See <a
+	  href='http://lists.w3.org/Archives/Public/www-validator-css/2002Feb/0016.html'>message</a>.
+	</p>
+      </li>
+      <li>
+	<pre>a {
    text-align: "$";
- }</pre>
+}</pre>
 	<p>
 	  The validator doesn't say "only for block-level elements". The bug
 	  comes from me. I know where it is but don't have time to find a
@@ -52,8 +65,148 @@
       </li>
       <li>
 	<p>
-	  Media are not supported at the moment. be careful !
+	  "application/xml+html" not supported.
 	</p>
+      </li>
+      <li>
+	<p>
+	  "iso-8859-1" not supported.
+	</p>
+      </li>
+
+      <li>
+	<p>
+	  "iso-8859-1" not supported.
+	</p>
+      </li>
+      <li>
+	<p>
+	  XHTML user agents are required to remove comments from XHTML documents
+ before further processing, hence e.g.
+	</p>
+	<pre>&lt;style type="text/css">&lt;!--
+     body { volume: 100% }
+-->&lt;/style></pre>
+	<p>
+	  is to be ignored by those user agents. The CSS Validator
+	  should give a strong warning when encountering this and ignore
+	  the rules inside such comments.
+	</p>
+      </li>
+      <li>
+	<p>
+	  The CSS validator will not acknowledge CSS loaded via a
+	  <code>&lt;link></code> which does not explicitly declare
+	  `type="text/css"', even when the server correctly serves the
+	  stylesheet as text/css.
+	</p>
+      </li>
+    <li>
+	<p>
+	  I have just discovered that this CSS rule, with two semicolons,
+	  did not generate a warning...
+	</p>
+	<pre>h1 { margin-left: 2%; ; }</pre>
+      </li>
+    <li>
+	<p>
+	  I have found something, maybe already known, The HTML
+	  validator and the CSS validator can't detect this file is
+	  wrong :
+	</p>
+	<p>
+	  <a href='http://www.la-grange.net/2002/04/03-styleatt-wo-meta'>http://www.la-grange.net/2002/04/03-styleatt-wo-meta</a>
+	</p>
+	<p>
+	  This file has a style attribute <code>style="color: green;
+	  border: solid red;"</code> but no metaname specifying the
+	  default stylesheet language. So by definition, the file is not
+	  a valid one :
+	</p>
+	<p>
+	  HTML 4.01 says in the chapter "Style Sheets in HTML documents
+	  (14.2.1)":
+	</p>
+	<blockquote cite='http://www.w3.org/TR/1999/REC-html401-19991224/present/styles.html#h-14.2.1'>
+	  <p>
+	    "Documents that include elements that set the style
+	    attribute but which don't define a default style sheet
+	    language are incorrect."
+	  </p>
+	</blockquote>
+	<p>
+	  2002-04-03 The HTML validator says the file is valid.
+	</p>
+	<p>
+	  2002-04-03 The CSS validator does not find any style and says
+	  there are no errors.
+	</p>
+      </li>
+      <li>
+	<p>
+	  some problem with the validator for profile = mobile:
+	  attributes can not be used with mobile profile
+	</p>
+	<pre>body {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 2em;
+  font-family: verdana;
+  background-color: green;
+  color: red;
+}
+
+.s1 {
+   width: 10em;
+   background-color: red;
+}
+
+.s2 {
+   width: 20em;
+}
+
+.smalltext {
+   font-size: 0.75em;
+}</pre>
+      </li>
+      <li>
+	<p>
+	  While I was using the very useful CSS validator, I noticed
+	  something strange, perhaps a little bug...
+	</p>
+	<p> 
+	  With the following style definition :
+	</p>
+<pre>BODY {
+   background-position: center 90%;
+ }</pre>
+	<p>
+	  I would say that this definition is wrong because I should not
+	  mix "center" and a percentage.
+	</p>
+	<p>
+	  But the fact is that no error or warning is reported, and
+	  this is the result of the validator :
+	</p>
+<pre>BODY {
+      background-position : null null;
+}</pre>
+      </li>
+      <li>
+	<p>Problem with <a href='http://lists.w3.org/Archives/Public/www-validator-css/2002Mar/0031.html'>PHP</a>?
+	</p>
+      </li>
+      <li>
+	<p>
+	  According to the element index, "transparent" as well as
+	  "inherit" are legitimate colors for border-color.  The CSS
+	  parser gripes about it however. See <a
+	  href='http://lists.w3.org/Archives/Public/www-validator-css/2002Mar/att-0024/00-part'>message</a>.
+	</p>
+      </li>
+      <li>
+	
       </li>
     </ol>
 
