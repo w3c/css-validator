@@ -58,25 +58,26 @@ public interface CssParserConstants {
   int PAGE_SYM = 55;
   int FONT_FACE_SYM = 56;
   int PREF_SYM = 57;
-  int CHARSET_SYM = 58;
-  int ATTOP = 59;
-  int ATRIGHT = 60;
-  int ATBOTTOM = 61;
-  int ATLEFT = 62;
-  int ATCOUNTER = 63;
-  int ATKEYWORD = 64;
-  int RANGE0 = 65;
-  int RANGE1 = 66;
-  int RANGE2 = 67;
-  int RANGE3 = 68;
-  int RANGE4 = 69;
-  int RANGE5 = 70;
-  int RANGE6 = 71;
-  int RANGE = 72;
-  int UNI = 73;
-  int UNICODERANGE = 74;
-  int FUNCTION = 75;
-  int UNKNOWN = 76;
+  int COLOR_PROFILE = 58;
+  int CHARSET_SYM = 59;
+  int ATTOP = 60;
+  int ATRIGHT = 61;
+  int ATBOTTOM = 62;
+  int ATLEFT = 63;
+  int ATCOUNTER = 64;
+  int ATKEYWORD = 65;
+  int RANGE0 = 66;
+  int RANGE1 = 67;
+  int RANGE2 = 68;
+  int RANGE3 = 69;
+  int RANGE4 = 70;
+  int RANGE5 = 71;
+  int RANGE6 = 72;
+  int RANGE = 73;
+  int UNI = 74;
+  int UNICODERANGE = 75;
+  int FUNCTION = 76;
+  int UNKNOWN = 77;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
@@ -140,6 +141,7 @@ public interface CssParserConstants {
     "\"@page\"",
     "\"@font-face\"",
     "\"@preference\"",
+    "\"@color-profile\"",
     "\"@charset\"",
     "\"@top\"",
     "\"@right\"",
@@ -159,6 +161,7 @@ public interface CssParserConstants {
     "<UNICODERANGE>",
     "<FUNCTION>",
     "<UNKNOWN>",
+    "\"::\"",
   };
 
 }
