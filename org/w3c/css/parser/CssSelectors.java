@@ -4,42 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.8  2003/04/08 09:23:41  sijtsche
- * bug in display of class names fixed
- *
- * Revision 1.7  2002/08/19 07:24:39  sijtsche
- * tv profile restrictions added
- *
- * Revision 1.6  2002/07/24 14:52:21  sijtsche
- * compile bug fixed
- *
- * Revision 1.5  2002/07/22 15:03:33  sijtsche
- * extra pseudoelements, functions and constants added
- *
- * Revision 1.2  2002/05/23 09:59:20  dejong
- * extra pseudoelements, functions and constants added
- *
- * Revision 2.5  1997/08/27 15:31:43  plehegar
- * Desactivated warning on block and inline element ...
- *
- * Revision 2.4  1997/08/22 14:55:48  plehegar
- * Added isEmpty()
- *
- * Revision 2.3  1997/08/21 07:25:30  plehegar
- * Added auralMode, getNext, setNext
- *
- * Revision 2.2  1997/08/20 11:41:28  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/08 15:52:34  plehegar
- * Nothing
- *
- * Revision 1.1  1997/08/01 19:35:24  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.parser;
 
 import java.net.URL;
