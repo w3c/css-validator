@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.7  2003/10/17 13:56:12  ylafon
+ * user the StyleReport factory
+ *
  * Revision 1.6  2003/10/16 20:56:15  ylafon
  * character encoding was using Content-Encoding instead of
  * the charset paremeter in the mime type.
@@ -548,9 +551,6 @@ public final class CssValidator extends HttpServlet {
 	// Here is a little joke :-)
 //	res.setHeader("Server", server_name);
 
-	if (output != null) {
-	    System.out.println("*** output ["+output+"]");
-	}
 	// set the content-type for the response
 	MimeType outputMt = null;
 	if (output.equals(texthtml)) {
