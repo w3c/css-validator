@@ -142,14 +142,21 @@ public class HTTPURL {
 	if (count > 5) {
 	    throw new ProtocolException("Server redirected too many times (5)");
 	}
-	URLConnection urlC = url.openConnection();
 
-	if (Util.servlet && !(urlC instanceof HttpURLConnection)) {
-	    System.err.println( "[WARNING] : someone is trying to get the file: "
-				+ url );
-	    throw new FileNotFoundException("import " + url +
-					    ": Operation not permitted");
+	if (Util.servlet) {
+	    int port = url.getPort();
+	    String protocol = url.getProtocol();
+
+	    if (((port < 1024) && (port != 80))
+		|| ("http".equalsIgnoreCase(protocol))) {		
+		System.err.println( "[WARNING] : someone is trying to get the file: "
+				    + url );
+		throw new FileNotFoundException("import " + url +
+						": Operation not permitted");
+	    }
 	}
+
+	URLConnection urlC = url.openConnection();
 
 	if (Util.onDebug) {
 	    System.err.println( "Accessing " + url);
