@@ -114,36 +114,36 @@ public final class CssValidator extends HttpServlet {
      * @exception ServletException if a servlet exception has occurred.
      */
     public void init(ServletConfig config) throws ServletException {
-	super.init(config);
+    super.init(config);
 
 
-	// [SECURITY] don't forget this !
-	Util.servlet = true;
+    // [SECURITY] don't forget this !
+    Util.servlet = true;
 
-	if (config.getInitParameter("debug") != null) {
-	    // servlet debug mode
-	    // define a boolean property CSS.StyleSheet.debug if you want more debug.
-	    Util.onDebug = config.getInitParameter("debug").equals("true");
-	    System.err.println( "RUN IN DEBUG MODE: "
-				+ config.getInitParameter("debug").equals("true"));
-	} else if (Util.onDebug) {
-	    System.err.println( "RUN IN DEBUG MODE but activated outside the servlet" );
-	}
+    if (config.getInitParameter("debug") != null) {
+        // servlet debug mode
+        // define a boolean property CSS.StyleSheet.debug if you want more debug.
+        Util.onDebug = config.getInitParameter("debug").equals("true");
+        System.err.println( "RUN IN DEBUG MODE: "
+                + config.getInitParameter("debug").equals("true"));
+    } else if (Util.onDebug) {
+        System.err.println( "RUN IN DEBUG MODE but activated outside the servlet" );
+    }
 
-	if ((config.getInitParameter("import") != null) &&
-	    (config.getInitParameter("import").equals("false"))) {
-	    Util.importSecurity = true;
-	}
+    if ((config.getInitParameter("import") != null) &&
+        (config.getInitParameter("import").equals("false"))) {
+        Util.importSecurity = true;
+    }
 
     }
 
     private PrintWriter getLocalPrintWriter(OutputStream os, String encoding)
-	throws IOException {
-	if (encoding != null) {
-	    return new PrintWriter(new OutputStreamWriter(os, encoding));
-	} else {
-	    return new PrintWriter(os);
-	}
+    throws IOException {
+    if (encoding != null) {
+        return new PrintWriter(new OutputStreamWriter(os, encoding));
+    } else {
+        return new PrintWriter(os);
+    }
     }
 
     /**
@@ -188,159 +188,159 @@ public final class CssValidator extends HttpServlet {
      * @see org.w3c.css.css.StyleSheetGenerator
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res)
-	throws ServletException, IOException {
+    throws ServletException, IOException {
 
-	boolean errorReport = true;
-	int warningLevel = 2;
-	CssParser parser = null;
+    boolean errorReport = true;
+    int warningLevel = 2;
+    CssParser parser = null;
 
-	String uri = null;
-	try {
-	    uri = req.getParameter("uri");
-	} catch (Exception ex) {
-	    // pb in URI decoding (bad escaping, most probably)
-	    handleError(res, "No file",
-			new IOException("Invalid escape sequence in URI"));
-	}
-	String text = null;
-	try {
-	    text = req.getParameter("text");
-	} catch (Exception ex) {
-	    // pb in URI decoding (bad escaping, most probably)
-	    // not sure it will work here, as it may be catched by the first
-	    // getParameter call
-	    handleError(res, "Invalid text",
-			new IOException("Invalid escape sequence in URI"));
-	}
-	String output = req.getParameter("output");
-	String warning = req.getParameter("warning");
-	String error = req.getParameter("error");
-	String profile = req.getParameter("profile");
-	String usermedium = req.getParameter("usermedium");
-	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
+    String uri = null;
+    try {
+        uri = req.getParameter("uri");
+    } catch (Exception ex) {
+        // pb in URI decoding (bad escaping, most probably)
+        handleError(res, "No file",
+            new IOException("Invalid escape sequence in URI"));
+    }
+    String text = null;
+    try {
+        text = req.getParameter("text");
+    } catch (Exception ex) {
+        // pb in URI decoding (bad escaping, most probably)
+        // not sure it will work here, as it may be catched by the first
+        // getParameter call
+        handleError(res, "Invalid text",
+            new IOException("Invalid escape sequence in URI"));
+    }
+    String output = req.getParameter("output");
+    String warning = req.getParameter("warning");
+    String error = req.getParameter("error");
+    String profile = req.getParameter("profile");
+    String usermedium = req.getParameter("usermedium");
+    ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
 
-	String credential = req.getHeader("Authorization");
-	if ((credential != null) && (credential.length() > 1)) {
-	    ac.setCredential(credential);
-	}
+    String credential = req.getHeader("Authorization");
+    if ((credential != null) && (credential.length() > 1)) {
+        ac.setCredential(credential);
+    }
 
-	if (usermedium == null || "".equals(usermedium)) {
-		usermedium = "all";
-	}
+    if (usermedium == null || "".equals(usermedium)) {
+        usermedium = "all";
+    }
 
-	InputStream in = req.getInputStream();
+    InputStream in = req.getInputStream();
 
-	ac.setMedium(usermedium);
+    ac.setMedium(usermedium);
 
-	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true")
-		|| Util.onDebug;
-	    if (Util.onDebug) {
-		System.err.println("SWITCH DEBUG MODE REQUEST");
-	    }
-	}
+    if (req.getParameter("debug") != null) {
+        Util.onDebug = req.getParameter("debug").equals("true")
+        || Util.onDebug;
+        if (Util.onDebug) {
+        System.err.println("SWITCH DEBUG MODE REQUEST");
+        }
+    }
 
-	text = Util.suppressWhiteSpace(text);
-	uri = Util.suppressWhiteSpace(uri);
+    text = Util.suppressWhiteSpace(text);
+    uri = Util.suppressWhiteSpace(uri);
 
-	if (output == null) {
-	    output = texthtml;
-	}
+    if (output == null) {
+        output = texthtml;
+    }
 
-	if (profile != null && !"none".equals(profile)) {
-	    if ("css1".equals(profile) || "css2".equals(profile) ||
-	    	"css3".equals(profile) || "svg".equals(profile) ||
-		"svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-		ac.setCssVersion(profile);
-	    } else {
-		ac.setProfile(profile);
-		ac.setCssVersion("css2");
-	    }
-	} else {
-	    ac.setCssVersion("css2");
-	}
-	if (Util.onDebug) {
-	    System.err.println( "[DEBUG]  profile is : " + ac.getCssVersion()
-				+ " medium is " + usermedium);
-	}
+    if (profile != null && !"none".equals(profile)) {
+        if ("css1".equals(profile) || "css2".equals(profile) ||
+            "css3".equals(profile) || "svg".equals(profile) ||
+        "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
+        ac.setCssVersion(profile);
+        } else {
+        ac.setProfile(profile);
+        ac.setCssVersion("css2");
+        }
+    } else {
+        ac.setCssVersion("css2");
+    }
+    if (Util.onDebug) {
+        System.err.println( "[DEBUG]  profile is : " + ac.getCssVersion()
+                + " medium is " + usermedium);
+    }
 
-	// verify the request
-	if ((uri == null) && (text == null)) {
-	    // res.sendError(res.SC_BAD_REQUEST,
+    // verify the request
+    if ((uri == null) && (text == null)) {
+        // res.sendError(res.SC_BAD_REQUEST,
             //                "You have send an invalid request.");
-	    handleError(res, "No file",
-	     new IOException(ac.getMsg().getServletString("invalid-request")));
-	    return;
-	}
+        handleError(res, "No file",
+         new IOException(ac.getMsg().getServletString("invalid-request")));
+        return;
+    }
 
-	in.close();
+    in.close();
 
-	// set the warning output
-	if (warning != null) {
-	    if (warning.equals("no")) {
-		warningLevel = -1;
-	    } else {
-		try {
-		    warningLevel = Integer.parseInt(warning);
-		} catch (Exception e) {
-		    System.err.println( e );
-		}
-	    }
-	}
+    // set the warning output
+    if (warning != null) {
+        if (warning.equals("no")) {
+        warningLevel = -1;
+        } else {
+        try {
+            warningLevel = Integer.parseInt(warning);
+        } catch (Exception e) {
+            System.err.println( e );
+        }
+        }
+    }
 
-	// set the error erport
-	if (error != null && error.equals("no")) {
-	    errorReport = false;
-	}
+    // set the error erport
+    if (error != null && error.equals("no")) {
+        errorReport = false;
+    }
 
-	// debug mode
-	Util.verbose("\nServlet request ");
-	if (uri != null) {
-	    Util.verbose("Source file : " + uri );
-	} else {
-	    Util.verbose("TEXTAREA Input");
-	}
-	//	verbose("From " + req.getRemoteHost() +
-	//       " (" + req.getRemoteAddr() + ") at " + (new Date()) );
+    // debug mode
+    Util.verbose("\nServlet request ");
+    if (uri != null) {
+        Util.verbose("Source file : " + uri );
+    } else {
+        Util.verbose("TEXTAREA Input");
+    }
+    //  verbose("From " + req.getRemoteHost() +
+    //       " (" + req.getRemoteAddr() + ") at " + (new Date()) );
 
-	if (uri != null) {
-	    // HTML document
-	    try {
-		uri = HTTPURL.getURL(uri).toString();
-		HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac,
-									  uri);
-		handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
-			      warningLevel, errorReport);
-	    } catch (ProtocolException pex) {
-		if (Util.onDebug) {
-		    pex.printStackTrace();
-		}
-		res.setHeader("WWW-Authenticate", pex.getMessage());
-		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-	    } catch (Exception e) {
-		handleError(res, uri, e);
-	    }
-	} else {
-	    Util.verbose("- TextArea Data -");
-	    Util.verbose(text);
-	    Util.verbose("- End of TextArea Data");
+    if (uri != null) {
+        // HTML document
+        try {
+        uri = HTTPURL.getURL(uri).toString();
+        HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac,
+                                      uri);
+        handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
+                  warningLevel, errorReport);
+        } catch (ProtocolException pex) {
+        if (Util.onDebug) {
+            pex.printStackTrace();
+        }
+        res.setHeader("WWW-Authenticate", pex.getMessage());
+        res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        } catch (Exception e) {
+        handleError(res, uri, e);
+        }
+    } else {
+        Util.verbose("- TextArea Data -");
+        Util.verbose(text);
+        Util.verbose("- End of TextArea Data");
 
-	    parser = new StyleSheetParser();
+        parser = new StyleSheetParser();
 
-	    try {
-		parser.parseStyleElement(ac,
-				     new ByteArrayInputStream(text.getBytes()),
-				     null, usermedium,
-				     new URL("file://localhost/TextArea"), 0);
-		handleRequest(ac, res,
-			      "file://localhost/TextArea",
-			      parser.getStyleSheet(),
-			      output, warningLevel, errorReport);
-	    } catch (Exception e) {
-		handleError(res, "TextArea", e);
-	    }
-	}
-	Util.verbose("CssValidator: Request terminated.\n");
+        try {
+        parser.parseStyleElement(ac,
+                     new ByteArrayInputStream(text.getBytes()),
+                     null, usermedium,
+                     new URL("file://localhost/TextArea"), 0);
+        handleRequest(ac, res,
+                  "file://localhost/TextArea",
+                  parser.getStyleSheet(),
+                  output, warningLevel, errorReport);
+        } catch (Exception e) {
+        handleError(res, "TextArea", e);
+        }
+    }
+    Util.verbose("CssValidator: Request terminated.\n");
     }
 
     /**
@@ -378,287 +378,287 @@ public final class CssValidator extends HttpServlet {
      * @see org.w3c.css.css.StyleSheetGenerator
      */
     public void doPost(HttpServletRequest req, HttpServletResponse res)
-	throws ServletException, IOException {
+    throws ServletException, IOException {
 
-	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
-	boolean errorReport = true;
-	int warningLevel = 2;
-	CssParser parser = null;
-	FakeFile file = null;
-	String output = null;
-	boolean XMLinput = false;
-	String warning = null;
-	String error = null;
-	String profile = null;
-	String usermedium = "all";
+    ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
+    boolean errorReport = true;
+    int warningLevel = 2;
+    CssParser parser = null;
+    FakeFile file = null;
+    String output = null;
+    boolean XMLinput = false;
+    String warning = null;
+    String error = null;
+    String profile = null;
+    String usermedium = "all";
 
-	ServletInputStream in = req.getInputStream();
-	byte[] buf = new byte[2048];
-	byte[] general = new byte[65536];
-	int count = 0;
-	int len;
+    ServletInputStream in = req.getInputStream();
+    byte[] buf = new byte[2048];
+    byte[] general = new byte[65536];
+    int count = 0;
+    int len;
 
-	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true") ||
-		Util.onDebug;
-	    if (Util.onDebug) {
-		System.err.println("SWITCH DEBUG MODE REQUEST");
-	    }
-	}
+    if (req.getParameter("debug") != null) {
+        Util.onDebug = req.getParameter("debug").equals("true") ||
+        Util.onDebug;
+        if (Util.onDebug) {
+        System.err.println("SWITCH DEBUG MODE REQUEST");
+        }
+    }
 
-	Util.verbose("\nCssValidator: Servlet request ");
-	//	verbose("From " + req.getRemoteHost() +
-	//		" (" + req.getRemoteAddr() + ") at " + (new Date()) );
-	Util.verbose("Content-length : " + req.getContentLength());
+    Util.verbose("\nCssValidator: Servlet request ");
+    //  verbose("From " + req.getRemoteHost() +
+    //      " (" + req.getRemoteAddr() + ") at " + (new Date()) );
+    Util.verbose("Content-length : " + req.getContentLength());
 
-	if (req.getContentType().trim().startsWith("multipart/form-data")) {
-	    Util.verbose("Content-type : multipart/form-data");
-	}
+    if (req.getContentType().trim().startsWith("multipart/form-data")) {
+        Util.verbose("Content-type : multipart/form-data");
+    }
 
-	try {
-	    while ((len = in.readLine(buf, 0, buf.length)) != -1) {
-		if (len >= 2 && buf[len-1] == '\n' && buf[len-2] == '\r') {
-		    len -= 1;
-		    buf[len-1] = (byte) '\n';
-		}
-		if (len  != 0 && buf[len-1] == '\r') {
-		    buf[len-1] = (byte) '\n';
-		}
+    try {
+        while ((len = in.readLine(buf, 0, buf.length)) != -1) {
+        if (len >= 2 && buf[len-1] == '\n' && buf[len-2] == '\r') {
+            len -= 1;
+            buf[len-1] = (byte) '\n';
+        }
+        if (len  != 0 && buf[len-1] == '\r') {
+            buf[len-1] = (byte) '\n';
+        }
 
-		if (general.length < (count + len)) {
-		    byte[] old = general;
-		    general = new byte[old.length * 2];
-		    System.arraycopy(old, 0, general, 0, old.length);
-		}
-		System.arraycopy(buf, 0, general, count, len);
-		count += len;
-	    }
-	} finally {
-	    in.close();
-	}
+        if (general.length < (count + len)) {
+            byte[] old = general;
+            general = new byte[old.length * 2];
+            System.arraycopy(old, 0, general, 0, old.length);
+        }
+        System.arraycopy(buf, 0, general, count, len);
+        count += len;
+        }
+    } finally {
+        in.close();
+    }
 
-	try {
-	    buf = new byte[count];
-	    System.arraycopy(general, 0, buf, 0, count);
-	    NVPair[] tmp = Codecs.mpFormDataDecode(buf, req.getContentType());
-	    for (int i = 0; i < tmp.length; i++) {
-			if (tmp[i].getName().equals("file")) {
-				file = (FakeFile) tmp[i].getValue();
-			} else if (tmp[i].getName().equals("output")) {
-				output = (String) tmp[i].getValue();
-			} else if (tmp[i].getName().equals("warning")) {
-				warning = (String) tmp[i].getValue();
-			} else if (tmp[i].getName().equals("error")) {
-				warning = (String) tmp[i].getValue();
-			} else if (tmp[i].getName().equals("input")) {
-				XMLinput = ((String) tmp[i].getValue()).equals("XML");
-			} else if (tmp[i].getName().equals("profile")) {
-				profile = (String) tmp[i].getValue();
-			} else if (tmp[i].getName().equals("usermedium")) {
-				usermedium = (String) tmp[i].getValue();
-				if (usermedium == null || "".equals(usermedium)) {
-					usermedium = "all";
-				}
-			}
-	    }
-	} catch (Exception e) {
-	    System.out.println("Oups! Error in Util/Codecs.java?!?");
-	    e.printStackTrace();
-	}
+    try {
+        buf = new byte[count];
+        System.arraycopy(general, 0, buf, 0, count);
+        NVPair[] tmp = Codecs.mpFormDataDecode(buf, req.getContentType());
+        for (int i = 0; i < tmp.length; i++) {
+            if (tmp[i].getName().equals("file")) {
+                file = (FakeFile) tmp[i].getValue();
+            } else if (tmp[i].getName().equals("output")) {
+                output = (String) tmp[i].getValue();
+            } else if (tmp[i].getName().equals("warning")) {
+                warning = (String) tmp[i].getValue();
+            } else if (tmp[i].getName().equals("error")) {
+                warning = (String) tmp[i].getValue();
+            } else if (tmp[i].getName().equals("input")) {
+                XMLinput = ((String) tmp[i].getValue()).equals("XML");
+            } else if (tmp[i].getName().equals("profile")) {
+                profile = (String) tmp[i].getValue();
+            } else if (tmp[i].getName().equals("usermedium")) {
+                usermedium = (String) tmp[i].getValue();
+                if (usermedium == null || "".equals(usermedium)) {
+                    usermedium = "all";
+                }
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Oups! Error in Util/Codecs.java?!?");
+        e.printStackTrace();
+    }
 
-	ac.setMedium(usermedium);
+    ac.setMedium(usermedium);
 
-	if (output == null) {
-	    output = texthtml;
-	}
-	if (file == null || file.getSize() == 0) {
-	    //	    res.sendError(res.SC_BAD_REQUEST,
-	    //	  "You have send an invalid request");
-	    handleError(res, "No file",
-	     new IOException(ac.getMsg().getServletString("invalid-request")));
-	    return;
-	}
+    if (output == null) {
+        output = texthtml;
+    }
+    if (file == null || file.getSize() == 0) {
+        //      res.sendError(res.SC_BAD_REQUEST,
+        //    "You have send an invalid request");
+        handleError(res, "No file",
+         new IOException(ac.getMsg().getServletString("invalid-request")));
+        return;
+    }
 
-	// set the warning output
-	if (warning != null) {
-	    if (warning.equals("no")) {
-		warningLevel = -1;
-	    } else {
-		try {
-		    warningLevel = Integer.parseInt(warning);
-		} catch (Exception e) {
-		    System.err.println( e );
-		}
-	    }
-	}
+    // set the warning output
+    if (warning != null) {
+        if (warning.equals("no")) {
+        warningLevel = -1;
+        } else {
+        try {
+            warningLevel = Integer.parseInt(warning);
+        } catch (Exception e) {
+            System.err.println( e );
+        }
+        }
+    }
 
-	// set the error report
-	if (error != null && error.equals("no")) {
-	    errorReport = false;
-	}
+    // set the error report
+    if (error != null && error.equals("no")) {
+        errorReport = false;
+    }
 
-	Util.verbose("File : " + file.getName());
+    Util.verbose("File : " + file.getName());
 
-	parser = new StyleSheetParser();
+    parser = new StyleSheetParser();
 
-	try {
-	    parser.parseStyleElement(ac, file.getInputStream(),
-				     null, null,
-				     new URL("file://localhost/"
-					     + file.getName()),
-				     0);
+    try {
+        parser.parseStyleElement(ac, file.getInputStream(),
+                     null, null,
+                     new URL("file://localhost/"
+                         + file.getName()),
+                     0);
 
-	    handleRequest(ac, res, "file://localhost/" + file.getName(),
-			  parser.getStyleSheet(), output,
-			  warningLevel, errorReport);
-	} catch (Exception e) {
-	    handleError(res, file.getName(), e);
-	}
+        handleRequest(ac, res, "file://localhost/" + file.getName(),
+              parser.getStyleSheet(), output,
+              warningLevel, errorReport);
+    } catch (Exception e) {
+        handleError(res, file.getName(), e);
+    }
 
-	Util.verbose("CssValidator: Request terminated.\n");
+    Util.verbose("CssValidator: Request terminated.\n");
     }
 
     private void handleRequest(ApplContext ac,
-			       HttpServletResponse res,
-			       String title, StyleSheet styleSheet,
-			       String output, int warningLevel,
-			       boolean errorReport)
+                   HttpServletResponse res,
+                   String title, StyleSheet styleSheet,
+                   String output, int warningLevel,
+                   boolean errorReport)
             throws Exception {
 
-	// I don't want cache for the response (inhibits proxy)
-	res.setHeader("Pragma", "no-cache"); // @@deprecated
-	res.setHeader("Cache-Control", "no-cache");
-	// Here is a little joke :-)
-//	res.setHeader("Server", server_name);
+    // I don't want cache for the response (inhibits proxy)
+    res.setHeader("Pragma", "no-cache"); // @@deprecated
+    res.setHeader("Cache-Control", "no-cache");
+    // Here is a little joke :-)
+//  res.setHeader("Server", server_name);
 
-	// set the content-type for the response
-	MimeType outputMt = null;
-	if (output.equals(texthtml)) {
-	    outputMt = MimeType.TEXT_HTML.getClone();
-	} else if (output.equals(soap12)) {
-	    outputMt = new MimeType(soap12);
-//	    outputMt = MimeType.TEXT_PLAIN.getClone();
-	} else {
-	    outputMt = MimeType.TEXT_PLAIN.getClone();
-	}
-	if (ac.getContentEncoding() != null) {
-	    outputMt.setParameter("charset", ac.getContentEncoding());
-	}
-	res.setContentType(outputMt.toString());
+    // set the content-type for the response
+    MimeType outputMt = null;
+    if (output.equals(texthtml)) {
+        outputMt = MimeType.TEXT_HTML.getClone();
+    } else if (output.equals(soap12)) {
+        outputMt = new MimeType(soap12);
+//      outputMt = MimeType.TEXT_PLAIN.getClone();
+    } else {
+        outputMt = MimeType.TEXT_PLAIN.getClone();
+    }
+    if (ac.getContentEncoding() != null) {
+        outputMt.setParameter("charset", ac.getContentEncoding());
+    }
+    res.setContentType(outputMt.toString());
 
-	if (ac.getContentLanguage() != null) {
-	    res.setHeader("Content-Language", ac.getContentLanguage());
-	} else {
-	    res.setHeader("Content-Language", "en");
-	}
+    if (ac.getContentLanguage() != null) {
+        res.setHeader("Content-Language", ac.getContentLanguage());
+    } else {
+        res.setHeader("Content-Language", "en");
+    }
 
-	if (styleSheet == null) {
-	    throw new IOException(ac.getMsg().getServletString("process")
-				  + " " + title);
-	}
+    if (styleSheet == null) {
+        throw new IOException(ac.getMsg().getServletString("process")
+                  + " " + title);
+    }
 
-	if ("text/xml".equals(ac.getInput())
-	    && "text/html".equals(output)) {
-	    output = "xhtml";
-	} else if ("text/html".equals(output)) {
-	    output = "html";
-	} else if ("application/soap+xml".equals(output)) {
-	    output = "soap12";
-	}
-	styleSheet.findConflicts(ac);
+    if ("text/xml".equals(ac.getInput())
+        && "text/html".equals(output)) {
+        output = "xhtml";
+    } else if ("text/html".equals(output)) {
+        output = "html";
+    } else if ("application/soap+xml".equals(output)) {
+        output = "soap12";
+    }
+    styleSheet.findConflicts(ac);
 
-	StyleReport style = StyleReportFactory.getStyleReport(ac, title,
-							      styleSheet,
-							      output,
-							      warningLevel);
-	if (!errorReport) {
-	    style.desactivateError();
-	}
-	PrintWriter out = getLocalPrintWriter(res.getOutputStream(),
-				ac.getMsg().getString("output-encoding-name"));
+    StyleReport style = StyleReportFactory.getStyleReport(ac, title,
+                                  styleSheet,
+                                  output,
+                                  warningLevel);
+    if (!errorReport) {
+        style.desactivateError();
+    }
+    PrintWriter out = getLocalPrintWriter(res.getOutputStream(),
+                ac.getMsg().getString("output-encoding-name"));
 
-	try {
-	    style.print(out);
-	} finally {
-	    out.close();
-	}
+    try {
+        style.print(out);
+    } finally {
+        out.close();
+    }
     }
 
     private void handleError(HttpServletResponse res,
-			     String title, Exception e) {
-	System.err.println( "[ERROR VALIDATOR] " + title);
-	System.err.println( e.toString() );
+                 String title, Exception e) {
+    System.err.println( "[ERROR VALIDATOR] " + title);
+    System.err.println( e.toString() );
         e.printStackTrace();
 
-	// I don't want cache for the response (inhibits proxy)
-	res.setHeader("Pragma", "no-cache"); // @@deprecated
-	res.setHeader("Cache-Control", "no-cache");
+    // I don't want cache for the response (inhibits proxy)
+    res.setHeader("Pragma", "no-cache"); // @@deprecated
+    res.setHeader("Cache-Control", "no-cache");
 
-	// Here is a little joke :-)
-	res.setHeader("Server", server_name);
-	res.setHeader("Content-Language", "en");
-	res.setHeader("Content-Type", "text/html; charset=us-ascii");
-	// res.setHeader("Content-Encoding", "us-ascii");
+    // Here is a little joke :-)
+    res.setHeader("Server", server_name);
+    res.setHeader("Content-Language", "en");
+    res.setHeader("Content-Type", "text/html; charset=us-ascii");
+    // res.setHeader("Content-Encoding", "us-ascii");
 
-	PrintWriter out = null;
+    PrintWriter out = null;
 
-	try {
-	    out = getLocalPrintWriter(res.getOutputStream(), null);
-	    URL localURL = CssValidator.class.getResource("error.html");
-	    DataInputStream in = new DataInputStream(localURL.openStream());
-	    try {
-		while (true) {
-		    out.print((char) in.readUnsignedByte());
-		}
-	    } catch (EOFException eof) {
-		out.println("<h2>Target: " + title + "</h2>");
-		out.println("<div class=\"error\">");
-		if (e instanceof IOException) {
-		    out.println("<p>I/O Error: ");
-		    out.println(e.getMessage());
-		} else if (e instanceof SAXParseException) {
-		    SAXParseException saxe = (SAXParseException) e;
-		    out.println("<p>Please, validate your XML document"+
-				" first!</p>");
-		    if (saxe.getLineNumber() != -1) {
-			out.print("<p>Line ");
-			out.print(saxe.getLineNumber());
-			out.println("</p>");
-		    }
-		    if (saxe.getColumnNumber() != -1) {
-			out.print("<p>Column ");
-			out.print(saxe.getColumnNumber());
-			out.print("</p>\n");
-		    }
-		    out.println("<p>" + e.getMessage());
-		} else if (e instanceof NullPointerException) {
-		    out.println("<p>Oups! Internal error!</p><p>");
-		    e.printStackTrace();
-		} else {
-		    out.println(e.toString());
-		}
-		out.println("</p></div>\n<hr />\n<p><img src='images/mwc"+
-			    "ss.gif' alt='made with CSS' /></p>\n<addres"+
-			    "s><a href='Email.html'>www-validator-css</a"+
-			    "></address>\n</body></html>");
-		out.flush();
-		/*
-		System.err.println("CSS Validator: request failed.");
-		e.printStackTrace();
-		*/
-	    }
-	} catch (Exception unknown) {
-	    if (out != null) {
-		out.println("org.w3c.css.servlet.CssValidator: couldn't "+
-			    "load  error file");
-		out.flush();
-	    }
-	    unknown.printStackTrace();
-	} finally {
-	    if (out != null) {
-		out.close();
-	    }
-	}
+    try {
+        out = getLocalPrintWriter(res.getOutputStream(), null);
+        URL localURL = CssValidator.class.getResource("error.html");
+        DataInputStream in = new DataInputStream(localURL.openStream());
+        try {
+        while (true) {
+            out.print((char) in.readUnsignedByte());
+        }
+        } catch (EOFException eof) {
+        out.println("<h2>Target: " + Util.escapeHTML(title) + "</h2>");
+        out.println("<div class=\"error\">");
+        if (e instanceof IOException) {
+            out.println("<p>I/O Error: ");
+            out.println(Util.escapeHTML(e.getMessage()));
+        } else if (e instanceof SAXParseException) {
+            SAXParseException saxe = (SAXParseException) e;
+            out.println("<p>Please, validate your XML document"+
+                " first!</p>");
+            if (saxe.getLineNumber() != -1) {
+            out.print("<p>Line ");
+            out.print(saxe.getLineNumber());
+            out.println("</p>");
+            }
+            if (saxe.getColumnNumber() != -1) {
+            out.print("<p>Column ");
+            out.print(saxe.getColumnNumber());
+            out.print("</p>\n");
+            }
+            out.println("<p>" + Util.escapeHTML(e.getMessage()));
+        } else if (e instanceof NullPointerException) {
+            out.println("<p>Oups! Internal error!</p><p>");
+            e.printStackTrace();
+        } else {
+            out.println(e.toString());
+        }
+        out.println("</p></div>\n<hr />\n<p><img src='images/mwc"+
+                "ss.gif' alt='made with CSS' /></p>\n<addres"+
+                "s><a href='Email.html'>www-validator-css</a"+
+                "></address>\n</body></html>");
+        out.flush();
+        /*
+        System.err.println("CSS Validator: request failed.");
+        e.printStackTrace();
+        */
+        }
+    } catch (Exception unknown) {
+        if (out != null) {
+        out.println("org.w3c.css.servlet.CssValidator: couldn't "+
+                "load  error file");
+        out.flush();
+        }
+        unknown.printStackTrace();
+    } finally {
+        if (out != null) {
+        out.close();
+        }
+    }
     }
 
 }
