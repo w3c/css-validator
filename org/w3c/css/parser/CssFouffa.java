@@ -62,6 +62,8 @@ public final class CssFouffa extends CssParser {
     // origin of the style sheet
     int origin;
 
+    int number_of_imports = 0;
+
     /**
      * Create a new CssFouffa with a data input and a begin line number.
      *
@@ -312,6 +314,12 @@ public final class CssFouffa extends CssParser {
      */
     public void handleImport(URL url, String file, AtRuleMedia media) {
 	CssError cssError = null;
+
+	number_of_imports++;
+
+	if (number_of_imports > 1000) {
+		ac.getFrame().addError(new CssError(new Exception("Maximum number of imports reached")));
+	}
 
 	try {
 	    if (Util.importSecurity) {
