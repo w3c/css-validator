@@ -519,8 +519,17 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	if (ctype != null) {
 	    try {
 		MimeType repmime = new MimeType(ctype);
-		if (repmime.hasParameter("charset"))
+		if (repmime.hasParameter("charset")) {
 		    source.setEncoding(repmime.getParameterValue("charset"));
+		} else {
+		    // if text/html and no given charset, let's assume
+		    // iso-8859-1. Ideally, the parser would change the
+		    // encoding if it find a mismatch, not sure, but well...
+		    if (repmime.match(MimeType.TEXT_HTML) == 
+			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
+			source.setEncoding("iso-8859-1");
+		    }
+		}
 	    } catch (Exception ex) {}
 	}
 	source.setSystemId(urlString);
