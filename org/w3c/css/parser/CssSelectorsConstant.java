@@ -7,6 +7,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2002/12/20 16:02:31  sijtsche
+ * new Basic User Interface pseudo classes and elements
+ *
  * Revision 1.5  2002/08/21 09:00:28  sijtsche
  * pseudo element ::marker added
  *
@@ -34,7 +37,9 @@ public interface CssSelectorsConstant {
       "checked", "indeterminate", "root", "last-child",
       "first-of-type", "last-of-type", "only-of-type",
       "only-child", "empty", "valid", "invalid", "required",
-      "optional", "read-only", "read-write" };
+      "optional", "read-only", "read-write",
+      "default", "in-range", "out-of-range"
+      };
 
     public static final String[] PSEUDOCLASS_CONSTANTSCSS2 =
     {
@@ -61,7 +66,7 @@ public interface CssSelectorsConstant {
 
     public static final String[] PSEUDOELEMENT_CONSTANTS =
     { "first-line", "first-letter", "before", "after",
-      "selection", "marker", "value", "choices"
+      "selection", "marker", "value", "choices", "repeat-item", "repeat-index"
     };
 
     // lang is special, and contains and nth-element and nth-type-of
