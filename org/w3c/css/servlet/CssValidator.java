@@ -4,50 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.9  2003/10/20 13:15:49  ylafon
- * formatting
- *
- * Revision 1.8  2003/10/17 15:25:48  ylafon
- * removed trace
- *
- * Revision 1.7  2003/10/17 13:56:12  ylafon
- * user the StyleReport factory
- *
- * Revision 1.6  2003/10/16 20:56:15  ylafon
- * character encoding was using Content-Encoding instead of
- * the charset paremeter in the mime type.
- * Now fixed.
- * Also starting to use MimeType class from org.w3c.www.mime, more is planned
- * to take benefit of fast comparisons and optimisations.
- * ALso various cosmetic changes were done
- *
- * Revision 1.5  2002/07/21 14:05:08  sijtsche
- * CSS3, SVG, SVG tiny and SVG basic added as validation options
- *
- * Revision 1.4  2002/07/12 20:58:36  plehegar
- * Removed dimensions for the icon
- *
- * Revision 1.3  2002/05/19 04:11:34  plehegar
- * Replaced the email address
- *
- * Revision 1.2  2002/04/08 21:18:10  plehegar
- * New
- *
- * Revision 3.1  1997/08/29 13:23:27  plehegar
- * Freeze
- *
- * Revision 2.2  1997/08/20 11:42:09  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/11 08:05:17  plehegar
- * Freeze
- *
- * Revision 1.1  1997/07/28 21:32:31  plehegar
- * Initial revision
- *
- */
+
 
 package org.w3c.css.servlet;
 
