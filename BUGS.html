@@ -44,9 +44,10 @@
     <h1 class="center">CSS Validator version 2.0 : bugs list</h1>
     <ol>
       <li>
-	<p>slash is required after hostnames:
-	  <code>http://www.w3.org/</code> instead of
-	  <code>http://www.w3.org</code>
+	<p>The validator fails on HTTP URIs omitting the trailing slash, i.e.
+    <code>http://www.w3.org/</code> works while
+	  <code>http://www.w3.org</code> doesn't.
+	  (Reported by Bj&ouml;rn H&ouml;hrmann)
 	</p>
 	<p>
 	  See <a
@@ -65,7 +66,7 @@
       </li>
       <li>
 	<p>
-	  "application/xml+html" not supported.
+	  "application/xml+html" not supported. <!-- Fixed -->
 	</p>
       </li>
       <li>
@@ -197,6 +198,63 @@
 	  "inherit" are legitimate colors for border-color.  The CSS
 	  parser gripes about it however. See <a
 	  href='http://lists.w3.org/Archives/Public/www-validator-css/2002Mar/att-0024/00-part'>message</a>.
+	</p>
+      </li>
+
+      
+    <li>
+	<p>
+	  Pretty printer removes attribute selector, i.e.  '#id[id] {
+	  position : fixed }' becomes '#id { position : fixed }' on
+	  output. (Reported by Bj&ouml;rn H&ouml;hrmann)
+	</p>
+      </li>
+      <li>
+	<p>
+	  Pretty printer fails to add quote marks for e.g.
+	  'elem[p="100"] { }', i.e. users get an invalid style sheet
+	  since all values but ident tokens must be quoted. (Reported by
+	  Philip Pawley)
+	</p>
+      </li>
+    <li>
+	<p>
+	  Properties for media the property doesn't apply to marks style
+	  sheet as invalid, e.g. @media screen { voice-family: foo } The
+	  CSS Level 2 recommendation doesn't say such style sheets are
+	  invalid. The error should be turned into a warning. (Reported
+	  by Rob Chandanais)
+	</p>
+      </li>
+    <li>
+	<p>
+	  Alan J. Flavell argued, that the Validator should also
+	  complain 'background-color: transparent' as if
+	  background-color has been omitted, see <a
+	  href='http://lists.w3.org/Archives/Public/www-validator-css/2001Aug/0072.html'>message</a>
+	</p>
+      </li>
+      <li>
+	<p>
+	  The Validator passes the Accept-Language HTTP header to the
+	  server where the code to validate comes from. This conflicts
+	  sometimes with content negotiation facilities, i.e. you cannot
+	  validate pages written in languages you do not accept. I
+	  suggest adding '*' at the end of the list of accepted
+	  languages. (Reported by Bj&ouml;rn H&ouml;hrmann)
+	</p>
+      </li>
+      <li>
+	<p>
+	  It produces sometimes invalid XHTML, try to validate e.g.
+	  <a href='http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fwww.sociables2.org%2FEvent%2Fevent_detail.asp%3Fid%3D476&warning=1&profile=css2'>test</a>
+	  (Reported by Daniel Barclay)
+	</p>
+      </li>
+      <li>
+	<p>
+	  <a
+	     href='http://lists.w3.org/Archives/Public/www-validator-css/2001Sep/0008.html'>Karl's report</a>
 	</p>
       </li>
     </ol>
