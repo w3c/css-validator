@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-fr" xml:lang="en-fr">
+  <head>
+    <title>CSS Validator Project</title>
+
+    <link href="style/page.css" type="text/css" rel="STYLESHEET" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <link rel="STYLESHEET" title="default" media="screen"
+href="style/general.css" type="text/css" />
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+</head>
+  <body>
+    <a class="left" href="http://www.w3.org">
+      <img src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" /></a>
+    <a class="right" href="http://www.w3.org/Jigsaw/"><img
+	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
+	  border="0" width="94" height="52" /></a>
+    <br />
+
+    <div class="t1">CSS</div>
+    <div class="t2">Validator</div>
+
+    <h1 class="center">CSS Validator version 2.0</h1>
+    
+    <p>
+      This is a CSS validator for <a
+	href="http://www.w3.org/TR/REC-CSS2/">Cascading Style Sheets, level
+	2</a>. See the <a href="COPYRIGHT.html">copyright notice</a>.
+    </p>
+    <p>
+      You can run it on a web server, on the command line or use it in your new
+      browser.
+    </p>
+
+    <p>
+      If you have any questions or problems with the validator, send us an <a
+	href="Email.html">email</a>.
+    </p>
+
+    <p>This directory contains:</p>
+    <dl>
+      <dt>
+	<a href="org/w3c/css/parser/analyzer">org.w3c.css.parser.analyzer</a></dt>
+      <dd>
+	The parser generated with 
+	<a href="http://www.suntest.com/JavaCC">JavaCC 0.7.1</a>.
+	You'll probably not want to see this directory.</dd>
+      <dt>
+	<a href="org/w3c/css/parser">org.w3c.css.parser</a></dt>
+      <dd>
+	The front-end of the parser</dd>
+      <dt>
+	<a href="org/w3c/css/values">org.w3c.css.values</a></dt>
+      <dd>
+	All values for the parser to construct an expression.</dd>
+      <dt>
+	<a href="org/w3c/css/properties">org.w3c.css.properties</a></dt>
+      <dd>
+	All cascading style sheet level 1 properties.</dd>
+      <dt>
+	<a href="org/w3c/css/aural">org.w3c.css.aural</a></dt>
+      <dd>
+	For Aural properties.</dd>
+      <dt>
+	<a href="org/w3c/css/table">org.w3c.css.table</a></dt>
+      <dd>
+	All CSS2 table properties.</dd>
+      <dt>
+	<a href="org/w3c/css/user">org.w3c.css.user</a></dt>
+      <dd>
+	All CSS2 user properties.</dd>
+      <dt>
+	<a href="org/w3c/css/font">org.w3c.css.font</a></dt>
+      <dd>
+	All CSS2 font properties.</dd>
+      <dt>
+	<a href="org/w3c/css/paged">org.w3c.css.paged</a></dt>
+      <dd>
+	All CSS2 paged properties.</dd>
+      <dt>
+	<a href="org/w3c/css/css">org.w3c.css.css</a> </dt>
+      <dd>
+	The validator is here !</dd>
+      <dt>
+	<a href="org/w3c/css/util">org.w3c.css.util</a></dt>
+      <dd>
+	some utilities for a lot of classes</dd>
+      <dt>
+	<a href="org/w3c/css/servlet">org.w3c.css.servlet</a></dt>
+      <dd>
+	The validator servlet.
+	<div class="box">
+	  <p>
+	    In servlet mode, URL like file are desactivated. Be careful with
+	    URL, you can put a URL request so if your site have special
+	    authorization to access web pages, it should be dangerous to run the
+	    validator on it. You can desactivated all URL request with the init
+	    parameter 'import'. Set this parameter to 'false' (default) means
+	    any URL request (except file:) are authorized.  see the <a
+	      href="docs/org.w3c.css.servlet.CssValidator.html">javadoc documentation</a>
+	    for more informations on the servlet.
+	    </p>
+	</div></dd>
+      <dt>
+	docs</dt>
+      <dd>
+	the <a href="docs/packages.html">javadoc documentation</a>.</dd>
+      <dt>
+	<a href="HOWTO.html">HOWTO</a></dt>
+      <dd>
+	How can you add your owns properties ?</dd>
+      <dt>
+	<a href="RUN.html">RUN</a></dt>
+      <dd>
+	How to launch the validator on your local system.</dd>
+    </dl>
+    
+    <p>
+      You have a lot of configuration files in the validator (in Java, it means
+      properties).
+    </p>
+      
+    <ul>
+      <li>package org.w3c.css.parser
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/parser/Config.properties">Config.properties</a></dt>
+	  <dd>
+	    The default CssStyle to use when parsing a document.</dd>
+	  <dt>
+	    <a href="org/w3c/css/parser/Elements.dtd4">Elements.dtd4</a></dt>
+	  <dd>
+	    All HTML elements recognized by a selector.</dd>
+	</dl></li>
+      <li>package org.w3c.css.util
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/util/Messages.properties">Messages.properties</a></dt>
+	  <dd>
+	    All warning and error messages used by the parser.</dd>
+	</dl></li>
+      <li>package org.w3c.css.properties
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/properties/CSS1Default.properties">CSS1Default.properties</a></dt>
+	  <dd>
+	    Inheritance controls for all CSS1 properties.</dd>
+	  <dt>
+	    <a href="org/w3c/css/properties/CSS1Properties.properties">CSS1Properties.properties</a></dt>
+	  <dd>
+	    All CSS1 properties.</dd>
+	</dl></li>
+      <li>package org.w3c.css.aural
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/aural/ACSSDefault.properties">ACSSDefault.properties</a></dt>
+	  <dd>
+	    Inheritance controls for all aural properties.</dd>
+	  <dt>
+	    <a href="org/w3c/css/aural/AuralProperties.properties">AuralProperties.properties</a></dt>
+	  <dd>
+	    All CSS1 and Aural properties.</dd>
+	  <dt>
+	    <a href="org/w3c/css/aural/AuralDefault.properties">AuralDefault.properties</a></dt>
+	  <dd>
+	    Configuration for Aural browser.</dd>
+	</dl></li>
+      <li>package org.w3c.css.font
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/font/Font.properties">Font.properties</a></dt>
+	  <dd>
+	    Inheritance controls for all font properties and configuration file for the parser.</dd>
+	</dl></li>
+      <li>package org.w3c.css.css
+	<dl>
+	  <dt>
+	    <a href="org/w3c/css/css/format.properties">format.properties</a></dt>
+	  <dd>
+	    Available output format for the validator</dd>
+	  <dt>
+	    <a href="org/w3c/css/css/text.properties">text.properties</a></dt>
+	  <dd>
+	    text output format.</dd>
+	  <dt>
+	    <a href="org/w3c/css/css/html.properties">html.properties</a></dt>
+	  <dd>
+	    html output properties.</dd>
+	</dl></li>
+    </ul>
+    
+    <hr class="large" />
+    <img src="images/mwcss.gif" alt="made with CSS" />
+    <address class="right"><a href="Email.html">validator-css</a></address>
+  </body>
+</html>
