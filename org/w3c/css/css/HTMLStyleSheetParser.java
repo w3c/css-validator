@@ -212,7 +212,6 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
      * @param msg an error message information
      */
     public void notifyFatalError(HtmlTag root, Exception x, String s) {
-//	org.w3c.util.Trace.showTrace("notifyfatalerror: "+s + " [" + root +"]");
 	exception = x;
     }
     
