@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/05/08 10:04:25  dejong
+ * newer version with the new CSS 3 color descriptors HSL, RGBA and HSLA + new user preferences for hyperlink colors
+ *
+ * Revision 1.1  2002/03/13 19:57:22  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:38:07  plehegar
  * Freeze
  *
@@ -19,6 +25,10 @@ import java.util.Hashtable;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssAngle;
+import org.w3c.css.values.CssPercentage;
+
+import java.util.Vector;
 
 /**
  *   <H3>
@@ -138,7 +148,7 @@ import org.w3c.css.util.ApplContext;
  *   <P>
  *   which then avoids any need to do transcendental math per color attribute,
  *   far less per pixel.
- 
+
  * See also
  * <P>
  * <A NAME="ref9">[9]</A> M Anderson, R Motta, S Chandrasekar, M Stokes:
@@ -167,21 +177,25 @@ import org.w3c.css.util.ApplContext;
  *
  * @version $Revision$
  */
-public class CssColor extends CssValue 
+public class CssColor extends CssValue
         implements CssColorConstants, CssOperator {
-    
+
     Object color;
     RGB rgb;
-    static Hashtable definedColors;    
+    RGBA rgba = null;
+	HSL hsl = null;
+	HSLA hsla = null;
+
+    static Hashtable definedColors;
     static CssIdent inherit = new CssIdent("inherit");
-    
+
     /**
      * Create a new CssColor.
      */
     public CssColor() {
 	color = inherit;
     }
-    
+
     /**
      * Create a new CssColor with a color name.
      *
@@ -192,13 +206,13 @@ public class CssColor extends CssValue
 	//	setIdentColor(s.toLowerCase(), ac);
 	setIdentColor(s, ac);
     }
-    
+
     /**
      * Set the value from a defined color RBG.
      *
      * @param s the string representation of the color.
      * @exception InvalidParamException the color is incorrect.
-     */  
+     */
     public void set(String s, ApplContext ac)  throws InvalidParamException {
 	if (s.startsWith("#")) {
 	    setShortRGBColor(s.toLowerCase(), ac);
@@ -206,10 +220,10 @@ public class CssColor extends CssValue
 	    setIdentColor(s, ac);
 	}
     }
-    
+
     /**
      * Return the internal value.
-     */  
+     */
     public Object get() {
 	if (color != null) {
 	    if (color == inherit) {
@@ -221,7 +235,7 @@ public class CssColor extends CssValue
 	    return rgb.r;
 	}
     }
-    
+
     /**
      * Returns <code>true</code> if the internal value is the default value
      * (e.g. 'inherited').
@@ -229,38 +243,44 @@ public class CssColor extends CssValue
     public boolean isDefault() {
 	return color == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (color != null) {
-	    if (color == inherit) {
-		return inherit.toString();
-	    } else {
-		return color.toString();
-	    }
-	} else {
-	    return rgb.toString();
-	}
+		if (color != null) {
+		    if (color == inherit) {
+				return inherit.toString();
+		    } else {
+				return color.toString();
+		    }
+		} else if (rgba != null) {
+			return rgba.toString();
+		} else if (hsl != null) {
+			return hsl.toString();
+		} else if (hsla != null) {
+			return hsla.toString();
+		} else {
+		    return rgb.toString();
+		}
     }
-    
+
     /**
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
-     */  
-    public void setRGBColor(CssExpression exp, ApplContext ac) 
+     */
+    public void setRGBColor(CssExpression exp, ApplContext ac)
   	    throws InvalidParamException {
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
-	if (((Float) val.get()).floatValue() < 0 || 
+
+	if (((Float) val.get()).floatValue() < 0 ||
 	    ((Float) val.get()).floatValue() > 255)
 	    ac.getFrame().addWarning("out-of-range", Integer.toString(((Float) val.get()).intValue()));
 
@@ -271,16 +291,16 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
-	if (((Float) val.get()).floatValue() < 0 || 
+
+	if (((Float) val.get()).floatValue() < 0 ||
 	    ((Float) val.get()).floatValue() > 255)
 	    ac.getFrame().addWarning("out-of-range", Integer.toString(((Float) val.get()).intValue()));
 
@@ -292,17 +312,17 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
 
-	if (((Float) val.get()).floatValue() < 0 || 
-	    ((Float) val.get()).floatValue() > 255)	
+	if (((Float) val.get()).floatValue() < 0 ||
+	    ((Float) val.get()).floatValue() > 255)
 	ac.getFrame().addWarning("out-of-range", Integer.toString(((Float) val.get()).intValue()));
 
 	if (val instanceof CssNumber) {
@@ -312,18 +332,18 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	if (exp.getValue() != null) {
 	    throw new InvalidParamException("rgb", exp.getValue(), ac);
 	}
     }
-    
+
     /**
      * Parse a RGB color.
      * format #(3-6)<hexnum>
-     */  
-    private void setShortRGBColor(String s, ApplContext ac) 
+     */
+    private void setShortRGBColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	int r;
 	int g;
@@ -353,10 +373,10 @@ public class CssColor extends CssValue
 	rgb.b = new Integer(b);
 	rgb.output = "#" + s;
     }
-    
+
     /**
      * Parse an ident color.
-     */  
+     */
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
@@ -368,53 +388,204 @@ public class CssColor extends CssValue
 	    } else if (obj instanceof String) {
 		color = (String) obj;
 		if (!obj.equals(s)) {
-		    ac.getFrame().addWarning("color.mixed-capitalization", 
+		    ac.getFrame().addWarning("color.mixed-capitalization",
 					     s);
 		}
 	    }
 	    return;
 	}
-	
+
 	throw new InvalidParamException("value", s, "color", ac);
     }
-    
+
     /**
      * Compares two values for equality.
      *
      * @param value The other value.
-     */  
+     */
     public boolean equals(Object cssColor) {
 	return ((cssColor instanceof CssColor) &&
 		((color != null && color.equals(((CssColor) cssColor).color))
 		 || ((color == null)
-		     && (rgb != null) 
+		     && (rgb != null)
 		     && (((CssColor) cssColor).rgb != null)
 		     && (rgb.r.equals(((CssColor) cssColor).rgb.r)
 			 && rgb.g.equals(((CssColor) cssColor).rgb.g)
 			 && rgb.b.equals(((CssColor) cssColor).rgb.b)))));
     }
-    
+
+    public void setRGBAColor(Vector exp, ApplContext ac)
+  	    throws InvalidParamException {
+
+		color = null;
+		rgba = new RGBA();
+		Float r;
+		Float g;
+		Float b;
+		Float a;
+
+		try {
+			r = new Float(((CssValue) exp.elementAt(0)).toString());
+		} catch (Exception e) {
+			throw new InvalidParamException("rgb", (exp.elementAt(0)).toString(), ac);
+		}
+
+		try {
+			g = new Float(((CssValue) exp.elementAt(1)).toString());
+		} catch (Exception e) {
+			throw new InvalidParamException("rgb", (exp.elementAt(1)).toString(), ac);
+		}
+
+		try {
+			b = new Float(((CssValue) exp.elementAt(2)).toString());
+		} catch (Exception e) {
+			throw new InvalidParamException("rgb", (exp.elementAt(2)).toString(), ac);
+		}
+
+		try {
+			a = new Float(((CssValue) exp.elementAt(3)).toString());
+		} catch (Exception e) {
+			throw new InvalidParamException("rgb", (exp.elementAt(3)).toString(), ac);
+		}
+
+		if (r.floatValue() < 0 || r.floatValue() > 255) {
+		    ac.getFrame().addWarning("out-of-range", Integer.toString(r.intValue()));
+		    r = new Float(clampedValueRGB(ac, r.floatValue()));
+		}
+		if (g.floatValue() < 0 || g.floatValue() > 255) {
+		    ac.getFrame().addWarning("out-of-range", Integer.toString(g.intValue()));
+		    g = new Float(clampedValueRGB(ac, g.floatValue()));
+		}
+		if (b.floatValue() < 0 || b.floatValue() > 255) {
+		    ac.getFrame().addWarning("out-of-range", Integer.toString(b.intValue()));
+		    b = new Float(clampedValueRGB(ac, b.floatValue()));
+		}
+
+		if (a.floatValue() < 0 || a.floatValue() > 1) {
+		    ac.getFrame().addWarning("out-of-range", Integer.toString(a.intValue()));
+		    a = new Float(clampedValue(ac, a.floatValue()));
+		}
+
+		rgba.r = r;
+		rgba.g = g;
+		rgba.b = b;
+		rgba.a = a;
+
+	}
+
+    public void setHSLColor(Vector exp, ApplContext ac)
+  	    throws InvalidParamException {
+
+		color = null;
+		hsl = new HSL();
+
+		CssAngle h = new CssAngle();
+		CssPercentage s = new CssPercentage();
+		CssPercentage l = new CssPercentage();
+
+		// no correct InvalidParamException in CssAngle in case of an error, therefore this double catch
+		try {
+			h.set((exp.elementAt(0)).toString(), ac);
+		} catch (InvalidParamException e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		} catch (Exception e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		}
+
+		// here a correct InvalidParamException is thrown in case of an error
+		s.set((exp.elementAt(1)).toString(), ac);
+		l.set((exp.elementAt(2)).toString(), ac);
+
+		hsl.h = h;
+		hsl.s = s;
+		hsl.l = l;
+
+	}
+
+    public void setHSLAColor(Vector exp, ApplContext ac)
+  	    throws InvalidParamException {
+
+		color = null;
+		hsla = new HSLA();
+
+		CssAngle h = new CssAngle();
+		CssPercentage s = new CssPercentage();
+		CssPercentage l = new CssPercentage();
+		Float a;
+
+		// no correct InvalidParamException in CssAngle in case of an error, therefore this double catch
+		try {
+			h.set((exp.elementAt(0)).toString(), ac);
+		} catch (InvalidParamException e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		} catch (Exception e) {
+			throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+		}
+
+		// here a correct InvalidParamException is thrown in case of an error
+		s.set((exp.elementAt(1)).toString(), ac);
+		l.set((exp.elementAt(2)).toString(), ac);
+
+		try {
+			a = new Float(((CssValue) exp.elementAt(3)).toString());
+		} catch (Exception e) {
+			throw new InvalidParamException("rgb", (exp.elementAt(3)).toString(), ac);
+		}
+
+		if (a.floatValue() < 0 || a.floatValue() > 1) {
+		    ac.getFrame().addWarning("out-of-range", Integer.toString(a.intValue()));
+		    a = new Float(clampedValue(ac, a.floatValue()));
+		}
+
+		hsla.h = h;
+		hsla.s = s;
+		hsla.l = l;
+		hsla.a = a;
+
+	}
+
+    /**
+     * Brings all values back between 0 and 1
+     *
+     * @param opac Alpha value that indicates opacity
+     */
+   private float clampedValue(ApplContext ac, float opac) {
+       if (opac < 0 || opac > 1) {
+          ac.getFrame().addWarning("out-of-range", Util.displayFloat(opac));
+          return ((opac<0)?0:1);
+       }
+       else return(opac);
+   }
+
+   private float clampedValueRGB(ApplContext ac, float rgb) {
+       if (rgb < 0 || rgb > 255) {
+          ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
+          return ((rgb<0)?0:255);
+       }
+       else return(rgb);
+   }
+
     /**
      * Gets the red component of this color.
      */
     public Object getRed() {
 	return rgb.r;
     }
-    
+
     /**
      * Gets the green component of this color.
      */
     public Object getGreen() {
 	return rgb.g;
     }
-    
+
     /**
      * Gets the blue component of this color.
      */
     public Object getBlue() {
 	return rgb.b;
     }
-    
+
     static {
 	definedColors = new Hashtable();
 	definedColors.put("aliceblue",
@@ -437,7 +608,7 @@ public class CssColor extends CssValue
 		  new RGB(new Integer(240),
 			  new Integer(255),
 			  new Integer(255)));
-	definedColors.put("beige",              
+	definedColors.put("beige",
 		  new RGB(new Integer(245),
 			  new Integer(245),
 			  new Integer(220)));
@@ -1006,6 +1177,17 @@ public class CssColor extends CssValue
         definedColors.put("window", "Window");
         definedColors.put("windowframe", "WindowFrame");
         definedColors.put("windowtext", "WindowText");
+
+    	// CSS3 user preferences for hyperlink colors
+    	definedColors.put("ActiveHyperlink", "ActiveHyperlink");
+    	definedColors.put("ActiveHyperlinkText", "ActiveHyperlinkText");
+    	definedColors.put("HoverHyperlink", "HoverHyperlink");
+    	definedColors.put("HoverHyperlinkText", "HoverHyperlinkText");
+    	definedColors.put("Hyperlink", "Hyperlink");
+    	definedColors.put("HyperlinkText", "HyperlinkText");
+    	definedColors.put("VisitedHyperlink", "VisitedHyperlink");
+    	definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
+
     }
 
 }
