@@ -16,6 +16,7 @@ import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssAngle;
 
 /**
  *  <P>
@@ -26,14 +27,14 @@ import org.w3c.css.values.CssNumber;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  glyph-orientation-vertical' controls glyph orientation when the primary 
+ *  glyph-orientation-vertical' controls glyph orientation when the primary
  *  text advance direction is vertical.
  */
 
 public class CssGlyphOrVert extends CssProperty {
 
     CssValue vert;
-    
+
     static CssIdent auto = new CssIdent("auto");
 
     /**
@@ -50,7 +51,7 @@ public class CssGlyphOrVert extends CssProperty {
      8 @exception InvalidParamException Incorrect value
      */
     public CssGlyphOrVert(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -61,25 +62,16 @@ public class CssGlyphOrVert extends CssProperty {
 	else if (val.equals(auto)) {
 	    vert = auto;
 	    expression.next();
-	}
-	else if (val instanceof CssNumber) {
-	    Integer intval = new Integer(val.toString());
-	    int n = intval.intValue();
-	    if (((n % 90) == 0) && (n < 360) && (n > -360)) {
+	} else if (val instanceof CssAngle) {
 		vert = val;
 		expression.next();
-	    }
-	    else {
-		throw new InvalidParamException("anglevalue", val.toString(),
-						getPropertyName(), ac);
-	    }
 	}
 	else {
 	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
     }
-		
+
 
     /**
      * Add this property to the CssStyle
@@ -116,7 +108,7 @@ public class CssGlyphOrVert extends CssProperty {
 	return (property instanceof CssGlyphOrVert &&
 		vert.equals(((CssGlyphOrVert) property).vert));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -16,6 +16,7 @@ import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssAngle;
 
 /**
  *  <P>
@@ -26,7 +27,7 @@ import org.w3c.css.values.CssNumber;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  glyph-orientation-horizontal' controls glyph orientation when the primary 
+ *  glyph-orientation-horizontal' controls glyph orientation when the primary
  *  text advance direction is horizontal.
  */
 
@@ -35,7 +36,7 @@ public class CssGlyphHor extends CssProperty {
     CssValue hor;
     ApplContext ac;
 
-    /** 
+    /**
      * Create a new CssGlyphHor
      */
     public CssGlyphHor() {
@@ -44,40 +45,31 @@ public class CssGlyphHor extends CssProperty {
 	this.ac = ac;
     }
 
-    /** 
+    /**
      * Create a new CssGlyphOrHor
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
     public CssGlyphHor(ApplContext ac, CssExpression expression) throws InvalidParamException {
-	
+
 	this.ac = ac;
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    hor = inherit;
 	    expression.next();
-	}
-	else if (val instanceof CssNumber) {
-	    Integer intval = new Integer(val.toString());
-	    int n = intval.intValue();
-	    if (((n % 90) == 0) && (n < 360) && (n > -360)) {
+	} else if (val instanceof CssAngle) {
 		hor = val;
 		expression.next();
-	    }
-	    else {
-		throw new InvalidParamException("anglevalue", val.toString(),
-						getPropertyName(), ac);
-	    }
 	}
 	else {
 	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
     }
-		
+
 
     /**
      * Add this property to the CssStyle
@@ -114,7 +106,7 @@ public class CssGlyphHor extends CssProperty {
 	return (property instanceof CssGlyphHor &&
 		hor.equals(((CssGlyphHor) property).hor));
     }
-    
+
     /**
      * Returns the name of this property
      */
