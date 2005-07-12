@@ -1,22 +1,22 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">\u67e5\u770b\u9519\u8bef</a></li>
-go-warnings: <li><a href="#warnings">\u67e5\u770b\u8b66\u544a</a></li>
-go-rules: <li><a href="#css">\u67e5\u770b\u4f60\u5df2\u7ecf\u6821\u9a8c\u7684\u5c42\u53e0\u6837\u5f0f\u8868</a></li>
-no-error-or-warning: <div><h2>\u6ca1\u6709\u627e\u5230\u9519\u8bef\u6216\u8b66\u544a</h2></div>
+go-errors: <li><a href="#errors">查看错误</a></li>
+go-warnings: <li><a href="#warnings">查看警告</a></li>
+go-rules: <li><a href="#css">查看你已经校验的层叠样式表</a></li>
+no-error-or-warning: <div><h2>没有找到错误或警告</h2></div>
 
 no-errors: \
 <div> \
 <p>\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
-\u606d\u559c\u606d\u559c\uff0c\u6b64\u6587\u6863\u5df2\u7ecf\u901a\u8fc7<a\ \
-href="http://www.w3.org/TR/REC-CSS2/">\u6837\u5f0f\u8868</a>\u6821\u9a8c! \
+恭喜恭喜，此文档已经通过<a\ \
+href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
   </p>\
 <p> \
-\u4e3a\u4e86\u544a\u8bc9\u4f60\u7684\u8bbf\u5ba2\u4f60\u66fe\u81f4\u529b\u4e8e\u5efa\u7acb\u4ea4\u4e92\u6027\u7684\u7f51\u9875 \
-\u4f60\u53ef\u4ee5\u663e\u793a\u8fd9\u4e2a\u56fe\u6807\u5728\u4efb\u610f\u7ecf\u8fc7\u68c0\u9a8c\u7684\u7f51\u9875\u4e0a\u3002\u8fd9\u91cc\u662f \
-\u4f60\u7528\u4f5c\u52a0\u5165\u56fe\u6807\u5230\u4f60\u7684\u7f51\u9875\u4e0a\u7684HTML\u4ee3\u7801\uff1a</p><pre class='example'> \n\
+为了告诉你的访客你曾致力于建立交互性的网页 \
+你可以显示这个图标在任意经过检验的网页上。这里是 \
+你用作加入图标到你的网页上的HTML代码：</p><pre class='example'> \n\
 &lt;p>\n\
 \ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
 \ \ &lt;img style="border:0;width:88px;height:31px"\n\
@@ -25,20 +25,20 @@ href="http://www.w3.org/TR/REC-CSS2/">\u6837\u5f0f\u8868</a>\u6821\u9a8c! \
 \ &lt;/a>\n\
 &lt;/p></pre>\
 <p> \
-\u5982\u679c\u4f60\u559c\u6b22\u7684\u8bdd\uff0c\u4f60\u53ef\u4ee5\u4e0b\u8f7d\u8fd9\u4e2a\u56fe\u8c61\u5230\u4f60\u7684\u7f51\u7ad9\u76ee\u5f55\u4e0b\uff0c\u5e76\u4e14 \
-\u6539\u53d8\u4ee5\u4e0a\u7684\u4ee3\u7801\u6bb5\u4ee5\u5173\u8054\u5230\u4f60\u7684\u5f53\u5730\u56fe\u8c61\u800c\u4e0d\u662f\u8fd9\u4e2a\u670d\u52a1\u5668\u3002 \
+如果你喜欢的话，你可以下载这个图象到你的网站目录下，并且 \
+改变以上的代码段以关联到你的当地图象而不是这个服务器。 \
 \
-<p>\u5982\u679c\u4f60\u613f\u610f\u5efa\u7acb\u8fde\u63a5\u5230\u6b64\u9875 (\u4f8b\u5982\uff0c\u8fd9\u4e2a\u6821\u9a8c\u7ed3\u679c) \
-\u4ee5\u4fbf\u4ee5\u540e\u66f4\u52a0\u5bb9\u6613\u5730\u518d\u6821\u9a8c\u6b21\u9875\uff0c\u6216\u8005\u5bb9\u8bb8\u5176\u5b83\u4eba\u6821\u9a8c \
-\u4f60\u7684\u7f51\u9875\uff0c\u5176 URI \u662f\uff1a<pre>\n\
+<p>如果你愿意建立连接到此页 (例如，这个校验结果) \
+以便以后更加容易地再校验次页，或者容许其它人校验 \
+你的网页，其 URI 是：<pre>\n\
 \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ \u6216 http://jigsaw.w3.org/css-validator/check/referer (\u4ec5\u4f7f\u7528\u4e8eHTML\u6587\u6863)\n\
+\ \ \ \ \ \ \ 或 http://jigsaw.w3.org/css-validator/check/referer (仅使用于HTML文档)\n\
 \n\
-(\u6216\u8005\uff0c\u4f60\u53ef\u4ee5\u52a0\u5165\u5f53\u524d\u4e5f\u5230\u4f60\u7684\u4e66\u7b7e\u6216\u5217\u8868\u4e2d\u3002)</pre></div>
+(或者，你可以加入当前也到你的书签或列表中。)</pre></div>
 
-no-rules: <H2>\u6ca1\u6709\u627e\u5230\u6837\u5f0f\u8868</H2>
-not-css1-style: /* \u8bf7\u6ce8\u610f\uff01\u8fd9\u4e0d\u662fCSS1\u7684\u5c5e\u6027\uff01 */
+no-rules: <H2>没有找到样式表</H2>
+not-css1-style: /* 请注意！这不是CSS1的属性！ */
 
 # You have some predefined entities :
 #  file-title : the name of the style sheet
@@ -60,7 +60,7 @@ not-css1-style: /* \u8bf7\u6ce8\u610f\uff01\u8fd9\u4e0d\u662fCSS1\u7684\u5c5e\u6
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css"><h2>\u4f60\u5df2\u7ecf\u6821\u9a8c\u7684\u5c42\u53e0\u6837\u5f0f\u8868\uff1a</h2> \
+<div id="css"><h2>你已经校验的层叠样式表：</h2> \
 <ul> \
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -73,14 +73,14 @@ charset-rule: \
 
 errors : \
 <div id="errors">\
-<h2>\u9519\u8bef\uff1a</h2>\
+<h2>错误：</h2>\
 <!-- #error --></div>\n
 
 # How to write warnings
 
 warnings: \
 <div id="warnings"> \
-<h2>\u8b66\u544a\uff1a</h2> \
+<h2>警告：</h2> \
 <!-- #warning --></div>\n
 
 
@@ -94,7 +94,7 @@ document: \
 <head> \
 <meta lang="zh-cn" name="Translatoer" content="Water Tang">\n\
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
-<title>CSS \u6821\u9a8c\u7ed3\u679c</title> \n\
+<title>CSS 校验结果</title> \n\
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
 <link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css' >\n\
 <link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css' >\n\
@@ -107,14 +107,14 @@ style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
 src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
 height="52" ></a>\n\
 </p>\n\
-<h1>W3C CSS \u6821\u9a8c\u5668\u7ed3\u679c\uff1a \
+<h1>W3C CSS 校验器结果： \
 <a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \
 <ul> \
 <!-- #go-errors --> \
 <!-- #go-warnings --> \
 <!-- #go-rules --> \
 <li>\
-<a href="http://jigsaw.w3.org/css-validator/">\u8fd4\u56de\u6837\u5f0f\u8868\u6821\u9a8c\u5668</a></li>\
+<a href="http://jigsaw.w3.org/css-validator/">返回样式表校验器</a></li>\
 </ul>\
 <!-- #no-error-or-warning -->\
 <!-- #no-errors -->\
@@ -129,7 +129,7 @@ height="52" ></a>\n\
 	alt="Valid CSS!" height="31"\
  width="88"></a>\
 <address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
-\u6700\u65b0\u66f4\u65b0\uff1a <!-- #today --> </address> \
+最新更新： <!-- #today --> </address> \
 \
 <!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \
 </body> \

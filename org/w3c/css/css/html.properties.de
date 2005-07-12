@@ -15,9 +15,9 @@ Dieses Dokument wurde als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> validiert! \
   </p>\
 <p> \
-Sie können diese Icon auf jeder validierten Seite darstellen, um zu zeigen, \
-daß Sie sich die Mühe gemacht haben interoperable Web-Seiten zu erstellen.  \
-Nachfolgend finden Sie den HTML-Code, den Sie verwenden können um das Icon \
+Sie kÃ¶nnen diese Icon auf jeder validierten Seite darstellen, um zu zeigen, \
+daÃŸ Sie sich die MÃ¼he gemacht haben interoperable Web-Seiten zu erstellen.  \
+Nachfolgend finden Sie den HTML-Code, den Sie verwenden kÃ¶nnen um das Icon \
 in Ihre Web-Seiten einzubauen:</p><pre class='example'> \n\
 &lt;p>\n\
 \ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
@@ -27,19 +27,19 @@ in Ihre Web-Seiten einzubauen:</p><pre class='example'> \n\
 \ &lt;/a>\n\
 &lt;/p></pre>\
 <p> \
-Sie können das Bild auch herunterladen und in Ihrem lokalen \
-Web-Verzeichnis speichern.  In diesem Fall müssen sie das \
-obere HTML-Fragment so verändern, daß es auf Ihr lokales Bild verweist. </p>\
+Sie kÃ¶nnen das Bild auch herunterladen und in Ihrem lokalen \
+Web-Verzeichnis speichern.  In diesem Fall mÃ¼ssen sie das \
+obere HTML-Fragment so verÃ¤ndern, daÃŸ es auf Ihr lokales Bild verweist. </p>\
 \
-<p>Wenn Sie einen Verweis auf diese Seite anlegen möchten \
+<p>Wenn Sie einen Verweis auf diese Seite anlegen mÃ¶chten \
 (d.h. auf diese Validierungsergebnis) um die erneute Validierung dieser \
-Seite zu erleichtern oder um es anderen zu ermöglichen Ihre Seite zu \
+Seite zu erleichtern oder um es anderen zu ermÃ¶glichen Ihre Seite zu \
 validieren, so verwenden Sie folgenden URI:</p><pre>\n\
 \
 \ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\
+\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur fÃ¼r HTML/XML-Dokumente)\n\
 </pre>\n\
-<p>(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p></div>
+<p>(Sie kÃ¶nnen die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p></div>
 
 no-rules: <div><h2>Kein Stylesheet gefunden</h2></div>
 not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
@@ -127,7 +127,7 @@ height="52" /></a>\n\
  <img src="http://jigsaw.w3.org/css-validator/images/vcss" \
 	alt="Valid CSS!" height="31" width="88" /></a>\n\
 </p><address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
-Zuletzt geändert am: <!-- #today --> </address> \n\
+Zuletzt geÃ¤ndert am: <!-- #today --> </address> \n\
 \n\
 <!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \n\
 </body> \n\

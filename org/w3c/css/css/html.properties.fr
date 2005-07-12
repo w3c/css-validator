@@ -3,7 +3,7 @@
 # entites used by the HTML generator
 go-errors: <li><a href="#errors">Vers les erreurs</a></li>
 go-warnings: <li><a href="#warnings">Vers les avertissements</a></li>
-go-rules: <li><a href="#css">Vers votre feuille de style CSS validée</a></li>
+go-rules: <li><a href="#css">Vers votre feuille de style CSS validÃ©e</a></li>
 no-error-or-warning: <div><h2>Aucune erreur ou avertissement</h2></div>
 
 no-errors: \
