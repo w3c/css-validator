@@ -550,8 +550,8 @@ public final class CssValidator extends HttpServlet {
 	} else if (output.equals("soap12")) {
 	    // invert the comments on the following two lines to activate
 	    // the soap Mime Type
-	    //outputMt = new MimeType(soap12);
-	    outputMt = MimeType.TEXT_PLAIN.getClone();
+	    outputMt = new MimeType(soap12);
+	    //outputMt = MimeType.TEXT_PLAIN.getClone();
 	} else {
 	    // Change this line if you want text/html output when incorrect
 	    // output is passed
