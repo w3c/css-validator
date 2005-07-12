@@ -1,6 +1,7 @@
 # Defines your own error and warning message here
 content-type: text/html; charset=UTF-8
 content-language: de
+output-encoding-name: utf-8
 
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5

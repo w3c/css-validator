@@ -1,162 +1,162 @@
 # Defines your own error and warning message here
-content-type: text/html; charset=gb2312
+content-type: text/html; charset=utf-8
 content-language: zh
 
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: 重定义了 %s
+warning.redefinition: 脰脴露篓脪氓脕脣 %s
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: 一样的颜色对于 %s 和 %s
-warning.no-color: 你没有为你的背景色设置(前景)颜色
+warning.same-colors: 脪禄脩霉碌脛脩脮脡芦露脭脫脷 %s 潞脥 %s
+warning.no-color: 脛茫脙禄脫脨脦陋脛茫碌脛卤鲁戮掳脡芦脡猫脰脙(脟掳戮掳)脩脮脡芦
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
-warning.no-background-color: 你没有为你的(前景)颜色设置背景色
-warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
-warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
-名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
-符号会被转换为单一个空格。
-warning.no-padding: 建议你使用有背景色的浮白区域(padding area)
-warning.same-colors2: 颜色和背景颜色使用了相同的颜色 %s 和 %s
-warning.relative-absolute: 你在 %s 使用了一些绝对和相对长度。这不是棒的样式表
+warning.no-background-color: 脛茫脙禄脫脨脦陋脛茫碌脛(脟掳戮掳)脩脮脡芦脡猫脰脙卤鲁戮掳脡芦
+warning.no-generic-family: %s: 陆篓脪茅脛茫脰赂露篓脪禄赂枚脰脰脌脿脳氓驴脝脳梅脦陋脳卯潞贸碌脛脩隆脭帽
+warning.with-space: 掳眉潞卢驴脮掳脳碌脛脳氓驴脝脙没鲁脝脫娄赂脙掳眉潞卢脫脷脼垄脼垄脰脨隆拢脠莽鹿没脢隆脗脭脕脣拢卢脠脦潞脦 \
+脙没脳脰脟掳禄貌潞贸碌脛驴脮掳脳路没潞脜露录禄谩卤禄潞枚脗脭露酶脙没脳脰脰脨脣霉脫脨脕卢脨酶碌脛驴脮掳脳 \
+路没潞脜禄谩卤禄脳陋禄禄脦陋碌楼脪禄赂枚驴脮赂帽隆拢
+warning.no-padding: 陆篓脪茅脛茫脢鹿脫脙脫脨卤鲁戮掳脡芦碌脛赂隆掳脳脟酶脫貌(padding area)
+warning.same-colors2: 脩脮脡芦潞脥卤鲁戮掳脩脮脡芦脢鹿脫脙脕脣脧脿脥卢碌脛脩脮脡芦 %s 潞脥 %s
+warning.relative-absolute: 脛茫脭脷 %s 脢鹿脫脙脕脣脪禄脨漏戮酶露脭潞脥脧脿露脭鲁陇露脠隆拢脮芒虏禄脢脟掳么碌脛脩霉脢陆卤铆
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s 不是HTML元素
-warning.html-inside: HTML 元素不能嵌在其它元素中
-warning.body-inside: BODY 元素不能嵌在除了HTML元素的其它元素中
-warning.pseudo-classes: 定位锚伪类 %s 除了对'A'外，在元素上没有效果
+warning.unknown-html: %s 虏禄脢脟HTML脭陋脣脴
+warning.html-inside: HTML 脭陋脣脴虏禄脛脺脟露脭脷脝盲脣眉脭陋脣脴脰脨
+warning.body-inside: BODY 脭陋脣脴虏禄脛脺脟露脭脷鲁媒脕脣HTML脭陋脣脴碌脛脝盲脣眉脭陋脣脴脰脨
+warning.pseudo-classes: 露篓脦禄脙陋脦卤脌脿 %s 鲁媒脕脣露脭'A'脥芒拢卢脭脷脭陋脣脴脡脧脙禄脫脨脨搂鹿没
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s 不能嵌在内联元素中
-warning.withblock: 请小心。伪元素只能附于块级元素上
-warning.block-level: 这个属性应用于块级元素
+warning.noinside: %s 虏禄脛脺脟露脭脷脛脷脕陋脭陋脣脴脰脨
+warning.withblock: 脟毛脨隆脨脛隆拢脦卤脭陋脣脴脰禄脛脺赂陆脫脷驴茅录露脭陋脣脴脡脧
+warning.block-level: 脮芒赂枚脢么脨脭脫娄脫脙脫脷驴茅录露脭陋脣脴
 
 # used by org.w3c.css.parser.Frame
-warning.no-declaration: 在规则中没有声明
+warning.no-declaration: 脭脷鹿忙脭貌脰脨脙禄脫脨脡霉脙梅
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s 超出范围
+warning.out-of-range: %s 鲁卢鲁枚路露脦搂
 
 warning.marker: The marker-offset property applies on elements with 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: 在属性 %s 使用相对单位令样式表更加棒
+warning.relative: 脭脷脢么脨脭 %s 脢鹿脫脙脧脿露脭碌楼脦禄脕卯脩霉脢陆卤铆赂眉录脫掳么
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: 对不起，'@规则' %s 不能应用
+warning.at-rule: 露脭虏禄脝冒拢卢'@鹿忙脭貌' %s 虏禄脛脺脫娄脫脙
 
 # used by all properties and values
-error.operator: %s 是一个错误的运算符
-error.negative-value: %s 不允许使用负值
-error.few-value: 属性 %s 的值太小
+error.operator: %s 脢脟脪禄赂枚麓铆脦贸碌脛脭脣脣茫路没
+error.negative-value: %s 虏禄脭脢脨铆脢鹿脫脙赂潞脰碌
+error.few-value: 脢么脨脭 %s 碌脛脰碌脤芦脨隆
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s 不是一个 %s 值
+error.value: %s 虏禄脢脟脪禄赂枚 %s 脰碌
 
 error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s 重复出现
+error.same-value: %s 脰脴赂麓鲁枚脧脰
 
 # used by org.w3c.css.properties.CssClip
-error.shape: 无效的形状定义 rect(<top>,<right>,<bottom>,<left>)
-error.shape-separator: 形状定义的分隔符无效，必须为逗号
+error.shape: 脦脼脨搂碌脛脨脦脳麓露篓脪氓 rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: 脨脦脳麓露篓脪氓碌脛路脰赂么路没脦脼脨搂拢卢卤脴脨毛脦陋露潞潞脜
 
 # used by org.w3c.css.properties.CssContent
-error.attr: 无效的属性定义 attr(X)
-error.counter: 无效的计数器定义 counter(<identifier>[,<list-style-type>]?)
-error.counters: 无效的计数器定义 counters(<identifier>,<string>[,<list-style-type>]?)
+error.attr: 脦脼脨搂碌脛脢么脨脭露篓脪氓 attr(X)
+error.counter: 脦脼脨搂碌脛录脝脢媒脝梅露篓脪氓 counter(<identifier>[,<list-style-type>]?)
+error.counters: 脦脼脨搂碌脛录脝脢媒脝梅露篓脪氓 counters(<identifier>,<string>[,<list-style-type>]?)
 
 # used by org.w3c.css.font.Src
-error.format: 无效的格式定义 format(<string>[,<string>]*)
-error.local: 无效的格式定义 local(<string>|<ident>+)
+error.format: 脦脼脨搂碌脛赂帽脢陆露篓脪氓 format(<string>[,<string>]*)
+error.local: 脦脼脨搂碌脛赂帽脢陆露篓脪氓 local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s 是错误的单位
+error.unit: %s 脢脟麓铆脦贸碌脛碌楼脦禄
 
 # used by org.w3c.css.aural.ACssAzimuth
-error.degree: 位置必须描述为有效的角度范围
+error.degree: 脦禄脰脙卤脴脨毛脙猫脢枚脦陋脫脨脨搂碌脛陆脟露脠路露脦搂
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: 请指定仰角(elevation)以一个角度值，在'-90deg'和'90deg'之间("deg"为度).
+error.elevation.range: 脟毛脰赂露篓脩枚陆脟(elevation)脪脭脪禄赂枚陆脟露脠脰碌拢卢脭脷'-90deg'潞脥'90deg'脰庐录盲("deg"脦陋露脠).
 
 # used by org.w3c.css.aural.ACssPitchRange
-error.range: 此值超出范围。此值必须在'0'和'100'之间
+error.range: 麓脣脰碌鲁卢鲁枚路露脦搂隆拢麓脣脰碌卤脴脨毛脭脷'0'潞脥'100'脰庐录盲
 
 # used by org.w3c.css.properties.CssTextShadow
-error.two-lengths: 一个阴影位移由两个<length>值(一个模糊范围可以选择放于阴影位移之后)
+error.two-lengths: 脪禄赂枚脪玫脫掳脦禄脪脝脫脡脕陆赂枚<length>脰碌(脪禄赂枚脛拢潞媒路露脦搂驴脡脪脭脩隆脭帽路脜脫脷脪玫脫掳脦禄脪脝脰庐潞贸)
 
 error.integer: This number should be an integer.
-error.comma: 缺少逗号分隔符
+error.comma: 脠卤脡脵露潞潞脜路脰赂么路没
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s 是错误的百分比
+error.percent: %s 脢脟麓铆脦贸碌脛掳脵路脰卤脠
 
 # used by org.w3c.css.values.CssString
-error.string: %s 是错误的字符串
+error.string: %s 脢脟麓铆脦贸碌脛脳脰路没麓庐
 
 # used by org.w3c.css.values.CssURL
-error.url: %s 是错误的URL
+error.url: %s 脢脟麓铆脦贸碌脛URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
+error.rgb: %s 虏禄脢脟脫脨脨搂碌脛3禄貌6脦卤脢庐脕霉陆酶脰脝脢媒脳脰碌脛脩脮脡芦
 
 # used by org.w3c.css.values.CssNumber
-error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
+error.zero: 脰禄脫脨0驴脡脪脭鲁脡脦陋 %s. 脛茫卤脴脨毛脭脷脛茫碌脛脢媒脳脰潞贸录脫脠毛碌楼脦禄
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: 属性 %s 不存在
-error.noexistence-media: 媒体 %s 的属性 %s 不存在
-warning.noexistence-media: 媒体 %s 的属性 %s 不存在
+error.noexistence: 脢么脨脭 %s 虏禄麓忙脭脷
+error.noexistence-media: 脙陆脤氓 %s 碌脛脢么脨脭 %s 虏禄麓忙脭脷
+warning.noexistence-media: 脙陆脤氓 %s 碌脛脢么脨脭 %s 虏禄麓忙脭脷
 
 # used by org.w3c.css.parser.CssFouffa
-error.unrecognize: 太多值不能识别
+error.unrecognize: 脤芦露脿脰碌虏禄脛脺脢露卤冒
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: 伪元素: %s 不能在次处的上下文 %s 中出现
-error.pseudo-class: 伪类 .%s 不能在此处的HTML上下文 %s 中出现
-error.pseudo: 不识别的伪元素或伪类
-error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普通选择符: %s.
-error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
-error.todo : 抱歉，特性 %s 还不能支持
-error.incompatible: %s 和 %s 不兼容
+error.pseudo-element: 脦卤脭陋脣脴: %s 虏禄脛脺脭脷麓脦麓娄碌脛脡脧脧脗脦脛 %s 脰脨鲁枚脧脰
+error.pseudo-class: 脦卤脌脿 .%s 虏禄脛脺脭脷麓脣麓娄碌脛HTML脡脧脧脗脦脛 %s 脰脨鲁枚脧脰
+error.pseudo: 虏禄脢露卤冒碌脛脦卤脭陋脣脴禄貌脦卤脌脿
+error.id: ID脩隆脭帽路没 #%s 脦脼脨搂拢隆脰禄脫脨脪禄赂枚ID脩隆脭帽路没驴脡脪脭卤禄脰赂露篓碌陆脝脮脥篓脩隆脭帽路没: %s.
+error.space: 脠莽鹿没脢鹿脫脙脕脣脢么脨脭脩隆脭帽路没 ~= 拢卢脭脷脰碌 %s 脰脨碌脛脳脰卤脴脨毛虏禄掳眉潞卢驴脮赂帽
+error.todo : 卤搂脟赂拢卢脤脴脨脭 %s 禄鹿虏禄脛脺脰搂鲁脰
+error.incompatible: %s 潞脥 %s 虏禄录忙脠脻
 
-error.media: 不能识别的媒体 %s 
-error.page: 不能职别的伪命名页 %s
+error.media: 虏禄脛脺脢露卤冒碌脛脙陆脤氓 %s 
+error.page: 虏禄脛脺脰掳卤冒碌脛脦卤脙眉脙没脪鲁 %s
 
 
 # used by StyleSheetGeneratorHTML
-generator.context: 上下文
-generator.request: 导出你的样式表时发生错误 \
-请更正你的请求或发送邮件到 plh@w3.org.
-generator.unrecognized: 不能识别的
-generator.invalid-number: 无效数字
-generator.property: 无效数字
-generator.line: 行
-generator.not-found: 找不到文件
+generator.context: 脡脧脧脗脦脛
+generator.request: 碌录鲁枚脛茫碌脛脩霉脢陆卤铆脢卤路垄脡煤麓铆脦贸 \
+脟毛赂眉脮媒脛茫碌脛脟毛脟贸禄貌路垄脣脥脫脢录镁碌陆 plh@w3.org.
+generator.unrecognized: 虏禄脛脺脢露卤冒碌脛
+generator.invalid-number: 脦脼脨搂脢媒脳脰
+generator.property: 脦脼脨搂脢媒脳脰
+generator.line: 脨脨
+generator.not-found: 脮脪虏禄碌陆脦脛录镁
 generator.doc-html: <p>\
-若要如期工作，你的CSS样式表需要一个正确的文档解释树。 \
-这意味着你应该使用<a href="http://validator.w3.org/check?uri=\
-%s">正确的HTML</a>。</p>
+脠么脪陋脠莽脝脷鹿陇脳梅拢卢脛茫碌脛CSS脩霉脢陆卤铆脨猫脪陋脪禄赂枚脮媒脠路碌脛脦脛碌碌陆芒脢脥脢梅隆拢 \
+脮芒脪芒脦露脳脜脛茫脫娄赂脙脢鹿脫脙<a href="http://validator.w3.org/check?uri=\
+%s">脮媒脠路碌脛HTML</a>隆拢</p>
 
 generator.doc:<p>\
-若要正常工作，你的CSS样式表需要一个正确的文档解释树。 \
-这意味着你应该使用<a href="http://validator.w3.org/">正确 \
-的HTML</a>.</p>
+脠么脪陋脮媒鲁拢鹿陇脳梅拢卢脛茫碌脛CSS脩霉脢陆卤铆脨猫脪陋脪禄赂枚脮媒脠路碌脛脦脛碌碌陆芒脢脥脢梅隆拢 \
+脮芒脪芒脦露脳脜脛茫脫娄赂脙脢鹿脫脙<a href="http://validator.w3.org/">脮媒脠路 \
+碌脛HTML</a>.</p>
 
 
 # used by the parser
-parser.semi-colon: 试图寻找属性名前面的冒号。加上！
+parser.semi-colon: 脢脭脥录脩掳脮脪脢么脨脭脙没脟掳脙忙碌脛脙掳潞脜隆拢录脫脡脧拢隆
 
-parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
-除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
-被解释为不识别的尺寸值(以允许将来加入新的单位)
+parser.old_class:脭脷CSS1拢卢脌脿脙没脫娄赂脙脪脭碌茫驴陋脢录 (".55ft"), \
+鲁媒路脟脣眉脢脟脪禄赂枚鲁脽麓莽脰碌 (".55in")隆拢脭脷CSS2拢卢脪脭脡脧碌脛脌脿 \
+卤禄陆芒脢脥脦陋虏禄脢露卤冒碌脛鲁脽麓莽脰碌(脪脭脭脢脨铆陆芦脌麓录脫脠毛脨脗碌脛碌楼脦禄)
 
 
 # used by the servlet
-servlet.invalid-request: 你发出了无效的请求
-servlet.process: 不能对对象进行处理
+servlet.invalid-request: 脛茫路垄鲁枚脕脣脦脼脨搂碌脛脟毛脟贸
+servlet.process: 虏禄脛脺露脭露脭脧贸陆酶脨脨麓娄脌铆
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 

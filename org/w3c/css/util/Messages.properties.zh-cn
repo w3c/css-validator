@@ -1,163 +1,163 @@
 # Defines your own error and warning message here
-content-type: text/html; charset=gb2312
+content-type: text/html; charset=utf-8
 content-language: zh
-output-encoding-name: euc-cn
+output-encoding-name: utf-8
 
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: \u91cd\u5b9a\u4e49\u4e86 %s
+warning.redefinition: 重定义了 %s
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: \u4e00\u6837\u7684\u989c\u8272\u5bf9\u4e8e %s \u548c %s
-warning.no-color: \u4f60\u6ca1\u6709\u4e3a\u4f60\u7684\u80cc\u666f\u8272\u8bbe\u7f6e(\u524d\u666f)\u989c\u8272
+warning.same-colors: 一样的颜色对于 %s 和 %s
+warning.no-color: 你没有为你的背景色设置(前景)颜色
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
-warning.no-background-color: \u4f60\u6ca1\u6709\u4e3a\u4f60\u7684(\u524d\u666f)\u989c\u8272\u8bbe\u7f6e\u80cc\u666f\u8272
-warning.no-generic-family: %s: \u5efa\u8bae\u4f60\u6307\u5b9a\u4e00\u4e2a\u79cd\u7c7b\u65cf\u79d1\u4f5c\u4e3a\u6700\u540e\u7684\u9009\u62e9
-warning.with-space: \u5305\u542b\u7a7a\u767d\u7684\u65cf\u79d1\u540d\u79f0\u5e94\u8be5\u5305\u542b\u4e8e\u853b\u853b\u4e2d\u3002\u5982\u679c\u7701\u7565\u4e86\uff0c\u4efb\u4f55 \
-\u540d\u5b57\u524d\u6216\u540e\u7684\u7a7a\u767d\u7b26\u53f7\u90fd\u4f1a\u88ab\u5ffd\u7565\u800c\u540d\u5b57\u4e2d\u6240\u6709\u8fde\u7eed\u7684\u7a7a\u767d \
-\u7b26\u53f7\u4f1a\u88ab\u8f6c\u6362\u4e3a\u5355\u4e00\u4e2a\u7a7a\u683c\u3002
-warning.no-padding: \u5efa\u8bae\u4f60\u4f7f\u7528\u6709\u80cc\u666f\u8272\u7684\u6d6e\u767d\u533a\u57df(padding area)
-warning.same-colors2: \u989c\u8272\u548c\u80cc\u666f\u989c\u8272\u4f7f\u7528\u4e86\u76f8\u540c\u7684\u989c\u8272 %s \u548c %s
-warning.relative-absolute: \u4f60\u5728 %s \u4f7f\u7528\u4e86\u4e00\u4e9b\u7edd\u5bf9\u548c\u76f8\u5bf9\u957f\u5ea6\u3002\u8fd9\u4e0d\u662f\u68d2\u7684\u6837\u5f0f\u8868
+warning.no-background-color: 你没有为你的(前景)颜色设置背景色
+warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
+warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
+名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
+符号会被转换为单一个空格。
+warning.no-padding: 建议你使用有背景色的浮白区域(padding area)
+warning.same-colors2: 颜色和背景颜色使用了相同的颜色 %s 和 %s
+warning.relative-absolute: 你在 %s 使用了一些绝对和相对长度。这不是棒的样式表
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s \u4e0d\u662fHTML\u5143\u7d20
-warning.html-inside: HTML \u5143\u7d20\u4e0d\u80fd\u5d4c\u5728\u5176\u5b83\u5143\u7d20\u4e2d
-warning.body-inside: BODY \u5143\u7d20\u4e0d\u80fd\u5d4c\u5728\u9664\u4e86HTML\u5143\u7d20\u7684\u5176\u5b83\u5143\u7d20\u4e2d
-warning.pseudo-classes: \u5b9a\u4f4d\u951a\u4f2a\u7c7b %s \u9664\u4e86\u5bf9'A'\u5916\uff0c\u5728\u5143\u7d20\u4e0a\u6ca1\u6709\u6548\u679c
+warning.unknown-html: %s 不是HTML元素
+warning.html-inside: HTML 元素不能嵌在其它元素中
+warning.body-inside: BODY 元素不能嵌在除了HTML元素的其它元素中
+warning.pseudo-classes: 定位锚伪类 %s 除了对'A'外，在元素上没有效果
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s \u4e0d\u80fd\u5d4c\u5728\u5185\u8054\u5143\u7d20\u4e2d
-warning.withblock: \u8bf7\u5c0f\u5fc3\u3002\u4f2a\u5143\u7d20\u53ea\u80fd\u9644\u4e8e\u5757\u7ea7\u5143\u7d20\u4e0a
-warning.block-level: \u8fd9\u4e2a\u5c5e\u6027\u5e94\u7528\u4e8e\u5757\u7ea7\u5143\u7d20
+warning.noinside: %s 不能嵌在内联元素中
+warning.withblock: 请小心。伪元素只能附于块级元素上
+warning.block-level: 这个属性应用于块级元素
 
 # used by org.w3c.css.parser.Frame
-warning.no-declaration: \u5728\u89c4\u5219\u4e2d\u6ca1\u6709\u58f0\u660e
+warning.no-declaration: 在规则中没有声明
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s \u8d85\u51fa\u8303\u56f4
+warning.out-of-range: %s 超出范围
 
 warning.marker: The marker-offset property applies on elements with 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: \u5728\u5c5e\u6027 %s \u4f7f\u7528\u76f8\u5bf9\u5355\u4f4d\u4ee4\u6837\u5f0f\u8868\u66f4\u52a0\u68d2
+warning.relative: 在属性 %s 使用相对单位令样式表更加棒
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: \u5bf9\u4e0d\u8d77\uff0c'@\u89c4\u5219' %s \u4e0d\u80fd\u5e94\u7528
+warning.at-rule: 对不起，'@规则' %s 不能应用
 
 # used by all properties and values
-error.operator: %s \u662f\u4e00\u4e2a\u9519\u8bef\u7684\u8fd0\u7b97\u7b26
-error.negative-value: %s \u4e0d\u5141\u8bb8\u4f7f\u7528\u8d1f\u503c
-error.few-value: \u5c5e\u6027 %s \u7684\u503c\u592a\u5c0f
+error.operator: %s 是一个错误的运算符
+error.negative-value: %s 不允许使用负值
+error.few-value: 属性 %s 的值太小
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s \u4e0d\u662f\u4e00\u4e2a %s \u503c
+error.value: %s 不是一个 %s 值
 
 error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s \u91cd\u590d\u51fa\u73b0
+error.same-value: %s 重复出现
 
 # used by org.w3c.css.properties.CssClip
-error.shape: \u65e0\u6548\u7684\u5f62\u72b6\u5b9a\u4e49 rect(<top>,<right>,<bottom>,<left>)
-error.shape-separator: \u5f62\u72b6\u5b9a\u4e49\u7684\u5206\u9694\u7b26\u65e0\u6548\uff0c\u5fc5\u987b\u4e3a\u9017\u53f7
+error.shape: 无效的形状定义 rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: 形状定义的分隔符无效，必须为逗号
 
 # used by org.w3c.css.properties.CssContent
-error.attr: \u65e0\u6548\u7684\u5c5e\u6027\u5b9a\u4e49 attr(X)
-error.counter: \u65e0\u6548\u7684\u8ba1\u6570\u5668\u5b9a\u4e49 counter(<identifier>[,<list-style-type>]?)
-error.counters: \u65e0\u6548\u7684\u8ba1\u6570\u5668\u5b9a\u4e49 counters(<identifier>,<string>[,<list-style-type>]?)
+error.attr: 无效的属性定义 attr(X)
+error.counter: 无效的计数器定义 counter(<identifier>[,<list-style-type>]?)
+error.counters: 无效的计数器定义 counters(<identifier>,<string>[,<list-style-type>]?)
 
 # used by org.w3c.css.font.Src
-error.format: \u65e0\u6548\u7684\u683c\u5f0f\u5b9a\u4e49 format(<string>[,<string>]*)
-error.local: \u65e0\u6548\u7684\u683c\u5f0f\u5b9a\u4e49 local(<string>|<ident>+)
+error.format: 无效的格式定义 format(<string>[,<string>]*)
+error.local: 无效的格式定义 local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s \u662f\u9519\u8bef\u7684\u5355\u4f4d
+error.unit: %s 是错误的单位
 
 # used by org.w3c.css.aural.ACssAzimuth
-error.degree: \u4f4d\u7f6e\u5fc5\u987b\u63cf\u8ff0\u4e3a\u6709\u6548\u7684\u89d2\u5ea6\u8303\u56f4
+error.degree: 位置必须描述为有效的角度范围
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: \u8bf7\u6307\u5b9a\u4ef0\u89d2(elevation)\u4ee5\u4e00\u4e2a\u89d2\u5ea6\u503c\uff0c\u5728'-90deg'\u548c'90deg'\u4e4b\u95f4("deg"\u4e3a\u5ea6).
+error.elevation.range: 请指定仰角(elevation)以一个角度值，在'-90deg'和'90deg'之间("deg"为度).
 
 # used by org.w3c.css.aural.ACssPitchRange
-error.range: \u6b64\u503c\u8d85\u51fa\u8303\u56f4\u3002\u6b64\u503c\u5fc5\u987b\u5728'0'\u548c'100'\u4e4b\u95f4
+error.range: 此值超出范围。此值必须在'0'和'100'之间
 
 # used by org.w3c.css.properties.CssTextShadow
-error.two-lengths: \u4e00\u4e2a\u9634\u5f71\u4f4d\u79fb\u7531\u4e24\u4e2a<length>\u503c(\u4e00\u4e2a\u6a21\u7cca\u8303\u56f4\u53ef\u4ee5\u9009\u62e9\u653e\u4e8e\u9634\u5f71\u4f4d\u79fb\u4e4b\u540e)
+error.two-lengths: 一个阴影位移由两个<length>值(一个模糊范围可以选择放于阴影位移之后)
 
 error.integer: This number should be an integer.
-error.comma: \u7f3a\u5c11\u9017\u53f7\u5206\u9694\u7b26
+error.comma: 缺少逗号分隔符
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s \u662f\u9519\u8bef\u7684\u767e\u5206\u6bd4
+error.percent: %s 是错误的百分比
 
 # used by org.w3c.css.values.CssString
-error.string: %s \u662f\u9519\u8bef\u7684\u5b57\u7b26\u4e32
+error.string: %s 是错误的字符串
 
 # used by org.w3c.css.values.CssURL
-error.url: %s \u662f\u9519\u8bef\u7684URL
+error.url: %s 是错误的URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s \u4e0d\u662f\u6709\u6548\u76843\u62166\u4f2a\u5341\u516d\u8fdb\u5236\u6570\u5b57\u7684\u989c\u8272
+error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
 
 # used by org.w3c.css.values.CssNumber
-error.zero: \u53ea\u67090\u53ef\u4ee5\u6210\u4e3a %s. \u4f60\u5fc5\u987b\u5728\u4f60\u7684\u6570\u5b57\u540e\u52a0\u5165\u5355\u4f4d
+error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: \u5c5e\u6027 %s \u4e0d\u5b58\u5728
-error.noexistence-media: \u5a92\u4f53 %s \u7684\u5c5e\u6027 %s \u4e0d\u5b58\u5728
-warning.noexistence-media: \u5a92\u4f53 %s \u7684\u5c5e\u6027 %s \u4e0d\u5b58\u5728
+error.noexistence: 属性 %s 不存在
+error.noexistence-media: 媒体 %s 的属性 %s 不存在
+warning.noexistence-media: 媒体 %s 的属性 %s 不存在
 
 # used by org.w3c.css.parser.CssFouffa
-error.unrecognize: \u592a\u591a\u503c\u4e0d\u80fd\u8bc6\u522b
+error.unrecognize: 太多值不能识别
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: \u4f2a\u5143\u7d20: %s \u4e0d\u80fd\u5728\u6b21\u5904\u7684\u4e0a\u4e0b\u6587 %s \u4e2d\u51fa\u73b0
-error.pseudo-class: \u4f2a\u7c7b .%s \u4e0d\u80fd\u5728\u6b64\u5904\u7684HTML\u4e0a\u4e0b\u6587 %s \u4e2d\u51fa\u73b0
-error.pseudo: \u4e0d\u8bc6\u522b\u7684\u4f2a\u5143\u7d20\u6216\u4f2a\u7c7b
-error.id: ID\u9009\u62e9\u7b26 #%s \u65e0\u6548\uff01\u53ea\u6709\u4e00\u4e2aID\u9009\u62e9\u7b26\u53ef\u4ee5\u88ab\u6307\u5b9a\u5230\u666e\u901a\u9009\u62e9\u7b26: %s.
-error.space: \u5982\u679c\u4f7f\u7528\u4e86\u5c5e\u6027\u9009\u62e9\u7b26 ~= \uff0c\u5728\u503c %s \u4e2d\u7684\u5b57\u5fc5\u987b\u4e0d\u5305\u542b\u7a7a\u683c
-error.todo : \u62b1\u6b49\uff0c\u7279\u6027 %s \u8fd8\u4e0d\u80fd\u652f\u6301
-error.incompatible: %s \u548c %s \u4e0d\u517c\u5bb9
+error.pseudo-element: 伪元素: %s 不能在次处的上下文 %s 中出现
+error.pseudo-class: 伪类 .%s 不能在此处的HTML上下文 %s 中出现
+error.pseudo: 不识别的伪元素或伪类
+error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普通选择符: %s.
+error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
+error.todo : 抱歉，特性 %s 还不能支持
+error.incompatible: %s 和 %s 不兼容
 
-error.media: \u4e0d\u80fd\u8bc6\u522b\u7684\u5a92\u4f53 %s 
-error.page: \u4e0d\u80fd\u804c\u522b\u7684\u4f2a\u547d\u540d\u9875 %s
+error.media: 不能识别的媒体 %s 
+error.page: 不能职别的伪命名页 %s
 
 
 # used by StyleSheetGeneratorHTML
-generator.context: \u4e0a\u4e0b\u6587
-generator.request: \u5bfc\u51fa\u4f60\u7684\u6837\u5f0f\u8868\u65f6\u53d1\u751f\u9519\u8bef \
-\u8bf7\u66f4\u6b63\u4f60\u7684\u8bf7\u6c42\u6216\u53d1\u9001\u90ae\u4ef6\u5230 plh@w3.org.
-generator.unrecognized: \u4e0d\u80fd\u8bc6\u522b\u7684
-generator.invalid-number: \u65e0\u6548\u6570\u5b57
-generator.property: \u65e0\u6548\u6570\u5b57
-generator.line: \u884c
-generator.not-found: \u627e\u4e0d\u5230\u6587\u4ef6
+generator.context: 上下文
+generator.request: 导出你的样式表时发生错误 \
+请更正你的请求或发送邮件到 plh@w3.org.
+generator.unrecognized: 不能识别的
+generator.invalid-number: 无效数字
+generator.property: 无效数字
+generator.line: 行
+generator.not-found: 找不到文件
 generator.doc-html: <p>\
-\u82e5\u8981\u5982\u671f\u5de5\u4f5c\uff0c\u4f60\u7684CSS\u6837\u5f0f\u8868\u9700\u8981\u4e00\u4e2a\u6b63\u786e\u7684\u6587\u6863\u89e3\u91ca\u6811\u3002 \
-\u8fd9\u610f\u5473\u7740\u4f60\u5e94\u8be5\u4f7f\u7528<a href="http://validator.w3.org/check?uri=\
-%s">\u6b63\u786e\u7684HTML</a>\u3002</p>
+若要如期工作，你的CSS样式表需要一个正确的文档解释树。 \
+这意味着你应该使用<a href="http://validator.w3.org/check?uri=\
+%s">正确的HTML</a>。</p>
 
 generator.doc:<p>\
-\u82e5\u8981\u6b63\u5e38\u5de5\u4f5c\uff0c\u4f60\u7684CSS\u6837\u5f0f\u8868\u9700\u8981\u4e00\u4e2a\u6b63\u786e\u7684\u6587\u6863\u89e3\u91ca\u6811\u3002 \
-\u8fd9\u610f\u5473\u7740\u4f60\u5e94\u8be5\u4f7f\u7528<a href="http://validator.w3.org/">\u6b63\u786e \
-\u7684HTML</a>.</p>
+若要正常工作，你的CSS样式表需要一个正确的文档解释树。 \
+这意味着你应该使用<a href="http://validator.w3.org/">正确 \
+的HTML</a>.</p>
 
 
 # used by the parser
-parser.semi-colon: \u8bd5\u56fe\u5bfb\u627e\u5c5e\u6027\u540d\u524d\u9762\u7684\u5192\u53f7\u3002\u52a0\u4e0a\uff01
+parser.semi-colon: 试图寻找属性名前面的冒号。加上！
 
-parser.old_class:\u5728CSS1\uff0c\u7c7b\u540d\u5e94\u8be5\u4ee5\u70b9\u5f00\u59cb (".55ft"), \
-\u9664\u975e\u5b83\u662f\u4e00\u4e2a\u5c3a\u5bf8\u503c (".55in")\u3002\u5728CSS2\uff0c\u4ee5\u4e0a\u7684\u7c7b \
-\u88ab\u89e3\u91ca\u4e3a\u4e0d\u8bc6\u522b\u7684\u5c3a\u5bf8\u503c(\u4ee5\u5141\u8bb8\u5c06\u6765\u52a0\u5165\u65b0\u7684\u5355\u4f4d)
+parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
+除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
+被解释为不识别的尺寸值(以允许将来加入新的单位)
 
 
 # used by the servlet
-servlet.invalid-request: \u4f60\u53d1\u51fa\u4e86\u65e0\u6548\u7684\u8bf7\u6c42
-servlet.process: \u4e0d\u80fd\u5bf9\u5bf9\u8c61\u8fdb\u884c\u5904\u7406
+servlet.invalid-request: 你发出了无效的请求
+servlet.process: 不能对对象进行处理
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 

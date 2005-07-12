@@ -1,6 +1,7 @@
 # Definieert uw eigen error en waarschuwingsberichten hier
-content-type: text/html; charset=us-ASCII
+content-type: text/html; charset=utf-8
 content-language: nl
+output-encoding-name: utf-8
 
 # U kunt zo het niveau van waarschuwing aanpassen (voorbeeld) :
 # warning.redefinition.level: 5

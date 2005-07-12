@@ -1,67 +1,68 @@
 # Defines your own error and warning message here
-content-type: text/html; charset=ISO-8859-1
+content-type: text/html; charset=utf-8
 content-language: fr
+output-encoding-name: utf-8
 
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Red&eacute;finition de la propri&eacute;t&eacute; %s
+warning.redefinition: Redéfinition de la propriété %s
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: %s et %s sont de la m&ecirc;me couleur
-warning.no-color: Vous n'avez pas de couleur d&eacute;finie avec votre \
+warning.same-colors: %s et %s sont de la même couleur
+warning.no-color: Vous n'avez pas de couleur définie avec votre \
 couleur de fond
-warning.no-background-color: Vous n'avez pas de couleur de fond d&eacute;finie \
+warning.no-background-color: Vous n'avez pas de couleur de fond définie \
 avec votre couleur
-warning.color.mixed-capitalization: Bien que les noms de couleurs ne d&eacute;pendent pas de la casse,\
-il est recommand&eacute; d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: %s
-warning.no-generic-family: %s: Vous &ecirc;tes encourag&eacute;s &agrave; proposer une famille \
-g&eacute;n&eacute;rique comme dernier choix
-warning.with-space: Les noms de familles contenant des espaces doivent &ecirc;tre mis entre \
-guillemets. Si les guillemets sont omis, tous les espaces avant et apr&egrave;s \
-le nom seront ignor&eacute;s et toute s&eacute;quence d'espaces &agrave; l'int&eacute;rieur du nom sera \
-remplac&eacute;e par un seul espace.
-warning.no-padding: Il est recommand&eacute; d'avoir une zone de remplissage lors de \
+warning.color.mixed-capitalization: Bien que les noms de couleurs ne dépendent pas de la casse,\
+il est recommandé d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: %s
+warning.no-generic-family: %s: Vous êtes encouragés à proposer une famille \
+générique comme dernier choix
+warning.with-space: Les noms de familles contenant des espaces doivent être mis entre \
+guillemets. Si les guillemets sont omis, tous les espaces avant et après \
+le nom seront ignorés et toute séquence d'espaces à l'intérieur du nom sera \
+remplacée par un seul espace.
+warning.no-padding: Il est recommandé d'avoir une zone de remplissage lors de \
 l'utilisation d'une couleur de fond
-warning.same-colors2: La m&ecirc;me couleur est utilis&eacute;e en tant que couleur et couleur de \
+warning.same-colors2: La même couleur est utilisée en tant que couleur et couleur de \
 fond dans les deux contextes %s et %s
 warning.relative-absolute: Vous avez des longueurs absolues et relatives dans %s, votre feuille de \
-style n'est pas tr&egrave;s robuste.
+style n'est pas très robuste.
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s n'est pas un &eacute;l&eacute;ment 'HTML'
-warning.html-inside: L'&eacute;l&eacute;ment 'html' ne peut &ecirc;tre dans un autre &eacute;l&eacute;ment
-warning.body-inside: L'&eacute;l&eacute;ment 'body' ne peut &ecirc;tre dans un &eacute;l&eacute;ment autre que 'html'
-warning.pseudo-classes: La &laquo;pseudo-classe&raquo; "anchor" %s n'a pas d'effets sur d'autres &eacute;l&eacute;ments que 'a'
+warning.unknown-html: %s n'est pas un élément 'HTML'
+warning.html-inside: L'élément 'html' ne peut être dans un autre élément
+warning.body-inside: L'élément 'body' ne peut être dans un élément autre que 'html'
+warning.pseudo-classes: La «pseudo-classe» "anchor" %s n'a pas d'effets sur d'autres éléments que 'a'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s ne peut exister a l'int&eacute;rieur d'un element en-ligne
-warning.withblock: Attention, les &laquo;pseudo-&eacute;l&eacute;ments&raquo; ne peuvent &ecirc;tre attach&eacute;s qu'&agrave; \
-des &eacute;l&eacute;ments de type "bloc".
-warning.block-level: Cette propri&eacute;t&eacute; ne s'applique qu'aux &eacute;l&eacute;ments de type \
+warning.noinside: %s ne peut exister a l'intérieur d'un element en-ligne
+warning.withblock: Attention, les «pseudo-éléments» ne peuvent être attachés qu'à \
+des éléments de type "bloc".
+warning.block-level: Cette propriété ne s'applique qu'aux éléments de type \
 "bloc".
 
 # used by org.w3c.css.parser.Frame
-warning.no-declaration: Pas de d&eacute;clarations dans cette r&egrave;le
+warning.no-declaration: Pas de déclarations dans cette rèle
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s est hors-limites
 error.invalid-color: Cette fonction RVB est invalide
 
-warning.marker: La propri&eacute;t&eacute; "marker-offset" ne s'applique que sur des\
- &eacute;l&eacute;ments contenant 'display: marker'
+warning.marker: La propriété "marker-offset" ne s'applique que sur des\
+ éléments contenant 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: L'utilisation d'unit&eacute;s relatives pour la propri&eacute;t&eacute; \
+warning.relative: L'utilisation d'unités relatives pour la propriété \
 %s rend la feuille de style plus robuste
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: D&eacute;sol&eacute; mais la r&egrave;gle-arobase %s n'est pas implement&eacute;e
+warning.at-rule: Désolé mais la règle-arobase %s n'est pas implementée
 
 # used by all properties and values
-error.operator: %s n'est pas un op&eacute;rateur correct
-error.negative-value: Les valeurs n&eacute;gatives de %s ne sont pas autoris&eacute;es
-error.few-value: Il n'y a pas assez de valeurs pour la propri&eacute;t&eacute; %s
+error.operator: %s n'est pas un opérateur correct
+error.negative-value: Les valeurs négatives de %s ne sont pas autorisées
+error.few-value: Il n'y a pas assez de valeurs pour la propriété %s
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
@@ -71,79 +72,79 @@ error.value: %s n'est pas une valeur de %s
 error.groupname: %s n'est pas un nom de groupe correct. Utilisez un bon identifiant
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s n'a pas &eacute;t&eacute; initialis&eacute; par toggle-group
+error.nogroup: %s n'a pas été initialisé par toggle-group
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
-error.anglevalue: La valeur doit &ecirc;tre entre -360 et 360 et divisable par 90
+error.anglevalue: La valeur doit être entre -360 et 360 et divisable par 90
 
 #used by org.w3c.css.properties3.CssTextKashidaSpace
-error.percentage: La valeur doit &ecirc;tre un pourcentage
+error.percentage: La valeur doit être un pourcentage
 
 #used by org.w3c.css.properties.CssDirection
-warning.direction: au lieu de 'direction' pour les &eacute;l&eacute;ments block-level il vaut mieux utiliser 'writing-mode' qui est nouveau dans CSS3
+warning.direction: au lieu de 'direction' pour les éléments block-level il vaut mieux utiliser 'writing-mode' qui est nouveau dans CSS3
 
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: %s apparait deux fois
 
-error.generic-family.quote: Les noms de familles g&eacute;n&eacute;riques sont des mots-clefs, \
-ils doivent donc &ecirc;tre sans guillemets.
+error.generic-family.quote: Les noms de familles génériques sont des mots-clefs, \
+ils doivent donc être sans guillemets.
 
 # used by org.w3c.css.properties.CssClip
-error.shape: D&eacute;finition de forme non valide: rect(<haut>,<droit>,<bas>,<gauche>)
-error.shape-separator: S&eacute;parateur non valide dans la d&eacute;finition de la forme, \
-cela doit &ecirc;tre une virgule.
+error.shape: Définition de forme non valide: rect(<haut>,<droit>,<bas>,<gauche>)
+error.shape-separator: Séparateur non valide dans la définition de la forme, \
+cela doit être une virgule.
 
 # used by org.w3c.css.properties.CssContent
-error.attr: D&eacute;finition d'attribut non valide attr(X)
-error.function: D&eacute;finition non valide de fonction
-error.counter: D&eacute;finition de compteur non valide counter(<identifier>[,<list-style-type>]?)
-error.counters: D&eacute;finition de compteurs non valide counters(<identifier>,<string>[,<list-style-type>]?)
+error.attr: Définition d'attribut non valide attr(X)
+error.function: Définition non valide de fonction
+error.counter: Définition de compteur non valide counter(<identifier>[,<list-style-type>]?)
+error.counters: Définition de compteurs non valide counters(<identifier>,<string>[,<list-style-type>]?)
 
 # used by org.w3c.css.font.Src
-error.format: D&eacute;finition de format non valide format(<string>[,<string>]*)
-error.local: D&eacute;finition de format non valide local(<string>|<ident>+)
+error.format: Définition de format non valide format(<string>[,<string>]*)
+error.local: Définition de format non valide local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s n'est pas une unit&eacute; valable.
+error.unit: %s n'est pas une unité valable.
 
 # used by org.w3c.css.aural.ACssAzimuth
-error.degree: La position doit &ecirc;tre decrite en degr&eacute;s
+error.degree: La position doit être decrite en degrés
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: L'&eacute;l&eacute;vation doit &ecirc;tre explrim&eacute;e en tant qu'angle, \
+error.elevation.range: L'élévation doit être explrimée en tant qu'angle, \
 antre '-90deg' et '90deg'.
 
 # used by org.w3c.css.aural.ACssPitchRange
-error.range: Cette valeur est hors-limites, elle doit &ecirc;tre comprise entre '0' et '100'.
+error.range: Cette valeur est hors-limites, elle doit être comprise entre '0' et '100'.
 
 # used by org.w3c.css.properties.CssTextShadow
-error.two-lengths: Une compensation d'ombre (shadow offset) est d&eacute;finie par deux valeurs \
-de <longueur> (Un rayon de flou optionnel peut &ecirc;tre ajout&eacute; apr&egrave;s cette \
-d&eacute;finition).
+error.two-lengths: Une compensation d'ombre (shadow offset) est définie par deux valeurs \
+de <longueur> (Un rayon de flou optionnel peut être ajouté après cette \
+définition).
 
-error.integer: Ce nombre doit &ecirc;tre entier.
-error.comma: Le s&eacute;parateur 'virgule' est manquant.
+error.integer: Ce nombre doit être entier.
+error.comma: Le séparateur 'virgule' est manquant.
 
 # used by org.w3c.css.values.CssPercentage
 error.percent: %s est une valeur de pourcentage incorrecte
 
 # used by org.w3c.css.values.CssString
-error.string: %s n'est pas une chaine de caract&egrave;re correcte
+error.string: %s n'est pas une chaine de caractère correcte
 
 # used by org.w3c.css.values.CssURL
 error.url: %s n'est pas une URL correcte.
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexad&eacute;cimaux).
-error.angle: %s n'est pas une angle valide. La valeur doit &ecirc;tre entre 0 et 360 
+error.rgb: %s n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexadécimaux).
+error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. You must put an unit after your number
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: La propri&eacute;t&eacute; %s n'existe pas.
-error.noexistence-media: La propri&eacute;t&eacute; %s n'existe pas pour le media %s
-warning.noexistence-media: La propri&eacute;t&eacute; %s n'existe pas pour le media %s
+error.noexistence: La propriété %s n'existe pas.
+error.noexistence-media: La propriété %s n'existe pas pour le media %s
+warning.noexistence-media: La propriété %s n'existe pas pour le media %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Trop de valeurs, ou valeurs non reconnues
@@ -152,66 +153,66 @@ error.unrecognize: Trop de valeurs, ou valeurs non reconnues
 generator.unrecognize: Erreur lors de l'analyse grammaticale.
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Le pseudo-&eacute;l&eacute;ment :%s ne peut apparaitre dans le contexte %s
+error.pseudo-element: Le pseudo-élément :%s ne peut apparaitre dans le contexte %s
 error.pseudo-class: La pseudo-classe .%s ne peut apparaitre dans le contexte HTML %s
-error.pseudo: Pseudo-&eacute;l&eacute;ment ou pseudo-classe inconnue
-error.id: Le s&eacute;l&eacute;cteur d'identificateur n'est pas valide! \
-Un selecteur simple: %s ne peut avoir qu'un seul s&eacute;l&eacute;cteur d'identificateur
-error.space: Si le s&eacute;l&eacute;cteur d'attribut ~= est utilis&eacute;, alors le mot de la \
+error.pseudo: Pseudo-élément ou pseudo-classe inconnue
+error.id: Le sélécteur d'identificateur n'est pas valide! \
+Un selecteur simple: %s ne peut avoir qu'un seul sélécteur d'identificateur
+error.space: Si le sélécteur d'attribut ~= est utilisé, alors le mot de la \
 valeur %s ne doit pas contenir d'espaces.
-error.todo : D&eacute;sol&eacute;, mais cette fonctionnalit&eacute; n'est pas encore disponible.
+error.todo : Désolé, mais cette fonctionnalité n'est pas encore disponible.
 error.incompatible: %s et %s ne sont pas compatibles.
 
 error.media: media %s non reconnu 
-error.page: Page pseudo-nomm&eacute;e %s non reconnue
+error.page: Page pseudo-nommée %s non reconnue
 
 
 # used by StyleSheetGeneratorHTML
 generator.context: Contexte
 generator.request: Une erreur s'est produite lors de l'ecriture de votre feuille de style. \
-Veuillez corriger votre requ&egrave;te, ou envoyez un courrier &eacute;lectronique &agrave; plh@w3.org.
+Veuillez corriger votre requète, ou envoyez un courrier électronique à plh@w3.org.
 generator.unrecognized: Non reconnu
-generator.invalid-number: Nombre &eacute;rron&eacute;
-generator.property: Propri&eacute;t&eacute; &eacute;rron&eacute;e
+generator.invalid-number: Nombre érroné
+generator.property: Propriété érronée
 generator.line: Ligne
 generator.not-found: Fichier introuvable
 generator.doc-html: <p>\
-Pour fonctionner comme pr&eacute;vu, votre feuille de style CSS doit \
+Pour fonctionner comme prévu, votre feuille de style CSS doit \
 avoir un arbre grammatical correct, cela implique que vous devriez \
 utiliser de l'<a href="http://validator.w3.org/check?uri=%s">HTML valide</a>.</p>
 
 generator.doc: <p>\
-Pour fonctionner comme pr&eacute;vu, votre feuille de style CSS doit \
+Pour fonctionner comme prévu, votre feuille de style CSS doit \
 avoir un arbre grammatical correct, cela implique que vous devriez \
 utiliser de l'<a href="http://validator.w3.org/">HTML valide</a>.</p>
 
 # used by the parser
 parser.semi-colon: impossible de trouver un point-virgule avant le nom de la \
-propri&eacute;t&eacute;, ajoutez-le.
+propriété, ajoutez-le.
 
-parser.old_class: En CSS1, il &eacute;tait possible d'avoir un nom de classe \
-commen�ant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
-(".55cm"). En CSS2, de tels noms sont analys&eacute;s comme &eacute;tant des dimensions \
-inconnues, pour permettre l'ajout de nouvelles unit&eacute;s).
+parser.old_class: En CSS1, il était possible d'avoir un nom de classe \
+commenÃ§ant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
+(".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
+inconnues, pour permettre l'ajout de nouvelles unités).
 
 # used by the servlet
-servlet.invalid-request: Vous avez envoy&eacute; une requ&egrave;te &eacute;rron&eacute;e.
+servlet.invalid-request: Vous avez envoyé une requète érronée.
 servlet.process: Impossible de travailler sur l'objet.
 
 error.notforcss1 : La valeur %s n'existe pas dans le cadre de CSS1
-warning.noothermedium : Certaines propri&eacute;t&eacute;s relatives &agrave; d'autres media peuvent ne pas s'appliquer &agrave; ce medium
-warning.notforusermedium : La propri&eacute;t&eacute; %s n'existe pas pour ce medium d'utilisateur
-error.noatruleyet : Except&eacute; @import, les r&egrave;gles @ ne sont pas support&eacute;s en CSS1 %
-error.notformobile : %s ne peut pas &ecirc;tre utilis&eacute; pour le profile mobile
+warning.noothermedium : Certaines propriétés relatives à d'autres media peuvent ne pas s'appliquer à ce medium
+warning.notforusermedium : La propriété %s n'existe pas pour ce medium d'utilisateur
+error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 %
+error.notformobile : %s ne peut pas être utilisé pour le profile mobile
 
-warning.atsc : il se peut que %s ne soit pas support&eacute; par atsc-tv
+warning.atsc : il se peut que %s ne soit pas supporté par atsc-tv
 error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
 
 error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
-warning.otherprofile : propri&eacute;t&eacute; %s n'existe pas dans ce profile mais est valid&eacute; conforme &agrave; un autre profile
-warning.deprecated : cette valeur est deconseill�e
+warning.otherprofile : propriété %s n'existe pas dans ce profile mais est validé conforme à un autre profile
+warning.deprecated : cette valeur est deconseillÃ©e
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Combinator %s between selectors is not allowed in this profile or version
