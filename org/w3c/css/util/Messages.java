@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/01/17 02:50:12  ot
+ * adding spanish as a potential message lang - thanks Carlos Iglesias
+ *
  * Revision 1.2  2002/04/08 21:19:15  plehegar
  * New
  *
@@ -13,10 +16,9 @@
 
 package org.w3c.css.util;
 
-import java.util.Properties;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import java.net.URL;
 
 /**
  * @version $Revision$
@@ -26,7 +28,7 @@ public class Messages {
     /**
      * Message properties
      */  
-    public Properties properties;
+	public Utf8Properties properties;
 
     private static Hashtable languages = new Hashtable();
     
@@ -39,7 +41,7 @@ public class Messages {
 	    
 	    while (lanTok.hasMoreTokens()) {
 		String l = lanTok.nextToken().trim().toLowerCase();
-		properties = (Properties) languages.get(l);
+				properties = (Utf8Properties) languages.get(l);
 		if (properties != null) {
 		    break;
 		}
@@ -47,7 +49,7 @@ public class Messages {
 		if (minusIndex != -1) {
 		    // suppressed -cn in zh-cn (example)
 		    l = l.substring(0, minusIndex);
-		    properties = (Properties) languages.get(l);
+					properties = (Utf8Properties) languages.get(l);
 		}
 		if (properties != null) {
 		    break;
@@ -55,10 +57,9 @@ public class Messages {
 	    }
 	}
 	if (properties == null) {
-	    properties = (Properties) languages.get("en");
+			properties = (Utf8Properties) languages.get("en");
 	}
     }
-    
     
     /**
      * Get a property.
@@ -70,25 +71,30 @@ public class Messages {
     /**
      * Get a warning property.
      * 
-     * @param message the warning property.
+	 * @param message
+	 *            the warning property.
      */  
     public String getWarningString(String message) {
-	return getString(new StringBuffer("warning.").append(message).toString());
+		return getString(new StringBuffer("warning.").append(message)
+				.toString());
     }
     
     /**
      * Get a warning level property.
      * 
-     * @param message the warning property.
+	 * @param message
+	 *            the warning property.
      */  
     public String getWarningLevelString(String message) {
-	return getString(new StringBuffer("warning.").append(message).append(".level").toString());
+		return getString(new StringBuffer("warning.").append(message).append(
+				".level").toString());
     }
     
     /**
      * Get an error property.
      *
-     * @param message the error property.
+	 * @param message
+	 *            the error property.
      */  
     public String getErrorString(String message) {
 	return getString(new StringBuffer("error.").append(message).toString());
@@ -97,24 +103,28 @@ public class Messages {
     /**
      * Get an generator property.
      *
-     * @param message the generator property.
+	 * @param message
+	 *            the generator property.
      */  
     public String getGeneratorString(String message) {
-	return getString(new StringBuffer("generator.").append(message).toString());
+		return getString(new StringBuffer("generator.").append(message)
+				.toString());
     }
     
     /**
      * Get an generator property.
      *
-     * @param message the generator property.
+	 * @param message
+	 *            the generator property.
      */  
     public String getGeneratorString(String message, String param) {
-	String str = getString(new StringBuffer("generator.").append(message).toString());
+		String str = getString(new StringBuffer("generator.").append(message)
+				.toString());
 	
 	// replace all parameters
 	int i = str.indexOf("%s");
 	if (i >= 0) {
-	    str = str.substring(0, i) + param + str.substring(i+2);
+			str = str.substring(0, i) + param + str.substring(i + 2);
 	}
 	return str;
     }
@@ -122,64 +132,69 @@ public class Messages {
     /**
      * Get an generator property.
      *
-     * @param message the generator property.
+	 * @param message
+	 *            the generator property.
      */  
     public String getServletString(String message) {
-	return getString(new StringBuffer("servlet.").append(message).toString());
+		return getString(new StringBuffer("servlet.").append(message)
+				.toString());
     }
     
     static {
-	Properties tmp;
+		Utf8Properties tmp;
 	try {
 	    URL url = Messages.class.getResource("Messages.properties.en");
 	    java.io.InputStream f = url.openStream();
 	    try {
-		tmp = new Properties();
+				tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("en", tmp);
 	    } finally {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: couldn't load properties en");
-	    System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties en");
+			System.err.println("  " + e.toString());
 	}
 
 	try {
 	    URL url = Messages.class.getResource("Messages.properties.zh-cn");
 	    java.io.InputStream f = url.openStream();
 	    try {
-		tmp = new Properties();
+				tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("zh-cn", tmp);
 	    } finally {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: couldn't load properties cn");
-	    System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties cn");
+			System.err.println("  " + e.toString());
 	}
 
 	try {
 	    URL url = Messages.class.getResource("Messages.properties.ja");
 	    java.io.InputStream f = url.openStream();
 	    try {
-		tmp = new Properties();
+				tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("ja", tmp);
 	    } finally {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: couldn't load properties ja");
-	    System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties ja");
+			System.err.println("  " + e.toString());
 	}
 
         try {
             URL url = Messages.class.getResource("Messages.properties.fr");
             java.io.InputStream f = url.openStream();
             try {
-                tmp = new Properties();
+				tmp = new Utf8Properties();
                 tmp.load(f);
                 languages.put("fr", tmp);
 		languages.put("fr_FR", tmp);
@@ -187,17 +202,18 @@ public class Messages {
                 f.close();
             }
         } catch (Exception e) {
-            System.err.println("org.w3c.css.util.Messages: couldn't load properties fr");
-            System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties fr");
+			System.err.println("  " + e.toString());
         }
 
-	//-----------------------
+		// -----------------------
 
         try {
             URL url = Messages.class.getResource("Messages.properties.de");
             java.io.InputStream f = url.openStream();
             try {
-                tmp = new Properties();
+				tmp = new Utf8Properties();
                 tmp.load(f);
                 languages.put("de", tmp);
                 languages.put("de_DE", tmp);
@@ -207,8 +223,9 @@ public class Messages {
                 f.close();
             }
 	} catch (Exception e) {
-            System.err.println("org.w3c.css.util.Messages: couldn't load properties de");
-            System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties de");
+			System.err.println("  " + e.toString());
         }
 
 	// ------------------------------------------------
@@ -217,15 +234,16 @@ public class Messages {
 	    URL url = Messages.class.getResource("Messages.properties.nl");
 	    java.io.InputStream f = url.openStream();
 	    try {
-		tmp = new Properties();
+				tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("nl", tmp);
 	    } finally {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: couldn't load properties nl");
-	    System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties nl");
+			System.err.println("  " + e.toString());
 	}
 
 	// ------------------------------------------------
@@ -234,7 +252,7 @@ public class Messages {
 	    URL url = Messages.class.getResource("Messages.properties.es");
 	    java.io.InputStream f = url.openStream();
 	    try {
-		tmp = new Properties();
+				tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("es", tmp);
 		languages.put("es_ES", tmp);
@@ -242,10 +260,10 @@ public class Messages {
 		f.close();
 	    }
 	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: couldn't load properties es");
-	    System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.util.Messages: couldn't load properties es");
+			System.err.println("  " + e.toString());
 	}
-
 
     }
 }
