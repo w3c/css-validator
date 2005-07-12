@@ -6,19 +6,19 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties2;
 
-import java.util.Properties;
 import java.net.URL;
 
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.Utf8Properties;
 
 /**
  * @version $Revision$
  */
 public class Css2Properties {
-  public static Properties properties;
+	public static Utf8Properties properties;
 
   public static String getString(CssProperty property, String prop) {
-    return properties.getProperty(property.getPropertyName()+"."+prop);
+		return properties.getProperty(property.getPropertyName() + "." + prop);
   }
 
   public static boolean getInheritance(CssProperty property) {
@@ -26,13 +26,15 @@ public class Css2Properties {
   }
   
   static {
-    properties = new Properties();
+		properties = new Utf8Properties();
     try {
-      URL url = Css2Properties.class.getResource("CSS2Default.properties");
+			URL url = Css2Properties.class
+					.getResource("CSS2Default.properties");
       properties.load(url.openStream());
     } catch (Exception e) {
-      System.err.println("org.w3c.css.properties2.Css2Properties: couldn't load properties ");
-      System.err.println("  " + e.toString() );
+			System.err
+					.println("org.w3c.css.properties2.Css2Properties: couldn't load properties ");
+			System.err.println("  " + e.toString());
     }
   }
 }

@@ -7,88 +7,90 @@
 
 package org.w3c.css.css;
 
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
-import java.util.Hashtable;
-import java.util.Properties;
-import java.util.Enumeration;
-import java.util.StringTokenizer;
-import java.util.Date;
-import java.util.Locale;
 import java.text.DateFormat;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Locale;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
-import org.w3c.css.parser.analyzer.ParseException;
-import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
-import org.w3c.css.parser.CssFouffa;
+import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssSelectorsConstant;
-import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRuleMedia;
-import org.w3c.css.parser.AtRuleFontFace;
+import org.w3c.css.parser.Errors;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.SortedHashtable;
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.Util;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Utf8Properties;
+import org.w3c.css.util.Util;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 
 /**
  * @version $Revision$
  */
-public final class StyleSheetGeneratorHTML2 extends StyleReport
-    implements CssPrinterStyle {
+public final class StyleSheetGeneratorHTML2 extends StyleReport implements
+		CssPrinterStyle {
 
     StyleSheet style;
+
     Vector items;
+
     Warnings warnings;
+
     Errors errors;
+
     ApplContext ac;
     
     private CssSelectors selector;
+
     private CssProperty property;
+
     private PrintWriter out;
+
     private int warningLevel;
-    private Properties general;
     
-    private static Properties availableFormat;    
-    private static Properties availablePropertiesURL;
+	private Utf8Properties general;
+
+	private static Utf8Properties availableFormat;
+
+	private static Utf8Properties availablePropertiesURL;
+
     private static Hashtable formats = new Hashtable();
+
     int counter = 0;
 
     /**
      * Create a new StyleSheetGenerator
      *
-     * @param title        The title for the generated document
-     * @param style        The style sheet
-     * @param document     The name of the source file
-     * @param warningLevel If you want to reduce warning output.
-     *                     (-1 means no warnings)
+	 * @param title
+	 *            The title for the generated document
+	 * @param style
+	 *            The style sheet
+	 * @param document
+	 *            The name of the source file
+	 * @param warningLevel
+	 *            If you want to reduce warning output. (-1 means no warnings)
      */
-    public StyleSheetGeneratorHTML2(ApplContext ac, 
-                   String title, 
-                   StyleSheet style,
-                   String document,
-                   int warningLevel) {
-
+	public StyleSheetGeneratorHTML2(ApplContext ac, String title,
+			StyleSheet style, String document, int warningLevel) {
 
     if (document == null) {
         document = "html.en";
     }
     if (Util.onDebug) {
-        System.err.println( "document format is " + document );
+			System.err.println("document format is " + document);
     }
     this.ac = ac;
     this.style = style;
-    general = new Properties(setDocumentBase(getDocumentName(ac, document)));
+		general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document)));
     general.put("file-title", title);
     warnings = style.getWarnings();
     errors = style.getErrors();
@@ -96,18 +98,15 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 
     this.warningLevel = warningLevel;
     
-    general.put("errors-count", 
-            Integer.toString(errors.getErrorCount()));
-    general.put("warnings-count", 
-            Integer.toString(warnings.getWarningCount()));
-    general.put("rules-count", 
-            Integer.toString(items.size()));
+		general.put("errors-count", Integer.toString(errors.getErrorCount()));
+		general.put("warnings-count", Integer.toString(warnings
+				.getWarningCount()));
+		general.put("rules-count", Integer.toString(items.size()));
     
     if (errors.getErrorCount() == 0) {
         desactivateError();
     }
-    if ((errors.getErrorCount() != 0) 
-            || (!title.startsWith("http://"))) {
+		if ((errors.getErrorCount() != 0) || (!title.startsWith("http://"))) {
         general.put("no-errors", "");
     }
     if (style.charset == null) {
@@ -130,21 +129,19 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         general.put("no-error-or-warning", ""); 
     }
 
-    if (Util.onDebug) general.list(System.err);
+		if (Util.onDebug)
+			general.list(System.err);
 
     DateFormat df = null;
 
     if (ac.getLang() != null) {
         try {
-        df = DateFormat
-            .getDateTimeInstance(DateFormat.FULL, 
-                     DateFormat.FULL,
-                     new Locale(ac.getLang().substring(0, 2),
-                            "US"));
+				df = DateFormat.getDateTimeInstance(DateFormat.FULL,
+						DateFormat.FULL, new Locale(ac.getLang()
+								.substring(0, 2), "US"));
         } catch (Exception e) {
         df = DateFormat.getDateTimeInstance(DateFormat.FULL, 
-                            DateFormat.FULL,
-                            Locale.US);
+						DateFormat.FULL, Locale.US);
         }
     }
     if (df != null) {
@@ -179,14 +176,14 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
 
     Vector atRules = style.newGetRules();
     for (int idx = 0; idx < atRules.size(); idx++) {
-//      out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
-        ((CssRuleList)atRules.elementAt(idx)).toHTML(out);
+			// out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
+			((CssRuleList) atRules.elementAt(idx)).toHTML(out);
         out.print("\n");
     }
     }
     
     public void print(CssProperty property) {
-    Properties prop = new Properties(general); 
+		Utf8Properties prop = new Utf8Properties(general);
     prop.put("property-name", property.getPropertyName().toString());
     prop.put("property-value", property.toString());
     
@@ -196,13 +193,12 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     out.print(processStyle(prop.getProperty("declaration"), prop));
     }
     
-    public void produceParseException(CssParseException error,
-                      StringBuffer ret) {
+	public void produceParseException(CssParseException error, StringBuffer ret) {
     ret.append(' ');
     if (error.getContexts() != null && error.getContexts().size() != 0) {
         StringBuffer buf = new StringBuffer();
-        for (Enumeration e = error.getContexts().elements(); 
-         e.hasMoreElements();) {
+			for (Enumeration e = error.getContexts().elements(); e
+					.hasMoreElements();) {
         Object t = e.nextElement();
         if (t != null) {
             buf.append(t);
@@ -231,7 +227,9 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         } else {
         Exception ex = error.getException();
         if (ex instanceof NumberFormatException) {
-            ret.append(ac.getMsg().getGeneratorString("invalid-number"));
+					ret
+							.append(ac.getMsg().getGeneratorString(
+									"invalid-number"));
         } else {
             ret.append(queryReplace(ex.getMessage()));
         }
@@ -264,8 +262,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     try {
         if (errors.getErrorCount() != 0) {
         int i = 0;
-        for (CssError[] error = errors.getErrors(); 
-                  i < error.length; i++) {
+				for (CssError[] error = errors.getErrors(); i < error.length; i++) {
             Exception ex = error[i].getException();
             String file = error[i].getSourceFile();
             if (!file.equals(oldSourceFile)) {
@@ -273,8 +270,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
             if (open) {
                 ret.append("</ul>\n</div>");
             }
-            ret.append("\n<div><h3>URI : "
-                   + "<a href=\"");
+						ret.append("\n<div><h3>URI : " + "<a href=\"");
             ret.append(file).append("\">");
             ret.append(file).append("</a></h3><ul>");
             open = true;
@@ -306,8 +302,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
             ret.append(terror.getErrorDescription()).append(" : ");
             ret.append(terror.getSkippedString()).append('\n');         
             } else {
-            ret.append("\n<p>" +
-                 "<span class='error'>Uncaught error</span> ");
+						ret.append("\n<p>"
+								+ "<span class='error'>Uncaught error</span> ");
             ret.append(ex).append('\n');
             
             if (ex instanceof NullPointerException) {
@@ -341,8 +337,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         if (warnings.getWarningCount() != 0) {
         int i = 0;
         warnings.sort();
-        for (Warning[] warning = warnings.getWarnings(); 
-             i < warning.length; i++) {
+				for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
             
             Warning warn = warning[i];
             if (warn.getLevel() <= warningLevel) {
@@ -356,8 +351,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
                 ret.append(oldSourceFile).append("</a></h3><ul>");
                 open = true;
             }
-            if (warn.getLine() != oldLine || 
-                !warn.getWarningMessage().equals(oldMessage)) {
+						if (warn.getLine() != oldLine
+								|| !warn.getWarningMessage().equals(oldMessage)) {
                 oldLine = warn.getLine();
                 oldMessage = warn.getWarningMessage();
                 ret.append("\n<li><span class='warning'>");
@@ -415,18 +410,17 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     return processStyle(general.getProperty(s), general);
     }
     
-    private String processStyle(String str, Properties prop) {  
+	private String processStyle(String str, Utf8Properties prop) {
     try {
         int i = 0;
         while ((i = str.indexOf("<!-- #", i)) >= 0) {
         int lastIndexOfEntity = str.indexOf("-->", i);
-        String entity = 
-            str.substring(i+6, 
-                  lastIndexOfEntity - 1).toLowerCase();
+				String entity = str.substring(i + 6, lastIndexOfEntity - 1)
+						.toLowerCase();
 
         if (entity.equals("rule")) {
                     out.print(str.substring(0, i));
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
             produceStyleSheet();
         } else if (entity.equals("selectors")) {
@@ -434,38 +428,38 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
             // contextuals selectors
             String value = prop.getProperty(entity);
             if (value != null) {
-                str = str.substring(0, i) + value + 
-                str.substring(lastIndexOfEntity+3);
+							str = str.substring(0, i) + value
+									+ str.substring(lastIndexOfEntity + 3);
             } else {
                 i += 6; // skip this unknown entity
             }
             } else {
-            str = str.substring(lastIndexOfEntity+3);
+						str = str.substring(lastIndexOfEntity + 3);
             i = 0;
             }
         } else if (entity.equals("selector")) {
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
         } else if (entity.equals("charset")) {
             str = str.substring(lastIndexOfEntity+3);
             i = 0;
             out.print(style.charset);
         } else if (entity.equals("declaration")) {
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
         } else if (entity.equals("warning")) {
             out.print(str.substring(0, i));
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
             produceWarning();
         } else if (entity.equals("error")) {
             out.print(str.substring(0, i));
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
             produceError();
         } else if (entity.equals("hook-html-validator")) {
             out.print(str.substring(0, i));
-            str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
             i = 0;
             if (style.getType().equals("text/html")) { 
             out.println(ac.getMsg().getGeneratorString("doc-html",
@@ -476,8 +470,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         } else {
             String value = prop.getProperty(entity);
             if (value != null) {
-            str = str.substring(0, i) + value + 
-                str.substring(lastIndexOfEntity+3);
+						str = str.substring(0, i) + value
+								+ str.substring(lastIndexOfEntity + 3);
             } else {
             i += 6; // skip this unknown entity
             }
@@ -493,39 +487,39 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     
     public final static void printAvailableFormat(PrintWriter out) {
     Enumeration e = availableFormat.propertyNames();
-    out.println( " -- listing available output format --" );
+		out.println(" -- listing available output format --");
     while (e.hasMoreElements()) {
         String key = ((String) e.nextElement()).toLowerCase();
-        out.print( "Format : ");
+			out.print("Format : ");
         out.println(key);
-        out.print( "   File : ");
+			out.print("   File : ");
         out.println(getDocumentName(null, key));
     }
     out.flush();
     }
     
-    private Properties setDocumentBase(String document) {
-    Properties properties = (Properties) formats.get(document);
+	private Utf8Properties setDocumentBase(String document) {	    	
+		Utf8Properties properties = (Utf8Properties) formats.get(document);		
     if (properties == null) {
         URL url;
-        properties = new Properties();
+			properties = new Utf8Properties();			
         try {
         url = StyleSheetGenerator.class.getResource(document);
         java.io.InputStream f = url.openStream();
         properties.load(f);
         f.close();
-        properties.put("author","www-validator-css");
+				properties.put("author", "www-validator-css");
         properties.put("author-email", "Email.html");
         } catch (Exception e) {
         System.err.println("org.w3c.css.css.StyleSheetGenerator: "
                    + "couldn't load properties " + document);
-        System.err.println("  " + e.toString() );
+				System.err.println("  " + e.toString());
         printAvailableFormat(new PrintWriter(System.err));
         }
         formats.put(document, properties);
     }
 
-    return new Properties(properties);
+		return new Utf8Properties(properties);
     }
     
     private final static String getDocumentName(ApplContext ac, 
@@ -545,8 +539,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         if (minusIndex != -1) {
             // suppressed -cn in zh-cn (example)
             l = l.substring(0, minusIndex);
-            document = availableFormat.getProperty(documentName 
-                               + "." + l);
+					document = availableFormat.getProperty(documentName + "."
+							+ l);
         }
         if (document != null) {
             break;
@@ -557,8 +551,8 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
         document = availableFormat.getProperty(documentName);
     }
     if (document == null) {
-        System.err.println( "Unable to find " + 
-                documentName + " output format" );
+			System.err.println("Unable to find " + documentName
+					+ " output format");
         return documentName;
     } else {
         return document;
@@ -571,7 +565,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     
     static {
     URL url;
-    availableFormat = new Properties();
+		availableFormat = new Utf8Properties();
     try {
         url = StyleSheetGenerator.class.getResource("format.properties");
         java.io.InputStream f = url.openStream();
@@ -580,10 +574,10 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     } catch (Exception e) {
         System.err.println("org.w3c.css.css.StyleSheetGenerator: "
                    + "couldn't load format properties ");
-        System.err.println("  " + e.toString() );
+			System.err.println("  " + e.toString());
     }
 
-    availablePropertiesURL = new Properties();
+		availablePropertiesURL = new Utf8Properties();
     try {
         url = StyleSheetGenerator.class.getResource("urls.properties");
         java.io.InputStream f = url.openStream();
@@ -592,7 +586,7 @@ public final class StyleSheetGeneratorHTML2 extends StyleReport
     } catch (Exception e) {
         System.err.println("org.w3c.css.css.StyleSheetGenerator: "
                    + "couldn't load URLs properties ");
-        System.err.println("  " + e.toString() );
+			System.err.println("  " + e.toString());
     }
     }
 }

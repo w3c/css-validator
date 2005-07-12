@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  * Revision 1.2  1998/02/25 09:25:40  plehegar
  * Freeze
  *
@@ -39,35 +42,26 @@
  */
 package org.w3c.css.css;
 
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
-import java.util.Hashtable;
-import java.util.Properties;
 import java.util.Enumeration;
-import org.w3c.css.util.Date;
+import java.util.Hashtable;
 
-import org.w3c.css.parser.analyzer.ParseException;
-import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRuleMedia;
-import org.w3c.css.parser.AtRuleFontFace;
-import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
-import org.w3c.css.parser.CssFouffa;
+import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssPrinterStyle;
-import org.w3c.css.parser.CssSelectorsConstant;
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.Errors;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.Date;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.SortedHashtable;
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
+import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
-
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 
 /**
  * @version $Revision$
@@ -76,48 +70,54 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     
     //    SortedHashtable items;
     Hashtable items;
+
     Warnings warnings;
+
     Errors errors;
     
     private CssSelectors selector;
+
     private CssProperty property;
+
     private PrintWriter out;
+
     private int warningLevel;
-    private Properties general;
     
-    private static Properties availableFormat;
+	private Utf8Properties general;
+
+	private static Utf8Properties availableFormat;
+
     private static Hashtable formats = new Hashtable();
     
     /**
      * Create a new StyleSheetGenerator
      *
-     * @param title        The title for the generated document
-     * @param style        The style sheet
-     * @param document     The name of the source file
-     * @param warningLevel If you want to reduce warning output.
-     *                     (-1 means no warnings)
+	 * @param title
+	 *            The title for the generated document
+	 * @param style
+	 *            The style sheet
+	 * @param document
+	 *            The name of the source file
+	 * @param warningLevel
+	 *            If you want to reduce warning output. (-1 means no warnings)
      */
-    public StyleSheetGenerator(String title, 
-			       StyleSheet style, 
-			       String document,
+	public StyleSheetGenerator(String title, StyleSheet style, String document,
 			       int warningLevel) {
 	
-	general = new Properties(setDocumentBase(getDocumentName(document)));
+		general = new Utf8Properties(setDocumentBase(getDocumentName(document)));
 	general.put("file-title", title);
 	general.put("today", new Date().toString());
 	
 	warnings = style.getWarnings();
 	errors = style.getErrors();
-	//items = (SortedHashtable) style.getRules();
+		// items = (SortedHashtable) style.getRules();
 	items = style.getRules();
 	this.warningLevel = warningLevel;
 	
-	general.put("errors-count", 
-		    Integer.toString(errors.getErrorCount()));
-	general.put("warnings-count", 
-		    Integer.toString(warnings.getWarningCount()));
-	general.put("rules-count", 
-		    Integer.toString(items.size()));
+		general.put("errors-count", Integer.toString(errors.getErrorCount()));
+		general.put("warnings-count", Integer.toString(warnings
+				.getWarningCount()));
+		general.put("rules-count", Integer.toString(items.size()));
 	
 	if (errors.getErrorCount() == 0) {
 	    desactivateError();
@@ -138,7 +138,8 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    general.put("no-error-or-warning", ""); 
 	}
 	
-	if (Util.onDebug) general.list(System.err);
+		if (Util.onDebug)
+			general.list(System.err);
     }
     
     public void desactivateError() {
@@ -158,15 +159,14 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    out.println("An error occurred during the output "
 			+ "of your style sheet.");
 	    out.println("Please correct your request ");
-	    out.println(" or send a mail to "
-			+ " www-validator-css@w3.org");
+			out.println(" or send a mail to " + " www-validator-css@w3.org");
 	}
 	
 	out.flush();
     }
     
     public void produceRule() {
-	//Object[] array = items.getSortedArray();
+		// Object[] array = items.getSortedArray();
 	int i = 0;
 	Object array[] = new Object[items.size()];
 	for (Enumeration e = items.elements(); e.hasMoreElements(); i++) {
@@ -191,7 +191,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     }  
     
     public void print(CssProperty property) {
-	Properties prop = new Properties(general); 
+	    	Utf8Properties prop = new Utf8Properties(general);
 	prop.put("property-name", property.getPropertyName().toString());
 	prop.put("property-value", property.toString());
 	
@@ -204,8 +204,8 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     void produceParseException(CssParseException error, StringBuffer ret) {
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
-	    for (Enumeration e = error.getContexts().elements(); 
-		 e.hasMoreElements();) {
+			for (Enumeration e = error.getContexts().elements(); e
+					.hasMoreElements();) {
 		Object t = e.nextElement();
 		if (t != null) {
 		    buf.append(t);
@@ -259,8 +259,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	try {
 	    if (errors.getErrorCount() != 0) {
 		int i = 0;
-		for (CssError[] error = errors.getErrors(); 
-		          i < error.length; i++) {
+				for (CssError[] error = errors.getErrors(); i < error.length; i++) {
 		    Exception ex = error[i].getException();
 		    if (!error[i].getSourceFile().equals(oldSourceFile)) {
 			oldSourceFile = error[i].getSourceFile();
@@ -319,8 +318,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    if (warnings.getWarningCount() != 0) {
 		int i = 0;
 		warnings.sort();
-		for (Warning[] warning = warnings.getWarnings(); 
-		     i < warning.length; i++) {
+				for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
 		    
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
@@ -329,8 +327,8 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 			    ret.append("\n URI : ");
 			    ret.append(oldSourceFile).append('\n');
 			} 
-			if (warn.getLine() != oldLine || 
-			    !warn.getWarningMessage().equals(oldMessage)) {
+						if (warn.getLine() != oldLine
+								|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 			    ret.append("Line : ").append(oldLine);
@@ -369,7 +367,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	return processStyle(general.getProperty(s), general);
     }
     
-    private String processStyle(String str, Properties prop) {
+	private String processStyle(String str, Utf8Properties prop) {
 	if (str == null) {
 	    return "";
 	}
@@ -378,12 +376,11 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    int i = 0;
 	    while ((i = str.indexOf("<!-- #", i)) >= 0) {
 		int lastIndexOfEntity = str.indexOf("-->", i);
-		String entity = 
-		    str.substring(i+6, 
-				  lastIndexOfEntity - 1).toLowerCase();
+				String entity = str.substring(i + 6, lastIndexOfEntity - 1)
+						.toLowerCase();
 		if (entity.equals("rule")) {
 		    out.print(str.substring(0, i));
-		    str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    produceRule();
 		} else if (entity.equals("selectors")) {
@@ -392,44 +389,44 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 			// contextuals selectors
 			String value = prop.getProperty(entity);
 			if (value != null) {
-			    str = str.substring(0, i) + value + 
-				str.substring(lastIndexOfEntity+3);
+							str = str.substring(0, i) + value
+									+ str.substring(lastIndexOfEntity + 3);
 			} else {
 			    i += 6; // skip this unknown entity
 			}
 			
 		    } else {
 			out.print(str.substring(0, i));
-			str = str.substring(lastIndexOfEntity+3);
+						str = str.substring(lastIndexOfEntity + 3);
 			i = 0;
 			produceSelector(selector);
 		    }
 		    out.print("}\n");
 		} else if (entity.equals("selector")) {
 		    out.print(str.substring(0, i));
-		    str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    produceSelector(selector);
 		} else if (entity.equals("declaration")) {
 		    out.print(str.substring(0, i));
-		    str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    produceDeclaration();
 		} else if (entity.equals("warning")) {
 		    out.print(str.substring(0, i));
-		    str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    produceWarning();
 		} else if (entity.equals("error")) {
 		    out.print(str.substring(0, i));
-		    str = str.substring(lastIndexOfEntity+3);
+					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    produceError();
 		} else {
 		    String value = prop.getProperty(entity);
 		    if (value != null) {
-			str = str.substring(0, i) + value + 
-			    str.substring(lastIndexOfEntity+3);
+						str = str.substring(0, i) + value
+								+ str.substring(lastIndexOfEntity + 3);
 		    } else {
 			i += 6; // skip this unknown entity
 		    }
@@ -445,47 +442,45 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     
     public final static void printAvailableFormat(PrintWriter out) {
 	Enumeration e = availableFormat.propertyNames();
-	out.println( " -- listing available output format --" );
+		out.println(" -- listing available output format --");
 	while (e.hasMoreElements()) {
 	    String key = ((String) e.nextElement()).toLowerCase();
-	    out.println( "Format : " + key );
-	    out.println( "   File : " + getDocumentName(key) );
+			out.println("Format : " + key);
+			out.println("   File : " + getDocumentName(key));
 	}
 	out.flush();
     }
     
-    private Properties setDocumentBase(String document) {
-	Properties properties = (Properties) formats.get(document);
+	private Utf8Properties setDocumentBase(String document) {
+		Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
 	    URL url;
-	    properties = new Properties();
+			properties = new Utf8Properties();
 	    try {
 		url = StyleSheetGenerator.class.getResource(document);
 		java.io.InputStream f = url.openStream();
 		properties.load(f);
 		f.close();
-		properties.put("author","Philippe Le Hegaret");
-		properties.put("author-email",
-			       "www-validator-css@w3.org");
+				properties.put("author", "Philippe Le Hegaret");
+				properties.put("author-email", "www-validator-css@w3.org");
 	    } catch (Exception e) {
 		System.err.println("org.w3c.css.css.StyleSheetGenerator: "
 				   + "couldn't load properties " + document);
-		System.err.println("  " + e.toString() );
+				System.err.println("  " + e.toString());
 		printAvailableFormat(new PrintWriter(System.err));
 	    }
 	    formats.put(document, properties);
 	}
 
-	return new Properties(properties);
+		return new Utf8Properties(properties);
     }
     
     private final static String getDocumentName(String documentName) {
-	String document = 
-	    availableFormat.getProperty(documentName.toLowerCase());
+		String document = availableFormat.getProperty(documentName
+				.toLowerCase());
 	if (document == null) {
-	    System.err.println( "Unable to find " + 
-				documentName.toLowerCase() + 
-				" output format" );
+			System.err.println("Unable to find " + documentName.toLowerCase()
+					+ " output format");
 	    return documentName;
 	} else {
 	    return document;
@@ -494,7 +489,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     
     static {
 	URL url;
-	availableFormat = new Properties();
+		availableFormat = new Utf8Properties();
 	try {
 	    url = StyleSheetGenerator.class.getResource("format.properties");
 	    java.io.InputStream f = url.openStream();
@@ -503,7 +498,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.css.StyleSheetGenerator: "
 			       + "couldn't load format properties ");
-	    System.err.println("  " + e.toString() );
+			System.err.println("  " + e.toString());
 	}
     }
 }

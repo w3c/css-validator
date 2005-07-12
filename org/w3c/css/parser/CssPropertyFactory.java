@@ -7,30 +7,31 @@
 
 package org.w3c.css.parser;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.io.InputStream;
-import java.io.IOException;
-import java.util.Properties;
-
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Utf8Properties;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+
 /**
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author Philippe Le Hï¿½garet
  */
 public class CssPropertyFactory implements Cloneable {
 
     // all recognized properties are here.
-    private Properties properties;
-    private Properties allprops;
+	private Utf8Properties properties;
+
+	private Utf8Properties allprops;
 
     private String usermedium;
 
@@ -47,7 +48,7 @@ public class CssPropertyFactory implements Cloneable {
      * Create a new CssPropertyFactory
      */
     public CssPropertyFactory(URL url, URL allprop_url) {
-    properties = new Properties();
+		properties = new Utf8Properties();
     InputStream f = null;
     try {
         f = url.openStream();
@@ -63,8 +64,8 @@ public class CssPropertyFactory implements Cloneable {
         } // ignore
     }
 
-    //list of all properties
-    allprops = new Properties();
+		// list of all properties
+		allprops = new Utf8Properties();
     InputStream f_all = null;
     try {
         f_all = allprop_url.openStream();
@@ -103,11 +104,8 @@ public class CssPropertyFactory implements Cloneable {
     this.usermedium = usermedium;
     }
 
-    public synchronized CssProperty createMediaFeature (
-    ApplContext ac,
-    AtRule atRule,
-    String property,
-    CssExpression expression)
+	public synchronized CssProperty createMediaFeature(ApplContext ac,
+			AtRule atRule, String property, CssExpression expression)
     throws Exception {
 
     String result = "ok";
@@ -135,21 +133,20 @@ public class CssPropertyFactory implements Cloneable {
     String classname = properties.getProperty("mediafeature" + "."
                           + property);
 
-    if (classname == null ) {
+		if (classname == null) {
         if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
                 // I don't know this property
-        //throw new InvalidParamException("noexistence-media",
+				// throw new InvalidParamException("noexistence-media",
         //              property,
         //              media, ac);
             ac.getFrame().addWarning("noexistence-media", property);
             classname = allprops.getProperty(property);
         } else {
         // I don't know this property
-        throw new InvalidParamException("noexistence", property,
-                        media, ac);
+				throw new InvalidParamException("noexistence", property, media,
+						ac);
         }
     }
-
 
     try {
         // create an instance of your property class
@@ -158,8 +155,8 @@ public class CssPropertyFactory implements Cloneable {
         expressionclass = expression.getClass();
         }
         Class[] parametersType = { ac.getClass(), expressionclass };
-        Constructor constructor =
-        Class.forName(classname).getConstructor(parametersType);
+			Constructor constructor = Class.forName(classname).getConstructor(
+					parametersType);
         Object[] parameters = { ac, expression };
         // invoke the constructor
         return (CssProperty) constructor.newInstance(parameters);
@@ -172,11 +169,8 @@ public class CssPropertyFactory implements Cloneable {
 
     }
 
-
     public synchronized CssProperty createProperty(ApplContext ac,
-                           AtRule atRule,
-                           String property,
-                           CssExpression expression)
+			AtRule atRule, String property, CssExpression expression)
     throws Exception {
 
     String result = "ok";
@@ -208,30 +202,30 @@ public class CssPropertyFactory implements Cloneable {
         classname = properties.getProperty(property);
         } else {
         for (int i = 0; i < list.size() - 1; i++) {
-            String medium = (String)list.elementAt(i);
-            String name = properties.getProperty(medium +
-                             "." + property);
+					String medium = (String) list.elementAt(i);
+					String name = properties.getProperty(medium + "."
+							+ property);
             if (name == null) {
             result = medium;
             }
         }
 
         if (result.equals("ok")) {
-            classname = properties.getProperty(
-            (String)list.firstElement() + "." + property);
-        }
-        else {
+					classname = properties.getProperty((String) list
+							.firstElement()
+							+ "." + property);
+				} else {
             classname = null;
         }
         }
     } else {
-        classname = properties.getProperty("@" + atRule.keyword()
-                           + "." + property);
+			classname = properties.getProperty("@" + atRule.keyword() + "."
+					+ property);
     }
 
     CssProperty prop = null;
 
-    //System.out.println(allprops.getProperty(property));
+		// System.out.println(allprops.getProperty(property));
 
     if (classname == null && usermedium != null) {
         if (atRule instanceof AtRuleMedia) {
@@ -239,9 +233,8 @@ public class CssPropertyFactory implements Cloneable {
         if (!media.equals("all"))
             ac.getFrame().addWarning("notforusermedium", property);
         classname = properties.getProperty(property);
-        }
-        else {
-                //NEW
+			} else {
+				// NEW
         if (allprops.getProperty(property) == null) {
             // I don't know this property
             throw new InvalidParamException("noexistence", property,
@@ -251,23 +244,22 @@ public class CssPropertyFactory implements Cloneable {
             classname = allprops.getProperty(property);
         }
         }
-    } else
-        if (classname == null ) { // && CssFouffa.usermedium == null)
+		} else if (classname == null) { // && CssFouffa.usermedium == null)
         if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
             // I don't know this property
-            /*throw new InvalidParamException("noexistence-media",
-                            property,
-                            media, ac);*/
+				/*
+				 * throw new InvalidParamException("noexistence-media",
+				 * property, media, ac);
+				 */
             ac.getFrame().addWarning("noexistence-media", property);
             classname = allprops.getProperty(property);
 
         } else {
             // I don't know this property
-            //NEW
+				// NEW
             if (allprops.getProperty(property) == null) {
             // I don't know this property
-            throw new InvalidParamException("noexistence",
-                            property,
+					throw new InvalidParamException("noexistence", property,
                             media, ac);
             } else {
             ac.getFrame().addWarning("otherprofile", property);
@@ -278,14 +270,14 @@ public class CssPropertyFactory implements Cloneable {
 
     CssIdent initial = new CssIdent("initial");
 
-    if (expression.getValue().equals(initial) &&
-        ac.getCssVersion().equals("css3")) {
+		if (expression.getValue().equals(initial)
+				&& ac.getCssVersion().equals("css3")) {
         try {
         // create an instance of your property class
-        Class[] parametersType = { };
-        Constructor constructor =
-            Class.forName(classname).getConstructor(parametersType);
-        Object[] parameters = { };
+				Class[] parametersType = {};
+				Constructor constructor = Class.forName(classname)
+						.getConstructor(parametersType);
+				Object[] parameters = {};
         // invoke the constructor
         return (CssProperty) constructor.newInstance(parameters);
         } catch (InvocationTargetException e) {
@@ -298,10 +290,9 @@ public class CssPropertyFactory implements Cloneable {
 
         try {
         // create an instance of your property class
-        Class[] parametersType = { ac.getClass(),
-                       expression.getClass() };
-        Constructor constructor =
-            Class.forName(classname).getConstructor(parametersType);
+				Class[] parametersType = { ac.getClass(), expression.getClass() };
+				Constructor constructor = Class.forName(classname)
+						.getConstructor(parametersType);
         Object[] parameters = { ac, expression };
         // invoke the constructor
         return (CssProperty) constructor.newInstance(parameters);

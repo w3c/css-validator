@@ -6,17 +6,17 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties3;
 
-import java.util.Properties;
 import java.net.URL;
 
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.Utf8Properties;
 
 public class Css3Properties {
 
-   public static Properties properties;
+	public static Utf8Properties properties;
 
    public static String getString(CssProperty property, String prop) {
-      return properties.getProperty(property.getPropertyName()+"."+prop);
+		return properties.getProperty(property.getPropertyName() + "." + prop);
    }
 
    public static boolean getInheritance(CssProperty property) {
@@ -24,14 +24,15 @@ public class Css3Properties {
    }
 
    static {
-      properties = new Properties();
+		properties = new Utf8Properties();
       try {
-        URL url = Css3Properties.class.getResource("CSS3Default.properties");
+			URL url = Css3Properties.class
+					.getResource("CSS3Default.properties");
         properties.load(url.openStream());
-      } 
-      catch (Exception e) {
-        System.err.println("org.w3c.css.properties3.Css3Properties: couldn't load properties ");
-        System.err.println("  " + e.toString() );
+		} catch (Exception e) {
+			System.err
+					.println("org.w3c.css.properties3.Css3Properties: couldn't load properties ");
+			System.err.println("  " + e.toString());
       }
    }
 }
