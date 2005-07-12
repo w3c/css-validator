@@ -36,8 +36,8 @@ import org.w3c.css.util.Warnings;
 /**
  * @version $Revision$
  */
-public final class StyleReportSOAP12 extends StyleReport implements
-CssPrinterStyle {
+public final class StyleReportSOAP12 extends StyleReport 
+    implements CssPrinterStyle {
 
     StyleSheet style;
 
