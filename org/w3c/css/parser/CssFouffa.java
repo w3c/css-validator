@@ -401,9 +401,15 @@ public final class CssFouffa extends CssParser {
 		    importedURL = HTTPURL.getURL(importedURL, httpCL);
 		}
 		String mtype = httpURL.getContentType();
-		if (mtype.toLowerCase().indexOf("text/html") != -1) {
-					throw new FileNotFoundException(importURL.getURL()
-							+ ": You can't import" + " an HTML document");
+		if (mtype == null) {
+		    throw new FileNotFoundException(importURL.getURL() +
+						    "No Media Type defined");
+		} else {
+		    if (mtype.toLowerCase().indexOf("text/html") != -1) {
+			throw new FileNotFoundException(importURL.getURL()
+							+": You can't import" 
+							+" an HTML document");
+		    }
 		}
 	    }
 	    Frame f = ac.getFrame();
