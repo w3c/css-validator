@@ -32,7 +32,13 @@ public class TokenMgrError extends Error
     * one of the above 4 values.
     */
    int errorCode;
+   
+   private int errorLine;
 
+   public int getErrorLine() {
+	return errorLine;
+   } 
+   
    /**
     * Replaces unprintable characters by their espaced (or unicode escaped)
     * equivalents in the given string
@@ -127,7 +133,10 @@ public class TokenMgrError extends Error
       errorCode = reason;
    }
 
-   public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar, int reason) {
-      this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), reason);
+   public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, 
+	   int errorColumn, String errorAfter, char curChar, int reason) {
+      this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), 
+	      reason);
+      this.errorLine = errorLine;
    }
 }

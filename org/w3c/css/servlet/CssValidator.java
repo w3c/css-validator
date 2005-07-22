@@ -32,6 +32,8 @@ import org.w3c.css.css.StyleReport;
 import org.w3c.css.css.StyleReportFactory;
 import org.w3c.css.css.StyleSheet;
 import org.w3c.css.css.StyleSheetParser;
+import org.w3c.css.error.ErrorReport;
+import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
 import org.w3c.css.util.FakeFile;
@@ -40,11 +42,12 @@ import org.w3c.css.util.NVPair;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.www.mime.MimeType;
+import org.w3c.www.mime.MimeTypeFormatException;
 import org.xml.sax.SAXParseException;
 
 /**
  * This class is a servlet to use the validator.
- *
+ * 
  * @version $Revision$
  */
 public final class CssValidator extends HttpServlet {
@@ -64,7 +67,7 @@ public final class CssValidator extends HttpServlet {
     final static String soap12      = "application/soap+xml";
 
     final static String server_name = "Jigsaw/2.2.2 "
-    + "W3C_CSS_Validator_JFouffa/2.0";
+	+ "W3C_CSS_Validator_JFouffa/2.0";
 
     /**
      * Create a new CssValidator.
@@ -85,7 +88,7 @@ public final class CssValidator extends HttpServlet {
      * ServletConfig object themselves. If an implementor decides to store the
      * ServletConfig object in a different location, then the getServletConfig
      * method must also be overridden.
-     *
+     * 
      * <P>
      * <DL>
      * <STRONG>Init parameters:</STRONG>
@@ -101,7 +104,7 @@ public final class CssValidator extends HttpServlet {
      * <DD><code>html</code> if the user have an HTML input or
      * <code>xml</code> otherwise. <strong>deprecated</strong>
      * </DL>
-     *
+     * 
      * @param config
      *            servlet configuration information.
      * @exception ServletException
@@ -119,10 +122,10 @@ public final class CssValidator extends HttpServlet {
 	    // debug.
 	    Util.onDebug = config.getInitParameter("debug").equals("true");
 	    System.err.println("RUN IN DEBUG MODE: "
-		            + config.getInitParameter("debug").equals("true"));
+			       + config.getInitParameter("debug").equals("true"));
 	} else if (Util.onDebug) {
 	    System.err.println("RUN IN DEBUG MODE"+
-			       " but activated outside the servlet");
+	    		       " but activated outside the servlet");
 	}
 
 	if ((config.getInitParameter("import") != null)
@@ -138,7 +141,7 @@ public final class CssValidator extends HttpServlet {
 	    return new PrintWriter(new OutputStreamWriter(os, encoding));
 	} else {
 	    return new PrintWriter(new OutputStreamWriter(os, 
-			       			  Utf8Properties.ENCODING));
+							  Utf8Properties.ENCODING));
 	}
     }
 
@@ -155,11 +158,11 @@ public final class CssValidator extends HttpServlet {
      * stored data should use some other HTTP method. (There have been cases of
      * significant security breaches reported because web-based applications
      * used GET inappropriately.)
-     *
+     * 
      * <P>
      * The GET operation is also expected to be <em>idempotent</em>, meaning
      * that it can safely be repeated. This is not quite the same as being 
-     * safe, but in some common examples the requirements have the same result.
+     * safe, but in some common examples the requirements have the same result. 
      * For example, repeating queries is both safe and idempotent 
      * (unless payment is required!), but buying something or modifying data 
      * is neither safe nor idempotent.
@@ -180,7 +183,7 @@ public final class CssValidator extends HttpServlet {
      * <DT>input
      * <DD>HTML if the user have an HTML input or XML otherwise.
      * </DL>
-     *
+     * 
      * @param req
      *            encapsulates the request to the servlet.
      * @param resp
@@ -198,14 +201,18 @@ public final class CssValidator extends HttpServlet {
 	int warningLevel = 2;
 	CssParser parser = null;
 
+	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
+	ac.setContentEncoding(req.getHeader("Accept-Charset"));
+	String output = req.getParameter("output");
+	
 	String uri = null;
 	try {
 	    uri = req.getParameter("uri"); // null if the parameter does not
 	    // exist
 	} catch (Exception ex) {
 	    // pb in URI decoding (bad escaping, most probably)
-	    handleError(res, "No file", new IOException(
-		"Invalid escape sequence in URI"));
+	    handleError(res, ac, output, "No file", new IOException(
+			"Invalid escape sequence in URI"), false);
 	}
 	String text = null;
 	try {
@@ -214,17 +221,15 @@ public final class CssValidator extends HttpServlet {
 	    // pb in URI decoding (bad escaping, most probably)
 	    // not sure it will work here, as it may be catched by the first
 	    // getParameter call
-	    handleError(res, "Invalid text", new IOException(
-		"Invalid escape sequence in URI"));
+	    handleError(res, ac, output, "Invalid text", new IOException(
+			"Invalid escape sequence in URI"), false);
 	}
-	String output = req.getParameter("output");
+	
 	String warning = req.getParameter("warning");
 	String error = req.getParameter("error");
 	String profile = req.getParameter("profile");
 	String usermedium = req.getParameter("usermedium");
-	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
-	ac.setContentEncoding(req.getHeader("Accept-Charset"));
-
+		
 	String credential = req.getHeader("Authorization");
 	if ((credential != null) && (credential.length() > 1)) {
 	    ac.setCredential(credential);
@@ -274,10 +279,10 @@ public final class CssValidator extends HttpServlet {
 	// verify the request
 	if ((uri == null) && (text == null)) {
 	    // res.sendError(res.SC_BAD_REQUEST,
-            //                "You have send an invalid request.");
-	    handleError(res, "No file", 
-			new IOException(
-			    ac.getMsg().getServletString("invalid-request")));
+	    // "You have send an invalid request.");
+	    handleError(res, ac, output, "No file", 
+		    new IOException(ac.getMsg().getServletString("invalid-request")),
+		    false);
 	    return;
 	}
 
@@ -308,8 +313,8 @@ public final class CssValidator extends HttpServlet {
 	} else {
 	    Util.verbose("TEXTAREA Input");
 	}
-	//  verbose("From " + req.getRemoteHost() +
-	//       " (" + req.getRemoteAddr() + ") at " + (new Date()) );
+	// verbose("From " + req.getRemoteHost() +
+	// " (" + req.getRemoteAddr() + ") at " + (new Date()) );
 
 	if (uri != null) {
 	    // HTML document
@@ -329,7 +334,7 @@ public final class CssValidator extends HttpServlet {
 		res.setHeader("WWW-Authenticate", pex.getMessage());
 		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 	    } catch (Exception e) {
-		handleError(res, uri, e);
+		handleError(res, ac, output, uri, e, true);
 	    }
 	} else {
 	    Util.verbose("- TextArea Data -");
@@ -340,17 +345,15 @@ public final class CssValidator extends HttpServlet {
 
 	    try {
 		parser.parseStyleElement(ac, 
-			new ByteArrayInputStream(text.getBytes())
-					 , null
-					 , usermedium
-					 , new URL("file://localhost/TextArea")
-					 , 0);
-		
-		handleRequest(ac, res, "file://localhost/TextArea", 
-			      parser.getStyleSheet(), output, warningLevel, 
-			      errorReport);
+			new ByteArrayInputStream(text.getBytes()),
+			null, usermedium,
+			new URL("file://localhost/TextArea"), 0);
+
+		handleRequest(ac, res, "file://localhost/TextArea",
+			parser.getStyleSheet(), output, warningLevel,
+			errorReport);
 	    } catch (Exception e) {
-		handleError(res, "TextArea", e);
+		handleError(res, ac, output, "TextArea", e, false);
 	    }
 	}
 	Util.verbose("CssValidator: Request terminated.\n");
@@ -359,20 +362,20 @@ public final class CssValidator extends HttpServlet {
     /**
      * Performs the HTTP POST operation. An HTTP BAD_REQUEST error is reported
      * if an error occurs. The headers that are set should include content type,
-     * length, and encoding.  Setting content length allows the servlet to take
-     * advantage of HTTP "connection keep alive".  If content length can not be
+     * length, and encoding. Setting content length allows the servlet to take
+     * advantage of HTTP "connection keep alive". If content length can not be
      * set in advance, the performance penalties associated with not using keep
      * alives will sometimes be avoided if the response entity fits in an
      * internal buffer. The servlet implementor must write the headers before
      * the response data because the headers can be flushed at any time after
      * the data starts to be written.
-     *
+     * 
      * <P>
      * This method does not need to be either "safe" or "idempotent". Operations
      * requested through POST could be ones for which users need to be held
      * accountable. Specific examples including updating stored data or buying
      * things online.
-     *
+     * 
      * <P>
      * <DL>
      * <STRONG>Forms parameters:</STRONG>
@@ -383,7 +386,7 @@ public final class CssValidator extends HttpServlet {
      * <DT>input
      * <DD>HTML if the user have an HTML input or XML otherwise.
      * </DL>
-     *
+     * 
      * @param req
      *            encapsulates the request to the servlet
      * @param resp
@@ -424,8 +427,8 @@ public final class CssValidator extends HttpServlet {
 	}
 
 	Util.verbose("\nCssValidator: Servlet request ");
-	//  verbose("From " + req.getRemoteHost() +
-	//      " (" + req.getRemoteAddr() + ") at " + (new Date()) );
+	// verbose("From " + req.getRemoteHost() +
+	// " (" + req.getRemoteAddr() + ") at " + (new Date()) );
 	Util.verbose("Content-length : " + req.getContentLength());
 
 	if (req.getContentType().trim().startsWith("multipart/form-data")) {
@@ -489,10 +492,11 @@ public final class CssValidator extends HttpServlet {
 	    output = texthtml;
 	}
 	if (file == null || file.getSize() == 0) {
-	    //      res.sendError(res.SC_BAD_REQUEST,
-	    //    "You have send an invalid request");
-	    handleError(res, "No file", 
-	     new IOException(ac.getMsg().getServletString("invalid-request")));
+	    // res.sendError(res.SC_BAD_REQUEST,
+	    // "You have send an invalid request");
+	    handleError(res, ac, output, "No file",
+		    	new IOException(ac.getMsg().getServletString("invalid-request")),
+		    	false);
 	    return;
 	}
 
@@ -520,59 +524,23 @@ public final class CssValidator extends HttpServlet {
 
 	try {
 	    parser.parseStyleElement(ac, file.getInputStream(), null, null,
-				     new URL("file://localhost/" + 
-					     file.getName()), 0);
+				     new URL("file://localhost/" + file.getName()), 0);
 
 	    handleRequest(ac, res, "file://localhost/" + file.getName(), parser
 			  .getStyleSheet(), output, warningLevel, errorReport);
 	} catch (Exception e) {
-	    handleError(res, file.getName(), e);
+	    handleError(res, ac, output, file.getName(), e, false);
 	}
 
 	Util.verbose("CssValidator: Request terminated.\n");
     }
 
     private void handleRequest(ApplContext ac, HttpServletResponse res,
-			       String title, StyleSheet styleSheet, 
-			       String output, int warningLevel, 
+			       String title, StyleSheet styleSheet,
+			       String output, int warningLevel,
 			       boolean errorReport) throws Exception {
 
-	// I don't want cache for the response (inhibits proxy)
-	res.setHeader("Pragma", "no-cache"); // @@deprecated
-	res.setHeader("Cache-Control", "no-cache");
-	// Here is a little joke :-)
-	// res.setHeader("Server", server_name);
-
-	// set the content-type for the response
-	MimeType outputMt = null;
-	if (output.equals(texthtml)) {
-	    outputMt = MimeType.TEXT_HTML.getClone();
-	} else if (output.equals("soap12")) {
-	    // invert the comments on the following two lines to activate
-	    // the soap Mime Type
-	    outputMt = new MimeType(soap12);
-	    //outputMt = MimeType.TEXT_PLAIN.getClone();
-	} else {
-	    // Change this line if you want text/html output when incorrect
-	    // output is passed
-	    outputMt = MimeType.TEXT_PLAIN.getClone();
-	}
-		
-	// ignore content encoding if output is SOAP
-	if(output.equals("soap12")) {
-	    ac.setContentEncoding(null);
-	}
-		
-	if (ac.getContentEncoding() != null) {
-	    outputMt.setParameter("charset", ac.getContentEncoding());
-	}
-	res.setContentType(outputMt.toString());
-
-	if (ac.getContentLanguage() != null) {
-	    res.setHeader("Content-Language", ac.getContentLanguage());
-	} else {
-	    res.setHeader("Content-Language", "en");
-	}
+	buildHeader(ac, res, output);
 
 	if (styleSheet == null) {
 	    throw new IOException(ac.getMsg().getServletString("process") + " "
@@ -591,15 +559,13 @@ public final class CssValidator extends HttpServlet {
 	styleSheet.findConflicts(ac);
 
 	StyleReport style = StyleReportFactory.getStyleReport(ac, title,
-							      styleSheet, 
-							      output, 
-							      warningLevel);
+							      styleSheet, output, warningLevel);
 	if (!errorReport) {
 	    style.desactivateError();
 	}
-	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), 
-					      ac.getContentEncoding());
-	
+	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
+					      .getContentEncoding());
+
 	try {
 	    style.print(out);
 	} finally {
@@ -607,80 +573,100 @@ public final class CssValidator extends HttpServlet {
 	}
     }
 
-    private void handleError(HttpServletResponse res, 
-			     String title, Exception e) {
-	System.err.println("[ERROR VALIDATOR] " + title);
-	System.err.println(e.toString());
-        e.printStackTrace();
-
+    /**
+     * Generates the response header
+     * @param ac
+     * @param res
+     * @param output
+     * @throws MimeTypeFormatException 
+     */
+    private void buildHeader(ApplContext ac, HttpServletResponse res, String output) {
+	
 	// I don't want cache for the response (inhibits proxy)
 	res.setHeader("Pragma", "no-cache"); // @@deprecated
 	res.setHeader("Cache-Control", "no-cache");
-
 	// Here is a little joke :-)
-	res.setHeader("Server", server_name);
-	res.setHeader("Content-Language", "en");
-	res.setHeader("Content-Type", "text/html; charset=us-ascii");
-	// res.setHeader("Content-Encoding", "us-ascii");
+	// res.setHeader("Server", server_name);
 
-	PrintWriter out = null;
-
-	try {
-	    out = getLocalPrintWriter(res.getOutputStream(), null);
-	    URL localURL = CssValidator.class.getResource("error.html");
-	    DataInputStream in = new DataInputStream(localURL.openStream());
+	if(output == null) {
+	    output = new String(texthtml);
+	}
+	
+	// set the content-type for the response
+	MimeType outputMt = null;
+	if (output.equals(texthtml)) {
+	    outputMt = MimeType.TEXT_HTML.getClone();
+	} else if (output.equals("soap12")) {
+	    // invert the comments on the following lines to (de)activate
+	    // the soap Mime Type	    
 	    try {
-		while (true) {
-		    out.print((char) in.readUnsignedByte());
-		}
-	    } catch (EOFException eof) {
-		out.println("<h2>Target: " + Util.escapeHTML(title) + "</h2>");
-		out.println("<div class=\"error\">");
-		if (e instanceof IOException) {
-		    out.println("<p>I/O Error: ");
-		    out.println(Util.escapeHTML(e.getMessage()));
-		} else if (e instanceof SAXParseException) {
-		    SAXParseException saxe = (SAXParseException) e;
-		    out.println("<p>Please, validate your XML document"
-				+ " first!</p>");
-		    if (saxe.getLineNumber() != -1) {
-			out.print("<p>Line ");
-			out.print(saxe.getLineNumber());
-			out.println("</p>");
-		    }
-		    if (saxe.getColumnNumber() != -1) {
-			out.print("<p>Column ");
-			out.print(saxe.getColumnNumber());
-			out.print("</p>\n");
-		    }
-		    out.println("<p>" + Util.escapeHTML(e.getMessage()));
-		} else if (e instanceof NullPointerException) {
-		    out.println("<p>Oups! Internal error!</p><p>");
-		    e.printStackTrace();
-		} else {
-		    out.println(e.toString());
-		}
-		out.println("</p></div>\n<hr />\n<p><img src='images/mwc"
-			    + "ss.gif' alt='made with CSS' /></p>\n<addres"
-			    + "s><a href='Email.html'>www-validator-css</a"
-			    + "></address>\n</body></html>");
-		out.flush();
-		/*
-		 * System.err.println("CSS Validator: request failed.");
-		 * e.printStackTrace();
-		 */
+		outputMt = new MimeType(soap12);
 	    }
-	} catch (Exception unknown) {
-	    if (out != null) {
-		out.println("org.w3c.css.servlet.CssValidator: couldn't "
-			    + "load  error file");
-		out.flush();
+	    catch (MimeTypeFormatException e) {
+		outputMt = MimeType.TEXT_PLAIN.getClone();
 	    }
-	    unknown.printStackTrace();
-	} finally {
-	    if (out != null) {
-		out.close();
+	    //outputMt = MimeType.TEXT_PLAIN.getClone();
+	} else {
+	    // Change this line if you want text/html output when incorrect
+	    // output is passed
+	    outputMt = MimeType.TEXT_PLAIN.getClone();
+	}
+	
+	if(ac != null) {
+	    // ignore content encoding if output is SOAP
+	    if(output.equals("soap12")) {
+		ac.setContentEncoding(null);
 	    }
+		
+	    if (ac.getContentEncoding() != null) {
+		outputMt.setParameter("charset", ac.getContentEncoding());
+	    }
+	    res.setContentType(outputMt.toString());
+	    
+	    if (ac.getContentLanguage() != null) {
+		res.setHeader("Content-Language", ac.getContentLanguage());
+	    } else {
+		res.setHeader("Content-Language", "en");
+	    }
+	}
+	else {
+	    res.setHeader("Content-Language", "en");
+	    res.setHeader("charset", Utf8Properties.ENCODING);
+	}
+    }
+    
+    private void handleError(HttpServletResponse res, ApplContext ac,
+	String output, String title, Exception e, boolean validURI)
+    	throws IOException {
+	
+	System.err.println("[ERROR VALIDATOR] " + title);
+	System.err.println(e.toString());
+	e.printStackTrace();
+
+	buildHeader(ac, res, output);
+	res.setStatus(500);
+	
+	if((e instanceof java.net.UnknownHostException) ||
+	   ((e instanceof java.io.FileNotFoundException) &&
+	    ((e.getMessage().indexOf("Not Found") != -1) || 
+	     (e.getMessage().indexOf("Service Unavailable") != -1)))) {
+	    validURI = true;
+	}
+	else {
+	    validURI = false;
+	}
+	
+	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
+		      .getContentEncoding());
+
+	ErrorReport error = ErrorReportFactory.getErrorReport(ac, title, output,
+							      e, validURI);
+	
+	try {
+	    error.print(out);
+	}
+	finally {
+	    out.close();
 	}
     }
 

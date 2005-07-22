@@ -20,9 +20,12 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 import org.w3c.css.css.StyleSheetOrigin;
+import org.w3c.css.parser.CssParseException;
+import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.CssParserTokenManager;
 import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.analyzer.TokenMgrError;
 import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
@@ -335,6 +338,8 @@ public final class CssFouffa extends CssParser {
     public void parseStyle() {
 	try {
 	    parserUnit();
+	} catch(TokenMgrError e) {
+	    throw e;
 	} catch (Throwable e) {
 	    if (Util.onDebug) {
 		e.printStackTrace();

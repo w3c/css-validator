@@ -25,12 +25,12 @@
 
 # the beginning of the document
 document: \
-<?xml version='1.0'<!-- #encoding -->?>\n\
+<?xml version='1.0' encoding="<!-- #charset -->"?>\n\
 <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">\n\
 \ \ <env:Body>\n\
 \ \ \ \ <m:cssvalidationresponse \n\
 \ \ \ \ \ \ \ env:encodingStyle="http://www.w3.org/2003/05/soap-encoding" \n\
-\ \ \ \ \ \ \ xmlns:m="http://www.w3.org/2003/10/20-css-validator"> \n\
+\ \ \ \ \ \ \ xmlns:m="http://www.w3.org/2005/07/css-validator"> \n\
 \ \ \ \ \ <m:uri><!-- #file-title --></m:uri> \n\
 \ \ \ \ \ <m:checkedby>http://jigsaw.w3.org/css-validator/</m:checkedby>\n\
 \ \ \ \ \ <m:csslevel><!-- #cssversion --></m:csslevel>\n\

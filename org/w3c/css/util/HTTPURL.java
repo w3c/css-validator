@@ -114,12 +114,13 @@ public class HTTPURL {
     }
 
     public static URL getURL(String url) throws IOException {
-	//	url = URLEncoder.encode(url);
+	// url = URLEncoder.encode(url);
 	try {
 	    return new URL(url);
 	} catch (MalformedURLException e) {
-	    if (!url.startsWith("http:")) {
-		return new URL("http://" + url);
+	    //if (!url.startsWith("http:")) { // ook!? dkfj://wwww.3.org -> http://dkfj://www.w3.org
+	    if(url.indexOf("://") == -1) { // the protocol is missing
+	    	return new URL("http://" + url);
 	    } else {
 		throw (IOException) e.fillInStackTrace();
 	    }
