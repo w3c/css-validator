@@ -9,14 +9,15 @@
 package org.w3c.css.font;
 
 import java.util.Vector;
+
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssUnicodeRange;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -37,7 +38,8 @@ public class UnicodeRange extends CssProperty {
      * @param expression the unicode range
      * @exception InvalidParamException values are incorrect
      */  
-    public UnicodeRange(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public UnicodeRange(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	char op = expression.getOperator();
 	CssValue val = expression.getValue();
 	setByUser();
@@ -54,6 +56,11 @@ public class UnicodeRange extends CssProperty {
 	    expression.next();
 	} while (op == CssOperator.COMMA);
 	
+    }
+    
+    public UnicodeRange(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

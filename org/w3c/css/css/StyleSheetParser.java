@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/07/22 09:45:18  ylafon
+ * Added code for error Handling (Jean-Guilhem Rouel)
+ *
  * Revision 1.2  2002/04/08 21:16:38  plehegar
  * New
  *
@@ -19,30 +22,30 @@
 
 package org.w3c.css.css;
 
-import java.io.InputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Vector;
-import java.util.StringTokenizer;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.StringTokenizer;
+import java.util.Vector;
 
-import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.CssValidatorListener;
-import org.w3c.css.parser.CssFouffa;
-import org.w3c.css.parser.Errors;
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRule;
+import org.w3c.css.parser.AtRuleMedia;
+import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.CssFouffa;
+import org.w3c.css.parser.CssParseException;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.CssValidatorListener;
+import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.analyzer.TokenMgrError;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 
 /**
  * @version $Revision$

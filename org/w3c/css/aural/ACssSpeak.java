@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -28,14 +31,12 @@
 package org.w3c.css.aural;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 
 /**
@@ -65,8 +66,14 @@ public class ACssSpeak extends ACssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public ACssSpeak(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public ACssSpeak(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
 	this();
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	int index;
 
@@ -83,6 +90,11 @@ public class ACssSpeak extends ACssProperty {
 	}
 
 	expression.next();
+    }
+    
+    public ACssSpeak(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

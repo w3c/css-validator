@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -40,15 +43,15 @@ package org.w3c.css.aural;
 import java.io.IOException;
 import java.net.URL;
 
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.HTTPURL;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  * &nbsp;&nbsp;  'cue-after'
@@ -105,7 +108,13 @@ public class ACssCueAfter extends ACssProperty {
      * @param value the value of the size
      * @exception InvalidParamException The value is incorrect
      */  
-    public ACssCueAfter(ApplContext ac, CssExpression value) throws InvalidParamException {
+    public ACssCueAfter(ApplContext ac, CssExpression value, boolean check)
+    	throws InvalidParamException {
+	
+	if(check && value.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = value.getValue();
 	
 	if (val instanceof CssURL) {
@@ -124,6 +133,11 @@ public class ACssCueAfter extends ACssProperty {
 	
 	throw new InvalidParamException("value", val.toString(), 
 					getPropertyName(), ac);
+    }
+    
+    public ACssCueAfter(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 10:52:45  plehegar
  * Added getColor()
  *
@@ -18,12 +21,12 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  * Be careful, this is not a CSS1 property !
@@ -58,12 +61,20 @@ public class CssBorderBottomColor extends CssProperty {
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssBorderBottomColor(ApplContext ac, CssExpression expression) 
-    throws InvalidParamException {
+  public CssBorderBottomColor(ApplContext ac, CssExpression expression,
+	  boolean check) throws InvalidParamException {
+      
+      if(check && expression.getCount() > 1) {
+	  throw new InvalidParamException("unrecognize", ac);
+      }
 
       setByUser();
-
-    face = new CssBorderFaceColor(ac, expression);
+      face = new CssBorderFaceColor(ac, expression);
+  }
+  
+  public CssBorderBottomColor(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
   }
   
   /**
@@ -77,14 +88,20 @@ public class CssBorderBottomColor extends CssProperty {
    * Returns the color of this property
    */
   public CssValue getColor() {
-    return face.getColor();
+      if(face != null) {
+	  return face.getColor();
+      }
+      return null;
   }
 
   /**
    * Returns a string representation of the object.
    */
   public String toString() {
-    return face.toString();
+      if(face != null) {
+	  return face.toString();
+      }
+      return "";
   }
 
   /**
@@ -137,7 +154,7 @@ public class CssBorderBottomColor extends CssProperty {
    * @see #getPropertyName()
    */  
   public void print(CssPrinterStyle printer) {
-    if (!face.isDefault())
+    if (face != null && !face.isDefault())
       printer.print(this);
   }
 }

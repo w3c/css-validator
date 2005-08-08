@@ -15,26 +15,26 @@ import org.w3c.css.util.Utf8Properties;
  * @version $Revision$
  */
 public class TableProperties {
-	public static Utf8Properties properties;
+    public static Utf8Properties properties;
 
-  public static String getString(CssProperty property, String prop) {
-		return properties.getProperty(property.getPropertyName() + "." + prop);
-  }
-
-  public static boolean getInheritance(CssProperty property) {
-    return getString(property, "inherited").equals("true");
-  }
-  
-  static {
-		properties = new Utf8Properties();
-    try {
-			URL url = TableProperties.class
-					.getResource("TableDefault.properties");
-      properties.load(url.openStream());
-    } catch (Exception e) {
-			System.err
-					.println("org.w3c.css.table.TableProperties: couldn't load properties ");
-			System.err.println("  " + e.toString());
+    public static String getString(CssProperty property, String prop) {
+      return properties.getProperty(property.getPropertyName() + "." + prop);
     }
-  }
+    
+    public static boolean getInheritance(CssProperty property) {
+	return getString(property, "inherited").equals("true");
+    }
+  
+    static {
+	properties = new Utf8Properties();
+	try {
+	    URL url = TableProperties.class
+	    .getResource("TableDefault.properties");
+	    properties.load(url.openStream());
+	} catch (Exception e) {
+	    System.err
+	    .println("org.w3c.css.table.TableProperties: couldn't load properties ");
+	    System.err.println("  " + e.toString());
+	}
+    }
 }

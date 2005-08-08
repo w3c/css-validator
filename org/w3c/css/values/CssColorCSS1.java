@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2004/03/30 13:04:30  ylafon
+ * Fixed integer and percentage mixed values
+ *
  * Revision 1.2  2002/04/08 21:19:46  plehegar
  * New
  *
@@ -19,9 +22,10 @@
 package org.w3c.css.values;
 
 import java.util.Hashtable;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
+
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
 
 /**
  *   <H3>
@@ -181,7 +185,7 @@ public class CssColorCSS1 extends CssColor {
      * Create a new CssColorCSS1
      */
     public CssColorCSS1() {
-	color = inherit;
+	//color = new CssIdent("");
     }
     
     /**

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:49  plehegar
  * Freeze
  *
@@ -16,12 +19,12 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -165,7 +168,13 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
      * @param expr the expression
      * @exception InvalidParamException values are incorrect
      */  
-    public CssFontWeightCSS1(ApplContext ac, CssExpression expr) throws InvalidParamException {
+    public CssFontWeightCSS1(ApplContext ac, CssExpression expr, boolean check)
+    	throws InvalidParamException {
+	
+	if(check && expr.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expr.getValue();
 	
 	setByUser();
@@ -193,6 +202,11 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
 	
 	throw new InvalidParamException("value", expr.getValue().toString(), 
 					getPropertyName(), ac);
+    }
+    
+    public CssFontWeightCSS1(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

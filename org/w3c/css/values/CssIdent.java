@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:38:36  plehegar
  * Freeze
  *
@@ -49,7 +52,7 @@ public class CssIdent extends CssValue {
    * @param s The identificator
    */
   public CssIdent(String s) {
-    value = s;
+    value = s;   
   }  
   
   /**
@@ -58,7 +61,7 @@ public class CssIdent extends CssValue {
    * @param s     the string representation of the identificator.
    * @param frame For errors and warnings reports.
    */  
-  public void set(String s, ApplContext ac) {
+  public void set(String s, ApplContext ac) {      
     value = s;
   }
 

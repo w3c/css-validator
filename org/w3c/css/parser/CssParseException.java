@@ -6,10 +6,14 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:24:12  plehegar
+ * New
+ *
  */
 package org.w3c.css.parser;
 
 import java.util.Vector;
+
 import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.values.CssExpression;
 

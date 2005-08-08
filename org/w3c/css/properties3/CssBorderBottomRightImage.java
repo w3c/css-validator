@@ -8,72 +8,78 @@
 
 package org.w3c.css.properties3;
 
-import org.w3c.css.values.CssURL;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 
 
 public class CssBorderBottomRightImage extends CssProperty {
-
+    
     String value = "";
     ApplContext ac;
-	CssIdent contin = new CssIdent("continue");
-	CssIdent none = new CssIdent("none");
-
+    CssIdent contin = new CssIdent("continue");
+    CssIdent none = new CssIdent("none");
+    
     /**
      * Create new CssBorderBottomRightImage
      */
     public CssBorderBottomRightImage() {
-		value = "continue";
+	value = "continue";
     }
-
+    
     /**
      * Create new CssBorderBottomRightImage
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBorderBottomRightImage(ApplContext ac, CssExpression expression) throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
-
-		if (val != null) {
-			if (val.equals(none)) {
-				value = "none";
-			} else if (val.equals(contin)) {
-				value = "continue";
-			} else if (val instanceof CssURL) {
-				value = val.toString();
-			} else {
-				throw new InvalidParamException("value", expression.getValue(),
-					getPropertyName(), ac);
-			}
-		} else {
-			throw new InvalidParamException("value", expression.getValue(),
-					getPropertyName(), ac);
-		}
-
-		expression.next();
+    public CssBorderBottomRightImage(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	setByUser();
+	CssValue val = expression.getValue();
+	
+	if (val != null) {
+	    if (val.equals(none)) {
+		value = "none";
+	    } else if (val.equals(contin)) {
+		value = "continue";
+	    } else if (val instanceof CssURL) {
+		value = val.toString();
+	    } else {
+		throw new InvalidParamException("value", expression.getValue(),
+			getPropertyName(), ac);
+	    }
+	} else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
+	
+	expression.next();
     }
-
+    
+    public CssBorderBottomRightImage(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-		if (((Css3Style) style).cssBorderBottomRightImage != null)
-		    style.addRedefinitionWarning(ac, this);
-		((Css3Style) style).cssBorderBottomRightImage = this;
+	if (((Css3Style) style).cssBorderBottomRightImage != null)
+	    style.addRedefinitionWarning(ac, this);
+	((Css3Style) style).cssBorderBottomRightImage = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -81,58 +87,58 @@ public class CssBorderBottomRightImage extends CssProperty {
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-		    return ((Css3Style) style).getBorderBottomRightImage();
-		} else {
-		    return ((Css3Style) style).cssBorderBottomRightImage;
-		}
+	if (resolve) {
+	    return ((Css3Style) style).getBorderBottomRightImage();
+	} else {
+	    return ((Css3Style) style).cssBorderBottomRightImage;
+	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-		return (property instanceof CssBorderBottomRightImage &&
-                value.equals( ((CssBorderBottomRightImage) property).value));
+	return (property instanceof CssBorderBottomRightImage &&
+		value.equals( ((CssBorderBottomRightImage) property).value));
     }
-
+    
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-		return "border-bottom-left-image";
+	return "border-bottom-left-image";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
-		return value;
+	return value;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-		return value.equals(inherit);
+	return value.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-		return value;
+	return value;
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	       CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-       	   return value == cssnum.toString();
+	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
+	return value == cssnum.toString();
     }
-
+    
 }

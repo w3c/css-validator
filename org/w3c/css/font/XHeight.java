@@ -8,14 +8,13 @@
  */
 package org.w3c.css.font;
 
-import java.util.Vector;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -36,7 +35,8 @@ public class XHeight extends CssProperty {
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
      */  
-    public XHeight(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public XHeight(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -47,6 +47,11 @@ public class XHeight extends CssProperty {
 	    throw new InvalidParamException("value", expression.getValue(), 
 					    getPropertyName(), ac);
 	}
+    }
+    
+    public XHeight(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

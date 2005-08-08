@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 1.4  1997/07/30 13:19:45  plehegar
  * Updated package
  *
@@ -20,8 +23,6 @@
  *
  */
 package org.w3c.css.properties;
-import org.w3c.css.values.*;
-import org.w3c.css.util.*;
 
 /**
  * @version $Revision$
@@ -58,4 +59,9 @@ public interface CssBackgroundConstants {
    * The right position
    */  
   static int POSITION_RIGHT = 4;
+  
+  /**
+   * Inherit
+   */  
+  static int POSITION_INHERIT = 5;
 }

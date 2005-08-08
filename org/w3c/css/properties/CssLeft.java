@@ -9,9 +9,9 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 
 /**
  */
@@ -32,6 +32,11 @@ public class CssLeft extends CssBoxOffsetFace {
    */
   public CssLeft(ApplContext ac, CssExpression expression) throws InvalidParamException {
     super(ac, expression);
+  }
+  
+  public CssLeft(ApplContext ac, CssExpression expression, boolean check)
+  	throws InvalidParamException {
+      super(ac, expression, check);
   }
   
   /**

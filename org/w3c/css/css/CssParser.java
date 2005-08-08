@@ -6,12 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/07/02 14:39:02  plehegar
+ * Removed HttpServletResponse import
+ *
  * Revision 1.2  2002/04/08 21:16:38  plehegar
  * New
  *
  */
 package org.w3c.css.css;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 

@@ -9,14 +9,13 @@
 package org.w3c.css.svgproperties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -29,8 +28,8 @@ import org.w3c.css.values.CssURL;
  */
 
 public class ClipPath extends CssProperty {
-
-   CssValue clippath;
+    
+    CssValue clippath;
     ApplContext ac;
 
     CssIdent none = new CssIdent("none");
@@ -38,107 +37,113 @@ public class ClipPath extends CssProperty {
     /**
      * Create a new ClipPath
      */
-   public ClipPath() {
-       //nothing to do
-   }
-   
-   /**
-    * Create a new ClipPath
-    *
-    * @param expression The expression for this property     
-    * @exception InvalidParamException Values are incorrect
-    */
-   public ClipPath(ApplContext ac, CssExpression expression) throws InvalidParamException {
-       this.ac = ac;
-       setByUser(); // tell this property is set by the user
-       CssValue val = expression.getValue();
-       if (val instanceof CssURL) {
-           clippath = val;
-	   expression.next();
-       }
-       else if (val instanceof CssIdent) {
-           if (val.equals(inherit)) {
-	       clippath = inherit;
-	       expression.next();
-           } else if (val.equals(none)) {
-	       clippath = none;
-	       expression.next();
-	   }
-       }
-       else {
-	   throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-       }
-   }
-   
+    public ClipPath() {
+	//nothing to do
+    }
+    
+    /**
+     * Create a new ClipPath
+     *
+     * @param expression The expression for this property     
+     * @exception InvalidParamException Values are incorrect
+     */
+    public ClipPath(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	this.ac = ac;
+	setByUser(); // tell this property is set by the user
+	CssValue val = expression.getValue();
+	if (val instanceof CssURL) {
+	    clippath = val;
+	    expression.next();
+	}
+	else if (val instanceof CssIdent) {
+	    if (val.equals(inherit)) {
+		clippath = inherit;
+		expression.next();
+	    } else if (val.equals(none)) {
+		clippath = none;
+		expression.next();
+	    }
+	}
+	else {
+	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+	}
+    }
+    
+    public ClipPath(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
      */
-     public void addToStyle(ApplContext ac, CssStyle style) {
-	 if (((SVGStyle) style).clipPath != null)
-	     style.addRedefinitionWarning(ac, this);
-	 ((SVGStyle) style).clipPath = this;
-     }
+    public void addToStyle(ApplContext ac, CssStyle style) {
+	if (((SVGStyle) style).clipPath != null)
+	    style.addRedefinitionWarning(ac, this);
+	((SVGStyle) style).clipPath = this;
+    }
     
-      /**
-       * Get this property in the style.
-       *
-       * @param style The style where the property is
-       * @param resolve if true, resolve the style to find this property
-       */  
-        public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	    if (resolve) {
-		return ((SVGStyle) style).getClipPath();
-	    } else {
-		return ((SVGStyle) style).clipPath;
-	    }
+    /**
+     * Get this property in the style.
+     *
+     * @param style The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */  
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+	if (resolve) {
+	    return ((SVGStyle) style).getClipPath();
+	} else {
+	    return ((SVGStyle) style).clipPath;
 	}
+    }
     
-       /**
-        * Compares two properties for equality.
-        *
-        * @param value The other property.
-        */  
-       public boolean equals(CssProperty property) {
-	   return (property instanceof ClipPath && 
-                clippath.equals( ((ClipPath) property).clippath));
-       }
-
+    /**
+     * Compares two properties for equality.
+     *
+     * @param value The other property.
+     */  
+    public boolean equals(CssProperty property) {
+	return (property instanceof ClipPath && 
+		clippath.equals( ((ClipPath) property).clippath));
+    }
+    
     /**
      * Returns the name of this property
      */
-   public String getPropertyName() {
-       return "clip-path";
-   }
-   
+    public String getPropertyName() {
+	return "clip-path";
+    }
+    
     /**
      * Returns the value of this property
      */
-   public Object get() {
-       return clippath;
-   }
-   
+    public Object get() {
+	return clippath;
+    }
+    
     /**
      * Returns true if this property is "softly" inherited
      */
-   public boolean isSoftlyInherited() {
-       return clippath.equals(inherit);
-   }
-
-   /**
-    * Returns a string representation of the object
-    */
-   public String toString() {
-       return clippath.toString();
-   }
- 
+    public boolean isSoftlyInherited() {
+	return clippath.equals(inherit);
+    }
+    
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+	return clippath.toString();
+    }
+    
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-   public boolean isDefault() {	
-       return (clippath == none);
-   }
-
+    public boolean isDefault() {	
+	return (clippath == none);
+    }
+    
 }

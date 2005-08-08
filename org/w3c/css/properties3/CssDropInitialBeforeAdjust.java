@@ -9,14 +9,14 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssPercentage;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -58,24 +58,25 @@ public class CssDropInitialBeforeAdjust extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssDropInitialBeforeAdjust(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
+    public CssDropInitialBeforeAdjust(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	setByUser();
 	CssValue val = expression.getValue();
-
+	
 	if (val instanceof CssIdent) {
-		int i = 0;
-		for (; i < values.length; i++) {
-		    if (val.toString().equals(values[i])) {
-				dropvalue = val;
-				expression.next();
-				break;
-	    	}
+	    int i = 0;
+	    for (; i < values.length; i++) {
+		if (val.toString().equals(values[i])) {
+		    dropvalue = val;
+		    expression.next();
+		    break;
 		}
-		if (i == values.length) {
-			    throw new InvalidParamException("value", expression.getValue(),
-							    getPropertyName(), ac);
-		}
+	    }
+	    if (i == values.length) {
+		throw new InvalidParamException("value", expression.getValue(),
+			getPropertyName(), ac);
+	    }
 	}
 	else if (val instanceof CssPercentage) {
 	    dropvalue = val;
@@ -87,10 +88,15 @@ public class CssDropInitialBeforeAdjust extends CssProperty {
 	}
 	else {
 	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+		    getPropertyName(), ac);
 	}
     }
 
+    public CssDropInitialBeforeAdjust(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

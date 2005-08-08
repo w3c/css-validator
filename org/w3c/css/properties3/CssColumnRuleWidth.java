@@ -9,13 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.properties.CssBorderWidth;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -44,7 +43,8 @@ public class CssColumnRuleWidth extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssColumnRuleWidth(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssColumnRuleWidth(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	setByUser();
 	CssValue val = expression.getValue();
@@ -60,6 +60,11 @@ public class CssColumnRuleWidth extends CssProperty {
 	}
     }
 
+    public CssColumnRuleWidth(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

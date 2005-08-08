@@ -7,8 +7,6 @@ package org.w3c.css.css;
 
 import java.io.PrintWriter;
 
-import org.w3c.css.util.ApplContext;
-
 public abstract class StyleReport {
     
     abstract public void print(PrintWriter out);

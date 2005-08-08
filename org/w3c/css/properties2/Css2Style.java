@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:18:00  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -30,11 +33,8 @@
  */
 package org.w3c.css.properties2;
 
-import java.util.Enumeration;
-
-import org.w3c.css.util.Warnings;
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.aural.ACssStyle;
+import org.w3c.css.parser.CssPrinterStyle;
 
 /**
  * @version $Revision$

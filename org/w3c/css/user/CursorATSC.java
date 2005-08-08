@@ -9,15 +9,15 @@
 package org.w3c.css.user;
 import java.util.Vector;
 
-import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -50,8 +50,8 @@ public class CursorATSC extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CursorATSC(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CursorATSC(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
 	
@@ -60,13 +60,18 @@ public class CursorATSC extends CssProperty
 	ac.getFrame().addWarning("atsc", val.toString());
 	
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    inheritedValue = true;
 	    expression.next();
 	    return;
 	}
 	
-	while ((op == COMMA)
-	       && (val instanceof CssURL)) {
+	while ((op == COMMA)&& (val instanceof CssURL)) {
+	    if(val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    uris.addElement(val);
 	    expression.next();
 	    val = expression.getValue();
@@ -85,6 +90,9 @@ public class CursorATSC extends CssProperty
 		if (hash_values[i] == hash) {
 		    value = i;
 		    expression.next();
+		    if(check && !expression.end()) {
+			throw new InvalidParamException("unrecognize", ac);
+		    }
 		    return;
 		}
 	    }
@@ -92,6 +100,11 @@ public class CursorATSC extends CssProperty
 	
 	throw new InvalidParamException("value", 
 					val.toString(), getPropertyName(), ac);
+    }
+    
+    public CursorATSC(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

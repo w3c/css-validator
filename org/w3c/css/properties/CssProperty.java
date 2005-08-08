@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2003/10/20 13:15:49  ylafon
+ * formatting
+ *
  * Revision 1.3  2003/01/03 12:06:16  sijtsche
  * standard value initial added
  *
@@ -27,14 +30,12 @@
  */
 package org.w3c.css.properties;
 
+import org.w3c.css.css.StyleSheetOrigin;
+import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.util.ApplContext;
-
 import org.w3c.css.values.CssIdent;
-
-import org.w3c.css.css.StyleSheetOrigin;
 
 /**
  * <DL>
@@ -103,6 +104,11 @@ public abstract class CssProperty
      */
     public static final CssIdent inherit = new CssIdent("inherit");
 
+    /**
+     * Used in all CSS versions
+     */
+    public static final CssIdent transparent = new CssIdent("transparent");
+    
     /**
     * Value introduced in CSS3
     */

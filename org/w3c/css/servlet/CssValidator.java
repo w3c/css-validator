@@ -8,8 +8,6 @@
 package org.w3c.css.servlet;
 
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,7 +15,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.StringTokenizer;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -43,7 +40,6 @@ import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
-import org.xml.sax.SAXParseException;
 
 /**
  * This class is a servlet to use the validator.

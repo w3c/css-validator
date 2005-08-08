@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.3  1997/09/09 13:03:57  plehegar
  * Added getColor()
  *
@@ -35,12 +38,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssColor;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -78,8 +80,13 @@ public class CssBackgroundColorMob extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBackgroundColorMob(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CssBackgroundColorMob(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+
 	setByUser();
 	CssValue val = expression.getValue();
 	
@@ -103,6 +110,11 @@ public class CssBackgroundColorMob extends CssProperty {
 	}
     }  
     
+    public CssBackgroundColorMob(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */
@@ -122,14 +134,20 @@ public class CssBackgroundColorMob extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return color.equals(inherit);
+	if (color != null) {
+	    return color.equals(inherit);
+	}
+	return false;
     }
     
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return color.toString();
+	if (color != null) {
+	    return color.toString();
+	}
+	return "";
     }
     
     
@@ -165,7 +183,7 @@ public class CssBackgroundColorMob extends CssProperty {
      * @param value The other property.
      */  
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBackgroundColorCSS2 && 
+	return (property instanceof CssBackgroundColorCSS2 && color != null &&
 		color.equals( ((CssBackgroundColorCSS2) property).color));
     }
     

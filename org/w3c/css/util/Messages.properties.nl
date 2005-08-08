@@ -45,7 +45,7 @@ warning.marker: De marker-offset eigenschap is van toepassing op elementen met '
 warning.relative: Het gebruik van relatieve maten geeft robuustere stylesheets bij de eigenschap %s
 
 # gebruikt door org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: Sorry, de at-regel %s is niet geimplementeerd.
+error.at-rule: Sorry, de at-regel %s is niet geimplementeerd.
 
 # gebruikt voor alle eigenschappen en waarden
 error.operator: %s is een incorrecte operator

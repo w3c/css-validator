@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 10:56:46  plehegar
  * Added getValue()
  *
@@ -19,10 +22,10 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *   <H4>
@@ -81,11 +84,20 @@ public class CssBorderBottomWidth extends CssProperty {
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssBorderBottomWidth(ApplContext ac, CssExpression expression) 
-    throws InvalidParamException {
-
+  public CssBorderBottomWidth(ApplContext ac, CssExpression expression,
+	  boolean check) throws InvalidParamException {
+      
+      if(check && expression.getCount() > 1) {
+	  throw new InvalidParamException("unrecognize", ac);
+      }
+      
       setByUser();
-    face = new CssBorderFaceWidth(ac, expression);
+      face = new CssBorderFaceWidth(ac, expression);
+  }
+  
+  public CssBorderBottomWidth(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
   }
   
   /**
@@ -99,14 +111,20 @@ public class CssBorderBottomWidth extends CssProperty {
    * Return the value of this property
    */
   public CssValue getValue() {
-    return face.getValue();
+      if(face != null) {
+	  return face.getValue();
+      }
+      return null;
   }
 
   /**
    * Returns a string representation of the object.
    */
   public String toString() {
-    return face.toString();
+      if(face != null) {
+	  return face.toString();
+      }
+      return "";
   }
 
   /**

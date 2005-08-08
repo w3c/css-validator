@@ -6,17 +6,19 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  */
 package org.w3c.css.aural;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 
 /**
@@ -65,8 +67,14 @@ public class ACssStress extends ACssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public ACssStress(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public ACssStress(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	this();
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	int index;
 	setByUser();
@@ -88,6 +96,11 @@ public class ACssStress extends ACssProperty {
 	throw new InvalidParamException("value", 
 					expression.getValue().toString(), 
 					getPropertyName(), ac);
+    }
+    
+    public ACssStress(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

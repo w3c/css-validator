@@ -9,12 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *
@@ -27,7 +27,8 @@ public class CssLineStackingStrategy extends CssProperty {
     static CssIdent inlinelineheight = new CssIdent("inline-line-height");
 
     private static String[] values = {
-	"inline-line-height", "block-line-height", "max-height", "grid-height", "inherit", "initial"
+	"inline-line-height", "block-line-height", "max-height", "grid-height", 
+	"inherit", "initial"
     };
 
     /**
@@ -43,7 +44,8 @@ public class CssLineStackingStrategy extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssLineStackingStrategy(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssLineStackingStrategy(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	setByUser();
 	CssValue val = expression.getValue();
@@ -62,6 +64,11 @@ public class CssLineStackingStrategy extends CssProperty {
 	}
     }
 
+    public CssLineStackingStrategy(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 
-import org.w3c.css.servlet.CssValidator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.xml.sax.SAXParseException;

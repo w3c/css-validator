@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/07/24 14:42:28  sijtsche
+ * ATSC TV profile files
+ *
  * Revision 1.1  2002/05/31 09:00:16  dejong
  * ATSC TV profile objects
  *
@@ -27,15 +30,14 @@
  */
 package org.w3c.css.atsc;
 
-import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -66,8 +68,8 @@ public class CssBorderFaceWidthATSC {
    * @param expression The expression for this property
    * @exception InvalidParamException Values are incorrect
    */
-  public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression) 
-    throws InvalidParamException {
+  public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression,
+	  boolean check) throws InvalidParamException {
 
     CssValue val = expression.getValue();
 
@@ -94,6 +96,11 @@ public class CssBorderFaceWidthATSC {
     expression.next();
   }  
 
+  public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+    this(ac, expression, false);
+  }
+  
   /**
    * Returns the internal value
    */  

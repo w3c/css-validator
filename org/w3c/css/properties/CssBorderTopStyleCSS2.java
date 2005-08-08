@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 08:52:16  plehegar
  * Added getStyle()
  *
@@ -19,9 +22,9 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 
 /**
  * Be careful, this is not a CSS1 property !
@@ -55,11 +58,20 @@ public class CssBorderTopStyleCSS2 extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBorderTopStyleCSS2(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CssBorderTopStyleCSS2(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 	
 	setByUser();
 	face = new CssBorderFaceStyleCSS2(ac, expression);
+    }
+    
+    public CssBorderTopStyleCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression,false);
     }
     
     /**
@@ -73,14 +85,20 @@ public class CssBorderTopStyleCSS2 extends CssProperty {
      * Returns the value
      */
     public String getStyle() {
-	return face.getStyle();
+	if(face != null) {
+	    return face.getStyle();
+	}
+	return null;
     }
     
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return face.toString();
+	if(face != null) {
+	    return face.toString();
+	}
+	return "";
     }
     
     /**

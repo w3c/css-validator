@@ -5,10 +5,8 @@
 
 package org.w3c.www.mime ;
 
-import java.util.Vector;
-
-import java.io.PrintStream;
 import java.io.Serializable;
+import java.util.Vector;
 
 /**
  * This class is used to represent parsed MIME types. 

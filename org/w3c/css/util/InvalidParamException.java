@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:15  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/08 15:53:08  plehegar
  * Nothing
  *
@@ -23,7 +26,6 @@ package org.w3c.css.util;
 
 
 import org.w3c.css.parser.analyzer.ParseException;
-import org.w3c.css.values.CssExpression;
 
 /**
  * @version $Revision$

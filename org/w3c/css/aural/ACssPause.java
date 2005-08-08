@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -34,15 +37,15 @@
  */
 package org.w3c.css.aural;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 
 /**
@@ -91,10 +94,14 @@ public class ACssPause extends ACssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public ACssPause(ApplContext ac, CssExpression expression)  throws InvalidParamException {
+    public ACssPause(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
 	CssValue val = expression.getValue();
 
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    this.same = true;
 	    pauseBefore = new ACssPauseBefore(ac, expression);
 	    pauseAfter = new ACssPauseAfter(pauseBefore);
@@ -117,7 +124,15 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    pauseAfter = new ACssPauseAfter(ac, expression);
 	    break;
 	default:
+	    if(check) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	}
+    }
+    
+    public ACssPause(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

@@ -44,7 +44,7 @@ warning.marker: The marker-offset property applies on elements with 'display: ma
 warning.relative: 在属性 %s 使用相对单位令样式表更加棒
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: 对不起，'@规则' %s 不能应用
+error.at-rule: 对不起，'@规则' %s 不能应用
 
 # used by all properties and values
 error.operator: %s 是一个错误的运算符

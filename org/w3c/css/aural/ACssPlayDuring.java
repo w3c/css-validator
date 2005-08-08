@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -34,19 +37,18 @@
 
 package org.w3c.css.aural;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.HTTPURL;
-
-import java.net.URL;
 import java.io.IOException;
+import java.net.URL;
+
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  *  &nbsp;&nbsp;'play-during'
@@ -127,42 +129,58 @@ public class ACssPlayDuring extends ACssProperty implements CssOperator {
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
      */  
-    public ACssPlayDuring(ApplContext ac, CssExpression expression) 
-	    throws InvalidParamException {
-	CssValue val = expression.getValue();
+    public ACssPlayDuring(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	int valuesNb = expression.getCount();
+	
+	if(check && valuesNb > 3) {
+	    throw new InvalidParamException("unrecognize", ac);	    
+	}
+	
+	CssValue val = expression.getValue();		
 	
 	if (val instanceof CssURL) {
-	    this.value = val;
-	    if (expression.getCount() == 3) {
+	    this.value = val;	    
+	    if (valuesNb == 3) {
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator", 
-						    (new Character(expression.getOperator()).toString()),
-						    ac);
+			    (new Character(expression.getOperator()).toString()),
+			    ac);
 		}
 		expression.next();
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator", 
-						    (new Character(expression.getOperator()).toString()),
-						    ac);
+			    (new Character(expression.getOperator()).toString()),
+			    ac);
 		}
 		val = expression.getValue();
-		if (!val.equals(MIX)) {
+		if (!val.equals(MIX) && !val.equals(REPEAT)) {
 		    throw new InvalidParamException("few-value", 
-						    getPropertyName(), ac);
+			    getPropertyName(), ac);
 		}
-		mix = true;
+		else if(!val.equals(MIX)) {
+		    mix = true;
+		}
+		else { // val = REPEAT
+		    repeat = true;
+		}
 		expression.next();
 		val = expression.getValue();
-		if (!val.equals(REPEAT)) {
-		    throw new InvalidParamException("few-value" 
-						    + getPropertyName(), ac);
+		if (mix && val.equals(REPEAT)) {
+		    repeat = true;
 		}
-		repeat = true;
-	    } else if (expression.getCount() == 2) {
+		else if(repeat && val.equals(MIX)) {
+		    mix = true;
+		}
+		else {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
+	    } else if (valuesNb == 2) {
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator", 
-						    (new Character(expression.getOperator()).toString()),
-						    ac);
+			    (new Character(expression.getOperator()).toString()),
+			    ac);
 		}
 		expression.next();
 		val = expression.getValue();
@@ -171,27 +189,40 @@ public class ACssPlayDuring extends ACssProperty implements CssOperator {
 		} else if (val.equals(REPEAT)) {
 		    repeat = true;
 		} else {
-		    throw new InvalidParamException("few-value",
-						    getPropertyName(), ac);
+		    throw new InvalidParamException("unrecognize", ac);
 		}
 	    }
 	    expression.next();
 	    return;
 	} else if (val.equals(inherit)) {
+	    if(check && valuesNb > 1) {
+		throw new InvalidParamException("unrecognize", ac);	    
+	    }
 	    this.value = inherit;
 	    expression.next();
 	    return;
 	} else if (val.equals(NONE)) {
+	    if(check && valuesNb > 1) {
+		throw new InvalidParamException("unrecognize", ac);	    
+	    }
 	    this.value = NONE;
 	    expression.next();
 	    return;
 	} else if (val.equals(AUTO)) {
+	    if(check && valuesNb > 1) {
+		throw new InvalidParamException("unrecognize", ac);	    
+	    }
 	    this.value = AUTO;
 	    expression.next();
 	    return;
 	}
 	
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+    }
+    
+    public ACssPlayDuring(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

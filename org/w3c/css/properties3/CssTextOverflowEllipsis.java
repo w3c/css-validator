@@ -8,14 +8,14 @@
 
 package org.w3c.css.properties3;
 
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssURL;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.values.CssValue;
 
 /**
  *
@@ -31,47 +31,55 @@ import org.w3c.css.properties.CssProperty;
 	public CssTextOverflowEllipsis() {
 	    overflowellipsis = "...";
 	}
-
+	
 	/**
 	 * Create a new CssTextOverflowEllipsis
 	 *
 	 *
 	 */
-	public CssTextOverflowEllipsis(ApplContext ac, CssExpression expression) throws InvalidParamException {
+	public CssTextOverflowEllipsis(ApplContext ac, CssExpression expression,
+		boolean check) throws InvalidParamException {
 	    setByUser();
 	    CssValue val = expression.getValue();
 	    CssValue val2 = null;
-
+	    
 	    if (val instanceof CssIdent) {
-			overflowellipsis = val.toString();
-			expression.next();
+		overflowellipsis = val.toString();
+		expression.next();
 	    }
 	    else if (val instanceof CssURL) {
-			overflowellipsis = val.toString();
-			expression.next();
+		overflowellipsis = val.toString();
+		expression.next();
 	    }
 	    else {
-		throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+		throw new InvalidParamException("value", val.toString(),
+			getPropertyName(), ac);
 	    }
-
+	    
 	    val2 = expression.getValue();
-
+	    
 	    if (val2 != null) {
-
-		    if (val2 instanceof CssIdent) {
-				overflowellipsis += " " + val2.toString();
-				expression.next();
-		    }
-		    else if (val2 instanceof CssURL) {
-				overflowellipsis += " " + val2.toString();
-				expression.next();
-		    }
-		    else {
-				throw new InvalidParamException("value", val2.toString(), getPropertyName(), ac);
-		    }
+		
+		if (val2 instanceof CssIdent) {
+		    overflowellipsis += " " + val2.toString();
+		    expression.next();
 		}
+		else if (val2 instanceof CssURL) {
+		    overflowellipsis += " " + val2.toString();
+		    expression.next();
+		}
+		else {
+		    throw new InvalidParamException("value",
+			    val2.toString(), getPropertyName(), ac);
+		}
+	    }
 	}
 
+	public CssTextOverflowEllipsis(ApplContext ac, CssExpression expression)
+		throws InvalidParamException {
+	    this(ac, expression, false);
+	}
+	
 	/**
 	 * Add this property to the CssStyle.
 	 *

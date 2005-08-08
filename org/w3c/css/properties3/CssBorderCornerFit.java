@@ -9,75 +9,80 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssLength;
 
 
 public class CssBorderCornerFit extends CssProperty {
-
+    
     String value = "";
-
+    
     CssIdent overwrite = new CssIdent("overwrite");
-
+    
     private static String[] values = {
-		"clip", "repeat", "scale", "stretch", "overwrite", "overflow", "space"
+	"clip", "repeat", "scale", "stretch", "overwrite", "overflow", "space"
     };
-
+    
     /**
      * Create a new CssBorderCornerFit
      */
     public CssBorderCornerFit() {
-		value = "overwrite";
+	value = "overwrite";
     }
-
+    
     /**
      * Create a new CssBorderCornerFit
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssBorderCornerFit(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
-		setByUser();
-		CssValue val = expression.getValue();
-
-		if (expression.getCount() == 4 || expression.getCount() == 2 || expression.getCount() == 1) {
-
-			val = expression.getValue();
-
-			if (val != null) {
-
-				for (int i = 0; i < expression.getCount(); i++) {
-
-					int j = 0;
-					for (; j < values.length; j++) {
-					    if (val.toString().equals(values[j])) {
-							value += val.toString() + " ";
-							expression.next();
-							break;
-				    	}
-					}
-
-					if (j == values.length) {
-						    throw new InvalidParamException("value", expression.getValue(),
-										    getPropertyName(), ac);
-					}
-				}
+    public CssBorderCornerFit(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	setByUser();
+	CssValue val = expression.getValue();
+	
+	if (expression.getCount() == 4 || expression.getCount() == 2 ||
+		expression.getCount() == 1) {
+	    
+	    val = expression.getValue();
+	    
+	    if (val != null) {
+		
+		for (int i = 0; i < expression.getCount(); i++) {
+		    
+		    int j = 0;
+		    for (; j < values.length; j++) {
+			if (val.toString().equals(values[j])) {
+			    value += val.toString() + " ";
+			    expression.next();
+			    break;
 			}
-
-		} else {
-			throw new InvalidParamException("value", expression.getValue(),
-				getPropertyName(), ac);
+		    }
+		    
+		    if (j == values.length) {
+			throw new InvalidParamException("value",
+				expression.getValue(), getPropertyName(), ac);
+		    }
 		}
-
+	    }
+	    
+	} else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
+	
     }
-
+    
+    public CssBorderCornerFit(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *
@@ -88,7 +93,7 @@ public class CssBorderCornerFit extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderCornerFit = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -103,7 +108,7 @@ public class CssBorderCornerFit extends CssProperty {
 	    return ((Css3Style) style).cssBorderCornerFit;
 	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
@@ -113,41 +118,41 @@ public class CssBorderCornerFit extends CssProperty {
 	return (property instanceof CssBorderCornerFit &&
 		value.equals(((CssBorderCornerFit) property).value));
     }
-
+    
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-corner-fit";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-		return value.equals("overwrite");
+	return value.equals("overwrite");
     }
-
+    
 }

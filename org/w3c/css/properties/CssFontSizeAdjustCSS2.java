@@ -6,16 +6,19 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  */
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  *
@@ -41,8 +44,14 @@ public class CssFontSizeAdjustCSS2 extends CssProperty implements CssFontConstan
      * @param expression the font size-adjust
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssFontSizeAdjustCSS2(ApplContext ac, CssExpression expression) 
+    public CssFontSizeAdjustCSS2(ApplContext ac, CssExpression expression,
+	    boolean check)    
 	throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -59,6 +68,11 @@ public class CssFontSizeAdjustCSS2 extends CssProperty implements CssFontConstan
 	
 	expression.next();
     }
+    
+    public CssFontSizeAdjustCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }	
     
     /**
      * Returns the current value

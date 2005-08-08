@@ -11,15 +11,15 @@ package org.w3c.css.svgproperties;
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <PRE>
@@ -51,8 +51,9 @@ public class ColorProfile extends CssProperty implements CssOperator {
     /** 
      * Create a new ColorProfile
      */
-    public ColorProfile(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
+    public ColorProfile(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	//setByUser();
 	char op = SPACE;
 	CssValue val = expression.getValue();
@@ -71,15 +72,15 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	    expression.next();
 	} else {
 	    while ((op == SPACE)
-		   && (counter < expression.getCount() && correct == true)) {
-	    
+		    && (counter < expression.getCount() && correct == true)) {
+		
 		if (val instanceof CssURL) {
 		    values.addElement(val);
 		}
 		else if (val instanceof CssFunction) {
 		    if (((CssFunction) val).getName().equals("local")) {
 			if ((((CssFunction) val).getParameters().getCount() == 1) &&
-			    (((CssFunction) val).getParameters().getValue() instanceof CssURL)) {
+				(((CssFunction) val).getParameters().getValue() instanceof CssURL)) {
 			    values.addElement(val);
 			} else {
 			    correct = false;
@@ -102,11 +103,16 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	    
 	    if (!correct) {
 		throw new InvalidParamException("value", val.toString(), 
-						getPropertyName(), ac);
+			getPropertyName(), ac);
 	    }
 	}
     }
-
+    
+    public ColorProfile(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 10:52:45  plehegar
  * Added getColor()
  *
@@ -18,12 +21,12 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  * Be careful, this is not a CSS1 property !
@@ -58,13 +61,21 @@ public class CssBorderBottomColorCSS2 extends CssProperty {
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssBorderBottomColorCSS2(ApplContext ac, CssExpression expression) 
-    throws InvalidParamException {
+  public CssBorderBottomColorCSS2(ApplContext ac, CssExpression expression,
+	  boolean check) throws InvalidParamException {
+      
+      if(check && expression.getCount() > 1) {
+	  throw new InvalidParamException("unrecognize", ac);
+      }
 
       setByUser();
-
-    face = new CssBorderFaceColorCSS2(ac, expression);
+      face = new CssBorderFaceColorCSS2(ac, expression);
   }
+  
+  public CssBorderBottomColorCSS2(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+  }	
   
   /**
    * Returns the value of this property
@@ -137,7 +148,7 @@ public class CssBorderBottomColorCSS2 extends CssProperty {
    * @see #getPropertyName()
    */  
   public void print(CssPrinterStyle printer) {
-    if (!face.isDefault())
+    if (face != null && !face.isDefault())
       printer.print(this);
   }
 }

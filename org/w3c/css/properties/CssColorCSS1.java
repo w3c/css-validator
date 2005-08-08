@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2003/08/29 12:31:59  plehegar
+ * Fixed equals
+ *
  * Revision 1.3  2003/08/28 19:50:08  plehegar
  * Bug fix from Sijtsche
  *
@@ -49,11 +52,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -82,7 +85,6 @@ public class CssColorCSS1 extends CssProperty {
      * Create a new CssColor
      */
     public CssColorCSS1() {
-	color = inherit;
     }
 
     /**
@@ -90,14 +92,16 @@ public class CssColorCSS1 extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssColorCSS1(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssColorCSS1(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	setByUser();
 
-	if (val.equals(inherit)) {
-	    color = inherit;
-	    expression.next();
-	} else if (val instanceof org.w3c.css.values.CssColor) {
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
+	if (val instanceof org.w3c.css.values.CssColor) {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssIdent) {
@@ -109,6 +113,11 @@ public class CssColorCSS1 extends CssProperty {
 	}
     }
 
+    public CssColorCSS1(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

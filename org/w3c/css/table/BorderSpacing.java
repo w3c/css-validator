@@ -9,15 +9,15 @@
 
 package org.w3c.css.table;
 
-import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 
 /**
@@ -40,17 +40,30 @@ public class BorderSpacing extends TableProperty implements CssOperator {
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
      */  
-    public BorderSpacing(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public BorderSpacing(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 2) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	CssLength le = getLength(val);
 	setByUser();
 
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = inherit;
 	} else if (le != null) {
 	    value = le;
-	    if (expression.getOperator() == SPACE) {
-		expression.next();
+	    if (expression.getOperator() == SPACE) {		
+		expression.next();		
+		val = expression.getValue();
+		if(val != null && val.equals(inherit)) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
 		le = getLength(expression.getValue());
 		if (le != null) {
 		    second = le;
@@ -66,6 +79,11 @@ public class BorderSpacing extends TableProperty implements CssOperator {
 	}
 
 	expression.next();
+    }
+    
+    public BorderSpacing(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2003/07/30 06:34:52  sijtsche
+ * new speech property
+ *
  * Revision 1.2  2002/04/08 21:16:56  plehegar
  * New
  *
@@ -35,15 +38,14 @@
 package org.w3c.css.aural;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssTime;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssDate;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssDate;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTime;
+import org.w3c.css.values.CssValue;
 
 /**
 
@@ -75,12 +77,17 @@ public class ACssInterpretAs extends ACssProperty {
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
      */
-    public ACssInterpretAs(ApplContext ac, CssExpression expression)
-	   throws InvalidParamException {
+    public ACssInterpretAs(ApplContext ac, CssExpression expression, 
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
-
+	
 	setByUser();
-
+	
 	if (val.equals(inherit)) {
 	    value = inherit;
 	    expression.next();
@@ -89,7 +96,7 @@ public class ACssInterpretAs extends ACssProperty {
 	    float num = ((Float) val.get()).floatValue();
 	    if (num < 0) {
 		throw new InvalidParamException("negative-value",
-						val.toString(), ac);
+			val.toString(), ac);
 	    }
 	    value = val;
 	    expression.next();
@@ -99,19 +106,24 @@ public class ACssInterpretAs extends ACssProperty {
 	    expression.next();
 	    return;
 	} else if (val instanceof CssIdent) {
-		for (int i=0; i < interpretas.length; i++) {
-			if (val.toString().equals(interpretas[i])) {
-				value = val;
-				expression.next();
-				return;
-			}
+	    for (int i=0; i < interpretas.length; i++) {
+		if (val.toString().equals(interpretas[i])) {
+		    value = val;
+		    expression.next();
+		    return;
 		}
+	    }
 	}
-
+	
 	throw new InvalidParamException("value", val.toString(),
-					getPropertyName(), ac);
+		getPropertyName(), ac);
     }
-
+    
+    public ACssInterpretAs(ApplContext ac, CssExpression expression)
+    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the current value
      */
@@ -162,7 +174,7 @@ public class ACssInterpretAs extends ACssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssInterpretAs = this;
     }
-
+    
     /**
      * Compares two properties for equality.
      *
@@ -176,8 +188,8 @@ public class ACssInterpretAs extends ACssProperty {
 	    return false;
 	}
     }
-
-
+    
+    
     /**
      * Get this property in the style.
      *

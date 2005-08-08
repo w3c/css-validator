@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/12/24 13:05:56  sijtsche
+ * value initial added
+ *
  * Revision 1.1  2002/07/19 20:30:12  sijtsche
  * files representing CSS3 properties
  *
@@ -25,12 +28,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -76,7 +79,8 @@ public class CssClearCSS3 extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssClearCSS3(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssClearCSS3(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -93,6 +97,11 @@ public class CssClearCSS3 extends CssProperty {
 					getPropertyName(), ac);
     }
 
+    public CssClearCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

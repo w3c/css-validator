@@ -9,14 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -43,7 +41,8 @@ public class CssOverflowCSS3 extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */
-    public CssOverflowCSS3(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssOverflowCSS3(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -75,6 +74,11 @@ public class CssOverflowCSS3 extends CssProperty {
 
     }
 
+    public CssOverflowCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

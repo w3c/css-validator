@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/07/02 14:39:50  plehegar
+ * Removed HttpServletResponse import
+ *
  * Revision 1.2  2002/04/08 21:24:12  plehegar
  * New
  *
@@ -23,9 +26,8 @@ package org.w3c.css.parser;
 
 import java.util.Vector;
 
-
-import org.w3c.css.util.Warnings;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.Warnings;
 
 /**
  * Implements this interface if you want to use the CSS1 parser.

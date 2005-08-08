@@ -7,6 +7,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2003/07/25 11:00:58  sijtsche
+ * additional values for UI added
+ *
  * Revision 1.3  2002/12/24 12:32:47  sijtsche
  * new values added
  *
@@ -35,11 +38,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *
@@ -71,7 +74,13 @@ public class CssDisplay extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorect
      */
-    public CssDisplay(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssDisplay(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -91,6 +100,11 @@ public class CssDisplay extends CssProperty {
 					getPropertyName(), ac);
     }
 
+    public CssDisplay(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

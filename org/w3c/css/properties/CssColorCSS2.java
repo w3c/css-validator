@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2004/03/30 13:09:39  ylafon
+ * fixed the too many values case
+ *
  * Revision 1.3  2003/08/28 19:51:33  plehegar
  * Bug fix from Sijtsche
  *
@@ -49,11 +52,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -90,12 +93,13 @@ public class CssColorCSS2 extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssColorCSS2(ApplContext ac, CssExpression expression)
-	throws InvalidParamException
-    {
-	if (expression.getCount() > 1 ) {
+    public CssColorCSS2(ApplContext ac, CssExpression expression, boolean check)
+	throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
+	
 	CssValue val = expression.getValue();
 	setByUser();
 	if (val.equals(inherit)) {
@@ -114,6 +118,11 @@ public class CssColorCSS2 extends CssProperty {
 	}
     }
 
+    public CssColorCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

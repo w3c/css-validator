@@ -13,8 +13,8 @@
  */
 package org.w3c.css.parser.analyzer;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 /**

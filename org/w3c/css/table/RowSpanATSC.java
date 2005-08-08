@@ -9,13 +9,13 @@
 
 package org.w3c.css.table;
 
-import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 
 /**
@@ -37,7 +37,13 @@ public class RowSpanATSC extends TableProperty {
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
      */  
-    public RowSpanATSC(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public RowSpanATSC(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -60,6 +66,11 @@ public class RowSpanATSC extends TableProperty {
 	} 
 	
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+    }
+    
+    public RowSpanATSC(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

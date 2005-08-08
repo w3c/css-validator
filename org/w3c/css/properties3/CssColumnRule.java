@@ -9,22 +9,21 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.properties.CssBorderTopWidth;
+import org.w3c.css.properties.CssBorderBottomStyle;
 import org.w3c.css.properties.CssBorderBottomWidth;
+import org.w3c.css.properties.CssBorderLeftStyle;
 import org.w3c.css.properties.CssBorderLeftWidth;
+import org.w3c.css.properties.CssBorderRightStyle;
 import org.w3c.css.properties.CssBorderRightWidth;
 import org.w3c.css.properties.CssBorderTopStyle;
-import org.w3c.css.properties.CssBorderBottomStyle;
-import org.w3c.css.properties.CssBorderLeftStyle;
-import org.w3c.css.properties.CssBorderRightStyle;
+import org.w3c.css.properties.CssBorderTopWidth;
 import org.w3c.css.properties.CssColor;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -41,8 +40,10 @@ public class CssColumnRule extends CssProperty
 implements CssOperator {
 
     CssValue value;
-    /* I should use border-width and border-style here, but I don't see how to implement a
-       shorthand property for shorthand properties ... So I splitted it up*/
+    /* I should use border-width and border-style here, but I don't 
+     * see how to implement a 
+     * shorthand property for shorthand properties ... So I splitted it up
+     */
     CssBorderTopWidth btw;
     CssBorderRightWidth brw;
     CssBorderLeftWidth blw;
@@ -66,7 +67,8 @@ implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
-    public CssColumnRule(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssColumnRule(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	CssValue val = expression.getValue();
 	int maxvalues = 9;
@@ -169,6 +171,10 @@ implements CssOperator {
 	}
     }
 
+    public CssColumnRule(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
 
     /**
      * Add this property to the CssStyle

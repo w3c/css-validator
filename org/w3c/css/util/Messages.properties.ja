@@ -50,7 +50,7 @@ warning.marker: marker-offset プロパティは、'display: marker' 要素に�
 warning.relative: %s プロパティに相対指定の単位を使うことで、より強固なスタイルシートを作る事ができます
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: 申し訳ありませんが、at-rule %s はまだ実装されていません。
+error.at-rule: 申し訳ありませんが、at-rule %s はまだ実装されていません。
 
 # used by all properties and values
 error.operator: %s は正しい演算子 (operator) ではありません

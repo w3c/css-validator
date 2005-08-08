@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:52  plehegar
  * Freeze
  *
@@ -28,11 +31,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -67,8 +70,12 @@ public class CssListStylePositionCSS1 extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssListStylePositionCSS1(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
+    public CssListStylePositionCSS1(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 	
 	CssValue val = expression.getValue();
 	
@@ -85,6 +92,11 @@ public class CssListStylePositionCSS1 extends CssProperty
 	} else {
 	    throw new InvalidParamException("value", val, getPropertyName(), ac);
 	}
+    }
+    
+    public CssListStylePositionCSS1(ApplContext ac, CssExpression expression)
+    	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

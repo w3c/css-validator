@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/08/29 15:23:39  plehegar
+ * Fix from Sijtsche
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -18,19 +21,18 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
  */
 public class CssBorderFaceColorCSS2 {
 
-    CssValue face;
+    CssValue face;       
 
     /**
      * Create a new CssBorderFaceColor
@@ -63,8 +65,12 @@ public class CssBorderFaceColorCSS2 {
      * @param expression The expression for this property.
      * @exception InvalidParamException color is not a color
      */
-    public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
+    public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 
 	CssValue val = expression.getValue();
 
@@ -72,6 +78,8 @@ public class CssBorderFaceColorCSS2 {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
 	    face = CssProperty.inherit;
+	} else if(val.equals(CssProperty.transparent)) {	    
+	  face = CssProperty.transparent;  
 	} else if (val instanceof CssIdent) {
 	    face = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
 	} else {
@@ -81,6 +89,11 @@ public class CssBorderFaceColorCSS2 {
 	expression.next();
     }
 
+    public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the internal color
      */
@@ -93,14 +106,20 @@ public class CssBorderFaceColorCSS2 {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false; // @@ FIXME face.isDefault();
+	if(face != null) {
+	    return face.isDefault(); // @@ FIXME face.isDefault();
+	}
+	return false;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return face.toString();
+	if(face != null) {
+	    return face.toString();
+	}
+	return "";
     }
 
     /**
@@ -109,6 +128,6 @@ public class CssBorderFaceColorCSS2 {
      * @param value The another faces.
      */
     public boolean equals(CssBorderFaceColorCSS2 color) {
-	return this.face.equals(color.face);
+	return this.face.equals(color.face); // FIXME
     }
 }

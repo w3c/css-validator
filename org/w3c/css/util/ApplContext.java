@@ -9,11 +9,8 @@
 package org.w3c.css.util;
 
 import java.nio.charset.Charset;
-import java.nio.charset.IllegalCharsetNameException;
-import java.util.StringTokenizer;
 
 import org.w3c.css.parser.Frame;
-import org.w3c.www.http.HttpAccept;
 import org.w3c.www.http.HttpAcceptCharset;
 import org.w3c.www.http.HttpAcceptCharsetList;
 import org.w3c.www.http.HttpFactory;

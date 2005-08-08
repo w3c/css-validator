@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/07/19 20:30:12  sijtsche
+ * files representing CSS3 properties
+ *
  * Revision 1.1  2002/05/08 09:30:52  dejong
  * CSS version 3 specific properties as in March 2002, all modules
  *
@@ -22,12 +25,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -71,7 +74,8 @@ public class CssLineHeightPolicy extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssLineHeightPolicy(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssLineHeightPolicy(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	
 	setByUser();
@@ -93,6 +97,11 @@ public class CssLineHeightPolicy extends CssProperty {
 	    throw new InvalidParamException("value", expression.getValue(), 
 					getPropertyName(), ac);
 	}
+    }
+    
+    public CssLineHeightPolicy(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

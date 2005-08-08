@@ -6,21 +6,21 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  */
 package org.w3c.css.properties;
 
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssColor;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -48,31 +48,54 @@ public class CssTextShadow extends CssProperty
      * @exception InvalidParamException Values are incorrect
      */  
     public CssTextShadow(ApplContext ac, CssExpression expression) 
+	    throws InvalidParamException {		
+	this(ac, expression, false);	
+    }
+    
+    /**
+     * Create a new CssTextShadow
+     *
+     * @param expression The expression for this property
+     * @param check if true, checks the number of parameters
+     * @exception InvalidParamException Values are incorrect
+     */  
+    public CssTextShadow(ApplContext ac, CssExpression expression, boolean check) 
 	    throws InvalidParamException {
+		
+	int count = expression.getCount();
+	
 	CssValue val = expression.getValue();
 	
 	setByUser();
 
 	if (val.equals(none)) {
+	    if(count > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = none;
 	    expression.next();
 	    return;
 	} else if (val.equals(inherit)) {
+	    if(count > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = inherit;
 	    expression.next();
 	    return;
 	} else {
 	    TextShadowFace face;
 	    char op = CssOperator.COMMA;
-	    while (op == CssOperator.COMMA) {
-		face = new TextShadowFace(ac, expression);
+	    while (op == CssOperator.COMMA) {		
+		face = new TextShadowFace(ac, expression);		
 		value = null;
 		op = face.op;
 		faces.addElement(face);
 	    }
+	    if(check && !expression.end()) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	}
-	val = null;
-	
+	val = null;	
     }
     
     /**

@@ -8,9 +8,6 @@
  */
 package org.w3c.css.paged;
 
-import java.util.Enumeration;
-
-import org.w3c.css.util.Warnings;
 import org.w3c.css.parser.CssPrinterStyle;
 
 

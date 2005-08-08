@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/12/24 13:20:53  sijtsche
+ * new version for CSS3: value initial added
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -36,15 +39,14 @@
  */
 package org.w3c.css.properties3;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.properties.CssProperty;
 
 /**
  *   <H4>
@@ -101,7 +103,8 @@ public class CssPaddingCSS3 extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssPaddingCSS3(ApplContext ac, CssExpression expression)  throws InvalidParamException {
+    public CssPaddingCSS3(ApplContext ac, CssExpression expression,
+	    boolean check)  throws InvalidParamException {
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -158,6 +161,11 @@ public class CssPaddingCSS3 extends CssProperty implements CssOperator {
 	}
     }
 
+    public CssPaddingCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

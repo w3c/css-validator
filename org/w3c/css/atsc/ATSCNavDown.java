@@ -9,15 +9,14 @@
 package org.w3c.css.atsc;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssNumber;
 
 /**
  *  This property is used to effect explicit directional navigation control by
@@ -38,7 +37,7 @@ public class ATSCNavDown extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public ATSCNavDown (ApplContext ac, CssExpression expression)
+    public ATSCNavDown (ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
 
 		this.ac = ac;
@@ -61,6 +60,11 @@ public class ATSCNavDown extends CssProperty {
 
     }
 
+    public ATSCNavDown(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *

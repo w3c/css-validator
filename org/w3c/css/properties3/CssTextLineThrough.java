@@ -9,13 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -51,7 +50,8 @@ implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
-    public CssTextLineThrough(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssTextLineThrough(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	CssValue val = expression.getValue();
 	int maxvalues = 3;
@@ -109,6 +109,10 @@ implements CssOperator {
 
     }
 
+    public CssTextLineThrough(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
 
     /**
      * Add this property to the CssStyle

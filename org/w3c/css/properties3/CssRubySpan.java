@@ -11,14 +11,13 @@ package org.w3c.css.properties3;
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssFunction;
 
 /**
  *  <P>
@@ -50,51 +49,57 @@ public class CssRubySpan extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssRubySpan(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
-		String kc = new String();
-		int hyphenindex;
-		int counter = 0;
-		char op = expression.getOperator();
-	        CssValue val = expression.getValue();
-		String part = new String();
-		String rest = new String();
-		Vector ks = new Vector();
-		setByUser();
-
-		if (val.equals(none)) {
-		    rubyspan = none;
-		    expression.next();
-		    return;
+    public CssRubySpan(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	//String kc = new String();
+	//int hyphenindex;
+	//int counter = 0;
+	//char op = expression.getOperator();
+	CssValue val = expression.getValue();
+	//String part = new String();
+	//String rest = new String();
+	//Vector ks = new Vector();
+	setByUser();
+	
+	if (val.equals(none)) {
+	    rubyspan = none;
+	    expression.next();
+	    return;
+	}
+	else if (val.equals(inherit)) {
+	    rubyspan = inherit;
+	    expression.next();
+	    return;
+	}
+	else if (val instanceof CssFunction) {
+	    CssFunction attr = (CssFunction) val;
+	    CssExpression params = attr.getParameters();
+	    CssValue v = params.getValue();
+	    if (attr.getName().equals("attr")) {
+		if ((params.getCount() != 1)
+			|| !(v instanceof CssIdent)) {
+		    throw new InvalidParamException("attr", params.getValue(),
+			    getPropertyName(), ac);
 		}
-		else if (val.equals(inherit)) {
-		    rubyspan = inherit;
-		    expression.next();
-		    return;
-		}
-		else if (val instanceof CssFunction) {
-		    CssFunction attr = (CssFunction) val;
-		    CssExpression params = attr.getParameters();
-		    CssValue v = params.getValue();
-		    if (attr.getName().equals("attr")) {
-				if ((params.getCount() != 1)
-				    || !(v instanceof CssIdent)) {
-				    throw new InvalidParamException("attr", params.getValue(),
-								    getPropertyName(), ac);
-				}
-		    }
-		    else throw new InvalidParamException("value", expression.getValue(),
-							 getPropertyName(), ac);
-		    rubyspan = val;
-		    expression.next();
-		    return;
-		} else {
-			throw new InvalidParamException("value", expression.getValue(),
-							 getPropertyName(), ac);
-		}
-
+	    }
+	    else throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	    rubyspan = val;
+	    expression.next();
+	    return;
+	} else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
+	
     }
 
+    public CssRubySpan(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *

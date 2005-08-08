@@ -9,12 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 public class CssTextBlink extends CssProperty {
 
@@ -37,7 +37,8 @@ public class CssTextBlink extends CssProperty {
      * @param expression The expression for this parameter
      * @exception InvalidParamException Incorrect value
      */
-    public CssTextBlink(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssTextBlink(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	setByUser();
 	CssValue val = expression.getValue();
@@ -60,6 +61,11 @@ public class CssTextBlink extends CssProperty {
 	}
     }
 
+    public CssTextBlink(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

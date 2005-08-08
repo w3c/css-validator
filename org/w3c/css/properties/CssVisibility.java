@@ -9,13 +9,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -41,7 +39,13 @@ public class CssVisibility extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssVisibility(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssVisibility(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	
 	setByUser();
@@ -65,6 +69,11 @@ public class CssVisibility extends CssProperty {
 					    getPropertyName(), ac);
 	}
 	
+    }
+    
+    public CssVisibility(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

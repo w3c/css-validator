@@ -8,61 +8,66 @@
 
 package org.w3c.css.properties3;
 
-import org.w3c.css.values.CssLength;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 public class CssBorderTopRightRadius extends CssProperty {
-
+    
     String value;
     ApplContext ac;
-
+    
     /**
      * Create new CssBorderTopRightRadius
      */
     public CssBorderTopRightRadius() {
-		CssNumber cssnum =  new CssNumber((float) 1.0);
-       	value = cssnum.toString();
+	CssNumber cssnum =  new CssNumber((float) 1.0);
+	value = cssnum.toString();
     }
-
+    
     /**
      * Create new CssBorderTopRightRadius
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBorderTopRightRadius(ApplContext ac, CssExpression expression) throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
-
+    public CssBorderTopRightRadius(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	setByUser();
+	CssValue val = expression.getValue();
+	
+	if (val instanceof CssLength) {
+	    value = val.toString();
+	    expression.next();
+	    
+	    val = expression.getValue();
+	    if (val != null) {
+		
 		if (val instanceof CssLength) {
-		    value = val.toString();
+		    value += " " + val.toString();
 		    expression.next();
-
-		    val = expression.getValue();
-		    if (val != null) {
-
-				if (val instanceof CssLength) {
-					value += " " + val.toString();
-					expression.next();
-				} else {
-					throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-				}
-			}
-		}
-		else {
+		} else {
 		    throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
+			    getPropertyName(), ac);
 		}
+	    }
+	}
+	else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
     }
-
+    
+    public CssBorderTopRightRadius(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *
@@ -73,7 +78,7 @@ public class CssBorderTopRightRadius extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderTopRightRadius = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -87,7 +92,7 @@ public class CssBorderTopRightRadius extends CssProperty {
 	    return ((Css3Style) style).cssBorderTopRightRadius;
 	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
@@ -95,44 +100,44 @@ public class CssBorderTopRightRadius extends CssProperty {
      */
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBorderTopRightRadius &&
-                value.equals( ((CssBorderTopRightRadius) property).value));
+		value.equals( ((CssBorderTopRightRadius) property).value));
     }
-
+    
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-top-right-radius";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	       CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-       	   return value == cssnum.toString();
+	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
+	return value == cssnum.toString();
     }
-
+    
 }

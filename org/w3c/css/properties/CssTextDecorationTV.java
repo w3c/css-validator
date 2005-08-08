@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/08/19 07:38:04  sijtsche
+ * new tv profile property variant
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -34,11 +37,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -100,29 +103,45 @@ public class CssTextDecorationTV extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssTextDecorationTV(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
+    public CssTextDecorationTV(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	CssValue val = expression.getValue();
 	boolean find = true;
-	int computed = 0;
+	//int computed = 0;
 	int index = INVALID;
 
 	setByUser();
 
 	if (val.equals(none)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = none;
 	    expression.next();
 	    return;
 	} else if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = inherit;
 	    expression.next();
 	    return;
 	}
 	val = null;
 
+	if(check && expression.getCount() > 4) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
+	    
+	    if(val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
 	    if (val instanceof CssIdent) {
 		index = getIndex((CssIdent) val, ac);
 		if (values[index] == true) {
@@ -140,6 +159,11 @@ public class CssTextDecorationTV extends CssProperty
 	}
     }
 
+    public CssTextDecorationTV(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

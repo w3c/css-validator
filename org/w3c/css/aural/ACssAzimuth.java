@@ -6,19 +6,22 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  *
  */
 package org.w3c.css.aural;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssAngle;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  *
@@ -54,26 +57,42 @@ public class ACssAzimuth extends ACssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Expressions are incorrect
      */  
-    public ACssAzimuth(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public ACssAzimuth(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+			
 	this();
+	
+	if(check && expression.getCount() > 2) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	int index;
 	
 	setByUser();
 	
 	if (val.equals(leftwards)) {
+	    if(check && expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = leftwards;
 	    expression.next();
 	    return;
 	} if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = inherit;
 	    expression.next();
 	    return;
 	} else if (val.equals(rightwards)) {
+	    if(check && expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = rightwards;
 	    expression.next();
 	    return;
-	} else if (val.equals(behind)) {
+	} else if (val.equals(behind)) {	    
 	    isBehind = true;
 	    expression.next();
 	    CssValue valnext = expression.getValue();
@@ -101,6 +120,9 @@ public class ACssAzimuth extends ACssProperty {
 		return;
 	    }
 	} else if (val instanceof CssAngle) {
+	    if(check && expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    CssAngle angle = (CssAngle) val;
 	    if (!angle.isDegree()) {
 		throw new InvalidParamException("degree", null, ac);
@@ -109,6 +131,9 @@ public class ACssAzimuth extends ACssProperty {
 	    expression.next();
 	    return;
 	} else if (val instanceof CssNumber) {
+	    if(check && expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = ((CssNumber) val).getAngle();
 	    expression.next();
 	    return;
@@ -117,6 +142,11 @@ public class ACssAzimuth extends ACssProperty {
 	throw new InvalidParamException("value", 
 					expression.getValue().toString(), 
 					getPropertyName(), ac);
+    }
+    
+    public ACssAzimuth(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

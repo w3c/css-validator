@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:31  plehegar
  * Freeze
  *
@@ -37,15 +40,15 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -143,8 +146,13 @@ public class CssBackgroundPositionMob extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssBackgroundPositionMob(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CssBackgroundPositionMob(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 2) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	setByUser();
 	CssValue val = expression.getValue();
 	char op  = expression.getOperator();
@@ -156,6 +164,9 @@ public class CssBackgroundPositionMob extends CssProperty
 					     ac);
 	
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    horizontal = inherit;
 	    vertical = inherit;
 	    expression.next();
@@ -163,6 +174,9 @@ public class CssBackgroundPositionMob extends CssProperty
 	} else if (val instanceof CssIdent 
 	    && (index=IndexOfIdent((String) val.get())) != INVALID) {
 	    CssValue next = expression.getNextValue();
+	    if(next.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    expression.next();
 	    if (next == null) {
 		getPercentageFromIdent(index, INVALID);
@@ -183,26 +197,31 @@ public class CssBackgroundPositionMob extends CssProperty
 	    horizontal = val;
 	    expression.next();
 	    val = expression.getValue();
+	    if(val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    if (val instanceof CssLength || 
 		val instanceof CssPercentage || val instanceof CssNumber) {
 		if (val instanceof CssNumber) {
-		    try {
-			val = ((CssNumber) val).getLength();
-		    } catch (InvalidParamException e) {
-			vertical = DefaultValue50;
-			return;
-		    }
+		    val = ((CssNumber) val).getLength();
 		}
 		vertical = val;
 		expression.next();
-	    } else
-		vertical = DefaultValue50;
+	    } else if(val != null) {
+		throw new InvalidParamException("value", expression.getValue(), 
+			    getPropertyName(), ac);
+	    }		
 	} else {
 	    throw new InvalidParamException("value", expression.getValue(), 
 					    getPropertyName(), ac);
 	}
 
 	
+    }
+    
+    public CssBackgroundPositionMob(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -248,7 +267,17 @@ public class CssBackgroundPositionMob extends CssProperty
 	if (horizontal == inherit) {
 	    return inherit.toString();
 	} else {
-	    return horizontal + " " + vertical;
+	    String ret = "";
+	    if (horizontal != null) {
+		ret += horizontal;
+	    }
+	    if (vertical != null) {
+		if (!ret.equals("")) {
+		    ret += " ";
+		}
+		ret += vertical;
+	    }
+	    return ret;
 	}
     }
     
@@ -307,7 +336,8 @@ public class CssBackgroundPositionMob extends CssProperty
      * It is used by all macro for the function <code>print</code>
      */  
     public boolean isDefault() {
-	return horizontal.equals(DefaultValue0) && vertical.equals(DefaultValue0);
+	return horizontal != null && vertical != null &&
+	    horizontal.equals(DefaultValue0) && vertical.equals(DefaultValue0);
     }
     
     private int IndexOfIdent(String ident) throws InvalidParamException {

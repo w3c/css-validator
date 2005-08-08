@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2003/07/11 14:08:42  sijtsche
+ * text-indent added as CSS3 property (different from other versions)
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -31,16 +34,15 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -81,27 +83,33 @@ public class CssTextIndentCSS3 extends CssProperty  {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssTextIndentCSS3(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssTextIndentCSS3(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
-
+	
 	setByUser();
-
+	
 	if (val.equals(inherit)) {
 	    value = inherit;
 	} else if (val instanceof CssLength || val instanceof CssPercentage) {
 	    value = val;
 	} else if (val instanceof CssNumber) {
 	    value = ((CssNumber) val).getLength();
-    } else if (val.equals(hanging)) {
-		value = hanging;
+	} else if (val.equals(hanging)) {
+	    value = hanging;
 	} else {
 	    throw new InvalidParamException("value", val.toString(),
-					    getPropertyName(), ac);
+		    getPropertyName(), ac);
 	}
-
+	
 	expression.next();
     }
-
+    
+    public CssTextIndentCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

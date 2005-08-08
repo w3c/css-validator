@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2003/07/28 14:20:12  sijtsche
+ * new CSS3 speech property
+ *
  * Revision 1.2  2002/04/08 21:16:56  plehegar
  * New
  *
@@ -19,20 +22,19 @@
 
 package org.w3c.css.aural;
 
-import java.util.Vector;
 import java.util.Enumeration;
+import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssString;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssValue;
 
 /**
  * <H3>5.2 &nbsp;&nbsp;   'voice-family'</H3>
@@ -90,7 +92,8 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
      * @param value the voice name
      * @exception InvalidParamException The expression is incorrect
      */
-    public ACssVoiceFamilyCSS3(ApplContext ac, CssExpression value) throws InvalidParamException {
+    public ACssVoiceFamilyCSS3(ApplContext ac, CssExpression value,
+	    boolean check) throws InvalidParamException {
 	boolean family = true;
 	CssValue val = value.getValue();
 	char op;
@@ -98,7 +101,11 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
 
 	setByUser();
 	if (val.equals(inherit)) {
+	    if(check && value.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    inheritValue = true;
+	    return;
 	}
 
 	while (family) {
@@ -110,6 +117,10 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
 						(new Character(op)).toString(), ac);
 	    }
 
+	    if(val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
 	    if (val instanceof CssString) {								//specific voice
 			String familyName = null;
 			if (op == COMMA) { // "helvetica", "roman"
@@ -224,6 +235,11 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
 
     }
 
+    public ACssVoiceFamilyCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns all voices name
      */

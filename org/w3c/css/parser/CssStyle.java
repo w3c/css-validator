@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/04/13 15:30:16  sijtsche
+ * addToStyle invocation commented out, obsolete
+ *
  * Revision 1.2  2002/04/08 21:24:12  plehegar
  * New
  *
@@ -13,11 +16,12 @@
 package org.w3c.css.parser;
 
 import java.util.Enumeration;
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.properties.CssProperty;
+
 import org.w3c.css.css.StyleSheet;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 
 /**
  * This class represents a class for one context

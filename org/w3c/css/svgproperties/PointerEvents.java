@@ -9,12 +9,12 @@
 package org.w3c.css.svgproperties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
@@ -28,34 +28,35 @@ import org.w3c.css.util.ApplContext;
  */
 
 public class PointerEvents extends CssProperty {
-
+    
     CssValue events;
-
+    
     static CssIdent visiblePainted = new CssIdent("visiblePainted");
-
+    
     private static String[] values = {
 	"visiblePainted", "visibleFill", "visibleStroke",
 	"visible", "painted", "fill", "stroke", "all", "none", "inherit"
     };
-
+    
     /**
      * Create a new PointerEvents
      */
     public PointerEvents() {
 	// nothing to do
     }
-
+    
     /**
      * Create a new PointerEvents
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public PointerEvents(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
+    public PointerEvents(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	setByUser();
 	CssValue val = expression.getValue();
-
+	
 	int i = 0;
 	for (; i < values.length; i++) {
 	    if (val.toString().equals(values[i])) {
@@ -66,10 +67,15 @@ public class PointerEvents extends CssProperty {
 	}
 	if (i == values.length) {
 	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+		    getPropertyName(), ac);
 	}
     }
-
+    
+    public PointerEvents(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *
@@ -80,7 +86,7 @@ public class PointerEvents extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).pointerEvents = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -95,7 +101,7 @@ public class PointerEvents extends CssProperty {
 	    return ((SVGStyle) style).pointerEvents;
 	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
@@ -112,28 +118,28 @@ public class PointerEvents extends CssProperty {
     public String getPropertyName() {
 	return "pointer-events";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return events;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return events.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return events.toString();
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -141,5 +147,5 @@ public class PointerEvents extends CssProperty {
     public boolean isDefault() {
 	return (events == visiblePainted);
     }
-
+    
 }

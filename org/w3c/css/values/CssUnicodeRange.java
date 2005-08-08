@@ -8,8 +8,6 @@
  */
 package org.w3c.css.values;
 
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 import org.w3c.css.util.ApplContext;
 
 /**

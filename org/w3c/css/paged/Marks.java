@@ -7,18 +7,16 @@
 /*
  */
 package org.w3c.css.paged;
-import java.util.Vector;
-
-import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -45,18 +43,29 @@ public class Marks extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public Marks(ApplContext ac, CssExpression expression) 
+    public Marks(ApplContext ac, CssExpression expression, boolean check) 
 	    throws InvalidParamException {
+	
+	if(check && expression.getCount() > 2) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
 	
 	setByUser();
 	
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    l1 = inherit;
 	    expression.next();
 	    return;
 	} else if (val.equals(none)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    l1 = none;
 	    expression.next();
 	    return;
@@ -96,6 +105,11 @@ public class Marks extends CssProperty
 
 	throw new InvalidParamException("value", 
 					val.toString(), getPropertyName(), ac);
+    }
+    
+    public Marks(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

@@ -8,14 +8,14 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -39,8 +39,13 @@ public abstract class CssBoxOffsetFace extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssBoxOffsetFace(ApplContext ac, CssExpression expression) 
-	    throws InvalidParamException {
+    public CssBoxOffsetFace(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	
 	setByUser();
@@ -64,6 +69,11 @@ public abstract class CssBoxOffsetFace extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), 
 					    getPropertyName(), ac);
 	}
+    }
+    
+    public CssBoxOffsetFace(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -91,8 +101,11 @@ public abstract class CssBoxOffsetFace extends CssProperty {
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
-	return value.toString();
+    public String toString() {
+	if(value != null) {
+	    return value.toString();
+	}
+	return "";
     }
     
     /**
@@ -101,14 +114,17 @@ public abstract class CssBoxOffsetFace extends CssProperty {
      * @param side The other side.
      */  
     public boolean equals(CssBoxOffsetFace side) {
-	return value.equals(side.value);
+	if(value != null) {
+	    return value.equals(side.value);
+	}
+	return side == null;
     }
     
     /**
      * Is this property contains a default value.
      */  
     public boolean isDefault() {
-	if (value != auto)
+	if (value != null && value != auto)
 	    return ((Float) value.get()).floatValue() == 0;
 	else
 	    return false;

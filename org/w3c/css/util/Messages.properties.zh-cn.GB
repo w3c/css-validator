@@ -6,158 +6,158 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: ÖØ¶¨ÒåÁË %s
+warning.redefinition: ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ %s
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Ò»ÑùµÄÑÕÉ«¶ÔÓÚ %s ºÍ %s
-warning.no-color: ÄãÃ»ÓĞÎªÄãµÄ±³¾°É«ÉèÖÃ(Ç°¾°)ÑÕÉ«
+warning.same-colors: Ò»ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ %s
+warning.no-color: ï¿½ï¿½Ã»ï¿½ï¿½Îªï¿½ï¿½Ä±ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½(Ç°ï¿½ï¿½)ï¿½ï¿½É«
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
-warning.no-background-color: ÄãÃ»ÓĞÎªÄãµÄ(Ç°¾°)ÑÕÉ«ÉèÖÃ±³¾°É«
-warning.no-generic-family: %s: ½¨ÒéÄãÖ¸¶¨Ò»¸öÖÖÀà×å¿Æ×÷Îª×îºóµÄÑ¡Ôñ
-warning.with-space: °üº¬¿Õ°×µÄ×å¿ÆÃû³ÆÓ¦¸Ã°üº¬ÓÚŞ¢Ş¢ÖĞ¡£Èç¹ûÊ¡ÂÔÁË£¬ÈÎºÎ \
-Ãû×ÖÇ°»òºóµÄ¿Õ°×·ûºÅ¶¼»á±»ºöÂÔ¶øÃû×ÖÖĞËùÓĞÁ¬ĞøµÄ¿Õ°× \
-·ûºÅ»á±»×ª»»Îªµ¥Ò»¸ö¿Õ¸ñ¡£
-warning.no-padding: ½¨ÒéÄãÊ¹ÓÃÓĞ±³¾°É«µÄ¸¡°×ÇøÓò(padding area)
-warning.same-colors2: ÑÕÉ«ºÍ±³¾°ÑÕÉ«Ê¹ÓÃÁËÏàÍ¬µÄÑÕÉ« %s ºÍ %s
-warning.relative-absolute: ÄãÔÚ %s Ê¹ÓÃÁËÒ»Ğ©¾ø¶ÔºÍÏà¶Ô³¤¶È¡£Õâ²»ÊÇ°ôµÄÑùÊ½±í
+warning.no-background-color: ï¿½ï¿½Ã»ï¿½ï¿½Îªï¿½ï¿½ï¿½(Ç°ï¿½ï¿½)ï¿½ï¿½É«ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½É«
+warning.no-generic-family: %s: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
+warning.with-space: ï¿½ï¿½Õ°×µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã°ï¿½ï¿½ï¿½Ş¢Ş¢ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½Ë£ï¿½ï¿½Îºï¿½ \
+ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ä¿Õ°×·ï¿½Å¶ï¿½ï¿½á±»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½Ä¿Õ°ï¿½ \
+ï¿½ï¿½Å»á±»×ªï¿½ï¿½Îªï¿½ï¿½Ò»ï¿½ï¿½Õ¸ï¿½
+warning.no-padding: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½É«ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(padding area)
+warning.same-colors2: ï¿½ï¿½É«ï¿½Í±ï¿½ï¿½ï¿½ï¿½ï¿½É«Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½É« %s ï¿½ï¿½ %s
+warning.relative-absolute: ï¿½ï¿½ï¿½ï¿½ %s Ê¹ï¿½ï¿½ï¿½ï¿½Ò»Ğ©ï¿½ï¿½Ôºï¿½ï¿½ï¿½Ô³ï¿½ï¿½È¡ï¿½ï¿½â²»ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s ²»ÊÇHTMLÔªËØ
-warning.html-inside: HTML ÔªËØ²»ÄÜÇ¶ÔÚÆäËüÔªËØÖĞ
-warning.body-inside: BODY ÔªËØ²»ÄÜÇ¶ÔÚ³ıÁËHTMLÔªËØµÄÆäËüÔªËØÖĞ
-warning.pseudo-classes: ¶¨Î»ÃªÎ±Àà %s ³ıÁË¶Ô'A'Íâ£¬ÔÚÔªËØÉÏÃ»ÓĞĞ§¹û
+warning.unknown-html: %s ï¿½ï¿½ï¿½ï¿½HTMLÔªï¿½ï¿½
+warning.html-inside: HTML Ôªï¿½Ø²ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½
+warning.body-inside: BODY Ôªï¿½Ø²ï¿½ï¿½ï¿½Ç¶ï¿½Ú³ï¿½ï¿½ï¿½HTMLÔªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½
+warning.pseudo-classes: ï¿½ï¿½Î»ÃªÎ±ï¿½ï¿½ %s ï¿½ï¿½ï¿½Ë¶ï¿½'A'ï¿½â£¬ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ğ§ï¿½ï¿½
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s ²»ÄÜÇ¶ÔÚÄÚÁªÔªËØÖĞ
-warning.withblock: ÇëĞ¡ĞÄ¡£Î±ÔªËØÖ»ÄÜ¸½ÓÚ¿é¼¶ÔªËØÉÏ
-warning.block-level: Õâ¸öÊôĞÔÓ¦ÓÃÓÚ¿é¼¶ÔªËØ
+warning.noinside: %s ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½jÔªï¿½ï¿½ï¿½ï¿½
+warning.withblock: ï¿½ï¿½Ğ¡ï¿½Ä¡ï¿½Î±Ôªï¿½ï¿½Ö»ï¿½Ü¸ï¿½ï¿½Ú¿é¼¶Ôªï¿½ï¿½ï¿½ï¿½
+warning.block-level: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ú¿é¼¶Ôªï¿½ï¿½
 
 # used by org.w3c.css.parser.Frame
-warning.no-declaration: ÔÚ¹æÔòÖĞÃ»ÓĞÉùÃ÷
+warning.no-declaration: ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s ³¬³ö·¶Î§
+warning.out-of-range: %s ï¿½ï¿½ï¿½ï¿½Î§
 
 warning.marker: The marker-offset property applies on elements with 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: ÔÚÊôĞÔ %s Ê¹ÓÃÏà¶Ôµ¥Î»ÁîÑùÊ½±í¸ü¼Ó°ô
+warning.relative: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s Ê¹ï¿½ï¿½ï¿½ï¿½Ôµï¿½Î»ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ó°ï¿½
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: ¶Ô²»Æğ£¬'@¹æÔò' %s ²»ÄÜÓ¦ÓÃ
+error.at-rule: ï¿½Ô²ï¿½ï¿½ï¿½'@ï¿½ï¿½ï¿½ï¿½' %s ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
 
 # used by all properties and values
-error.operator: %s ÊÇÒ»¸ö´íÎóµÄÔËËã·û
-error.negative-value: %s ²»ÔÊĞíÊ¹ÓÃ¸ºÖµ
-error.few-value: ÊôĞÔ %s µÄÖµÌ«Ğ¡
+error.operator: %s ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+error.negative-value: %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¸ï¿½Öµ
+error.few-value: ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ÖµÌ«Ğ¡
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s ²»ÊÇÒ»¸ö %s Öµ
+error.value: %s ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ %s Öµ
 
 error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s ÖØ¸´³öÏÖ
+error.same-value: %s ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
 
 # used by org.w3c.css.properties.CssClip
-error.shape: ÎŞĞ§µÄĞÎ×´¶¨Òå rect(<top>,<right>,<bottom>,<left>)
-error.shape-separator: ĞÎ×´¶¨ÒåµÄ·Ö¸ô·ûÎŞĞ§£¬±ØĞëÎª¶ººÅ
+error.shape: ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½ rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½Ä·Ö¸ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 
 # used by org.w3c.css.properties.CssContent
-error.attr: ÎŞĞ§µÄÊôĞÔ¶¨Òå attr(X)
-error.counter: ÎŞĞ§µÄ¼ÆÊıÆ÷¶¨Òå counter(<identifier>[,<list-style-type>]?)
-error.counters: ÎŞĞ§µÄ¼ÆÊıÆ÷¶¨Òå counters(<identifier>,<string>[,<list-style-type>]?)
+error.attr: ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ attr(X)
+error.counter: ï¿½ï¿½Ğ§ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ counter(<identifier>[,<list-style-type>]?)
+error.counters: ï¿½ï¿½Ğ§ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ counters(<identifier>,<string>[,<list-style-type>]?)
 
 # used by org.w3c.css.font.Src
-error.format: ÎŞĞ§µÄ¸ñÊ½¶¨Òå format(<string>[,<string>]*)
-error.local: ÎŞĞ§µÄ¸ñÊ½¶¨Òå local(<string>|<ident>+)
+error.format: ï¿½ï¿½Ğ§ï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ format(<string>[,<string>]*)
+error.local: ï¿½ï¿½Ğ§ï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s ÊÇ´íÎóµÄµ¥Î»
+error.unit: %s ï¿½Ç´ï¿½ï¿½ï¿½Äµï¿½Î»
 
 # used by org.w3c.css.aural.ACssAzimuth
-error.degree: Î»ÖÃ±ØĞëÃèÊöÎªÓĞĞ§µÄ½Ç¶È·¶Î§
+error.degree: Î»ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ğ§ï¿½Ä½Ç¶È·ï¿½Î§
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: ÇëÖ¸¶¨Ñö½Ç(elevation)ÒÔÒ»¸ö½Ç¶ÈÖµ£¬ÔÚ'-90deg'ºÍ'90deg'Ö®¼ä("deg"Îª¶È).
+error.elevation.range: ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½(elevation)ï¿½ï¿½Ò»ï¿½ï¿½Ç¶ï¿½Öµï¿½ï¿½ï¿½ï¿½'-90deg'ï¿½ï¿½'90deg'Ö®ï¿½ï¿½("deg"Îªï¿½ï¿½).
 
 # used by org.w3c.css.aural.ACssPitchRange
-error.range: ´ËÖµ³¬³ö·¶Î§¡£´ËÖµ±ØĞëÔÚ'0'ºÍ'100'Ö®¼ä
+error.range: ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'0'ï¿½ï¿½'100'Ö®ï¿½ï¿½
 
 # used by org.w3c.css.properties.CssTextShadow
-error.two-lengths: Ò»¸öÒõÓ°Î»ÒÆÓÉÁ½¸ö<length>Öµ(Ò»¸öÄ£ºı·¶Î§¿ÉÒÔÑ¡Ôñ·ÅÓÚÒõÓ°Î»ÒÆÖ®ºó)
+error.two-lengths: Ò»ï¿½ï¿½ï¿½ï¿½Ó°Î»ï¿½ï¿½ï¿½ï¿½}ï¿½ï¿½<length>Öµ(Ò»ï¿½ï¿½Ä£ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó°Î»ï¿½ï¿½Ö®ï¿½ï¿½)
 
 error.integer: This number should be an integer.
-error.comma: È±ÉÙ¶ººÅ·Ö¸ô·û
+error.comma: È±ï¿½Ù¶ï¿½ï¿½Å·Ö¸ï¿½ï¿½
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s ÊÇ´íÎóµÄ°Ù·Ö±È
+error.percent: %s ï¿½Ç´ï¿½ï¿½ï¿½Ä°Ù·Ö±ï¿½
 
 # used by org.w3c.css.values.CssString
-error.string: %s ÊÇ´íÎóµÄ×Ö·û´®
+error.string: %s ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
 
 # used by org.w3c.css.values.CssURL
-error.url: %s ÊÇ´íÎóµÄURL
+error.url: %s ï¿½Ç´ï¿½ï¿½ï¿½ï¿½URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s ²»ÊÇÓĞĞ§µÄ3»ò6Î±Ê®Áù½øÖÆÊı×ÖµÄÑÕÉ«
+error.rgb: %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½3ï¿½ï¿½6Î±Ê®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½É«
 
 # used by org.w3c.css.values.CssNumber
-error.zero: Ö»ÓĞ0¿ÉÒÔ³ÉÎª %s. Äã±ØĞëÔÚÄãµÄÊı×Öºó¼ÓÈëµ¥Î»
+error.zero: Ö»ï¿½ï¿½0ï¿½ï¿½ï¿½Ô³ï¿½Îª %s. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öºï¿½ï¿½ï¿½ëµ¥Î»
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: ÊôĞÔ %s ²»´æÔÚ
-error.noexistence-media: Ã½Ìå %s µÄÊôĞÔ %s ²»´æÔÚ
-warning.noexistence-media: Ã½Ìå %s µÄÊôĞÔ %s ²»´æÔÚ
+error.noexistence: ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+error.noexistence-media: Ã½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+warning.noexistence-media: Ã½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 # used by org.w3c.css.parser.CssFouffa
-error.unrecognize: Ì«¶àÖµ²»ÄÜÊ¶±ğ
+error.unrecognize: Ì«ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Î±ÔªËØ: %s ²»ÄÜÔÚ´Î´¦µÄÉÏÏÂÎÄ %s ÖĞ³öÏÖ
-error.pseudo-class: Î±Àà .%s ²»ÄÜÔÚ´Ë´¦µÄHTMLÉÏÏÂÎÄ %s ÖĞ³öÏÖ
-error.pseudo: ²»Ê¶±ğµÄÎ±ÔªËØ»òÎ±Àà
-error.id: IDÑ¡Ôñ·û #%s ÎŞĞ§£¡Ö»ÓĞÒ»¸öIDÑ¡Ôñ·û¿ÉÒÔ±»Ö¸¶¨µ½ÆÕÍ¨Ñ¡Ôñ·û: %s.
-error.space: Èç¹ûÊ¹ÓÃÁËÊôĞÔÑ¡Ôñ·û ~= £¬ÔÚÖµ %s ÖĞµÄ×Ö±ØĞë²»°üº¬¿Õ¸ñ
-error.todo : ±§Ç¸£¬ÌØĞÔ %s »¹²»ÄÜÖ§³Ö
-error.incompatible: %s ºÍ %s ²»¼æÈİ
+error.pseudo-element: Î±Ôªï¿½ï¿½: %s ï¿½ï¿½ï¿½ï¿½ï¿½Ú´Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ï¿½Ğ³ï¿½ï¿½ï¿½
+error.pseudo-class: Î±ï¿½ï¿½ .%s ï¿½ï¿½ï¿½ï¿½ï¿½Ú´Ë´ï¿½ï¿½ï¿½HTMLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ï¿½Ğ³ï¿½ï¿½ï¿½
+error.pseudo: ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Î±Ôªï¿½Ø»ï¿½Î±ï¿½ï¿½
+error.id: IDÑ¡ï¿½ï¿½ï¿½ #%s ï¿½ï¿½Ğ§ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½IDÑ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Ñ¡ï¿½ï¿½ï¿½: %s.
+error.space: ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ ~= ï¿½ï¿½ï¿½ï¿½Öµ %s ï¿½Ğµï¿½ï¿½Ö±ï¿½ï¿½ë²»ï¿½ï¿½Õ¸ï¿½
+error.todo : ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
+error.incompatible: %s ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-error.media: ²»ÄÜÊ¶±ğµÄÃ½Ìå %s 
-error.page: ²»ÄÜÖ°±ğµÄÎ±ÃüÃûÒ³ %s
+error.media: ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ %s 
+error.page: ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ò³ %s
 
 
 # used by StyleSheetGeneratorHTML
-generator.context: ÉÏÏÂÎÄ
-generator.request: µ¼³öÄãµÄÑùÊ½±íÊ±·¢Éú´íÎó \
-Çë¸üÕıÄãµÄÇëÇó»ò·¢ËÍÓÊ¼şµ½ plh@w3.org.
-generator.unrecognized: ²»ÄÜÊ¶±ğµÄ
-generator.invalid-number: ÎŞĞ§Êı×Ö
-generator.property: ÎŞĞ§Êı×Ö
-generator.line: ĞĞ
-generator.not-found: ÕÒ²»µ½ÎÄ¼ş
+generator.context: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+generator.request: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ \
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ plh@w3.org.
+generator.unrecognized: ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½
+generator.invalid-number: ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½
+generator.property: ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½
+generator.line: ï¿½ï¿½
+generator.not-found: ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 generator.doc-html: <p>\
-ÈôÒªÈçÆÚ¹¤×÷£¬ÄãµÄCSSÑùÊ½±íĞèÒªÒ»¸öÕıÈ·µÄÎÄµµ½âÊÍÊ÷¡£ \
-ÕâÒâÎ¶×ÅÄãÓ¦¸ÃÊ¹ÓÃ<a href="http://validator.w3.org/check?uri=\
-%s">ÕıÈ·µÄHTML</a>¡£</p>
+ï¿½ï¿½Òªï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CSSï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ÒªÒ»ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ \
+ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê¹ï¿½ï¿½<a href="http://validator.w3.org/check?uri=\
+%s">ï¿½ï¿½È·ï¿½ï¿½HTML</a>ï¿½ï¿½</p>
 
 generator.doc:<p>\
-ÈôÒªÕı³£¹¤×÷£¬ÄãµÄCSSÑùÊ½±íĞèÒªÒ»¸öÕıÈ·µÄÎÄµµ½âÊÍÊ÷¡£ \
-ÕâÒâÎ¶×ÅÄãÓ¦¸ÃÊ¹ÓÃ<a href="http://validator.w3.org/">ÕıÈ· \
-µÄHTML</a>.</p>
+ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CSSï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ÒªÒ»ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ \
+ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê¹ï¿½ï¿½<a href="http://validator.w3.org/">ï¿½ï¿½È· \
+ï¿½ï¿½HTML</a>.</p>
 
 
 # used by the parser
-parser.semi-colon: ÊÔÍ¼Ñ°ÕÒÊôĞÔÃûÇ°ÃæµÄÃ°ºÅ¡£¼ÓÉÏ£¡
+parser.semi-colon: ï¿½ï¿½Í¼Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ã°ï¿½Å¡ï¿½ï¿½ï¿½ï¿½Ï£ï¿½
 
-parser.old_class:ÔÚCSS1£¬ÀàÃûÓ¦¸ÃÒÔµã¿ªÊ¼ (".55ft"), \
-³ı·ÇËüÊÇÒ»¸ö³ß´çÖµ (".55in")¡£ÔÚCSS2£¬ÒÔÉÏµÄÀà \
-±»½âÊÍÎª²»Ê¶±ğµÄ³ß´çÖµ(ÒÔÔÊĞí½«À´¼ÓÈëĞÂµÄµ¥Î»)
+parser.old_class:ï¿½ï¿½CSS1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ôµã¿ªÊ¼ (".55ft"), \
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ß´ï¿½Öµ (".55in")ï¿½ï¿½ï¿½ï¿½CSS2ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ \
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê¶ï¿½ï¿½Ä³ß´ï¿½Öµ(ï¿½ï¿½ï¿½ï¿½ï¿½?4ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄµï¿½Î»)
 
 
 # used by the servlet
-servlet.invalid-request: Äã·¢³öÁËÎŞĞ§µÄÇëÇó
-servlet.process: ²»ÄÜ¶Ô¶ÔÏó½øĞĞ´¦Àí
+servlet.invalid-request: ï¿½ã·¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+servlet.process: ï¿½ï¿½ï¿½Ü¶Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½
 
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 

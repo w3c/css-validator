@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:46  plehegar
  * Freeze
  *
@@ -19,17 +22,18 @@
 
 package org.w3c.css.properties;
 
-import java.util.Vector;
 import java.util.Enumeration;
-import org.w3c.css.util.Util;
-import org.w3c.css.values.CssOperator;
+import java.util.Vector;
+
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssString;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssValue;
 
 /** 
  *   <H4>
@@ -115,25 +119,34 @@ public class CssFontFamilyCSS2 extends CssProperty implements CssOperator {
      * @param expression the font name
      * @exception InvalidParamException The expression is incorrect
      */
-    public CssFontFamilyCSS2(ApplContext ac, CssExpression expression) 
+    public CssFontFamilyCSS2(ApplContext ac, CssExpression expression,
+	    boolean check) 
 	    throws InvalidParamException {
 	boolean family = true;
 	CssValue val = expression.getValue();
 	char op;
-
+	
+	boolean manyValues = expression.getCount() > 1;
+	
 	setByUser();
 	//@@ and if name is already in the vector ?
 	
-
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    inheritedValue = true;
 	    expression.next();
 	    return;
 	}
 
-	while (family) {
+	while (family) {	    
 	    val = expression.getValue();
 	    op = expression.getOperator();
+
+	    if(manyValues && val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    
 	    if ((op != COMMA) && (op != SPACE)) {
 		throw new InvalidParamException("operator", 
@@ -141,7 +154,7 @@ public class CssFontFamilyCSS2 extends CssProperty implements CssOperator {
 						ac);
 	    }
 	    
-	    if (val instanceof CssString) {
+	    if (val instanceof CssString) {		
 		String familyName = null;
 		if (op == COMMA) { // "helvetica", "roman"
 		    familyName = trimToOneSpace(val.toString());
@@ -164,12 +177,15 @@ public class CssFontFamilyCSS2 extends CssProperty implements CssOperator {
 		}
 		family_name.addElement(familyName);
 	    } else if (val instanceof CssIdent) {
+		
 		if (op == COMMA) {
 		    family_name.addElement(convertString(val.toString()));
 		    expression.next();
 		} else {
 		    CssValue next = expression.getNextValue();
-		    
+		    if(manyValues && next != null && next.equals(inherit)) {
+			throw new InvalidParamException("unrecognize", ac);
+		    }
 		    if (next instanceof CssIdent) {
 			CssIdent New = new CssIdent(val.get() + " " 
 						    + next.get());
@@ -185,13 +201,22 @@ public class CssFontFamilyCSS2 extends CssProperty implements CssOperator {
 			family = false;
 		    }
 		}
-	    } else
+	    } else {
 		throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
+			getPropertyName(), ac);
+	    }	   
+	}
+	if(check && !expression.end()) {
+	    throw new InvalidParamException("unrecognize", ac);
 	}
 	if (!containsGenericFamily()) {
 	    ac.getFrame().addWarning("no-generic-family", "font-family");
-	}
+	}	
+    }
+    
+    public CssFontFamilyCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

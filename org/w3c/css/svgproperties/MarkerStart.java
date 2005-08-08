@@ -9,14 +9,13 @@
 package org.w3c.css.svgproperties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
@@ -29,116 +28,122 @@ import org.w3c.css.values.CssURL;
  */
 
 public class MarkerStart extends CssProperty {
-
-   CssValue markerStart;
+    
+    CssValue markerStart;
     ApplContext ac;
-
+    
     CssIdent none = new CssIdent("none");
-
+    
     /**
      * Create a new MarkerStart
      */
-   public MarkerStart() {
-       //nothing to do
-   }
-
-   /**
-    * Create a new MarkerStart
-    *
-    * @param expression The expression for this property
-    * @exception InvalidParamException Values are incorrect
-    */
-   public MarkerStart(ApplContext ac, CssExpression expression) throws InvalidParamException {
-       this.ac = ac;
-       setByUser(); // tell this property is set by the user
-       CssValue val = expression.getValue();
-       if (val instanceof CssURL) {
-           markerStart = val;
-	   	   expression.next();
-       }
-       else if (val instanceof CssIdent) {
-           if (val.equals(inherit)) {
-	       markerStart = inherit;
-	       expression.next();
-           } else if (val.equals(none)) {
-	       markerStart = none;
-	       expression.next();
-	   }
-       }
-       else {
-	   throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-       }
-   }
-
+    public MarkerStart() {
+	//nothing to do
+    }
+    
+    /**
+     * Create a new MarkerStart
+     *
+     * @param expression The expression for this property
+     * @exception InvalidParamException Values are incorrect
+     */
+    public MarkerStart(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	this.ac = ac;
+	setByUser(); // tell this property is set by the user
+	CssValue val = expression.getValue();
+	if (val instanceof CssURL) {
+	    markerStart = val;
+	    expression.next();
+	}
+	else if (val instanceof CssIdent) {
+	    if (val.equals(inherit)) {
+		markerStart = inherit;
+		expression.next();
+	    } else if (val.equals(none)) {
+		markerStart = none;
+		expression.next();
+	    }
+	}
+	else {
+	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+	}
+    }
+    
+    public MarkerStart(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
      */
-     public void addToStyle(ApplContext ac, CssStyle style) {
-	 if (((SVGStyle) style).markerStart != null)
-	     style.addRedefinitionWarning(ac, this);
-	 ((SVGStyle) style).markerStart = this;
-     }
-
-      /**
-       * Get this property in the style.
-       *
-       * @param style The style where the property is
-       * @param resolve if true, resolve the style to find this property
-       */
-        public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	    if (resolve) {
-		return ((SVGStyle) style).getMarkerStart();
-	    } else {
-		return ((SVGStyle) style).markerStart;
-	    }
+    public void addToStyle(ApplContext ac, CssStyle style) {
+	if (((SVGStyle) style).markerStart != null)
+	    style.addRedefinitionWarning(ac, this);
+	((SVGStyle) style).markerStart = this;
+    }
+    
+    /**
+     * Get this property in the style.
+     *
+     * @param style The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+	if (resolve) {
+	    return ((SVGStyle) style).getMarkerStart();
+	} else {
+	    return ((SVGStyle) style).markerStart;
 	}
-
-       /**
-        * Compares two properties for equality.
-        *
-        * @param value The other property.
-        */
-       public boolean equals(CssProperty property) {
-	   return (property instanceof MarkerStart &&
-                markerStart.equals( ((MarkerStart) property).markerStart));
-       }
-
+    }
+    
+    /**
+     * Compares two properties for equality.
+     *
+     * @param value The other property.
+     */
+    public boolean equals(CssProperty property) {
+	return (property instanceof MarkerStart &&
+		markerStart.equals( ((MarkerStart) property).markerStart));
+    }
+    
     /**
      * Returns the name of this property
      */
-   public String getPropertyName() {
-       return "marker-start";
-   }
-
+    public String getPropertyName() {
+	return "marker-start";
+    }
+    
     /**
      * Returns the value of this property
      */
-   public Object get() {
-       return markerStart;
-   }
-
+    public Object get() {
+	return markerStart;
+    }
+    
     /**
      * Returns true if this property is "softly" inherited
      */
-   public boolean isSoftlyInherited() {
-       return markerStart.equals(inherit);
-   }
-
-   /**
-    * Returns a string representation of the object
-    */
-   public String toString() {
-       return markerStart.toString();
-   }
-
+    public boolean isSoftlyInherited() {
+	return markerStart.equals(inherit);
+    }
+    
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+	return markerStart.toString();
+    }
+    
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-   public boolean isDefault() {
-       return (markerStart == none);
-   }
-
+    public boolean isDefault() {
+	return (markerStart == none);
+    }
+    
 }

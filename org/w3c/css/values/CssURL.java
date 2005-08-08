@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 2.4  1997/08/26 14:27:07  plehegar
  * Updated
  *
@@ -15,11 +18,12 @@
  */
 package org.w3c.css.values;
 
-import java.net.URL;
 import java.net.MalformedURLException;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.HTTPURL;
+import java.net.URL;
+
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  *   <H3>

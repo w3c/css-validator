@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2003/01/08 10:02:55  sijtsche
+ * new media feature for media queries
+ *
  * Revision 1.1  2002/12/24 13:18:36  sijtsche
  * new version for CSS3: value initial added
  *
@@ -37,16 +40,13 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -61,40 +61,46 @@ public class MediaMinColorIndex extends CssProperty implements CssOperator {
     public MediaMinColorIndex() {
 		//empty
     }
-
+    
     /**
      * Create a new MediaMinColorIndex.
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public MediaMinColorIndex(ApplContext ac, CssExpression expression) throws InvalidParamException {
-		CssValue val = null;
-
-		if (expression != null) {
-			val = expression.getValue();
+    public MediaMinColorIndex(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	CssValue val = null;
+	
+	if (expression != null) {
+	    val = expression.getValue();
+	}
+	
+	setByUser();
+	char op = SPACE;
+	
+	if (val != null) {
+	    if (val instanceof CssNumber) {
+		if (((CssNumber) val).isInteger()) {
+		    value = val;
+		} else {
+		    throw new InvalidParamException("value", expression.getValue(),
+			    getPropertyName(), ac);
 		}
-
-		setByUser();
-		char op = SPACE;
-
-		if (val != null) {
-			if (val instanceof CssNumber) {
-				if (((CssNumber) val).isInteger()) {
-					value = val;
-				} else {
-				    throw new InvalidParamException("value", expression.getValue(),
-							    getPropertyName(), ac);
-				}
-			} else {
-			    throw new InvalidParamException("value", expression.getValue(),
-							    getPropertyName(), ac);
-			}
-
-			expression.next();
-		}
+	    } else {
+		throw new InvalidParamException("value", expression.getValue(),
+			getPropertyName(), ac);
+	    }
+	    
+	    expression.next();
+	}
     }
-
+    
+    public MediaMinColorIndex(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property.
      */

@@ -9,12 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
@@ -32,44 +32,50 @@ import org.w3c.css.util.ApplContext;
 public class CssBackgroundOrigin extends CssProperty {
 
     CssValue bgorigin;
-
+    
     CssIdent border = new CssIdent("border");
     CssIdent padding = new CssIdent("padding");
     CssIdent content = new CssIdent("content");
-
+    
     /**
      * Create a new CssBackgroundOrigin
      */
     public CssBackgroundOrigin() {
-		bgorigin = padding;
+	bgorigin = padding;
     }
-
+    
     /**
      * Create a new CssBackgroundOrigin
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssBackgroundOrigin(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
-		setByUser();
-		CssValue val = expression.getValue();
-
-		if (val.equals(border)) {
-		    bgorigin = border;
-		    expression.next();
-		} else if (val.equals(padding)) {
-		    bgorigin = padding;
-		    expression.next();
-		} else if (val.equals(content)) {
-			bgorigin = content;
-			expression.next();
-		} else {
-		    throw new InvalidParamException("value", expression.getValue(),
-						    getPropertyName(), ac);
-		}
+    public CssBackgroundOrigin(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	setByUser();
+	CssValue val = expression.getValue();
+	
+	if (val.equals(border)) {
+	    bgorigin = border;
+	    expression.next();
+	} else if (val.equals(padding)) {
+	    bgorigin = padding;
+	    expression.next();
+	} else if (val.equals(content)) {
+	    bgorigin = content;
+	    expression.next();
+	} else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
     }
-
+    
+    public CssBackgroundOrigin(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }    
+    
     /**
      * Add this property to the CssStyle
      *
@@ -80,7 +86,7 @@ public class CssBackgroundOrigin extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundOrigin = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -95,51 +101,51 @@ public class CssBackgroundOrigin extends CssProperty {
 	    return ((Css3Style) style).cssBackgroundOrigin;
 	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundOrigin &&
-			bgorigin.equals(((CssBackgroundOrigin) property).bgorigin));
+	return (property instanceof CssBackgroundOrigin &&
+		bgorigin.equals(((CssBackgroundOrigin) property).bgorigin));
     }
-
+    
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-		return "background-origin";
+	return "background-origin";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
-		return bgorigin;
+	return bgorigin;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-		return bgorigin.equals(inherit);
+	return bgorigin.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-		return bgorigin.toString();
+	return bgorigin.toString();
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-		return bgorigin == padding;
+	return bgorigin == padding;
     }
-
+    
 }

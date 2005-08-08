@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:59  plehegar
  * Freeze
  *
@@ -25,9 +28,9 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 
 /**
  *   <H4>
@@ -71,8 +74,14 @@ public class CssPaddingLeft extends CssPaddingSide {
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssPaddingLeft(ApplContext ac, CssExpression expression) throws InvalidParamException {
-    super(ac, expression);
+  public CssPaddingLeft(ApplContext ac, CssExpression expression, boolean check)
+  	throws InvalidParamException {
+    super(ac, expression, check);
+  }
+  
+  public CssPaddingLeft(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
   }
   
   /**

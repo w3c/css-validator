@@ -9,12 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
@@ -33,7 +33,8 @@ public class CssDisplayModel extends CssProperty {
     static CssIdent text = new CssIdent("text");
 
     private static String[] values = {
-		"inline-inside", "block-inside", "table", "ruby", "initial", "inherit"
+		"inline-inside", "block-inside", "table", "ruby",
+		"initial", "inherit"
     };
 
     /**
@@ -49,7 +50,8 @@ public class CssDisplayModel extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssDisplayModel(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssDisplayModel(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 
 	setByUser();
 	CssValue val = expression.getValue();
@@ -68,6 +70,11 @@ public class CssDisplayModel extends CssProperty {
 	}
     }
 
+    public CssDisplayModel(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

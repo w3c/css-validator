@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/07/22 09:03:10  sijtsche
+ * transparent is no value anymore, has become a color itself
+ *
  * Revision 1.2  2002/05/22 14:49:34  dejong
  * transparent is no value anymore, but has become a color itself
  *
@@ -38,12 +41,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssColor;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -72,7 +74,7 @@ public class CssBackgroundColor extends CssProperty {
      * Create a new CssBackgroundColor
      */
     public CssBackgroundColor() {
-		color = transparent;
+	color = transparent;
     }
 
     /**
@@ -81,8 +83,13 @@ public class CssBackgroundColor extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBackgroundColor(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
+    public CssBackgroundColor(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -107,6 +114,11 @@ public class CssBackgroundColor extends CssProperty {
 	}
     }
 
+    public CssBackgroundColor(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

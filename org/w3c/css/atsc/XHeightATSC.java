@@ -8,14 +8,13 @@
  */
 package org.w3c.css.atsc;
 
-import java.util.Vector;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -36,7 +35,13 @@ public class XHeightATSC extends CssProperty {
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
      */  
-    public XHeightATSC(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public XHeightATSC(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -51,6 +56,11 @@ public class XHeightATSC extends CssProperty {
 	}
     }
     
+    public XHeightATSC(ApplContext ac, CssExpression expression)
+    	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the current value
      */  
@@ -61,7 +71,7 @@ public class XHeightATSC extends CssProperty {
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {  	
 	return value.toString();
     }
     

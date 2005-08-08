@@ -12,15 +12,14 @@ package org.w3c.css.parser;
 
 import java.util.Enumeration;
 
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.css.StyleSheetCom;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  * This class manages all media defines by CSS2
  * 
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hï¿½garet
  */
 public class AtRuleMediaCSS1 extends AtRuleMedia {
 

@@ -8,15 +8,14 @@
 
 package org.w3c.css.properties3;
 
-import org.w3c.css.values.CssColor;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  * <P>
@@ -27,7 +26,8 @@ import org.w3c.css.values.CssURL;
  * <EM>Percentages:</EM>no<BR>
  * <EM>Media:</EM>visual
  * <P>
- * This property permits the specification of a source color profile other than the default.
+ * This property permits the specification of a source color profile other
+ *  than the default.
  */
 
     public class CssColorProfile extends CssProperty {
@@ -49,7 +49,8 @@ import org.w3c.css.values.CssURL;
 	 * @param expression The expression for this property
 	 * @exception InvalidParamException Values are incorrect
 	 */
-	public CssColorProfile(ApplContext ac, CssExpression expression) throws InvalidParamException {
+	public CssColorProfile(ApplContext ac, CssExpression expression,
+		boolean check) throws InvalidParamException {
 	    setByUser();
 	    CssValue val = expression.getValue();
 	    if (val instanceof CssIdent) {
@@ -62,7 +63,8 @@ import org.w3c.css.values.CssURL;
 		    expression.next();
 		}
 		else {
-		    colorprofile = new org.w3c.css.values.CssColor(ac, (String) val.get());
+		    colorprofile = new org.w3c.css.values.CssColor(ac,
+			    (String) val.get());
 		    expression.next();
 		}
 	    }
@@ -75,9 +77,15 @@ import org.w3c.css.values.CssURL;
 		expression.next();
 	    }
 	    else {
-		throw new InvalidParamException("value", expression.getValue(), getPropertyName(), ac);
+		throw new InvalidParamException("value", expression.getValue(),
+			getPropertyName(), ac);
 	    }  
         }
+	
+	public CssColorProfile(ApplContext ac, CssExpression expression)
+		throws InvalidParamException {
+	    this(ac, expression, false);
+	}
 	
 	/**
 	 * Add this property to the CssStyle.

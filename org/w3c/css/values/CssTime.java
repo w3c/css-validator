@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 1.3  1997/08/29 13:11:08  plehegar
  * Updated
  *
@@ -18,9 +21,9 @@
  */
 package org.w3c.css.values;
 
+import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
-import org.w3c.css.util.ApplContext;
 
 /**
  * <H3>Time</H3>

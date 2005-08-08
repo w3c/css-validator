@@ -215,7 +215,7 @@ public final class StyleReportSOAP12 extends StyleReport
 		}
 	    }
 	    if (buf.length() != 0) {
-		out.print("parse-error</m:errortype>\n\t\t\t<m:context>");
+		out.print("parse-error</m:errortype>\n              <m:context>");
 		out.print(buf);
 		out.print("</m:context>\n");
 	    }
@@ -225,40 +225,40 @@ public final class StyleReportSOAP12 extends StyleReport
 	}
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
-	    out.print("\t\t\t<m:property>");
+	    out.print("              <m:property>");
 	    out.print(name);
 	    out.print("</m:property>\n");
 	}
 	if ((error.getException() != null) && (error.getMessage() != null)) {
 	    if (error.isParseException()) {
-		out.print("\t\t\t<m:message>");
+		out.print("              <m:message>");
 		out.print(queryReplace(error.getMessage()));
 		out.print("</m:message>\n");
 	    } else {
 		Exception ex = error.getException();
 		if (ex instanceof NumberFormatException) {
-		    out.print("\t\t\t<m:errorsubtype>invalid-number"
+		    out.print("              <m:errorsubtype>invalid-number"
 			      + "</m:error-subtype>\n");
 		} else {
-		    out.print("\t\t\t<m:message>");
+		    out.print("              <m:message>");
 		    out.print(queryReplace(ex.getMessage()));
 		    out.print("</m:message>\n");
 		}
 	    }
 	    if (error.getSkippedString() != null) {
-		out.print("\t\t\t<m:skippedstring>");
+		out.print("              <m:skippedstring>");
 		out.print(queryReplace(error.getSkippedString()));
 		out.print("</m:skippedstring>\n");
 	    } else if (error.getExp() != null) {
-		out.print("\t\t\t<m:expression>\n\t\t\t\t<m:start>");
+		out.print("              <m:expression>\n                <m:start>");
 		out.print(queryReplace(error.getExp().toStringFromStart()));
-		out.print("</m:start>\n\t\t\t\t<m:end>");
+		out.print("</m:start>\n                <m:end>");
 		out.print(queryReplace(error.getExp().toString()));
-		out.print("</m:end>\n\t\t\t</m:expression>\n");
+		out.print("</m:end>\n              </m:expression>\n");
 	    }
 	} else {
-	    out.print("\t\t\t<m:errorsubtype>unrecognized</m:errorsubtype>\n");
-	    out.print("\t\t\t<m:skippedstring>");
+	    out.print("              <m:errorsubtype>unrecognized</m:errorsubtype>\n");
+	    out.print("              <m:skippedstring>");
 	    out.print(queryReplace(error.getSkippedString()));
 	    out.print("</m:skippedstring>\n");
 	}
@@ -281,56 +281,56 @@ public final class StyleReportSOAP12 extends StyleReport
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
 			if (open) {
-			    out.print("</m:errorlist>\n");
+			    out.print("          </m:errorlist>\n");
 			}
-			out.print("<m:errorlist>\n");
+			out.print("          <m:errorlist>\n");
 			open = true;
 		    }
-		    out.print("\t\t<m:error>\n\t\t\t<m:line>");
+		    out.print("            <m:error>\n              <m:line>");
 		    out.print(error[i].getLine());
-		    out.print("</m:line>\n\t\t\t<m:errortype>");						
+		    out.print("</m:line>\n              <m:errortype>");						
 		    if (ex instanceof FileNotFoundException) {
 			out.print("not-found");
-			out.print("</m:errortype>\n\t\t\t<m:message>");
+			out.print("</m:errortype>\n              <m:message>");
 			out.print(ex.getMessage());
 			out.print("</m:message>\n");			
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex);
 		    } else if (ex instanceof InvalidParamException) {
 			out.print("invalid-parameter");
-			out.print("</m:errortype>\n\t\t\t<m:message>");
+			out.print("</m:errortype>\n              <m:message>");
 			out.print(queryReplace(ex.getMessage()));
-			out.print("\t\t\t</m:message>\n");
+			out.print("              </m:message>\n");
 		    } else if (ex instanceof IOException) {
 			out.print("IOException</m:errortype>\n");
-			out.print("\t\t\t<m:message>");
+			out.print("              <m:message>");
 			out.print(queryReplace(ex.getMessage()));
-			out.print("\t\t\t</m:message>\n");
+			out.print("              </m:message>\n");
 		    } else if (error[i] instanceof CssErrorToken) {
 			out.print("csserror</m:errortype>");
 			CssErrorToken terror = (CssErrorToken) error[i];
-			out.print("\n\t\t\t\t<m:description>");
+			out.print("\n                <m:description>");
 			out.print(terror.getErrorDescription());
 			out.print("</m:description>\n");
-			out.print("\t\t\t\t<m:skippedstring>");
+			out.print("                <m:skippedstring>");
 			out.print(terror.getSkippedString());
-			out.print("</m:skippedstring>\n");
+			out.print("                </m:skippedstring>\n");
 		    } else {
 			out.print("uncaught");
-			out.print("</m:errortype>\n\t\t\t<m:message>");
+			out.print("</m:errortype>\n              <m:message>");
 			out.print(queryReplace(ex.getMessage()));
 			out.print("</m:message>\n");
 			if (ex instanceof NullPointerException) {
 			    // ohoh, a bug
 			    out.print("nullpointer");
-			    out.print("</m:errortype>\n\t\t\t<m:message>");
+			    out.print("</m:errortype>\n              <m:message>");
 			    ex.printStackTrace(out);
 			    out.print("</m:message>\n");
 			}
 		    }
-		    out.print("\t\t</m:error>\n");
+		    out.print("            </m:error>\n");
 		}
-		out.print("\t</m:errorlist>");
+		out.print("          </m:errorlist>");
 	    }
 	} catch (Exception e) {
 	    out.print("<m:processingerror>");
@@ -359,17 +359,17 @@ public final class StyleReportSOAP12 extends StyleReport
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
 			    if (open) {
-				out.print("</m:warninglist>\n");
+				out.print("          </m:warninglist>\n");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    out.print("<m:warninglist>\n");
+			    out.print("          <m:warninglist>\n");
 			    open = true;
 			}
 			if (warn.getLine() != oldLine
 			    || !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    out.print("<m:warning>\n<m:line>");
+			    out.print("            <m:warning>\n              <m:line>");
 			    out.print(oldLine);
 			    out.print("</m:line>\n");
 			    
@@ -377,22 +377,22 @@ public final class StyleReportSOAP12 extends StyleReport
 			    //	ret.append(" Level : ");
 			    //	ret.append(warn.getLevel());
 			    // }
-			    out.print("<m:level>");
+			    out.print("              <m:level>");
 			    out.print(warn.getLevel());
 			    out.print("</m:level>\n");
-			    // out.print("<message>");
-			    // out.print(oldMessage);
-			    // out.print("</message>\n");
+			    out.print("              <message>");
+			    out.print(oldMessage);
+			    out.print("</message>\n");
 			    if (warn.getContext() != null) {
-				out.print("<m:context>");
+				out.print("              <m:context>");
 				out.print(warn.getContext());
 				out.print("</m:context>\n");
 			    }
-			    out.print("</m:warning>\n");
+			    out.print("            </m:warning>\n");
 			}
 		    }
 		}
-		out.print("</m:warninglist>");
+		out.print("          </m:warninglist>");
 	    }
 	} catch (Exception e) {
 	    out.print("<m:processingerror>");
@@ -403,10 +403,10 @@ public final class StyleReportSOAP12 extends StyleReport
     }
     
     /*
-     * Replace all occurences of < and > in a String with
-     *  their html values: &lt; and &gt;
+     * Replace all occurences of <, >, &, ' and " in a String with
+     *  their html values: &lt;, &gt;, &amp;, &aps; and &quot;
      * @param s the String with < and >
-     * @return the corresponding String with &lt; and &gt; replacing < and >
+     * @return the corresponding String with &lt;, &gt; ... replacing <, > ...
      */
     private String queryReplace(String s) {
 	if (s != null) {
@@ -419,6 +419,12 @@ public final class StyleReportSOAP12 extends StyleReport
 		    ret.append("&lt;");
 		} else if (c == '>') {
 		    ret.append("&gt;");
+		} else if (c == '&') {
+		    ret.append("&amp;");
+		} else if (c == '\'') {
+		    ret.append("&apos;");
+		} else if (c == '"') {
+		    ret.append("&quot;");
 		} else {
 		    ret.append(c);
 		}

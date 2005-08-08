@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:39:49  plehegar
  * Freeze
  *
@@ -24,8 +27,8 @@
  */
 package org.w3c.css.values;
 
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  * @version $Revision$
@@ -60,6 +63,10 @@ public abstract class CssValue {
 
     public void setCssVersion(String cssversion) {
 	this.cssversion = cssversion;
+    }
+    
+    public boolean isDefault() {
+	return false;
     }
 
 }

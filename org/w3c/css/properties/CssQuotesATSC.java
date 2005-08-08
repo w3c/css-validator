@@ -11,15 +11,13 @@ package org.w3c.css.properties;
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssString;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -42,7 +40,9 @@ public class CssQuotesATSC extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssQuotesATSC(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssQuotesATSC(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+	
 	CssValue val = expression.getValue();
 	int counter = 0;
 	char op = expression.getOperator();
@@ -51,10 +51,16 @@ public class CssQuotesATSC extends CssProperty {
 
 	setByUser();
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    values.addElement(inherit);
 	    expression.next();
 	    return;
 	} else if (val.equals(none)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    values.addElement(none);
 	    expression.next();
 	    return;
@@ -89,6 +95,11 @@ public class CssQuotesATSC extends CssProperty {
 	    op = expression.getOperator();
 	}
 
+    }
+    
+    public CssQuotesATSC(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

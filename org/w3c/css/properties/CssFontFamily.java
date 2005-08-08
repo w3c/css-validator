@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/08/07 12:57:54  sijtsche
+ * value none added
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -22,17 +25,18 @@
 
 package org.w3c.css.properties;
 
-import java.util.Vector;
 import java.util.Enumeration;
-import org.w3c.css.util.Util;
-import org.w3c.css.values.CssOperator;
+import java.util.Vector;
+
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssString;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -121,8 +125,16 @@ public class CssFontFamily extends CssProperty implements CssOperator {
      * @param expression the font name
      * @exception InvalidParamException The expression is incorrect
      */
-    public CssFontFamily(ApplContext ac, CssExpression expression)
+    public CssFontFamily(ApplContext ac, CssExpression expression,
+	    boolean check)
 	    throws InvalidParamException {
+	
+	boolean manyValues = expression.getCount() > 1;
+	
+	if(check && manyValues) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	boolean family = true;
 	CssValue val = expression.getValue();
 	char op;
@@ -132,25 +144,39 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 
 
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    inheritedValue = true;
 	    expression.next();
 	    return;
 	} else if (val.equals(none)) {
-		fontfamily = none;
-		expression.next();
-		return;
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    fontfamily = none;
+	    expression.next();
+	    return;
 	}
 
 	while (family) {
 	    val = expression.getValue();
 	    op = expression.getOperator();
 
+	    if(manyValues && val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
 	    if ((op != COMMA) && (op != SPACE)) {
 		throw new InvalidParamException("operator",
-						((new Character(op)).toString()),
-						ac);
+			((new Character(op)).toString()),
+			ac);
 	    }
 
+	    if(val != null && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
 	    if (val instanceof CssString) {
 		String familyName = null;
 		if (op == COMMA) { // "helvetica", "roman"
@@ -166,9 +192,9 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 		    for (int i = 0; i < genericFamily.length; i++) {
 			if (genericFamily[i].equals(tmp)) {
 			    throw new InvalidParamException("generic-family.quote",
-							    genericFamily[i],
-							    getPropertyName(),
-							    ac);
+				    genericFamily[i],
+				    getPropertyName(),
+				    ac);
 			}
 		    }
 		}
@@ -180,6 +206,10 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 		} else {
 		    CssValue next = expression.getNextValue();
 
+		    if(manyValues && next != null && next.equals(inherit)) {
+			throw new InvalidParamException("unrecognize", ac);
+		    }
+		    
 		    if (next instanceof CssIdent) {
 			CssIdent New = new CssIdent(val.get() + " "
 						    + next.get());
@@ -199,12 +229,19 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	}
-
+	if(check && !expression.end()) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 	if (!containsGenericFamily()) {
 	    ac.getFrame().addWarning("no-generic-family", "font-family");
 	}
     }
 
+    public CssFontFamily(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns all fonts name
      */

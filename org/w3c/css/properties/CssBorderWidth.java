@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:43  plehegar
  * Freeze
  *
@@ -30,14 +33,13 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssOperator;
 
 /**
  *   <H4>
@@ -104,10 +106,12 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
      * Create a new CssBorder
      *
      * @param expression The expression for this property
+     * @param check true will test the number of values
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssBorderWidth(ApplContext ac, CssExpression expression)  throws InvalidParamException {
-
+    public CssBorderWidth(ApplContext ac, CssExpression expression, boolean check) 
+    	throws InvalidParamException {	
+	
 	setByUser();
 	switch (expression.getCount()) {
 	case 1:
@@ -119,9 +123,15 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
 	case 2:
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssBorderTopWidth(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssBorderRightWidth(ac, expression);
 	    bottom = new CssBorderBottomWidth((CssBorderFaceWidth) top.get());
 	    left = new CssBorderLeftWidth((CssBorderFaceWidth) right.get());
@@ -129,36 +139,66 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
 	case 3:
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssBorderTopWidth(ac, expression);
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssBorderRightWidth(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    bottom = new CssBorderBottomWidth(ac, expression);
 	    left = new CssBorderLeftWidth((CssBorderFaceWidth) right.get());
 	    break;
 	default:
+	    // checks the number of parameters
+	    if(check && expression.getCount() > 4) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssBorderTopWidth(ac, expression);
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssBorderRightWidth(ac, expression);
 	    if (expression.getOperator() != SPACE)
 		throw new InvalidParamException("operator", 
-						((new Character(expression.getOperator())).toString()),
-						ac);
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    bottom = new CssBorderBottomWidth(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    left = new CssBorderLeftWidth(ac, expression);
-	    break;
+	    break;	    
 	}
+    }
+    
+    public CssBorderWidth(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -274,10 +314,18 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	top.addToStyle(ac, style);
-	right.addToStyle(ac, style);
-	left.addToStyle(ac, style);
-	bottom.addToStyle(ac, style);
+	if(top != null) {
+	    top.addToStyle(ac, style);
+	}
+	if(right != null) {
+	    right.addToStyle(ac, style);
+	}
+	if(left != null) {
+	    left.addToStyle(ac, style);
+	}
+	if(bottom != null) {
+	    bottom.addToStyle(ac, style);
+	}
     }
     
     /**
@@ -300,10 +348,18 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
      */  
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
-	top.setInfo(line, source);
-	right.setInfo(line, source);
-	left.setInfo(line, source);
-	bottom.setInfo(line, source);
+	if(top != null) {
+	    top.setInfo(line, source);
+	}
+	if(right != null) {
+	    right.setInfo(line, source);
+	}
+	if(left != null) {
+	    left.setInfo(line, source);
+	}
+	if(bottom != null) {
+	    bottom.setInfo(line, source);
+	}
     }
     
     /**
@@ -312,7 +368,7 @@ public class CssBorderWidth extends CssProperty implements CssOperator {
      * @param value The other property.
      */  
     public boolean equals(CssProperty property) {
-	return false;
+	return false; //FIXME
     }
     
 }

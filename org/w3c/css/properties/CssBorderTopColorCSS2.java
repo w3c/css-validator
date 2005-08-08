@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.2  1997/09/09 08:37:17  plehegar
  * Added getColor()
  *
@@ -18,12 +21,12 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  * Be careful, this is not a CSS1 property !
@@ -56,10 +59,20 @@ public class CssBorderTopColorCSS2 extends CssProperty {
      * @param expression The expression fir this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssBorderTopColorCSS2(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CssBorderTopColorCSS2(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	setByUser();
 	face = new CssBorderFaceColorCSS2(ac, expression);
+    }
+    
+    public CssBorderTopColorCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression,false);
     }
     
     /**
@@ -84,7 +97,10 @@ public class CssBorderTopColorCSS2 extends CssProperty {
      * Returns a string representation of the object.
      */
     public String toString() {
-	return face.toString();
+	if(face != null) {
+	    return face.toString();
+	}
+	return "";
     }
     
     /**
@@ -126,7 +142,7 @@ public class CssBorderTopColorCSS2 extends CssProperty {
      * @param value The other property.
      */  
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderTopColorCSS2 && 
+	return (property instanceof CssBorderTopColorCSS2 &&
 		face.equals(((CssBorderTopColorCSS2) property).face));
     }
     
@@ -137,7 +153,7 @@ public class CssBorderTopColorCSS2 extends CssProperty {
      * @see #print(CssPrinterStyle)
      */  
     public void print(CssPrinterStyle printer) {
-	if (!face.isDefault())
+	if (face != null && !face.isDefault())
 	    printer.print(this);
     }
     

@@ -38,12 +38,7 @@
 
 package org.w3c.css.util;
 
-import java.util.BitSet;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
 /**
  * This class collects various encoders and decoders.

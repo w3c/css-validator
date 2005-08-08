@@ -8,14 +8,10 @@
 
 package org.w3c.css.svgproperties;
 
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssPrinterStyle;
-import org.w3c.css.values.CssValue;
 
 public class SVGStyle extends org.w3c.css.properties3.Css3Style {
-
+    
     AlignmentBaseline alignmentBaseline;
     ClipPath clipPath;
     ClipRule clipRule;
@@ -53,400 +49,400 @@ public class SVGStyle extends org.w3c.css.properties3.Css3Style {
     FloodColor floodColor;
     Stroke stroke;
     ColorProfile colorProfile;
-	DominantBaseLine dominantBaseLine;
-	SolidOpacity solidOpacity;
-	Fill fill;
-	ColorProfileSrc cpSrc;
-	ColorProfileName cpName;
-	CssRenderIntent cssRenderIntent;
-
+    DominantBaseLine dominantBaseLine;
+    SolidOpacity solidOpacity;
+    Fill fill;
+    ColorProfileSrc cpSrc;
+    ColorProfileName cpName;
+    CssRenderIntent cssRenderIntent;
+    
     public AlignmentBaseline getAlignmentBaseline() {
 	if (alignmentBaseline == null) {
 	    alignmentBaseline =
 		(AlignmentBaseline) style.CascadingOrder (
-			    new AlignmentBaseline(), style, selector);
+			new AlignmentBaseline(), style, selector);
 	}
 	return alignmentBaseline;
     }
-
+    
     public DominantBaseLine getDominantBaseLineSVG() {
 	if (dominantBaseLine == null) {
 	    dominantBaseLine =
 		(DominantBaseLine) style.CascadingOrder (
-			    new DominantBaseLine(), style, selector);
+			new DominantBaseLine(), style, selector);
 	}
 	return dominantBaseLine;
     }
-
+    
     public ClipPath getClipPath() {
 	if (clipPath == null) {
 	    clipPath =
 		(ClipPath) style.CascadingOrder (
-			    new ClipPath(), style, selector);
+			new ClipPath(), style, selector);
 	}
 	return clipPath;
     }
-
+    
     public ClipRule getClipRule() {
 	if (clipRule == null) {
 	    clipRule =
 		(ClipRule) style.CascadingOrder (
-			    new ClipRule(), style, selector);
+			new ClipRule(), style, selector);
 	}
 	return clipRule;
     }
-
+    
     public ColorInterpolation getColorInterpolation() {
 	if (colorInterpolation == null) {
 	    colorInterpolation =
 		(ColorInterpolation) style.CascadingOrder (
-			    new ColorInterpolation(), style, selector);
+			new ColorInterpolation(), style, selector);
 	}
 	return colorInterpolation;
     }
-
+    
     public ColorInterpolationFilters getColorInterpolationFilters() {
 	if (colorInterpolationFilters == null) {
 	    colorInterpolationFilters =
 		(ColorInterpolationFilters) style.CascadingOrder (
-			    new ColorInterpolationFilters(), style, selector);
+			new ColorInterpolationFilters(), style, selector);
 	}
 	return colorInterpolationFilters;
     }
-
+    
     public ColorRendering getColorRendering() {
 	if (colorRendering == null) {
 	    colorRendering =
 		(ColorRendering) style.CascadingOrder (
-			    new ColorRendering(), style, selector);
+			new ColorRendering(), style, selector);
 	}
 	return colorRendering;
     }
-
+    
     public EnableBackground getEnableBackground() {
 	if (enableBackground == null) {
 	    enableBackground =
 		(EnableBackground) style.CascadingOrder (
-			    new EnableBackground(), style, selector);
+			new EnableBackground(), style, selector);
 	}
 	return enableBackground;
     }
-
+    
     public WritingModeSVG getWritingModeSVG() {
 	if (writingModeSVG == null) {
 	    writingModeSVG =
 		(WritingModeSVG) style.CascadingOrder (
-			   new WritingModeSVG(), style, selector);
+			new WritingModeSVG(), style, selector);
 	}
 	return writingModeSVG;
     }
-
+    
     public FloodOpacity getFloodOpacity() {
 	if (floodOpacity == null) {
 	    floodOpacity =
 		(FloodOpacity) style.CascadingOrder (
-			   new FloodOpacity(), style, selector);
+			new FloodOpacity(), style, selector);
 	}
 	return floodOpacity;
     }
-
+    
     public Filter getFilter() {
 	if (filter == null) {
 	    filter =
 		(Filter) style.CascadingOrder (
-			   new Filter(), style, selector);
+			new Filter(), style, selector);
 	}
 	return filter;
     }
-
+    
     public FillRule getFillRule() {
 	if (fillRule == null) {
 	    fillRule =
 		(FillRule) style.CascadingOrder (
-			   new FillRule(), style, selector);
+			new FillRule(), style, selector);
 	}
 	return fillRule;
     }
-
+    
     public FillOpacity getFillOpacity() {
 	if (fillOpacity == null) {
 	    fillOpacity =
 		(FillOpacity) style.CascadingOrder (
-			   new FillOpacity(), style, selector);
+			new FillOpacity(), style, selector);
 	}
 	return fillOpacity;
     }
-
+    
     public ImageRendering getImageRendering() {
 	if (imageRendering == null) {
 	    imageRendering =
 		(ImageRendering) style.CascadingOrder (
-			   new ImageRendering(), style, selector);
+			new ImageRendering(), style, selector);
 	}
 	return imageRendering;
     }
-
+    
     public Mask getMask() {
 	if (mask == null) {
 	    mask =
 		(Mask) style.CascadingOrder (
-			   new ImageRendering(), style, selector);
+			new ImageRendering(), style, selector);
 	}
 	return mask;
     }
-
+    
     public StopOpacity getStopOpacity() {
 	if (stopOpacity == null) {
 	    stopOpacity =
 		(StopOpacity) style.CascadingOrder (
-			   new StopOpacity(), style, selector);
+			new StopOpacity(), style, selector);
 	}
 	return stopOpacity;
     }
-
+    
     public Kerning getKerning() {
 	if (kerning == null) {
 	    kerning =
 		(Kerning) style.CascadingOrder (
-			   new Kerning(), style, selector);
+			new Kerning(), style, selector);
 	}
 	return kerning;
     }
-
+    
     public Marker getMarker() {
 	if (marker == null) {
 	    marker =
 		(Marker) style.CascadingOrder (
-			   new Marker(), style, selector);
+			new Marker(), style, selector);
 	}
 	return marker;
     }
-
+    
     public MarkerStart getMarkerStart() {
 	if (markerStart == null) {
 	    markerStart =
 		(MarkerStart) style.CascadingOrder (
-			   new MarkerStart(), style, selector);
+			new MarkerStart(), style, selector);
 	}
 	return markerStart;
     }
-
+    
     public MarkerEnd getMarkerEnd() {
 	if (markerEnd == null) {
 	    markerEnd =
 		(MarkerEnd) style.CascadingOrder (
-			   new MarkerEnd(), style, selector);
+			new MarkerEnd(), style, selector);
 	}
 	return markerEnd;
     }
-
+    
     public MarkerMid getMarkerMid() {
 	if (markerMid == null) {
 	    markerMid =
 		(MarkerMid) style.CascadingOrder (
-			   new MarkerMid(), style, selector);
+			new MarkerMid(), style, selector);
 	}
 	return markerMid;
     }
-
+    
     public PointerEvents getPointerEvents() {
 	if (pointerEvents == null) {
 	    pointerEvents =
 		(PointerEvents) style.CascadingOrder (
-			    new PointerEvents(), style, selector);
+			new PointerEvents(), style, selector);
 	}
 	return pointerEvents;
     }
-
+    
     public ShapeRendering getShapeRendering() {
 	if (shapeRendering == null) {
 	    shapeRendering =
 		(ShapeRendering) style.CascadingOrder (
-			    new ShapeRendering(), style, selector);
+			new ShapeRendering(), style, selector);
 	}
 	return shapeRendering;
     }
-
+    
     public TextRendering getTextRendering() {
 	if (textRendering == null) {
 	    textRendering =
 		(TextRendering) style.CascadingOrder (
-			    new TextRendering(), style, selector);
+			new TextRendering(), style, selector);
 	}
 	return textRendering;
     }
-
+    
     public TextAnchor getTextAnchor() {
 	if (textAnchor == null) {
 	    textAnchor =
 		(TextAnchor) style.CascadingOrder (
-			     new TextAnchor(), style, selector);
+			new TextAnchor(), style, selector);
 	}
 	return textAnchor;
     }
-
+    
     public StrokeLinejoin getStrokeLinejoin() {
 	if (strokeLinejoin == null) {
 	    strokeLinejoin =
 		(StrokeLinejoin) style.CascadingOrder (
-			     new StrokeLinejoin(), style, selector);
+			new StrokeLinejoin(), style, selector);
 	}
 	return strokeLinejoin;
     }
-
+    
     public StrokeLineCap getStrokeLineCap() {
 	if (strokeLineCap == null) {
 	    strokeLineCap =
 		(StrokeLineCap) style.CascadingOrder (
-			     new StrokeLineCap(), style, selector);
+			new StrokeLineCap(), style, selector);
 	}
 	return strokeLineCap;
     }
-
+    
     public StrokeMiterLimit getStrokeMiterLimit() {
 	if (strokeMiterLimit == null) {
 	    strokeMiterLimit =
 		(StrokeMiterLimit) style.CascadingOrder (
-			     new StrokeMiterLimit(), style, selector);
+			new StrokeMiterLimit(), style, selector);
 	}
 	return strokeMiterLimit;
     }
-
+    
     public StrokeOpacity getStrokeOpacity() {
 	if (strokeOpacity == null) {
 	    strokeOpacity =
 		(StrokeOpacity) style.CascadingOrder (
-			      new StrokeOpacity(), style, selector);
+			new StrokeOpacity(), style, selector);
 	}
 	return strokeOpacity;
     }
-
+    
     public StrokeWidth getStrokeWidth() {
 	if (strokeWidth == null) {
 	    strokeWidth =
 		(StrokeWidth) style.CascadingOrder (
-			      new StrokeWidth(), style, selector);
+			new StrokeWidth(), style, selector);
 	}
 	return strokeWidth;
     }
-
+    
     public StrokeDashOffset getStrokeDashOffset() {
 	if (strokeDashOffset == null) {
 	    strokeDashOffset =
 		(StrokeDashOffset) style.CascadingOrder (
-			      new StrokeDashOffset(), style, selector);
+			new StrokeDashOffset(), style, selector);
 	}
 	return strokeDashOffset;
     }
-
+    
     public StrokeDashArray getStrokeDashArray() {
 	if (strokeDashArray == null) {
 	    strokeDashArray =
 		(StrokeDashArray) style.CascadingOrder (
-			      new StrokeDashArray(), style, selector);
+			new StrokeDashArray(), style, selector);
 	}
 	return strokeDashArray;
     }
-
+    
     public StopColor getStopColor() {
 	if (stopColor == null) {
 	    stopColor =
 		(StopColor) style.CascadingOrder (
-			       new StopColor(), style, selector);
+			new StopColor(), style, selector);
 	}
 	return stopColor;
     }
-
+    
     public SolidColor getSolidColor() {
 	if (solidColor == null) {
 	    solidColor =
 		(SolidColor) style.CascadingOrder (
-			       new SolidColor(), style, selector);
+			new SolidColor(), style, selector);
 	}
 	return solidColor;
     }
-
+    
     public LightingColor getLightingColor() {
 	if (lightingColor == null) {
 	    lightingColor =
 		(LightingColor) style.CascadingOrder(
-			       new LightingColor(), style, selector);
+			new LightingColor(), style, selector);
 	}
 	return lightingColor;
     }
-
+    
     public FloodColor getFloodColor() {
 	if (floodColor == null) {
 	    floodColor =
 		(FloodColor) style.CascadingOrder (
-			       new FloodColor(), style, selector);
+			new FloodColor(), style, selector);
 	}
 	return floodColor;
     }
-
+    
     public ColorProfile getColorProfileSVG() {
 	if (colorProfile == null) {
 	    colorProfile =
 		(ColorProfile) style.CascadingOrder (
-			       new ColorProfile(), style, selector);
+			new ColorProfile(), style, selector);
 	}
 	return colorProfile;
     }
-
+    
     public Stroke getStroke() {
 	if (stroke == null) {
 	    stroke =
 		(Stroke) style.CascadingOrder (
-			       new Stroke(), style, selector);
+			new Stroke(), style, selector);
 	}
 	return stroke;
     }
-
-	public SolidOpacity getSolidOpacity() {
-		if (solidOpacity == null) {
-			solidOpacity =
-				(SolidOpacity) style.CascadingOrder (
-					new SolidOpacity(), style, selector);
-		}
-		return solidOpacity;
+    
+    public SolidOpacity getSolidOpacity() {
+	if (solidOpacity == null) {
+	    solidOpacity =
+		(SolidOpacity) style.CascadingOrder (
+			new SolidOpacity(), style, selector);
 	}
-
-	public Fill getFill() {
-		if (fill == null) {
-			fill =
-				(Fill) style.CascadingOrder (
-					new Fill(), style, selector);
-		}
-		return fill;
+	return solidOpacity;
+    }
+    
+    public Fill getFill() {
+	if (fill == null) {
+	    fill =
+		(Fill) style.CascadingOrder (
+			new Fill(), style, selector);
 	}
-
-	public ColorProfileSrc getColorProfileSrc() {
-		if (cpSrc == null) {
-			cpSrc =
-				(ColorProfileSrc) style.CascadingOrder (
-					new ColorProfileSrc(), style, selector);
-		}
-		return cpSrc;
+	return fill;
+    }
+    
+    public ColorProfileSrc getColorProfileSrc() {
+	if (cpSrc == null) {
+	    cpSrc =
+		(ColorProfileSrc) style.CascadingOrder (
+			new ColorProfileSrc(), style, selector);
 	}
-
-	public ColorProfileName getColorProfileName() {
-		if (cpName == null) {
-			cpName =
-				(ColorProfileName) style.CascadingOrder (
-					new ColorProfileName(), style, selector);
-		}
-		return cpName;
+	return cpSrc;
+    }
+    
+    public ColorProfileName getColorProfileName() {
+	if (cpName == null) {
+	    cpName =
+		(ColorProfileName) style.CascadingOrder (
+			new ColorProfileName(), style, selector);
 	}
-
-	public CssRenderIntent getCssRenderIntent() {
-		if (cssRenderIntent == null) {
-			cssRenderIntent =
-				(CssRenderIntent) style.CascadingOrder (
-					new CssRenderIntent(), style, selector);
-		}
-		return cssRenderIntent;
+	return cpName;
+    }
+    
+    public CssRenderIntent getCssRenderIntent() {
+	if (cssRenderIntent == null) {
+	    cssRenderIntent =
+		(CssRenderIntent) style.CascadingOrder (
+			new CssRenderIntent(), style, selector);
 	}
-
+	return cssRenderIntent;
+    }
+    
     /**
      * Print this style
      *
@@ -454,12 +450,12 @@ public class SVGStyle extends org.w3c.css.properties3.Css3Style {
      */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
-
+	
 	if (alignmentBaseline != null) {
 	    alignmentBaseline.print(printer);
 	}
 	if (dominantBaseLine != null) {
-		dominantBaseLine.print(printer);
+	    dominantBaseLine.print(printer);
 	}
 	if (clipPath != null) {
 	    clipPath.print(printer);
@@ -552,7 +548,7 @@ public class SVGStyle extends org.w3c.css.properties3.Css3Style {
 	    stopColor.print(printer);
 	}
 	if (solidColor != null) {
-		solidColor.print(printer);
+	    solidColor.print(printer);
 	}
 	if (lightingColor != null) {
 	    lightingColor.print(printer);
@@ -567,22 +563,22 @@ public class SVGStyle extends org.w3c.css.properties3.Css3Style {
 	    colorProfile.print(printer);
 	}
 	if (solidOpacity != null) {
-		solidOpacity.print(printer);
+	    solidOpacity.print(printer);
 	}
 	if (fill != null) {
-		fill.print(printer);
+	    fill.print(printer);
 	}
-    if (cpSrc != null) {
-		cpSrc.print(printer);
+	if (cpSrc != null) {
+	    cpSrc.print(printer);
 	}
 	if (cpName != null) {
-		cpName.print(printer);
+	    cpName.print(printer);
 	}
 	if (cssRenderIntent != null) {
-		cssRenderIntent.print(printer);
+	    cssRenderIntent.print(printer);
 	}
     }
-
+    
     /**
      * Returns the name of the actual selector
      */
@@ -590,5 +586,5 @@ public class SVGStyle extends org.w3c.css.properties3.Css3Style {
     {
 	return (selector.getElement().toLowerCase());
     }
-
+    
 }

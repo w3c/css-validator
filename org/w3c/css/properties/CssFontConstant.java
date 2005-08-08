@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/12/18 09:21:01  sijtsche
+ * values changed
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -62,10 +65,10 @@ public interface CssFontConstant {
   /**
    * Array of font values
    */
-  static String[] FONT = { "icon", "window", "status-bar", "document", "workspace", "desktop",
-  						   "tooltip", "message-box", "dialog", "small-caption", "caption", "button",
-  						   "default-button", "hyperlink", "menu", "pull-down-menu", "pop-up-menu",
-  						   "list-menu", "field", "inherit"
-	  					 };
-
+  static String[] FONT = { "icon", "window", "status-bar", "document", 
+      "workspace", "desktop", "tooltip", "message-box", "dialog", 
+      "small-caption", "caption", "button", "default-button", "hyperlink",
+      "menu", "pull-down-menu", "pop-up-menu", "list-menu", "field", "inherit"
+  };
+  
 }

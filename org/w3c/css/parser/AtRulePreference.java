@@ -8,7 +8,6 @@
 
 package org.w3c.css.parser;
 
-import org.w3c.css.util.InvalidParamException;
 
 public class AtRulePreference extends AtRule {
 

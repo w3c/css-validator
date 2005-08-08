@@ -8,14 +8,11 @@
 package org.w3c.css.values;
 
 import java.util.Hashtable;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssAngle;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssNumber;
-
 import java.util.Vector;
+
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
 
 /**
  *   <H3>

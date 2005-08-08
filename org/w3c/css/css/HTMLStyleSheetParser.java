@@ -7,22 +7,19 @@
 
 package org.w3c.css.css;
 
+import html.tags.HtmlParser;
+import html.tags.HtmlParserListener;
+import html.tags.HtmlTag;
+import html.tags.HtmlTree;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-// import org.w3c.www.protocol.http.HttpURLConnection;
 
-import html.tags.HtmlTree;
-import html.tags.HtmlParser;
-import html.tags.HtmlParserListener;
-import html.tags.HtmlTag;
-
-import org.w3c.css.util.Util;
-import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.Util;
 
 /**
  * @version $Revision$

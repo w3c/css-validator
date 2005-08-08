@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2003/08/29 15:23:39  plehegar
+ * Fix from Sijtsche
+ *
  * Revision 1.3  2003/01/08 10:24:47  sijtsche
  * changes for CSS3 border
  *
@@ -31,27 +34,25 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.properties3.CssBorderImageTransform;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
  */
 public class CssBorder extends CssProperty implements CssOperator {
 
-    CssBorderTopWidth width;
-    CssBorderTopStyle style;
-    CssBorderTopColor color;
-    CssValue uri = null;
-    CssBorderImageTransform imagetransform = null;
+//    CssBorderTopWidth width;
+//    CssBorderTopStyle style;
+//    CssBorderTopColor color;
+//    CssValue uri = null;
+//    CssBorderImageTransform imagetransform = null;
 
     CssBorderTop top = new CssBorderTop();
     CssBorderRight right = new CssBorderRight();
@@ -74,14 +75,65 @@ public class CssBorder extends CssProperty implements CssOperator {
      * @param value The value for this property
      * @exception InvalidParamException The value is incorrect
      */
-    public CssBorder(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssBorder(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	CssValue val = expression.getValue();
 
-	CssValue val = null;
+	if(check && expression.getCount() > 4) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
+	setByUser();
+	
+	
+	top = new CssBorderTop(ac, expression);
+	
+	if (val == expression.getValue()) {
+	    throw new InvalidParamException("value", 
+					    expression.getValue(), 
+					    getPropertyName(), ac);
+	}	
+	right = new CssBorderRight();
+	bottom = new CssBorderBottom();
+	left = new CssBorderLeft();
+	
+	CssBorderTopWidth w = top.width;
+	CssBorderTopStyle s = top.style;
+	CssBorderTopColor c = top.color;	
+	
+	if(w != null) {	    
+	    right.width  = 
+		new CssBorderRightWidth((CssBorderFaceWidth) w.get());	    
+	    left.width = 
+		new CssBorderLeftWidth((CssBorderFaceWidth) w.get());	    
+	    bottom.width = 
+		new CssBorderBottomWidth((CssBorderFaceWidth) w.get());	    
+	}	
+	if(s != null) {
+	    right.style = 
+		new CssBorderRightStyle((CssBorderFaceStyle) s.get());
+	    left.style = 
+		new CssBorderLeftStyle((CssBorderFaceStyle) s.get());
+	    bottom.style = 
+		new CssBorderBottomStyle((CssBorderFaceStyle) s.get());
+	}	
+	if(c != null) {
+	    right.color = 
+		new CssBorderRightColor((CssBorderFaceColor) c.get());
+	    left.color = 
+		new CssBorderLeftColor((CssBorderFaceColor) c.get());
+	    bottom.color = 
+		new CssBorderBottomColor((CssBorderFaceColor) c.get());
+	}
+	/*
+	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
 
 	setByUser();
 
+	boolean manyValues = (expression.getCount() > 1);
+	
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -90,50 +142,57 @@ public class CssBorder extends CssProperty implements CssOperator {
 	    if (val == null)
 		break;
 
+	    // if there are many values, we can't have inherit as one of them
+	    if(manyValues && val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", null, null, ac);
+	    }
+	    
 	    if (op != SPACE)
-			throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
+		throw new InvalidParamException("operator",
+			((new Character(op)).toString()), ac);
 
 	    if (width == null) {
-			try {
-			    width = new CssBorderTopWidth(ac, expression);
-			    find = true;
-			} catch (InvalidParamException e) {}
+		try {
+		    width = new CssBorderTopWidth(ac, expression);
+		    find = true;
+		} catch (InvalidParamException e) {
+		    // nothing to do, style will test the value
+		}
 	    }
 
 	    if (!find && style == null) {
-			try {
-			    style = new CssBorderTopStyle(ac, expression);
-			    find = true;
-			}
-			catch (InvalidParamException e) {}
+		try {
+		    style = new CssBorderTopStyle(ac, expression);
+		    find = true;
+		}
+		catch (InvalidParamException e) {
+		    // nothing to do, color will test the value
+		}
 	    }
 
 	    if (!find && color == null) {
-
-			try {
-			    color = new CssBorderTopColor(ac, expression);
-			    find = true;
-			}
-			catch (InvalidParamException e) {}
+		try {
+		    color = new CssBorderTopColor(ac, expression);
+		    find = true;
+		}
+		catch (InvalidParamException e) {
+		    // nothing to do, uri will test the value
+		}
 	    }
 
 	    if (!find && uri == null) {
-			if (val instanceof CssURL) {
-				uri = val;
-				find = true;
-			}
+		if (val instanceof CssURL) {
+		    uri = val;
+		    find = true;
 		}
+	    }
 
-		if (!find && imagetransform == null) {
-			try {
-				imagetransform = new CssBorderImageTransform(ac, expression);
-				find = true;
-			} catch (InvalidParamException e) {}
-		}
-
-	}
-
+	    if (!find && imagetransform == null) {
+		imagetransform = new CssBorderImageTransform(ac, expression);
+		find = true;
+	    }
+	}*/
+	/*
 	if (width == null) {
 	    width = new CssBorderTopWidth();
 	}
@@ -144,15 +203,15 @@ public class CssBorder extends CssProperty implements CssOperator {
 	if (color == null) {
 	    color = new CssBorderTopColor();
 	}
-
+	*/
 	//
 
 
 //	top = new CssBorderTop(ac, expression);
-
+/*
 	right = new CssBorderRight();
 	bottom = new CssBorderBottom();
-	left = new CssBorderLeft();
+	left = new CssBorderLeft();*/
 /*
 	right.width  =  new CssBorderRightWidth((CssBorderFaceWidth) top.width.get());
 	left.width   =  new CssBorderLeftWidth((CssBorderFaceWidth) top.width.get());
@@ -168,6 +227,11 @@ public class CssBorder extends CssProperty implements CssOperator {
 */
     }
 
+    public CssBorder(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */
@@ -207,17 +271,10 @@ public class CssBorder extends CssProperty implements CssOperator {
      * Returns a string representation of the object.
      */
     public String toString() {
-		String ret = width + " " + style;
-		if (!color.face.isDefault())
-		    ret += " " + color;
-		if (uri != null) {
-			ret += " " + uri.toString();
-		}
-		if (imagetransform != null) {
-			ret += imagetransform;
-		}
-
-		return ret;
+	if(top != null) {
+	    return top.toString();
+	}
+	return "";
     }
 
     public boolean equals(CssProperty property) {
@@ -236,10 +293,18 @@ public class CssBorder extends CssProperty implements CssOperator {
      * Overrides this method for a macro
      */
     public void setImportant() {
-	top.setImportant();
-	right.setImportant();
-	left.setImportant();
-	bottom.setImportant();
+	if(top != null) {
+	    top.setImportant();
+	}
+	if(right != null) {
+	    right.setImportant();
+	}
+	if(left != null) {
+	    left.setImportant();
+	}
+	if(bottom != null) {
+	    bottom.setImportant();
+	}
     }
 
     /**
@@ -363,10 +428,18 @@ public class CssBorder extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-		top.addToStyle(ac, style);
-		right.addToStyle(ac, style);
-		left.addToStyle(ac, style);
-		bottom.addToStyle(ac, style);
+	if(top != null) {
+	    top.addToStyle(ac, style);
+	}
+	if(right != null) {
+	    right.addToStyle(ac, style);
+	}
+	if(left != null) {
+	    left.addToStyle(ac, style);
+	}
+	if(bottom != null) {
+	    bottom.addToStyle(ac, style);
+	}
     }
 
     /**
@@ -398,7 +471,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 	//bottom.setInfo(line, source);
     }
 
-    void check() {
+    void check() {	
 	//top.check();
 	//bottom.check();
 	//right.check();

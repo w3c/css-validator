@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2003/07/30 06:54:50  sijtsche
+ * new properties added
+ *
  * Revision 1.4  2003/07/28 14:55:50  sijtsche
  * new properties and CSS3 property versions added
  *
@@ -41,11 +44,11 @@ package org.w3c.css.aural;
 
 import java.util.Enumeration;
 
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.properties.Css1Style;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 import org.w3c.css.values.CssPercentage;
 
 /**

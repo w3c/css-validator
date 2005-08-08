@@ -11,16 +11,13 @@ package org.w3c.css.properties;
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssString;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -43,23 +40,62 @@ public class CssCounterReset extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssCounterReset(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssCounterReset(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	int counter = 0;
 	char op = expression.getOperator();
 	
 	setByUser();
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    values.addElement(inherit);
 	    expression.next();
 	    return;
 	} else if (val.equals(none)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    values.addElement(none);
 	    expression.next();
 	    return;
 	}
-
-
+	
+	while(counter < expression.getCount()) {
+	    
+	    if(val.equals(inherit) || val.equals(none)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
+	    // the operator must be a space
+	    if(op != CssOperator.SPACE) {
+		throw new InvalidParamException("operator",
+			new Character(op), ac);
+	    }
+	    // an ident
+	    if(val instanceof CssIdent) {
+		values.addElement(val);		
+	    }
+	    // a number associated to the previous ident
+	    else if(val instanceof CssNumber
+		    && ((CssNumber) val).isInteger()
+		    && (values.get(values.size() - 1) instanceof CssIdent)) {
+		values.add(val);
+	    }
+	    else {
+		throw new InvalidParamException("value", 
+			expression.getValue(), 
+			getPropertyName(), ac);
+	    }
+	    expression.next();		
+	    counter++;
+	    
+	    val = expression.getValue();
+	    op = expression.getOperator();
+	}
+	/*
 	while ((op == CssOperator.SPACE)
 	       && (counter < expression.getCount())) {
 	    if (val instanceof CssIdent) {
@@ -89,8 +125,12 @@ public class CssCounterReset extends CssProperty {
 	    counter++;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	}
-
+	}*/
+    }
+    
+    public CssCounterReset(ApplContext ac, CssExpression expression)
+    	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

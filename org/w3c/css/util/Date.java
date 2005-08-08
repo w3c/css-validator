@@ -13,10 +13,10 @@
 
 package org.w3c.css.util;
 
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class Date {
   protected static String days[] = { "Sun", "Mon", "Tue", "Wed",

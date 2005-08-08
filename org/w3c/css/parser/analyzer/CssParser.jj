@@ -61,7 +61,7 @@ import org.w3c.css.css.StyleSheetCom;
 /**
  * A CSS3 parser  
  *
- * @author Philippe Le Hégaret and Sijtsche Smeman
+ * @author Philippe Le Hï¿½garet and Sijtsche Smeman
  * @version $Revision$
  */
 public abstract class CssParser {
@@ -959,7 +959,9 @@ void atRuleDeclaration() :
 {
  n=<ATKEYWORD>
     {
-	ac.getFrame().addWarning("at-rule", token.toString());
+	//ac.getFrame().addWarning("at-rule", token.toString());
+	ac.getFrame().addError(
+        	new CssError(new InvalidParamException("at-rule", token, ac)));
 	skipStatement();
     }
 }

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:51  plehegar
  * Freeze
  *
@@ -30,14 +33,14 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -117,19 +120,28 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssListStyleCSS1(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssListStyleCSS1(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 3) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
 	
 	setByUser();
-
+/*
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    inheritedValue = true;
 	    expression.next();
 	    return;
 	}
-	
+*/	
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -155,11 +167,11 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    if (!find 
 		&& (val != null)
 		&& (listStylePosition == null)) {
-		try {
-		    listStylePosition = new CssListStylePositionCSS1(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
+		listStylePosition = new CssListStylePositionCSS1(ac, expression);
+		find = true;
+	    }
+	    if(val != null && !find) {
+		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    if (op != SPACE) {
 		throw new InvalidParamException("operator", 
@@ -167,7 +179,7 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 						ac);
 	    }
 	}
-	
+	/*
 	if (listStyleType == null) {
 	    listStyleType = new CssListStyleTypeCSS1();
 	}
@@ -178,7 +190,12 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	
 	if (listStylePosition == null) {
 	    listStylePosition = new CssListStylePositionCSS1();
-	}
+	}*/
+    }
+    
+    public CssListStyleCSS1(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -210,14 +227,17 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	if (inheritedValue) {
 	    return inherit.toString();
 	} else {
-	    String ret = listStyleType.toString();
-	    if (!listStyleImage.isDefault()) {
+	    String ret = "";
+	    if(listStyleType != null) {
+		ret = listStyleType.toString();
+	    }
+	    if (listStyleImage != null &&!listStyleImage.isDefault()) {
 		ret += " " + listStyleImage;
 	    }
-	    if (!listStylePosition.isDefault()) {
+	    if (listStyleImage != null && !listStylePosition.isDefault()) {
 		ret += " " + listStylePosition;
 	    }
-	    return ret;
+	    return ret.trim();
 	}
     }
     
@@ -229,9 +249,12 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
      */  
     public void setImportant() {
 	if (!inheritedValue) {
-	    listStyleType.important = true;
-	    listStyleImage.important = true;
-	    listStylePosition.important = true;
+	    if(listStyleType != null)
+		listStyleType.important = true;
+	    if(listStyleImage != null)
+		listStyleImage.important = true;
+	    if(listStylePosition != null)
+		listStylePosition.important = true;
 	}
     }
     
@@ -302,9 +325,12 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
 	if (!inheritedValue) {
-	    listStyleType.addToStyle(ac, style);
-	    listStyleImage.addToStyle(ac, style);
-	    listStylePosition.addToStyle(ac, style);
+	    if(listStyleType != null)
+		listStyleType.addToStyle(ac, style);
+	    if(listStyleImage != null)
+		listStyleImage.addToStyle(ac, style);
+	    if(listStylePosition != null)
+		listStylePosition.addToStyle(ac, style);
 	} else {
 	    ((Css1Style) style).cssListStyleCSS1.inheritedValue = true;
 	}
@@ -334,9 +360,12 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if (!inheritedValue) {
-	    listStyleType.setInfo(line, source);
-	    listStyleImage.setInfo(line, source);
-	    listStylePosition.setInfo(line, source);
+	    if(listStyleType != null)
+		listStyleType.setInfo(line, source);
+	    if(listStyleImage != null)
+		listStyleImage.setInfo(line, source);
+	    if(listStylePosition != null)
+		listStylePosition.setInfo(line, source);
 	}
     }
     

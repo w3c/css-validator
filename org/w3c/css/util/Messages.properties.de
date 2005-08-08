@@ -43,7 +43,7 @@ warning.marker: Die 'marker-offset'-Eigenschaft gilt für Elemente mit 'display:
 warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft %s führt zu robusteren Stylesheets
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: Leider ist die At-Regel %s nicht implementiert.
+error.at-rule: Leider ist die At-Regel %s nicht implementiert.
 
 # used by all properties and values
 error.operator: %s ist kein ungültiger Operator

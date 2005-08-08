@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/08/09 12:29:14  sijtsche
+ * extra value for word-spacing added, therefore separate CSS3 version
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -31,14 +34,14 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -83,7 +86,8 @@ public class CssWordSpacingCSS3 extends CssProperty {
      * @param expression The expression
      * @exception InvalidParamException The expression is incorrect
      */
-    public CssWordSpacingCSS3(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssWordSpacingCSS3(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -109,6 +113,11 @@ public class CssWordSpacingCSS3 extends CssProperty {
 	}
     }
 
+    public CssWordSpacingCSS3(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

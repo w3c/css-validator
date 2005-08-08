@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2004/11/25 13:23:25  sijtsche
+ * HTML output escaped
+ *
  * Revision 1.3  2002/05/19 04:12:37  plehegar
  * Replaced the email address
  *
@@ -28,45 +31,27 @@
 
 package org.w3c.css.servlet;
 
-import java.io.IOException;
-import java.io.EOFException;
-import java.io.PrintWriter;
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.URL;
-import java.net.MalformedURLException;
-import java.util.Date;
-import java.util.Properties;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletInputStream;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// multipart/form-data
-import org.w3c.css.util.Codecs;
-import org.w3c.css.util.NVPair;
-
-import org.w3c.css.util.ApplContext;
-
-import org.w3c.css.util.HTTPURL;
-
-import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.css.CssParser;
-// import org.w3c.css.css.StyleSheetXMLParser;
-import org.w3c.css.css.StyleSheetParser;
 import org.w3c.css.css.HTMLStyleSheetParser;
 import org.w3c.css.css.StyleSheet;
 import org.w3c.css.css.StyleSheetGeneratorHTML2;
-import org.w3c.css.aural.ACssStyle;
-import org.w3c.css.util.Util; 
-import org.w3c.css.util.FakeFile;
-
+import org.w3c.css.css.StyleSheetParser;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.Util;
 import org.xml.sax.SAXParseException;
 
 /**

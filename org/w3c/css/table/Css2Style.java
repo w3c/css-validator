@@ -8,11 +8,8 @@
  */
 package org.w3c.css.table;
 
-import java.util.Enumeration;
-
-import org.w3c.css.util.Warnings;
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.aural.ACssStyle;
+import org.w3c.css.parser.CssPrinterStyle;
 
 /**
  * @version $Revision$

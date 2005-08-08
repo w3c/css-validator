@@ -8,12 +8,7 @@
 
 package org.w3c.css.properties3;
 
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssPrinterStyle;
-import org.w3c.css.properties2.Css2Style;
-import org.w3c.css.values.CssValue;
 
 public class Css3Style extends org.w3c.css.atsc.ATSCStyle {
 

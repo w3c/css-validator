@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2003/01/08 10:24:47  sijtsche
+ * changes for CSS3 border
+ *
  * Revision 1.2  2002/04/08 21:17:43  plehegar
  * New
  *
@@ -18,12 +21,11 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -64,28 +66,37 @@ public class CssBorderFaceColor {
      * @param expression The expression for this property.
      * @exception InvalidParamException color is not a color
      */
-    public CssBorderFaceColor(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-
+    public CssBorderFaceColor(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
-
+	
 	if (val instanceof org.w3c.css.values.CssColor) {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
 	    face = CssProperty.inherit;
 	} else if (val instanceof CssIdent) {
-		if (val.equals(transparent)) {
-			face = transparent;
-		} else {
-	    	face = new org.w3c.css.values.CssColor(ac, (String) val.get());
-		}
+	    if (val.equals(transparent)) {
+		face = transparent;
+	    } else {
+		face = new org.w3c.css.values.CssColor(ac, (String) val.get());
+	    }
 	} else {
 	    throw new InvalidParamException("value", val.toString(),
-					    "border-color", ac);
+		    "border-color", ac);
 	}
-	expression.next();
+	expression.next();	
     }
 
+    public CssBorderFaceColor(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the internal color
      */

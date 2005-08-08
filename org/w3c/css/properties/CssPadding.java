@@ -7,14 +7,13 @@
 
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *   <H4>
@@ -71,13 +70,12 @@ public class CssPadding extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssPadding(ApplContext ac, CssExpression expression)  
-	throws InvalidParamException 
-    {
-	CssValue val = expression.getValue();
+    public CssPadding(ApplContext ac, CssExpression expression, boolean check)  
+	throws InvalidParamException {
+	//CssValue val = expression.getValue();
 	setByUser();
 	
-	if (val.equals(inherit)) {
+	/*if (val.equals(inherit)) {
 	    inheritedValue = true;
 	    top = new CssPaddingTop();
 	    top.value = inherit;
@@ -87,9 +85,11 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    right.value = inherit;
 	    left = new CssPaddingLeft();
 	    left.value = inherit;
-	}
-
-	switch (expression.getCount()) {
+	}*/
+	
+	int count = expression.getCount();
+	
+	switch (count) {
 	case 1:
 	    top = new CssPaddingTop(ac, expression);
 	    bottom = new CssPaddingBottom(top);
@@ -98,37 +98,83 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssPaddingTop(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssPaddingRight(ac, expression);
 	    bottom = new CssPaddingBottom(top);
 	    left = new CssPaddingLeft(right);
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssPaddingTop(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssPaddingRight(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    bottom = new CssPaddingBottom(ac, expression);
 	    left = new CssPaddingLeft(right);
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    top = new CssPaddingTop(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    right = new CssPaddingRight(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("unrecognize", val, ac);
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
+			ac);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    bottom = new CssPaddingBottom(ac, expression);
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    left = new CssPaddingLeft(ac, expression);
 	    break;
 	default:
-	    throw new InvalidParamException("unrecognize", ac);
+	    if(check) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	}
+    }
+    
+    public CssPadding(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

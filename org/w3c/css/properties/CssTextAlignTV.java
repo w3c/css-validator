@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/08/19 07:38:04  sijtsche
+ * new tv profile property variant
+ *
  * Revision 1.2  2002/04/08 21:17:44  plehegar
  * New
  *
@@ -31,12 +34,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssString;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -87,7 +89,13 @@ public class CssTextAlignTV extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssTextAlignTV(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssTextAlignTV(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	int hash = val.hashCode();
 
@@ -99,17 +107,22 @@ public class CssTextAlignTV extends CssProperty
 	    return;
 	} else if (val instanceof CssIdent) {
 	    for (int i = 0; i < TEXTALIGNTV.length; i++) {
-			if (hash_values[i] == hash) {
-			    value = i;
-			    expression.next();
-			    return;
-			}
+		if (hash_values[i] == hash) {
+		    value = i;
+		    expression.next();
+		    return;
+		}
 	    }
 	}
 
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
 
+    public CssTextAlignTV(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

@@ -45,7 +45,7 @@ warning.marker: La propiedad marker-offset se aplica a elementos con 'display: m
 warning.relative: Utilizar unidades relativas da lugar a hojas de estilo más robustas en la propiedad %s
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: Lo lamentamos, la regla-arroba %s no está implementada.
+error.at-rule: Lo lamentamos, la regla-arroba %s no está implementada.
 
 # used by all properties and values
 error.operator: %s es un operador incorrecto

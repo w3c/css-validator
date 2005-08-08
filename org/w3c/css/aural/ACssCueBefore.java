@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:56  plehegar
+ * New
+ *
  * Revision 2.1  1997/08/29 13:11:50  plehegar
  * Updated
  *
@@ -19,15 +22,15 @@ package org.w3c.css.aural;
 import java.io.IOException;
 import java.net.URL;
 
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.HTTPURL;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssValue;
 
 /**
  * &nbsp;&nbsp;  'cue-before'
@@ -85,7 +88,13 @@ public class ACssCueBefore extends ACssProperty {
      * @param value the value of the size
      * @exception InvalidParamException The value is incorrect
      */  
-    public ACssCueBefore(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public ACssCueBefore(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	
 	if (val instanceof CssURL) {
@@ -103,6 +112,11 @@ public class ACssCueBefore extends ACssProperty {
 	}
 	
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+    }
+    
+    public ACssCueBefore(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

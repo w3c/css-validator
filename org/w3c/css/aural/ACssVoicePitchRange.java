@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2003/07/28 14:56:30  sijtsche
+ * new CSS3 speech property
+ *
  * Revision 1.2  2002/04/08 21:16:56  plehegar
  * New
  *
@@ -19,13 +22,13 @@
 package org.w3c.css.aural;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssFrequency;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFrequency;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *  &nbsp;&nbsp; 'pitch' <span>(or 'average pitch'
@@ -66,8 +69,14 @@ public class ACssVoicePitchRange extends ACssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public ACssVoicePitchRange(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public ACssVoicePitchRange(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	this();
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -87,6 +96,11 @@ public class ACssVoicePitchRange extends ACssProperty {
 	expression.next();
     }
 
+    public ACssVoicePitchRange(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

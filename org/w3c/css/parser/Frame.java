@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2004/11/19 20:26:06  sijtsche
+ * error message linenr bug fixed
+ *
  * Revision 1.3  2002/08/19 07:23:08  sijtsche
  * compile bug fixed: getLine erroneous?
  *
@@ -19,9 +22,9 @@
 
 package org.w3c.css.parser;
 
+import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
-import org.w3c.css.util.ApplContext;
 
 /**
  * @version $Revision$

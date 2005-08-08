@@ -9,14 +9,12 @@
 package org.w3c.css.svgproperties;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.values.CssURL;
 
 /**
  *  <P>
@@ -29,119 +27,125 @@ import org.w3c.css.values.CssURL;
  */
 
 public class ColorRendering extends CssProperty {
-
+    
     CssValue rendering;
     ApplContext ac;
-
+    
     CssIdent auto = new CssIdent("auto");
     CssIdent optimizeSpeed = new CssIdent("optimizeSpeed");
     CssIdent optimizeQuality = new CssIdent("optimizeQuality");
-
+    
     /**
      * Create a new Rendering
      */
-   public ColorRendering() {
-       //nothing to do
-   }
-   
-   /**
-    * Create a new ColorRendering
-    *
-    * @param expression The expression for this property     
-    * @exception InvalidParamException Values are incorrect
-    */
-   public ColorRendering(ApplContext ac, CssExpression expression) throws InvalidParamException {
-       this.ac = ac;
-       setByUser(); // tell this property is set by the user
-       CssValue val = expression.getValue();
-
-       if (val.equals(inherit)) {
-	   rendering = inherit;
-	   expression.next();
-       } else if (val.equals(optimizeSpeed)) {
-	   rendering = val;
-	   expression.next();
-       } else if (val.equals(optimizeQuality)) {
-	   rendering = val;
-	   expression.next();
-       } else if (val.equals(auto)) {
-	   rendering = auto;
-	   expression.next();
-       }
-       else {
-	   throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-       }
-   }
-   
+    public ColorRendering() {
+	//nothing to do
+    }
+    
+    /**
+     * Create a new ColorRendering
+     *
+     * @param expression The expression for this property     
+     * @exception InvalidParamException Values are incorrect
+     */
+    public ColorRendering(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	this.ac = ac;
+	setByUser(); // tell this property is set by the user
+	CssValue val = expression.getValue();
+	
+	if (val.equals(inherit)) {
+	    rendering = inherit;
+	    expression.next();
+	} else if (val.equals(optimizeSpeed)) {
+	    rendering = val;
+	    expression.next();
+	} else if (val.equals(optimizeQuality)) {
+	    rendering = val;
+	    expression.next();
+	} else if (val.equals(auto)) {
+	    rendering = auto;
+	    expression.next();
+	}
+	else {
+	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+	}
+    }
+    
+    public ColorRendering(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
      */
-     public void addToStyle(ApplContext ac, CssStyle style) {
-	 if (((SVGStyle) style).colorRendering != null)
-	     style.addRedefinitionWarning(ac, this);
-	 ((SVGStyle) style).colorRendering = this;
-     }
+    public void addToStyle(ApplContext ac, CssStyle style) {
+	if (((SVGStyle) style).colorRendering != null)
+	    style.addRedefinitionWarning(ac, this);
+	((SVGStyle) style).colorRendering = this;
+    }
     
-      /**
-       * Get this property in the style.
-       *
-       * @param style The style where the property is
-       * @param resolve if true, resolve the style to find this property
-       */  
-        public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	    if (resolve) {
-		return ((SVGStyle) style).getColorRendering();
-	    } else {
-		return ((SVGStyle) style).colorRendering;
-	    }
+    /**
+     * Get this property in the style.
+     *
+     * @param style The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */  
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+	if (resolve) {
+	    return ((SVGStyle) style).getColorRendering();
+	} else {
+	    return ((SVGStyle) style).colorRendering;
 	}
+    }
     
-       /**
-        * Compares two properties for equality.
-        *
-        * @param value The other property.
-        */  
-       public boolean equals(CssProperty property) {
-	   return (property instanceof ColorRendering && 
-                rendering.equals( ((ColorRendering) property).rendering));
-       }
-
+    /**
+     * Compares two properties for equality.
+     *
+     * @param value The other property.
+     */  
+    public boolean equals(CssProperty property) {
+	return (property instanceof ColorRendering && 
+		rendering.equals( ((ColorRendering) property).rendering));
+    }
+    
     /**
      * Returns the name of this property
      */
-   public String getPropertyName() {
-       return "color-rendering";
-   }
-   
+    public String getPropertyName() {
+	return "color-rendering";
+    }
+    
     /**
      * Returns the value of this property
      */
-   public Object get() {
-       return rendering;
-   }
-   
+    public Object get() {
+	return rendering;
+    }
+    
     /**
      * Returns true if this property is "softly" inherited
      */
-   public boolean isSoftlyInherited() {
-       return rendering.equals(inherit);
-   }
-
-   /**
-    * Returns a string representation of the object
-    */
-   public String toString() {
-       return rendering.toString();
-   }
- 
+    public boolean isSoftlyInherited() {
+	return rendering.equals(inherit);
+    }
+    
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+	return rendering.toString();
+    }
+    
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-   public boolean isDefault() {	
-       return (rendering == auto);
-   }
-
+    public boolean isDefault() {	
+	return (rendering == auto);
+    }
+    
 }

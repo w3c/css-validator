@@ -9,13 +9,13 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssValue;
 
 /**
  *
@@ -41,29 +41,35 @@ public class CssInlineBoxAlign extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssInlineBoxAlign(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
+    public CssInlineBoxAlign(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	setByUser();
 	CssValue val = expression.getValue();
-
+	
 	if (val.equals(initial)) {
-		inlineboxalign = initial;
-		expression.next();
+	    inlineboxalign = initial;
+	    expression.next();
 	}
 	else if (val.equals(last)) {
-		inlineboxalign = last;
-		expression.next();
+	    inlineboxalign = last;
+	    expression.next();
 	}
 	else if (val instanceof CssNumber) {
-		inlineboxalign = val;
-		expression.next();
+	    inlineboxalign = val;
+	    expression.next();
 	}
 	else {
 	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+		    getPropertyName(), ac);
 	}
     }
 
+    public CssInlineBoxAlign(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *

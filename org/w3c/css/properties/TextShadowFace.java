@@ -13,16 +13,15 @@
  */
 package org.w3c.css.properties;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssColor;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 public class TextShadowFace implements CssOperator {
 
@@ -32,10 +31,16 @@ public class TextShadowFace implements CssOperator {
     CssValue val;
     char op;
 
-    TextShadowFace(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    TextShadowFace(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+	
+	if(check && expression.getCount() > 4) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}	
+	
 	val = expression.getValue();
 	op = expression.getOperator();
-	
+
 	if (val instanceof CssColor) {
 	    color = (CssColor) val;
 	    expression.next();
@@ -66,6 +71,11 @@ public class TextShadowFace implements CssOperator {
 	}
     }
 
+    TextShadowFace(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);	
+    }
+    
     void getLengths(ApplContext ac, CssExpression expression) throws InvalidParamException {
 	CssLength le = getLength(expression.getValue());
 	op = expression.getOperator();

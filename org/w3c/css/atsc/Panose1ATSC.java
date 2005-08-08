@@ -8,15 +8,14 @@
  */
 package org.w3c.css.atsc;
 
-import java.util.Vector;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  */
@@ -37,12 +36,13 @@ public class Panose1ATSC extends CssProperty {
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
      */  
-    public Panose1ATSC(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public Panose1ATSC(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
 	CssValue val;
 	char op;
 	int i = 0;
 	setByUser();	
-
+	
 	{
 	    val = expression.getValue();
 	    ac.getFrame().addWarning("atsc", val.toString());
@@ -51,6 +51,7 @@ public class Panose1ATSC extends CssProperty {
 	do {
 	    val = expression.getValue();
 	    op = expression.getOperator();
+	    
 	    if (val instanceof CssNumber) {
 		value[i++] = val;
 		expression.next();
@@ -66,6 +67,11 @@ public class Panose1ATSC extends CssProperty {
 	    throw new InvalidParamException("few-value", 
 					    getPropertyName(), ac);
 	}
+    }
+    
+    public Panose1ATSC(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

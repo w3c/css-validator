@@ -9,15 +9,16 @@
 package org.w3c.css.font;
 
 import java.util.Vector;
+
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.CssProperty;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssUnicodeRange;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssUnicodeRange;
+import org.w3c.css.values.CssValue;
 
 /**
  */
@@ -38,7 +39,8 @@ public class Widths extends CssProperty implements CssOperator {
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
      */  
-    public Widths(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public Widths(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
 	CssValue val;
 	char op;
 	int i = 0;
@@ -76,6 +78,11 @@ public class Widths extends CssProperty implements CssOperator {
 	    values.addElement(", ");
 	} while (op == CssOperator.COMMA);
 
+    }
+    
+    public Widths(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

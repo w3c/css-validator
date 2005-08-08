@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:43  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:45  plehegar
  * Freeze
  *
@@ -19,14 +22,16 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssPrinterStyle;
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -112,16 +117,21 @@ public class CssFontCSS2 extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssFontCSS2(ApplContext ac, CssExpression expression) throws InvalidParamException {
+    public CssFontCSS2(ApplContext ac, CssExpression expression, boolean check)
+    	throws InvalidParamException {
+	
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
 	int max_values = 3;
-	int normal = "normal".hashCode();
+	//int normal = "normal".hashCode();
 	
 	if (val instanceof CssIdent) {
 	    CssIdent ident = checkIdent((CssIdent) val);
 	    if (ident != null) {
+		if(expression.getCount() > 1) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
 		value = ident;
 		expression.next();
 		return;
@@ -131,15 +141,19 @@ public class CssFontCSS2 extends CssProperty
 	while (find && max_values-- > 0) {
 	    find = false;
 	    val = expression.getValue();
-	    op = expression.getOperator();
+	    op = expression.getOperator();	    	    	    
 	    
 	    if (val == null) {
 		throw new InvalidParamException("few-value", getPropertyName(), ac);
 	    }
 	    
+	    if(val.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    
 	    if (fontStyle == null) {
 		try {
-		    fontStyle = new CssFontStyleCSS2(ac, expression);
+		    fontStyle = new CssFontStyleCSS2(ac, expression);		    
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
@@ -156,15 +170,17 @@ public class CssFontCSS2 extends CssProperty
 		    fontWeight = new CssFontWeightCSS2(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
+		    // we have now (or not)
+		    // [ 'font-style' || 'font-variant' || 'font-weight' ]?
+		    break;
 		}
 	    }
 	    if (find && op != SPACE) {
 		throw new InvalidParamException("operator", 
 						((new Character(op)).toString()), ac);
-	    }
-	    
+	    }	    
 	}
-	
+	/*
 	if (fontStyle == null) {
 	    fontStyle = new CssFontStyleCSS2();
 	}
@@ -174,32 +190,44 @@ public class CssFontCSS2 extends CssProperty
 	if (fontWeight == null) {
 	    fontWeight = new CssFontWeightCSS2();
 	}
-	
+	*/
 	val = expression.getValue();
-	op = expression.getOperator();
-	
+	op = expression.getOperator();	
 	    
 	if (val == null) {
 	    throw new InvalidParamException("few-value", getPropertyName(), ac);
 	}
 	    
+	if(val.equals(inherit)) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+		
 	fontSize = new CssFontSizeCSS2(ac, expression);
 	
 	if (op == SLASH) {
 	    op = expression.getOperator();
 	    lineHeight = new CssLineHeightCSS2(ac, expression);
-	} else {
-	    lineHeight = new CssLineHeightCSS2();
-	}
+	} 
+//	else {
+//	    lineHeight = new CssLineHeightCSS2();
+//	}
 	
-	if (op == SPACE && expression.getValue() != null) {
-	    fontFamily = new CssFontFamilyCSS2(ac, expression);
+	if(expression.getValue().equals(inherit)) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+
+	if (op == SPACE && expression.getValue() != null) {	    
+	    fontFamily = new CssFontFamilyCSS2(ac, expression, true);
 	} else {
 	    expression.starts();
 	    throw new InvalidParamException("few-value", expression.toString(), ac);
-	}
-
+	}	
 	setByUser();
+    }
+    
+    public CssFontCSS2(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -217,17 +245,19 @@ public class CssFontCSS2 extends CssProperty
 	    return value.toString();
 	} else {
 	    String ret = "";
-	    if (fontStyle.isByUser()) {
+	    if (fontStyle != null) {
 		ret += " " + fontStyle;
 	    }
-	    if (fontVariant.isByUser()) {
+	    if (fontVariant != null) {
 		ret += " " + fontVariant;
 	    }
-	    if (fontWeight.isByUser()) {
+	    if (fontWeight != null) {
 		ret += " " + fontWeight;
 	    }
-	    ret += " " + fontSize;
-	    if (lineHeight.isByUser()) {
+	    if(fontSize != null) {
+		ret += " " + fontSize;
+	    }
+	    if (lineHeight != null) {
 		ret += "/" + lineHeight;
 	    }
 	    if (fontFamily.size() != 0) {
@@ -244,12 +274,18 @@ public class CssFontCSS2 extends CssProperty
     public void setImportant() {
 	super.setImportant();
 	if (value == null) {
-	    fontStyle.important = true;
-	    fontVariant.important = true;
-	    fontWeight.important = true;
-	    fontSize.important = true;
-	    lineHeight.important = true;
-	    fontFamily.important = true;
+	    if(fontStyle != null)
+		fontStyle.important = true;
+	    if(fontVariant != null)
+		fontVariant.important = true;
+	    if(fontWeight != null)
+		fontWeight.important = true;
+	    if(fontSize != null)
+		fontSize.important = true;
+	    if(lineHeight != null)
+		lineHeight.important = true;
+	    if(fontFamily != null)
+		fontFamily.important = true;
 	}
     }
     
@@ -323,12 +359,18 @@ public class CssFontCSS2 extends CssProperty
 	if (value != null) {
 	    ((Css1Style) style).cssFontCSS2.value = value;
 	} else {
-	    fontStyle.addToStyle(ac, style);
-	    fontVariant.addToStyle(ac, style);
-	    fontSize.addToStyle(ac, style);
-	    fontWeight.addToStyle(ac, style);
-	    lineHeight.addToStyle(ac, style);
-	    fontFamily.addToStyle(ac, style);
+	    if(fontStyle != null)
+		fontStyle.addToStyle(ac, style);
+	    if(fontVariant != null)
+		fontVariant.addToStyle(ac, style);
+	    if(fontSize != null)
+		fontSize.addToStyle(ac, style);
+	    if(fontWeight != null)
+		fontWeight.addToStyle(ac, style);
+	    if(lineHeight != null)
+		lineHeight.addToStyle(ac, style);
+	    if(fontFamily != null)
+		fontFamily.addToStyle(ac, style);
 	}
     }
     
@@ -342,12 +384,18 @@ public class CssFontCSS2 extends CssProperty
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if (value == null) {
-	    fontStyle.setInfo(line, source);
-	    fontVariant.setInfo(line, source);
-	    fontWeight.setInfo(line, source);
-	    fontSize.setInfo(line, source);
-	    lineHeight.setInfo(line, source);
-	    fontFamily.setInfo(line, source);
+	    if(fontStyle != null)
+		fontStyle.setInfo(line, source);
+	    if(fontVariant != null)
+		fontVariant.setInfo(line, source);
+	    if(fontWeight != null)
+		fontWeight.setInfo(line, source);
+	    if(fontSize != null)
+		fontSize.setInfo(line, source);
+	    if(lineHeight != null)
+		lineHeight.setInfo(line, source);
+	    if(fontFamily != null)
+		fontFamily.setInfo(line, source);
 	}
     }
     
@@ -412,7 +460,7 @@ public class CssFontCSS2 extends CssProperty
 
     private CssIdent checkIdent(CssIdent ident) {
 	int hash = ident.hashCode();
-	for (int i = 0; i < FONT.length; i++) {
+	for (int i = 0; i < CssFontConstantCSS2.FONT.length; i++) {
 	    if (hash_values[i] == hash) {
 		return ident;
 	    }
@@ -422,9 +470,9 @@ public class CssFontCSS2 extends CssProperty
     }
 
     static {
-	hash_values = new int[FONT.length];
-	for (int i=0; i<FONT.length; i++)
-	    hash_values[i] = FONT[i].hashCode();
+	hash_values = new int[CssFontConstantCSS2.FONT.length];
+	for (int i=0; i<CssFontConstantCSS2.FONT.length; i++)
+	    hash_values[i] = CssFontConstantCSS2.FONT[i].hashCode();
     }
 }
 

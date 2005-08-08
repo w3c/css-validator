@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:31  plehegar
  * Freeze
  *
@@ -28,11 +31,11 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -62,7 +65,8 @@ import org.w3c.css.util.ApplContext;
  *   In the example above, the image will only be repeated vertically.
  * @version $Revision$
  */
-public class CssBackgroundRepeat extends CssProperty implements CssBackgroundConstants {
+public class CssBackgroundRepeat extends CssProperty 
+	implements CssBackgroundConstants {
     
     int repeat;
     
@@ -80,8 +84,13 @@ public class CssBackgroundRepeat extends CssProperty implements CssBackgroundCon
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssBackgroundRepeat(ApplContext ac, CssExpression expression) 
-	    throws InvalidParamException {
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
 	setByUser();
 	
@@ -94,11 +103,14 @@ public class CssBackgroundRepeat extends CssProperty implements CssBackgroundCon
 		    return;
 		}
 	    }
-	}
-
-	
+	}	
 	throw new InvalidParamException("value", expression.getValue(), 
 					getPropertyName(), ac);
+    }
+    
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -119,7 +131,7 @@ public class CssBackgroundRepeat extends CssProperty implements CssBackgroundCon
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {
+    public String toString() {	
 	return REPEAT[repeat];
     }
     

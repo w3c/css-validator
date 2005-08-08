@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:42  plehegar
+ * New
+ *
  * Revision 3.1  1997/08/29 13:13:31  plehegar
  * Freeze
  *
@@ -37,15 +40,15 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+//import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -126,15 +129,15 @@ import org.w3c.css.util.ApplContext;
 public class CssBackgroundPositionCSS2 extends CssProperty 
         implements CssBackgroundConstants, CssOperator {
     
-    CssValue horizontal;
-    CssValue vertical;
+    CssValue first;
+    CssValue second;
     
     /**
      * Create a new CssBackgroundPositionCSS2
      */
     public CssBackgroundPositionCSS2() {
-	horizontal = DefaultValue0;
-	vertical = DefaultValue0;
+	first = DefaultValue0;
+	second = DefaultValue0;
     }  
     
     /**
@@ -143,12 +146,16 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression) 
-	throws InvalidParamException {
+    public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 2) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	setByUser();
 	CssValue val = expression.getValue();
 	char op  = expression.getOperator();
-	int index;
 	
 	if (op != SPACE)
 	    throw new  InvalidParamException("operator", 
@@ -156,18 +163,116 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 					     ac);
 	
 	if (val.equals(inherit)) {
-	    horizontal = inherit;
-	    vertical = inherit;
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    first = inherit;
+	    second = inherit;
 	    expression.next();
 	    return;
-	} else if (val instanceof CssIdent 
+	}
+		
+	CssValue next = expression.getNextValue();	
+
+	if(val instanceof CssIdent) {
+	    int index1 = IndexOfIdent((String) val.get());
+	    // two keywords
+	    if(next instanceof CssIdent) {
+		int index2 = IndexOfIdent((String) next.get());
+		// one is vertical, the other is vertical
+		// or the two are 'center'
+		if((isHorizontal(index1) && isVertical(index2)) ||
+			(isHorizontal(index2) && isVertical(index1))) {
+		    first = val;
+		    second = next;		    
+		}
+		// both are horizontal or vertical but not 'center'
+		else if(check){		    
+		    throw new InvalidParamException("incompatible",
+			    val, next, ac);
+		}
+		else {
+		    first = val;
+		}
+	    }
+	    // a keyword and a percentage/length
+	    else if(next instanceof CssLength || next instanceof CssPercentage) {
+		if(isHorizontal(index1)) {
+		    first = val;
+		    second = next;
+		}
+		// if the keyword is the first value, it can only be an 
+		// horizontal one 
+		else {
+		    throw new InvalidParamException("incompatible",
+			    val, next, ac);
+		}
+	    }
+	    // only one value
+	    else if(next == null) {
+		first = val;
+	    }
+	    // the second value is invalid
+	    else if(check) {		
+		throw new InvalidParamException("value", next, 
+			getPropertyName(), ac);
+	    }
+	    else {
+		first = val;
+	    }
+	}
+	else if(val instanceof CssLength || val instanceof CssPercentage) {
+	    // a percentage/length and an keyword
+	    if(next instanceof CssIdent) {
+		int index = IndexOfIdent((String) next.get());
+		// the keyword must be a vertical one
+		if(isVertical(index)) {
+		    first = val;
+		    second = next;
+		}
+		else if(check) {
+		    throw new InvalidParamException("incompatible",
+			    val, next, ac);
+		}
+		else {
+		    first = val;
+		}
+	    }
+	    else if(next instanceof CssLength || next instanceof CssPercentage) {
+		first = val;
+		second = next;
+	    }
+	    else if(next == null || !check) {
+		first = val;
+	    }
+	    else {
+		throw new InvalidParamException("incompatible", val, next, ac);
+	    }
+	}
+	else if(check){
+	    throw new InvalidParamException("value", expression.getValue(), 
+		    getPropertyName(), ac);
+	}
+	
+	// we only move the cursor if we found valid values
+	if(first != null) {	    
+	    expression.next();	    
+	}
+	if(second != null) {	    
+	    expression.next();	    
+	}
+	/*
+	else if (val instanceof CssIdent 
 	    && (index=IndexOfIdent((String) val.get())) != INVALID) {
 	    CssValue next = expression.getNextValue();
 	    expression.next();
 	    if (next == null) {
 		getPercentageFromIdent(index, INVALID);
-	    } else if (next instanceof CssIdent) {
+	    } else if(next instanceof CssIdent) {
 		int index2 = IndexOfIdent((String) next.get());
+		if(next != null && next.equals(inherit)) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
 		if (index2 != INVALID) {
 		    getPercentageFromIdent(index, index2);
 		    expression.next();
@@ -175,41 +280,87 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 		    getPercentageFromIdent(index, INVALID);
 		}
 	    }
+	    else if (next instanceof CssLength || 
+		next instanceof CssPercentage || next instanceof CssNumber) {
+		if (next instanceof CssNumber) {		    
+		    next = ((CssNumber) next).getLength();		    
+		}
+		if(index == POSITION_LEFT || index == POSITION_RIGHT ||
+			index == POSITION_CENTER) {
+		    vertical = next;
+		}
+		else {
+		    throw new InvalidParamException("incompatible", val ,
+			    next , ac);
+		}
+		expression.next();		
+	    }
+	    else {
+		throw new InvalidParamException("incompatible", val ,
+			next , ac);
+	    }
 	} else if (val instanceof CssLength || 
 		   val instanceof CssPercentage || val instanceof CssNumber) {
 	    if (val instanceof CssNumber) {
 		val = ((CssNumber) val).getLength();
 	    }
-	    horizontal = val;
+	    horizontal = val;	    
 	    expression.next();
-	    val = expression.getValue();
-	    if (val instanceof CssLength || 
-		val instanceof CssPercentage || val instanceof CssNumber) {
-		if (val instanceof CssNumber) {
-		    try {
-			val = ((CssNumber) val).getLength();
-		    } catch (InvalidParamException e) {
-			vertical = DefaultValue50;
-			return;
-		    }
+	    CssValue next = expression.getValue();
+	    if(next != null && next.equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
+	    System.out.println(next);
+	    if (next instanceof CssLength || 
+		next instanceof CssPercentage || next instanceof CssNumber) {
+		if (next instanceof CssNumber) {		    
+		    next = ((CssNumber) next).getLength();		    
 		}
-		vertical = val;
-		expression.next();
-	    } else
-		vertical = DefaultValue50;
+		vertical = next;
+		expression.next();		
+	    }
+	    else if(next instanceof CssIdent) {
+		int index2 = IndexOfIdent((String) next.get());
+		if(index2 == POSITION_TOP || index2 == POSITION_BOTTOM ||
+			index2 == POSITION_CENTER) {
+		    getPercentageFromIdent(INVALID, index2);
+		    horizontal = val;
+		}
+		else {
+		    throw new InvalidParamException("incompatible",
+			    horizontal, next, ac);
+		}
+	    }
+	    else if(next != null) {		
+		throw new InvalidParamException("incompatible",
+			horizontal, val, ac);
+	    }	    
 	} else {
 	    throw new InvalidParamException("value", expression.getValue(), 
 					    getPropertyName(), ac);
-	}
-
-	
+	}*/	
+    }
+    
+    private boolean isHorizontal(int index) {
+	return index == POSITION_LEFT || index == POSITION_RIGHT ||
+		index == POSITION_CENTER;
+    }
+    
+    private boolean isVertical(int index) {
+	return index == POSITION_TOP || index == POSITION_BOTTOM ||
+	index == POSITION_CENTER;
+    }
+    
+    public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return horizontal;
+	return first;
     }
     
     /**
@@ -223,14 +374,14 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * Returns the horizontal value of the position
      */
     public CssValue getHorizontalPosition() {
-	return horizontal;
+	return first;
     }
     
     /**
      * Returns the vertical value of the position
      */
     public CssValue getVerticalPosition() {
-	return vertical;
+	return second;
     }
 
     /**
@@ -238,20 +389,31 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return horizontal == inherit;
+	return first == inherit;
     }
     
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (horizontal == inherit) {
+	if (first == inherit) {
 	    return inherit.toString();
 	} else {
-	    return horizontal + " " + vertical;
+	    String ret = "";
+	    if (first != null) {
+		ret += first;
+	    }
+	    if (second != null) {
+		if (!ret.equals("")) {
+		    ret += " ";
+		}
+		ret += second;
+	    }
+
+	    return ret;
 	}
     }
-    
+    /*
     private void getPercentageFromIdent(int first, int second) {
 	horizontal = DefaultValue50;
 	vertical = DefaultValue50;
@@ -264,7 +426,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	if (first == POSITION_BOTTOM || second == POSITION_BOTTOM)
 	    vertical = DefaultValue100;
     }
-    
+    */
     /**
      * Add this property to the CssStyle.
      *
@@ -298,8 +460,8 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      */  
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBackgroundPositionCSS2 && 
-		horizontal.equals(((CssBackgroundPositionCSS2) property).horizontal)
-		&& vertical.equals(((CssBackgroundPositionCSS2) property).vertical));
+		first.equals(((CssBackgroundPositionCSS2) property).first)
+		&& second.equals(((CssBackgroundPositionCSS2) property).second));
     }
     
     /**
@@ -307,7 +469,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * It is used by all macro for the function <code>print</code>
      */  
     public boolean isDefault() {
-	return horizontal.equals(DefaultValue0) && vertical.equals(DefaultValue0);
+	return first.equals(DefaultValue0) && second.equals(DefaultValue0);
     }
     
     private int IndexOfIdent(String ident) throws InvalidParamException {
@@ -321,10 +483,10 @@ public class CssBackgroundPositionCSS2 extends CssProperty
     
     private static int[] hash_values;
     
-    private static int INVALID = -1;
+    //private static int INVALID = -1;
     private static CssPercentage DefaultValue0 = new CssPercentage(0);
-    private static CssPercentage DefaultValue50 = new CssPercentage(50);
-    private static CssPercentage DefaultValue100 = new CssPercentage(100);
+    //private static CssPercentage DefaultValue50 = new CssPercentage(50);
+    //private static CssPercentage DefaultValue100 = new CssPercentage(100);
     
     static {
 	hash_values = new int[POSITION.length];

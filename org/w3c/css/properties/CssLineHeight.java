@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2002/08/20 09:06:01  sijtsche
+ * value initial added
+ *
  * Revision 1.3  2002/08/20 08:42:09  sijtsche
  * new values added
  *
@@ -43,14 +46,14 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -88,15 +91,15 @@ public class CssLineHeight extends CssProperty {
 
     private CssValue value;
     private static CssIdent normal = new CssIdent("normal");
-	private static CssIdent number = new CssIdent("number");
-	private static CssIdent none = new CssIdent("none");
-	private static CssIdent initial = new CssIdent("initial");
+    private static CssIdent number = new CssIdent("number");
+    private static CssIdent none = new CssIdent("none");
+    private static CssIdent initial = new CssIdent("initial");
 
     /**
      * Create a new CssLineHeight
      */
     public CssLineHeight() {
-		value = normal;
+	value = normal;
     }
 
     /**
@@ -105,8 +108,12 @@ public class CssLineHeight extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */
-    public CssLineHeight(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
+    public CssLineHeight(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 
 	CssValue val = expression.getValue();
 
@@ -149,6 +156,11 @@ public class CssLineHeight extends CssProperty {
 					getPropertyName(), ac);
     }
 
+    public CssLineHeight(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Returns the value of this property
      */

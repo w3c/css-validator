@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /**
  * $Log$
+ * Revision 1.2  2002/04/08 21:16:38  plehegar
+ * New
+ *
  * Revision 1.5  1997/08/26 14:25:19  plehegar
  * Optimized
  *
@@ -25,12 +28,13 @@
 package org.w3c.css.css;
 
 import java.util.Enumeration;
+
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.CssProperty;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.util.SortAlgorithm;
-import org.w3c.css.util.QuickSortAlgorithm;
+import org.w3c.css.properties.CssProperty;
 import org.w3c.css.util.CompareFunction;
+import org.w3c.css.util.QuickSortAlgorithm;
+import org.w3c.css.util.SortAlgorithm;
 import org.w3c.css.util.Util;
 
 /**

@@ -43,7 +43,7 @@ warning.marker: The marker-offset property applies on elements with 'display: ma
 warning.relative: ÔÚÊôÐÔ %s Ê¹ÓÃÏà¶Ôµ¥Î»ÁîÑùÊ½±í¸ü¼Ó°ô
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: ¶Ô²»Æð£¬'@¹æÔò' %s ²»ÄÜÓ¦ÓÃ
+error.at-rule: ¶Ô²»Æð£¬'@¹æÔò' %s ²»ÄÜÓ¦ÓÃ
 
 # used by all properties and values
 error.operator: %s ÊÇÒ»¸ö´íÎóµÄÔËËã·û

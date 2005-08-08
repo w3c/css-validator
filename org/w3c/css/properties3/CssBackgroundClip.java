@@ -9,12 +9,12 @@
 package org.w3c.css.properties3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  *  <P>
@@ -30,43 +30,49 @@ import org.w3c.css.util.ApplContext;
  */
 
 public class CssBackgroundClip extends CssProperty {
-
+    
     CssValue bgclip;
-
+    
     CssIdent border = new CssIdent("border");
     CssIdent padding = new CssIdent("padding");
-
+    
     /**
      * Create a new CssBackgroundClip
      */
     public CssBackgroundClip() {
-		bgclip = border;
+	bgclip = border;
     }
-
+    
     /**
      * Create a new CssBackgroundClip
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect value
      */
-    public CssBackgroundClip(ApplContext ac, CssExpression expression) throws InvalidParamException {
-
-		setByUser();
-		CssValue val = expression.getValue();
-
-		if (val.equals(border)) {
-		    bgclip = border;
-		    expression.next();
-		} else if (val.equals(padding)) {
-		    bgclip = padding;
-		    expression.next();
-		}
-		else {
-		    throw new InvalidParamException("value", expression.getValue(),
-						    getPropertyName(), ac);
-		}
+    public CssBackgroundClip(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
+	setByUser();
+	CssValue val = expression.getValue();
+	
+	if (val.equals(border)) {
+	    bgclip = border;
+	    expression.next();
+	} else if (val.equals(padding)) {
+	    bgclip = padding;
+	    expression.next();
+	}
+	else {
+	    throw new InvalidParamException("value", expression.getValue(),
+		    getPropertyName(), ac);
+	}
     }
-
+    
+    public CssBackgroundClip(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
+    }
+    
     /**
      * Add this property to the CssStyle
      *
@@ -77,7 +83,7 @@ public class CssBackgroundClip extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundClip = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -92,51 +98,51 @@ public class CssBackgroundClip extends CssProperty {
 	    return ((Css3Style) style).cssBackgroundClip;
 	}
     }
-
+    
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundClip &&
-			bgclip.equals(((CssBackgroundClip) property).bgclip));
+	return (property instanceof CssBackgroundClip &&
+		bgclip.equals(((CssBackgroundClip) property).bgclip));
     }
-
+    
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-		return "background-clip";
+	return "background-clip";
     }
-
+    
     /**
      * Returns the value of this property
      */
     public Object get() {
-		return bgclip;
+	return bgclip;
     }
-
+    
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-		return bgclip.equals(inherit);
+	return bgclip.equals(inherit);
     }
-
+    
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-		return bgclip.toString();
+	return bgclip.toString();
     }
-
+    
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-		return bgclip == border;
+	return bgclip == border;
     }
-
+    
 }

@@ -6,21 +6,21 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:17:44  plehegar
+ * New
+ *
  */
 package org.w3c.css.properties;
 
 import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssColor;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
@@ -47,19 +47,28 @@ public class CssTextShadowATSC extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public CssTextShadowATSC(ApplContext ac, CssExpression expression) 
-	    throws InvalidParamException {
+    public CssTextShadowATSC(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
+	
 	CssValue val = expression.getValue();
 	
 	setByUser();
 
+	int count = expression.getCount();
+	
 	ac.getFrame().addWarning("atsc", val.toString());
 
 	if (val.equals(none)) {
+	    if(count > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = none;
 	    expression.next();
 	    return;
 	} else if (val.equals(inherit)) {
+	    if(count > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    value = inherit;
 	    expression.next();
 	    return;
@@ -72,9 +81,17 @@ public class CssTextShadowATSC extends CssProperty
 		op = face.op;
 		faces.addElement(face);
 	    }
+	    if(check && !expression.end()) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	}
 	val = null;
 	
+    }
+    
+    public CssTextShadowATSC(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

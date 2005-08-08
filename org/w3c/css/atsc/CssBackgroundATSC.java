@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2002/07/24 14:42:28  sijtsche
+ * ATSC TV profile files
+ *
  * Revision 1.1  2002/05/31 09:00:16  dejong
  * ATSC TV profile objects
  *
@@ -36,17 +39,21 @@
  */
 package org.w3c.css.atsc;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssBackgroundAttachment;
+import org.w3c.css.properties.CssBackgroundColor;
 import org.w3c.css.properties.CssBackgroundConstants;
+import org.w3c.css.properties.CssBackgroundImage;
+import org.w3c.css.properties.CssBackgroundPosition;
+import org.w3c.css.properties.CssBackgroundRepeat;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssValue;
 
 /**
  *   <H4>
@@ -108,8 +115,8 @@ public class CssBackgroundATSC extends CssProperty
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
      */  
-    public CssBackgroundATSC(ApplContext ac, CssExpression expression) 
-	    throws InvalidParamException {
+    public CssBackgroundATSC(ApplContext ac, CssExpression expression,
+	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
@@ -193,6 +200,11 @@ public class CssBackgroundATSC extends CssProperty
 	    attachment = new CssBackgroundAttachmentATSC();
 	if (position == null)
 	    position = new CssBackgroundPositionATSC();
+    }
+    
+    public CssBackgroundATSC(ApplContext ac, CssExpression expression)
+	    throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**

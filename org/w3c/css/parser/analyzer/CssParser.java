@@ -2,48 +2,44 @@
 package org.w3c.css.parser.analyzer;
 
 import java.io.InputStream;
-import java.util.Vector;
-import java.util.Enumeration;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.Vector;
 
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssString;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssColor;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssFrequency;
-import org.w3c.css.values.CssTime;
-import org.w3c.css.values.CssDate;
-import org.w3c.css.values.CssAngle;
-import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssUnicodeRange;
-import org.w3c.css.values.CssResolution;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.parser.Frame;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.parser.CssError;
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRuleFontFace;
+import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
+import org.w3c.css.parser.AtRulePreference;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.CssParseException;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.properties.CssProperty;
 import org.w3c.css.svgproperties.AtRuleColorProfile;
+import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
-import org.w3c.css.util.Messages;
-import org.w3c.css.css.StyleSheetCom;
+import org.w3c.css.values.CssAngle;
+import org.w3c.css.values.CssDate;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFrequency;
+import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssResolution;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssTime;
+import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssUnicodeRange;
+import org.w3c.css.values.CssValue;
 
 /**
  * A CSS3 parser  
  *
- * @author Philippe Le Hégaret and Sijtsche Smeman
+ * @author Philippe Le Hï¿½garet and Sijtsche Smeman
  * @version $Revision$
  */
 public abstract class CssParser implements CssParserConstants {
@@ -251,8 +247,7 @@ public abstract class CssParser implements CssParserConstants {
             if (ac.getCssVersion().equals("css1") && (n.image).equals("inherit")) {
 
                 incompatible_error = true;
-            }
-
+            }            
             if (n.kind == CssParserConstants.IDENT) {
                 v.set( convertIdent(operator+n.image).trim(), ac);
             } else if (n.kind == CssParserConstants.STRING) {
@@ -1379,9 +1374,11 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void atRuleDeclaration() throws ParseException {
- Token n;
-    n = jj_consume_token(ATKEYWORD);
-        ac.getFrame().addWarning("at-rule", token.toString());
+    Token n;
+    n = jj_consume_token(ATKEYWORD);    	
+        //ac.getFrame().addWarning("at-rule", token.toString());
+        ac.getFrame().addError(
+        	new CssError(new InvalidParamException("at-rule", token, ac)));
         skipStatement();
   }
 
@@ -2652,7 +2649,7 @@ CssSelectors param = null;
         }
         jj_consume_token(S);
       }
-      values = expr();
+      values = expr();      
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IMPORTANT_SYM:
         important = prio();
@@ -2730,7 +2727,7 @@ CssSelectors param = null;
  */
   final public CssExpression expr() throws ParseException {
   CssExpression values = new CssExpression();
-    term(values);
+    term(values);    
     label_79:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2769,7 +2766,7 @@ CssSelectors param = null;
       default:
         jj_la1[112] = jj_gen;
         ;
-      }
+      }      
       term(values);
     }
     {if (true) return values;}
@@ -2927,8 +2924,8 @@ CssSelectors param = null;
         jj_la1[116] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
-      }
-      label_81:
+      }      
+      label_81:	  
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case S:
@@ -2945,7 +2942,7 @@ CssSelectors param = null;
       jj_la1[118] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
-    }
+    }    
   }
 
 /**

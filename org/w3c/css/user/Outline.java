@@ -8,15 +8,15 @@
  */
 package org.w3c.css.user;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.ApplContext;
 
 /**
  * @version $Revision$
@@ -41,19 +41,28 @@ public class Outline extends UserProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */  
-    public Outline(ApplContext ac, CssExpression expression)  throws InvalidParamException {
+    public Outline(ApplContext ac, CssExpression expression,
+	    boolean check)  throws InvalidParamException {
+	
+	if(check && expression.getCount() > 3) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	
 	CssValue val = expression.getValue();
         char op = SPACE;
         boolean find = true;
         int max_values = 3;
 
 	if (val.equals(inherit)) {
+	    if(expression.getCount() > 1) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    this.same = true;
 	    color = new OutlineColor(ac, expression);
 	    width = new OutlineWidth();
 	    width.value = inherit;
 	    style = new OutlineStyle();
-	    style.value = style.BORDERSTYLE.length - 1;
+	    style.value = OutlineStyle.BORDERSTYLE.length - 1;
 	    return;
 	}
 	
@@ -61,6 +70,10 @@ public class Outline extends UserProperty implements CssOperator {
             find = false;
             val = expression.getValue();
             op = expression.getOperator();
+            
+            if(val != null && val.equals(inherit)) {
+        	throw new InvalidParamException("unrecognize", ac);
+            }
             
             if (val == null) {
                 break;
@@ -86,17 +99,18 @@ public class Outline extends UserProperty implements CssOperator {
                 }
             }
             if (!find && width == null) {
-                try {
-                    width = new OutlineWidth(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                }
+        	width = new OutlineWidth(ac, expression);
+        	find = true;
+            }
+            if(val != null && !find) {
+        	throw new InvalidParamException("unrecognize", ac);
             }
         }
 
 	if (max_values >= 2) {
 	    throw new InvalidParamException("few-value", getPropertyName(), ac);
 	}
+	/*
 	if (color == null) {
 	    color = new OutlineColor();
 	}
@@ -105,7 +119,12 @@ public class Outline extends UserProperty implements CssOperator {
 	}
 	if (style == null) {
 	    style = new OutlineStyle();
-	}
+	}*/
+    }
+    
+    public Outline(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
     }
     
     /**
@@ -132,13 +151,13 @@ public class Outline extends UserProperty implements CssOperator {
 	    return color.toString();
 	} else {
 	    String ret ="";
-	    if (color.isByUser()) {
+	    if (color != null) {
 		ret += " " + color;
 	    }
-	    if (width.isByUser()) {
+	    if (width != null) {
 		ret += " " + width;
 		}
-	    if (style.isByUser()) {
+	    if (style != null) {
 		ret += " "  + style;
 	    }
 	    return ret.substring(1);
@@ -151,9 +170,12 @@ public class Outline extends UserProperty implements CssOperator {
      */  
     public void setImportant() {
 	super.setImportant();
-	color.setImportant();
-	width.setImportant();
-	style.setImportant();
+	if(color != null)
+	    color.setImportant();
+	if(width != null)
+	    width.setImportant();
+	if(style != null)
+	    style.setImportant();
     }
     
     /**
@@ -201,9 +223,12 @@ public class Outline extends UserProperty implements CssOperator {
     public void addToStyle(ApplContext ac, CssStyle style0) {
 	// outlineColor and outlineWidth can't be null ...
 	((Css2Style) style0).outline.same = same;
-	color.addToStyle(ac, style0);
-	width.addToStyle(ac, style0);
-	style.addToStyle(ac, style0);
+	if(color != null)
+	    color.addToStyle(ac, style0);
+	if(width != null)
+	    width.addToStyle(ac, style0);
+	if(style != null)
+	    style.addToStyle(ac, style0);
     }
     
     /**
@@ -215,10 +240,12 @@ public class Outline extends UserProperty implements CssOperator {
      */  
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
-	// color, style and width can't be null ...
-	color.setInfo(line, source);
-	width.setInfo(line, source);
-	style.setInfo(line, source);
+	if(color != null)
+	    color.setInfo(line, source);
+	if(width != null)
+	    width.setInfo(line, source);
+	if(style != null)
+	    style.setInfo(line, source);
     }
     
     /**

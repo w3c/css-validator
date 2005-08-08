@@ -9,9 +9,9 @@
 package org.w3c.css.properties;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
 
 /**
  */
@@ -30,9 +30,15 @@ public class CssRight extends CssBoxOffsetFace {
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssRight(ApplContext ac, CssExpression expression) throws InvalidParamException {
-    super(ac, expression);
+  public CssRight(ApplContext ac, CssExpression expression, boolean check)
+  	throws InvalidParamException {
+    super(ac, expression, check);
   }
+  
+  public CssRight(ApplContext ac, CssExpression expression) 
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
   
   /**
    * Returns the name of this property

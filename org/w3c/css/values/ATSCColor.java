@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2002/04/08 21:19:46  plehegar
+ * New
+ *
  * Revision 2.2  1997/08/20 11:38:07  plehegar
  * Freeze
  *
@@ -16,9 +19,9 @@
 package org.w3c.css.values;
 
 import java.util.Hashtable;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.InvalidParamException;
+
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
 /**
  *   <H3>

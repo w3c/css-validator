@@ -43,7 +43,7 @@ warning.block-level: Cette propriété ne s'applique qu'aux éléments de type \
 "bloc".
 
 # used by org.w3c.css.parser.Frame
-warning.no-declaration: Pas de déclarations dans cette rèle
+warning.no-declaration: Pas de déclarations dans cette règle
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s est hors-limites
@@ -57,7 +57,7 @@ warning.relative: L'utilisation d'unités relatives pour la propriété \
 %s rend la feuille de style plus robuste
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-warning.at-rule: Désolé mais la règle-arobase %s n'est pas implementée
+error.at-rule: Désolé mais la règle-arobase %s n'est pas implementée
 
 # used by all properties and values
 error.operator: %s n'est pas un opérateur correct
