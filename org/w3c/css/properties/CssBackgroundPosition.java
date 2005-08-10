@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/08/08 13:18:12  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.2  2002/04/08 21:17:42  plehegar
  * New
  *
@@ -45,6 +55,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
 //import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssPercentage;
@@ -196,7 +207,11 @@ implements CssBackgroundConstants, CssOperator {
 		}
 	    }
 	    // a keyword and a percentage/length
-	    else if(next instanceof CssLength || next instanceof CssPercentage) {
+	    else if(next instanceof CssLength || next instanceof CssPercentage
+		    || next instanceof CssNumber) {		
+		if(next instanceof CssNumber) {
+		    next = ((CssNumber) next).getLength();
+		}
 		if(isHorizontal(index1)) {
 		    first = val;
 		    second = next;
@@ -221,7 +236,11 @@ implements CssBackgroundConstants, CssOperator {
 		first = val;
 	    }
 	}
-	else if(val instanceof CssLength || val instanceof CssPercentage) {
+	else if(val instanceof CssLength || val instanceof CssPercentage ||
+		val instanceof CssNumber) {
+	    if(val instanceof CssNumber) {
+		val = ((CssNumber) val).getLength();
+	    }
 	    // a percentage/length and an keyword
 	    if(next instanceof CssIdent) {
 		int index = IndexOfIdent((String) next.get());
@@ -238,7 +257,11 @@ implements CssBackgroundConstants, CssOperator {
 		    first = val;
 		}
 	    }
-	    else if(next instanceof CssLength || next instanceof CssPercentage) {
+	    else if(next instanceof CssLength || next instanceof CssPercentage
+		    || next instanceof CssNumber) {
+		if(next instanceof CssNumber) {
+		    next = ((CssNumber) next).getLength();
+		}
 		first = val;
 		second = next;
 	    }
