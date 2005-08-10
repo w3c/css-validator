@@ -520,12 +520,15 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		MimeType repmime = new MimeType(ctype);
 		if (repmime.hasParameter("charset")) {
 		    source.setEncoding(repmime.getParameterValue("charset"));
+		} else {
+		    // if text/html and no given charset, let's assume
+		    // iso-8859-1. Ideally, the parser would change the
+		    // encoding if it find a mismatch, not sure, but well...
+		    if (repmime.match(MimeType.TEXT_HTML) == 
+			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
+			source.setEncoding("iso-8859-1");
+		    }
 		}
-		// if not, then we may be in trouble.
-		// http://www.w3.org/TR/xhtml-media-types/#text-html
-		// says that UA should not assume any defaut charset
-		// the XML decl is a SHOULD and not a MUST, and the
-		// meta http-equiv is more than evil
 	    } catch (Exception ex) {}
 	}
 	source.setSystemId(urlString);
