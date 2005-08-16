@@ -4,24 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2002/08/07 12:57:54  sijtsche
- * value none added
- *
- * Revision 1.2  2002/04/08 21:17:43  plehegar
- * New
- *
- * Revision 3.1  1997/08/29 13:13:46  plehegar
- * Freeze
- *
- * Revision 2.2  1997/08/20 11:41:22  plehegar
- * Freeze
- *
- * Revision 1.1  1997/07/08 13:46:31  plehegar
- * Initial revision
- *
- */
 
 package org.w3c.css.properties;
 
@@ -130,10 +112,6 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 	    throws InvalidParamException {
 	
 	boolean manyValues = expression.getCount() > 1;
-	
-	if(check && manyValues) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
 	
 	boolean family = true;
 	CssValue val = expression.getValue();
