@@ -56,7 +56,7 @@ Validation CSS : <a href="#validate-by-uri">par URI</a> |
 </p>
 <p>
 	<label title="Adresse de la page à valider" for="uri">Adresse :
-	<input type="text" name="uri" id="uri" size="45" value="http://" /></label>
+	<input type="text" name="uri" id="uri" size="45" /></label>
 	<label title="Valider le fichier"><input type="submit" value="Soumettre l'adresse" /></label>
 	<input name="usermedium" value="all" type="hidden" />
 </p>
