@@ -103,8 +103,10 @@ public final class check extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
 	super.init(config);
-	if (config.getInitParameter("validatorURI") != null) {
+	if (config.getInitParameter("validatorURI") == null) {
 	    validatorURI = "validator";
+	} else {
+	    validatorURI = config.getInitParameter("validatorURI");
 	}
     }
 }
