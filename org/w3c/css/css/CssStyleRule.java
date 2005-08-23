@@ -8,7 +8,7 @@ package org.w3c.css.css;
 import java.io.PrintWriter;
 import java.util.Vector;
 
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.Util;
 
 

@@ -25,7 +25,7 @@ import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.Errors;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
@@ -51,7 +51,7 @@ CssPrinterStyle {
     
     private CssSelectors selector;
     
-    private CssProperty property;
+    //private CssProperty property;
     
     private PrintWriter out;
     
@@ -245,7 +245,7 @@ CssPrinterStyle {
 		ret.append(queryReplace(error.getExp().toString()));
 		ret.append("</span>\n");        
 	    }
-	} else {
+	} else {		    
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
 	    ret.append(" - <span class='error'>");
 	    ret.append(queryReplace(error.getSkippedString()));

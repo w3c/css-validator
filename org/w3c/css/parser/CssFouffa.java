@@ -24,11 +24,12 @@ import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.CssParserTokenManager;
 import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.parser.analyzer.TokenMgrError;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.PropertiesLoader;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Utf8Properties;
+//import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
 
@@ -53,27 +54,27 @@ public final class CssFouffa extends CssParser {
     // all properties
     CssPropertyFactory properties     = null;
 
-    static CssPropertyFactory __s_nullprop       = null;
-
-    static CssPropertyFactory __s_css1prop       = null;
-
-    static CssPropertyFactory __s_asc_tvprop     = null;
-
-    static CssPropertyFactory __s_css2prop       = null;
-
-    static CssPropertyFactory __s_css2mobileprop = null;
-
-    static CssPropertyFactory __s_css2tvprop     = null;
-
-    static CssPropertyFactory __s_css3prop       = null;
-
-    static CssPropertyFactory __s_svgprop        = null;
-
-    static CssPropertyFactory __s_svgtinyprop    = null;
-
-    static CssPropertyFactory __s_svgbasicprop   = null;
-
-    static private Utf8Properties config = null;
+//    static CssPropertyFactory __s_nullprop       = null;
+//
+//    static CssPropertyFactory __s_css1prop       = null;
+//
+//    static CssPropertyFactory __s_asc_tvprop     = null;
+//
+//    static CssPropertyFactory __s_css2prop       = null;
+//
+//    static CssPropertyFactory __s_css2mobileprop = null;
+//
+//    static CssPropertyFactory __s_css2tvprop     = null;
+//
+//    static CssPropertyFactory __s_css3prop       = null;
+//
+//    static CssPropertyFactory __s_svgprop        = null;
+//
+//    static CssPropertyFactory __s_svgtinyprop    = null;
+//
+//    static CssPropertyFactory __s_svgbasicprop   = null;
+//
+//    static private Utf8Properties config = null;
 
     // all listeners
     Vector listeners;
@@ -124,7 +125,24 @@ public final class CssFouffa extends CssParser {
 		    + " medium " + ac.getMedium() + " at-rule " + getAtRule()
 		    + " profile " + ac.getProfile());
 	}
-	loadConfig(ac.getCssVersion(), ac.getProfile());
+	//loadConfig(ac.getCssVersion(), ac.getProfile());
+	// load the CssStyle
+	String classStyle = PropertiesLoader.config.getProperty("style2");
+	Class style;
+	try {
+	    style = Class.forName(classStyle);
+	    ac.setCssSelectorsStyle(style);
+	}
+	catch (ClassNotFoundException e) {
+	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
+		    + " load the style");
+	    e.printStackTrace();
+	}
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion(); 
+	}
+	properties = new CssPropertyFactory(profile);
 	listeners = new Vector();
     }
     
@@ -199,14 +217,14 @@ public final class CssFouffa extends CssParser {
 	// and a new frame for errors and warnings
 	super.ReInit(input, ac);
 	// @@this is a default media ...
-	AtRuleMedia media;
-	if ("css1".equals(ac.getCssVersion())) {
-	    media = new AtRuleMediaCSS1();
-	} else if ("css2".equals(ac.getCssVersion())) {
-	    media = new AtRuleMediaCSS2();
-	} else {
-	    media = new AtRuleMediaCSS2();
-	}
+//	AtRuleMedia media;
+//	if ("css1".equals(ac.getCssVersion())) {
+//	    media = new AtRuleMediaCSS1();
+//	} else if ("css2".equals(ac.getCssVersion())) {
+//	    media = new AtRuleMediaCSS2();
+//	} else {
+//	    media = new AtRuleMediaCSS2();
+//	}
 	/*
 	 * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
 	 * catch (InvalidParamException e) {} //ignore } else { try {
@@ -221,7 +239,24 @@ public final class CssFouffa extends CssParser {
 		    + ac.getProfile());
 	}
 	
-	loadConfig(ac.getCssVersion(), ac.getProfile());
+//	 load the CssStyle
+	String classStyle = PropertiesLoader.config.getProperty("style2");
+	Class style;
+	try {
+	    style = Class.forName(classStyle);
+	    ac.setCssSelectorsStyle(style);
+	}	
+	catch (ClassNotFoundException e) {
+	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
+		    + " load the style");
+	    e.printStackTrace();
+	}
+	String profile = ac.getProfile();	
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion(); 
+	}
+	properties = new CssPropertyFactory(profile);
+	//loadConfig(ac.getCssVersion(), ac.getProfile());
     }
     
     /**
@@ -336,9 +371,9 @@ public final class CssFouffa extends CssParser {
     public void parseStyle() {
 	try {
 	    parserUnit();
-	} catch(TokenMgrError e) {
+	} catch(TokenMgrError e) {	    
 	    throw e;
-	} catch (Throwable e) {
+	} catch (Throwable e) {	    
 	    if (Util.onDebug) {
 		e.printStackTrace();
 	    }
@@ -353,7 +388,7 @@ public final class CssFouffa extends CssParser {
 	    listener = (CssValidatorListener) e.nextElement();
 	    listener.notifyErrors(ac.getFrame().getErrors());
 	    listener.notifyWarnings(ac.getFrame().getWarnings());
-	}
+	}	
     }
     
     /**
@@ -365,7 +400,7 @@ public final class CssFouffa extends CssParser {
      *            the file name in the import statement
      */
     public void handleImport(URL url, String file, AtRuleMedia media) {	
-	CssError cssError = null;
+	//CssError cssError = null;
 	
 	try {
 	    URL importedURL = HTTPURL.getURL(url, file);
@@ -514,8 +549,7 @@ public final class CssFouffa extends CssParser {
 	// set informations for errors and warnings
 	prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
 	
-	// ok, return the new property
-	
+	// ok, return the new property	
 	return prop;
 	
     }
@@ -730,7 +764,7 @@ public final class CssFouffa extends CssParser {
      *                  style sheet 2 or 3.
      * <OL>
      */
-    public void loadConfig(String version, String profile) {
+   /* public void loadConfig(String version, String profile) {
 	try {
 	    
 	    URL allprops = CssFouffa.class.getResource("allcss.properties");
@@ -883,10 +917,10 @@ public final class CssFouffa extends CssParser {
 		    + " load the style");
 	    e.printStackTrace();
 	}
-    }
+    }*/
     
     /* config by default! */
-    static {
+    /*static {
 	try {
 	    config = new Utf8Properties();
 	    URL url = CssFouffa.class.getResource("Config.properties");
@@ -912,21 +946,24 @@ public final class CssFouffa extends CssParser {
 		    + " load the config");
 	    e.printStackTrace();
 	}
-    }
+    }*/
     
     public CssFouffa(java.io.InputStream stream) {
 	super(stream);
-	loadConfig("css2", null);
+	properties = new CssPropertyFactory("css2");
+	//loadConfig("css2", null);
     }
     
     public CssFouffa(java.io.Reader stream) {
 	super(stream);
-	loadConfig("css2", null);
+	properties = new CssPropertyFactory("css2");
+	//loadConfig("css2", null);
     }
     
     public CssFouffa(CssParserTokenManager tm) {
 	super(tm);
-	loadConfig("css2", null);
+	properties = new CssPropertyFactory("css2");
+	//loadConfig("css2", null);
     }
     
 }

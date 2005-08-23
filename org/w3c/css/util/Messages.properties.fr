@@ -211,7 +211,7 @@ error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
 error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
-warning.otherprofile : propriété %s n'existe pas dans ce profile mais est validé conforme à un autre profile
+warning.otherprofile : propriété %s n'existe pas dans ce profile mais est validée conforme à un autre profile
 warning.deprecated : cette valeur est deconseillÃ©e
 
 #used by org.w3c.css.parser.analyzer.CssParser

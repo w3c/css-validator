@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /**
  * $Log$
+ * Revision 1.3  2005/08/08 13:18:04  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.2  2002/04/08 21:16:38  plehegar
  * New
  *
@@ -31,7 +41,7 @@ import java.util.Enumeration;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.CompareFunction;
 import org.w3c.css.util.QuickSortAlgorithm;
 import org.w3c.css.util.SortAlgorithm;

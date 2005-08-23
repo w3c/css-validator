@@ -16,7 +16,7 @@ import org.w3c.css.parser.AtRule;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.parser.Errors;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.SortedHashtable;
 import org.w3c.css.util.Util;

@@ -15,8 +15,8 @@ import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.CssProperty;
-import org.w3c.css.svgproperties.AtRuleColorProfile;
+import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.svg.AtRuleColorProfile;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
@@ -2671,7 +2671,7 @@ CssSelectors param = null;
                                                   values, important);
                 // Did the property recognize all values in the expression ?
 
-                if (!values.end() && ac.getMedium() == null) {
+                if (!values.end() && ac.getMedium() == null) {                     
                         addError(new InvalidParamException("unrecognize", "", ac),
                              values);
                 } else {
@@ -2768,7 +2768,7 @@ CssSelectors param = null;
         ;
       }      
       term(values);
-    }
+    }    
     {if (true) return values;}
     throw new Error("Missing return statement in function");
   }

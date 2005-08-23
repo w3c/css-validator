@@ -210,7 +210,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		}
 	
 		if (href != null) {
-		    URL url;
+		    //URL url;
 		    
 		    try {
 			baseURI = new URL(documentURI, href); 

@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
@@ -109,7 +109,7 @@ public final class CssSelectors implements CssSelectorsConstant {
      */
     public CssSelectors(ApplContext ac) {
 	style = ac.getCssSelectorsStyle();
-	try {
+	try {	    
 	    properties = (CssStyle) style.newInstance();
 	} catch (Exception e) {
 	    e.printStackTrace();

@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2002/07/12 20:36:25  plehegar
+ * s/System.out/System.err/
+ *
  * Revision 1.2  2002/04/08 21:19:15  plehegar
  * New
  *
@@ -19,7 +22,7 @@
 package org.w3c.css.util;
 
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 
 /**
  * This class is use to manage all warning every where
@@ -100,7 +103,7 @@ public class Warning {
      * @param level the warning level
      *
      * @see org.w3c.css.util.Messages
-     * @see org.w3c.css.properties.CssProperty#setInfo
+     * @see org.w3c.css.properties.css1.CssProperty#setInfo
      */
     public Warning(CssProperty property, String warningMessage, int level, 
 		   ApplContext ac) {

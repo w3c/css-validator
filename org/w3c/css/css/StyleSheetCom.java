@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.8  2005/08/08 13:18:04  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.7  2004/01/10 06:22:24  bjoern
  * Fix for http://www.w3.org/Bugs/Public/show_bug.cgi?id=292
  *
@@ -46,7 +56,7 @@ import java.net.URLConnection;
 import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.CssProperty;
+import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
@@ -137,12 +147,12 @@ public class StyleSheetCom implements HtmlParserListener {
 	parser.getStyleSheet().findConflicts(ac);
 	if (selector != null) {
 	    System.err.println("<color value=\""
-			       + parser.getStyleSheet().CascadingOrder(new org.w3c.css.properties.CssColor(),
+			       + parser.getStyleSheet().CascadingOrder(new org.w3c.css.properties.css1.CssColor(),
 								       parser.getStyleSheet(),
 								       selector));
 	    CssStyle s = parser.getStyleSheet().getStyle(selector);
 	    CssProperty _sl =
-		((org.w3c.css.properties.Css1Style) s).getColor();
+		((org.w3c.css.properties.css1.Css1Style) s).getColor();
 
 	    s.print(new org.w3c.css.parser.CssPrinterStyle () {
 		    public void print(CssProperty property) {

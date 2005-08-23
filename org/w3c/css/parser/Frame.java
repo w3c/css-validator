@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2005/08/08 13:18:11  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.4  2004/11/19 20:26:06  sijtsche
  * error message linenr bug fixed
  *
@@ -110,6 +120,20 @@ public class Frame {
                     warningMessage, 0, message, "", ac));
     }
 
+    /**
+     * Adds a warning to this frame with a message.
+     *
+     * @param warningMessage the warning message
+     *                       (see org.w3c.css.util.Messages.properties).
+     * @param message        An add-on message.
+     * @see                  org.w3c.css.util.Warning
+     */
+    public void addWarning(String warningMessage, String message1,
+	    String message2) {
+    warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                    warningMessage, 0, message1, message2, ac));
+    }
+    
     /**
      * Get all warnings.
      */
