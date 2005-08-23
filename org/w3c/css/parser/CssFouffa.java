@@ -388,7 +388,8 @@ public final class CssFouffa extends CssParser {
 		    return;
 		}
 	    }
-	    visited.addElement(surl);
+	    Vector newVisited = (Vector) visited.clone();
+	    newVisited.addElement(surl);
 	    
 	    if (Util.importSecurity) {
 		throw new FileNotFoundException("[SECURITY] You can't "
@@ -418,7 +419,7 @@ public final class CssFouffa extends CssParser {
 	    Frame f = ac.getFrame();
 	    try {
 		CssFouffa cssFouffa = new CssFouffa(ac, importURL
-			.getInputStream(), importedURL, listeners, visited,
+			.getInputStream(), importedURL, listeners, newVisited,
 			properties, mode);
 		cssFouffa.setOrigin(getOrigin());
 		if (!media.isEmpty()) {
