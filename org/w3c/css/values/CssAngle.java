@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/08/08 13:19:46  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.2  2002/04/08 21:19:46  plehegar
  * New
  *
@@ -79,7 +89,7 @@ public class CssAngle extends CssValue implements CssValueFloat {
 	s = s.toLowerCase();
 	int length = s.length();
 	String unit;
-	float v;
+	//float v;
 	if (s.indexOf("grad") == -1) {
 	    unit = s.substring(length-3, length);
 	    value = new Float(s.substring(0, length-3));
@@ -158,25 +168,38 @@ public class CssAngle extends CssValue implements CssValueFloat {
     }
 
 
+    private float normalize(float degree) {
+	while (degree < 0) {
+	    degree += 360;
+	}
+	while (degree > 360) {
+	    degree -= 360;
+	}
+	return degree;
+    }
+    
     //@@FIXME I should return the remainder for all ...
 
     public float getDegree() {
-	float deg = value.floatValue();
+	float angle = value.floatValue();
 	switch (unit) {
-	case 0:
-	    // deg % 360
-	    return deg;
-	case 1:
-	    return (deg * (180 / ((float) Math.PI)));
-	case 2:
-	    return (deg * (9 / 5));
-	default:
+	case 0:	
+	    // angle % 360
+	    return normalize(angle);
+	case 1:	    
+	    return normalize(angle * (9.f / 10.f));	    
+	case 2:	    
+	    return normalize(angle * (180.f / ((float) Math.PI)));
+	default:	    
 	    System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
 	    System.err.println("[ERROR] Please report (" + unit + ")");
 	    return (float) 0;
 	}
     }
-
+/*
+ // These functions are not used, don't normalize angles, and are false
+ // (int operations instead of float ones)
+  
     public float getGradian() {
 	float grad = value.floatValue();
 	switch (unit) {
@@ -208,7 +231,7 @@ public class CssAngle extends CssValue implements CssValueFloat {
 	    return (float) 0;
 	}
     }
-
+*/
     public boolean isDegree() {
 	return unit == 0;
     }

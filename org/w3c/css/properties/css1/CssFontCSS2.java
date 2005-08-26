@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -115,6 +121,8 @@ public class CssFontCSS2 extends CssProperty
     // internal hack for strings comparaison
     private static int[] hash_values;
     
+    static CssIdent normal = new CssIdent("normal"); 
+    
     /**
      * Create a new CssFont
      */
@@ -134,7 +142,8 @@ public class CssFontCSS2 extends CssProperty
 	char op = SPACE;
 	boolean find = true;
 	int max_values = 3;
-	//int normal = "normal".hashCode();
+	
+	int normalNb = 0;
 	
 	if (val instanceof CssIdent) {
 	    CssIdent ident = checkIdent((CssIdent) val);
@@ -152,7 +161,7 @@ public class CssFontCSS2 extends CssProperty
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();	    	    	    
-	    
+
 	    if (val == null) {
 		throw new InvalidParamException("few-value", getPropertyName(), ac);
 	    }
@@ -161,13 +170,20 @@ public class CssFontCSS2 extends CssProperty
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    
-	    if (fontStyle == null) {
+	    if(val.equals(normal)) {
+		normalNb++;
+		expression.next();
+		find = true;
+	    }
+
+	    if (!find && fontStyle == null) {
 		try {
 		    fontStyle = new CssFontStyleCSS2(ac, expression);		    
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
 	    }	
+
 	    if (!find && fontVariant == null) {
 		try {
 		    fontVariant = new CssFontVariantCSS2(ac, expression);
@@ -175,6 +191,7 @@ public class CssFontCSS2 extends CssProperty
 		} catch (InvalidParamException e) {
 		}
 	    }
+
 	    if (!find && fontWeight == null) {
 		try {
 		    fontWeight = new CssFontWeightCSS2(ac, expression);
@@ -182,25 +199,35 @@ public class CssFontCSS2 extends CssProperty
 		} catch (InvalidParamException e) {
 		    // we have now (or not)
 		    // [ 'font-style' || 'font-variant' || 'font-weight' ]?
-		    break;
+		    //break;
 		}
 	    }
+
 	    if (find && op != SPACE) {
 		throw new InvalidParamException("operator", 
 						((new Character(op)).toString()), ac);
-	    }	    
+	    }
 	}
-	/*
-	if (fontStyle == null) {
-	    fontStyle = new CssFontStyleCSS2();
+	
+	// "normal" values
+	CssExpression normalExpr = new CssExpression();
+	normalExpr.addValue(normal);
+	
+	for(int i = 0; i < normalNb; i++) {
+	    if (fontStyle == null) {
+		fontStyle = new CssFontStyleCSS2(ac, normalExpr);
+		normalExpr.starts();
+	    }
+	    else if (fontVariant == null) {
+		fontVariant = new CssFontVariantCSS2(ac, normalExpr);
+		normalExpr.starts();
+	    }
+	    else if (fontWeight == null) {
+		fontWeight = new CssFontWeightCSS2(ac, normalExpr);
+		normalExpr.starts();
+	    }
 	}
-	if (fontVariant == null) {
-	    fontVariant = new CssFontVariantCSS2();
-	}
-	if (fontWeight == null) {
-	    fontWeight = new CssFontWeightCSS2();
-	}
-	*/
+
 	val = expression.getValue();
 	op = expression.getOperator();	
 	    
@@ -213,14 +240,14 @@ public class CssFontCSS2 extends CssProperty
 	}
 		
 	fontSize = new CssFontSizeCSS2(ac, expression);
-	
+		
 	if (op == SLASH) {
 	    op = expression.getOperator();
+	    if(expression.getValue().equals(inherit)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 	    lineHeight = new CssLineHeightCSS2(ac, expression);
 	} 
-//	else {
-//	    lineHeight = new CssLineHeightCSS2();
-//	}
 	
 	if(expression.getValue().equals(inherit)) {
 	    throw new InvalidParamException("unrecognize", ac);

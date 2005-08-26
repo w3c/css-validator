@@ -254,88 +254,74 @@ public class CssColor extends CssValue
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
      */
-    public void setRGBColor(CssExpression exp, ApplContext ac)
-	throws InvalidParamException {
+    public void setRGBColor(CssExpression exp, ApplContext ac) 
+    throws InvalidParamException {
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
 	boolean isPercent = false;
-
+	
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-
-	if (((Float) val.get()).floatValue() < 0 ||
-	    ((Float) val.get()).floatValue() > 255)
-	    ac.getFrame().addWarning("out-of-range", 
-			     Integer.toString(((Float) val.get()).intValue()));
 	
 	if (val instanceof CssNumber) {
-	    rgb.r = new Integer(((Float) val.get()).intValue());
+	    CssNumber number = (CssNumber) val;	    
+	    rgb.r = clippedIntValue(number.getInt(), ac);    
 	    isPercent = false;
 	} else if (val instanceof CssPercentage) {
-	    rgb.r = ((Float) val.get());//.floatValue();
+	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	    isPercent = true;
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-
+	
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-
+	
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-
-	if (((Float) val.get()).floatValue() < 0 ||
-	    ((Float) val.get()).floatValue() > 255)
-	    ac.getFrame().addWarning("out-of-range",
-			     Integer.toString(((Float) val.get()).intValue()));
-
+	
 	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;
 	    if (isPercent) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.g = new Integer(((Float) val.get()).intValue());
+	    rgb.g = clippedIntValue(number.getInt(), ac);
 	} else if (val instanceof CssPercentage) {
-	    //	    rgb.g = ((Float) val.get());//.floatValue();
 	    if (!isPercent) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgb.g = ((Float) val.get());//.floatValue();
+	    rgb.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-
+	
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-
+	
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-
-	if (((Float) val.get()).floatValue() < 0 ||
-	    ((Float) val.get()).floatValue() > 255)
-	    ac.getFrame().addWarning("out-of-range",
-			     Integer.toString(((Float) val.get()).intValue()));
-
+	
 	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;
 	    if (isPercent) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.b = new Integer(((Float) val.get()).intValue());
+	    rgb.b = clippedIntValue(number.getInt(), ac);	    
 	} else if (val instanceof CssPercentage) {
 	    if (!isPercent) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgb.b = ((Float) val.get());//.floatValue();
+	    rgb.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
-	}
-
+	}	
 	exp.next();
 	if (exp.getValue() != null) {
 	    throw new InvalidParamException("rgb", exp.getValue(), ac);
@@ -389,7 +375,12 @@ public class CssColor extends CssValue
 	    if (obj instanceof RGB) {
 		color = lower_s;
 		rgb = (RGB) obj;
-	    } else if (obj instanceof String) {
+	    }
+	    if (obj instanceof RGBA) {
+		color = lower_s;
+		rgba = (RGBA) obj;
+	    }
+	    else if (obj instanceof String) {
 		color = (String) obj;
 		if (!obj.equals(s)) {
 		    ac.getFrame().addWarning("color.mixed-capitalization",
@@ -422,73 +413,68 @@ public class CssColor extends CssValue
 			 && rgb.b.equals(((CssColor) cssColor).rgb.b)))));
     }
 
-    public void setRGBAColor(Vector exp, ApplContext ac)
-	throws InvalidParamException {
-
+    public void setRGBAColor(Vector exp, ApplContext ac) 
+    throws InvalidParamException {
 	color = null;
 	rgba = new RGBA();
-	Float r;
-	Float g;
-	Float b;
-	Float a;
-
-	try {
-	    r = new Float(((CssValue) exp.elementAt(0)).toString());
-	} catch (Exception e) {
-	    throw new InvalidParamException("rgb", 
-					    (exp.elementAt(0)).toString(), ac);
+	boolean isPercent = false;
+	
+	
+	CssValue val = (CssValue) exp.elementAt(0);
+	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;	    
+	    rgba.r = clippedIntValue(number.getInt(), ac);    
+	    isPercent = false;
+	} else if (val instanceof CssPercentage) {
+	    rgba.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
+	    isPercent = true;
+	} else {
+	    throw new InvalidParamException("rgb", val, ac);
 	}
-
-	try {
-	    g = new Float(((CssValue) exp.elementAt(1)).toString());
-	} catch (Exception e) {
-	    throw new InvalidParamException("rgb",
-					    (exp.elementAt(1)).toString(), ac);
+	
+	val = (CssValue) exp.elementAt(1);
+	
+	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;
+	    if (isPercent) {
+		throw new InvalidParamException("percent", val, ac);
+	    }
+	    rgba.g = clippedIntValue(number.getInt(), ac);
+	} else if (val instanceof CssPercentage) {
+	    if (!isPercent) {
+		throw new InvalidParamException("integer", val, ac);
+	    }
+	    rgba.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
+	} else {
+	    throw new InvalidParamException("rgb", val, ac);
 	}
-		
-	try {
-	    b = new Float(((CssValue) exp.elementAt(2)).toString());
-	} catch (Exception e) {
-	    throw new InvalidParamException("rgb",
-					    (exp.elementAt(2)).toString(), ac);
+	
+	val = (CssValue) exp.elementAt(2);
+	
+	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;
+	    if (isPercent) {
+		throw new InvalidParamException("percent", val, ac);
+	    }
+	    rgba.b = clippedIntValue(number.getInt(), ac);	    
+	} else if (val instanceof CssPercentage) {
+	    if (!isPercent) {
+		throw new InvalidParamException("integer", val, ac);
+	    }
+	    rgba.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
+	} else {
+	    throw new InvalidParamException("rgb", val, ac);
+	}	
+	
+	val = (CssValue) exp.elementAt(3);
+	if(val instanceof CssNumber) {
+	    rgba.a = clippedAlphaValue(((Float) val.get()).floatValue(), ac);
 	}
-
-	try {
-	    a = new Float(((CssValue) exp.elementAt(3)).toString());
-	} catch (Exception e) {
-	    throw new InvalidParamException("rgb",
-					    (exp.elementAt(3)).toString(), ac);
-	}
-
-	if (r.floatValue() < 0 || r.floatValue() > 255) {
-	    ac.getFrame().addWarning("out-of-range",
-				     Integer.toString(r.intValue()));
-	    r = new Float(clampedValueRGB(ac, r.floatValue()));
-	}
-	if (g.floatValue() < 0 || g.floatValue() > 255) {
-	    ac.getFrame().addWarning("out-of-range",
-				     Integer.toString(g.intValue()));
-	    g = new Float(clampedValueRGB(ac, g.floatValue()));
-	}
-	if (b.floatValue() < 0 || b.floatValue() > 255) {
-	    ac.getFrame().addWarning("out-of-range",
-				     Integer.toString(b.intValue()));
-	    b = new Float(clampedValueRGB(ac, b.floatValue()));
-	}
-
-	if (a.floatValue() < 0 || a.floatValue() > 1) {
-	    ac.getFrame().addWarning("out-of-range",
-				     Integer.toString(a.intValue()));
-	    a = new Float(clampedValue(ac, a.floatValue()));
-	}
-
-	rgba.r = r;
-	rgba.g = g;
-	rgba.b = b;
-	rgba.a = a;
-
+	else {
+	     throw new InvalidParamException("rgb", val, ac);
+	 }	
     }
-
+ 
     public void setHSLColor(Vector exp, ApplContext ac)
 	throws InvalidParamException {
 
@@ -568,7 +554,7 @@ public class CssColor extends CssValue
 
 	if (a.floatValue() < 0 || a.floatValue() > 1) {
 	    ac.getFrame().addWarning("out-of-range", Integer.toString(a.intValue()));
-	    a = new Float(clampedValue(ac, a.floatValue()));
+	    a = clippedAlphaValue(a.floatValue(), ac);
 	}
 
 	hsla.h = h;
@@ -577,28 +563,31 @@ public class CssColor extends CssValue
 	hsla.a = a;
 
     }
-
-    /**
-     * Brings all values back between 0 and 1
-     *
-     * @param opac Alpha value that indicates opacity
-     */
-    private float clampedValue(ApplContext ac, float opac) {
-	if (opac < 0 || opac > 1) {
-	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(opac));
-	    return ((opac<0)?0:1);
-	}
-	else return(opac);
-    }
-
-    private float clampedValueRGB(ApplContext ac, float rgb) {
+    
+    private Integer clippedIntValue(int rgb, ApplContext ac) {
 	if (rgb < 0 || rgb > 255) {
 	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
-	    return ((rgb<0)?0:255);
+	    return new Integer((rgb<0)?0:255);
 	}
-	else return(rgb);
+	else return new Integer(rgb);
     }
-
+    
+    private Float clippedPercentValue(float p, ApplContext ac) {
+	if (p < 0. || p > 100.) {
+	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+	    return new Float((p<0.)?0.:100.);
+	}
+	else return new Float(p);
+    }
+    
+    private Float clippedAlphaValue(float p, ApplContext ac) {
+	if (p < 0. || p > 1.) {
+	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+	    return new Float((p<0.)?0.:1.);
+	}
+	else return new Float(p);
+    }
+    
     /**
      * Gets the red component of this color.
      */
@@ -619,644 +608,649 @@ public class CssColor extends CssValue
     public Object getBlue() {
 	return rgb.b;
     }
-
+    
     static {
 	definedColors = new Hashtable();
 	deprecatedColors = new Hashtable();
-
+	
 	definedColors.put("aliceblue",
-			  new RGB(new Integer(240),
-				  new Integer(248),
-				  new Integer(255)));
+		new RGB(new Integer(240),
+			new Integer(248),
+			new Integer(255)));
 	definedColors.put("antiquewhite",
-			  new RGB(new Integer(250),
-				  new Integer(235),
-				  new Integer(215)));
+		new RGB(new Integer(250),
+			new Integer(235),
+			new Integer(215)));
 	definedColors.put("aqua",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(255)));
+		new RGB(new Integer(0),
+			new Integer(255),
+			new Integer(255)));
 	definedColors.put("aquamarine",
-			  new RGB(new Integer(127),
-				  new Integer(255),
-				  new Integer(212)));
+		new RGB(new Integer(127),
+			new Integer(255),
+			new Integer(212)));
 	definedColors.put("azure",
-			  new RGB(new Integer(240),
-				  new Integer(255),
-				  new Integer(255)));
+		new RGB(new Integer(240),
+			new Integer(255),
+			new Integer(255)));
 	definedColors.put("beige",
-			  new RGB(new Integer(245),
-				  new Integer(245),
-				  new Integer(220)));
+		new RGB(new Integer(245),
+			new Integer(245),
+			new Integer(220)));
 	definedColors.put("bisque",
-			  new RGB(new Integer(255),
-				  new Integer(228),
-				  new Integer(196)));
+		new RGB(new Integer(255),
+			new Integer(228),
+			new Integer(196)));
 	definedColors.put("black",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(0)));
+		new RGB(new Integer(0),
+			new Integer(0),
+			new Integer(0)));
 	definedColors.put("blanchedalmond",
-			  new RGB(new Integer(255),
-				  new Integer(235),
-				  new Integer(205)));
+		new RGB(new Integer(255),
+			new Integer(235),
+			new Integer(205)));
 	definedColors.put("blue",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(255)));
+		new RGB(new Integer(0),
+			new Integer(0),
+			new Integer(255)));
 	definedColors.put("blueviolet",
-			  new RGB(new Integer(138),
-				  new Integer(43),
-				  new Integer(226)));
+		new RGB(new Integer(138),
+			new Integer(43),
+			new Integer(226)));
 	definedColors.put("brown",
-			  new RGB(new Integer(165),
-				  new Integer(42),
-				  new Integer(42)));
+		new RGB(new Integer(165),
+			new Integer(42),
+			new Integer(42)));
 	definedColors.put("burlywood",
-			  new RGB(new Integer(222),
-				  new Integer(184),
-				  new Integer(135)));
+		new RGB(new Integer(222),
+			new Integer(184),
+			new Integer(135)));
 	definedColors.put("cadetBlue",
-			  new RGB(new Integer(95),
-				  new Integer(158),
-				  new Integer(160)));
+		new RGB(new Integer(95),
+			new Integer(158),
+			new Integer(160)));
 	definedColors.put("chartreuse",
-			  new RGB(new Integer(127),
-				  new Integer(255),
-				  new Integer(0)));
+		new RGB(new Integer(127),
+			new Integer(255),
+			new Integer(0)));
 	definedColors.put("chocolate",
-			  new RGB(new Integer(210),
-				  new Integer(105),
-				  new Integer(30)));
+		new RGB(new Integer(210),
+			new Integer(105),
+			new Integer(30)));
 	definedColors.put("coral",
-			  new RGB(new Integer(255),
-				  new Integer(127),
-				  new Integer(80)));
+		new RGB(new Integer(255),
+			new Integer(127),
+			new Integer(80)));
 	definedColors.put("cornflowerblue",
-			  new RGB(new Integer(100),
-				  new Integer(149),
-				  new Integer(237)));
+		new RGB(new Integer(100),
+			new Integer(149),
+			new Integer(237)));
 	definedColors.put("cornsilk",
-			  new RGB(new Integer(255),
-				  new Integer(248),
-				  new Integer(220)));
+		new RGB(new Integer(255),
+			new Integer(248),
+			new Integer(220)));
 	definedColors.put("crimson",
-			  new RGB(new Integer(220),
-				  new Integer(20),
-				  new Integer(60)));
+		new RGB(new Integer(220),
+			new Integer(20),
+			new Integer(60)));
 	definedColors.put("cyan",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(255)));
+		new RGB(new Integer(0),
+			new Integer(255),
+			new Integer(255)));
 	definedColors.put("darkblue",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(139)));
+		new RGB(new Integer(0),
+			new Integer(0),
+			new Integer(139)));
 	definedColors.put("darkcyan",
-			  new RGB(new Integer(0),
-				  new Integer(139),
-				  new Integer(139)));
+		new RGB(new Integer(0),
+			new Integer(139),
+			new Integer(139)));
 	definedColors.put("darkgoldenrod",
-			  new RGB(new Integer(184),
-				  new Integer(134),
-				  new Integer(11)));
+		new RGB(new Integer(184),
+			new Integer(134),
+			new Integer(11)));
 	definedColors.put("darkgray",
-			  new RGB(new Integer(169),
-				  new Integer(169),
-				  new Integer(169)));
+		new RGB(new Integer(169),
+			new Integer(169),
+			new Integer(169)));
 	definedColors.put("darkgreen",
-			  new RGB(new Integer(0),
-				  new Integer(100),
-				  new Integer(0)));
+		new RGB(new Integer(0),
+			new Integer(100),
+			new Integer(0)));
 	definedColors.put("darkkhaki",
-			  new RGB(new Integer(189),
-				  new Integer(183),
-				  new Integer(107)));
+		new RGB(new Integer(189),
+			new Integer(183),
+			new Integer(107)));
 	definedColors.put("darkmagenta",
-			  new RGB(new Integer(139),
-				  new Integer(0),
-				  new Integer(139)));
+		new RGB(new Integer(139),
+			new Integer(0),
+			new Integer(139)));
 	definedColors.put("darkolivegreen",
-			  new RGB(new Integer(85),
-				  new Integer(107),
-				  new Integer(47)));
+		new RGB(new Integer(85),
+			new Integer(107),
+			new Integer(47)));
 	definedColors.put("darkorange",
-			  new RGB(new Integer(255),
-				  new Integer(140),
-				  new Integer(0)));
+		new RGB(new Integer(255),
+			new Integer(140),
+			new Integer(0)));
 	definedColors.put("darkorchid",
-			  new RGB(new Integer(153),
-				  new Integer(50),
-				  new Integer(204)));
+		new RGB(new Integer(153),
+			new Integer(50),
+			new Integer(204)));
 	definedColors.put("darkred",
-			  new RGB(new Integer(139),
-				  new Integer(0),
-				  new Integer(0)));
+		new RGB(new Integer(139),
+			new Integer(0),
+			new Integer(0)));
 	definedColors.put("darksalmon",
-			  new RGB(new Integer(233),
-				  new Integer(150),
-				  new Integer(122)));
+		new RGB(new Integer(233),
+			new Integer(150),
+			new Integer(122)));
 	definedColors.put("darkseagreen",
-			  new RGB(new Integer(143),
-				  new Integer(188),
-				  new Integer(143)));
+		new RGB(new Integer(143),
+			new Integer(188),
+			new Integer(143)));
 	definedColors.put("darkslateblue",
-			  new RGB(new Integer(72),
-				  new Integer(61),
-				  new Integer(139)));
+		new RGB(new Integer(72),
+			new Integer(61),
+			new Integer(139)));
 	definedColors.put("darkslategray",
-			  new RGB(new Integer(47),
-				  new Integer(79),
-				  new Integer(79)));
+		new RGB(new Integer(47),
+			new Integer(79),
+			new Integer(79)));
 	definedColors.put("darkturquoise",
-			  new RGB(new Integer(0),
-				  new Integer(206),
-				  new Integer(209)));
+		new RGB(new Integer(0),
+			new Integer(206),
+			new Integer(209)));
 	definedColors.put("darkviolet",
-			  new RGB(new Integer(148),
-				  new Integer(0),
-				  new Integer(211)));
+		new RGB(new Integer(148),
+			new Integer(0),
+			new Integer(211)));
 	definedColors.put("deeppink",
-			  new RGB(new Integer(255),
-				  new Integer(20),
-				  new Integer(147)));
+		new RGB(new Integer(255),
+			new Integer(20),
+			new Integer(147)));
 	definedColors.put("deepskyblue",
-			  new RGB(new Integer(0),
-				  new Integer(191),
-				  new Integer(255)));
+		new RGB(new Integer(0),
+			new Integer(191),
+			new Integer(255)));
 	definedColors.put("dimgray",
-			  new RGB(new Integer(105),
-				  new Integer(105),
-				  new Integer(105)));
+		new RGB(new Integer(105),
+			new Integer(105),
+			new Integer(105)));
 	definedColors.put("dodgerblue",
-			  new RGB(new Integer(30),
-				  new Integer(144),
-				  new Integer(255)));
+		new RGB(new Integer(30),
+			new Integer(144),
+			new Integer(255)));
 	definedColors.put("firebrick",
-			  new RGB(new Integer(178),
-				  new Integer(34),
-				  new Integer(34)));
+		new RGB(new Integer(178),
+			new Integer(34),
+			new Integer(34)));
 	definedColors.put("floralwhite",
-			  new RGB(new Integer(255),
-				  new Integer(250),
-				  new Integer(240)));
+		new RGB(new Integer(255),
+			new Integer(250),
+			new Integer(240)));
 	definedColors.put("forestgreen",
-			  new RGB(new Integer(34),
-				  new Integer(139),
-				  new Integer(34)));
+		new RGB(new Integer(34),
+			new Integer(139),
+			new Integer(34)));
 	definedColors.put("fuchsia",
-			  new RGB(new Integer(255),
-				  new Integer(0),
-				  new Integer(255)));
+		new RGB(new Integer(255),
+			new Integer(0),
+			new Integer(255)));
 	definedColors.put("gainsboro",
-			  new RGB(new Integer(220),
-				  new Integer(220),
-				  new Integer(220)));
+		new RGB(new Integer(220),
+			new Integer(220),
+			new Integer(220)));
 	definedColors.put("ghostwhite",
-			  new RGB(new Integer(248),
-				  new Integer(248),
-				  new Integer(255)));
+		new RGB(new Integer(248),
+			new Integer(248),
+			new Integer(255)));
 	definedColors.put("gold",
-			  new RGB(new Integer(255),
-				  new Integer(215),
-				  new Integer(0)));
+		new RGB(new Integer(255),
+			new Integer(215),
+			new Integer(0)));
 	definedColors.put("goldenrod",
-			  new RGB(new Integer(218),
-				  new Integer(165),
-				  new Integer(32)));
+		new RGB(new Integer(218),
+			new Integer(165),
+			new Integer(32)));
 	definedColors.put("gray",
-			  new RGB(new Integer(128),
-				  new Integer(128),
-				  new Integer(128)));
+		new RGB(new Integer(128),
+			new Integer(128),
+			new Integer(128)));
 	definedColors.put("green",
-			  new RGB(new Integer(0),
-				  new Integer(128),
-				  new Integer(0)));
+		new RGB(new Integer(0),
+			new Integer(128),
+			new Integer(0)));
 	definedColors.put("greenyellow",
-			  new RGB(new Integer(173),
-				  new Integer(255),
-				  new Integer(47)));
+		new RGB(new Integer(173),
+			new Integer(255),
+			new Integer(47)));
 	definedColors.put("honeydew",
-			  new RGB(new Integer(240),
-				  new Integer(255),
-				  new Integer(240)));
+		new RGB(new Integer(240),
+			new Integer(255),
+			new Integer(240)));
 	definedColors.put("hotpink",
-			  new RGB(new Integer(255),
-				  new Integer(105),
-				  new Integer(180)));
+		new RGB(new Integer(255),
+			new Integer(105),
+			new Integer(180)));
 	definedColors.put("indianred",
-			  new RGB(new Integer(205),
-				  new Integer(92),
-				  new Integer(92)));
+		new RGB(new Integer(205),
+			new Integer(92),
+			new Integer(92)));
 	definedColors.put("indigo",
-			  new RGB(new Integer(75),
-				  new Integer(0),
-				  new Integer(130)));
+		new RGB(new Integer(75),
+			new Integer(0),
+			new Integer(130)));
 	definedColors.put("ivory",
-			  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(240)));
+		new RGB(new Integer(255),
+			new Integer(255),
+			new Integer(240)));
 	definedColors.put("khaki",
-			  new RGB(new Integer(240),
-				  new Integer(230),
-				  new Integer(140)));
+		new RGB(new Integer(240),
+			new Integer(230),
+			new Integer(140)));
 	definedColors.put("lavender",
-			  new RGB(new Integer(230),
-				  new Integer(230),
-				  new Integer(250)));
+		new RGB(new Integer(230),
+			new Integer(230),
+			new Integer(250)));
 	definedColors.put("lavenderblush",
-			  new RGB(new Integer(255),
-				  new Integer(240),
-				  new Integer(245)));
+		new RGB(new Integer(255),
+			new Integer(240),
+			new Integer(245)));
 	definedColors.put("lawngreen",
-			  new RGB(new Integer(124),
-				  new Integer(252),
-				  new Integer(0)));
+		new RGB(new Integer(124),
+			new Integer(252),
+			new Integer(0)));
 	definedColors.put("lemonchiffon",
-			  new RGB(new Integer(255),
-				  new Integer(250),
-				  new Integer(205)));
+		new RGB(new Integer(255),
+			new Integer(250),
+			new Integer(205)));
 	definedColors.put("lightblue",
-			  new RGB(new Integer(173),
-				  new Integer(216),
-				  new Integer(230)));
+		new RGB(new Integer(173),
+			new Integer(216),
+			new Integer(230)));
 	definedColors.put("lightcoral",
-			  new RGB(new Integer(240),
-				  new Integer(128),
-				  new Integer(128)));
+		new RGB(new Integer(240),
+			new Integer(128),
+			new Integer(128)));
 	definedColors.put("lightcyan",
-			  new RGB(new Integer(224),
-				  new Integer(255),
-				  new Integer(255)));
+		new RGB(new Integer(224),
+			new Integer(255),
+			new Integer(255)));
 	definedColors.put("lightgoldenrodyellow",
-			  new RGB(new Integer(250),
-				  new Integer(250),
-				  new Integer(210)));
+		new RGB(new Integer(250),
+			new Integer(250),
+			new Integer(210)));
 	definedColors.put("lightgreen",
-			  new RGB(new Integer(144),
-				  new Integer(238),
-				  new Integer(144)));
+		new RGB(new Integer(144),
+			new Integer(238),
+			new Integer(144)));
 	definedColors.put("lightgrey",
-			  new RGB(new Integer(211),
-				  new Integer(211),
-				  new Integer(211)));
+		new RGB(new Integer(211),
+			new Integer(211),
+			new Integer(211)));
 	definedColors.put("lightpink",
-			  new RGB(new Integer(255),
-				  new Integer(182),
-				  new Integer(193)));
+		new RGB(new Integer(255),
+			new Integer(182),
+			new Integer(193)));
 	definedColors.put("lightsalmon",
-			  new RGB(new Integer(255),
-				  new Integer(160),
-				  new Integer(122)));
+		new RGB(new Integer(255),
+			new Integer(160),
+			new Integer(122)));
 	definedColors.put("lightseagreen",
-			  new RGB(new Integer(32),
-				  new Integer(178),
-				  new Integer(170)));
+		new RGB(new Integer(32),
+			new Integer(178),
+			new Integer(170)));
 	definedColors.put("lightskyblue",
-			  new RGB(new Integer(135),
-				  new Integer(206),
-				  new Integer(250)));
+		new RGB(new Integer(135),
+			new Integer(206),
+			new Integer(250)));
 	definedColors.put("lightslategray",
-			  new RGB(new Integer(119),
-				  new Integer(136),
-				  new Integer(153)));
+		new RGB(new Integer(119),
+			new Integer(136),
+			new Integer(153)));
 	definedColors.put("lightsteelblue",
-			  new RGB(new Integer(176),
-				  new Integer(196),
-				  new Integer(222)));
+		new RGB(new Integer(176),
+			new Integer(196),
+			new Integer(222)));
 	definedColors.put("lightyellow",
-			  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(224)));
+		new RGB(new Integer(255),
+			new Integer(255),
+			new Integer(224)));
 	definedColors.put("lime",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(0)));
+		new RGB(new Integer(0),
+			new Integer(255),
+			new Integer(0)));
 	definedColors.put("limegreen",
-			  new RGB(new Integer(50),
-				  new Integer(205),
-				  new Integer(50)));
+		new RGB(new Integer(50),
+			new Integer(205),
+			new Integer(50)));
 	definedColors.put("linen",
-			  new RGB(new Integer(250),
-				  new Integer(240),
-				  new Integer(230)));
+		new RGB(new Integer(250),
+			new Integer(240),
+			new Integer(230)));
 	definedColors.put("magenta",
-			  new RGB(new Integer(255),
-				  new Integer(0),
-				  new Integer(255)));
+		new RGB(new Integer(255),
+			new Integer(0),
+			new Integer(255)));
 	definedColors.put("maroon",
-			  new RGB(new Integer(128),
-				  new Integer(0),
-				  new Integer(0)));
+		new RGB(new Integer(128),
+			new Integer(0),
+			new Integer(0)));
 	definedColors.put("mediumaquamarine",
-			  new RGB(new Integer(102),
-				  new Integer(205),
-				  new Integer(170)));
+		new RGB(new Integer(102),
+			new Integer(205),
+			new Integer(170)));
 	definedColors.put("mediumblue",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(205)));
+		new RGB(new Integer(0),
+			new Integer(0),
+			new Integer(205)));
 	definedColors.put("mediumorchid",
-			  new RGB(new Integer(186),
-				  new Integer(85),
-				  new Integer(211)));
+		new RGB(new Integer(186),
+			new Integer(85),
+			new Integer(211)));
 	definedColors.put("mediumpurple",
-			  new RGB(new Integer(147),
-				  new Integer(112),
-				  new Integer(219)));
+		new RGB(new Integer(147),
+			new Integer(112),
+			new Integer(219)));
 	definedColors.put("mediumseagreen",
-			  new RGB(new Integer(60),
-				  new Integer(179),
-				  new Integer(113)));
+		new RGB(new Integer(60),
+			new Integer(179),
+			new Integer(113)));
 	definedColors.put("mediumslateblue",
-			  new RGB(new Integer(123),
-				  new Integer(104),
-				  new Integer(238)));
+		new RGB(new Integer(123),
+			new Integer(104),
+			new Integer(238)));
 	definedColors.put("mediumspringgreen",
-			  new RGB(new Integer(0),
-				  new Integer(250),
-				  new Integer(154)));
+		new RGB(new Integer(0),
+			new Integer(250),
+			new Integer(154)));
 	definedColors.put("mediumturquoise",
-			  new RGB(new Integer(72),
-				  new Integer(209),
-				  new Integer(204)));
+		new RGB(new Integer(72),
+			new Integer(209),
+			new Integer(204)));
 	definedColors.put("mediumvioletred",
-			  new RGB(new Integer(199),
-				  new Integer(21),
-				  new Integer(133)));
+		new RGB(new Integer(199),
+			new Integer(21),
+			new Integer(133)));
 	definedColors.put("midnightblue",
-			  new RGB(new Integer(25),
-				  new Integer(25),
-				  new Integer(112)));
+		new RGB(new Integer(25),
+			new Integer(25),
+			new Integer(112)));
 	definedColors.put("mintcream",
-			  new RGB(new Integer(245),
-				  new Integer(255),
-				  new Integer(250)));
+		new RGB(new Integer(245),
+			new Integer(255),
+			new Integer(250)));
 	definedColors.put("mistyrose",
-			  new RGB(new Integer(255),
-				  new Integer(228),
-				  new Integer(225)));
+		new RGB(new Integer(255),
+			new Integer(228),
+			new Integer(225)));
 	definedColors.put("moccasin",
-			  new RGB(new Integer(255),
-				  new Integer(228),
-				  new Integer(181)));
+		new RGB(new Integer(255),
+			new Integer(228),
+			new Integer(181)));
 	definedColors.put("navajowhite",
-			  new RGB(new Integer(255),
-				  new Integer(222),
-				  new Integer(173)));
+		new RGB(new Integer(255),
+			new Integer(222),
+			new Integer(173)));
 	definedColors.put("navy",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(128)));
+		new RGB(new Integer(0),
+			new Integer(0),
+			new Integer(128)));
 	definedColors.put("oldlace",
-			  new RGB(new Integer(253),
-				  new Integer(245),
-				  new Integer(230)));
+		new RGB(new Integer(253),
+			new Integer(245),
+			new Integer(230)));
 	definedColors.put("olive",
-			  new RGB(new Integer(128),
-				  new Integer(128),
-				  new Integer(0)));
+		new RGB(new Integer(128),
+			new Integer(128),
+			new Integer(0)));
 	definedColors.put("olivedrab",
-			  new RGB(new Integer(107),
-				  new Integer(142),
-				  new Integer(35)));
+		new RGB(new Integer(107),
+			new Integer(142),
+			new Integer(35)));
 	definedColors.put("orange",
-			  new RGB(new Integer(255),
-				  new Integer(165),
-				  new Integer(0)));
+		new RGB(new Integer(255),
+			new Integer(165),
+			new Integer(0)));
 	definedColors.put("orangered",
-			  new RGB(new Integer(255),
-				  new Integer(69),
-				  new Integer(0)));
+		new RGB(new Integer(255),
+			new Integer(69),
+			new Integer(0)));
 	definedColors.put("orchid",
-			  new RGB(new Integer(218),
-				  new Integer(112),
-				  new Integer(214)));
+		new RGB(new Integer(218),
+			new Integer(112),
+			new Integer(214)));
 	definedColors.put("palegoldenrod",
-			  new RGB(new Integer(238),
-				  new Integer(232),
-				  new Integer(170)));
+		new RGB(new Integer(238),
+			new Integer(232),
+			new Integer(170)));
 	definedColors.put("palegreen",
-			  new RGB(new Integer(152),
-				  new Integer(251),
-				  new Integer(152)));
+		new RGB(new Integer(152),
+			new Integer(251),
+			new Integer(152)));
 	definedColors.put("paleturquoise",
-			  new RGB(new Integer(175),
-				  new Integer(238),
-				  new Integer(238)));
+		new RGB(new Integer(175),
+			new Integer(238),
+			new Integer(238)));
 	definedColors.put("palevioletred",
-			  new RGB(new Integer(219),
-				  new Integer(112),
-				  new Integer(147)));
+		new RGB(new Integer(219),
+			new Integer(112),
+			new Integer(147)));
 	definedColors.put("papayawhip",
-			  new RGB(new Integer(255),
-				  new Integer(239),
-				  new Integer(213)));
+		new RGB(new Integer(255),
+			new Integer(239),
+			new Integer(213)));
 	definedColors.put("peachpuff",
-			  new RGB(new Integer(255),
-				  new Integer(218),
-				  new Integer(185)));
+		new RGB(new Integer(255),
+			new Integer(218),
+			new Integer(185)));
 	definedColors.put("peru",
-			  new RGB(new Integer(205),
-				  new Integer(133),
-				  new Integer(63)));
+		new RGB(new Integer(205),
+			new Integer(133),
+			new Integer(63)));
 	definedColors.put("pink",
-			  new RGB(new Integer(255),
-				  new Integer(192),
-				  new Integer(203)));
+		new RGB(new Integer(255),
+			new Integer(192),
+			new Integer(203)));
 	definedColors.put("plum",
-			  new RGB(new Integer(221),
-				  new Integer(160),
-				  new Integer(221)));
+		new RGB(new Integer(221),
+			new Integer(160),
+			new Integer(221)));
 	definedColors.put("powderBlue",
-			  new RGB(new Integer(176),
-				  new Integer(224),
-				  new Integer(230)));
+		new RGB(new Integer(176),
+			new Integer(224),
+			new Integer(230)));
 	definedColors.put("purple",
-			  new RGB(new Integer(128),
-				  new Integer(0),
-				  new Integer(128)));
+		new RGB(new Integer(128),
+			new Integer(0),
+			new Integer(128)));
 	definedColors.put("red",
-			  new RGB(new Integer(255),
-				  new Integer(0),
-				  new Integer(0)));
+		new RGB(new Integer(255),
+			new Integer(0),
+			new Integer(0)));
 	definedColors.put("rosybrown",
-			  new RGB(new Integer(188),
-				  new Integer(143),
-				  new Integer(143)));
+		new RGB(new Integer(188),
+			new Integer(143),
+			new Integer(143)));
 	definedColors.put("royalblue",
-			  new RGB(new Integer(65),
-				  new Integer(105),
-				  new Integer(225)));
+		new RGB(new Integer(65),
+			new Integer(105),
+			new Integer(225)));
 	definedColors.put("saddlebrown",
-			  new RGB(new Integer(139),
-				  new Integer(69),
-				  new Integer(19)));
+		new RGB(new Integer(139),
+			new Integer(69),
+			new Integer(19)));
 	definedColors.put("salmon",
-			  new RGB(new Integer(250),
-				  new Integer(128),
-				  new Integer(114)));
+		new RGB(new Integer(250),
+			new Integer(128),
+			new Integer(114)));
 	definedColors.put("sandybrown",
-			  new RGB(new Integer(244),
-				  new Integer(164),
-				  new Integer(96)));
+		new RGB(new Integer(244),
+			new Integer(164),
+			new Integer(96)));
 	definedColors.put("seagreen",
-			  new RGB(new Integer(46),
-				  new Integer(139),
-				  new Integer(87)));
+		new RGB(new Integer(46),
+			new Integer(139),
+			new Integer(87)));
 	definedColors.put("seashell",
-			  new RGB(new Integer(255),
-				  new Integer(245),
-				  new Integer(238)));
+		new RGB(new Integer(255),
+			new Integer(245),
+			new Integer(238)));
 	definedColors.put("sienna",
-			  new RGB(new Integer(160),
-				  new Integer(82),
-				  new Integer(45)));
+		new RGB(new Integer(160),
+			new Integer(82),
+			new Integer(45)));
 	definedColors.put("silver",
-			  new RGB(new Integer(192),
-				  new Integer(192),
-				  new Integer(192)));
+		new RGB(new Integer(192),
+			new Integer(192),
+			new Integer(192)));
 	definedColors.put("skyblue",
-			  new RGB(new Integer(135),
-				  new Integer(206),
-				  new Integer(235)));
+		new RGB(new Integer(135),
+			new Integer(206),
+			new Integer(235)));
 	definedColors.put("slateblue",
-			  new RGB(new Integer(106),
-				  new Integer(90),
-				  new Integer(205)));
+		new RGB(new Integer(106),
+			new Integer(90),
+			new Integer(205)));
 	definedColors.put("slategray",
-			  new RGB(new Integer(112),
-				  new Integer(128),
-				  new Integer(144)));
+		new RGB(new Integer(112),
+			new Integer(128),
+			new Integer(144)));
 	definedColors.put("snow",
-			  new RGB(new Integer(255),
-				  new Integer(250),
-				  new Integer(250)));
+		new RGB(new Integer(255),
+			new Integer(250),
+			new Integer(250)));
 	definedColors.put("springgreen",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(127)));
+		new RGB(new Integer(0),
+			new Integer(255),
+			new Integer(127)));
 	definedColors.put("steelblue",
-			  new RGB(new Integer(70),
-				  new Integer(130),
-				  new Integer(180)));
+		new RGB(new Integer(70),
+			new Integer(130),
+			new Integer(180)));
 	definedColors.put("tan",
-			  new RGB(new Integer(210),
-				  new Integer(180),
-				  new Integer(140)));
+		new RGB(new Integer(210),
+			new Integer(180),
+			new Integer(140)));
 	definedColors.put("teal",
-			  new RGB(new Integer(0),
-				  new Integer(128),
-				  new Integer(128)));
+		new RGB(new Integer(0),
+			new Integer(128),
+			new Integer(128)));
 	definedColors.put("thistle",
-			  new RGB(new Integer(216),
-				  new Integer(191),
-				  new Integer(216)));
+		new RGB(new Integer(216),
+			new Integer(191),
+			new Integer(216)));
 	definedColors.put("tomato",
-			  new RGB(new Integer(255),
-				  new Integer(99),
-				  new Integer(71)));
+		new RGB(new Integer(255),
+			new Integer(99),
+			new Integer(71)));
 	definedColors.put("turquoise",
-			  new RGB(new Integer(64),
-				  new Integer(224),
-				  new Integer(208)));
+		new RGB(new Integer(64),
+			new Integer(224),
+			new Integer(208)));
 	definedColors.put("violet",
-			  new RGB(new Integer(238),
-				  new Integer(130),
-				  new Integer(238)));
+		new RGB(new Integer(238),
+			new Integer(130),
+			new Integer(238)));
 	definedColors.put("wheat",
-			  new RGB(new Integer(245),
-				  new Integer(222),
-				  new Integer(179)));
+		new RGB(new Integer(245),
+			new Integer(222),
+			new Integer(179)));
 	definedColors.put("white",
-			  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(255)));
+		new RGB(new Integer(255),
+			new Integer(255),
+			new Integer(255)));
 	definedColors.put("whitesmoke",
-			  new RGB(new Integer(245),
-				  new Integer(245),
-				  new Integer(245)));
+		new RGB(new Integer(245),
+			new Integer(245),
+			new Integer(245)));
 	definedColors.put("yellow",
-		  	  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(0)));
-    	definedColors.put("yellowgreen",
-		  	  new RGB(new Integer(154),
-				  new Integer(205),
-				  new Integer(50)));
-
+		new RGB(new Integer(255),
+			new Integer(255),
+			new Integer(0)));
+	definedColors.put("yellowgreen",
+		new RGB(new Integer(154),
+			new Integer(205),
+			new Integer(50)));
+	
 	definedColors.put("grey",
-			  new RGB(new Integer(128),
-				  new Integer(128),
-				  new Integer(128)));
-    	definedColors.put("darkslategrey",
-		  	  new RGB(new Integer(47),
-				  new Integer(79),
-				  new Integer(79)));
+		new RGB(new Integer(128),
+			new Integer(128),
+			new Integer(128)));
+	definedColors.put("darkslategrey",
+		new RGB(new Integer(47),
+			new Integer(79),
+			new Integer(79)));
 	definedColors.put("dimgrey",
-			  new RGB(new Integer(105),
-				  new Integer(105),
-				  new Integer(105)));
+		new RGB(new Integer(105),
+			new Integer(105),
+			new Integer(105)));
 	definedColors.put("lightgray",
-			  new RGB(new Integer(211),
-				  new Integer(211),
-				  new Integer(211)));
+		new RGB(new Integer(211),
+			new Integer(211),
+			new Integer(211)));
 	definedColors.put("lightslategrey",
-			  new RGB(new Integer(119),
-				  new Integer(136),
-				  new Integer(153)));
+		new RGB(new Integer(119),
+			new Integer(136),
+			new Integer(153)));
 	definedColors.put("slategrey",
-			  new RGB(new Integer(112),
-				  new Integer(128),
-				  new Integer(144)));
-
+		new RGB(new Integer(112),
+			new Integer(128),
+			new Integer(144)));
+	definedColors.put("transparent",
+		new RGBA(new Integer(0),
+			new Integer(0),
+			new Integer(0),
+			new Float(0)));
+	
 	//CSS2 System colors deprecated
-        deprecatedColors.put("activeborder", "ActiveBorder");
-        deprecatedColors.put("activecaption", "ActiveCaption");
-        deprecatedColors.put("appworkspace", "AppWorkspace");
-        deprecatedColors.put("background", "Background");
-        deprecatedColors.put("buttonface", "ButtonFace");
-        deprecatedColors.put("buttonhighlight", "ButtonHighlight");
-        deprecatedColors.put("buttonshadow", "ButtonShadow");
-        deprecatedColors.put("buttontext", "ButtonText");
-        deprecatedColors.put("captiontext", "CaptionText");
-        deprecatedColors.put("graytext", "GrayText");
-        deprecatedColors.put("highlight", "Highlight");
-        deprecatedColors.put("highlighttext", "HighlightText");
-        deprecatedColors.put("inactiveborder", "InactiveBorder");
-        deprecatedColors.put("inactivecaption", "InactiveCaption");
-        deprecatedColors.put("inactivecaptiontext", "InactiveCaptionText");
-        deprecatedColors.put("infobackground", "InfoBackground");
-        deprecatedColors.put("infotext", "InfoText");
-        deprecatedColors.put("menu", "Menu");
-        deprecatedColors.put("menutext", "MenuText");
-        deprecatedColors.put("scrollbar", "Scrollbar");
-        deprecatedColors.put("threeddarkshadow", "ThreeDDarkShadow");
-        deprecatedColors.put("threedface", "ThreeDFace");
-        deprecatedColors.put("threedhighlight", "ThreeDHighlight");
-        deprecatedColors.put("threedlightshadow", "ThreeDLightShadow");
-        deprecatedColors.put("threedshadow", "ThreeDShadow");
-        deprecatedColors.put("window", "Window");
-        deprecatedColors.put("windowframe", "WindowFrame");
-        deprecatedColors.put("windowtext", "WindowText");
-
-    	// CSS3 user preferences for hyperlink colors -> removed from spec
-    	/*
-	  definedColors.put("ActiveHyperlink", "ActiveHyperlink");
-	  definedColors.put("ActiveHyperlinkText", "ActiveHyperlinkText");
-	  definedColors.put("HoverHyperlink", "HoverHyperlink");
-	  definedColors.put("HoverHyperlinkText", "HoverHyperlinkText");
-	  definedColors.put("Hyperlink", "Hyperlink");
-	  definedColors.put("HyperlinkText", "HyperlinkText");
-	  definedColors.put("VisitedHyperlink", "VisitedHyperlink");
-	  definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
-    	*/
-
-    	//Flavor system color
-    	definedColors.put("flavor","flavor");
-    	definedColors.put("currentcolor","currentColor");
-
+	deprecatedColors.put("activeborder", "ActiveBorder");
+	deprecatedColors.put("activecaption", "ActiveCaption");
+	deprecatedColors.put("appworkspace", "AppWorkspace");
+	deprecatedColors.put("background", "Background");
+	deprecatedColors.put("buttonface", "ButtonFace");
+	deprecatedColors.put("buttonhighlight", "ButtonHighlight");
+	deprecatedColors.put("buttonshadow", "ButtonShadow");
+	deprecatedColors.put("buttontext", "ButtonText");
+	deprecatedColors.put("captiontext", "CaptionText");
+	deprecatedColors.put("graytext", "GrayText");
+	deprecatedColors.put("highlight", "Highlight");
+	deprecatedColors.put("highlighttext", "HighlightText");
+	deprecatedColors.put("inactiveborder", "InactiveBorder");
+	deprecatedColors.put("inactivecaption", "InactiveCaption");
+	deprecatedColors.put("inactivecaptiontext", "InactiveCaptionText");
+	deprecatedColors.put("infobackground", "InfoBackground");
+	deprecatedColors.put("infotext", "InfoText");
+	deprecatedColors.put("menu", "Menu");
+	deprecatedColors.put("menutext", "MenuText");
+	deprecatedColors.put("scrollbar", "Scrollbar");
+	deprecatedColors.put("threeddarkshadow", "ThreeDDarkShadow");
+	deprecatedColors.put("threedface", "ThreeDFace");
+	deprecatedColors.put("threedhighlight", "ThreeDHighlight");
+	deprecatedColors.put("threedlightshadow", "ThreeDLightShadow");
+	deprecatedColors.put("threedshadow", "ThreeDShadow");
+	deprecatedColors.put("window", "Window");
+	deprecatedColors.put("windowframe", "WindowFrame");
+	deprecatedColors.put("windowtext", "WindowText");
+	
+	// CSS3 user preferences for hyperlink colors -> removed from spec
+	/*
+	 definedColors.put("ActiveHyperlink", "ActiveHyperlink");
+	 definedColors.put("ActiveHyperlinkText", "ActiveHyperlinkText");
+	 definedColors.put("HoverHyperlink", "HoverHyperlink");
+	 definedColors.put("HoverHyperlinkText", "HoverHyperlinkText");
+	 definedColors.put("Hyperlink", "Hyperlink");
+	 definedColors.put("HyperlinkText", "HyperlinkText");
+	 definedColors.put("VisitedHyperlink", "VisitedHyperlink");
+	 definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
+	 */
+	
+	//Flavor system color
+	definedColors.put("flavor","flavor");
+	definedColors.put("currentcolor","currentColor");
+	
     }
-
+    
 }
 

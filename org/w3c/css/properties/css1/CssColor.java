@@ -64,10 +64,12 @@ public class CssColor extends CssProperty implements CssOperator {
 	
 	CssValue val = expression.getValue();
 	setByUser();
+	
 	if (val.equals(inherit)) {
 	    color = inherit;
 	    expression.next();
-	} else if (val instanceof org.w3c.css.values.CssColor) {
+	}
+	else if (val instanceof org.w3c.css.values.CssColor) {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssFunction) {
@@ -216,7 +218,7 @@ public class CssColor extends CssProperty implements CssOperator {
 						params.getValue(),
 						getPropertyName(), ac);
 	    }
-	} else if (val instanceof CssIdent) {
+	} else if (val instanceof CssIdent) {	    
 	    if ("css1".equals(ac.getCssVersion())) {
 		color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
 	    } else if ("css2".equals(ac.getCssVersion())) {
@@ -228,7 +230,7 @@ public class CssColor extends CssProperty implements CssOperator {
 	    }
 	    //	    color = new org.w3c.css.values.CssColor();
 	    expression.next();
-	} else {
+	} else {	    
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}

@@ -14,36 +14,36 @@
 package org.w3c.css.values;
 
 public class RGBA {
-	String output = null;
-	Object r;
-	Object g;
-	Object b;
-	Object a;
-
+    String output = null;
+    Object r;
+    Object g;
+    Object b;
+    Object a;
+    
     /**
      * Create a new RGBA
      */
     public RGBA() {
     }
-
+    
     /**
      * Create a new RGBA with default values
      */
     public RGBA(Object r, Object g, Object b, Object a) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
-		this.a = a;
+	this.r = r;
+	this.g = g;
+	this.b = b;
+	this.a = a;
     }
-
+    
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-		if (output == null) {
-		    return "rgba("+((Float)r).intValue()+","+((Float)g).intValue()+","+((Float)b).intValue()+","+a+")";
-		} else {
-		    return output;
-		}
+	if (output == null) {
+	    return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+	} else {
+	    return output;
+	}
     }
 }

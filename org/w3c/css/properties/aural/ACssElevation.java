@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:51:43  ylafon
+ * reorg (cvs funkyness...)
+ *
  * Revision 1.3  2005/08/08 13:18:03  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -82,11 +85,7 @@ public class ACssElevation extends ACssProperty {
 	    return;
 	} else if (val instanceof CssAngle) {
 	    float v = ((CssAngle) val).getDegree();
-	    String unit = ((CssAngle) val).getUnit();
-	    if (!unit.equals("deg")) {
-		throw new InvalidParamException("degree", null, ac);
-	    }
-	    if (v > 90 || v < -90) {
+	    if (v > 90 && v < 270) {		
 		throw new InvalidParamException("elevation.range", null, ac);
 	    }
 	    value = val;

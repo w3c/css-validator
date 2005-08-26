@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.4  2005/08/10 15:30:26  ylafon
  * error on value 0 fixed (Jean-Guilhem Rouel)
  *
@@ -188,11 +194,17 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 		
 	CssValue next = expression.getNextValue();	
 
-	if(val instanceof CssIdent) {
+	if(val instanceof CssIdent) {	    
 	    int index1 = IndexOfIdent((String) val.get());
+	    if(index1 == -1) {
+		throw new InvalidParamException("value", val, "background-position", ac);
+	    }
 	    // two keywords
-	    if(next instanceof CssIdent) {
+	    if(next instanceof CssIdent) {		
 		int index2 = IndexOfIdent((String) next.get());
+		if(index2 == -1) {
+			throw new InvalidParamException("value", next, "background-position", ac);
+		    }
 		// one is vertical, the other is vertical
 		// or the two are 'center'
 		if((isHorizontal(index1) && isVertical(index2)) ||
@@ -247,6 +259,9 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	    // a percentage/length and an keyword
 	    if(next instanceof CssIdent) {
 		int index = IndexOfIdent((String) next.get());
+		if(index == -1) {
+		    throw new InvalidParamException("value", next, "background-position", ac);
+		}
 		// the keyword must be a vertical one
 		if(isVertical(index)) {
 		    first = val;
@@ -498,12 +513,11 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	return first.equals(DefaultValue0) && second.equals(DefaultValue0);
     }
     
-    private int IndexOfIdent(String ident) throws InvalidParamException {
+    private int IndexOfIdent(String ident) {
 	int hash = ident.hashCode();
 	for (int i = 0; i < POSITION.length; i++)
 	    if (hash_values[i] == hash)
 		return i;
-	
 	return -1;
     }
     

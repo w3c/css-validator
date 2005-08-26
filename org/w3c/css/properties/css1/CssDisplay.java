@@ -7,6 +7,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.5  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -63,10 +69,10 @@ public class CssDisplay extends CssProperty {
     int value;
 
     private static String[] DISPLAY = {
-		"none", "block", "inline", "list-item", "run-in", "compact", "table-row",
-		"table-cell", "table-row-group", "table-header-group", "table-footer-group",
-		"table-column", "table-column-group", "table-caption", "ruby-text", "ruby-base",
-		"ruby-base-group", "ruby-text-group", "initial", "inherit", "inline-block", "icon"
+	"none", "block", "inline", "list-item", "run-in", "compact", "table", "table-row",
+	"table-cell", "table-row-group", "table-header-group", "table-footer-group",
+	"table-column", "table-column-group", "table-caption", "ruby-text", "ruby-base",
+	"ruby-base-group", "ruby-text-group", "initial", "inherit", "inline-block", "icon"
     };
 
     private static int[] hash_values;

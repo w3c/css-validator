@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -179,7 +185,7 @@ public class CssFontVariantCSS2 extends CssProperty implements CssFontConstantCS
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {
+    public void addToStyle(ApplContext ac, CssStyle style) {	
 	CssFontCSS2 cssFont = ((Css1Style) style).cssFontCSS2;
 	if (cssFont.fontVariant != null)
 	    style.addRedefinitionWarning(ac, this);

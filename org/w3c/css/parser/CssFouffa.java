@@ -623,8 +623,8 @@ public final class CssFouffa extends CssParser {
      * used for the output of the stylesheet
      * 
      * @param charset
-     *            the
-     * @charset rule that has been found by the parser
+     *            the @charset 
+     *            rule that has been found by the parser
      */
     public void addCharSet(String charset) {
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {

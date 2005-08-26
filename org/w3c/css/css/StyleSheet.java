@@ -242,7 +242,7 @@ public class StyleSheet {
     public void endOfRule() {
 	CssRuleList rulelist;
 	boolean useless;
-	if (!doNotAddRule) {
+	if (!doNotAddRule) {	    
 	    CssStyleRule stylerule = new CssStyleRule(indent, selectortext,
 						      properties, important);
 	    if (!atRuleList.isEmpty()) {

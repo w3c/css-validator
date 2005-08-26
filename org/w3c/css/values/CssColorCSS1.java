@@ -6,6 +6,16 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.4  2005/08/08 13:19:46  ylafon
+ * All those changed made by Jean-Guilhem Rouel:
+ *
+ * Huge patch, imports fixed (automatic)
+ * Bug fixed: 372, 920, 778, 287, 696, 764, 233
+ * Partial bug fix for 289
+ *
+ * Issue with "inherit" in CSS2.
+ * The validator now checks the number of values (extraneous values were previously ignored)
+ *
  * Revision 1.3  2004/03/30 13:04:30  ylafon
  * Fixed integer and percentage mixed values
  *
@@ -268,10 +278,11 @@ public class CssColorCSS1 extends CssColor {
 	}
 	
 	if (val instanceof CssNumber) {
-	    rgb.r = clippedValue(((Float) val.get()).intValue(), ac);
+	    CssNumber number = (CssNumber) val;
+	    rgb.r = clippedIntValue(number.getInt(), ac);   
 	    isPercent = false;
 	} else if (val instanceof CssPercentage) {
-	    rgb.r = clippedValue(((Float) val.get()).floatValue(), ac);
+	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	    isPercent = true;
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
@@ -286,15 +297,16 @@ public class CssColorCSS1 extends CssColor {
 	}
 	
 	if (val instanceof CssNumber) {
+	    CssNumber number = (CssNumber) val;
 	    if (isPercent) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.g = clippedValue(((Float) val.get()).intValue(), ac);
+	    rgb.g = clippedIntValue(number.getInt(), ac);	    
 	} else if (val instanceof CssPercentage) {
 	    if (!isPercent) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgb.g = clippedValue(((Float) val.get()).floatValue(), ac);
+	    rgb.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -311,12 +323,13 @@ public class CssColorCSS1 extends CssColor {
 	    if (isPercent) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.b = clippedValue(((Float) val.get()).intValue(), ac);
+	    rgb.b = clippedIntValue(((Float) val.get()).intValue(), ac);
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
-		throw new InvalidParamException("integer", val, ac);
+	    CssNumber number = (CssNumber) val;
+	    if (isPercent) {
+		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.b = clippedValue(((Float) val.get()).floatValue(), ac);
+	    rgb.b = clippedPercentValue(number.getInt(), ac);	    
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -386,31 +399,20 @@ public class CssColorCSS1 extends CssColor {
 	throw new InvalidParamException("value", s, "color", ac);
     }
     
-    /**
-     * Clipped an integer.
-     */  
-    private static Integer clippedValue(int val, ApplContext ac) {
-	if (val < 0 || val > 255) {
-	    ac.getFrame().addWarning("out-of-range", Integer.toString(val));
-	    return new Integer((val<0)?0:255);
-	} else {
-	    return new Integer(val);
+    private static Integer clippedIntValue(int rgb, ApplContext ac) {
+	if (rgb < 0 || rgb > 255) {
+	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
+	    return new Integer((rgb<0)?0:255);
 	}
+	else return(new Integer(rgb));
     }
     
-    /**
-     * clipped a float.
-     */  
-    private static Object clippedValue(float v, ApplContext ac) {
-	if (v < 0 || v > 100) {
-	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(v));
-	    return new Integer((v<0)?0:255);
-	} else {
-	    if (v == 0 | v == 100) {
-		return new Integer((v==0)?0:255);
-	    }
-	    return new CssPercentage(v);
+    private static Float clippedPercentValue(float p, ApplContext ac) {
+	if (p < 0. || p > 100.) {
+	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+	    return new Float((p<0.)?0.:100.);
 	}
+	else return(new Float(p));
     }
     
     /**

@@ -111,8 +111,8 @@ error.unit: %s n'est pas une unité valable.
 error.degree: La position doit être decrite en degrés
 
 # used by org.w3c.css.aural.ACssElevation
-error.elevation.range: L'élévation doit être explrimée en tant qu'angle, \
-antre '-90deg' et '90deg'.
+error.elevation.range: L'élévation doit être exprimée en tant qu'angle, \
+entre '-90deg' et '90deg'.
 
 # used by org.w3c.css.aural.ACssPitchRange
 error.range: Cette valeur est hors-limites, elle doit être comprise entre '0' et '100'.

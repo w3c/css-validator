@@ -40,7 +40,7 @@ public class RGB {
      */
     public String toString() {
 	if (output == null) {
-	    return "rgb("+r+","+g+","+b+")";
+	    return "rgb(" + r + ", " + g + ", " + b + ")";
 	} else {
 	    return output;
 	}

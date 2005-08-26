@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -177,6 +183,9 @@ public class CssBackgroundCSS1 extends CssProperty
 		throw new InvalidParamException("operator", 
 						((new Character(op)).toString()),
 						ac);
+	    }
+	    if(check && !find && val != null) {
+		throw new InvalidParamException("unrecognize", ac);
 	    }
 	}
 	/*

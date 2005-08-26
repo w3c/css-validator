@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2005/08/23 16:22:54  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.4  2005/08/08 13:18:04  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -192,12 +198,12 @@ public final class StyleSheetParser
 	
 	try {
 	    ac.setOrigin(origin);
-	    if (cssFouffa == null) {
-		cssFouffa = new CssFouffa(ac, url);
-		cssFouffa.addListener(this);
-	    } else {
-		cssFouffa.ReInit(ac, url);
-	    }
+//	    if (cssFouffa == null) {
+	    cssFouffa = new CssFouffa(ac, url);
+	    cssFouffa.addListener(this);
+//	    } else {
+//		cssFouffa.ReInit(ac, url);
+//	    }
 
 	    //	    cssFouffa.setResponse(res);
 
@@ -252,12 +258,12 @@ public final class StyleSheetParser
 	}
 	try {
 
-	    if (cssFouffa == null) {
+//	    if (cssFouffa == null) {
 		cssFouffa = new CssFouffa(ac, input, url, lineno);
 		cssFouffa.addListener(this);
-	    } else {
-		cssFouffa.ReInit(ac, input, url, lineno);
-	    } 
+//	    } else {
+//		cssFouffa.ReInit(ac, input, url, lineno);
+//	    } 
 	    
 	    //	    cssFouffa.setResponse(res);
 	    //	    cssFouffa.setDefaultMedium(defaultmedium);
@@ -324,11 +330,11 @@ public final class StyleSheetParser
 	}
 	
 	try {
-	    if (cssFouffa == null) {
+//	    if (cssFouffa == null) {
 		cssFouffa = new CssFouffa(ac, input, url, lineno);
 		cssFouffa.addListener(this);
-	    } else
-		cssFouffa.ReInit(ac, input, url, lineno);
+//	    } else
+//		cssFouffa.ReInit(ac, input, url, lineno);
 	    CssSelectors selector = new CssSelectors(ac);
 
 	    try {

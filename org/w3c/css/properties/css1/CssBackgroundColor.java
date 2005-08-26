@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.4  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -114,7 +120,8 @@ public class CssBackgroundColor extends CssProperty {
 	    if (val.equals(inherit)) {
 		color = inherit;
 		expression.next();
-	    } else {
+	    }
+	    else {
 		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
 		expression.next();
 	    }

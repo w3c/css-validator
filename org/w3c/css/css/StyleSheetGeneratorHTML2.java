@@ -172,9 +172,8 @@ CssPrinterStyle {
     }
     
     // prints the stylesheet at the screen
-    public void produceStyleSheet() {
-	
-	Vector atRules = style.newGetRules();	
+    public void produceStyleSheet() {	
+	Vector atRules = style.newGetRules();		
 	for (int idx = 0; idx < atRules.size(); idx++) {	    
 	    // out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
 	    ((CssRuleList) atRules.elementAt(idx)).toHTML(out);
@@ -437,10 +436,11 @@ CssPrinterStyle {
 			str = str.substring(lastIndexOfEntity + 3);
 			i = 0;
 		    }
-		} else if (entity.equals("selector")) {
+		} else if (entity.equals("selector")) {		    
 		    str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		} else if (entity.equals("charset")) {
+		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity+3);
 		    i = 0;
 		    out.print(style.charset);
@@ -466,7 +466,7 @@ CssPrinterStyle {
 				general.get("file-title").toString()));
 		    } else {
 			out.println(ac.getMsg().getGeneratorString("doc"));
-		    }
+		    }		    
 		} else {
 		    String value = prop.getProperty(entity);
 		    if (value != null) {
