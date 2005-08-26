@@ -84,9 +84,9 @@ public class StyleTag extends Block {
 		}
 		parserFrame.styleSheetParser
 		    .parseStyleElement(parserFrame.ac,
-				       new ByteArrayInputStream(text.getBytes()), 
+				     new ByteArrayInputStream(text.getBytes()),
 				       title, media, 
-				       parserFrame.url, line);
+				       parserFrame.getURI(), line);
 	    }
 	}
     }

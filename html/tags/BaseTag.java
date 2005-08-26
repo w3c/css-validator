@@ -80,7 +80,7 @@ public class BaseTag extends Flow {
 	    
 	    try { 
 		url = new URL(href); 
-		parserFrame.baseURL = url;
+		parserFrame.setBaseURI(url);
 	    } catch (MalformedURLException e) {
 		return; // Ignore errors
 	    }

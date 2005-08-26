@@ -28,38 +28,48 @@ import org.w3c.css.util.ApplContext;
 
 public class ParserFrame {
 
-  /**
+    /**
    * The StyleSheet generator: it is used to parse all CSS informations, 
    * and then produce the specific stylesheets (CssStyles) for given 
    * contexts.
    */
 
   //  StyleSheet styleSheet = new StyleSheet(); 
-  StyleSheetParser styleSheetParser = new StyleSheetParser(); 
+    StyleSheetParser styleSheetParser = new StyleSheetParser(); 
 
-  // needed by the CSS parser
-  ApplContext ac;
+    // needed by the CSS parser
+    ApplContext ac;
 
-  /**
+    /**
    * The URL of the HTML page currently read/parsed.
    */
-  URL url;
+    URL url = null;
 
-  /**
+    /**
    * The base URL of the HTML page to resolve all relative links.
    */
-  URL baseURL;
+    URL baseURL = null;
 
-  /**
+    /**
    * The current line number in the source file
    */
-  int line;
+    int line;
 
-  /**
+    protected void setBaseURI(URL base) {
+	this.baseURL = base;
+    }
+
+    protected URL getURI() {
+	if (baseURL != null) {
+	    return baseURL;
+	}
+	return url;
+    }
+
+    /**
    * Create a new ParserFrame
    */
 
-  public ParserFrame() { 
-  }
-
+    public ParserFrame() { 
+    }
 }
