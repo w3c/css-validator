@@ -17,7 +17,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warnings;
-import org.w3c.util.Trace;
 
 /**
  * This class manages all contextual selector.
@@ -266,7 +265,6 @@ public final class CssSelectors implements CssSelectorsConstant {
     }
     
     void addAttribute(Attribute attr) {	
-	Trace.showTrace();
 	Attribute old = (Attribute) attributes.get(attr.getName());
 	if (old != null) {	    
 	    try {
