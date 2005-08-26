@@ -284,7 +284,6 @@ public final class CssSelectors implements CssSelectorsConstant {
 	} else {	    
 	    Util.verbose("ADD : " + attr);
 	    attributes.put(attr.getName(), attr);
-	    System.out.println(attributes);
 	}
 	
     }
