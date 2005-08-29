@@ -19,7 +19,7 @@ public class HSLA {
     Object s;
     Object l;
     Object a;
-    
+
     /**
      * Create a new HSLA
      */

@@ -20,6 +20,22 @@ public class RGB {
     Object g;
     Object b;
     
+    boolean percent = false;
+    
+    /**
+     * @return Returns the percent.
+     */
+    public boolean isPercent() {
+        return percent;
+    }
+
+    /**
+     * @param percent The percent to set.
+     */
+    public void setPercent(boolean percent) {
+        this.percent = percent;
+    }
+
     /**
      * Create a new RGB
      */
@@ -40,7 +56,8 @@ public class RGB {
      */
     public String toString() {
 	if (output == null) {
-	    return "rgb(" + r + ", " + g + ", " + b + ")";
+	    String unit = (isPercent()) ? "%" : "";	    
+	    return "rgb(" + r + unit + ", " + g + unit + ", " + b + unit + ")";
 	} else {
 	    return output;
 	}

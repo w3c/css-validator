@@ -6,6 +6,24 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.5  2005/08/26 14:09:50  ylafon
+ * All changes made by Jean-Guilhem Rouel:
+ *
+ * Fix for bugs: 1269, 979, 791, 777, 776, 767, 765, 763, 576, 363
+ *
+ * Errors in font, the handling of 'transparent', CSS Parser reinits...
+ *
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=1269
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=979
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=791
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=777
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=776
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=767
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=765
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=763
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=576
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=363
+ *
  * Revision 1.4  2005/08/08 13:19:46  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -271,7 +289,6 @@ public class CssColorCSS1 extends CssColor {
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
-	boolean isPercent = false;
 	
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
@@ -280,10 +297,10 @@ public class CssColorCSS1 extends CssColor {
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
 	    rgb.r = clippedIntValue(number.getInt(), ac);   
-	    isPercent = false;
+	    rgb.setPercent(false);
 	} else if (val instanceof CssPercentage) {
 	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	    isPercent = true;
+	    rgb.setPercent(true);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -298,12 +315,12 @@ public class CssColorCSS1 extends CssColor {
 	
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgb.g = clippedIntValue(number.getInt(), ac);	    
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
+	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
 	    rgb.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -320,13 +337,13 @@ public class CssColorCSS1 extends CssColor {
 	}
 	
 	if (val instanceof CssNumber) {
-	    if (isPercent) {
+	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgb.b = clippedIntValue(((Float) val.get()).intValue(), ac);
 	} else if (val instanceof CssPercentage) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgb.b = clippedPercentValue(number.getInt(), ac);	    

@@ -18,7 +18,7 @@ public class HSL {
     Object h;
     Object s;
     Object l;
-    
+ 
     /**
      * Create a new HSL
      */

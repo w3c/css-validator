@@ -260,7 +260,6 @@ public class CssColor extends CssValue
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
-	boolean isPercent = false;
 	
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
@@ -269,10 +268,10 @@ public class CssColor extends CssValue
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;	    
 	    rgb.r = clippedIntValue(number.getInt(), ac);    
-	    isPercent = false;
+	    rgb.setPercent(false);
 	} else if (val instanceof CssPercentage) {
 	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	    isPercent = true;
+	    rgb.setPercent(true);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -287,12 +286,12 @@ public class CssColor extends CssValue
 	
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgb.g = clippedIntValue(number.getInt(), ac);
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
+	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
 	    rgb.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -310,12 +309,12 @@ public class CssColor extends CssValue
 	
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgb.b = clippedIntValue(number.getInt(), ac);	    
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
+	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
 	    rgb.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -417,17 +416,15 @@ public class CssColor extends CssValue
     throws InvalidParamException {
 	color = null;
 	rgba = new RGBA();
-	boolean isPercent = false;
-	
 	
 	CssValue val = (CssValue) exp.elementAt(0);
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;	    
 	    rgba.r = clippedIntValue(number.getInt(), ac);    
-	    isPercent = false;
+	    rgba.setPercent(false);
 	} else if (val instanceof CssPercentage) {
 	    rgba.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	    isPercent = true;
+	    rgba.setPercent(true);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
@@ -436,12 +433,12 @@ public class CssColor extends CssValue
 	
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgba.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgba.g = clippedIntValue(number.getInt(), ac);
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
+	    if (!rgba.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
 	    rgba.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -453,12 +450,12 @@ public class CssColor extends CssValue
 	
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
-	    if (isPercent) {
+	    if (rgba.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
 	    rgba.b = clippedIntValue(number.getInt(), ac);	    
 	} else if (val instanceof CssPercentage) {
-	    if (!isPercent) {
+	    if (!rgba.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
 	    rgba.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
