@@ -6,6 +6,24 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.2  2005/08/26 14:09:49  ylafon
+ * All changes made by Jean-Guilhem Rouel:
+ *
+ * Fix for bugs: 1269, 979, 791, 777, 776, 767, 765, 763, 576, 363
+ *
+ * Errors in font, the handling of 'transparent', CSS Parser reinits...
+ *
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=1269
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=979
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=791
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=777
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=776
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=767
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=765
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=763
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=576
+ * http://www.w3.org/Bugs/Public/show_bug.cgi?id=363
+ *
  * Revision 1.1  2005/08/23 16:23:12  ylafon
  * Patch by Jean-Guilhem Rouel
  *
@@ -141,7 +159,7 @@ public class CssBackgroundCSS2 extends CssProperty
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-
+	    
 	    if (val == null) {
 		break;
 	    }
@@ -168,10 +186,10 @@ public class CssBackgroundCSS2 extends CssProperty
 		}
 	    }
 	    if (!find && repeat == null) {
-		try {
-		    repeat = new CssBackgroundRepeatCSS2(ac, expression);
+		try {		    
+		    repeat = new CssBackgroundRepeatCSS2(ac, expression);		    
 		    find = true;
-		} catch (InvalidParamException e) {
+		} catch (InvalidParamException e) {		    
 		    // nothing to do, attachment will test this value
 		}
 	    }
@@ -184,8 +202,12 @@ public class CssBackgroundCSS2 extends CssProperty
 		}
 	    }
 	    if (!find && position == null) {
-		position = new CssBackgroundPositionCSS2(ac, expression);
-		find = true;
+		try {
+		    position = new CssBackgroundPositionCSS2(ac, expression);
+		    find = true;
+		} catch (InvalidParamException e) {
+		    // nothing to do
+		}
 	    }
 	    if(check && val != null && !find) {		
 		throw new InvalidParamException("unrecognize", ac);
