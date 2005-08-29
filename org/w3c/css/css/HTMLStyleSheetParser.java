@@ -85,7 +85,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 	    
 	    try {
 		boolean isXML = false;
-		String contentType;
+		String cType;
 
 		// @@ hum, maybe? (plh, yes probably :-) )
 		String credential = ac.getCredential();
@@ -104,7 +104,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		}
 		MimeType contentType = null;
 		try {
-		    contentType = new MimeTYpe(cType());
+		    contentType = new MimeType(cType);
 		} catch (MimeTypeFormatException ex) {
 		}
 		
@@ -113,7 +113,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 					contentType + ']');
 		}
 
-		if (cType.match(MimeType.TEXT_HTML) == 
+		if (contentType.match(MimeType.TEXT_HTML) == 
 		                           MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    HtmlParser htmlParser;
 		    htmlParser = new HtmlParser(ac, "html4", urlString,
