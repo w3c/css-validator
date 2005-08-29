@@ -154,6 +154,11 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		styleSheetParser.notifyErrors(ers);
 	    }
 
+	    if (href.chatAt(0) == '#') {
+		// internal style sheet, will be processed by the parser
+		return;
+	    }
+
 	    if (type != null) {
 		MimeType mt = null;
 		try {
