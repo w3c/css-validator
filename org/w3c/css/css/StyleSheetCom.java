@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.9  2005/08/23 16:22:54  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.8  2005/08/08 13:18:04  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -286,11 +292,16 @@ public class StyleSheetCom implements HtmlParserListener {
 		    URLConnection urlC = HTTPURL.getConnection(style.htmlURL, null);
 
 		    if (urlC.getContentType() != null) {
-			if (urlC.getContentType().indexOf("text/html") != -1) {
+			MimeType mt = null;
+			try {
+			    mt = new MimeType(urlC.getContentType());
+			} catch (Exception ex);
+			if (MimeType.TEXT_HTML.match(mt) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
 			    style.htmlRequest();
-			} else if (urlC.getContentType().indexOf("text/xml") != -1) {
+			} else if ((MimeType.TEXT_XML.match(mt) == MimeType.MATCH_SPECIFIC_SUBTYPE) ||
+				   (MimeType.APPLICATION_XHTML_XML..match(mt) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 			    style.xmlRequest();
-			} else if (urlC.getContentType().indexOf("text/css") != -1) {
+			} else if (MimeType.TEXT_CSS.match(mt) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
 			    style.cssRequest(selector, style.defaultmedium);
 			}
 		    } else {

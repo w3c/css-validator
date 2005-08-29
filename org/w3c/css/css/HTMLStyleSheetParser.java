@@ -21,6 +21,9 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
 
+import org.w3c.www.mime.MimeType;
+import org.w3c.www.mime.MimeTypeFormatException;
+
 /**
  * @version $Revision$
  */
@@ -95,17 +98,23 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    htmlURL = HTTPURL.getURL(htmlURL, httpCL);
 		}
 
-		contentType = connection.getContentType();
-		if (contentType == null) {
-		    contentType = "unknown";
+		cType = connection.getContentType();
+		if (cType == null) {
+		    cType = "unknown/unknown";
 		}
-		contentType = contentType.toLowerCase();
+		MimeType contentType = null;
+		try {
+		    contentType = new MimeTYpe(cType());
+		} catch (MimeTypeFormatException ex) {
+		}
+		
 		if (Util.onDebug) {
 		    System.err.println( "[DEBUG] content type is [" + 
 					contentType + ']');
 		}
 
-		if (contentType.indexOf("text/html") != -1) {
+		if (cType.match(MimeType.TEXT_HTML) == 
+		                           MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    HtmlParser htmlParser;
 		    htmlParser = new HtmlParser(ac, "html4", urlString,
 						connection);
@@ -141,18 +150,24 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    } finally {
 			Util.fromHTMLFile = false;
 		    }
-		} else if (contentType.indexOf("text/css") != -1) {
+		} else if (contentType.match(MimeType.TEXT_CSS) ==
+			                   MimeType.MATCH_SPECIFIC_SUBTYPE ) {
 		    StyleSheetParser parser = new StyleSheetParser();
 		    parser.parseURL(ac, htmlURL, null, null, media, 
 				    StyleSheetOrigin.AUTHOR);
 		    style = parser.getStyleSheet();
-		} else if ((contentType.indexOf("text/xml") == -1)
-			   && (contentType.indexOf("application/xhtml+xml") == -1)) {
+		} else if ((contentType.match(MimeType.TEXT_XML) != 
+			    MimeType.MATCH_SPECIFIC_SUBTYPE) &&
+	       	         (contentType.match(MimeType.APPLICATION_XHTML_XML) != 
+			  MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		    throw new IOException("Unknown mime type : "+ contentType);
 		}
 		
-		if ((contentType.indexOf("text/xml") != -1) || isXML
-		    || (contentType.indexOf("application/xhtml+xml") != -1)) {
+		if (isXML ||
+		    (contentType.match(MimeType.TEXT_XML) == 
+		                            MimeType.MATCH_SPECIFIC_SUBTYPE) ||
+		    (contentType.match(MimeType.APPLICATION_XHTML_XML) == 
+		                            MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		    XMLStyleSheetHandler handler;
 		    handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(urlString, connection);

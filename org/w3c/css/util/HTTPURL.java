@@ -184,14 +184,18 @@ public class HTTPURL {
 	urlC.setRequestProperty("Cache-Control", "no-cache, no-store");
 	// for the fun
 	urlC.setRequestProperty("User-Agent",
-				"Jigsaw/2.2.3 W3C_CSS_Validator_JFouffa/2.0");
+				"Jigsaw/2.2.5 W3C_CSS_Validator_JFouffa/2.0");
 	// relay authorization information
 	if (ac.getCredential() != null) {
 	    urlC.setRequestProperty("Authorization",ac.getCredential());
 	}
 	// relay languages
 	if (ac.getLang() != null) {
-	    urlC.setRequestProperty("Accept-Language",ac.getLang());
+	    if (ac.getLang().indexOf('*') == -1) {
+		urlC.setRequestProperty("Accept-Language", ac.getLang() + ",*");
+	    } else {
+		urlC.setRequestProperty("Accept-Language",ac.getLang());
+	    }
 	}
 	// should I put an Accept header?
 	urlC.setRequestProperty("Accept",

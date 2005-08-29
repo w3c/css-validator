@@ -30,6 +30,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.xml.XMLCatalog;
 import org.w3c.www.mime.MimeType;
+import org.w3c.www.mime.MimeTypeFormatException;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.EntityResolver;
@@ -153,37 +154,45 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		styleSheetParser.notifyErrors(ers);
 	    }
 
-	    if (type.equalsIgnoreCase("text/css")) {
+	    if (type != null) {
+		MimeType mt = null;
+		try {
+		    new MimeType(type);
+		} catch (Exception ex) { /* at worst, null */ };
+		if (MimeType.TEXT_CSS.match(mt) == 
+		                           MimeType.MATCH_SPECIFIC_SUBTYPE ) {
 		// we're dealing with a stylesheet...
-		URL url;
-		
-		try { 
-		    if (baseURI != null) {
-			url = new URL(baseURI, href); 
-		    } else {
-			url = new URL(href); 
+		    URL url;
+		    
+		    try { 
+			if (baseURI != null) {
+			    url = new URL(baseURI, href); 
+			} else {
+			    url = new URL(href); 
+			}
+		    } catch (MalformedURLException e) {
+			return; // Ignore errors
 		    }
-		} catch (MalformedURLException e) {
-		    return; // Ignore errors
-		}
-		
-		if (Util.onDebug) {
-		    System.err.println("[XMLStyleSheetHandler::initialize(): "
-				       + "should parse CSS url: " 
-				       + url.toString() + "]");
-		}
-		String media = (String) atts.get("media");
-		if (media == null) {
-		    media="all";
-		}
-		styleSheetParser.parseURL(ac,
-					  url, 
-					  (String) atts.get("title"),
-					  rel,
-					  media,
-					  StyleSheetOrigin.AUTHOR);
-		if (Util.onDebug) {
-		    System.err.println("[parsed!]");
+		    
+		    if (Util.onDebug) {
+			System.err.println("[XMLStyleSheetHandler::"+
+					   "initialize(): "
+					   + "should parse CSS url: " 
+					   + url.toString() + "]");
+		    }
+		    String media = (String) atts.get("media");
+		    if (media == null) {
+			media="all";
+		    }
+		    styleSheetParser.parseURL(ac,
+					      url, 
+					      (String) atts.get("title"),
+					      rel,
+					      media,
+					      StyleSheetOrigin.AUTHOR);
+		    if (Util.onDebug) {
+			System.err.println("[parsed!]");
+		    }
 		}
 	    }
 	}
@@ -231,8 +240,17 @@ public class XMLStyleSheetHandler implements ContentHandler,
 				       + "\" type=\"" + type
 				       + "\"" + "   href=\"" + href + "\"");
 		}
-		// Spif
-		if ((type != null) && !type.equalsIgnoreCase("text/css")) {
+		if (type == null) {
+		    return;
+		}
+		MimeType mt = null;
+		try {
+		    mt = new MimeType(type);
+		} catch (MimeTypeFormatException mtfe) {
+		    return;
+		}
+		if (MimeType.TEXT_CSS.match(mt) != 
+		                            MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    return;
 		}
 		if (href == null) {
@@ -243,14 +261,16 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		    }
 		    CssError er =
 			new CssError(baseURI.toString(), line,
-				     new InvalidParamException("unrecognized.link", ac));
+				                    new InvalidParamException(
+					            "unrecognized.link", ac));
 		    Errors ers = new Errors();
 		    ers.addError(er);
 		    styleSheetParser.notifyErrors(ers);
 		    return;
 		}
 	
-		if ((rel != null) && rel.toLowerCase().indexOf("stylesheet") != -1) {
+		if ((rel != null) && 
+		              rel.toLowerCase().indexOf("stylesheet") != -1) {
 		    // we're dealing with a stylesheet...
 		    // @@TODO alternate stylesheet
 		    URL url;
@@ -306,13 +326,22 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		    }
 		    CssError er =
 			new CssError(baseURI.toString(), line,
-				     new InvalidParamException("unrecognized.link", ac));
+				     new InvalidParamException(
+					             "unrecognized.link", ac));
 		    Errors ers = new Errors();
 		    ers.addError(er);
 		    styleSheetParser.notifyErrors(ers);
-		} else if (type.equals("text/css")) {		
-		    text.setLength(0);
-		    inStyle = true;
+		} else {
+		    try {
+			MimeType mt = new MimeType(type);
+			if (MimeType.TEXT_CSS.match(mt) == 
+			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
+			    text.setLength(0);
+			    inStyle = true;
+			}
+		    } catch (MimeTypeFormatException ex) {
+			// do nothing
+		    }
 		}
 	    } else if (atts.getValue("style") != null) {
 		String value = atts.getValue("style");
