@@ -5,8 +5,10 @@
 
 package org.w3c.www.mime ;
 
-import java.io.Serializable;
 import java.util.Vector;
+
+import java.io.PrintStream;
+import java.io.Serializable;
 
 /**
  * This class is used to represent parsed MIME types. 
@@ -199,10 +201,13 @@ public class MimeType implements Serializable, Cloneable {
      *    otherwise.
      */
     public boolean hasParameter (String name) {
-	if ( pnames != null ) {
-	    for (int i = 0 ; i < pnames.length ; i++) {
-		if ( pnames[i].equals(name) ) 
-		    return true ;
+	if (name != null) {
+	    if ( pnames != null ) {
+		String lname = name.toLowerCase();
+		for (int i = 0 ; i < pnames.length ; i++) {
+		    if ( pnames[i].equals(name) ) 
+			return true ;
+		}
 	    }
 	}
 	return false ;
@@ -231,10 +236,13 @@ public class MimeType implements Serializable, Cloneable {
      * @return The parameter value, or <b>null</b> if not found.
      */
     public String getParameterValue (String name) {
-	if ( pnames != null ) {
-	    for (int i = 0 ; i < pnames.length ; i++) {
-		if ( pnames[i].equals(name) ) 
-		    return pvalues[i];
+	if (name != null) {
+	    if ( pnames != null ) {
+	    String lname = name.toLowerCase();
+		for (int i = 0 ; i < pnames.length ; i++) {
+		    if ( pnames[i].equals(lname) ) 
+			return pvalues[i];
+		}
 	    }
 	}
 	return null ;
@@ -262,6 +270,9 @@ public class MimeType implements Serializable, Cloneable {
 	    System.arraycopy(values,0, nvalues, pvalues.length, values.length);
 	    pnames = nparam;
 	    pvalues = nvalues;	    
+	}
+	for (int i = 0; i < pnames.length; i++) {
+	    pnames[i] = pnames[i].toLowerCase();
 	}
 	external = null;
     }
@@ -302,13 +313,14 @@ public class MimeType implements Serializable, Cloneable {
 	if (pnames == null) {
 	    addParameter(param, value);
 	} else {
+	    String lparam = param.toLowerCase();
 	    for (int i = 0 ; i < pnames.length ; i++) {
-		if (pnames[i].equalsIgnoreCase(param)) {
+		if (pnames[i].equals(lparam)) {
 		    pvalues[i] = value;
 		    return;
 		}
 	    }
-	    addParameter(param, value);
+	    addParameter(lparam, value);
 	}
     }
 	
@@ -335,7 +347,7 @@ public class MimeType implements Serializable, Cloneable {
 	// get the type:
 	StringBuffer sb = new StringBuffer () ;
 	while ((start < strl) && ((look = spec.charAt(start)) != '/')) {
-	    sb.append ((char) look) ;
+	    sb.append (Character.toLowerCase((char) look)) ;
 	    start++ ;
 	}
 	if ( look != '/' ) 
@@ -346,7 +358,7 @@ public class MimeType implements Serializable, Cloneable {
 	sb.setLength(0) ;
 	while ((start < strl) 
 	       && ((look = spec.charAt(start)) > ' ') && (look != ';')) {
-	    sb.append ((char) look) ;
+	    sb.append (Character.toLowerCase((char) look)) ;
 	    start++ ;
 	}
 	this.subtype = sb.toString().intern() ;
@@ -400,15 +412,15 @@ public class MimeType implements Serializable, Cloneable {
 
     public MimeType (String type, String subtype
 		     , String pnames[], String pvalues[]) {
-	this.type    = type.intern() ;
-	this.subtype = subtype.intern() ;
+	this.type    = type.toLowerCase().intern() ;
+	this.subtype = subtype.toLowerCase().intern() ;
 	this.pnames  = pnames;
 	this.pvalues = pvalues;
     }
 
     public MimeType (String type, String subtype) {
-	this.type    = type.intern();
-	this.subtype = subtype.intern();
+	this.type    = type.toLowerCase().intern();
+	this.subtype = subtype.toLowerCase().intern();
     }
 
     public static void main (String args[]) {
