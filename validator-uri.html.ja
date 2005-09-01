@@ -50,6 +50,7 @@
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option selected="selected" value="css2">CSS version 2</option>
+	<option value="css21">CSS version 2.1</option>
  	<option value="css3">CSS version 3</option>
 	<option value="svg">SVG</option>
 	<option value="svgbasic">SVG basic</option>

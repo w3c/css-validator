@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -136,8 +142,36 @@ public class CssTextAlign extends CssProperty
     public CssTextAlign(ApplContext ac, CssExpression expression) 
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }
+    }        
     
+    /**
+     * @return Returns the value.
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * @param value The value to set.
+     */
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    /**
+     * @return Returns the valueString.
+     */
+    public CssValue getValueString() {
+        return valueString;
+    }
+
+    /**
+     * @param valueString The valueString to set.
+     */
+    public void setValueString(CssValue valueString) {
+        this.valueString = valueString;
+    }
+
     /**
      * Returns the value of this property
      */

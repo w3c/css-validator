@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -99,7 +105,7 @@ public class CssListStyleTypeCSS2 extends CssProperty
 	
 	if ( val instanceof CssIdent) {
 	    int hash = val.hashCode();
-	    for (int i = 0; i < LISTSTYLETYPE.length; i++)
+	    for (int i = 0; i < LISTSTYLETYPECSS2.length; i++)
 		if (hash_values[i] == hash) {
 		    value = i;
 		    expression.next();
@@ -116,10 +122,24 @@ public class CssListStyleTypeCSS2 extends CssProperty
     }
     
     /**
+     * @return Returns the value.
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * @param value The value to set.
+     */
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    /**
      * Returns the value of this property
      */
     public Object get() {
-	return LISTSTYLETYPE[value];
+	return LISTSTYLETYPECSS2[value];
     }
     
     /**
@@ -134,14 +154,14 @@ public class CssListStyleTypeCSS2 extends CssProperty
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return value == (LISTSTYLETYPE.length - 1);
+	return value == (LISTSTYLETYPECSS2.length - 1);
     }
     
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return LISTSTYLETYPE[value];
+	return LISTSTYLETYPECSS2[value];
     }
     
     /**
@@ -189,8 +209,8 @@ public class CssListStyleTypeCSS2 extends CssProperty
     }
     
     static {
-	hash_values = new int[LISTSTYLETYPE.length];
-	for (int i = 0; i < LISTSTYLETYPE.length; i++)
-	    hash_values[i] = LISTSTYLETYPE[i].hashCode();
+	hash_values = new int[LISTSTYLETYPECSS2.length];
+	for (int i = 0; i < LISTSTYLETYPECSS2.length; i++)
+	    hash_values[i] = LISTSTYLETYPECSS2[i].hashCode();
     }
 }

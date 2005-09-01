@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -171,6 +177,27 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	this(ac, expression, false);
     }
     
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssBorderLeftColorCSS2 color) {
+        this.color = color;
+    }
+
+    /**
+     * @param style The style to set.
+     */
+    public void setStyle(CssBorderLeftStyleCSS2 style) {
+        this.style = style;
+    }
+
+    /**
+     * @param width The width to set.
+     */
+    public void setWidth(CssBorderLeftWidthCSS2 width) {
+        this.width = width;
+    }
+
     /**
      * Returns the value of this property
      */

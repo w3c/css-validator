@@ -49,8 +49,6 @@ public class CssContentCSS2 extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	
 	CssValue val = expression.getValue();
-	int counter = 0;
-	char op = expression.getOperator();
 	
 	setByUser();
 	if (val.equals(inherit)) {
@@ -61,7 +59,21 @@ public class CssContentCSS2 extends CssProperty {
 	    expression.next();
 	    return;
 	}
+	
+	addContent(ac, expression);
 
+    }
+
+    /**
+     * @param ac
+     * @param expression
+     * @throws InvalidParamException
+     */
+    protected void addContent(ApplContext ac, CssExpression expression) 
+    throws InvalidParamException {
+	CssValue val = expression.getValue();
+	int counter = 0;
+	char op = expression.getOperator();
 	while ((op == CssOperator.SPACE)
 	       && (counter < expression.getCount())) {
 	    if (val instanceof CssIdent) {
@@ -167,14 +179,27 @@ public class CssContentCSS2 extends CssProperty {
 	    val = expression.getValue();
 	    op = expression.getOperator();
 	}
-
     }
     
     public CssContentCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }
+    }        
     
+    /**
+     * @return Returns the values.
+     */
+    public Vector getValues() {
+        return values;
+    }
+
+    /**
+     * @param values The values to set.
+     */
+    public void setValues(Vector values) {
+        this.values = values;
+    }
+
     /**
      * Returns the value of this property
      */

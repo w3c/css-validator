@@ -63,6 +63,7 @@
 	<option value="none">Nessun profilo particolare</option>
 	<option value="css1">CSS versione 1</option>
 	<option selected="selected" value="css2">CSS versione 2</option>
+	<option value="css21">CSS versione 2.1</option>
  	<option value="css3">CSS versione 3</option>
 	<option value="svg">SVG</option>
 	<option value="svgbasic">SVG Basic</option>

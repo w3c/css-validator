@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.4  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -78,7 +84,7 @@ public class CssBackgroundColorCSS2 extends CssProperty {
 
     CssValue color;
 
-    static CssIdent transparent = new CssIdent("transparent");
+    protected static CssIdent transparent = new CssIdent("transparent");
 
     /**
      * Create a new CssBackgroundColorCSS2
@@ -126,8 +132,15 @@ public class CssBackgroundColorCSS2 extends CssProperty {
     public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression) 
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }
+    }        
     
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssValue color) {
+        this.color = color;
+    }
+
     /**
      * Returns the value of this property
      */

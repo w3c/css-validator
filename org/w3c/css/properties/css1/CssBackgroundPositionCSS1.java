@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/08/29 09:52:21  ylafon
+ * Jean-Guilhem Rouel: Fixes issues with the background property
+ *
  * Revision 1.2  2005/08/26 14:09:49  ylafon
  * All changes made by Jean-Guilhem Rouel:
  *
@@ -199,17 +202,7 @@ implements CssBackgroundConstants, CssOperator {
 	    throw new  InvalidParamException("operator", 
 		    ((new Character(op)).toString()),
 		    ac);
-	
-	if (val.equals(inherit)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    first = inherit;
-	    second = inherit;
-	    expression.next();
-	    return;
-	}
-	
+
 	CssValue next = expression.getNextValue();	
 	
 	if(val instanceof CssIdent) {

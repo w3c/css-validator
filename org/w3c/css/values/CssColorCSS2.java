@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.6  2005/08/29 12:36:47  ylafon
+ * refined error message for RGB value checks
+ *
  * Revision 1.5  2005/08/26 14:09:50  ylafon
  * All changes made by Jean-Guilhem Rouel:
  *
@@ -414,7 +417,7 @@ public class CssColorCSS2 extends CssColor {
 	}
 	
 	throw new InvalidParamException("value", s, "color", ac);
-    }    
+    }
     
     private static Integer clippedIntValue(int rgb, ApplContext ac) {
 	if (rgb < 0 || rgb > 255) {

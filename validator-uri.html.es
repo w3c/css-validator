@@ -76,6 +76,7 @@
 	<option value="none">Ninguno en especial</option>
 	<option value="css1">CSS versión 1</option>
 	<option selected="selected" value="css2">CSS versión 2</option>
+	<option value="css21">CSS versión 2.1</option>
  	<option value="css3">CSS versión 3</option>
 	<option value="svg">SVG</option>
 	<option value="svgbasic">SVG Básico</option>

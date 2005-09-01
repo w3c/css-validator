@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -175,6 +181,48 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
 	this(ac, expression,false);
     }
     
+    /**
+     * @return Returns the color.
+     */
+    public CssBorderTopColorCSS2 getColor2() {
+        return color;
+    }
+
+    /**
+     * @return Returns the style.
+     */
+    public CssBorderTopStyleCSS2 getStyle2() {
+        return style;
+    }
+
+    /**
+     * @return Returns the width.
+     */
+    public CssBorderTopWidthCSS2 getWidth2() {
+        return width;
+    }
+
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssBorderTopColorCSS2 color) {
+        this.color = color;
+    }
+
+    /**
+     * @param style The style to set.
+     */
+    public void setStyle(CssBorderTopStyleCSS2 style) {
+        this.style = style;
+    }
+
+    /**
+     * @param width The width to set.
+     */
+    public void setWidth(CssBorderTopWidthCSS2 width) {
+        this.width = width;
+    }
+
     /**
      * Returns the value of this property
      */

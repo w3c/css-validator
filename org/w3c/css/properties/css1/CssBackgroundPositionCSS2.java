@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/08/29 09:52:21  ylafon
+ * Jean-Guilhem Rouel: Fixes issues with the background property
+ *
  * Revision 1.2  2005/08/26 14:09:49  ylafon
  * All changes made by Jean-Guilhem Rouel:
  *
@@ -238,26 +241,9 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 		else {
 		    first = val;
 		}
-	    }
-	    // a keyword and a percentage/length
-	    else if(next instanceof CssLength || next instanceof CssPercentage
-		    || next instanceof CssNumber) {
-		if(isHorizontal(index1)) {
-		    if(next instanceof CssNumber) {
-			next = ((CssNumber) next).getLength();
-		    }
-		    first = val;
-		    second = next;
-		}
-		// if the keyword is the first value, it can only be an 
-		// horizontal one 
-		else {
-		    throw new InvalidParamException("incompatible",
-			    val, next, ac);
-		}
-	    }
+	    }	    
 	    // only one value
-	    else if(next == null) {
+	    else if(next == null || !check) {
 		first = val;
 	    }
 	    // the second value is invalid
@@ -265,35 +251,13 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 		throw new InvalidParamException("value", next, 
 			getPropertyName(), ac);
 	    }
-	    else {
-		first = val;
-	    }
 	}
 	else if(val instanceof CssLength || val instanceof CssPercentage ||
 		val instanceof CssNumber) {
 	    if(val instanceof CssNumber) {
 		val = ((CssNumber) val).getLength();
 	    }
-	    // a percentage/length and an keyword
-	    if(next instanceof CssIdent) {
-		int index = IndexOfIdent((String) next.get());
-		if(check && index == -1) {
-		    throw new InvalidParamException("value", next, "background-position", ac);
-		}
-		// the keyword must be a vertical one
-		if(isVertical(index)) {
-		    first = val;
-		    second = next;
-		}
-		else if(check) {
-		    throw new InvalidParamException("incompatible",
-			    val, next, ac);
-		}
-		else {
-		    first = val;
-		}
-	    }
-	    else if(next instanceof CssLength || next instanceof CssPercentage
+	    if(next instanceof CssLength || next instanceof CssPercentage
 		    || next instanceof CssNumber) {
 		if(next instanceof CssNumber) {
 		    next = ((CssNumber) next).getLength();
@@ -308,7 +272,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 		throw new InvalidParamException("incompatible", val, next, ac);
 	    }
 	}
-	else if(check){
+	else if(check) {
 	    throw new InvalidParamException("value", expression.getValue(), 
 		    getPropertyName(), ac);
 	}
@@ -400,12 +364,12 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	}*/	
     }
     
-    private boolean isHorizontal(int index) {
+    protected boolean isHorizontal(int index) {
 	return index == POSITION_LEFT || index == POSITION_RIGHT ||
 		index == POSITION_CENTER;
     }
     
-    private boolean isVertical(int index) {
+    protected boolean isVertical(int index) {
 	return index == POSITION_TOP || index == POSITION_BOTTOM ||
 	index == POSITION_CENTER;
     }
@@ -415,6 +379,34 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	this(ac, expression, false);
     }
     
+    /**
+     * @return Returns the first.
+     */
+    public CssValue getFirst() {
+        return first;
+    }
+
+    /**
+     * @param first The first to set.
+     */
+    public void setFirst(CssValue first) {
+        this.first = first;
+    }
+
+    /**
+     * @return Returns the second.
+     */
+    public CssValue getSecond() {
+        return second;
+    }
+
+    /**
+     * @param second The second to set.
+     */
+    public void setSecond(CssValue second) {
+        this.second = second;
+    }
+
     /**
      * Returns the value of this property
      */
@@ -531,7 +523,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	return first.equals(DefaultValue0) && second.equals(DefaultValue0);
     }
     
-    private int IndexOfIdent(String ident) {
+    protected int IndexOfIdent(String ident) {
 	int hash = ident.hashCode();
 	for (int i = 0; i < POSITION.length; i++)
 	    if (hash_values[i] == hash)

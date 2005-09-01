@@ -6,6 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.3  2005/08/29 09:52:21  ylafon
+ * Jean-Guilhem Rouel: Fixes issues with the background property
+ *
  * Revision 1.2  2005/08/26 14:09:49  ylafon
  * All changes made by Jean-Guilhem Rouel:
  *
@@ -238,8 +241,92 @@ public class CssBackgroundCSS2 extends CssProperty
     public CssBackgroundCSS2(ApplContext ac, CssExpression expression) 
 	throws InvalidParamException {
 	this(ac, expression, false);
+    }        
+    
+    /**
+     * @return Returns the attachment.
+     */
+    public CssBackgroundAttachmentCSS2 getAttachment() {
+        return attachment;
+    }
+
+    /**
+     * @param attachment The attachment to set.
+     */
+    public void setAttachment(CssBackgroundAttachmentCSS2 attachment) {
+        this.attachment = attachment;
+    }
+
+    /**
+     * @return Returns the image.
+     */
+    public CssBackgroundImageCSS2 getImage() {
+        return image;
+    }
+
+    /**
+     * @param image The image to set.
+     */
+    public void setImage(CssBackgroundImageCSS2 image) {
+        this.image = image;
+    }
+
+    /**
+     * @return Returns the repeat.
+     */
+    public CssBackgroundRepeatCSS2 getRepeat() {
+        return repeat;
+    }
+
+    /**
+     * @param repeat The repeat to set.
+     */
+    public void setRepeat(CssBackgroundRepeatCSS2 repeat) {
+        this.repeat = repeat;
+    }
+
+    /**
+     * @return Returns the same.
+     */
+    public boolean isSame() {
+        return same;
+    }
+
+    /**
+     * @param same The same to set.
+     */
+    public void setSame(boolean same) {
+        this.same = same;
+    }
+
+    /**
+     * Returns the color
+     */
+    public final CssBackgroundColorCSS2 getColor2() {
+	return color;
     }
     
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssBackgroundColorCSS2 color) {
+        this.color = color;
+    }
+
+    /**
+     * @return Returns the position.
+     */
+    public CssBackgroundPositionCSS2 getPosition() {
+        return position;
+    }
+
+    /**
+     * @param position The position to set.
+     */
+    public void setPosition(CssBackgroundPositionCSS2 position) {
+        this.position = position;
+    }
+
     /**
      * Returns the value of this property
      */

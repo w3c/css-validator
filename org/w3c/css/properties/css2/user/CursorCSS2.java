@@ -103,8 +103,50 @@ public class CursorCSS2 extends CssProperty
     public CursorCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }
+    }    
     
+    /**
+     * @return Returns the uris.
+     */
+    public Vector getUris() {
+        return uris;
+    }
+
+    /**
+     * @param uris The uris to set.
+     */
+    public void setUris(Vector uris) {
+        this.uris = uris;
+    }
+
+    /**
+     * @return Returns the value.
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * @param value The value to set.
+     */
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    /**
+     * @return Returns the inheritedValue.
+     */
+    public boolean isInheritedValue() {
+        return inheritedValue;
+    }
+
+    /**
+     * @param inheritedValue The inheritedValue to set.
+     */
+    public void setInheritedValue(boolean inheritedValue) {
+        this.inheritedValue = inheritedValue;
+    }
+
     /**
      * Returns the value of this property
      */

@@ -6,6 +6,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 /*
  * $Log$
+ * Revision 1.1  2005/08/23 16:23:12  ylafon
+ * Patch by Jean-Guilhem Rouel
+ *
+ * Better handling of media and properties files
+ * Major reorganization of those properties files
+ *
  * Revision 1.3  2005/08/08 13:18:12  ylafon
  * All those changed made by Jean-Guilhem Rouel:
  *
@@ -210,6 +216,62 @@ public class CssListStyleCSS2 extends CssProperty implements CssOperator {
 	this(ac, expression, false);
     }
     
+    /**
+     * @return Returns the inheritedValue.
+     */
+    public boolean isInheritedValue() {
+        return inheritedValue;
+    }
+
+    /**
+     * @param inheritedValue The inheritedValue to set.
+     */
+    public void setInheritedValue(boolean inheritedValue) {
+        this.inheritedValue = inheritedValue;
+    }
+
+    /**
+     * @return Returns the listStyleImage.
+     */
+    public CssListStyleImageCSS2 getListStyleImage() {
+        return listStyleImage;
+    }
+
+    /**
+     * @param listStyleImage The listStyleImage to set.
+     */
+    public void setListStyleImage(CssListStyleImageCSS2 listStyleImage) {
+        this.listStyleImage = listStyleImage;
+    }
+
+    /**
+     * @return Returns the listStylePosition.
+     */
+    public CssListStylePositionCSS2 getListStylePosition() {
+        return listStylePosition;
+    }
+
+    /**
+     * @param listStylePosition The listStylePosition to set.
+     */
+    public void setListStylePosition(CssListStylePositionCSS2 listStylePosition) {
+        this.listStylePosition = listStylePosition;
+    }
+
+    /**
+     * @return Returns the listStyleType.
+     */
+    public CssListStyleTypeCSS2 getListStyleType() {
+        return listStyleType;
+    }
+
+    /**
+     * @param listStyleType The listStyleType to set.
+     */
+    public void setListStyleType(CssListStyleTypeCSS2 listStyleType) {
+        this.listStyleType = listStyleType;
+    }
+
     /**
      * Returns the value of this property
      */
