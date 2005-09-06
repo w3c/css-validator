@@ -201,7 +201,7 @@ public class HTTPURL {
 	urlC.setRequestProperty("Accept",
 				"text/css,text/html,text/xml,"
 				+"application/xhtml+xml,application/xml,"
-				+"image/svg+xml,*/*;q=0");
+				+"image/svg+xml,*/*;q=0.1");
 	
 	urlC.connect();
 	
