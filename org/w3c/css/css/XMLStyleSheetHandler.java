@@ -164,8 +164,8 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		try {
 		    new MimeType(type);
 		} catch (Exception ex) { /* at worst, null */ };
-		if (MimeType.TEXT_CSS.match(mt) == 
-		                           MimeType.MATCH_SPECIFIC_SUBTYPE ) {
+		if (mt != null && (MimeType.TEXT_CSS.match(mt) == 
+		                           MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		// we're dealing with a stylesheet...
 		    URL url;
 		    
