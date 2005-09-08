@@ -4,39 +4,10 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2005/08/08 13:19:47  ylafon
- * All those changed made by Jean-Guilhem Rouel:
- *
- * Huge patch, imports fixed (automatic)
- * Bug fixed: 372, 920, 778, 287, 696, 764, 233
- * Partial bug fix for 289
- *
- * Issue with "inherit" in CSS2.
- * The validator now checks the number of values (extraneous values were previously ignored)
- *
- * Revision 1.2  2002/04/08 21:19:46  plehegar
- * New
- *
- * Revision 2.1  1997/08/08 15:53:05  plehegar
- * Nothing
- *
- * Revision 1.3  1997/07/30 13:19:34  plehegar
- * Updated package
- *
- * Revision 1.2  1997/07/23 21:01:29  plehegar
- * Added getLength()
- *
- * Revision 1.1  1997/07/16 13:58:16  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 
 /**
  * A CSS float number.
@@ -58,12 +29,12 @@ public class CssNumber extends CssValue implements CssValueFloat {
     /**
      * Create a new CssNumber
      */
-    public CssNumber(ApplContext ac, float value) {
+    public CssNumber(ApplContext ac, float value) {	
 	this.ac = ac;
 	this.value = new Float(value);
     }    
     
-    public CssNumber(float value) {
+    public CssNumber(float value) {	
 	this.value = new Float(value);
     }
 
@@ -73,7 +44,7 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @param s     the string representation of the frequency.
      * @param frame For errors and warnings reports.
      */  
-    public void set(String s, ApplContext ac) {
+    public void set(String s, ApplContext ac) {		
 	try {
 	    new Integer(s);	    
 	    isInt = true;
@@ -91,6 +62,9 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * Returns the value
      */  
     public Object get() {
+	if(isInt) {
+	    return new Integer(value.intValue());
+	}
 	return value;
     }
 
@@ -195,8 +169,11 @@ public class CssNumber extends CssValue implements CssValueFloat {
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
-	return Util.displayFloat(value);
+    public String toString() {
+	if(isInt) {
+	    return value.intValue() + "";
+	}
+	return value.toString();
     }
     
     /**

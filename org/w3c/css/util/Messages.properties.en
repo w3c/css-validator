@@ -155,6 +155,7 @@ error.id: ID selector #%s is invalid ! Only one ID selector can be specified in 
 error.space: If the attribute selector ~= is used, the word in the value %s must not contain spaces.
 error.todo : Sorry the feature %s is not implemented yet.
 error.incompatible: %s and %s are incompatible
+warning.incompatible: %s and %s are incompatible
 error.notformobile : %s can not be used with mobile profile
 error.notforatsc : %s can not be used with ATSC profile
 error.notfortv : %s can not be used with TV profile
@@ -192,6 +193,23 @@ parser.old_class:In CSS1, a class name could start with a digit (".55ft"), \
 unless it was a dimension (".55in"). In CSS2, such classes are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
 servlet.invalid-request: You have send an invalid request.

@@ -4,45 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2005/07/12 14:47:55  ylafon
- * Utf8 properties (Jean-Guilhem Rouel)
- *
- * Revision 1.2  2002/04/08 21:16:38  plehegar
- * New
- *
- * Revision 1.2  1998/02/25 09:25:40  plehegar
- * Freeze
- *
- * Revision 1.1  1998/01/08 18:46:51  plehegar
- * Initial revision
- *
- * Revision 3.2  1997/09/09 12:42:01  plehegar
- * Updates
- *
- * Revision 3.1  1997/08/29 13:23:27  plehegar
- * Freeze
- *
- * Revision 1.6  1997/08/22 14:55:24  plehegar
- * Updated
- *
- * Revision 1.5  1997/08/21 07:28:55  plehegar
- * Added StyleSheet
- *
- * Revision 1.4  1997/08/20 14:14:10  plehegar
- * Added context and property in CssErrorToken
- *
- * Revision 1.3  1997/08/20 13:15:31  plehegar
- * Added HTMl design by Thierry Kormann
- *
- * Revision 1.2  1997/08/20 11:42:10  plehegar
- * Freeze
- *
- * Revision 1.1  1997/08/11 08:05:33  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.css;
 
 import java.io.FileNotFoundException;

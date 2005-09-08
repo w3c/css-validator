@@ -4,40 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2005/08/08 13:18:54  ylafon
- * All those changed made by Jean-Guilhem Rouel:
- *
- * Huge patch, imports fixed (automatic)
- * Bug fixed: 372, 920, 778, 287, 696, 764, 233
- * Partial bug fix for 289
- *
- * Issue with "inherit" in CSS2.
- * The validator now checks the number of values (extraneous values were previously ignored)
- *
- * Revision 1.1  2002/07/19 20:30:12  sijtsche
- * files representing CSS3 properties
- *
- * Revision 1.1  2002/05/08 09:30:52  dejong
- * CSS version 3 specific properties as in March 2002, all modules
- *
- * Revision 3.1  1997/08/29 13:13:55  plehegar
- * Freeze
- *
- * Revision 1.4  1997/08/20 11:41:26  plehegar
- * Freeze
- *
- * Revision 1.3  1997/08/06 17:30:11  plehegar
- * Updated set, now it's a constructor
- *
- * Revision 1.2  1997/07/30 13:20:10  plehegar
- * Updated package
- *
- * Revision 1.1  1997/07/24 00:08:17  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;

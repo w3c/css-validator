@@ -9,7 +9,6 @@ package org.w3c.css.parser;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.StringTokenizer;
 import java.util.Vector;
 

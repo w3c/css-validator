@@ -4,24 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2002/04/08 21:19:15  plehegar
- * New
- *
- * Revision 2.1  1997/08/08 15:53:08  plehegar
- * Nothing
- *
- * Revision 1.3  1997/08/06 08:19:44  plehegar
- * Added extends ParseError
- *
- * Revision 1.2  1997/07/30 13:19:37  plehegar
- * Updated package
- *
- * Revision 1.1  1997/07/23 14:16:06  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.util;
 
 

@@ -4,33 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2002/04/08 21:19:46  plehegar
- * New
- *
- * Revision 2.2  1997/08/20 11:38:36  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/08 15:53:04  plehegar
- * Nothing
- *
- * Revision 1.5  1997/07/30 13:19:33  plehegar
- * Updated package
- *
- * Revision 1.4  1997/07/24 00:20:45  plehegar
- * Added equals()
- *
- * Revision 1.3  1997/07/22 12:36:08  plehegar
- * Updated hashCode() Added toLowerCase()
- *
- * Revision 1.2  1997/07/16 15:12:32  plehegar
- * Added hashCode()
- *
- * Revision 1.1  1997/07/16 13:58:34  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;

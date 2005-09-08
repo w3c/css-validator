@@ -4,24 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2003/07/02 14:39:50  plehegar
- * Removed HttpServletResponse import
- *
- * Revision 1.2  2002/04/08 21:24:12  plehegar
- * New
- *
- * Revision 2.1  1997/08/08 15:50:53  plehegar
- * Freeze
- *
- * Revision 1.2  1997/07/30 13:20:34  plehegar
- * Updated package
- *
- * Revision 1.1  1997/07/28 21:35:52  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.parser;
 
 import java.util.Vector;

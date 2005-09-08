@@ -184,11 +184,7 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 		} else {
 		    CssValue next = expression.getNextValue();
 
-		    if(manyValues && next != null && next.equals(inherit)) {
-			throw new InvalidParamException("unrecognize", ac);
-		    }
-		    
-		    if (next instanceof CssIdent) {
+		    if (next != null) {
 			CssIdent New = new CssIdent(val.get() + " "
 						    + next.get());
 			withSpace = true;

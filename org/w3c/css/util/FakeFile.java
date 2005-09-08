@@ -4,12 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2002/04/08 21:19:15  plehegar
- * New
- *
- */
 package org.w3c.css.util;
 
 import java.io.ByteArrayInputStream;

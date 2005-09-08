@@ -663,7 +663,7 @@ public final class CssFouffa extends CssParser {
      *            a list of one or more selectors to be added to the output
      *            stylesheet
      */
-    public void setSelectorList(Vector selectors) {
+    public void setSelectorList(Vector selectors) {	
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 	    ((CssValidatorListener) e.nextElement()).setSelectorList(selectors);
 	}

@@ -122,6 +122,7 @@ error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普�
 error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
 error.todo : 抱歉，特性 %s 还不能支持
 error.incompatible: %s 和 %s 不兼容
+warning.incompatible: %s 和 %s 不兼容
 
 error.media: 不能识别的媒体 %s 
 error.page: 不能职别的伪命名页 %s
@@ -154,6 +155,23 @@ parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
 除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
 被解释为不识别的尺寸值(以允许将来加入新的单位)
 
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
 servlet.invalid-request: 你发出了无效的请求

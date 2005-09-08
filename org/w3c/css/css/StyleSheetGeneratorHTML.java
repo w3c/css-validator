@@ -4,20 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2005/07/12 14:47:55  ylafon
- * Utf8 properties (Jean-Guilhem Rouel)
- *
- * Revision 1.2  2002/05/19 04:16:31  plehegar
- * Replaced the email address
- *
- * Revision 1.1  2002/03/13 19:55:01  plehegar
- * New
- *
- *
- * @@HACK
- */
+
 package org.w3c.css.css;
 
 import java.io.FileNotFoundException;

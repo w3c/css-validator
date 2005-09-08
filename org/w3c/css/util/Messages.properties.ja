@@ -136,6 +136,7 @@ error.space: 属性セレクタ (attriubte selector) ~= が用いられている
 値 %s の中の語は空白文字を含む事はできません
 error.todo : 申し訳ありませんが、feature %s はまだ実装されていません
 error.incompatible: %s と %s は互換性がありません
+warning.incompatible: %s と %s は互換性がありません
 
 error.media: 認識できないメディア %s が指定されています
 error.page: 認識できない疑似名前付きページ(psuedo named page) %s が指定されています
@@ -168,6 +169,24 @@ parser.semi-colon: プロパティ名の前にセミコロン(;)を追加して�
 
 parser.old_class: CSS1では、 dimension (".55in") でない限り、クラス名は数値 (".55ft") から始まる事ができます。\
 CSS2では、このようなクラスは未知の dimension として解析されます。(これは、将来新しい単位が追加される可能性を保つためです)
+
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
 servlet.invalid-request: 正しいリクエストではありません

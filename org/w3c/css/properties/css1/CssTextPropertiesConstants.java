@@ -4,27 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.5  2002/08/20 08:50:39  sijtsche
- * value initial added
- *
- * Revision 1.4  2002/08/20 08:42:10  sijtsche
- * new values added
- *
- * Revision 1.3  2002/08/19 07:40:17  sijtsche
- * new values added
- *
- * Revision 1.2  2002/04/08 21:17:44  plehegar
- * New
- *
- * Revision 1.2  1997/07/30 13:20:21  plehegar
- * Updated package
- *
- * Revision 1.1  1997/07/24 01:39:42  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.properties.css1;
 
 /**

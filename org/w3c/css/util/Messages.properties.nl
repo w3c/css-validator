@@ -142,6 +142,7 @@ error.id: ID selector #%s is ongeldig ! Slechts een ID selector kan worden gespe
 error.space: Als de attribuut selector ~= wordt gebruikt mag het woord in de waarde %s geen spaties bevatten.
 error.todo : Sorry de feature %s is nog niet geimplementeerd.
 error.incompatible: %s en %s zijn incompatible
+warning.incompatible: %s en %s zijn incompatible
 
 error.media: onbekende media %s 
 error.page: onbekende pseudo genaamde pagina %s
@@ -174,6 +175,23 @@ parser.old_class:In CSS1 kon een class naam beginnen met een getal (".55ft"), \
 tenzij het een dimensie was (".55in"). In CSS2 worden zulke classes geparsed als \
 onbekende dimensions (dit maakt het mogelijk later nieuwe units toe te voegen)
 
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # gebruikt door de servlet
 servlet.invalid-request: U hebt een ongeldig verzoek ingediend.

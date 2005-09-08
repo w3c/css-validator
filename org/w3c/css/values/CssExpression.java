@@ -4,24 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 2.2  1997/08/20 11:38:22  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/08 15:53:03  plehegar
- * Nothing
- *
- * Revision 1.8  1997/07/30 13:19:33  plehegar
- * Updated package
- *
- * Revision 1.7  1997/07/18 20:25:36  plehegar
- * Suppress a bug in getNMextValue and setOperator()
- *
- * Revision 1.6  1997/07/17 21:28:49  plehegar
- * new CssExpression, old was very bad
- *
- */
 package org.w3c.css.values;
 
 import java.util.Vector;

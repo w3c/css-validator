@@ -4,37 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/**
- * $Log$
- * Revision 1.3  2005/08/08 13:18:04  ylafon
- * All those changed made by Jean-Guilhem Rouel:
- *
- * Huge patch, imports fixed (automatic)
- * Bug fixed: 372, 920, 778, 287, 696, 764, 233
- * Partial bug fix for 289
- *
- * Issue with "inherit" in CSS2.
- * The validator now checks the number of values (extraneous values were previously ignored)
- *
- * Revision 1.2  2002/04/08 21:16:38  plehegar
- * New
- *
- * Revision 1.5  1997/08/26 14:25:19  plehegar
- * Optimized
- *
- * Revision 1.4  1997/08/25 14:06:21  plehegar
- * Minor bug line 35
- *
- * Revision 1.3  1997/08/25 12:50:23  plehegar
- * Bug
- *
- * Revision 1.2  1997/08/22 16:37:56  plehegar
- * Updated
- *
- * Revision 1.1  1997/08/22 14:53:56  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.css;
 
 import java.util.Enumeration;
@@ -144,10 +114,9 @@ public final class CssCascadingOrder {
      */
     public CssProperty order(CssProperty property, 
 			     StyleSheet style, CssSelectors selector) {
-	int i = 0;
+	//int i = 0;
 	propertyData = new CssProperty[10];
 	propertyCount = 0;
-	
 	Util.verbose("CASCADING ORDER " + property.getPropertyName()
 		     + " in " + selector);
 
@@ -158,7 +127,7 @@ public final class CssCascadingOrder {
 	    
 	    Util.verbose("######## test with " + context
 			 + " and " + selector);
-	    //	    if (!selector.equals(context) && context.canApply(selector)) {
+	    //	    if (!selector.equals(context) && context.canApply(selector)) {	    
 	    if (context.canApply(selector)) {
 		// here, don't try to resolve
 		CssProperty prop = 

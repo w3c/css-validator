@@ -2,39 +2,59 @@
 package org.w3c.css.parser.analyzer;
 
 import java.io.InputStream;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.Vector;
+import java.util.Enumeration;
+import java.net.URL;
 
-import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleFontFace;
-import org.w3c.css.parser.AtRuleMedia;
-import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRulePhoneticAlphabet;
-import org.w3c.css.parser.AtRulePreference;
-import org.w3c.css.parser.CssError;
-import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.css1.CssProperty;
-import org.w3c.css.properties.svg.AtRuleColorProfile;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
-import org.w3c.css.values.CssAngle;
-import org.w3c.css.values.CssDate;
+import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssFrequency;
-import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssColor;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssResolution;
-import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;
-import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssDate;
+import org.w3c.css.values.CssAngle;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssResolution;
+import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.parser.Frame;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.parser.CssParseException;
+import org.w3c.css.parser.AtRule;
+import org.w3c.css.parser.AtRuleMedia;
+import org.w3c.css.parser.AtRuleFontFace;
+import org.w3c.css.parser.AtRulePage;
+import org.w3c.css.parser.AtRulePreference;
+import org.w3c.css.parser.AtRulePhoneticAlphabet;
+import org.w3c.css.properties.svg.AtRuleColorProfile;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.util.Messages;
+import org.w3c.css.css.StyleSheetCom;
+
+import org.w3c.css.selectors.AdjacentSelector;
+import org.w3c.css.selectors.AttributeSelector;
+import org.w3c.css.selectors.ChildSelector;
+import org.w3c.css.selectors.ClassSelector;
+import org.w3c.css.selectors.DescendantSelector;
+import org.w3c.css.selectors.IdSelector;
+import org.w3c.css.selectors.TypeSelector;
+import org.w3c.css.selectors.UniversalSelector;
+import org.w3c.css.selectors.attributes.AttributeAny;
+import org.w3c.css.selectors.attributes.AttributeBegin;
+import org.w3c.css.selectors.attributes.AttributeExact;
+import org.w3c.css.selectors.attributes.AttributeOneOf;
+import org.w3c.css.selectors.attributes.AttributeStart;
+import org.w3c.css.selectors.attributes.AttributeSubstr;
+import org.w3c.css.selectors.attributes.AttributeSuffix;
 
 /**
  * A CSS3 parser  
@@ -247,7 +267,8 @@ public abstract class CssParser implements CssParserConstants {
             if (ac.getCssVersion().equals("css1") && (n.image).equals("inherit")) {
 
                 incompatible_error = true;
-            }            
+            }
+
             if (n.kind == CssParserConstants.IDENT) {
                 v.set( convertIdent(operator+n.image).trim(), ac);
             } else if (n.kind == CssParserConstants.STRING) {
@@ -1374,11 +1395,11 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void atRuleDeclaration() throws ParseException {
-    Token n;
-    n = jj_consume_token(ATKEYWORD);    	
+ Token n;
+    n = jj_consume_token(ATKEYWORD);
         //ac.getFrame().addWarning("at-rule", token.toString());
         ac.getFrame().addError(
-        	new CssError(new InvalidParamException("at-rule", token, ac)));
+                new CssError(new InvalidParamException("at-rule", token, ac)));
         skipStatement();
   }
 
@@ -1769,7 +1790,18 @@ char connector = ' ';
                             {if (true) throw new InvalidParamException("nocomb", "~", ac);}
                       }
                   }
-                current.setConnector(comb);
+                  switch(comb) {
+                  case '+':
+                      current.addAdjacent(new AdjacentSelector());
+                      break;
+                  case '>':
+                      current.addChild(new ChildSelector());
+                      break;
+                  default:
+                      current.addDescendant(new DescendantSelector());
+                  }
+                //current.setConnector(comb); 
+
         current = simple_selector(current);
       }
       label_62:
@@ -2161,8 +2193,9 @@ char connector = ' ';
       /*  "." n=<IDENT> { */
           n = jj_consume_token(CLASS);
       try {
-          s.addAttribute("class", convertIdent(n.image.substring(1)),
-             CssSelectors.ATTRIBUTE_CLASS_SEL);
+          s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
+//        s.addAttribute("class", convertIdent(n.image.substring(1)),
+//           CssSelectors.ATTRIBUTE_CLASS_SEL);
       } catch (InvalidParamException e) {
              removeThisRule();
              ac.getFrame().addError(new CssError(e));
@@ -2178,33 +2211,55 @@ char connector = ' ';
     case DIMEN:
       n = deprecated_class();
       if (n.image.charAt(0) == '.') {
-          n.image = n.image.substring(1);
+n.image = n.image.substring(1);
+
+          // the class with the first digit escaped
           String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
-          int len = n.image.length();
-          if (len != 1) {
-              int i = 1;
-              do {
-                  char c = n.image.charAt(i);
-                  if (((c <= 9) && (c >= -1))
-                      || ((c <= 'f') && (c >= 'a'))
-                      || ((c <= 'F') && (c >= 'A'))) {
-                      cl += "\\" + Integer.toString(c, 16);
-                  } else {
-                      break;
-                  }
-              } while (++i < len);
-              if (i < len) {
-                  cl += n.image.substring(i);
-              }
+          cl += n.image.substring(1);
+
+          String profile = ac.getProfile();
+          if(profile == null || profile.equals("")) {
+              profile = ac.getCssVersion();
           }
-          addError(new ParseException(ac.getMsg().getString("parser.old_class")),
-                   "To make \"." + n.image + "\" a valid class, CSS2 requires"
-                   + " the first digit to be escaped (\"." + cl + "\")");
-          try {
-                s.addAttribute("class", cl, CssSelectors.ATTRIBUTE_ONE_OF);
-          } catch (InvalidParamException e) {
-                removeThisRule();
-                ac.getFrame().addError(new CssError(e));
+
+          if(!profile.equals("css1")) {
+              addError(new ParseException(ac.getMsg().getString(
+                      "parser.old_class")),
+                      "To make \"." + n.image + "\" a valid class, CSS2" +
+                      " requires the first digit to be escaped " +
+                      "(\"." + cl + "\")");
+              s.addClass(new ClassSelector(n.image));
+              removeThisRule();
+          }
+          else {
+              CssLength length = new CssLength();
+              boolean isLength = false;
+              try {
+                  length.set(n.image, ac);
+                  isLength = true;
+              }
+              catch(Exception e) {
+                  System.out.println("CssParser._class(): " + e.getClass());
+                  isLength = false;
+              }
+              if(isLength) {
+                  addError(new ParseException(ac.getMsg().getString(
+                  "parser.class_dim")), n.image);
+                  s.addClass(new ClassSelector(n.image));
+                  removeThisRule();
+              }
+              else {
+                  try {
+                      // for css > 1, we add the rule to have a context, 
+                      // and we then remove it
+                      s.addClass(new ClassSelector(n.image));
+
+                      ac.getFrame().addWarning("old_class");
+                  } catch (InvalidParamException e) {
+                      ac.getFrame().addError(new CssError(e));
+                      removeThisRule();
+                  }
+              }
           }
       } else {
           {if (true) throw new ParseException("Unrecognized ");}
@@ -2268,12 +2323,14 @@ char connector = ' ';
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:
       n = jj_consume_token(IDENT);
-              s.setElement(convertIdent(n.image), ac);
+              //              s.setElement(convertIdent(n.image), ac);
+      s.addType(new TypeSelector(convertIdent(n.image)));
       break;
     case ANY:
       jj_consume_token(ANY);
                 if (!ac.getCssVersion().equals("css1")) {
-                    s.setElement(null);
+//                  s.setElement(null);
+                    s.addUniversal(new UniversalSelector());
                 } else {
                     ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
                         "*", ac.getCssVersion(), ac)));
@@ -2402,15 +2459,48 @@ char connector = ' ';
     jj_consume_token(RBRACKET);
           if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
               try {
-                  s.addAttribute(att.image.toLowerCase(), null, selectorType);
+                  s.addAttribute(new AttributeAny(att.image.toLowerCase()));
+//                s.addAttribute(att.image.toLowerCase(), null, selectorType);
               } catch (InvalidParamException e) {
                   removeThisRule();
                   ac.getFrame().addError(new CssError(e));
               }
           } else {
+              AttributeSelector attribute;
+              switch(selectorType) {
+              case CssSelectors.ATTRIBUTE_BEGIN:
+                  attribute = new AttributeBegin(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              case CssSelectors.ATTRIBUTE_EXACT:
+                  attribute = new AttributeExact(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              case CssSelectors.ATTRIBUTE_ONE_OF:
+                  attribute = new AttributeOneOf(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              case CssSelectors.ATTRIBUTE_START:
+                  attribute = new AttributeStart(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              case CssSelectors.ATTRIBUTE_SUBSTR:
+                  attribute = new AttributeSubstr(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              case CssSelectors.ATTRIBUTE_SUFFIX:
+                  attribute = new AttributeSuffix(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              default:
+                  attribute = new AttributeExact(att.image.toLowerCase(),
+                          val.image);
+                  break;
+              }
               try {
-                  s.addAttribute(att.image.toLowerCase(), val.image,
-                             selectorType);
+                  s.addAttribute(attribute);
+//	      	  s.addAttribute(att.image.toLowerCase(), val.image, 
+//			     selectorType);
               } catch (InvalidParamException e) {
                   removeThisRule();
                   ac.getFrame().addError(new CssError(e));
@@ -2547,12 +2637,64 @@ CssSelectors param = null;
   final public void hash(CssSelectors s) throws ParseException {
  Token n;
     n = jj_consume_token(HASH);
-      try {
-          s.addAttribute("id", n.image.substring(1),
-                     CssSelectors.ATTRIBUTE_EXACT);
-      } catch (InvalidParamException e) {
-          removeThisRule();
-          ac.getFrame().addError(new CssError(e));
+      n.image = n.image.substring(1);
+      if(Character.isDigit(n.image.charAt(0))) {
+          String profile = ac.getProfile();
+          if(profile == null || profile.equals("")) {
+              profile = ac.getCssVersion();
+          }
+
+          if(!profile.equals("css1")) {
+              // the id with the first digit escaped
+              String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
+              cl += n.image.substring(1);
+
+              addError(new ParseException(ac.getMsg().getString(
+                "parser.old_id")),
+                "To make \"." + n.image + "\" a valid id, CSS2" +
+                " requires the first digit to be escaped " +
+                "(\"#" + cl + "\")");
+              // for css > 1, we add the rule to have a context, 
+              // and we then remove it
+              s.addId(new IdSelector(n.image));
+              removeThisRule();
+          }
+          else {
+              CssLength length = new CssLength();
+              boolean isLength = false;
+              try {
+                  length.set(n.image, ac);
+                  isLength = true;
+              }
+              catch(Exception e) {
+                  System.out.println("CssParser._id(): " + e.getClass());
+                  isLength = false;
+              }
+              if(isLength) {
+                  addError(new ParseException(ac.getMsg().getString(
+                  "parser.id_dim")), n.image);
+                  // we add the rule to have a context, and then we remove it
+                  s.addId(new IdSelector(n.image));
+                  removeThisRule();
+              }
+              else {
+                  try {
+                      s.addId(new IdSelector(n.image));
+                      ac.getFrame().addWarning("old_id");
+                  } catch (InvalidParamException e) {
+                      ac.getFrame().addError(new CssError(e));
+                      removeThisRule();
+                  }
+              }
+          }
+      }
+      else {
+          try {
+              s.addId(new IdSelector(n.image));
+          } catch (InvalidParamException e) {
+              ac.getFrame().addError(new CssError(e));
+              removeThisRule();
+          }
       }
   }
 
@@ -2649,7 +2791,7 @@ CssSelectors param = null;
         }
         jj_consume_token(S);
       }
-      values = expr();      
+      values = expr();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IMPORTANT_SYM:
         important = prio();
@@ -2671,7 +2813,7 @@ CssSelectors param = null;
                                                   values, important);
                 // Did the property recognize all values in the expression ?
 
-                if (!values.end() && ac.getMedium() == null) {                     
+                if (!values.end() && ac.getMedium() == null) {
                         addError(new InvalidParamException("unrecognize", "", ac),
                              values);
                 } else {
@@ -2727,7 +2869,7 @@ CssSelectors param = null;
  */
   final public CssExpression expr() throws ParseException {
   CssExpression values = new CssExpression();
-    term(values);    
+    term(values);
     label_79:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2766,9 +2908,9 @@ CssSelectors param = null;
       default:
         jj_la1[112] = jj_gen;
         ;
-      }      
+      }
       term(values);
-    }    
+    }
     {if (true) return values;}
     throw new Error("Missing return statement in function");
   }
@@ -2924,8 +3066,8 @@ CssSelectors param = null;
         jj_la1[116] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
-      }      
-      label_81:	  
+      }
+      label_81:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case S:
@@ -2942,7 +3084,7 @@ CssSelectors param = null;
       jj_la1[118] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
-    }    
+    }
   }
 
 /**
@@ -3159,18 +3301,8 @@ CssSelectors param = null;
     finally { jj_save(0, xla); }
   }
 
-  final private boolean jj_3R_103() {
-    if (jj_scan_token(IDENT)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_95() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_103()) {
-    jj_scanpos = xsp;
-    if (jj_3R_104()) return true;
-    }
+  final private boolean jj_3R_96() {
+    if (jj_scan_token(HASH)) return true;
     return false;
   }
 
@@ -3184,23 +3316,8 @@ CssSelectors param = null;
     return false;
   }
 
-  final private boolean jj_3R_117() {
-    if (jj_scan_token(DIMEN)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_100() {
     if (jj_scan_token(PLUS)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_116() {
-    if (jj_scan_token(RESOLUTION)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_115() {
-    if (jj_scan_token(FREQ)) return true;
     return false;
   }
 
@@ -3212,59 +3329,6 @@ CssSelectors param = null;
     if (jj_3R_101()) {
     jj_scanpos = xsp;
     if (jj_3R_102()) return true;
-    }
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_114() {
-    if (jj_scan_token(TIME)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_113() {
-    if (jj_scan_token(ANGLE)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_112() {
-    if (jj_scan_token(EXS)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_111() {
-    if (jj_scan_token(EMS)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_110() {
-    if (jj_scan_token(LENGTH)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_109() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_110()) {
-    jj_scanpos = xsp;
-    if (jj_3R_111()) {
-    jj_scanpos = xsp;
-    if (jj_3R_112()) {
-    jj_scanpos = xsp;
-    if (jj_3R_113()) {
-    jj_scanpos = xsp;
-    if (jj_3R_114()) {
-    jj_scanpos = xsp;
-    if (jj_3R_115()) {
-    jj_scanpos = xsp;
-    if (jj_3R_116()) {
-    jj_scanpos = xsp;
-    if (jj_3R_117()) return true;
-    }
-    }
-    }
-    }
-    }
     }
     }
     return false;
@@ -3298,16 +3362,6 @@ CssSelectors param = null;
     return false;
   }
 
-  final private boolean jj_3R_85() {
-    if (jj_scan_token(PLUS)) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_scan_token(1)) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3324,33 +3378,28 @@ CssSelectors param = null;
     return false;
   }
 
+  final private boolean jj_3R_85() {
+    if (jj_scan_token(PLUS)) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_scan_token(1)) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  final private boolean jj_3R_99() {
+    if (jj_scan_token(LBRACKET)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_108() {
     if (jj_scan_token(COLON)) return true;
     return false;
   }
 
-  final private boolean jj_3R_107() {
-    if (jj_scan_token(84)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_98() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_107()) {
-    jj_scanpos = xsp;
-    if (jj_3R_108()) return true;
-    }
-    return false;
-  }
-
   final private boolean jj_3R_106() {
     if (jj_3R_109()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_105() {
-    if (jj_scan_token(CLASS)) return true;
     return false;
   }
 
@@ -3364,18 +3413,78 @@ CssSelectors param = null;
     return false;
   }
 
+  final private boolean jj_3R_105() {
+    if (jj_scan_token(CLASS)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_98() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_107()) {
+    jj_scanpos = xsp;
+    if (jj_3R_108()) return true;
+    }
+    return false;
+  }
+
+  final private boolean jj_3R_107() {
+    if (jj_scan_token(84)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_104() {
+    if (jj_scan_token(ANY)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_95() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_103()) {
+    jj_scanpos = xsp;
+    if (jj_3R_104()) return true;
+    }
+    return false;
+  }
+
+  final private boolean jj_3R_103() {
+    if (jj_scan_token(IDENT)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_117() {
+    if (jj_scan_token(DIMEN)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_93() {
     if (jj_3R_99()) return true;
     return false;
   }
 
-  final private boolean jj_3R_99() {
-    if (jj_scan_token(LBRACKET)) return true;
+  final private boolean jj_3R_116() {
+    if (jj_scan_token(RESOLUTION)) return true;
     return false;
   }
 
-  final private boolean jj_3R_96() {
-    if (jj_scan_token(HASH)) return true;
+  final private boolean jj_3R_115() {
+    if (jj_scan_token(FREQ)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_114() {
+    if (jj_scan_token(TIME)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_113() {
+    if (jj_scan_token(ANGLE)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_112() {
+    if (jj_scan_token(EXS)) return true;
     return false;
   }
 
@@ -3384,9 +3493,41 @@ CssSelectors param = null;
     return false;
   }
 
-  final private boolean jj_3_1() {
-    if (jj_3R_83()) return true;
-    if (jj_3R_84()) return true;
+  final private boolean jj_3R_111() {
+    if (jj_scan_token(EMS)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_109() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_110()) {
+    jj_scanpos = xsp;
+    if (jj_3R_111()) {
+    jj_scanpos = xsp;
+    if (jj_3R_112()) {
+    jj_scanpos = xsp;
+    if (jj_3R_113()) {
+    jj_scanpos = xsp;
+    if (jj_3R_114()) {
+    jj_scanpos = xsp;
+    if (jj_3R_115()) {
+    jj_scanpos = xsp;
+    if (jj_3R_116()) {
+    jj_scanpos = xsp;
+    if (jj_3R_117()) return true;
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    return false;
+  }
+
+  final private boolean jj_3R_110() {
+    if (jj_scan_token(LENGTH)) return true;
     return false;
   }
 
@@ -3397,16 +3538,6 @@ CssSelectors param = null;
 
   final private boolean jj_3R_90() {
     if (jj_3R_96()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_104() {
-    if (jj_scan_token(ANY)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_89() {
-    if (jj_3R_95()) return true;
     return false;
   }
 
@@ -3426,6 +3557,17 @@ CssSelectors param = null;
     }
     }
     }
+    return false;
+  }
+
+  final private boolean jj_3R_89() {
+    if (jj_3R_95()) return true;
+    return false;
+  }
+
+  final private boolean jj_3_1() {
+    if (jj_3R_83()) return true;
+    if (jj_3R_84()) return true;
     return false;
   }
 

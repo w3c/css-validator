@@ -4,24 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 2.2  1997/08/20 14:15:13  plehegar
- * Added context and property in CssErrorToken
- *
- * Revision 2.1  1997/08/08 15:50:52  plehegar
- * Freeze
- *
- * Revision 1.3  1997/07/30 13:20:33  plehegar
- * Updated package
- *
- * Revision 1.2  1997/07/21 14:58:57  plehegar
- * Updated
- *
- * Revision 1.1  1997/07/21 14:36:53  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.parser;
 
 import java.util.Vector;

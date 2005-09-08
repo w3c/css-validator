@@ -5,14 +5,16 @@
 
 package html.tags;
 
-import html.parser.*;
-import html.tree.*;
+import html.parser.Attributes;
+import html.parser.Element;
+import html.tree.ActiveTree;
+
+import java.io.ByteArrayInputStream;
 
 import org.w3c.css.css.StyleSheet;
 import org.w3c.css.parser.CssSelectors;
-
-import java.io.ByteArrayInputStream;
-import java.util.*;
+import org.w3c.css.selectors.TypeSelector;
+import org.w3c.css.util.InvalidParamException;
 
 
 /**
@@ -72,9 +74,10 @@ public abstract class HtmlTree extends ActiveTree implements HtmlTag {
      * Get the stylesheet context for this level in the Html tree. It will be used to
      * retrieve the actual stylesheet properties for the element.
      * @@ [CONTINUE ME]
+     * @throws InvalidParamException 
      */
     
-    public CssSelectors getContext() {
+    public CssSelectors getContext() throws InvalidParamException {
 	//    ContextStack context;
 
 	if (context != null) {
@@ -94,8 +97,8 @@ public abstract class HtmlTree extends ActiveTree implements HtmlTag {
 	
 	// add own context
 	//    CssContextList thisContext = new CssContextList(getElement().getName());
-	context.setElement(getElement().getName().toUpperCase());
-	
+//	context.setElement(getElement().getName().toUpperCase());
+	context.addType(new TypeSelector(getElement().getName().toUpperCase()));
 	//    Attributes atts = htmlNode.getAttributes();
 	if (atts != null) {
 	    for (int i = 0; i < atts.length(); i++) {

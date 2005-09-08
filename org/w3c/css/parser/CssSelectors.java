@@ -7,14 +7,29 @@
 
 package org.w3c.css.parser;
 
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.ArrayList;
 
 import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.selectors.AdjacentSelector;
+import org.w3c.css.selectors.AttributeSelector;
+import org.w3c.css.selectors.ChildSelector;
+import org.w3c.css.selectors.DescendantSelector;
+import org.w3c.css.selectors.PseudoClassSelector;
+import org.w3c.css.selectors.PseudoElementSelector;
+import org.w3c.css.selectors.PseudoFactory;
+import org.w3c.css.selectors.Selector;
+import org.w3c.css.selectors.SelectorsList;
+import org.w3c.css.selectors.TypeSelector;
+import org.w3c.css.selectors.attributes.AttributeExact;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionContains;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warnings;
 
@@ -28,52 +43,27 @@ import org.w3c.css.util.Warnings;
  *
  * @version $Revision$
  */
-public final class CssSelectors implements CssSelectorsConstant {
-
+public final class CssSelectors extends SelectorsList implements CssSelectorsConstant {
+    
     ApplContext ac;
-
+    
     /**
      * At rule statement
      */
     AtRule atRule;
-
+    
     /**
      * The element.
      */
     String element;
 
-    /**
-     * All attributes (with class and id)
-     */
-    Hashtable attributes = new Hashtable();
-
-    /**
-     * All pseudo classes
-     */
-    boolean[] pseudoClass = new boolean[PSEUDOCLASS_CONSTANTS.length];
-
-    /**
-     * All pseudo classes
-     */
-    boolean[] pseudoElement = new boolean[PSEUDOELEMENT_CONSTANTS.length];
-
-    /**
-     * The pseudo-class function (contains, nth-child, nth-of-type or lang)
-     */
-    String pseudofun;
-
-    String pseudofunval;
-
     char connector = DESCENDANT;
-
+    
     /**
      * The next context.
      */
     protected CssSelectors next;
-
-    // the specificity
-    private int specificity;
-
+    
     // true if the element is a block-level element
     private  boolean isBlock;
     
@@ -84,30 +74,17 @@ public final class CssSelectors implements CssSelectorsConstant {
     
     private int hashGeneral;
     
-    // External representation of the selector
-    // (for performance)
-    private String representation;
-    
     // The CssStyle to use
     private static Class style;
     
     // see isEmpty and addProperty
     private boolean Init;
     
-    // all HTML element in HTML 4.0
-    private static Utf8Properties elements = new Utf8Properties();
-    
-    // special (?) HTML tag
-    private static final int HTMLCode = "HTML".hashCode();
-    
-    private static final int BODYCode = "BODY".hashCode();
-    
-    private String usermedium;
-    
     /**
      * Create a new CssSelectors with no previous selector.
      */
     public CssSelectors(ApplContext ac) {
+	super(ac);
 	style = ac.getCssSelectorsStyle();
 	try {	    
 	    properties = (CssStyle) style.newInstance();
@@ -116,9 +93,10 @@ public final class CssSelectors implements CssSelectorsConstant {
 	}
 	this.ac = ac;
     }
-    
+
     private CssSelectors(Class style) {
-	this.style = style;
+	super();
+	CssSelectors.style = style;
 	try {
 	    properties = (CssStyle) style.newInstance();
 	} catch (Exception e) {
@@ -133,8 +111,8 @@ public final class CssSelectors implements CssSelectorsConstant {
      * @param next
      *            the next selector
      */
-    public CssSelectors(CssSelectors next) {
-	this(next.style);
+    public CssSelectors(CssSelectors next) {	
+	this(CssSelectors.style);
 	this.next = next;
     }
     
@@ -181,75 +159,6 @@ public final class CssSelectors implements CssSelectorsConstant {
     }
     
     /**
-     * Set the connector between simple selector
-     * 
-     * @see CssSelectorsConstant
-     */
-    public void setConnector(char connector) {
-	this.connector = connector;
-	Invalidate();
-    }
-    
-    public char getConnector() {
-	return connector;
-    }
-    
-    /**
-     * Set the element. Be careful, you should work with upper case not lower
-     * case (it's more practical)
-     *
-     * @param element
-     *            the element.
-     */
-    public void setElement(String element) {
-	if (element == null) {
-	    return;
-	}	
-	this.element = element;
-	hashElement = element.hashCode();
-	verifyPseudoElement(null);
-	Invalidate();
-    }
-    
-    /**
-     * Set the element with verification. Be careful, you should work with upper
-     * case not lower case (it's more practical)
-     *
-     * @param element
-     *            the element.
-     * @param frame
-     *            For errors and warnings.
-     */
-    public void setElement(String element, ApplContext ac) {	
-	if (element == null) {
-	    return;
-	}
-	
-	String isHTML = elements.getProperty(element.toUpperCase());
-	
-	/*
-	 * if (Util.fromHTMLFile) { if (isHTML == null) {
-	 * ac.getFrame().addWarning("unknown-html", element); } else if
-	 * (isHTML.equals("true")) { isBlock = true; if ((next != null) &&
-	 * (next.element != null) && !next.isBlock) {
-	 * ac.getFrame().addWarning("noinside", element); } } }
-	 */
-	
-	this.element = element;
-	hashElement = element.hashCode();
-	
-	/*
-	 * if (Util.fromHTMLFile) { if (hashElement == HTMLCode && next != null) {
-	 * ac.getFrame().addWarning("html-inside"); } else if (hashElement ==
-	 * BODYCode && next != null && next.hashElement != 0 && next.hashElement !=
-	 * HTMLCode) { ac.getFrame().addWarning("body-inside"); } }
-	 */
-	
-	verifyPseudoElement(ac);
-	Invalidate();
-    }
-    
-    /**
      * Get the element.
      */
     public String getElement() {
@@ -264,453 +173,149 @@ public final class CssSelectors implements CssSelectorsConstant {
 	return isBlock;
     }
     
-    void addAttribute(Attribute attr) {	
-	Attribute old = (Attribute) attributes.get(attr.getName());
-	if (old != null) {	    
-	    try {
-		Util.verbose("OLD : " + old);
-		Util.verbose("ADD : " + attr);			
-		Attribute news = old.applyAttribute(attr);				
-		Util.verbose("NEW : " + news);
-		attributes.put(attr.getName(), news);
-	    } catch (AttributeException e) {
-		//		e.printStackTrace();
-		if (ac != null) {
-		    InvalidParamException error = new InvalidParamException(
-			    "incompatible", old, attr, ac);
-		    ac.getFrame().addError(new CssError(error));
-		}
-	    }
-	} else {	    
-	    Util.verbose("ADD : " + attr);
-	    attributes.put(attr.getName(), attr);
-	}
-	
-    }
-    
-    /**
-     * Add an attribute to this selector. if the selector type is ATTRIBUTE_ANY,
-     * the value is ignored.
-     */
-    public void addAttribute(String attName, String value)
-    throws InvalidParamException {
-	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-	    if (ac.getProfile().equals("mobile")) {
-		throw new InvalidParamException("notformobile", "attributes",
-			ac);
-	    }
-	} else {
-	    Attribute attr = new AttributeExact().setValue(value).setName(
-		    attName);
-	    
-	    attributes.put(attName, attr);
-	    addAttribute(attr);
-	    Invalidate();
-	}
-    }
-    
-    /**
-     * Add an attribute to this selector. if the selector type is ATTRIBUTE_ANY,
-     * the value is ignored.
-     */
-    public void addAttribute(String attName, String value, int selectorType)
-    throws InvalidParamException {	
-	Attribute attr = null;
-	
-//	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-//	    
-//	    if (ac.getProfile().equals("mobile")) {
-//		if (selectorType == ATTRIBUTE_CLASS_SEL) {
-//		    attr = new AttributeOneOf().addValue(value)
-//		    .setName(attName);
-//		    addAttribute(attr);
-//		    Invalidate();
-//		    return;
-//		} else if (selectorType == ATTRIBUTE_EXACT) {
-//		    attr = new AttributeExact().setValue(value)
-//		    .setName(attName);
-//		    addAttribute(attr);
-//		    Invalidate();
-//		    return;
-//		} else {
-//		    throw new InvalidParamException("notformobile",
-//			    "attributes", ac);
-//		}
-//	    } else if (ac.getProfile().equals("tv")) {
-//		throw new InvalidParamException("notfortv", "attributes", ac);
-//	    }
-//	}
-	
-	switch (selectorType) {
-	case ATTRIBUTE_ANY:	    
-	    if (ac.getCssVersion().equals("css1")) {
-		throw new InvalidParamException("notversion", "[" + attName
-			+ "]", ac.getCssVersion(), ac);
-	    } else {
-		attr = new AttributeAny().setName(attName);
-	    }
-	    break;
-	case ATTRIBUTE_EXACT:
-	    attr = new AttributeExact().setValue(value).setName(attName);
-	    break;
-	case ATTRIBUTE_BEGIN:
-	    if (ac.getCssVersion().equals("css1")) {
-		throw new InvalidParamException("notversion", "[" + attName
-			+ "|=" + value + "]", ac.getCssVersion(), ac);
-	    } else {
-		attr = new AttributeBegin().setValue(value).setName(attName);
-	    }
-	    break;
-	case ATTRIBUTE_ONE_OF:
-	    if (value.indexOf(' ') != -1) {
-		InvalidParamException error = new InvalidParamException(
-			"space", value, ac);
-		ac.getFrame().addError(new CssError(error));
-		return;
-	    }
-	    if (ac.getCssVersion().equals("css1")) {
-		throw new InvalidParamException("nocomb", "~=", ac);
-	    } else {
-		attr = new AttributeOneOf().addValue(value).setName(attName);
-	    }
-	    break;
-	case ATTRIBUTE_CLASS_SEL:
-	    attr = new AttributeOneOf().addValue(value).setName(attName);
-	    break;
-	case ATTRIBUTE_START:
-	    if (ac.getCssVersion().equals("css3")) {
-		attr = new AttributeStart().setValue(value).setName(attName);
-		break;
-	    } else {
-		throw new InvalidParamException("nocomb", "^=", ac);
-	    }
-	case ATTRIBUTE_SUFFIX:
-	    if (ac.getCssVersion().equals("css3")) {
-		attr = new AttributeSuffix().setValue(value).setName(attName);
-		break;
-	    } else {
-		throw new InvalidParamException("nocomb", "$=", ac);
-	    }
-	case ATTRIBUTE_SUBSTR:
-	    if (ac.getCssVersion().equals("css3")) {
-		attr = new AttributeSubstr().setValue(value).setName(attName);
-		break;
-	    } else {
-		throw new InvalidParamException("nocomb", "*=", ac);
-	    }
-	default:
-	    throw new NullPointerException("Invalid access in CssSelectors"
-		    + (char) selectorType);
-	}
-	
-	addAttribute(attr);
-	Invalidate();
-	
-    }
-    
-    public Enumeration getAttributes() {
-	return attributes.elements();
-    }
-    
     public void addPseudo(String pseudo) throws InvalidParamException {
-	if (pseudo == null) {
+	if(pseudo == null) {
 	    return;
-	}
-	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-	    if (ac.getProfile().equals("mobile")
-		    && pseudo.equals("first-child")) {
-		throw new InvalidParamException("notformobile", pseudo, ac);
-	    }
+	}	
+	
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion(); 
 	}
 	
-	int index = getPseudoClassIndex(pseudo);
-	if (index != -1) {
-	    if ((getAtRule() != null) && getAtRule().toString() != null
-		    && getAtRule().toString().equals("@media atsc-tv")) {
-		if (!pseudo.equals("target")) {
-		    addPseudoClass(index);
-		} else {
-		    throw new InvalidParamException("notforatsc", pseudo, ac);
+	// is it a pseudo-class?
+	String[] ps = PseudoFactory.getPseudoClass(profile);
+	if(ps != null) {
+	    for(int i = 0; i < ps.length; i++) {
+		if(pseudo.equals(ps[i])) {
+		    addPseudoClass(new PseudoClassSelector(pseudo));
+		    return;
 		}
-	    } else {
-		addPseudoClass(index);
-	    }
-	} else {
-	    
-	    if (ac.getProfile().equals("tv")) {
-		throw new InvalidParamException("pseudo", pseudo, ac);
-	    }
-	    
-	    index = getPseudoElementIndex(pseudo);
-	    if (index != -1) {
-		addPseudoElement(index);
-	    } else {
-		throw new InvalidParamException("pseudo", pseudo, ac);
 	    }
 	}
-    }
-    
-    private int getPseudoClassIndex(String pseudo) {
+	// it's not a pseudo-class
 	
-	if (ac.getCssVersion().equals("css3")) {
-	    for (int i = 0; i < PSEUDOCLASS_CONSTANTS.length; i++) {
-		if (pseudo.equals(PSEUDOCLASS_CONSTANTS[i])) {
-		    return i;
-		}
-	    }
-	} else if (ac.getCssVersion().equals("css2")) {
-	    
-	    if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-		if (ac.getProfile().equals("mobile")) {
-		    for (int i = 0; i < PSEUDOCLASS_CONSTANTS_MOBILE.length; i++) {
-			if (pseudo.equals(PSEUDOCLASS_CONSTANTS_MOBILE[i])) {
-			    return i;
-			}
-		    }
-		} else if (ac.getProfile().equals("tv")) {
-		    for (int i = 0; i < PSEUDOCLASS_CONSTANTSTV.length; i++) {
-			if (pseudo.equals(PSEUDOCLASS_CONSTANTSTV[i])) {
-			    return i;
-			}
-		    }
-		} else {
-		    for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
-			if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
-			    return i;
-			}
-		    }
-		}
-	    } else {
-		for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS2.length; i++) {
-		    if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS2[i])) {
-			return i;
-		    }
-		}
-	    }
-	} else if (ac.getCssVersion().equals("css1")) {
-	    for (int i = 0; i < PSEUDOCLASS_CONSTANTSCSS1.length; i++) {
-		if (pseudo.equals(PSEUDOCLASS_CONSTANTSCSS1[i])) {
-		    return i;
+	// is it a pseudo-element?
+	ps = PseudoFactory.getPseudoElement(profile);
+	if(ps != null) {
+	    for(int i = 0; i < ps.length; i++) {
+		if(pseudo.equals(ps[i])) {
+		    addPseudoElement(new PseudoElementSelector(pseudo));
+		    return;
 		}
 	    }
 	}
-	return -1;
     }
     
-    /**
-     * Set the pseudoClass with verification.
-     *
-     * Be careful, you should work with lower case not upper case (it's more
-     * practical)
-     *
-     * @param pseudoClass
-     *            The pseudo class.
-     * @param frame
-     *            For errors and warnings.
-     * @deprecated
-     */
-    private void addPseudoClass(int index) {
-	//	hashPseudoClass = pseudoClass.hashCode();
-	this.pseudoClass[index] = true;
-	// if (element != null && !element.equals("A")) {
-	//    ac.getFrame().addWarning("pseudo-classes", pseudoClass);
-	// }
-    }
-    
-    /**
-     * Get pseudo class
-     *
-     * <p>
-     * There is no semi-colon at the beginning of the string.
-     */
-    public Enumeration getPseudoClass() {
-	
-	if (ac.getCssVersion().equals("css3")) {
-	    return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
-	} else if (ac.getCssVersion().equals("css2")) {
-	    if (ac.getProfile() != null) {
-		if (ac.getProfile().equals("mobile")) {
-		    return new PseudoEnumeration(pseudoClass, 
-			    PSEUDOCLASS_CONSTANTS_MOBILE);
-		} else if (ac.getProfile().equals("tv")) {
-		    return new PseudoEnumeration(pseudoClass, 
-			    PSEUDOCLASS_CONSTANTSTV);
-		} else {
-		    return new PseudoEnumeration(pseudoClass, 
-			    PSEUDOCLASS_CONSTANTSCSS2);
-		}
-	    } else {
-		return new PseudoEnumeration(pseudoClass, 
-			PSEUDOCLASS_CONSTANTSCSS2);
-	    }
-	} else if (ac.getCssVersion().equals("css1")) {
-	    return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTSCSS1);
-	} else {
-	    return new PseudoEnumeration(pseudoClass, PSEUDOCLASS_CONSTANTS);
-	}
-    }
-    
-    public void setPseudoFun(String pseudo, String param)
+    public void setPseudoFun(String pseudo, String param) 
     throws InvalidParamException {
-	if (pseudo.equals("lang")) {
-	    
-	    if (ac.getCssVersion().equals("css1")) {
-		throw new InvalidParamException("notversion", pseudo, ac
-			.getCssVersion(), ac);
-	    }
-	    
-	    if (ac.getProfile() != null) {
-		if (ac.getProfile().equals("mobile")) {
-		    throw new InvalidParamException("notformobile", pseudo, ac);
-		} else if (ac.getProfile().equals("tv")) {
-		    throw new InvalidParamException("notfortv", pseudo, ac);
-		}
-	    }
-	    pseudofun = pseudo;
-	    pseudofunval = param;
-	} else if (pseudo.equals("nth-child")) {
-	    if (ac.getCssVersion().equals("css1")
-		    || ac.getCssVersion().equals("css2")) {
-		throw new InvalidParamException("notversion", pseudo, ac
-			.getCssVersion(), ac);
-	    }
-	    
-	    try {
-		Integer i = new Integer(param);
-		pseudofun = pseudo;
-		pseudofunval = param;
-		return;
-	    } catch (NumberFormatException nfe) {
-		throw new InvalidParamException("pseudoval", param, ac);
-	    }
-	} else if (pseudo.equals("nth-of-type")) {
-	    if (ac.getCssVersion().equals("css1")
-		    || ac.getCssVersion().equals("css2")) {
-		throw new InvalidParamException("notversion", pseudo, ac
-			.getCssVersion(), ac);
-	    }
-	    
-	    try {
-		Integer i = new Integer(param);
-		pseudofun = pseudo;
-		pseudofunval = param;
-		return;
-	    } catch (NumberFormatException nfe) {
-		throw new InvalidParamException("pseudoval", param, ac);
-	    }
-	} else if (pseudo.equals("nth-last-of-type")) {
-	    if (ac.getCssVersion().equals("css1")
-		    || ac.getCssVersion().equals("css2")) {
-		throw new InvalidParamException("notversion", pseudo, ac
-			.getCssVersion(), ac);
-	    }
-	    
-	    try {
-		Integer i = new Integer(param);
-		pseudofun = pseudo;
-		pseudofunval = param;
-		return;
-	    } catch (NumberFormatException nfe) {
-		throw new InvalidParamException("pseudoval", param, ac);
-	    }
-	    
-	} else if (pseudo.equals("contains")) {
-	    if (param.startsWith("\"") && param.endsWith("\"")) {
-		pseudofun = pseudo;
-		pseudofunval = param;
-		return;
-	    } else {
-		throw new InvalidParamException("pseudoval", param, ac);
-	    }
-	} else if (pseudo.equals("not")) {
-	    pseudofun = pseudo;
-	    pseudofunval = param;
-	    return;
-	} else {
-	    CssErrorToken e = new CssErrorToken(0, ac.getMsg().getErrorString(
-	    "pseudo"), new String[0]);
-	    e.skippedString = pseudo;
-	    ac.getFrame().addError(e);
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion(); 
 	}
-    }
-    
-    public String getPseudoFun() {
-	return pseudofun;
-    }
-    
-    private int getPseudoElementIndex(String pseudo) 
-    throws InvalidParamException {
-	if (ac.getCssVersion().equals("css3")) {
-	    for (int i = 0; i < PSEUDOELEMENT_CONSTANTS.length; i++) {
-		if (pseudo.equals(PSEUDOELEMENT_CONSTANTS[i])) {
-		    return i;
-		}
-	    }
-	} else if (ac.getCssVersion().equals("css2")) {
-	    if (ac.getProfile() != null) {
-		if (ac.getProfile().equals("mobile")) {
-		    throw new InvalidParamException("notformobile", pseudo, ac);
-		} else {
-		    for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
-			if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
-			    return i;
-			}
-		    }
-		}
-	    } else {
-		for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS2.length; i++) {
-		    if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS2[i])) {
-			return i;
-		    }
-		}
-	    }
-	} else if (ac.getCssVersion().equals("css1")) {
-	    for (int i = 0; i < PSEUDOELEMENT_CONSTANTSCSS1.length; i++) {
-		if (pseudo.equals(PSEUDOELEMENT_CONSTANTSCSS1[i])) {
-		    return i;
-		}
-	    }
-	}
-	return -1;
-    }
-    
-    /**
-     * Set the pseudoElement. Be careful, you should work with lower case not
-     * upper case (it's more practical)
-     *
-     * @param pseudoElement
-     *            the pseudo element
-     * @param frame
-     *            For errors and warnings.
-     * @deprecated
-     */
-    private void addPseudoElement(int index) {
-	//     if (!isBlock) {
-	//       ac.getFrame().addWarning("withblock");
-	//     }
 	
-	this.pseudoElement[index] = true;
-	// hashPseudoElement = pseudoElement.hashCode();
+	String[] ps = PseudoFactory.getPseudoFunction(profile);
+	if(ps != null) {
+	    for(int i = 0; i < ps.length; i++) {		
+		if(pseudo.equals(ps[i])) {
+		    if(pseudo.equals("contains")) {
+			addPseudoFunction(
+				new PseudoFunctionContains(pseudo, param));
+			return;
+		    }	
+		    if(pseudo.equals("lang")) {
+			addPseudoFunction(
+				new PseudoFunctionLang(pseudo, param));
+			return;
+		    }
+		    if(pseudo.equals("not")) {
+			addPseudoFunction(
+				new PseudoFunctionNot(pseudo, param));
+			return;
+		    }
+		    if(pseudo.equals("nth-child")) {
+			try {
+			    addPseudoFunction(
+				    new PseudoFunctionNthChild(pseudo, param));
+			}
+			catch(NumberFormatException e) {
+			    throw new InvalidParamException("pseudo", ac);
+			}
+			return;
+		    }
+		    if(pseudo.equals("nth-last-child")) {
+			try {
+			    addPseudoFunction(
+				    new PseudoFunctionNthLastChild(
+					    pseudo, param));
+			}
+			catch(NumberFormatException e) {
+			    throw new InvalidParamException("pseudo", ac);
+			}
+			return;
+		    }
+		    if(pseudo.equals("nth-of-type")) {
+			try {
+			    addPseudoFunction(
+				    new PseudoFunctionNthOfType(
+					    pseudo, param));
+			}
+			catch(NumberFormatException e) {
+			    throw new InvalidParamException("pseudo", ac);
+			}
+			return;
+		    }
+		    if(pseudo.equals("nth-last-of-type")) {
+			try {
+			    addPseudoFunction(
+				    new PseudoFunctionNthLastOfType(
+					    pseudo, param));
+			}
+			catch(NumberFormatException e) {
+			    throw new InvalidParamException("pseudo", ac);
+			}
+			return;
+		    }
+		}		    
+	    }
+	    throw new InvalidParamException("pseudo", ac);
+	}
     }
     
-    /**
-     * Get the pseudoElement.
-     *
-     * <p>
-     * There is no semi-colon at the beginning of the string.
-     */
-    public Enumeration getPseudoElement() {
-	if (ac.getCssVersion().equals("css3")) {
-	    return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTS);
-	} else if (ac.getCssVersion().equals("css2")) {
-	    return new PseudoEnumeration(pseudoElement, 
-		    PSEUDOELEMENT_CONSTANTSCSS2);
-	} else if (ac.getCssVersion().equals("css1")) {
-	    return new PseudoEnumeration(pseudoElement, 
-		    PSEUDOELEMENT_CONSTANTSCSS1);
-	} else {
-	    return new PseudoEnumeration(pseudoElement, PSEUDOELEMENT_CONSTANTS);
+    public void addType(TypeSelector type) throws InvalidParamException {
+	super.addType(type);
+	element = type.getName();
+	hashElement = element.hashCode();
+    }
+    
+    public void addDescendant(DescendantSelector descendant) 
+    throws InvalidParamException {	
+	super.addDescendant(descendant);
+	connector = DESCENDANT;
+    }
+    
+    public void addChild(ChildSelector child) throws InvalidParamException {
+	super.addChild(child);
+	connector = CHILD;
+    }
+    
+    public void addAdjacent(AdjacentSelector adjacent) 
+    throws InvalidParamException {	
+	super.addAdjacent(adjacent);
+	connector = ADJACENT;
+    }
+    
+    public void addAttribute(AttributeSelector attribute) 
+    throws InvalidParamException {	
+	for(int i = 0; i < size(); i++) {
+	    Selector s = (Selector) getSelector(i);
+	    // add warnings if some selectors are incompatible
+	    // e.g. [lang=en][lang=fr]
+	    if(s instanceof AttributeSelector) {		
+		((AttributeSelector) s).applyAttribute(ac, attribute);
+	    }
 	}
+	super.addAttribute(attribute);
     }
     
     /**
@@ -731,106 +336,22 @@ public final class CssSelectors implements CssSelectorsConstant {
 	    System.err.println("[ERROR] Please report BUG");
 	}
     }
-    
+
     public CssStyle getStyle() {
 	return properties;
-    }
-    
-    /**
-     * Get the specificity of this selector.
-     *
-     * @see CssContextualSelector
-     */
-    public int getSpecificity() {
-	
-	if (specificity == 0) {
-	    // compute the specificity
-	    if (next != null) {
-		specificity = next.getSpecificity();
-	    }
-	    
-	    if (element != null) {
-		specificity += 1;
-	    }
-	    
-	    for (Enumeration e = attributes.elements(); e.hasMoreElements();) {
-		Attribute attr = (Attribute) e.nextElement();
-		if (attr.isId()) {
-		    specificity += 10000;
-		} else {
-		    specificity += 100;
-		}
-	    }
-	    Enumeration e;
-	    for (e = getPseudoClass(); e.hasMoreElements(); e.nextElement()) {
-		specificity += 100;
-	    }
-	}
-	
-	return specificity;
     }
     
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if ((atRule instanceof AtRulePage)
-		|| (atRule instanceof AtRuleFontFace)) {
-	    return atRule.toString() + " ";
+	// I'm in reverse order, so compute the next before the current
+	StringBuffer sbrep = new StringBuffer();
+	if (next != null) {
+	    sbrep.append(next.toString());
 	}
-	if (representation == null) {
-	    StringBuffer sbrep = new StringBuffer();
-	    
-	    // I'm in reverse order, so compute the next before the current
-	    if (next != null) {
-		sbrep.append(next.toString());
-	    }
-	    
-	    StringBuffer local = new StringBuffer();
-	    if (element != null) {
-		local.append(element);
-	    }
-	    for (Enumeration e = attributes.elements(); e.hasMoreElements();) {
-		local.append(e.nextElement().toString());
-	    }
-	    for (Enumeration e = getPseudoClass(); e.hasMoreElements();) {
-		local.append(':');
-		local.append(e.nextElement().toString());
-	    }
-	    
-	    if (pseudofun != null) {
-		local.append(':');
-		local.append(pseudofun);
-		local.append('(');
-		local.append(pseudofunval);
-		local.append(')');
-	    }
-	    if (ac.getCssVersion().equals("css1")
-		    || ac.getCssVersion().equals("css2")) {
-		for (Enumeration e = getPseudoElement(); e.hasMoreElements();) {
-		    local.append(':');
-		    local.append(e.nextElement().toString());
-		}
-	    } else {
-		for (Enumeration e = getPseudoElement(); e.hasMoreElements();) {
-		    local.append(':');
-		    local.append(':');
-		    local.append(e.nextElement().toString());
-		}
-	    }
-	    if (local.length() == 0) {
-		// avoid problem with * { color : red }
-		local.append('*');
-	    }
-	    sbrep.append(local.toString());
-	    if (connector != DESCENDANT) {
-		sbrep.append(' ');
-		sbrep.append(connector);
-	    }
-	    sbrep.append(' ');
-	    representation = sbrep.toString();
-	}
-	return representation;
+	sbrep.append(super.toString());
+	return sbrep.toString();
     }
     
     /**
@@ -885,8 +406,7 @@ public final class CssSelectors implements CssSelectorsConstant {
      *            the previous selector.
      */
     public void setNext(CssSelectors next) {
-	this.next = next;
-	verifyPseudoElement(null);
+	this.next = next;	
 	Invalidate();
     }
     
@@ -896,14 +416,60 @@ public final class CssSelectors implements CssSelectorsConstant {
     public CssSelectors getNext() {
 	return next;
     }
+
+    /**
+     * Returns <code>true</code> if there is no property in this document.
+     */
+    public boolean isEmpty() {
+	return !Init;
+    }
     
-    final boolean canApply(Hashtable attrs, Hashtable attrs2) {
-	if (attrs.size() > 0) {
-	    for (Enumeration e = attrs.elements(); e.hasMoreElements();) {
-		Attribute attr = (Attribute) e.nextElement();
-		Attribute other = (Attribute) attrs2.get(attr.getName());
+    public void addAttribute(String attName, String value)
+    throws InvalidParamException {
+	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
+	    if (ac.getProfile().equals("mobile")) {
+		throw new InvalidParamException("notformobile", "attributes",
+			ac);
+	    }
+	} else {
+	    addAttribute(new AttributeExact(attName, value));
+	    Invalidate();
+	}
+    }
+    
+    void Invalidate() {
+	// invalidate all pre-computation in this selectors
+	setSpecificity(0);
+	hashGeneral = 0;
+	
+	if (Init) {
+	    // yes I invalidate all properties too !
+	    try {
+		properties = (CssStyle) style.newInstance();
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	}
+    }
+
+    final boolean canApply(ArrayList attrs, ArrayList attrs2) {
+	if(attrs.size() > 0) {
+	    for(int i = 0; i < attrs.size(); i++) {
+		Selector selector = (Selector) attrs.get(i);
+		
+		Selector other = null;
+		int j = 0;
+		for(; j < attrs2.size(); j++) {
+		    other = (Selector) attrs2.get(j);
+		    if(!other.equals(selector)) {
+			other = null;
+		    }
+		    else {
+			break;
+		    }
+		}
 		if (other != null) {
-		    if (!attr.canApply(other)) {
+		    if (!selector.canApply(other)) {
 			return false;
 		    }
 		} else {
@@ -911,8 +477,9 @@ public final class CssSelectors implements CssSelectorsConstant {
 		}
 	    }
 	    return true;
-	}
+	}	
 	return true;
+	
     }
     
     /**
@@ -941,18 +508,17 @@ public final class CssSelectors implements CssSelectorsConstant {
      * @see            org.w3c.css.css.CssCascadingOrder#order
      */
     public boolean canApply(CssSelectors selector) {
+	System.out.println("CssSelectors.canApply(): " + selector);
 	if ((atRule instanceof AtRulePage)
 		|| (atRule instanceof AtRuleFontFace)) {
 	    return atRule.canApply(selector.atRule);
 	}
-	boolean result = canApply(attributes, selector.attributes);
 	// current work - don't touch
 	Util.verbose(getSpecificity() + " canApply this " + this 
 		+ " selector: " + selector);
 	Util.verbose("connector " + connector);
-	Util.verbose(attributes.toString());
-	Util.verbose(selector.attributes.toString());
-	Util.verbose("canApply for attributes :" + result);
+	Util.verbose(getSelectors().toString());
+	Util.verbose(selector.getSelectors().toString());
 	
 	if ((hashElement != selector.hashElement) && hashElement != 0) {
 	    // here we are in this case :
@@ -969,28 +535,29 @@ public final class CssSelectors implements CssSelectorsConstant {
 	    return false;
 	} else {
 	    if (next == null || selector.next == null) {
+		boolean result = canApply(getSelectors(), selector.getSelectors());
 		Util.verbose("canApply RETURNS " + result);
-		return canApply(attributes, selector.attributes);
+		return result;
 	    } else {
-		return next.canMatched(selector.next);
+		return next.canMatch(selector.next);
 	    }
 	}
     }
     
     /**
-     * Returns true if the selector can matched an another selector. called by
+     * Returns true if the selector can matched another selector. called by
      * canApply
      *
      * @param selector
      *            The selector to compare
      */
-    private boolean canMatched(CssSelectors selector) {
-	boolean result = canApply(attributes, selector.attributes);
+    private boolean canMatch(CssSelectors selector) {
+	boolean result = canApply(getSelectors(), selector.getSelectors());
 	// current work
 	Util.verbose("canMatched this " + this + " selector: " + selector);
 	Util.verbose("connector " + connector);
-	Util.verbose(attributes.toString());
-	Util.verbose(selector.attributes.toString());
+	Util.verbose(getSelectors().toString());
+	Util.verbose(selector.getSelectors().toString());
 	Util.verbose("canMatched for attributes :" + result);
 	
 	if ((hashElement != selector.hashElement) && hashElement != 0) {
@@ -998,7 +565,7 @@ public final class CssSelectors implements CssSelectorsConstant {
 		// here we are in this case :
 		// H1 and HTML BODY H1 EM
 		// H1 can't matched EM but EM have next
-		return canMatched(selector.next);
+		return canMatch(selector.next);
 	    } else {
 		// here we are in this case :
 		// H1 and HTML
@@ -1014,103 +581,11 @@ public final class CssSelectors implements CssSelectorsConstant {
 	    // or :
 	    // HTML BODY and BODY (this case won't appear in principle)
 	    Util.verbose("canMatched RETURN " + result);
-	    return canApply(attributes, selector.attributes);
+	    return canApply(getSelectors(), selector.getSelectors());
 	} else {
 	    // here we are in this case :
 	    // BODY H1 and HTML BODY H1
-	    return next.canMatched(selector.next);
+	    return next.canMatch(selector.next);
 	}
-    }
-    
-    /**
-     * Returns <code>true</code> if there is no property in this document.
-     */
-    public boolean isEmpty() {
-	return !Init;
-    }
-    
-    void verifyPseudoElement(ApplContext ac) {
-	/*
-	 * if (next != null && next.pseudoElement != null) { // eliminate this
-	 * error if (frame != null) { InvalidParamException error = new
-	 * InvalidParamException("pseudo"-element", next.pseudoElement,
-	 * this.toString()); ac.getFrame().addError(new CssError(error)); }
-	 * next.pseudoElement = null; next.verifyPseudoElement(frame);
-	 * next.Invalidate(); }
-	 */
-    }
-    
-    void verifyPseudoClass(ApplContext ac) {
-	/*
-	 * if (next != null && next.pseudoClass != null) { // eliminate this
-	 * error if (frame != null) { InvalidParamException error = new
-	 * InvalidParamException("pseudo-class", next.pseudoClass,
-	 * this.toString()); ac.getFrame().addError(new CssError(error)); }
-	 * next.pseudoClass = null; next.verifyPseudoClass(frame);
-	 * next.Invalidate(); }
-	 */
-    }
-    
-    void Invalidate() {
-	// invalidate all pre-computation in this selectors
-	representation = null;
-	specificity = 0;
-	hashGeneral = 0;
-	
-	if (Init) {
-	    // yes I invalidate all properties too !
-	    try {
-		properties = (CssStyle) style.newInstance();
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-	}
-    }
-    
-    public void setUserMedium(String medium) {
-	usermedium = medium;
-    }
-    
-    static {
-	try {
-	    URL url = CssSelectors.class.getResource("Elements.dtd4");
-	    java.io.InputStream f = url.openStream();
-	    try {
-		elements.load(f);
-	    } finally {
-		f.close();
-	    }
-	} catch (Exception e) {
-	    System.err.println("org.w3c.css.properties.CssSelectors: "
-		    + "couldn't load properties");
-	    System.err.println("  " + e.toString());
-	}
-    }
-}
-
-class PseudoEnumeration implements Enumeration {
-    boolean[] classes;
-    
-    String[] values;
-    
-    int current = -1;
-    
-    PseudoEnumeration(boolean[] classes, String[] values) {
-	this.classes = classes;
-	this.values = values;
-	
-	while ((++current < classes.length) && !classes[current])
-	    /* nothing */;
-    }
-    
-    public boolean hasMoreElements() {
-	return (current != classes.length);
-    }
-    
-    public Object nextElement() {
-	String v = values[current];
-	while ((++current < classes.length) && !classes[current])
-	    /* nothing */;
-	return v;
     }
 }

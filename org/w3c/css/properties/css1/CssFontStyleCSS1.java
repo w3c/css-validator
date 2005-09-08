@@ -4,64 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2005/08/08 13:18:12  ylafon
- * All those changed made by Jean-Guilhem Rouel:
- *
- * Huge patch, imports fixed (automatic)
- * Bug fixed: 372, 920, 778, 287, 696, 764, 233
- * Partial bug fix for 289
- *
- * Issue with "inherit" in CSS2.
- * The validator now checks the number of values (extraneous values were previously ignored)
- *
- * Revision 1.2  2002/04/08 21:17:44  plehegar
- * New
- *
- * Revision 3.1  1997/08/29 13:13:48  plehegar
- * Freeze
- *
- * Revision 2.2  1997/08/20 11:41:22  plehegar
- * Freeze
- *
- * Revision 2.1  1997/08/08 15:52:18  plehegar
- * Nothing
- *
- * Revision 1.11  1997/08/06 17:30:03  plehegar
- * Updated set, now it's a constructor
- *
- * Revision 1.10  1997/07/30 13:20:01  plehegar
- * Updated package
- *
- * Revision 1.9  1997/07/18 19:18:36  plehegar
- * Updated set()
- *
- * Revision 1.8  1997/07/17 15:49:56  plehegar
- * minor bug
- *
- * Revision 1.7  1997/07/17 15:48:36  plehegar
- * Added getPropertyName()
- *
- * Revision 1.6  1997/07/17 12:19:07  plehegar
- * Updated set()
- *
- * Revision 1.5  1997/07/16 15:13:05  plehegar
- * Minor bug in set()
- *
- * Revision 1.4  1997/07/16 15:05:53  plehegar
- * Updated
- *
- * Revision 1.3  1997/07/16 14:22:28  plehegar
- * Minor documentation correction
- *
- * Revision 1.2  1997/07/16 13:59:37  plehegar
- * Minor updates
- *
- * Revision 1.1  1997/07/08 08:32:48  plehegar
- * Initial revision
- *
- */
 package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;

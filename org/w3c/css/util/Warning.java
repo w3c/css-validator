@@ -4,21 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.3  2002/07/12 20:36:25  plehegar
- * s/System.out/System.err/
- *
- * Revision 1.2  2002/04/08 21:19:15  plehegar
- * New
- *
- * Revision 2.2  1997/09/08 13:35:45  plehegar
- * Added level
- *
- * Revision 2.1  1997/08/08 15:51:50  plehegar
- * Nothing
- *
- */
 package org.w3c.css.util;
 
 import org.w3c.css.parser.CssSelectors;

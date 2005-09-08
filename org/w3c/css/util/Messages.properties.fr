@@ -33,7 +33,7 @@ style n'est pas très robuste.
 warning.unknown-html: %s n'est pas un élément 'HTML'
 warning.html-inside: L'élément 'html' ne peut être dans un autre élément
 warning.body-inside: L'élément 'body' ne peut être dans un élément autre que 'html'
-warning.pseudo-classes: La «pseudo-classe» "anchor" %s n'a pas d'effets sur d'autres éléments que 'a'
+warning.pseudo-es: La «pseudo-classe» "anchor" %s n'a pas d'effets sur d'autres éléments que 'a'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
 warning.noinside: %s ne peut exister a l'intérieur d'un element en-ligne
@@ -162,6 +162,7 @@ error.space: Si le sélécteur d'attribut ~= est utilisé, alors le mot de la \
 valeur %s ne doit pas contenir d'espaces.
 error.todo : Désolé, mais cette fonctionnalité n'est pas encore disponible.
 error.incompatible: %s et %s ne sont pas compatibles.
+warning.incompatible: %s et %s ne sont pas compatibles.
 
 error.media: media %s non reconnu 
 error.page: Page pseudo-nommée %s non reconnue
@@ -191,8 +192,31 @@ parser.semi-colon: impossible de trouver un point-virgule avant le nom de la \
 propriété, ajoutez-le.
 
 parser.old_class: En CSS1, il était possible d'avoir un nom de classe \
-commenÃ§ant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
+commençant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
 (".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
+inconnues, pour permettre l'ajout de nouvelles unités).
+
+parser.old_id: En CSS1, il était possible d'avoir un nom d'id \
+commençant par un chiffre ("#55xx") sauf s'il s'agissait d'une dimension \
+("#55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
+inconnues, pour permettre l'ajout de nouvelles unités).
+
+parser.class_dim: En CSS1, il est possible d'avoir un nom de classe \
+commençant par un chiffre (".55xx") sauf s'il s'agit d'une dimension \
+(".55cm").
+
+parser.id_dim: En CSS1, il est possible d'avoir un nom d'id \
+commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
+("#55cm").
+
+warning.old_class: En CSS1, il est possible d'avoir un nom de classe \
+commençant par un chiffre (".55xx") sauf s'il s'agit d'une dimension \
+(".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
+inconnues, pour permettre l'ajout de nouvelles unités).
+
+warning.old_id: En CSS1, il est possible d'avoir un nom d'id \
+commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
+("#55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
 inconnues, pour permettre l'ajout de nouvelles unités).
 
 # used by the servlet

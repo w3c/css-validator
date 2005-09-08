@@ -4,27 +4,6 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 1.2  2002/04/08 21:19:46  plehegar
- * New
- *
- * Revision 2.2  1997/08/20 11:39:18  plehegar
- * Added equals
- *
- * Revision 2.1  1997/08/08 15:53:06  plehegar
- * Nothing
- *
- * Revision 1.3  1997/07/30 13:19:35  plehegar
- * Updated package
- *
- * Revision 1.2  1997/07/16 15:31:28  plehegar
- * Added documentation
- *
- * Revision 1.1  1997/07/11 13:59:47  plehegar
- * Initial revision
- *
- */
 
 package org.w3c.css.values;
 

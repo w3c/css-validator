@@ -32,13 +32,13 @@ public class TokenMgrError extends Error
     * one of the above 4 values.
     */
    int errorCode;
-   
+
    private int errorLine;
 
    public int getErrorLine() {
 	return errorLine;
    } 
-   
+
    /**
     * Replaces unprintable characters by their espaced (or unicode escaped)
     * equivalents in the given string

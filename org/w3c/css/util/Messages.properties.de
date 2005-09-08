@@ -125,6 +125,7 @@ error.id: ID-Selektor #%s ist ungültig!  Nur ein ID-Selektor kann in einem einf
 error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert %s keine Leerzeichen enthalten.
 error.todo : Leider ist das Feature %s noch nicht implementiert.
 error.incompatible: %s und %s sind inkompatibel
+warning.incompatible: %s und %s sind inkompatibel
 
 error.media: unbekanntes Medium %s 
 error.page: unbekannte Pseudo-benannte Seite %s
@@ -157,6 +158,23 @@ parser.old_class: In CSS1 konnte ein Klassenname mit einer Ziffer beginnen  (".5
 es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden sollche Klassen als \
 unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
 
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
 servlet.invalid-request: Sie haben eine ungültige Anfrage gesendet.

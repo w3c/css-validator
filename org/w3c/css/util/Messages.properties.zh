@@ -121,6 +121,7 @@ error.id: IDÑ¡Ôñ·û #%s ÎÞÐ§£¡Ö»ÓÐÒ»¸öIDÑ¡Ôñ·û¿ÉÒÔ�
 error.space: Èç¹ûÊ¹ÓÃÁËÊôÐÔÑ¡Ôñ·û ~= £¬ÔÚÖµ %s ÖÐµÄ×Ö±ØÐë²»°üº¬¿Õ¸ñ
 error.todo : ±§Ç¸£¬ÌØÐÔ %s »¹²»ÄÜÖ§³Ö
 error.incompatible: %s ºÍ %s ²»¼æÈÝ
+warning.incompatible: %s ºÍ %s ²»¼æÈÝ
 
 error.media: ²»ÄÜÊ¶±ðµÄÃ½Ìå %s 
 error.page: ²»ÄÜÖ°±ðµÄÎ±ÃüÃûÒ³ %s
@@ -153,6 +154,23 @@ parser.old_class:ÔÚCSS1£¬ÀàÃûÓ¦¸ÃÒÔµã¿ªÊ¼ (".55ft"), \
 ³ý·ÇËüÊÇÒ»¸ö³ß´çÖµ (".55in")¡£ÔÚCSS2£¬ÒÔÉÏµÄÀà \
 ±»½âÊÍÎª²»Ê¶±ðµÄ³ß´çÖµ(ÒÔÔÊÐí½«À´¼ÓÈëÐÂµÄµ¥Î»)
 
+parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in").
+
+parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in").
+
+warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
 servlet.invalid-request: Äã·¢³öÁËÎÞÐ§µÄÇëÇó

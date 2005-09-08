@@ -4,21 +4,7 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- * $Log$
- * Revision 2.2  1997/08/11 13:01:41  plehegar
- * *** empty log message ***
- *
- * Revision 1.3  1997/07/30 13:20:31  plehegar
- * Updated package
- *
- * Revision 1.2  1997/07/21 14:59:06  plehegar
- * Updated
- *
- * Revision 1.1  1997/07/21 14:37:24  plehegar
- * Initial revision
- *
- */
+
 package org.w3c.css.parser;
 
 /**
