@@ -8,7 +8,9 @@
  */
 package org.w3c.css.util;
 
-import java.nio.charset.Charset;
+//import java.nio.charset.Charset;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 import org.w3c.css.parser.Frame;
 import org.w3c.www.http.HttpAcceptCharset;
@@ -20,6 +22,8 @@ import org.w3c.www.http.HttpFactory;
  * @author  Philippe Le Hegaret
  */
 public class ApplContext {
+
+    private static Method m = null;
 
     String credential = null;
 
@@ -40,6 +44,18 @@ public class ApplContext {
     int origin = -1;
     
     String medium;
+
+    static {
+	try {
+	    Class c = Class.forName("java.nio.charset.Charset");
+	    Class cp[] = { java.lang.String.class };
+	    m = c.getDeclaredMethod("isSupported", cp);
+	} catch (ClassNotFoundException ex) {
+	    m = null;
+	} catch (NoSuchMethodException ex) {
+	    m = null;
+	}
+    }
 
     /**
      * Creates a new ApplContext
@@ -164,22 +180,25 @@ public class ApplContext {
      * Sets the content encoding to the first charset that appears in
      * <i>acceptCharset</i>.
      * If the charset is not supported, the content encoding will be utf-8
-     * @param acceptCharset a String representing the Accept-Charset request parameter
+     * @param acceptCharset a String representing the Accept-Charset 
+     *                      request parameter
      */
     public void setContentEncoding(String acceptCharset) {	
 	if(acceptCharset != null) {		    
 	    // uses some Jigsaw classes to parse the Accept-Charset
-	    // these classes need to load a lot of stuff, so it may be quite long
-	    // the first time 
-	    HttpAcceptCharsetList charsetList = 
-		HttpFactory.parseAcceptCharsetList(acceptCharset);
-	    HttpAcceptCharset[] charsets = (HttpAcceptCharset[])charsetList.getValue();
+	    // these classes need to load a lot of stuff, so it may be quite
+	    // long the first time
+	    HttpAcceptCharsetList charsetList;
+	    HttpAcceptCharset[] charsets;
+
+	    charsetList = HttpFactory.parseAcceptCharsetList(acceptCharset);
+	    charsets = (HttpAcceptCharset[])charsetList.getValue();
 	    
 	    String encoding = null;
 	    double quality = 0.0;
 	    
 	    String biasedcharset = getMsg().getString("output-encoding-name");
-	    
+
 	    for(int i = 0; i < charsets.length && quality < 1.0 ; i++) {
 		HttpAcceptCharset charset = charsets[i];
 		
@@ -194,7 +213,8 @@ public class ApplContext {
 		    // we prefer utf-8 
 		    // FIXME (the bias value and the biased charset
 		    //        should be dependant on the language)
-		    if ((biasedcharset != null) && !biasedcharset.equalsIgnoreCase(currentCharset)) {
+		    if ((biasedcharset != null) && 
+			!biasedcharset.equalsIgnoreCase(currentCharset)) {
 			currentQuality = currentQuality * 0.5;
 		    }
 		    if(currentQuality > quality) {
@@ -217,72 +237,19 @@ public class ApplContext {
 	}
     }
     
-    private boolean isCharsetSupported(String charset) {	
+    private boolean isCharsetSupported(String charset) {
+	// if we can't check, assume it's ok, and fail later.
+	if (m == null) {
+	    return true;
+	}
 	try {
-	    return Charset.isSupported(charset);		
+	    String p[] = new String[1];
+	    p[0] = charset;
+	    Boolean b = (Boolean) m.invoke(null, p);
+	    return b.booleanValue();
 	}
 	catch(Exception e) {
 	    return false;
 	}	
     }
-    
-    /*
-    // First version of the Accept-Charset parser
-    public void setContentEncoding(String acceptCharset) {
-	String encoding = Utf8Properties.ENCODING;
-	double quality = 0.;
-	System.out.println(acceptCharset);
-	if(acceptCharset != null) {	    
-	    StringTokenizer csTok = new StringTokenizer(acceptCharset, ",");
-	    // 1.0 is the highest possible quality, so if we reach it, we 
-	    // don't need to continue
-	    while(csTok.hasMoreTokens() && quality < 1.0) {
-		String[] currentCharset = csTok.nextToken().split(";");		
-		if(currentCharset.length > 0) {
-		    String enc = currentCharset[0].trim().toLowerCase();		    
-		    // we need to know if the current charset has a valid name
-		    // and is supported
-		    boolean supported = false;
-		    try {
-			supported = Charset.isSupported(enc);		
-		    }
-		    catch(IllegalCharsetNameException e) {
-			supported = false;
-		    }
-		    catch(IllegalArgumentException e) {
-			supported = false;
-		    }
-		    // if the current encoding is supported, we try to get its quality		    
-		    if(supported) {
-			if(currentCharset.length == 2) {
-			    String sQual = Util.strip(currentCharset[1]);
-			    // now, sQual should be "q=x.y"
-			    try {
-				sQual = sQual.substring(2, sQual.length());
-				double qual = Double.parseDouble(sQual);
-				if(qual > quality) {
-				    quality = qual;
-				}
-			    }
-			    catch(Exception e) {
-				// if the quality field is not correct, we ignore
-				// this encoding
-				continue;
-			    }			    
-			}			
-			else {
-			    // if no quality is given for this encoding,
-			    // we consider that quality=1, according to RFC2616 14.2
-			    quality = 1.0;
-			}
-			encoding = enc;
-		    }		    
-		}
-	    }
-	    if(encoding != null) {
-		getMsg().properties.setProperty("content-encoding", encoding);
-	    }
-	}
-    }
-    */
 }
