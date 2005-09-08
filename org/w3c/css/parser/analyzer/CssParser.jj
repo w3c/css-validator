@@ -467,7 +467,7 @@ TOKEN :
 <DEFAULT>
 TOKEN :
 {
-  < HASH : "#" <IDENT> >
+  < HASH : "#" <NAME> >
 }
 
 <DEFAULT>
