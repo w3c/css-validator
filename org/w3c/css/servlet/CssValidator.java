@@ -48,12 +48,6 @@ import org.w3c.www.mime.MimeTypeFormatException;
  */
 public final class CssValidator extends HttpServlet {
 
-    private URL htmlURL;
-
-    private boolean auralMode;
-
-    private String returnMode;
-
     final static String texthtml    = "text/html";
 
     final static String textplain   = "text/plain";
@@ -197,7 +191,21 @@ public final class CssValidator extends HttpServlet {
 	int warningLevel = 2;
 	CssParser parser = null;
 
-	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
+	String lang = null;	
+	try {
+	    lang = req.getParameter("lang");
+	}
+	catch(Exception e) {
+	    lang = null;
+	}
+	
+	if(lang == null || lang.equals("")) {
+	    lang = req.getHeader("Accept-Language");
+	}
+	else {
+	    lang += ',' + req.getHeader("Accept-Language");
+	}
+	ApplContext ac = new ApplContext(lang);
 	ac.setContentEncoding(req.getHeader("Accept-Charset"));
 	String output = req.getParameter("output");
 	
@@ -240,11 +248,13 @@ public final class CssValidator extends HttpServlet {
 	ac.setMedium(usermedium);
 
 	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true")
-		|| Util.onDebug;
+	    Util.onDebug = req.getParameter("debug").equals("true");
 	    if (Util.onDebug) {
 		System.err.println("SWITCH DEBUG MODE REQUEST");
 	    }
+	}
+	else {
+	    Util.onDebug = false;
 	}
 
 	text = Util.suppressWhiteSpace(text);
@@ -396,7 +406,22 @@ public final class CssValidator extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException {
 
-	ApplContext ac = new ApplContext(req.getHeader("Accept-Language"));
+	String lang = null;	
+	try {
+	    lang = req.getParameter("lang");
+	}
+	catch(Exception e) {
+	    lang = null;
+	}
+	
+	if(lang == null || lang.equals("")) {
+	    lang = req.getHeader("Accept-Language");
+	}
+	else {
+	    lang += ',' + req.getHeader("Accept-Language");
+	}
+	ApplContext ac = new ApplContext(lang);
+
 	boolean errorReport = true;
 	int warningLevel = 2;
 	CssParser parser = null;
@@ -415,11 +440,13 @@ public final class CssValidator extends HttpServlet {
 	int len;
 
 	if (req.getParameter("debug") != null) {
-	    Util.onDebug = req.getParameter("debug").equals("true")
-		|| Util.onDebug;
+	    Util.onDebug = req.getParameter("debug").equals("true");
 	    if (Util.onDebug) {
 		System.err.println("SWITCH DEBUG MODE REQUEST");
 	    }
+	}
+	else {
+	    Util.onDebug = false;
 	}
 
 	Util.verbose("\nCssValidator: Servlet request ");
