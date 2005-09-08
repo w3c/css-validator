@@ -178,6 +178,8 @@ public class ApplContext {
 	    String encoding = null;
 	    double quality = 0.0;
 	    
+	    String biasedcharset = getMsg().getString("output-encoding-name");
+	    
 	    for(int i = 0; i < charsets.length && quality < 1.0 ; i++) {
 		HttpAcceptCharset charset = charsets[i];
 		
@@ -189,6 +191,12 @@ public class ApplContext {
 		if(isCharsetSupported(currentCharset)) {
 		    double currentQuality = charset.getQuality();
 		    
+		    // we prefer utf-8 
+		    // FIXME (the bias value and the biased charset
+		    //        should be dependant on the language)
+		    if ((biasedcharset != null) && !biasedcharset.equalsIgnoreCase(currentCharset)) {
+			currentQuality = currentQuality * 0.5;
+		    }
 		    if(currentQuality > quality) {
 			quality = currentQuality;
 			encoding = charset.getCharset();
