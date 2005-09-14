@@ -499,7 +499,16 @@ public final class StyleReportSOAP12 extends StyleReport
 		    } else {
 			out.println(ac.getMsg().getGeneratorString("doc"));
 		    }
-		} else {
+		} else if(entity.equals("lang")) {		    
+		    out.print(str.substring(0, i));
+		    str = str.substring(lastIndexOfEntity + 3);
+		    i = 0;
+		    String lang = ac.getContentLanguage();
+		    if(lang == null || lang.equals("")) {
+			lang = "en";
+		    }
+		    out.print(lang);
+		} else {		    
 		    String value = prop.getProperty(entity);
 		    if (value != null) {
 			str = str.substring(0, i) + value

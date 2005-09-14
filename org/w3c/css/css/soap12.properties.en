@@ -37,11 +37,11 @@ document: \
 \ \ \ \ \ \ <m:date><!-- #currentdate --></m:date>\n\
 \ \ \ \ \ \ <m:validity><!-- #isvalid --></m:validity>\n\
 \ \ \ \ \ \ <m:result>\n\
-\ \ \ \ \ \ \ \ <m:errors>\n\
+\ \ \ \ \ \ \ \ <m:errors xml:lang="<!-- #lang -->">\n\
 \ \ \ \ \ \ \ \ \ \ <m:errorcount><!-- #errors-count --></m:errorcount>\n\
 <!-- #error -->\n\
 \ \ \ \ \ \ \ \ </m:errors>\n\
-\ \ \ \ \ \ \ \ <m:warnings>\n\
+\ \ \ \ \ \ \ \ <m:warnings xml:lang="<!-- #lang -->">\n\
 \ \ \ \ \ \ \ \ \ \ <m:warningcount><!-- #warnings-count --></m:warningcount>\n\
 <!-- #warning -->\n\
 \ \ \ \ \ \ \ \ </m:warnings>\n\
