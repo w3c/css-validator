@@ -11,10 +11,10 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
  * Created: Sep 2, 2005 4:24:48 PM<br />
  */
 public class PseudoFunctionLang extends PseudoFunctionSelector {
-    
+
     public PseudoFunctionLang(String name, String lang) {
 	setName(name);
 	setParam(lang);
     }
-   
+
 }

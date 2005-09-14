@@ -11,13 +11,13 @@ import java.io.PrintStream;
 import java.io.Serializable;
 
 /**
- * This class is used to represent parsed MIME types. 
+ * This class is used to represent parsed MIME types.
  * It creates this representation from a string based representation of
  * the MIME type, as defined in the RFC 1345.
  */
 
 public class MimeType implements Serializable, Cloneable {
-    /** 
+    /**
      * List of well known MIME types:
      */
     public static MimeType TEXT_HTML                         = null ;
@@ -39,11 +39,11 @@ public class MimeType implements Serializable, Cloneable {
 
     static {
 	try {
-	    TEXT_HTML 
+	    TEXT_HTML
 		= new MimeType("text/html");
-	    APPLICATION_POSTSCRIPT 
+	    APPLICATION_POSTSCRIPT
 		= new MimeType ("application/postscript") ;
-	    TEXT_PLAIN             
+	    TEXT_PLAIN
 		= new MimeType("text/plain") ;
 	    APPLICATION_X_WWW_FORM_URLENCODED
 		= new MimeType("application/x-www-form-urlencoded") ;
@@ -59,7 +59,7 @@ public class MimeType implements Serializable, Cloneable {
 		= new MimeType("text/css");
 	    TEXT_XML
 		= new MimeType("text/xml");
-	    TEXT 
+	    TEXT
 		= new MimeType("text/*");
 	    APPLICATION_RDF_XML
 		= new MimeType("application/rdf+xml");
@@ -121,7 +121,7 @@ public class MimeType implements Serializable, Cloneable {
      * <dt>MATCH_SPECIFIC_SUBTYPE<dd>Types match, subtypes matches exactly</dd>
      * </dl>
      * The matches are ranked from worst match to best match, a simple
-     * Max ( match[i], matched) will give the best match. 
+     * Max ( match[i], matched) will give the best match.
      * @param other The other MimeType to match against ourself.
      */
 
@@ -169,7 +169,7 @@ public class MimeType implements Serializable, Cloneable {
 	return false;
     }
     /**
-     * A printable representation of this MimeType. 
+     * A printable representation of this MimeType.
      * The printed representation is guaranteed to be parseable by the
      * String constructor.
      */
@@ -205,7 +205,7 @@ public class MimeType implements Serializable, Cloneable {
 	    if ( pnames != null ) {
 		String lname = name.toLowerCase();
 		for (int i = 0 ; i < pnames.length ; i++) {
-		    if ( pnames[i].equals(name) ) 
+		    if ( pnames[i].equals(name) )
 			return true ;
 		}
 	    }
@@ -240,7 +240,7 @@ public class MimeType implements Serializable, Cloneable {
 	    if ( pnames != null ) {
 	    String lname = name.toLowerCase();
 		for (int i = 0 ; i < pnames.length ; i++) {
-		    if ( pnames[i].equals(lname) ) 
+		    if ( pnames[i].equals(lname) )
 			return pvalues[i];
 		}
 	    }
@@ -255,7 +255,7 @@ public class MimeType implements Serializable, Cloneable {
      */
     public void addParameters(String[] param, String[] values) {
 	// sanity check
-	if ((param == null) || (values == null) || 
+	if ((param == null) || (values == null) ||
 	    (values.length != param.length))
 	    return;
 	if (pnames == null) {
@@ -269,7 +269,7 @@ public class MimeType implements Serializable, Cloneable {
 	    System.arraycopy(pvalues, 0, nvalues, 0, pvalues.length);
 	    System.arraycopy(values,0, nvalues, pvalues.length, values.length);
 	    pnames = nparam;
-	    pvalues = nvalues;	    
+	    pvalues = nvalues;
 	}
 	for (int i = 0; i < pnames.length; i++) {
 	    pnames[i] = pnames[i].toLowerCase();
@@ -296,7 +296,7 @@ public class MimeType implements Serializable, Cloneable {
      * @param param the parameter name, as a String
      * @param value  the parameter value, as a Sting
      */
-    public void addParameter(String param, String value) { 
+    public void addParameter(String param, String value) {
 	String[] p = new String[1];
 	String[] v = new String[1];
 	p[0] = param;
@@ -323,7 +323,7 @@ public class MimeType implements Serializable, Cloneable {
 	    addParameter(lparam, value);
 	}
     }
-	
+
     /**
      * Construct  MimeType object for the given string.
      * The string should be the representation of the type. This methods
@@ -350,13 +350,13 @@ public class MimeType implements Serializable, Cloneable {
 	    sb.append (Character.toLowerCase((char) look)) ;
 	    start++ ;
 	}
-	if ( look != '/' ) 
+	if ( look != '/' )
 	    throw new MimeTypeFormatException (spec) ;
 	this.type = sb.toString().intern() ;
 	// get the subtype:
 	start++ ;
 	sb.setLength(0) ;
-	while ((start < strl) 
+	while ((start < strl)
 	       && ((look = spec.charAt(start)) > ' ') && (look != ';')) {
 	    sb.append (Character.toLowerCase((char) look)) ;
 	    start++ ;
@@ -366,7 +366,7 @@ public class MimeType implements Serializable, Cloneable {
 	while ((start < strl) && ((look = spec.charAt(start)) <= ' '))
 	    start++ ;
 	if ( start < strl ) {
-	    if (spec.charAt(start) != ';') 
+	    if (spec.charAt(start) != ';')
 		throw new MimeTypeFormatException (spec) ;
 	    start++ ;
 	    Vector vp = new Vector(4) ;
@@ -375,7 +375,7 @@ public class MimeType implements Serializable, Cloneable {
 		while ((start < strl) && (spec.charAt(start) <= ' ')) start++ ;
 		// get parameter name:
 		sb.setLength (0) ;
-		while ((start < strl) 
+		while ((start < strl)
 		       && ((look=spec.charAt(start)) > ' ') && (look != '=')) {
 		    sb.append (Character.toLowerCase((char) look)) ;
 		    start++ ;
@@ -383,22 +383,22 @@ public class MimeType implements Serializable, Cloneable {
 		String name = sb.toString() ;
 		// get the value:
 		while ((start < strl) && (spec.charAt(start) <= ' ')) start++ ;
-		if (spec.charAt(start) != '=') 
+		if (spec.charAt(start) != '=')
 		    throw new MimeTypeFormatException (spec) ;
 		start++ ;
-		while ((start < strl) && 
+		while ((start < strl) &&
 		       ((spec.charAt(start) == '"') ||
 			(spec.charAt(start) <= ' '))) start++ ;
 		sb.setLength(0) ;
-		while ((start < strl) 
-		       && ((look=spec.charAt(start)) > ' ') 
+		while ((start < strl)
+		       && ((look=spec.charAt(start)) > ' ')
 		       && (look != ';')
 		       && (look != '"')) {
 		    sb.append ((char) look) ;
 		    start++ ;
 		}
 		while ((start < strl) && (spec.charAt(start) != ';')) start++ ;
-		start++ ; 
+		start++ ;
 		String value = sb.toString() ;
 		vp.addElement(name);
 		vv.addElement(value);

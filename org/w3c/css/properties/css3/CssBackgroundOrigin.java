@@ -32,18 +32,18 @@ import org.w3c.css.values.CssValue;
 public class CssBackgroundOrigin extends CssProperty {
 
     CssValue bgorigin;
-    
+
     CssIdent border = new CssIdent("border");
     CssIdent padding = new CssIdent("padding");
     CssIdent content = new CssIdent("content");
-    
+
     /**
      * Create a new CssBackgroundOrigin
      */
     public CssBackgroundOrigin() {
 	bgorigin = padding;
     }
-    
+
     /**
      * Create a new CssBackgroundOrigin
      *
@@ -52,10 +52,10 @@ public class CssBackgroundOrigin extends CssProperty {
      */
     public CssBackgroundOrigin(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(border)) {
 	    bgorigin = border;
 	    expression.next();
@@ -70,12 +70,12 @@ public class CssBackgroundOrigin extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBackgroundOrigin(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
-    }    
-    
+    }
+
     /**
      * Add this property to the CssStyle
      *
@@ -86,7 +86,7 @@ public class CssBackgroundOrigin extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundOrigin = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -101,7 +101,7 @@ public class CssBackgroundOrigin extends CssProperty {
 	    return ((Css3Style) style).cssBackgroundOrigin;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -111,35 +111,35 @@ public class CssBackgroundOrigin extends CssProperty {
 	return (property instanceof CssBackgroundOrigin &&
 		bgorigin.equals(((CssBackgroundOrigin) property).bgorigin));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "background-origin";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return bgorigin;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return bgorigin.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return bgorigin.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -147,5 +147,5 @@ public class CssBackgroundOrigin extends CssProperty {
     public boolean isDefault() {
 	return bgorigin == padding;
     }
-    
+
 }

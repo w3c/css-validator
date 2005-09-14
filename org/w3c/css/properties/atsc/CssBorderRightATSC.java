@@ -54,65 +54,65 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderRightATSC extends CssProperty implements CssOperator {
-    
+
     CssBorderRightWidthATSC width;
     CssBorderRightStyleATSC style;
     CssBorderRightColorATSC color;
-    
+
     /**
      * Create a new CssBorderFaceATSC
      */
     public CssBorderRightATSC() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceATSC
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderRightATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
-	    val = expression.getValue();	    
-	    op = expression.getOperator();	    
+	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val == null)
 		break;
-	    
+
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
-						ac);   
+						ac);
 	    if (width == null) {
 		try {
-		    width = new CssBorderRightWidthATSC(ac, expression);		
+		    width = new CssBorderRightWidthATSC(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value		    
+		    // nothing to do, style will test this value
 		}
 	    }
 	    if (!find && style == null) {
 		try {
-		    style = new CssBorderRightStyleATSC(ac, expression);		    
+		    style = new CssBorderRightStyleATSC(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
 		    // nothing to do, color will test this value
@@ -121,28 +121,28 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    if (!find && color == null) {
 		// throws an exception if the value is not valid
 		color = new CssBorderRightColorATSC(ac, expression);
-		find = true;		
+		find = true;
 	    }
 	}
 	/*
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	setByUser();
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if (val == null)
 		break;
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(op)).toString()),
 			ac);
-	    
+
 	    if (width == null) {
 		try {
 		    width = new CssBorderRightWidthATSC(ac, expression);
@@ -167,7 +167,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 		}
 	    }
 	}
-	
+
 	if (width == null)
 	    width = new CssBorderRightWidthATSC();
 	if (style == null)
@@ -175,19 +175,19 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	if (color == null)
 	    color = new CssBorderRightColorATSC();*/
     }
-    
+
     public CssBorderRightATSC(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -198,7 +198,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -209,7 +209,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -220,7 +220,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -243,18 +243,18 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-right";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(width != null) {
 	    width.setImportant();
@@ -266,7 +266,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    color.setImportant();
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -276,14 +276,14 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 		(style == null || style.getImportant()) &&
 		(color == null || color.getImportant()));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -300,9 +300,9 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -322,7 +322,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -339,13 +339,13 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    color.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getBorderRightATSC();
@@ -353,16 +353,16 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    return ((ATSCStyle) style).cssBorderATSC.getRight();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -373,24 +373,24 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderRightATSC) {
 	    CssBorderRightATSC right = (CssBorderRightATSC) property;
-	    return (width.equals(right.width) && 
+	    return (width.equals(right.width) &&
 		    style.equals(right.style) && color.equals(right.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

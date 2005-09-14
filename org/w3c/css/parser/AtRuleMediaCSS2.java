@@ -17,7 +17,7 @@ import org.w3c.css.util.InvalidParamException;
 
 /**
  * This class manages all media defines by CSS2
- * 
+ *
  * @version $Revision$
  * @author  Philippe Le H�garet
  */
@@ -36,15 +36,15 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
      * Adds a medium.
      *
      * @exception InvalidParamException the medium doesn't exist
-     */    
-    public AtRuleMedia addMedia(String medium, 
+     */
+    public AtRuleMedia addMedia(String medium,
 				ApplContext ac) throws InvalidParamException {
 
 	//This medium didn't exist for CSS2
 	//	if ((!cssversion.equals("css3")) && medium.equals("presentation")) {
 	// throw new InvalidParamException("media", medium, ac);
 	//}
-		
+
 	for (int i = 0; i < mediaCSS2.length; i++) {
 	    if (medium.equals(mediaCSS2[i])) {
 		media[i] = mediaCSS2[i];
@@ -58,7 +58,7 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
 
     /**
      * Returns the at rule keyword
-     */    
+     */
     public String keyword() {
 	return "media";
     }
@@ -69,7 +69,7 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
 
     /**
      * The second must be exactly the same of this one
-     */    
+     */
     public boolean canApply(AtRule atRule) {
 	if (atRule instanceof AtRuleMedia) {
 	    AtRuleMedia second = (AtRuleMedia) atRule;
@@ -88,7 +88,7 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
 
     /**
      * The second must only match this one
-     */    
+     */
     public boolean canMatched(AtRule atRule) {
 	if (atRule instanceof AtRuleMedia) {
 	    AtRuleMedia second = (AtRuleMedia) atRule;
@@ -122,6 +122,6 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
 	return "@" + keyword() + " " + ret.substring(2);
     }
 
-    
+
 }
 

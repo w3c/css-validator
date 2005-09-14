@@ -24,7 +24,7 @@ import org.w3c.css.values.CssValue;
  * The Css1Style main class.
  */
 public class Css1Style extends CssStyle {
-    
+
     /** Font properties */
     protected CssFont cssFont = new CssFont();
     protected CssFontCSS2 cssFontCSS2 = new CssFontCSS2();
@@ -34,7 +34,7 @@ public class Css1Style extends CssStyle {
     protected CssFontStretchCSS1 cssFontStretchCSS1;
     protected CssFontSizeAdjust cssFontSizeAdjust;
     protected CssFontSizeAdjustCSS2 cssFontSizeAdjustCSS2;
-    
+
     /* Color and Background properties */
     /** Color property */
     protected CssColor cssColor;
@@ -45,7 +45,7 @@ public class Css1Style extends CssStyle {
     protected CssBackgroundCSS2 cssBackgroundCSS2 = new CssBackgroundCSS2();
     protected CssBackgroundCSS1 cssBackgroundCSS1 = new CssBackgroundCSS1();
     protected CssBackgroundMob cssBackgroundMob = new CssBackgroundMob();
-    
+
     /* Text properties */
     /** word-spacing property */
     protected CssWordSpacing cssWordSpacing;
@@ -70,7 +70,7 @@ public class Css1Style extends CssStyle {
     protected CssTextShadow cssTextShadow;
     protected CssTextShadowATSC cssTextShadowATSC;
     // line-heigth : see cssFont
-    
+
     /* Box properties */
     /** margin properties */
     protected CssMargin cssMargin = new CssMargin();
@@ -83,21 +83,21 @@ public class Css1Style extends CssStyle {
     /** width property */
     protected CssWidth cssWidth;
     protected CssWidthMob cssWidthMob;
-    
+
     /** min-width property */
     protected CssMinWidth cssMinWidth;
     protected CssMinWidthATSC cssMinWidthATSC;
     /** max-width property */
     protected CssMaxWidth cssMaxWidth;
     protected CssMaxWidthATSC cssMaxWidthATSC;
-    
+
     /** min-height property */
     protected CssMinHeight cssMinHeight;
     protected CssMinHeightATSC cssMinHeightATSC;
     /** max-height property */
     protected CssMaxHeight cssMaxHeight;
     protected CssMaxHeightATSC cssMaxHeightATSC;
-    
+
     /** height property */
     protected CssHeight cssHeight;
     protected CssHeightMob cssHeightMob;
@@ -105,8 +105,8 @@ public class Css1Style extends CssStyle {
     protected CssFloat cssFloat;
     /** clear property */
     protected CssClear cssClear;
-    
-    
+
+
     /* Classification properties */
     /** display property */
     protected CssDisplay cssDisplay;
@@ -114,7 +114,7 @@ public class Css1Style extends CssStyle {
     protected CssDisplayCSS1 cssDisplayCSS1;
     /** position property */
     protected CssPosition cssPosition;
-    
+
     /** top property */
     protected CssTop cssTop;
     /** left property */
@@ -123,34 +123,34 @@ public class Css1Style extends CssStyle {
     protected CssRight cssRight;
     /** bottom property */
     protected CssBottom cssBottom;
-    
+
     /** z-index property */
     protected CssZIndex cssZIndex;
-    
+
     /** direction property */
     protected CssDirection cssDirection;
     protected CssDirectionATSC cssDirectionATSC;
-    
+
     /** unicode-bidi property */
     protected CssUnicodeBidi cssUnicodeBidi;
     protected CssUnicodeBidiATSC cssUnicodeBidiATSC;
-    
+
     /** white-space property */
     protected CssWhiteSpace cssWhiteSpace;
     /** list-style properties */
     protected CssListStyle cssListStyle = new CssListStyle();
     protected CssListStyleCSS2 cssListStyleCSS2 = new CssListStyleCSS2();
     protected CssListStyleCSS1 cssListStyleCSS1 = new CssListStyleCSS1();
-    
+
     /** overflow property */
     protected CssOverflow cssOverflow;
-    
+
     /** clip property */
     protected CssClip cssClip;
-    
+
     /** visibility property */
     protected CssVisibility cssVisibility;
-    
+
     /** content property */
     protected CssContentCSS2 cssContentCSS2;
     protected CssContent cssContent;
@@ -164,7 +164,7 @@ public class Css1Style extends CssStyle {
     /** marker-offset property */
     protected CssMarkerOffset cssMarkerOffset;
     protected CssMarkerOffsetATSC cssMarkerOffsetATSC;
-    
+
     /**TV property */
     protected CssListStyleTypeTV cssListStyleTypeTV;
     /**TV property */
@@ -177,11 +177,11 @@ public class Css1Style extends CssStyle {
     protected CssTextDecorationTV cssTextDecorationTV;
     /**TV property */
     protected CssVerticalAlignTV cssVerticalAlignTV;
-    
+
     /*
      * Font Properties
      */
-    
+
     /**
      * Get the font-style property
      */
@@ -193,7 +193,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.fontStyle;
     }
-    
+
     public final CssFontStyleCSS2 getFontStyleCSS2() {
 	if (cssFontCSS2.fontStyle == null) {
 	    cssFontCSS2.fontStyle =
@@ -202,7 +202,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.fontStyle;
     }
-    
+
     public final CssFontStyleCSS1 getFontStyleCSS1() {
 	if (cssFontCSS1.fontStyle == null) {
 	    cssFontCSS1.fontStyle =
@@ -211,7 +211,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.fontStyle;
     }
-    
+
     /**
      * Get the font-variant property
      */
@@ -223,7 +223,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.fontVariant;
     }
-    
+
     public final CssFontVariantCSS2 getFontVariantCSS2() {
 	if (cssFontCSS2.fontVariant == null) {
 	    cssFontCSS2.fontVariant =
@@ -232,7 +232,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.fontVariant;
     }
-    
+
     public final CssFontVariantCSS1 getFontVariantCSS1() {
 	if (cssFontCSS1.fontVariant == null) {
 	    cssFontCSS1.fontVariant =
@@ -241,7 +241,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.fontVariant;
     }
-    
+
     /**
      * Get the font-weight property
      */
@@ -253,7 +253,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.fontWeight;
     }
-    
+
     public final CssFontWeight getFontWeight() {
 	if (cssFont.fontWeight == null) {
 	    cssFont.fontWeight =
@@ -262,7 +262,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.fontWeight;
     }
-    
+
     public final CssFontWeightCSS1 getFontWeightCSS1() {
 	if (cssFontCSS1.fontWeight == null) {
 	    cssFontCSS1.fontWeight =
@@ -271,7 +271,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.fontWeight;
     }
-    
+
     /**
      * Get the font-stretch property
      */
@@ -283,7 +283,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontStretch;
     }
-    
+
     public final CssFontStretchCSS2 getFontStretchCSS2() {
 	if (cssFontStretchCSS2 == null) {
 	    cssFontStretchCSS2 =
@@ -292,7 +292,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontStretchCSS2;
     }
-    
+
     public final CssFontStretchCSS1 getFontStretchCSS1() {
 	if (cssFontStretchCSS1 == null) {
 	    cssFontStretchCSS1 =
@@ -301,7 +301,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontStretchCSS1;
     }
-    
+
     /**
      * Get the font-size property
      */
@@ -313,7 +313,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.fontSize;
     }
-    
+
     public final CssFontSize getFontSize() {
 	if (cssFont.fontSize == null) {
 	    cssFont.fontSize =
@@ -322,7 +322,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.fontSize;
     }
-    
+
     public final CssFontSizeCSS1 getFontSizeCSS1() {
 	if (cssFontCSS1.fontSize == null) {
 	    cssFontCSS1.fontSize =
@@ -331,7 +331,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.fontSize;
     }
-    
+
     /**
      * Get the font-size-adjust property
      */
@@ -344,7 +344,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontSizeAdjustCSS2;
     }
-    
+
     public final CssFontSizeAdjust getFontSizeAdjust() {
 	if (cssFontSizeAdjust == null) {
 	    cssFontSizeAdjust =
@@ -354,7 +354,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontSizeAdjust;
     }
-    
+
     /**
      * Get the font-family property
      */
@@ -366,7 +366,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.fontFamily;
     }
-    
+
     public final CssFontFamilyCSS2 getFontFamilyCSS2() {
 	if (cssFontCSS2.fontFamily == null) {
 	    cssFontCSS2.fontFamily =
@@ -375,7 +375,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.fontFamily;
     }
-    
+
     public final CssFontFamilyCSS1 getFontFamilyCSS1() {
 	if (cssFontCSS1.fontFamily == null) {
 	    cssFontCSS1.fontFamily =
@@ -384,7 +384,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.fontFamily;
     }
-    
+
     /**
      * Get the font property
      */
@@ -413,7 +413,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont;
     }
-    
+
     public final CssFontCSS2 getFontCSS2() {
 	if (cssFontCSS2.value != null) {
 	    // nothing
@@ -439,7 +439,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2;
     }
-    
+
     public final CssFontCSS1 getFontCSS1() {
 	if (cssFontCSS1.value != null) {
 	    // nothing
@@ -465,11 +465,11 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1;
     }
-    
+
     /*
      * Color and Background properties
      */
-    
+
     /**
      * Get the color property
      */
@@ -480,7 +480,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssColor;
     }
-    
+
     public final CssColorCSS2 getColorCSS2() {
 	if (cssColorCSS2 == null) {
 	    cssColorCSS2 = (CssColorCSS2)
@@ -488,7 +488,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssColorCSS2;
     }
-    
+
     public final CssColorCSS1 getColorCSS1() {
 	if (cssColorCSS1 == null) {
 	    cssColorCSS1 = (CssColorCSS1)
@@ -496,7 +496,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssColorCSS1;
     }
-    
+
     /**
      * Get the background-color property
      */
@@ -508,7 +508,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground.color;
     }
-    
+
     public final CssBackgroundColorCSS2 getBackgroundColorCSS2() {
 	if (cssBackgroundCSS2.color == null) {
 	    cssBackgroundCSS2.color =
@@ -518,7 +518,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2.color;
     }
-    
+
     public final CssBackgroundColorCSS1 getBackgroundColorCSS1() {
 	if (cssBackgroundCSS1.color == null) {
 	    cssBackgroundCSS1.color =
@@ -528,7 +528,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1.color;
     }
-    
+
     public final CssBackgroundColorMob getBackgroundColorMob() {
 	if (cssBackgroundMob.color == null) {
 	    cssBackgroundMob.color =
@@ -538,7 +538,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob.color;
     }
-    
+
     /**
      * Get the background-image property
      */
@@ -550,7 +550,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground.image;
     }
-    
+
     public final CssBackgroundImageCSS2 getBackgroundImageCSS2() {
 	if (cssBackgroundCSS2.image == null) {
 	    cssBackgroundCSS2.image =
@@ -559,7 +559,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2.image;
     }
-    
+
     public final CssBackgroundImageCSS1 getBackgroundImageCSS1() {
 	if (cssBackgroundCSS1.image == null) {
 	    cssBackgroundCSS1.image =
@@ -568,7 +568,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1.image;
     }
-    
+
     public final CssBackgroundImageMob getBackgroundImageMob() {
 	if (cssBackgroundMob.image == null) {
 	    cssBackgroundMob.image =
@@ -577,7 +577,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob.image;
     }
-    
+
     /**
      * Get the background-repeat property
      */
@@ -589,7 +589,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground.repeat;
     }
-    
+
     public final CssBackgroundRepeatCSS2 getBackgroundRepeatCSS2() {
 	if (cssBackgroundCSS2.repeat == null) {
 	    cssBackgroundCSS2.repeat =
@@ -598,7 +598,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2.repeat;
     }
-    
+
     public final CssBackgroundRepeatCSS1 getBackgroundRepeatCSS1() {
 	if (cssBackgroundCSS1.repeat == null) {
 	    cssBackgroundCSS1.repeat =
@@ -607,7 +607,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1.repeat;
     }
-    
+
     public final CssBackgroundRepeatMob getBackgroundRepeatMob() {
 	if (cssBackgroundMob.repeat == null) {
 	    cssBackgroundMob.repeat =
@@ -616,7 +616,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob.repeat;
     }
-    
+
     /**
      * Get the background-attachment property
      */
@@ -628,7 +628,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground.attachment;
     }
-    
+
     public final CssBackgroundAttachmentCSS2 getBackgroundAttachmentCSS2() {
 	if (cssBackgroundCSS2.attachment == null) {
 	    cssBackgroundCSS2.attachment =
@@ -637,7 +637,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2.attachment;
     }
-    
+
     public final CssBackgroundAttachmentCSS1 getBackgroundAttachmentCSS1() {
 	if (cssBackgroundCSS1.attachment == null) {
 	    cssBackgroundCSS1.attachment =
@@ -646,7 +646,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1.attachment;
     }
-    
+
     public final CssBackgroundAttachmentMob getBackgroundAttachmentMob() {
 	if (cssBackgroundMob.attachment == null) {
 	    cssBackgroundMob.attachment =
@@ -655,7 +655,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob.attachment;
     }
-    
+
     /**
      * Get the background-position property
      */
@@ -667,7 +667,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground.position;
     }
-    
+
     public final CssBackgroundPositionCSS2 getBackgroundPositionCSS2() {
 	if (cssBackgroundCSS2.position == null) {
 	    cssBackgroundCSS2.position =
@@ -676,7 +676,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2.position;
     }
-    
+
     public final CssBackgroundPositionCSS1 getBackgroundPositionCSS1() {
 	if (cssBackgroundCSS1.position == null) {
 	    cssBackgroundCSS1.position =
@@ -685,7 +685,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1.position;
     }
-    
+
     public final CssBackgroundPositionMob getBackgroundPositionMob() {
 	if (cssBackgroundMob.position == null) {
 	    cssBackgroundMob.position =
@@ -694,7 +694,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob.position;
     }
-    
+
     /**
      * Get the background property
      */
@@ -716,7 +716,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackground;
     }
-    
+
     public final CssBackgroundCSS2 getBackgroundCSS2() {
 	if (cssBackgroundCSS2.getColor() == null) {
 	    cssBackgroundCSS2.color = getBackgroundColorCSS2();
@@ -735,7 +735,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS2;
     }
-    
+
     public final CssBackgroundCSS1 getBackgroundCSS1() {
 	if (cssBackgroundCSS1.getColor() == null) {
 	    cssBackgroundCSS1.color = getBackgroundColorCSS1();
@@ -754,7 +754,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundCSS1;
     }
-    
+
     public final CssBackgroundMob getBackgroundMob() {
 	if (cssBackgroundMob.getColor() == null) {
 	    cssBackgroundMob.color = getBackgroundColorMob();
@@ -773,11 +773,11 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBackgroundMob;
     }
-    
+
     /*
      * Text properties
      */
-    
+
     /**
      * Get the word-spacing property
      */
@@ -789,7 +789,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssWordSpacing;
     }
-    
+
     /**
      * Get the letter-spacing property
      */
@@ -801,7 +801,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssLetterSpacing;
     }
-    
+
     /**
      * Get the text-decoration property
      */
@@ -813,7 +813,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextDecoration;
     }
-    
+
     public final CssTextDecorationMob getTextDecorationMob() {
 	if (cssTextDecorationMob == null) {
 	    cssTextDecorationMob =
@@ -822,7 +822,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextDecorationMob;
     }
-    
+
     /**
      * Get the vertical-align property
      */
@@ -834,7 +834,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssVerticalAlign;
     }
-    
+
     public final CssVerticalAlignMob getVerticalAlignMob() {
 	if (cssVerticalAlignMob == null) {
 	    cssVerticalAlignMob =
@@ -843,7 +843,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssVerticalAlignMob;
     }
-    
+
     public final CssVerticalAlignCSS1 getVerticalAlignCSS1() {
 	if (cssVerticalAlignCSS1 == null) {
 	    cssVerticalAlignCSS1 =
@@ -852,7 +852,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssVerticalAlignCSS1;
     }
-    
+
     /**
      * Get the text-transform property
      */
@@ -864,7 +864,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextTransform;
     }
-    
+
     /**
      * Get the text-align property
      */
@@ -876,7 +876,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextAlign;
     }
-    
+
     public final CssTextAlignMob getTextAlignMob() {
 	if (cssTextAlignMob == null) {
 	    cssTextAlignMob =
@@ -885,7 +885,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextAlignMob;
     }
-    
+
     /**
      * Get the text-indent property
      */
@@ -897,7 +897,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextIndent;
     }
-    
+
     public final CssTextIndentMob getTextIndentMob() {
 	if (cssTextIndentMob == null) {
 	    cssTextIndentMob =
@@ -906,7 +906,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextIndentMob;
     }
-    
+
     /**
      * Get the text-shadow property
      */
@@ -918,7 +918,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextShadow;
     }
-    
+
     public final CssTextShadowATSC getTextShadowATSC() {
 	if (cssTextShadowATSC == null) {
 	    cssTextShadowATSC =
@@ -927,7 +927,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTextShadowATSC;
     }
-    
+
     /**
      * Get the line-height property
      */
@@ -939,7 +939,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFont.lineHeight;
     }
-    
+
     public final CssLineHeightCSS2 getLineHeightCSS2() {
 	if (cssFontCSS2.lineHeight == null) {
 	    cssFontCSS2.lineHeight =
@@ -948,7 +948,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS2.lineHeight;
     }
-    
+
     public final CssLineHeightCSS1 getLineHeightCSS1() {
 	if (cssFontCSS1.lineHeight == null) {
 	    cssFontCSS1.lineHeight =
@@ -957,11 +957,11 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFontCSS1.lineHeight;
     }
-    
+
     /*
      * Box properties
      */
-    
+
     /**
      * Get the margin-top property
      */
@@ -973,7 +973,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMargin.top;
     }
-    
+
     /**
      * Get the margin-right property
      */
@@ -985,7 +985,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMargin.right;
     }
-    
+
     /**
      * Get the margin-bottom property
      */
@@ -997,7 +997,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMargin.bottom;
     }
-    
+
     /**
      * Get the margin-left property
      */
@@ -1009,7 +1009,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMargin.left;
     }
-    
+
     /**
      * Get the margin property
      */
@@ -1024,7 +1024,7 @@ public class Css1Style extends CssStyle {
 	    cssMargin.left = getMarginLeft();
 	return cssMargin;
     }
-    
+
     /**
      * Get the padding-top property
      */
@@ -1036,7 +1036,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssPadding.top;
     }
-    
+
     /**
      * Get the padding-right property
      */
@@ -1048,7 +1048,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssPadding.right;
     }
-    
+
     /**
      * Get the padding-bottom property
      */
@@ -1060,7 +1060,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssPadding.bottom;
     }
-    
+
     /**
      * Get the padding-left property
      */
@@ -1072,7 +1072,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssPadding.left;
     }
-    
+
     /**
      * Get the padding property
      */
@@ -1087,7 +1087,7 @@ public class Css1Style extends CssStyle {
 	    cssPadding.left = getPaddingLeft();
 	return cssPadding;
     }
-    
+
     /**
      * Get the border-top-width property
      */
@@ -1099,7 +1099,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getTop().width;
     }
-    
+
     public final CssBorderTopWidthCSS2 getBorderTopWidthCSS2() {
 	if (cssBorderCSS2.getTop().getWidth() == null) {
 	    cssBorderCSS2.getTop().width =
@@ -1108,7 +1108,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getTop().width;
     }
-    
+
     public final CssBorderTopWidthCSS1 getBorderTopWidthCSS1() {
 	if (cssBorderCSS1.getTop().getWidth() == null) {
 	    cssBorderCSS1.getTop().width =
@@ -1117,7 +1117,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getTop().width;
     }
-    
+
     /**
      * Get the border-top-style property
      */
@@ -1129,7 +1129,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getTop().style;
     }
-    
+
     public final CssBorderTopStyleCSS2 getBorderTopStyleCSS2() {
 	if (cssBorderCSS2.getTop().getStyle() == null) {
 	    cssBorderCSS2.getTop().style =
@@ -1138,7 +1138,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getTop().style;
     }
-    
+
     public final CssBorderTopStyleCSS1 getBorderTopStyleCSS1() {
 	if (cssBorderCSS1.getTop().getStyle() == null) {
 	    cssBorderCSS1.getTop().style =
@@ -1147,7 +1147,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getTop().style;
     }
-    
+
     /**
      * Get the border-top-color property
      */
@@ -1159,7 +1159,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getTop().color;
     }
-    
+
     public final CssBorderTopColor getBorderTopColor() {
 	if (cssBorder.getTop().getColor() == null) {
 	    cssBorder.getTop().color =
@@ -1168,7 +1168,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getTop().color;
     }
-    
+
     public final CssBorderTopColorCSS1 getBorderTopColorCSS1() {
 	if (cssBorderCSS1.getTop().getColor() == null) {
 	    cssBorderCSS1.getTop().color =
@@ -1177,7 +1177,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getTop().color;
     }
-    
+
     /**
      * Get the border-right-width property
      */
@@ -1189,7 +1189,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getRight().width;
     }
-    
+
     public final CssBorderRightWidthCSS2 getBorderRightWidthCSS2() {
 	if (cssBorderCSS2.getRight().getWidth() == null) {
 	    cssBorderCSS2.getRight().width =
@@ -1198,7 +1198,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getRight().width;
     }
-    
+
     public final CssBorderRightWidthCSS1 getBorderRightWidthCSS1() {
 	if (cssBorderCSS1.getRight().getWidth() == null) {
 	    cssBorderCSS1.getRight().width =
@@ -1207,7 +1207,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getRight().width;
     }
-    
+
     /**
      * Get the border-right-style property
      */
@@ -1219,7 +1219,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getRight().style;
     }
-    
+
     public final CssBorderRightStyleCSS2 getBorderRightStyleCSS2() {
 	if (cssBorderCSS2.getRight().getStyle() == null) {
 	    cssBorderCSS2.getRight().style =
@@ -1228,7 +1228,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getRight().style;
     }
-    
+
     public final CssBorderRightStyleCSS1 getBorderRightStyleCSS1() {
 	if (cssBorderCSS1.getRight().getStyle() == null) {
 	    cssBorderCSS1.getRight().style =
@@ -1237,7 +1237,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getRight().style;
     }
-    
+
     /**
      * Get the border-right-color property
      */
@@ -1249,7 +1249,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getRight().color;
     }
-    
+
     public final CssBorderRightColorCSS2 getBorderRightColorCSS2() {
 	if (cssBorderCSS2.getRight().getColor() == null) {
 	    cssBorderCSS2.getRight().color =
@@ -1258,7 +1258,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getRight().color;
     }
-    
+
     public final CssBorderRightColorCSS1 getBorderRightColorCSS1() {
 	if (cssBorderCSS1.getRight().getColor() == null) {
 	    cssBorderCSS1.getRight().color =
@@ -1267,7 +1267,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getRight().color;
     }
-    
+
     /**
      * Get the border-bottom-width property
      */
@@ -1279,7 +1279,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getBottom().width;
     }
-    
+
     public final CssBorderBottomWidthCSS2 getBorderBottomWidthCSS2() {
 	if (cssBorderCSS2.getBottom().getWidth() == null) {
 	    cssBorderCSS2.getBottom().width =
@@ -1288,7 +1288,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getBottom().width;
     }
-    
+
     public final CssBorderBottomWidthCSS1 getBorderBottomWidthCSS1() {
 	if (cssBorderCSS1.getBottom().getWidth() == null) {
 	    cssBorderCSS1.getBottom().width =
@@ -1297,7 +1297,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getBottom().width;
     }
-    
+
     /**
      * Get the border-bottom-style property
      */
@@ -1309,7 +1309,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getBottom().style;
     }
-    
+
     public final CssBorderBottomStyleCSS2 getBorderBottomStyleCSS2() {
 	if (cssBorderCSS2.getBottom().getStyle() == null) {
 	    cssBorderCSS2.getBottom().style =
@@ -1318,7 +1318,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getBottom().style;
     }
-    
+
     public final CssBorderBottomStyleCSS1 getBorderBottomStyleCSS1() {
 	if (cssBorderCSS1.getBottom().getStyle() == null) {
 	    cssBorderCSS1.getBottom().style =
@@ -1327,7 +1327,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getBottom().style;
     }
-    
+
     /**
      * Get the border-bottom-color property
      */
@@ -1339,7 +1339,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getBottom().color;
     }
-    
+
     public final CssBorderBottomColorCSS2 getBorderBottomColorCSS2() {
 	if (cssBorderCSS2.getBottom().getColor() == null) {
 	    cssBorderCSS2.getBottom().color =
@@ -1348,7 +1348,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getBottom().color;
     }
-    
+
     public final CssBorderBottomColorCSS1 getBorderBottomColorCSS1() {
 	if (cssBorderCSS1.getBottom().getColor() == null) {
 	    cssBorderCSS1.getBottom().color =
@@ -1357,7 +1357,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getBottom().color;
     }
-    
+
     /**
      * Get the border-left-width property
      */
@@ -1369,7 +1369,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getLeft().width;
     }
-    
+
     public final CssBorderLeftWidthCSS2 getBorderLeftWidthCSS2() {
 	if (cssBorderCSS2.getLeft().getWidth() == null) {
 	    cssBorderCSS2.getLeft().width =
@@ -1378,7 +1378,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getLeft().width;
     }
-    
+
     public final CssBorderLeftWidthCSS1 getBorderLeftWidthCSS1() {
 	if (cssBorderCSS1.getLeft().getWidth() == null) {
 	    cssBorderCSS1.getLeft().width =
@@ -1387,7 +1387,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getLeft().width;
     }
-    
+
     /**
      * Get the border-left-style property
      */
@@ -1399,7 +1399,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getLeft().style;
     }
-    
+
     public final CssBorderLeftStyleCSS2 getBorderLeftStyleCSS2() {
 	if (cssBorderCSS2.getLeft().getStyle() == null) {
 	    cssBorderCSS2.getLeft().style =
@@ -1408,7 +1408,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getLeft().style;
     }
-    
+
     public final CssBorderLeftStyleCSS1 getBorderLeftStyleCSS1() {
 	if (cssBorderCSS1.getLeft().getStyle() == null) {
 	    cssBorderCSS1.getLeft().style =
@@ -1417,7 +1417,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getLeft().style;
     }
-    
+
     /**
      * Get the border-left-color property
      */
@@ -1429,7 +1429,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getLeft().color;
     }
-    
+
     public final CssBorderLeftColorCSS2 getBorderLeftColorCSS2() {
 	if (cssBorderCSS2.getLeft().getColor() == null) {
 	    cssBorderCSS2.getLeft().color =
@@ -1438,7 +1438,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getLeft().color;
     }
-    
+
     public final CssBorderLeftColorCSS1 getBorderLeftColorCSS1() {
 	if (cssBorderCSS1.getLeft().getColor() == null) {
 	    cssBorderCSS1.getLeft().color =
@@ -1447,7 +1447,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getLeft().color;
     }
-    
+
     /**
      * Get the border-top property
      */
@@ -1463,7 +1463,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getTop();
     }
-    
+
     public final CssBorderTopCSS2 getBorderTopCSS2() {
 	if (cssBorderCSS2.getTop().getWidth() == null) {
 	    cssBorderCSS2.getTop().width = getBorderTopWidthCSS2();
@@ -1476,7 +1476,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getTop();
     }
-    
+
     public final CssBorderTopCSS1 getBorderTopCSS1() {
 	if (cssBorderCSS1.getTop().getWidth() == null) {
 	    cssBorderCSS1.getTop().width = getBorderTopWidthCSS1();
@@ -1489,7 +1489,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getTop();
     }
-    
+
     /**
      * Get the border-right property
      */
@@ -1505,7 +1505,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getRight();
     }
-    
+
     public final CssBorderRightCSS2 getBorderRightCSS2() {
 	if (cssBorderCSS2.getRight().getWidth() == null) {
 	    cssBorderCSS2.getRight().width = getBorderRightWidthCSS2();
@@ -1518,7 +1518,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getRight();
     }
-    
+
     public final CssBorderRightCSS1 getBorderRightCSS1() {
 	if (cssBorderCSS1.getRight().getWidth() == null) {
 	    cssBorderCSS1.getRight().width = getBorderRightWidthCSS1();
@@ -1531,7 +1531,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getRight();
     }
-    
+
     /**
      * Get the border-bottom property
      */
@@ -1547,7 +1547,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getBottom();
     }
-    
+
     public final CssBorderBottomCSS2 getBorderBottomCSS2() {
 	if (cssBorderCSS2.getBottom().getWidth() == null) {
 	    cssBorderCSS2.getBottom().width = getBorderBottomWidthCSS2();
@@ -1560,7 +1560,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getBottom();
     }
-    
+
     public final CssBorderBottomCSS1 getBorderBottomCSS1() {
 	if (cssBorderCSS1.getBottom().getWidth() == null) {
 	    cssBorderCSS1.getBottom().width = getBorderBottomWidthCSS1();
@@ -1573,7 +1573,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getBottom();
     }
-    
+
     /**
      * Get the border-left property
      */
@@ -1589,7 +1589,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorder.getLeft();
     }
-    
+
     public final CssBorderLeftCSS2 getBorderLeftCSS2() {
 	if (cssBorderCSS2.getLeft().getWidth() == null) {
 	    cssBorderCSS2.getLeft().width = getBorderLeftWidthCSS2();
@@ -1602,7 +1602,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS2.getLeft();
     }
-    
+
     public final CssBorderLeftCSS1 getBorderLeftCSS1() {
 	if (cssBorderCSS1.getLeft().getWidth() == null) {
 	    cssBorderCSS1.getLeft().width = getBorderLeftWidthCSS1();
@@ -1615,18 +1615,18 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBorderCSS1.getLeft();
     }
-    
+
     /**
      * Get the border property
      */
-    public final CssBorder getBorder() {	
+    public final CssBorder getBorder() {
 	getBorderTop();
 	getBorderRight();
 	getBorderBottom();
 	getBorderLeft();
 	return cssBorder;
     }
-    
+
     public final CssBorderCSS2 getBorderCSS2() {
 	getBorderTopCSS2();
 	getBorderRightCSS2();
@@ -1634,7 +1634,7 @@ public class Css1Style extends CssStyle {
 	getBorderLeftCSS2();
 	return cssBorderCSS2;
     }
-    
+
     public final CssBorderCSS1 getBorderCSS1() {
 	getBorderTopCSS1();
 	getBorderRightCSS1();
@@ -1642,7 +1642,7 @@ public class Css1Style extends CssStyle {
 	getBorderLeftCSS1();
 	return cssBorderCSS1;
     }
-    
+
     /**
      * Get the border-width property
      */
@@ -1653,7 +1653,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightWidth(),
 		getBorderLeftWidth());
     }
-    
+
     public final CssBorderWidthCSS2 getBorderWidthCSS2() {
 	// WARNING invalid fields in this property ....
 	return new CssBorderWidthCSS2(getBorderTopWidthCSS2(),
@@ -1661,7 +1661,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightWidthCSS2(),
 		getBorderLeftWidthCSS2());
     }
-    
+
     public final CssBorderWidthCSS1 getBorderWidthCSS1() {
 	// WARNING invalid fields in this property ....
 	return new CssBorderWidthCSS1(getBorderTopWidthCSS1(),
@@ -1669,7 +1669,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightWidthCSS1(),
 		getBorderLeftWidthCSS1());
     }
-    
+
     /**
      * Get the border-style property
      */
@@ -1680,7 +1680,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightStyle(),
 		getBorderLeftStyle());
     }
-    
+
     public final CssBorderStyleCSS2 getBorderStyleCSS2() {
 	// WARNING invalid fields in this property ....
 	return new CssBorderStyleCSS2(getBorderTopStyleCSS2(),
@@ -1688,7 +1688,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightStyleCSS2(),
 		getBorderLeftStyleCSS2());
     }
-    
+
     public final CssBorderStyleCSS1 getBorderStyleCSS1() {
 	// WARNING invalid fields in this property ....
 	return new CssBorderStyleCSS1(getBorderTopStyleCSS1(),
@@ -1696,7 +1696,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightStyleCSS1(),
 		getBorderLeftStyleCSS1());
     }
-    
+
     /**
      * Get the border-color property
      */
@@ -1707,7 +1707,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightColor(),
 		getBorderLeftColor());
     }
-    
+
     public final CssBorderColorCSS2 getBorderColorCSS2() {
 	// WARNING invalid fields in this porperty ....
 	return new CssBorderColorCSS2(getBorderTopColorCSS2(),
@@ -1715,7 +1715,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightColorCSS2(),
 		getBorderLeftColorCSS2());
     }
-    
+
     public final CssBorderColorCSS1 getBorderColorCSS1() {
 	// WARNING invalid fields in this porperty ....
 	return new CssBorderColorCSS1(getBorderTopColorCSS1(),
@@ -1723,7 +1723,7 @@ public class Css1Style extends CssStyle {
 		getBorderRightColorCSS1(),
 		getBorderLeftColorCSS1());
     }
-    
+
     /**
      * Get the width property
      */
@@ -1734,7 +1734,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssWidth;
     }
-    
+
     public final CssWidthMob getWidthMob() {
 	if (cssWidthMob == null) {
 	    cssWidthMob =
@@ -1742,7 +1742,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssWidthMob;
     }
-    
+
     /**
      * Get the min-width property
      */
@@ -1753,7 +1753,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMinWidth;
     }
-    
+
     public final CssMinWidthATSC getMinWidthATSC() {
 	if (cssMinWidthATSC == null) {
 	    cssMinWidthATSC =
@@ -1761,7 +1761,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMinWidthATSC;
     }
-    
+
     /**
      * Get the max-width property
      */
@@ -1772,7 +1772,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMaxWidth;
     }
-    
+
     public final CssMaxWidthATSC getMaxWidthATSC() {
 	if (cssMaxWidthATSC == null) {
 	    cssMaxWidthATSC =
@@ -1780,7 +1780,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMaxWidthATSC;
     }
-    
+
     /**
      * Get the min-height property
      */
@@ -1791,7 +1791,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMinHeight;
     }
-    
+
     public final CssMinHeightATSC getMinHeightATSC() {
 	if (cssMinHeightATSC == null) {
 	    cssMinHeightATSC =
@@ -1799,7 +1799,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMinHeightATSC;
     }
-    
+
     /**
      * Get the max-height property
      */
@@ -1810,7 +1810,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMaxHeight;
     }
-    
+
     public final CssMaxHeightATSC getMaxHeightATSC() {
 	if (cssMaxHeightATSC == null) {
 	    cssMaxHeightATSC =
@@ -1818,7 +1818,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMaxHeightATSC;
     }
-    
+
     /**
      * Get the height property
      */
@@ -1829,7 +1829,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssHeight;
     }
-    
+
     public final CssHeightMob getHeightMob() {
 	if (cssHeightMob == null) {
 	    cssHeightMob =
@@ -1837,7 +1837,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssHeightMob;
     }
-    
+
     /**
      * Get the float property
      */
@@ -1848,7 +1848,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssFloat;
     }
-    
+
     /**
      * Get the clear property
      */
@@ -1859,7 +1859,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssClear;
     }
-    
+
     /**
      * Get the top property
      */
@@ -1870,7 +1870,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssTop;
     }
-    
+
     /**
      * Get the left property
      */
@@ -1881,7 +1881,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssLeft;
     }
-    
+
     /**
      * Get the right property
      */
@@ -1892,7 +1892,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssRight;
     }
-    
+
     /**
      * Get the bottom property
      */
@@ -1903,11 +1903,11 @@ public class Css1Style extends CssStyle {
 	}
 	return cssBottom;
     }
-    
+
     /*
      * Classification properties
      */
-    
+
     /**
      * Get the display property
      */
@@ -1918,7 +1918,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssDisplay;
     }
-    
+
     public final CssDisplayCSS2 getDisplayCSS2() {
 	if (cssDisplayCSS2 == null) {
 	    cssDisplayCSS2 =
@@ -1926,7 +1926,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssDisplayCSS2;
     }
-    
+
     public final CssDisplayCSS1 getDisplayCSS1() {
 	if (cssDisplayCSS1 == null) {
 	    cssDisplayCSS1 =
@@ -1934,8 +1934,8 @@ public class Css1Style extends CssStyle {
 	}
 	return cssDisplayCSS1;
     }
-    
-    
+
+
     /**
      * Get the position property
      */
@@ -1946,7 +1946,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssPosition;
     }
-    
+
     /**
      * Get the z-index property
      */
@@ -1958,7 +1958,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssZIndex;
     }
-    
+
     /**
      * Get the direction property
      */
@@ -1970,7 +1970,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssDirection;
     }
-    
+
     public final CssDirectionATSC getDirectionATSC() {
 	if (cssDirectionATSC == null) {
 	    cssDirectionATSC =
@@ -1979,7 +1979,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssDirectionATSC;
     }
-    
+
     /**
      * Get the overflow property
      */
@@ -1991,7 +1991,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssOverflow;
     }
-    
+
     /**
      * Get the clip property
      */
@@ -2003,7 +2003,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssClip;
     }
-    
+
     /**
      * Get the visibility property
      */
@@ -2015,7 +2015,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssVisibility;
     }
-    
+
     /**
      * Get the unicode-bidi property
      */
@@ -2027,7 +2027,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssUnicodeBidi;
     }
-    
+
     public final CssUnicodeBidiATSC getUnicodeBidiATSC() {
 	if (cssUnicodeBidiATSC == null) {
 	    cssUnicodeBidiATSC =
@@ -2036,7 +2036,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssUnicodeBidiATSC;
     }
-    
+
     /**
      * Get the white-space property
      */
@@ -2048,7 +2048,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssWhiteSpace;
     }
-    
+
     /**
      * Get the list-style-type property
      */
@@ -2060,7 +2060,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyle.listStyleType;
     }
-    
+
     public final CssListStyleTypeCSS2 getListStyleTypeCSS2() {
 	if (cssListStyleCSS2.listStyleType == null) {
 	    cssListStyleCSS2.listStyleType =
@@ -2069,7 +2069,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS2.listStyleType;
     }
-    
+
     public final CssListStyleTypeCSS1 getListStyleTypeCSS1() {
 	if (cssListStyleCSS1.listStyleType == null) {
 	    cssListStyleCSS1.listStyleType =
@@ -2078,7 +2078,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS1.listStyleType;
     }
-    
+
     /**
      * Get the list-style-image property
      */
@@ -2090,7 +2090,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyle.listStyleImage;
     }
-    
+
     public final CssListStyleImageCSS2 getListStyleImageCSS2() {
 	if (cssListStyleCSS2.listStyleImage == null) {
 	    cssListStyleCSS2.listStyleImage =
@@ -2099,7 +2099,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS2.listStyleImage;
     }
-    
+
     public final CssListStyleImageCSS1 getListStyleImageCSS1() {
 	if (cssListStyleCSS1.listStyleImage == null) {
 	    cssListStyleCSS1.listStyleImage =
@@ -2108,7 +2108,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS1.listStyleImage;
     }
-    
+
     /**
      * Get the list-style-position property
      */
@@ -2121,7 +2121,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyle.listStylePosition;
     }
-    
+
     public final CssListStylePositionCSS2 getListStylePositionCSS2() {
 	if (cssListStyleCSS2.listStylePosition == null) {
 	    cssListStyleCSS2.listStylePosition =
@@ -2131,7 +2131,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS2.listStylePosition;
     }
-    
+
     public final CssListStylePositionCSS1 getListStylePositionCSS1() {
 	if (cssListStyleCSS1.listStylePosition == null) {
 	    cssListStyleCSS1.listStylePosition =
@@ -2141,7 +2141,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssListStyleCSS1.listStylePosition;
     }
-    
+
     /**
      * Get the list-style property
      */
@@ -2154,7 +2154,7 @@ public class Css1Style extends CssStyle {
 	    cssListStyle.listStylePosition = getListStylePosition();
 	return cssListStyle;
     }
-    
+
     public final CssListStyleCSS2 getListStyleCSS2() {
 	if (cssListStyleCSS2.listStyleType == null)
 	    cssListStyleCSS2.listStyleType = getListStyleTypeCSS2();
@@ -2164,7 +2164,7 @@ public class Css1Style extends CssStyle {
 	    cssListStyleCSS2.listStylePosition = getListStylePositionCSS2();
 	return cssListStyleCSS2;
     }
-    
+
     public final CssListStyleCSS1 getListStyleCSS1() {
 	if (cssListStyleCSS1.listStyleType == null)
 	    cssListStyleCSS1.listStyleType = getListStyleTypeCSS1();
@@ -2174,7 +2174,7 @@ public class Css1Style extends CssStyle {
 	    cssListStyleCSS1.listStylePosition = getListStylePositionCSS1();
 	return cssListStyleCSS1;
     }
-    
+
     /**
      * Get the content property
      */
@@ -2186,7 +2186,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssContent;
     }
-    
+
     public final CssContentCSS2 getContentCSS2() {
 	if (cssContentCSS2 == null) {
 	    cssContentCSS2 =
@@ -2195,7 +2195,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssContentCSS2;
     }
-    
+
     /**
      * Get the quotes property
      */
@@ -2207,7 +2207,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssQuotes;
     }
-    
+
     public final CssQuotesATSC getQuotesATSC() {
 	if (cssQuotesATSC == null) {
 	    cssQuotesATSC =
@@ -2216,7 +2216,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssQuotesATSC;
     }
-    
+
     /**
      * Get the counter-reset property
      */
@@ -2228,7 +2228,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssCounterReset;
     }
-    
+
     /**
      * Get the counter-increment property
      */
@@ -2240,7 +2240,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssCounterIncrement;
     }
-    
+
     /**
      * Get the marker-offset property
      */
@@ -2252,7 +2252,7 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMarkerOffset;
     }
-    
+
     public final CssMarkerOffsetATSC getMarkerOffsetATSC() {
 	if (cssMarkerOffsetATSC == null) {
 	    cssMarkerOffsetATSC =
@@ -2261,75 +2261,75 @@ public class Css1Style extends CssStyle {
 	}
 	return cssMarkerOffsetATSC;
     }
-    
+
     public final CssListStyleTypeTV getListStyleTypeTV() {
 	if (cssListStyleTypeTV == null) {
 	    cssListStyleTypeTV =
 		(CssListStyleTypeTV) style.CascadingOrder(new CssListStyleTypeTV(),
 			style, selector);
 	}
-	
+
 	return cssListStyleTypeTV;
     }
-    
+
     public final CssListStyleTV getListStyleTV() {
 	if (cssListStyleTV == null) {
 	    cssListStyleTV =
 		(CssListStyleTV) style.CascadingOrder(new CssListStyleTV(),
 			style, selector);
 	}
-	
+
 	return cssListStyleTV;
     }
-    
+
     public final CssPositionTV getPositionTV() {
 	if (cssPositionTV == null) {
 	    cssPositionTV =
 		(CssPositionTV) style.CascadingOrder(new CssPositionTV(),
 			style, selector);
 	}
-	
+
 	return cssPositionTV;
     }
-    
+
     public final CssTextAlignTV getTextAlignTV() {
 	if (cssTextAlignTV == null) {
 	    cssTextAlignTV =
 		(CssTextAlignTV) style.CascadingOrder(new CssTextAlignTV(),
 			style, selector);
 	}
-	
+
 	return cssTextAlignTV;
     }
-    
+
     public final CssTextDecorationTV getTextDecorationTV() {
 	if (cssTextDecorationTV == null) {
 	    cssTextDecorationTV =
 		(CssTextDecorationTV) style.CascadingOrder(new CssTextDecorationTV(),
 			style, selector);
 	}
-	
+
 	return cssTextDecorationTV;
     }
-    
+
     public final CssVerticalAlignTV getVerticalAlignTV() {
 	if (cssVerticalAlignTV == null) {
 	    cssVerticalAlignTV =
 		(CssVerticalAlignTV) style.CascadingOrder(new CssVerticalAlignTV(),
 			style, selector);
 	}
-	
+
 	return cssVerticalAlignTV;
     }
-    
-    
+
+
     /**
      * Print this style.
      *
      * @param printer The printer interface.
      */
     public void print(CssPrinterStyle printer) {
-	
+
 	// Note : macro are never null
 	cssFont.print(printer);
 	if (cssFontStretch != null) {
@@ -2517,9 +2517,9 @@ public class Css1Style extends CssStyle {
 	    cssVerticalAlignTV.print(printer);
 	}
     }
-    
-    
-    
+
+
+
     /**
      * Find conflicts in this Style
      *
@@ -2530,7 +2530,7 @@ public class Css1Style extends CssStyle {
 	// if border-style == none, border-width should be 0
 	// @@ this is a horrible place to do this ...
 	cssBorder.check();
-	
+
 	if (cssFont.fontFamily != null) {
 	    if (!cssFont.fontFamily.containsGenericFamily()) {
 		warnings.addWarning(new Warning(cssFont.fontFamily,
@@ -2540,7 +2540,28 @@ public class Css1Style extends CssStyle {
 		warnings.addWarning(new Warning(cssFont.fontFamily,
 			"with-space", 1, ac));
 	    }
-	}	
+	}
+	else if (cssFontCSS1.fontFamily != null) {
+	    if (!cssFontCSS1.fontFamily.containsGenericFamily()) {
+		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
+			"no-generic-family", 2, ac));
+	    }
+	    if (cssFontCSS1.fontFamily.withSpace) {
+		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
+			"with-space", 1, ac));
+	    }
+	}
+	else if (cssFontCSS2.fontFamily != null) {
+	    if (!cssFontCSS2.fontFamily.containsGenericFamily()) {
+		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
+			"no-generic-family", 2, ac));
+	    }
+	    if (cssFontCSS2.fontFamily.withSpace) {
+		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
+			"with-space", 1, ac));
+	    }
+	}
+
 	if (cssBackground.getColor() != null) {
 	    if (cssColor != null) {
 		if (cssBackground.getColor().equals(cssColor.getColor())) {
@@ -2548,19 +2569,25 @@ public class Css1Style extends CssStyle {
 		    warnings.addWarning(new Warning(cssBackground.color,
 			    "same-colors", 1, cssColor, ac));
 		}
+		else if(cssBackground.getColor().equals(
+			CssProperty.transparent)) {
+//		  It's better to have a background color with a color
+		    warnings.addWarning(new Warning(
+			    cssColor, "no-background-color", 1, ac));
+		}
 	    } else {
 		CssValue color = cssBackground.getColor();
-		
+
 		if (!color.equals(CssBackgroundColor.transparent)) {
 		    // It's better to have a color when a background is defined.
 		    warnings.addWarning(new Warning(cssBackground.color,
 			    "no-color", 1, ac));
 		}
 	    }
-	    
+
 	    // Note : For borders, I don't look for inherited value.
 	    //        So I can't find same colors in two differents contexts.
-	    
+
 	    if (cssBorder.getTop().getColor() != null) {
 		CssValue color = cssBorder.getTop().getColor();
 		if (color != CssProperty.inherit
@@ -2609,14 +2636,145 @@ public class Css1Style extends CssStyle {
 	     // It's better to have a padding with a background color.
 	      warnings.addWarning(new Warning(cssBackground.color, "no-padding", 2));
 	      }
-	      */	    
-	} else if (cssColor != null) {
+	      */
+	} else if (cssBackgroundCSS1.getColor() != null) {
+	    if (cssColorCSS1 != null) {
+		if (cssBackgroundCSS1.getColor().equals(cssColorCSS1.getColor())) {
+		    // background and color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "same-colors", 1, cssColorCSS1, ac));
+		}
+		else if(cssBackgroundCSS1.getColor().equals(
+			CssProperty.transparent)) {
+//		  It's better to have a background color with a color
+		    warnings.addWarning(new Warning(
+			    cssColorCSS1, "no-background-color", 1, ac));
+		}
+	    } else {
+		CssValue color = cssBackgroundCSS1.getColor();
+
+		if (!color.equals(CssBackgroundColorCSS1.transparent)) {
+		    // It's better to have a color when a background is defined.
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "no-color", 1, ac));
+		}
+	    }
+
+	    // Note : For borders, I don't look for inherited value.
+	    //        So I can't find same colors in two differents contexts.
+
+	    if (cssBorderCSS1.getTop().getColor() != null) {
+		CssValue color = cssBorderCSS1.getTop().getColor();
+		if (cssBackgroundCSS1.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "same-colors", 1,
+			    cssBorderCSS1.getTop().color, ac));
+		}
+	    }
+	    if (cssBorderCSS1.getRight().getColor() != null) {
+		CssValue color = cssBorderCSS1.getRight().getColor();
+		if (cssBackgroundCSS1.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "same-colors", 1,
+			    cssBorderCSS1.getRight().color, ac));
+		}
+	    }
+	    if (cssBorderCSS1.getBottom().getColor() != null) {
+		CssValue color = cssBorderCSS1.getBottom().getColor();
+		if (cssBackgroundCSS1.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "same-colors", 1,
+			    cssBorderCSS1.getBottom().color, ac));
+		}
+	    }
+	    if (cssBorderCSS1.getLeft().getColor() != null) {
+		CssValue color = cssBorderCSS1.getLeft().getColor();
+		if (cssBackgroundCSS1.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
+			    "same-colors", 1,
+			    cssBorderCSS1.getLeft().color, ac));
+		}
+	    }
+	}
+	else if (cssBackgroundCSS2.getColor() != null) {
+	    if (cssColorCSS2 != null) {
+		if (cssBackgroundCSS2.getColor().equals(cssColorCSS2.getColor())) {
+		    // background and color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "same-colors", 1, cssColorCSS2, ac));
+		}
+		else if(cssBackgroundCSS2.getColor().equals(
+			CssProperty.transparent)) {
+//		  It's better to have a background color with a color
+		    warnings.addWarning(new Warning(
+			    cssColorCSS2, "no-background-color", 1, ac));
+		}
+	    } else {
+		CssValue color = cssBackgroundCSS2.getColor();
+
+		if (!color.equals(CssBackgroundColorCSS2.transparent)) {
+		    // It's better to have a color when a background is defined.
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "no-color", 1, ac));
+		}
+	    }
+
+	    // Note : For borders, I don't look for inherited value.
+	    //        So I can't find same colors in two differents contexts.
+
+	    if (cssBorderCSS2.getTop().getColor() != null) {
+		CssValue color = cssBorderCSS2.getTop().getColor();
+		if (color != CssProperty.inherit
+			&& cssBackgroundCSS2.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "same-colors", 1,
+			    cssBorderCSS2.getTop().color, ac));
+		}
+	    }
+	    if (cssBorderCSS2.getRight().getColor() != null) {
+		CssValue color = cssBorderCSS2.getRight().getColor();
+		if (color != CssProperty.inherit
+			&& cssBackgroundCSS2.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "same-colors", 1,
+			    cssBorderCSS2.getRight().color, ac));
+		}
+	    }
+	    if (cssBorderCSS2.getBottom().getColor() != null) {
+		CssValue color = cssBorder.getBottom().getColor();
+		if (color != CssProperty.inherit
+			&& cssBackgroundCSS2.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "same-colors", 1,
+			    cssBorderCSS2.getBottom().color, ac));
+		}
+	    }
+	    if (cssBorderCSS2.getLeft().getColor() != null) {
+		CssValue color = cssBorderCSS2.getLeft().getColor();
+		if (color != CssProperty.inherit
+			&& cssBackgroundCSS2.getColor().equals(color)) {
+		    // background and border-color can't have the same color
+		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
+			    "same-colors", 1,
+			    cssBorderCSS2.getLeft().color, ac));
+		}
+	    }
+
+	}
+	else if (cssColor != null) {
 	    // It's better to have a background color with a color
-	    warnings.addWarning(new Warning(cssColorCSS2, "no-background-color", 1, ac));
+	    warnings.addWarning(new Warning(cssColor, "no-background-color", 1, ac));
 	    while (allSelectors.hasMoreElements()) {
 		// looking for inherited values.
 		Css1Style style =
-		    (Css1Style) ((CssSelectors) allSelectors.nextElement()).getStyle();		
+		    (Css1Style) ((CssSelectors) allSelectors.nextElement()).getStyle();
 		if (style.cssBackground.getColor() != null) {
 		    if (style.cssBackground.getColor().equals(cssColor.getColor())) {
 			warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
@@ -2626,13 +2784,45 @@ public class Css1Style extends CssStyle {
 		}
 	    }
 	}
-	
+	else if (cssColorCSS1 != null) {
+	    // It's better to have a background color with a color
+	    warnings.addWarning(new Warning(cssColorCSS1, "no-background-color", 1, ac));
+	    while (allSelectors.hasMoreElements()) {
+		// looking for inherited values.
+		Css1Style style =
+		    (Css1Style) ((CssSelectors) allSelectors.nextElement()).getStyle();
+		if (style.cssBackgroundCSS1.getColor() != null) {
+		    if (style.cssBackgroundCSS1.getColor().equals(cssColorCSS1.getColor())) {
+			warnings.addWarning(new Warning(cssColorCSS1, "same-colors2", 1,
+				style.cssBackgroundCSS1.color.getSelectors().toString(),
+				cssColorCSS1.getSelectors().toString(), ac));
+		    }
+		}
+	    }
+	}
+	else if (cssColorCSS2 != null) {
+	    // It's better to have a background color with a color
+	    warnings.addWarning(new Warning(cssColorCSS2, "no-background-color", 1, ac));
+	    while (allSelectors.hasMoreElements()) {
+		// looking for inherited values.
+		Css1Style style =
+		    (Css1Style) ((CssSelectors) allSelectors.nextElement()).getStyle();
+		if (style.cssBackgroundCSS2.getColor() != null) {
+		    if (style.cssBackgroundCSS2.getColor().equals(cssColorCSS2.getColor())) {
+			warnings.addWarning(new Warning(cssColorCSS2, "same-colors2", 1,
+				style.cssBackgroundCSS2.color.getSelectors().toString(),
+				cssColorCSS2.getSelectors().toString(), ac));
+		    }
+		}
+	    }
+	}
+
 	// now testing for % and length in padding and marging
 	// @@FIXME I don't be carreful with the value zero ...
-	
+
 	RelativeAndAbsolute checker = new RelativeAndAbsolute();
 	CssProperty info = null;
-	
+
 	if (cssMargin.getTop() != null) {
 	    info = cssMargin.getTop();
 	    checker.compute(cssMargin.getTop().getValue());
@@ -2648,7 +2838,7 @@ public class Css1Style extends CssStyle {
 		    "margin", "", ac));
 	}
 	checker.reset();
-	
+
 	if (cssMargin.getRight() != null) {
 	    info = cssMargin.getRight();
 	    checker.compute(cssMargin.getRight().getValue());
@@ -2664,7 +2854,7 @@ public class Css1Style extends CssStyle {
 		    "margin", "", ac));
 	}
 	checker.reset();
-	
+
 	if (cssPadding.getTop() != null) {
 	    info = cssPadding.getTop();
 	    checker.compute(cssPadding.getTop().getValue());
@@ -2680,7 +2870,7 @@ public class Css1Style extends CssStyle {
 		    "padding", "", ac));
 	}
 	checker.reset();
-	
+
 	if (cssPadding.getRight() != null) {
 	    info = cssPadding.getRight();
 	    checker.compute(cssPadding.getRight().getValue());
@@ -2689,14 +2879,14 @@ public class Css1Style extends CssStyle {
 	    info = cssPadding.getLeft();
 	    checker.compute(cssPadding.getLeft().getValue());
 	}
-	
+
 	if (checker.isNotRobust()) {
 	    warnings.addWarning(new Warning(info.getSourceFile(),
 		    info.getLine(),
 		    "relative-absolute", 2,
 		    "padding", "", ac));
 	}
-	
+
 	if (Util.fromHTMLFile) {
 	    if ((cssTextIndent != null)
 		    && (selector != null)
@@ -2704,10 +2894,28 @@ public class Css1Style extends CssStyle {
 		warnings.addWarning(new Warning(cssTextAlign,
 			"block-level", 1, ac));
 	    }
+	    else if ((cssTextIndentMob != null)
+		    && (selector != null)
+		    && (!selector.isBlockLevelElement())) {
+		warnings.addWarning(new Warning(cssTextAlignMob,
+			"block-level", 1, ac));
+	    }
 	    if ((cssTextAlign != null)
 		    && (selector != null)
 		    && (!selector.isBlockLevelElement())) {
 		warnings.addWarning(new Warning(cssTextAlign,
+			"block-level", 1, ac));
+	    }
+	    else if ((cssTextAlignMob != null)
+		    && (selector != null)
+		    && (!selector.isBlockLevelElement())) {
+		warnings.addWarning(new Warning(cssTextAlignMob,
+			"block-level", 1, ac));
+	    }
+	    else if ((cssTextAlignTV != null)
+		    && (selector != null)
+		    && (!selector.isBlockLevelElement())) {
+		warnings.addWarning(new Warning(cssTextAlignTV,
 			"block-level", 1, ac));
 	    }
 	    if ((cssWhiteSpace != null)
@@ -2717,7 +2925,7 @@ public class Css1Style extends CssStyle {
 			"block-level", 1, ac));
 	    }
 	}
-	
+
 	if (cssMarkerOffset != null) {
 	    //@@ beurk you know what ? 5 is horrible.
 	    if ((cssDisplay == null)
@@ -2727,7 +2935,6 @@ public class Css1Style extends CssStyle {
 	    }
 	}
     }
-    
 }
 
 class RelativeAndAbsolute {
@@ -2753,5 +2960,5 @@ class RelativeAndAbsolute {
 	    }
 	}
     }
-    
+
 }

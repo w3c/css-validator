@@ -39,17 +39,17 @@ public class MediaScan extends CssProperty {
     public MediaScan(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssIdent) {
 		if (val.equals(progressive) || val.equals(interlace)) {
@@ -58,12 +58,12 @@ public class MediaScan extends CssProperty {
 		    throw new InvalidParamException("value", expression.getValue(),
 			    getPropertyName(), ac);
 		}
-		
+
 	    } else {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
@@ -72,7 +72,7 @@ public class MediaScan extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

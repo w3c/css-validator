@@ -21,41 +21,41 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class CssMaxHeight extends CssProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new CssMaxHeight
      */
     public CssMaxHeight() {
 	value = none;
-    }  
-    
+    }
+
     /**
      * Create a new CssMaxHeight.
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssMaxHeight(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	} else if (val instanceof CssLength || val instanceof CssPercentage) {
 	    float f = ((Float) val.get()).floatValue();
 	    if (f < 0) {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						val.toString(), ac);
 	    }
 	    value = val;
@@ -64,32 +64,32 @@ public class CssMaxHeight extends CssProperty {
 	} else if (val instanceof CssNumber) {
 	    value = ((CssNumber) val).getLength();
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssMaxHeight(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property.
-     */  
+     */
     public String getPropertyName() {
 	return "max-height";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -97,15 +97,15 @@ public class CssMaxHeight extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Add this property to the CssStyle.
      *
@@ -117,13 +117,13 @@ public class CssMaxHeight extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssMaxHeight = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getMaxHeight();
@@ -131,23 +131,23 @@ public class CssMaxHeight extends CssProperty {
 	    return ((Css1Style) style).cssMaxHeight;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssMaxHeight 
+	return (property instanceof CssMaxHeight
 		&& value.equals(((CssMaxHeight) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == none;
     }
-    
+
 }

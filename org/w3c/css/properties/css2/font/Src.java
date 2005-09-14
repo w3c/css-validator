@@ -24,28 +24,28 @@ import org.w3c.css.values.CssValue;
 /**
  * @version $Revision$
  */
-public class Src extends CssProperty 
+public class Src extends CssProperty
         implements CssOperator {
-    
+
     Vector values = new Vector();
-    
+
     /**
      * Create a new CssSrc
      */
     public Src() {
     }
-    
+
     /**
      * Create a new CssSrc
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public Src(ApplContext ac, CssExpression expression, boolean check) 
+     */
+    public Src(ApplContext ac, CssExpression expression, boolean check)
 	    throws InvalidParamException {
 	CssValue val;
 	char op;
-	
+
 	setByUser();
 	do {
 	    val = expression.getValue();
@@ -66,34 +66,34 @@ public class Src extends CssProperty
 		values.addElement(recognizeFontFaceName(ac, (CssFunction) val));
 		expression.next();
 	    } else {
-		throw new InvalidParamException("value", 
-						val.toString(), 
+		throw new InvalidParamException("value",
+						val.toString(),
 						getPropertyName(), ac);
 	    }
 	    // @@HACK
 	    values.addElement(", ");
 	} while (op == COMMA);
     }
-    
+
     public Src(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "src";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -105,7 +105,7 @@ public class Src extends CssProperty
 	}
 	return ret;
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -118,13 +118,13 @@ public class Src extends CssProperty
 	}
 	style0.src = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getSrc();
@@ -132,25 +132,25 @@ public class Src extends CssProperty
 	    return ((Css2Style) style).src;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
-    private CssFunction recognizeFormat(ApplContext ac, CssFunction val) 
+
+    private CssFunction recognizeFormat(ApplContext ac, CssFunction val)
 	    throws InvalidParamException {
 	if (val.getName().equals("format")) {
 	    CssExpression params = val.getParameters();
@@ -160,28 +160,28 @@ public class Src extends CssProperty
 		op = params.getOperator();
 		if (params.getValue() instanceof CssString) {
 		    // nothing
-		} else {		    
-		    throw new InvalidParamException("format", 
-						    val, 
+		} else {
+		    throw new InvalidParamException("format",
+						    val,
 						    getPropertyName(), ac);
 		}
 		params.next();
 	    } while (op == COMMA);
-	    if (!params.end()) { 
-		throw new InvalidParamException("format", 
-						val, 
+	    if (!params.end()) {
+		throw new InvalidParamException("format",
+						val,
 						getPropertyName(), ac);
 	    }
 	    params.starts();
 	    return val;
 	} else {
-	    throw new InvalidParamException("format", 
-					    val, 
+	    throw new InvalidParamException("format",
+					    val,
 					    getPropertyName(), ac);
 	}
     }
 
-    private CssFunction recognizeFontFaceName(ApplContext ac, CssFunction func) 
+    private CssFunction recognizeFontFaceName(ApplContext ac, CssFunction func)
 	    throws InvalidParamException {
 	if (func.getName().equals("local")) {
 	    CssExpression params = func.getParameters();
@@ -191,9 +191,9 @@ public class Src extends CssProperty
 	    if (params.getValue() instanceof CssString) {
 		if (params.getCount() == 1) {
 		    return func;
-		} else {		    
-		    throw new InvalidParamException("local", 
-						    func, 
+		} else {
+		    throw new InvalidParamException("local",
+						    func,
 						    getPropertyName(), ac);
 		}
 	    }
@@ -202,23 +202,23 @@ public class Src extends CssProperty
 		op = params.getOperator();
 		if (params.getValue() instanceof CssIdent) {
 		    // nothing
-		} else {		    
-		    throw new InvalidParamException("local", 
-						    func, 
+		} else {
+		    throw new InvalidParamException("local",
+						    func,
 						    getPropertyName(), ac);
 		}
 		params.next();
 	    } while (op == COMMA);
-	    if (!params.end()) { 
-		throw new InvalidParamException("local", 
-						func, 
+	    if (!params.end()) {
+		throw new InvalidParamException("local",
+						func,
 						getPropertyName(), ac);
 	    }
 	    params.starts();
 	    return func;
 	} else {
-	    throw new InvalidParamException("local", 
-					    func, 
+	    throw new InvalidParamException("local",
+					    func,
 					    getPropertyName(), ac);
 	}
     }

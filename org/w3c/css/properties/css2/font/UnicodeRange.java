@@ -22,22 +22,22 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class UnicodeRange extends CssProperty {
-    
+
     Vector values = new Vector();
-    
+
     /**
      * Create a new UnicodeRange
      */
     public UnicodeRange() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new UnicodeRange
      *
      * @param expression the unicode range
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public UnicodeRange(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	char op = expression.getOperator();
@@ -48,32 +48,32 @@ public class UnicodeRange extends CssProperty {
 	    if (val instanceof CssUnicodeRange) {
 		// nothing
 	    } else {
-		throw new InvalidParamException("value", expression.getValue(), 
+		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	    }
 	    values.addElement(val);
 	    op = expression.getOperator();
 	    expression.next();
 	} while (op == CssOperator.COMMA);
-	
+
     }
-    
+
     public UnicodeRange(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return values.elementAt(0);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret ="";
 	int i = 0;
 
@@ -84,14 +84,14 @@ public class UnicodeRange extends CssProperty {
 
 	return ret.substring(2);
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "unicode-range";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -104,13 +104,13 @@ public class UnicodeRange extends CssProperty {
 	}
 	style0.unicodeRange = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getFaceUnicodeRange();
@@ -118,23 +118,23 @@ public class UnicodeRange extends CssProperty {
 	    return ((Css2Style) style).unicodeRange;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

@@ -45,7 +45,7 @@ import org.xml.sax.ext.LexicalHandler;
  * @version $Revision$
  * @author  Philippe Le Hegaret
  */
-public class XMLStyleSheetHandler implements ContentHandler, 
+public class XMLStyleSheetHandler implements ContentHandler,
     LexicalHandler, ErrorHandler, EntityResolver {
 
     static String XHTML_NS = "http://www.w3.org/1999/xhtml";
@@ -59,8 +59,8 @@ public class XMLStyleSheetHandler implements ContentHandler,
     URL documentURI = null;
     URL baseURI = null;
 
-    //  StyleSheet styleSheet = new StyleSheet(); 
-    StyleSheetParser styleSheetParser = new StyleSheetParser(); 
+    //  StyleSheet styleSheet = new StyleSheet();
+    StyleSheetParser styleSheetParser = new StyleSheetParser();
 
     boolean inStyle = false;
     String media  = null;
@@ -80,7 +80,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	this.baseURI     = baseURI;
 	this.ac = ac;
     }
-    
+
     public void setDocumentLocator (Locator locator) {
 	this.locator = locator;
     }
@@ -101,7 +101,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
      public void endPrefixMapping (String prefix)
 	 throws SAXException {
      }
-   
+
     public void characters (char ch[], int start, int length)
         throws SAXException {
 	if (inStyle) {
@@ -128,9 +128,9 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	    String rel  = (String) atts.get("alternate");
 	    String type  = (String) atts.get("type");
 	    String href = (String) atts.get("href");
-	    
+
 	    if (Util.onDebug) {
-		System.err.println("<?xml-stylesheet alternate=\"" + rel 
+		System.err.println("<?xml-stylesheet alternate=\"" + rel
 				   + "\" type=\"" + type
 				   + "\"" + "   href=\"" + href + "\"?>");
 	    }
@@ -164,25 +164,25 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		try {
 		    new MimeType(type);
 		} catch (Exception ex) { /* at worst, null */ };
-		if (mt != null && (MimeType.TEXT_CSS.match(mt) == 
+		if (mt != null && (MimeType.TEXT_CSS.match(mt) ==
 		                           MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		// we're dealing with a stylesheet...
 		    URL url;
-		    
-		    try { 
+
+		    try {
 			if (baseURI != null) {
-			    url = new URL(baseURI, href); 
+			    url = new URL(baseURI, href);
 			} else {
-			    url = new URL(href); 
+			    url = new URL(href);
 			}
 		    } catch (MalformedURLException e) {
 			return; // Ignore errors
 		    }
-		    
+
 		    if (Util.onDebug) {
 			System.err.println("[XMLStyleSheetHandler::"+
 					   "initialize(): "
-					   + "should parse CSS url: " 
+					   + "should parse CSS url: "
 					   + url.toString() + "]");
 		    }
 		    String media = (String) atts.get("media");
@@ -190,7 +190,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 			media="all";
 		    }
 		    styleSheetParser.parseURL(ac,
-					      url, 
+					      url,
 					      (String) atts.get("title"),
 					      rel,
 					      media,
@@ -218,30 +218,30 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	if (XHTML_NS.equals(namespaceURI)) {
 	    if ("base".equals(localName)) {
 		String href = atts.getValue("href");
-	
+
 		if (Util.onDebug) {
 		    System.err.println("BASE href=\"" + href + "\"");
 		}
-	
+
 		if (href != null) {
 		    //URL url;
-		    
+
 		    try {
-			baseURI = new URL(documentURI, href); 
+			baseURI = new URL(documentURI, href);
 			documentURI = baseURI;
 		    } catch (MalformedURLException e) {
 			return; // Ignore errors
 		    }
 		}
-		
+
 	    } else if ("link".equals(localName)) {
 
 		String rel  = atts.getValue("rel");
 		String type  = atts.getValue("type");
 		String href = atts.getValue("href");
-		
+
 		if (Util.onDebug) {
-		    System.err.println("link rel=\"" + rel 
+		    System.err.println("link rel=\"" + rel
 				       + "\" type=\"" + type
 				       + "\"" + "   href=\"" + href + "\"");
 		}
@@ -254,13 +254,13 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		} catch (MimeTypeFormatException mtfe) {
 		    return;
 		}
-		if (MimeType.TEXT_CSS.match(mt) != 
+		if (MimeType.TEXT_CSS.match(mt) !=
 		                            MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    return;
 		}
 		if (href == null) {
 		    int line = -1;
-		    
+
 		    if (locator != null) {
 			line = locator.getLineNumber();
 		    }
@@ -273,26 +273,26 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		    styleSheetParser.notifyErrors(ers);
 		    return;
 		}
-	
-		if ((rel != null) && 
+
+		if ((rel != null) &&
 		              rel.toLowerCase().indexOf("stylesheet") != -1) {
 		    // we're dealing with a stylesheet...
 		    // @@TODO alternate stylesheet
 		    URL url;
-		    
-		    try { 
+
+		    try {
 			if (baseURI != null) {
-			    url = new URL(baseURI, href); 
+			    url = new URL(baseURI, href);
 			} else {
-			    url = new URL(href); 
+			    url = new URL(href);
 			}
 		    } catch (MalformedURLException e) {
 			return; // Ignore errors
 		    }
-		    
+
 		    if (Util.onDebug) {
 			System.err.println("[XMLStyleSheetHandler::initialize(): "
-					   + "should parse CSS url: " 
+					   + "should parse CSS url: "
 					   + url.toString() + "]");
 		    }
 		    String media = atts.getValue("media");
@@ -300,7 +300,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 			media="all";
 		    }
 		    styleSheetParser.parseURL(ac,
-					      url, 
+					      url,
 					      atts.getValue("title"),
 					      rel,
 					      media,
@@ -313,7 +313,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		media  = atts.getValue("media");
 		type  = atts.getValue("type");
 		title = atts.getValue("title");
-		
+
 		if (media == null) {
 		    media = "all";
 		}
@@ -322,10 +322,10 @@ public class XMLStyleSheetHandler implements ContentHandler,
 				       + "\" type=\"" + type
 				       + "\"" + "   title=\"" + title + "\"");
 		}
-	
+
 		if (type == null) {
 		    int line = -1;
-		    
+
 		    if (locator != null) {
 			line = locator.getLineNumber();
 		    }
@@ -339,7 +339,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		} else {
 		    try {
 			MimeType mt = new MimeType(type);
-			if (MimeType.TEXT_CSS.match(mt) == 
+			if (MimeType.TEXT_CSS.match(mt) ==
 			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
 			    text.setLength(0);
 			    inStyle = true;
@@ -354,19 +354,19 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		if (value != null) { // here we have a style attribute
 		    String id = atts.getValue("id");
 		    handleStyleAttribute(value, id);
-		}		
+		}
 	    }
 	} else {
 	    // the style attribute, recommended by UI Tech TF
 	    String value = atts.getValue(XHTML_NS, "style");
-	    
+
 	    if (value != null) { // here we have a style attribute
 		String id = atts.getValue(XHTML_NS, "id");
 		handleStyleAttribute(value, id);
-	    }		
+	    }
 	}
     }
-    
+
     public void endElement (String namespaceURI, String localName,
                             String qName)
         throws SAXException {
@@ -385,12 +385,12 @@ public class XMLStyleSheetHandler implements ContentHandler,
 			}
 			styleSheetParser
 			    .parseStyleElement(ac,
-					       new StringBufferInputStream(text.toString()), 
-					       title, media, 
+					       new StringBufferInputStream(text.toString()),
+					       title, media,
 					       documentURI, line);
 		    }
 		}
-		
+
 	    }
 	}
     }
@@ -398,9 +398,9 @@ public class XMLStyleSheetHandler implements ContentHandler,
     public void handleStyleAttribute(String value, String id) {
 	if (id == null) { // but we have no id: create one.
 	    // a normal id should NOT contain a "#" character.
-	    id = "#autoXML" + autoIdCount; 
+	    id = "#autoXML" + autoIdCount;
 	    // workaround a java hashcode bug.
-	    id += "" + autoIdCount++;   
+	    id += "" + autoIdCount++;
 	}
 	int line = 0;
 	if (locator != null) {
@@ -409,13 +409,13 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	// parse the style attribute.
 	styleSheetParser
 	    .parseStyleAttribute(ac,
-				 new ByteArrayInputStream(value.getBytes()), 
+				 new ByteArrayInputStream(value.getBytes()),
 				 id, documentURI, line);
     }
 
     public StyleSheet getStyleSheet() {
 	return styleSheetParser.getStyleSheet();
-    }        
+    }
 
     public void startDTD (String name, String publicId,
                                    String systemId)
@@ -451,7 +451,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 
     public void warning(SAXParseException exception) throws SAXException {
     }
-    
+
     public InputSource resolveEntity(String publicId, String systemId)
 	throws SAXException, IOException {
 	String uri = null;
@@ -477,7 +477,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		}
 	    }
 	    uri = catalog.getProperty(publicId);
-	} 
+	}
 	if (uri == null && systemId != null) {
 	    uri = catalog.getProperty(systemId);
 	}
@@ -496,7 +496,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	try {
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
 				  this);
-	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true); 
+	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
 	    /*
 	      xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
@@ -538,7 +538,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
 				  this);
 	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
- 
+
 	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
 	    xmlParser.setErrorHandler(this);
 	    xmlParser.setEntityResolver(this);
@@ -558,7 +558,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		    // if text/html and no given charset, let's assume
 		    // iso-8859-1. Ideally, the parser would change the
 		    // encoding if it find a mismatch, not sure, but well...
-		    if (repmime.match(MimeType.TEXT_HTML) == 
+		    if (repmime.match(MimeType.TEXT_HTML) ==
 			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
 			source.setEncoding("iso-8859-1");
 		    }
@@ -572,7 +572,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 	    cis.close();
 	}
     }
-    
+
     Hashtable getValues(String data) {
 	int length = data.length();
 	int current = 0;
@@ -690,7 +690,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
 		case 'a': case 'm': case 'p':
 		case 'l': case 't': case 'g':
 		case 'q': case 'u': case 'o':
-		case 's': 
+		case 's':
 		    entity_name.append(c);
 		    break;
 		case ';':

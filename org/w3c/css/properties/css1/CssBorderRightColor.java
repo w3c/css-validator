@@ -18,28 +18,28 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderRightColor extends CssProperty {
-    
+
     CssBorderFaceColor face;
-    
+
     /**
      * Create a new CssBorderRightColor
      */
     public CssBorderRightColor() {
 	face = new CssBorderFaceColor();
     }
-    
+
     /**
      * Create a new CssBorderRightColor with an another CssBorderFaceColor
      *
      * @param anothewr The another side.
      */
     public CssBorderRightColor(CssBorderFaceColor another) {
-	
+
 	setByUser();
-	
+
 	face = another;
     }
-    
+
     /**
      * Create a new CssBorderRightColor.
      *
@@ -48,27 +48,27 @@ public class CssBorderRightColor extends CssProperty {
      */
     public CssBorderRightColor(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	face = new CssBorderFaceColor(ac, expression);
     }
-    
+
     public CssBorderRightColor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return face;
     }
-    
+
     /**
      * Returns the color of this property
      */
@@ -78,7 +78,7 @@ public class CssBorderRightColor extends CssProperty {
 	}
 	return null;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -88,14 +88,14 @@ public class CssBorderRightColor extends CssProperty {
 	}
 	return "";
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-right-color";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -107,13 +107,13 @@ public class CssBorderRightColor extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	right.color = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderRightColor();
@@ -121,22 +121,22 @@ public class CssBorderRightColor extends CssProperty {
 	    return ((Css1Style) style).cssBorder.getRight().color;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderRightColor && 
+	return (property instanceof CssBorderRightColor &&
 		face.equals(((CssBorderRightColor) property).face));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if (face != null && !face.isDefault())
 	    printer.print(this);

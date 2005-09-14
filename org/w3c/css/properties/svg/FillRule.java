@@ -27,24 +27,24 @@ import org.w3c.css.values.CssValue;
  */
 
 public class FillRule extends CssProperty {
-    
+
     CssValue fillrule;
     ApplContext ac;
-    
+
     CssIdent nonzero = new CssIdent("nonzero");
     CssIdent evenodd = new CssIdent("evenodd");
-    
+
     /**
      * Create a new Fillrule
      */
     public FillRule() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Fillrule
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public FillRule(ApplContext ac, CssExpression expression,
@@ -52,7 +52,7 @@ public class FillRule extends CssProperty {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    fillrule = inherit;
 	    expression.next();
@@ -67,12 +67,12 @@ public class FillRule extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public FillRule(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -83,13 +83,13 @@ public class FillRule extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).fillRule = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getFillRule();
@@ -97,51 +97,51 @@ public class FillRule extends CssProperty {
 	    return ((SVGStyle) style).fillRule;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof FillRule && 
+	return (property instanceof FillRule &&
 		fillrule.equals( ((FillRule) property).fillrule));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "fill-rule";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return fillrule;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return fillrule.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return fillrule.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (fillrule == nonzero);
     }
-    
+
 }

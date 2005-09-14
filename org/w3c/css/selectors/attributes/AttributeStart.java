@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeStart extends AttributeSelector {
 
 private String value;
-    
+
     public AttributeStart(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -38,7 +38,7 @@ private String value;
     public boolean canApply(Selector other) {
 	return true;
     }
- 
+
     public String toString() {
 	return "[" + getName() + "^=\"" + value + "\"]";
     }

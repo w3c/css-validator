@@ -18,22 +18,22 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderBottomFitWidth extends CssProperty {
-    
+
     String value = "";
-    
+
     CssIdent repeat = new CssIdent("repeat");
-    
+
     private static String[] values = {
 	"clip", "repeat", "scale", "stretch", "overwrite", "overflow", "space"
     };
-    
+
     /**
      * Create a new CssBorderBottomFitWidth
      */
     public CssBorderBottomFitWidth() {
 	value = "repeat";
     }
-    
+
     /**
      * Create a new CssBorderBottomFitWidth
      *
@@ -42,11 +42,11 @@ public class CssBorderBottomFitWidth extends CssProperty {
      */
     public CssBorderBottomFitWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	int i = 0;
-	
+
 	if (val instanceof CssIdent) {
 	    for (; i < values.length; i++) {
 		if (val.toString().equals(values[i])) {
@@ -64,10 +64,10 @@ public class CssBorderBottomFitWidth extends CssProperty {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	val = expression.getValue();
 	i = 0;
-	
+
 	if (val != null) {
 	    if (val instanceof CssIdent) {
 		for (; i < values.length; i++) {
@@ -88,12 +88,12 @@ public class CssBorderBottomFitWidth extends CssProperty {
 	    }
 	}
     }
-    
+
     public CssBorderBottomFitWidth(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -104,7 +104,7 @@ public class CssBorderBottomFitWidth extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderBottomFitWidth = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -119,7 +119,7 @@ public class CssBorderBottomFitWidth extends CssProperty {
 	    return ((Css3Style) style).cssBorderBottomFitWidth;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -129,35 +129,35 @@ public class CssBorderBottomFitWidth extends CssProperty {
 	return (property instanceof CssBorderBottomFitWidth &&
 		value.equals(((CssBorderBottomFitWidth) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-bottom-fit-width";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -165,5 +165,5 @@ public class CssBorderBottomFitWidth extends CssProperty {
     public boolean isDefault() {
 	return value.equals("repeat");
     }
-    
+
 }

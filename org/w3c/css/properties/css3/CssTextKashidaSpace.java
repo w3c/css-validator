@@ -26,15 +26,15 @@ import org.w3c.css.values.CssValue;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  Kashida is a typographic effect used in Arabic writing systems that allows
- *  character elongation at some carefully chosen points in Arabic. Each 
- *  elongation can be accomplished using a number of kashida glyphs, a single 
+ *  character elongation at some carefully chosen points in Arabic. Each
+ *  elongation can be accomplished using a number of kashida glyphs, a single
  *  graphic or character elongation on each side of the kashida point. (The UA
- *  may use either mechanism based on font or system capability). The 
- *  text-kashida-space property expresses the ratio of the kashida expansion 
- *  size to the white space expansion size, 0% means no kashida expansion, 
+ *  may use either mechanism based on font or system capability). The
+ *  text-kashida-space property expresses the ratio of the kashida expansion
+ *  size to the white space expansion size, 0% means no kashida expansion,
  *  100% means kashida expansion only . This property can be used with any
- *  justification style where kashida expansion is used (currently 
- *  text-justify: auto, kashida, distribute and newspaper). 
+ *  justification style where kashida expansion is used (currently
+ *  text-justify: auto, kashida, distribute and newspaper).
  */
 
 public class CssTextKashidaSpace extends CssProperty {
@@ -79,7 +79,7 @@ public class CssTextKashidaSpace extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -115,7 +115,7 @@ public class CssTextKashidaSpace extends CssProperty {
 	return (property instanceof CssTextKashidaSpace &&
 		kashspace.equals(((CssTextKashidaSpace) property).kashspace));
     }
-    
+
     /**
      * Returns the name of this property
      */

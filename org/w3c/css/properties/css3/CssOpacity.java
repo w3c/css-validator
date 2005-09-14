@@ -35,11 +35,11 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssOpacity extends CssProperty implements CssOperator {
-    
+
     String opaclevel;
     ApplContext ac;
-    
-    
+
+
     /**
      * Create a new CssOpacity
      */
@@ -47,7 +47,7 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	CssNumber cssnum =  new CssNumber((float) 1.0);
 	opaclevel = cssnum.toString();
     }
-    
+
     /**
      * Create a new CssOpacity
      *
@@ -59,9 +59,9 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssNumber) {
-	    
+
 	    CssNumber cssnum = new CssNumber(clampedValue(ac, ((CssNumber) val).getValue()));
 	    opaclevel = cssnum.toString();
 	    expression.next();
@@ -78,12 +78,12 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssOpacity(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Brings all values back between 0 and 1
      *
@@ -96,7 +96,7 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	}
 	else return(opac);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -107,7 +107,7 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssOpacity = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -121,7 +121,7 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssOpacity;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -131,35 +131,35 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	return (property instanceof CssOpacity &&
 		opaclevel.equals( ((CssOpacity) property).opaclevel));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "opacity";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return opaclevel;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return opaclevel.equals("inherit");
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return opaclevel;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -168,6 +168,6 @@ public class CssOpacity extends CssProperty implements CssOperator {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return opaclevel == cssnum.toString();
     }
-    
+
 }
 

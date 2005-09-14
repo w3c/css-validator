@@ -26,7 +26,7 @@ import org.w3c.css.util.InvalidParamException;
 public class AtRuleMedia extends AtRule {
 
     static final String[] mediaCSS3 = {
-	"all", "aural", "braille", "embossed", "handheld", "print", 
+	"all", "aural", "braille", "embossed", "handheld", "print",
 	"projection", "screen", "tty", "tv", "presentation", "atsc-tv"
     };
 
@@ -61,7 +61,7 @@ public class AtRuleMedia extends AtRule {
     }
 
     public void addMediaRestrictor(String restrictor, ApplContext ac) {
-	if (restrictor.toUpperCase().equals("ONLY") || 
+	if (restrictor.toUpperCase().equals("ONLY") ||
 	    restrictor.toUpperCase().equals("NOT")) {
 	    this.restrictor = restrictor;
 	}
@@ -135,7 +135,7 @@ public class AtRuleMedia extends AtRule {
      */
     public String toString() {
 	StringBuffer ret  = new StringBuffer();
-	
+
 	ret.append('@');
 	ret.append(keyword());
 	ret.append(' ');
@@ -155,7 +155,7 @@ public class AtRuleMedia extends AtRule {
 		ret.append(media[i]);
 	    }
 	}
-	
+
 	for (int i = 0; i < mediafeatures.size(); i++) {
 	    ret.append(" and (");
 	    ret.append(((String)mediafeatures.elementAt(i)));

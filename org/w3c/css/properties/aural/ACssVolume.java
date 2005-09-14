@@ -89,7 +89,7 @@ import org.w3c.css.values.CssValue;
  *
  * <p>To inhibit the speaking of an element and all it's children so that
  * it takes no time at all (for example, to get the effect of collapsing
- * and expanding lists) use the CSS1 property 'display' 
+ * and expanding lists) use the CSS1 property 'display'
  *
  * <pre>display: none</pre>
  *
@@ -100,36 +100,36 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssVolume extends ACssProperty {
-    
+
     CssValue value;
-    
+
     private static int[] hash_values;
-    
-    private static String[] VOLUME = { "silent", "x-soft", "soft", 
+
+    private static String[] VOLUME = { "silent", "x-soft", "soft",
 				       "medium", "loud", "x-loud" };
 
     private static CssIdent defaultValue = new CssIdent(VOLUME[3]);
-    
+
     /**
      * Create a new ACssVolume
      */
     public ACssVolume() {
 	value = defaultValue;
-    }  
-    
+    }
+
     /**
      * Creates a new ACssVolume
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public ACssVolume(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	this();
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	//int index;
 
@@ -144,7 +144,7 @@ public class ACssVolume extends ACssProperty {
 
 	    /*
 	     can't do the clipping here. see specs
-	     
+
 	     float v = ((Float) ((CssPercentage) val).get()).floatValue();
 	     if (v < 0 || v > 100) {
 	     // clipped
@@ -165,27 +165,27 @@ public class ACssVolume extends ACssProperty {
 	    }
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue().toString(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue().toString(),
 					    getPropertyName(), ac);
 	}
 
 	expression.next();
     }
-    
+
     public ACssVolume(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
-    
+
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -193,7 +193,7 @@ public class ACssVolume extends ACssProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns some usable value of this property...
      *
@@ -202,21 +202,21 @@ public class ACssVolume extends ACssProperty {
     public float getValue() { // vm
 	return ((CssNumber) value).getValue();
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "volume";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -227,52 +227,52 @@ public class ACssVolume extends ACssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssVolume = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param property The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssVolume && 
+	return (property instanceof ACssVolume &&
 		value.equals(((ACssVolume) property).value));
     }
-    
-    private CssIdent checkIdent(ApplContext ac, CssIdent ident) 
+
+    private CssIdent checkIdent(ApplContext ac, CssIdent ident)
 	throws InvalidParamException {
-	
+
 	int hash = ident.hashCode();
 	for (int i = 0; i < VOLUME.length; i++) {
 	    if (hash_values[i] == hash) {
 		return ident;
 	    }
 	}
-	
-	throw new InvalidParamException("value", ident.toString(), 
+
+	throw new InvalidParamException("value", ident.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /** @deprecated */
-    private CssPercentage ValueOfIdent(ApplContext ac, CssIdent ident) 
+    private CssPercentage ValueOfIdent(ApplContext ac, CssIdent ident)
 	throws InvalidParamException {
-	
+
 	int hash = ident.hashCode();
 	for (int i = 0; i < VOLUME.length; i++) {
 	    if (hash_values[i] == hash) {
 		return new CssPercentage(ACssProperties.getValue(this, VOLUME[i]));
 	    }
 	}
-	
-	throw new InvalidParamException("value", ident.toString(), 
+
+	throw new InvalidParamException("value", ident.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getVolume();
@@ -280,7 +280,7 @@ public class ACssVolume extends ACssProperty {
 	    return ((ACssStyle) style).acssVolume;
 	}
     }
-    
+
     static {
 	hash_values = new int[VOLUME.length];
 	for (int i = 0; i < VOLUME.length; i++)

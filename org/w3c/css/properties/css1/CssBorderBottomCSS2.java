@@ -49,64 +49,64 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
-    
+
     CssBorderBottomWidthCSS2 width;
     CssBorderBottomStyleCSS2 style;
     CssBorderBottomColorCSS2 color;
-    
+
     /**
      * Create a new CssBorderFaceCSS2
      */
     public CssBorderBottomCSS2() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFace
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderBottomCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
-	    val = expression.getValue();	    
-	    op = expression.getOperator();	    
+	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val == null)
 		break;
-	    
+
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
-						ac);   
+						ac);
 	    if (width == null) {
 		try {
-		    width = new CssBorderBottomWidthCSS2(ac, expression);		
+		    width = new CssBorderBottomWidthCSS2(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value		    
+		    // nothing to do, style will test this value
 		}
 	    }
 	    if (!find && style == null) {
 		try {
-		    style = new CssBorderBottomStyleCSS2(ac, expression);		    
+		    style = new CssBorderBottomStyleCSS2(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
 		    // nothing to do, color will test this value
@@ -115,10 +115,10 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    if (!find && color == null) {
 		// throws an exception if the value is not valid
 		color = new CssBorderBottomColorCSS2(ac, expression);
-		find = true;		
+		find = true;
 	    }
 	}
-	
+
 	//if some values have not been set, we set them with their default ones
 	/*
 	if (width == null) {
@@ -132,12 +132,12 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	}
 	*/
     }
-    
+
     public CssBorderBottomCSS2(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * @param color The color to set.
      */
@@ -165,7 +165,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -176,7 +176,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -187,7 +187,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -198,7 +198,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -221,18 +221,18 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-bottom";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(width != null) {
 	    width.important = true;
@@ -244,7 +244,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    color.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -254,14 +254,14 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 		(style == null || style.important) &&
 		(color == null || color.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -278,15 +278,15 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {	
+    public void addToStyle(ApplContext ac, CssStyle style) {
 	if(width != null) {
 	    width.addToStyle(ac, style);
 	}
@@ -297,13 +297,13 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    color.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderBottomCSS2();
@@ -311,16 +311,16 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssBorderCSS2.getBottom();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -331,7 +331,7 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -351,25 +351,25 @@ public class CssBorderBottomCSS2 extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
-    public boolean equals(CssProperty property) {	
+     */
+    public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderBottomCSS2) {
 	    CssBorderBottomCSS2 bottom = (CssBorderBottomCSS2) property;
-	    return (width != null && width.equals(bottom.width) 
-		    && style != null && style.equals(bottom.style)  
+	    return (width != null && width.equals(bottom.width)
+		    && style != null && style.equals(bottom.style)
 		    && color != null && color.equals(bottom.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

@@ -108,7 +108,7 @@ public class Frame {
     warnings.addWarning(new Warning(getSourceFile(), getLine(),
                     warningMessage, 0, message1, message2, ac));
     }
-    
+
     /**
      * Get all warnings.
      */

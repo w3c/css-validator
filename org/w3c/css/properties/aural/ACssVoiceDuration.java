@@ -62,11 +62,11 @@ public class ACssVoiceDuration extends ACssProperty {
      */
     public ACssVoiceDuration(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -94,7 +94,7 @@ public class ACssVoiceDuration extends ACssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
      */

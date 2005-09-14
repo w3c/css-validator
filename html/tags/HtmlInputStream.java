@@ -11,7 +11,7 @@ class HtmlInputStream extends FilterInputStream {
     Vector listeners = new Vector();
     int lines = 0;
     int bytes = 0;
-    
+
     public HtmlInputStream(InputStream  in) {
 	super(in);
     }
@@ -27,7 +27,7 @@ class HtmlInputStream extends FilterInputStream {
 	}
 	return c;
     }
-    
+
     public int read(byte  b[]) throws IOException {
 	int c = super.read(b);
 	for(int i = 0; i < c; i++) {
@@ -41,10 +41,10 @@ class HtmlInputStream extends FilterInputStream {
 	}
 	return c;
     }
-    
+
     public int read(byte  b[], int  off, int  len) throws IOException {
 	int c = super.read(b, off, len);
-	
+
 	for(int i = 0; i < c; i++) {
 	    if(b[i+off] == '\n') {
 		lines++;
@@ -71,5 +71,5 @@ class HtmlInputStream extends FilterInputStream {
  	    l.notifyActivity(lines, bytes);
   	}
     }
-    
+
 }

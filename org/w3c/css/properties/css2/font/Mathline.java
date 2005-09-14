@@ -19,22 +19,22 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class Mathline extends CssProperty {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new Mathline
      */
     public Mathline() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new Mathline
      *
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public Mathline(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	CssValue val = expression.getValue();
@@ -44,37 +44,37 @@ public class Mathline extends CssProperty {
 	    value = val;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public Mathline(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "mathline";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -87,13 +87,13 @@ public class Mathline extends CssProperty {
 	}
 	style0.mathline = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getMathline();
@@ -101,23 +101,23 @@ public class Mathline extends CssProperty {
 	    return ((Css2Style) style).mathline;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

@@ -25,22 +25,22 @@ public class CssIdent extends CssValue {
    * @param s The identificator
    */
   public CssIdent(String s) {
-    value = s;   
-  }  
-  
+    value = s;
+  }
+
   /**
    * Set the value of this ident.
    *
    * @param s     the string representation of the identificator.
    * @param frame For errors and warnings reports.
-   */  
-  public void set(String s, ApplContext ac) {      
+   */
+  public void set(String s, ApplContext ac) {
     value = s;
   }
 
   /**
    * Returns the internal value.
-   */  
+   */
   public Object get() {
     return value;
   }
@@ -56,7 +56,7 @@ public class CssIdent extends CssValue {
    * Compares two values for equality.
    *
    * @param value The other value.
-   */  
+   */
   public boolean equals(Object value) {
     return (value instanceof CssIdent && value.hashCode() == hashCode());
   }

@@ -27,21 +27,21 @@ import org.w3c.css.values.CssValue;
  */
 
 public class ColorInterpolationFilters extends CssProperty {
-    
+
     CssValue interp;
     ApplContext ac;
-    
+
     CssIdent auto = new CssIdent("auto");
     CssIdent sRGB = new CssIdent("sRGB");
     CssIdent linearRGB = new CssIdent("linearRGB");
-    
+
     /**
      * Create a new InterpolationFilters
      */
     public ColorInterpolationFilters() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new ColorInterpolationFilters
      *
@@ -53,7 +53,7 @@ public class ColorInterpolationFilters extends CssProperty {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    interp = inherit;
 	    expression.next();
@@ -68,16 +68,16 @@ public class ColorInterpolationFilters extends CssProperty {
 	    expression.next();
 	}
 	else {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public ColorInterpolationFilters(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -88,7 +88,7 @@ public class ColorInterpolationFilters extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).colorInterpolationFilters = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -102,7 +102,7 @@ public class ColorInterpolationFilters extends CssProperty {
 	    return ((SVGStyle) style).colorInterpolationFilters;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -112,35 +112,35 @@ public class ColorInterpolationFilters extends CssProperty {
 	return (property instanceof ColorInterpolationFilters &&
 		interp.equals( ((ColorInterpolationFilters) property).interp));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "color-interpolation-filters";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return interp;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return interp.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return interp.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -148,5 +148,5 @@ public class ColorInterpolationFilters extends CssProperty {
     public boolean isDefault() {
 	return (interp == linearRGB);
     }
-    
+
 }

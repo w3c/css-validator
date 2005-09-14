@@ -24,7 +24,7 @@ public class CssMarqueeDirection extends CssProperty {
     static CssIdent auto = new CssIdent("auto");
 
     private static String[] values = {
-		"forwards", "backwards", "ahead", "reverse", 
+		"forwards", "backwards", "ahead", "reverse",
 		"left", "right", "up", "down", "auto", "initial", "inherit"
     };
 
@@ -45,9 +45,9 @@ public class CssMarqueeDirection extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	int i = 0;
-	
+
 	for (;i < values.length; i++) {
 	    if (val.toString().equals(values[i])) {
 		mdir = val;
@@ -55,20 +55,20 @@ public class CssMarqueeDirection extends CssProperty {
 		break;
 	    }
 	}
-	
+
 	if (i == values.length) {
 	    throw new InvalidParamException("value",
 		    expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
 
     public CssMarqueeDirection(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *

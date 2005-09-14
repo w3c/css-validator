@@ -28,21 +28,21 @@ public class ApplContext {
     String credential = null;
 
     String lang;
-    
+
     Messages msgs;
-    
+
     Frame  frame;
-    
+
     String cssversion;
-    
+
     String profile;
-    
+
     String input;
-    
+
     Class cssselectorstyle;
 
     int origin = -1;
-    
+
     String medium;
 
     static {
@@ -116,7 +116,7 @@ public class ApplContext {
 	    res = msgs.getString("content-encoding");
 	    if(res == null) {
 		res = msgs.getString("output-encoding-name");
-	    }		
+	    }
 	    if(res != null) {
 		// if an encoding has been found, return it
 		return res;
@@ -140,7 +140,7 @@ public class ApplContext {
 	}
 	return cssversion;
     }
-    
+
     public void setProfile(String profile) {
 	this.profile = profile;
     }
@@ -175,16 +175,16 @@ public class ApplContext {
     public void setInput(String input) {
 	this.input = input;
     }
-    
+
     /**
      * Sets the content encoding to the first charset that appears in
      * <i>acceptCharset</i>.
      * If the charset is not supported, the content encoding will be utf-8
-     * @param acceptCharset a String representing the Accept-Charset 
+     * @param acceptCharset a String representing the Accept-Charset
      *                      request parameter
      */
-    public void setContentEncoding(String acceptCharset) {	
-	if(acceptCharset != null) {		    
+    public void setContentEncoding(String acceptCharset) {
+	if(acceptCharset != null) {
 	    // uses some Jigsaw classes to parse the Accept-Charset
 	    // these classes need to load a lot of stuff, so it may be quite
 	    // long the first time
@@ -193,27 +193,27 @@ public class ApplContext {
 
 	    charsetList = HttpFactory.parseAcceptCharsetList(acceptCharset);
 	    charsets = (HttpAcceptCharset[])charsetList.getValue();
-	    
+
 	    String encoding = null;
 	    double quality = 0.0;
-	    
+
 	    String biasedcharset = getMsg().getString("output-encoding-name");
 
 	    for(int i = 0; i < charsets.length && quality < 1.0 ; i++) {
 		HttpAcceptCharset charset = charsets[i];
-		
+
 		String currentCharset = charset.getCharset();
-		
+
 		// checks that the charset is supported by Java
-		
-		
+
+
 		if(isCharsetSupported(currentCharset)) {
 		    double currentQuality = charset.getQuality();
-		    
-		    // we prefer utf-8 
+
+		    // we prefer utf-8
 		    // FIXME (the bias value and the biased charset
 		    //        should be dependant on the language)
-		    if ((biasedcharset != null) && 
+		    if ((biasedcharset != null) &&
 			!biasedcharset.equalsIgnoreCase(currentCharset)) {
 			currentQuality = currentQuality * 0.5;
 		    }
@@ -222,7 +222,7 @@ public class ApplContext {
 			encoding = charset.getCharset();
 		    }
 		}
-	    }		
+	    }
 	    if(encoding != null) {
 		getMsg().properties.setProperty("content-encoding", encoding);
 	    }
@@ -232,11 +232,11 @@ public class ApplContext {
 	    }
 	}
 	else {
-	    // no Accept-Charset given 
+	    // no Accept-Charset given
 	    getMsg().properties.remove("content-encoding");
 	}
     }
-    
+
     private boolean isCharsetSupported(String charset) {
 	// if we can't check, assume it's ok, and fail later.
 	if (m == null) {
@@ -250,6 +250,6 @@ public class ApplContext {
 	}
 	catch(Exception e) {
 	    return false;
-	}	
+	}
     }
 }

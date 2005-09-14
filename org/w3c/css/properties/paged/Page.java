@@ -19,40 +19,40 @@ import org.w3c.css.values.CssValue;
 /**
  * @version $Revision$
  */
-public class Page extends CssProperty 
+public class Page extends CssProperty
     implements CssOperator {
-    
+
     CssValue value;
     CssValue pseudo;
 
     private static CssIdent auto = new CssIdent("auto");
-    
-    
+
+
     /**
      * Create a new CssPage
      */
     public Page() {
 	value = auto;
     }
-    
+
     /**
      * Create a new CssPage
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public Page(ApplContext ac, CssExpression expression, boolean check) 
+     */
+    public Page(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
-	
+
 	setByUser();
-		
+
 	if (val.equals(auto)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -69,36 +69,36 @@ public class Page extends CssProperty
 		    expression.next();
 		    return;
 		} else {
-		    throw new InvalidParamException("value", 
-			    val.toString(), 
+		    throw new InvalidParamException("value",
+			    val.toString(),
 			    getPropertyName(), ac);
 		}
 	    }
 	} else {
-	    throw new InvalidParamException("value", 
+	    throw new InvalidParamException("value",
 		    val.toString(), getPropertyName(), ac);
 	}
     }
-    
-    public Page(ApplContext ac, CssExpression expression) 
+
+    public Page(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "page";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -109,7 +109,7 @@ public class Page extends CssProperty
 	    return value.toString();
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -121,13 +121,13 @@ public class Page extends CssProperty
 	    style0.addRedefinitionWarning(ac, this);
 	style0.page = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getPage();
@@ -135,25 +135,25 @@ public class Page extends CssProperty
 	    return ((Css2Style) style).page;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Page 
+	return (property instanceof Page
 		&& value == ((Page) property).value
 		&& ((pseudo == null)
 		    || pseudo.equals(((Page) property).pseudo)));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == auto;
     }
-    
+
 }

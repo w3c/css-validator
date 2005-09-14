@@ -19,9 +19,9 @@ public class RGB {
     Object r;
     Object g;
     Object b;
-    
+
     boolean percent = false;
-    
+
     /**
      * @return Returns the percent.
      */
@@ -41,7 +41,7 @@ public class RGB {
      */
     public RGB() {
     }
-    
+
     /**
      * Create a new RGB with default values
      */
@@ -56,7 +56,7 @@ public class RGB {
      */
     public String toString() {
 	if (output == null) {
-	    String unit = (isPercent()) ? "%" : "";	    
+	    String unit = (isPercent()) ? "%" : "";
 	    return "rgb(" + r + unit + ", " + g + unit + ", " + b + unit + ")";
 	} else {
 	    return output;

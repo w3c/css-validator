@@ -21,11 +21,11 @@ import org.w3c.css.values.CssValue;
 /**
  * @version $Revision$
  */
-public class Size extends CssProperty 
+public class Size extends CssProperty
         implements CssOperator {
-    
+
     CssValue l1, l2;
-    
+
     private static CssIdent auto = new CssIdent("auto");
     private static CssIdent portrait = new CssIdent("portrait");
     private static CssIdent landscape = new CssIdent("landscape");
@@ -36,25 +36,25 @@ public class Size extends CssProperty
     public Size() {
 	l1 = auto;
     }
-    
+
     /**
      * Create a new CssSize
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public Size(ApplContext ac, CssExpression expression, boolean check) 
+     */
+    public Size(ApplContext ac, CssExpression expression, boolean check)
 	    throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
-	
+
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -96,8 +96,8 @@ public class Size extends CssProperty
 		val = getLength(expression.getValue());
 		if ((val == null)
 		    || (op != SPACE)) {
-		    throw new InvalidParamException("value", 
-						    val.toString(), 
+		    throw new InvalidParamException("value",
+						    val.toString(),
 						    getPropertyName(), ac);
 		} else {
 		    l2 = val;
@@ -109,30 +109,30 @@ public class Size extends CssProperty
 		return;
 	    }
 	} else {
-	    throw new InvalidParamException("value", 
+	    throw new InvalidParamException("value",
 					    val.toString(), getPropertyName(), ac);
 	}
     }
-    
-    public Size(ApplContext ac, CssExpression expression) 
+
+    public Size(ApplContext ac, CssExpression expression)
     	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "size";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -140,7 +140,7 @@ public class Size extends CssProperty
     public boolean isSoftlyInherited() {
 	return l1 == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -151,7 +151,7 @@ public class Size extends CssProperty
 	    return l1.toString();
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -163,13 +163,13 @@ public class Size extends CssProperty
 	    style0.addRedefinitionWarning(ac, this);
 	style0.size = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getSize();
@@ -177,27 +177,27 @@ public class Size extends CssProperty
 	    return ((Css2Style) style).size;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Size 
+	return (property instanceof Size
 		&& l1.equals(((Size) property).l1)
 		&& ((l2 == null)
 		    || l2.equals(((Size) property).l2)));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return l1 == auto;
     }
-    
+
     CssLength getLength(CssValue val) throws InvalidParamException {
         if (val instanceof CssLength) {
             return (CssLength) val;

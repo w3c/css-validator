@@ -17,12 +17,12 @@ import org.w3c.css.values.CssValue;
 /**
  *
  * @see CssFont
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
-    
+
     CssValue value;
-    
+
     private static CssIdent none = new CssIdent("none");
 
     /**
@@ -31,21 +31,21 @@ public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
     public CssFontSizeAdjust() {
 	value = none;
     }
-    
+
     /**
      * Creates a new CssFontSize-Adjust
      *
      * @param expression the font size-adjust
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssFontSizeAdjust(ApplContext ac, CssExpression expression,
-	    boolean check) 
+	    boolean check)
 	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -56,25 +56,25 @@ public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
 	} else if (val instanceof CssNumber) {
 	    value = val;
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssFontSizeAdjust(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -82,21 +82,21 @@ public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-size-adjust";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -108,13 +108,13 @@ public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssFontSizeAdjust = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFontSizeAdjust();
@@ -122,21 +122,21 @@ public class CssFontSizeAdjust extends CssProperty implements CssFontConstant {
 	    return ((Css1Style) style).cssFontSizeAdjust;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFontSizeAdjust && 
+	return (property instanceof CssFontSizeAdjust &&
 		((CssFontSizeAdjust) property).value.equals(value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == none;
     }

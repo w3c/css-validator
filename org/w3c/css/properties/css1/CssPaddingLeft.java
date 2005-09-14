@@ -38,7 +38,7 @@ public class CssPaddingLeft extends CssPaddingSide {
   public CssPaddingLeft() {
     super();
   }
-  
+
   /**
    * Create a new CssPaddingLeft with an another CssPaddingSide
    * @param another The another side.
@@ -46,7 +46,7 @@ public class CssPaddingLeft extends CssPaddingSide {
   public CssPaddingLeft(CssPaddingSide another) {
     super(another);
   }
-  
+
   /**
    * Create a new CssPaddingLeft
    *
@@ -57,15 +57,15 @@ public class CssPaddingLeft extends CssPaddingSide {
   	throws InvalidParamException {
     super(ac, expression, check);
   }
-  
+
   public CssPaddingLeft(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
   }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "padding-left";
   }
@@ -87,7 +87,7 @@ public class CssPaddingLeft extends CssPaddingSide {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getPaddingLeft();
@@ -100,9 +100,9 @@ public class CssPaddingLeft extends CssPaddingSide {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-    return (property instanceof CssPaddingLeft && 
+    return (property instanceof CssPaddingLeft &&
 	    value.equals(((CssPaddingLeft) property).value));
   }
 

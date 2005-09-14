@@ -57,11 +57,11 @@ public class CssColorCSS2 extends CssProperty {
      */
     public CssColorCSS2(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 	if (val.equals(inherit)) {
@@ -84,7 +84,7 @@ public class CssColorCSS2 extends CssProperty {
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -95,7 +95,7 @@ public class CssColorCSS2 extends CssProperty {
     /**
      * Returns the color
      */
-    public org.w3c.css.values.CssColorCSS2 getColor() {
+    public org.w3c.css.values.CssColor getColor() {
 	if (color.equals(inherit)) {
 	    /*
 	    System.err.println("[ERROR] org.w3c.css.properties.CssColorCSS2");
@@ -103,7 +103,7 @@ public class CssColorCSS2 extends CssProperty {
 	    */
 	    return null;
 	} else {
-	    return (org.w3c.css.values.CssColorCSS2) color;
+	    return (org.w3c.css.values.CssColor) color;
 	}
     }
 
@@ -133,7 +133,7 @@ public class CssColorCSS2 extends CssProperty {
 	Css1Style style0 = (Css1Style) style;
 	if (style0.cssColorCSS2 != null) {
 	    style0.addRedefinitionWarning(ac, this);
-	}	
+	}
 	style0.cssColorCSS2 = this;
     }
 

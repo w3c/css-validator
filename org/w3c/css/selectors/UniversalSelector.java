@@ -8,27 +8,27 @@ package org.w3c.css.selectors;
  * Universal<br />
  * Created: Sep 1, 2005 3:45:13 PM<br />
  */
-public class UniversalSelector implements Selector {        
-    
+public class UniversalSelector implements Selector {
+
     /**
      * @see Selector#toString()
      */
     public String toString() {
-	return "*"; 
+	return "*";
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
     /**
      * @see Selector#getName()
      */
     public String getName() {
 	return "*";
     }
-    
+
 }

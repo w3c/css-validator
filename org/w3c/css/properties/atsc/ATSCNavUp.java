@@ -50,11 +50,11 @@ public class ATSCNavUp extends CssProperty {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssNumber) {
 	    navup = val;
 	    expression.next();
@@ -69,12 +69,12 @@ public class ATSCNavUp extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public ATSCNavUp(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *

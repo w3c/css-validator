@@ -33,34 +33,34 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssSpeakPunctuation extends ACssProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent none = new CssIdent("none");
     private static CssIdent code = new CssIdent("code");
 
     /**
      * Create a new ACssSpeakPunctuation
-     */  
+     */
     public ACssSpeakPunctuation() {
 	value = none;
     }
-    
+
     /**
      * Creates a new ACssSpeakPunctuation
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public ACssSpeakPunctuation(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	    expression.next();
@@ -74,24 +74,24 @@ public class ACssSpeakPunctuation extends ACssProperty {
 	    expression.next();
 	    return;
 	}
-	
+
 	throw new InvalidParamException("value",
-					val.toString(), 
+					val.toString(),
 					getPropertyName(), ac);
     }
-    
+
     public ACssSpeakPunctuation(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -99,22 +99,22 @@ public class ACssSpeakPunctuation extends ACssProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "speak-punctuation";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -125,24 +125,24 @@ public class ACssSpeakPunctuation extends ACssProperty {
 	    ((ACssStyle) style).addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssSpeakPunctuation = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssSpeakPunctuation && 
+	return (property instanceof ACssSpeakPunctuation &&
 		value.equals(((ACssSpeakPunctuation) property).value));
     }
-    
-    
+
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getSpeakPunctuation();
@@ -150,5 +150,5 @@ public class ACssSpeakPunctuation extends ACssProperty {
 	    return ((ACssStyle) style).acssSpeakPunctuation;
 	}
     }
-    
+
 }

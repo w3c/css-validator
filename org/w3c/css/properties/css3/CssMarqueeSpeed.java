@@ -64,7 +64,7 @@ public class CssMarqueeSpeed extends CssProperty {
 	else if (val instanceof CssLength) {
 	    mspeed = val.toString();
 	    expression.next();
-	    
+
 	    val = expression.getValue();
 	    if (val != null) {
 		if (val instanceof CssTime) {
@@ -84,14 +84,14 @@ public class CssMarqueeSpeed extends CssProperty {
 		    expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
 
     public CssMarqueeSpeed(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *

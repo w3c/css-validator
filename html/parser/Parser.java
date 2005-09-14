@@ -1,5 +1,5 @@
 /*
- * @(#)Parser.java	1.10 95/06/07  
+ * @(#)Parser.java	1.10 95/06/07
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -25,16 +25,16 @@
  * DTD.findElement, instead of DTD.getElement
 
  * FIX2 - vm - 97.07.07. Fixed the bug which made the parser case sensitive
- * when parsing a literal element and looking for an end tag (ie for 
+ * when parsing a literal element and looking for an end tag (ie for
  * the <style> literal </style> )
 
  * FIX3 - vm - 97.08.20. Added explicit casts to convert char to byte in three
  * places, to get the code 1.1 compliant.
 
  * FIX4 - vm - 97.08.27. The parser was said to treat "\r\n" as "\n". Well
- * in fact it treated "\n\r" as "\n", so I added "\r\n"->\n. We should 
+ * in fact it treated "\n\r" as "\n", so I added "\r\n"->\n. We should
  * probably remove the "\n\r"->\n.
- 
+
  */
 
 package html.parser;
@@ -58,8 +58,8 @@ import java.util.Hashtable;
  * This means that the implementation sometimes deviates from
  * the SGML specification in favor of HTML.<p>
  *
- * The parser treats \r and \r\n as \n. Newlines after starttags 
- * and before end tags are ignore just as specified in the SGML/HTML 
+ * The parser treats \r and \r\n as \n. Newlines after starttags
+ * and before end tags are ignore just as specified in the SGML/HTML
  * specification. <p>
  *
  * @version 	1.10, 07 Jun 1995
@@ -358,7 +358,7 @@ class Parser implements DTDConstants {
      * the document's body context
      */
     void errorContext() throws IOException {              //??dk
-	
+
 	//startErrorRecovery();
 	for (; (stack != null) && (stack.tag != dtd.body) ; stack = stack.next) {
 	    handleEndTag(stack.tag);
@@ -426,7 +426,7 @@ class Parser implements DTDConstants {
 
     /**
      * Parse identifier. Uppercase characters are folded
-     * to lowercase when lower is true. Returns falsed if 
+     * to lowercase when lower is true. Returns falsed if
      * no identifier is found. [55] 346:17
      */
     boolean parseIdentifier(boolean lower) throws IOException {               //??dk
@@ -541,7 +541,7 @@ class Parser implements DTDConstants {
 
 	  case '\r':
 	    ln++;
-	    if ((ch = in.read()) == '\n') { //vm 
+	    if ((ch = in.read()) == '\n') { //vm
 	      ch = in.read();
 	    }
 	    break;
@@ -566,7 +566,7 @@ class Parser implements DTDConstants {
 //  	    str.getBytes(0, b.length, b, 0);
 	    // 1.1 style
 	    byte b[] = str.getBytes();
-	    
+
 	    // deprecated 1.1  - jml - 12/10/96.
 	    return b;
 	}
@@ -635,13 +635,13 @@ class Parser implements DTDConstants {
 
 	// match end tag
 	if ((i >= 0) && (text[i++] == '<') && (text[i] == '/')) {
-	  
+
 	  // FIX2 - start - vm 970707
 	  //@@ while ((++i < textpos) && (text[i] == stack.elem.name.charAt(j++))) ;
 	  while ((++i < textpos) &&
 		 (Character.toUpperCase((char)text[i]) == Character.toUpperCase(stack.elem.name.charAt(j++)))) ;
 	  // FIX2 - end - vm 970707
-	  
+
 	  if (i == textpos) {
 	    textpos -= (stack.elem.name.length() + 2);
 	    if ((textpos > 0) && (text[textpos-1] == '\n')) {
@@ -652,7 +652,7 @@ class Parser implements DTDConstants {
 	  }
 	}
 	break;
-	
+
       case '&':
 	byte data[] = parseEntityReference();
 	if (textpos + data.length > text.length) {
@@ -663,14 +663,14 @@ class Parser implements DTDConstants {
 	System.arraycopy(data, 0, text, textpos, data.length);
 	textpos += data.length;
 	continue;
-	
+
       case '\n':
 	ln++;
 	if ((ch = in.read()) == '\r') {
 	  ch = in.read();
-	}	
+	}
 	break;
-	
+
       case '\r':
 	ln++;
 	if ((ch = in.read()) == '\n') { //vm
@@ -683,7 +683,7 @@ class Parser implements DTDConstants {
 	ch = in.read();
 	break;
       }
-      
+
       // output character
       if (textpos == text.length) {
 	byte newtext[] = new byte[text.length * 2];
@@ -742,7 +742,7 @@ class Parser implements DTDConstants {
 		ch = in.read();
 		if (delim< 0) {
 		    return getString(0);
-		} 
+		}
 		break;
 
 	      case '>':
@@ -807,7 +807,7 @@ class Parser implements DTDConstants {
 
 	      case '-':
 		ch = in.read();
-		if ((ch = in.read()) == '-') {	
+		if ((ch = in.read()) == '-') {
 		    ch = in.read();
 		    parseComment();
 		    strpos = 0;
@@ -871,8 +871,8 @@ class Parser implements DTDConstants {
 	// ugly, but avoid two calls to getString
 	String els = null;
 	//FIX1 - end - jml - 5/7/97.
-	
-	
+
+
 	switch (ch = in.read()) {
 	  case '!':
 	    // Parse comment. [92] 391:7
@@ -1116,7 +1116,7 @@ class Parser implements DTDConstants {
 		    continue;
 		}
 		break;
-		
+
 	      case -1:
 		return;
 
@@ -1210,7 +1210,7 @@ class Parser implements DTDConstants {
     public synchronized void parse(InputStream in, DTD dtd) throws IOException, Exception {  //??dk
       if (in == null) //vm970811 if the input is empty, just dont do anything.
 	return;       //vm970811
-            
+
 	this.in = in;
 	this.dtd = dtd;
 	this.ln = 1;
@@ -1234,11 +1234,11 @@ class Parser implements DTDConstants {
 		ch1 = in.read();
 	    }
 	    // now it should have found '<'
-	    
+
 	    while (!ready) {
 		ch1 = in.read();
 		ch2 = in.read(); // 'D' or '-' or else it's wrong
-		
+
 		if (ch1 != '!') {
 		    ready = true;
 		} else {
@@ -1268,12 +1268,12 @@ class Parser implements DTDConstants {
 		}
 	    }
 	}
-	
+
 	in.reset();
-	
-	
+
+
 	// end of added part by Sijtsche de Jong
-    
+
 
 	boolean mustClose = true;
 	try {
@@ -1350,7 +1350,7 @@ class Parser implements DTDConstants {
 		System.exit(1);
 	    } else {
 		break;
-	    }	
+	    }
 	}
 	//	p.verbose = true;
 	if (dtd == null) {

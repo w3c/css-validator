@@ -23,7 +23,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> accumulate || new [ &lt;x&gt; &lt;y&gt; 
+ *  <EM>Value:</EM> accumulate || new [ &lt;x&gt; &lt;y&gt;
  *  &lt;width&gt; &lt;height&gt; || inherit<BR>
  *  <EM>Initial:</EM>accumulate<BR>
  *  <EM>Applies to:</EM>container elements<BR>
@@ -33,34 +33,34 @@ import org.w3c.css.values.CssValue;
  */
 
 public class EnableBackground extends CssProperty implements CssOperator {
-    
+
     CssValue value;
     Vector values = new Vector();
     ApplContext ac;
-    
+
     CssIdent accumulate = new CssIdent("accumulate");
-    
+
     /**
      * Create a new Value
      */
     public EnableBackground() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Value
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public EnableBackground(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 	char op = SPACE;
-	
+
 	if (val instanceof CssIdent) {
 	    if (val.equals(inherit)) {
 		value = inherit;
@@ -69,7 +69,7 @@ public class EnableBackground extends CssProperty implements CssOperator {
 		value = accumulate;
 		expression.next();
 	    } else {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
 	}
@@ -79,53 +79,53 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    expression.next();
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    // second value
 	    if (val instanceof CssNumber) {
 		values.addElement(val);
 		expression.next();
 	    } else {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    // third value
 	    try {
 		CssWidth width = new CssWidth(ac, expression);
 		values.addElement(width);
 		//expression.next();
 	    } catch (InvalidParamException e) {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
-	    
-	    val = expression.getValue(); 
+
+	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    // fourth value
 	    try {
 		CssWidth width = new CssWidth(ac, expression);
 		values.addElement(width);
 		expression.next();
 	    } catch (InvalidParamException e) {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	}
 	else {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public EnableBackground(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -136,13 +136,13 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).enableBackground = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getEnableBackground();
@@ -150,24 +150,24 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).enableBackground;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof EnableBackground && 
+	return (property instanceof EnableBackground &&
 		value.equals( ((EnableBackground) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "enable-background";
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -178,7 +178,7 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    return values;
 	}
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
@@ -189,7 +189,7 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    return false;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -203,15 +203,15 @@ public class EnableBackground extends CssProperty implements CssOperator {
 	    }
 	    return ret;
 	}
-	
+
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (value == accumulate);
     }
-    
+
 }

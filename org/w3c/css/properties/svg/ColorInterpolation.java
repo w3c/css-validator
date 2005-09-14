@@ -27,25 +27,25 @@ import org.w3c.css.values.CssValue;
  */
 
 public class ColorInterpolation extends CssProperty {
-    
+
     CssValue interp;
     ApplContext ac;
-    
+
     CssIdent auto = new CssIdent("auto");
     CssIdent sRGB = new CssIdent("sRGB");
     CssIdent linearRGB = new CssIdent("linearRGB");
-    
+
     /**
      * Create a new Interp
      */
     public ColorInterpolation() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new ColorInterpolation
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public ColorInterpolation(ApplContext ac, CssExpression expression,
@@ -53,7 +53,7 @@ public class ColorInterpolation extends CssProperty {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    interp = inherit;
 	    expression.next();
@@ -72,12 +72,12 @@ public class ColorInterpolation extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public ColorInterpolation(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -88,13 +88,13 @@ public class ColorInterpolation extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).colorInterpolation = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getColorInterpolation();
@@ -102,51 +102,51 @@ public class ColorInterpolation extends CssProperty {
 	    return ((SVGStyle) style).colorInterpolation;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ColorInterpolation && 
+	return (property instanceof ColorInterpolation &&
 		interp.equals( ((ColorInterpolation) property).interp));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "color-interpolation";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return interp;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return interp.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return interp.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (interp == sRGB);
     }
-    
+
 }

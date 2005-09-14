@@ -20,7 +20,7 @@ public class CssExpression implements CssOperator {
    * By default the next operator is a space
    *
    * @param value The value to append
-   */  
+   */
   public void addValue(CssValue value) {
     items.addElement(new ValueOperator(value));
     count++;
@@ -32,7 +32,7 @@ public class CssExpression implements CssOperator {
    *
    * @param operator The operator
    * @see CssOperator
-   */  
+   */
   public void setOperator(char operator) {
     ((ValueOperator) items.elementAt(count-1)).operator = operator;
   }
@@ -43,7 +43,7 @@ public class CssExpression implements CssOperator {
    *
    * @param operator The operator
    * @see CssOperator
-   */  
+   */
   public void setCurrentOperator(char operator) {
     ((ValueOperator) items.elementAt(index)).operator = operator;
   }
@@ -51,30 +51,30 @@ public class CssExpression implements CssOperator {
   /**
    * Returns the current value of the expression
    * don't change the position in the expression
-   */  
+   */
   public CssValue getValue() {
     if (index == count)
       return null;
     else
-      return ((ValueOperator) items.elementAt(index)).value;      
+      return ((ValueOperator) items.elementAt(index)).value;
   }
 
   /**
    * Returns the current value of the expression
    * don't change the position in the expression
-   */  
+   */
   public CssValue getNextValue() {
     if (index+1 >= count)
       return null;
     else
-      return ((ValueOperator) items.elementAt(index+1)).value;      
+      return ((ValueOperator) items.elementAt(index+1)).value;
   }
 
     /* Modified by Sijtsche de Jong */
   /**
    * Returns the operator <strong>after</strong> the current value
    * don't change the position in the expression
-   */  
+   */
   public char getOperator() {
     if (index == count)
       return SPACE;
@@ -84,7 +84,7 @@ public class CssExpression implements CssOperator {
 
   /**
    * Returns the number of elements
-   */  
+   */
   public int getCount() {
     return count;
   }
@@ -93,7 +93,7 @@ public class CssExpression implements CssOperator {
    * Insert the current value at the current position.
    *
    * @param value The value to insert
-   */  
+   */
   public void insert(CssValue value) {
     items.insertElementAt(new ValueOperator(value), index);
     count++;
@@ -101,7 +101,7 @@ public class CssExpression implements CssOperator {
 
   /**
    * Removes the current value and his operator
-   */  
+   */
   public void remove() {
     if (index != count)
       items.removeElementAt(index);
@@ -110,28 +110,28 @@ public class CssExpression implements CssOperator {
 
   /**
    * Returns true if there is no other element
-   */  
+   */
   public boolean end() {
     return index == count;
   }
 
   /**
    * Change the position to the beginning
-   */  
+   */
   public void starts() {
     index = 0;
   }
 
   /**
    * Change the position to the end
-   */  
+   */
   public void ends() {
     index = count;
   }
 
   /**
    * Change the position to the next
-   */  
+   */
   public void next() {
     if (index < count)
       index++;
@@ -139,7 +139,7 @@ public class CssExpression implements CssOperator {
 
   /**
    * Change the position to the precedent
-   */  
+   */
   public void precedent() {
     if (index > 0)
       index--;

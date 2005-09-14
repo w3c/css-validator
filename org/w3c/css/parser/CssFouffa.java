@@ -112,7 +112,7 @@ public final class CssFouffa extends CssParser {
 	// @@this is a default media ...
 	/*
 	 * AtRuleMedia media = new AtRuleMedia();
-	 * 
+	 *
 	 * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
 	 * catch (InvalidParamException e) {} //ignore } else { try {
 	 * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
@@ -125,9 +125,19 @@ public final class CssFouffa extends CssParser {
 		    + " medium " + ac.getMedium() + " at-rule " + getAtRule()
 		    + " profile " + ac.getProfile());
 	}
+
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion();
+	}
+
 	//loadConfig(ac.getCssVersion(), ac.getProfile());
 	// load the CssStyle
-	String classStyle = PropertiesLoader.config.getProperty("style2");
+	String classStyle = PropertiesLoader.config.getProperty(profile);
+	if(classStyle == null) {
+	    classStyle = PropertiesLoader.config.getProperty("css2");
+	}
+
 	Class style;
 	try {
 	    style = Class.forName(classStyle);
@@ -138,14 +148,11 @@ public final class CssFouffa extends CssParser {
 		    + " load the style");
 	    e.printStackTrace();
 	}
-	String profile = ac.getProfile();
-	if(profile == null || profile.equals("")) {
-	    profile = ac.getCssVersion(); 
-	}
+
 	properties = new CssPropertyFactory(profile);
 	listeners = new Vector();
     }
-    
+
     /**
      * Create a new CssFouffa with a data input.
      *
@@ -160,7 +167,7 @@ public final class CssFouffa extends CssParser {
     throws IOException {
 	this(ac, input, file, 0);
     }
-    
+
     /**
      * Create a new CssFouffa.
      *
@@ -172,14 +179,14 @@ public final class CssFouffa extends CssParser {
      */
     public CssFouffa(ApplContext ac, URL file) throws IOException {
 	this(ac, HTTPURL.getConnection(file, ac));
-	
+
     }
-    
+
     /**
      * Create a new CssFouffa. internal, to get the URLCOnnection and fill the
      * URL with the relevant one
      */
-    
+
     private CssFouffa(ApplContext ac, URLConnection uco) throws IOException {
 	this(ac, uco.getInputStream(), uco.getURL(), 0);
 	String httpCL = uco.getHeaderField("Content-Location");
@@ -187,7 +194,7 @@ public final class CssFouffa extends CssParser {
 	    setURL(HTTPURL.getURL(getURL(), httpCL));
 	}
     }
-    
+
     /**
      * Create a new CssFouffa. Used by handleImport.
      *
@@ -211,7 +218,7 @@ public final class CssFouffa extends CssParser {
 	this.properties = cssfactory;
 	this.mode = mode;
     }
-    
+
     private void ReInit(ApplContext ac, InputStream input, URL file, Frame frame) {
 	// reinitialize the parser with a new data input
 	// and a new frame for errors and warnings
@@ -238,27 +245,33 @@ public final class CssFouffa extends CssParser {
 		    + " medium " + ac.getMedium() + " profile "
 		    + ac.getProfile());
 	}
-	
+
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("")) {
+	    profile = ac.getCssVersion();
+	}
+
 //	 load the CssStyle
-	String classStyle = PropertiesLoader.config.getProperty("style2");
+	String classStyle = PropertiesLoader.config.getProperty(profile);
+	if(classStyle == null) {
+	    classStyle = PropertiesLoader.config.getProperty("css2");
+	}
+
 	Class style;
 	try {
 	    style = Class.forName(classStyle);
 	    ac.setCssSelectorsStyle(style);
-	}	
+	}
 	catch (ClassNotFoundException e) {
 	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
 		    + " load the style");
 	    e.printStackTrace();
 	}
-	String profile = ac.getProfile();	
-	if(profile == null || profile.equals("")) {
-	    profile = ac.getCssVersion(); 
-	}
+
 	properties = new CssPropertyFactory(profile);
 	//loadConfig(ac.getCssVersion(), ac.getProfile());
     }
-    
+
     /**
      * Reinitializes a new CssFouffa with a data input and a begin line number.
      *
@@ -277,7 +290,7 @@ public final class CssFouffa extends CssParser {
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
     }
-    
+
     /**
      * Reinitializes a new CssFouffa with a data input.
      *
@@ -294,7 +307,7 @@ public final class CssFouffa extends CssParser {
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
     }
-    
+
     /**
      * Reinitializes a new CssFouffa.
      *
@@ -310,7 +323,7 @@ public final class CssFouffa extends CssParser {
 	URLConnection urlC = HTTPURL.getConnection(file, ac);
 	ReInit(ac, urlC.getInputStream(), urlC.getURL(), f);
     }
-    
+
     /**
      * Set the attribute origin
      *
@@ -320,7 +333,7 @@ public final class CssFouffa extends CssParser {
     private final void setOrigin(int origin) {
 	this.origin = origin;
     }
-    
+
     /**
      * Returns the attribute origin
      *
@@ -329,7 +342,7 @@ public final class CssFouffa extends CssParser {
     public final int getOrigin() {
 	return origin;
     }
-    
+
     /**
      * Adds a listener to the parser.
      *
@@ -340,7 +353,7 @@ public final class CssFouffa extends CssParser {
     public final void addListener(CssValidatorListener listener) {
 	listeners.addElement(listener);
     }
-    
+
     /**
      * Removes a listener from the parser
      *
@@ -351,29 +364,29 @@ public final class CssFouffa extends CssParser {
     public final void removeListener(CssValidatorListener listener) {
 	listeners.removeElement(listener);
     }
-    
+
     /**
      * Parse the style sheet. This is the main function of this parser.
      *
      * <p>
      * Example:<br>
      * <code>
-     * CssFouffa parser = new CssFouffa(new 
+     * CssFouffa parser = new CssFouffa(new
      *                                URL("http://www.w3.org/drafts.css"));<BR>
      * CssValidatorListener myListener = new MyParserListener();<BR>
      * <BR>
      * parser.addListener(myListener);<BR>
      * parser.parseStyle();<BR>
      * </code>
-     * 
+     *
      * @see            org.w3c.css.parser.CssFouffa#addListener
      */
     public void parseStyle() {
 	try {
 	    parserUnit();
-	} catch(TokenMgrError e) {	    
+	} catch(TokenMgrError e) {
 	    throw e;
-	} catch (Throwable e) {	    
+	} catch (Throwable e) {
 	    if (Util.onDebug) {
 		e.printStackTrace();
 	    }
@@ -381,16 +394,16 @@ public final class CssFouffa extends CssParser {
 	    ne.fillInStackTrace();
 	    throw (ne);
 	}
-	
+
 	// That's all folks, notify all errors and warnings
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 	    CssValidatorListener listener;
 	    listener = (CssValidatorListener) e.nextElement();
 	    listener.notifyErrors(ac.getFrame().getErrors());
 	    listener.notifyWarnings(ac.getFrame().getWarnings());
-	}	
+	}
     }
-    
+
     /**
      * Call by the import statement.
      *
@@ -399,13 +412,13 @@ public final class CssFouffa extends CssParser {
      * @param file
      *            the file name in the import statement
      */
-    public void handleImport(URL url, String file, AtRuleMedia media) {	
+    public void handleImport(URL url, String file, AtRuleMedia media) {
 	//CssError cssError = null;
-	
+
 	try {
 	    URL importedURL = HTTPURL.getURL(url, file);
 	    String surl = importedURL.toString();
-	    
+
 	    if (visited == null) {
 		visited = new Vector(2);
 	    } else {
@@ -425,14 +438,14 @@ public final class CssFouffa extends CssParser {
 	    }
 	    Vector newVisited = (Vector) visited.clone();
 	    newVisited.addElement(surl);
-	    
+
 	    if (Util.importSecurity) {
 		throw new FileNotFoundException("[SECURITY] You can't "
 			+ "import URL sorry.");
 	    }
-	    
+
 	    URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
-	    
+
 	    if (importURL instanceof HttpURLConnection) {
 		HttpURLConnection httpURL = (HttpURLConnection) importURL;
 		String httpCL = httpURL.getHeaderField("Content-Location");
@@ -446,7 +459,7 @@ public final class CssFouffa extends CssParser {
 		} else {
 		    if (mtype.toLowerCase().indexOf("text/html") != -1) {
 			throw new FileNotFoundException(importURL.getURL()
-				+": You can't import" 
+				+": You can't import"
 				+" an HTML document");
 		    }
 		}
@@ -472,7 +485,7 @@ public final class CssFouffa extends CssParser {
 	    }
 	}
     }
-    
+
     /**
      * Call by the at-rule statement.
      *
@@ -481,7 +494,7 @@ public final class CssFouffa extends CssParser {
      * @param string
      *            The string representation of this at-rule
      */
-    public void handleAtRule(String ident, String string) {	
+    public void handleAtRule(String ident, String string) {
 	if (mode) {
 	    Enumeration e = listeners.elements();
 	    while (e.hasMoreElements()) {
@@ -498,7 +511,7 @@ public final class CssFouffa extends CssParser {
 	    }
 	}
     }
-    
+
     /**
      * Assign an expression to a property.  This function create a new property
      * with <code>property</code> and assign to it the expression with the
@@ -516,22 +529,22 @@ public final class CssFouffa extends CssParser {
      */
     public CssProperty handleDeclaration(String property,
 	    CssExpression expression, boolean important)
-    throws InvalidParamException {	
+    throws InvalidParamException {
 	CssProperty prop;
 	if (Util.onDebug) {
 	    System.err.println("Creating " + property + ": " + expression);
 	}
-	
+
 	try {
 	    if (getMediaDeclaration().equals("on")
-		    && (getAtRule() instanceof AtRuleMedia)) {		
+		    && (getAtRule() instanceof AtRuleMedia)) {
 		prop = properties.createMediaFeature(ac, getAtRule(), property,
 			expression);
 	    } else {
 		prop = properties.createProperty(ac, getAtRule(), property,
 			expression);
 	    }
-	    
+
 	} catch (InvalidParamException e) {
 	    throw e;
 	} catch (Exception e) {
@@ -540,7 +553,7 @@ public final class CssFouffa extends CssParser {
 	    }
 	    throw new InvalidParamException(e.toString(), ac);
 	}
-	
+
 	// set the importance
 	if (important) {
 	    prop.setImportant();
@@ -548,12 +561,12 @@ public final class CssFouffa extends CssParser {
 	prop.setOrigin(origin);
 	// set informations for errors and warnings
 	prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
-	
-	// ok, return the new property	
+
+	// ok, return the new property
 	return prop;
-	
+
     }
-    
+
     /**
      * Parse only a list of declarations. This is useful to parse the
      * <code>STYLE</code> attribute in a HTML document.
@@ -580,7 +593,7 @@ public final class CssFouffa extends CssParser {
 	// here we have an example for reusing the parser.
 	try {
 	    Vector properties = declarations();
-	    
+
 	    if (properties != null && properties.size() != 0) {
 		handleRule(context, properties);
 	    }
@@ -594,7 +607,7 @@ public final class CssFouffa extends CssParser {
 		ac.getFrame().addError(error);
 	    }
 	}
-	
+
 	if (!Util.noErrorTrace) {
 	    for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 		CssValidatorListener listener = (CssValidatorListener) e
@@ -604,26 +617,26 @@ public final class CssFouffa extends CssParser {
 	    }
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet
-     * 
+     *
      * @param atRule
      *            the
      * @rule that just has been found by the parser in the stylesheet, it is
      *       added to the storage for the output
      */
-    public void newAtRule(AtRule atRule) {	
+    public void newAtRule(AtRule atRule) {
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 	    ((CssValidatorListener) e.nextElement()).newAtRule(atRule);
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet
-     * 
+     *
      * @param charset
-     *            the @charset 
+     *            the @charset
      *            rule that has been found by the parser
      */
     public void addCharSet(String charset) {
@@ -631,10 +644,10 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).addCharSet(charset);
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet the
-     * 
+     *
      * @rule that had been found before is closed here after the content that's
      *       in it.
      */
@@ -643,10 +656,10 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).endOfAtRule();
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet
-     * 
+     *
      * @param important
      *            true if the rule was declared important in the stylesheet
      */
@@ -655,23 +668,23 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).setImportant(important);
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet
-     * 
+     *
      * @param selectors
      *            a list of one or more selectors to be added to the output
      *            stylesheet
      */
-    public void setSelectorList(Vector selectors) {	
+    public void setSelectorList(Vector selectors) {
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 	    ((CssValidatorListener) e.nextElement()).setSelectorList(selectors);
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet
-     * 
+     *
      * @param properties
      *            A list of properties that are following eachother in the
      *            stylesheet (for example: all properties in an
@@ -682,7 +695,7 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).setProperty(properties);
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet used to close a rule when it has
      * been read by the parser
@@ -692,7 +705,7 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).endOfRule();
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet if an error is found this function
      * is used to remove the whole stylerule from the memorystructure so that it
@@ -703,11 +716,11 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).removeThisRule();
 	}
     }
-    
+
     /**
      * used for the output of the stylesheet if an error is found this function
      * is used to remove the whole
-     * 
+     *
      * @rule from the memorystructure so that it won't appear on the screen
      */
     public void removeThisAtRule() {
@@ -715,7 +728,7 @@ public final class CssFouffa extends CssParser {
 	    ((CssValidatorListener) e.nextElement()).removeThisAtRule();
 	}
     }
-    
+
     /**
      * Adds a vector of properties to a selector.
      *
@@ -724,13 +737,13 @@ public final class CssFouffa extends CssParser {
      * @param declarations
      *            Properties to associate with contexts
      */
-    public void handleRule(CssSelectors selector, Vector declarations) {	
+    public void handleRule(CssSelectors selector, Vector declarations) {
 	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
 	    ((CssValidatorListener) e.nextElement()).handleRule(ac, selector,
 		    declarations);
 	}
     }
-    
+
     /**
      * Return the class name for a property
      *
@@ -741,14 +754,14 @@ public final class CssFouffa extends CssParser {
     public String getProperty(String property) {
 	return properties.getProperty(property);
     }
-    
+
     /**
      * Set the style
      */
     public void setStyle(Class style) {
 	ac.setCssSelectorsStyle(style);
     }
-    
+
     /**
      * Load the parser properties configuration.
      *
@@ -758,7 +771,7 @@ public final class CssFouffa extends CssParser {
      * <OL>
      * You have three parser properties :
      * <LI> style:      the class name of your CssStyle.
-     * <LI> properties: the file name where the parser can find all CSS 
+     * <LI> properties: the file name where the parser can find all CSS
      *                  properties names.
      * <LI> extended-parser: <code>true</code> if you want to parse cascading
      *                  style sheet 2 or 3.
@@ -766,18 +779,18 @@ public final class CssFouffa extends CssParser {
      */
    /* public void loadConfig(String version, String profile) {
 	try {
-	    
+
 	    URL allprops = CssFouffa.class.getResource("allcss.properties");
 	    URL url = null;
-	    
+
 	    if (version == null) {
 		// load the CssStyle
 		String classStyle = config.getProperty("style2");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		properties = __s_nullprop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -788,7 +801,7 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("style1");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		if (__s_css1prop == null) {
 		    // css1
 		    url = style.getResource(config.getProperty("properties1"));
@@ -796,7 +809,7 @@ public final class CssFouffa extends CssParser {
 		}
 		// load properties
 		properties = __s_css1prop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -816,7 +829,7 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("style2");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		// load properties
 		if (profile == null || "".equals(profile)) {
 		    properties = __s_css2prop.getClone();
@@ -835,7 +848,7 @@ public final class CssFouffa extends CssParser {
 		    }
 		    properties = __s_css2tvprop.getClone();
 		}
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -846,14 +859,14 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("style3");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		// load properties
 		if (__s_css3prop == null) {
 		    url = style.getResource(config.getProperty("properties3"));
 		    __s_css3prop = new CssPropertyFactory(url, allprops);
 		}
 		properties = __s_css3prop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -864,13 +877,13 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("svgstyle");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		if (__s_svgprop == null) {
 		    url = style.getResource(config.getProperty("svg"));
 		    __s_svgprop = new CssPropertyFactory(url, allprops);
 		}
 		properties = __s_svgprop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -881,13 +894,13 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("svgtinystyle");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		if (__s_svgtinyprop == null) {
 		    url = style.getResource(config.getProperty("svgtiny"));
 		    __s_svgtinyprop = new CssPropertyFactory(url, allprops);
 		}
 		properties = __s_svgtinyprop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
@@ -898,27 +911,27 @@ public final class CssFouffa extends CssParser {
 		String classStyle = config.getProperty("svgbasicstyle");
 		Class style = Class.forName(classStyle);
 		ac.setCssSelectorsStyle(style);
-		
+
 		if (__s_svgbasicprop == null) {
 		    url = style.getResource(config.getProperty("svgbasic"));
 		    __s_svgbasicprop = new CssPropertyFactory(url, allprops);
 		}
 		properties = __s_svgbasicprop.getClone();
-		
+
 		// aural mode
 		String mode0 = config.getProperty("extended-parser");
 		if (mode0 != null) {
 		    mode = mode0.equals("true");
 		}
 	    }
-	    
+
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
 		    + " load the style");
 	    e.printStackTrace();
 	}
     }*/
-    
+
     /* config by default! */
     /*static {
 	try {
@@ -933,37 +946,37 @@ public final class CssFouffa extends CssParser {
 	    Class style = Class.forName(classStyle);
 	    url = style.getResource(config.getProperty("properties2"));
 	    __s_nullprop = new CssPropertyFactory(url, allprops);
-	    
+
 	    // css2
 	    // classStyle = config.getProperty("style2");
 	    // style = Class.forName(classStyle);
 	    // url = style.getResource(config.getProperty("properties2"));
 	    // __s_css2prop = new CssPropertyFactory(url, allprops);
 	    __s_css2prop = __s_nullprop;
-	    
+
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't"
 		    + " load the config");
 	    e.printStackTrace();
 	}
     }*/
-    
+
     public CssFouffa(java.io.InputStream stream) {
 	super(stream);
 	properties = new CssPropertyFactory("css2");
 	//loadConfig("css2", null);
     }
-    
+
     public CssFouffa(java.io.Reader stream) {
 	super(stream);
 	properties = new CssPropertyFactory("css2");
 	//loadConfig("css2", null);
     }
-    
+
     public CssFouffa(CssParserTokenManager tm) {
 	super(tm);
 	properties = new CssPropertyFactory("css2");
 	//loadConfig("css2", null);
     }
-    
+
 }

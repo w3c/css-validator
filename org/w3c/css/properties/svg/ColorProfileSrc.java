@@ -26,29 +26,29 @@ import org.w3c.css.values.CssValue;
  */
 
 public class ColorProfileSrc extends CssProperty implements CssOperator {
-    
+
     CssValue cpSrc;
     Vector cpSrcs = new Vector();
-    
+
     CssIdent sRGB = new CssIdent("sRGB");
-    
+
     /**
      * Create a new ColorProfileSrc
      */
     public ColorProfileSrc() {
 	cpSrc = sRGB;
     }
-    
+
     /**
      * Create a new ColorProfileSrc
      */
     public ColorProfileSrc(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	//setByUser();
 	char op = expression.getOperator();
 	CssValue val = expression.getValue();
-	
+
 	if ((val.toString().toLowerCase()).equals("srgb")) {
 	    cpSrc = sRGB;
 	    expression.next();
@@ -67,16 +67,16 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 		throw new InvalidParamException("value",
 			val, getPropertyName(), ac);
 	    }
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
-		
+
 		if (op != SPACE) {
 		    throw new InvalidParamException("operator",
 			    new Character(op), getPropertyName(), ac);
 		}
-		
+
 		if (val instanceof CssURL) {
 		    cpSrcs.addElement(cpSrc);
 		    cpSrcs.addElement(val);
@@ -84,7 +84,7 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 		    expression.next();
 		}
 	    }
-	    
+
 	} else if (val instanceof CssURL) {
 	    cpSrc = val;
 	    expression.next();
@@ -92,14 +92,14 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	    throw new InvalidParamException("cpSrc",expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
-    
+
     public ColorProfileSrc(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -110,7 +110,7 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).cpSrc = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -124,7 +124,7 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).cpSrc;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -134,14 +134,14 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	return (property instanceof ColorProfileSrc &&
 		cpSrc.equals( ((ColorProfileSrc) property).cpSrc));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "src";
     }
-    
+
     /**
      * Returns the cpSrc of this property
      */
@@ -151,14 +151,14 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	else
 	    return cpSrcs;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return cpSrc.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -173,7 +173,7 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
 	    return ret;
 	}
     }
-    
+
     /**
      * Is the cpSrc of this property a default cpSrc
      * It is used by all macro for the function <code>print</code>
@@ -181,5 +181,5 @@ public class ColorProfileSrc extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return cpSrc == sRGB;
     }
-    
+
 }

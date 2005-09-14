@@ -47,10 +47,10 @@ public interface CssFontConstant {
   /**
    * Array of font values
    */
-  static String[] FONT = { "icon", "window", "status-bar", "document", 
-      "workspace", "desktop", "tooltip", "message-box", "dialog", 
+  static String[] FONT = { "icon", "window", "status-bar", "document",
+      "workspace", "desktop", "tooltip", "message-box", "dialog",
       "small-caption", "caption", "button", "default-button", "hyperlink",
       "menu", "pull-down-menu", "pop-up-menu", "list-menu", "field", "inherit"
   };
-  
+
 }

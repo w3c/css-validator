@@ -16,34 +16,34 @@ import org.w3c.css.values.CssExpression;
  * @version $Revision$
  */
 public class CssParseException extends ParseException {
-    
+
     /**
      * The list of context when the error appears
-     */  
+     */
     Vector contexts;
-    
+
     /**
      * the property name
-     */  
+     */
     String property;
-    
+
     /**
      * the skipped text
-     */  
+     */
     String skippedString;
 
     /**
      * An expression
-     */    
+     */
     CssExpression exp;
-    
+
     /**
      * The real exception
      */
     Exception parseException;
-    
+
     private boolean error;
-    
+
     /**
      * Create a new CssParseException
      */
@@ -51,11 +51,11 @@ public class CssParseException extends ParseException {
 	parseException = exc;
 	if (parseException instanceof ParseException) {
 	    ParseException e = (ParseException) exc;
-	    error = (e.currentToken != null 
-		     && e.expectedTokenSequences != null 
+	    error = (e.currentToken != null
+		     && e.expectedTokenSequences != null
 		     && e.tokenImage != null);
 	}
-    }  
+    }
 
     public Exception getException() {
 	return parseException;
@@ -64,10 +64,10 @@ public class CssParseException extends ParseException {
     public boolean isParseException() {
 	return (parseException instanceof ParseException);
     }
-    
+
     /**
      * Get the exception message
-     */  
+     */
     public String getMessage() {
 	if (!error) {
 	    return parseException.getMessage();
@@ -75,7 +75,7 @@ public class CssParseException extends ParseException {
 	    return null;
 	}
     }
-    
+
     /**
      * Set the attribute contexts
      *
@@ -129,7 +129,7 @@ public class CssParseException extends ParseException {
     public String getSkippedString() {
         return skippedString;
     }
-    
+
     /**
      * Set the attribute exp
      *

@@ -18,20 +18,20 @@ import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
 
 public class CssBlockProgression extends CssProperty implements CssOperator {
-    
+
     CssValue blockprog;
     ApplContext ac;
     CssIdent tb = new CssIdent("tb");
     CssIdent rl = new CssIdent("rl");
     CssIdent lr = new CssIdent("lr");
-    
+
     /**
      * Create a new CssBlockProgression
      */
     public CssBlockProgression() {
 	blockprog = tb;
     }
-    
+
     /**
      * Create a new CssBlockProgression
      *
@@ -43,7 +43,7 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(tb)) {
 	    blockprog = val;
 	    expression.next();
@@ -64,12 +64,12 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssBlockProgression(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -80,7 +80,7 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBlockProgression = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -94,7 +94,7 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssBlockProgression;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -104,35 +104,35 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
 	return (property instanceof CssBlockProgression &&
 		blockprog.equals( ((CssBlockProgression) property).blockprog));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "block-progression";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return blockprog;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return blockprog.equals("inherit");
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return blockprog.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -140,6 +140,6 @@ public class CssBlockProgression extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return blockprog.equals(new CssIdent("tb"));
     }
-    
+
 }
 

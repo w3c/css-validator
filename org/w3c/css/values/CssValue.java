@@ -22,20 +22,20 @@ public abstract class CssValue {
    * @param s     the string representation of the value.
    * @param frame For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
-   */  
-  public abstract void set(String s, ApplContext ac) 
+   */
+  public abstract void set(String s, ApplContext ac)
       throws InvalidParamException;
 
   /**
    * Returns the internal value
-   */  
+   */
   public abstract Object get();
 
   /**
    * Compares two values for equality.
    *
    * @param value The other value.
-   */  
+   */
   public boolean equals(Object value) {
     return super.equals(value);
   }
@@ -43,7 +43,7 @@ public abstract class CssValue {
     public void setCssVersion(String cssversion) {
 	this.cssversion = cssversion;
     }
-    
+
     public boolean isDefault() {
 	return false;
     }

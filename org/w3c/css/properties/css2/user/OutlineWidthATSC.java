@@ -23,20 +23,20 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class OutlineWidthATSC extends UserProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent thin = new CssIdent("thin");
     private static CssIdent medium = new CssIdent("medium");
     private static CssIdent thick = new CssIdent("thick");
-    
+
     /**
      * Create a new OutlineWidthATSC
      */
     public OutlineWidthATSC() {
 	value = medium;
     }
-    
+
     /**
      * Create a new OutlineWidthATSC from an another OutlineWidthATSC
      *
@@ -45,7 +45,7 @@ public class OutlineWidthATSC extends UserProperty {
     public OutlineWidthATSC(OutlineWidthATSC another) {
 	value = another.value;
     }
-    
+
     /**
      * Create a new OutlineWidthATSC
      *
@@ -54,11 +54,11 @@ public class OutlineWidthATSC extends UserProperty {
      */
     public OutlineWidthATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -69,7 +69,7 @@ public class OutlineWidthATSC extends UserProperty {
 	    if (f >= 0) {
 		this.value = val;
 	    } else {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						val.toString(), ac);
 	    }
 	} else if (val instanceof CssNumber) {
@@ -83,25 +83,25 @@ public class OutlineWidthATSC extends UserProperty {
 	} else if (val.equals(inherit)) {
 	    value = CssProperty.inherit;
 	} else {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 					    "width", ac);
 	}
-	
+
 	expression.next();
-    }  
-    
+    }
+
     public OutlineWidthATSC(ApplContext ac, CssExpression expression)
     	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -109,14 +109,14 @@ public class OutlineWidthATSC extends UserProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -129,13 +129,13 @@ public class OutlineWidthATSC extends UserProperty {
 	}
 	outline.width = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getOutlineWidthATSC();
@@ -143,24 +143,24 @@ public class OutlineWidthATSC extends UserProperty {
 	    return ((Css2Style) style).outlineATSC.width;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof OutlineWidthATSC && 
+	return (property instanceof OutlineWidthATSC &&
 		value.equals(((OutlineWidthATSC) property).value));
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "outline-width";
     }
-    
+
 }
 
 

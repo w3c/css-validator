@@ -88,38 +88,38 @@ import org.w3c.css.values.CssValue;
  *
  * @version $Revision$
  */
-public class CssVerticalAlignCSS1 extends CssProperty 
+public class CssVerticalAlignCSS1 extends CssProperty
     implements CssTextPropertiesConstants {
-    
+
     Object value;
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssVerticalAlignCSS1
      */
     public CssVerticalAlignCSS1() {
 	value = VERTICALALIGN[0];
     }
-    
+
     /**
      * Create a new CssVerticalAlignCSS1
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssVerticalAlignCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int hash = val.hashCode();
-	
+
 	setByUser();
-	
+
 	if (val instanceof CssIdent) {
 	    for (int i = 0; i < VERTICALALIGN.length; i++)
 		if (hash_values[i] == hash) {
@@ -127,43 +127,43 @@ public class CssVerticalAlignCSS1 extends CssProperty
 		    expression.next();
 		    return;
 		}
-	    throw new InvalidParamException("value", 
+	    throw new InvalidParamException("value",
 					    val.toString(), getPropertyName(), ac);
 	} else if (val instanceof CssPercentage) {
 	    value = val;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
+	    throw new InvalidParamException("value",
 					    val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssVerticalAlignCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "vertical-align";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -175,13 +175,13 @@ public class CssVerticalAlignCSS1 extends CssProperty
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssVerticalAlignCSS1 = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getVerticalAlignCSS1();
@@ -189,24 +189,24 @@ public class CssVerticalAlignCSS1 extends CssProperty
 	    return ((Css1Style) style).cssVerticalAlignCSS1;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return (property instanceof CssVerticalAlignCSS1 && value.equals(((CssVerticalAlignCSS1) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value.equals(VERTICALALIGN[0]);
     }
-    
+
     static {
 	hash_values = new int[VERTICALALIGN.length];
 	for (int i=0; i<VERTICALALIGN.length; i++)

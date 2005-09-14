@@ -124,16 +124,16 @@ public class CssBackgroundPositionATSC extends CssProperty
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	char op  = expression.getOperator();
-	
+
 	if (op != SPACE)
-	    throw new  InvalidParamException("operator", 
+	    throw new  InvalidParamException("operator",
 					     ((new Character(op)).toString()),
 					     ac);
-	
+
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -143,8 +143,8 @@ public class CssBackgroundPositionATSC extends CssProperty
 	    expression.next();
 	    return;
 	}
-		
-	CssValue next = expression.getNextValue();	
+
+	CssValue next = expression.getNextValue();
 
 	if(val instanceof CssIdent) {
 	    int index1 = IndexOfIdent((String) val.get());
@@ -156,10 +156,10 @@ public class CssBackgroundPositionATSC extends CssProperty
 		if((isHorizontal(index1) && isVertical(index2)) ||
 			(isHorizontal(index2) && isVertical(index1))) {
 		    first = val;
-		    second = next;		    
+		    second = next;
 		}
 		// both are horizontal or vertical but not 'center'
-		else if(check){		    
+		else if(check){
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
 		}
@@ -177,8 +177,8 @@ public class CssBackgroundPositionATSC extends CssProperty
 		    first = val;
 		    second = next;
 		}
-		// if the keyword is the first value, it can only be an 
-		// horizontal one 
+		// if the keyword is the first value, it can only be an
+		// horizontal one
 		else {
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
@@ -189,8 +189,8 @@ public class CssBackgroundPositionATSC extends CssProperty
 		first = val;
 	    }
 	    // the second value is invalid
-	    else if(check) {		
-		throw new InvalidParamException("value", next, 
+	    else if(check) {
+		throw new InvalidParamException("value", next,
 			getPropertyName(), ac);
 	    }
 	    else {
@@ -234,16 +234,16 @@ public class CssBackgroundPositionATSC extends CssProperty
 	    }
 	}
 	else if(check){
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	// we only move the cursor if we found valid values
-	if(first != null) {	    
-	    expression.next();	    
+	if(first != null) {
+	    expression.next();
 	}
-	if(second != null) {	    
-	    expression.next();	    
+	if(second != null) {
+	    expression.next();
 	}
     }
 
@@ -251,17 +251,17 @@ public class CssBackgroundPositionATSC extends CssProperty
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     private boolean isHorizontal(int index) {
 	return index == POSITION_LEFT || index == POSITION_RIGHT ||
 		index == POSITION_CENTER;
     }
-    
+
     private boolean isVertical(int index) {
 	return index == POSITION_TOP || index == POSITION_BOTTOM ||
 	index == POSITION_CENTER;
     }
-    
+
     /**
      * Returns the value of this property
      */

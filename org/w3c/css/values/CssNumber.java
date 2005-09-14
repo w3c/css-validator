@@ -15,7 +15,7 @@ import org.w3c.css.util.InvalidParamException;
  * @version $Revision$
  */
 public class CssNumber extends CssValue implements CssValueFloat {
-    
+
     ApplContext ac;
     Float value;
     boolean isInt = false;
@@ -25,16 +25,16 @@ public class CssNumber extends CssValue implements CssValueFloat {
      */
     public CssNumber() {
     }
-    
+
     /**
      * Create a new CssNumber
      */
-    public CssNumber(ApplContext ac, float value) {	
+    public CssNumber(ApplContext ac, float value) {
 	this.ac = ac;
 	this.value = new Float(value);
-    }    
-    
-    public CssNumber(float value) {	
+    }
+
+    public CssNumber(float value) {
 	this.value = new Float(value);
     }
 
@@ -43,24 +43,24 @@ public class CssNumber extends CssValue implements CssValueFloat {
      *
      * @param s     the string representation of the frequency.
      * @param frame For errors and warnings reports.
-     */  
-    public void set(String s, ApplContext ac) {		
+     */
+    public void set(String s, ApplContext ac) {
 	try {
-	    new Integer(s);	    
+	    new Integer(s);
 	    isInt = true;
 	}
 	catch(NumberFormatException e) {
 	    isInt = false;
 	}
-	finally {	 
+	finally {
 	    value = new Float(s);
 	}
 	this.ac = ac;
     }
-    
+
     /**
      * Returns the value
-     */  
+     */
     public Object get() {
 	if(isInt) {
 	    return new Integer(value.intValue());
@@ -83,17 +83,17 @@ public class CssNumber extends CssValue implements CssValueFloat {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
     }
-    
+
     public boolean isInteger() {
 	return isInt;
     }
-    
+
     /**
      * Returns a length.
      * Only zero can be a length.
      *
      * @exception InvalidParamException The value is not zero
-     */  
+     */
     public CssLength getLength() throws InvalidParamException {
 	float num = value.floatValue();
 	if (num == 0) {
@@ -102,70 +102,70 @@ public class CssNumber extends CssValue implements CssValueFloat {
 	    throw new InvalidParamException("zero", "length", ac);
 	}
     }
-    
+
     /**
      * Returns a percentage.
      * Only zero can be a length.
      *
      * @exception InvalidParamException The value is not zero
-     */  
+     */
     public CssPercentage getPercentage() throws InvalidParamException {
 	float num = value.floatValue();
 	if (num == 0)
 	    return new CssPercentage();
 	else {
-	    throw new InvalidParamException("zero", 
-					    value.toString(), 
+	    throw new InvalidParamException("zero",
+					    value.toString(),
 					    "percentage", ac);
 	}
     }
-    
+
     /**
      * Returns a time.
      * Only zero can be a length.
      *
      * @exception InvalidParamException The value is not zero
-     */  
+     */
     public CssTime getTime() throws InvalidParamException {
 	float num = value.floatValue();
 	if (num == 0)
 	    return new CssTime();
 	else
-	    throw new InvalidParamException("zero", value.toString(), 
+	    throw new InvalidParamException("zero", value.toString(),
 					    "time", ac);
     }
-    
+
     /**
      * Returns a angle.
      * Only zero can be a length.
      *
      * @exception InvalidParamException The value is not zero
-     */  
+     */
     public CssAngle getAngle() throws InvalidParamException {
 	float num = value.floatValue();
 	if (num == 0)
 	    return new CssAngle();
 	else
-	    throw new InvalidParamException("zero", value.toString(), 
+	    throw new InvalidParamException("zero", value.toString(),
 					    "angle", ac);
     }
-    
+
     /**
      * Returns a frequency.
      * Only zero can be a length.
      *
      * @exception InvalidParamException The value is not zero
-     */  
+     */
     public CssFrequency getFrequency() throws InvalidParamException {
 	float num = value.floatValue();
 	if (num == 0) {
 	    return new CssFrequency();
 	} else {
-	    throw new InvalidParamException("zero", 
+	    throw new InvalidParamException("zero",
 					    value.toString(), "frequency", ac);
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -175,15 +175,15 @@ public class CssNumber extends CssValue implements CssValueFloat {
 	}
 	return value.toString();
     }
-    
+
     /**
      * Compares two values for equality.
      *
      * @param value The other value.
-     */  
+     */
     public boolean equals(Object value) {
-	return (value instanceof CssNumber && 
+	return (value instanceof CssNumber &&
 		this.value.equals(((CssNumber) value).value));
     }
-    
+
 }

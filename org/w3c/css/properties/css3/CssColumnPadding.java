@@ -69,7 +69,7 @@ public class CssColumnPadding extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -105,7 +105,7 @@ public class CssColumnPadding extends CssProperty {
 	return (property instanceof CssColumnPadding &&
 		padding.equals(((CssColumnPadding) property).padding));
     }
-    
+
     /**
      * Returns the name of this property
      */

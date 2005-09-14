@@ -20,16 +20,16 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class MediaWidth extends CssProperty {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new MediaWidth
      */
     public MediaWidth() {
 	//empty
     }
-    
+
     /**
      * Create a new MediaWidth.
      *
@@ -38,19 +38,19 @@ public class MediaWidth extends CssProperty {
      */
     public MediaWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssLength || val instanceof CssPercentage) {
 		float f = ((Float) val.get()).floatValue();
@@ -65,30 +65,30 @@ public class MediaWidth extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
-    
+
     public MediaWidth(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property.
      */
     public String getPropertyName() {
 	return "width";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -96,7 +96,7 @@ public class MediaWidth extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -107,8 +107,8 @@ public class MediaWidth extends CssProperty {
 	    return null;
 	}
     }
-    
-    
+
+
     /**
      * Add this property to the CssStyle.
      *
@@ -120,7 +120,7 @@ public class MediaWidth extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.mediaWidth = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -134,7 +134,7 @@ public class MediaWidth extends CssProperty {
 	    return ((Css3Style) style).mediaWidth;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -143,7 +143,7 @@ public class MediaWidth extends CssProperty {
     public boolean equals(CssProperty property) {
 	return (property instanceof MediaWidth && value.equals(((MediaWidth) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
@@ -151,5 +151,5 @@ public class MediaWidth extends CssProperty {
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

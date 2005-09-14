@@ -27,7 +27,7 @@ public class CssLineStackingStrategy extends CssProperty {
     static CssIdent inlinelineheight = new CssIdent("inline-line-height");
 
     private static String[] values = {
-	"inline-line-height", "block-line-height", "max-height", "grid-height", 
+	"inline-line-height", "block-line-height", "max-height", "grid-height",
 	"inherit", "initial"
     };
 
@@ -68,7 +68,7 @@ public class CssLineStackingStrategy extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *

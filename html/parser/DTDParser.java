@@ -1,5 +1,5 @@
 /*
- * @(#)DTDParser.java	1.3 95/05/22  
+ * @(#)DTDParser.java	1.3 95/05/22
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -30,9 +30,9 @@ import java.util.BitSet;
 /*
  * List of bug fixes:
 
- * FIX1 - vm - 97.07.16. Attempt to fix the bug where a declared attribute value 
+ * FIX1 - vm - 97.07.16. Attempt to fix the bug where a declared attribute value
  * could not be a number.
- 
+
  */
 
 
@@ -45,7 +45,7 @@ import java.util.BitSet;
  * @modified Vincent Mallet 97.07.16
  */
 
-public 
+public
 class DTDParser implements DTDConstants {
     DTD dtd;
     DTDInputStream in;
@@ -176,7 +176,7 @@ class DTDParser implements DTDConstants {
 			    return;
 			}
 			break;
-			
+
 		      case -1:
 			error("eof.arg", "comment");
 			in.replace--;
@@ -196,7 +196,7 @@ class DTDParser implements DTDConstants {
     * folded to lowercase. Returns false if no identifier is found.
     */
   boolean parseExtendedIdentifier(boolean lower) {
-    
+
     switch (ch) {
     case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
     case 'G': case 'H': case 'I': case 'J': case 'K': case 'L':
@@ -206,25 +206,25 @@ class DTDParser implements DTDConstants {
       if (lower) {
 	ch = 'a' + (ch - 'A');
       }
-      
+
     case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
     case 'g': case 'h': case 'i': case 'j': case 'k': case 'l':
     case 'm': case 'n': case 'o': case 'p': case 'q': case 'r':
     case 's': case 't': case 'u': case 'v': case 'w': case 'x':
     case 'y': case 'z':
       break;
-      
+
     case '0': case '1': case '2': case '3': case '4':
     case '5': case '6': case '7': case '8': case '9':
       break;
-      
+
     default:
       return false;
     }
-    
+
 	while (true) {
 	  addString(ch);
-	  
+
 	  switch (ch = in.read()) {
 	  case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
 	  case 'G': case 'H': case 'I': case 'J': case 'K': case 'L':
@@ -234,25 +234,25 @@ class DTDParser implements DTDConstants {
 	    if (lower) {
 	      ch = 'a' + (ch - 'A');
 	    }
-	    
+
 	  case 'a': case 'b': case 'c': case 'd': case 'e': case 'f':
 	  case 'g': case 'h': case 'i': case 'j': case 'k': case 'l':
 	  case 'm': case 'n': case 'o': case 'p': case 'q': case 'r':
 	  case 's': case 't': case 'u': case 'v': case 'w': case 'x':
 	  case 'y': case 'z':
-	    
+
 	  case '0': case '1': case '2': case '3': case '4':
 	  case '5': case '6': case '7': case '8': case '9':
-	    
+
 	  case '.': case '-':
 	    break;
-	    
+
 	  default:
 	    return true;
 	  }
 	}
   }
-  
+
     /**
      * Parse a list of identifiers.
      */
@@ -275,7 +275,7 @@ class DTDParser implements DTDConstants {
 
 	    skipParameterSpace();
 	    break;
-	    
+
 	  default:
 	    if (!parseExtendedIdentifier(lower)) {
 		error("expected", "identifier");
@@ -375,7 +375,7 @@ class DTDParser implements DTDConstants {
 
 	    skipParameterSpace();
 	    break;
-	    
+
 	  default:
 	    if (!parseIdentifier(lower)) {
 		error("expected", "identifier");
@@ -525,7 +525,7 @@ class DTDParser implements DTDConstants {
 // 	    str.getBytes(0, str.length(), data, 0);
 	    // 1.1 style
 	    byte data[] = str.getBytes();
-	    
+
 	    // deprecated 1.1 - jml - 2/26/97.
  	    dtd.defineEntity(nm, type, data);
 	} else {
@@ -557,7 +557,7 @@ class DTDParser implements DTDConstants {
 		    e.next = parseContentModel();
 		    if (e.next.type == m.type) {
 			e.next = (ContentModel)e.next.content;
-		    } 
+		    }
 		    for (; e.next != null ; e = e.next);
 		} while (ch == m.type);
 	    } else {
@@ -583,7 +583,7 @@ class DTDParser implements DTDConstants {
 	    }
 	    break;
 	}
-	
+
 	switch (ch) {
 	  case '?':
 	  case '*':
@@ -681,7 +681,7 @@ class DTDParser implements DTDConstants {
 	//@@if (!parseIdentifier(false)) {
 	if (!parseExtendedIdentifier(false)) {
 	// FIX1 - end - vm 970707
-	  error("invalid", "attribute value"); 
+	  error("invalid", "attribute value");
 	  return;
 	}
 
@@ -747,7 +747,7 @@ class DTDParser implements DTDConstants {
 	if (ch == '#') {
 	    ch = in.read();
 	    if (!parseIdentifier(true)) {
-	      error("invalid", "attribute value"); 
+	      error("invalid", "attribute value");
 		return;
 	    }
 	    skipParameterSpace();
@@ -793,7 +793,7 @@ class DTDParser implements DTDConstants {
 	    }
 	}
     }
-    
+
     /**
      * Parse an ignored section until ]]> is encountered.
      */
@@ -918,9 +918,9 @@ class DTDParser implements DTDConstants {
 	    switch (ch) {
 	      case ']':
 		return;
-		
+
 	      case '<':
-		switch (ch = in.read()) {	
+		switch (ch = in.read()) {
 		  case '!':
 		    switch (ch = in.read()) {
 		      case '[':
@@ -938,13 +938,13 @@ class DTDParser implements DTDConstants {
 
 			    if (str.equals("element")) {
 				parseElementDeclaration();
-				
+
 			    } else if (str.equals("entity")) {
 				parseEntityDeclaration();
-				
+
 			    } else if (str.equals("attlist")) {
 				parseAttlistDeclaration();
-				
+
 			    } else if (str.equals("doctype")) {
 				parseDocumentTypeDeclaration();
 
@@ -1003,17 +1003,17 @@ class DTDParser implements DTDConstants {
   DTD parse(InputStream in, DTD dtd) {
     this.dtd = dtd;
     this.in = new DTDInputStream(in, dtd);
-    
+
     // : int tm = System.nowMillis();         //??dk
     long tm = System.currentTimeMillis();      //??dk
-    
+
     ch = this.in.read();
     parseSection();
-    
+
     if (ch != -1) {
       error("premature");
     }
-    
+
     // tm = System.nowMillis() - tm;          //??dk
     tm = System.currentTimeMillis() - tm;
     if (Boolean.getBoolean("html.parser.DTDParser.verbose")) // -vm 970731

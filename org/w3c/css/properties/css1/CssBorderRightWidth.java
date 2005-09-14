@@ -41,19 +41,19 @@ import org.w3c.css.values.CssValue;
  *   <P>
  *   Border widths cannot be negative.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssBorderRightWidth extends CssProperty {
-    
+
     CssBorderFaceWidth face;
-    
+
     /**
      * Create a new CssBorderRightWidth
      */
     public CssBorderRightWidth() {
 	face = new CssBorderFaceWidth();
     }
-    
+
     /**
      * Create a new CssBorderRightWidth with an another CssBorderFaceWidth
      *
@@ -61,10 +61,10 @@ public class CssBorderRightWidth extends CssProperty {
      */
     public CssBorderRightWidth(CssBorderFaceWidth another) {
 	setByUser();
-	
+
 	face = another;
     }
-    
+
     /**
      * Create a new CssBorderRightWidth
      *
@@ -73,28 +73,28 @@ public class CssBorderRightWidth extends CssProperty {
      */
     public CssBorderRightWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
-	
+
 	face = new CssBorderFaceWidth(ac, expression);
     }
-    
+
     public CssBorderRightWidth(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return face;
     }
-    
+
     /**
      * Return the value of this property
      */
@@ -104,7 +104,7 @@ public class CssBorderRightWidth extends CssProperty {
 	}
 	return null;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -114,14 +114,14 @@ public class CssBorderRightWidth extends CssProperty {
 	}
 	return "";
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-right-width";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -133,13 +133,13 @@ public class CssBorderRightWidth extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	right.width = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderRightWidth();
@@ -147,15 +147,15 @@ public class CssBorderRightWidth extends CssProperty {
 	    return ((Css1Style) style).cssBorder.getRight().width;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderRightWidth && 
+	return (property instanceof CssBorderRightWidth &&
 		face.equals(((CssBorderRightWidth) property).face));
     }
-    
+
 }

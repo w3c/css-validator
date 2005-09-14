@@ -23,7 +23,7 @@ import org.w3c.css.values.CssValue;
  *   <EM>Applies to:</EM> all elements<BR>
  *   <EM>Inherited:</EM> no<BR>
  *   <EM>Percentage values:</EM> N/A<BR>
- 
+
  *   <P> With the value 'none', the element will be displayed where it appears
  *   in the text. With a value of 'left' ('right') the element will be moved to
  *   the left ('right') and the text will wrap on the right (left) side of the
@@ -33,7 +33,7 @@ import org.w3c.css.values.CssValue;
  *   <H3>
  *      &nbsp;&nbsp; Floating elements
  *   </H3>
- 
+
  *   <P> Using the <A HREF="#float">'float'</A> property, an element can be
  *   declared to be outside the normal flow of elements and is then formatted as
  *   a block-level element. For example, by setting the 'float' property of an
@@ -42,47 +42,47 @@ import org.w3c.css.values.CssValue;
  *   wrap around on the right side. The margins, borders and padding of the
  *   element itself will be honored, and the margins never collapse with the
  *   margins of adjacent elements.
- 
+
  *   <P> A floating element is positioned subject to the following constraints:
- 
+
  *   <OL>
- 
+
  *     <LI> The left outer edge of a left-floating element may not be to the
  *     left of the left inner edge of its parent element. Analogously for right
  *     floating elements.
- 
+
  *     <LI> The left outer edge of a left floating element must be to the right
  *     of the right outer edge of every earlier (in the HTML source)
  *     left-floating element or the top of the former must be lower than the
  *     bottom of the latter. Analogously for right floating elements.
- 
+
  *     <LI> The right outer edge of a left-floating element may not be to the
  *     right of the left outer edge of any right-floating element that is to the
  *     right of it. Analogously for right-floating elements.
- 
+
  *     <LI> A floating element's top may not be higher than the inner top of its
  *     parent.
- 
+
  *     <LI> A floating element's top may not be higher than the top of any
  *     earlier floating or block-level element.
- 
+
  *     <LI> A floating element's top may not be higher than the top of any
  *     <EM>line-box</EM> (see section 4.4) with content that precedes the
  *     floating element in the HTML source.
- 
+
  *     <LI> A floating element must be placed as high as possible.
- 
+
  *     <LI> A left-floating element must be put as far to the left as possible,
  *     a right-floating element as far to the right as possible. A higher
  *     position is preferred over one that is further to the left/right.
- 
+
  *   </OL>
  *   <PRE>
  *   &lt;STYLE TYPE="text/css"&gt;
  *     IMG { float: left }
  *     BODY, P, IMG { margin: 2em }
  *   &lt;/STYLE&gt;
- 
+
  *   &lt;BODY&gt;
  *     &lt;P&gt;
  *       &lt;IMG SRC=img.gif&gt;
@@ -98,7 +98,7 @@ import org.w3c.css.values.CssValue;
  *   |          ______________________________
  *   |    |    |             Some sample text
  *   | B  | P  | IMG margins that has no other
- *   | O  |    |    _____    purpose than to 
+ *   | O  |    |    _____    purpose than to
  *   | D  | m  |   |     |   show how floating
  *   | Y  | a  |   | IMG |   elements are moved
  *   |    | r  |   |     |   to the side of the
@@ -106,7 +106,7 @@ import org.w3c.css.values.CssValue;
  *   | a  | i  |             while honoring
  *   | r  | n  |             margins, borders
  *   | g  |    |             and padding. Note
- *   | i  |    |how adjacent vertical margins  
+ *   | i  |    |how adjacent vertical margins
  *   | n  |    |are collapsed between non-
  *   |    |    |floating block-level elements.
  * </PRE>
@@ -121,35 +121,35 @@ import org.w3c.css.values.CssValue;
  *     inside
  *   </UL>
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFloat extends CssProperty {
-    
+
     int value;
-    
+
     private static String[] FLOAT = { "none", "left", "right", "inherit" };
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssFloat
      */
     public CssFloat() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new CssFloat
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssFloat(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 	if ( val instanceof CssIdent) {
@@ -161,29 +161,29 @@ public class CssFloat extends CssProperty {
 		    return;
 		}
 	}
-	throw new InvalidParamException("value", expression.getValue(), 
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     public CssFloat(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return FLOAT[value];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "float";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -191,14 +191,14 @@ public class CssFloat extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == FLOAT.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return FLOAT[value];
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -210,13 +210,13 @@ public class CssFloat extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssFloat = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFloat();
@@ -224,25 +224,25 @@ public class CssFloat extends CssProperty {
 	    return ((Css1Style) style).cssFloat;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFloat && 
+	return (property instanceof CssFloat &&
 		value == ((CssFloat) property).value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     static {
 	hash_values = new int[FLOAT.length];
 	for (int i = 0; i < FLOAT.length; i++)

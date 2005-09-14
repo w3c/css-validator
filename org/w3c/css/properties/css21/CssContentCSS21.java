@@ -19,26 +19,26 @@ public class CssContentCSS21 extends CssContentCSS2{
 
     static final CssIdent normal = new CssIdent("normal");
     static final CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new CssContent
      */
     public CssContentCSS21() {
-    }  
-    
+    }
+
     /**
      * Create a new CssContent
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssContentCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -63,11 +63,11 @@ public class CssContentCSS21 extends CssContentCSS2{
 	    expression.next();
 	    return;
 	}
-	
+
 	addContent(ac, expression);
-	
+
     }
-    
+
     public CssContentCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);

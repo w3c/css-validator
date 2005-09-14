@@ -27,13 +27,13 @@ import org.w3c.css.values.CssValue;
  *  <EM>Media:</EM>:interactive
  *  <P>
  *  This property specifies the position of the current element in the tabbing
- *  order for the current document. 
+ *  order for the current document.
  */
 
 public class CssTabIndex extends CssProperty {
 
     CssValue tabidx;
-    
+
     static CssIdent auto = new CssIdent("auto");
 
     /**
@@ -76,7 +76,7 @@ public class CssTabIndex extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -112,7 +112,7 @@ public class CssTabIndex extends CssProperty {
 	return (property instanceof CssTabIndex &&
 		tabidx.equals(((CssTabIndex) property).tabidx));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -30,22 +30,22 @@ import org.w3c.css.values.CssValue;
  * The behavior of values other than auto and inherent are defined by the International Color Consortium standard.
  */
 public class CssRenderIntent extends CssProperty {
-    
+
     CssValue renderintent;
-    
+
     static CssIdent auto = new CssIdent("auto");
     static CssIdent abscolorimetric = new CssIdent("absolute-colorimetric");
     static CssIdent relcolorimetric = new CssIdent("relative-colorimetric");
     static CssIdent saturation = new CssIdent("saturation");
     static CssIdent perceptual = new CssIdent("perceptual");
-    
+
     /**
      * Create a new CssRenderIntent
      */
     public CssRenderIntent() {
 	renderintent = auto;
     }
-    
+
     /**
      * Create a new CssRenderIntent
      *
@@ -83,12 +83,12 @@ public class CssRenderIntent extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssRenderIntent(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -98,9 +98,9 @@ public class CssRenderIntent extends CssProperty {
 	if (((Css3Style) style).cssRenderIntent != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssRenderIntent = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -114,7 +114,7 @@ public class CssRenderIntent extends CssProperty {
 	    return ((Css3Style) style).cssRenderIntent;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -124,35 +124,35 @@ public class CssRenderIntent extends CssProperty {
 	return (property instanceof CssRenderIntent &&
 		renderintent.equals( ((CssRenderIntent) property).renderintent));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "rendering-intent";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return renderintent;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return renderintent.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return renderintent.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -160,5 +160,5 @@ public class CssRenderIntent extends CssProperty {
     public boolean isDefault() {
 	return renderintent == auto;
     }
-    
+
 }

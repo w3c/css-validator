@@ -84,7 +84,7 @@ public abstract class CssProperty
      * Used in all CSS versions
      */
     public static final CssIdent transparent = new CssIdent("transparent");
-    
+
     /**
     * Value introduced in CSS3
     */

@@ -23,7 +23,7 @@ import org.w3c.css.util.Util;
  *   <P>
  *   The suggested list of keyword color names is: aqua, black, blue, fuchsia,
  *   gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white,
- *   and yellow. These 16 colors are taken from the Windows VGA palette, 
+ *   and yellow. These 16 colors are taken from the Windows VGA palette,
  *   and their RGB values are not defined in this specification.
  *   <PRE>
  *   BODY {color: black; background: white }
@@ -254,20 +254,20 @@ public class CssColor extends CssValue
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
      */
-    public void setRGBColor(CssExpression exp, ApplContext ac) 
+    public void setRGBColor(CssExpression exp, ApplContext ac)
     throws InvalidParamException {
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGB();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;	    
-	    rgb.r = clippedIntValue(number.getInt(), ac);    
+	    CssNumber number = (CssNumber) val;
+	    rgb.r = clippedIntValue(number.getInt(), ac);
 	    rgb.setPercent(false);
 	} else if (val instanceof CssPercentage) {
 	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -275,15 +275,15 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
 	    if (rgb.isPercent()) {
@@ -298,21 +298,21 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
 	    if (rgb.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgb.b = clippedIntValue(number.getInt(), ac);	    
+	    rgb.b = clippedIntValue(number.getInt(), ac);
 	} else if (val instanceof CssPercentage) {
 	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
@@ -320,7 +320,7 @@ public class CssColor extends CssValue
 	    rgb.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
-	}	
+	}
 	exp.next();
 	if (exp.getValue() != null) {
 	    throw new InvalidParamException("rgb", exp.getValue(), ac);
@@ -366,7 +366,7 @@ public class CssColor extends CssValue
      * Parse an ident color.
      */
     private void setIdentColor(String s, ApplContext ac)
-	throws InvalidParamException 
+	throws InvalidParamException
     {
 	String lower_s = s.toLowerCase();
 	if (definedColors.get(lower_s) != null) {
@@ -412,15 +412,15 @@ public class CssColor extends CssValue
 			 && rgb.b.equals(((CssColor) cssColor).rgb.b)))));
     }
 
-    public void setRGBAColor(Vector exp, ApplContext ac) 
+    public void setRGBAColor(Vector exp, ApplContext ac)
     throws InvalidParamException {
 	color = null;
 	rgba = new RGBA();
-	
+
 	CssValue val = (CssValue) exp.elementAt(0);
 	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;	    
-	    rgba.r = clippedIntValue(number.getInt(), ac);    
+	    CssNumber number = (CssNumber) val;
+	    rgba.r = clippedIntValue(number.getInt(), ac);
 	    rgba.setPercent(false);
 	} else if (val instanceof CssPercentage) {
 	    rgba.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
@@ -428,9 +428,9 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	val = (CssValue) exp.elementAt(1);
-	
+
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
 	    if (rgba.isPercent()) {
@@ -445,15 +445,15 @@ public class CssColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	val = (CssValue) exp.elementAt(2);
-	
+
 	if (val instanceof CssNumber) {
 	    CssNumber number = (CssNumber) val;
 	    if (rgba.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgba.b = clippedIntValue(number.getInt(), ac);	    
+	    rgba.b = clippedIntValue(number.getInt(), ac);
 	} else if (val instanceof CssPercentage) {
 	    if (!rgba.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
@@ -461,17 +461,17 @@ public class CssColor extends CssValue
 	    rgba.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
-	}	
-	
+	}
+
 	val = (CssValue) exp.elementAt(3);
 	if(val instanceof CssNumber) {
 	    rgba.a = clippedAlphaValue(((Float) val.get()).floatValue(), ac);
 	}
 	else {
 	     throw new InvalidParamException("rgb", val, ac);
-	 }	
+	 }
     }
- 
+
     public void setHSLColor(Vector exp, ApplContext ac)
 	throws InvalidParamException {
 
@@ -560,7 +560,7 @@ public class CssColor extends CssValue
 	hsla.a = a;
 
     }
-    
+
     private Integer clippedIntValue(int rgb, ApplContext ac) {
 	if (rgb < 0 || rgb > 255) {
 	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
@@ -568,7 +568,7 @@ public class CssColor extends CssValue
 	}
 	else return new Integer(rgb);
     }
-    
+
     private Float clippedPercentValue(float p, ApplContext ac) {
 	if (p < 0. || p > 100.) {
 	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
@@ -576,7 +576,7 @@ public class CssColor extends CssValue
 	}
 	else return new Float(p);
     }
-    
+
     private Float clippedAlphaValue(float p, ApplContext ac) {
 	if (p < 0. || p > 1.) {
 	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
@@ -584,7 +584,7 @@ public class CssColor extends CssValue
 	}
 	else return new Float(p);
     }
-    
+
     /**
      * Gets the red component of this color.
      */
@@ -605,11 +605,11 @@ public class CssColor extends CssValue
     public Object getBlue() {
 	return rgb.b;
     }
-    
+
     static {
 	definedColors = new Hashtable();
 	deprecatedColors = new Hashtable();
-	
+
 	definedColors.put("aliceblue",
 		new RGB(new Integer(240),
 			new Integer(248),
@@ -1170,7 +1170,7 @@ public class CssColor extends CssValue
 		new RGB(new Integer(154),
 			new Integer(205),
 			new Integer(50)));
-	
+
 	definedColors.put("grey",
 		new RGB(new Integer(128),
 			new Integer(128),
@@ -1200,7 +1200,7 @@ public class CssColor extends CssValue
 			new Integer(0),
 			new Integer(0),
 			new Float(0)));
-	
+
 	//CSS2 System colors deprecated
 	deprecatedColors.put("activeborder", "ActiveBorder");
 	deprecatedColors.put("activecaption", "ActiveCaption");
@@ -1230,7 +1230,7 @@ public class CssColor extends CssValue
 	deprecatedColors.put("window", "Window");
 	deprecatedColors.put("windowframe", "WindowFrame");
 	deprecatedColors.put("windowtext", "WindowText");
-	
+
 	// CSS3 user preferences for hyperlink colors -> removed from spec
 	/*
 	 definedColors.put("ActiveHyperlink", "ActiveHyperlink");
@@ -1242,12 +1242,12 @@ public class CssColor extends CssValue
 	 definedColors.put("VisitedHyperlink", "VisitedHyperlink");
 	 definedColors.put("VisitedHyperlinkText", "VisitedHyperlinkText");
 	 */
-	
+
 	//Flavor system color
 	definedColors.put("flavor","flavor");
 	definedColors.put("currentcolor","currentColor");
-	
+
     }
-    
+
 }
 

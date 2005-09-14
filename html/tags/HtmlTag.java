@@ -11,7 +11,7 @@ public interface HtmlTag extends Tag, Tree {
 
    /**
     * Initializes the tag with the given elem,atts pair.
-    * 
+    *
     */
     void initialize(Element elem, Attributes atts, ParserFrame parserFrame);
 }

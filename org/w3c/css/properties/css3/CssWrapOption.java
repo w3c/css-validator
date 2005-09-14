@@ -20,21 +20,21 @@ import org.w3c.css.values.CssValue;
  *
  */
 public class CssWrapOption extends CssProperty {
-    
+
     CssValue wrapoption;
-    
+
     private static CssIdent wrap = new CssIdent("wrap");
     private static CssIdent softwrap = new CssIdent("soft-wrap");
     private static CssIdent hardwrap = new CssIdent("hard-wrap");
     private static CssIdent emergency = new CssIdent("emergency");
-    
+
     /**
      * Create a new CssWrapOption
      */
     public CssWrapOption() {
 	wrapoption = wrap;
     }
-    
+
     /**
      * Create a new CssWrapOption
      *
@@ -64,17 +64,17 @@ public class CssWrapOption extends CssProperty {
 	    wrapoption = inherit;
 	    expression.next();
 	}
-	
+
 	else {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssWrapOption(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -84,9 +84,9 @@ public class CssWrapOption extends CssProperty {
 	if (((Css3Style) style).cssWrapOption != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssWrapOption = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -100,7 +100,7 @@ public class CssWrapOption extends CssProperty {
 	    return ((Css3Style) style).cssWrapOption;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -110,35 +110,35 @@ public class CssWrapOption extends CssProperty {
 	return (property instanceof CssWrapOption &&
 		wrapoption.equals( ((CssWrapOption) property).wrapoption));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "wrap-option";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return wrapoption;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return wrapoption.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return wrapoption.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -146,5 +146,5 @@ public class CssWrapOption extends CssProperty {
     public boolean isDefault() {
 	return wrapoption == wrap;
     }
-    
+
 }

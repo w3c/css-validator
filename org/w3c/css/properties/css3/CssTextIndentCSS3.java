@@ -59,9 +59,9 @@ public class CssTextIndentCSS3 extends CssProperty  {
     public CssTextIndentCSS3(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	} else if (val instanceof CssLength || val instanceof CssPercentage) {
@@ -74,15 +74,15 @@ public class CssTextIndentCSS3 extends CssProperty  {
 	    throw new InvalidParamException("value", val.toString(),
 		    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssTextIndentCSS3(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

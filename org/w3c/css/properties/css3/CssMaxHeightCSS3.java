@@ -74,7 +74,7 @@ public class CssMaxHeightCSS3 extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

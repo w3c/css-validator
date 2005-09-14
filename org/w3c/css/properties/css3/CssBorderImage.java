@@ -21,18 +21,18 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderImage extends CssProperty {
-    
+
     String value = "";
     ApplContext ac;
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create new CssBorderImage
      */
     public CssBorderImage() {
 	value = "none";
     }
-    
+
     /**
      * Create new CssBorderImage
      *
@@ -43,18 +43,18 @@ public class CssBorderImage extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = null;
-	
+
 	if (!(expression.getCount() <= 4)) {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	for (int i=0; i < expression.getCount(); i++) {
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
-		
+
 		if (val.equals(none)) {
 		    value += "none" + " ";
 		} else if (val instanceof CssURL) {
@@ -63,22 +63,22 @@ public class CssBorderImage extends CssProperty {
 		    throw new InvalidParamException("value", expression.getValue(),
 			    getPropertyName(), ac);
 		}
-		
+
 	    } else {
 		break;
 	    }
-	    
+
 	    expression.next();
 	}
-	
+
 	value = value.trim();
     }
-    
+
     public CssBorderImage(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -89,7 +89,7 @@ public class CssBorderImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -103,7 +103,7 @@ public class CssBorderImage extends CssProperty {
 	    return ((Css3Style) style).cssBorderImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -113,35 +113,35 @@ public class CssBorderImage extends CssProperty {
 	return (property instanceof CssBorderImage &&
 		value.equals( ((CssBorderImage) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-image";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>

@@ -25,10 +25,10 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property describes how to interpret 'column-width'. The 'flexible' 
- *  value indicates that the width of columns can be increased to fill all 
- *  the available space. The 'strict' value indicates that 'column-width' is 
- *  to be honored. 
+ *  This property describes how to interpret 'column-width'. The 'flexible'
+ *  value indicates that the width of columns can be increased to fill all
+ *  the available space. The 'strict' value indicates that 'column-width' is
+ *  to be honored.
  */
 
 public class CssColumnWidthPol extends CssProperty {
@@ -78,7 +78,7 @@ public class CssColumnWidthPol extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -114,7 +114,7 @@ public class CssColumnWidthPol extends CssProperty {
 	return (property instanceof CssColumnWidthPol &&
 		policy.equals(((CssColumnWidthPol) property).policy));
     }
-    
+
     /**
      * Returns the name of this property
      */

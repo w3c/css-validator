@@ -20,14 +20,14 @@ import org.w3c.css.values.CssValue;
 public class CssBorderBottomColorCSS1 extends CssProperty {
 
   CssBorderFaceColorCSS1 face;
-  
+
   /**
    * Create a new CssBorderBottomColorCSS1
    */
   public CssBorderBottomColorCSS1() {
     face = new CssBorderFaceColorCSS1();
   }
-  
+
   /**
    * Create a new CssBorderBottomColor with an another CssBorderFaceColor
    *
@@ -39,7 +39,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
 
     face = another;
   }
-  
+
   /**
    * Create a new CssBorderBottomColor
    *
@@ -48,7 +48,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
    */
   public CssBorderBottomColorCSS1(ApplContext ac, CssExpression expression,
 	  boolean check) throws InvalidParamException {
-      
+
       if(check && expression.getCount() > 1) {
 	  throw new InvalidParamException("unrecognize", ac);
       }
@@ -56,12 +56,12 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
       setByUser();
       face = new CssBorderFaceColorCSS1(ac, expression);
   }
-  
-  public CssBorderBottomColorCSS1(ApplContext ac, CssExpression expression) 
+
+  public CssBorderBottomColorCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
   }
-  
+
   /**
    * Returns the value of this property
    */
@@ -91,7 +91,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
 
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "border-bottom-color";
   }
@@ -113,7 +113,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getBorderBottomColorCSS1();
@@ -126,7 +126,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
     return (property instanceof CssBorderBottomColorCSS1 && face.equals(((CssBorderBottomColorCSS1) property).face));
   }
@@ -137,7 +137,7 @@ public class CssBorderBottomColorCSS1 extends CssProperty {
    * @param printer The printer.
    * @see #toString()
    * @see #getPropertyName()
-   */  
+   */
   public void print(CssPrinterStyle printer) {
     if (face != null && !face.isDefault())
       printer.print(this);

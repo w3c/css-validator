@@ -20,27 +20,27 @@ public class CssTextAlignCSS21 extends CssTextAlign {
      */
     public CssTextAlignCSS21() {
 	// depends on user agent and writing direction
-    }  
-    
+    }
+
     /**
      * Create a new CssTextAlign
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssTextAlignCSS21(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-	
+
 	super(ac, expression, check);
-	
+
 	Object val = get();
-	
+
 	if(val instanceof CssString) {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 		    getPropertyName(), ac);
-	}	
+	}
     }
-    
-    public CssTextAlignCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssTextAlignCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }

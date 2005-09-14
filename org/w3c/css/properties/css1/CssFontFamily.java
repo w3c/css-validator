@@ -110,9 +110,9 @@ public class CssFontFamily extends CssProperty implements CssOperator {
     public CssFontFamily(ApplContext ac, CssExpression expression,
 	    boolean check)
 	    throws InvalidParamException {
-	
+
 	boolean manyValues = expression.getCount() > 1;
-	
+
 	boolean family = true;
 	CssValue val = expression.getValue();
 	char op;
@@ -144,7 +144,7 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 	    if(manyValues && val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if ((op != COMMA) && (op != SPACE)) {
 		throw new InvalidParamException("operator",
 			((new Character(op)).toString()),
@@ -154,7 +154,7 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 	    if(val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if (val instanceof CssString) {
 		String familyName = null;
 		if (op == COMMA) { // "helvetica", "roman"
@@ -215,7 +215,7 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns all fonts name
      */

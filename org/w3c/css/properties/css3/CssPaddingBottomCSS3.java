@@ -32,14 +32,14 @@ import org.w3c.css.values.CssExpression;
  * @version $Revision$
  */
 public class CssPaddingBottomCSS3 extends CssPaddingSideCSS3 {
-    
+
     /**
      * Create a new CssPaddingBottomCSS3
      */
     public CssPaddingBottomCSS3() {
 	super();
     }
-    
+
     /**
      * Create a new CssPaddingBottomCSS3 with an another CssPaddingSideCSS3
      *
@@ -48,7 +48,7 @@ public class CssPaddingBottomCSS3 extends CssPaddingSideCSS3 {
     public CssPaddingBottomCSS3(CssPaddingSideCSS3 another) {
 	super(another);
     }
-    
+
     /**
      * Create a new CssPaddingBottomCSS3
      *
@@ -59,19 +59,19 @@ public class CssPaddingBottomCSS3 extends CssPaddingSideCSS3 {
 	    boolean check) throws InvalidParamException {
 	super(ac, expression, check);
     }
-    
+
     public CssPaddingBottomCSS3(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "padding-bottom";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -81,9 +81,9 @@ public class CssPaddingBottomCSS3 extends CssPaddingSideCSS3 {
 	if (((Css3Style) style).cssPaddingBottomCSS3 != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssPaddingBottomCSS3 = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -97,15 +97,15 @@ public class CssPaddingBottomCSS3 extends CssPaddingSideCSS3 {
 	    return ((Css3Style) style).cssPaddingCSS3.getBottom();
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssPaddingBottomCSS3 && 
+	return (property instanceof CssPaddingBottomCSS3 &&
 		value.equals(((CssPaddingBottomCSS3) property).value));
     }
-    
+
 }

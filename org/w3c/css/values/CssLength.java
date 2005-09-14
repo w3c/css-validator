@@ -45,11 +45,11 @@ import org.w3c.css.util.Util;
  *   itself. The only exception to this rule in CSS1 is the 'font-size' property
  *   where 'em' and 'ex' values refer to the font size of the parent element.
  *   <P>
- *   The existence of a grid in an element makes it possible and very useful to express various 
- *   measurements in that element in terms of grid units. Grid units are used very frequently 
- *   in East Asian typography, especially for the left, right, top and bottom element margins. 
- *   Therefore a new length unit is necessary: gd to enable the author to specify the various 
- *   measurements in terms of the grid. 
+ *   The existence of a grid in an element makes it possible and very useful to express various
+ *   measurements in that element in terms of grid units. Grid units are used very frequently
+ *   in East Asian typography, especially for the left, right, top and bottom element margins.
+ *   Therefore a new length unit is necessary: gd to enable the author to specify the various
+ *   measurements in terms of the grid.
  *   <P>
  *   Pixel units, as used in the last rule, are relative to the resolution of
  *   the canvas, i.e. most often a computer display. If the pixel density of the
@@ -95,7 +95,7 @@ public class CssLength extends CssValue {
    */
   public CssLength() {
     value = defaultValue;
-  }  
+  }
 
   /**
    * Set the value of this length.
@@ -103,7 +103,7 @@ public class CssLength extends CssValue {
    * @param s     the string representation of the length.
    * @param frame For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
-   */  
+   */
   public void set(String s, ApplContext ac) throws InvalidParamException {
     s = s.toLowerCase();
     int length = s.length();
@@ -135,14 +135,14 @@ public class CssLength extends CssValue {
 
   /**
    * Returns the current value
-   */  
+   */
   public Object get() {
     return value;
   }
-  
+
   /**
    * Returns the current value
-   */  
+   */
   public String getUnit() {
     return units[unit];
   }
@@ -162,9 +162,9 @@ public class CssLength extends CssValue {
    * Compares two values for equality.
    *
    * @param value The other value.
-   */  
+   */
   public boolean equals(Object value) {
-    return (value instanceof CssLength && 
+    return (value instanceof CssLength &&
 	    this.value.equals(((CssLength) value).value) &&
 	     unit == ((CssLength) value).unit);
   }

@@ -16,7 +16,7 @@ import org.w3c.css.util.ApplContext;
 /**
  * This class describes how to implements your cascading
  * style sheet parser.
- * 
+ *
  * You must implements this interfaces if you want to have
  * a backward compatibilitie with other CSS parser.
  * <p>
@@ -28,7 +28,7 @@ import org.w3c.css.util.ApplContext;
  *  StyleSheet style = parser.getStyleSheet();<br>
  *  // here, i want an HTML document to output<br>
  *  StyleSheetGenerator.setDocumentBase("html.properties");<br>
- *  StyleSheetGenerator generator = new StyleSheetGenerator("foo", 
+ *  StyleSheetGenerator generator = new StyleSheetGenerator("foo",
  *                                                          style,
  *                                                          "foo.css",
  *                                                          2);<br>
@@ -42,25 +42,25 @@ public interface CssParser {
 
   /**
    * Reinitialize this parser
-   */  
+   */
   public abstract void reInit();
 
   /**
    * Get the style sheet after a parse.
    *
    * @return The resulted style sheet
-   */  
+   */
   public abstract StyleSheet getStyleSheet();
 
     /**
      * @param url the URL containing the style sheet
      * @param title the title of the stylesheet
      * @param kind may be a stylesheet or an alternate stylesheet
-     * @param media the media to apply this 
+     * @param media the media to apply this
      * @param origin the origin of the style sheet
      * @exception IOException an IO error
      */
-    public void parseURL(ApplContext ac, URL url, String title, String kind, 
+    public void parseURL(ApplContext ac, URL url, String title, String kind,
 			 String media, int origin);
 
   /**
@@ -75,12 +75,12 @@ public interface CssParser {
    *
    * @param input the input string.
    * @param url  the URL where the input stream comes from.
-   * @param lineno The number line in the source document. 
+   * @param lineno The number line in the source document.
    *               It is used for error message
    * @deprecated Replaced by parseStyleElement
    * @see #parseStyleElement(InputStream, URL, int)
-   */  
-  public abstract void parseStyleElement(ApplContext ac, String input, 
+   */
+  public abstract void parseStyleElement(ApplContext ac, String input,
 					 URL url, int lineno);
 
   /**
@@ -95,8 +95,8 @@ public interface CssParser {
    * @param media the media of the style element
    * @param url  the URL where the input stream comes from.
    * @param lineno The number line in the source document. It is used for error message
-   */  
-  public abstract void parseStyleElement(ApplContext ac, InputStream input, 
+   */
+  public abstract void parseStyleElement(ApplContext ac, InputStream input,
 					 String title, String media, URL url,
 					 int lineno);
 
@@ -116,7 +116,7 @@ public interface CssParser {
    * @param lineno The number line in the source document. It is used for error message.
    * @deprecated Replaced by parseStyleAttribute
    * @see #parseStyleAttribute(InputStream, String, URL, int)
-   */  
+   */
   public abstract void parseStyleAttribute(ApplContext ac, String input, String id, URL url, int lineno);
 
   /**
@@ -130,8 +130,8 @@ public interface CssParser {
    * @param id your uniq id to reference this style attribute.
    * @param url  the URL where the input stream comes from.
    * @param lineno The number line in the source document. It is used for error message.
-   */  
-  public abstract void parseStyleAttribute(ApplContext ac, InputStream input, 
+   */
+  public abstract void parseStyleAttribute(ApplContext ac, InputStream input,
 					   String id, URL url, int lineno);
 
 }

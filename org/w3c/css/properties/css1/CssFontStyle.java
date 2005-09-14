@@ -42,32 +42,32 @@ import org.w3c.css.values.CssIdent;
  *   In the example above, emphasized text within 'H1' will appear in a normal
  *   face.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFontStyle extends CssProperty implements CssFontConstant {
-    
+
     int value;
-    
+
     /**
      * Create a new CssFontStyle
      */
     public CssFontStyle() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new CssFontStyle
      *
      * @param expression the font style
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public CssFontStyle(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	if (expression.getValue() instanceof CssIdent) {
 	    int hash = ((CssIdent) expression.getValue()).hashCode();
@@ -78,23 +78,23 @@ public class CssFontStyle extends CssProperty implements CssFontConstant {
 		    return;
 		}
 	}
-	
-	throw new InvalidParamException("value", expression.getValue(), 
+
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     public CssFontStyle(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return FONTSTYLE[value];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -102,21 +102,21 @@ public class CssFontStyle extends CssProperty implements CssFontConstant {
     public boolean isSoftlyInherited() {
 	return value == FONTSTYLE.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return FONTSTYLE[value];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-style";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -128,13 +128,13 @@ public class CssFontStyle extends CssProperty implements CssFontConstant {
 	    style.addRedefinitionWarning(ac, this);
 	cssFont.fontStyle = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFontStyle();
@@ -142,27 +142,27 @@ public class CssFontStyle extends CssProperty implements CssFontConstant {
 	    return ((Css1Style) style).cssFont.fontStyle;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFontStyle && 
+	return (property instanceof CssFontStyle &&
 		((CssFontStyle) property).value == value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     private static int[] hash_values;
-    
+
     static {
 	hash_values = new int[FONTSTYLE.length];
 	for (int i=0; i<FONTSTYLE.length; i++)

@@ -34,20 +34,20 @@ import org.w3c.css.values.CssValue;
  */
 
 public class LightingColor extends CssProperty implements CssOperator {
-    
+
     CssValue lightingColor;
     ApplContext ac;
     Vector values = new Vector();
-    
+
     CssIdent currentColor = new CssIdent("currentColor");
-    
+
     /**
      * Create a new LightingColor
      */
     public LightingColor() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new LightingColor
      *
@@ -59,12 +59,12 @@ public class LightingColor extends CssProperty implements CssOperator {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	boolean correct = true;
 	String errorval = "";
 	char op = expression.getOperator();
 	CssColor color;
-	
+
 	if (val.equals(inherit)) {
 	    lightingColor = inherit;
 	    expression.next();
@@ -80,10 +80,10 @@ public class LightingColor extends CssProperty implements CssOperator {
 		correct = false;
 		errorval = val.toString();
 	    }
-	    
+
 	    op = expression.getOperator();
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
 		if (val instanceof CssFunction) { // icc-color(<name>[,<icccolorvalue>]*)]
 		    CssValue function = val;
@@ -92,37 +92,37 @@ public class LightingColor extends CssProperty implements CssOperator {
 			errorval = val.toString();
 		    } else {
 			CssExpression params = ((CssFunction) val).getParameters();
-			
+
 			op = params.getOperator();
 			val = params.getValue();
-			
+
 			if (!(val instanceof CssIdent)) {
 			    correct = false;
 			    errorval = val.toString();
 			}
-			
+
 			params.next();
 			op = params.getOperator();
 			val = params.getValue();
-			
+
 			if (!params.end()) { // there are more parameters left
 			    int counter = 0;
-			    
+
 			    while ((op == COMMA || op == SPACE)
 				    && (counter < (params.getCount() - 1) && correct == true)) {
-				
+
 				if ((!(val instanceof CssNumber)) || (((CssNumber) val).getValue() < 0)) {
 				    correct = false;
 				    errorval = val.toString();
 				}
-				
+
 				params.next();
 				counter++;
 				val = params.getValue();
 				op = params.getOperator();
 			    }
 			}
-			
+
 			if (correct) {
 			    params.starts();
 			    values.addElement(function);
@@ -136,21 +136,21 @@ public class LightingColor extends CssProperty implements CssOperator {
 		correct = false;
 		errorval = new String("");
 	    }
-	    
+
 	    expression.next();
-	    
+
 	}
-	
+
 	if (!correct) {
 	    throw new InvalidParamException("value", errorval, getPropertyName(), ac);
 	}
     }
-    
+
     public LightingColor(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -161,7 +161,7 @@ public class LightingColor extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).lightingColor = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -175,7 +175,7 @@ public class LightingColor extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).lightingColor;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -185,14 +185,14 @@ public class LightingColor extends CssProperty implements CssOperator {
 	return (property instanceof LightingColor &&
 		lightingColor.equals( ((LightingColor) property).lightingColor));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "lighting-color";
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -202,14 +202,14 @@ public class LightingColor extends CssProperty implements CssOperator {
 	else
 	    return values;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return lightingColor.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -224,7 +224,7 @@ public class LightingColor extends CssProperty implements CssOperator {
 	    return ret;
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -232,5 +232,5 @@ public class LightingColor extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

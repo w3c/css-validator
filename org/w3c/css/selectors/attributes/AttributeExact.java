@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeExact extends AttributeSelector {
 
     private String value;
-    
+
     public AttributeExact(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -70,7 +70,7 @@ public class AttributeExact extends AttributeSelector {
 	    }
 	}
     }
-    
+
     public String toString() {
 	return "[" + getName() + "=\"" + value + "\"]";
     }

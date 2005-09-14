@@ -47,11 +47,11 @@ import org.w3c.css.util.InvalidParamException;
  * @version $Revision$
  */
 public class CssURL extends CssValue {
-    
+
     String value;
 
     URL base;
-    
+
     /**
      * Set the value of this URL.
      *
@@ -59,7 +59,7 @@ public class CssURL extends CssValue {
      * @param frame For errors and warnings reports.
      * @exception InvalidParamException The unit is incorrect
      * @deprecated
-     */  
+     */
     public void set(String s, ApplContext ac)
 	    throws InvalidParamException {
 	throw new InvalidParamException("Deprecated method invocation", ac);
@@ -72,8 +72,8 @@ public class CssURL extends CssValue {
      * @param frame For errors and warnings reports.
      * @param base the base location of the style sheet
      * @exception InvalidParamException The unit is incorrect
-     */  
-    public void set(String s, ApplContext ac, URL base) 
+     */
+    public void set(String s, ApplContext ac, URL base)
 	    throws InvalidParamException {
 	String urlHeading = s.substring(0,3).toLowerCase();
 	String urlname = s.substring(4, s.length()-1).trim();
@@ -86,39 +86,39 @@ public class CssURL extends CssValue {
 	} catch (InvalidParamException e) {
 	    value = urlname;
 	}
-	
+
 	if (!urlHeading.startsWith("url"))
 	    throw new InvalidParamException("url", s, ac);
     }
-    
+
     /**
      * Get the internal value.
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the URL
      */
     public URL getURL() throws MalformedURLException {
 	return HTTPURL.getURL(base, value);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return "url(" + value + ")";
     }
-    
+
     /**
      * Compares two values for equality.
      *
      * @param value The other value.
-     */  
+     */
     public boolean equals(Object url) {
 	return (url instanceof CssURL && value.equals(((CssURL) url).value));
     }
-    
+
 }

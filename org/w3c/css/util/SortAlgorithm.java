@@ -21,8 +21,8 @@ public abstract class SortAlgorithm {
      * @param start the start offset in the array
      * @param end the end offset in the array
      * @param comp The comparaison function between objects
-     */    
+     */
     public abstract void sort(Object[] objs,
-			      int start, int end, 
+			      int start, int end,
 			      CompareFunction comp);
 }

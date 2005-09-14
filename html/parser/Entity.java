@@ -1,5 +1,5 @@
 /*
- * @(#)Entity.java	1.2 95/05/03  
+ * @(#)Entity.java	1.2 95/05/03
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -153,10 +153,10 @@ class Entity implements DTDConstants {
 	entityTypes.put("MD", new Integer(MD));
 	entityTypes.put("SYSTEM", new Integer(SYSTEM));
     }
-    
+
     static int name2type(String nm) {
 	Integer i = (Integer)entityTypes.get(nm);
 	return (i == null) ? CDATA : i.intValue();
     }
 }
-    
+

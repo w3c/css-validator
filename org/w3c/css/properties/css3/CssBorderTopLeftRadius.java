@@ -18,10 +18,10 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssValue;
 
 public class CssBorderTopLeftRadius extends CssProperty {
-    
+
     String value;
     ApplContext ac;
-    
+
     /**
      * Create new CssBorderTopLeftRadius
      */
@@ -29,7 +29,7 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	CssNumber cssnum =  new CssNumber((float) 1.0);
 	value = cssnum.toString();
     }
-    
+
     /**
      * Create new CssBorderTopLeftRadius
      *
@@ -40,14 +40,14 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssLength) {
 	    value = val.toString();
 	    expression.next();
-	    
+
 	    val = expression.getValue();
 	    if (val != null) {
-		
+
 		if (val instanceof CssLength) {
 		    value += " " + val.toString();
 		    expression.next();
@@ -62,12 +62,12 @@ public class CssBorderTopLeftRadius extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBorderTopLeftRadius(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -78,7 +78,7 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderTopLeftRadius = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -92,7 +92,7 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	    return ((Css3Style) style).cssBorderTopLeftRadius;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -102,35 +102,35 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	return (property instanceof CssBorderTopLeftRadius &&
 		value.equals( ((CssBorderTopLeftRadius) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-top-left-radius";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -139,5 +139,5 @@ public class CssBorderTopLeftRadius extends CssProperty {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return value == cssnum.toString();
     }
-    
+
 }

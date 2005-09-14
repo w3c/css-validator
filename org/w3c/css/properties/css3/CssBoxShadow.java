@@ -22,18 +22,18 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBoxShadow extends CssProperty implements CssOperator {
-    
+
     String value = "";
     ApplContext ac;
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create new CssBoxShadow
      */
     public CssBoxShadow() {
 	value = "none";
     }
-    
+
     /**
      * Create new CssBoxShadow
      *
@@ -45,7 +45,7 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 	setByUser();
 	CssValue val = expression.getValue();
 	char op = COMMA;
-	
+
 	if (val instanceof CssIdent) {
 	    if (val.equals(none)) {
 		value = "none";
@@ -55,25 +55,25 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 		expression.next();
 	    }
 	} else {
-	    
+
 	    // <length> <length> <length>? || <color> [, <length> <length> <length>? || <color>]+
-	    
+
 	    int lengthcounter = 0;
 	    int runs = 1;
-	    
+
 	    for (int i = 0; i < expression.getCount(); i++) {
-		
+
 		if (op != COMMA) {
 		    throw new InvalidParamException("operator",
 			    ((new Character(op)).toString()), ac);
 		} else if (runs != 1) {
 		    value += ", ";
 		}
-		
+
 		val = expression.getValue();
-		
+
 		if (val != null) {
-		    
+
 		    while (val instanceof CssLength && lengthcounter < 3) {
 			value += val.toString() + " ";
 			expression.next();
@@ -81,7 +81,7 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 			val = expression.getValue();
 			lengthcounter++;
 		    }
-		    
+
 		    if (lengthcounter == 2 || lengthcounter == 3) {
 			if (val instanceof CssColor) {
 			    value += val.toString() + " ";
@@ -93,16 +93,16 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 				getPropertyName(), ac);
 		    }
 		} else {
-		    
+
 		    if (runs < 2) {
 			throw new InvalidParamException("value", expression.getValue(),
 				getPropertyName(), ac);
 		    }
-		    
+
 		    value = value.trim();
 		    return;
 		}
-		
+
 		op = expression.getOperator();
 		lengthcounter = 0;
 		expression.next();
@@ -110,12 +110,12 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     public CssBoxShadow(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -126,7 +126,7 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBoxShadow = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -140,7 +140,7 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssBoxShadow;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -150,35 +150,35 @@ public class CssBoxShadow extends CssProperty implements CssOperator {
 	return (property instanceof CssBoxShadow &&
 		value.equals( ((CssBoxShadow) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "box-shadow";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>

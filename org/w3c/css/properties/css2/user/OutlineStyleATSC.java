@@ -21,35 +21,35 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class OutlineStyleATSC extends UserProperty {
-    
+
     int value = -1;
-    
+
     static String[] BORDERSTYLE = {
-	"none", "dotted", "dashed", "solid", "double", "groove", 
+	"none", "dotted", "dashed", "solid", "double", "groove",
 	"ridge", "inset", "outset", "inherit" };
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new OutlineStyleATSC
      */
     public OutlineStyleATSC() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new OutlineStyleATSC
      *
      * @param expression The expression for this face
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public OutlineStyleATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -65,23 +65,23 @@ public class OutlineStyleATSC extends UserProperty {
 		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", val.toString(), 
+
+	throw new InvalidParamException("value", val.toString(),
 					getPropertyName(), ac);
     }
-    
+
     public OutlineStyleATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal value
-     */  
+     */
     public Object get() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -89,14 +89,14 @@ public class OutlineStyleATSC extends UserProperty {
     public boolean isSoftlyInherited() {
 	return value == (BORDERSTYLE.length - 1);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -109,13 +109,13 @@ public class OutlineStyleATSC extends UserProperty {
 	}
 	outline.style = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getOutlineStyleATSC();
@@ -123,28 +123,28 @@ public class OutlineStyleATSC extends UserProperty {
 	    return ((Css2Style) style).outlineATSC.style;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return ((property instanceof OutlineStyleATSC) 
+	return ((property instanceof OutlineStyleATSC)
 		&& (value == ((OutlineStyleATSC) property).value));
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "outline-style";
     }
-    
+
     static {
 	hash_values = new int[BORDERSTYLE.length];
 	for (int i=0; i<BORDERSTYLE.length; i++)
 	    hash_values[i] = BORDERSTYLE[i].hashCode();
     }
-    
+
 }

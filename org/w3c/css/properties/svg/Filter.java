@@ -28,23 +28,23 @@ import org.w3c.css.values.CssValue;
  */
 
 public class Filter extends CssProperty {
-    
+
     CssValue value;
     ApplContext ac;
-    
+
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new Filter
      */
     public Filter() {
 	// nothing to do
     }
-    
+
     /**
      * Create a new Filter
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public Filter(ApplContext ac, CssExpression expression,
@@ -69,12 +69,12 @@ public class Filter extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public Filter(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -85,13 +85,13 @@ public class Filter extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).filter = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getFilter();
@@ -99,52 +99,52 @@ public class Filter extends CssProperty {
 	    return ((SVGStyle) style).filter;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Filter && 
+	return (property instanceof Filter &&
 		value.equals( ((Filter) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "filter";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return value == none;
     }
-    
+
 }
 

@@ -64,7 +64,7 @@ public class CssMaxFontSize extends CssProperty {
 	}
 	else {
 	    try {
-		FontSize fontsize = new FontSize(ac, expression); 
+		FontSize fontsize = new FontSize(ac, expression);
 		max = val;
 		expression.next();
 	    }
@@ -79,7 +79,7 @@ public class CssMaxFontSize extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -90,13 +90,13 @@ public class CssMaxFontSize extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssMaxFontSize = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getMaxFontSize();
@@ -104,51 +104,51 @@ public class CssMaxFontSize extends CssProperty {
 	    return ((Css3Style) style).cssMaxFontSize;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssMaxFontSize && 
+	return (property instanceof CssMaxFontSize &&
                 max.equals( ((CssMaxFontSize) property).max));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "max-font-size";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return max;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return max.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return max.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return max == auto;
     }
-    
+
 }

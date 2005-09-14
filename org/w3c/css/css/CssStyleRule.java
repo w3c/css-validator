@@ -13,15 +13,15 @@ import org.w3c.css.util.Util;
 
 
 public class CssStyleRule {
-    
-    public CssStyleRule(String indent, String selectors, 
+
+    public CssStyleRule(String indent, String selectors,
 	    Vector properties, boolean important) {
 	this.selectors = selectors;
 	this.properties = properties;
 	this.important = important;
 	this.indent = indent;
     }
-    
+
     public String toString() {
 	StringBuffer ret = new StringBuffer();
 	if (selectors != null) {
@@ -30,7 +30,7 @@ public class CssStyleRule {
 	    ret.append('{');
 	    ret.append('\n');
 	}
-	
+
 	for (int i = 0; i < properties.size() ; i++) {
 	    CssProperty property = (CssProperty)properties.elementAt(i);
 	    ret.append(indent);
@@ -54,12 +54,12 @@ public class CssStyleRule {
     }
     /*
      public String toHTML() {
-     StringBuffer ret = new StringBuffer("<li><span class='selector'>"); 
+     StringBuffer ret = new StringBuffer("<li><span class='selector'>");
      if (selectors != null) {
      ret.append(selectors);
      ret.append("</span> {<ul class='vRule'>\n");
      }
-     
+
      for (int i = 0; i < properties.size() ; i++) {
      CssProperty property = (CssProperty)properties.elementAt(i);
      ret.append("<li>");
@@ -78,12 +78,12 @@ public class CssStyleRule {
      */
     public void toHTML(PrintWriter out) {
 	if(properties != null) {
-	    out.print("<li><span class='selector'>"); 
-	    if (selectors != null) {		
+	    out.print("<li><span class='selector'>");
+	    if (selectors != null) {
 		out.print(selectors);
 		out.print("</span> {<ul class='vRule'>\n");
 	    }
-	    
+
 	    for (int i = 0; i < properties.size() ; i++) {
 		CssProperty property = (CssProperty)properties.elementAt(i);
 		out.print("<li>");
@@ -99,10 +99,10 @@ public class CssStyleRule {
 	    out.print("</ul>}</li>\n\n");
 	}
     }
-    
+
     private String indent;
     private String selectors;
     private Vector properties;
     private boolean important;
-    
+
 }

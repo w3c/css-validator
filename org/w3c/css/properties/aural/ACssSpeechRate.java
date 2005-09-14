@@ -34,40 +34,40 @@ import org.w3c.css.values.CssValue;
  * @see org.w3c.css.properties.css1.CssFontWeight
  */
 public class ACssSpeechRate extends ACssProperty {
-    
+
     CssValue value;
-    
+
     private static int[] hash_values;
-    
-    private static String[] SPEECHRATE = { "x-slow", "slow", "medium", 
-					   "fast", "x-fast", "faster", 
+
+    private static String[] SPEECHRATE = { "x-slow", "slow", "medium",
+					   "fast", "x-fast", "faster",
 					   "slower" };
     private static CssIdent defaultValue = new CssIdent(SPEECHRATE[2]);
-    
+
     /**
      * Create a new ACssSpeechRate
      */
     public ACssSpeechRate() {
 	value = defaultValue;
-    }  
-    
+    }
+
     /**
      * Creates a new ACssSpeechRate
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Expressions are incorrect
-     */  
+     */
     public ACssSpeechRate(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	this();
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int index;
-	
+
 	setByUser();
 	if (val.equals(inherit)) {
 	    value = inherit;
@@ -76,33 +76,33 @@ public class ACssSpeechRate extends ACssProperty {
 	} else if (val instanceof CssNumber) {
 	    value = val;
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue().toString(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue().toString(),
 					    getPropertyName(), ac);
 	}
 	expression.next();
     }
-    
+
     public ACssSpeechRate(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "speech-rate";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -110,14 +110,14 @@ public class ACssSpeechRate extends ACssProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -128,17 +128,17 @@ public class ACssSpeechRate extends ACssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssSpeechRate = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param property The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssSpeechRate && 
+	return (property instanceof ACssSpeechRate &&
 		value.equals(((ACssSpeechRate) property).value));
     }
-    
+
     private CssIdent checkIdent(ApplContext ac, CssIdent ident) throws InvalidParamException {
 	int hash = ident.hashCode();
 	for (int i = 0; i < SPEECHRATE.length; i++) {
@@ -146,18 +146,18 @@ public class ACssSpeechRate extends ACssProperty {
 		return ident;
 	    }
 	}
-	
-	throw new InvalidParamException("value", 
-					ident.toString(), 
+
+	throw new InvalidParamException("value",
+					ident.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getSpeechRate();
@@ -165,7 +165,7 @@ public class ACssSpeechRate extends ACssProperty {
 	    return ((ACssStyle) style).acssSpeechRate;
 	}
     }
-    
+
     static {
 	hash_values = new int[SPEECHRATE.length];
 	for (int i = 0; i < SPEECHRATE.length; i++)

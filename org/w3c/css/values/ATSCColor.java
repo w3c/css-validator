@@ -129,7 +129,7 @@ import org.w3c.css.util.InvalidParamException;
  *   <P>
  *   which then avoids any need to do transcendental math per color attribute,
  *   far less per pixel.
- 
+
  * See also
  * <P>
  * <A NAME="ref9">[9]</A> M Anderson, R Motta, S Chandrasekar, M Stokes:
@@ -158,21 +158,21 @@ import org.w3c.css.util.InvalidParamException;
  *
  * @version $Revision$
  */
-public class ATSCColor extends CssValue 
+public class ATSCColor extends CssValue
         implements CssColorConstants, CssOperator {
-    
+
     Object color;
     RGBATSC rgb;
-    static Hashtable definedColors;    
+    static Hashtable definedColors;
     static CssIdent inherit = new CssIdent("inherit");
-    
+
     /**
      * Create a new CssColor.
      */
     public ATSCColor() {
 	color = inherit;
     }
-    
+
     /**
      * Create a new ATSCColor with a color name.
      *
@@ -183,13 +183,13 @@ public class ATSCColor extends CssValue
 	//	setIdentColor(s.toLowerCase(), ac);
 	setIdentColor(s, ac);
     }
-    
+
     /**
      * Set the value from a defined color RBG.
      *
      * @param s the string representation of the color.
      * @exception InvalidParamException the color is incorrect.
-     */  
+     */
     public void set(String s, ApplContext ac)  throws InvalidParamException {
 	if (s.startsWith("#")) {
 	    setShortRGBColor(s.toLowerCase(), ac);
@@ -197,10 +197,10 @@ public class ATSCColor extends CssValue
 	    setIdentColor(s, ac);
 	}
     }
-    
+
     /**
      * Return the internal value.
-     */  
+     */
     public Object get() {
 	if (color != null) {
 	    if (color == inherit) {
@@ -212,7 +212,7 @@ public class ATSCColor extends CssValue
 	    return rgb.r;
 	}
     }
-    
+
     /**
      * Returns <code>true</code> if the internal value is the default value
      * (e.g. 'inherited').
@@ -220,7 +220,7 @@ public class ATSCColor extends CssValue
     public boolean isDefault() {
 	return color == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -235,22 +235,22 @@ public class ATSCColor extends CssValue
 	    return rgb.toString();
 	}
     }
-    
+
     /**
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
-     */  
-    public void setRGBColor(CssExpression exp, ApplContext ac) 
+     */
+    public void setRGBColor(CssExpression exp, ApplContext ac)
   	    throws InvalidParamException {
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGBATSC();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.r = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -258,15 +258,15 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.g = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -274,15 +274,15 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.b = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -290,25 +290,25 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("rgb", val, ac);
 	}
-	
+
 	exp.next();
 	if (exp.getValue() != null) {
 	    throw new InvalidParamException("rgb", exp.getValue(), ac);
 	}
     }
 
-    public void setATSCrgba(CssExpression exp, ApplContext ac) 
+    public void setATSCrgba(CssExpression exp, ApplContext ac)
 	throws InvalidParamException{
 
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
 	rgb = new RGBATSC();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.r = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -316,15 +316,15 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("ATSCrgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null || op != COMMA) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.g = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -332,15 +332,15 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("ATSCrgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.b = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -348,15 +348,15 @@ public class ATSCColor extends CssValue
 	} else {
 	    throw new InvalidParamException("ATSCrgb", val, ac);
 	}
-	
+
 	exp.next();
 	val = exp.getValue();
 	op = exp.getOperator();
-	
+
 	if (val == null) {
 	    throw new InvalidParamException("invalid-color", ac);
 	}
-	
+
 	if (val instanceof CssNumber) {
 	    rgb.o = ((Float) val.get());//.intValue();
 	} else if (val instanceof CssPercentage) {
@@ -371,12 +371,12 @@ public class ATSCColor extends CssValue
 	}
 
     }
-    
+
     /**
      * Parse a RGB color.
      * format #(3-6)<hexnum>
-     */  
-    private void setShortRGBColor(String s, ApplContext ac) 
+     */
+    private void setShortRGBColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	int r;
 	int g;
@@ -406,10 +406,10 @@ public class ATSCColor extends CssValue
 	rgb.b = new Integer(b);
 	rgb.output = "#" + s;
     }
-    
+
     /**
      * Parse an ident color.
-     */  
+     */
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
@@ -421,131 +421,131 @@ public class ATSCColor extends CssValue
 	    } else if (obj instanceof String) {
 		color = (String) obj;
 		if (!obj.equals(s)) {
-		    ac.getFrame().addWarning("color.mixed-capitalization", 
+		    ac.getFrame().addWarning("color.mixed-capitalization",
 					     s);
 		}
 	    }
 	    return;
 	}
-	
+
 	throw new InvalidParamException("value", s, "color", ac);
     }
-    
+
     /**
      * Compares two values for equality.
      *
      * @param value The other value.
-     */  
+     */
     public boolean equals(Object cssColor) {
 	return ((cssColor instanceof ATSCColor) &&
 		((color != null && color.equals(((ATSCColor) cssColor).color))
 		 || ((color == null)
-		     && (rgb != null) 
+		     && (rgb != null)
 		     && (((ATSCColor) cssColor).rgb != null)
 		     && (rgb.r.equals(((ATSCColor) cssColor).rgb.r)
 			 && rgb.g.equals(((ATSCColor) cssColor).rgb.g)
 			 && rgb.b.equals(((ATSCColor) cssColor).rgb.b)))));
     }
-    
+
     /**
      * Gets the red component of this color.
      */
     public Object getRed() {
 	return rgb.r;
     }
-    
+
     /**
      * Gets the green component of this color.
      */
     public Object getGreen() {
 	return rgb.g;
     }
-    
+
     /**
      * Gets the blue component of this color.
      */
     public Object getBlue() {
 	return rgb.b;
     }
-    
+
     static {
 	definedColors = new Hashtable();
-	definedColors.put("black",  
-			  new RGBATSC(new Integer(0), 
-				      new Integer(0), 
+	definedColors.put("black",
+			  new RGBATSC(new Integer(0),
+				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("silver", 
+	definedColors.put("silver",
 			  new RGBATSC(new Integer(192),
 				      new Integer(192),
 				      new Integer(192),
 				      new Integer(255)));
-	definedColors.put("gray", 
+	definedColors.put("gray",
 			  new RGBATSC(new Integer(128),
 				      new Integer(128),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("white",  
+	definedColors.put("white",
 			  new RGBATSC(new Integer(255),
 				      new Integer(255),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("maroon", 
+	definedColors.put("maroon",
 			  new RGBATSC(new Integer(128),
 				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("red", 
+	definedColors.put("red",
 			  new RGBATSC(new Integer(255),
 				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("purple", 
+	definedColors.put("purple",
 			  new RGBATSC(new Integer(128),
 				      new Integer(0),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("fuchsia", 
+	definedColors.put("fuchsia",
 			  new RGBATSC(new Integer(255),
 				      new Integer(0),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("green",  
+	definedColors.put("green",
 			  new RGBATSC(new Integer(0),
 				      new Integer(128),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("lime",  
+	definedColors.put("lime",
 			  new RGBATSC(new Integer(0),
 				      new Integer(255),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("olive",  
+	definedColors.put("olive",
 			  new RGBATSC(new Integer(128),
 				      new Integer(128),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("yellow",  
+	definedColors.put("yellow",
 			  new RGBATSC(new Integer(255),
 				      new Integer(255),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("navy",  
+	definedColors.put("navy",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("blue",  
+	definedColors.put("blue",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("teal",  
+	definedColors.put("teal",
 			  new RGBATSC(new Integer(0),
 				      new Integer(128),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("aqua",  
+	definedColors.put("aqua",
 			  new RGBATSC(new Integer(0),
 				      new Integer(255),
 				      new Integer(255),
@@ -589,13 +589,13 @@ class RGBATSC {
     Object g;
     Object b;
     Object o;
-    
+
     /**
      * Create a new RGBATSC
      */
     public RGBATSC() {
     }
-    
+
     /**
      * Create a new RGBATSC with default values
      */
@@ -617,4 +617,4 @@ class RGBATSC {
 	}
     }
 }
-    
+

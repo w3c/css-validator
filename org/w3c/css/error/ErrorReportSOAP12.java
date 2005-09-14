@@ -21,47 +21,47 @@ import org.w3c.css.util.Utf8Properties;
  * </ul>
  */
 public class ErrorReportSOAP12 extends ErrorReport {
-    
+
     private String title;
     private boolean validURI;
     private Exception exception;
-    
+
     private ApplContext ac;
     private static Utf8Properties messages;
-    
+
     private PrintWriter out;
-    
+
     ErrorReportSOAP12(ApplContext ac, String title, String output, Exception e,
-	    boolean validURI) {	
+	    boolean validURI) {
 	this.ac = ac;
 	this.exception = e;
 	this.validURI = validURI;
 	this.title = title;
     }
-    
+
     /**
      * @see org.w3c.css.error.ErrorReport#print(java.io.PrintWriter)
      */
     public void print(PrintWriter out) {
 	this.out = out;
-	
+
 	// the error message
 	String errorMessage = exception.getMessage();
 	// the string containing the soap response pattern
 	String report;
 	if(validURI) {
-	    report = messages.getProperty("receiver");	    
+	    report = messages.getProperty("receiver");
 	    if(exception instanceof UnknownHostException) {
 		errorMessage = "The host name " + errorMessage +
-			       " couldn't be resolved";		        	
-            }            	    
+			       " couldn't be resolved";
+            }
 	}
 	else {
 	    report = messages.getProperty("sender");
 	}
 	processError(report, errorMessage , title + " " + exception);
     }
-    
+
     /**
      * Prints on the output the soap message str, where each entity<br/>
      * has been replaced by it's value<br/>
@@ -83,26 +83,26 @@ public class ErrorReportSOAP12 extends ErrorReport {
 	    while ((i = str.indexOf("<!-- #", i)) >= 0) {
 		int lastIndexOfEntity = str.indexOf("-->", i);
 		String entity = str.substring(i + 6, lastIndexOfEntity - 1)
-		    .toLowerCase();	
+		    .toLowerCase();
 		// reason entity
 		if (entity.equals("reason")) {
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
-		    i = 0;		    
+		    i = 0;
 		    out.print(errorMessage);
 		}
 		// details entity
-		else if (entity.equals("details")) {		    
+		else if (entity.equals("details")) {
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		    out.print(details);
 		}
 		//charset entity
-		else if (entity.equals("charset")) {		    
+		else if (entity.equals("charset")) {
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
-		    i = 0;										
+		    i = 0;
 		    out.print(ac.getContentEncoding());
 		}
 		else {
@@ -120,7 +120,7 @@ public class ErrorReportSOAP12 extends ErrorReport {
 	    }
 	}
     }
-    
+
     static {
 	// load the soaperror.properties
 	URL url;
@@ -135,5 +135,5 @@ public class ErrorReportSOAP12 extends ErrorReport {
 			       + "couldn't load soap error messages properties ");
 	    System.err.println("  " + e.toString());
 	}
-    }    
+    }
 }

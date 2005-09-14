@@ -1,5 +1,5 @@
 /*
- * @(#)UnknownTag.java	1.3 95/05/03  
+ * @(#)UnknownTag.java	1.3 95/05/03
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *

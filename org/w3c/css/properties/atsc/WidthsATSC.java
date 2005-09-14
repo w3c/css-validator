@@ -23,31 +23,31 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class WidthsATSC extends CssProperty implements CssOperator {
-    
+
     Vector values = new Vector();
-    
+
     /**
      * Create a new WidthsATSC
      */
     public WidthsATSC() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new WidthsATSC
      *
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public WidthsATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	boolean manyValues = expression.getCount() > 1;
-	
+
 	CssValue val;
 	char op;
 	//int i = 0;
-	setByUser();	
+	setByUser();
 	{
 	    val = expression.getValue();
 	    ac.getFrame().addWarning("atsc", val.toString());
@@ -56,23 +56,23 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 	do {
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if (val instanceof CssUnicodeRange) {
 		values.addElement(val);
 		if (op != SPACE) {
-		    throw new InvalidParamException("operator", 
+		    throw new InvalidParamException("operator",
 						    new Character(op),
 						    getPropertyName(), ac);
 		}
 		if (expression.end()) {
-		    throw new InvalidParamException("few-value", 
+		    throw new InvalidParamException("few-value",
 						    getPropertyName(), ac);
 		}
-		expression.next();		
+		expression.next();
 	    }
 	    do {
 		op = expression.getOperator();
@@ -81,7 +81,7 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 		    values.addElement(" ");
 		    values.addElement(val);
 		} else {
-		    throw new InvalidParamException("value", 
+		    throw new InvalidParamException("value",
 						    val,
 						    getPropertyName(), ac);
 		}
@@ -91,23 +91,23 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 	} while (op == CssOperator.COMMA);
 
     }
-    
+
     public WidthsATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return values.elementAt(0);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret = "";
 	int i = 0;
 	while (i < (values.size() - 2)) {
@@ -116,14 +116,14 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "widths";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -136,13 +136,13 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 	}
 	style0.widthsATSC = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getWidthsATSC();
@@ -150,23 +150,23 @@ public class WidthsATSC extends CssProperty implements CssOperator {
 	    return ((ATSCStyle) style).widthsATSC;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

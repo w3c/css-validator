@@ -78,12 +78,12 @@ public class CssBackgroundTV extends CssProperty
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
-	
+
 	// too many values
 	if(check && expression.getCount() > 5) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 
 	if (val.equals(inherit)) {
@@ -156,11 +156,11 @@ public class CssBackgroundTV extends CssProperty
 	*/
     }
 
-    public CssBackgroundTV(ApplContext ac, CssExpression expression) 
+    public CssBackgroundTV(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -190,20 +190,29 @@ public class CssBackgroundTV extends CssProperty
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (same) {
-	    return inherit.toString();
-	} else {
-	    String ret = "";
-	    if (color.byUser)
-		ret += " " + color.toString();
-	    if (image.byUser)
-		ret += " " + image.toString();
-	    if (image.byUser)
-		ret += " " + repeat.toString();
-	    if (position.byUser)
-		ret += " " + position.toString();
-	    return ret.trim();
+	String ret = "";
+	if(color != null) {
+	    ret += color;
 	}
+	if(image != null) {
+	    if(ret != null) {
+		ret += " ";
+	    }
+	    ret += image;
+	}
+	if(repeat != null) {
+	    if(ret != null) {
+		ret += " ";
+	    }
+	    ret += repeat;
+	}
+	if(position != null) {
+	    if(ret != null) {
+		ret += " ";
+	    }
+	    ret += position;
+	}
+	return ret;
     }
 
     /**

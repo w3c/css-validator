@@ -23,28 +23,28 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class Widths extends CssProperty implements CssOperator {
-    
+
     Vector values = new Vector();
-    
+
     /**
      * Create a new Widths
      */
     public Widths() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new Widths
      *
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public Widths(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	CssValue val;
 	char op;
 	int i = 0;
-	setByUser();	
+	setByUser();
 
 	do {
 	    val = expression.getValue();
@@ -52,15 +52,15 @@ public class Widths extends CssProperty implements CssOperator {
 	    if (val instanceof CssUnicodeRange) {
 		values.addElement(val);
 		if (op != SPACE) {
-		    throw new InvalidParamException("operator", 
+		    throw new InvalidParamException("operator",
 						    new Character(op),
 						    getPropertyName(), ac);
 		}
 		if (expression.end()) {
-		    throw new InvalidParamException("few-value", 
+		    throw new InvalidParamException("few-value",
 						    getPropertyName(), ac);
 		}
-		expression.next();		
+		expression.next();
 	    }
 	    do {
 		op = expression.getOperator();
@@ -69,7 +69,7 @@ public class Widths extends CssProperty implements CssOperator {
 		    values.addElement(" ");
 		    values.addElement(val);
 		} else {
-		    throw new InvalidParamException("value", 
+		    throw new InvalidParamException("value",
 						    val,
 						    getPropertyName(), ac);
 		}
@@ -79,23 +79,23 @@ public class Widths extends CssProperty implements CssOperator {
 	} while (op == CssOperator.COMMA);
 
     }
-    
+
     public Widths(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return values.elementAt(0);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret = "";
 	int i = 0;
 	while (i < (values.size() - 2)) {
@@ -104,14 +104,14 @@ public class Widths extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "widths";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -124,13 +124,13 @@ public class Widths extends CssProperty implements CssOperator {
 	}
 	style0.widths = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getWidths();
@@ -138,23 +138,23 @@ public class Widths extends CssProperty implements CssOperator {
 	    return ((Css2Style) style).widths;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

@@ -428,15 +428,14 @@ public class ACssStyle extends Css1Style {
    */
   public void findConflicts(ApplContext ac, Warnings warnings, Enumeration allSelectors) {
     super.findConflicts(ac, warnings, allSelectors);
-
     if (acssVoiceFamily != null) {
 	if (!acssVoiceFamily.containsGenericFamily()) {
-	warnings.addWarning(new Warning(acssVoiceFamily,
-					"no-generic-family", 2, ac));
+	    warnings.addWarning(new Warning(acssVoiceFamily,
+		    "no-generic-family", 2, ac));
 	}
 	if (acssVoiceFamily.withSpace) {
 	    warnings.addWarning(new Warning(acssVoiceFamily,
-					    "with-space", 1, ac));
+		    "with-space", 1, ac));
 	}
     }
 
@@ -444,15 +443,15 @@ public class ACssStyle extends Css1Style {
 	!acssPause.getBefore().isSoftlyInherited() &&
 	!(acssPause.getBefore().get() instanceof CssPercentage)) {
       // Using relative units gives more robust stylesheets
-      warnings.addWarning(new Warning(acssPause.getBefore(),
-				      "relative", 2, ac));
+	warnings.addWarning(new Warning(acssPause.getBefore(),
+		"relative", 2, ac));
     }
     if ((acssPause.getAfter() != null) &&
 	!acssPause.getAfter().isSoftlyInherited() &&
 	!(acssPause.getAfter().get() instanceof CssPercentage)) {
-      // Using relative units gives more robust stylesheets
-      warnings.addWarning(new Warning(acssPause.getAfter(),
-				      "relative", 2, ac));
+	// Using relative units gives more robust stylesheets
+	warnings.addWarning(new Warning(acssPause.getAfter(),
+		"relative", 2, ac));
     }
 
 

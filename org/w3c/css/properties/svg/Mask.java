@@ -28,23 +28,23 @@ import org.w3c.css.values.CssValue;
  */
 
 public class Mask extends CssProperty {
-    
+
     CssValue mask;
     ApplContext ac;
-    
+
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new Mask
      */
     public Mask() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Mask
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public Mask(ApplContext ac, CssExpression expression,
@@ -69,12 +69,12 @@ public class Mask extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public Mask(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -85,13 +85,13 @@ public class Mask extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).mask = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getMask();
@@ -99,51 +99,51 @@ public class Mask extends CssProperty {
 	    return ((SVGStyle) style).mask;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Mask && 
+	return (property instanceof Mask &&
 		mask.equals( ((Mask) property).mask));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "mask";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return mask;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return mask.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return mask.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (mask == none);
     }
-    
+
 }

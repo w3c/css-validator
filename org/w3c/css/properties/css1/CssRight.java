@@ -23,7 +23,7 @@ public class CssRight extends CssBoxOffsetFace {
   public CssRight() {
     super();
   }
-  
+
   /**
    * Create a new CssRight
    *
@@ -34,15 +34,15 @@ public class CssRight extends CssBoxOffsetFace {
   	throws InvalidParamException {
     super(ac, expression, check);
   }
-  
-  public CssRight(ApplContext ac, CssExpression expression) 
+
+  public CssRight(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "right";
   }
@@ -64,7 +64,7 @@ public class CssRight extends CssBoxOffsetFace {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getRight();
@@ -77,9 +77,9 @@ public class CssRight extends CssBoxOffsetFace {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-    return (property instanceof CssRight && 
+    return (property instanceof CssRight &&
 	    value.equals(((CssRight) property).value));
   }
 

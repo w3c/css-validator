@@ -52,7 +52,7 @@ public class CssBorderFaceColorCSS1 {
      */
     public CssBorderFaceColorCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -70,11 +70,11 @@ public class CssBorderFaceColorCSS1 {
 	expression.next();
     }
 
-    public CssBorderFaceColorCSS1(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceColorCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal color
      */

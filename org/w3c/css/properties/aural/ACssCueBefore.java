@@ -50,41 +50,41 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssCueBefore extends ACssProperty {
-    
+
     CssValue value;
-    
+
     private URL url;
     private static CssIdent none = new CssIdent("none");
 
     /**
      * Create a new ACssCueBefore
-     */  
+     */
     public ACssCueBefore() {
 	// Initial is User Agent Specific
 	value = none;
     }
-    
+
     /**
      * Create a new ACssCueBefore
-     */  
+     */
     public ACssCueBefore(ACssCueAfter cueBefore) {
 	value = cueBefore.value;
     }
-    
+
     /**
      * Creates a new ACssCueBefore
      * @param value the value of the size
      * @exception InvalidParamException The value is incorrect
-     */  
+     */
     public ACssCueBefore(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssURL) {
 	    value = val;
 	    expression.next();
@@ -98,25 +98,25 @@ public class ACssCueBefore extends ACssProperty {
 	    expression.next();
 	    return;
 	}
-	
+
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
-    
+
     public ACssCueBefore(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	if (value == none)
 	    return null;
 	else
 	    return value;
     }
-    
+
     /**
      * Returns some usable value of this property...
      */
@@ -130,7 +130,7 @@ public class ACssCueBefore extends ACssProperty {
 	    return url;
 	}
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -138,33 +138,33 @@ public class ACssCueBefore extends ACssProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "cue-before";
     }
-    
+
     public void addToStyle(ApplContext ac, CssStyle style) {
 	ACssCue acssCue = ((ACssStyle) style).acssCue;
 	if (acssCue.cueBefore != null)
 	    style.addRedefinitionWarning(ac, this);
 	acssCue.cueBefore = this;
     }
-    
+
     public boolean equals(CssProperty property) {
 	return (property instanceof ACssCueBefore && value.equals(((ACssCueBefore) property).value));
     }
-    
+
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getCueBefore();
@@ -172,5 +172,5 @@ public class ACssCueBefore extends ACssProperty {
 	    return ((ACssStyle) style).acssCue.cueBefore;
 	}
     }
-    
+
 }

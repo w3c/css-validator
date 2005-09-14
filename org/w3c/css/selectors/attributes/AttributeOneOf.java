@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeOneOf extends AttributeSelector {
 
     String value;
-    
+
     public AttributeOneOf(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -43,9 +43,9 @@ public class AttributeOneOf extends AttributeSelector {
 	} else if (other instanceof AttributeExact) {
 	    String exact = ((AttributeExact) other).getValue();
 	    // [lang~=fr][lang=fr]
-	    if(value.equals(exact)) {	    
+	    if(value.equals(exact)) {
 		// [lang~=fr][lang=fr]
-		return true;		
+		return true;
 	    }
 	    // [lang~=en][lang=fr]
 	    return false;

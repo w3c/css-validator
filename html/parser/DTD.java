@@ -1,5 +1,5 @@
 /*
- * @(#)DTD.java	1.8 95/06/07  
+ * @(#)DTD.java	1.8 95/06/07
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -102,7 +102,7 @@ class DTD implements DTDConstants {
     * Get an element by name.
     *
     * @return null if the element does not exists
-    */    
+    */
     public Element findElement(String name) {
 	return (Element)elementHash.get(name);
     }
@@ -139,7 +139,7 @@ class DTD implements DTDConstants {
 	byte data[] = {(byte)(ch & 0xFF)};
 	defineEntity(name, type, data);
     }
-    
+
     /**
      * Define an element.
      */

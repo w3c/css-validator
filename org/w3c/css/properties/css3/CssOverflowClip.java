@@ -37,19 +37,19 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssOverflowClip extends CssProperty implements CssOperator {
-    
+
     String overflowclip = new String();
     ApplContext ac;
     CssIdent auto = new CssIdent("auto");
     CssIdent initial = new CssIdent("initial");
-    
+
     /**
      * Create a new CssOverflowClip
      */
     public CssOverflowClip() {
-	
+
     }
-    
+
     /**
      * Create a new CssOverflowClip
      *
@@ -61,18 +61,18 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssFunction) {
 	    CssFunction fun = (CssFunction) val;
 	    CssExpression params = fun.getParameters();
-	    
+
 	    CssValue v;
-	    
+
 	    if (fun.getName().equals("rect")) {
 		if (params.getCount() == 4) {
-		    
+
 		    overflowclip = "rect(";
-		    
+
 		    for (int i =0; i < 4; i++) {
 			v = params.getValue();
 			if (!(v instanceof CssLength || v instanceof CssPercentage) ) {
@@ -85,17 +85,17 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 				overflowclip += ", " + v.toString();
 			}
 		    }
-		    
+
 		} else {
 		    throw new InvalidParamException("value", params.getValue(),
 			    getPropertyName(), ac);
 		}
 	    } else if (fun.getName().equals("inset-rect")) {
-		
+
 		if (params.getCount() == 4) {
-		    
+
 		    overflowclip = "inset-rect(";
-		    
+
 		    for (int i =0; i < 4; i++) {
 			v = params.getValue();
 			if (!(v instanceof CssLength || v instanceof CssPercentage) ) {
@@ -112,11 +112,11 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 		    throw new InvalidParamException("value", params.getValue(),
 			    getPropertyName(), ac);
 		}
-		
+
 	    }
 	    else throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
-	    
+
 	    overflowclip += ")";
 	    expression.next();
 	    return;
@@ -139,12 +139,12 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssOverflowClip(ApplContext ac, CssExpression expression)
     	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -155,7 +155,7 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssOverflowClip = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -169,7 +169,7 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssOverflowClip;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -179,35 +179,35 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	return (property instanceof CssOverflowClip &&
 		overflowclip.equals( ((CssOverflowClip) property).overflowclip));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "overflow-clip";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return overflowclip;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return overflowclip.equals("inherit");
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return overflowclip;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -216,6 +216,6 @@ public class CssOverflowClip extends CssProperty implements CssOperator {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return overflowclip == cssnum.toString();
     }
-    
+
 }
 

@@ -15,17 +15,17 @@ public interface StyleSheetOrigin {
 
     /**
      * This property comes from the UA's default values.
-     */  
+     */
     public static final int BROWSER = 1;
-    
+
     /**
      * This property comes from the reader's style sheet.
-     */  
+     */
     public static final int READER = 2;
-    
+
     /**
      * This property comes from the author's style sheet.
-     */  
+     */
     public static final int AUTHOR = 3;
-    
+
 }

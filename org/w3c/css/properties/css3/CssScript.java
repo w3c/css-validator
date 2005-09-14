@@ -20,19 +20,19 @@ import org.w3c.css.values.CssValue;
  *
  */
 public class CssScript extends CssProperty {
-    
+
     CssValue script;
-    
+
     private static CssIdent auto = new CssIdent("auto");
     private static CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new CssScript
      */
     public CssScript() {
 	script = auto;
     }
-    
+
     /**
      * Create a new CssScript
      *
@@ -62,12 +62,12 @@ public class CssScript extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssScript(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -77,9 +77,9 @@ public class CssScript extends CssProperty {
 	if (((Css3Style) style).cssScript != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssScript = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -93,7 +93,7 @@ public class CssScript extends CssProperty {
 	    return ((Css3Style) style).cssScript;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -103,35 +103,35 @@ public class CssScript extends CssProperty {
 	return (property instanceof CssScript &&
 		script.equals( ((CssScript) property).script));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "text-script";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return script;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return script.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return script.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -139,5 +139,5 @@ public class CssScript extends CssProperty {
     public boolean isDefault() {
 	return script == auto;
     }
-    
+
 }

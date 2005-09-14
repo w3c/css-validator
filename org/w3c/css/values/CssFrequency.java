@@ -18,13 +18,13 @@ import org.w3c.css.util.Util;
  * <p>There are two legal frequency units:
  *
  * <ul>
- * <li>Hz: Hertz 
+ * <li>Hz: Hertz
  * <li>kHz: kilo Hertz
  * </ul>
  *
  * <P> For example, 200Hz is a bass sound, and 6kHz is a treble sound.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFrequency extends CssValue {
 
@@ -33,7 +33,7 @@ public class CssFrequency extends CssValue {
    */
   public CssFrequency() {
     value = defaultValue;
-  }  
+  }
 
   /**
    * Create a new CssFrequency with a float number.
@@ -43,14 +43,14 @@ public class CssFrequency extends CssValue {
   public CssFrequency(Float value) {
     this.value = value;
   }
-  
+
   /**
    * Set the value of this frequency.
    *
    * @param s     the string representation of the frequency.
    * @param frame For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
-   */  
+   */
   public void set(String s, ApplContext ac) throws InvalidParamException {
     s = s.toLowerCase();
     int length = s.length();
@@ -85,17 +85,17 @@ public class CssFrequency extends CssValue {
 
   /**
    * Returns the current value
-   */  
+   */
   public Object get() {
     if (unit == 1) {
       return new Float(value.floatValue() * 1000);
     }
     return value;
   }
-  
+
   /**
    * Returns the current value
-   */  
+   */
   public String getUnit() {
     return units[unit];
   }
@@ -115,10 +115,10 @@ public class CssFrequency extends CssValue {
    * Compares two values for equality.
    *
    * @param value The other value.
-   */  
+   */
   public boolean equals(Object value) {
-    return (value instanceof CssFrequency 
-	        && this.value.equals(((CssFrequency) value).value) 
+    return (value instanceof CssFrequency
+	        && this.value.equals(((CssFrequency) value).value)
 	        && unit == ((CssFrequency) value).unit);
   }
 

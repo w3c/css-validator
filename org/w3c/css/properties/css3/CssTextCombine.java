@@ -25,8 +25,8 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property controls the creation of composite characters 
- *  (a.k.a. "kumimoji") or lines (a.k.a. "warichu"). 
+ *  This property controls the creation of composite characters
+ *  (a.k.a. "kumimoji") or lines (a.k.a. "warichu").
  */
 
 public class CssTextCombine extends CssProperty {
@@ -82,7 +82,7 @@ public class CssTextCombine extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -118,7 +118,7 @@ public class CssTextCombine extends CssProperty {
 	return (property instanceof CssTextCombine &&
 		combine.equals(((CssTextCombine) property).combine));
     }
-    
+
     /**
      * Returns the name of this property
      */

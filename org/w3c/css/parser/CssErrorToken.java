@@ -16,27 +16,27 @@ public class CssErrorToken extends CssError {
 
   /**
    * The list of context when the error appears
-   */  
+   */
   Vector context;
 
   /**
    * the property name
-   */  
+   */
   String property;
 
   /**
    * the string description of the error
-   */  
+   */
   String errorString;
 
   /**
    * the expected text
-   */  
+   */
   String[] expectedTokens;
 
   /**
    * the skipped text
-   */  
+   */
   String skippedString;
 
   /**
@@ -50,7 +50,7 @@ public class CssErrorToken extends CssError {
     line = lin;
     errorString = error;
     expectedTokens = expected;
-  }  
+  }
 
   /**
    * Get contexts
@@ -61,7 +61,7 @@ public class CssErrorToken extends CssError {
 
   /**
    * Get the name of the property.
-   */  
+   */
   public String getPropertyName() {
     return property;
   }
@@ -82,7 +82,7 @@ public class CssErrorToken extends CssError {
 
   /**
    * Get the skipped text.
-   */  
+   */
   public String getSkippedString() {
     return skippedString;
   }

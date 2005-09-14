@@ -26,8 +26,8 @@ import org.w3c.css.values.CssValue;
  *  <EM>Media:</EM>:visual
  *  <P>
  *  This property is used by the parent of elements with display: ruby-text to
- *  control the position of the ruby text with respect to its base. Such 
- *  parents are typically either the ruby element itself (simple ruby) or 
+ *  control the position of the ruby text with respect to its base. Such
+ *  parents are typically either the ruby element itself (simple ruby) or
  *  the rtc element (group ruby).
  */
 
@@ -56,7 +56,7 @@ public class CssRubyPosition extends CssProperty {
      */
     public CssRubyPosition(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	if (val.equals(before)) {
@@ -84,12 +84,12 @@ public class CssRubyPosition extends CssProperty {
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public CssRubyPosition(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-	
+
     /**
      * Add this property to the CssStyle.
      *
@@ -100,13 +100,13 @@ public class CssRubyPosition extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssRubyPosition = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getRubyPosition();
@@ -114,51 +114,51 @@ public class CssRubyPosition extends CssProperty {
 	    return ((Css3Style) style).cssRubyPosition;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssRubyPosition && 
+	return (property instanceof CssRubyPosition &&
                 pos.equals( ((CssRubyPosition) property).pos));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "ruby-position";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return pos;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return pos.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return pos.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return pos == before;
     }
-    
-}	
+
+}

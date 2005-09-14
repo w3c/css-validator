@@ -19,56 +19,56 @@ public class PseudoFactory {
 	"optional", "read-only", "read-write",
 	"default", "in-range", "out-of-range"
     };
-    
+
     private static final String[] PSEUDOCLASS_CONSTANTSCSS2 =
     {
 	"link", "visited", "active", "target", "focus",
 	"hover", "first-child"
     };
-    
+
     private static final String[] PSEUDOCLASS_CONSTANTSTV =
     {
 	"link", "visited", "active", "focus", "first-child"
     };
-    
+
     private static final String[] PSEUDOCLASS_CONSTANTSCSS1 =
     {
 	"link", "visited", "active", "target"
     };
-    
+
     private static final String[] PSEUDOCLASS_CONSTANTS_MOBILE =
     {
 	"link", "visited", "active", "focus"
     };
-    
+
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS3 =
-    { 
+    {
 	"first-line", "first-letter", "before", "after",
-	"selection", "marker", "value", "choices", "repeat-item", 
+	"selection", "marker", "value", "choices", "repeat-item",
 	"repeat-index"
     };
 
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS2 =
-    { 
+    {
 	"first-line", "first-letter", "before", "after"
     };
-    
+
     private static final String[] PSEUDOELEMENT_CONSTANTSCSS1 =
     {
 	"first-line", "first-letter"
     };
-    
-    private static final String[] PSEUDOFUNCTION_CONSTANTSCSS3 = 
+
+    private static final String[] PSEUDOFUNCTION_CONSTANTSCSS3 =
     {
 	"nth-child", "nth-last-child", "nth-of-type", "nth-last-of-type",
 	"lang", "contains", "not"
     };
-    
-    private static final String[] PSEUDOFUNCTION_CONSTANTSCSS2 = 
+
+    private static final String[] PSEUDOFUNCTION_CONSTANTSCSS2 =
     {
 	"lang"
     };
-    
+
     /**
      * Returns the possible pseudo-classes for a profile
      * @param profile the profile to get associated pseudo-classes
@@ -92,7 +92,7 @@ public class PseudoFactory {
 	}
 	return null;
     }
-    
+
     /**
      * Returns the possible pseudo-elements for a profile
      * @param profile the profile to get associated pseudo-elements
@@ -110,7 +110,7 @@ public class PseudoFactory {
 	}
 	return null;
     }
-    
+
     /**
      * Returns the possible pseudo-functions for a profile
      * @param profile the profile to get associated pseudo-functions
@@ -126,5 +126,5 @@ public class PseudoFactory {
 	}
 	return null;
     }
-    
+
 }

@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValue;
  * Created: Aug 31, 2005 2:04:23 PM<br />
  */
 public class CssBackgroundColorCSS21 extends CssBackgroundColorCSS2 {
-    
+
     /**
      * Create a new CssBackgroundColorCSS2
      */
@@ -32,7 +32,7 @@ public class CssBackgroundColorCSS21 extends CssBackgroundColorCSS2 {
      */
     public CssBackgroundColorCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -60,7 +60,7 @@ public class CssBackgroundColorCSS21 extends CssBackgroundColorCSS2 {
 	}
     }
 
-    public CssBackgroundColorCSS21(ApplContext ac, CssExpression expression) 
+    public CssBackgroundColorCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }

@@ -26,8 +26,8 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:interactive
  *  <P>
- *  The purpose of this property is to determine what happens to an element 
- *  when the user focusses it specifically by clicking on it with a pointing 
+ *  The purpose of this property is to determine what happens to an element
+ *  when the user focusses it specifically by clicking on it with a pointing
  *  device.
  */
 
@@ -104,7 +104,7 @@ public class CssUserFocusKey extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -140,7 +140,7 @@ public class CssUserFocusKey extends CssProperty {
 	return (property instanceof CssUserFocusKey &&
 		userfocuskey.equals(((CssUserFocusKey) property).userfocuskey));
     }
-    
+
     /**
      * Returns the name of this property
      */

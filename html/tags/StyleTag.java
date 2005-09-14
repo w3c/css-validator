@@ -17,8 +17,8 @@ import html.tree.*;
 import html.parser.*;
 
 /**
- * This class handles the <STYLE> tag in the Html Tree built by 
- * the Html parser. It transfers control to the StyleSheet which 
+ * This class handles the <STYLE> tag in the Html Tree built by
+ * the Html parser. It transfers control to the StyleSheet which
  * will parse the text contained here.
  *
  * @author Vincent Mallet (Vincent.Mallet@sophia.inria.fr)
@@ -27,24 +27,24 @@ import html.parser.*;
  */
 
 public class StyleTag extends Block {
-    
+
     public static final boolean debug =  false;
-    
+
     String media = null;
     String title = null;
     String type = null;
-    
+
     /**
      * Create a new StyleTag.
      */
-    
+
     public StyleTag() {
 	if (debug)
 	    System.out.println( "creating StyleTag   this=" +(Object)this);
     }
-    
-    
-    public void initialize(Element elem, Attributes atts, 
+
+
+    public void initialize(Element elem, Attributes atts,
 			   ParserFrame parserFrame) {
 	super.initialize(elem, atts, parserFrame);
 	//    System.err.println("style tag line=" + line);
@@ -54,29 +54,29 @@ public class StyleTag extends Block {
 	    type  = atts.get("type");
 	}
     }
-    
-    
+
+
     /**
      * This method is called just after the attachment of a child to the tree
      * has been done.
      * @param htmlChild the child that has just been attached to the tree.
      */
-    
+
     //    public void attachHook(HtmlTree htmlChild) {
-    
+
     public void attach(Tree child, int rank) {
 	super.attach(child, rank);
-	
+
 	HtmlTree   htmlChild = (HtmlTree) child;
-	
+
 	if (debug) {
-	    System.out.println( "StyleTag::attach()   child=" 
-				+ (Object)htmlChild + "  (" 
+	    System.out.println( "StyleTag::attach()   child="
+				+ (Object)htmlChild + "  ("
 				+ htmlChild.getElement().toString() + ")");
 	}
-	
+
 	String text = getChildText(htmlChild);
-	
+
 	if (text != null) {
 	    if ((type == null) || type.equalsIgnoreCase("text/css")) {
 		if (media == null) {
@@ -85,12 +85,12 @@ public class StyleTag extends Block {
 		parserFrame.styleSheetParser
 		    .parseStyleElement(parserFrame.ac,
 				     new ByteArrayInputStream(text.getBytes()),
-				       title, media, 
+				       title, media,
 				       parserFrame.getURI(), line);
 	    }
 	}
     }
-    
+
     /**
      * Helper function. Retrieves the text stored in the new child element.
      * @param htmlChild the child containing the text
@@ -98,10 +98,10 @@ public class StyleTag extends Block {
      */
     protected String getChildText(HtmlTree htmlChild) {
 	Attributes atts = htmlChild.getAttributes();
-	
+
 	if (atts == null)     //@@ I dont think this should ever happen...
 	    return null;
-	
+
 	return atts.get("text");
     }
 }

@@ -25,7 +25,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:all
  *  <P>
- *  This property determines what the UA will do with a link element or a collapsed 
+ *  This property determines what the UA will do with a link element or a collapsed
  *  element (see 'collapse').
  */
 
@@ -76,7 +76,7 @@ public class CssLinkBehavior extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -112,7 +112,7 @@ public class CssLinkBehavior extends CssProperty {
 	return (property instanceof CssLinkBehavior &&
 		behavior.equals(((CssLinkBehavior) property).behavior));
     }
-    
+
     /**
      * Returns the name of this property
      */

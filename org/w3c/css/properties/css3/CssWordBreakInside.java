@@ -25,23 +25,23 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property controls the hyphenation behavior inside of words. 
+ *  This property controls the hyphenation behavior inside of words.
  */
 
 public class CssWordBreakInside extends CssProperty {
-    
+
     CssValue wordbreak;
 
     CssIdent normal = new CssIdent("normal");
     CssIdent hyphenate = new CssIdent("hyphenate");
-    
+
     /**
      * Create a new CssWordBreakInside
      */
     public CssWordBreakInside() {
 	wordbreak = normal;
     }
-    
+
     /**
      * Create a new CssWordBreakInside
      *
@@ -50,7 +50,7 @@ public class CssWordBreakInside extends CssProperty {
      */
     public CssWordBreakInside(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -59,7 +59,7 @@ public class CssWordBreakInside extends CssProperty {
 	    expression.next();
 	}
 	else if (val.equals(hyphenate)) {
-	    wordbreak = hyphenate;	
+	    wordbreak = hyphenate;
     	    expression.next();
 	}
 	else if (val.equals(inherit)) {
@@ -76,7 +76,7 @@ public class CssWordBreakInside extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -112,7 +112,7 @@ public class CssWordBreakInside extends CssProperty {
 	return (property instanceof CssWordBreakInside &&
 		wordbreak.equals(((CssWordBreakInside) property).wordbreak));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -150,4 +150,4 @@ public class CssWordBreakInside extends CssProperty {
     }
 
 }
-	    
+

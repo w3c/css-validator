@@ -16,16 +16,16 @@ import org.w3c.css.values.CssExpression;
  * @version $Revision$
  */
 public class CssBorderLeftStyleCSS1 extends CssProperty {
-    
+
     CssBorderFaceStyleCSS1 face;
-    
+
     /**
      * Create a new CssBorderLeftStyleCSS1
      */
     public CssBorderLeftStyleCSS1() {
 	face = new CssBorderFaceStyleCSS1();
     }
-    
+
     /**
      * Create a new CssBorderLeftStyleCSS1 with an another CssBorderFaceStyleCSS1
      *
@@ -33,10 +33,10 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
      */
     public CssBorderLeftStyleCSS1(CssBorderFaceStyleCSS1 another) {
 	setByUser();
-	
+
 	face = another;
     }
-    
+
     /**
      * Create a new CssBorderLeftStyleCSS1
      *
@@ -45,27 +45,27 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
      */
     public CssBorderLeftStyleCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	face = new CssBorderFaceStyleCSS1(ac, expression);
     }
-    
+
     public CssBorderLeftStyleCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return face;
     }
-    
+
     /**
      * Returns the value
      */
@@ -75,7 +75,7 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
 	}
 	return null;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -85,14 +85,14 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
 	}
 	return "";
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-left-style";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -104,13 +104,13 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	left.style = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderLeftStyleCSS1();
@@ -118,14 +118,14 @@ public class CssBorderLeftStyleCSS1 extends CssProperty {
 	    return ((Css1Style) style).cssBorderCSS1.getLeft().style;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBorderLeftStyleCSS1 && face.equals(((CssBorderLeftStyleCSS1) property).face));
     }
-    
+
 }

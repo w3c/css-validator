@@ -16,9 +16,9 @@ public class PseudoFunctionNthLastOfType extends PseudoFunctionSelector {
 	setName(name);
 	setParam(n);
     }
-    
+
     public PseudoFunctionNthLastOfType(String name, String value) {
 	this(name, new Integer(value));
     }
-    
+
 }

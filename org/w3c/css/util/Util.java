@@ -10,7 +10,7 @@
  *
  * @(#)Util.java                    0.2-2 23/03/1997
  *
- *  This file is part of the HTTPClient package 
+ *  This file is part of the HTTPClient package
  *  Copyright (C) 1996,1997  Ronald Tschalaer
  *
  *  This library is free software; you can redistribute it and/or
@@ -47,22 +47,22 @@ package org.w3c.css.util;
 
 public final class Util {
     // Constructors
-    
+
     /**
      * This class isn't meant to be instantiated.
      */
     private Util() {}
-    
-    
+
+
     // Methods
-    
+
     public final static NVPair[] resizeArray(NVPair[] src, int new_size) {
     NVPair tmp[] = new NVPair[new_size];
     System.arraycopy(src, 0, tmp, 0,
              (src.length < new_size ? src.length : new_size));
     return (NVPair[]) tmp;
     }
-    
+
     /**
      * Creates an array of distances to speed up the search in findStr().
      * The returned array should be passed as the second argument to
@@ -76,7 +76,7 @@ public final class Util {
     public final static int[] compile_search(byte[] search) {
     int[] cmp = {0, 1, 0, 1, 0, 1};
     int   end;
-    
+
     for (int idx=0; idx<search.length; idx++) {
         for (end=idx+1; end<search.length; end++) {
         if (search[idx] == search[end])  break;
@@ -102,13 +102,13 @@ public final class Util {
         }
         }
     }
-    
+
     cmp[1] += cmp[0];
     cmp[3] += cmp[2];
     cmp[5] += cmp[4];
     return cmp;
     }
-    
+
     /**
      * Search for a string. Use compile_search() to first generate the second
      * argument.
@@ -133,15 +133,15 @@ public final class Util {
         c3f  = cmp[4],
         c3l  = cmp[5],
         d3   = c3l - c3f;
-    
-                 Find: 
+
+                 Find:
     while (beg+search.length <= end) {
         if (search[c1l] == str[beg+c1l]) {
         Comp:
         if (search[c1f] == str[beg+c1f]) {
             for (int idx=0; idx<search.length; idx++)
             if (search[idx] != str[beg+idx])  break Comp;
-            
+
             break Find;     // we found it
         }
         beg += d1;
@@ -153,36 +153,36 @@ public final class Util {
         else
         beg++;
     }
-    
+
     if (beg+search.length > end)
         return -1;
     else
         return beg;
     }
-    
+
     // ADD 09/15/97
-    
+
     public final static boolean isSpace(char c) {
     return c == ' ';
     }
-    
+
     /**
      * Print a message on System.err only if the user wants debug trace.
-     */  
+     */
     public static final void verbose(String s) {
     if (onDebug) {
         System.err.println( s );
     }
     }
-    
+
     /**
      * Suppressed all white spaces in the beginning of the string
-     */  
+     */
     public static final String suppressWhiteSpace(String s) {
     if (s != null) {
         int len = s.length();
         int i = 0;
-        while ((i < len) && 
+        while ((i < len) &&
            (isWhiteSpace(s.charAt(i)))) {
         i++;
         }
@@ -195,12 +195,12 @@ public final class Util {
         return null;
     }
     }
-    
+
     /**
      * Suppress all white spaces
      *
      * @param s the string.
-     */  
+     */
     public final static String strip(String s) {
     int index = 0;
     char[] olds = s.toCharArray();
@@ -212,19 +212,19 @@ public final class Util {
     }
     return new String(news, 0, index);
     }
-    
+
     /**
      * Returns <code>true</code> if the character is not a white space
      *
      * @param c the character
-     */  
+     */
     public final static boolean isWhiteSpace(char c) {
     return c == ' ' || c == '\n' || c == '\r' || c == '\t';
     }
-    
+
     /**
      * Display a float without .0 if necessary
-     */    
+     */
     public final static String displayFloat(Float value) {
     int intValue = value.intValue();
     float floatValue = value.floatValue();
@@ -237,7 +237,7 @@ public final class Util {
 
     /**
      * Display a float without .0 if necessary
-     */    
+     */
     public final static String displayFloat(float value) {
     int intValue = (int) value;
     if (((float) intValue) == value) {
@@ -250,7 +250,7 @@ public final class Util {
     /**
      * Replaces characters that may be confused by a HTML
      * parser with their equivalent character entity references
-     * to prevent inserted code to be executed while displaying 
+     * to prevent inserted code to be executed while displaying
      * the validation results in HTML format.
      * <p>
      * This method will replace HTML characters such as &gt; with their
@@ -353,14 +353,14 @@ public final class Util {
 
     /**
      * <code>true</code> if the validator runs in a servlet (security pbs)
-     */  
+     */
     public static boolean servlet;
-    
+
     /**
      * <code>true</code> if the validator can import URL.
-     */  
+     */
     public static boolean importSecurity;
-    
+
     /**
      * <code>true</code> if the validator doesn't need errors
      */
@@ -371,12 +371,12 @@ public final class Util {
      * @@BUG in thread 'coz this a static variable ... :-]
      */
     public static boolean fromHTMLFile;
-    
+
     /**
      * <code>true</code> if the user wants debug traces.
      *
      * @see #verbose
-     */  
+     */
     public static boolean onDebug = Boolean.getBoolean("CSS.debug");
     //    public static boolean onDebug = false;
 }

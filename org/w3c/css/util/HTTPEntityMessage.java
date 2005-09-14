@@ -20,7 +20,7 @@
 package org.w3c.css.util;
 
 public class HTTPEntityMessage extends HTTPMessage {
-    
+
     // HTTP Entity message well-known headers
     public static int H_ALLOW               = 19;
     public static int H_CONTENT_LENGTH      = 20;
@@ -34,7 +34,7 @@ public class HTTPEntityMessage extends HTTPMessage {
     public static int H_ETAG                = 28;
     public static int H_EXPIRES             = 29;
     public static int H_LAST_MODIFIED       = 30;
-    
+
     static {
 	registerHeader(H_ALLOW,
 		       "Allow");

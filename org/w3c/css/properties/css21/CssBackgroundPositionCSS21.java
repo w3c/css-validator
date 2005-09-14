@@ -25,30 +25,30 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
      */
     public CssBackgroundPositionCSS21() {
 	super();
-    }  
-    
+    }
+
     /**
      * Creates a new CssBackgroundPositionCSS2
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBackgroundPositionCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	char op  = expression.getOperator();
-	
+
 	if (op != SPACE)
-	    throw new  InvalidParamException("operator", 
+	    throw new  InvalidParamException("operator",
 					     ((new Character(op)).toString()),
 					     ac);
-	
+
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -58,16 +58,16 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 	    expression.next();
 	    return;
 	}
-		
-	CssValue next = expression.getNextValue();	
 
-	if(val instanceof CssIdent) {	    
+	CssValue next = expression.getNextValue();
+
+	if(val instanceof CssIdent) {
 	    int index1 = IndexOfIdent((String) val.get());
 	    if(index1 == -1) {
 		throw new InvalidParamException("value", val, "background-position", ac);
 	    }
 	    // two keywords
-	    if(next instanceof CssIdent) {		
+	    if(next instanceof CssIdent) {
 		int index2 = IndexOfIdent((String) next.get());
 		if(index2 == -1 && check) {
 		    throw new InvalidParamException("value", next, "background-position", ac);
@@ -77,10 +77,10 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 		if((isHorizontal(index1) && isVertical(index2)) ||
 			(isHorizontal(index2) && isVertical(index1))) {
 		    setFirst(val);
-		    setSecond(next);		    
+		    setSecond(next);
 		}
 		// both are horizontal or vertical but not 'center'
-		else if(check){		    
+		else if(check){
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
 		}
@@ -98,8 +98,8 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 		    setFirst(val);
 		    setSecond(next);
 		}
-		// if the keyword is the first value, it can only be an 
-		// horizontal one 
+		// if the keyword is the first value, it can only be an
+		// horizontal one
 		else {
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
@@ -110,8 +110,8 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 		setFirst(val);
 	    }
 	    // the second value is invalid
-	    else if(check) {		
-		throw new InvalidParamException("value", next, 
+	    else if(check) {
+		throw new InvalidParamException("value", next,
 			getPropertyName(), ac);
 	    }
 	    else {
@@ -158,22 +158,22 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 	    }
 	}
 	else if(check){
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	// we only move the cursor if we found valid values
-	if(getFirst() != null) {	    
-	    expression.next();	    
+	if(getFirst() != null) {
+	    expression.next();
 	}
-	if(getSecond() != null) {	    
-	    expression.next();	    
-	}	
+	if(getSecond() != null) {
+	    expression.next();
+	}
     }
-    
-    public CssBackgroundPositionCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssBackgroundPositionCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
 }

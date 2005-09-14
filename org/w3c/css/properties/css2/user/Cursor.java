@@ -55,8 +55,8 @@ public class Cursor extends CssProperty
      * @exception InvalidParamException Values are incorrect
      */
     public Cursor(ApplContext ac, CssExpression expression, boolean check)
-	throws InvalidParamException {		
-	
+	throws InvalidParamException {
+
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
 
@@ -109,7 +109,7 @@ public class Cursor extends CssProperty
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

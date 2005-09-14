@@ -1,5 +1,5 @@
 /*
- * @(#)TagStack.java	1.3 95/05/01  
+ * @(#)TagStack.java	1.3 95/05/01
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -118,8 +118,8 @@ class TagStack implements DTDConstants {
      * Convert to a string.
      */
     public String toString() {
-	return (next == null) ? 
-	    "<" + tag.getElement().getName() + ">" : 
+	return (next == null) ?
+	    "<" + tag.getElement().getName() + ">" :
 	    next + " <" + tag.getElement().getName() + ">";
     }
 }

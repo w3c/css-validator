@@ -23,7 +23,7 @@ public class CssBorderRadius extends CssProperty {
 
     String value;
     ApplContext ac;
-    
+
     /**
      * Create new CssBorderRadius
      */
@@ -31,7 +31,7 @@ public class CssBorderRadius extends CssProperty {
 	CssNumber cssnum =  new CssNumber((float) 1.0);
 	value = cssnum.toString();
     }
-    
+
     /**
      * Create new CssBorderRadius
      *
@@ -42,14 +42,14 @@ public class CssBorderRadius extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssLength) {
 	    value = val.toString();
 	    expression.next();
-	    
+
 	    val = expression.getValue();
 	    if (val != null) {
-		
+
 		if (val instanceof CssLength) {
 		    value += " " + val.toString();
 		    expression.next();
@@ -64,12 +64,12 @@ public class CssBorderRadius extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBorderRadius(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
-    }    
-    
+    }
+
     /**
      * Add this property to the CssStyle.
      *
@@ -80,7 +80,7 @@ public class CssBorderRadius extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderRadius = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -94,7 +94,7 @@ public class CssBorderRadius extends CssProperty {
 	    return ((Css3Style) style).cssBorderRadius;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -104,35 +104,35 @@ public class CssBorderRadius extends CssProperty {
 	return (property instanceof CssBorderRadius &&
 		value.equals( ((CssBorderRadius) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-radius";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>

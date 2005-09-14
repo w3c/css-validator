@@ -47,24 +47,24 @@ public class InvalidHTTPAccesException extends InvalidAccesException {
 	this.message = message;
 	this.informations = informations;
     }
-    
+
     /**
      * Creates a new InvalidHTTPAccesException
      */
 	public InvalidHTTPAccesException(int status, String uri, String message) {
-	this(status, uri, message, null);	
+	this(status, uri, message, null);
     }
-    
+
     /**
 	 * Returns the HTTP reason of the failure NOT_FOUND, UNAUTHORIZED, ...
-     */    
+     */
     public int getHTTPReason() {
 	return status;
     }
 
     /**
      * Get the requested URI
-     */    
+     */
     public String getURI() {
 	return uri;
     }
@@ -72,7 +72,7 @@ public class InvalidHTTPAccesException extends InvalidAccesException {
     /**
 	 * Get the error message The message can come from the server or from the
 	 * application.
-     */    
+     */
     public String getMessage() {
 	return message;
     }
@@ -82,7 +82,7 @@ public class InvalidHTTPAccesException extends InvalidAccesException {
 	 * if you want to reply to the client For example, if the HTTP reason is
 	 * UNAUTHORIZED, it will contain the header WWW-Authenticate and
 	 * Authentication-Info.
-     */    
+     */
 	public Utf8Properties getInformations() {
 	return informations;
     }

@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeSubstr extends AttributeSelector {
 
 private String value;
-    
+
     public AttributeSubstr(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -38,14 +38,14 @@ private String value;
     public boolean canApply(Selector other) {
 	return true;
     }
-    
+
     public String toString() {
 	return "[" + getName() + "*=\"" + value + "\"]";
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
 	// TODO Auto-generated method stub
-	
+
     }
 
 }

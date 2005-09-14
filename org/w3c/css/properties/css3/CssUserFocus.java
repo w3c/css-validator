@@ -26,12 +26,12 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:interactive
  *  <P>
- *  The purpose of this property is to determine what happens to an element 
- *  when the user focusses it either by "tabbing" into it or clicking on it 
- *  with a pointing device. This property serves as both a shortcut property 
- *  that sets the values of the individual user-focus-key and 
+ *  The purpose of this property is to determine what happens to an element
+ *  when the user focusses it either by "tabbing" into it or clicking on it
+ *  with a pointing device. This property serves as both a shortcut property
+ *  that sets the values of the individual user-focus-key and
  *  user-focus-pointer properties, and also serves to determine what
- *  happens for any other input methods not covered by user-focus-key 
+ *  happens for any other input methods not covered by user-focus-key
  *  and user-focus-pointer.
  */
 
@@ -108,7 +108,7 @@ public class CssUserFocus extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -144,7 +144,7 @@ public class CssUserFocus extends CssProperty {
 	return (property instanceof CssUserFocus &&
 		userfocus.equals(((CssUserFocus) property).userfocus));
     }
-    
+
     /**
      * Returns the name of this property
      */

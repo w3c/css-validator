@@ -18,16 +18,16 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderFaceWidthCSS2 {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new CssBorderFaceWidthCSS2
      */
     public CssBorderFaceWidthCSS2() {
 	value = medium;
     }
-    
+
     /**
      * Create a new CssBorderFaceWidthCSS2 from an another CssBorderFaceWidthCSS2
      *
@@ -36,7 +36,7 @@ public class CssBorderFaceWidthCSS2 {
     public CssBorderFaceWidthCSS2(CssBorderFaceWidthCSS2 another) {
 	value = another.value;
     }
-    
+
     /**
      * Create a new CssBorderFaceWidth
      *
@@ -45,16 +45,16 @@ public class CssBorderFaceWidthCSS2 {
      */
     public CssBorderFaceWidthCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssLength) {
 	    float f = ((Float) val.get()).floatValue();
-	    if (f >= 0) 
+	    if (f >= 0)
 		this.value = val;
 	    else
 		throw new InvalidParamException("negative-value", val.toString(), ac);
@@ -71,45 +71,45 @@ public class CssBorderFaceWidthCSS2 {
 	} else {
 	    throw new InvalidParamException("value", val.toString(), "width", ac);
 	}
-	
+
 	expression.next();
-    }  
-    
-    public CssBorderFaceWidthCSS2(ApplContext ac, CssExpression expression) 
+    }
+
+    public CssBorderFaceWidthCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal value
-     */  
+     */
     public CssValue getValue() {
 	return value;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	if(value != null) {
 	    return value.toString();
 	}
 	return "";
     }
-    
+
     /**
      * Compares two sides for equality.
      *
      * @param value The another side.
-     */  
+     */
     public boolean equals(CssBorderFaceWidthCSS2 another) {
 	return value.equals(another.value); // FIXME
     }
-    
+
     private static CssIdent thin = new CssIdent("thin");
     private static CssIdent medium = new CssIdent("medium");
     private static CssIdent thick = new CssIdent("thick");
-    
+
 }
 
 

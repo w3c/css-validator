@@ -37,13 +37,13 @@ public class MediaMinColor extends CssProperty {
     public MediaMinColor(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssNumber) {
 		if (((CssNumber) val).isInteger()) {
@@ -56,16 +56,16 @@ public class MediaMinColor extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
-    
+
     public MediaMinColor(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

@@ -36,7 +36,7 @@ import org.w3c.css.util.Warnings;
 /**
  * @version $Revision$
  */
-public final class StyleReportSOAP12 extends StyleReport 
+public final class StyleReportSOAP12 extends StyleReport
     implements CssPrinterStyle {
 
     StyleSheet style;
@@ -48,7 +48,7 @@ public final class StyleReportSOAP12 extends StyleReport
     Errors errors;
 
     ApplContext ac;
-    
+
     private CssSelectors selector;
 
     private CssProperty property;
@@ -56,7 +56,7 @@ public final class StyleReportSOAP12 extends StyleReport
     private PrintWriter out;
 
     private int warningLevel;
-    
+
     private Utf8Properties general;
 
     private static Utf8Properties availableFormat;
@@ -99,7 +99,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	items =  style.newGetRules();
 
 	this.warningLevel = warningLevel;
-	
+
 	general.put("cssversion", ac.getCssVersion());
 	general.put("errors-count", Integer.toString(errors.getErrorCount()));
 	general.put("warnings-count", Integer.toString(warnings
@@ -107,7 +107,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	general.put("rules-count", Integer.toString(items.size()));
 	general.put("isvalid", (errors.getErrorCount() == 0) ? "true"
 		    : "false");
-	
+
 	if (ac.getContentEncoding() != null) {
 	    general.put("encoding", " encoding=\"" + ac.getContentEncoding()
 			+ "\" ");
@@ -134,10 +134,10 @@ public final class StyleReportSOAP12 extends StyleReport
 	} else {
 	    general.put("no-rules", ""); // remove no-rules
 	}
-	
+
 	if (errors.getErrorCount() != 0 || warnings.getWarningCount() != 0) {
 	    // remove no-error-or-warning
-	    general.put("no-error-or-warning", ""); 
+	    general.put("no-error-or-warning", "");
 	}
 
 	if (Util.onDebug)
@@ -151,7 +151,7 @@ public final class StyleReportSOAP12 extends StyleReport
 						    DateFormat.FULL, new Locale(ac.getLang()
 										.substring(0, 2), "US"));
 	    } catch (Exception e) {
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL, 
+		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
 						    DateFormat.FULL, Locale.US);
 	    }
 	}
@@ -165,12 +165,12 @@ public final class StyleReportSOAP12 extends StyleReport
 	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	general.put("currentdate", formatter.format(new Date()));
     }
-    
+
     public void desactivateError() {
 	general.put("go-errors", ""); // remove go-errors
 	general.put("errors", ""); // remove errors
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -182,26 +182,26 @@ public final class StyleReportSOAP12 extends StyleReport
 	} else {
 	    out.println(ac.getMsg().getGeneratorString("request"));
 	}
-	
+
 	out.flush();
     }
-    
+
     // prints the stylesheet at the screen
     public void produceStyleSheet() {
 
     }
-    
+
     public void print(CssProperty property) {
 	Utf8Properties prop = new Utf8Properties(general);
 	prop.put("property-name", property.getPropertyName().toString());
 	prop.put("property-value", property.toString());
-	
+
 	if (!property.getImportant()) {
 	    prop.put("important-style", "");
 	}
 	out.print(processStyle(prop.getProperty("declaration"), prop));
     }
-    
+
     public void produceParseException(CssParseException error) {
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
@@ -266,7 +266,7 @@ public final class StyleReportSOAP12 extends StyleReport
 
     /**
      * Produce SOAP elements for all the errors found
-     *  in the StyleSheet <i>style</i>	 
+     *  in the StyleSheet <i>style</i>
      */
     public void produceError() {
 	String oldSourceFile = null;
@@ -284,16 +284,17 @@ public final class StyleReportSOAP12 extends StyleReport
 			    out.print("          </m:errorlist>\n");
 			}
 			out.print("          <m:errorlist>\n");
+			out.print("            <m:uri>" + file + "</m:uri>\n");
 			open = true;
 		    }
 		    out.print("            <m:error>\n              <m:line>");
 		    out.print(error[i].getLine());
-		    out.print("</m:line>\n              <m:errortype>");						
+		    out.print("</m:line>\n              <m:errortype>");
 		    if (ex instanceof FileNotFoundException) {
 			out.print("not-found");
 			out.print("</m:errortype>\n              <m:message>");
 			out.print(ex.getMessage());
-			out.print("</m:message>\n");			
+			out.print("</m:message>\n");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex);
 		    } else if (ex instanceof InvalidParamException) {
@@ -339,10 +340,10 @@ public final class StyleReportSOAP12 extends StyleReport
 	    out.print("</m:processingerror>\n");
 	}
     }
-    
+
     /**
      * Produce SOAP elements for all the warnings found
-     *  in the StyleSheet <i>style</i>	 
+     *  in the StyleSheet <i>style</i>
      */
     public void produceWarning() {
 	boolean open = false;
@@ -354,7 +355,7 @@ public final class StyleReportSOAP12 extends StyleReport
 		int i = 0;
 		warnings.sort();
 		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
-		    
+
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
@@ -363,16 +364,17 @@ public final class StyleReportSOAP12 extends StyleReport
 			    }
 			    oldSourceFile = warn.getSourceFile();
 			    out.print("          <m:warninglist>\n");
+			    out.print("            <m:uri>" + oldSourceFile + "</m:uri>\n");
 			    open = true;
 			}
-			if (warn.getLine() != oldLine
-			    || !warn.getWarningMessage().equals(oldMessage)) {
+//			if (warn.getLine() != oldLine
+//			    || !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 			    out.print("            <m:warning>\n              <m:line>");
 			    out.print(oldLine);
 			    out.print("</m:line>\n");
-			    
+
 			    //    if (warn.getLevel() != 0) {
 			    //	ret.append(" Level : ");
 			    //	ret.append(warn.getLevel());
@@ -389,7 +391,7 @@ public final class StyleReportSOAP12 extends StyleReport
 				out.print("</m:context>\n");
 			    }
 			    out.print("            </m:warning>\n");
-			}
+//			}
 		    }
 		}
 		out.print("          </m:warninglist>");
@@ -401,7 +403,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	    out.print("</m:processingerror>\n");
 	}
     }
-    
+
     /*
      * Replace all occurences of <, >, &, ' and " in a String with
      *  their html values: &lt;, &gt;, &amp;, &aps; and &quot;
@@ -411,8 +413,8 @@ public final class StyleReportSOAP12 extends StyleReport
     private String queryReplace(String s) {
 	if (s != null) {
 	    int len = s.length();
-	    StringBuffer ret = new StringBuffer(len);	    
-	    
+	    StringBuffer ret = new StringBuffer(len);
+
 	    for (int i = 0; i < len; i++) {
 		char c = s.charAt(i);
 		if (c == '<') {
@@ -434,11 +436,11 @@ public final class StyleReportSOAP12 extends StyleReport
 	    return "[empty string]";
 	}
     }
-    
+
     private final String processSimple(String s) {
 	return processStyle(general.getProperty(s), general);
     }
-    
+
     private String processStyle(String str, Utf8Properties prop) {
 	try {
 	    int i = 0;
@@ -491,7 +493,7 @@ public final class StyleReportSOAP12 extends StyleReport
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
-		    if (style.getType().equals("text/html")) { 
+		    if (style.getType().equals("text/html")) {
 			out.println(ac.getMsg().getGeneratorString("doc-html",
 								   general.get("file-title").toString()));
 		    } else {
@@ -507,14 +509,14 @@ public final class StyleReportSOAP12 extends StyleReport
 		    }
 		}
 	    }
-	    
+
 	    return str;
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    return str;
 	}
     }
-    
+
     /**
      * List the available output formats on a PrintWriter
      * @param out the PrintWriter used to write the listing
@@ -529,7 +531,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	}
 	out.flush();
     }
-    
+
     private Utf8Properties setDocumentBase(String document) {
 	Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
@@ -553,14 +555,14 @@ public final class StyleReportSOAP12 extends StyleReport
 
 	return new Utf8Properties(properties);
     }
-    
-    private final static String getDocumentName(ApplContext ac, 
+
+    private final static String getDocumentName(ApplContext ac,
 						String documentName) {
 	documentName = documentName.toLowerCase();
 	String document = null;
 	if (ac != null && ac.getLang() != null) {
 	    StringTokenizer tokens = new StringTokenizer(ac.getLang(), ",");
-	    
+
 	    while (tokens.hasMoreTokens()) {
 		String l = tokens.nextToken().trim().toLowerCase();
 		document = availableFormat.getProperty(documentName + "." + l);
@@ -576,7 +578,7 @@ public final class StyleReportSOAP12 extends StyleReport
 		}
 		if (document != null) {
 		    break;
-		}		
+		}
 	    }
 	}
 	if (document == null) {
@@ -590,11 +592,11 @@ public final class StyleReportSOAP12 extends StyleReport
 	    return document;
 	}
     }
-    
+
     private final static String getURLProperty(String name) {
 	return availablePropertiesURL.getProperty(name);
     }
-    
+
     static {
 	URL url;
 	// the different available output formats

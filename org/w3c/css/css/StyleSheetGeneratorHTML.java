@@ -47,7 +47,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
     Errors errors;
 
     ApplContext ac;
-    
+
     private CssSelectors selector;
 
     private CssProperty property;
@@ -55,7 +55,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
     private PrintWriter out;
 
     private int warningLevel;
-    
+
 	private Utf8Properties general;
 
 	private static Utf8Properties availableFormat;
@@ -63,7 +63,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	private static Utf8Properties availablePropertiesURL;
 
     private static Hashtable formats = new Hashtable();
-    
+
     /**
      * Create a new StyleSheetGenerator
      *
@@ -86,12 +86,12 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	errors = style.getErrors();
 	items = (SortedHashtable) style.getRules();
 	this.warningLevel = warningLevel;
-	
+
 		general.put("errors-count", Integer.toString(errors.getErrorCount()));
 		general.put("warnings-count", Integer.toString(warnings
 				.getWarningCount()));
 		general.put("rules-count", Integer.toString(items.size()));
-	
+
 	if (errors.getErrorCount() == 0) {
 	    desactivateError();
 	}
@@ -110,10 +110,10 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	} else {
 	    general.put("no-rules", ""); // remove no-rules
 	}
-	
+
 	if (errors.getErrorCount() != 0 || warnings.getWarningCount() != 0) {
 	    // remove no-error-or-warning
-	    general.put("no-error-or-warning", ""); 
+	    general.put("no-error-or-warning", "");
 	}
 
 		if (Util.onDebug)
@@ -127,7 +127,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 						DateFormat.FULL, new Locale(ac.getLang()
 								.substring(0, 2), "US"));
 	    } catch (Exception e) {
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL, 
+		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
 						DateFormat.FULL, Locale.US);
 	    }
 	}
@@ -137,12 +137,12 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    general.put("today", new Date().toString());
 	}
     }
-    
+
     public void desactivateError() {
 	general.put("go-errors", ""); // remove go-errors
 	general.put("errors", ""); // remove errors
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -154,10 +154,10 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	} else {
 	    out.println(ac.getMsg().getGeneratorString("request"));
 	}
-	
+
 	out.flush();
     }
-    
+
     public void produceRule() {
 	Object[] array = items.getSortedArray();
 	for (int i = 0; i < array.length; i++) {
@@ -167,26 +167,26 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    }
 	}
     }
-    
+
     public void produceSelector(CssSelectors selectorLocal) {
 	out.print(selectorLocal);
     }
-    
+
     public void produceDeclaration() {
 	selector.getStyle().print(this);
-    }  
-    
+    }
+
     public void print(CssProperty property) {
 		Utf8Properties prop = new Utf8Properties(general);
 	prop.put("property-name", property.getPropertyName().toString());
 	prop.put("property-value", property.toString());
-	
+
 	if (!property.getImportant()) {
 	    prop.put("important-style", "");
 	}
 	out.print(processStyle(prop.getProperty("declaration"), prop));
     }
-    
+
 	public void produceParseException(CssParseException error, StringBuffer ret) {
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
@@ -236,7 +236,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		ret.append(queryReplace(error.getExp().toStringFromStart()));
 		ret.append("<STRONG>");
 		ret.append(queryReplace(error.getExp().toString()));
-		ret.append("</STRONG>\n");		
+		ret.append("</STRONG>\n");
 	    }
 	} else {
 	    ret.append("\n<DD>");
@@ -245,7 +245,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    ret.append(queryReplace(error.getSkippedString()));
 	    ret.append("</STRONG>\n");
 	}
-	
+
     }
 
     public void produceError() {
@@ -278,7 +278,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
 			ret.append("<STRONG>");
 			ret.append(ex.getMessage());
-			ret.append("</STRONG>\n");			
+			ret.append("</STRONG>\n");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
@@ -295,12 +295,12 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append("\n<DD>").append("   ");
 			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');			
+			ret.append(terror.getSkippedString()).append('\n');
 		    } else {
 			ret.append("\n<DD>");
 			ret.append("<STRONG>Uncaught error</STRONG>");
 			ret.append(ex).append('\n');
-			
+
 			if (ex instanceof NullPointerException) {
 			    // ohoh, a bug
 			    ex.printStackTrace();
@@ -316,7 +316,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-    
+
     public void produceWarning() {
 
 	StringBuffer ret = new StringBuffer(1024);
@@ -329,7 +329,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		warnings.sort();
 		ret.append("\n<UL>");
 				for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
-		    
+
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
@@ -348,14 +348,14 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 			    oldMessage = warn.getWarningMessage();
 			    ret.append("\n<DD><STRONG> Line : ");
 			    ret.append(oldLine);
-			    
+
 			    if (warn.getLevel() != 0) {
 				ret.append(" Level : ");
 				ret.append(warn.getLevel());
 			    }
 			    ret.append(" </STRONG> ");
 			    ret.append(oldMessage);
-			    
+
 			    if (warn.getContext() != null) {
 				ret.append(" : ").append(warn.getContext());
 			    }
@@ -370,12 +370,12 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-    
+
     private String queryReplace(String s) {
 	if (s != null) {
 	    int len = s.length();
-	    StringBuffer ret = new StringBuffer(len);	    
-	    
+	    StringBuffer ret = new StringBuffer(len);
+
 	    for (int i = 0; i < len; i++) {
 		char c = s.charAt(i);
 		if (c == '<') {
@@ -391,11 +391,11 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    return "[empty string]";
 	}
     }
-    
+
     private final String processSimple(String s) {
 	return processStyle(general.getProperty(s), general);
     }
-    
+
 	private String processStyle(String str, Utf8Properties prop) {
 	try {
 	    int i = 0;
@@ -448,7 +448,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		    out.print(str.substring(0, i));
 					str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
-		    if (style.getType().equals("text/html")) { 
+		    if (style.getType().equals("text/html")) {
 			out.println(ac.getMsg().getGeneratorString("doc-html",
                                     general.get("file-title").toString()));
 		    } else {
@@ -464,14 +464,14 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		    }
 		}
 	    }
-	    
+
 	    return str;
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    return str;
 	}
     }
-    
+
     public final static void printAvailableFormat(PrintWriter out) {
 	Enumeration e = availableFormat.propertyNames();
 		out.println(" -- listing available output format --");
@@ -482,7 +482,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	}
 	out.flush();
     }
-    
+
 	private Utf8Properties setDocumentBase(String document) {
 		Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
@@ -506,14 +506,14 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 
 		return new Utf8Properties(properties);
     }
-    
-    private final static String getDocumentName(ApplContext ac, 
+
+    private final static String getDocumentName(ApplContext ac,
 						String documentName) {
 	documentName = documentName.toLowerCase();
 	String document = null;
 	if (ac != null && ac.getLang() != null) {
 	    StringTokenizer tokens = new StringTokenizer(ac.getLang(), ",");
-	    
+
 	    while (tokens.hasMoreTokens()) {
 		String l = tokens.nextToken().trim().toLowerCase();
 		document = availableFormat.getProperty(documentName + "." + l);
@@ -529,7 +529,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 		}
 		if (document != null) {
 		    break;
-		}		
+		}
 	    }
 	}
 	if (document == null) {
@@ -543,11 +543,11 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	    return document;
 	}
     }
-    
+
     private final static String getURLProperty(String name) {
 	return availablePropertiesURL.getProperty(name);
     }
-    
+
     static {
 	URL url;
 		availableFormat = new Utf8Properties();

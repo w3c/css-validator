@@ -72,48 +72,48 @@ import org.w3c.css.values.CssValue;
  * @see CssFontFamily
  * @see CssPercentage
  * @see CssLength
- * @version $Revision$ 
+ * @version $Revision$
  */
-public class CssFont extends CssProperty 
+public class CssFont extends CssProperty
     implements CssOperator, CssFontConstant {
-    
+
     CssValue value;
 
     CssFontStyle   fontStyle;
     CssFontVariant fontVariant;
     CssFontWeight  fontWeight;
-    
+
     CssFontSize    fontSize;
     CssLineHeight  lineHeight;
     CssFontFamily  fontFamily;
-    
+
     // internal hack for strings comparaison
     private static int[] hash_values;
-    
+
     static CssIdent normal = new CssIdent("normal");
-    
+
     /**
      * Create a new CssFont
      */
     public CssFont() {
-    }  
-    
+    }
+
     /**
      * Creates a new CssFont
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssFont(ApplContext ac, CssExpression expression,boolean check)
     	throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
 	int max_values = 3;
-	
+
 	int normalNb = 0;
-	
+
 	if (val instanceof CssIdent) {
 	    CssIdent ident = checkIdent((CssIdent) val);
 	    if (ident != null) {
@@ -129,16 +129,16 @@ public class CssFont extends CssProperty
 	while (find && max_values-- > 0) {
 	    find = false;
 	    val = expression.getValue();
-	    op = expression.getOperator();	    	    	    
+	    op = expression.getOperator();
 
 	    if (val == null) {
 		throw new InvalidParamException("few-value", getPropertyName(), ac);
 	    }
-	    
+
 	    if(val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if(val.equals(normal)) {
 		normalNb++;
 		expression.next();
@@ -147,11 +147,11 @@ public class CssFont extends CssProperty
 
 	    if (!find && fontStyle == null) {
 		try {
-		    fontStyle = new CssFontStyle(ac, expression);		    
+		    fontStyle = new CssFontStyle(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
-	    }	
+	    }
 
 	    if (!find && fontVariant == null) {
 		try {
@@ -173,15 +173,15 @@ public class CssFont extends CssProperty
 	    }
 
 	    if (find && op != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()), ac);
 	    }
 	}
-	
+
 	// "normal" values
 	CssExpression normalExpr = new CssExpression();
 	normalExpr.addValue(normal);
-	
+
 	for(int i = 0; i < normalNb; i++) {
 	    if (fontStyle == null) {
 		fontStyle = new CssFontStyle(ac, normalExpr);
@@ -198,51 +198,51 @@ public class CssFont extends CssProperty
 	}
 
 	val = expression.getValue();
-	op = expression.getOperator();	
-	    
+	op = expression.getOperator();
+
 	if (val == null) {
 	    throw new InvalidParamException("few-value", getPropertyName(), ac);
 	}
-	    
+
 	if(val.equals(inherit)) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-		
+
 	fontSize = new CssFontSize(ac, expression);
-	
+
 	if (op == SLASH) {
 	    op = expression.getOperator();
 	    if(expression.getValue().equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    lineHeight = new CssLineHeight(ac, expression);
-	} 
-	
+	}
+
 	if(expression.getValue().equals(inherit)) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
 
-	if (op == SPACE && expression.getValue() != null) {	    
+	if (op == SPACE && expression.getValue() != null) {
 	    fontFamily = new CssFontFamily(ac, expression, true);
 	} else {
 	    expression.starts();
 	    throw new InvalidParamException("few-value", expression.toString(), ac);
-	}	
+	}
 	setByUser();
     }
-    
+
     public CssFont(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -272,11 +272,11 @@ public class CssFont extends CssProperty
 	    return ret.substring(1);
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	super.setImportant();
 	if (value == null) {
@@ -294,7 +294,7 @@ public class CssFont extends CssProperty
 		fontFamily.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -311,14 +311,14 @@ public class CssFont extends CssProperty
 		    (fontFamily == null || fontFamily.important));
 	}
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if (value != null) {
 	    printer.print(this);
@@ -353,9 +353,9 @@ public class CssFont extends CssProperty
 		((fontFamily.isSoftlyInherited()) || (fontFamily.size() != 0))) {
 		fontFamily.print(printer);
 	    }
-	}	
+	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -379,14 +379,14 @@ public class CssFont extends CssProperty
 		fontFamily.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if (value == null) {
@@ -404,16 +404,16 @@ public class CssFont extends CssProperty
 		fontFamily.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -442,13 +442,13 @@ public class CssFont extends CssProperty
 	    fontFamily.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFont();
@@ -456,7 +456,7 @@ public class CssFont extends CssProperty
 	    return ((Css1Style) style).cssFont;
 	}
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -471,7 +471,7 @@ public class CssFont extends CssProperty
 		return ident;
 	    }
 	}
-	
+
 	return null;
     }
 

@@ -21,17 +21,17 @@ import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssValue;
 
-/** 
+/**
  * <H3>5.2 &nbsp;&nbsp;   'voice-family'</H3>
  * <P>
- * <EM>Value:</EM>  [[&lt;specific-voice&gt; | &lt;generic-voice&gt;],]* 
+ * <EM>Value:</EM>  [[&lt;specific-voice&gt; | &lt;generic-voice&gt;],]*
  * [&lt;specific-voice&gt; | &lt;generic-voice&gt;]<BR>
  * <EM>Initial:</EM> UA <BR>
  * <EM>Applies to:</EM> all elements<BR>
  * <EM>Inherited:</EM> yes<BR>
  * <EM>Percentage values:</EM> NA
  *
- * <P>The value is a prioritized list of voice family names (compare 
+ * <P>The value is a prioritized list of voice family names (compare
  * with '<a
  * href="/pub/WWW/TR/REC-CSS1##font-family">font-family</a>'. Suggested
  * genric families: male, female, child.
@@ -51,26 +51,26 @@ import org.w3c.css.values.CssValue;
  * fonts). If so, what are the values that describe these voice families
  * in a way that is independent of speech synthesizer?
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class ACssVoiceFamily extends ACssProperty implements CssOperator {
-    
+
     Vector family_name = new Vector();
     boolean inheritValue;
-    
+
     static String[] genericFamily = { "male", "female", "child" };
-    
+
     static int[] genericFamilyHash;
 
     boolean withSpace = false;
-    
+
     /**
      * Create a new ACssVoiceFamily
      */
     public ACssVoiceFamily() {
 	// depends on user agent
-    }  
-    
+    }
+
     /**
      * Create a new ACssVoiceFamily
      * @param value the voice name
@@ -82,7 +82,7 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	CssValue val = value.getValue();
 	char op;
 	//@@ and if name is already in the vector ?
-	
+
 	setByUser();
 	if (val.equals(inherit)) {
 	    if(value.getCount() > 1) {
@@ -91,20 +91,20 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	    inheritValue = true;
 	    return;
 	}
-	
+
 	while (family) {
 	    val = value.getValue();
 	    op = value.getOperator();
-	    
+
 	    if ((op != COMMA) && (op != SPACE)) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						(new Character(op)).toString(), ac);
 	    }
-	    
+
 	    if(val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if (val instanceof CssString) {
 		String familyName = null;
 		if (op == COMMA) { // "helvetica", "roman"
@@ -133,10 +133,10 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 		    value.next();
 		} else {
 		    CssValue next = value.getNextValue();
-		    
-		    if (next != null && next instanceof CssIdent) { 
+
+		    if (next != null && next instanceof CssIdent) {
 			// @@ null and instanceof
-			CssIdent New = new CssIdent(val.get() 
+			CssIdent New = new CssIdent(val.get()
 						    + " " + next.get());
 			withSpace = true;
 			value.remove();
@@ -151,42 +151,42 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 		    }
 		}
 	    } else {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 						getPropertyName(), ac);
 	    }
 	}
-	
-    }    
-    
+
+    }
+
     public ACssVoiceFamily(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns all voices name
-     */  
+     */
     public Enumeration elements() {
 	return family_name.elements();
     }
-    
+
     /**
      * Returns the size
      */
     public int size() {
 	return family_name.size();
     }
-    
+
     /**
      * Returns the voice (null if no voice)
-     */  
+     */
     public Object get() {
 	if (family_name.size() == 0) {
 	    return null;
 	}
 	return family_name.firstElement();
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -194,15 +194,15 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
     public boolean isSoftlyInherited() {
 	return inheritValue;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	if (inheritValue) {
 	    return inherit.toString();
 	} else {
-	    
+
 	    String r = "";
 	    for (Enumeration e = elements(); e.hasMoreElements();)
 		//		r += ", " + e.nextElement().toString();
@@ -213,14 +213,14 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	    return r.substring(2);
 	}
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "voice-family";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -231,22 +231,22 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssVoiceFamily = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; //@@ FIXME
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getVoiceFamily();
@@ -254,30 +254,30 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	    return ((ACssStyle) style).acssVoiceFamily;
 	}
     }
-    
+
     private static String trimToOneSpace(String name) {
 	int count = name.length();
 	char[] dst = new char[count];
 	char[] src = new char[count];
 	int index = -1;
-	
+
 	name.getChars(0, count, src, 0);
 	for(int i=0; i < count; i++)
-	    if ( i == 0 || ! Util.isWhiteSpace(src[i]) || 
+	    if ( i == 0 || ! Util.isWhiteSpace(src[i]) ||
 		 ( Util.isWhiteSpace(src[i]) && !Util.isWhiteSpace(dst[index]) ) )
 		dst[++index] = src[i];
-	
+
 	return new String(dst, 0, index+1);
     }
-    
+
     /**
      * Returns true if this property contains a generic family name
-     */  
+     */
     public boolean containsGenericFamily() {
 	if (family_name.size() == 0) {
 	    return true;
 	} else {
-	    for (Enumeration e = family_name.elements(); 
+	    for (Enumeration e = family_name.elements();
 		 e.hasMoreElements();) {
 		int hash = ((String) e.nextElement()).toLowerCase().hashCode();
 		for (int i = 0; i < genericFamilyHash.length; i++) {
@@ -288,8 +288,8 @@ public class ACssVoiceFamily extends ACssProperty implements CssOperator {
 	    return false;
 	}
     }
-    
-    
+
+
     static {
 	genericFamilyHash = new int[genericFamily.length];
 	for (int i = 0; i < genericFamily.length; i++) {

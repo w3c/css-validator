@@ -23,18 +23,18 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property specifies the overline style to use when 'text-decoration' 
+ *  This property specifies the overline style to use when 'text-decoration'
  *  is set to 'overline'.
  */
 
 public class CssTextOLStyle extends CssProperty {
- 
+
     CssValue olstyle;
 
     static CssIdent solid = new CssIdent("solid");
 
     private static String[] values = {
-	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash", 
+	"none", "solid", "double", "dotted", "thick", "dashed", "dot-dash",
 	"dot-dot-dash", "wave", "inherit"
     };
 
@@ -47,7 +47,7 @@ public class CssTextOLStyle extends CssProperty {
 
     /**
      * Create a new CssTextOLStyle
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -65,8 +65,8 @@ public class CssTextOLStyle extends CssProperty {
 	    }
 	}
 	if (i == values.length) {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
@@ -75,7 +75,7 @@ public class CssTextOLStyle extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -111,7 +111,7 @@ public class CssTextOLStyle extends CssProperty {
 	return (property instanceof CssTextOLStyle &&
 		olstyle.equals(((CssTextOLStyle) property).olstyle));
     }
-    
+
     /**
      * Returns the name of this property
      */

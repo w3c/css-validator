@@ -23,44 +23,44 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
      */
     public CssBackgroundCSS21() {
 	super();
-    }  
-    
+    }
+
     /**
      * Set the value of the property
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBackgroundCSS21(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {			
+	    boolean check) throws InvalidParamException {
 
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
-	
+
 	// too many values
 	if(check && expression.getCount() > 6) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if (val == null) {
 		break;
 	    }
-	    
+
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (getColor2() == null) {
 		try {
 		    setColor(new CssBackgroundColorCSS21(ac, expression));
@@ -78,10 +78,10 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 		}
 	    }
 	    if (!find && getRepeat() == null) {
-		try {		    
-		    setRepeat(new CssBackgroundRepeatCSS2(ac, expression));		    
+		try {
+		    setRepeat(new CssBackgroundRepeatCSS2(ac, expression));
 		    find = true;
-		} catch (InvalidParamException e) {		    
+		} catch (InvalidParamException e) {
 		    // nothing to do, attachment will test this value
 		}
 	    }
@@ -101,11 +101,11 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 		    // nothing to do
 		}
 	    }
-	    if(check && val != null && !find) {		
+	    if(check && val != null && !find) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    if (op != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
 						ac);
 	    }
@@ -115,8 +115,8 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 	}
 
     }
-    
-    public CssBackgroundCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssBackgroundCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }

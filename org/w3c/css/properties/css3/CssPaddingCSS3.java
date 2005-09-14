@@ -89,7 +89,7 @@ public class CssPaddingCSS3 extends CssProperty implements CssOperator {
 
 	switch (expression.getCount()) {
 	case 1:
-	    top = new CssPaddingTopCSS3(ac, expression);
+	    top = new CssPaddingTopCSS3(ac, expression, check);
 	    bottom = new CssPaddingBottomCSS3(top);
 	    right = new CssPaddingRightCSS3(top);
 	    left = new CssPaddingLeftCSS3(top);
@@ -97,32 +97,32 @@ public class CssPaddingCSS3 extends CssProperty implements CssOperator {
 	case 2:
 	    if (expression.getOperator() != SPACE)
 		return;
-	    top = new CssPaddingTopCSS3(ac, expression);
-	    right = new CssPaddingRightCSS3(ac, expression);
+	    top = new CssPaddingTopCSS3(ac, expression, check);
+	    right = new CssPaddingRightCSS3(ac, expression, check);
 	    bottom = new CssPaddingBottomCSS3(top);
 	    left = new CssPaddingLeftCSS3(right);
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
 		return;
-	    top = new CssPaddingTopCSS3(ac, expression);
+	    top = new CssPaddingTopCSS3(ac, expression, check);
 	    if (expression.getOperator() != SPACE)
 		return;
-	    right = new CssPaddingRightCSS3(ac, expression);
-	    bottom = new CssPaddingBottomCSS3(ac, expression);
+	    right = new CssPaddingRightCSS3(ac, expression, check);
+	    bottom = new CssPaddingBottomCSS3(ac, expression, check);
 	    left = new CssPaddingLeftCSS3(right);
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
 		return;
-	    top = new CssPaddingTopCSS3(ac, expression);
+	    top = new CssPaddingTopCSS3(ac, expression, check);
 	    if (expression.getOperator() != SPACE)
 		return;
-	    right = new CssPaddingRightCSS3(ac, expression);
+	    right = new CssPaddingRightCSS3(ac, expression, check);
 	    if (expression.getOperator() != SPACE)
 		return;
-	    bottom = new CssPaddingBottomCSS3(ac, expression);
-	    left = new CssPaddingLeftCSS3(ac, expression);
+	    bottom = new CssPaddingBottomCSS3(ac, expression, check);
+	    left = new CssPaddingLeftCSS3(ac, expression, check);
 	    break;
 	default:
 	}
@@ -132,7 +132,7 @@ public class CssPaddingCSS3 extends CssProperty implements CssOperator {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

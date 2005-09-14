@@ -18,22 +18,22 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderFitWidth extends CssProperty {
-    
+
     String value = "";
-    
+
     CssIdent repeat = new CssIdent("repeat");
-    
+
     private static String[] values = {
 	"clip", "repeat", "scale", "stretch", "overwrite", "overflow", "space"
     };
-    
+
     /**
      * Create a new CssBorderFitWidth
      */
     public CssBorderFitWidth() {
 	value = "repeat";
     }
-    
+
     /**
      * Create a new CssBorderFitWidth
      *
@@ -42,19 +42,19 @@ public class CssBorderFitWidth extends CssProperty {
      */
     public CssBorderFitWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	int i = 0;
-	
+
 	if (expression.getCount() <= 4) {
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
-		
+
 		for (; i < expression.getCount(); i++) {
-		    
+
 		    int j = 0;
 		    for (; j < values.length; j++) {
 			if (val.toString().equals(values[j])) {
@@ -63,26 +63,26 @@ public class CssBorderFitWidth extends CssProperty {
 			    break;
 			}
 		    }
-		    
+
 		    if (j == values.length) {
 			throw new InvalidParamException("value", expression.getValue(),
 				getPropertyName(), ac);
 		    }
 		}
 	    }
-	    
+
 	} else {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
-    
+
     public CssBorderFitWidth(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -93,7 +93,7 @@ public class CssBorderFitWidth extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderFitWidth = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -108,7 +108,7 @@ public class CssBorderFitWidth extends CssProperty {
 	    return ((Css3Style) style).cssBorderFitWidth;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -118,35 +118,35 @@ public class CssBorderFitWidth extends CssProperty {
 	return (property instanceof CssBorderFitWidth &&
 		value.equals(((CssBorderFitWidth) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-fit-width";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -154,5 +154,5 @@ public class CssBorderFitWidth extends CssProperty {
     public boolean isDefault() {
 	return value.equals("repeat");
     }
-    
+
 }

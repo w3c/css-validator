@@ -29,19 +29,19 @@ import org.w3c.css.values.CssValue;
 
 public class Marker extends CssProperty
 implements CssOperator {
-    
+
     CssValue value;
     MarkerEnd markerEnd;
     MarkerMid markerMid;
     MarkerStart markerStart;
-    
+
     /**
      * Creates a new Marker
      */
     public Marker() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new Marker
      *
@@ -50,16 +50,16 @@ implements CssOperator {
      */
     public Marker(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	int maxvalues = 3;
 	boolean correct = true;
 	char op = SPACE;
-	
+
 	while (correct && (val != null) && (maxvalues-- > 0)) {
-	    
+
 	    correct = false;
-	    
+
 	    if (markerStart == null) {
 		try {
 		    markerStart = new MarkerStart(ac, expression);
@@ -80,19 +80,19 @@ implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	}
-	
+
     }
-    
+
     public Marker(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -103,7 +103,7 @@ implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).marker = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -118,7 +118,7 @@ implements CssOperator {
 	    return ((SVGStyle) style).marker;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -127,54 +127,54 @@ implements CssOperator {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "marker";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return null;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     //    public boolean isSoftlyInherited() {
     //	return value.equals(inherit);
     //}
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	String ret = "";
-	
+
 	if (markerStart != null) {
 	    if (markerStart.isByUser()) {
 		ret += " " + markerStart;
 	    }
 	}
-	
+
 	if (markerEnd != null) {
 	    if (markerEnd.isByUser()) {
 		ret += " " + markerEnd;
 	    }
 	}
-	
+
 	if (markerMid != null) {
 	    if (markerMid.isByUser()) {
 		ret += " " + markerMid;
 	    }
 	}
-	
+
 	return ret.substring(1);
-	
+
     }
-    
+
 }

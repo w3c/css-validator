@@ -10,7 +10,7 @@ public class EmptyEnumeration implements Enumeration {
     public boolean hasMoreElements() {
 	return false;
     }
-    
+
     public Object nextElement() {
 	return null;
     }

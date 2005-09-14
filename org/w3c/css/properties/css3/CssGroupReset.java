@@ -28,7 +28,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:all
  *  <P>
- *  The groups defined by the group-reset property are used as values 
+ *  The groups defined by the group-reset property are used as values
  *  for the toggle-group property.
  */
 public class CssGroupReset extends CssProperty {
@@ -70,10 +70,10 @@ public class CssGroupReset extends CssProperty {
 	    expression.next();
 	    return;
 	}
-	
+
 	while ((op == CssOperator.SPACE)
 	       && (counter < expression.getCount())) {
-	    
+
 	    if (tg.groups.containsKey(val.toString())) {
 		values.addElement(val.toString());
 		expression.next();
@@ -84,7 +84,7 @@ public class CssGroupReset extends CssProperty {
 		throw new InvalidParamException("nogroup", expression.getValue(),
 						getPropertyName(), ac);
 	    }
-	    
+
 	    counter++;
 	}
     }
@@ -93,7 +93,7 @@ public class CssGroupReset extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -104,13 +104,13 @@ public class CssGroupReset extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssGroupReset = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getGroupReset();
@@ -118,38 +118,38 @@ public class CssGroupReset extends CssProperty {
 	    return ((Css3Style) style).cssGroupReset;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssGroupReset && 
+	return (property instanceof CssGroupReset &&
                 groupreset.equals( ((CssGroupReset) property).groupreset));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "group-reset";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return groupreset;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return groupreset.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -159,14 +159,14 @@ public class CssGroupReset extends CssProperty {
 	else
 	    return values.firstElement().toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return groupreset == none;
     }
-    
-}	
+
+}
 

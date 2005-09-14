@@ -45,14 +45,14 @@ public class CssAlignmentAdjust extends CssProperty {
 	"text-before-edge", "middle", "central", "after-edge", "text-after-edge",
 	"ideographic", "alphabetic", "hanging", "mathematical", "inherit", "initial"
     };
-    
+
     /**
      * Create a new CssAlignmentAdjust
      */
     public CssAlignmentAdjust() {
 	alignadjust = auto;
     }
-    
+
     /**
      * Create a new CssAlignmentAdjust
      *
@@ -61,14 +61,14 @@ public class CssAlignmentAdjust extends CssProperty {
      */
     public CssAlignmentAdjust(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    int i = 0;
 	    for (; i < values.length; i++) {
@@ -96,12 +96,12 @@ public class CssAlignmentAdjust extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssAlignmentAdjust(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -112,7 +112,7 @@ public class CssAlignmentAdjust extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssAlignmentAdjust = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -127,7 +127,7 @@ public class CssAlignmentAdjust extends CssProperty {
 	    return ((Css3Style) style).cssAlignmentAdjust;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -137,35 +137,35 @@ public class CssAlignmentAdjust extends CssProperty {
 	return (property instanceof CssAlignmentAdjust &&
 		alignadjust.equals(((CssAlignmentAdjust) property).alignadjust));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "alignment-adjust";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return alignadjust;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return alignadjust.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return alignadjust.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -173,5 +173,5 @@ public class CssAlignmentAdjust extends CssProperty {
     public boolean isDefault() {
 	return alignadjust == auto;
     }
-    
+
 }

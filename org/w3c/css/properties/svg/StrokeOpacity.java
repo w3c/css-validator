@@ -28,21 +28,21 @@ import org.w3c.css.values.CssValue;
  */
 
 public class StrokeOpacity extends CssProperty {
-    
+
     CssValue value;
     ApplContext ac;
-    
+
     /**
      * Create a new Value
      */
     public StrokeOpacity() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Value
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public StrokeOpacity(ApplContext ac, CssExpression expression,
@@ -51,7 +51,7 @@ public class StrokeOpacity extends CssProperty {
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 	boolean correct = false;
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	    expression.next();
@@ -70,12 +70,12 @@ public class StrokeOpacity extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public StrokeOpacity(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -86,13 +86,13 @@ public class StrokeOpacity extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).strokeOpacity = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getStrokeOpacity();
@@ -100,50 +100,50 @@ public class StrokeOpacity extends CssProperty {
 	    return ((SVGStyle) style).strokeOpacity;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof StrokeOpacity && 
+	return (property instanceof StrokeOpacity &&
 		value.equals( ((StrokeOpacity) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "stroke-opacity";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return value == cssnum;
     }

@@ -17,7 +17,7 @@ public class AttributeAny extends AttributeSelector {
     public AttributeAny(String name) {
 	super(name);
     }
-    
+
     public boolean canApply(Selector other) {
 	return true;
     }
@@ -25,5 +25,5 @@ public class AttributeAny extends AttributeSelector {
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
     }
 
-    
+
 }

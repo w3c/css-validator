@@ -31,7 +31,7 @@ import org.w3c.css.values.CssValue;
 	public CssTextOverflowEllipsis() {
 	    overflowellipsis = "...";
 	}
-	
+
 	/**
 	 * Create a new CssTextOverflowEllipsis
 	 *
@@ -42,7 +42,7 @@ import org.w3c.css.values.CssValue;
 	    setByUser();
 	    CssValue val = expression.getValue();
 	    CssValue val2 = null;
-	    
+
 	    if (val instanceof CssIdent) {
 		overflowellipsis = val.toString();
 		expression.next();
@@ -55,11 +55,11 @@ import org.w3c.css.values.CssValue;
 		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    val2 = expression.getValue();
-	    
+
 	    if (val2 != null) {
-		
+
 		if (val2 instanceof CssIdent) {
 		    overflowellipsis += " " + val2.toString();
 		    expression.next();
@@ -79,7 +79,7 @@ import org.w3c.css.values.CssValue;
 		throws InvalidParamException {
 	    this(ac, expression, false);
 	}
-	
+
 	/**
 	 * Add this property to the CssStyle.
 	 *

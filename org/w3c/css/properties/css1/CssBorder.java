@@ -54,47 +54,47 @@ public class CssBorder extends CssProperty implements CssOperator {
 	if(check && expression.getCount() > 4) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
-	
-	
+
+
 	top = new CssBorderTop(ac, expression);
-	
+
 	if (val == expression.getValue()) {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
-	}	
+	}
 	right = new CssBorderRight();
 	bottom = new CssBorderBottom();
 	left = new CssBorderLeft();
-	
+
 	CssBorderTopWidth w = top.width;
 	CssBorderTopStyle s = top.style;
-	CssBorderTopColor c = top.color;	
-	
-	if(w != null) {	    
-	    right.width  = 
-		new CssBorderRightWidth((CssBorderFaceWidth) w.get());	    
-	    left.width = 
-		new CssBorderLeftWidth((CssBorderFaceWidth) w.get());	    
-	    bottom.width = 
-		new CssBorderBottomWidth((CssBorderFaceWidth) w.get());	    
-	}	
+	CssBorderTopColor c = top.color;
+
+	if(w != null) {
+	    right.width  =
+		new CssBorderRightWidth((CssBorderFaceWidth) w.get());
+	    left.width =
+		new CssBorderLeftWidth((CssBorderFaceWidth) w.get());
+	    bottom.width =
+		new CssBorderBottomWidth((CssBorderFaceWidth) w.get());
+	}
 	if(s != null) {
-	    right.style = 
+	    right.style =
 		new CssBorderRightStyle((CssBorderFaceStyle) s.get());
-	    left.style = 
+	    left.style =
 		new CssBorderLeftStyle((CssBorderFaceStyle) s.get());
-	    bottom.style = 
+	    bottom.style =
 		new CssBorderBottomStyle((CssBorderFaceStyle) s.get());
-	}	
+	}
 	if(c != null) {
-	    right.color = 
+	    right.color =
 		new CssBorderRightColor((CssBorderFaceColor) c.get());
-	    left.color = 
+	    left.color =
 		new CssBorderLeftColor((CssBorderFaceColor) c.get());
-	    bottom.color = 
+	    bottom.color =
 		new CssBorderBottomColor((CssBorderFaceColor) c.get());
 	}
 	/*
@@ -105,7 +105,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 	setByUser();
 
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -118,7 +118,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
 		throw new InvalidParamException("operator",
 			((new Character(op)).toString()), ac);
@@ -199,11 +199,11 @@ public class CssBorder extends CssProperty implements CssOperator {
 */
     }
 
-    public CssBorder(ApplContext ac, CssExpression expression) 
+    public CssBorder(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -443,7 +443,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 	//bottom.setInfo(line, source);
     }
 
-    void check() {	
+    void check() {
 	//top.check();
 	//bottom.check();
 	//right.check();

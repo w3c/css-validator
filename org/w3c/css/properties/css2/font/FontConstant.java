@@ -13,26 +13,26 @@ public interface FontConstant {
 
   /**
    * Array of font-style values
-   */  
+   */
   static String[] FONTSTYLE = { "normal", "italic", "oblique" };
 
   /**
    * Array of font-variant values
-   */  
+   */
   static String[] FONTVARIANT = { "normal", "small-caps" };
 
   /**
    * Array of font-weight values
-   */  
+   */
     static String[] FONTWEIGHT = { "normal", "bold" };
-  
+
   /**
    * Array of font-stretch values
-   */  
-  static String[] FONTSTRETCH = { "normal", "wider", "narrower", 
-				  "ultra-condensed", "extra-condensed", 
-				  "condensed", "semi-condensed", 
+   */
+  static String[] FONTSTRETCH = { "normal", "wider", "narrower",
+				  "ultra-condensed", "extra-condensed",
+				  "condensed", "semi-condensed",
 				  "semi-expanded", "expanded", "extra-expanded",
 				  "ultra-expanded", "inherit" };
-  
+
 }

@@ -14,10 +14,10 @@ import java.util.Hashtable;
  * @version $Revision$
  */
 public class SortedHashtable extends Hashtable {
-    
+
     /**
-     * Constructs a new, empty hashtable with the specified initial 
-     * capacity and the specified load factor. 
+     * Constructs a new, empty hashtable with the specified initial
+     * capacity and the specified load factor.
      *
      * @param      initialCapacity   the initial capacity of the hashtable.
      * @param      loadFactor        a number between 0.0 and 1.0.
@@ -28,7 +28,7 @@ public class SortedHashtable extends Hashtable {
     public SortedHashtable(int initialCapacity, float loadFactor) {
 	super(initialCapacity, loadFactor);
     }
-    
+
     /**
      * Constructs a new, empty hashtable with the specified initial capacity
      * and default load factor.
@@ -38,28 +38,28 @@ public class SortedHashtable extends Hashtable {
     public SortedHashtable(int initialCapacity) {
         super(initialCapacity);
     }
-    
+
     /**
      * Constructs a new, empty hashtable with a default capacity and load
-     * factor. 
+     * factor.
      *
      * @since   JDK1.0
      */
     public SortedHashtable() {
 	super();
     }
-    
+
     public Object[] getSortedArray() {
 	SortAlgorithm sort = new QuickSortAlgorithm();
 	Object[] sortedArray = new Object[size()];
 	int i = 0;
-	
+
 	for (Enumeration e = elements(); e.hasMoreElements(); i++) {
 	    sortedArray[i] = e.nextElement();
 	}
-	
+
 	sort.sort(sortedArray, 0, size()-1, new CompareString());
-	
+
 	return sortedArray;
     }
 }
@@ -67,5 +67,5 @@ public class SortedHashtable extends Hashtable {
 class CompareString extends CompareFunction {
     public boolean compare(Object obj1, Object obj2) {
 	return (obj1.toString().compareTo(obj2.toString()) > 0);
-    }    
+    }
 }

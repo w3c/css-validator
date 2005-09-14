@@ -17,22 +17,22 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderFaceStyleATSC {
-    
+
     int value;
-    
+
     private static String[] BORDERSTYLE = {
-	"none", "hidden", "dotted", "dashed", "solid", "double", "groove", 
+	"none", "hidden", "dotted", "dashed", "solid", "double", "groove",
 	"ridge", "inset", "outset", "inherit" };
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssBorderFaceStyleATSC
      */
     public CssBorderFaceStyleATSC() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceStyleATSC with an another CssBorderFaceStyle
      *
@@ -41,22 +41,22 @@ public class CssBorderFaceStyleATSC {
     public CssBorderFaceStyleATSC(CssBorderFaceStyleATSC another) {
 	value = another.value;
     }
-    
+
     /**
      * Create a new CssBorderFaceStyleATSC
      *
      * @param expression The expression for this face
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderFaceStyleATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    int hash = val.hashCode();
 	    for (int i = 0; i < BORDERSTYLE.length; i++)
@@ -66,15 +66,15 @@ public class CssBorderFaceStyleATSC {
 		    return;
 		}
 	}
-	
+
 	throw new InvalidParamException("value", val.toString(), "style", ac);
     }
-    
+
     public CssBorderFaceStyleATSC(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -82,34 +82,34 @@ public class CssBorderFaceStyleATSC {
     public boolean isSoftlyInherited() {
 	return value == (BORDERSTYLE.length - 1);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Returns the value
      */
     public String getStyle() {
 	return BORDERSTYLE[value];
     }
-    
+
     /**
      * Compares two side for equality.
      *
      * @param value The another side.
-     */  
+     */
     public boolean equals(CssBorderFaceStyleATSC style) {
 	return value == style.value;
     }
-    
+
     static {
 	hash_values = new int[BORDERSTYLE.length];
 	for (int i=0; i<BORDERSTYLE.length; i++)
 	    hash_values[i] = BORDERSTYLE[i].hashCode();
     }
-    
+
 }

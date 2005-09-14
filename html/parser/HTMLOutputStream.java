@@ -1,5 +1,5 @@
 /*
- * @(#)HTMLOutputStream.java	1.3 95/05/03  
+ * @(#)HTMLOutputStream.java	1.3 95/05/03
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -102,7 +102,7 @@ class HTMLOutputStream extends FilterOutputStream implements DTDConstants {
 	    }
 	}
     }
-    
+
     /**
      * Write a text character.
      */
@@ -132,7 +132,7 @@ class HTMLOutputStream extends FilterOutputStream implements DTDConstants {
     void writeTag(Element elem, Attributes atts) throws IOException {   //??dk
 	write('<');
 	write(elem.getName());
-	
+
 	if (atts != null) {
 	    int natts = atts.length();
 	    for (int i = 0 ; i < natts ; i++) {

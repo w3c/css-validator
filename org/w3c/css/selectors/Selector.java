@@ -9,20 +9,20 @@ package org.w3c.css.selectors;
  * Basic class for all the selectors
  * Created: Sep 1, 2005 3:31:35 PM<br />
  */
-public interface Selector {  
-    
+public interface Selector {
+
     /**
      * Returns a String representation of this Selector
      * @return  the String representation of this Selector
      */
     public String toString();
-    
+
     /**
      * Returns the name of this selector
      * @return
      */
     public String getName();
-    
+
     /**
      * Returns <code>true</code> if a selector can be applied to this selector
      * @param other

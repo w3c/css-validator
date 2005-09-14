@@ -133,8 +133,8 @@ public class HTTPURL {
 	}
     }
 
-    public static URL getURL(URL base, String url) 
-	throws MalformedURLException 
+    public static URL getURL(URL base, String url)
+	throws MalformedURLException
     {
 	//	url = URLEncoder.encode(url);
 
@@ -147,21 +147,21 @@ public class HTTPURL {
 	return getConnection(url, count, null);
     }
 
-    private static URLConnection getConnection(URL url, int count, 
+    private static URLConnection getConnection(URL url, int count,
 					       ApplContext ac)
-	throws IOException 
+	throws IOException
     {
 	if (count > 5) {
 	    throw new ProtocolException("Server redirected too many "+
 					"times (5)");
 	}
-	
+
 	if (Util.servlet) {
 	    int port = url.getPort();
 	    String protocol = url.getProtocol();
-	if (! ( 
+	if (! (
 		("https".equalsIgnoreCase(protocol)) || ("http".equalsIgnoreCase(protocol))
-	   )  ) {		
+	   )  ) {
  		System.err.println( "[WARNING] : someone is trying to get the file: "
  				    + url );
  		throw new FileNotFoundException("import " + url +
@@ -170,9 +170,9 @@ public class HTTPURL {
 
 
 	}
-	
+
 	URLConnection urlC = url.openConnection();
-	
+
 	if (Util.onDebug) {
 	    System.err.println( "Accessing " + url);
 	    if (ac.getCredential() != null) {
@@ -202,9 +202,9 @@ public class HTTPURL {
 				"text/css,text/html,text/xml,"
 				+"application/xhtml+xml,application/xml,"
 				+"image/svg+xml,*/*;q=0.1");
-	
+
 	urlC.connect();
-	
+
 	if (urlC instanceof HttpURLConnection) {
 	    HttpURLConnection httpURL = (HttpURLConnection) urlC;
 	    int status;
@@ -215,7 +215,7 @@ public class HTTPURL {
 		throw new FileNotFoundException(url + ": " +
 						getHTTPStatusCode(404));
 	    }
-	    
+
 	    switch (status) {
 	    case HttpURLConnection.HTTP_OK:
 		// nothing to do
@@ -252,21 +252,21 @@ public class HTTPURL {
     }
 
     public static URLConnection getConnection(URL url)
-	throws IOException 
+	throws IOException
     {
 	return getConnection(url, 0);
     }
 
     public static URLConnection getConnection(URL url, ApplContext ac)
-	throws IOException 
+	throws IOException
     {
 	return getConnection(url, 0, ac);
     }
     /**
      *
      */
-    public static void main(String[] args) 
-	throws Exception 
+    public static void main(String[] args)
+	throws Exception
     {
         int c;
 	InputStream in = HTTPURL.getConnection(

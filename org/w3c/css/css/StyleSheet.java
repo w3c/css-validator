@@ -61,7 +61,6 @@ public class StyleSheet {
 	if (debug) {
 	    Util.verbose("StyleSheet.getStyle("+context+")");
 	}
-
 	if (getContext(context) != null) {
 	    CssSelectors realContext = (CssSelectors) getContext(context);
 	    CssStyle style = realContext.getStyle();
@@ -242,7 +241,7 @@ public class StyleSheet {
     public void endOfRule() {
 	CssRuleList rulelist;
 	boolean useless;
-	if (!doNotAddRule) {	    
+	if (!doNotAddRule) {
 	    CssStyleRule stylerule = new CssStyleRule(indent, selectortext,
 						      properties, important);
 	    if (!atRuleList.isEmpty()) {

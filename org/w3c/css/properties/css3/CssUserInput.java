@@ -25,9 +25,9 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:all
  *  <P>
- *  The purpose of this property is to allow the author to specify whether or 
- *  not a user interface element will currently accept user input. Typically 
- *  this will be used to enable or disable specific input elements in a form. 
+ *  The purpose of this property is to allow the author to specify whether or
+ *  not a user interface element will currently accept user input. Typically
+ *  this will be used to enable or disable specific input elements in a form.
  *  UAs may interpret none as disabled for user interface related elements.
  */
 
@@ -53,7 +53,7 @@ public class CssUserInput extends CssProperty {
      */
     public CssUserInput(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -83,7 +83,7 @@ public class CssUserInput extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -119,7 +119,7 @@ public class CssUserInput extends CssProperty {
 	return (property instanceof CssUserInput &&
 		userinput.equals(((CssUserInput) property).userinput));
     }
-    
+
     /**
      * Returns the name of this property
      */

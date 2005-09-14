@@ -43,10 +43,10 @@ public class CssInlineBoxAlign extends CssProperty {
      */
     public CssInlineBoxAlign(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(initial)) {
 	    inlineboxalign = initial;
 	    expression.next();
@@ -69,7 +69,7 @@ public class CssInlineBoxAlign extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *

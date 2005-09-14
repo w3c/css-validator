@@ -24,22 +24,22 @@ import org.w3c.css.values.CssValue;
 public class ColorProfileName extends CssProperty implements CssOperator {
 
     CssValue cpName;
-    
+
     /**
      * Create a new ColorProfileName
      */
     public ColorProfileName() {
 	// no initial value
     }
-    
+
     /**
      * Create a new ColorProfileName
      */
     public ColorProfileName(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    cpName = val;
 	    expression.next();
@@ -48,12 +48,12 @@ public class ColorProfileName extends CssProperty implements CssOperator {
 		    val, getPropertyName(), ac);
 	}
     }
-    
+
     public ColorProfileName(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -64,7 +64,7 @@ public class ColorProfileName extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).cpName = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -78,7 +78,7 @@ public class ColorProfileName extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).cpName;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -88,35 +88,35 @@ public class ColorProfileName extends CssProperty implements CssOperator {
 	return (property instanceof ColorProfileName &&
 		cpName.equals( ((ColorProfileName) property).cpName));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "name";
     }
-    
+
     /**
      * Returns the cpName of this property
      */
     public Object get() {
 	return cpName;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return cpName.toString();
     }
-    
+
     /**
      * Is the cpName of this property a default cpName
      * It is used by all macro for the function <code>print</code>
@@ -124,5 +124,5 @@ public class ColorProfileName extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class SimpleTree implements Tree {
     private static Enumeration NO_CHILD = new EmptyEnumeration();
-    
+
     Vector children = null;
     Tree parent;
 
@@ -23,11 +23,11 @@ public class SimpleTree implements Tree {
     public Tree getParent() {
 	return parent;
     }
-    
+
     public void setParent(Tree child) {
 	parent = child;
     }
-    
+
     public int getRank() {
 	return parent.indexOf(this);
     }
@@ -63,7 +63,7 @@ public class SimpleTree implements Tree {
 	}
 	child.setParent(this);
     }
-    
+
     public void detach(Tree child) {
 	children.removeElement(child);
 	child.setParent(null);
@@ -87,7 +87,7 @@ public class SimpleTree implements Tree {
     public Enumeration children() {
 	return (children != null ) ? children.elements() : NO_CHILD;
     }
-    
+
     private final void checkChildren() {
 	if(children == null) {
 	    children = new Vector(1, 1);

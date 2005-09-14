@@ -19,9 +19,9 @@ public class RGBA {
     Object g;
     Object b;
     Object a;
-    
+
     boolean percent = false;
-    
+
     /**
      * @return Returns the percent.
      */
@@ -41,7 +41,7 @@ public class RGBA {
      */
     public RGBA() {
     }
-    
+
     /**
      * Create a new RGBA with default values
      */
@@ -51,14 +51,14 @@ public class RGBA {
 	this.b = b;
 	this.a = a;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	if (output == null) {
 	    String unit = (isPercent()) ? "%" : "";
-	    return "rgba(" + r + unit + ", " + g + unit + ", " + b + unit + 
+	    return "rgba(" + r + unit + ", " + g + unit + ", " + b + unit +
 	    ", " + a + unit + ")";
 	} else {
 	    return output;

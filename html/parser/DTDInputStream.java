@@ -1,5 +1,5 @@
 /*
- * @(#)DTDInputStream.java	1.1 95/04/23  
+ * @(#)DTDInputStream.java	1.1 95/04/23
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -92,7 +92,7 @@ class DTDInputStream extends FilterInputStream implements DTDConstants {
 	stack.push(new Integer(ch));
 	stack.push(this.in);
 	this.in = in;
-  try {                                         //??dk    
+  try {                                         //??dk
   	ch = in.read();
   } catch (IOException e) {
     System.out.println("DTDInputStream::push : IOException");
@@ -196,7 +196,7 @@ class DTDInputStream extends FilterInputStream implements DTDConstants {
       }
 
 	    return '\n';
-	    
+
 	  case -1:
 	    if (stack.size() > 0) {
 		in = (InputStream)stack.pop();

@@ -1,5 +1,5 @@
 /*
- * @(#)Tag.java	1.2 95/05/03  
+ * @(#)Tag.java	1.2 95/05/03
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -26,7 +26,7 @@ package html.parser;
  */
 
 public interface Tag {
-    
+
     /**
      * Return true if the tag is a block tag and not
      * a flow tag.

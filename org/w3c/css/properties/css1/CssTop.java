@@ -23,7 +23,7 @@ public class CssTop extends CssBoxOffsetFace {
   public CssTop() {
     super();
   }
-  
+
   /**
    * Create a new CssTop
    *
@@ -34,15 +34,15 @@ public class CssTop extends CssBoxOffsetFace {
   	throws InvalidParamException {
     super(ac, expression, check);
   }
-  
+
   public CssTop(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
   }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "top";
   }
@@ -64,7 +64,7 @@ public class CssTop extends CssBoxOffsetFace {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getTop();
@@ -77,9 +77,9 @@ public class CssTop extends CssBoxOffsetFace {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-    return (property instanceof CssTop && 
+    return (property instanceof CssTop &&
 	    value.equals(((CssTop) property).value));
   }
 

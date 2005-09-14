@@ -28,7 +28,7 @@ public class MediaMinColorIndex extends CssProperty implements CssOperator {
     public MediaMinColorIndex() {
 		//empty
     }
-    
+
     /**
      * Create a new MediaMinColorIndex.
      *
@@ -38,14 +38,14 @@ public class MediaMinColorIndex extends CssProperty implements CssOperator {
     public MediaMinColorIndex(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
 	char op = SPACE;
-	
+
 	if (val != null) {
 	    if (val instanceof CssNumber) {
 		if (((CssNumber) val).isInteger()) {
@@ -58,16 +58,16 @@ public class MediaMinColorIndex extends CssProperty implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
-    
+
     public MediaMinColorIndex(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

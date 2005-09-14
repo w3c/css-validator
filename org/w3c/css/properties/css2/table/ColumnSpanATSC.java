@@ -21,29 +21,29 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class ColumnSpanATSC extends TableProperty {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new ColumnSpanATSC
-     */  
+     */
     public ColumnSpanATSC() {
 	value = new CssNumber(null, 1);
     }
-    
+
     /**
      * Creates a new CssColumnSpanATSC
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public ColumnSpanATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -59,27 +59,27 @@ public class ColumnSpanATSC extends TableProperty {
 		expression.next();
 		return;
 	    } else {
-		throw new InvalidParamException("integer", 
-						val.toString(), 
+		throw new InvalidParamException("integer",
+						val.toString(),
 						getPropertyName(), ac);
 	    }
-	} 
-	
+	}
+
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
-    
-    public ColumnSpanATSC(ApplContext ac, CssExpression expression) 
+
+    public ColumnSpanATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -87,22 +87,22 @@ public class ColumnSpanATSC extends TableProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "column-span";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -115,13 +115,13 @@ public class ColumnSpanATSC extends TableProperty {
 	}
 	style0.columnSpanATSC = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getColumnSpanATSC();
@@ -129,20 +129,20 @@ public class ColumnSpanATSC extends TableProperty {
 	    return ((Css2Style) style).columnSpanATSC;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (value == null) {
-	    return (property instanceof ColumnSpanATSC && 
+	    return (property instanceof ColumnSpanATSC &&
 		    ((ColumnSpanATSC) property).value == value);
 	} else {
-	    return (property instanceof ColumnSpanATSC && 
+	    return (property instanceof ColumnSpanATSC &&
 		    ((ColumnSpanATSC) property).value.equals(value));
 	}
     }
-    
+
 }

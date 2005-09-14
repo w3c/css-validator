@@ -40,8 +40,8 @@ public class CssColumnRule extends CssProperty
 implements CssOperator {
 
     CssValue value;
-    /* I should use border-width and border-style here, but I don't 
-     * see how to implement a 
+    /* I should use border-width and border-style here, but I don't
+     * see how to implement a
      * shorthand property for shorthand properties ... So I splitted it up
      */
     CssBorderTopWidth btw;

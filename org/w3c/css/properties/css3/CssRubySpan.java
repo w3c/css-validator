@@ -51,7 +51,7 @@ public class CssRubySpan extends CssProperty {
      */
     public CssRubySpan(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	//String kc = new String();
 	//int hyphenindex;
 	//int counter = 0;
@@ -61,7 +61,7 @@ public class CssRubySpan extends CssProperty {
 	//String rest = new String();
 	//Vector ks = new Vector();
 	setByUser();
-	
+
 	if (val.equals(none)) {
 	    rubyspan = none;
 	    expression.next();
@@ -92,14 +92,14 @@ public class CssRubySpan extends CssProperty {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
 
     public CssRubySpan(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *

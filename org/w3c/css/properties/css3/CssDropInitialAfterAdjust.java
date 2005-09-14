@@ -91,7 +91,7 @@ public class CssDropInitialAfterAdjust extends CssProperty {
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public CssDropInitialAfterAdjust(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);

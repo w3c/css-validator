@@ -26,13 +26,13 @@ import html.tags.*;
  */
 
 public interface HtmlEngineListener {
-  
+
   /**
    * Initialize this engine listener. Invoked when the Html engine is
    * booting up.
    * @param engine the engine that will be listened to.
    */
-  
+
   public void initialize(HtmlEngine engine);
 
 
@@ -41,14 +41,14 @@ public interface HtmlEngineListener {
    */
 
   public void terminate();
-  
-  
+
+
   /**
-   * Invoked when the engine wants to open a new document. 
+   * Invoked when the engine wants to open a new document.
    * @param url the url that is being opened
    * @param parser the parser used to open the document.
    */
 
   public void openDocument(URL url, HtmlParser parser);
-  
+
 }

@@ -28,7 +28,7 @@ import org.w3c.css.values.CssValue;
  *   <EM>Percentage values:</EM> N/A<BR>
  */
 public class StrokeMiterLimit extends CssProperty {
-    
+
     CssValue value;
 
     /**
@@ -36,18 +36,18 @@ public class StrokeMiterLimit extends CssProperty {
      */
     public StrokeMiterLimit() {
 	//nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new StrokeMiterLimit
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public StrokeMiterLimit(ApplContext ac, CssExpression expression,
-	    boolean check) 
+	    boolean check)
 	throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -63,27 +63,27 @@ public class StrokeMiterLimit extends CssProperty {
 	    value = inherit;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public StrokeMiterLimit(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "stroke-miterlimit";
     }
@@ -95,14 +95,14 @@ public class StrokeMiterLimit extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -114,13 +114,13 @@ public class StrokeMiterLimit extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.strokeMiterLimit = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getStrokeMiterLimit();
@@ -128,15 +128,15 @@ public class StrokeMiterLimit extends CssProperty {
 	    return ((SVGStyle) style).strokeMiterLimit;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof StrokeMiterLimit && 
+	return (property instanceof StrokeMiterLimit &&
 		value.equals(((StrokeMiterLimit) property).value));
     }
-    
+
 }

@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderFaceColorCSS2 {
 
-    CssValue face;       
+    CssValue face;
 
     /**
      * Create a new CssBorderFaceColor
@@ -52,7 +52,7 @@ public class CssBorderFaceColorCSS2 {
      */
     public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -72,11 +72,11 @@ public class CssBorderFaceColorCSS2 {
 	expression.next();
     }
 
-    public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceColorCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * @return Returns the face.
      */

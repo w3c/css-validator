@@ -11,7 +11,7 @@ package org.w3c.css.selectors;
 public class PseudoClassSelector implements Selector {
 
     String name;
-    
+
     /**
      * Creates a new pseudo-class given its name
      * @param name the name of this pseudo-class
@@ -19,7 +19,7 @@ public class PseudoClassSelector implements Selector {
     public PseudoClassSelector(String name) {
 	this.name = name;
     }
-    
+
     /**
      * @see Selector#getName()
      */
@@ -41,12 +41,12 @@ public class PseudoClassSelector implements Selector {
     public String toString() {
 	return ":" + name;
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
 }

@@ -23,7 +23,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Applies to:</EM><BR>
  *  <EM>Inherited:</EM>yes<BR>
  *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual 
+ *  <EM>Media:</EM>:visual
  */
 
 public class StrokeLineCap extends CssProperty {
@@ -73,7 +73,7 @@ public class StrokeLineCap extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -109,7 +109,7 @@ public class StrokeLineCap extends CssProperty {
 	return (property instanceof StrokeLineCap &&
 		value.equals(((StrokeLineCap) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */

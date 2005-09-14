@@ -70,40 +70,40 @@ import org.w3c.css.values.CssValue;
  *   <P> In the example above, the 'disc' will be used when the image is
  *   unavailable.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssListStyleCSS1 extends CssProperty implements CssOperator {
-    
+
     CssListStyleTypeCSS1 listStyleType;
     CssListStyleImageCSS1 listStyleImage;
     CssListStylePositionCSS1 listStylePosition;
 
     boolean inheritedValue;
-    
+
     /**
      * Create a new CssListStyleCSS1
      */
     public CssListStyleCSS1() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new CssListStyleCSS1
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssListStyleCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
-	
+
 	setByUser();
 /*
 	if (val.equals(inherit)) {
@@ -114,12 +114,12 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    expression.next();
 	    return;
 	}
-*/	
+*/
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if ((listStyleType == null)
 		&& (val != null)) {
 		try {
@@ -128,16 +128,16 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		} catch (InvalidParamException e) {
 		}
 	    }
-	    if (!find 
+	    if (!find
 		&& (listStyleImage == null)
 		&& (val != null)) {
 		try {
 		    listStyleImage = new CssListStyleImageCSS1(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
-		} 
+		}
 	    }
-	    if (!find 
+	    if (!find
 		&& (val != null)
 		&& (listStylePosition == null)) {
 		listStylePosition = new CssListStylePositionCSS1(ac, expression);
@@ -147,7 +147,7 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    if (op != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
 						ac);
 	    }
@@ -156,35 +156,35 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	if (listStyleType == null) {
 	    listStyleType = new CssListStyleTypeCSS1();
 	}
-	
+
 	if (listStyleImage == null) {
 	    listStyleImage = new CssListStyleImageCSS1();
 	}
-	
+
 	if (listStylePosition == null) {
 	    listStylePosition = new CssListStylePositionCSS1();
 	}*/
     }
-    
+
     public CssListStyleCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return listStyleType;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "list-style";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -192,7 +192,7 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
     public boolean isSoftlyInherited() {
 	return inheritedValue;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -213,13 +213,13 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    return ret.trim();
 	}
     }
-    
-    
-    
+
+
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if (!inheritedValue) {
 	    if(listStyleType != null)
@@ -230,7 +230,7 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		listStylePosition.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -240,13 +240,13 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		(listStyleImage == null || listStyleImage.important) &&
 		(listStylePosition == null || listStylePosition.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if (inheritedValue) {
 	    printer.print(this);
@@ -268,9 +268,9 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		listStylePosition.print(printer);
 	    }
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -290,7 +290,7 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    listStylePosition.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -308,13 +308,13 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    ((Css1Style) style).cssListStyleCSS1.inheritedValue = true;
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getListStyleCSS1();
@@ -322,14 +322,14 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssListStyleCSS1;
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if (!inheritedValue) {
@@ -341,15 +341,15 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 		listStylePosition.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @FIXME
 	return false;
     }
-    
+
 }

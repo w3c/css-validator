@@ -30,19 +30,19 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssBackgroundClip extends CssProperty {
-    
+
     CssValue bgclip;
-    
+
     CssIdent border = new CssIdent("border");
     CssIdent padding = new CssIdent("padding");
-    
+
     /**
      * Create a new CssBackgroundClip
      */
     public CssBackgroundClip() {
 	bgclip = border;
     }
-    
+
     /**
      * Create a new CssBackgroundClip
      *
@@ -51,14 +51,14 @@ public class CssBackgroundClip extends CssProperty {
      */
     public CssBackgroundClip(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(border)) {
 	    bgclip = border;
 	    expression.next();
@@ -71,12 +71,12 @@ public class CssBackgroundClip extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBackgroundClip(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -87,7 +87,7 @@ public class CssBackgroundClip extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundClip = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -102,7 +102,7 @@ public class CssBackgroundClip extends CssProperty {
 	    return ((Css3Style) style).cssBackgroundClip;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -112,35 +112,35 @@ public class CssBackgroundClip extends CssProperty {
 	return (property instanceof CssBackgroundClip &&
 		bgclip.equals(((CssBackgroundClip) property).bgclip));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "background-clip";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return bgclip;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return bgclip.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return bgclip.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -148,5 +148,5 @@ public class CssBackgroundClip extends CssProperty {
     public boolean isDefault() {
 	return bgclip == border;
     }
-    
+
 }

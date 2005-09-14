@@ -16,7 +16,7 @@ import org.w3c.css.util.InvalidParamException;
 
 /**
  * This class manages all media defines by CSS2
- * 
+ *
  * @version $Revision$
  * @author  Philippe Le H�garet
  */
@@ -32,7 +32,7 @@ public class AtRulePage extends AtRule {
 
     /**
      * Returns the at rule keyword
-     */    
+     */
     public String keyword() {
 	return "page";
     }
@@ -41,7 +41,7 @@ public class AtRulePage extends AtRule {
      * Sets the name of the page
      * name will be a pseudo name :first, :left, :right
      * or a random name without semi-colon at the beginning
-     */    
+     */
     public AtRulePage setName(String name, ApplContext ac)
 	     throws InvalidParamException {
 	if (name.charAt(0) == ':') {
@@ -97,7 +97,7 @@ public class AtRulePage extends AtRule {
 
     /**
      * The second must be exactly the same of this one
-     */    
+     */
     public boolean canApply(AtRule atRule) {
 	if (atRule instanceof AtRulePage) {
 	    AtRulePage other = (AtRulePage) atRule;
@@ -124,7 +124,7 @@ public class AtRulePage extends AtRule {
 
     /**
      * The second must only match this one
-     */    
+     */
     public boolean canMatched(AtRule atRule) {
 	if (atRule instanceof AtRulePage) {
 	    boolean res = true;
@@ -160,5 +160,5 @@ public class AtRulePage extends AtRule {
 	}
 	return ret;
     }
-    
+
 }

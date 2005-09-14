@@ -34,35 +34,35 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssListStyleImage extends CssProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new CssListStyleImage
      */
     public CssListStyleImage() {
 	value = none;
-    }  
-    
+    }
+
     /**
      * Create a new CssListStyleImage
      *
      * @param value The value for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssListStyleImage(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
-	
+
 	if (val instanceof CssURL) {
 	    value = val;
 	    expression.next();
@@ -76,26 +76,26 @@ public class CssListStyleImage extends CssProperty {
 	    throw new InvalidParamException("value", val, getPropertyName(), ac);
 	}
     }
-    
+
     public CssListStyleImage(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "list-style-image";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -103,14 +103,14 @@ public class CssListStyleImage extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -122,13 +122,13 @@ public class CssListStyleImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	cssListStyle.listStyleImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getListStyleImage();
@@ -136,23 +136,23 @@ public class CssListStyleImage extends CssProperty {
 	    return ((Css1Style) style).cssListStyle.listStyleImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssListStyleImage && 
+	return (property instanceof CssListStyleImage &&
 		value.equals(((CssListStyleImage) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == none;
     }
-    
+
 }

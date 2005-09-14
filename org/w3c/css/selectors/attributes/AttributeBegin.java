@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeBegin extends AttributeSelector {
 
     private String value;
-    
+
     public AttributeBegin(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -61,7 +61,7 @@ public class AttributeBegin extends AttributeSelector {
 	    } else {
 		// [lang|=en][lang|=en]
 		return true;
-	    }	    
+	    }
 	}
 	return false;
     }
@@ -81,11 +81,11 @@ public class AttributeBegin extends AttributeSelector {
 	    if (!value.equals(((AttributeBegin) attr).value)) {
 		// [lang|=fr][lang|=en]
 		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
-	    }    
+	    }
 	}
-	
+
     }
-    
+
     public String toString() {
 	return "[" + getName() + "|=\"" + value + "\"]";
     }

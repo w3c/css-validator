@@ -48,12 +48,12 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	// nothing to do
     }
 
-    /** 
+    /**
      * Create a new ColorProfile
      */
     public ColorProfile(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	//setByUser();
 	char op = SPACE;
 	CssValue val = expression.getValue();
@@ -73,7 +73,7 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	} else {
 	    while ((op == SPACE)
 		    && (counter < expression.getCount() && correct == true)) {
-		
+
 		if (val instanceof CssURL) {
 		    values.addElement(val);
 		}
@@ -100,19 +100,19 @@ public class ColorProfile extends CssProperty implements CssOperator {
 		val = expression.getValue();
 		op = expression.getOperator();
 	    }
-	    
+
 	    if (!correct) {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 			getPropertyName(), ac);
 	    }
 	}
     }
-    
+
     public ColorProfile(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -124,13 +124,13 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	((SVGStyle) style).colorProfile = this;
 
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getColorProfileSVG();
@@ -138,23 +138,23 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).colorProfile;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "color-profile";
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -166,15 +166,15 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	    return values;
 	}
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * This property can't be inherited, it's only for @preference
      */
     public boolean isSoftlyInherited() {
-	return value == inherit; 
+	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -190,13 +190,13 @@ public class ColorProfile extends CssProperty implements CssOperator {
 	    return ret;
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return value == auto;
     }
-    
+
 }

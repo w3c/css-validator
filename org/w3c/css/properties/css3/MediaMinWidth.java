@@ -36,21 +36,21 @@ public class MediaMinWidth extends CssProperty {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public MediaMinWidth(ApplContext ac, CssExpression expression, 
+    public MediaMinWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssLength || val instanceof CssPercentage) {
 		float f = ((Float) val.get()).floatValue();
@@ -65,11 +65,11 @@ public class MediaMinWidth extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
-    
+
     public MediaMinWidth(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);

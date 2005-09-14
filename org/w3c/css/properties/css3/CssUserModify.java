@@ -25,13 +25,13 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:interactive
  *  <P>
- *  The purpose of this property is to allow finer control over which user 
- *  interface elements are user modifiable. Input elements can be pre-filled 
+ *  The purpose of this property is to allow finer control over which user
+ *  interface elements are user modifiable. Input elements can be pre-filled
  *  in, with the user-modify property set to read-only so that the user cannot
- *  change them. This is useful for templates, or for update forms. The user 
+ *  change them. This is useful for templates, or for update forms. The user
  *  can still activate a read-only element and copy content out of
- *  it, if that is appropriate for the content model of the element. 
- *  This is different from making the element "user-input:disabled" because 
+ *  it, if that is appropriate for the content model of the element.
+ *  This is different from making the element "user-input:disabled" because
  *  that would prevent the user from activating the element.
 */
 
@@ -81,7 +81,7 @@ public class CssUserModify extends CssProperty {
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public CssUserModify(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
@@ -122,7 +122,7 @@ public class CssUserModify extends CssProperty {
 	return (property instanceof CssUserModify &&
 		um.equals(((CssUserModify) property).um));
     }
-    
+
     /**
      * Returns the name of this property
      */

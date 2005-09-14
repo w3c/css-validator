@@ -45,7 +45,12 @@ public class CssStyle {
   public final void setSelector(CssSelectors selectors) {
       this.selector = selectors;
   }
-
+//public String toString() {
+//    String res = "";
+//    res += selector;
+//    res+=style;
+//    return res;
+//}
   /**
    * Set the style sheet of this style.
    *
@@ -73,7 +78,7 @@ public class CssStyle {
    */
   public final void setProperty(ApplContext ac, CssProperty property, Warnings warnings) {
     this.warnings = warnings;
-    //property.addToStyle(ac, this);
+    property.addToStyle(ac, this);
   }
 
   /**

@@ -26,9 +26,9 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  The 'column-width' property describes the optimal width of columns within the element. 
- *  Depending on the value of 'column-width-policy', the actual column width may be 
- *  larger than the specified one. 
+ *  The 'column-width' property describes the optimal width of columns within the element.
+ *  Depending on the value of 'column-width-policy', the actual column width may be
+ *  larger than the specified one.
  */
 
 public class CssColumnWidth extends CssProperty {
@@ -75,7 +75,7 @@ public class CssColumnWidth extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -111,7 +111,7 @@ public class CssColumnWidth extends CssProperty {
 	return (property instanceof CssColumnWidth &&
 		width.equals(((CssColumnWidth) property).width));
     }
-    
+
     /**
      * Returns the name of this property
      */

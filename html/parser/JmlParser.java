@@ -12,37 +12,37 @@ import java.net.URL;
 
 /**
  * A Simple wrapper class to keep the original code clean and be able to access
- * package-private variables and methods. 
+ * package-private variables and methods.
  */
 
 public class JmlParser extends Parser {
     static final String defaultDTD = "html2-net";
     String dtdname;
-    
+
     public JmlParser() throws ParserException {
 	this(defaultDTD);
     }
-    
+
     public JmlParser(String dtdn) throws ParserException {
-	
+
 	dtdname=dtdn;
 
 	// Load properties
 	URL url = null;
 	java.io.InputStream f = null;
 	DTD.props = new Properties();
-	
+
 	try {
 	    // url = getClass().getResource("../parser/Parser.properties"); //vm980826
 	    url = JmlParser.class.getResource("Parser.properties"); //plh050597
 	    f = url.openStream();
 	    DTD.props.load(f);
 	} catch (Exception e) {
-	    String msg = 
+	    String msg =
 		"Failed to load properties (url=" + url +")"
 		+ "(msg=" + e.getMessage() + ")"; //vm970808 //vm980826
-	    throw new ParserException(msg);    
-            
+	    throw new ParserException(msg);
+
 	    //vm970808       System.out.println("Failed to load properties...");
 	    //vm970808       e.printStackTrace();
 	    //vm970808       System.exit(1);
@@ -51,7 +51,7 @@ public class JmlParser extends Parser {
 		f.close();
 	    } catch (Exception e) {}
 	}
-	
+
 	// load the right DTD
 	DTD.props = new Properties(DTD.props);
 	try {
@@ -64,11 +64,11 @@ public class JmlParser extends Parser {
 	    //vm970808 System.exit(1);
 	}
     }
-    
+
     //     public void parse(InputStream in) {
     // 	parse(in, dtd);
     //     }
-    
+
     public void parseFile(String filename) throws ParserException {
 	InputStream in;
 	try {
@@ -80,21 +80,21 @@ public class JmlParser extends Parser {
 	    try {
 		long tm = System.currentTimeMillis();
 		parse(in, dtd);
-		
+
 		tm = System.currentTimeMillis() - tm;
 		System.out.println("[Parsed " +filename+ " in " + tm + "ms]");
 	    }
 	    catch(Exception e) {
 		throw new ParserException("Uncaught error while parsing");
-		
+
 		//vm970808 System.out.println("uncaught error while parsing");
 		//vm970808 e.printStackTrace();
 		//vm970808 System.exit(1);
 	    }
-	    
+
 	} catch (Exception e) {
 	    throw new ParserException("Failed to open: " + filename); //vm970808
-	    
+
 	    //vm970808 e.printStackTrace();
 	    //vm970808 System.out.println("failed to open: " + filename);
 	    //vm970808 System.exit(1);

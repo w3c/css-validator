@@ -28,16 +28,16 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:all
  *  <P>
- *  The 'toggle-group' property accepts the name of a group (identifier). 
- *  The property indicates which toggle group that the element is a member 
- *  of. Only one element belonging to any given toggle group can be :checked. 
+ *  The 'toggle-group' property accepts the name of a group (identifier).
+ *  The property indicates which toggle group that the element is a member
+ *  of. Only one element belonging to any given toggle group can be :checked.
  */
 
 public class CssToggleGroup extends CssProperty {
 
     CssValue toggle;
     public static Hashtable groups = new Hashtable();
-    public static String checkedel = new String(); 
+    public static String checkedel = new String();
     String selector = new String();
 
     CssIdent none = new CssIdent("none");
@@ -101,7 +101,7 @@ public class CssToggleGroup extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -112,13 +112,13 @@ public class CssToggleGroup extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssToggleGroup = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	selector = ((Css3Style) style).getSelector();
 	if (resolve) {
@@ -127,51 +127,51 @@ public class CssToggleGroup extends CssProperty {
 	    return ((Css3Style) style).cssToggleGroup;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssToggleGroup && 
+	return (property instanceof CssToggleGroup &&
                 toggle.equals( ((CssToggleGroup) property).toggle));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "toggle-group";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return toggle;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return toggle.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return toggle.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return toggle == none;
     }
-    
-}	
+
+}

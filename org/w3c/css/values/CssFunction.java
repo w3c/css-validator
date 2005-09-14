@@ -17,26 +17,26 @@ public class CssFunction extends CssValue {
 
     String name;
     CssExpression parameters;
-    
+
     /**
      * Set the value of this function
      *
      * @param s     the string representation of the frequency.
      * @param frame For errors and warnings reports.
-     */  
+     */
     public void set(String s, ApplContext ac) {
 	// @@TODO
     }
-    
+
     public void set(String name, CssExpression parameters) {
 	this.name = name;
 	this.parameters = parameters;
-	
+
     }
-    
+
     /**
      * Returns the value
-     */  
+     */
     public Object get() {
 	// @@TODO
 	return null;
@@ -48,29 +48,29 @@ public class CssFunction extends CssValue {
     public String getName() {
 	return name;
     }
-    
+
     /**
      * Returns the parameters expression
      */
     public CssExpression getParameters() {
 	return parameters;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return name + "(" + parameters + ")";
     }
-    
+
     /**
      * Compares two values for equality.
      *
      * @param value The other value.
-     */  
+     */
     public boolean equals(Object value) {
 	// @@FIXME
-	return (value instanceof CssFunction && 
+	return (value instanceof CssFunction &&
 		this.name.equals(((CssFunction) value).name));
     }
 }

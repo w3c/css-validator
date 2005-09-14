@@ -21,8 +21,8 @@ public class MediaEnumeration implements Enumeration {
     int current = 0;
 
     MediaEnumeration(AtRuleMedia media) {
-	this.media = media.media;	
-	while ((current < this.media.length) 
+	this.media = media.media;
+	while ((current < this.media.length)
 	       && (this.media[current] != null)) {
 	    current++;
 	}

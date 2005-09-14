@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> &lt;style&gt; || &lt;color&gt; || &lt;mode&gt; || 
+ *  <EM>Value:</EM> &lt;style&gt; || &lt;color&gt; || &lt;mode&gt; ||
  *  &lt;position&gt; || inherit<BR>
  *  <EM>Initial:</EM>not defined for shorthand properties<BR>
  *  <EM>Applies to:</EM>all elements<BR>
@@ -26,13 +26,13 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property is the shorthand for 'text-underline-style', 
+ *  This property is the shorthand for 'text-underline-style',
  *  'text-underline-color', 'text-underline-mode' and 'text-underline-position'.
  */
 
-public class CssTextUnderLine extends CssProperty 
+public class CssTextUnderLine extends CssProperty
 implements CssOperator  {
- 
+
     CssValue underline;
     CssTextUlColor tuc;
     CssTextUlMode tum;
@@ -47,7 +47,7 @@ implements CssOperator  {
 
     /**
      * Create a new CssTextUnderLine
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -62,7 +62,7 @@ implements CssOperator  {
 	while (correct && (val != null) && (maxvalues-- > 0)) {
 
 	    correct = false;
-	 
+
 	    if (tus == null) {
 		try {
 		    tus = new CssTextUlStyle(ac, expression);
@@ -96,8 +96,8 @@ implements CssOperator  {
 		}
 	    }
 	    if (!correct) {
-		throw new InvalidParamException("value", 
-						expression.getValue(), 
+		throw new InvalidParamException("value",
+						expression.getValue(),
 						getPropertyName(), ac);
 	    }
 
@@ -124,7 +124,7 @@ implements CssOperator  {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -159,7 +159,7 @@ implements CssOperator  {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -178,7 +178,7 @@ implements CssOperator  {
      * Returns a string representation of the object
      */
     public String toString() {
-	
+
 	String ret = "";
 	if (tus.isByUser()) {
 	    ret += " " + tus;

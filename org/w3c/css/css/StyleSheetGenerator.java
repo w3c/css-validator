@@ -32,14 +32,14 @@ import org.w3c.css.util.Warnings;
  * @version $Revision$
  */
 public final class StyleSheetGenerator implements CssPrinterStyle {
-    
+
     //    SortedHashtable items;
     Hashtable items;
 
     Warnings warnings;
 
     Errors errors;
-    
+
     private CssSelectors selector;
 
     private CssProperty property;
@@ -47,13 +47,13 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     private PrintWriter out;
 
     private int warningLevel;
-    
+
 	private Utf8Properties general;
 
 	private static Utf8Properties availableFormat;
 
     private static Hashtable formats = new Hashtable();
-    
+
     /**
      * Create a new StyleSheetGenerator
      *
@@ -68,22 +68,22 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
      */
 	public StyleSheetGenerator(String title, StyleSheet style, String document,
 			       int warningLevel) {
-	
+
 		general = new Utf8Properties(setDocumentBase(getDocumentName(document)));
 	general.put("file-title", title);
 	general.put("today", new Date().toString());
-	
+
 	warnings = style.getWarnings();
 	errors = style.getErrors();
 		// items = (SortedHashtable) style.getRules();
 	items = style.getRules();
 	this.warningLevel = warningLevel;
-	
+
 		general.put("errors-count", Integer.toString(errors.getErrorCount()));
 		general.put("warnings-count", Integer.toString(warnings
 				.getWarningCount()));
 		general.put("rules-count", Integer.toString(items.size()));
-	
+
 	if (errors.getErrorCount() == 0) {
 	    desactivateError();
 	}
@@ -97,21 +97,21 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	} else {
 	    general.put("no-rules", ""); // remove no-rules
 	}
-	
+
 	if (errors.getErrorCount() != 0 || warnings.getWarningCount() != 0) {
 	    // remove no-error-or-warning
-	    general.put("no-error-or-warning", ""); 
+	    general.put("no-error-or-warning", "");
 	}
-	
+
 		if (Util.onDebug)
 			general.list(System.err);
     }
-    
+
     public void desactivateError() {
 	general.put("go-errors", ""); // remove go-errors
 	general.put("errors", ""); // remove errors
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -126,10 +126,10 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    out.println("Please correct your request ");
 			out.println(" or send a mail to " + " www-validator-css@w3.org");
 	}
-	
+
 	out.flush();
     }
-    
+
     public void produceRule() {
 		// Object[] array = items.getSortedArray();
 	int i = 0;
@@ -145,21 +145,21 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    }
 	}
     }
-    
+
     public void produceSelector(CssSelectors selectorLocal) {
 	//	out.print(selectorLocal.getAtRule());
 	out.print(selectorLocal);
     }
-    
+
     public void produceDeclaration() {
 	selector.getStyle().print(this);
-    }  
-    
+    }
+
     public void print(CssProperty property) {
 	    	Utf8Properties prop = new Utf8Properties(general);
 	prop.put("property-name", property.getPropertyName().toString());
 	prop.put("property-value", property.toString());
-	
+
 	if (!property.getImportant()) {
 	    prop.put("important-style", "");
 	}
@@ -220,7 +220,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
     public void produceError() {
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = null;
-	
+
 	try {
 	    if (errors.getErrorCount() != 0) {
 		int i = 0;
@@ -233,12 +233,12 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 		    }
 		    ret.append(" Line : ").append(error[i].getLine());
 		    ret.append(" ");
-		    
+
 		    if (ex instanceof FileNotFoundException) {
 			ret.append("File not found ");
 			ret.append(ex.getMessage());
 			ret.append('\n');
-			
+
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
@@ -250,16 +250,16 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 			ret.append(stringError.substring(0, index));
 			ret.append(" : ");
 			ret.append(ex.getMessage()).append('\n');
-			
+
 		    } else if (error[i] instanceof CssErrorToken) {
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append("   ");
 			ret.append(terror.getErrorDescription()).append(" : ");
 			ret.append(terror.getSkippedString()).append('\n');
-			
+
 		    } else {
 			ret.append(ex).append(" \n");
-			
+
 			if (ex instanceof NullPointerException) {
 			    // ohoh, a bug
 			    ex.printStackTrace();
@@ -273,7 +273,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-    
+
     public void produceWarning() {
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = "";
@@ -284,30 +284,30 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 		int i = 0;
 		warnings.sort();
 				for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
-		    
+
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
 			    oldSourceFile = warn.getSourceFile();
 			    ret.append("\n URI : ");
 			    ret.append(oldSourceFile).append('\n');
-			} 
+			}
 						if (warn.getLine() != oldLine
 								|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 			    ret.append("Line : ").append(oldLine);
-			    
+
 			    if (warn.getLevel() != 0) {
 				ret.append(" Level : ");
 				ret.append(warn.getLevel());
 			    }
 			    ret.append(" ").append(oldMessage);
-			    
+
 			    if (warn.getContext() != null) {
 				ret.append(" : ").append(warn.getContext());
 			    }
-			    
+
 			    ret.append(" \n");
 			}
 		    }
@@ -319,7 +319,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-    
+
     private String queryReplace(String s) {
 	if (s == null) {
 	    return "[empty string]";
@@ -327,16 +327,16 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    return s;
 	}
     }
-    
+
     private final String processSimple(String s) {
 	return processStyle(general.getProperty(s), general);
     }
-    
+
 	private String processStyle(String str, Utf8Properties prop) {
 	if (str == null) {
 	    return "";
 	}
-	
+
 	try {
 	    int i = 0;
 	    while ((i = str.indexOf("<!-- #", i)) >= 0) {
@@ -359,7 +359,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 			} else {
 			    i += 6; // skip this unknown entity
 			}
-			
+
 		    } else {
 			out.print(str.substring(0, i));
 						str = str.substring(lastIndexOfEntity + 3);
@@ -397,14 +397,14 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 		    }
 		}
 	    }
-	    
+
 	    return str;
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    return str;
 	}
     }
-    
+
     public final static void printAvailableFormat(PrintWriter out) {
 	Enumeration e = availableFormat.propertyNames();
 		out.println(" -- listing available output format --");
@@ -415,7 +415,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	}
 	out.flush();
     }
-    
+
 	private Utf8Properties setDocumentBase(String document) {
 		Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
@@ -439,7 +439,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 
 		return new Utf8Properties(properties);
     }
-    
+
     private final static String getDocumentName(String documentName) {
 		String document = availableFormat.getProperty(documentName
 				.toLowerCase());
@@ -451,7 +451,7 @@ public final class StyleSheetGenerator implements CssPrinterStyle {
 	    return document;
 	}
     }
-    
+
     static {
 	URL url;
 		availableFormat = new Utf8Properties();

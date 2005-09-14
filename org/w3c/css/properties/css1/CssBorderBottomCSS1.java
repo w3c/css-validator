@@ -49,48 +49,48 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
-    
+
     CssBorderBottomWidthCSS1 width;
     CssBorderBottomStyleCSS1 style;
     CssBorderBottomColorCSS1 color;
-    
+
     /**
      * Create a new CssBorderFaceCSS1
      */
     public CssBorderBottomCSS1() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFace
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderBottomCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if (val == null)
 		break;
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
 						ac);
-	    
+
 	    if (width == null) {
 		try {
 		    width = new CssBorderBottomWidthCSS1(ac, expression);
@@ -122,19 +122,19 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    color = new CssBorderBottomColorCSS1();
 	*/
     }
-    
-    public CssBorderBottomCSS1(ApplContext ac, CssExpression expression) 
+
+    public CssBorderBottomCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -145,7 +145,7 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -156,7 +156,7 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -167,7 +167,7 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -190,18 +190,18 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-bottom";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(width != null) {
 	    width.important = true;
@@ -213,7 +213,7 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    color.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -223,14 +223,14 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 		(style == null || style.important) &&
 		(color == null || color.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -247,15 +247,15 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {	
+    public void addToStyle(ApplContext ac, CssStyle style) {
 	if(width != null) {
 	    width.addToStyle(ac, style);
 	}
@@ -266,13 +266,13 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    color.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderBottomCSS1();
@@ -280,16 +280,16 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssBorderCSS1.getBottom();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -300,7 +300,7 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -320,25 +320,25 @@ public class CssBorderBottomCSS1 extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderBottomCSS1) {
 	    CssBorderBottomCSS1 bottom = (CssBorderBottomCSS1) property;
 	    return (width != null && width.equals(bottom.width) &&
-		    style != null && style.equals(bottom.style) && 
+		    style != null && style.equals(bottom.style) &&
 		    color != null && color.equals(bottom.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

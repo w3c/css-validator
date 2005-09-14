@@ -87,7 +87,7 @@ public class CssGlyphHor extends CssProperty {
     public CssGlyphHor(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
-    }    
+    }
 
     /**
      * Add this property to the CssStyle

@@ -19,31 +19,31 @@ public interface CssBackgroundConstants {
 
   /**
    * The top position
-   */  
+   */
   static int POSITION_TOP = 0;
 
   /**
    * The center position
-   */  
+   */
   static int POSITION_CENTER = 1;
 
   /**
    * The bottom position
-   */  
+   */
   static int POSITION_BOTTOM = 2;
 
   /**
    * The left position
-   */  
+   */
   static int POSITION_LEFT = 3;
 
   /**
    * The right position
-   */  
+   */
   static int POSITION_RIGHT = 4;
-  
+
   /**
    * Inherit
-   */  
+   */
   static int POSITION_INHERIT = 5;
 }

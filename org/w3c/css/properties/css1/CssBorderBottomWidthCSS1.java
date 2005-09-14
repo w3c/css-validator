@@ -44,14 +44,14 @@ import org.w3c.css.values.CssValue;
 public class CssBorderBottomWidthCSS1 extends CssProperty {
 
   CssBorderFaceWidthCSS1 face;
-  
+
   /**
    * Create a new CssBorderBottomWidth
    */
   public CssBorderBottomWidthCSS1() {
     face = new CssBorderFaceWidthCSS1();
   }
-  
+
   /**
    * Create a new CssBorderBottomWidth with an another CssBorderFaceWidth
    *
@@ -62,7 +62,7 @@ public class CssBorderBottomWidthCSS1 extends CssProperty {
 
     face = another;
   }
-  
+
   /**
    * Create a new CssBorderBottomWidth
    *
@@ -71,7 +71,7 @@ public class CssBorderBottomWidthCSS1 extends CssProperty {
    */
   public CssBorderBottomWidthCSS1(ApplContext ac, CssExpression expression,
 	  boolean check) throws InvalidParamException {
-      
+
       if(check && expression.getCount() > 1) {
 	  throw new InvalidParamException("unrecognize", ac);
       }
@@ -79,12 +79,12 @@ public class CssBorderBottomWidthCSS1 extends CssProperty {
       setByUser();
       face = new CssBorderFaceWidthCSS1(ac, expression);
   }
-  
-  public CssBorderBottomWidthCSS1(ApplContext ac, CssExpression expression) 
+
+  public CssBorderBottomWidthCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
   }
-  
+
   /**
    * Returns the value of this property
    */
@@ -114,7 +114,7 @@ public class CssBorderBottomWidthCSS1 extends CssProperty {
 
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "border-bottom-width";
   }
@@ -149,9 +149,9 @@ public class CssBorderBottomWidthCSS1 extends CssProperty {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-    return (property instanceof CssBorderBottomWidthCSS1 && 
+    return (property instanceof CssBorderBottomWidthCSS1 &&
 	    face.equals(((CssBorderBottomWidthCSS1) property).face));
   }
 

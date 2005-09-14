@@ -24,7 +24,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Applies to:</EM>text elements<BR>
  *  <EM>Inherited:</EM>yes<BR>
  *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual 
+ *  <EM>Media:</EM>:visual
  */
 
 public class TextRendering extends CssProperty {
@@ -74,7 +74,7 @@ public class TextRendering extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -110,7 +110,7 @@ public class TextRendering extends CssProperty {
 	return (property instanceof TextRendering &&
 		value.equals(((TextRendering) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */

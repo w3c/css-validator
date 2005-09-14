@@ -105,7 +105,7 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
 	    if(val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if (val instanceof CssString) {								//specific voice
 			String familyName = null;
 			if (op == COMMA) { // "helvetica", "roman"
@@ -224,7 +224,7 @@ public class ACssVoiceFamilyCSS3 extends ACssProperty implements CssOperator {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns all voices name
      */

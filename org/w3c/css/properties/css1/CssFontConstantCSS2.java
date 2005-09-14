@@ -13,42 +13,42 @@ public interface CssFontConstantCSS2 {
 
   /**
    * Array of font-style values
-   */  
+   */
   static String[] FONTSTYLE = { "normal", "italic", "oblique", "inherit" };
 
   /**
    * Array of font-variant values
-   */  
+   */
   static String[] FONTVARIANT = { "normal", "small-caps", "inherit" };
 
   /**
    * Array of font-size values
-   */  
-  static String[] FONTSIZE = { 
+   */
+  static String[] FONTSIZE = {
     "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large",
     "larger", "smaller", "inherit"
   }; // relative-size
 
   /**
    * Array of font-weight values
-   */  
-  static String[] FONTWEIGHT = { "normal", "bold", "bolder", 
+   */
+  static String[] FONTWEIGHT = { "normal", "bold", "bolder",
 				 "lighter", "inherit" };
-  
+
   /**
    * Array of font-stretch values
-   */  
-  static String[] FONTSTRETCH = { "normal", "wider", "narrower", 
-				  "ultra-condensed", "extra-condensed", 
-				  "condensed", "semi-condensed", 
+   */
+  static String[] FONTSTRETCH = { "normal", "wider", "narrower",
+				  "ultra-condensed", "extra-condensed",
+				  "condensed", "semi-condensed",
 				  "semi-expanded", "expanded", "extra-expanded",
 				  "ultra-expanded", "inherit" };
-  
+
   /**
    * Array of font values
-   */  
-  static String[] FONT = { "caption", "icon", "menu", 
-			   "message-box", "small-caption", 
+   */
+  static String[] FONT = { "caption", "icon", "menu",
+			   "message-box", "small-caption",
 			   "status-bar", "inherit" };
 
 }

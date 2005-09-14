@@ -24,7 +24,7 @@ public final class Warnings {
    * Add a warning.
    *
    * @param warm the warning
-   */  
+   */
   public final void addWarning(Warning warm) {
     resize(1);
     warningData[warningCount++] = warm;
@@ -34,24 +34,24 @@ public final class Warnings {
    * Add warnings.
    *
    * @param warnings All warnings
-   */  
+   */
   public final void addWarnings(Warnings warnings) {
     resize(warnings.warningCount);
-    System.arraycopy(warnings.warningData, 0, warningData, warningCount, 
+    System.arraycopy(warnings.warningData, 0, warningData, warningCount,
 		     warnings.warningCount);
     warningCount += warnings.warningCount;
   }
 
   /**
    * Get the number of warnings
-   */  
+   */
   public final int getWarningCount() {
     return warningCount;
   }
 
   /**
    * Get an array with all warnings.
-   */  
+   */
   public final Warning[] getWarnings() {
     int oldCapacity = warningData.length;
     if (warningCount < oldCapacity) {
@@ -64,7 +64,7 @@ public final class Warnings {
 
   /**
    * Sort all warnings by line and level
-   */  
+   */
   public final void sort() {
     quickSort(0, warningCount-1);
   }
@@ -74,10 +74,10 @@ public final class Warnings {
     long median_val;
     int comp1;
     Warning transit;
-    
+
     // swap median value an first value of array
-    comp1 = ( part_low_ind + part_high_ind ) / 2;         
-    
+    comp1 = ( part_low_ind + part_high_ind ) / 2;
+
     transit = warningData[part_low_ind];
     warningData[part_low_ind] = warningData[comp1];
     warningData[comp1] = transit;
@@ -96,10 +96,10 @@ public final class Warnings {
     transit=warningData[part_low_ind];
     warningData[part_low_ind]=warningData[lastsmall];
     warningData[lastsmall]=transit;
-    
+
     return lastsmall;
   }
-  
+
   private void quickSort(int qk_low_ind, int qk_high_ind) {
     if (qk_low_ind < qk_high_ind) {
       int median = partition(qk_low_ind, qk_high_ind);
@@ -111,7 +111,7 @@ public final class Warnings {
   /**
    * Get a warning with an index.
    * @param index the warning index.
-   */  
+   */
   public final Warning getWarningAt(int index) {
     return warningData[index];
   }

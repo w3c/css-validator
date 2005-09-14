@@ -21,32 +21,32 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class SpeakHeaderATSC extends TableProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent once = new CssIdent("once");
     private static CssIdent always = new CssIdent("always");
 
     /**
      * Create a new SpeakHeaderATSC
-     */  
+     */
     public SpeakHeaderATSC() {
 	value = once;
     }
-    
+
     /**
      * Creates a new CssSpeakHeaderATSC
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public SpeakHeaderATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -59,26 +59,26 @@ public class SpeakHeaderATSC extends TableProperty {
 	} else if (val.equals(always)) {
 	    value = always;
 	} else {
-	    throw new InvalidParamException("value", 
-					    val.toString(), 
+	    throw new InvalidParamException("value",
+					    val.toString(),
 					    getPropertyName(), ac);
 	}
 
 	expression.next();
     }
-    
-    public SpeakHeaderATSC(ApplContext ac, CssExpression expression) 
+
+    public SpeakHeaderATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -86,22 +86,22 @@ public class SpeakHeaderATSC extends TableProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "speak-header";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -114,13 +114,13 @@ public class SpeakHeaderATSC extends TableProperty {
 	}
 	style0.speakHeaderATSC = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getSpeakHeaderATSC();
@@ -128,20 +128,20 @@ public class SpeakHeaderATSC extends TableProperty {
 	    return ((Css2Style) style).speakHeaderATSC;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (value == null) {
-	    return (property instanceof SpeakHeaderATSC && 
+	    return (property instanceof SpeakHeaderATSC &&
 		    ((SpeakHeaderATSC) property).value == value);
 	} else {
-	    return (property instanceof SpeakHeaderATSC && 
+	    return (property instanceof SpeakHeaderATSC &&
 		    ((SpeakHeaderATSC) property).value.equals(value));
 	}
     }
-    
+
 }

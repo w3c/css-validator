@@ -18,22 +18,22 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderImageTransform extends CssProperty {
-    
+
     String value = "";
-    
+
     CssIdent none = new CssIdent("none");
-    
+
     private static String[] values = {
 	"none", "rotate", "reflect-xy", "reflect-right", "reflect-left"
     };
-    
+
     /**
      * Create a new CssBorderImageTransform
      */
     public CssBorderImageTransform() {
 	value = "none";
     }
-    
+
     /**
      * Create a new CssBorderImageTransform
      *
@@ -42,12 +42,12 @@ public class CssBorderImageTransform extends CssProperty {
      */
     public CssBorderImageTransform(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	val = expression.getValue();
-	
+
 	int j = 0;
 	for (int i = 0; i < values.length; i++) {
 	    if (val.toString().equals(values[j])) {
@@ -56,19 +56,19 @@ public class CssBorderImageTransform extends CssProperty {
 		break;
 	    }
 	}
-	
+
 	if (j == values.length) {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
     }
-    
+
     public CssBorderImageTransform(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -79,7 +79,7 @@ public class CssBorderImageTransform extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderImageTransform = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -94,7 +94,7 @@ public class CssBorderImageTransform extends CssProperty {
 	    return ((Css3Style) style).cssBorderImageTransform;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -104,35 +104,35 @@ public class CssBorderImageTransform extends CssProperty {
 	return (property instanceof CssBorderImageTransform &&
 		value.equals(((CssBorderImageTransform) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-corner-fit";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -140,5 +140,5 @@ public class CssBorderImageTransform extends CssProperty {
     public boolean isDefault() {
 	return value.equals("none");
     }
-    
+
 }

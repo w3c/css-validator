@@ -21,29 +21,29 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class RowSpan extends TableProperty {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new RowSpan
-     */  
+     */
     public RowSpan() {
 	value = new CssNumber(null, 1);
     }
-    
+
     /**
      * Creates a new CssRowSpan
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public RowSpan(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -57,27 +57,27 @@ public class RowSpan extends TableProperty {
 		expression.next();
 		return;
 	    } else {
-		throw new InvalidParamException("integer", 
-						val.toString(), 
+		throw new InvalidParamException("integer",
+						val.toString(),
 						getPropertyName(), ac);
 	    }
-	} 
-	
+	}
+
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
-    
-    public RowSpan(ApplContext ac, CssExpression expression) 
+
+    public RowSpan(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -85,22 +85,22 @@ public class RowSpan extends TableProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "row-span";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -113,13 +113,13 @@ public class RowSpan extends TableProperty {
 	}
 	style0.rowSpan = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getRowSpan();
@@ -127,20 +127,20 @@ public class RowSpan extends TableProperty {
 	    return ((Css2Style) style).rowSpan;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (value == null) {
-	    return (property instanceof RowSpan && 
+	    return (property instanceof RowSpan &&
 		    ((RowSpan) property).value == value);
 	} else {
-	    return (property instanceof RowSpan && 
+	    return (property instanceof RowSpan &&
 		    ((RowSpan) property).value.equals(value));
 	}
     }
-    
+
 }

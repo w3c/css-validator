@@ -27,24 +27,24 @@ import org.w3c.css.values.CssValue;
  */
 
 public class ClipRule extends CssProperty {
-    
+
     CssValue cliprule;
     ApplContext ac;
-    
+
     CssIdent nonzero = new CssIdent("nonzero");
     CssIdent evenodd = new CssIdent("evenodd");
-    
+
     /**
      * Create a new Cliprule
      */
     public ClipRule() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Cliprule
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public ClipRule(ApplContext ac, CssExpression expression,
@@ -52,7 +52,7 @@ public class ClipRule extends CssProperty {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    cliprule = inherit;
 	    expression.next();
@@ -67,12 +67,12 @@ public class ClipRule extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public ClipRule(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -83,13 +83,13 @@ public class ClipRule extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).clipRule = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getClipRule();
@@ -97,51 +97,51 @@ public class ClipRule extends CssProperty {
 	    return ((SVGStyle) style).clipRule;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ClipRule && 
+	return (property instanceof ClipRule &&
 		cliprule.equals( ((ClipRule) property).cliprule));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "clip-rule";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return cliprule;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return cliprule.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return cliprule.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (cliprule == nonzero);
     }
-    
+
 }

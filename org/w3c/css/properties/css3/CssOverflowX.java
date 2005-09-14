@@ -19,20 +19,20 @@ import org.w3c.css.values.CssValue;
 public class CssOverflowX extends CssProperty {
 
     CssValue overflowX;
-    
+
     static CssIdent auto = new CssIdent("auto");
     static CssIdent visible = new CssIdent("visible");
     static CssIdent hidden = new CssIdent("hidden");
     static CssIdent scroll = new CssIdent("scroll");
     static CssIdent initial = new CssIdent("initial");
-    
+
     /**
      * Create a new CssOverflowX
      */
     public CssOverflowX() {
 	// nothing to do
     }
-    
+
     /**
      * Create a new CssOverflowX
      *
@@ -41,10 +41,10 @@ public class CssOverflowX extends CssProperty {
      */
     public CssOverflowX(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(inherit)) {
 	    overflowX = val;
 	    expression.next();
@@ -68,12 +68,12 @@ public class CssOverflowX extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssOverflowX(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -84,7 +84,7 @@ public class CssOverflowX extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssOverflowX = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -99,7 +99,7 @@ public class CssOverflowX extends CssProperty {
 	    return ((Css3Style) style).cssOverflowX;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -109,42 +109,42 @@ public class CssOverflowX extends CssProperty {
 	return (property instanceof CssOverflowX &&
 		overflowX.equals(((CssOverflowX) property).overflowX));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "overflow-x";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return overflowX;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return overflowX.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return overflowX.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	
+
 	return overflowX == visible;
     }
-    
+
 }

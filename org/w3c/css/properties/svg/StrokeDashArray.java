@@ -39,7 +39,7 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	// nothing to do
     }
 
-    /** 
+    /**
      * Create a new StrokeDashArray
      */
     public StrokeDashArray(ApplContext ac, CssExpression expression,
@@ -60,10 +60,10 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	} else if (val instanceof CssNumber) {
 	    while ((op == COMMA || op == SPACE)
 		   && (counter < expression.getCount() && correct == true)) {
-		
+
 		if ((!(val instanceof CssNumber)) || (((CssNumber) val).getValue() < 0))
 		    correct = false;
-		
+
 		values.addElement(val);
 		expression.next();
 		counter++;
@@ -75,7 +75,7 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	}
 
 	if (!correct) {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
     }
@@ -84,7 +84,7 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -96,13 +96,13 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	((SVGStyle) style).strokeDashArray = this;
 
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getStrokeDashArray();
@@ -110,23 +110,23 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).strokeDashArray;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "stroke-dasharray";
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -138,15 +138,15 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	    return values;
 	}
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * This property can't be inherited, it's only for @preference
      */
     public boolean isSoftlyInherited() {
-	return value == inherit; 
+	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -162,13 +162,13 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
 	    return ret;
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return value == none;
     }
-    
+
 }

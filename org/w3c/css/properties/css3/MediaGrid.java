@@ -37,13 +37,13 @@ public class MediaGrid extends CssProperty {
     public MediaGrid(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssNumber) {
 		if (((CssNumber) val).isInteger()) {
@@ -56,7 +56,7 @@ public class MediaGrid extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
@@ -65,7 +65,7 @@ public class MediaGrid extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

@@ -26,7 +26,7 @@ import org.w3c.css.util.Util;
  * for an element/property combination, the following algorithm must be
  * followed:
  *
- * <OL> 
+ * <OL>
  * <LI> Find all declarations that apply to the element/property in question.
  * Declarations apply if the selector matches the element in question. If no
  * declarations apply, the inherited value is used. If there is no inherited
@@ -52,8 +52,8 @@ import org.w3c.css.util.Util;
  *   UL LI         {...}  /* a=0 b=0 c=2 -&gt; specificity =   2 * /
  *   UL OL LI      {...}  /* a=0 b=0 c=3 -&gt; specificity =   3 * /
  *   LI.red        {...}  /* a=0 b=1 c=1 -&gt; specificity =  11 * /
- *   UL OL LI.red  {...}  /* a=0 b=1 c=3 -&gt; specificity =  13 * / 
- *   #x34y         {...}  /* a=1 b=0 c=0 -&gt; specificity = 100 * / 
+ *   UL OL LI.red  {...}  /* a=0 b=1 c=3 -&gt; specificity =  13 * /
+ *   #x34y         {...}  /* a=1 b=0 c=0 -&gt; specificity = 100 * /
  * </PRE>
  *
  * <P> Pseudo-elements and pseudo-classes are counted as normal elements and
@@ -96,10 +96,10 @@ import org.w3c.css.util.Util;
  * rules. In a transition phase, this policy will make it easier for stylistic
  * attributes to coexist with style sheets.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public final class CssCascadingOrder {
-    
+
     CssProperty[] propertyData;
     int propertyCount;
     final int capacityIncrement = 10;
@@ -112,7 +112,7 @@ public final class CssCascadingOrder {
      * @param selector The current context.
      * @return the property with the right value.
      */
-    public CssProperty order(CssProperty property, 
+    public CssProperty order(CssProperty property,
 			     StyleSheet style, CssSelectors selector) {
 	//int i = 0;
 	propertyData = new CssProperty[10];
@@ -124,13 +124,13 @@ public final class CssCascadingOrder {
 	// question. (step 1)
 	for (Enumeration e = style.getRules().elements(); e.hasMoreElements();) {
 	    CssSelectors context = (CssSelectors) e.nextElement();
-	    
+
 	    Util.verbose("######## test with " + context
 			 + " and " + selector);
-	    //	    if (!selector.equals(context) && context.canApply(selector)) {	    
+	    //	    if (!selector.equals(context) && context.canApply(selector)) {
 	    if (context.canApply(selector)) {
 		// here, don't try to resolve
-		CssProperty prop = 
+		CssProperty prop =
 		    property.getPropertyInStyle(context.getStyle(), false);
 		Util.verbose("%%%%%%%%%%%%%%%%% Found " + context);
 		if (prop != null) {
@@ -138,18 +138,18 @@ public final class CssCascadingOrder {
 		}
 	    }
 	}
-	
+
 	if (propertyCount == 0) {
 	    // if I found nothing
 	    if (selector.getNext() != null && property.Inherited()) {
 		// here, I can try to resolve
-		Util.verbose("Found nothing ... try the next " 
+		Util.verbose("Found nothing ... try the next "
 			     + selector.getNext());
 		CssStyle s = style.getStyle(selector.getNext());
 		property = property.getPropertyInStyle(s, true);
 	    } // else use the default value
 	} else {
-	    Util.verbose("@@@@@@@@@@@@@@ FOUND " 
+	    Util.verbose("@@@@@@@@@@@@@@ FOUND "
 			 + propertyCount + " properties");
 	    // runs the cascading order
 	    property = getProperty(selector);
@@ -159,26 +159,26 @@ public final class CssCascadingOrder {
 		// the value of the property is inherited,
 		// recompute again ....
 		CssStyle s = style.getStyle(selector.getNext());
-		property = property.getPropertyInStyle(s, true);		
+		property = property.getPropertyInStyle(s, true);
 	    }
 	}
 	// duplicate the property because I change the context ...
 	property = property.duplicate();
 	property.setSelectors(selector);
-	
+
 	return property;
-    }  
-    
+    }
+
     // here you can find the algorithm for the cascading order
     private CssProperty getProperty(CssSelectors selector) {
 	SortAlgorithm sort = new QuickSortAlgorithm();
 
 	// sort by explicit weight and origin (step 2 and 3)
-	sort.sort(propertyData, 0, propertyCount - 1, 
+	sort.sort(propertyData, 0, propertyCount - 1,
 		  new CompareExplicitWeight());
 	int old = propertyData[0].getExplicitWeight();
 	int end = 0;
-	while (end < propertyCount && 
+	while (end < propertyCount &&
 	       propertyData[end].getExplicitWeight() == old) {
 	    end++;
 	}
@@ -187,17 +187,17 @@ public final class CssCascadingOrder {
 	sort.sort(propertyData, 0, end-1, new CompareSpecificity());
 	old = propertyData[0].getSelectors().getSpecificity();
 	end = 0;
-	while (end < propertyCount && 
+	while (end < propertyCount &&
 	       propertyData[end].getSelectors().getSpecificity() == old) {
 	    end++;
 	}
 
 	// sort by order specified (step 5)
 	sort.sort(propertyData, 0, end - 1, new CompareOrderSpecified());
-	
+
 	return propertyData[0];
     }
-    
+
     private final void addProperty(CssProperty property) {
 	int oldCapacity = propertyData.length;
 	if (propertyCount + 1 > oldCapacity) {
@@ -207,7 +207,7 @@ public final class CssCascadingOrder {
 	}
 	propertyData[propertyCount++] = property;
     }
-    
+
 }
 
 // all compare functions used in the cascading order

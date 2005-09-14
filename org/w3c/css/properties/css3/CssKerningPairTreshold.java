@@ -26,12 +26,12 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property controls the font size threshold, above which pair kerning 
- *  would be active (if enabled). 
+ *  This property controls the font size threshold, above which pair kerning
+ *  would be active (if enabled).
  */
 
 public class CssKerningPairTreshold extends CssProperty {
- 
+
     CssValue treshold;
 
     static CssIdent auto = new CssIdent("auto");
@@ -45,7 +45,7 @@ public class CssKerningPairTreshold extends CssProperty {
 
     /**
      * Create a new CssKerningPairTreshold
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -74,7 +74,7 @@ public class CssKerningPairTreshold extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -110,7 +110,7 @@ public class CssKerningPairTreshold extends CssProperty {
 	return (property instanceof CssKerningPairTreshold &&
 		treshold.equals(((CssKerningPairTreshold) property).treshold));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -148,4 +148,4 @@ public class CssKerningPairTreshold extends CssProperty {
     }
 
 }
-			      
+

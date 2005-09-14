@@ -30,7 +30,7 @@ public class InvalidAccesException extends RuntimeException {
     public InvalidAccesException() {
         super();
     }
-    
+
     /**
      * Creates a new InvalidAccesException with a specified string
      */

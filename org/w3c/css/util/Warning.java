@@ -19,7 +19,7 @@ public class Warning {
     int line;
     CssSelectors selector;
     String warningMessage;
-    
+
     /**
      * Create a new Warning with message parameters.
      *
@@ -38,9 +38,9 @@ public class Warning {
 	this.hashSource = sourceFile.hashCode() % 100;
 	this.line = line;
 	this.warningMessage = warm(warningMessage, message1, message2, ac);
-	this.line = getLevel(warningMessage, level, ac) + (line * 10); 
-    }  
-    
+	this.line = getLevel(warningMessage, level, ac) + (line * 10);
+    }
+
     /**
      * Create a new Warning.
      *
@@ -51,11 +51,11 @@ public class Warning {
      *
      * @see org.w3c.css.util.Messages
      */
-    public Warning(String sourceFile, int line, 
+    public Warning(String sourceFile, int line,
 		   String warningMessage, int level, ApplContext ac) {
 	this(sourceFile, line, warningMessage, level, "", "", ac);
-    }  
-    
+    }
+
     /**
      * Create a new Warning with a property and insert two messages inside.
      *
@@ -74,10 +74,10 @@ public class Warning {
 	    this.hashSource = sourceFile.hashCode() % 100;
 	}
 	this.warningMessage = warm(warningMessage, message1, message2, ac);
-	this.line = getLevel(warningMessage, level, ac) 
-	    + (property.getLine() * 10); 
+	this.line = getLevel(warningMessage, level, ac)
+	    + (property.getLine() * 10);
     }
-    
+
     /**
      * Create a new Warning with a property.
      * <P>Be careful ! Be sure that all informations in your property is
@@ -90,13 +90,13 @@ public class Warning {
      * @see org.w3c.css.util.Messages
      * @see org.w3c.css.properties.css1.CssProperty#setInfo
      */
-    public Warning(CssProperty property, String warningMessage, int level, 
+    public Warning(CssProperty property, String warningMessage, int level,
 		   ApplContext ac) {
-	this(property, warningMessage, level, 
+	this(property, warningMessage, level,
 	     property.getPropertyName(), "", ac);
 	this.selector = property.getSelectors();
     }
-    
+
     /**
      * Create a new Warning with a property and insert an other property name
      * inside.
@@ -106,54 +106,54 @@ public class Warning {
      * @param level the warning level
      * @param property2 The property in conflicts with the first
      *
-     * @see org.w3c.css.util.Messages 
+     * @see org.w3c.css.util.Messages
      */
     public Warning(CssProperty property, String warningMessage, int level,
 		   CssProperty property2, ApplContext ac) {
-	this(property, warningMessage, level, 
+	this(property, warningMessage, level,
 	     property.getPropertyName(), property2.getPropertyName(), ac);
 	this.selector = property.getSelectors();
     }
-    
+
     /**
      * Get the source file
-     */  
+     */
     public String getSourceFile() {
 	return sourceFile;
     }
-    
+
     /**
      * Get the line number.
-     */  
+     */
     public int getLine() {
 	return line / 10;
     }
-    
+
     /**
      * Get the message.
-     */  
+     */
     public String getWarningMessage() {
 	return warningMessage;
     }
-    
+
     /**
      * Get the warning level.
-     */  
+     */
     public int getLevel() {
 	return line % 10;
     }
-    
+
     /**
      * Get the context.
-     */  
+     */
     public CssSelectors getContext() {
 	return selector;
     }
-    
+
     public int getInternalOrder() {
 	return (hashSource * 100000) + line;
     }
-    
+
     /**
      * debug trace
      */
@@ -163,8 +163,8 @@ public class Warning {
 	System.err.println( getWarningMessage() );
 	System.err.println( getLevel() );
     }
-    
-    private String warm(String warning, String arg1, String arg2, 
+
+    private String warm(String warning, String arg1, String arg2,
 			ApplContext ac) {
 	String str = ac.getMsg().getWarningString(warning);
 	if (str == null) {
@@ -179,7 +179,7 @@ public class Warning {
 	    return str;
 	}
     }
-    
+
     private int getLevel(String warning, int defaultLevel, ApplContext ac) {
 	String str = ac.getMsg().getWarningLevelString(warning);
 	if (str == null)
@@ -196,5 +196,5 @@ public class Warning {
 	    }
 	}
     }
-    
+
 }

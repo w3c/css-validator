@@ -21,32 +21,32 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class TableLayoutATSC extends TableProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent auto = new CssIdent("auto");
     private static CssIdent fixed = new CssIdent("fixed");
 
     /**
      * Create a new TableLayoutATSC
-     */  
+     */
     public TableLayoutATSC() {
 	value = auto;
     }
-    
+
     /**
      * Creates a new CssTableLayoutATSC
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public TableLayoutATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 
@@ -59,26 +59,26 @@ public class TableLayoutATSC extends TableProperty {
 	} else if (val.equals(fixed)) {
 	    value = fixed;
 	} else {
-	    throw new InvalidParamException("value", 
-					    val.toString(), 
+	    throw new InvalidParamException("value",
+					    val.toString(),
 					    getPropertyName(), ac);
 	}
 
 	expression.next();
     }
-    
-    public TableLayoutATSC(ApplContext ac, CssExpression expression) 
+
+    public TableLayoutATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -86,22 +86,22 @@ public class TableLayoutATSC extends TableProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "table-layout";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -114,13 +114,13 @@ public class TableLayoutATSC extends TableProperty {
 	}
 	style0.tableLayoutATSC = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getTableLayoutATSC();
@@ -128,20 +128,20 @@ public class TableLayoutATSC extends TableProperty {
 	    return ((Css2Style) style).tableLayoutATSC;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (value == null) {
-	    return (property instanceof TableLayoutATSC && 
+	    return (property instanceof TableLayoutATSC &&
 		    ((TableLayoutATSC) property).value == value);
 	} else {
-	    return (property instanceof TableLayoutATSC && 
+	    return (property instanceof TableLayoutATSC &&
 		    ((TableLayoutATSC) property).value.equals(value));
 	}
     }
-    
+
 }

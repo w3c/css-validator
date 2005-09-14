@@ -47,17 +47,17 @@ public class ACssInterpretAs extends ACssProperty {
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
      */
-    public ACssInterpretAs(ApplContext ac, CssExpression expression, 
+    public ACssInterpretAs(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	    expression.next();
@@ -84,16 +84,16 @@ public class ACssInterpretAs extends ACssProperty {
 		}
 	    }
 	}
-	
+
 	throw new InvalidParamException("value", val.toString(),
 		getPropertyName(), ac);
     }
-    
+
     public ACssInterpretAs(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
      */
@@ -144,7 +144,7 @@ public class ACssInterpretAs extends ACssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssInterpretAs = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -158,8 +158,8 @@ public class ACssInterpretAs extends ACssProperty {
 	    return false;
 	}
     }
-    
-    
+
+
     /**
      * Get this property in the style.
      *

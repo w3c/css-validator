@@ -1,5 +1,5 @@
 /*
- * @(#)PublicMapping.java	1.1 95/04/23  
+ * @(#)PublicMapping.java	1.1 95/04/23
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *

@@ -36,7 +36,7 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
     public XMLCatalog() {
 	try {
 	    baseURI = XMLCatalog.class.getResource("catalog.xml");
-	    parse(baseURI.toString());	    
+	    parse(baseURI.toString());
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
 			       + "couldn't load catalog.xml");
@@ -110,7 +110,7 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
 	try {
 			xmlParser.setFeature(
 					"http://xml.org/sax/features/namespace-prefixes", true);
- 
+
 			xmlParser.setFeature("http://xml.org/sax/features/validation",
 					false);
 	} catch (Exception ex) {

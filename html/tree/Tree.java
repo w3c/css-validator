@@ -24,20 +24,20 @@ public interface Tree {
 
    /**
     * @return the parent Tree of this Tree or null.
-    */    
+    */
     Tree getParent();
 
    /**
     * Sets the parent for this tree.
     *
     * If the 'tree' has no notifier, it inherits its parent's one.
-    */    
+    */
     void setParent(Tree parent);
 
 
    /**
     * @return the index of this Tree in its parent.
-    */    
+    */
     int getRank();
 
    /**
@@ -57,7 +57,7 @@ public interface Tree {
     *
     * replace the 'rank'th child by 'child'.
     * If rank is invalid, throws an ArrayOutOfBoundsException.
-    */    
+    */
     void replace(Tree child, int rank);
 
    /**
@@ -65,7 +65,7 @@ public interface Tree {
     *
     * inserts a new child at rank 'rank'.
     * If rank is invalid, throws an ArrayOutOfBoundsException.
-    */    
+    */
     void attach(Tree child, int rank);
 
    /**
@@ -73,7 +73,7 @@ public interface Tree {
     *
     * inserts a new child after the child 'after'.
     * If 'after' does not exist, throws an ArrayOutOfBoundsException.
-    */    
+    */
     void attach(Tree child, Tree after);
 
    /**
@@ -81,7 +81,7 @@ public interface Tree {
     *
     * removes the child at rank 'rank'.
     * If rank is invalid, throws an ArrayOutOfBoundsException.
-    */    
+    */
     void detach(Tree child);
 
    /**
@@ -91,7 +91,7 @@ public interface Tree {
 
    /**
     * list of children
-    */    
+    */
     Enumeration children();
 
 }

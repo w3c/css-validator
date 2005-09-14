@@ -1308,7 +1308,6 @@ n.image = n.image.substring(1);
         	  isLength = true;               
               }
               catch(Exception e) {
-        	  System.out.println("CssParser._class(): " + e.getClass());
         	  isLength = false;              
               }
               if(isLength) {
@@ -1540,7 +1539,6 @@ void hash(CssSelectors s) :
 		  isLength = true;               
 	      }
 	      catch(Exception e) {
-		  System.out.println("CssParser._id(): " + e.getClass());
 		  isLength = false;              
 	      }
 	      if(isLength) {

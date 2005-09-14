@@ -25,12 +25,12 @@ import org.w3c.css.values.CssValue;
  * <EM>Percentages:</EM>no<BR>
  * <EM>Media:</EM>visual
  * <P>
- * This is a shorthand property for setting the style and position of the font emphasis decoration. 
+ * This is a shorthand property for setting the style and position of the font emphasis decoration.
  */
 
-public class CssFontEmphasize extends CssProperty 
+public class CssFontEmphasize extends CssProperty
 implements CssOperator {
-    
+
     CssValue fontemph;
     CssFontEmphasizePos fep;
     CssFontEmphasizeStyle fes;
@@ -38,9 +38,9 @@ implements CssOperator {
     /**
      * Creates a new CssFontEmphasize
      */
-    public CssFontEmphasize() {	
+    public CssFontEmphasize() {
     }
-    
+
     /**
      * Creates a new CssFontEmphasize
      *
@@ -56,7 +56,7 @@ implements CssOperator {
 	char op = SPACE;
 
 	while (correct && (val != null) && (maxvalues-- > 0)) {
-	    
+
 	    correct = false;
 
 	    if (fep == null) {
@@ -79,7 +79,7 @@ implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	    }
-	    
+
 	    val = expression.getValue();
 	    op = expression.getOperator();
 
@@ -126,7 +126,7 @@ implements CssOperator {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -165,7 +165,7 @@ implements CssOperator {
     /*
        Is the value of this property a default value
        It is used by alle macro for the function <code>print</code>
-     
+
        public boolean isDefault() {
        return fontemph == none;
        }

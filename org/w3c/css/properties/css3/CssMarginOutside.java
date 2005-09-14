@@ -40,7 +40,7 @@ public class CssMarginOutside extends CssMarginSide {
   public CssMarginOutside() {
     super();
   }
-  
+
   /**
    * Create a new CssMarginOutside with an another CssMarginSide
    * @param another The another side.
@@ -48,7 +48,7 @@ public class CssMarginOutside extends CssMarginSide {
   public CssMarginOutside(CssMarginSide another) {
     super(another);
   }
-  
+
   /**
    * Create a new CssMarginOutside
    *
@@ -59,15 +59,15 @@ public class CssMarginOutside extends CssMarginSide {
 	  boolean check) throws InvalidParamException {
     super(ac, expression, check);
   }
-  
+
   public CssMarginOutside(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
     this(ac, expression, false);
-  }  
-  
+  }
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "margin-outside";
   }
@@ -89,7 +89,7 @@ public class CssMarginOutside extends CssMarginSide {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css3Style) style).getMarginOutside();
@@ -102,9 +102,9 @@ public class CssMarginOutside extends CssMarginSide {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-      //    return (property instanceof CssMarginOutside && 
+      //    return (property instanceof CssMarginOutside &&
       //    value.equals(((CssMarginOutside) property).value));
       return false;
   }

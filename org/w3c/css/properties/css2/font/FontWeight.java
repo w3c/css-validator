@@ -23,9 +23,9 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class FontWeight extends CssProperty implements FontConstant {
-    
+
     Vector values = new Vector();
-    
+
     private static CssIdent all = new CssIdent("all");
 
     /**
@@ -34,13 +34,13 @@ public class FontWeight extends CssProperty implements FontConstant {
     public FontWeight() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new FontWeight
      *
      * @param expression the font weight
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public FontWeight(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	char op = expression.getOperator();
@@ -64,47 +64,50 @@ public class FontWeight extends CssProperty implements FontConstant {
 		    }
 		}
 		if (i == FONTWEIGHT.length) {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 	    } else if (val instanceof CssNumber) {
-		float valf = ((Float) val.get()).floatValue();
-		int vali = (int) valf;
-		if ((valf - (float) vali) == 0
-		    && isCorrectWeight(vali)) {
-		    values.addElement(val);
-		} else {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
-						    getPropertyName(), ac);
+		Object valf = val.get();
+		if(valf instanceof Integer) {
+		    int vali = ((Integer) valf).intValue();
+		    if(isCorrectWeight(vali)) { // verify the entire part number
+			values.addElement(val);
+		    }
 		}
-	    } else {
-		throw new InvalidParamException("value", expression.getValue(), 
-						getPropertyName(), ac);
+		else {
+		    throw new InvalidParamException("value",
+			    expression.getValue(),
+			    getPropertyName(), ac);
+		}
+	    }
+	    else {
+		throw new InvalidParamException("value", expression.getValue(),
+			getPropertyName(), ac);
 	    }
 	    op = expression.getOperator();
 	    expression.next();
 	} while (op == CssOperator.COMMA);
-	
+
     }
-    
+
     public FontWeight(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return values.elementAt(0);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret ="";
 	int i = 0;
 
@@ -115,14 +118,14 @@ public class FontWeight extends CssProperty implements FontConstant {
 
 	return ret.substring(2);
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-weight";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -135,13 +138,13 @@ public class FontWeight extends CssProperty implements FontConstant {
 	}
 	style0.fontWeight = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getFaceFontWeight();
@@ -149,32 +152,32 @@ public class FontWeight extends CssProperty implements FontConstant {
 	    return ((Css2Style) style).fontWeight;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
     private boolean isCorrectWeight(int val) {
 	val = val / 100;
 	return val > 0 && val < 10;
     }
-    
+
     private static int[] hash_values;
-    
+
     static {
 	hash_values = new int[FONTWEIGHT.length];
 	for (int i=0; i<FONTWEIGHT.length; i++)

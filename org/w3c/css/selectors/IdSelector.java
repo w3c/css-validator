@@ -11,7 +11,7 @@ package org.w3c.css.selectors;
 public class IdSelector implements Selector {
 
     String name;
-    
+
     /**
      * Creates a new id selector given its name
      * @param name
@@ -19,7 +19,7 @@ public class IdSelector implements Selector {
     public IdSelector(String name) {
 	this.name = name;
     }
-    
+
     /**
      * @see Selector#getName()
      */
@@ -41,12 +41,12 @@ public class IdSelector implements Selector {
     public String toString() {
 	return "#" + name;
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
 }

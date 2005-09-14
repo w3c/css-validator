@@ -34,21 +34,21 @@ import org.w3c.css.values.CssValue;
  */
 
 public class Fill extends CssProperty implements CssOperator {
-    
+
     CssValue fill;
     ApplContext ac;
     Vector values = new Vector();
-    
+
     CssIdent currentColor = new CssIdent("currentColor");
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new Fill
      */
     public Fill() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new Fill
      *
@@ -63,7 +63,7 @@ public class Fill extends CssProperty implements CssOperator {
 	boolean correct = true;
 	String errorval = "";
 	char op = expression.getOperator();
-	
+
 	if (val.equals(inherit)) {
 	    fill = inherit;
 	    expression.next();
@@ -78,11 +78,11 @@ public class Fill extends CssProperty implements CssOperator {
 		CssColor color = new CssColor(ac, expression);
 		values.addElement(val);
 		//expression.next();
-		
+
 		op = expression.getOperator();
 		val = expression.getValue();
-		
-		
+
+
 		if (val instanceof CssFunction) { // icc-color(<name>[,<icccolorvalue>]*)]
 		    CssValue function = val;
 		    if (!((CssFunction) val).getName().equals("icc-color")) {
@@ -90,37 +90,37 @@ public class Fill extends CssProperty implements CssOperator {
 			errorval = val.toString();
 		    } else {
 			CssExpression params = ((CssFunction) val).getParameters();
-			
+
 			op = params.getOperator();
 			val = params.getValue();
-			
+
 			if (!(val instanceof CssIdent)) {
 			    correct = false;
 			    errorval = val.toString();
 			}
-			
+
 			params.next();
 			op = params.getOperator();
 			val = params.getValue();
-			
+
 			if (!params.end()) { // there are more parameters left
 			    int counter = 0;
-			    
+
 			    while ((op == COMMA || op == SPACE)
 				    && (counter < (params.getCount() - 1) && correct == true)) {
-				
+
 				if ((!(val instanceof CssNumber)) || (((CssNumber) val).getValue() < 0)) {
 				    correct = false;
 				    errorval = val.toString();
 				}
-				
+
 				params.next();
 				counter++;
 				val = params.getValue();
 				op = params.getOperator();
 			    }
 			}
-			
+
 			if (correct) {
 			    params.starts();
 			    values.addElement(function);
@@ -135,31 +135,31 @@ public class Fill extends CssProperty implements CssOperator {
 		correct = false;
 		errorval = val.toString();
 	    }
-	    
+
 	    if (val instanceof CssURL) {
 		values.addElement(val);
 		correct = true;
 		errorval = null;
-		
+
 		expression.next();
 		op = expression.getOperator();
 		val = expression.getValue();
-		
+
 		if (val.equals(none) || val.equals(currentColor)) {
 		    values.addElement(val);
 		    expression.next();
 		} else {
 		    //-------------
-		    
+
 		    try {
 			CssColor color = new CssColor(ac, expression);
 			values.addElement(val);
 			//expression.next();
-			
+
 			op = expression.getOperator();
 			val = expression.getValue();
-			
-			
+
+
 			if (val instanceof CssFunction) { // icc-color(<name>[,<icccolorvalue>]*)]
 			    CssValue function = val;
 			    if (!((CssFunction) val).getName().equals("icc-color")) {
@@ -167,37 +167,37 @@ public class Fill extends CssProperty implements CssOperator {
 				errorval = val.toString();
 			    } else {
 				CssExpression params = ((CssFunction) val).getParameters();
-				
+
 				op = params.getOperator();
 				val = params.getValue();
-				
+
 				if (!(val instanceof CssIdent)) {
 				    correct = false;
 				    errorval = val.toString();
 				}
-				
+
 				params.next();
 				op = params.getOperator();
 				val = params.getValue();
-				
+
 				if (!params.end()) { // there are more parameters left
 				    int counter = 0;
-				    
+
 				    while ((op == COMMA || op == SPACE)
 					    && (counter < (params.getCount() - 1) && correct == true)) {
-					
+
 					if ((!(val instanceof CssNumber)) || (((CssNumber) val).getValue() < 0)) {
 					    correct = false;
 					    errorval = val.toString();
 					}
-					
+
 					params.next();
 					counter++;
 					val = params.getValue();
 					op = params.getOperator();
 				    }
 				}
-				
+
 				if (correct) {
 				    params.starts();
 				    values.addElement(function);
@@ -212,28 +212,28 @@ public class Fill extends CssProperty implements CssOperator {
 			correct = false;
 			errorval = val.toString();
 		    }
-		    
+
 		    //-----------------
 		}
 	    } else {
 		correct = false;
 		errorval = val.toString();
 	    }
-	    
+
 	}
-	
+
 	expression.next();
-	
+
 	if (!correct) {
 	    throw new InvalidParamException("value", errorval, getPropertyName(), ac);
 	}
     }
-    
+
     public Fill(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -244,7 +244,7 @@ public class Fill extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).fill = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -258,7 +258,7 @@ public class Fill extends CssProperty implements CssOperator {
 	    return ((SVGStyle) style).fill;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -268,14 +268,14 @@ public class Fill extends CssProperty implements CssOperator {
 	return (property instanceof Fill &&
 		fill.equals( ((Fill) property).fill));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "fill";
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -285,14 +285,14 @@ public class Fill extends CssProperty implements CssOperator {
 	else
 	    return values;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return fill.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -307,7 +307,7 @@ public class Fill extends CssProperty implements CssOperator {
 	    return ret;
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -315,5 +315,5 @@ public class Fill extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return fill == none;
     }
-    
+
 }

@@ -22,32 +22,32 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class OutlineATSC extends UserProperty implements CssOperator {
-    
+
     OutlineColorATSC color;
     OutlineWidthATSC width;
     OutlineStyleATSC style;
 
     boolean same;
-    
+
     /**
      * Create a new OutlineATSC
      */
     public OutlineATSC() {
-    }  
-    
+    }
+
     /**
      * Create a new OutlineATSC
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public OutlineATSC(ApplContext ac, CssExpression expression,
 	    boolean check)  throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
         char op = SPACE;
         boolean find = true;
@@ -67,32 +67,32 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	    style.value = OutlineStyleATSC.BORDERSTYLE.length - 1;
 	    return;
 	}
-	
+
         while (find && max_values-- > 0) {
             find = false;
             val = expression.getValue();
             op = expression.getOperator();
-            
+
             if(val != null && val.equals(inherit)) {
         	throw new InvalidParamException("unrecognize", ac);
             }
-            
+
             if (val == null) {
                 break;
 	    }
-            
+
             if (op != SPACE) {
-                throw new InvalidParamException("operator", 
+                throw new InvalidParamException("operator",
                                                 ((new Character(op)).toString()), ac);
 	    }
-            
+
             if (style == null) {
                 try {
                     style = new OutlineStyleATSC(ac, expression);
                     find = true;
 		} catch (InvalidParamException e) {
 		}
-            }   
+            }
             if (!find && color == null) {
                 try {
                     color = new OutlineColorATSC(ac, expression);
@@ -124,12 +124,12 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	}
 	*/
     }
-    
+
     public OutlineATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      * not useful
@@ -137,14 +137,14 @@ public class OutlineATSC extends UserProperty implements CssOperator {
     public Object get() {
 	return color;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "outline";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -166,11 +166,11 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	    return ret.substring(1);
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	super.setImportant();
 	if(color != null)
@@ -180,7 +180,7 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	if(style != null)
 	    style.setImportant();
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -190,14 +190,14 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 		&& (color == null || color.getImportant())
 		&& (style == null || style.getImportant()));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((color != null && width != null && style != null) &&
 	    (getImportant() ||
@@ -205,7 +205,7 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	      && !style.getImportant()
 	      && !width.getImportant()))) {
 	    printer.print(this);
-	} else {	
+	} else {
 	    if (color != null) {
 		color.print(printer);
 	    }
@@ -217,7 +217,7 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -233,14 +233,14 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	if(style != null)
 	    style.addToStyle(ac, style0);
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if(color != null)
@@ -250,16 +250,16 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	if(style != null)
 	    style.setInfo(line, source);
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; // @FIXME
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -279,13 +279,13 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	    style.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getOutlineATSC();
@@ -293,5 +293,5 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	    return ((Css2Style) style).outlineATSC;
 	}
     }
-    
+
 }

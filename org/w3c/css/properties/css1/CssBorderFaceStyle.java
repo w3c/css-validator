@@ -50,11 +50,11 @@ public class CssBorderFaceStyle {
      */
     public CssBorderFaceStyle(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 
 	if (val instanceof CssIdent) {
@@ -70,11 +70,11 @@ public class CssBorderFaceStyle {
 	throw new InvalidParamException("value", val.toString(), "style", ac);
     }
 
-    public CssBorderFaceStyle(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceStyle(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit

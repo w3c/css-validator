@@ -20,12 +20,12 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderATSC extends CssProperty {
-    
+
     CssBorderTopATSC top;
     CssBorderRightATSC right;
     CssBorderBottomATSC bottom;
     CssBorderLeftATSC left;
-    
+
     /**
      * Create a new CssBorderFaceATSC
      */
@@ -34,106 +34,106 @@ public class CssBorderATSC extends CssProperty {
 	right = new CssBorderRightATSC();
 	bottom = new CssBorderBottomATSC();
 	left = new CssBorderLeftATSC();
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceATSC
      *
      * @param value The value for this property
      * @exception InvalidParamException The value is incorrect
-     */  
+     */
     public CssBorderATSC(ApplContext ac, CssExpression value, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && value.getCount() > 3) {
 	     throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = value.getValue();
-	
-	setByUser();	
-	
+
+	setByUser();
+
 	top = new CssBorderTopATSC(ac, value);
-	
+
 	if (val == value.getValue()) {
-	    throw new InvalidParamException("value", 
-					    value.getValue(), 
+	    throw new InvalidParamException("value",
+					    value.getValue(),
 					    getPropertyName(), ac);
-	}	
+	}
 	right = new CssBorderRightATSC();
 	bottom = new CssBorderBottomATSC();
 	left = new CssBorderLeftATSC();
-	
+
 	CssBorderTopWidthATSC w = top.width;
 	CssBorderTopStyleATSC s = top.style;
-	CssBorderTopColorATSC c = top.color;	
-	
-	if(w != null) {	    
-	    right.width  = 
-		new CssBorderRightWidthATSC((CssBorderFaceWidthATSC) w.get());	    
-	    left.width = 
-		new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) w.get());	    
-	    bottom.width = 
-		new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) w.get());	    
-	}	
+	CssBorderTopColorATSC c = top.color;
+
+	if(w != null) {
+	    right.width  =
+		new CssBorderRightWidthATSC((CssBorderFaceWidthATSC) w.get());
+	    left.width =
+		new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) w.get());
+	    bottom.width =
+		new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) w.get());
+	}
 	if(s != null) {
-	    right.style = 
+	    right.style =
 		new CssBorderRightStyleATSC((CssBorderFaceStyleATSC) s.get());
-	    left.style = 
+	    left.style =
 		new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) s.get());
-	    bottom.style = 
+	    bottom.style =
 		new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) s.get());
-	}	
+	}
 	if(c != null) {
-	    right.color = 
+	    right.color =
 		new CssBorderRightColorATSC((CssBorderFaceColorATSC) c.get());
-	    left.color = 
+	    left.color =
 		new CssBorderLeftColorATSC((CssBorderFaceColorATSC) c.get());
-	    bottom.color = 
+	    bottom.color =
 		new CssBorderBottomColorATSC((CssBorderFaceColorATSC) c.get());
-	}	
+	}
     }
-    
+
     public CssBorderATSC(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return top.get();
     }
-    
+
     /**
      * Returns the top property
      */
     public CssBorderTopATSC getTop() {
 	return top;
     }
-    
+
     /**
      * Returns the right property
      */
     public CssBorderRightATSC getRight() {
 	return right;
     }
-    
+
     /**
      * Returns the bottom property
      */
     public CssBorderBottomATSC getBottom() {
 	return bottom;
     }
-    
+
     /**
      * Returns the left property
      */
     public CssBorderLeftATSC getLeft() {
 	return left;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -143,22 +143,22 @@ public class CssBorderATSC extends CssProperty {
 	}
 	return "";
     }
-    
+
     public boolean equals(CssProperty property) {
 	return false; // FIXME
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(top != null) {
 	    top.setImportant();
@@ -173,7 +173,7 @@ public class CssBorderATSC extends CssProperty {
 	    bottom.setImportant();
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -184,24 +184,24 @@ public class CssBorderATSC extends CssProperty {
 		left.getImportant() &&
 		bottom.getImportant());
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	int printMacro = 0;
 
 	if ((top.width != null && bottom.width != null &&
 	     right.width != null && left.width != null) &&
-	    ((top.width.getImportant() && bottom.width.getImportant() && 
+	    ((top.width.getImportant() && bottom.width.getImportant() &&
 	      right.width.getImportant() && left.width.getImportant()) ||
-	     (!top.width.getImportant() && !bottom.width.getImportant() && 
+	     (!top.width.getImportant() && !bottom.width.getImportant() &&
 	      !right.width.getImportant() && !left.width.getImportant()))) {
-	    CssBorderWidthATSC width = new CssBorderWidthATSC(top.width, bottom.width, 
+	    CssBorderWidthATSC width = new CssBorderWidthATSC(top.width, bottom.width,
 						      right.width, left.width);
 	    if (top.getImportant()) {
 		width.setImportant();
@@ -211,11 +211,11 @@ public class CssBorderATSC extends CssProperty {
 	}
 	if ((top.style != null && bottom.style != null &&
 	     right.style != null && left.style != null) &&
-	    ((top.style.getImportant() && bottom.style.getImportant() && 
+	    ((top.style.getImportant() && bottom.style.getImportant() &&
 	      right.style.getImportant() && left.style.getImportant()) ||
-	     (!top.style.getImportant() && !bottom.style.getImportant() && 
+	     (!top.style.getImportant() && !bottom.style.getImportant() &&
 	      !right.style.getImportant() && !left.style.getImportant()))) {
-	    CssBorderStyleATSC style = new CssBorderStyleATSC(top.style, bottom.style, 
+	    CssBorderStyleATSC style = new CssBorderStyleATSC(top.style, bottom.style,
 						      right.style, left.style);
 	    if (top.getImportant()) {
 		style.setImportant();
@@ -225,11 +225,11 @@ public class CssBorderATSC extends CssProperty {
 	}
 	if ((top.color != null && bottom.color != null &&
 	     right.color != null && left.color != null) &&
-	    ((top.color.getImportant() && bottom.color.getImportant() && 
+	    ((top.color.getImportant() && bottom.color.getImportant() &&
 	      right.color.getImportant() && left.color.getImportant()) ||
-	     (!top.color.getImportant() && !bottom.color.getImportant() && 
+	     (!top.color.getImportant() && !bottom.color.getImportant() &&
 	      !right.color.getImportant() && !left.color.getImportant()))) {
-	    CssBorderColorATSC color = new CssBorderColorATSC(top.color, bottom.color, 
+	    CssBorderColorATSC color = new CssBorderColorATSC(top.color, bottom.color,
 						      right.color, left.color);
 	    if (top.getImportant()) {
 		color.setImportant();
@@ -237,7 +237,7 @@ public class CssBorderATSC extends CssProperty {
 	    printMacro |= 4;
 	    color.print(printer);
 	}
-	
+
 	if (printMacro == 0) {
 	    top.print(printer);
 	    right.print(printer);
@@ -249,7 +249,7 @@ public class CssBorderATSC extends CssProperty {
 		if (right.width != null) right.width.print(printer);
 		if (bottom.width != null) bottom.width.print(printer);
 		if (left.width != null) left.width.print(printer);
-	    } 
+	    }
 	    if ((printMacro & 2) == 0) {
 		if (top.style != null) top.style.print(printer);
 		if (right.style != null) right.style.print(printer);
@@ -263,9 +263,9 @@ public class CssBorderATSC extends CssProperty {
 		if (left.color != null) left.color.print(printer);
 	    }
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -288,7 +288,7 @@ public class CssBorderATSC extends CssProperty {
 	    left.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -308,13 +308,13 @@ public class CssBorderATSC extends CssProperty {
 	    bottom.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getBorderATSC();
@@ -322,14 +322,14 @@ public class CssBorderATSC extends CssProperty {
 	    return ((ATSCStyle) style).cssBorderATSC;
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if(top != null) {
@@ -345,7 +345,7 @@ public class CssBorderATSC extends CssProperty {
 	    bottom.setInfo(line, source);
 	}
     }
-    
+
     void check() {
 	if(top != null) {
 	    top.check();

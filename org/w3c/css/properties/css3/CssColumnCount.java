@@ -26,8 +26,8 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  The 'column-count' property determines the number of columns into which the content 
- *  of the element will be flowed. 
+ *  The 'column-count' property determines the number of columns into which the content
+ *  of the element will be flowed.
  */
 
 public class CssColumnCount extends CssProperty {
@@ -74,7 +74,7 @@ public class CssColumnCount extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -110,7 +110,7 @@ public class CssColumnCount extends CssProperty {
 	return (property instanceof CssColumnCount &&
 		count.equals(((CssColumnCount) property).count));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -11,7 +11,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.parser.CssPrinterStyle;
 
 public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
-    
+
     FillRule fillRule;
     StrokeLinejoin strokeLinejoin;
     StrokeLineCap strokeLineCap;
@@ -21,7 +21,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
     StrokeDashArray strokeDashArray;
     Stroke stroke;
     Fill fill;
-    
+
     public FillRule getFillRule() {
 	if (fillRule == null) {
 	    fillRule =
@@ -30,7 +30,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return fillRule;
     }
-    
+
     public StrokeLinejoin getStrokeLinejoin() {
 	if (strokeLinejoin == null) {
 	    strokeLinejoin =
@@ -39,7 +39,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeLinejoin;
     }
-    
+
     public StrokeLineCap getStrokeLineCap() {
 	if (strokeLineCap == null) {
 	    strokeLineCap =
@@ -48,7 +48,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeLineCap;
     }
-    
+
     public StrokeMiterLimit getStrokeMiterLimit() {
 	if (strokeMiterLimit == null) {
 	    strokeMiterLimit =
@@ -57,7 +57,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeMiterLimit;
     }
-    
+
     public StrokeWidth getStrokeWidth() {
 	if (strokeWidth == null) {
 	    strokeWidth =
@@ -66,7 +66,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeWidth;
     }
-    
+
     public StrokeDashOffset getStrokeDashOffset() {
 	if (strokeDashOffset == null) {
 	    strokeDashOffset =
@@ -75,7 +75,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeDashOffset;
     }
-    
+
     public StrokeDashArray getStrokeDashArray() {
 	if (strokeDashArray == null) {
 	    strokeDashArray =
@@ -84,7 +84,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeDashArray;
     }
-    
+
     public Stroke getStroke() {
 	if (stroke == null) {
 	    stroke =
@@ -93,7 +93,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return stroke;
     }
-    
+
     public Fill getFill() {
 	if (fill == null) {
 	    fill =
@@ -102,7 +102,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return fill;
     }
-    
+
     /**
      * Print this style
      *
@@ -110,7 +110,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
      */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
-	
+
 	if (fillRule != null) {
 	    fillRule.print(printer);
 	}
@@ -139,7 +139,7 @@ public class SVGTinyStyle extends org.w3c.css.properties.css3.Css3Style {
 	    fill.print(printer);
 	}
     }
-    
+
     /**
      * Returns the name of the actual selector
      */

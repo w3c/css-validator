@@ -27,19 +27,19 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 			  CssBorderRightColorCSS2 right,
 			  CssBorderLeftColorCSS2 left) {
 	super(top, bottom, right, left);
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderColorCSS21
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBorderColorCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
-	
+
 	switch (expression.getCount()) {
 	case 1:
 	    setTop(new CssBorderTopColorCSS21(ac, expression));
@@ -50,9 +50,9 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 //	    setLeft(new CssBorderLeftColorCSS21(
 //		    (CssBorderFaceColorCSS21) getTop().get()));
 	    break;
-	case 2:	    
+	case 2:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -70,15 +70,15 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
-			((new Character(expression.getOperator())).toString()), 
+		throw new InvalidParamException("operator",
+			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    setTop(new CssBorderTopColorCSS21(ac, expression));
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()), ac);
 	    if(expression.getValue().equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -93,7 +93,7 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -101,7 +101,7 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 	    }
 	    setTop(new CssBorderTopColorCSS21(ac, expression));
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -109,7 +109,7 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 	    }
 	    setRight(new CssBorderRightColorCSS21(ac, expression));
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -127,10 +127,10 @@ public class CssBorderColorCSS21 extends CssBorderColorCSS2 {
 	    }
 	}
     }
-    
-    public CssBorderColorCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssBorderColorCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
 }

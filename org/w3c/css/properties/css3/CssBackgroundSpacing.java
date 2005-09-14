@@ -24,17 +24,17 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class CssBackgroundSpacing extends CssProperty implements CssOperator {
-    
+
     CssValue value;
     CssIdent initial = new CssIdent("initial");
     CssValue second;
-    
+
     /**
      * Create a new CssBackgroundSpacing
      */
     public CssBackgroundSpacing() {
     }
-    
+
     /**
      * Creates a new CssBackgroundSpacing
      *
@@ -45,7 +45,7 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	    boolean check) throws InvalidParamException {
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    value = inherit;
 	} else if (val.equals(initial)) {
@@ -57,7 +57,7 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	    value = val;
 	    expression.next();
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
 		if (expression.getOperator() == SPACE) {
 		    if (val instanceof CssNumber) {
@@ -74,22 +74,22 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 		    val.toString(),
 		    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssBackgroundSpacing(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -97,7 +97,7 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -108,15 +108,15 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	    return value.toString();
 	}
     }
-    
-    
+
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "background-spacing";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -127,8 +127,8 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundSpacing = this;
     }
-    
-    
+
+
     /**
      * Get this property in the style.
      *
@@ -143,7 +143,7 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssBackgroundSpacing;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -153,7 +153,7 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
 	return (property instanceof CssBackgroundSpacing &&
 		value.equals(((CssBackgroundSpacing) property).value));
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -161,5 +161,5 @@ public class CssBackgroundSpacing extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return value == new CssNumber(0);
     }
-    
+
 }

@@ -13,18 +13,18 @@ import org.w3c.css.values.CssExpression;
  * This class represents a couple : an at-rule property and an at-rule
  * expression.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class Couple {
 
   /**
    * The at-rule property.
-   */  
+   */
   protected String property;
-  
+
   /**
    * The at-rule expression.
-   */  
+   */
   protected CssExpression expression;
 
   /**
@@ -43,25 +43,25 @@ public class Couple {
     this.property = property;
     this.expression = expression;
     this.important = important;
-  }  
+  }
 
   /**
    * Get the at-rule property
-   */  
+   */
   public final String getProperty() {
     return property;
   }
 
   /**
    * get the at-rule expression
-   */  
+   */
   public final CssExpression getExpression() {
     return expression;
   }
 
   /**
    * Is this at-rule is important
-   */  
+   */
   public final boolean getImportant() {
     return important;
   }

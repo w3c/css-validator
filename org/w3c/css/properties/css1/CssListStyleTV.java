@@ -95,11 +95,11 @@ public class CssListStyleTV extends CssProperty implements CssOperator {
      */
     public CssListStyleTV(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	boolean find = true;
@@ -119,11 +119,11 @@ public class CssListStyleTV extends CssProperty implements CssOperator {
 	    find = false;
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if(val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if ((listStyleType == null)
 		&& (val != null)) {
 		try {
@@ -170,7 +170,7 @@ public class CssListStyleTV extends CssProperty implements CssOperator {
     	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -222,7 +222,7 @@ public class CssListStyleTV extends CssProperty implements CssOperator {
      */
     public void setImportant() {
 	if (!inheritedValue) {
-	    if(listStyleType != null)	    
+	    if(listStyleType != null)
 		listStyleType.important = true;
 	    if(listStyleImage != null)
 		listStyleImage.important = true;

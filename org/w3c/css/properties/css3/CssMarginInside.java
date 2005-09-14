@@ -40,7 +40,7 @@ public class CssMarginInside extends CssMarginSide {
   public CssMarginInside() {
     super();
   }
-  
+
   /**
    * Create a new CssMarginInside with an another CssMarginSide
    *
@@ -49,7 +49,7 @@ public class CssMarginInside extends CssMarginSide {
   public CssMarginInside(CssMarginSide another) {
     super(another);
   }
-  
+
   /**
    * Create a new CssMarginInside
    *
@@ -60,15 +60,15 @@ public class CssMarginInside extends CssMarginSide {
 	  boolean check) throws InvalidParamException {
     super(ac, expression, check);
   }
-  
+
   public CssMarginInside(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
     this(ac, expression, false);
   }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "margin-inside";
   }
@@ -90,7 +90,7 @@ public class CssMarginInside extends CssMarginSide {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css3Style) style).getMarginInside();
@@ -103,9 +103,9 @@ public class CssMarginInside extends CssMarginSide {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-      //   return (property instanceof CssMarginInside && 
+      //   return (property instanceof CssMarginInside &&
       //    value.equals(((CssMarginInside) property).value));
       return false;
   }

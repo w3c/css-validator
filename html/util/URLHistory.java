@@ -10,7 +10,7 @@ import java.net.*;
 public class URLHistory {
     private Vector urls = new Vector(1, 1);
     private int index = -1;
-    
+
     public void append(URL url) {
 	urls.addElement(url);
 	index = urls.size()-1;

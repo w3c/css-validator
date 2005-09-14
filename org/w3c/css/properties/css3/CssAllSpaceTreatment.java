@@ -19,19 +19,19 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class CssAllSpaceTreatment extends CssProperty {
-    
+
     CssValue spacetreat;
-    
+
     private static CssIdent preserve = new CssIdent("collapse");
     private static CssIdent collapse = new CssIdent("preserve");
-    
+
     /**
      * Create a new CssAllSpaceTreatment
      */
     public CssAllSpaceTreatment() {
 	spacetreat = collapse;
     }
-    
+
     /**
      * Create a new CssAllSpaceTreatment
      *
@@ -39,11 +39,11 @@ public class CssAllSpaceTreatment extends CssProperty {
      */
     public CssAllSpaceTreatment(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	if (val.equals(preserve)) {
@@ -62,12 +62,12 @@ public class CssAllSpaceTreatment extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssAllSpaceTreatment(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -77,9 +77,9 @@ public class CssAllSpaceTreatment extends CssProperty {
 	if (((Css3Style) style).cssAllSpaceTreatment != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssAllSpaceTreatment = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -93,7 +93,7 @@ public class CssAllSpaceTreatment extends CssProperty {
 	    return ((Css3Style) style).cssAllSpaceTreatment;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -103,35 +103,35 @@ public class CssAllSpaceTreatment extends CssProperty {
 	return (property instanceof CssAllSpaceTreatment &&
 		spacetreat.equals( ((CssAllSpaceTreatment) property).spacetreat));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "all-space-treatment";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return spacetreat;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return spacetreat.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return spacetreat.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -139,5 +139,5 @@ public class CssAllSpaceTreatment extends CssProperty {
     public boolean isDefault() {
 	return spacetreat == collapse;
     }
-    
+
 }

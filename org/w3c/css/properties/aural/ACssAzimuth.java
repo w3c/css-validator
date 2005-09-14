@@ -21,49 +21,49 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssAzimuth extends ACssProperty {
-    
+
     CssValue value;
 
     boolean isBehind;
-    
+
     private static int[] hash_values;
-    
+
     private static String[] AZIMUTH = { "left-side", "far-left", "left",
 					"center-left", "center", "center-right",
 					"right", "far-right", "right-side" };
-    
+
     private static CssIdent defaultIdentValue = new CssIdent(AZIMUTH[4]);
     private static CssIdent behind = new CssIdent("behind");
     private static CssIdent leftwards = new CssIdent("leftwards");
     private static CssIdent rightwards = new CssIdent("rightwards");
-    
+
     /**
      * Create a new ACssAzimuth
      */
     public ACssAzimuth() {
 	value = defaultIdentValue;
-    }  
-    
+    }
+
     /**
      * Creates a new ACssAzimuth
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Expressions are incorrect
-     */  
+     */
     public ACssAzimuth(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-			
+
 	this();
-	
+
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int index;
-	
+
 	setByUser();
-	
+
 	if (val.equals(leftwards)) {
 	    if(check && expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -85,7 +85,7 @@ public class ACssAzimuth extends ACssProperty {
 	    value = rightwards;
 	    expression.next();
 	    return;
-	} else if (val.equals(behind)) {	    
+	} else if (val.equals(behind)) {
 	    isBehind = true;
 	    expression.next();
 	    CssValue valnext = expression.getValue();
@@ -131,32 +131,32 @@ public class ACssAzimuth extends ACssProperty {
 	    expression.next();
 	    return;
 	}
-	
-	throw new InvalidParamException("value", 
-					expression.getValue().toString(), 
+
+	throw new InvalidParamException("value",
+					expression.getValue().toString(),
 					getPropertyName(), ac);
     }
-    
+
     public ACssAzimuth(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "azimuth";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value is equals to inherit
@@ -164,7 +164,7 @@ public class ACssAzimuth extends ACssProperty {
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -179,7 +179,7 @@ public class ACssAzimuth extends ACssProperty {
 	    return value.toString();
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -190,60 +190,60 @@ public class ACssAzimuth extends ACssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssAzimuth = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param property The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssAzimuth && 
+	return (property instanceof ACssAzimuth &&
 		value.equals(((ACssAzimuth) property).value));
     }
-    
-    private CssIdent checkIdent(ApplContext ac, CssIdent ident) 
+
+    private CssIdent checkIdent(ApplContext ac, CssIdent ident)
 	throws InvalidParamException {
-	
+
 	int hash = ident.hashCode();
-	
+
 	for (int i = 0; i < AZIMUTH.length; i++) {
 	    if (hash_values[i] == hash) {
 		return ident;
 	    }
-	}	
-	throw new InvalidParamException("value", 
-					ident.toString(), 
+	}
+	throw new InvalidParamException("value",
+					ident.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /** @deprecated */
-    private Float ValueOfIdent(ApplContext ac, CssIdent ident, boolean b) 
+    private Float ValueOfIdent(ApplContext ac, CssIdent ident, boolean b)
 	throws InvalidParamException {
-	
+
 	int hash = ident.hashCode();
-	
+
 	for (int i = 0; i < AZIMUTH.length; i++) {
 	    if (hash_values[i] == hash) {
 		if (b) {
-		    return ACssProperties.getValue(this, 
+		    return ACssProperties.getValue(this,
 						   behind.toString() + "." + AZIMUTH[i]);
 		} else {
 		    return ACssProperties.getValue(this, AZIMUTH[i]);
 		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", 
-					ident.toString(), 
+
+	throw new InvalidParamException("value",
+					ident.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getAzimuth();
@@ -251,7 +251,7 @@ public class ACssAzimuth extends ACssProperty {
 	    return ((ACssStyle) style).acssAzimuth;
 	}
     }
-    
+
     static {
 	hash_values = new int[AZIMUTH.length];
 	for (int i = 0; i < AZIMUTH.length; i++)

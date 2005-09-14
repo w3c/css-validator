@@ -1,5 +1,5 @@
 /*
- * @(#)Element.java	1.1 95/04/23  
+ * @(#)Element.java	1.1 95/04/23
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -139,7 +139,7 @@ class Element implements DTDConstants {
      * Print (for debugging only).
      */
     public void print() {
-	System.out.print("<!ELEMENT " + name + 
+	System.out.print("<!ELEMENT " + name +
 			 (oStart ? " O" : " -") +
 			 (oEnd ? " O " : " - "));
 	switch (type) {

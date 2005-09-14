@@ -15,11 +15,11 @@ public abstract class AttributeSelector implements Selector {
     private String name;
 
     /**
-     * Creates a new empty attribute selector     
+     * Creates a new empty attribute selector
      */
     public AttributeSelector() {
     }
-    
+
     /**
      * Creates a new attribute selector given its name
      * @param name the name of this attribute
@@ -27,13 +27,13 @@ public abstract class AttributeSelector implements Selector {
     public AttributeSelector(String name) {
 	this.name = name;
     }
-    
+
     /**
      * Sets the name of this attribute selector
      * @param name the name of this attribute
      */
     public void setName(String name) {
-	this.name = name;	
+	this.name = name;
     }
 
     /**
@@ -42,14 +42,14 @@ public abstract class AttributeSelector implements Selector {
     public String getName() {
 	return name;
     }
-    
+
     public abstract void applyAttribute(ApplContext ac, AttributeSelector attr);
-    
+
     /**
      * @see Selector#toString()
      */
     public String toString() {
 	return "[" + name + "]";
     }
-    
+
 }

@@ -28,7 +28,7 @@ import org.w3c.www.mime.MimeTypeFormatException;
  * @version $Revision$
  */
 public final class HTMLStyleSheetParser implements HtmlParserListener {
-    
+
     private StyleSheet style;
     private URL htmlURL;
     private Exception exception;
@@ -50,7 +50,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 	if (!"http".equals(htmlURL.getProtocol())) {
 	    if (urlLower.endsWith(".css")) {
 		StyleSheetParser parser = new StyleSheetParser();
-		parser.parseURL(ac, htmlURL, null, null, media, 
+		parser.parseURL(ac, htmlURL, null, null, media,
 				StyleSheetOrigin.AUTHOR);
 		style = parser.getStyleSheet();
 	    } else if (urlLower.endsWith(".html")
@@ -82,7 +82,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 	    throw new Exception("Unknown file");
 	} else {
 	    URLConnection connection = null;
-	    
+
 	    try {
 		boolean isXML = false;
 		String cType;
@@ -107,13 +107,13 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    contentType = new MimeType(cType);
 		} catch (MimeTypeFormatException ex) {
 		}
-		
+
 		if (Util.onDebug) {
-		    System.err.println( "[DEBUG] content type is [" + 
+		    System.err.println( "[DEBUG] content type is [" +
 					contentType + ']');
 		}
 
-		if (contentType.match(MimeType.TEXT_HTML) == 
+		if (contentType.match(MimeType.TEXT_HTML) ==
 		                           MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    HtmlParser htmlParser;
 		    htmlParser = new HtmlParser(ac, "html4", urlString,
@@ -126,7 +126,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 			Util.fromHTMLFile = true;
 			htmlParser.addParserListener(this);
 			htmlParser.run();
-			
+
 			if (exception != null) {
 			    throw (Exception) exception.fillInStackTrace();
 			}
@@ -153,20 +153,20 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		} else if (contentType.match(MimeType.TEXT_CSS) ==
 			                   MimeType.MATCH_SPECIFIC_SUBTYPE ) {
 		    StyleSheetParser parser = new StyleSheetParser();
-		    parser.parseURL(ac, htmlURL, null, null, media, 
+		    parser.parseURL(ac, htmlURL, null, null, media,
 				    StyleSheetOrigin.AUTHOR);
 		    style = parser.getStyleSheet();
-		} else if ((contentType.match(MimeType.TEXT_XML) != 
+		} else if ((contentType.match(MimeType.TEXT_XML) !=
 			    MimeType.MATCH_SPECIFIC_SUBTYPE) &&
-	       	         (contentType.match(MimeType.APPLICATION_XHTML_XML) != 
+	       	         (contentType.match(MimeType.APPLICATION_XHTML_XML) !=
 			  MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		    throw new IOException("Unknown mime type : "+ contentType);
 		}
-		
+
 		if (isXML ||
-		    (contentType.match(MimeType.TEXT_XML) == 
+		    (contentType.match(MimeType.TEXT_XML) ==
 		                            MimeType.MATCH_SPECIFIC_SUBTYPE) ||
-		    (contentType.match(MimeType.APPLICATION_XHTML_XML) == 
+		    (contentType.match(MimeType.APPLICATION_XHTML_XML) ==
 		                            MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		    XMLStyleSheetHandler handler;
 		    handler = new XMLStyleSheetHandler(htmlURL, ac);
@@ -174,16 +174,16 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    style = handler.getStyleSheet();
 		    if (style != null) {
 			style.setType("text/xml");
-		    }		    
-		}	    
+		    }
+		}
 	    } finally {
 		try {
 		    connection.getInputStream().close();
 		} catch (Exception e) {}
 	    }
 	}
-    }  
-    
+    }
+
     /**
      * Notifies root creation.
 
@@ -192,21 +192,21 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
      *
      * @param url the URL being parsed.
      * @param root the new root Tag for this parser.
-     */    
+     */
     public void notifyCreateRoot(URL url, HtmlTag root) {
     }
-    
+
     public void notifyActivity(int lines, long bytes) {
     }
-    
+
     public void notifyConnection(URLConnection cnx) {
     }
-    
+
     /**
      * Notifies successful termination.
      *
      * @param root the root of the current Tree.
-     */    
+     */
     public void notifyEnd(HtmlTag root, String contentType) {
 	if (root != null) {
 	    style = ((HtmlTree) root).getStyleSheet();
@@ -216,7 +216,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 	}
 	ac.setInput(contentType);
     }
-    
+
     /**
      * Notifies a fatal error.
      *
@@ -230,11 +230,11 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
     public void notifyFatalError(HtmlTag root, Exception x, String s) {
 	exception = x;
     }
-    
+
     /**
      * Returns the recognized style sheet.
      * @return A style sheet.
-     */  
+     */
     public StyleSheet getStyleSheet() {
 	return style;
     }

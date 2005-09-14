@@ -1,5 +1,5 @@
 /*
- * @(#)ContentModel.java	1.2 95/04/24  
+ * @(#)ContentModel.java	1.2 95/04/24
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *

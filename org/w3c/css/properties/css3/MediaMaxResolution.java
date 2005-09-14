@@ -37,13 +37,13 @@ public class MediaMaxResolution extends CssProperty {
     public MediaMaxResolution(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssResolution) {
 		value = val;
@@ -51,7 +51,7 @@ public class MediaMaxResolution extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
@@ -60,7 +60,7 @@ public class MediaMaxResolution extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

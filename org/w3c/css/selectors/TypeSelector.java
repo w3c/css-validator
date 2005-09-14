@@ -11,7 +11,7 @@ package org.w3c.css.selectors;
 public class TypeSelector implements Selector {
 
     String name;
-    
+
     /**
      * Creates a new TypeSelector which name name is type
      * @param type the name of this type selector
@@ -19,7 +19,7 @@ public class TypeSelector implements Selector {
     public TypeSelector(String type) {
 	this.name = type;
     }
-    
+
     /**
      * @see Selector#getName()
      */
@@ -41,12 +41,12 @@ public class TypeSelector implements Selector {
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
     /**
      * @see Selector#toString()
      */
     public String toString() {
 	return name;
     }
-    
+
 }

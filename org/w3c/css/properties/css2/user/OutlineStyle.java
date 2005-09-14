@@ -45,7 +45,7 @@ public class OutlineStyle extends UserProperty {
      */
     public OutlineStyle(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -72,7 +72,7 @@ public class OutlineStyle extends UserProperty {
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal value
      */

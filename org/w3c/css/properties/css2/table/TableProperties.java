@@ -20,11 +20,11 @@ public class TableProperties {
     public static String getString(CssProperty property, String prop) {
       return properties.getProperty(property.getPropertyName() + "." + prop);
     }
-    
+
     public static boolean getInheritance(CssProperty property) {
 	return getString(property, "inherited").equals("true");
     }
-  
+
     static {
 	properties = new Utf8Properties();
 	try {

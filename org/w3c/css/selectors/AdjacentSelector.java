@@ -23,12 +23,12 @@ public class AdjacentSelector implements Selector {
     public String getName() {
 	return "+";
     }
-   
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
 }

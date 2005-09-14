@@ -24,7 +24,7 @@ public class PagedProperties {
   public static boolean getInheritance(CssProperty property) {
     return getString(property, "inherited").equals("true");
   }
-  
+
   static {
 		Utf8Properties properties = new Utf8Properties();
     try {

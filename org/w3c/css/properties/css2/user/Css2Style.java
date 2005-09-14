@@ -21,13 +21,13 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     Outline outline = new Outline();
     OutlineATSC outlineATSC = new OutlineATSC();
-        
+
     /**
      * Get the cursor property
      */
     public final CursorCSS2 getCursorCSS2() {
 	if (cursorCSS2 == null) {
-	    cursorCSS2 = (CursorCSS2) style.CascadingOrder(new CursorCSS2(), 
+	    cursorCSS2 = (CursorCSS2) style.CascadingOrder(new CursorCSS2(),
 						   style, selector);
 	}
 	return cursorCSS2;
@@ -51,11 +51,11 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     /**
      * Get the outline-style property
-     */  
+     */
     public final OutlineStyle getOutlineStyle() {
         if (outline.style == null) {
-            outline.style = 
-                (OutlineStyle) style.CascadingOrder(new OutlineStyle(), 
+            outline.style =
+                (OutlineStyle) style.CascadingOrder(new OutlineStyle(),
                                                     style, selector);
         }
         return outline.style;
@@ -63,8 +63,8 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     public final OutlineStyleATSC getOutlineStyleATSC() {
         if (outlineATSC.style == null) {
-            outlineATSC.style = 
-                (OutlineStyleATSC) style.CascadingOrder(new OutlineStyleATSC(), 
+            outlineATSC.style =
+                (OutlineStyleATSC) style.CascadingOrder(new OutlineStyleATSC(),
                                                     style, selector);
         }
         return outlineATSC.style;
@@ -72,11 +72,11 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     /**
      * Get the outline-width property
-     */  
+     */
     public final OutlineWidth getOutlineWidth() {
         if (outline.width == null) {
-            outline.width = 
-                (OutlineWidth) style.CascadingOrder(new OutlineWidth(), 
+            outline.width =
+                (OutlineWidth) style.CascadingOrder(new OutlineWidth(),
                                                     style, selector);
         }
         return outline.width;
@@ -84,8 +84,8 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     public final OutlineWidthATSC getOutlineWidthATSC() {
         if (outlineATSC.width == null) {
-            outlineATSC.width = 
-                (OutlineWidthATSC) style.CascadingOrder(new OutlineWidthATSC(), 
+            outlineATSC.width =
+                (OutlineWidthATSC) style.CascadingOrder(new OutlineWidthATSC(),
                                                     style, selector);
         }
         return outlineATSC.width;
@@ -93,11 +93,11 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     /**
      * Get the outline-color property
-     */  
+     */
     public final OutlineColor getOutlineColor() {
         if (outline.color == null) {
-            outline.color = 
-                (OutlineColor) style.CascadingOrder(new OutlineColor(), 
+            outline.color =
+                (OutlineColor) style.CascadingOrder(new OutlineColor(),
                                                     style, selector);
         }
         return outline.color;
@@ -105,8 +105,8 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
 
     public final OutlineColorATSC getOutlineColorATSC() {
         if (outlineATSC.color == null) {
-            outlineATSC.color = 
-                (OutlineColorATSC) style.CascadingOrder(new OutlineColorATSC(), 
+            outlineATSC.color =
+                (OutlineColorATSC) style.CascadingOrder(new OutlineColorATSC(),
                                                     style, selector);
         }
         return outlineATSC.color;
@@ -145,7 +145,7 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
      * Print this style.
      *
      * @param printer The printer interface.
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
 	if (cursor != null) {

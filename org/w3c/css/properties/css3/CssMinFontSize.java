@@ -26,9 +26,9 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>element's computed 'font-size'<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  If 'text-align-last' is 'size', the fonts of the last line of an element 
- *  are not allowed to become smaller than the smaller of 'font-size' and 
- *  'min-font-size'. 
+ *  If 'text-align-last' is 'size', the fonts of the last line of an element
+ *  are not allowed to become smaller than the smaller of 'font-size' and
+ *  'min-font-size'.
  */
 
 public class CssMinFontSize extends CssProperty {
@@ -36,7 +36,7 @@ public class CssMinFontSize extends CssProperty {
     CssValue min;
     ApplContext ac;
 
-    /** 
+    /**
      * Create a new CssMinFontSize
      */
     public CssMinFontSize() {
@@ -62,7 +62,7 @@ public class CssMinFontSize extends CssProperty {
 	}
 	else {
 	    try {
-		FontSize fontsize = new FontSize(ac, expression); 
+		FontSize fontsize = new FontSize(ac, expression);
 		min = val;
 		expression.next();
 	    }
@@ -77,7 +77,7 @@ public class CssMinFontSize extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -88,13 +88,13 @@ public class CssMinFontSize extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssMinFontSize = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getMinFontSize();
@@ -102,53 +102,53 @@ public class CssMinFontSize extends CssProperty {
 	    return ((Css3Style) style).cssMinFontSize;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssMinFontSize && 
+	return (property instanceof CssMinFontSize &&
                 min.equals( ((CssMinFontSize) property).min));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "min-font-size";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return min;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return min.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return min.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	CssNumber cssnum = new CssNumber(ac, 0);
 	return min == cssnum;
     }
-    
+
 }
-    
+

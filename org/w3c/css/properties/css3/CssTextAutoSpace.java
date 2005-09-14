@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> none || ideograph-numeric || ideograph-alpha || 
+ *  <EM>Value:</EM> none || ideograph-numeric || ideograph-alpha ||
  *  ideograph-space || ideograph-parenthesis || inherit<BR>
  *  <EM>Initial:</EM>none<BR>
  *  <EM>Applies to:</EM>all elements<BR>
@@ -26,24 +26,24 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  When a run of non-ideographic or numeric characters appears inside of 
- *  ideographic text, a certain amount of space is often preferred on both 
+ *  When a run of non-ideographic or numeric characters appears inside of
+ *  ideographic text, a certain amount of space is often preferred on both
  *  sides of the non-ideographic text to separate it from the surrounding
- *  ideographic glyphs. This property controls the creation of that space when 
- *  rendering the text. That added width does not correspond to the insertion 
+ *  ideographic glyphs. This property controls the creation of that space when
+ *  rendering the text. That added width does not correspond to the insertion
  *  of additional space characters, but instead to the width increment of
- *  existing glyphs. 
+ *  existing glyphs.
  */
 
 public class CssTextAutoSpace extends CssProperty {
- 
+
     CssValue textautospace;
     ApplContext ac;
 
     static CssIdent none = new CssIdent("none");
 
     private static String[] values = {
-	"none", "ideograph-numeric", "ideograph-alpha", 
+	"none", "ideograph-numeric", "ideograph-alpha",
 	"ideograph-space", "ideograph-parenthesis", "inherit"
     };
 
@@ -56,7 +56,7 @@ public class CssTextAutoSpace extends CssProperty {
 
     /**
      * Create a new CssTextAutoSpace
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -74,8 +74,8 @@ public class CssTextAutoSpace extends CssProperty {
 	    }
 	}
 	if (i == values.length) {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
 
@@ -85,7 +85,7 @@ public class CssTextAutoSpace extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -121,7 +121,7 @@ public class CssTextAutoSpace extends CssProperty {
 	return (property instanceof CssTextAutoSpace &&
 		textautospace.equals(((CssTextAutoSpace) property).textautospace));
     }
-    
+
     /**
      * Returns the name of this property
      */

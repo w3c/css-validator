@@ -28,23 +28,23 @@ import org.w3c.css.values.CssValue;
  *  <EM>Media:</EM>:visual
  */
 public class AlignmentBaseline extends CssProperty {
-    
+
     CssValue albaseline;
-    
+
     private static String[] values = {
 	"auto", "baseline", "before-edge",
 	"text-before-edge", "middle", "after-edge",
 	"text-after-edge", "ideographic", "alphabetic", "hanging", "mathematical",
 	"inherit"
     };
-    
+
     /**
      * Create a new CssAlignmentBaseline
      */
     public AlignmentBaseline() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new CssAlignmentBaseline
      *
@@ -53,10 +53,10 @@ public class AlignmentBaseline extends CssProperty {
      */
     public AlignmentBaseline(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	int i = 0;
 	for (; i < values.length; i++) {
 	    if (val.toString().equals(values[i])) {
@@ -70,12 +70,12 @@ public class AlignmentBaseline extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public AlignmentBaseline(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -86,7 +86,7 @@ public class AlignmentBaseline extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).alignmentBaseline = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -101,7 +101,7 @@ public class AlignmentBaseline extends CssProperty {
 	    return ((SVGStyle) style).alignmentBaseline;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -111,35 +111,35 @@ public class AlignmentBaseline extends CssProperty {
 	return (property instanceof AlignmentBaseline &&
 		albaseline.equals(((AlignmentBaseline) property).albaseline));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "alignment-baseline";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return albaseline;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return albaseline.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return albaseline.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -147,5 +147,5 @@ public class AlignmentBaseline extends CssProperty {
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

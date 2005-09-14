@@ -25,12 +25,12 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property controls whether or not text wraps when it reaches the flow 
+ *  This property controls whether or not text wraps when it reaches the flow
  *  edge of its containing block box.
  */
 
 public class CssTextEndOverflow extends CssProperty {
- 
+
     CssValue overflow;
     ApplContext ac;
 
@@ -49,7 +49,7 @@ public class CssTextEndOverflow extends CssProperty {
 
     /**
      * Create a new CssTextEndOverflow
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -90,7 +90,7 @@ public class CssTextEndOverflow extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -126,7 +126,7 @@ public class CssTextEndOverflow extends CssProperty {
 	return (property instanceof CssTextEndOverflow &&
 		overflow.equals(((CssTextEndOverflow) property).overflow));
     }
-    
+
     /**
      * Returns the name of this property
      */

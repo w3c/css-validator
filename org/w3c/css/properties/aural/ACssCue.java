@@ -46,23 +46,23 @@ import org.w3c.css.values.CssOperator;
  * @version $Revision$
  */
 public class ACssCue extends ACssProperty implements CssOperator {
-    
+
     ACssCueBefore cueBefore;
     ACssCueAfter cueAfter;
-    
+
     boolean same;
-    
+
     /**
      * Create a new ACssCue
      */
     public ACssCue() {
-    }  
-    
+    }
+
     /**
      * Create a new ACssCue
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public ACssCue(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	switch (expression.getCount()) {
@@ -73,7 +73,7 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			(new Character(expression.getOperator()).toString()),
 			ac);
 	    }
@@ -92,26 +92,26 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     public ACssCue(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return cueBefore;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "cue";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -123,17 +123,17 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	    return cueBefore + " " + cueAfter;
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	super.setImportant();
 	cueBefore.setImportant();
 	cueAfter.setImportant();
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -142,14 +142,14 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	return ((cueAfter == null || cueAfter.getImportant()) &&
 		(cueBefore == null || cueBefore.getImportant()));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((cueBefore != null && cueAfter != null) &&
 	    (getImportant() ||
@@ -163,7 +163,7 @@ public class ACssCue extends ACssProperty implements CssOperator {
 		cueAfter.print(printer);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -175,21 +175,21 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	cueBefore.addToStyle(ac, style);
 	cueAfter.addToStyle(ac, style);
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	// cueBefore and cueAfter can't be null ...
 	cueBefore.setInfo(line, source);
 	cueAfter.setInfo(line, source);
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -206,23 +206,23 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	    cueAfter.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; // ????
     }
-    
-    
+
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getCue();
@@ -230,5 +230,5 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	    return ((ACssStyle) style).acssCue;
 	}
     }
-    
+
 }

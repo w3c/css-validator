@@ -22,7 +22,7 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssFitPosition extends CssProperty implements CssOperator {
-    
+
     String fitpos = new String();
     ApplContext ac;
     CssIdent auto = new CssIdent("auto");
@@ -30,17 +30,17 @@ public class CssFitPosition extends CssProperty implements CssOperator {
     CssIdent top = new CssIdent("top");
     CssIdent center = new CssIdent("center");
     CssIdent bottom = new CssIdent("bottom");
-    
+
     CssIdent left = new CssIdent("left");
     CssIdent right = new CssIdent("right");
-    
+
     /**
      * Create a new CssFitPosition
      */
     public CssFitPosition() {
 	fitpos = "0% 0%";
     }
-    
+
     /**
      * Create a new CssFitPosition
      *
@@ -49,18 +49,18 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      */
     public CssFitPosition(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
-	
+
 	if (op == SPACE) {
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
-		
+
 		if (val instanceof CssIdent) {
 		    if (val.equals(top)) {
 			fitpos += " " + val.toString();
@@ -73,11 +73,11 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 		    } else {
 			throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 		    }
-		    
+
 		    expression.next();
 		    op = expression.getOperator();
 		    val = expression.getValue();
-		    
+
 		    if (val != null && val instanceof CssIdent) {
 			if (val.equals(left)) {
 			    fitpos += " " + val.toString();
@@ -89,16 +89,16 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 			    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 			}
 		    }
-		    
+
 		    expression.next();
-		    
+
 		} else if (val instanceof CssLength) {
 		    fitpos += " " + val.toString();
-		    
+
 		    expression.next();
 		    op = expression.getOperator();
 		    val = expression.getValue();
-		    
+
 		    if (val != null && val instanceof CssLength) {
 			fitpos += " " + val.toString();
 			expression.next();
@@ -106,14 +106,14 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 			fitpos += " " + val.toString();
 			expression.next();
 		    }
-		    
+
 		} else if (val instanceof CssPercentage) {
 		    fitpos += " " + val.toString();
-		    
+
 		    expression.next();
 		    op = expression.getOperator();
 		    val = expression.getValue();
-		    
+
 		    if (val != null && val instanceof CssLength) {
 			fitpos += " " + val.toString();
 			expression.next();
@@ -121,12 +121,12 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 			fitpos += " " + val.toString();
 			expression.next();
 		    }
-		    
+
 		} else {
 		    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 		}
 	    }
-	    
+
 	}
 	else if (val instanceof CssIdent) {
 	    if (val.equals(inherit)) {
@@ -144,12 +144,12 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssFitPosition(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Brings all values back between 0 and 1
      *
@@ -162,7 +162,7 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 	}
 	else return(opac);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -173,7 +173,7 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssFitPosition = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -187,7 +187,7 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 	    return ((Css3Style) style).cssFitPosition;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -197,35 +197,35 @@ public class CssFitPosition extends CssProperty implements CssOperator {
 	return (property instanceof CssFitPosition &&
 		fitpos.equals( ((CssFitPosition) property).fitpos));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "fit-position";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return fitpos;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return fitpos.equals("inherit");
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return fitpos;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -233,6 +233,6 @@ public class CssFitPosition extends CssProperty implements CssOperator {
     public boolean isDefault() {
 	return fitpos.equals("0% 0%");
     }
-    
+
 }
 

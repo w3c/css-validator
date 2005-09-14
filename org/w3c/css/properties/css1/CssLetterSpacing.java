@@ -48,10 +48,10 @@ import org.w3c.css.values.CssValue;
  *   When the resultant space between two letters is not the same as the default
  *   space, UAs should not use ligatures.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssLetterSpacing extends CssProperty {
-    
+
     CssValue length;
     static CssIdent normal = new CssIdent("normal");
 
@@ -60,23 +60,23 @@ public class CssLetterSpacing extends CssProperty {
      */
     public CssLetterSpacing() {
 	length = normal;
-    }  
-    
+    }
+
     /**
      * Create a new CssLetterSpacing
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssLetterSpacing(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
-	
+
 	CssValue val = expression.getValue();
 	if (val instanceof CssLength) {
 	    length = (CssLength) val;
@@ -91,27 +91,27 @@ public class CssLetterSpacing extends CssProperty {
 	    length = normal;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public CssLetterSpacing(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return length;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "letter-spacing";
     }
@@ -123,14 +123,14 @@ public class CssLetterSpacing extends CssProperty {
     public boolean isSoftlyInherited() {
 	return length == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return length.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -142,13 +142,13 @@ public class CssLetterSpacing extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssLetterSpacing = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getLetterSpacing();
@@ -156,15 +156,15 @@ public class CssLetterSpacing extends CssProperty {
 	    return ((Css1Style) style).cssLetterSpacing;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssLetterSpacing && 
+	return (property instanceof CssLetterSpacing &&
 		length.equals(((CssLetterSpacing) property).length));
     }
-    
+
 }

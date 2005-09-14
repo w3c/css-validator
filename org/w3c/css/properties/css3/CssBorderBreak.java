@@ -22,16 +22,16 @@ public class CssBorderBreak extends CssProperty {
 
     CssBorderFaceStyle bfsvalue = null;
     CssValue value = null;
-    
+
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new CssBorderBreak
      */
     public CssBorderBreak() {
 	value = none;
     }
-    
+
     /**
      * Create a new CssBorderBreak
      *
@@ -40,17 +40,17 @@ public class CssBorderBreak extends CssProperty {
      */
     public CssBorderBreak(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
-	
+
 	bfsvalue = new CssBorderFaceStyle(ac, expression);
     }
-    
+
     public CssBorderBreak(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -61,7 +61,7 @@ public class CssBorderBreak extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderBreak = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -76,7 +76,7 @@ public class CssBorderBreak extends CssProperty {
 	    return ((Css3Style) style).cssBorderBreak;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -87,28 +87,28 @@ public class CssBorderBreak extends CssProperty {
 		(value.equals(((CssBorderBreak) property).value) ||
 			bfsvalue.equals(((CssBorderBreak) property).bfsvalue)));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-break";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -119,7 +119,7 @@ public class CssBorderBreak extends CssProperty {
 	    return bfsvalue.toString();
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -127,5 +127,5 @@ public class CssBorderBreak extends CssProperty {
     public boolean isDefault() {
 	return value.equals(new CssBorderFaceStyle());
     }
-    
+
 }

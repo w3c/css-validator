@@ -68,19 +68,19 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
      * @exception InvalidParamException The expression is incorrect
      */
     public CssBorderBottom(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {	
+	    boolean check) throws InvalidParamException {
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(check && expression.getCount() > 4) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -93,7 +93,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
 		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
@@ -118,7 +118,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
 		}
 	    }
 
-	    if (!find && color == null) {	
+	    if (!find && color == null) {
 		try {
 		    color = new CssBorderBottomColor(ac, expression);
 		    find = true;
@@ -146,14 +146,14 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
 	    style = new CssBorderBottomStyle();
 	if (color == null)
 	    color = new CssBorderBottomColor();
-	*/	
+	*/
     }
 
-    public CssBorderBottom(ApplContext ac, CssExpression expression) 
+    public CssBorderBottom(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -287,7 +287,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {	
+    public void addToStyle(ApplContext ac, CssStyle style) {
 	if(width != null) {
 	    width.addToStyle(ac, style);
 	}
@@ -321,7 +321,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
      * @param source The source file where this property is defined
      */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -332,7 +332,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro

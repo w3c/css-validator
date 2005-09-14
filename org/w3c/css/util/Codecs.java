@@ -10,7 +10,7 @@
  *
  * @(#)Codecs.java					0.2-2 23/03/1997
  *
- *  This file is part of the HTTPClient package 
+ *  This file is part of the HTTPClient package
  *  Copyright (C) 1996,1997  Ronald Tschalaer
  *
  *  This library is free software; you can redistribute it and/or
@@ -48,22 +48,22 @@ import java.io.IOException;
  */
 
 public class Codecs {
-    
+
     /**
      * I have problems with multipart/form-data so I integrated auto-debug here
-     */  
+     */
     private static boolean debugMode = false;
-    
+
     // Constructors
-    
+
     /**
      * This class isn't meant to be instantiated.
      */
     private Codecs() {}
-    
-    
+
+
     // Methods
-    
+
     /**
      * This method decodes a multipart/form-data encoded string. The boundary
      * is parsed from the <var>cont_type</var> parameter, which must be of the
@@ -103,7 +103,7 @@ public class Codecs {
      *                        found, or the contents of the part.
      * @exception IOException If any file operation fails.
      */
-    public final static synchronized NVPair[] mpFormDataDecode(byte[] data, 
+    public final static synchronized NVPair[] mpFormDataDecode(byte[] data,
 							       String cont_type)
 	    throws IOException {
 
@@ -113,15 +113,15 @@ public class Codecs {
 	    throw new IOException("\'boundary\' parameter " +
 				  "not found in Content-type: " + cont_type);
 	}
-	
+
 	byte[] srtbndry = new byte[bndstr.length()+4],
 	    boundary = new byte[bndstr.length()+6],
 	    endbndry = new byte[bndstr.length()+6];
-	
+
 	srtbndry = (    "--" + bndstr + "\n").getBytes();
 	boundary = ("\n--" + bndstr + "\n").getBytes();
 	endbndry = ("\n--" + bndstr + "--"  ).getBytes();
-	
+
 	if (debugMode) {
 	    System.err.println("[START OF DATA]");
 	    printData(data);
@@ -134,20 +134,20 @@ public class Codecs {
 	    printData(endbndry);
 	    System.err.println();
 	}
-	
+
 
 
 	// slurp
 
 	// setup search routines
-	
+
 	int[] bs = Util.compile_search(srtbndry);
 	int[] bc = Util.compile_search(boundary);
 	int[] be = Util.compile_search(endbndry);
-	
-	
+
+
 	// let's start parsing the actual data
-	
+
 	int start = Util.findStr(srtbndry, bs, data, 0, data.length);
 	if (start == -1) {	// didn't even find the start
 	    if (!debugMode) {
@@ -156,20 +156,20 @@ public class Codecs {
 		return null;
 	    } else {
 		debugMode = false;
-		throw new IOException("Starting boundary not found: " + 
+		throw new IOException("Starting boundary not found: " +
 				      new String(srtbndry));
 	    }
 	}
-	
+
 	start += srtbndry.length;
-	
+
 	NVPair[] res  = new NVPair[10];
 	boolean  done = false;
 	int      idx;
-	
+
 	for (idx=0; !done; idx++) {
 	    // find end of this part
-	    
+
 	    int end = Util.findStr(boundary, bc, data, start, data.length);
 	    if (end == -1) {		// must be the last part
 		end = Util.findStr(endbndry, be, data, start, data.length);
@@ -195,23 +195,23 @@ public class Codecs {
 		}
 		done = true;
 	    }
-	    
+
 	    // parse header(s)
-	    
+
 	    String hdr, lchdr, name=null, filename=null, cont_disp = null;
 	    Object value;
-	    
+
 	    while (true) {
 		int next = findEOL(data, start) + 1;
-		
+
 		if (next-1 <= start)  break;	// empty line -> end of headers
 		hdr      = new String(data, start, next-1-start);
-		
+
 		if (debugMode) {
 		    System.err.println( " start = " + start +
 					" end = " + next );
 		}
-		
+
 		// handle line continuation
 		byte ch;
 		while (next < data.length-1  &&
@@ -222,19 +222,19 @@ public class Codecs {
 		    start  = next;
 		}
 		start = next;
-		
+
 		if (debugMode) {
 		    System.err.println( "hdr=" + hdr );
 		    System.err.println( "(New) start = " + start +
 					" end = " + next );
 		}
-		
+
 		lchdr = hdr.toLowerCase();
-		
+
 		if (!lchdr.startsWith("content-disposition")) continue;
-		
+
 		int off = lchdr.indexOf("form-data", 20);
-		
+
 		if (off == -1) {
 		    if (!debugMode) {
 			debugMode = true;
@@ -245,9 +245,9 @@ public class Codecs {
 			throw new IOException("Expected \'Content-Disposition: form-data\' in line: "+hdr);
 		    }
 		}
-		
+
 		name = getParameter("name", hdr);
-		
+
 		if (debugMode) {
 		    System.err.println( "[ADD name is " + filename + ']');
 		}
@@ -262,21 +262,21 @@ public class Codecs {
 			throw new IOException("\'name\' parameter not found in header: "+hdr);
 		    }
 		}
-		
+
 		filename = getParameter("filename", hdr);
 		if (debugMode) {
 		    System.err.println( "[ADD filename is " + filename + ']');
 		}
 		cont_disp = hdr;
 	    }
-	    
+
 	    start += 1;
-	    
+
 	    if (debugMode) {
 		System.err.println( "(End) start = " + start +
 				    " end = " + end );
 	    }
-	    
+
 	    if (start > end) {
 		if (!debugMode) {
 		    debugMode = true;
@@ -287,7 +287,7 @@ public class Codecs {
 		    throw new IOException("End of header not found at offset "+end);
 		}
 	    }
-	    
+
 	    if (cont_disp == null) {
 		if (!debugMode) {
 		    debugMode = true;
@@ -298,35 +298,35 @@ public class Codecs {
 		    throw new IOException("Missing \'Content-Disposition\' header at offset "+start);
 		}
 	    }
-	    
+
 	    // handle data for this part
-	    
+
 	    if (filename != null) {			// It's a file
 		FakeFile file = new FakeFile(filename);
-		
+
 		file.write(data, start, end-start);
-		
+
 		value = file;
 	    } else {					// It's simple data
 		value = new String(data, start, end-start);
 	    }
-	    
+
 	    if (idx >= res.length) {
 		res = Util.resizeArray(res, idx+10);
 	    }
-	    
+
 	    res[idx] = new NVPair(name, value);
 	    if(debugMode) {
 		System.err.println( "[ADD " + name + ',' + value + ','
 				    + value.getClass() + ']');
 	    }
 	    start = end + boundary.length;
-	}	
-	    
+	}
+
 	return Util.resizeArray(res, idx);
     }
-    
-    
+
+
     /**
      * retrieves the value associated with the parameter <var>param</var> in
      * a given header string. This is used especially in headers like
@@ -345,9 +345,9 @@ public class Codecs {
 	    vbeg,	// parameter value begin
 	    vend = -1,	// parameter value end
 	    len = hdr.length();
-	
+
 	param = param.trim();
-	
+
 	while (true) {
 	    // mark parameter name
 	    if (debugMode) {
@@ -365,14 +365,14 @@ public class Codecs {
 	    pend = hdr.indexOf('=', pbeg+1);	// get '='
 	    if (pend == -1)  return null;
 	    vbeg = pend + 1;
-	    while (Util.isWhiteSpace(hdr.charAt(--pend))); 
+	    while (Util.isWhiteSpace(hdr.charAt(--pend)));
 	    pend++;
-	    
+
 	    // mark parameter value
-	    
+
 	    while (vbeg < len  &&  Util.isWhiteSpace(hdr.charAt(vbeg))) vbeg++;
 	    if (vbeg == len)  return null;
-	    
+
 	    vend = vbeg;
 	    if (hdr.charAt(vbeg) == '\"') {		// is a quoted-string
 		vbeg++;
@@ -381,18 +381,18 @@ public class Codecs {
 	    } else {					// is a simple token
 		vend = hdr.indexOf(';', vbeg);
 		if (vend == -1)  vend = hdr.length();
-		while (Util.isWhiteSpace(hdr.charAt(--vend))) ; 
+		while (Util.isWhiteSpace(hdr.charAt(--vend))) ;
 		vend++;
 	    }
-	    
+
 	    if (hdr.regionMatches(true, pbeg, param, 0, pend-pbeg))
 		break;					// found it
 	}
-	
+
 	return hdr.substring(vbeg, vend);
     }
-    
-    
+
+
     private static void printData(byte[] data) {
 	for (int i = 0; i < data.length; i++) {
 	    if (data[i] == '\n' || data[i] == '\r') {
@@ -403,7 +403,7 @@ public class Codecs {
 	    }
 	}
     }
-    
+
     private static void printData(byte[] data, int offset) {
 	for (int i = offset; i < data.length; i++) {
 	    if (data[i] == '\n' || data[i] == '\r') {
@@ -414,7 +414,7 @@ public class Codecs {
 	    }
 	}
     }
-    
+
     /**
      * Searches for the next LF in an array.
      *

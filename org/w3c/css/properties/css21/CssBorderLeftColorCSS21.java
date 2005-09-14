@@ -15,7 +15,7 @@ import org.w3c.css.values.CssExpression;
  * Created: Aug 31, 2005 2:10:19 PM<br />
  */
 public class CssBorderLeftColorCSS21 extends CssBorderLeftColorCSS2 {
-    
+
     /**
      * Create a new CssBorderLeftColorCSS21 with an another CssBorderFaceColorCSS2
      *
@@ -24,7 +24,7 @@ public class CssBorderLeftColorCSS21 extends CssBorderLeftColorCSS2 {
     public CssBorderLeftColorCSS21(CssBorderFaceColorCSS2 another) {
 	super(another);
     }
-    
+
     /**
      * Create a new CssBorderLeftColor
      *
@@ -33,17 +33,17 @@ public class CssBorderLeftColorCSS21 extends CssBorderLeftColorCSS2 {
      */
     public CssBorderLeftColorCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	setFace(new CssBorderFaceColorCSS21(ac, expression));
     }
-    
-    public CssBorderLeftColorCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssBorderLeftColorCSS21(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
-    }	
+    }
 }

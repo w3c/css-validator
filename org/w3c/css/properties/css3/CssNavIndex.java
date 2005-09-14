@@ -56,7 +56,7 @@ public class CssNavIndex extends CssProperty {
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public CssNavIndex(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);

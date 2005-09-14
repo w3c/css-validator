@@ -48,41 +48,41 @@ import org.w3c.css.values.CssValue;
  *
  * @version $Revision$
  */
-public class CssTextDecoration extends CssProperty 
+public class CssTextDecoration extends CssProperty
         implements CssTextPropertiesConstants {
-    
+
     CssValue value;
 
     private boolean[] values = new boolean[TEXTDECORATION.length];
-    
+
     private static int[] hash_values;
-    
+
     private static CssIdent none = new CssIdent("none");
-    
+
     private static final int INVALID = -1;
-    
+
     /**
      * Create a new CssTextDecoration
      */
     public CssTextDecoration() {
-    }  
-    
+    }
+
     /**
      * Create a new CssTextDecoration
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public CssTextDecoration(ApplContext ac, CssExpression expression, boolean check) 
+     */
+    public CssTextDecoration(ApplContext ac, CssExpression expression, boolean check)
 	    throws InvalidParamException {
-		
+
 	CssValue val = expression.getValue();
 	boolean find = true;
 	//int computed = 0;
 	int index = INVALID;
-	
+
 	setByUser();
-	
+
 	if (val.equals(none)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -99,23 +99,23 @@ public class CssTextDecoration extends CssProperty
 	    return;
 	}
 	val = null;
-	
+
 	if(check && expression.getCount() > 4) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
-	    
+
 	    if(val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    
+
 	    if (val instanceof CssIdent) {
 		index = getIndex((CssIdent) val, ac);
 		if (values[index] == true) {
-		    throw new InvalidParamException("same-value", 
+		    throw new InvalidParamException("same-value",
 						    TEXTDECORATION[index], ac);
 		} else {
 		    values[index] = true;
@@ -123,17 +123,17 @@ public class CssTextDecoration extends CssProperty
 		    expression.next();
 		}
 	    } else if (val != null) {
-		throw new InvalidParamException("value", val.toString(), 
+		throw new InvalidParamException("value", val.toString(),
 						getPropertyName(), ac);
 	    }
 	}
     }
-    
-    public CssTextDecoration(ApplContext ac, CssExpression expression) 
+
+    public CssTextDecoration(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -148,14 +148,14 @@ public class CssTextDecoration extends CssProperty
 	}
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "text-decoration";
     }
-    
+
     private int getIndex(CssIdent val, ApplContext ac) throws InvalidParamException {
 	int hash = val.hashCode();
 	for (int i = 0; i < TEXTDECORATION.length; i++) {
@@ -163,10 +163,10 @@ public class CssTextDecoration extends CssProperty
 		return i;
 	    }
 	}
-	throw new InvalidParamException("value", val.toString(), 
+	throw new InvalidParamException("value", val.toString(),
 					getPropertyName(), ac);
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -174,7 +174,7 @@ public class CssTextDecoration extends CssProperty
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -191,7 +191,7 @@ public class CssTextDecoration extends CssProperty
 	    return ret.substring(1);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -204,13 +204,13 @@ public class CssTextDecoration extends CssProperty
 	}
 	style0.cssTextDecoration = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getTextDecoration();
@@ -218,21 +218,21 @@ public class CssTextDecoration extends CssProperty
 	    return ((Css1Style) style).cssTextDecoration;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@ FIXME
 	return false;
     }
-    
+
     static {
 	hash_values = new int[TEXTDECORATION.length];
 	for (int i=0; i<TEXTDECORATION.length; i++) {
 	    hash_values[i] = TEXTDECORATION[i].hashCode();
 	}
-    }    
+    }
 }

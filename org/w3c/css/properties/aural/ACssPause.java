@@ -45,24 +45,24 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssPause extends ACssProperty implements CssOperator {
-    
+
     ACssPauseBefore pauseBefore;
     ACssPauseAfter pauseAfter;
 
     boolean same;
-    
+
     /**
      * Create a new ACssPause
      */
     public ACssPause() {
-    }  
-    
+    }
+
     /**
      * Create a new ACssPause
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public ACssPause(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	CssValue val = expression.getValue();
@@ -76,7 +76,7 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    pauseAfter = new ACssPauseAfter(pauseBefore);
 	    return;
 	}
-	
+
 	switch (expression.getCount()) {
 	case 1:
 	    this.same = true;
@@ -85,7 +85,7 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						(new Character(expression.getOperator()).toString()),
 						ac);
 	    }
@@ -98,40 +98,40 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     public ACssPause(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return pauseBefore;
     }
-    
+
     /**
      * Get the before property
      */
     public ACssPauseBefore getBefore() {
 	return pauseBefore;
     }
-    
+
     /**
      * Get the after property
      */
     public ACssPauseAfter getAfter() {
 	return pauseAfter;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "pause";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -143,17 +143,17 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    return pauseBefore + " " + pauseAfter;
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	super.setImportant();
 	pauseBefore.setImportant();
 	pauseAfter.setImportant();
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -162,21 +162,21 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	return ((pauseAfter == null || pauseAfter.getImportant()) &&
 		(pauseBefore == null || pauseBefore.getImportant()));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((pauseBefore != null && pauseAfter != null) &&
 	    (getImportant() ||
 	     (!pauseBefore.getImportant() &&
 	      !pauseAfter.getImportant()))) {
 	    printer.print(this);
-	} else {	
+	} else {
 	if (pauseBefore != null) {
 		pauseBefore.print(printer);
 	    }
@@ -185,7 +185,7 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -197,30 +197,30 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	pauseBefore.addToStyle(ac, style);
 	pauseAfter.addToStyle(ac, style);
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	// pauseBefore and pauseAfter can't be null ...
 	pauseBefore.setInfo(line, source);
 	pauseAfter.setInfo(line, source);
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; // @FIXME
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -237,13 +237,13 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    pauseAfter.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getPause();
@@ -251,5 +251,5 @@ public class ACssPause extends ACssProperty implements CssOperator {
 	    return ((ACssStyle) style).acssPause;
 	}
     }
-    
+
 }

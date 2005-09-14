@@ -21,8 +21,8 @@ import java.net.*;
 import html.parser.*;
 
 /**
- * This class handles the <LINK> tag in the Html tree built by the Html Parser. 
- * If the link refers to an external stylesheet, control will be transfered to the 
+ * This class handles the <LINK> tag in the Html tree built by the Html Parser.
+ * If the link refers to an external stylesheet, control will be transfered to the
  * StyleSheet object which will then parse the refered stylesheet.<BR>
  * Note:
  * <UL
@@ -34,19 +34,19 @@ import html.parser.*;
  */
 
 public class LinkTag extends Flow {
-    
+
     public static boolean debug = false;
-    
+
     /**
      * Create a new LinkTag.
      */
-    
+
     public LinkTag() {
 	debug = Boolean.getBoolean("html.tags.debug");
 	if (debug)
 	    System.out.println( "creating LinkTag   this=" +(Object)this);
     }
-    
+
     /**
      * Initialize the <code>LINK</code> tag with the given element and
      * attributes. First initializes the superclass as before and
@@ -55,51 +55,51 @@ public class LinkTag extends Flow {
      * @param atts the attributes of this element
      * @param parserFrame the parser frame (containing the StyleSheet)
      */
-    
-    public void initialize(Element elem, Attributes atts, 
+
+    public void initialize(Element elem, Attributes atts,
 			   ParserFrame parserFrame) {
 	// first, initialize as before
 	super.initialize(elem, atts, parserFrame);
-	
+
 	// Then treat the StyleSheet link case.
-	
+
 	if (debug)
-	    System.out.println( "LinkTag::initialize()   node=" 
-				+ (Object) this + "  (" 
+	    System.out.println( "LinkTag::initialize()   node="
+				+ (Object) this + "  ("
 				+ getElement().toString() + ")");
-	
+
 	if (atts == null) {    //@@ I dont think this should ever happen...
-	    return; 
+	    return;
 	}
 
 	String rel  = atts.get("rel");
 	String type  = atts.get("type");
 	String href = atts.get("href");
-	
+
 	if (debug) {
-	    System.out.println("LINK rel=\"" + rel 
+	    System.out.println("LINK rel=\"" + rel
 			       + "\"" + "   href=\"" + href + "\"");
 	}
-	
+
 	if ((rel != null || type != null)
 	    && ((rel == null) || rel.toLowerCase().indexOf("stylesheet") != -1)
 	    && ((type == null) || type.equalsIgnoreCase("text/css"))) {
 	    // we're dealing with a stylesheet...
 	    URL url;
-	    
-	    try { 
+
+	    try {
 		if (parserFrame.baseURL != null) {
-		    url = new URL(parserFrame.baseURL, href); 
+		    url = new URL(parserFrame.baseURL, href);
 		} else {
-		    url = new URL(parserFrame.url, href); 
+		    url = new URL(parserFrame.url, href);
 		}
 	    } catch (MalformedURLException e) {
 		return; // Ignore errors
 	    }
-	    
+
 	    if (debug) {
 		System.out.println("[LinkTag::initialize(): "
-				   + "should parse CSS url: " 
+				   + "should parse CSS url: "
 				   + url.toString() + "]");
 	    }
 	    String media = atts.get("media");
@@ -107,7 +107,7 @@ public class LinkTag extends Flow {
 		media="all";
 	    }
 	    parserFrame.styleSheetParser.parseURL(parserFrame.ac,
-						  url, 
+						  url,
 						  atts.get("title"),
 						  rel,
 						  media,

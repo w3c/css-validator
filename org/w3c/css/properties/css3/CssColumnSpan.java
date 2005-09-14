@@ -28,24 +28,24 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssColumnSpan extends CssProperty {
-    
+
     CssValue value;
     ApplContext ac;
-    
+
     CssIdent none = new CssIdent("none");
     CssIdent all = new CssIdent("all");
-    
+
     /**
      * Create a new CssColumnSpan
      */
     public CssColumnSpan() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new CssColumnSpan
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public CssColumnSpan(ApplContext ac, CssExpression expression,
@@ -53,15 +53,15 @@ public class CssColumnSpan extends CssProperty {
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssNumber) {
 	    if (((CssNumber) val).isInteger()) {
 		value = val;
 		expression.next();
 		return;
 	    } else {
-		throw new InvalidParamException("integer", 
-			val.toString(), 
+		throw new InvalidParamException("integer",
+			val.toString(),
 			getPropertyName(), ac);
 	    }
 	}
@@ -78,16 +78,16 @@ public class CssColumnSpan extends CssProperty {
 	    }
 	}
 	else {
-	    throw new InvalidParamException("value", val.toString(), 
+	    throw new InvalidParamException("value", val.toString(),
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssColumnSpan(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -98,13 +98,13 @@ public class CssColumnSpan extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssColumnSpan = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getColumnSpan();
@@ -112,51 +112,51 @@ public class CssColumnSpan extends CssProperty {
 	    return ((Css3Style) style).cssColumnSpan;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssColumnSpan && 
+	return (property instanceof CssColumnSpan &&
 		value.equals( ((CssColumnSpan) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "column-span";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return value == none;
     }
-    
+
 }

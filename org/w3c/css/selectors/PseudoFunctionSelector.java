@@ -14,12 +14,12 @@ public class PseudoFunctionSelector implements Selector {
     private Object param;
 
     /**
-     * Creates a new empty function selector     
+     * Creates a new empty function selector
      */
     public PseudoFunctionSelector() {
-	
+
     }
-    
+
     /**
      * @see Selector#getName()
      */
@@ -58,18 +58,18 @@ public class PseudoFunctionSelector implements Selector {
     public int getSpecificity() {
 	return 0;
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
     /**
      * @see Selector#toString()
      */
     public String toString() {
 	return ":" + name + "(" + param + ")";
-    }    
+    }
 }

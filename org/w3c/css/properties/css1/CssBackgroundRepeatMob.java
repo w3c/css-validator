@@ -32,7 +32,7 @@ import org.w3c.css.values.CssValue;
  *   (vertically), to create a single band of images from one side to the other.
  *   With a value of 'no-repeat', the image is not repeated.
  *   <PRE>
- *   BODY { 
+ *   BODY {
  *     background: red url(pendant.gif);
  *     background-repeat: repeat-y;
  *   }
@@ -41,35 +41,35 @@ import org.w3c.css.values.CssValue;
  *   In the example above, the image will only be repeated vertically.
  * @version $Revision$
  */
-public class CssBackgroundRepeatMob extends CssProperty 
+public class CssBackgroundRepeatMob extends CssProperty
 	implements CssBackgroundConstants {
-    
+
     int repeat;
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssBackgroundRepeatMob
      */
     public CssBackgroundRepeatMob() {
 	repeat = 0;
-    }  
-    
+    }
+
     /**
      * Set the value of the property
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBackgroundRepeatMob(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	if (val instanceof CssIdent) {
 	    int hash = val.hashCode();
 	    for (int i =0; i < REPEAT.length; i++) {
@@ -80,23 +80,23 @@ public class CssBackgroundRepeatMob extends CssProperty
 		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", expression.getValue(), 
+
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
-    public CssBackgroundRepeatMob(ApplContext ac, CssExpression expression) 
+
+    public CssBackgroundRepeatMob(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return REPEAT[repeat];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -104,21 +104,21 @@ public class CssBackgroundRepeatMob extends CssProperty
     public boolean isSoftlyInherited() {
 	return repeat == 4;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return REPEAT[repeat];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "background-repeat";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -130,13 +130,13 @@ public class CssBackgroundRepeatMob extends CssProperty
 	    style.addRedefinitionWarning(ac, this);
 	cssBackground.repeat = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBackgroundRepeatMob();
@@ -144,25 +144,25 @@ public class CssBackgroundRepeatMob extends CssProperty
 	    return ((Css1Style) style).cssBackgroundMob.repeat;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBackgroundRepeatMob && 
+	return (property instanceof CssBackgroundRepeatMob &&
 		repeat == ((CssBackgroundRepeatMob) property).repeat);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return repeat == 0;
     }
-    
+
     static {
 	hash_values = new int[REPEAT.length];
 	for (int i = 0; i < REPEAT.length; i++)

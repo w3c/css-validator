@@ -22,9 +22,9 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class OutlineColorATSC extends UserProperty {
-    
+
     CssValue color;
-    
+
     private static final CssIdent invert = new CssIdent("invert");
 
     /**
@@ -32,23 +32,23 @@ public class OutlineColorATSC extends UserProperty {
      */
     public OutlineColorATSC() {
 	color = invert;
-    }  
-    
+    }
+
     /**
      * Set the value of the property
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public OutlineColorATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	ac.getFrame().addWarning("atsc", val.toString());
 
 	if (val.equals(inherit)) {
@@ -64,23 +64,23 @@ public class OutlineColorATSC extends UserProperty {
 	    color = new CssColor(ac, (String) val.get());
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", val, 
+	    throw new InvalidParamException("value", val,
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public OutlineColorATSC(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return color;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -88,14 +88,14 @@ public class OutlineColorATSC extends UserProperty {
     public boolean isSoftlyInherited() {
 	return color.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return color.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -108,13 +108,13 @@ public class OutlineColorATSC extends UserProperty {
 	}
 	outline.color = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getOutlineColorATSC();
@@ -122,22 +122,22 @@ public class OutlineColorATSC extends UserProperty {
 	    return ((Css2Style) style).outlineATSC.color;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof OutlineColorATSC && 
+	return (property instanceof OutlineColorATSC &&
 		color.equals(((OutlineColorATSC) property).color));
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "outline-color";
     }
-    
+
 }

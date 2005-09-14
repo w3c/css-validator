@@ -29,7 +29,7 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssTextLTColor extends CssProperty {
- 
+
     CssValue ltcolor;
 
     static CssIdent auto = new CssIdent("auto");
@@ -43,7 +43,7 @@ public class CssTextLTColor extends CssProperty {
 
     /**
      * Create a new CssTextLTColor
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -72,8 +72,8 @@ public class CssTextLTColor extends CssProperty {
 	    }
 	}
 	else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
@@ -82,7 +82,7 @@ public class CssTextLTColor extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -118,7 +118,7 @@ public class CssTextLTColor extends CssProperty {
 	return (property instanceof CssTextLTColor &&
 		ltcolor.equals(((CssTextLTColor) property).ltcolor));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -71,7 +71,7 @@ public class CssLineHeight extends CssProperty {
      */
     public CssLineHeight(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -121,7 +121,7 @@ public class CssLineHeight extends CssProperty {
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

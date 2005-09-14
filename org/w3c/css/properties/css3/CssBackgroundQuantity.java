@@ -32,17 +32,17 @@ import org.w3c.css.values.CssValue;
 public class CssBackgroundQuantity extends CssProperty {
 
     CssValue bgquantity;
-    
+
     CssIdent initial = new CssIdent("initial");
     CssIdent infinite = new CssIdent("infinite");
-    
+
     /**
      * Create a new CssBackgroundQuantity
      */
     public CssBackgroundQuantity() {
 	bgquantity = infinite;
     }
-    
+
     /**
      * Create a new CssBackgroundQuantity
      *
@@ -51,10 +51,10 @@ public class CssBackgroundQuantity extends CssProperty {
      */
     public CssBackgroundQuantity(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    bgquantity = inherit;
 	    expression.next();
@@ -78,17 +78,17 @@ public class CssBackgroundQuantity extends CssProperty {
 			getPropertyName(), ac);
 	    }
 	}
-	
+
 	throw new InvalidParamException("value",
 		val.toString(),
 		getPropertyName(), ac);
     }
-    
+
     public CssBackgroundQuantity(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -99,7 +99,7 @@ public class CssBackgroundQuantity extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundQuantity = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -114,7 +114,7 @@ public class CssBackgroundQuantity extends CssProperty {
 	    return ((Css3Style) style).cssBackgroundQuantity;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -124,35 +124,35 @@ public class CssBackgroundQuantity extends CssProperty {
 	return (property instanceof CssBackgroundQuantity &&
 		bgquantity.equals(((CssBackgroundQuantity) property).bgquantity));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "background-quantity";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return bgquantity;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return bgquantity.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return bgquantity.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -160,5 +160,5 @@ public class CssBackgroundQuantity extends CssProperty {
     public boolean isDefault() {
 	return bgquantity == infinite;
     }
-    
+
 }

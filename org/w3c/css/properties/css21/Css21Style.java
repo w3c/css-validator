@@ -13,9 +13,9 @@ import org.w3c.css.parser.CssPrinterStyle;
  * Created: Aug 30, 2005 2:25:17 PM<br />
  */
 public class Css21Style extends Css2Style {
-    
+
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
     }
-    
+
 }

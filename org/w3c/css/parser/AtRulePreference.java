@@ -41,7 +41,7 @@ public class AtRulePreference extends AtRule {
     public boolean equals(Object other) {
 	return (other instanceof AtRulePreference);
     }
-    
+
     /**
      * The second must only match this one
      */

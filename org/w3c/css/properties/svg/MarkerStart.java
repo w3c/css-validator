@@ -28,19 +28,19 @@ import org.w3c.css.values.CssValue;
  */
 
 public class MarkerStart extends CssProperty {
-    
+
     CssValue markerStart;
     ApplContext ac;
-    
+
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create a new MarkerStart
      */
     public MarkerStart() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new MarkerStart
      *
@@ -69,12 +69,12 @@ public class MarkerStart extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public MarkerStart(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -85,7 +85,7 @@ public class MarkerStart extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).markerStart = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -99,7 +99,7 @@ public class MarkerStart extends CssProperty {
 	    return ((SVGStyle) style).markerStart;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -109,35 +109,35 @@ public class MarkerStart extends CssProperty {
 	return (property instanceof MarkerStart &&
 		markerStart.equals( ((MarkerStart) property).markerStart));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "marker-start";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return markerStart;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return markerStart.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return markerStart.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -145,5 +145,5 @@ public class MarkerStart extends CssProperty {
     public boolean isDefault() {
 	return (markerStart == none);
     }
-    
+
 }

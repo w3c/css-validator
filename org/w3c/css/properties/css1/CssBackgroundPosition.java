@@ -48,7 +48,7 @@ import org.w3c.css.values.CssValue;
  *   background image. Keywords cannot be combined with percentage values, or
  *   length values.  The possible combinations of keywords and their
  *   interpretations are as follows:
- 
+
  *   <UL>
  *     <LI>
  *       'top left' and 'left top' both mean the same as '0% 0%'.
@@ -82,54 +82,54 @@ import org.w3c.css.values.CssValue;
  *   'background-attachment' property above), the image is placed relative to
  *   the canvas instead of the element. E.g.:
  *   <PRE>
- *   BODY { 
+ *   BODY {
  *     background-image: url(logo.png);
  *     background-attachment: fixed;
  *     background-position: 100% 100%;
- *   } 
+ *   }
  *  </PRE>
  *   <P>
  *   In the example above, the image is placed in the lower right corner of the
  *   canvas.
  * @version $Revision$
- * @see CssBackgroundAttachment 
+ * @see CssBackgroundAttachment
  */
-public class CssBackgroundPosition extends CssProperty 
+public class CssBackgroundPosition extends CssProperty
 implements CssBackgroundConstants, CssOperator {
-    
+
     CssValue first;
     CssValue second;
-    
+
     /**
      * Create a new CssBackgroundPosition
      */
     public CssBackgroundPosition() {
 	first = DefaultValue0;
 	second = DefaultValue0;
-    }  
-    
+    }
+
     /**
      * Creates a new CssBackgroundPosition
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBackgroundPosition(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 	char op  = expression.getOperator();
-	
+
 	if (op != SPACE)
-	    throw new  InvalidParamException("operator", 
+	    throw new  InvalidParamException("operator",
 		    ((new Character(op)).toString()),
 		    ac);
-	
+
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
@@ -139,9 +139,9 @@ implements CssBackgroundConstants, CssOperator {
 	    expression.next();
 	    return;
 	}
-	
-	CssValue next = expression.getNextValue();	
-	
+
+	CssValue next = expression.getNextValue();
+
 	if(val instanceof CssIdent) {
 	    int index1 = IndexOfIdent((String) val.get());
 	    if(index1 == -1) {
@@ -158,10 +158,10 @@ implements CssBackgroundConstants, CssOperator {
 		if((isHorizontal(index1) && isVertical(index2)) ||
 			(isHorizontal(index2) && isVertical(index1))) {
 		    first = val;
-		    second = next;		    
+		    second = next;
 		}
 		// both are horizontal or vertical but not 'center'
-		else if(check){		    
+		else if(check){
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
 		}
@@ -171,7 +171,7 @@ implements CssBackgroundConstants, CssOperator {
 	    }
 	    // a keyword and a percentage/length
 	    else if(next instanceof CssLength || next instanceof CssPercentage
-		    || next instanceof CssNumber) {		
+		    || next instanceof CssNumber) {
 		if(next instanceof CssNumber) {
 		    next = ((CssNumber) next).getLength();
 		}
@@ -179,8 +179,8 @@ implements CssBackgroundConstants, CssOperator {
 		    first = val;
 		    second = next;
 		}
-		// if the keyword is the first value, it can only be an 
-		// horizontal one 
+		// if the keyword is the first value, it can only be an
+		// horizontal one
 		else {
 		    throw new InvalidParamException("incompatible",
 			    val, next, ac);
@@ -191,8 +191,8 @@ implements CssBackgroundConstants, CssOperator {
 		first = val;
 	    }
 	    // the second value is invalid
-	    else if(check) {		
-		throw new InvalidParamException("value", next, 
+	    else if(check) {
+		throw new InvalidParamException("value", next,
 			getPropertyName(), ac);
 	    }
 	    else {
@@ -239,62 +239,62 @@ implements CssBackgroundConstants, CssOperator {
 	    }
 	}
 	else if(check){
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	// we only move the cursor if we found valid values
-	if(first != null) {	    
-	    expression.next();	    
+	if(first != null) {
+	    expression.next();
 	}
-	if(second != null) {	    
-	    expression.next();	    
+	if(second != null) {
+	    expression.next();
 	}
     }
-    
-    public CssBackgroundPosition(ApplContext ac, CssExpression expression) 
+
+    public CssBackgroundPosition(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     private boolean isHorizontal(int index) {
 	return index == POSITION_LEFT || index == POSITION_RIGHT ||
 	index == POSITION_CENTER;
     }
-    
+
     private boolean isVertical(int index) {
 	return index == POSITION_TOP || index == POSITION_BOTTOM ||
 	index == POSITION_CENTER;
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return first;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "background-position";
     }
-    
+
     /**
      * Returns the horizontal value of the position
      */
     public CssValue getHorizontalPosition() {
 	return first;
     }
-    
+
     /**
      * Returns the vertical value of the position
      */
     public CssValue getVerticalPosition() {
 	return second;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -302,7 +302,7 @@ implements CssBackgroundConstants, CssOperator {
     public boolean isSoftlyInherited() {
 	return first == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -348,13 +348,13 @@ implements CssBackgroundConstants, CssOperator {
 	    style.addRedefinitionWarning(ac, this);
 	cssBackground.position = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBackgroundPosition();
@@ -362,46 +362,46 @@ implements CssBackgroundConstants, CssOperator {
 	    return ((Css1Style) style).cssBackground.position;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return ((property == null && first == null && second == null) ||
-		(property instanceof CssBackgroundPosition && 
+		(property instanceof CssBackgroundPosition &&
 			first != null &&
 			first.equals(((CssBackgroundPosition) property).first) &&
 			second != null &&
 			second.equals(((CssBackgroundPosition) property).second)));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return first != null && second != null &&
 	first.equals(DefaultValue0) && second.equals(DefaultValue0);
     }
-    
+
     private int IndexOfIdent(String ident) throws InvalidParamException {
 	int hash = ident.hashCode();
 	for (int i = 0; i < POSITION.length; i++)
 	    if (hash_values[i] == hash)
 		return i;
-	
+
 	return -1;
     }
-    
+
     private static int[] hash_values;
-    
+
 //  private static int INVALID = -1;
     private static CssPercentage DefaultValue0 = new CssPercentage(0);
 //  private static CssPercentage DefaultValue50 = new CssPercentage(50);
 //  private static CssPercentage DefaultValue100 = new CssPercentage(100);
-    
+
     static {
 	hash_values = new int[POSITION.length];
 	for (int i = 0; i < POSITION.length; i++)

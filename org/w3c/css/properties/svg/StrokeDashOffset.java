@@ -28,7 +28,7 @@ import org.w3c.css.values.CssValue;
  *   <EM>Percentage values:</EM> N/A<BR>
  */
 public class StrokeDashOffset extends CssProperty {
-    
+
     CssValue value;
 
     /**
@@ -36,17 +36,17 @@ public class StrokeDashOffset extends CssProperty {
      */
     public StrokeDashOffset() {
 	//nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new StrokeDashOffset
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public StrokeDashOffset(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -57,27 +57,27 @@ public class StrokeDashOffset extends CssProperty {
 	    value = inherit;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public StrokeDashOffset(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "stroke-dashoffset";
     }
@@ -89,14 +89,14 @@ public class StrokeDashOffset extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -108,13 +108,13 @@ public class StrokeDashOffset extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.strokeDashOffset = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getStrokeDashOffset();
@@ -122,15 +122,15 @@ public class StrokeDashOffset extends CssProperty {
 	    return ((SVGStyle) style).strokeDashOffset;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof StrokeDashOffset && 
+	return (property instanceof StrokeDashOffset &&
 		value.equals(((StrokeDashOffset) property).value));
     }
-    
+
 }

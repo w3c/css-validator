@@ -51,65 +51,65 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderTopATSC extends CssProperty implements CssOperator {
-    
+
     CssBorderTopWidthATSC width;
     CssBorderTopStyleATSC style;
     CssBorderTopColorATSC color;
-    
+
     /**
      * Create a new CssBorderFaceATSC
      */
     public CssBorderTopATSC() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderFaceATSC
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderTopATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
-	    val = expression.getValue();	    
-	    op = expression.getOperator();	    
+	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val == null)
 		break;
-	    
+
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
-						ac);   
+						ac);
 	    if (width == null) {
 		try {
-		    width = new CssBorderTopWidthATSC(ac, expression);		
+		    width = new CssBorderTopWidthATSC(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value		    
+		    // nothing to do, style will test this value
 		}
 	    }
 	    if (!find && style == null) {
 		try {
-		    style = new CssBorderTopStyleATSC(ac, expression);		    
+		    style = new CssBorderTopStyleATSC(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
 		    // nothing to do, color will test this value
@@ -118,23 +118,23 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    if (!find && color == null) {
 		// throws an exception if the value is not valid
 		color = new CssBorderTopColorATSC(ac, expression);
-		find = true;		
+		find = true;
 	    }
 	}
     }
-    
+
     public CssBorderTopATSC(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -145,7 +145,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -156,7 +156,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -167,7 +167,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -190,18 +190,18 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-top";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(width != null) {
 	    width.setImportant();
@@ -213,7 +213,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    color.setImportant();
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -223,14 +223,14 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 		(style == null || style.getImportant()) &&
 		(color == null || color.getImportant()));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -247,9 +247,9 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -266,13 +266,13 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    color.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getBorderTopATSC();
@@ -280,16 +280,16 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    return ((ATSCStyle) style).cssBorderATSC.getTop();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -300,7 +300,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -320,24 +320,24 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderTopATSC) {
 	    CssBorderTopATSC top = (CssBorderTopATSC) property;
-	    return (width.equals(top.width) 
+	    return (width.equals(top.width)
 		    && style.equals(top.style) && color.equals(top.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

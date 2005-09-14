@@ -46,40 +46,40 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssHeightMob extends CssProperty {
-    
+
     CssValue value;
-    
+
     private static CssIdent auto = new CssIdent("auto");
-    
+
     /**
      * Create a new CssHeightMob
      */
     public CssHeightMob() {
 	value = auto;
-    }  
-    
+    }
+
     /**
      * Create a new CssHeightMob
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssHeightMob(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
 	if (val.equals(inherit)) {
 	    value = inherit;
 	} else if (val instanceof CssLength) {
 	    float f = ((Float) val.get()).floatValue();
 	    if (f < 0) {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						val.toString(), ac);
 	    }
 	    value = val;
@@ -88,32 +88,32 @@ public class CssHeightMob extends CssProperty {
 	} else if (val instanceof CssNumber) {
 	    value = ((CssNumber) val).getLength();
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssHeightMob(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "height";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -121,14 +121,14 @@ public class CssHeightMob extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -140,13 +140,13 @@ public class CssHeightMob extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssHeightMob = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getHeightMob();
@@ -154,23 +154,23 @@ public class CssHeightMob extends CssProperty {
 	    return ((Css1Style) style).cssHeightMob;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssHeightMob && 
+	return (property instanceof CssHeightMob &&
 		value.equals(((CssHeightMob) property).value));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == auto;
     }
-    
+
 }

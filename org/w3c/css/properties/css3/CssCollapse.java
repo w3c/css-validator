@@ -27,7 +27,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  There is one kind of implicit link that CSS can exploit and present as a hyperlink 
+ *  There is one kind of implicit link that CSS can exploit and present as a hyperlink
  *  and that is the relation between an element and its children.
  */
 
@@ -78,7 +78,7 @@ public class CssCollapse extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -114,7 +114,7 @@ public class CssCollapse extends CssProperty {
 	return (property instanceof CssCollapse &&
 		collapse.equals(((CssCollapse) property).collapse));
     }
-    
+
     /**
      * Returns the name of this property
      */

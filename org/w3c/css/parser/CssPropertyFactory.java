@@ -29,9 +29,9 @@ public class CssPropertyFactory implements Cloneable {
 
     // all recognized properties are here.
     private Utf8Properties properties;
-    
+
     //private Utf8Properties allprops;
-    
+
     // does not seem to be used
 //    private String usermedium;
 
@@ -43,11 +43,11 @@ public class CssPropertyFactory implements Cloneable {
 	    return null;
 	}
     }
-    
+
     /**
      * Create a new CssPropertyFactory
      */
-    /*public CssPropertyFactory(URL url, URL allprop_url) {	
+    /*public CssPropertyFactory(URL url, URL allprop_url) {
 	properties = new Utf8Properties();
 	InputStream f = null;
 	try {
@@ -63,7 +63,7 @@ public class CssPropertyFactory implements Cloneable {
 		e.printStackTrace();
 	    } // ignore
 	}
-	
+
 	// list of all properties
 	allprops = new Utf8Properties();
 	InputStream f_all = null;
@@ -81,7 +81,7 @@ public class CssPropertyFactory implements Cloneable {
 	    } // ignore
 	}
     }*/
-    
+
     public CssPropertyFactory(String profile) {
 	properties = PropertiesLoader.getProfile(profile);
 	// It's not good to have null properties :-/
@@ -89,31 +89,31 @@ public class CssPropertyFactory implements Cloneable {
 	    throw new NullPointerException();
 	}
     }
-    
+
     public String getProperty(String name) {
 	return properties.getProperty(name);
     }
-    
+
     private Vector getVector(String media) {
 	Vector list = new Vector(4);
 	String medium = new String();
 	StringTokenizer tok = new StringTokenizer(media, ",");
-	
+
 	while (tok.hasMoreTokens()) {
 	    medium = tok.nextToken();
 	    medium = medium.trim();
 	    list.addElement(medium);
 	}
-	
+
 	return list;
     }
-    
-//    public void setUserMedium(String usermedium) {	
+
+//    public void setUserMedium(String usermedium) {
 //	this.usermedium = usermedium;
 //    }
-    
+
 //    bug: FIXME
-//	@media screen and (min-width: 400px) and (max-width: 700px), print { 
+//	@media screen and (min-width: 400px) and (max-width: 700px), print {
 //	  a {
 //	    border: 0;
 //	  }
@@ -125,11 +125,11 @@ public class CssPropertyFactory implements Cloneable {
 	String media = atRule.toString();
 	int pos = -1;
 	int pos2 = media.toUpperCase().indexOf("AND");
-	
+
 	if (pos2 == -1) {
 	    pos2 = media.length();
 	}
-	
+
 	if (media.toUpperCase().indexOf("NOT") != -1) {
 	    pos = media.toUpperCase().indexOf("NOT");
 	    media = media.substring(pos + 4, pos2);
@@ -140,12 +140,12 @@ public class CssPropertyFactory implements Cloneable {
 	    pos = media.indexOf(" ");
 	    media = media.substring(pos + 1, pos2);
 	}
-	
+
 	media = media.trim();
-	
+
 	String classname = properties.getProperty("mediafeature" + "."
 		+ property);
-	
+
 	if (classname == null) {
 	    if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
 		// I don't know this property
@@ -160,13 +160,13 @@ public class CssPropertyFactory implements Cloneable {
 			ac);
 	    }
 	}
-	
+
 	try {
 	    // create an instance of your property class
 	    Class expressionclass = new CssExpression().getClass();
 	    if (expression != null) {
 		expressionclass = expression.getClass();
-	    }        
+	    }
 	    // Maybe it will be necessary to add the check parameter as for
 	    // create property, so... FIXME
 	    Class[] parametersType = { ac.getClass(), expressionclass };
@@ -181,22 +181,22 @@ public class CssPropertyFactory implements Cloneable {
 	    Exception ex = (Exception) iv.getTargetException();
 	    throw ex;
 	}
-	
+
     }
-    
+
     public synchronized CssProperty createProperty(ApplContext ac,
 	    AtRule atRule, String property, CssExpression expression)
-    throws Exception {		
+    throws Exception {
 	String classname = null;
 	String media = atRule.toString();
 	int pos = -1;
 	String upperMedia = media.toUpperCase();
 	int pos2 = upperMedia.indexOf("AND ");
-	
+
 	if (pos2 == -1) {
 	    pos2 = media.length();
 	}
-	
+
 	if ((pos = upperMedia.indexOf("NOT")) != -1) {
 	    media = media.substring(pos + 4, pos2);
 	} else if ((pos = upperMedia.indexOf("ONLY")) != -1) {
@@ -205,31 +205,31 @@ public class CssPropertyFactory implements Cloneable {
 	    pos = media.indexOf(' ');
 	    media = media.substring(pos + 1, pos2);
 	}
-	
+
 	media = media.trim();
-	
+
 	Vector list = new Vector(getVector(media));
-	
+
 	if(atRule instanceof AtRuleMedia) {
-	    classname = properties.getProperty(property);	    
+	    classname = properties.getProperty(property);
 	    // a list of media has been specified
 	    if(classname != null && !media.equals("all")) {
-		String propMedia = PropertiesLoader.mediaProperties.getProperty(property); 
+		String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
 		for(int i = 0; i < list.size(); i++) {
 		    String medium = (String) list.elementAt(i);
-		    if(propMedia.indexOf(medium) == -1 && 
+		    if(propMedia.indexOf(medium) == -1 &&
 			    !propMedia.equals("all")) {
 			ac.getFrame().addWarning("noexistence-media",
 				property, medium + " (" + propMedia + ")");
 		    }
 		}
-	    }	    
+	    }
 	}
 	else {
 	    classname = properties.getProperty("@" + atRule.keyword() + "."
 		    + property);
 	}
-	
+
 	// the property does not exist in this profile
 	// this is an error... or a warning if it exists in another
 	// profile... FIXME
@@ -239,16 +239,16 @@ public class CssPropertyFactory implements Cloneable {
 	}
 
 	CssIdent initial = new CssIdent("initial");
-	
+
 	if (expression.getValue().equals(initial)
-		&& ac.getCssVersion().equals("css3")) {		
+		&& ac.getCssVersion().equals("css3")) {
 	    try {
 		// create an instance of your property class
 		Class[] parametersType = {};
 		Constructor constructor = Class.forName(classname)
 		.getConstructor(parametersType);
 		Object[] parameters = {};
-		// invoke the constructor		
+		// invoke the constructor
 		return (CssProperty) constructor.newInstance(parameters);
 	    } catch (InvocationTargetException e) {
 		// catch InvalidParamException
@@ -256,21 +256,21 @@ public class CssPropertyFactory implements Cloneable {
 		Exception ex = (Exception) iv.getTargetException();
 		throw ex;
 	    }
-	} else {	    
+	} else {
 	    try {
 		// create an instance of your property class
 		Class[] parametersType = { ac.getClass(), expression.getClass(), boolean.class };
 		Constructor constructor = Class.forName(classname)
 		.getConstructor(parametersType);
 		Object[] parameters = { ac, expression, new Boolean(true)};
-		// invoke the constructor		
+		// invoke the constructor
 		return (CssProperty) constructor.newInstance(parameters);
-	    } catch (InvocationTargetException e) {		
+	    } catch (InvocationTargetException e) {
 		// catch InvalidParamException
 		InvocationTargetException iv = e;
 		Exception ex = (Exception) iv.getTargetException();
 		throw ex;
 	    }
-	}	
+	}
     }
 }

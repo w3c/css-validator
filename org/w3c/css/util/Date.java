@@ -27,14 +27,14 @@ public class Date {
   String date = "";
   String logDate = "";
   private TimeZone tz;
-  
+
   /**
    * Create a new Date
    */
   public Date() {
     tz = TimeZone.getTimeZone("GMT"); // should be UTC
   }
-  
+
   /**
    * Give the Date in HTTP/1.1 preferred format
    *
@@ -44,7 +44,7 @@ public class Date {
     computeDate();
     return date;
   }
-  
+
   public synchronized String getLogDate() {
     computeDate();
     return logDate;
@@ -53,30 +53,30 @@ public class Date {
   /**
    * Returns a string representation of the object.
    */
-  public String toString() {  
+  public String toString() {
     computeDate();
     return date;
   }
-  
+
   /**
    * The main loop which calculate the date every second
    */
-  
-  private void computeDate () { 
+
+  private void computeDate () {
     int day;
     int hr,mn,sec;
     StringBuffer sbdate, ldate;
     Calendar cal;
-    
+
     sbdate = new StringBuffer(30);
     ldate = new StringBuffer(30);
-    
+
     cal = new GregorianCalendar(tz, Locale.getDefault());
     day = cal.get(Calendar.DAY_OF_MONTH);
     hr = cal.get(Calendar.HOUR_OF_DAY);
     mn = cal.get(Calendar.MINUTE);
     sec = cal.get(Calendar.SECOND);
-    
+
     // construct date according to the http/1.1 format
     sbdate.append(days[cal.get(Calendar.DAY_OF_WEEK)-1]);
     sbdate.append(", ");
@@ -88,19 +88,19 @@ public class Date {
     sbdate.append(' ');
     sbdate.append(cal.get(Calendar.YEAR));
     sbdate.append(' ');
-    if (hr < 10) 
+    if (hr < 10)
       sbdate.append('0');
     sbdate.append(hr);
     sbdate.append(':');
-    if (mn < 10) 
+    if (mn < 10)
       sbdate.append('0');
     sbdate.append(mn);
     sbdate.append(':');
-    if (sec < 10) 
+    if (sec < 10)
       sbdate.append('0');
     sbdate.append(sec);
     sbdate.append(" GMT");
-    
+
     // construct date according to the log date format
     if (day < 10)
       ldate.append('0');
@@ -118,16 +118,16 @@ public class Date {
       ldate.append('0');
     ldate.append(mn);
     ldate.append(':');
-    if (sec < 10) 
+    if (sec < 10)
       ldate.append('0');
     ldate.append(sec);
     ldate.append(" +0");
-    
-    
+
+
     synchronized(this) {
       date = sbdate.toString();
       logDate = ldate.toString();
     }
   }
-  
+
 }

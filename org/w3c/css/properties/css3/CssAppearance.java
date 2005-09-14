@@ -33,25 +33,25 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssAppearance extends CssProperty {
-    
+
     CssValue appearance;
-    
+
     CssIdent normal = new CssIdent("normal");
-    
+
     private static String[] values = {
-	"normal", "icon", "window", "document", "workspace", 
+	"normal", "icon", "window", "document", "workspace",
 	"desktop", "tooltip", "dialog", "button", "default-button",
 	"hyperlink", "menu", "pull-down-menu", "pop-up-menu", "list-menu",
 	"field", "inherit"
     };
-    
+
     /**
      * Create a new CssAppearance
      */
     public CssAppearance() {
 	appearance = normal;
     }
-    
+
     /**
      * Create a new CssAppearance
      *
@@ -60,14 +60,14 @@ public class CssAppearance extends CssProperty {
      */
     public CssAppearance(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    int i = 0;
 	    for (; i < values.length; i++) {
@@ -87,12 +87,12 @@ public class CssAppearance extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssAppearance(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
-    }  
-    
+    }
+
     /**
      * Add this property to the CssStyle
      *
@@ -103,7 +103,7 @@ public class CssAppearance extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssAppearance = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -118,7 +118,7 @@ public class CssAppearance extends CssProperty {
 	    return ((Css3Style) style).cssAppearance;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -128,35 +128,35 @@ public class CssAppearance extends CssProperty {
 	return (property instanceof CssAppearance &&
 		appearance.equals(((CssAppearance) property).appearance));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "appearance";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return appearance;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return appearance.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return appearance.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -164,5 +164,5 @@ public class CssAppearance extends CssProperty {
     public boolean isDefault() {
 	return appearance == normal;
     }
-    
+
 }

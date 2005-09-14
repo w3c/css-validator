@@ -41,11 +41,11 @@ public class CssPositionTV extends CssProperty {
      */
     public CssPositionTV(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 
 	setByUser();
@@ -63,7 +63,7 @@ public class CssPositionTV extends CssProperty {
 	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     public CssPositionTV(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);

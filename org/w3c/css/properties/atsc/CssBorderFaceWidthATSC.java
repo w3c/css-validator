@@ -20,16 +20,16 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderFaceWidthATSC {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new CssBorderFaceWidthATSC
      */
     public CssBorderFaceWidthATSC() {
 	value = medium;
     }
-    
+
     /**
      * Create a new CssBorderFaceWidthATSC from an another CssBorderFaceWidthATSC
      *
@@ -38,7 +38,7 @@ public class CssBorderFaceWidthATSC {
     public CssBorderFaceWidthATSC(CssBorderFaceWidthATSC another) {
 	value = another.value;
     }
-    
+
     /**
      * Create a new CssBorderFaceWidth
      *
@@ -47,16 +47,16 @@ public class CssBorderFaceWidthATSC {
      */
     public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssLength) {
 	    float f = ((Float) val.get()).floatValue();
-	    if (f >= 0) 
+	    if (f >= 0)
 		this.value = val;
 	    else
 		throw new InvalidParamException("negative-value", val.toString(), ac);
@@ -73,42 +73,42 @@ public class CssBorderFaceWidthATSC {
 	} else {
 	    throw new InvalidParamException("value", val.toString(), "width", ac);
 	}
-	
+
 	expression.next();
-    }  
-    
+    }
+
     public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal value
-     */  
+     */
     public CssValue getValue() {
 	return value;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Compares two sides for equality.
      *
      * @param value The another side.
-     */  
+     */
     public boolean equals(CssBorderFaceWidthATSC another) {
 	return value.equals(another.value);
     }
-    
+
     private static CssIdent thin = new CssIdent("thin");
     private static CssIdent medium = new CssIdent("medium");
     private static CssIdent thick = new CssIdent("thick");
-    
+
 }
 
 

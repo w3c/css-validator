@@ -23,25 +23,25 @@ import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssValue;
 
-/** 
+/**
  */
 public class FontFamily extends FontProperty implements CssOperator {
-    
+
     Vector family_name = new Vector();
 
     /**
      * Create a new FontFamily
      */
     public FontFamily() {
-    }  
-    
+    }
+
     /**
      * Create a new FontFamily
      *
      * @param expression the font name
      * @exception InvalidParamException The expression is incorrect
      */
-    public FontFamily(ApplContext ac, CssExpression expression, boolean check) 
+    public FontFamily(ApplContext ac, CssExpression expression, boolean check)
 	    throws InvalidParamException {
 	boolean family = true;
 	CssValue val = expression.getValue();
@@ -49,18 +49,18 @@ public class FontFamily extends FontProperty implements CssOperator {
 
 	setByUser();
 	//@@ and if name is already in the vector ?
-	
+
 
 	while (family) {
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	    if ((op != COMMA) && (op != SPACE)) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
 						ac);
 	    }
-	    
+
 	    if (val instanceof CssString) {
 		if (op == COMMA) { // "helvetica", "roman"
 		    String name = (String) val.get();
@@ -78,9 +78,9 @@ public class FontFamily extends FontProperty implements CssOperator {
 		    expression.next();
 		} else {
 		    CssValue next = expression.getNextValue();
-		    
+
 		    if (next instanceof CssIdent) {
-			CssIdent New = new CssIdent(val.get() + " " 
+			CssIdent New = new CssIdent(val.get() + " "
 						    + next.get());
 			expression.remove();
 			op = expression.getOperator();
@@ -97,38 +97,38 @@ public class FontFamily extends FontProperty implements CssOperator {
 		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	}
-	
+
     }
-    
+
     public FontFamily(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns all fonts name
-     */  
+     */
     public Enumeration elements() {
 	return family_name.elements();
     }
-    
+
     /**
      * Returns the size
      */
     public int size() {
 	return family_name.size();
     }
-    
+
     /**
      * Returns the font (null if no font)
-     */  
+     */
     public Object get() {
 	if (family_name.size() == 0) {
 	    return null;
 	}
 	return family_name.firstElement();
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -141,12 +141,12 @@ public class FontFamily extends FontProperty implements CssOperator {
 	}
 	return r.substring(2);
     }
-    
+
     String convertString (String value) {
 	if (value.indexOf('"') != -1) {
 	    return '\'' + value + '\'';
 	} else if (value.indexOf('\'') != -1) {
-	    return '"' + value + '"';	    
+	    return '"' + value + '"';
 	} else {
 	    return value;
 	}
@@ -154,11 +154,11 @@ public class FontFamily extends FontProperty implements CssOperator {
 
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-family";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -172,13 +172,13 @@ public class FontFamily extends FontProperty implements CssOperator {
 	}
 	style0.fontFamily = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getFaceFontFamily();
@@ -186,30 +186,30 @@ public class FontFamily extends FontProperty implements CssOperator {
 	    return ((Css2Style) style).fontFamily;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; //@@ FIXME
     }
-    
+
     private static String trimToOneSpace(String name) {
 	int count = name.length();
 	char[] dst = new char[count];
 	char[] src = new char[count];
 	int index = -1;
-	
+
 	name.getChars(0, count, src, 0);
 	for(int i=0; i < count; i++)
-	    if ( i == 0 || ! Util.isWhiteSpace(src[i]) || 
-		 ( Util.isWhiteSpace(src[i]) && 
+	    if ( i == 0 || ! Util.isWhiteSpace(src[i]) ||
+		 ( Util.isWhiteSpace(src[i]) &&
 		   !Util.isWhiteSpace(dst[index]) ) )
 		dst[++index] = src[i];
-	
+
 	return new String(dst, 0, index+1);
     }
-    
+
 }

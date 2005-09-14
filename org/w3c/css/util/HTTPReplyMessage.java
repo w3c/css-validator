@@ -32,7 +32,7 @@ public class HTTPReplyMessage extends HTTPEntityMessage {
     public static int H_WARNING             = 58;
     public static int H_WWW_AUTHENTICATE    = 59;
     public static int H_AUTHENTICATION_INFO = 60;
-    
+
     static {
 	registerHeader(H_ACCEPT_RANGES,
 		       "Accept-Ranges");

@@ -30,7 +30,7 @@ authors as well.
  */
 
 public class CssLineBreak extends CssProperty {
-    
+
     CssValue linebreak;
 
     CssIdent normal = new CssIdent("normal");
@@ -42,8 +42,8 @@ public class CssLineBreak extends CssProperty {
     public CssLineBreak() {
 	linebreak = normal;
     }
-    
-    /** 
+
+    /**
      * Create a new CssLineBreak
      *
      * @param expression The expression for this property
@@ -54,7 +54,7 @@ public class CssLineBreak extends CssProperty {
 
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(normal)) {
 	    linebreak = normal;
 	    expression.next();
@@ -77,7 +77,7 @@ public class CssLineBreak extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -113,7 +113,7 @@ public class CssLineBreak extends CssProperty {
 	return (property instanceof CssLineBreak &&
 		linebreak.equals(((CssLineBreak) property).linebreak));
     }
-    
+
     /**
      * Returns the name of this property
      */

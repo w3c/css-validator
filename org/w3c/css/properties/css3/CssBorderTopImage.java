@@ -21,18 +21,18 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderTopImage extends CssProperty {
-    
+
     String value;
     ApplContext ac;
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create new CssBorderTopImage
      */
     public CssBorderTopImage() {
 	value = "none";
     }
-    
+
     /**
      * Create new CssBorderTopImage
      *
@@ -43,7 +43,7 @@ public class CssBorderTopImage extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    if (val.equals(none)) {
 		value = "none";
@@ -53,12 +53,12 @@ public class CssBorderTopImage extends CssProperty {
 		expression.next();
 	    }
 	} else if (val instanceof CssURL) {
-	    
+
 	    value = val.toString();
 	    expression.next();
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
 		if (val instanceof CssURL) {
 		    value += " " + val.toString();
@@ -67,10 +67,10 @@ public class CssBorderTopImage extends CssProperty {
 		    throw new InvalidParamException("value", expression.getValue(),
 			    getPropertyName(), ac);
 		}
-		
+
 		expression.next();
 		val = expression.getValue();
-		
+
 		if (val != null) {
 		    if (val instanceof CssURL) {
 			value += " " + val.toString();
@@ -87,12 +87,12 @@ public class CssBorderTopImage extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBorderTopImage(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -103,7 +103,7 @@ public class CssBorderTopImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderTopImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -117,7 +117,7 @@ public class CssBorderTopImage extends CssProperty {
 	    return ((Css3Style) style).cssBorderTopImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -127,35 +127,35 @@ public class CssBorderTopImage extends CssProperty {
 	return (property instanceof CssBorderTopImage &&
 		value.equals( ((CssBorderTopImage) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-top-image";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>

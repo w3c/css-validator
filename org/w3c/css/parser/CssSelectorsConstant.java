@@ -12,7 +12,7 @@ package org.w3c.css.parser;
  * @version $Revision$
  */
 public interface CssSelectorsConstant {
-    
+
     /** [lang="fr"] */
     public static final int ATTRIBUTE_EXACT = ' ';
     /** [lang~="fr"] */
@@ -29,10 +29,10 @@ public interface CssSelectorsConstant {
     public static final int ATTRIBUTE_SUFFIX = '$';
     /** [foo*="bar"] */
     public static final int ATTRIBUTE_SUBSTR = '*';
-    
+
     /** Maximun of ATTRIBUTE_ONE_OF */
     public static final int ATTRIBUTE_LENGTH = 10;
-    
+
     /** descendant connector  */
     public static final char DESCENDANT = ' ';
     /** child connector */

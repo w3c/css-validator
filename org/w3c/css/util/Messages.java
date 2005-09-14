@@ -15,14 +15,14 @@ import java.util.StringTokenizer;
  * @version $Revision$
  */
 public class Messages {
-    
+
     /**
      * Message properties
-     */  
+     */
     public Utf8Properties properties;
 
     private static Hashtable languages = new Hashtable();
-    
+
     /**
      * Creates a new Messages
      */
@@ -30,7 +30,7 @@ public class Messages {
 	if (lang != null) {
 	    StringTokenizer lanTok = new StringTokenizer(lang, ",");
 	    int maxTok = lanTok.countTokens();
-   
+
 	    String slang[] = new String[maxTok];
 	    float  qlang[] = new float[maxTok];
 
@@ -58,7 +58,7 @@ public class Messages {
 			qlang[i] = qval;
 			break;
 		    }
-		    
+
 		}
 	    }
 	    for (int i=0 ; i< maxTok; i++) {
@@ -75,75 +75,75 @@ public class Messages {
 		}
 		if (properties != null) {
 		    break;
-		}		
+		}
 	    }
 	}
 	if (properties == null) {
 	    properties = (Utf8Properties) languages.get("en");
 	}
     }
-    
+
     /**
      * Get a property.
-     */  
+     */
     public String getString(String message) {
 	return properties.getProperty(message);
     }
-    
+
     /**
      * Get a warning property.
-     * 
+     *
      * @param message
      *            the warning property.
-     */  
+     */
     public String getWarningString(String message) {
 	return getString(new StringBuffer("warning.").append(message)
 			                                          .toString());
     }
-    
+
     /**
      * Get a warning level property.
-     * 
+     *
      * @param message
      *            the warning property.
-     */  
+     */
     public String getWarningLevelString(String message) {
 	return getString(new StringBuffer("warning.").append(message).append(
 	                                                 ".level").toString());
     }
-    
+
     /**
      * Get an error property.
      *
      * @param message
      *            the error property.
-     */  
+     */
     public String getErrorString(String message) {
 	return getString(new StringBuffer("error.").
 			                           append(message).toString());
     }
-    
+
     /**
      * Get an generator property.
      *
      * @param message
      *            the generator property.
-     */  
+     */
     public String getGeneratorString(String message) {
 	return getString(new StringBuffer("generator.").append(message)
 			 .toString());
     }
-    
+
     /**
      * Get an generator property.
      *
      * @param message
      *            the generator property.
-     */  
+     */
     public String getGeneratorString(String message, String param) {
 	String str = getString(new StringBuffer("generator.").append(message)
 			       .toString());
-	
+
 	// replace all parameters
 	int i = str.indexOf("%s");
 	if (i >= 0) {
@@ -151,18 +151,18 @@ public class Messages {
 	}
 	return str;
     }
-    
+
     /**
      * Get an generator property.
      *
      * @param message
      *            the generator property.
-     */  
+     */
     public String getServletString(String message) {
 	return getString(new StringBuffer("servlet.").append(message)
 			 .toString());
     }
-    
+
     static {
 	Utf8Properties tmp;
 	try {

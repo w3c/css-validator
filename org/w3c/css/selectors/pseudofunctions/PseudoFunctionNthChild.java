@@ -14,11 +14,11 @@ public class PseudoFunctionNthChild extends PseudoFunctionSelector {
 
     public PseudoFunctionNthChild(String name, Integer n) {
 	setName(name);
-	setParam(n);	
+	setParam(n);
     }
-    
+
     public PseudoFunctionNthChild(String name, String value) {
-	this(name, new Integer(value));	
+	this(name, new Integer(value));
     }
-    
+
 }

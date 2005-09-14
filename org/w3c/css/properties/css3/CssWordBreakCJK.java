@@ -25,25 +25,25 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property controls line-breaking behavior inside of words from a CJK 
- *  point of view. 
+ *  This property controls line-breaking behavior inside of words from a CJK
+ *  point of view.
  */
 
 public class CssWordBreakCJK extends CssProperty {
-    
+
     CssValue wordbreak;
 
     CssIdent normal = new CssIdent("normal");
     CssIdent breakall = new CssIdent("break-all");
     CssIdent keepall = new CssIdent("keep-all");
-    
+
     /**
      * Create a new CssWordBreakCJK
      */
     public CssWordBreakCJK() {
 	wordbreak = normal;
     }
-    
+
     /**
      * Create a new CssWordBreakCJK
      *
@@ -52,7 +52,7 @@ public class CssWordBreakCJK extends CssProperty {
      */
     public CssWordBreakCJK(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -61,11 +61,11 @@ public class CssWordBreakCJK extends CssProperty {
 	    expression.next();
 	}
 	else if (val.equals(keepall)) {
-	    wordbreak = keepall;	
+	    wordbreak = keepall;
     	    expression.next();
 	}
 	else if (val.equals(breakall)) {
-	    wordbreak = breakall;	
+	    wordbreak = breakall;
     	    expression.next();
 	}
 	else if (val.equals(inherit)) {
@@ -82,7 +82,7 @@ public class CssWordBreakCJK extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -118,7 +118,7 @@ public class CssWordBreakCJK extends CssProperty {
 	return (property instanceof CssWordBreakCJK &&
 		wordbreak.equals(((CssWordBreakCJK) property).wordbreak));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -156,4 +156,4 @@ public class CssWordBreakCJK extends CssProperty {
     }
 
 }
-	    
+

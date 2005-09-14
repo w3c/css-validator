@@ -28,7 +28,7 @@ import org.w3c.css.values.CssValue;
  */
 
 public class ClipPath extends CssProperty {
-    
+
     CssValue clippath;
     ApplContext ac;
 
@@ -40,11 +40,11 @@ public class ClipPath extends CssProperty {
     public ClipPath() {
 	//nothing to do
     }
-    
+
     /**
      * Create a new ClipPath
      *
-     * @param expression The expression for this property     
+     * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
     public ClipPath(ApplContext ac, CssExpression expression,
@@ -69,12 +69,12 @@ public class ClipPath extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public ClipPath(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -85,13 +85,13 @@ public class ClipPath extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).clipPath = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getClipPath();
@@ -99,51 +99,51 @@ public class ClipPath extends CssProperty {
 	    return ((SVGStyle) style).clipPath;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ClipPath && 
+	return (property instanceof ClipPath &&
 		clippath.equals( ((ClipPath) property).clippath));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "clip-path";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return clippath;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return clippath.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return clippath.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
      */
-    public boolean isDefault() {	
+    public boolean isDefault() {
 	return (clippath == none);
     }
-    
+
 }

@@ -35,9 +35,9 @@ import org.w3c.css.values.CssValue;
  *   </PRE>
  * @version $Revision$ */
 public class CssBackgroundImageCSS2 extends CssProperty {
-    
+
     CssValue url;
-    
+
     private static CssIdent none = new CssIdent("none");
 
     /**
@@ -45,17 +45,17 @@ public class CssBackgroundImageCSS2 extends CssProperty {
      */
     public CssBackgroundImageCSS2() {
 	url = none;
-    }  
-    
+    }
+
     /**
      * Creates a new CssBackgroundImageCSS2
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBackgroundImageCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -73,23 +73,23 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	    url = none;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
-    public CssBackgroundImageCSS2(ApplContext ac, CssExpression expression) 
+
+    public CssBackgroundImageCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return url;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -100,7 +100,7 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	}
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -110,14 +110,14 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	}
 	return "";
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "background-image";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -129,13 +129,13 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	cssBackground.image = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBackgroundImageCSS2();
@@ -143,25 +143,25 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	    return ((Css1Style) style).cssBackgroundCSS2.image;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return ((property == null && url == null)
-		|| (property instanceof CssBackgroundImageCSS2 && 
+		|| (property instanceof CssBackgroundImageCSS2 &&
 		url != null &&
 		url.equals(((CssBackgroundImageCSS2) property).url)));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return url == none;
     }
-    
+
 }

@@ -21,18 +21,18 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderRightImage extends CssProperty {
-    
+
     String value;
     ApplContext ac;
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create new CssBorderRightImage
      */
     public CssBorderRightImage() {
 	value = "none";
     }
-    
+
     /**
      * Create new CssBorderRightImage
      *
@@ -43,7 +43,7 @@ public class CssBorderRightImage extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    if (val.equals(none)) {
 		value = "none";
@@ -53,12 +53,12 @@ public class CssBorderRightImage extends CssProperty {
 		expression.next();
 	    }
 	} else if (val instanceof CssURL) {
-	    
+
 	    value = val.toString();
 	    expression.next();
-	    
+
 	    val = expression.getValue();
-	    
+
 	    if (val != null) {
 		if (val instanceof CssURL) {
 		    value += " " + val.toString();
@@ -67,10 +67,10 @@ public class CssBorderRightImage extends CssProperty {
 		    throw new InvalidParamException("value", expression.getValue(),
 			    getPropertyName(), ac);
 		}
-		
+
 		expression.next();
 		val = expression.getValue();
-		
+
 		if (val != null) {
 		    if (val instanceof CssURL) {
 			value += " " + val.toString();
@@ -87,12 +87,12 @@ public class CssBorderRightImage extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public CssBorderRightImage(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -103,7 +103,7 @@ public class CssBorderRightImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderRightImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -117,7 +117,7 @@ public class CssBorderRightImage extends CssProperty {
 	    return ((Css3Style) style).cssBorderRightImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -127,35 +127,35 @@ public class CssBorderRightImage extends CssProperty {
 	return (property instanceof CssBorderRightImage &&
 		value.equals( ((CssBorderRightImage) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-right-image";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -164,5 +164,5 @@ public class CssBorderRightImage extends CssProperty {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return value == cssnum.toString();
     }
-    
+
 }

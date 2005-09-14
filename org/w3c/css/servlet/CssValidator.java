@@ -67,18 +67,18 @@ public final class CssValidator extends HttpServlet {
 
     /**
      * Initializes the servlet and logs the initialization. The init method is
-     * called once, automatically, by the network service each time it loads 
+     * called once, automatically, by the network service each time it loads
      * the servlet. It is guaranteed to finish before any service requests are
      * accepted. On fatal initialization errors, an UnavailableException should
      * be thrown. Do not call the method System.exit.
-     * 
+     *
      * <p>
      * The init method stores the ServletConfig object. Servlet writers who
      * specialize this method should call either super.init, or store the
      * ServletConfig object themselves. If an implementor decides to store the
      * ServletConfig object in a different location, then the getServletConfig
      * method must also be overridden.
-     * 
+     *
      * <P>
      * <DL>
      * <STRONG>Init parameters:</STRONG>
@@ -94,7 +94,7 @@ public final class CssValidator extends HttpServlet {
      * <DD><code>html</code> if the user have an HTML input or
      * <code>xml</code> otherwise. <strong>deprecated</strong>
      * </DL>
-     * 
+     *
      * @param config
      *            servlet configuration information.
      * @exception ServletException
@@ -130,17 +130,17 @@ public final class CssValidator extends HttpServlet {
 	if (encoding != null) {
 	    return new PrintWriter(new OutputStreamWriter(os, encoding));
 	} else {
-	    return new PrintWriter(new OutputStreamWriter(os, 
+	    return new PrintWriter(new OutputStreamWriter(os,
 							  Utf8Properties.ENCODING));
 	}
     }
 
     /**
-     * Performs the HTTP GET operation. 
+     * Performs the HTTP GET operation.
      * An HTTP BAD_REQUEST error is reported if
      * an error occurs. This servlet writers shouldn't set the headers for the
      * requested entity (content type and encoding).
-     * 
+     *
      * <P>
      * Note that the GET operation is expected to be <em>safe</em>, without
      * any side effects for which users might be held responsible. For example,
@@ -148,15 +148,15 @@ public final class CssValidator extends HttpServlet {
      * stored data should use some other HTTP method. (There have been cases of
      * significant security breaches reported because web-based applications
      * used GET inappropriately.)
-     * 
+     *
      * <P>
      * The GET operation is also expected to be <em>idempotent</em>, meaning
-     * that it can safely be repeated. This is not quite the same as being 
-     * safe, but in some common examples the requirements have the same result. 
-     * For example, repeating queries is both safe and idempotent 
-     * (unless payment is required!), but buying something or modifying data 
+     * that it can safely be repeated. This is not quite the same as being
+     * safe, but in some common examples the requirements have the same result.
+     * For example, repeating queries is both safe and idempotent
+     * (unless payment is required!), but buying something or modifying data
      * is neither safe nor idempotent.
-     * 
+     *
      * <P>
      * <DL>
      * <STRONG>Forms parameters:</STRONG>
@@ -173,7 +173,7 @@ public final class CssValidator extends HttpServlet {
      * <DT>input
      * <DD>HTML if the user have an HTML input or XML otherwise.
      * </DL>
-     * 
+     *
      * @param req
      *            encapsulates the request to the servlet.
      * @param resp
@@ -228,12 +228,12 @@ public final class CssValidator extends HttpServlet {
 	    handleError(res, ac, output, "Invalid text", new IOException(
 			"Invalid escape sequence in URI"), false);
 	}
-	
+
 	String warning = req.getParameter("warning");
 	String error = req.getParameter("error");
 	String profile = req.getParameter("profile");
 	String usermedium = req.getParameter("usermedium");
-		
+
 	String credential = req.getHeader("Authorization");
 	if ((credential != null) && (credential.length() > 1)) {
 	    ac.setCredential(credential);
@@ -286,7 +286,7 @@ public final class CssValidator extends HttpServlet {
 	if ((uri == null) && (text == null)) {
 	    // res.sendError(res.SC_BAD_REQUEST,
 	    // "You have send an invalid request.");
-	    handleError(res, ac, output, "No file", 
+	    handleError(res, ac, output, "No file",
 		    new IOException(ac.getMsg().getServletString("invalid-request")),
 		    false);
 	    return;
@@ -350,7 +350,7 @@ public final class CssValidator extends HttpServlet {
 	    parser = new StyleSheetParser();
 
 	    try {
-		parser.parseStyleElement(ac, 
+		parser.parseStyleElement(ac,
 			new ByteArrayInputStream(text.getBytes()),
 			null, usermedium,
 			new URL("file://localhost/TextArea"), 0);
@@ -375,13 +375,13 @@ public final class CssValidator extends HttpServlet {
      * internal buffer. The servlet implementor must write the headers before
      * the response data because the headers can be flushed at any time after
      * the data starts to be written.
-     * 
+     *
      * <P>
      * This method does not need to be either "safe" or "idempotent". Operations
      * requested through POST could be ones for which users need to be held
      * accountable. Specific examples including updating stored data or buying
      * things online.
-     * 
+     *
      * <P>
      * <DL>
      * <STRONG>Forms parameters:</STRONG>
@@ -392,7 +392,7 @@ public final class CssValidator extends HttpServlet {
      * <DT>input
      * <DD>HTML if the user have an HTML input or XML otherwise.
      * </DL>
-     * 
+     *
      * @param req
      *            encapsulates the request to the servlet
      * @param resp
@@ -601,10 +601,10 @@ public final class CssValidator extends HttpServlet {
      * @param ac
      * @param res
      * @param output
-     * @throws MimeTypeFormatException 
+     * @throws MimeTypeFormatException
      */
     private void buildHeader(ApplContext ac, HttpServletResponse res, String output) {
-	
+
 	// I don't want cache for the response (inhibits proxy)
 	res.setHeader("Pragma", "no-cache"); // @@deprecated
 	res.setHeader("Cache-Control", "no-cache");
@@ -614,14 +614,14 @@ public final class CssValidator extends HttpServlet {
 	if(output == null) {
 	    output = new String(texthtml);
 	}
-	
+
 	// set the content-type for the response
 	MimeType outputMt = null;
 	if (output.equals(texthtml)) {
 	    outputMt = MimeType.TEXT_HTML.getClone();
 	} else if (output.equals("soap12")) {
 	    // invert the comments on the following lines to (de)activate
-	    // the soap Mime Type	    
+	    // the soap Mime Type
 	    try {
 		outputMt = new MimeType(soap12);
 	    }
@@ -634,18 +634,18 @@ public final class CssValidator extends HttpServlet {
 	    // output is passed
 	    outputMt = MimeType.TEXT_PLAIN.getClone();
 	}
-	
+
 	if(ac != null) {
 	    // ignore content encoding if output is SOAP
 	    if(output.equals("soap12")) {
 		ac.setContentEncoding(null);
 	    }
-		
+
 	    if (ac.getContentEncoding() != null) {
 		outputMt.setParameter("charset", ac.getContentEncoding());
 	    }
 	    res.setContentType(outputMt.toString());
-	    
+
 	    if (ac.getContentLanguage() != null) {
 		res.setHeader("Content-Language", ac.getContentLanguage());
 	    } else {
@@ -657,34 +657,34 @@ public final class CssValidator extends HttpServlet {
 	    res.setHeader("charset", Utf8Properties.ENCODING);
 	}
     }
-    
+
     private void handleError(HttpServletResponse res, ApplContext ac,
 	String output, String title, Exception e, boolean validURI)
     	throws IOException {
-	
+
 	System.err.println("[ERROR VALIDATOR] " + title);
 	System.err.println(e.toString());
 	e.printStackTrace();
 
 	buildHeader(ac, res, output);
 	res.setStatus(500);
-	
+
 	if((e instanceof java.net.UnknownHostException) ||
 	   ((e instanceof java.io.FileNotFoundException) &&
-	    ((e.getMessage().indexOf("Not Found") != -1) || 
+	    ((e.getMessage().indexOf("Not Found") != -1) ||
 	     (e.getMessage().indexOf("Service Unavailable") != -1)))) {
 	    validURI = true;
 	}
 	else {
 	    validURI = false;
 	}
-	
+
 	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
 		      .getContentEncoding());
 
 	ErrorReport error = ErrorReportFactory.getErrorReport(ac, title, output,
 							      e, validURI);
-	
+
 	try {
 	    error.print(out);
 	}

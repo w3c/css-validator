@@ -93,7 +93,7 @@ public class CssTextDecorationCSS3 extends CssProperty
 	    return;
 	}
 	val = null;
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -113,12 +113,12 @@ public class CssTextDecorationCSS3 extends CssProperty
 	    }
 	}
     }
-    
+
     public CssTextDecorationCSS3(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

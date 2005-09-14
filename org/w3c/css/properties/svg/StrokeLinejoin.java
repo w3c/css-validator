@@ -23,7 +23,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Applies to:</EM><BR>
  *  <EM>Inherited:</EM>yes<BR>
  *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual 
+ *  <EM>Media:</EM>:visual
  */
 
 public class StrokeLinejoin extends CssProperty {
@@ -73,7 +73,7 @@ public class StrokeLinejoin extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -109,7 +109,7 @@ public class StrokeLinejoin extends CssProperty {
 	return (property instanceof StrokeLinejoin &&
 		value.equals(((StrokeLinejoin) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */

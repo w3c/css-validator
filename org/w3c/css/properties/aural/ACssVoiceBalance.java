@@ -46,11 +46,11 @@ public class ACssVoiceBalance extends ACssProperty {
     public ACssVoiceBalance(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	this();
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int index;
 
@@ -84,7 +84,7 @@ public class ACssVoiceBalance extends ACssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

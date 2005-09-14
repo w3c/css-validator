@@ -1,7 +1,7 @@
 /**
  * ParserFrame
  * @author Vincent Mallet  (vmallet@sophia.inria.fr)
- * 
+ *
  * $Id$
  *
  * @version $Revision$
@@ -29,13 +29,13 @@ import org.w3c.css.util.ApplContext;
 public class ParserFrame {
 
     /**
-   * The StyleSheet generator: it is used to parse all CSS informations, 
-   * and then produce the specific stylesheets (CssStyles) for given 
+   * The StyleSheet generator: it is used to parse all CSS informations,
+   * and then produce the specific stylesheets (CssStyles) for given
    * contexts.
    */
 
-  //  StyleSheet styleSheet = new StyleSheet(); 
-    StyleSheetParser styleSheetParser = new StyleSheetParser(); 
+  //  StyleSheet styleSheet = new StyleSheet();
+    StyleSheetParser styleSheetParser = new StyleSheetParser();
 
     // needed by the CSS parser
     ApplContext ac;
@@ -70,6 +70,6 @@ public class ParserFrame {
    * Create a new ParserFrame
    */
 
-    public ParserFrame() { 
+    public ParserFrame() {
     }
 }

@@ -1,5 +1,5 @@
 /*
- * @(#)AttributeList.java	1.1 95/04/23  
+ * @(#)AttributeList.java	1.1 95/04/23
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -164,7 +164,7 @@ class AttributeList implements DTDConstants {
 	attributeTypes.put("conref", new Integer(CONREF));
 	attributeTypes.put("implied", new Integer(IMPLIED));
     }
-    
+
     static int name2type(String nm) {
 	Integer i = (Integer)attributeTypes.get(nm);
 	return (i == null) ? CDATA : i.intValue();

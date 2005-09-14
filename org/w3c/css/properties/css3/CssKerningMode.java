@@ -29,7 +29,7 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssKerningMode extends CssProperty {
- 
+
     CssValue mode;
 
     static CssIdent none = new CssIdent("none");
@@ -45,7 +45,7 @@ public class CssKerningMode extends CssProperty {
 
     /**
      * Create a new CssKerningMode
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -78,7 +78,7 @@ public class CssKerningMode extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -114,7 +114,7 @@ public class CssKerningMode extends CssProperty {
 	return (property instanceof CssKerningMode &&
 		mode.equals(((CssKerningMode) property).mode));
     }
-    
+
     /**
      * Returns the name of this property
      */

@@ -14,20 +14,20 @@ import java.io.InputStream;
  * @version $Revision$
  */
 public class FakeFile {
-  
+
   protected String fileName;
 
   /**
-   * The array buffer into which the components of this object are 
+   * The array buffer into which the components of this object are
    * stored. The capacity of this object is the length of this array buffer.
    */
   protected byte[] data;
 
   /**
-   * The number of valid components in the vector. 
+   * The number of valid components in the vector.
    */
   protected int    count;
-  
+
   /**
    * Create a new FakeFile.
    *
@@ -37,17 +37,17 @@ public class FakeFile {
     this.fileName = fileName;
     data = new byte[255];
   }
-  
+
   /**
    * Returns the name of the file represented by this object.
    *
-   * @return  the name of the file represented by this <code>File</code> 
+   * @return  the name of the file represented by this <code>File</code>
    *          object.
    */
   public String getName() {
     return fileName;
   }
-  
+
   /**
    * Gets an InputStream for this fake file.
    *
@@ -71,9 +71,9 @@ public class FakeFile {
   }
 
   /**
-   * Trims the capacity of this object to be this object's current 
-   * size. An application can use this operation to minimize the 
-   * storage of a fake file. 
+   * Trims the capacity of this object to be this object's current
+   * size. An application can use this operation to minimize the
+   * storage of a fake file.
    */
   public final synchronized void trimToSize() {
     int oldCapacity = data.length;
@@ -83,10 +83,10 @@ public class FakeFile {
       System.arraycopy(oldData, 0, data, 0, count);
     }
   }
-  
+
   /**
-   * Increases the capacity of this object, if necessary, to ensure 
-   * that it can hold at least the number of components specified by 
+   * Increases the capacity of this object, if necessary, to ensure
+   * that it can hold at least the number of components specified by
    * the minimum capacity argument.
    *
    * @param   minCapacity   the desired minimum capacity.
@@ -101,8 +101,8 @@ public class FakeFile {
   }
 
   /**
-   * Writes <code>len</code> bytes from the specified byte array 
-   * starting at offset <code>off</code> to this fake file. 
+   * Writes <code>len</code> bytes from the specified byte array
+   * starting at offset <code>off</code> to this fake file.
    *
    * @param      b     the data.
    * @param      off   the start offset in the data.

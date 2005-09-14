@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
  * Created: Aug 31, 2005 3:29:22 PM<br />
  */
 public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
-    
+
     /**
      * Create a new CssBorderFaceColor
      */
@@ -51,7 +51,7 @@ public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
      */
     public CssBorderFaceColorCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -62,8 +62,8 @@ public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
 	    setFace(val);
 	} else if (val.equals(CssProperty.inherit)) {
 	    setFace(CssProperty.inherit);
-	} else if(val.equals(CssProperty.transparent)) {	    
-	    setFace(CssProperty.transparent);  
+	} else if(val.equals(CssProperty.transparent)) {
+	    setFace(CssProperty.transparent);
 	} else if (val instanceof CssIdent) {
 	    setFace(new org.w3c.css.values.CssColorCSS21(ac, (String) val.get()));
 	} else {
@@ -73,7 +73,7 @@ public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
 	expression.next();
     }
 
-    public CssBorderFaceColorCSS21(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceColorCSS21(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }

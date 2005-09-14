@@ -72,33 +72,33 @@ import org.w3c.css.values.CssValue;
  *   <P>
  *   If the suggested scaling factor of 1.5 is used, the last three declarations
  *   are identical.
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 {
-    
+
     int value;
     CssValue cssValue;
-    
+
     /**
      * Create a new FontSizeCSS2
-     */  
+     */
     public CssFontSizeCSS2() {
 	value = 3; // default value is medium
     }
-    
+
     /**
      * Creates a new CssFontSizeCSS2
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssFontSizeCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
 	if (val instanceof CssIdent) {
@@ -114,7 +114,7 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
 	} else if (val instanceof CssPercentage) {
 	    float num = ((Float) val.get()).floatValue();
 	    if (num < 0) {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						val.toString(), ac);
 	    }
 	    this.cssValue = val;
@@ -134,30 +134,30 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
 		expression.next();
 		return;
 	    } else {
-		throw new InvalidParamException("negative-value", 
+		throw new InvalidParamException("negative-value",
 						val.toString(), ac);
 	    }
 	}
 
-	throw new InvalidParamException("value", 
+	throw new InvalidParamException("value",
 					val, getPropertyName(), ac);
     }
-    
+
     public CssFontSizeCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	if (cssValue != null)
 	    return cssValue;
 	else
 	    return FONTSIZE[value];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -165,7 +165,7 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
     public boolean isSoftlyInherited() {
 	return value == FONTSIZE.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -175,15 +175,15 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
 	else
 	    return FONTSIZE[value];
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-size";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -195,13 +195,13 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
 	    style.addRedefinitionWarning(ac, this);
 	cssFont.fontSize = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFontSizeCSS2();
@@ -209,23 +209,23 @@ public class CssFontSizeCSS2 extends CssProperty implements CssFontConstantCSS2 
 	    return ((Css1Style) style).cssFontCSS2.fontSize;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (cssValue == null)
-	    return (property instanceof CssFontSizeCSS2 && 
+	    return (property instanceof CssFontSizeCSS2 &&
 		    ((CssFontSizeCSS2) property).value == value);
 	else
-	    return (property instanceof CssFontSizeCSS2 && 
+	    return (property instanceof CssFontSizeCSS2 &&
 		    ((CssFontSizeCSS2) property).cssValue.equals(cssValue));
     }
-    
+
     private static int[] hash_values;
-    
+
     static {
 	hash_values = new int[FONTSIZE.length];
 	for (int i=0; i<FONTSIZE.length; i++)

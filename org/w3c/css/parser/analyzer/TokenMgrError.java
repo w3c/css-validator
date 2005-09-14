@@ -37,7 +37,7 @@ public class TokenMgrError extends Error
 
    public int getErrorLine() {
 	return errorLine;
-   } 
+   }
 
    /**
     * Replaces unprintable characters by their espaced (or unicode escaped)
@@ -91,7 +91,7 @@ public class TokenMgrError extends Error
    /**
     * Returns a detailed message for the Error when it is thrown by the
     * token manager to indicate a lexical error.
-    * Parameters : 
+    * Parameters :
     *    EOFSeen     : indicates if EOF caused the lexicl error
     *    curLexState : lexical state in which this error occured
     *    errorLine   : line number when the error occured
@@ -111,7 +111,7 @@ public class TokenMgrError extends Error
    /**
     * You can also modify the body of this method to customize your error messages.
     * For example, cases like LOOP_DETECTED and INVALID_LEXICAL_STATE are not
-    * of end-users concern, so you can return something like : 
+    * of end-users concern, so you can return something like :
     *
     *     "Internal Error : Please file a bug report .... "
     *
@@ -133,9 +133,9 @@ public class TokenMgrError extends Error
       errorCode = reason;
    }
 
-   public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, 
+   public TokenMgrError(boolean EOFSeen, int lexState, int errorLine,
 	   int errorColumn, String errorAfter, char curChar, int reason) {
-      this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), 
+      this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar),
 	      reason);
       this.errorLine = errorLine;
    }

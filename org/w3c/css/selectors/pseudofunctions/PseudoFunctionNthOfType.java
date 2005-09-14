@@ -16,9 +16,9 @@ public class PseudoFunctionNthOfType extends PseudoFunctionSelector {
 	setName(name);
 	setParam(n);
     }
-    
+
     public PseudoFunctionNthOfType(String name, String value) {
 	this(name, new Integer(value));
     }
-    
+
 }

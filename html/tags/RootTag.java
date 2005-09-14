@@ -24,20 +24,20 @@ import html.parser.*;
  */
 
 public class RootTag extends Block {
-    
+
     public static final boolean debug =  false;
-    
+
     /**
      * Create a new StyleTag.
      */
-    
+
     public RootTag() {
 	if (debug) {
 	    System.out.println( "creating RootTag   this=" +(Object)this);
 	}
-    }    
-    
-    public void initialize(Element elem, Attributes atts, 
+    }
+
+    public void initialize(Element elem, Attributes atts,
 			   ParserFrame parserFrame) {
 	super.initialize(elem, atts, parserFrame);
 
@@ -50,5 +50,5 @@ public class RootTag extends Block {
 		throw new XMLInputException(xml);
 	    }
 	}
-    }    
+    }
 }

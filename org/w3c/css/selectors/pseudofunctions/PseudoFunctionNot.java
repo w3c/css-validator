@@ -16,5 +16,5 @@ public class PseudoFunctionNot extends PseudoFunctionSelector {
 	setName(name);
 	setParam(value);
     }
-    
+
 }

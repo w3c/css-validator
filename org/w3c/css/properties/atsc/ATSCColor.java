@@ -35,58 +35,59 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ATSCColor extends CssProperty {
-    
+
     CssValue color;
-    
+
     /**
      * Create a new ATSCColor
      */
     public ATSCColor() {
 	color = inherit;
-    }  
-    
+    }
+
     /**
      * Set the value of the property
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public ATSCColor(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    color = inherit;
 	    expression.next();
-	} else if (val instanceof org.w3c.css.values.ATSCColor) {
+	} else if (val instanceof org.w3c.css.values.ATSCColor ||
+		val instanceof org.w3c.css.values.CssColor) {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssIdent) {
 	    color = new org.w3c.css.values.ATSCColor(ac, (String) val.get());
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", expression.getValue(), 
+	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public ATSCColor(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return color;
     }
-    
+
     /**
      * Returns the color
      */
@@ -101,7 +102,7 @@ public class ATSCColor extends CssProperty {
 	    return (org.w3c.css.values.ATSCColor) color;
 	}
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -109,14 +110,14 @@ public class ATSCColor extends CssProperty {
     public boolean isSoftlyInherited() {
 	return color.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return color.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -129,13 +130,13 @@ public class ATSCColor extends CssProperty {
 	}
 	style0.ATSCcolor = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getColorATSC();
@@ -143,22 +144,22 @@ public class ATSCColor extends CssProperty {
 	    return ((ATSCStyle) style).ATSCcolor;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCColor && 
+	return (property instanceof ATSCColor &&
 		color.equals(((ATSCColor) property).color));
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "color";
     }
-    
+
 }

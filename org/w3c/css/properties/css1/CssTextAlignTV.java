@@ -64,11 +64,11 @@ public class CssTextAlignTV extends CssProperty
      */
     public CssTextAlignTV(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int hash = val.hashCode();
 
@@ -91,11 +91,11 @@ public class CssTextAlignTV extends CssProperty
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
 
-    public CssTextAlignTV(ApplContext ac, CssExpression expression) 
+    public CssTextAlignTV(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

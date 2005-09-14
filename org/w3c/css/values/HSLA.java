@@ -25,7 +25,7 @@ public class HSLA {
      */
     public HSLA() {
     }
-    
+
     /**
      * Create a new RGBA with default values
      */
@@ -35,7 +35,7 @@ public class HSLA {
 	this.l = l;
 	this.a = a;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */

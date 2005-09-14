@@ -84,15 +84,15 @@ import org.w3c.css.values.CssOperator;
  *   <EM>CSS1 core:</EM> UAs may interpret all of 'dotted', 'dashed', 'double',
  *   'groove', 'ridge', 'inset' and 'outset' as 'solid'.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssBorderStyle extends CssProperty implements CssOperator {
-    
+
     CssBorderTopStyle top;
     CssBorderBottomStyle bottom;
     CssBorderRightStyle right;
     CssBorderLeftStyle left;
-    
+
     /**
      * Create a new CssBorderStyle
      */
@@ -104,19 +104,19 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	this.bottom = bottom;
 	this.left = left;
 	this.right = right;
-    }  
-    
+    }
+
     /**
      * Create a new CssBorder
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssBorderStyle(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
-	
+
 	switch (expression.getCount()) {
 	case 1:
 	    top = new CssBorderTopStyle(ac, expression);
@@ -126,7 +126,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -142,7 +142,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -150,7 +150,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    }
 	    top = new CssBorderTopStyle(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -165,7 +165,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE) {
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 			((new Character(expression.getOperator())).toString()),
 			ac);
 	    }
@@ -174,7 +174,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    }
 	    top = new CssBorderTopStyle(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 		    ((new Character(expression.getOperator())).toString()),
 		    ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -182,7 +182,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    }
 	    right = new CssBorderRightStyle(ac, expression);
 	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 		    ((new Character(expression.getOperator())).toString()),
 		    ac);
 	    if(expression.getValue().equals(inherit)) {
@@ -201,26 +201,26 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    break;
 	}
     }
-    
+
     public CssBorderStyle(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return top;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-style";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -239,11 +239,11 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    return top + " " + right + " " + bottom + " " + left;
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(top != null) {
 	    top.important = true;
@@ -258,7 +258,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    bottom.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -269,14 +269,14 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 		(left == null || left.important) &&
 		(bottom == null || bottom.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((top != null && right != null &&
 		left != null && bottom != null) &&
@@ -296,9 +296,9 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    if (bottom != null)
 		bottom.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -321,7 +321,7 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    left.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -341,25 +341,25 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    bottom.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	throw new IllegalStateException("Can't invoke this method on the property " + 
+	throw new IllegalStateException("Can't invoke this method on the property " +
 		getPropertyName());
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	if(top != null) {
@@ -375,14 +375,14 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	    bottom.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return false; // FIXME
     }
-    
+
 }

@@ -33,7 +33,7 @@ import org.w3c.css.values.CssValue;
  *
  * <pre>
  *    &lt;p&gt;The campaign started on &lt;date value="1874-oct-21"&gt;
- *    the twenty-first of that month&lt;/date&gt; and finished 
+ *    the twenty-first of that month&lt;/date&gt; and finished
  *    &lt;date value="1874-oct-28"&gt;a week later&lt;/date&gt;
  * </pre>
  *
@@ -41,31 +41,31 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class ACssSpeakDate extends ACssProperty {
-    
+
     CssValue value;
-    
+
     /**
      * Create a new ACssSpeakDate
-     */  
+     */
     public ACssSpeakDate() {
 	value = myd; // browser specific
     }
-    
+
     /**
      * Creates a new ACssSpeakDate
      *
      * @param expression the expression of the size
      * @exception InvalidParamException The expression is incorrect
-     */  
-    public ACssSpeakDate(ApplContext ac, CssExpression expression, boolean check) 
+     */
+    public ACssSpeakDate(ApplContext ac, CssExpression expression, boolean check)
     throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val.equals(dmy)) {
 	    value = dmy;
 	    expression.next();
@@ -79,37 +79,37 @@ public class ACssSpeakDate extends ACssProperty {
 	    expression.next();
 	    return;
 	}
-	
+
 	throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
     }
-    
+
     public ACssSpeakDate(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
-    
+
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "speak-date";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -120,24 +120,24 @@ public class ACssSpeakDate extends ACssProperty {
 	    ((ACssStyle) style).addRedefinitionWarning(ac, this);
 	((ACssStyle) style).acssSpeakDate = this;
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssSpeakDate && 
+	return (property instanceof ACssSpeakDate &&
 		value.equals(((ACssSpeakDate) property).value));
     }
-    
-    
+
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ACssStyle) style).getSpeakDate();
@@ -145,7 +145,7 @@ public class ACssSpeakDate extends ACssProperty {
 	    return ((ACssStyle) style).acssSpeakDate;
 	}
     }
-    
+
     private static CssIdent myd = new CssIdent("myd");
     private static CssIdent dmy = new CssIdent("dmy");
     private static CssIdent ymd = new CssIdent("ymd");

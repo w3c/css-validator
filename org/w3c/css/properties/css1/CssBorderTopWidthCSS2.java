@@ -44,16 +44,16 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderTopWidthCSS2 extends CssProperty {
-    
+
     CssBorderFaceWidthCSS2 face;
-    
+
     /**
      * Create a new CssBorderTopWidth
      */
     public CssBorderTopWidthCSS2() {
 	face = new CssBorderFaceWidthCSS2();
     }
-    
+
     /**
      * Create a new CssBorderTopWidth with an another CssBorderFaceWidth
      *
@@ -61,10 +61,10 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
      */
     public CssBorderTopWidthCSS2(CssBorderFaceWidthCSS2 another) {
 	setByUser();
-	
+
 	face = another;
     }
-    
+
     /**
      * Create a new CssBorderTopWidthCSS2
      *
@@ -73,27 +73,27 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
      */
     public CssBorderTopWidthCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	face = new CssBorderFaceWidthCSS2(ac, expression);
     }
-    
+
     public CssBorderTopWidthCSS2(ApplContext ac, CssExpression expression)
     	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return face;
     }
-    
+
     /**
      * Return the value of this property
      */
@@ -103,7 +103,7 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
 	}
 	return null;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -113,14 +113,14 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
 	}
 	return null;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-top-width";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -134,13 +134,13 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
 	}
 	top.width = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderTopWidthCSS2();
@@ -148,15 +148,15 @@ public class CssBorderTopWidthCSS2 extends CssProperty {
 	    return ((Css1Style) style).cssBorderCSS2.getTop().width;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBorderTopWidthCSS2 &&
 		face.equals(((CssBorderTopWidthCSS2) property).face));
     }
-    
+
 }

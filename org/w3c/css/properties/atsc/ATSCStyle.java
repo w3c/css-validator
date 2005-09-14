@@ -45,7 +45,7 @@ public class ATSCStyle extends org.w3c.css.properties.css2.font.Css2Style {
     CssBackgroundRepeatATSC cssBackgroundRepeatATSC;
     CssBackgroundAttachmentATSC cssBackgroundAttachmentATSC;
     CssBackgroundPositionATSC cssBackgroundPositionATSC;
-    CssBackgroundATSC cssBackgroundATSC;
+    CssBackgroundATSC cssBackgroundATSC = new CssBackgroundATSC(); //shortcut
     protected CssBorderATSC cssBorderATSC = new CssBorderATSC();
 
 

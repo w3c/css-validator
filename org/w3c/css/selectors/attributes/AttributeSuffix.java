@@ -15,12 +15,12 @@ import org.w3c.css.util.ApplContext;
 public class AttributeSuffix extends AttributeSelector {
 
 private String value;
-    
+
     public AttributeSuffix(String name, String value) {
 	setName(name);
 	this.value = value;
     }
-    
+
     /**
      * @return Returns the value.
      */
@@ -44,7 +44,7 @@ private String value;
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
-	
+
     }
 
 }

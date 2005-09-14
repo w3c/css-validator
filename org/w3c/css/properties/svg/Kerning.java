@@ -29,7 +29,7 @@ import org.w3c.css.values.CssValue;
  *   <EM>Percentage values:</EM> N/A<BR>
  */
 public class Kerning extends CssProperty {
-    
+
     CssValue value;
     static CssIdent auto = new CssIdent("auto");
 
@@ -38,18 +38,18 @@ public class Kerning extends CssProperty {
      */
     public Kerning() {
 	//nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new Kerning
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public Kerning(ApplContext ac, CssExpression expression,
-	    boolean check) 
+	    boolean check)
 	throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
 
@@ -63,27 +63,27 @@ public class Kerning extends CssProperty {
 	    value = auto;
 	    expression.next();
 	} else {
-	    throw new InvalidParamException("value", 
-					    expression.getValue(), 
+	    throw new InvalidParamException("value",
+					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public Kerning(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "kerning";
     }
@@ -95,14 +95,14 @@ public class Kerning extends CssProperty {
     public boolean isSoftlyInherited() {
 	return value == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return value.toString();
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -114,13 +114,13 @@ public class Kerning extends CssProperty {
 	    style0.addRedefinitionWarning(ac, this);
 	style0.kerning = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((SVGStyle) style).getKerning();
@@ -128,15 +128,15 @@ public class Kerning extends CssProperty {
 	    return ((SVGStyle) style).kerning;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof Kerning && 
+	return (property instanceof Kerning &&
 		value.equals(((Kerning) property).value));
     }
-    
+
 }

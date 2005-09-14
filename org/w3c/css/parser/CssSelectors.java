@@ -44,49 +44,49 @@ import org.w3c.css.util.Warnings;
  * @version $Revision$
  */
 public final class CssSelectors extends SelectorsList implements CssSelectorsConstant {
-    
+
     ApplContext ac;
-    
+
     /**
      * At rule statement
      */
     AtRule atRule;
-    
+
     /**
      * The element.
      */
     String element;
 
     char connector = DESCENDANT;
-    
+
     /**
      * The next context.
      */
     protected CssSelectors next;
-    
+
     // true if the element is a block-level element
     private  boolean isBlock;
-    
+
     CssStyle properties;
-    
+
     // all hashCode (for performance)
     private int hashElement;
-    
-    private int hashGeneral;
-    
+
+    //private int hashGeneral;
+
     // The CssStyle to use
     private static Class style;
-    
+
     // see isEmpty and addProperty
     private boolean Init;
-    
+
     /**
      * Create a new CssSelectors with no previous selector.
      */
     public CssSelectors(ApplContext ac) {
 	super(ac);
 	style = ac.getCssSelectorsStyle();
-	try {	    
+	try {
 	    properties = (CssStyle) style.newInstance();
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -104,18 +104,18 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	}
 	this.ac = null;
     }
-    
+
     /**
      * Create a new CssSelectors with a previous selector.
      *
      * @param next
      *            the next selector
      */
-    public CssSelectors(CssSelectors next) {	
+    public CssSelectors(CssSelectors next) {
 	this(CssSelectors.style);
 	this.next = next;
     }
-    
+
     /**
      * Create a new CssSelectors with a previous selector.
      *
@@ -126,7 +126,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	this(ac);
 	this.next = next;
     }
-    
+
     /**
      * Set the style for all contexts. Don't forget to invoke this method if you
      * want a style !
@@ -138,7 +138,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	Util.verbose("Style is : " + style0);
 	style = style0;
     }
-    
+
     /**
      * Set the attribute atRule
      *
@@ -148,7 +148,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public void setAtRule(AtRule atRule) {
 	this.atRule = atRule;
     }
-    
+
     /**
      * Returns the attribute atRule
      *
@@ -157,14 +157,14 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public AtRule getAtRule() {
 	return atRule;
     }
-    
+
     /**
      * Get the element.
      */
     public String getElement() {
 	return element;
     }
-    
+
     /**
      * Returns <code>true</code> if the element is a block level element (HTML
      * only)
@@ -172,17 +172,17 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public boolean isBlockLevelElement() {
 	return isBlock;
     }
-    
+
     public void addPseudo(String pseudo) throws InvalidParamException {
 	if(pseudo == null) {
 	    return;
-	}	
-	
+	}
+
 	String profile = ac.getProfile();
 	if(profile == null || profile.equals("")) {
-	    profile = ac.getCssVersion(); 
+	    profile = ac.getCssVersion();
 	}
-	
+
 	// is it a pseudo-class?
 	String[] ps = PseudoFactory.getPseudoClass(profile);
 	if(ps != null) {
@@ -194,7 +194,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    }
 	}
 	// it's not a pseudo-class
-	
+
 	// is it a pseudo-element?
 	ps = PseudoFactory.getPseudoElement(profile);
 	if(ps != null) {
@@ -206,23 +206,23 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    }
 	}
     }
-    
-    public void setPseudoFun(String pseudo, String param) 
+
+    public void setPseudoFun(String pseudo, String param)
     throws InvalidParamException {
 	String profile = ac.getProfile();
 	if(profile == null || profile.equals("")) {
-	    profile = ac.getCssVersion(); 
+	    profile = ac.getCssVersion();
 	}
-	
+
 	String[] ps = PseudoFactory.getPseudoFunction(profile);
 	if(ps != null) {
-	    for(int i = 0; i < ps.length; i++) {		
+	    for(int i = 0; i < ps.length; i++) {
 		if(pseudo.equals(ps[i])) {
 		    if(pseudo.equals("contains")) {
 			addPseudoFunction(
 				new PseudoFunctionContains(pseudo, param));
 			return;
-		    }	
+		    }
 		    if(pseudo.equals("lang")) {
 			addPseudoFunction(
 				new PseudoFunctionLang(pseudo, param));
@@ -276,48 +276,48 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 			}
 			return;
 		    }
-		}		    
+		}
 	    }
 	    throw new InvalidParamException("pseudo", ac);
 	}
     }
-    
+
     public void addType(TypeSelector type) throws InvalidParamException {
 	super.addType(type);
 	element = type.getName();
 	hashElement = element.hashCode();
     }
-    
-    public void addDescendant(DescendantSelector descendant) 
-    throws InvalidParamException {	
+
+    public void addDescendant(DescendantSelector descendant)
+    throws InvalidParamException {
 	super.addDescendant(descendant);
 	connector = DESCENDANT;
     }
-    
+
     public void addChild(ChildSelector child) throws InvalidParamException {
 	super.addChild(child);
 	connector = CHILD;
     }
-    
-    public void addAdjacent(AdjacentSelector adjacent) 
-    throws InvalidParamException {	
+
+    public void addAdjacent(AdjacentSelector adjacent)
+    throws InvalidParamException {
 	super.addAdjacent(adjacent);
 	connector = ADJACENT;
     }
-    
-    public void addAttribute(AttributeSelector attribute) 
-    throws InvalidParamException {	
+
+    public void addAttribute(AttributeSelector attribute)
+    throws InvalidParamException {
 	for(int i = 0; i < size(); i++) {
 	    Selector s = (Selector) getSelector(i);
 	    // add warnings if some selectors are incompatible
 	    // e.g. [lang=en][lang=fr]
-	    if(s instanceof AttributeSelector) {		
+	    if(s instanceof AttributeSelector) {
 		((AttributeSelector) s).applyAttribute(ac, attribute);
 	    }
 	}
 	super.addAttribute(attribute);
     }
-    
+
     /**
      * Adds a property to this selector.
      *
@@ -340,7 +340,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public CssStyle getStyle() {
 	return properties;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -353,11 +353,11 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	sbrep.append(super.toString());
 	return sbrep.toString();
     }
-    
+
     /**
      * Get a hashCode.
      */
-    public int hashCode() {
+    /*public int hashCode() {
 	if (hashGeneral == 0) {
 	    if (atRule instanceof AtRuleFontFace) {
 		hashGeneral = atRule.hashCode();
@@ -370,8 +370,8 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    }
 	}
 	return hashGeneral;
-    }
-    
+    }*/
+
     /**
      * Returns <code>true</code> if the selector is equals to an another.
      *
@@ -383,7 +383,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    return false;
 	}
 	CssSelectors s = (CssSelectors) selector;
-	
+
 	if ((atRule instanceof AtRulePage)
 		|| (atRule instanceof AtRuleFontFace)) {
 	    return atRule.equals(s.atRule);
@@ -398,7 +398,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    return false;
 	}
     }
-    
+
     /**
      * Set the previous selector.
      *
@@ -406,10 +406,10 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
      *            the previous selector.
      */
     public void setNext(CssSelectors next) {
-	this.next = next;	
+	this.next = next;
 	Invalidate();
     }
-    
+
     /**
      * Get the previous selector.
      */
@@ -423,7 +423,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public boolean isEmpty() {
 	return !Init;
     }
-    
+
     public void addAttribute(String attName, String value)
     throws InvalidParamException {
 	if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
@@ -436,12 +436,12 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    Invalidate();
 	}
     }
-    
+
     void Invalidate() {
 	// invalidate all pre-computation in this selectors
 	setSpecificity(0);
-	hashGeneral = 0;
-	
+	//hashGeneral = 0;
+
 	if (Init) {
 	    // yes I invalidate all properties too !
 	    try {
@@ -456,7 +456,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	if(attrs.size() > 0) {
 	    for(int i = 0; i < attrs.size(); i++) {
 		Selector selector = (Selector) attrs.get(i);
-		
+
 		Selector other = null;
 		int j = 0;
 		for(; j < attrs2.size(); j++) {
@@ -477,11 +477,11 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 		}
 	    }
 	    return true;
-	}	
+	}
 	return true;
-	
+
     }
-    
+
     /**
      * Returns <code>true</code> if the selector can matched this selector.
      *
@@ -508,18 +508,17 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
      * @see            org.w3c.css.css.CssCascadingOrder#order
      */
     public boolean canApply(CssSelectors selector) {
-	System.out.println("CssSelectors.canApply(): " + selector);
 	if ((atRule instanceof AtRulePage)
 		|| (atRule instanceof AtRuleFontFace)) {
 	    return atRule.canApply(selector.atRule);
 	}
 	// current work - don't touch
-	Util.verbose(getSpecificity() + " canApply this " + this 
+	Util.verbose(getSpecificity() + " canApply this " + this
 		+ " selector: " + selector);
 	Util.verbose("connector " + connector);
 	Util.verbose(getSelectors().toString());
 	Util.verbose(selector.getSelectors().toString());
-	
+
 	if ((hashElement != selector.hashElement) && hashElement != 0) {
 	    // here we are in this case :
 	    // H1 and HTML BODY H1 EM
@@ -529,7 +528,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    // if (for all contexts) !canApply(selector)
 	    //       go and see canApply(selector.getNext())
 	    //
-	    // for further informations, 
+	    // for further informations,
 	    //                     see org.w3c.css.css.CssCascadingOrder#order
 	    Util.verbose("canApply RETURNS FALSE");
 	    return false;
@@ -543,7 +542,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    }
 	}
     }
-    
+
     /**
      * Returns true if the selector can matched another selector. called by
      * canApply
@@ -559,7 +558,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	Util.verbose(getSelectors().toString());
 	Util.verbose(selector.getSelectors().toString());
 	Util.verbose("canMatched for attributes :" + result);
-	
+
 	if ((hashElement != selector.hashElement) && hashElement != 0) {
 	    if ((connector == DESCENDANT) && (selector.next != null)) {
 		// here we are in this case :
@@ -574,7 +573,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 		return false;
 	    }
 	}
-	
+
 	if (next == null || selector.next == null) {
 	    // here we are in this case :
 	    // H1 and BODY HTML H1

@@ -60,10 +60,10 @@ public class CssDropInitialBeforeAdjust extends CssProperty {
      */
     public CssDropInitialBeforeAdjust(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof CssIdent) {
 	    int i = 0;
 	    for (; i < values.length; i++) {
@@ -96,7 +96,7 @@ public class CssDropInitialBeforeAdjust extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *

@@ -24,7 +24,7 @@ public class CssBorderTopColorCSS21 extends CssBorderTopColorCSS2 {
     public CssBorderTopColorCSS21(CssBorderFaceColorCSS2 another) {
 	super(another);
     }
-    
+
     /**
      * Create a new CssBorderTopColor
      *
@@ -33,18 +33,18 @@ public class CssBorderTopColorCSS21 extends CssBorderTopColorCSS2 {
      */
     public CssBorderTopColorCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	setFace(new CssBorderFaceColorCSS21(ac, expression));
     }
-    
-    public CssBorderTopColorCSS21(ApplContext ac, CssExpression expression) 
+
+    public CssBorderTopColorCSS21(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	this(ac, expression, false);
-    }	    
-    
+    }
+
 }

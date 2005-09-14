@@ -28,10 +28,10 @@ import org.w3c.css.values.CssValue;
  *   the <EM>foreground</EM> color). There are different ways to specify red:
  *   <PRE>
  *   EM { color: red }              /* natural language * /
-				     *   EM { color: rgb(255,0,0) }     /* RGB range 0-255   * /
-									 * </PRE>
-									 * @version $Revision$
-									 */
+ *   EM { color: rgb(255,0,0) }     /* RGB range 0-255   * /
+ * </PRE>
+ * @version $Revision$
+ */
 public class CssColorCSS1 extends CssProperty {
 
     CssValue color;
@@ -55,7 +55,7 @@ public class CssColorCSS1 extends CssProperty {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	if (val instanceof org.w3c.css.values.CssColor) {
 	    color = val;
 	    expression.next();
@@ -72,7 +72,7 @@ public class CssColorCSS1 extends CssProperty {
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -83,16 +83,8 @@ public class CssColorCSS1 extends CssProperty {
     /**
      * Returns the color
      */
-    public org.w3c.css.values.CssColorCSS1 getColor() {
-	if (color.equals(inherit)) {
-	    /*
-	    System.err.println("[ERROR] org.w3c.css.properties.CssColor");
-	    System.err.println("[ERROR] value is inherited");
-	    */
-	    return null;
-	} else {
-	    return (org.w3c.css.values.CssColorCSS1) color;
-	}
+    public org.w3c.css.values.CssColor getColor() {
+	return (org.w3c.css.values.CssColor) color;
     }
 
     /**

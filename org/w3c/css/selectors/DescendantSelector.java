@@ -16,19 +16,19 @@ public class DescendantSelector implements Selector {
     public String toString() {
 	return " ";
     }
-    
+
     /**
      * @see Selector#getName()
      */
     public String getName() {
 	return " ";
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
 }

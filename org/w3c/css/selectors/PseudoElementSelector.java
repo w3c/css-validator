@@ -11,7 +11,7 @@ package org.w3c.css.selectors;
 public class PseudoElementSelector implements Selector {
 
     String name;
-    
+
     /**
      * Creates a new pseudo-element given it's name
      * @param name the name of this pseudo-element
@@ -19,7 +19,7 @@ public class PseudoElementSelector implements Selector {
     public PseudoElementSelector(String name) {
 	this.name = name;
     }
-    
+
     /**
      * @see Selector#getName()
      */
@@ -41,12 +41,12 @@ public class PseudoElementSelector implements Selector {
     public String toString() {
 	return ":" + name;
     }
-    
+
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
 	return false;
     }
-    
+
 }

@@ -24,32 +24,32 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class CssContentCSS2 extends CssProperty {
-    
+
     Vector values = new Vector();
-    
+
     private static String CONTENT[] = {
 	"open-quote", "close-quote", "no-open-quote", "no-close-quote" };
-    
+
     private static int[] hash_values;
-    
-    
+
+
     /**
      * Create a new CssContent
      */
     public CssContentCSS2() {
-    }  
-    
+    }
+
     /**
      * Create a new CssContent
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssContentCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
 	if (val.equals(inherit)) {
 	    if(expression.getCount() > 1) {
@@ -59,7 +59,7 @@ public class CssContentCSS2 extends CssProperty {
 	    expression.next();
 	    return;
 	}
-	
+
 	addContent(ac, expression);
 
     }
@@ -69,7 +69,7 @@ public class CssContentCSS2 extends CssProperty {
      * @param expression
      * @throws InvalidParamException
      */
-    protected void addContent(ApplContext ac, CssExpression expression) 
+    protected void addContent(ApplContext ac, CssExpression expression)
     throws InvalidParamException {
 	CssValue val = expression.getValue();
 	int counter = 0;
@@ -85,8 +85,8 @@ public class CssContentCSS2 extends CssProperty {
 		    }
 		}
 		if (i == CONTENT.length) {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 	    } else if (val instanceof CssString) {
@@ -97,11 +97,11 @@ public class CssContentCSS2 extends CssProperty {
 		CssFunction attr = (CssFunction) val;
 		CssExpression params = attr.getParameters();
 		CssValue v = params.getValue();
-		if (attr.getName().equals("attr")) {		
+		if (attr.getName().equals("attr")) {
 		    if ((params.getCount() != 1)
 			|| !(v instanceof CssIdent)) {
-			throw new InvalidParamException("attr", 
-							params.getValue(), 
+			throw new InvalidParamException("attr",
+							params.getValue(),
 							getPropertyName(), ac);
 		    }
 		} else if (attr.getName().equals("counter")) {
@@ -147,7 +147,7 @@ public class CssContentCSS2 extends CssProperty {
 			    throw new InvalidParamException("counters",
 							    params.getValue(),
 							    getPropertyName(), ac);
-			}			
+			}
 			op = params.getOperator();
 			params.next();
 			v = params.getValue();
@@ -164,13 +164,13 @@ public class CssContentCSS2 extends CssProperty {
 		    }
 		    params.starts();
 		} else {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 	    } else {
-		throw new InvalidParamException("value", 
-						expression.getValue(), 
+		throw new InvalidParamException("value",
+						expression.getValue(),
 						getPropertyName(), ac);
 	    }
 	    values.addElement(val);
@@ -180,12 +180,12 @@ public class CssContentCSS2 extends CssProperty {
 	    op = expression.getOperator();
 	}
     }
-    
+
     public CssContentCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }        
-    
+    }
+
     /**
      * @return Returns the values.
      */
@@ -206,14 +206,14 @@ public class CssContentCSS2 extends CssProperty {
     public Object get() {
 	return values;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "content";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -221,7 +221,7 @@ public class CssContentCSS2 extends CssProperty {
     public boolean isSoftlyInherited() {
 	return values.elementAt(0) == inherit;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -234,7 +234,7 @@ public class CssContentCSS2 extends CssProperty {
 	}
 	return ret.substring(1);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -247,13 +247,13 @@ public class CssContentCSS2 extends CssProperty {
 	}
 	style0.cssContentCSS2 = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getContent();
@@ -261,21 +261,21 @@ public class CssContentCSS2 extends CssProperty {
 	    return ((Css1Style) style).cssContent;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }

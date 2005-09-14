@@ -77,11 +77,11 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	if(check &&expression.getCount() > 4) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	while (find) {
 	    find = false;
 	    val = expression.getValue();
@@ -94,7 +94,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
 		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
@@ -149,11 +149,11 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	*/
     }
 
-    public CssBorderLeft(ApplContext ac, CssExpression expression) 
+    public CssBorderLeft(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
@@ -245,7 +245,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    color.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -288,7 +288,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {	
+    public void addToStyle(ApplContext ac, CssStyle style) {
 	if(width != null) {
 	    width.addToStyle(ac, style);
 	}
@@ -322,7 +322,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
      * @param source The source file where this property is defined
      */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -333,7 +333,7 @@ public class CssBorderLeft extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro

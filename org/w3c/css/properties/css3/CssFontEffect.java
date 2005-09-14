@@ -32,7 +32,7 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssFontEffect extends CssProperty {
- 
+
     CssValue effect;
     ApplContext ac;
 
@@ -50,7 +50,7 @@ public class CssFontEffect extends CssProperty {
 
     /**
      * Create a new CssFontEffect
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -87,7 +87,7 @@ public class CssFontEffect extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -123,7 +123,7 @@ public class CssFontEffect extends CssProperty {
 	return (property instanceof CssFontEffect &&
 		effect.equals(((CssFontEffect) property).effect));
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -161,11 +161,11 @@ public class CssFontEffect extends CssProperty {
     }
 
 }
-			      
 
 
 
 
-    
 
-					       
+
+
+

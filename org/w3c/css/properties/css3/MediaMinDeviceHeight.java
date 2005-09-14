@@ -38,19 +38,19 @@ public class MediaMinDeviceHeight extends CssProperty {
      */
     public MediaMinDeviceHeight(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssLength || val instanceof CssPercentage) {
 		float f = ((Float) val.get()).floatValue();
@@ -65,7 +65,7 @@ public class MediaMinDeviceHeight extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
@@ -74,7 +74,7 @@ public class MediaMinDeviceHeight extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

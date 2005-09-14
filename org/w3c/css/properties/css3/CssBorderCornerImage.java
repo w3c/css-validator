@@ -21,19 +21,19 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderCornerImage extends CssProperty {
-    
+
     String value = "";
     ApplContext ac;
     CssIdent none = new CssIdent("none");
     CssIdent cont = new CssIdent("continue");
-    
+
     /**
      * Create new CssBorderCornerImage
      */
     public CssBorderCornerImage() {
 	value = "none";
     }
-    
+
     /**
      * Create new CssBorderCornerImage
      *
@@ -44,12 +44,12 @@ public class CssBorderCornerImage extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = null;
-	
+
 	if (!(expression.getCount() <= 4)) {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	if (expression.getCount() == 1) {
 	    if (val.equals(cont)) {
 		value = "continue";
@@ -62,11 +62,11 @@ public class CssBorderCornerImage extends CssProperty {
 			getPropertyName(), ac);
 	    }
 	} else {
-	    
+
 	    for (int i=0; i < expression.getCount(); i++) {
-		
+
 		val = expression.getValue();
-		
+
 		if (val != null) {
 		    if (val.equals(cont)) {
 			value += "continue ";
@@ -76,23 +76,23 @@ public class CssBorderCornerImage extends CssProperty {
 			throw new InvalidParamException("value", expression.getValue(),
 				getPropertyName(), ac);
 		    }
-		    
+
 		} else {
 		    break;
 		}
-		
+
 		expression.next();
 	    }
-	    
-	}	
-	value = value.trim();		
+
+	}
+	value = value.trim();
     }
- 
+
     public CssBorderCornerImage(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -103,7 +103,7 @@ public class CssBorderCornerImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderCornerImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -117,7 +117,7 @@ public class CssBorderCornerImage extends CssProperty {
 	    return ((Css3Style) style).cssBorderCornerImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -127,35 +127,35 @@ public class CssBorderCornerImage extends CssProperty {
 	return (property instanceof CssBorderCornerImage &&
 		value.equals( ((CssBorderCornerImage) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-corner-image";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -164,5 +164,5 @@ public class CssBorderCornerImage extends CssProperty {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return value == cssnum.toString();
     }
-    
+
 }

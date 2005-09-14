@@ -49,64 +49,64 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
-    
+
     CssBorderLeftWidthCSS2 width;
     CssBorderLeftStyleCSS2 style;
     CssBorderLeftColorCSS2 color;
-    
+
     /**
      * Create a new CssBorderLeftCSS2
      */
     public CssBorderLeftCSS2() {
-    }  
-    
+    }
+
     /**
      * Create a new CssBorderLeftCSS2
      *
      * @param expression The expression for this property
      * @exception InvalidParamException The expression is incorrect
-     */  
+     */
     public CssBorderLeftCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;
-	
+
 	if(check && expression.getCount() > 3) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	boolean manyValues = (expression.getCount() > 1);
-	
+
 	setByUser();
-	
+
 	while (find) {
 	    find = false;
-	    val = expression.getValue();	    
-	    op = expression.getOperator();	    
+	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val == null)
 		break;
-	    
+
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
-	    
+
 	    if (op != SPACE)
-		throw new InvalidParamException("operator", 
+		throw new InvalidParamException("operator",
 						((new Character(op)).toString()),
-						ac);   
+						ac);
 	    if (width == null) {
 		try {
-		    width = new CssBorderLeftWidthCSS2(ac, expression);		
+		    width = new CssBorderLeftWidthCSS2(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value		    
+		    // nothing to do, style will test this value
 		}
 	    }
 	    if (!find && style == null) {
 		try {
-		    style = new CssBorderLeftStyleCSS2(ac, expression);		    
+		    style = new CssBorderLeftStyleCSS2(ac, expression);
 		    find = true;
 		} catch(InvalidParamException e){
 		    // nothing to do, color will test this value
@@ -115,7 +115,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    if (!find && color == null) {
 		// throws an exception if the value is not valid
 		color = new CssBorderLeftColorCSS2(ac, expression);
-		find = true;		
+		find = true;
 	    }
 	}
 	/*
@@ -124,19 +124,19 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    width = new CssBorderLeftWidthCSS2();
 	}
 	if (style == null) {
-	    style = new CssBorderLeftStyleCSS2();	    
-	}	
+	    style = new CssBorderLeftStyleCSS2();
+	}
 	if (color == null) {
-	    color = new CssBorderLeftColorCSS2();	    
+	    color = new CssBorderLeftColorCSS2();
 	}
 	*/
     }
-    
-    public CssBorderLeftCSS2(ApplContext ac, CssExpression expression) 
+
+    public CssBorderLeftCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * @param color The color to set.
      */
@@ -164,7 +164,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
     public Object get() {
 	return width;
     }
-    
+
     /**
      * Returns the color property
      */
@@ -175,7 +175,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the width property
      */
@@ -186,7 +186,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns the style property
      */
@@ -197,7 +197,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -220,18 +220,18 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	}
 	return ret;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-left";
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	if(width != null) {
 	    width.important = true;
@@ -243,7 +243,7 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    color.important = true;
 	}
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -253,14 +253,14 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 		(style == null || style.important) &&
 		(color == null || color.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @param printer The printer.
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if ((width != null && style != null &&
 	     color != null) &&
@@ -277,9 +277,9 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    if (color != null)
 		color.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -299,13 +299,13 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    color.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
      * @param style The CssStyle
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {	
+    public void addToStyle(ApplContext ac, CssStyle style) {
 	if(width != null) {
 	    width.addToStyle(ac, style);
 	}
@@ -316,13 +316,13 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    color.addToStyle(ac, style);
 	}
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getBorderLeftCSS2();
@@ -330,16 +330,16 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssBorderCSS2.getLeft();
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);	
+	super.setInfo(line, source);
 	if(width != null) {
 	    width.setInfo(line, source);
 	}
@@ -350,25 +350,25 @@ public class CssBorderLeftCSS2 extends CssProperty implements CssOperator {
 	    color.setInfo(line, source);
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	if (property instanceof CssBorderLeftCSS2) {
 	    CssBorderLeftCSS2 left = (CssBorderLeftCSS2) property;
-	    return (width != null && width.equals(left.width) && 
+	    return (width != null && width.equals(left.width) &&
 		    style != null && style.equals(left.style) &&
 		    color != null && color.equals(left.color));
 	} else {
 	    return false;
 	}
     }
-    
+
     void check() {
-	if ((style != null) 
+	if ((style != null)
 	    && (style.face.value == 0)) {
 	    if (width != null) {
 		width.face.value = new CssLength();

@@ -22,9 +22,9 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class FontStyle extends CssProperty implements FontConstant {
-    
+
     Vector values = new Vector();
-    
+
     private static CssIdent all = new CssIdent("all");
 
     /**
@@ -33,13 +33,13 @@ public class FontStyle extends CssProperty implements FontConstant {
     public FontStyle() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new FontStyle
      *
      * @param expression the font style
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public FontStyle(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 	char op = expression.getOperator();
@@ -63,36 +63,36 @@ public class FontStyle extends CssProperty implements FontConstant {
 		    }
 		}
 		if (i == FONTSTYLE.length) {
-		    throw new InvalidParamException("value", 
-						    expression.getValue(), 
+		    throw new InvalidParamException("value",
+						    expression.getValue(),
 						    getPropertyName(), ac);
 		}
 	    } else {
-		throw new InvalidParamException("value", expression.getValue(), 
+		throw new InvalidParamException("value", expression.getValue(),
 						getPropertyName(), ac);
 	    }
 	    op = expression.getOperator();
 	    expression.next();
 	} while (op == CssOperator.COMMA);
-	
+
     }
-    
+
     public FontStyle(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return values.elementAt(0);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret ="";
 	int i = 0;
 
@@ -103,14 +103,14 @@ public class FontStyle extends CssProperty implements FontConstant {
 
 	return ret.substring(2);
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-style";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -123,13 +123,13 @@ public class FontStyle extends CssProperty implements FontConstant {
 	}
 	style0.fontStyle = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css2Style) style).getFaceFontStyle();
@@ -137,27 +137,27 @@ public class FontStyle extends CssProperty implements FontConstant {
 	    return ((Css2Style) style).fontStyle;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
     private static int[] hash_values;
-    
+
     static {
 	hash_values = new int[FONTSTYLE.length];
 	for (int i=0; i<FONTSTYLE.length; i++)

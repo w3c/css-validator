@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> &lt;style&gt; || &lt;color&gt; || &lt;mode&gt; || 
+ *  <EM>Value:</EM> &lt;style&gt; || &lt;color&gt; || &lt;mode&gt; ||
  *  &lt;position&gt; || inherit<BR>
  *  <EM>Initial:</EM>not defined for shorthand properties<BR>
  *  <EM>Applies to:</EM>all elements<BR>
@@ -26,13 +26,13 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property is the shorthand for 'text-line-through-style', 
+ *  This property is the shorthand for 'text-line-through-style',
  *  'text-line-through-color' and 'text-line-through-mode'.
  */
 
-public class CssTextLineThrough extends CssProperty 
+public class CssTextLineThrough extends CssProperty
 implements CssOperator {
- 
+
     CssValue linethrough;
     CssTextLTStyle tls;
     CssTextLTColor tlc;
@@ -46,7 +46,7 @@ implements CssOperator {
 
     /**
      * Create a new CssTextLineThrough
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -87,14 +87,14 @@ implements CssOperator {
 		}
 	    }
 	    if (!correct) {
-		throw new InvalidParamException("value", 
-						expression.getValue(), 
+		throw new InvalidParamException("value",
+						expression.getValue(),
 						getPropertyName(), ac);
 	    }
 
 	val = expression.getValue();
 	op = expression.getOperator();
-	
+
 	}
 
 	if (tls == null) {
@@ -148,7 +148,7 @@ implements CssOperator {
     public boolean equals(CssProperty property) {
 	return false;
     }
-    
+
     /**
      * Returns the name of this property
      */
@@ -167,7 +167,7 @@ implements CssOperator {
      * Returns a string representation of the object
      */
     public String toString() {
-	
+
 	String ret = "";
 
 	if (tls.isByUser()) {

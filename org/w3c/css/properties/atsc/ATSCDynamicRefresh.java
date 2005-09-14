@@ -21,7 +21,7 @@ public class ATSCDynamicRefresh extends CssProperty {
 
     CssValue dynamicRefresh;
     ApplContext ac;
-    
+
     CssIdent auto = new CssIdent("auto");
     CssIdent none = new CssIdent("none");
 
@@ -43,7 +43,7 @@ public class ATSCDynamicRefresh extends CssProperty {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	this.ac = ac;
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
@@ -51,7 +51,7 @@ public class ATSCDynamicRefresh extends CssProperty {
 	    if (((CssNumber) val).getValue() > 0 &&
 		    ((CssNumber) val).getValue() < 32767 &&
 		    ((CssNumber) val).isInteger()) {
-		
+
 		dynamicRefresh = val;
 		expression.next();
 	    } else {
@@ -66,12 +66,12 @@ public class ATSCDynamicRefresh extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public ATSCDynamicRefresh(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *

@@ -26,7 +26,7 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:interactive
  *  <P>
- *  The purpose of this property is to determine what happens to an element 
+ *  The purpose of this property is to determine what happens to an element
  *  when the user focusses it specifically by "tabbing" into it.
  */
 
@@ -103,7 +103,7 @@ public class CssUserFocusPointer extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -139,7 +139,7 @@ public class CssUserFocusPointer extends CssProperty {
 	return (property instanceof CssUserFocusPointer &&
 		userfocuspointer.equals(((CssUserFocusPointer) property).userfocuspointer));
     }
-    
+
     /**
      * Returns the name of this property
      */

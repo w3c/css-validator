@@ -52,7 +52,7 @@ public class CssBackgroundColorCSS2 extends CssProperty {
      */
     public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
@@ -80,11 +80,11 @@ public class CssBackgroundColorCSS2 extends CssProperty {
 	}
     }
 
-    public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression) 
+    public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
-    }        
-    
+    }
+
     /**
      * @param color The color to set.
      */

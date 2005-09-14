@@ -98,7 +98,7 @@ import org.w3c.css.values.CssValue;
  *     ----------------------+---------------+-------------------
  *     "Example2 Book"       |  400          |  100, 200, 300
  *     "Example2 Medium"     |  500          |
- *     "Example2 Bold"       |  700          |  600      
+ *     "Example2 Bold"       |  700          |  600
  *     "Example2 Heavy"      |  800          |
  *     "Example2 Black"      |  900          |
  *     "Example2 ExtraBlack" |  (none)       |
@@ -128,48 +128,48 @@ import org.w3c.css.values.CssValue;
  *   values. The only guarantee is that a face of a given value will be no less
  *   dark than the faces of lighter values.
  *
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS1 {
-    
-    
+
+
     /**
      * an index in a array
      *
      * @see CssFontConstant#FONTWEIGHT
-     */  
+     */
     protected int value;
-    
+
     // internal hack to compare strings
     private static int[] hash_values;
-    
+
     /**
      * Create a new FontWeightCSS1 with the default value.
-     */  
+     */
     public CssFontWeightCSS1() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new CssFontWeightCSS1 with an expression.
      *
      * @param expr the expression
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public CssFontWeightCSS1(ApplContext ac, CssExpression expr, boolean check)
     	throws InvalidParamException {
-	
+
 	if(check && expr.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expr.getValue();
-	
+
 	setByUser();
-	
+
 	if (val instanceof CssIdent) {
 	    int hash = expr.getValue().hashCode();
-	    
+
 	    // try to find the hashCode in my internal hack array
 	    for (int i=0; i<hash_values.length; i++)
 		if (hash_values[i] == hash) {
@@ -178,36 +178,37 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
 		    return;
 		}
 	} else if (val instanceof CssNumber) {
-	    float valf = ((Float) val.get()).floatValue();
-	    int vali = (int) valf;
-	    if (((valf - (float) vali) == 0) // real part number must be equal to zero
-		&& isCorrectWeight(vali)) { // verify the entire part number
-		this.value = vali;
-		expr.next();
-		return;
+	    Object valf = val.get();
+	    if(valf instanceof Integer) {
+		int vali = ((Integer) valf).intValue();
+		if(isCorrectWeight(vali)) { // verify the entire part number
+		    this.value = vali;
+		    expr.next();
+		    return;
+		}
 	    }
 	}
-	
-	throw new InvalidParamException("value", expr.getValue().toString(), 
+
+	throw new InvalidParamException("value", expr.getValue().toString(),
 					getPropertyName(), ac);
     }
-    
+
     public CssFontWeightCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value.
-     */  
+     */
     public Object get() {
 	if (value >= 100)
 	    return new Integer(value);
 	else
 	    return FONTWEIGHT[value];
     }
-    
-    
+
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -215,7 +216,7 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
     public boolean isSoftlyInherited() {
 	return value == FONTWEIGHT.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -225,32 +226,32 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
 	else
 	    return FONTWEIGHT[value];
     }
-    
+
     /**
      * Returns the name of this property.
-     */  
+     */
     public String getPropertyName() {
 	return "font-weight";
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
      * @param style The CssStyle
-     */  
+     */
     public void addToStyle(ApplContext ac, CssStyle style) {
 	CssFontCSS1 cssFont = ((Css1Style) style).cssFontCSS1;
 	if (cssFont.fontWeight != null)
 	    style.addRedefinitionWarning(ac, this);
 	cssFont.fontWeight = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFontWeightCSS1();
@@ -258,30 +259,30 @@ public class CssFontWeightCSS1 extends CssProperty implements CssFontConstantCSS
 	    return ((Css1Style) style).cssFontCSS1.fontWeight;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFontWeightCSS1 && 
+	return (property instanceof CssFontWeightCSS1 &&
 		((CssFontWeightCSS1) property).value == value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     private boolean isCorrectWeight(int val) {
 	val = val / 100;
 	return val > 0 && val < 10;
     }
-    
+
     static {
 	hash_values = new int[FONTWEIGHT.length];
 	for (int i=0; i<FONTWEIGHT.length; i++)

@@ -20,21 +20,21 @@ import org.w3c.css.values.CssValue;
  *
  */
 public class CssHangingPunctuation extends CssProperty {
-    
+
     CssValue hangpunct;
-    
+
     private static CssIdent none = new CssIdent("none");
     private static CssIdent start = new CssIdent("start");
     private static CssIdent end = new CssIdent("end");
     private static CssIdent both = new CssIdent("both");
-    
+
     /**
      * Create a new CssHangingPunctuation
      */
     public CssHangingPunctuation() {
 	hangpunct = none;
     }
-    
+
     /**
      * Create a new CssHangingPunctuation
      *
@@ -68,12 +68,12 @@ public class CssHangingPunctuation extends CssProperty {
 	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssHangingPunctuation(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -83,9 +83,9 @@ public class CssHangingPunctuation extends CssProperty {
 	if (((Css3Style) style).cssHangingPunctuation != null)
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssHangingPunctuation = this;
-	
+
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -99,7 +99,7 @@ public class CssHangingPunctuation extends CssProperty {
 	    return ((Css3Style) style).cssHangingPunctuation;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -109,35 +109,35 @@ public class CssHangingPunctuation extends CssProperty {
 	return (property instanceof CssHangingPunctuation &&
 		hangpunct.equals( ((CssHangingPunctuation) property).hangpunct));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "hanging-punctuation";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return hangpunct;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return hangpunct.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return hangpunct.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -145,5 +145,5 @@ public class CssHangingPunctuation extends CssProperty {
     public boolean isDefault() {
 	return hangpunct == none;
     }
-    
+
 }

@@ -55,16 +55,16 @@ public class CssColor extends CssProperty implements CssOperator {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssColor(ApplContext ac, CssExpression expression, boolean check) 
+    public CssColor(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	setByUser();
-	
+
 	if (val.equals(inherit)) {
 	    color = inherit;
 	    expression.next();
@@ -218,7 +218,7 @@ public class CssColor extends CssProperty implements CssOperator {
 						params.getValue(),
 						getPropertyName(), ac);
 	    }
-	} else if (val instanceof CssIdent) {	    
+	} else if (val instanceof CssIdent) {
 	    if ("css1".equals(ac.getCssVersion())) {
 		color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
 	    } else if ("css2".equals(ac.getCssVersion())) {
@@ -230,17 +230,17 @@ public class CssColor extends CssProperty implements CssOperator {
 	    }
 	    //	    color = new org.w3c.css.values.CssColor();
 	    expression.next();
-	} else {	    
+	} else {
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
     }
 
-    public CssColor(ApplContext ac, CssExpression expression) 
+    public CssColor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

@@ -33,12 +33,12 @@ public class HtmlParser extends JmlParser implements Runnable,
   Vector        listeners    = new Vector();
 
   ParserFrame parserFrame  = new ParserFrame(); // 970724 -vm
-  
+
   TagFactory  factory;
   String      urlname;
 
   public HtmlParser(ApplContext ac,
-		    String dtdName, String urlname, URLConnection uc) 
+		    String dtdName, String urlname, URLConnection uc)
       throws ParserException {
     super(dtdName);
     this.urlname = urlname;
@@ -48,29 +48,29 @@ public class HtmlParser extends JmlParser implements Runnable,
   }
 
   public HtmlParser(ApplContext ac,
-		    String dtdName, String urlname) 
+		    String dtdName, String urlname)
       throws ParserException {
     super(dtdName);
     this.urlname = urlname;
     parserFrame.ac = ac;
     setFactory(new SimpleTagFactory());
   }
-  
-  public HtmlParser(ApplContext ac, String dtdName, 
+
+  public HtmlParser(ApplContext ac, String dtdName,
 		    TagFactory f) throws ParserException {
     super(dtdName);
     parserFrame.ac = ac;
     setFactory(new SimpleTagFactory());
   }
-  
+
   public HtmlTree getRoot() {
     return top;
   }
-  
+
   public void setFactory(TagFactory f) {
     factory = f;
   }
-  
+
   public Tag makeTag(Element elem, Attributes atts) {
     HtmlTree tag = null;
     if(in_error_recovery) {
@@ -84,26 +84,26 @@ public class HtmlParser extends JmlParser implements Runnable,
     }
     return tag;
   }
-  
+
   public void addParserListener(HtmlParserListener l) {
     listeners.addElement(l);
   }
-  
+
   public void removeParserListener(HtmlParserListener l) {
     listeners.removeElement(l);
   }
-  
+
   boolean in_error_recovery = false;
   Hashtable errorTagTable;
   protected void startErrorRecovery() {
     errorTagTable = new Hashtable();
     in_error_recovery = true;
   }
-  
+
   protected void endErrorRecovery() {
     in_error_recovery = false;
   }
-  
+
   public void handleStartTag(Tag tag) {
     if(in_error_recovery) {
       current = (HtmlTree)tag;
@@ -141,7 +141,7 @@ public class HtmlParser extends JmlParser implements Runnable,
     }
     notifyActivity(ln, 0);
   }
-  
+
   public void handleEndTag(Tag tag) {
     if(in_error_recovery) {
       errorTagTable.put(tag.getElement().getName(), tag);
@@ -160,12 +160,12 @@ public class HtmlParser extends JmlParser implements Runnable,
 //       }
     }
   }
-  
+
   TextElement proto = new TextElement();
-  
-  
+
+
   Element p = new Element("p", 0);
-  
+
   public void handleText(byte text[]) {
     // discard empty texts.
     if((text.length == 1) && (text[0] == ' ')) return;
@@ -177,13 +177,13 @@ public class HtmlParser extends JmlParser implements Runnable,
     parserFrame.line = ln;
     tag.initialize(proto, atts, parserFrame);
     //    System.out.println(" 000 HtmlParser::handleText  atts=" + atts);
-    
+
     /*	if("body".equals(current.getElement().getName())) {
 	// for text components outside a <p> in the body, we insert the <p>
 	// component.
 	HtmlTree parent = (HtmlTree)factory.create("p");
 	parent.initialize(p, atts);
-	
+
 	current.attach(parent, current.arity());
 	parent.attach((HtmlTree)tag, 0);
 	}
@@ -193,7 +193,7 @@ public class HtmlParser extends JmlParser implements Runnable,
       }
     }
   }
-  
+
   public void handleEmptyTag(Tag tag) {
     //System.out.println("empty tag " + tag);
     if(current != null) {
@@ -232,13 +232,13 @@ public class HtmlParser extends JmlParser implements Runnable,
 	    }
 	    notifyFatalError(null, e, "");
 	}
-        
+
 	for(int i = 0; i < listeners.size(); i++) {
 	    HtmlParserListener l =
 		(HtmlParserListener)listeners.elementAt(i);
 	    l.notifyEnd(top, "text/html");
 	}
-	
+
 	if (Boolean.getBoolean("html.tags.verbose")) {
 	    System.out.println("\n-------------------");
 	    System.out.println("[StyleSheet dump:]");
@@ -254,7 +254,7 @@ public class HtmlParser extends JmlParser implements Runnable,
       l.notifyConnection(cnx);
     }
   }
-  
+
     InputStream makeInput(String urls) {
 	InputStream in = null;
 
@@ -262,7 +262,7 @@ public class HtmlParser extends JmlParser implements Runnable,
 	    if (urls.indexOf(':') > 0) {
 		URLConnection urlC = null;
 
-		urlC = HTTPURL.getConnection(new URL(null, urls), 
+		urlC = HTTPURL.getConnection(new URL(null, urls),
 					     parserFrame.ac);
 
 		parserFrame.url = url = urlC.getURL();
@@ -285,7 +285,7 @@ public class HtmlParser extends JmlParser implements Runnable,
 	}
 	return null;
     }
-  
+
   InputStream makeInput() {
 	InputStream in = null;
 
@@ -309,7 +309,7 @@ public class HtmlParser extends JmlParser implements Runnable,
 	}
 	return null;
     }
-    
+
   String makeURLName(String s) {
     System.out.println("makeURLName: " + s);
     if (s.indexOf(':') > 0) {
@@ -319,7 +319,7 @@ public class HtmlParser extends JmlParser implements Runnable,
       return "file:" + s;
     }
   }
-  
+
   void notifyFatalError(HtmlTree root, Exception x, String s) {
       for(int i = 0; i < listeners.size(); i++) {
 	  HtmlParserListener l =
@@ -327,13 +327,13 @@ public class HtmlParser extends JmlParser implements Runnable,
 	  l.notifyFatalError(root, x, s);
       }
   }
-  
+
   public void notifyActivity(int lines, long bytes) {
     for(int i = 0; i < listeners.size(); i++) {
       HtmlParserListener l =
 	(HtmlParserListener)listeners.elementAt(i);
       l.notifyActivity(ln, bytes);
     }
-    
+
   }
 }

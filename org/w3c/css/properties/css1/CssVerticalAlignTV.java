@@ -110,11 +110,11 @@ public class CssVerticalAlignTV extends CssProperty
      */
     public CssVerticalAlignTV(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
 	int hash = val.hashCode();
 
@@ -142,7 +142,7 @@ public class CssVerticalAlignTV extends CssProperty
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

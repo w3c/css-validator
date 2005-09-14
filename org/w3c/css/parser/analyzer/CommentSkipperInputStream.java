@@ -21,7 +21,7 @@ import java.io.InputStream;
  * @version $Revision$
  * @author  Philippe Le Hegaret
  */
-public class CommentSkipperInputStream extends InputStream { 
+public class CommentSkipperInputStream extends InputStream {
 
     int previous;
     InputStream in;
@@ -31,7 +31,7 @@ public class CommentSkipperInputStream extends InputStream {
     public CommentSkipperInputStream(InputStream input) {
 	in = input;
     }
-    
+
 
     public int read() throws IOException {
 	int c;
@@ -47,14 +47,14 @@ public class CommentSkipperInputStream extends InputStream {
 	    return c;
 	}
 	previous = in.read();
-	
+
 	if (previous != '*') {
 	    return c;
 	}
 	previous = 0;
 	do {
 	    do {
-		c = in.read();	    
+		c = in.read();
 	    } while ((c != -1) && (c != '*'));
 	    c = in.read();
 	} while ((c != -1) && (c != '/'));

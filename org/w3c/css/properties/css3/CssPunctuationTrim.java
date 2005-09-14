@@ -25,13 +25,13 @@ import org.w3c.css.values.CssValue;
  *  <EM>Percentages:</EM>no<BR>
  *  <EM>Media:</EM>:visual
  *  <P>
- *  This property determines whether or not a fullwidth punctuation mark 
- *  character should be trimmed if it appears at the beginning of a line, so 
+ *  This property determines whether or not a fullwidth punctuation mark
+ *  character should be trimmed if it appears at the beginning of a line, so
  *  that its "ink" lines up with the first glyph in the line above and below.
  */
 
 public class CssPunctuationTrim extends CssProperty {
- 
+
     CssValue trim;
 
     static CssIdent none = new CssIdent("none");
@@ -46,7 +46,7 @@ public class CssPunctuationTrim extends CssProperty {
 
     /**
      * Create a new CssPunctuationTrim
-     * 
+     *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
@@ -75,7 +75,7 @@ public class CssPunctuationTrim extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -111,7 +111,7 @@ public class CssPunctuationTrim extends CssProperty {
 	return (property instanceof CssPunctuationTrim &&
 		trim.equals(((CssPunctuationTrim) property).trim));
     }
-    
+
     /**
      * Returns the name of this property
      */

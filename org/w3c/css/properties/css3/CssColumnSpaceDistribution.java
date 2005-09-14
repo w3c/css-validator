@@ -34,22 +34,22 @@ import org.w3c.css.values.CssValue;
  */
 
 public class CssColumnSpaceDistribution extends CssProperty implements CssOperator {
-    
+
     String distribution = "";
-    
+
     static CssIdent end = new CssIdent("end");
-    
+
     private static String[] values = {
 	"start", "end", "inner", "outer", "between", "inherit"
     };
-    
+
     /**
      * Create a new CssColumnSpaceDistribution
      */
     public CssColumnSpaceDistribution() {
 	// nothing to do
     }
-    
+
     /**
      * Create a new CssColumnSpaceDistribution
      *
@@ -58,18 +58,18 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
      */
     public CssColumnSpaceDistribution(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	setByUser();
-	
+
 	CssValue val = expression.getValue();
 	int maxvalues = 2;
 	boolean correct = true;
 	char op = SPACE;
-	
+
 	while (correct && (val != null) && (maxvalues-- > 0)) {
-	    
+
 	    correct = false;
-	    
+
 	    for (int i = 0; i < values.length; i++) {
 		if (val.toString().equals(values[i])) {
 		    distribution += " " + val.toString();
@@ -78,24 +78,24 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
 		    break;
 		}
 	    }
-	    
+
 	    if (!correct) {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    val = expression.getValue();
 	    op = expression.getOperator();
-	    
+
 	}
-	
+
     }
-    
+
     public CssColumnSpaceDistribution(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -106,7 +106,7 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssColumnSpaceDistribution = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -121,7 +121,7 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
 	    return ((Css3Style) style).cssColumnSpaceDistribution;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -131,35 +131,35 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
 	return (property instanceof CssColumnSpaceDistribution &&
 		distribution.equals(((CssColumnSpaceDistribution) property).distribution));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "column-space-distribution";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return distribution;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return distribution.equals("inherit");
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return distribution;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
@@ -167,5 +167,5 @@ public class CssColumnSpaceDistribution extends CssProperty implements CssOperat
     public boolean isDefault() {
 	return (distribution.equals("end"));
     }
-    
+
 }

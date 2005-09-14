@@ -88,7 +88,7 @@ public abstract class CssParser implements CssParserConstants {
     protected String currentProperty;
 
     /**
-     * <code>true</code> if the parser should recognized Aural properties, 
+     * <code>true</code> if the parser should recognized Aural properties,
      * <code>false</code> otherwise.
      */
     protected boolean mode;
@@ -103,7 +103,7 @@ public abstract class CssParser implements CssParserConstants {
 
     /**
      * The ac for handling errors and warnings.
-     * 
+     *
      * @param ac the new ac for the parser.
      */
     public final void setApplContext(ApplContext ac) {
@@ -193,14 +193,14 @@ public abstract class CssParser implements CssParserConstants {
      * with <code>property</code> and assign to it the expression with the
      * importance. Don't forget to set informations too.
      * <p>
-     * A subclass must provide an implementation of this method. 
+     * A subclass must provide an implementation of this method.
      *
      * @param  property  the name of the property
      * @param  values    the expression representation of values
      * @param  important <code>true</code> if values are important
      *
      * @return           <code>null</code>or a property
-     * 
+     *
      * @see              org.w3c.css.css.CssProperty
      */
     public abstract CssProperty handleDeclaration(String property,
@@ -211,7 +211,7 @@ public abstract class CssParser implements CssParserConstants {
     /**
      * Adds a vector of properties to a selector.
      * <p>
-     * A subclass must provide an implementation of this method. 
+     * A subclass must provide an implementation of this method.
      *
      * @param selector     the selector
      * @param declarations Properties to associate with contexts
@@ -673,7 +673,7 @@ public abstract class CssParser implements CssParserConstants {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case MEDIARESTRICTOR:
         n = jj_consume_token(MEDIARESTRICTOR);
-                                              newRule.addMediaRestrictor(convertIdent(n.image), ac);
+        newRule.addMediaRestrictor(convertIdent(n.image), ac);
         label_16:
         while (true) {
           jj_consume_token(S);
@@ -766,7 +766,7 @@ public abstract class CssParser implements CssParserConstants {
           jj_consume_token(S);
         }
         p = mediadeclaration();
-                                                              newRule.addMediaFeature(p);
+        newRule.addMediaFeature(p);
         label_23:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1800,7 +1800,7 @@ char connector = ' ';
                   default:
                       current.addDescendant(new DescendantSelector());
                   }
-                //current.setConnector(comb); 
+                //current.setConnector(comb);
 
         current = simple_selector(current);
       }
@@ -2239,7 +2239,6 @@ n.image = n.image.substring(1);
                   isLength = true;
               }
               catch(Exception e) {
-                  System.out.println("CssParser._class(): " + e.getClass());
                   isLength = false;
               }
               if(isLength) {
@@ -2250,7 +2249,7 @@ n.image = n.image.substring(1);
               }
               else {
                   try {
-                      // for css > 1, we add the rule to have a context, 
+                      // for css > 1, we add the rule to have a context,
                       // and we then remove it
                       s.addClass(new ClassSelector(n.image));
 
@@ -2499,7 +2498,7 @@ n.image = n.image.substring(1);
               }
               try {
                   s.addAttribute(attribute);
-//	      	  s.addAttribute(att.image.toLowerCase(), val.image, 
+//	      	  s.addAttribute(att.image.toLowerCase(), val.image,
 //			     selectorType);
               } catch (InvalidParamException e) {
                   removeThisRule();
@@ -2527,7 +2526,7 @@ CssSelectors param = null;
                                         ac.getCssVersion() ,ac);}
                          }
                 } catch(InvalidParamException e) {
-                     //e.printStackTrace();	
+                     //e.printStackTrace();
                      removeThisRule();
                      ac.getFrame().addError(new CssError(e));
                 }
@@ -2540,7 +2539,7 @@ CssSelectors param = null;
                 try {
                      s.addPseudo(convertIdent(n.image).toLowerCase());
                 } catch(InvalidParamException e) {
-                     //e.printStackTrace();	
+                     //e.printStackTrace();
                      removeThisRule();
                      ac.getFrame().addError(new CssError(e));
                 }
@@ -2654,7 +2653,7 @@ CssSelectors param = null;
                 "To make \"." + n.image + "\" a valid id, CSS2" +
                 " requires the first digit to be escaped " +
                 "(\"#" + cl + "\")");
-              // for css > 1, we add the rule to have a context, 
+              // for css > 1, we add the rule to have a context,
               // and we then remove it
               s.addId(new IdSelector(n.image));
               removeThisRule();
@@ -2667,7 +2666,6 @@ CssSelectors param = null;
                   isLength = true;
               }
               catch(Exception e) {
-                  System.out.println("CssParser._id(): " + e.getClass());
                   isLength = false;
               }
               if(isLength) {
@@ -3039,7 +3037,7 @@ CssSelectors param = null;
         semicolon.image = ";";
         if (t.kind == COLON) {
             /* @@SEEME. (generate a warning?) */
-            /* @@SEEME if expression is a single ident, 
+            /* @@SEEME if expression is a single ident,
 	       generate an error ? */
             addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
                      (CssExpression) null);

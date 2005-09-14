@@ -8,13 +8,13 @@ package org.w3c.css.css;
 import org.w3c.css.util.ApplContext;
 
 public class StyleReportFactory {
-    
+
     /**
      * Give back a "StyleReport" object based on various
      * parameters, but mainly output"
      */
-    public static StyleReport getStyleReport(ApplContext ac, 
-					     String title, 
+    public static StyleReport getStyleReport(ApplContext ac,
+					     String title,
 					     StyleSheet style,
 					     String document,
 					     int warningLevel) {
@@ -34,4 +34,4 @@ public class StyleReportFactory {
 					    warningLevel);
     }
 }
-    
+

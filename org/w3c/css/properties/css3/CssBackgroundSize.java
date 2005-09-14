@@ -53,15 +53,15 @@ public class CssBackgroundSize extends CssProperty  {
      */
     public CssBackgroundSize(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	for (int i = 0; i < 2; i++) {
-	    
+
 	    CssValue val = expression.getValue();
-	    
+
 	    setByUser();
-	    
+
 	    if ((i == 0) || (i == 1 && val != null)) {
-		
+
 		if (val.equals(auto)) {
 		    if (i == 0) {
 			value1 = auto;
@@ -84,7 +84,7 @@ public class CssBackgroundSize extends CssProperty  {
 		    throw new InvalidParamException("value", val.toString(),
 			    getPropertyName(), ac);
 		}
-		
+
 		expression.next();
 	    }
 	}
@@ -94,7 +94,7 @@ public class CssBackgroundSize extends CssProperty  {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -105,7 +105,7 @@ public class CssBackgroundSize extends CssProperty  {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBackgroundSize = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -138,21 +138,21 @@ public class CssBackgroundSize extends CssProperty  {
     public String getPropertyName() {
 	return "background-size";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value1;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return false;
     }
-    
+
     /**
      * Returns a string representation of the object
      */
@@ -163,7 +163,7 @@ public class CssBackgroundSize extends CssProperty  {
 	    return value1.toString() + " " + value2.toString();
 	}
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>

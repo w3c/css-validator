@@ -11,7 +11,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.parser.CssPrinterStyle;
 
 public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
-    
+
     AlignmentBaseline alignmentBaseline;
     ClipPath clipPath;
     ClipRule clipRule;
@@ -55,7 +55,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
     ColorProfileSrc cpSrc;
     ColorProfileName cpName;
     CssRenderIntent cssRenderIntent;
-    
+
     public AlignmentBaseline getAlignmentBaseline() {
 	if (alignmentBaseline == null) {
 	    alignmentBaseline =
@@ -64,7 +64,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return alignmentBaseline;
     }
-    
+
     public DominantBaseLine getDominantBaseLineSVG() {
 	if (dominantBaseLine == null) {
 	    dominantBaseLine =
@@ -73,7 +73,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return dominantBaseLine;
     }
-    
+
     public ClipPath getClipPath() {
 	if (clipPath == null) {
 	    clipPath =
@@ -82,7 +82,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return clipPath;
     }
-    
+
     public ClipRule getClipRule() {
 	if (clipRule == null) {
 	    clipRule =
@@ -91,7 +91,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return clipRule;
     }
-    
+
     public ColorInterpolation getColorInterpolation() {
 	if (colorInterpolation == null) {
 	    colorInterpolation =
@@ -100,7 +100,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return colorInterpolation;
     }
-    
+
     public ColorInterpolationFilters getColorInterpolationFilters() {
 	if (colorInterpolationFilters == null) {
 	    colorInterpolationFilters =
@@ -109,7 +109,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return colorInterpolationFilters;
     }
-    
+
     public ColorRendering getColorRendering() {
 	if (colorRendering == null) {
 	    colorRendering =
@@ -118,7 +118,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return colorRendering;
     }
-    
+
     public EnableBackground getEnableBackground() {
 	if (enableBackground == null) {
 	    enableBackground =
@@ -127,7 +127,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return enableBackground;
     }
-    
+
     public WritingModeSVG getWritingModeSVG() {
 	if (writingModeSVG == null) {
 	    writingModeSVG =
@@ -136,7 +136,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return writingModeSVG;
     }
-    
+
     public FloodOpacity getFloodOpacity() {
 	if (floodOpacity == null) {
 	    floodOpacity =
@@ -145,7 +145,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return floodOpacity;
     }
-    
+
     public Filter getFilter() {
 	if (filter == null) {
 	    filter =
@@ -154,7 +154,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return filter;
     }
-    
+
     public FillRule getFillRule() {
 	if (fillRule == null) {
 	    fillRule =
@@ -163,7 +163,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return fillRule;
     }
-    
+
     public FillOpacity getFillOpacity() {
 	if (fillOpacity == null) {
 	    fillOpacity =
@@ -172,7 +172,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return fillOpacity;
     }
-    
+
     public ImageRendering getImageRendering() {
 	if (imageRendering == null) {
 	    imageRendering =
@@ -181,7 +181,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return imageRendering;
     }
-    
+
     public Mask getMask() {
 	if (mask == null) {
 	    mask =
@@ -190,7 +190,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return mask;
     }
-    
+
     public StopOpacity getStopOpacity() {
 	if (stopOpacity == null) {
 	    stopOpacity =
@@ -199,7 +199,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return stopOpacity;
     }
-    
+
     public Kerning getKerning() {
 	if (kerning == null) {
 	    kerning =
@@ -208,7 +208,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return kerning;
     }
-    
+
     public Marker getMarker() {
 	if (marker == null) {
 	    marker =
@@ -217,7 +217,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return marker;
     }
-    
+
     public MarkerStart getMarkerStart() {
 	if (markerStart == null) {
 	    markerStart =
@@ -226,7 +226,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return markerStart;
     }
-    
+
     public MarkerEnd getMarkerEnd() {
 	if (markerEnd == null) {
 	    markerEnd =
@@ -235,7 +235,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return markerEnd;
     }
-    
+
     public MarkerMid getMarkerMid() {
 	if (markerMid == null) {
 	    markerMid =
@@ -244,7 +244,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return markerMid;
     }
-    
+
     public PointerEvents getPointerEvents() {
 	if (pointerEvents == null) {
 	    pointerEvents =
@@ -253,7 +253,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return pointerEvents;
     }
-    
+
     public ShapeRendering getShapeRendering() {
 	if (shapeRendering == null) {
 	    shapeRendering =
@@ -262,7 +262,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return shapeRendering;
     }
-    
+
     public TextRendering getTextRendering() {
 	if (textRendering == null) {
 	    textRendering =
@@ -271,7 +271,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return textRendering;
     }
-    
+
     public TextAnchor getTextAnchor() {
 	if (textAnchor == null) {
 	    textAnchor =
@@ -280,7 +280,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return textAnchor;
     }
-    
+
     public StrokeLinejoin getStrokeLinejoin() {
 	if (strokeLinejoin == null) {
 	    strokeLinejoin =
@@ -289,7 +289,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeLinejoin;
     }
-    
+
     public StrokeLineCap getStrokeLineCap() {
 	if (strokeLineCap == null) {
 	    strokeLineCap =
@@ -298,7 +298,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeLineCap;
     }
-    
+
     public StrokeMiterLimit getStrokeMiterLimit() {
 	if (strokeMiterLimit == null) {
 	    strokeMiterLimit =
@@ -307,7 +307,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeMiterLimit;
     }
-    
+
     public StrokeOpacity getStrokeOpacity() {
 	if (strokeOpacity == null) {
 	    strokeOpacity =
@@ -316,7 +316,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeOpacity;
     }
-    
+
     public StrokeWidth getStrokeWidth() {
 	if (strokeWidth == null) {
 	    strokeWidth =
@@ -325,7 +325,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeWidth;
     }
-    
+
     public StrokeDashOffset getStrokeDashOffset() {
 	if (strokeDashOffset == null) {
 	    strokeDashOffset =
@@ -334,7 +334,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeDashOffset;
     }
-    
+
     public StrokeDashArray getStrokeDashArray() {
 	if (strokeDashArray == null) {
 	    strokeDashArray =
@@ -343,7 +343,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return strokeDashArray;
     }
-    
+
     public StopColor getStopColor() {
 	if (stopColor == null) {
 	    stopColor =
@@ -352,7 +352,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return stopColor;
     }
-    
+
     public SolidColor getSolidColor() {
 	if (solidColor == null) {
 	    solidColor =
@@ -361,7 +361,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return solidColor;
     }
-    
+
     public LightingColor getLightingColor() {
 	if (lightingColor == null) {
 	    lightingColor =
@@ -370,7 +370,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return lightingColor;
     }
-    
+
     public FloodColor getFloodColor() {
 	if (floodColor == null) {
 	    floodColor =
@@ -379,7 +379,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return floodColor;
     }
-    
+
     public ColorProfile getColorProfileSVG() {
 	if (colorProfile == null) {
 	    colorProfile =
@@ -388,7 +388,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return colorProfile;
     }
-    
+
     public Stroke getStroke() {
 	if (stroke == null) {
 	    stroke =
@@ -397,7 +397,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return stroke;
     }
-    
+
     public SolidOpacity getSolidOpacity() {
 	if (solidOpacity == null) {
 	    solidOpacity =
@@ -406,7 +406,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return solidOpacity;
     }
-    
+
     public Fill getFill() {
 	if (fill == null) {
 	    fill =
@@ -415,7 +415,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return fill;
     }
-    
+
     public ColorProfileSrc getColorProfileSrc() {
 	if (cpSrc == null) {
 	    cpSrc =
@@ -424,7 +424,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return cpSrc;
     }
-    
+
     public ColorProfileName getColorProfileName() {
 	if (cpName == null) {
 	    cpName =
@@ -433,7 +433,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return cpName;
     }
-    
+
     public CssRenderIntent getCssRenderIntent() {
 	if (cssRenderIntent == null) {
 	    cssRenderIntent =
@@ -442,7 +442,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	return cssRenderIntent;
     }
-    
+
     /**
      * Print this style
      *
@@ -450,7 +450,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
      */
     public void print(CssPrinterStyle printer) {
 	super.print(printer);
-	
+
 	if (alignmentBaseline != null) {
 	    alignmentBaseline.print(printer);
 	}
@@ -578,7 +578,7 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
 	    cssRenderIntent.print(printer);
 	}
     }
-    
+
     /**
      * Returns the name of the actual selector
      */
@@ -586,5 +586,5 @@ public class SVGStyle extends org.w3c.css.properties.css3.Css3Style {
     {
 	return (selector.getElement().toLowerCase());
     }
-    
+
 }

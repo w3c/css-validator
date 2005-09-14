@@ -31,7 +31,7 @@ import org.w3c.css.values.CssValue;
  */
 
     public class CssColorProfile extends CssProperty {
-	
+
 	CssValue colorprofile;
 
 	static CssIdent auto = new CssIdent("auto");
@@ -45,7 +45,7 @@ import org.w3c.css.values.CssValue;
 
 	/**
 	 * Create a new CssColorProfile
-	 * 
+	 *
 	 * @param expression The expression for this property
 	 * @exception InvalidParamException Values are incorrect
 	 */
@@ -79,14 +79,14 @@ import org.w3c.css.values.CssValue;
 	    else {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
-	    }  
+	    }
         }
-	
+
 	public CssColorProfile(ApplContext ac, CssExpression expression)
 		throws InvalidParamException {
 	    this(ac, expression, false);
 	}
-	
+
 	/**
 	 * Add this property to the CssStyle.
 	 *
@@ -103,7 +103,7 @@ import org.w3c.css.values.CssValue;
 	 *
 	 * @param style The style where the property is
 	 * @param resolve if true, resolve the style to find this property
-	 */  
+	 */
         public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	    if (resolve) {
 		return ((Css3Style) style).getColorProfile();
@@ -111,14 +111,14 @@ import org.w3c.css.values.CssValue;
 		return ((Css3Style) style).cssColorProfile;
 	    }
 	}
-    
+
        /**
         * Compares two properties for equality.
         *
         * @param value The other property.
-        */  
+        */
        public boolean equals(CssProperty property) {
-	   return (property instanceof CssColorProfile && 
+	   return (property instanceof CssColorProfile &&
                 colorprofile.equals( ((CssColorProfile) property).colorprofile));
        }
 
@@ -128,34 +128,34 @@ import org.w3c.css.values.CssValue;
 	public String getPropertyName() {
 	    return "color-profile";
 	}
-   
+
 	/**
 	 * Returns the value of this property
 	 */
 	public Object get() {
 	    return colorprofile;
 	}
-	
+
 	/**
 	 * Returns true if this property is "softly" inherited
 	 */
 	public boolean isSoftlyInherited() {
 	    return colorprofile.equals(inherit);
 	}
-	
+
 	/**
 	 * Returns a string representation of the object
 	 */
 	public String toString() {
 	    return colorprofile.toString();
 	}
-	
+
 	/**
 	 * Is the value of this property a default value
 	 * It is used by all macro for the function <code>print</code>
 	 */
-	public boolean isDefault() {	
+	public boolean isDefault() {
 	    return colorprofile == auto;
 	}
 
-    }	
+    }

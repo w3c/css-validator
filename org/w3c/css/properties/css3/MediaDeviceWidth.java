@@ -39,12 +39,12 @@ public class MediaDeviceWidth extends CssProperty {
     public MediaDeviceWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssLength || val instanceof CssPercentage) {
 		float f = ((Float) val.get()).floatValue();
@@ -59,16 +59,16 @@ public class MediaDeviceWidth extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
-    
+
     public MediaDeviceWidth(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

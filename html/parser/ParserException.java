@@ -16,14 +16,14 @@ package html.parser;
  * @version $Revision$
  */
 public class ParserException extends Exception {
-  
+
   /**
    * Create a new ParserException
    */
   public ParserException() {
     super();
   }
-  
+
   /**
    * Create a new ParserException
    * @param message the error message

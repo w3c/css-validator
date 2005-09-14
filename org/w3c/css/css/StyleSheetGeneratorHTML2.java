@@ -38,35 +38,35 @@ import org.w3c.css.util.Warnings;
  */
 public final class StyleSheetGeneratorHTML2 extends StyleReport implements
 CssPrinterStyle {
-    
+
     StyleSheet style;
-    
+
     Vector items;
-    
+
     Warnings warnings;
-    
+
     Errors errors;
-    
+
     ApplContext ac;
-    
+
     private CssSelectors selector;
-    
+
     //private CssProperty property;
-    
+
     private PrintWriter out;
-    
+
     private int warningLevel;
-    
+
     private Utf8Properties general;
-    
+
     private static Utf8Properties availableFormat;
-    
+
     private static Utf8Properties availablePropertiesURL;
-    
+
     private static Hashtable formats = new Hashtable();
-    
+
     int counter = 0;
-    
+
     /**
      * Create a new StyleSheetGenerator
      *
@@ -81,7 +81,7 @@ CssPrinterStyle {
      */
     public StyleSheetGeneratorHTML2(ApplContext ac, String title,
 	    StyleSheet style, String document, int warningLevel) {
-	
+
 	if (document == null) {
 	    document = "html.en";
 	}
@@ -95,14 +95,14 @@ CssPrinterStyle {
 	warnings = style.getWarnings();
 	errors = style.getErrors();
 	items =  style.newGetRules();
-	
+
 	this.warningLevel = warningLevel;
-	
+
 	general.put("errors-count", Integer.toString(errors.getErrorCount()));
 	general.put("warnings-count", Integer.toString(warnings
 		.getWarningCount()));
 	general.put("rules-count", Integer.toString(items.size()));
-	
+
 	if (errors.getErrorCount() == 0) {
 	    desactivateError();
 	}
@@ -123,24 +123,24 @@ CssPrinterStyle {
 	} else {
 	    general.put("no-rules", ""); // remove no-rules
 	}
-	
+
 	if (errors.getErrorCount() != 0 || warnings.getWarningCount() != 0) {
 	    // remove no-error-or-warning
-	    general.put("no-error-or-warning", ""); 
+	    general.put("no-error-or-warning", "");
 	}
-	
+
 	if (Util.onDebug)
 	    general.list(System.err);
-	
+
 	DateFormat df = null;
-	
+
 	if (ac.getLang() != null) {
 	    try {
 		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
 			DateFormat.FULL, new Locale(ac.getLang()
 				.substring(0, 2), "US"));
 	    } catch (Exception e) {
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL, 
+		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
 			DateFormat.FULL, Locale.US);
 	    }
 	}
@@ -150,12 +150,12 @@ CssPrinterStyle {
 	    general.put("today", new Date().toString());
 	}
     }
-    
+
     public void desactivateError() {
 	general.put("go-errors", ""); // remove go-errors
 	general.put("errors", ""); // remove errors
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -167,31 +167,31 @@ CssPrinterStyle {
 	} else {
 	    out.println(ac.getMsg().getGeneratorString("request"));
 	}
-	
+
 	out.flush();
     }
-    
+
     // prints the stylesheet at the screen
-    public void produceStyleSheet() {	
-	Vector atRules = style.newGetRules();		
-	for (int idx = 0; idx < atRules.size(); idx++) {	    
+    public void produceStyleSheet() {
+	Vector atRules = style.newGetRules();
+	for (int idx = 0; idx < atRules.size(); idx++) {
 	    // out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
 	    ((CssRuleList) atRules.elementAt(idx)).toHTML(out);
 	    out.print("\n");
 	}
     }
-    
+
     public void print(CssProperty property) {
 	Utf8Properties prop = new Utf8Properties(general);
 	prop.put("property-name", property.getPropertyName().toString());
 	prop.put("property-value", property.toString());
-	
+
 	if (!property.getImportant()) {
 	    prop.put("important-style", "");
 	}
 	out.print(processStyle(prop.getProperty("declaration"), prop));
     }
-    
+
     public void produceParseException(CssParseException error, StringBuffer ret) {
 	ret.append(' ');
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
@@ -242,22 +242,22 @@ CssPrinterStyle {
 		ret.append(queryReplace(error.getExp().toStringFromStart()));
 		ret.append("<span>");
 		ret.append(queryReplace(error.getExp().toString()));
-		ret.append("</span>\n");        
+		ret.append("</span>\n");
 	    }
-	} else {		    
+	} else {
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
 	    ret.append(" - <span class='error'>");
 	    ret.append(queryReplace(error.getSkippedString()));
 	    ret.append("</span>\n");
 	}
-	
+
     }
-    
+
     public void produceError() {
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = null;
 	boolean open = false;
-	
+
 	try {
 	    if (errors.getErrorCount() != 0) {
 		int i = 0;
@@ -282,7 +282,7 @@ CssPrinterStyle {
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
 			ret.append("<span class='error'>");
 			ret.append(ex.getMessage());
-			ret.append("</span>\n");            
+			ret.append("</span>\n");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
@@ -299,12 +299,12 @@ CssPrinterStyle {
 			ret.append("\n<p>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');         
+			ret.append(terror.getSkippedString()).append('\n');
 		    } else {
 			ret.append("\n<p>"
 				+ "<span class='error'>Uncaught error</span> ");
 			ret.append(ex).append('\n');
-			
+
 			if (ex instanceof NullPointerException) {
 			    // ohoh, a bug
 			    ex.printStackTrace();
@@ -317,16 +317,16 @@ CssPrinterStyle {
 		}
 		ret.append("</div>");
 	    }
-	    
+
 	    out.println(ret.toString());
 	} catch (Exception e) {
 	    out.println(ac.getMsg().getGeneratorString("request"));
 	    e.printStackTrace();
 	}
     }
-    
+
     public void produceWarning() {
-	
+
 	boolean open = false;
 	StringBuffer ret = new StringBuffer(1024);
 	String oldSourceFile = "";
@@ -337,7 +337,7 @@ CssPrinterStyle {
 		int i = 0;
 		warnings.sort();
 		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
-		    
+
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
@@ -350,26 +350,27 @@ CssPrinterStyle {
 			    ret.append(oldSourceFile).append("</a></h3><ul>");
 			    open = true;
 			}
-			if (warn.getLine() != oldLine
-				|| !warn.getWarningMessage().equals(oldMessage)) {
+//			if (warn.getLine() != oldLine
+//				|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 			    ret.append("\n<li><span class='warning'>");
 			    ret.append(ac.getMsg().getGeneratorString("line"));
 			    ret.append(" : ");
-			    ret.append(oldLine); 
+			    ret.append(oldLine);
 			    if (warn.getLevel() != 0) {
-				ret.append(" Level : ");
+				ret.append(" (Level : ");
 				ret.append(warn.getLevel());
+				ret.append(")");
 			    }
 			    ret.append("</span> ");
 			    ret.append(Util.escapeHTML(oldMessage));
-			    
+
 			    if (warn.getContext() != null) {
 				ret.append(" : ").append(warn.getContext());
 			    }
 			    ret.append("</li>");
-			}
+//			}
 		    }
 		}
 		if (open) {
@@ -383,12 +384,12 @@ CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-    
+
     private String queryReplace(String s) {
 	if (s != null) {
 	    int len = s.length();
-	    StringBuffer ret = new StringBuffer(len);       
-	    
+	    StringBuffer ret = new StringBuffer(len);
+
 	    for (int i = 0; i < len; i++) {
 		char c = s.charAt(i);
 		if (c == '<') {
@@ -404,11 +405,11 @@ CssPrinterStyle {
 	    return "[empty string]";
 	}
     }
-    
+
     private final String processSimple(String s) {
 	return processStyle(general.getProperty(s), general);
     }
-    
+
     private String processStyle(String str, Utf8Properties prop) {
 	try {
 	    int i = 0;
@@ -416,7 +417,7 @@ CssPrinterStyle {
 		int lastIndexOfEntity = str.indexOf("-->", i);
 		String entity = str.substring(i + 6, lastIndexOfEntity - 1)
 		.toLowerCase();
-		
+
 		if (entity.equals("rule")) {
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
@@ -436,7 +437,7 @@ CssPrinterStyle {
 			str = str.substring(lastIndexOfEntity + 3);
 			i = 0;
 		    }
-		} else if (entity.equals("selector")) {		    
+		} else if (entity.equals("selector")) {
 		    str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
 		} else if (entity.equals("charset")) {
@@ -461,12 +462,12 @@ CssPrinterStyle {
 		    out.print(str.substring(0, i));
 		    str = str.substring(lastIndexOfEntity + 3);
 		    i = 0;
-		    if (style.getType().equals("text/html")) { 
+		    if (style.getType().equals("text/html")) {
 			out.println(ac.getMsg().getGeneratorString("doc-html",
 				general.get("file-title").toString()));
 		    } else {
 			out.println(ac.getMsg().getGeneratorString("doc"));
-		    }		    
+		    }
 		} else {
 		    String value = prop.getProperty(entity);
 		    if (value != null) {
@@ -477,14 +478,14 @@ CssPrinterStyle {
 		    }
 		}
 	    }
-	    
+
 	    return str;
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    return str;
 	}
     }
-    
+
     public final static void printAvailableFormat(PrintWriter out) {
 	Enumeration e = availableFormat.propertyNames();
 	out.println(" -- listing available output format --");
@@ -497,12 +498,12 @@ CssPrinterStyle {
 	}
 	out.flush();
     }
-    
-    private Utf8Properties setDocumentBase(String document) {	    	
-	Utf8Properties properties = (Utf8Properties) formats.get(document);		
+
+    private Utf8Properties setDocumentBase(String document) {
+	Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
 	    URL url;
-	    properties = new Utf8Properties();			
+	    properties = new Utf8Properties();
 	    try {
 		url = StyleSheetGenerator.class.getResource(document);
 		java.io.InputStream f = url.openStream();
@@ -518,17 +519,17 @@ CssPrinterStyle {
 	    }
 	    formats.put(document, properties);
 	}
-	
+
 	return new Utf8Properties(properties);
     }
-    
-    private final static String getDocumentName(ApplContext ac, 
+
+    private final static String getDocumentName(ApplContext ac,
 	    String documentName) {
 	documentName = documentName.toLowerCase();
 	String document = null;
 	if (ac != null && ac.getLang() != null) {
 	    StringTokenizer tokens = new StringTokenizer(ac.getLang(), ",");
-	    
+
 	    while (tokens.hasMoreTokens()) {
 		String l = tokens.nextToken().trim().toLowerCase();
 		document = availableFormat.getProperty(documentName + "." + l);
@@ -544,7 +545,7 @@ CssPrinterStyle {
 		}
 		if (document != null) {
 		    break;
-		}       
+		}
 	    }
 	}
 	if (document == null) {
@@ -558,11 +559,11 @@ CssPrinterStyle {
 	    return document;
 	}
     }
-    
+
     private final static String getURLProperty(String name) {
 	return availablePropertiesURL.getProperty(name);
     }
-    
+
     static {
 	URL url;
 	availableFormat = new Utf8Properties();
@@ -576,7 +577,7 @@ CssPrinterStyle {
 		    + "couldn't load format properties ");
 	    System.err.println("  " + e.toString());
 	}
-	
+
 	availablePropertiesURL = new Utf8Properties();
 	try {
 	    url = StyleSheetGenerator.class.getResource("urls.properties");

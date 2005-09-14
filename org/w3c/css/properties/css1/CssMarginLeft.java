@@ -38,7 +38,7 @@ public class CssMarginLeft extends CssMarginSide {
   public CssMarginLeft() {
     super();
   }
-  
+
   /**
    * Create a new CssMarginLeft with an another CssMarginSide
    *
@@ -47,26 +47,26 @@ public class CssMarginLeft extends CssMarginSide {
   public CssMarginLeft(CssMarginSide another) {
     super(another);
   }
-  
+
   /**
    * Create a new CssMarginLeft
    *
    * @param expression The expression foir this property.
    * @exception InvalidParamException Values are incorrect
    */
-  public CssMarginLeft(ApplContext ac, CssExpression expression) 
+  public CssMarginLeft(ApplContext ac, CssExpression expression)
   	throws InvalidParamException {
       super(ac, expression);
   }
-  
+
   public CssMarginLeft(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
       super(ac, expression, check);
   }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "margin-left";
   }
@@ -88,7 +88,7 @@ public class CssMarginLeft extends CssMarginSide {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getMarginLeft();
@@ -101,9 +101,9 @@ public class CssMarginLeft extends CssMarginSide {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
-    return (property instanceof CssMarginLeft && 
+    return (property instanceof CssMarginLeft &&
 	    value.equals(((CssMarginLeft) property).value));
   }
 

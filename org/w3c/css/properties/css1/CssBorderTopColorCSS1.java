@@ -18,26 +18,26 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssBorderTopColorCSS1 extends CssProperty {
-    
+
     CssBorderFaceColorCSS1 face;
-    
+
     /**
      * Create a new CssBorderTopColorCSS1
      */
     public CssBorderTopColorCSS1() {
 	face = new CssBorderFaceColorCSS1();
     }
-    
+
     /**
      * Create a new CssBorderTopColorCSS1 with an another CssBorderFaceColorCSS1
      * @param another The another side.
      */
     public CssBorderTopColorCSS1(CssBorderFaceColorCSS1 another) {
 	setByUser();
-	
+
 	face = another;
     }
-    
+
     /**
      * Create a new CssBorderTopColorCSS1
      *
@@ -46,27 +46,27 @@ public class CssBorderTopColorCSS1 extends CssProperty {
      */
     public CssBorderTopColorCSS1(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	face = new CssBorderFaceColorCSS1(ac, expression);
     }
-    
+
     public CssBorderTopColorCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression,false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return face;
     }
-    
+
     /**
      * Returns the color
      */
@@ -77,7 +77,7 @@ public class CssBorderTopColorCSS1 extends CssProperty {
 	    return null;
 	}
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -87,14 +87,14 @@ public class CssBorderTopColorCSS1 extends CssProperty {
 	}
 	return "";
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "border-top-color";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -106,7 +106,7 @@ public class CssBorderTopColorCSS1 extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	top.color = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -120,26 +120,26 @@ public class CssBorderTopColorCSS1 extends CssProperty {
 	    return ((Css1Style) style).cssBorderCSS1.getTop().color;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderTopColorCSS1 && 
+	return (property instanceof CssBorderTopColorCSS1 &&
 		face.equals(((CssBorderTopColorCSS1) property).face));
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
      *
      * @see #print(CssPrinterStyle)
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if (face != null && !face.isDefault())
 	    printer.print(this);
     }
-    
+
 }

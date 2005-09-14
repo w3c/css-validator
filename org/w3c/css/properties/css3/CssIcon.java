@@ -47,14 +47,14 @@ public class CssIcon extends CssProperty
      */
     public CssIcon(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	CssValue val = expression.getValue();
 	char op = expression.getOperator();
-	
+
 	setByUser();
 	boolean correct = false;
-	
-	
+
+
 	if (val.equals(inherit)) {
 	    inheritedValue = true;
 	    icon = inherit;
@@ -65,7 +65,7 @@ public class CssIcon extends CssProperty
 	    expression.next();
 	    return;
 	}
-	
+
 	while (val != null) {
 	    if (val instanceof CssURL) {
 		uris.addElement(val);
@@ -78,18 +78,18 @@ public class CssIcon extends CssProperty
 			val.toString(), getPropertyName(), ac);
 	    }
 	}
-	
+
 	if (!correct) {
 	    throw new InvalidParamException("value",
 		    val.toString(), getPropertyName(), ac);
 	}
     }
-    
+
     public CssIcon(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */

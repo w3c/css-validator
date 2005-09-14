@@ -28,35 +28,35 @@ import org.w3c.css.values.CssValue;
  *   drawn with regard to the content. For a formatting example see
  * @version $Revision$
  */
-public class CssListStylePositionCSS2 extends CssProperty 
+public class CssListStylePositionCSS2 extends CssProperty
     implements CssListStyleConstants {
-    
+
     int value;
-    
+
     /**
      * Create a new CssListStylePositionCSS2
      */
     public CssListStylePositionCSS2() {
 	// nothing to do
-    }  
-    
+    }
+
     /**
      * Create a new CssListStylePositionCSS2
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssListStylePositionCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	setByUser();
-	
+
 	if ( val instanceof CssIdent) {
 	    int hash = val.hashCode();
 	    for (int i = 0; i < LISTSTYLEPOSITION.length; i++) {
@@ -69,26 +69,26 @@ public class CssListStylePositionCSS2 extends CssProperty
 	}
 	throw new InvalidParamException("value", val, getPropertyName(), ac);
     }
-    
+
     public CssListStylePositionCSS2(ApplContext ac, CssExpression expression)
     	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return LISTSTYLEPOSITION[value];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "list-style-position";
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -96,14 +96,14 @@ public class CssListStylePositionCSS2 extends CssProperty
     public boolean isSoftlyInherited() {
 	return value == (LISTSTYLEPOSITION.length - 1);
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return LISTSTYLEPOSITION[value];
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -115,13 +115,13 @@ public class CssListStylePositionCSS2 extends CssProperty
 	    style.addRedefinitionWarning(ac, this);
 	cssListStyle.listStylePosition = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getListStylePositionCSS2();
@@ -129,27 +129,27 @@ public class CssListStylePositionCSS2 extends CssProperty
 	    return ((Css1Style) style).cssListStyleCSS2.listStylePosition;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssListStylePositionCSS2 && 
+	return (property instanceof CssListStylePositionCSS2 &&
 		((CssListStylePositionCSS2) property).value == value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     private static int[] hash_values;
-    
+
     static {
 	hash_values = new int[LISTSTYLEPOSITION.length];
 	for (int i = 0; i < LISTSTYLEPOSITION.length; i++)

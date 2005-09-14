@@ -36,10 +36,10 @@ import org.w3c.css.values.CssOperator;
  *   <P>
  *   The surface of the padding area is set with the 'background' property:
  *   <PRE>
- *   H1 { 
- *     background: white; 
+ *   H1 {
+ *     background: white;
  *     padding: 1em 2em;
- *   } 
+ *   }
  * </PRE>
  *   <P>
  *   The example above sets a '1em' padding vertically ('padding-top' and
@@ -51,30 +51,30 @@ import org.w3c.css.values.CssOperator;
  * @version $Revision$
  */
 public class CssPadding extends CssProperty implements CssOperator {
-    
+
     CssPaddingTop    top    = null;
     CssPaddingBottom bottom = null;
     CssPaddingRight  right  = null;
     CssPaddingLeft   left   = null;
-    
+
     boolean inheritedValue;
-    
+
     /**
      * Create a new CssPadding
      */
     public CssPadding() {
-    }  
-    
+    }
+
     /**
      * Create a new CssPadding
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
-     */  
-    public CssPadding(ApplContext ac, CssExpression expression, boolean check)  
+     */
+    public CssPadding(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
 	//CssValue val = expression.getValue();
 	setByUser();
-	
+
 	/*if (val.equals(inherit)) {
 	    inheritedValue = true;
 	    top = new CssPaddingTop();
@@ -86,9 +86,9 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    left = new CssPaddingLeft();
 	    left.value = inherit;
 	}*/
-	
+
 	int count = expression.getCount();
-	
+
 	switch (count) {
 	case 1:
 	    top = new CssPaddingTop(ac, expression);
@@ -171,54 +171,54 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    }
 	}
     }
-    
+
     public CssPadding(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return top;
     }
-    
+
     /**
      * Returns the top property
      */
     public CssPaddingTop getTop() {
 	return top;
     }
-    
+
     /**
      * Returns the right property
      */
     public CssPaddingRight getRight() {
 	return right;
     }
-    
+
     /**
      * Returns the bottom property
      */
     public CssPaddingBottom getBottom() {
 	return bottom;
     }
-    
+
     /**
      * Returns the left property
      */
     public CssPaddingLeft getLeft() {
 	return left;
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "padding";
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
@@ -240,18 +240,18 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    return top + " " + right + " " + bottom + " " + left;
 	}
     }
-    
+
     /**
      * Set this property to be important.
      * Overrides this method for a macro
-     */  
+     */
     public void setImportant() {
 	top.important = true;
 	right.important = true;
 	bottom.important = true;
 	left.important = true;
     }
-    
+
     /**
      * Returns true if this property is important.
      * Overrides this method for a macro
@@ -262,13 +262,13 @@ public class CssPadding extends CssProperty implements CssOperator {
 		(bottom == null || bottom.important) &&
 		(left == null || left.important));
     }
-    
+
     /**
      * Print this property.
      *
      * @see #toString()
      * @see #getPropertyName()
-     */  
+     */
     public void print(CssPrinterStyle printer) {
 	if (inheritedValue) {
 	    printer.print(this);
@@ -290,9 +290,9 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    if (left != null)
 		left.print(printer);
 	}
-	
+
     }
-    
+
     /**
      * Set the context.
      * Overrides this method for a macro
@@ -315,7 +315,7 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    left.setSelectors(selector);
 	}
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
@@ -328,13 +328,13 @@ public class CssPadding extends CssProperty implements CssOperator {
 	bottom.addToStyle(ac, style);
 	left.addToStyle(ac, style);
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getPadding();
@@ -342,14 +342,14 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    return ((Css1Style) style).cssPadding;
 	}
     }
-    
+
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
      * @param line The line number where this property is defined
      * @param source The source file where this property is defined
-     */  
+     */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
 	top.setInfo(line, source);
@@ -357,15 +357,15 @@ public class CssPadding extends CssProperty implements CssOperator {
 	bottom.setInfo(line, source);
 	left.setInfo(line, source);
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @FIXME
 	return false;
     }
-    
+
 }

@@ -20,35 +20,35 @@ import org.w3c.css.values.CssValue;
 /**
  */
 public class BboxATSC extends CssProperty {
-    
+
     CssValue[] value = new CssValue[4];
-    
+
     /**
      * Create a new BboxATSC
      */
     public BboxATSC() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new BboxATSC
      *
      * @param expression the unicode em
      * @exception InvalidParamException values are incorrect
-     */  
+     */
     public BboxATSC(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 4) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	boolean manyValues = expression.getCount() > 1;
-	
+
 	CssValue val;
 	char op;
 	int i = 0;
-	setByUser();	
+	setByUser();
 
 	{
 	    val = expression.getValue();
@@ -68,7 +68,7 @@ public class BboxATSC extends CssProperty {
 					    getPropertyName(), ac);
 	}
 	if (op != CssOperator.COMMA || expression.end()) {
-	    throw new InvalidParamException("few-value", 
+	    throw new InvalidParamException("few-value",
 					    getPropertyName(), ac);
 	}
 
@@ -85,7 +85,7 @@ public class BboxATSC extends CssProperty {
 					    getPropertyName(), ac);
 	}
 	if (op != CssOperator.COMMA || expression.end()) {
-	    throw new InvalidParamException("few-value", 
+	    throw new InvalidParamException("few-value",
 					    getPropertyName(), ac);
 	}
 
@@ -102,7 +102,7 @@ public class BboxATSC extends CssProperty {
 					    getPropertyName(), ac);
 	}
 	if (op != CssOperator.COMMA || expression.end()) {
-	    throw new InvalidParamException("few-value", 
+	    throw new InvalidParamException("few-value",
 					    getPropertyName(), ac);
 	}
 
@@ -119,37 +119,37 @@ public class BboxATSC extends CssProperty {
 					    getPropertyName(), ac);
 	}
     }
-    
+
     public BboxATSC(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return value[0];
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
-    public String toString() {  
+    public String toString() {
 	String ret = "";
 	for (int i = 0; i < 4; i++) {
 	    ret += ", " + value[i];
 	}
 	return ret.substring(2);
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "bbox";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -162,13 +162,13 @@ public class BboxATSC extends CssProperty {
 	}
 	style0.bboxATSC = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((ATSCStyle) style).getBboxATSC();
@@ -176,23 +176,23 @@ public class BboxATSC extends CssProperty {
 	    return ((ATSCStyle) style).bboxATSC;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
 	// @@TODO
 	return false;
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return false;
     }
-    
+
 }

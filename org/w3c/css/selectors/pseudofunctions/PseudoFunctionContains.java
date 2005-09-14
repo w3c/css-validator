@@ -16,5 +16,5 @@ public class PseudoFunctionContains extends PseudoFunctionSelector {
 	setName(name);
 	setParam(text);
     }
-    
+
 }

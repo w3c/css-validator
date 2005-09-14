@@ -38,7 +38,7 @@ public class CssMarginTop extends CssMarginSide {
   public CssMarginTop() {
     super();
   }
-  
+
   /**
    * Create a new CssMarginTop with an another CssMarginSide
    *
@@ -47,7 +47,7 @@ public class CssMarginTop extends CssMarginSide {
   public CssMarginTop(CssMarginSide another) {
     super(another);
   }
-  
+
   /**
    * Create a new CssMarginTop
    *
@@ -58,15 +58,15 @@ public class CssMarginTop extends CssMarginSide {
   	throws InvalidParamException {
     super(ac, expression);
   }
-  
+
   public CssMarginTop(ApplContext ac, CssExpression expression, boolean check)
   	throws InvalidParamException {
       super(ac, expression, check);
     }
-  
+
   /**
    * Returns the name of this property
-   */  
+   */
   public String getPropertyName() {
     return "margin-top";
   }
@@ -88,7 +88,7 @@ public class CssMarginTop extends CssMarginSide {
    *
    * @param style The style where the property is
    * @param resolve if true, resolve the style to find this property
-   */  
+   */
   public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
     if (resolve) {
       return ((Css1Style) style).getMarginTop();
@@ -101,7 +101,7 @@ public class CssMarginTop extends CssMarginSide {
    * Compares two properties for equality.
    *
    * @param value The other property.
-   */  
+   */
   public boolean equals(CssProperty property) {
     return (property instanceof CssMarginTop && value.equals(((CssMarginTop) property).value));
   }

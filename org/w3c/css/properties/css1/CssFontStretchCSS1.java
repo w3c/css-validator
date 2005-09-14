@@ -15,35 +15,35 @@ import org.w3c.css.values.CssIdent;
 /**
  *
  * @see CssFont
- * @version $Revision$ 
+ * @version $Revision$
  */
 public class CssFontStretchCSS1 extends CssProperty implements CssFontConstantCSS1 {
-    
+
     int value;
-    
+
     private static int[] hash_values;
-    
+
     /**
      * Create a new CssFontStretch
      */
     public CssFontStretchCSS1() {
 	// nothing to do
     }
-    
+
     /**
      * Creates a new CssFontStretch
      *
      * @param expression the font stretch
      * @exception InvalidParamException Values are incorrect
-     */  
+     */
     public CssFontStretchCSS1(ApplContext ac, CssExpression expression,
-	    boolean check)    
+	    boolean check)
 	throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	setByUser();
 	if (expression.getValue() instanceof CssIdent) {
 	    int hash = expression.getValue().hashCode();
@@ -54,23 +54,23 @@ public class CssFontStretchCSS1 extends CssProperty implements CssFontConstantCS
 		    return;
 		}
 	}
-	
-	throw new InvalidParamException("value", expression.getValue(), 
+
+	throw new InvalidParamException("value", expression.getValue(),
 					getPropertyName(), ac);
     }
-    
+
     public CssFontStretchCSS1(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the current value
-     */  
+     */
     public Object get() {
 	return FONTSTRETCH[value];
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      * e.g. his value equals inherit
@@ -78,21 +78,21 @@ public class CssFontStretchCSS1 extends CssProperty implements CssFontConstantCS
     public boolean isSoftlyInherited() {
 	return value == FONTSTRETCH.length - 1;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	return FONTSTRETCH[value];
     }
-    
+
     /**
      * Returns the name of this property
-     */  
+     */
     public String getPropertyName() {
 	return "font-stretch";
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -104,13 +104,13 @@ public class CssFontStretchCSS1 extends CssProperty implements CssFontConstantCS
 	    style0.addRedefinitionWarning(ac, this);
 	style0.cssFontStretchCSS1 = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
      * @param style The style where the property is
      * @param resolve if true, resolve the style to find this property
-     */  
+     */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css1Style) style).getFontStretchCSS1();
@@ -118,25 +118,25 @@ public class CssFontStretchCSS1 extends CssProperty implements CssFontConstantCS
 	    return ((Css1Style) style).cssFontStretchCSS1;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
      * @param value The other property.
-     */  
+     */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFontStretchCSS1 && 
+	return (property instanceof CssFontStretchCSS1 &&
 		((CssFontStretchCSS1) property).value == value);
     }
-    
+
     /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
-     */  
+     */
     public boolean isDefault() {
 	return value == 0;
     }
-    
+
     static {
 	hash_values = new int[FONTSTRETCH.length];
 	for (int i=0;i<FONTSTRETCH.length;i++)

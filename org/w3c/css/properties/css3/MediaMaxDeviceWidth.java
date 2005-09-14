@@ -29,7 +29,7 @@ public class MediaMaxDeviceWidth extends CssProperty {
     public MediaMaxDeviceWidth() {
 	//empty
     }
-    
+
     /**
      * Create a new MediaMaxDeviceWidth.
      *
@@ -39,13 +39,13 @@ public class MediaMaxDeviceWidth extends CssProperty {
     public MediaMaxDeviceWidth(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	
+
 	if (expression != null) {
 	    val = expression.getValue();
 	}
-	
+
 	setByUser();
-	
+
 	if (val != null) {
 	    if (val instanceof CssLength || val instanceof CssPercentage) {
 		float f = ((Float) val.get()).floatValue();
@@ -60,7 +60,7 @@ public class MediaMaxDeviceWidth extends CssProperty {
 		throw new InvalidParamException("value", expression.getValue(),
 			getPropertyName(), ac);
 	    }
-	    
+
 	    expression.next();
 	}
     }
@@ -69,7 +69,7 @@ public class MediaMaxDeviceWidth extends CssProperty {
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the value of this property.
      */

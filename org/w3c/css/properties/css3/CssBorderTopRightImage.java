@@ -21,19 +21,19 @@ import org.w3c.css.values.CssValue;
 
 
 public class CssBorderTopRightImage extends CssProperty {
-    
+
     String value = "";
     ApplContext ac;
     CssIdent contin = new CssIdent("continue");
     CssIdent none = new CssIdent("none");
-    
+
     /**
      * Create new CssBorderTopRightImage
      */
     public CssBorderTopRightImage() {
 	value = "continue";
     }
-    
+
     /**
      * Create new CssBorderTopRightImage
      *
@@ -44,7 +44,7 @@ public class CssBorderTopRightImage extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
-	
+
 	if (val != null) {
 	    if (val.equals(none)) {
 		value = "none";
@@ -60,15 +60,15 @@ public class CssBorderTopRightImage extends CssProperty {
 	    throw new InvalidParamException("value", expression.getValue(),
 		    getPropertyName(), ac);
 	}
-	
+
 	expression.next();
     }
-    
+
     public CssBorderTopRightImage(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -79,7 +79,7 @@ public class CssBorderTopRightImage extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssBorderTopRightImage = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -93,7 +93,7 @@ public class CssBorderTopRightImage extends CssProperty {
 	    return ((Css3Style) style).cssBorderTopRightImage;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -103,35 +103,35 @@ public class CssBorderTopRightImage extends CssProperty {
 	return (property instanceof CssBorderTopRightImage &&
 		value.equals( ((CssBorderTopRightImage) property).value));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "border-top-right-image";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return value;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return value.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return value;
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -140,5 +140,5 @@ public class CssBorderTopRightImage extends CssProperty {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return value == cssnum.toString();
     }
-    
+
 }

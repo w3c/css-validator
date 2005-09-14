@@ -34,10 +34,10 @@ import org.w3c.css.values.CssValue;
  */
 
 public class SolidOpacity extends CssProperty {
-    
+
     CssValue opaclevel;
     ApplContext ac;
-    
+
     /**
      * Create a new SolidOpacity
      */
@@ -45,7 +45,7 @@ public class SolidOpacity extends CssProperty {
 	CssNumber cssnum =  new CssNumber((float) 1.0);
 	opaclevel = cssnum;
     }
-    
+
     /**
      * Create a new SolidOpacity
      *
@@ -58,8 +58,8 @@ public class SolidOpacity extends CssProperty {
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 	if (val instanceof CssNumber) {
-	    
-	    CssNumber cssnum = new CssNumber(clampedValue(ac, 
+
+	    CssNumber cssnum = new CssNumber(clampedValue(ac,
 		    ((CssNumber) val).getValue()));
 	    opaclevel = cssnum;
 	    expression.next();
@@ -75,12 +75,12 @@ public class SolidOpacity extends CssProperty {
 		    getPropertyName(), ac);
 	}
     }
-    
+
     public SolidOpacity(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Brings all values back between 0 and 1
      *
@@ -93,7 +93,7 @@ public class SolidOpacity extends CssProperty {
 	}
 	else return(opac);
     }
-    
+
     /**
      * Add this property to the CssStyle.
      *
@@ -104,7 +104,7 @@ public class SolidOpacity extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((SVGStyle) style).solidOpacity = this;
     }
-    
+
     /**
      * Get this property in the style.
      *
@@ -118,7 +118,7 @@ public class SolidOpacity extends CssProperty {
 	    return ((SVGStyle) style).solidOpacity;
 	}
     }
-    
+
     /**
      * Compares two properties for equality.
      *
@@ -128,35 +128,35 @@ public class SolidOpacity extends CssProperty {
 	return (property instanceof SolidOpacity &&
 		opaclevel.equals( ((SolidOpacity) property).opaclevel));
     }
-    
+
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
 	return "solid-opacity";
     }
-    
+
     /**
      * Returns the value of this property
      */
     public Object get() {
 	return opaclevel;
     }
-    
+
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
 	return opaclevel.equals(inherit);
     }
-    
+
     /**
      * Returns a string representation of the object
      */
     public String toString() {
 	return opaclevel.toString();
     }
-    
+
     /**
      * Is the value of this property a default value
      * It is used by all macro for the function <code>print</code>
@@ -165,6 +165,6 @@ public class SolidOpacity extends CssProperty {
 	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
 	return opaclevel == cssnum;
     }
-    
+
 }
 

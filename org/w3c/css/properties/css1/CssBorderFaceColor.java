@@ -53,13 +53,13 @@ public class CssBorderFaceColor {
      */
     public CssBorderFaceColor(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
-	
+
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	
+
 	CssValue val = expression.getValue();
-	
+
 	if (val instanceof org.w3c.css.values.CssColor) {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
@@ -74,14 +74,14 @@ public class CssBorderFaceColor {
 	    throw new InvalidParamException("value", val.toString(),
 		    "border-color", ac);
 	}
-	expression.next();	
+	expression.next();
     }
 
-    public CssBorderFaceColor(ApplContext ac, CssExpression expression) 
+    public CssBorderFaceColor(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
-    
+
     /**
      * Returns the internal color
      */

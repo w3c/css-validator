@@ -54,18 +54,18 @@ public class SelectorsList {
 
     // the list of selectors
     private ArrayList selectors;
-        
+
     private ApplContext ac;
 
     private int specificity;
 
     /**
-     * Creates a new empty SelectorsList     
+     * Creates a new empty SelectorsList
      */
     public SelectorsList() {
 	selectors = new ArrayList();
     }
-    
+
     /**
      * Creates a new SelectorsList given an context
      * @param ac the context in which the selectors appear
@@ -74,7 +74,7 @@ public class SelectorsList {
 	this.ac = ac;
 	selectors = new ArrayList();
     }
- 
+
     /**
      * Returns the selectors list
      * @return Returns the selectors list.
@@ -92,14 +92,14 @@ public class SelectorsList {
     }
 
     /**
-     * Return the nth selector in this SelectorsList 
+     * Return the nth selector in this SelectorsList
      * @param index the index of the selector to retreive
      * @return the nth selector
      */
     public Selector getSelector(int index) {
 	return (Selector) selectors.get(index);
     }
-    
+
     /**
      * The number of selectors in this SelectorsList
      * @return the number of selectors in this SelectorsList
@@ -107,7 +107,7 @@ public class SelectorsList {
     public int size() {
 	return selectors.size();
     }
-    
+
     /**
      * Adds a selector to this SelectorsList
      * @param selector the selector to add
@@ -115,121 +115,121 @@ public class SelectorsList {
      */
     public void addSelector(Selector selector) throws InvalidParamException {
 	if(selectors.size() > 0) {
-	    Selector last = (Selector) selectors.get(selectors.size() - 1);	    
+	    Selector last = (Selector) selectors.get(selectors.size() - 1);
 	    if(last instanceof PseudoElementSelector) {
 		throw new InvalidParamException("pseudo-element", selector, ac);
 	    }
 	}
 	selectors.add(selector);
     }
-    
+
     /**
-     * Adds an attribute selector 
+     * Adds an attribute selector
      * @param attribute the attribute selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addAttribute(AttributeSelector attribute) 
+    public void addAttribute(AttributeSelector attribute)
     throws InvalidParamException {
 	addSelector(attribute);
     }
-    
+
     /**
-     * Adds an universal selector 
+     * Adds an universal selector
      * @param universal the universal selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addUniversal(UniversalSelector universal) 
+    public void addUniversal(UniversalSelector universal)
     throws InvalidParamException {
 	addSelector(universal);
     }
-    
+
     /**
-     * Adds a type selector 
+     * Adds a type selector
      * @param type the type selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addType(TypeSelector type) throws InvalidParamException {
 	addSelector(type);
     }
-    
+
     /**
-     * Adds a descendant selector 
+     * Adds a descendant selector
      * @param descendant the descendant selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addDescendant(DescendantSelector descendant) 
+    public void addDescendant(DescendantSelector descendant)
     throws InvalidParamException {
 	addSelector(descendant);
     }
-    
+
     /**
-     * Adds a child selector 
+     * Adds a child selector
      * @param child the child selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addChild(ChildSelector child) throws InvalidParamException {
 	addSelector(child);
     }
-    
+
     /**
-     * Adds a pseudo-class selector 
+     * Adds a pseudo-class selector
      * @param pc the pseudo-class to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addPseudoClass(PseudoClassSelector pc) 
+    public void addPseudoClass(PseudoClassSelector pc)
     throws InvalidParamException {
 	addSelector(pc);
     }
-    
+
     /**
      * Adds a pseudo-element selector
-     * No other selector can be added after a pseudo-element 
+     * No other selector can be added after a pseudo-element
      * @param pe the pseudo-element to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addPseudoElement(PseudoElementSelector pe) 
+    public void addPseudoElement(PseudoElementSelector pe)
     throws InvalidParamException {
 	addSelector(pe);
     }
-    
+
     /**
-     * Adds a pseudo-function selector 
+     * Adds a pseudo-function selector
      * @param pf the pseudo-function to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addPseudoFunction(PseudoFunctionSelector pf) 
+    public void addPseudoFunction(PseudoFunctionSelector pf)
     throws InvalidParamException {
 	addSelector(pf);
     }
-    
+
     /**
-     * Adds an adjacent selector 
+     * Adds an adjacent selector
      * @param adjacent the adjacent selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addAdjacent(AdjacentSelector adjacent) 
+    public void addAdjacent(AdjacentSelector adjacent)
     throws InvalidParamException {
 	addSelector(adjacent);
     }
-    
+
     /**
-     * Adds a class selector 
+     * Adds a class selector
      * @param cs the class selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addClass(ClassSelector cs) throws InvalidParamException {
 	addSelector(cs);
     }
-    
+
     /**
-     * Adds an id selector 
+     * Adds an id selector
      * @param id the id selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
     public void addId(IdSelector id) throws InvalidParamException {
 	addSelector(id);
-    }        
-        
+    }
+
     /**
      * Returns a String representation of this SelectorsList
      * @return  the String representation of this SelectorsList
@@ -241,7 +241,7 @@ public class SelectorsList {
 	}
 	return res.toString();
     }
-    
+
     /**
      * Sets the specificity of this SelectorsList
      * @param specificity the specificity yo set
@@ -249,15 +249,15 @@ public class SelectorsList {
     public void setSpecificity(int specificity) {
 	this.specificity = specificity;
     }
-    
+
     /**
      * Gets (and computes) the specificity of this selector.
      */
-    public int getSpecificity() {	
+    public int getSpecificity() {
 	int a = 0;
 	int b = 0;
 	int c = 0;
-	
+
 	for(int i = 0; i < size(); i++) {
 	    Selector s = getSelector(i);
 	    if(s instanceof IdSelector) {
@@ -277,10 +277,10 @@ public class SelectorsList {
 	    }
 	}
 	specificity += a * 100 + b * 10 + c;
-	
-	return specificity;	
+
+	return specificity;
     }
-    
+
     /**
      * Testing method
      * @param args unused
@@ -294,18 +294,18 @@ public class SelectorsList {
 	    s.addType(new TypeSelector("F"));
 	    s.addAttribute(new AttributeBegin("lang", "en"));
 	    s.addAttribute(new AttributeAny("bar"));
-	    s.addAdjacent(new AdjacentSelector());	    
+	    s.addAdjacent(new AdjacentSelector());
 	    s.addType(new TypeSelector("G"));
 	    s.addId(new IdSelector("id"));
 	    s.addAttribute(new AttributeAny("blop"));
 	    s.addDescendant(new DescendantSelector());
 	    s.addType(new TypeSelector("H"));
-	    
+
 	    System.out.println(s);
 	}
 	catch(InvalidParamException e) {
 	    System.err.println(e.getMessage());
 	}
     }
-    
+
 }

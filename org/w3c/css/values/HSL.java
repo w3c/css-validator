@@ -18,13 +18,13 @@ public class HSL {
     Object h;
     Object s;
     Object l;
- 
+
     /**
      * Create a new HSL
      */
     public HSL() {
     }
-    
+
     /**
      * Create a new HSL with default values
      */
@@ -33,7 +33,7 @@ public class HSL {
 	this.s = s;
 	this.l = l;
     }
-    
+
     /**
      * Returns a string representation of the object.
      */

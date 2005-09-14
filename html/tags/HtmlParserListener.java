@@ -22,7 +22,7 @@ public interface HtmlParserListener extends HtmlStreamListener {
     *
     * @param url the URL being parsed.
     * @param root the new root Tag for this parser.
-    */    
+    */
     public void notifyCreateRoot(URL url, HtmlTag root);
 
     public void notifyConnection(URLConnection cnx);
@@ -31,7 +31,7 @@ public interface HtmlParserListener extends HtmlStreamListener {
     * Notifies successful termination.
     *
     * @param root the root of the current Tree.
-    */    
+    */
     public void notifyEnd(HtmlTag root, String contenttype);
 
 

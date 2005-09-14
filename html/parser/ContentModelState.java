@@ -1,5 +1,5 @@
 /*
- * @(#)ContentModelState.java	1.2 95/04/24  
+ * @(#)ContentModelState.java	1.2 95/04/24
  *
  * Copyright (c) 1994 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -84,7 +84,7 @@ class ContentModelState {
 
 	  case '&': {
 	    ContentModel m = (ContentModel)model.content;
-		
+
 	    for (int i = 0 ; m != null ; i++, m = m.next) {
 		if ((value & (1L << i)) == 0) {
 		    if (!m.empty()) {
@@ -105,7 +105,7 @@ class ContentModelState {
 	    }
 	    return (next == null) || next.terminate();
 	  }
-	    
+
 	default:
 	  return false;
 	}
@@ -145,20 +145,20 @@ class ContentModelState {
 	switch (model.type) {
 	  case '+':
 	    if (model.first(token)) {
-		return new ContentModelState(model.content, 
+		return new ContentModelState(model.content,
 		        new ContentModelState(model, next, value + 1)).advance(token);
 	    }
 	    if (value != 0) {
 		return next.advance(token);
 	    }
 	    break;
-		
+
 	  case '*':
 	    if (model.first(token)) {
 		return new ContentModelState(model.content, this).advance(token);
 	    }
 	    return next.advance(token);
-		
+
 	  case '?':
 	    if (model.first(token)) {
 		return new ContentModelState(model.content, next).advance(token);
@@ -181,21 +181,21 @@ class ContentModelState {
 		if (m.next == null) {
 		    return new ContentModelState(m, next).advance(token);
 		} else {
-		    return new ContentModelState(m, 
+		    return new ContentModelState(m,
 			    new ContentModelState(model, next, value + 1)).advance(token);
 		}
-	    } 
+	    }
 	    break;
 	  }
 
 	  case '&': {
 	    ContentModel m = (ContentModel)model.content;
 	    boolean complete = true;
-		
+
 	    for (int i = 0 ; m != null ; i++, m = m.next) {
 		if ((value & (1L << i)) == 0) {
 		    if (m.first(token)) {
-			return new ContentModelState(m, 
+			return new ContentModelState(m,
 			        new ContentModelState(model, next, value | (1L << i))).advance(token);
 		    }
 		    if (!m.empty()) {
@@ -205,10 +205,10 @@ class ContentModelState {
 	    }
 	    if (complete) {
 		return next.advance(token);
-	    }	
+	    }
 	    break;
 	  }
-		
+
 	  default:
 	    if (model.content == token) {
 		return next;

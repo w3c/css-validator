@@ -15,6 +15,6 @@ public interface TagFactory {
 
    /**
     * creates an returns a valid Tag object for the given name.
-    */    
+    */
     Tag create(String name);
 }
