@@ -382,9 +382,9 @@ public final class StyleReportSOAP12 extends StyleReport
 			    out.print("              <m:level>");
 			    out.print(warn.getLevel());
 			    out.print("</m:level>\n");
-			    out.print("              <message>");
+			    out.print("              <m:message>");
 			    out.print(oldMessage);
-			    out.print("</message>\n");
+			    out.print("</m:message>\n");
 			    if (warn.getContext() != null) {
 				out.print("              <m:context>");
 				out.print(warn.getContext());
