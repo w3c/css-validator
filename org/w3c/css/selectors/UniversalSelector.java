@@ -21,7 +21,7 @@ public class UniversalSelector implements Selector {
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+	return true;
     }
 
     /**

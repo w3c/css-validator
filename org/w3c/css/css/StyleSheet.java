@@ -168,8 +168,8 @@ public class StyleSheet {
      */
     public void findConflicts(ApplContext ac) {
 	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
-	    CssStyle style = ((CssSelectors) e.nextElement()).getStyle();
-	    style.findConflicts(ac, warnings, getRules().elements());
+	    CssSelectors sel = (CssSelectors) e.nextElement();
+	    sel.findConflicts(ac, warnings, getRules().elements());
 	}
     }
 

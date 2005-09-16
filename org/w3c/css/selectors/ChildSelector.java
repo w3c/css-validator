@@ -28,7 +28,7 @@ public class ChildSelector implements Selector {
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+	return true;
     }
 
 }

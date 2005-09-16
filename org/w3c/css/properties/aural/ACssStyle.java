@@ -9,6 +9,7 @@ package org.w3c.css.properties.aural;
 import java.util.Enumeration;
 
 import org.w3c.css.parser.CssPrinterStyle;
+import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
@@ -426,8 +427,9 @@ public class ACssStyle extends Css1Style {
    * @param warnings For warnings reports.
    * @param allSelectors All contexts is the entire style sheet.
    */
-  public void findConflicts(ApplContext ac, Warnings warnings, Enumeration allSelectors) {
-    super.findConflicts(ac, warnings, allSelectors);
+  public void findConflicts(ApplContext ac, Warnings warnings,
+	  CssSelectors selector, Enumeration allSelectors) {
+    super.findConflicts(ac, warnings, selector, allSelectors);
     if (acssVoiceFamily != null) {
 	if (!acssVoiceFamily.containsGenericFamily()) {
 	    warnings.addWarning(new Warning(acssVoiceFamily,

@@ -8,6 +8,7 @@
 package org.w3c.css.parser;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.selectors.AdjacentSelector;
@@ -586,5 +587,11 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    // BODY H1 and HTML BODY H1
 	    return next.canMatch(selector.next);
 	}
+    }
+    
+    public void findConflicts(ApplContext ac, Warnings warnings,
+	    Enumeration allSelectors) {
+	CssStyle style = getStyle();
+	style.findConflicts(ac, warnings, this, allSelectors);
     }
 }
