@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
   <head>
     <meta lang="ja" name="Translator" content="Norio Touyama" />
-    <title>W3C CSS $B8!>Z%5!<%S%9(B</title>
+    <title>W3C CSS 検証サービス</title>
     <link href="style/general.css" type="text/css" rel="STYLESHEET" />
     <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
   </head>
@@ -18,16 +18,16 @@
     <div class="t1">CSS</div>
     <div class="t2">Validator</div>
 
-    <h1>W3C CSS $B8!>Z%5!<%S%9(B</h1>
+    <h1>W3C CSS 検証サービス</h1>
     
     <p>
-      W3C CSS $B8!>Z%5!<%S%9$X$h$&$3$=(B!
+      W3C CSS 検証サービスへようこそ!
     </p>
     <hr />
-    <h2>$B%+%9%1!<%G%#%s%0%9%?%$%k%7!<%H(B(CSS)$B$N8!>Z$r9T$$$^$9(B</h2>
+    <h2>カスケーディングスタイルシート(CSS)の検証を行います</h2>
     
     <p>
-      $B8!>Z$7$?$$(BCSS$B$r%F%-%9%H%(%j%"$KF~NO$7$F$/$@$5$$(B:
+      検証したいCSSをテキストエリアに入力してください:
     </p>
     
     <form action="validator" method="get">
@@ -35,14 +35,14 @@
       <textarea name="text" rows="12" cols="75">
       </textarea><br />
       
-      $B7Y9p$r(B:
+      警告を:
       <select name="warning"> 
-	<option selected="selected" value="2">$BA4$F=PNO(B</option>
-	<option value="1">$B0lHLE*$J$b$N$r=PNO(B</option>
-	<option value="0">$B=EMW$J$b$N$@$1=PNO(B</option>
-	<option value="no">$B=PNO$7$J$$(B</option>
+	<option selected="selected" value="2">全て出力</option>
+	<option value="1">一般的なものを出力</option>
+	<option value="0">重要なものだけ出力</option>
+	<option value="no">出力しない</option>
       </select><br />
-      <!-- <input type="checkbox" name="error" value="no">$B%(%i!<$r=PNO$7$J$$(B -->
+      <!-- <input type="checkbox" name="error" value="no">エラーを出力しない -->
       
       Profile :
       <select name="profile">
@@ -75,8 +75,8 @@
       </select><br />
 
       <br />
-      <input type="submit" value="$B$3$N(BCSS$B$r8!>Z$9$k(B" />
-      <input type="reset" name="Reset" value="$BF~NO%U%)!<%`$r%j%;%C%H$9$k(B"
+      <input type="submit" value="このCSSを検証する" />
+      <input type="reset" name="Reset" value="入力フォームをリセットする"
 	/>
       
     </form>
@@ -85,10 +85,10 @@
     <br />
     <br />
     <p>
-      CSS$B%9%?%$%k%7!<%H$r0U?^$7$?DL$j$K5!G=$5$;$k$K$O!"(B
-      $B@5$7$$J8=q2r@OLZ$,I,MW$G$9!#$D$^$j!"(B
-      <a href="http://validator.w3.org/">$B@5Ev(B<span lang="en">(valid)</span>
-      $B$J(BHTML</a>
+      CSSスタイルシートを意図した通りに機能させるには、
+      正しい文書解析木が必要です。つまり、
+      <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
+      なHTML</a>
     </p>
     
     <hr />
