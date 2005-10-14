@@ -62,6 +62,7 @@
 	<input type="text" name="uri" id="uri" size="45" /></label>
 	<label title="Submit file for validation"><input type="submit" value="Check" /></label>
 	<input name="usermedium" value="all" type="hidden" />
+	<input name="warning" value="no" type="hidden" />
       </p>
       </form>
       <p>
@@ -77,6 +78,7 @@
 	<label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:</label>
 	<input type="file" id="file" name="file" size="30" />
 	<input name="usermedium" value="all" type="hidden" />
+	<input name="warning" value="no" type="hidden" />
 	<label title="Submit file for validation"><input type="submit" value="Check" /></label>
       </p>
       </form>

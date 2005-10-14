@@ -89,6 +89,7 @@
 							<label title="Indique un archivo local para enviarlo y validarlo" for="file">Archivo CSS local:</label>
 							<input type="file" id="file" name="file" size="30" />
 							<input name="usermedium" value="all" type="hidden" />
+	<input name="warning" value="no" type="hidden" />
 							<label title="Enviar el archivo para validarlo">
 								<input type="submit" value="Comprobar" />
 							</label>
@@ -105,6 +106,8 @@
 						<p>
 							<textarea name="text" rows="12" cols="75"></textarea>
 							<input name="usermedium" value="all" type="hidden" />
+	<input name="warning" value="no" type="hidden" />
+
 							<br/>
 							<label title="Enviar el texto para su validación">
 								<input type="submit" value="Comprobar" />

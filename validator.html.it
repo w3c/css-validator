@@ -61,7 +61,8 @@
 	<input type="text" name="uri" id="uri" size="45" /></label>
 	<label title="Invia l'indirizzo al sistema di validazione"><input type="submit" value="Controlla" /></label>
 	<input name="usermedium" value="all" type="hidden" />
-      </p>
+      	<input name="warning" value="no" type="hidden" />
+</p>
       </form>
       <p>
 	Sono disponibili delle ulteriori opzioni, utilizzabili tramite una <a href="validator-uri">interfaccia avanzata</a>.
@@ -89,6 +90,7 @@
       <p>
 	<textarea name="text" rows="12" cols="75"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
+	<input name="warning" value="no" type="hidden" />
         <br />
 	<label title="Invia il testo al sistema di validazione">
 	<input type="submit" value="Controlla" />
