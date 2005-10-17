@@ -161,7 +161,7 @@ public final class StyleReportSOAP12 extends StyleReport
 	    general.put("today", new Date().toString());
 	}
 	SimpleDateFormat formatter = new SimpleDateFormat(
-	    "yyyy.MM.dd'T'hh:mm:ss'Z'");
+	    "yyyy-MM-dd'T'hh:mm:ss'Z'");
 	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	general.put("currentdate", formatter.format(new Date()));
     }
