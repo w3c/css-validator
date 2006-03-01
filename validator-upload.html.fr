@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Le service de validation CSS du W3C</title>
-<link rev="made" href="mailto:www-validator@w3.org" />
+<link rev="made" href="mailto:www-validator-css@w3.org" />
 <link rev="start" href="./" title="Page d'accueil" />
 <style type="text/css" media="all">@import "./base.css";</style>
 <meta name="keywords" content="CSS, Cascading Style Sheets, Validation, W3C Markup Validation Service" />

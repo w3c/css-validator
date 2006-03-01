@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
   <head>
     <title>Servizio W3C per la validazione dei fogli di stile a cascata (CSS)</title>
-    <link rev="made" href="mailto:www-validator@w3.org" />
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Pagina Iniziale" />
     <style type="text/css" media="all">@import "./base.css";</style>
     <meta name="revision" content="$Id$" />

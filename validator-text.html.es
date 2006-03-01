@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
     <title>Servicio de Validación de CSS del W3C</title>
-    <link rev="made" href="mailto:www-validator@w3.org" />
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Página de Inicio" />
     <style type="text/css" media="all">@import "./base.css";</style>
     <meta name="revision" content="$Id$" />
