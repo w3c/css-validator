@@ -75,7 +75,7 @@ public class CssLineHeightCSS1 extends CssProperty {
 
 	if (val instanceof CssNumber || val instanceof CssLength ||
 	        val instanceof CssPercentage) {
-	    float v = ((Float) val.get()).floatValue();
+	    float v = ((Number) val.get()).floatValue();
 	    if (v >= 0) {
 		value = val;
 		expression.next();
