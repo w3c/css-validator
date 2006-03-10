@@ -27,6 +27,7 @@ cette ic&ocirc;ne &agrave; votre page Web:</p> <pre class='example'> \n\
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
+(fermez le tag img avec /&gt; au lieu de &gt; si vous utilisez XHTML)
 <p> \
 Si vous le d&eacute;sirez, vous pouvez t&eacute;l&eacute;charger une copie de cette image \
 dans un de vos document Web, et changer le fragment d'HTML d&eacute;crit ci-dessus pour \
