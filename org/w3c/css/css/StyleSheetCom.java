@@ -174,7 +174,7 @@ public class StyleSheetCom implements HtmlParserListener {
 			printAvailableFormat(new PrintWriter(System.err));
 		} else if (argument.startsWith("@")) {
 		    style.defaultmedium = argument;
-		else if (argument.equals("css1") ||
+		} else if (argument.equals("css1") ||
                           argument.equals("css2") ||
                           argument.equals("css21") ||
                           argument.equals("css3") ||
