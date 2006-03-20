@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="build" name="CSS validator">
+<!-- $Id$ -->
+<project default="jar" name="W3C CSS Validator">
 
-	<target name="build">
+  <!-- =================================================================== -->
+  <!-- User-overrideable properties                                      -->
+  <!-- =================================================================== -->
+      
+  <property file="build.properties"/>
+  <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
+  <property name="jigsaw.lib" value="/usr/share/java/jigsaw-2.2.5a.jar"/>
+
+  <!-- =================================================================== -->
+  <!-- Project-wide properties                                           -->
+  <!-- =================================================================== -->
+  <!-- Overriding those properties works too, but is not advisable. -->
+
+  <property name="app.name" value="css-validator"/>
+  <property name="jar.file" value="${app.name}.jar"/>
+  <property name="war.file" value="${app.name}.war"/>
 	
-		<delete dir="./build"/>
+  <!-- =================================================================== -->
+  <!-- Targets                                                             -->
+  <!-- =================================================================== -->
+
+	<path id="build.class.path">
+		<pathelement location="${servlet.lib}"/>
+		<pathelement location="${jigsaw.lib}"/>
+	</path>
+	
+	<target name="build" description="Builds the validator">
 		<mkdir dir="./build"/>
-	
 		<javac 
+			classpathref="build.class.path"
 			destdir="./build" 
-			srcdir="./org/w3c:html"
+			encoding="ISO-8859-15"
 			debug="yes">
+			<src path="./org/w3c"/>
+			<src path="./html"/>
 		</javac>
-
 		<copy todir="./build">
 		    <fileset dir="./">
 		      <exclude name="**/*.java"/>
@@ -26,39 +52,47 @@
 		      <exclude name="**/images/*"/>
 		    </fileset>
 		</copy>
-			
 	</target>
 
-	<target name="javadoc">
-	
+	<target name="javadoc" description="Generates API docs">
 		<mkdir dir="./javadoc"/>
-	
 		<javadoc 
 			packagenames="org.w3c.*"
 			sourcepath="./"
 			destdir="./javadoc"
 			author="true"
 			version="true"
-			windowtitle="CSS validator Javadoc"/>
-    
+			windowtitle="W3C CSS Validator API"/>
 	</target>	
 	
-	<target name="war" depends="build">
-		<delete  file="css-validator.war" />
-		<war warfile="css-validator.war"
-			webxml="web.xml"
-			basedir="."
-			excludes="**/src/**,**/docs/**,**/build/**,**/*.tmp,*.war,**/org/**,**/html/**"
-		>
-			<classes dir="build"/>
-	
-		</war>
-		
+	<target name="jar" depends="build" description="Creates the lib archive">
+		<delete file="${jar.file}"/>
+		<jar jarfile="${jar.file}"
+			basedir="build">
+			<include name="org/**"/>
+			<include name="html/**"/>
+			<manifest>
+	      			<attribute name="Main-Class" value="org.w3c.css.css.StyleSheetCom"/>
+			</manifest>
+		</jar>
 	</target>
 
-	<target name="clean">
-		<delete file="css-validator.war"/>
+	<target name="war" depends="build" description="Creates the webapp module">
+		<delete file="${war.file}"/>
+		<war warfile="${war.file}"
+			webxml="web.xml"
+			basedir="."
+			excludes="**/src/**,**/docs/**,**/build/**,**/*.tmp,*.jar,*.war,**/org/**,**/html/**"
+		>
+			<classes dir="build"/>
+		</war>
+	</target>
+
+	<target name="clean" description="Cleans up generated files">
+		<delete file="${jar.file}"/>
+		<delete file="${war.file}"/>
 		<delete dir="./build"/>
+		<delete dir="./javadoc"/>
 	</target>
 
 </project>
