@@ -219,7 +219,7 @@ public class StyleSheetCom implements HtmlParserListener {
 	    System.out.println( "\t-e\tDo NOT show warnings");
 	    System.out.println( "\tuse the option -format to see"
 				+ " available format.");
-	    System.out.println( "\tCSS version\t-css1 || -css2 || -css3 || -svg || -svgbasic || -svgtiny");
+	    System.out.println( "\tCSS version\t-css1 || -css2 || -css21 || -css3 || -svg || -svgbasic || -svgtiny");
 	    System.out.println( "\tProfile\t\t -atsc || -mobile || tv");
 	    //System.out.println( "\tCSS version\t-css1 || -css2");
 	    //	    System.out.println( "\tProfile\t\t-svg || -atsc || -mobile");
