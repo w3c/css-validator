@@ -206,6 +206,9 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 		}
 	    }
 	}
+        
+        // the ident isn't a valid pseudo-something
+        throw new InvalidParamException("pseudo", ":" + pseudo, ac);
     }
 
     public void setPseudoFun(String pseudo, String param)

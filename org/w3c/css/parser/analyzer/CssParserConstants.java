@@ -4,96 +4,97 @@ package org.w3c.css.parser.analyzer;
 public interface CssParserConstants {
 
   int EOF = 0;
-  int S = 1;
-  int CDO = 5;
-  int CDC = 6;
-  int LBRACE = 7;
-  int RBRACE = 8;
-  int DASHMATCH = 9;
-  int INCLUDES = 10;
-  int PREFIXMATCH = 11;
-  int SUFFIXMATCH = 12;
-  int SUBSTRINGMATCH = 13;
-  int TILDE = 14;
-  int EQ = 15;
-  int PLUS = 16;
-  int MINUS = 17;
-  int COMMA = 18;
-  int SEMICOLON = 19;
-  int PRECEDES = 20;
-  int DIV = 21;
-  int LBRACKET = 22;
-  int RBRACKET = 23;
-  int ANY = 24;
-  int DOT = 25;
-  int LPARAN = 26;
-  int RPARAN = 27;
-  int COLON = 28;
-  int AND = 29;
-  int MEDIARESTRICTOR = 30;
-  int NONASCII = 31;
-  int H = 32;
-  int UNICODE = 33;
-  int ESCAPE = 34;
-  int NMSTART = 35;
-  int NMCHAR = 36;
-  int STRINGCHAR = 37;
-  int D = 38;
-  int NAME = 39;
-  int STRING = 40;
-  int IDENT = 41;
-  int NUMBER = 42;
-  int _URL = 43;
-  int URL = 44;
-  int PERCENTAGE = 45;
-  int LENGTH = 46;
-  int EMS = 47;
-  int EXS = 48;
-  int ANGLE = 49;
-  int TIME = 50;
-  int FREQ = 51;
-  int RESOLUTION = 52;
-  int DATE = 53;
-  int DIMEN = 54;
-  int HASH = 55;
-  int IMPORTANT_SYM = 56;
-  int IMPORT_SYM = 57;
-  int MEDIA_SYM = 58;
-  int PAGE_SYM = 59;
-  int FONT_FACE_SYM = 60;
-  int PREF_SYM = 61;
-  int COLOR_PROFILE = 62;
-  int CHARSET_SYM = 63;
-  int ATTOP = 64;
-  int ATRIGHT = 65;
-  int ATBOTTOM = 66;
-  int ATLEFT = 67;
-  int ATCOUNTER = 68;
-  int PHONETIC_ALPHABET_SYM = 69;
-  int ATKEYWORD = 70;
-  int RANGE0 = 71;
-  int RANGE1 = 72;
-  int RANGE2 = 73;
-  int RANGE3 = 74;
-  int RANGE4 = 75;
-  int RANGE5 = 76;
-  int RANGE6 = 77;
-  int RANGE = 78;
-  int UNI = 79;
-  int UNICODERANGE = 80;
-  int CLASS = 81;
-  int FUNCTION = 82;
-  int UNKNOWN = 83;
+  int SPC_CHAR = 1;
+  int S = 2;
+  int CDO = 6;
+  int CDC = 7;
+  int LBRACE = 8;
+  int RBRACE = 9;
+  int DASHMATCH = 10;
+  int INCLUDES = 11;
+  int PREFIXMATCH = 12;
+  int SUFFIXMATCH = 13;
+  int SUBSTRINGMATCH = 14;
+  int TILDE = 15;
+  int EQ = 16;
+  int PLUS = 17;
+  int MINUS = 18;
+  int COMMA = 19;
+  int SEMICOLON = 20;
+  int PRECEDES = 21;
+  int DIV = 22;
+  int LBRACKET = 23;
+  int RBRACKET = 24;
+  int ANY = 25;
+  int DOT = 26;
+  int LPARAN = 27;
+  int RPARAN = 28;
+  int COLON = 29;
+  int AND = 30;
+  int MEDIARESTRICTOR = 31;
+  int NONASCII = 32;
+  int H = 33;
+  int UNICODE = 34;
+  int ESCAPE = 35;
+  int NMSTART = 36;
+  int NMCHAR = 37;
+  int STRINGCHAR = 38;
+  int D = 39;
+  int NAME = 40;
+  int STRING = 41;
+  int IDENT = 42;
+  int NUMBER = 43;
+  int _URL = 44;
+  int URL = 45;
+  int PERCENTAGE = 46;
+  int LENGTH = 47;
+  int EMS = 48;
+  int EXS = 49;
+  int ANGLE = 50;
+  int TIME = 51;
+  int FREQ = 52;
+  int RESOLUTION = 53;
+  int DATE = 54;
+  int DIMEN = 55;
+  int HASH = 56;
+  int IMPORTANT_SYM = 57;
+  int IMPORT_SYM = 58;
+  int MEDIA_SYM = 59;
+  int PAGE_SYM = 60;
+  int FONT_FACE_SYM = 61;
+  int PREF_SYM = 62;
+  int COLOR_PROFILE = 63;
+  int CHARSET_SYM = 64;
+  int ATTOP = 65;
+  int ATRIGHT = 66;
+  int ATBOTTOM = 67;
+  int ATLEFT = 68;
+  int ATCOUNTER = 69;
+  int PHONETIC_ALPHABET_SYM = 70;
+  int ATKEYWORD = 71;
+  int RANGE0 = 72;
+  int RANGE1 = 73;
+  int RANGE2 = 74;
+  int RANGE3 = 75;
+  int RANGE4 = 76;
+  int RANGE5 = 77;
+  int RANGE6 = 78;
+  int RANGE = 79;
+  int UNI = 80;
+  int UNICODERANGE = 81;
+  int CLASS = 82;
+  int FUNCTION = 83;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
 
   String[] tokenImage = {
     "<EOF>",
+    "\" \"",
     "<S>",
     "\"/*\"",
     "\"*/\"",
-    "<token of kind 4>",
+    "<token of kind 5>",
     "\"<!--\"",
     "\"-->\"",
     "\"{\"",
@@ -172,7 +173,6 @@ public interface CssParserConstants {
     "<UNICODERANGE>",
     "<CLASS>",
     "<FUNCTION>",
-    "<UNKNOWN>",
     "\"::\"",
   };
 

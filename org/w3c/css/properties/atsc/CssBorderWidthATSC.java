@@ -89,9 +89,9 @@ public class CssBorderWidthATSC extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    top = new CssBorderTopWidthATSC(ac, expression);
-	    bottom = new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) top.get());
+	    /*bottom = new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) top.get());
 	    right = new CssBorderRightWidthATSC((CssBorderFaceWidthATSC) top.get());
-	    left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) top.get());
+	    left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) top.get());*/
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
@@ -106,8 +106,8 @@ public class CssBorderWidthATSC extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    right = new CssBorderRightWidthATSC(ac, expression);
-	    bottom = new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) top.get());
-	    left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) right.get());
+	    /*bottom = new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) top.get());
+	    left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) right.get());*/
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
@@ -130,7 +130,7 @@ public class CssBorderWidthATSC extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    bottom = new CssBorderBottomWidthATSC(ac, expression);
-	    left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) right.get());
+	    //left = new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) right.get());
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
@@ -192,7 +192,14 @@ public class CssBorderWidthATSC extends CssProperty implements CssOperator {
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (right.face.equals(left.face)) {
+        String result = "";
+        // top should never be null
+        if(top != null) result += top;
+        if(right != null) result += " " + right;
+        if(bottom != null) result += " " + bottom;
+        if(left != null) result += " " + left;
+        return result;
+	/*if (right.face.equals(left.face)) {
 	    if (top.face.equals(bottom.face)) {
 		if (top.face.equals(right.face)) {
 		    return top.toString();
@@ -204,7 +211,7 @@ public class CssBorderWidthATSC extends CssProperty implements CssOperator {
 	    }
 	} else {
 	    return top + " " + right + " " + bottom + " " + left;
-	}
+	}*/
     }
 
     /**

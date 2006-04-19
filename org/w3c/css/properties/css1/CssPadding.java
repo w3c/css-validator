@@ -92,9 +92,9 @@ public class CssPadding extends CssProperty implements CssOperator {
 	switch (count) {
 	case 1:
 	    top = new CssPaddingTop(ac, expression);
-	    bottom = new CssPaddingBottom(top);
+	    /*bottom = new CssPaddingBottom(top);
 	    right = new CssPaddingRight(top);
-	    left = new CssPaddingLeft(top);
+	    left = new CssPaddingLeft(top);*/
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
@@ -109,8 +109,8 @@ public class CssPadding extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    right = new CssPaddingRight(ac, expression);
-	    bottom = new CssPaddingBottom(top);
-	    left = new CssPaddingLeft(right);
+	    /*bottom = new CssPaddingBottom(top);
+	    left = new CssPaddingLeft(right);*/
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
@@ -133,7 +133,7 @@ public class CssPadding extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    bottom = new CssPaddingBottom(ac, expression);
-	    left = new CssPaddingLeft(right);
+	    //left = new CssPaddingLeft(right);
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
@@ -226,7 +226,14 @@ public class CssPadding extends CssProperty implements CssOperator {
 	if (inheritedValue) {
 	    return inherit.toString();
 	}
-	if (right.value.equals(left.value)) {
+        String result = "";
+        // top should never be null
+        if(top != null) result += top;
+        if(right != null) result += " " + right;
+        if(bottom != null) result += " " + bottom;
+        if(left != null) result += " " + left;
+        return result;
+	/*if (right.value.equals(left.value)) {
 	    if (top.value.equals(bottom.value)) {
 		if (top.value.equals(right.value)) {
 		    return top.toString();
@@ -238,7 +245,7 @@ public class CssPadding extends CssProperty implements CssOperator {
 	    }
 	} else {
 	    return top + " " + right + " " + bottom + " " + left;
-	}
+	}*/
     }
 
     /**
@@ -246,10 +253,10 @@ public class CssPadding extends CssProperty implements CssOperator {
      * Overrides this method for a macro
      */
     public void setImportant() {
-	top.important = true;
-	right.important = true;
-	bottom.important = true;
-	left.important = true;
+	if(top != null) top.important = true;
+	if(right != null) right.important = true;
+	if(bottom != null) bottom.important = true;
+	if(left != null) left.important = true;
     }
 
     /**
@@ -323,10 +330,10 @@ public class CssPadding extends CssProperty implements CssOperator {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
 	((Css1Style) style).cssPadding.inheritedValue = inheritedValue;
-	top.addToStyle(ac, style);
-	right.addToStyle(ac, style);
-	bottom.addToStyle(ac, style);
-	left.addToStyle(ac, style);
+	if(top != null) top.addToStyle(ac, style);
+	if(right != null) right.addToStyle(ac, style);
+	if(bottom != null) bottom.addToStyle(ac, style);
+	if(left != null) left.addToStyle(ac, style);
     }
 
     /**
@@ -352,10 +359,10 @@ public class CssPadding extends CssProperty implements CssOperator {
      */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
-	top.setInfo(line, source);
-	right.setInfo(line, source);
-	bottom.setInfo(line, source);
-	left.setInfo(line, source);
+	if(top != null) top.setInfo(line, source);
+	if(right != null) right.setInfo(line, source);
+	if(bottom != null) bottom.setInfo(line, source);
+	if(left != null) left.setInfo(line, source);
     }
 
     /**

@@ -394,7 +394,9 @@ public final class StyleReportSOAP12 extends StyleReport
 //			}
 		    }
 		}
-		out.print("          </m:warninglist>");
+		if(open) {
+		    out.print("          </m:warninglist>");
+		}
 	    }
 	} catch (Exception e) {
 	    out.print("<m:processingerror>");

@@ -9,7 +9,7 @@ package org.w3c.css.selectors;
  * Created: Sep 1, 2005 3:58:43 PM<br />
  */
 public class PseudoClassSelector implements Selector {
-
+    
     String name;
 
     /**

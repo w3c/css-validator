@@ -63,6 +63,8 @@ public class CssBorderFaceColorCSS2 {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
 	    face = CssProperty.inherit;
+	} else if(val.equals(CssProperty.transparent)) {
+	    setFace(CssProperty.transparent);
 	} else if (val instanceof CssIdent) {
 	    face = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
 	} else {

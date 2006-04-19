@@ -187,7 +187,7 @@ public class CssPropertyFactory implements Cloneable {
     public synchronized CssProperty createProperty(ApplContext ac,
 	    AtRule atRule, String property, CssExpression expression)
     throws Exception {
-	String classname = null;
+	String classname = null;        
 	String media = atRule.toString();
 	int pos = -1;
 	String upperMedia = media.toUpperCase();
@@ -217,7 +217,7 @@ public class CssPropertyFactory implements Cloneable {
 		String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
 		for(int i = 0; i < list.size(); i++) {
 		    String medium = (String) list.elementAt(i);
-		    if(propMedia.indexOf(medium) == -1 &&
+		    if(propMedia.indexOf(medium.toLowerCase()) == -1 &&
 			    !propMedia.equals("all")) {
 			ac.getFrame().addWarning("noexistence-media",
 				property, medium + " (" + propMedia + ")");

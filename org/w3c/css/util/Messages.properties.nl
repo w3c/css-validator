@@ -137,7 +137,7 @@ generator.unrecognize: Parse Error
 # gebruikt door org.w3c.css.parser.CssSelectors
 error.pseudo-element: Het pseudo-element :%s kan niet in deze context voorkomen %s
 error.pseudo-class: De pseudo-class .%s kan niet in deze HTML context voorkomen %s
-error.pseudo: Onbekend pseudo-element of pseudo-class
+error.pseudo: Onbekend pseudo-element of pseudo-class %s
 error.id: ID selector #%s is ongeldig ! Slechts een ID selector kan worden gespecificeerd in een eenvoudige selector: %s.
 error.space: Als de attribuut selector ~= wordt gebruikt mag het woord in de waarde %s geen spaties bevatten.
 error.todo : Sorry de feature %s is nog niet geimplementeerd.
@@ -184,6 +184,9 @@ unless it is a dimension (".55in").
 
 parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in").
+
+parser.charset:De @charset-regel mag alleen voorkomen aan het begin van een \
+style-sheet. Controleer dat er geen spaties aan voorafgaan.
 
 warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \

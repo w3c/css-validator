@@ -80,7 +80,7 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 			StyleSheet style, String document, int warningLevel) {
 	this.ac = ac;
 	this.style = style;
-		general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document)));
+		general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document)));	 
 	general.put("file-title", title);
 	warnings = style.getWarnings();
 	errors = style.getErrors();
@@ -483,8 +483,8 @@ public final class StyleSheetGeneratorHTML implements CssPrinterStyle {
 	out.flush();
     }
 
-	private Utf8Properties setDocumentBase(String document) {
-		Utf8Properties properties = (Utf8Properties) formats.get(document);
+    private Utf8Properties setDocumentBase(String document) {
+	Utf8Properties properties = (Utf8Properties) formats.get(document);
 	if (properties == null) {
 	    URL url;
 			properties = new Utf8Properties();

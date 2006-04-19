@@ -121,9 +121,9 @@ public class CssBorderStyleCSS1 extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    top = new CssBorderTopStyleCSS1(ac, expression);
-	    bottom = new CssBorderBottomStyleCSS1((CssBorderFaceStyleCSS1) top.get());
+	    /*bottom = new CssBorderBottomStyleCSS1((CssBorderFaceStyleCSS1) top.get());
 	    right = new CssBorderRightStyleCSS1((CssBorderFaceStyleCSS1) top.get());
-	    left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) top.get());
+	    left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) top.get());*/
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
@@ -132,8 +132,8 @@ public class CssBorderStyleCSS1 extends CssProperty implements CssOperator {
 			ac);
 	    top = new CssBorderTopStyleCSS1(ac, expression);
 	    right = new CssBorderRightStyleCSS1(ac, expression);
-	    bottom = new CssBorderBottomStyleCSS1((CssBorderFaceStyleCSS1) top.get());
-	    left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) right.get());
+	    /*bottom = new CssBorderBottomStyleCSS1((CssBorderFaceStyleCSS1) top.get());
+	    left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) right.get());*/
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
@@ -147,7 +147,7 @@ public class CssBorderStyleCSS1 extends CssProperty implements CssOperator {
 			ac);
 	    right = new CssBorderRightStyleCSS1(ac, expression);
 	    bottom = new CssBorderBottomStyleCSS1(ac, expression);
-	    left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) right.get());
+	    //left = new CssBorderLeftStyleCSS1((CssBorderFaceStyleCSS1) right.get());
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
@@ -197,7 +197,14 @@ public class CssBorderStyleCSS1 extends CssProperty implements CssOperator {
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (right.face.equals(left.face)) {
+        String result = "";
+        // top should never be null
+        if(top != null) result += top;
+        if(right != null) result += " " + right;
+        if(bottom != null) result += " " + bottom;
+        if(left != null) result += " " + left;
+        return result;
+	/*if (right.face.equals(left.face)) {
 	    if (top.face.equals(bottom.face)) {
 		if (top.face.equals(right.face)) {
 		    return top.toString();
@@ -209,7 +216,7 @@ public class CssBorderStyleCSS1 extends CssProperty implements CssOperator {
 	    }
 	} else {
 	    return top + " " + right + " " + bottom + " " + left;
-	}
+	}*/
     }
 
     /**

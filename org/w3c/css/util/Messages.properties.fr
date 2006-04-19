@@ -155,7 +155,7 @@ generator.unrecognize: Erreur lors de l'analyse grammaticale.
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Le pseudo-élément :%s ne peut apparaitre dans le contexte %s
 error.pseudo-class: La pseudo-classe .%s ne peut apparaitre dans le contexte HTML %s
-error.pseudo: Pseudo-élément ou pseudo-classe inconnue
+error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu
 error.id: Le sélécteur d'identificateur n'est pas valide! \
 Un selecteur simple: %s ne peut avoir qu'un seul sélécteur d'identificateur
 error.space: Si le sélécteur d'attribut ~= est utilisé, alors le mot de la \
@@ -208,6 +208,9 @@ commençant par un chiffre (".55xx") sauf s'il s'agit d'une dimension \
 parser.id_dim: En CSS1, il est possible d'avoir un nom d'id \
 commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
 ("#55cm").
+
+parser.charset: La règle @charset doit apparaitre au début du fichier. \
+Vérifiez qu'il n'y a pas d'espace avant.
 
 warning.old_class: En CSS1, il est possible d'avoir un nom de classe \
 commençant par un chiffre (".55xx") sauf s'il s'agit d'une dimension \

@@ -24,7 +24,7 @@ public abstract class AttributeSelector implements Selector {
      * Creates a new attribute selector given its name
      * @param name the name of this attribute
      */
-    public AttributeSelector(String name) {
+    public AttributeSelector(String name) {        
 	this.name = name;
     }
 

@@ -72,7 +72,7 @@ public class CssBackgroundPositionCSS21 extends CssBackgroundPositionCSS2 {
 		if(index2 == -1 && check) {
 		    throw new InvalidParamException("value", next, "background-position", ac);
 		}
-		// one is vertical, the other is vertical
+		// one is vertical, the other is horizontal
 		// or the two are 'center'
 		if((isHorizontal(index1) && isVertical(index2)) ||
 			(isHorizontal(index2) && isVertical(index1))) {

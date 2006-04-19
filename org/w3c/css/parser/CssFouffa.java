@@ -188,7 +188,7 @@ public final class CssFouffa extends CssParser {
      */
 
     private CssFouffa(ApplContext ac, URLConnection uco) throws IOException {
-	this(ac, uco.getInputStream(), uco.getURL(), 0);
+	this(ac, uco.getInputStream(), uco.getURL(), 0);        
 	String httpCL = uco.getHeaderField("Content-Location");
 	if (httpCL != null) {
 	    setURL(HTTPURL.getURL(getURL(), httpCL));

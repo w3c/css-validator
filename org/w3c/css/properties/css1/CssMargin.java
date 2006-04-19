@@ -93,9 +93,9 @@ public class CssMargin extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    top = new CssMarginTop(ac, expression);
-	    bottom = new CssMarginBottom(top);
+	    /*bottom = new CssMarginBottom(top);
 	    right = new CssMarginRight(top);
-	    left = new CssMarginLeft(top);
+	    left = new CssMarginLeft(top);*/
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
@@ -110,8 +110,8 @@ public class CssMargin extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    right = new CssMarginRight(ac, expression);
-	    bottom = new CssMarginBottom(top);
-	    left = new CssMarginLeft(right);
+	    /*bottom = new CssMarginBottom(top);
+	    left = new CssMarginLeft(right);*/
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
@@ -134,7 +134,7 @@ public class CssMargin extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    bottom = new CssMarginBottom(ac, expression);
-	    left = new CssMarginLeft(right);
+	    //left = new CssMarginLeft(right);
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
@@ -226,7 +226,14 @@ public class CssMargin extends CssProperty implements CssOperator {
 	if (inheritedValue) {
 	    return inherit.toString();
 	}
-	if (right.value.equals(left.value)) {
+        String result = "";
+        // top should never be null
+        if(top != null) result += top;
+        if(right != null) result += " " + right;
+        if(bottom != null) result += " " + bottom;
+        if(left != null) result += " " + left;
+        return result;
+	/*if (right.value.equals(left.value)) {
 	    if (top.value.equals(bottom.value)) {
 		if (top.value.equals(right.value)) {
 		    return top.toString();
@@ -238,7 +245,7 @@ public class CssMargin extends CssProperty implements CssOperator {
 	    }
 	} else {
 	    return top + " " + right + " " + bottom + " " + left;
-	}
+	}*/
     }
 
     /**
@@ -282,7 +289,7 @@ public class CssMargin extends CssProperty implements CssOperator {
 	    printer.print(this);
 	} else if ((top != null && right != null &&
 		    bottom != null && left != null) &&
-		   (getImportant() ||
+		    (getImportant() ||
 		    (!top.important &&
 		     !right.important &&
 		     !bottom.important &&
@@ -372,10 +379,10 @@ public class CssMargin extends CssProperty implements CssOperator {
 	// always. What would be the cause of that, an invalid clause?
 	// in this case a proper exception should be sent
 	// So... a FIXME
-	top.setInfo(line, source);
-	right.setInfo(line, source);
-	bottom.setInfo(line, source);
-	left.setInfo(line, source);
+	if(top != null) top.setInfo(line, source);
+	if(right != null) right.setInfo(line, source);
+	if(bottom != null) bottom.setInfo(line, source);
+	if(left != null) left.setInfo(line, source);
     }
 
     /**

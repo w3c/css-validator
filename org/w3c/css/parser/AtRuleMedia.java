@@ -32,6 +32,8 @@ public class AtRuleMedia extends AtRule {
 
     String restrictor = new String();
     String[] media = new String[mediaCSS3.length];
+    // media list coming from the stylesheet (ie. with case)
+    String[] originalMedia = new String[mediaCSS3.length];
     Vector mediafeatures = new Vector();
 
     boolean empty = true;
@@ -50,8 +52,9 @@ public class AtRuleMedia extends AtRule {
 	//}
 
 	for (int i = 0; i < mediaCSS3.length; i++) {
-	    if (medium.equals(mediaCSS3[i])) {
+	    if (medium.toLowerCase().equals(mediaCSS3[i])) {
 		media[i] = mediaCSS3[i];
+                originalMedia[i] = medium;
 		empty = false;
 		return this;
 	    }
@@ -145,14 +148,14 @@ public class AtRuleMedia extends AtRule {
 	}
 	boolean f = true;
 	for (int i = 0; i < media.length; i++) {
-	    if (media[i] != null) {
+	    if (originalMedia[i] != null) {
 		if (!f) {
 		    ret.append(',');
 		    ret.append(' ');
 		} else {
 		    f = false;
 		}
-		ret.append(media[i]);
+		ret.append(originalMedia[i]);
 	    }
 	}
 

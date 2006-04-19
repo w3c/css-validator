@@ -90,8 +90,8 @@ CssPrinterStyle {
 	}
 	this.ac = ac;
 	this.style = style;
-	general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document)));
-	general.put("file-title", title);
+	general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document))); 	 
+	general.put("file-title", title);	
 	warnings = style.getWarnings();
 	errors = style.getErrors();
 	items =  style.newGetRules();
@@ -244,7 +244,7 @@ CssPrinterStyle {
 		ret.append(queryReplace(error.getExp().toString()));
 		ret.append("</span>\n");
 	    }
-	} else {
+	} else {            
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
 	    ret.append(" - <span class='error'>");
 	    ret.append(queryReplace(error.getSkippedString()));
@@ -518,8 +518,7 @@ CssPrinterStyle {
 		printAvailableFormat(new PrintWriter(System.err));
 	    }
 	    formats.put(document, properties);
-	}
-
+	}	
 	return new Utf8Properties(properties);
     }
 
@@ -555,7 +554,7 @@ CssPrinterStyle {
 	    System.err.println("Unable to find " + documentName
 		    + " output format");
 	    return documentName;
-	} else {
+	} else {    
 	    return document;
 	}
     }

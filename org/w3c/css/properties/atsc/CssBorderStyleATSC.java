@@ -121,9 +121,9 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    top = new CssBorderTopStyleATSC(ac, expression);
-	    bottom = new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) top.get());
+	    /*bottom = new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) top.get());
 	    right = new CssBorderRightStyleATSC((CssBorderFaceStyleATSC) top.get());
-	    left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) top.get());
+	    left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) top.get());*/
 	    break;
 	case 2:
 	    if (expression.getOperator() != SPACE)
@@ -138,8 +138,8 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    right = new CssBorderRightStyleATSC(ac, expression);
-	    bottom = new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) top.get());
-	    left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) right.get());
+	    /*bottom = new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) top.get());
+	    left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) right.get());*/
 	    break;
 	case 3:
 	    if (expression.getOperator() != SPACE)
@@ -162,7 +162,7 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    bottom = new CssBorderBottomStyleATSC(ac, expression);
-	    left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) right.get());
+	    //left = new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) right.get());
 	    break;
 	case 4:
 	    if (expression.getOperator() != SPACE)
@@ -224,7 +224,14 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (right.face.equals(left.face)) {
+        String result = "";
+        // top should never be null
+        if(top != null) result += top;
+        if(right != null) result += " " + right;
+        if(bottom != null) result += " " + bottom;
+        if(left != null) result += " " + left;
+        return result;
+	/*if (right.face.equals(left.face)) {
 	    if (top.face.equals(bottom.face)) {
 		if (top.face.equals(right.face)) {
 		    return top.toString();
@@ -236,7 +243,7 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
 	    }
 	} else {
 	    return top + " " + right + " " + bottom + " " + left;
-	}
+	}*/
     }
 
     /**
@@ -244,10 +251,10 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
      * Overrides this method for a macro
      */
     public void setImportant() {
-	top.setImportant();
-	right.setImportant();
-	left.setImportant();
-	bottom.setImportant();
+	if(top != null) top.setImportant();
+	if(right != null) right.setImportant();
+	if(left != null) left.setImportant();
+	if(bottom != null) bottom.setImportant();
     }
 
     /**
@@ -319,10 +326,10 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	top.addToStyle(ac, style);
-	right.addToStyle(ac, style);
-	left.addToStyle(ac, style);
-	bottom.addToStyle(ac, style);
+	if(top != null) top.addToStyle(ac, style);
+	if(right != null) right.addToStyle(ac, style);
+	if(left != null) left.addToStyle(ac, style);
+	if(bottom != null) bottom.addToStyle(ac, style);
     }
 
     /**
@@ -345,10 +352,10 @@ public class CssBorderStyleATSC extends CssProperty implements CssOperator {
      */
     public void setInfo(int line, String source) {
 	super.setInfo(line, source);
-	top.setInfo(line, source);
-	right.setInfo(line, source);
-	left.setInfo(line, source);
-	bottom.setInfo(line, source);
+	if(top != null) top.setInfo(line, source);
+	if(right != null) right.setInfo(line, source);
+	if(left != null) left.setInfo(line, source);
+	if(bottom != null) bottom.setInfo(line, source);
     }
 
     /**

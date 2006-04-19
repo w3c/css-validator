@@ -50,6 +50,8 @@ public final class CssValidator extends HttpServlet {
 
     final static String texthtml    = "text/html";
 
+    final static String applxhtml   = "application/xhtml+xml";
+    
     final static String textplain   = "text/plain";
 
     final static String textunknwon = "text/unknown";
@@ -220,7 +222,7 @@ public final class CssValidator extends HttpServlet {
 	}
 	String text = null;
 	try {
-	    text = req.getParameter("text");
+	    text = req.getParameter("text");            
 	} catch (Exception ex) {
 	    // pb in URI decoding (bad escaping, most probably)
 	    // not sure it will work here, as it may be catched by the first
@@ -257,7 +259,7 @@ public final class CssValidator extends HttpServlet {
 	    Util.onDebug = false;
 	}
 
-	text = Util.suppressWhiteSpace(text);
+	//text = Util.suppressWhiteSpace(text);
 	uri = Util.suppressWhiteSpace(uri);
 
 	if (output == null) {
@@ -350,6 +352,7 @@ public final class CssValidator extends HttpServlet {
 	    parser = new StyleSheetParser();
 
 	    try {
+                
 		parser.parseStyleElement(ac,
 			new ByteArrayInputStream(text.getBytes()),
 			null, usermedium,
@@ -617,9 +620,11 @@ public final class CssValidator extends HttpServlet {
 
 	// set the content-type for the response
 	MimeType outputMt = null;
-	if (output.equals(texthtml)) {
+	if (output.equals(texthtml) || output.equals("html")) {	    
 	    outputMt = MimeType.TEXT_HTML.getClone();
-	} else if (output.equals("soap12")) {
+	} else if (output.equals(applxhtml) || output.equals("xhtml")) {
+	    outputMt = MimeType.APPLICATION_XHTML_XML.getClone();
+	} else if (output.equals(soap12) || output.equals("soap12")) {
 	    // invert the comments on the following lines to (de)activate
 	    // the soap Mime Type
 	    try {
