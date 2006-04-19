@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+-->
+<testsuite>
+  <type title="Valid tests of all properties and their values, except inherit">
+    <test profile="css3">
+      <file>testsuite/properties/css3/propertiesCSS3.css</file>
+      <description>Font properties</description>
+      <result valid="true"/>
+    </test>
+  </type>
+</testsuite>

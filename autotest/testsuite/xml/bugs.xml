@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+-->
+<testsuite>
+  <type title="bugs">
+    <test>
+      <file>testsuite/bugs/750.css</file>
+      <description>
+	See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=750&quot;&gt;
+	http://www.w3.org/Bugs/Public/show_bug.cgi?id=750&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>4</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/372.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=372&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=372&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>309</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/corrected-bug_invalid-value1.css</file>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/corrected-bug_invalid-value2.css</file>
+      <description>Quoted keyword</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/920.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=920&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=920&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/778.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=778&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=778&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>3</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/289.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=289&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=289&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>19</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/287.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=287&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=287&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/696.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=696&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=696&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/764.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/1237.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1237&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1237&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/1269.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1269&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1269&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>2</errors>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/1269bis.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1269&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>6</errors>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/bugs/1847css3.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1847&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1847&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/1885.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1885&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1885&lt;/a&gt;</description>
+      <result valid="true">
+	<warnings>1</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/374.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=374&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=374&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test medium="print,screen">
+      <file>testsuite/bugs/391printscreen.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=391&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=391&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test profile="css3">
+      <file>testsuite/bugs/576css3.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=576&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=576&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/599.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=599&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=599&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/703.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=703&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=703&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test medium="mobile">
+      <file>testsuite/bugs/763mobile.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=763&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=763&lt;/a&gt;</description>
+      <result valid="true">
+	<warnings>1</warnings>
+      </result>
+    </test>
+    <test>
+      <file>testsuite/bugs/777.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=777&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=777&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/791.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=791&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=791&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/819.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=819&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=819&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <file>testsuite/bugs/821.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=821&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=821&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test profile="css3">
+      <file>testsuite/bugs/979.css</file>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=388</url>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=388&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1504&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+    <test>
+      <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=389</url>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=389&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=1504&lt;/a&gt;</description>
+      <result valid="true"/>
+    </test>
+  </type>
+</testsuite>

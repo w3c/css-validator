@@ -1,0 +1,402 @@
+body{
+font-size:.85em;
+font-family:Verdana,"Bitstream Vera Sans",Tahoma,Arial,Helvetica,sans-serif;
+color:#000;
+background:#fff;
+margin:0;
+padding:0 0 1em 0;
+min-width:45em;
+}
+div,form,ul,ol,li{
+margin:0;
+padding:0;
+}
+p{
+margin:1em 0;
+}
+li{
+list-style:none;
+}
+h2,h3,h4,h5,h6{
+font-size:1.1em;
+font-family:Georgia,"Bitstream Vera Serif","Times New Roman",TimesNR,times,serif;
+font-weight:700;
+margin:0;
+padding:0;
+}
+img{
+border:none;
+}
+pre,code,kbd,samp,tt{
+font-family:"Andale Mono","Bitstream Vera Sans Mono","Courier New",courier,monospace;
+white-space:pre;
+}
+:link:focus,:visited:focus{
+color:#d31;
+}
+:link{
+color:#46c;
+}
+:visited{
+color:#939;
+}
+:link:hover,:visited:hover{
+color:#d31;
+}
+:link:active,:visited:active{
+color:#a21;
+}
+textarea:focus,input[type=text]:focus,input[type=password]:focus{
+background-color:#eef;
+}
+textarea:active,input[type=text]:active,input[type=password]:active{
+background-color:#eef;
+}
+input[type=submit]:focus,input[type=button]:focus{
+color:#eef;
+text-decoration:underline;
+}
+input[type=submit],input[type=button]{
+color:#fff;
+background:#66c;
+border:2px outset #66c;
+text-transform:capitalize;
+}
+input[type=submit]:hover,input[type=button]:hover{
+color:#eef;
+text-decoration:underline;
+}
+input[type=submit]:active,input[type=button]:active{
+border:2px inset #66c;
+}
+#pageheader{
+font-size:1.15em;
+font-family:Tahoma,"Bitstream Vera Sans",Verdana,Helvetica,Arial,sans-serif;
+color:#fff;
+background:#66c;
+border-bottom:2px solid #448;
+padding:.5em 1em;
+}
+#pageheader :link:focus,#pageheader :visited:focus{
+text-decoration:underline;
+}
+#pageheader :link,#pageheader :visited{
+text-decoration:none;
+color:#fff;
+}
+#pageheader :link:hover,#pageheader :visited:hover{
+text-decoration:underline;
+}
+#pageheader :link:active,#pageheader :visited:active{
+text-decoration:underline;
+}
+#logo{
+font-size:2em;
+font-family:Helvetica,"Bitstream Vera Sans",Arial,Verdana,sans-serif;
+vertical-align:text-bottom;
+display:inline;
+}
+#logo :link:focus,#logo :visited:focus{
+text-decoration:none;
+color:#eef;
+}
+#logo :link,#logo :visited{
+text-decoration:none;
+color:#fff;
+background:#339;
+border:3px outset #66c;
+padding:0 .33em;
+}
+#logo :link:hover,#logo :visited:hover{
+text-decoration:none;
+color:#eef;
+}
+#logo :link:active,#logo :visited:active{
+text-decoration:none;
+color:#eef;
+border:3px inset #66c;
+}
+#logo span.jeffcarr{
+font-variant:small-caps;
+font-style:italic;
+font-weight:900;
+}
+#logo span.info{
+font-size:.6em;
+font-style:italic;
+font-weight:900;
+}
+#logo span.dot{
+font-size:.3em;
+}
+#usermenu{
+position:absolute;
+top:.5em;
+right:1em;
+}
+#siteorientation{
+background:#55b;
+border:#66c inset 2px;
+margin:.5em 0 0 0;
+padding:.25em 1em;
+display:block;
+}
+#annex{
+font-family:Tahoma,"Bitstream Vera Sans",Verdana,Helvetica,Arial,sans-serif;
+border-right:2px solid #448;
+padding:0 0 0 .5em;
+width:14em;
+float:left;
+}
+#annex div{
+border-bottom:1px solid #448;
+padding:.5em .5em .5em 0;
+}
+#annex div:last-child{
+border:none;
+}
+#annex form div{
+border:none;
+padding:0;
+}
+#annex li,#annex input{
+margin:.25em 0 .25em .75em;
+display:block;
+}
+#annex input[type=hidden]{
+display:none;
+}
+#primarycontent{
+border-left:2px solid #448;
+margin:0 0 0 14.5em;
+padding:0 .5em 0 0;
+}
+#primarycontent div{
+border-bottom:1px dashed #448;
+padding:.5em 0 .5em .5em;
+}
+#primarycontent div:last-child{
+border:none;
+}
+#primarycontent form div{
+border:none;
+padding:0;
+}
+#primarycontent p,#primarycontent pre{
+padding:0 0 0 .5em;
+}
+#primarycontent .navigationbar{
+text-align:center;
+color:#448;
+border-top:#448 solid 2px;
+border-bottom:#448 solid 2px;
+padding:.25em 1em;
+}
+#primarycontent .navigationbar .previous{
+float:left;
+}
+#primarycontent .navigationbar .subsequent{
+float:right;
+}
+#pagefooter{
+font-size:.8em;
+text-align:center;
+border-top:3px double #448;
+width:99%;
+padding:.4em;
+clear:both;
+}
+#pagefooter h2{
+}
+#adoptfirefox{
+float:left;
+width:300px;
+}
+#pageinformation{
+text-align:left;
+float:right;
+width:20em;
+}
+#pagevalidation :link:focus,#pagevalidation :visited:focus{
+text-decoration:none;
+background:#eef;
+}
+#pagevalidation :link,#pagevalidation :visited{
+text-decoration:none;
+color:#000;
+border:2px outset #66c;
+display:block;
+margin:.5em 0;
+width:16em;
+}
+#pagevalidation :link:hover,#pagevalidation :visited:hover{
+text-decoration:none;
+background:#eef;
+}
+#pagevalidation :link:active,#pagevalidation :visited:active{
+background:#eef;
+border:2px inset #66c;
+}
+#pagevalidation :link:focus .organization,#pagevalidation :visited:focus .organization{
+color:#eef;
+}
+#pagevalidation .organization{
+text-align:center;
+color:#fff;
+background:#66c;
+display:block;
+float:left;
+width:3em;
+margin:0 .25em 0 0;
+}
+#pagevalidation :link:hover .organization,#pagevalidation :visited:hover .organization{
+color:#eef;
+}
+#pagevalidation :link:active .organization,#pagevalidation :visited:active .organization{
+color:#eef;
+}
+.readerlink,.semanticheading{
+display:none !important;
+}
+.formusername{
+background:#fff url('/images/userinfo.png') no-repeat scroll center left;
+padding-left:17px;
+}
+.formpassword{
+background:#fff url('/images/key.png') no-repeat scroll center left;
+padding-left:17px;
+}
+.tabs ul{
+border-bottom:2px solid #55b;
+padding:.5em .25em 0 .25em;
+margin:1em 0 0 0;
+width:100%;
+float:left;
+}
+.tabs li{
+float:left;
+}
+.tabs :link:focus,.tabs :visited:focus{
+text-decoration:underline;
+color:#fff;
+}
+.tabs :link,.tabs :visited{
+font-weight:700;
+text-decoration:none;
+color:#fff;
+background:#55b;
+border:1px solid #55b;
+padding:.25em .75em;
+margin:0 1px;
+display:block;
+}
+.tabs :link:hover,.tabs :visited:hover{
+text-decoration:underline;
+color:#fff;
+}
+.tabs :link:active,.tabs :visited:active{
+text-decoration:underline;
+color:#fff;
+}
+.tabs li.current :link,.tabs li.current :visited{
+text-decoration:none;
+color:#339;
+background:#fff;
+border:2px solid #339;
+border-bottom:1px solid #fff;
+cursor:default;
+}
+#pageinformation{
+text-align:left;
+float:right;
+width:20em;
+}
+#pagevalidation :link:focus,#pagevalidation :visited:focus{
+text-decoration:none;
+background:#eef;
+}
+#pagevalidation :link,#pagevalidation :visited{
+text-decoration:none;
+color:#000;
+border:2px outset #66c;
+display:block;
+margin:.5em 0;
+width:16em;
+}
+#pagevalidation :link:hover,#pagevalidation :visited:hover{
+text-decoration:none;
+background:#eef;
+}
+#pagevalidation :link:active,#pagevalidation :visited:active{
+background:#eef;
+border:2px inset #66c;
+}
+#pagevalidation :link:focus .organization,#pagevalidation :visited:focus .organization{
+color:#eef;
+}
+#pagevalidation .organization{
+text-align:center;
+color:#fff;
+background:#66c;
+display:block;
+float:left;
+width:3em;
+margin:0 .25em 0 0;
+}
+#pagevalidation :link:hover .organization,#pagevalidation :visited:hover .organization{
+color:#eef;
+}
+#pagevalidation :link:active .organization,#pagevalidation :visited:active .organization{
+color:#eef;
+}
+.readerlink,.semanticheading{
+display:none !important;
+}
+.formusername{
+background:#fff url('/images/userinfo.png') no-repeat scroll center left;
+padding-left:17px;
+}
+.formpassword{
+background:#fff url('/images/key.png') no-repeat scroll center left;
+padding-left:17px;
+}
+.tabs ul{
+border-bottom:2px solid #55b;
+padding:.5em .25em 0 .25em;
+margin:1em 0 0 0;
+width:100%;
+float:left;
+}
+.tabs li{
+float:left;
+}
+.tabs :link:focus,.tabs :visited:focus{
+text-decoration:underline;
+color:#fff;
+}
+.tabs :link,.tabs :visited{
+font-weight:700;
+text-decoration:none;
+color:#fff;
+background:#55b;
+border:1px solid #55b;
+padding:.25em .75em;
+margin:0 1px;
+display:block;
+}
+.tabs :link:hover,.tabs :visited:hover{
+text-decoration:underline;
+color:#fff;
+}
+.tabs :link:active,.tabs :visited:active{
+text-decoration:underline;
+color:#fff;
+}
+.tabs li.current :link,.tabs li.current :visited{
+text-decoration:none;
+color:#339;
+background:#fff;
+border:2px solid #339;
+border-bottom:1px solid #fff;
+cursor:default;
+}

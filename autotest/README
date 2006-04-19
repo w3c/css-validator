@@ -1,0 +1,33 @@
+Pour lancer les tests:
+./autotest.sh file
+ou file est le fichier xml contenant la liste des tests a effectuer.
+Il est conseille de rediriger la sortie (du code html) vers un fichier
+afin de pouvoir visualiser les resultats depuis un navigateur.
+
+Des exemples de fichiers xml sont presents dans testsuite/xml.
+
+Les tests sont groupes par types, ce qui permet de savoir ce que l'on teste.
+Un test permet de verifier un unique chemin/url.
+On peut preciser pour chaque test une description, ainsi que le
+resultat attendu (validite, nombre d'erreurs et de warnings).
+
+Exemples de tests:
+- une url:
+    <test>
+      <url>http://forums.jeuxonline.info</url>
+      <description>Forum of a French online gaming website</description>
+      <result valid="false">
+        <errors>24</errors>
+        <warnings>0</warnings>
+      </result>
+    </test>
+- un fichier local:
+    <test>
+      <file>testsuite/general/misc/sampleCSS1.css</file>
+      <description>
+	This style sheet is written according to the suggested rendering in the 
+	HTML 2.0 specification. Some styles, e.g. colors, have been added for 
+	completeness. It is suggested that a style sheet similar to this one 
+	is used as the UA default.
+      </description>
+    </test>

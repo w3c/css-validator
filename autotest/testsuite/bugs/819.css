@@ -1,0 +1,439 @@
+body {
+ margin: 0px;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 10pt;
+ color: #003366;
+ background-color: #eeeeee;
+}
+p, td {
+ font-size: 10pt;
+ color: #003366;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ background-color: transparent;
+}
+a, a:link, a:visited, a:active {
+ font-size: 10pt;
+ color: #0011ee;
+ background-color: transparent;
+ text-decoration: none;
+}
+a:hover {
+ color: #aa3300;
+ background-color: transparent;
+ text-decoration: underline;
+}
+
+/*--------------------
+td {
+ display: block;
+}
+--------------------*/
+.smalltext {
+ font-family: Helvetica,Verdana,Arial,sans-serif;
+ font-size: 8pt;
+}
+.cTextPink {
+ color: #ff0088;
+ background-color: transparent;
+ text-decoration: none;
+}
+.cTextBlue {
+ font-weight: normal;
+ color: #3300cc;
+ background-color: transparent;
+ text-decoration: none;
+}
+.cTextYellow {
+ color: #EEEE00;
+ background-color: transparent;
+}
+.cTextBGray {
+ color: #DDEE88;
+ background-color: transparent;
+}
+.cTextDeepBlue
+{
+ font-weight: normal;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlue:link {
+ font-weight: normal;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlue:visited {
+ font-weight: normal;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlue:hover {
+ font-weight: normal;
+ color: #993366;
+ background-color: transparent
+}
+.cTextDeepBlueBold {
+ font-weight: bold;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlueBold:link { text-decoration: none; }
+a.cTextDeepBlueBold:visited { text-decoration: none; }
+a.cTextDeepBlueBold:hover { text-decoration: underline; }
+.cTextDeepBlueBold2 {
+ font-weight: bold;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlueBold2:link {
+ font-weight: bold;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlueBold2:visited {
+ font-weight: bold;
+ color: #003366;
+ background-color: transparent
+}
+a.cTextDeepBlueBold2:hover {
+ font-weight: bold;
+ color: #cc6600;
+ background-color: transparent
+}
+.cTextBlack {
+ font-weight: normal;
+ color: #000000;
+ background-color: transparent
+}
+.cTextWhite {
+ font-weight: normal;
+ color: #ffffff;
+ background-color: transparent
+}
+.cTextDimYellow {
+ font-weight: normal;
+ color: #cccc88;
+ background-color: transparent
+}
+.cTextPurple {
+ font-weight: normal;
+ color: #aa1199;
+ background-color: transparent
+}
+.cTextGreen {
+ font-weight: normal;
+ color: #11aa11;
+ background-color: transparent;
+}
+a.cTextGreen:link { text-decoration: none; }
+a.cTextGreen:visited { text-decoration: none; }
+a.cTextGreen:hover {
+ color: #33aaaa;
+ background-color: transparent;
+ text-decoration: underline;
+}
+.cTextBlueGreen {
+ font-weight: normal;
+ color: #33cccc;
+ background-color: transparent;
+}
+a.cTextBlueGreen:link { text-decoration: none; }
+a.cTextGreen:visited { text-decoration: none; }
+a.cTextBlueGreen:hover {
+ color: #33ffff;
+ background-color: transparent;
+ text-decoration: underline;
+}
+.cTextGray {
+ font-weight: normal;
+ color: #888888;
+ background-color: transparent;
+}
+.cTextBoldBlue {
+ font-weight: bold;
+ color: #3300cc;
+ background-color: transparent
+}
+.cTextBoldBlack {
+ font-weight: bold;
+ color: #000000;
+ background-color: transparent
+}
+h1 {
+ margin-top: 0px;
+ margin-bottom: 4px;
+ color: #006633;
+ background-color: transparent;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 18pt;
+ font-weight: bold;
+}
+h2 {
+ margin-top: 0px;
+ margin-bottom: 3px;
+ color: #006633;
+ background-color: transparent;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 14pt;
+ font-weight: bold;
+}
+h3 {
+ margin-top: 0px;
+ margin-bottom: 2px;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 12pt;
+ font-weight: bold;
+ color: #006633;
+ background-color: transparent;
+}
+h4 {
+ margin-top: 0px;
+ margin-bottom: 2px;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 12pt;
+ font-weight: bold;
+ font-style: italic;
+ color: #006633;
+ background-color: transparent;
+}
+h5 {
+ margin-top: 0px;
+ margin-bottom: 2px;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 12pt;
+ font-style: italic;
+ color: #006633;
+ background-color: transparent;
+}
+h6 {
+ margin-top: 0px;
+ margin-bottom: 1px;
+ font-family: Arial, Helvetica, Verdana, sans-serif;
+ font-size: 10pt;
+ font-weight: bold;
+ font-style: italic;
+ color: #006633;
+ background-color: transparent;
+}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+.menuBar a {
+ display: block;
+ width: 100%;
+}
+.menubarInactive {
+ display: block;
+ width: 100%;
+}
+table.menuBar {
+ border: 2px outset;
+ padding: 0px;
+ margin: 0px;
+ width: 100px;
+}
+td.menuBar {
+ width: 91px;
+ margin: 0px 0px 0px 0px;
+ padding: 0px 0px 0px 0px;
+ text-align: center;
+ line-height:1.5em;
+}
+/* NOTE: It is a.menuBar that does the 100% width */
+a.menuBar, a.menuBar:link, a.menuBar:visited, a.menuBar:active {
+ display: block;
+ width: 100%;
+ color: #003366;
+ background-color: transparent;
+}
+.menuBar a:hover, a.menuBar:hover {
+ display: block;
+ width: 100%;
+ text-align: center;
+ color: #ffff00;
+ background-color: #003366;
+ text-decoration: none;
+}
+/* ------------------------------------------------- */
+
+.menubar2 a:hover {
+ display: block;
+ color: #ffff00;
+ background-color: #0000ff
+}
+
+/* ------------------------------------------------- */
+.textBox {
+ color: #000000;
+ background-color: #c0c0c0;
+}
+.textBox P {
+ color: #000000;
+ background-color: #c0c0c0;
+}
+table.textBox {
+ border: 2pt outset;
+ width: 100%;
+ border-collapse: separate;
+ border-spacing: 2pt;
+}
+td.textBox {
+ border-right: 1pt inset;
+ padding-right: 0.5em;
+ border-top: 1pt inset;
+ padding-left: 0.5em;
+ padding-bottom: 0.5em;
+ border-left: 1pt inset;
+ width: 100%;
+ padding-top: 0.5em;
+ border-bottom: 1pt inset;
+}
+td.textBox a, td.textBox a:link, td.textBox a:visited {
+ color: #1133cc;
+ background-color: transparent;
+}
+td.textBox a:Hover {
+ color: #cc3311;
+ background-color: transparent;
+ text-decoration: underline;
+}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+.topMenu {
+ display: block;
+ font-size: 10pt;
+ color: #ffff00;
+ line-HEIGHT: 12pt;
+ font-family: Arial Narrow, Arial, Helvetica, Verdana, sans-serif;
+ background-color: #003366;
+ text-align: center
+}
+td.topMenu {
+ border-right: 2px outset;
+ padding-right: 0px;
+ border-top: 2px outset;
+ display: block;
+ padding-left: 0px;
+ padding-bottom: 0px;
+ border-left: 2px outset;
+ width: 108px;
+ padding-top: 0px;
+ border-bottom: 2px outset
+}
+td.topMenu a:hover {
+ display: block;
+ color: #ffff00;
+ background-color: #0000ff;
+}
+/* ------------------------------------------------- */
+/* topMenu2                                          */
+/* ------------------------------------------------- */
+/* td.topMenu2 */
+.topMenu2 {
+ display: block;
+ text-align: center;
+}
+a.topMenu2, a.topMenu2:active, a.topMenu2:visited {
+ display: block;
+ font-size: 10pt;
+ color: #ffff00;
+ font-family: Arial Narrow, Arial, Helvetica, Verdana, sans-serif;
+ background-color: #003366;
+ text-align: center;
+}
+td.topMenu2 {
+ border-right: 2px;
+ padding-right: 2px;
+ border-top: 2px;
+ display: block;
+ padding-left: 2px;
+ padding-bottom: 2px;
+ border-left: 2px;
+ width: 120px;
+ padding-top: 2px;
+ border-bottom: 2px;
+}
+a.topMenu2:hover {
+ display: block;
+ color: #ffff00;
+ background-color: #0000ff;
+}
+
+body .dropMenu2 { display: block; }
+.dropMenu2 {
+ font-size: 10pt;
+ color: #ffff00;
+ font-family: Arial Narrow, Arial, Helvetica, Verdana, sans-serif;
+ background-color: #003366;
+ text-align: center;
+}
+td.dropMenu2 {
+ padding-top: 4px;
+ padding-right: 4px;
+ padding-left: 4px;
+ padding-bottom: 4px;
+ background: none transparent scroll repeat 0% 0%;
+ width: 108px;
+}
+.dropMenu2 a:visited {
+ background: none transparent scroll repeat 0% 0%;
+}
+td.DropMenu2 a:hover {
+ display: block;
+ background: #0000ff;
+ color: #ffff00;
+}
+.dropMenu { display: block; }
+.dropMenu {
+ font-size: 10pt;
+ color: #ffff00;
+ font-family: Arial Narrow, Arial, Helvetica, Verdana, sans-serif;
+ background-color: #003366;
+ text-align: center;
+}
+td.dropMenu {
+ padding-right: 4px;
+ padding-left: 4px;
+ background: none transparent scroll repeat 0% 0%;
+ padding-bottom: 4px;
+ width: 108px;
+ padding-top: 4px;
+}
+.dropMenu a:visited { background-color: transparent; }
+
+.flag1 {background-color:transparent; color:#cccccc;}
+a.flag1 {color:#eeee33;background-color:transparent;}
+a.flag1:visited {color:#eeee33;background-color:transparent;}
+a.flag1:active {color:#eeee33;background-color:transparent;}
+a.flag1:hover {color:#ffff88;background-color:transparent;text-decoration:underline;}
+
+td.topCenter {vertical-align:top; text-align:center;}
+
+a.clsLinkBlue, a.clsLinkBlue:Link, a.clsLinkBlue:Visited a.clsLinkBlue:Active {
+ color:#0033ff;
+ background-color:transparent;
+ text-decoration:none;
+}
+a.clsLinkBlue:Hover {
+ color:#aa3300;
+ background-color:transparent;
+ text-decoration:underline;
+}
+/* ------------------------------------------------- */
+/* ADDED 5/10/2004 */
+/* ------------------------------------------------- */
+li.LICR {
+ margin-top:6px;
+}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+.divBoosh {text-align:center; padding:6px;}
+.imgBoosh {border:5px; border-style:inset; padding:1px;}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+.cr {
+ font-family:Arial,Helvetica,Verdana,sans-serif;
+ font-size:8pt;
+}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+.buynow { border: 0px; margin: 0px; height: 20px; width: 95px; }
