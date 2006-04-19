@@ -1,20 +1,37 @@
     <h1 class="center">CSS Validator version 2.0</h1>
     
     <p>
-      This is a CSS validator for <a
-	href="http://www.w3.org/TR/REC-CSS2/">Cascading Style Sheets, level
-	2</a>. See the <a href="COPYRIGHT.html">copyright notice</a>.
+      This is the source for the <a href="http://jigsaw.w3.org/css-validator">W3C CSS validation service</a>,
+	available under the open source <a href="http://www.w3.org/Consortium/Legal/copyright-software">W3C Software license</a>.
     </p>
     <p>
-      You can run it on a web server, on the command line or use it in your new
-      browser.
+      You can run it on a web server, on the command line or use it in your new browser.
     </p>
+
+   <h2>Get the source</h2>
+
+<p>In order to get the latest development code:</p>
+
+          <pre>
+    bash$ <kbd>export CVSROOT=":pserver:anonymous@dev.w3.org:/sources/public"</kbd>
+    bash$ <kbd>cvs login</kbd>
+    (Logging in to anonymous@dev.w3.org)
+    CVS password: <kbd>anonymous</kbd>
+    bash$ <kbd>cvs get 2002/css-validator</kbd>
+    ...
+    </pre>
+
+<p>Note that in spite of our best efforts, the latest development code may be broken at any time.</p>
+
+   <h2>Contact / Bugs</h2>
 
     <p>
       If you have any questions or problems with the validator, send us an <a
 	href="http://jigsaw.w3.org/css-validator/Email.html">email</a>. <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED"
 	>Known problems</a> are listed in <a href="http://www.w3.org/Bugs/Public/">W3C's Bugzilla</a>.
     </p>
+
+   <h2>Classes and Source overview</h2>
 
     <p>This directory contains:</p>
     <dl>
