@@ -233,7 +233,6 @@ public class StyleSheetCom implements HtmlParserListener {
 	while (i < args.length) {
 	    try {
 		String doc = args[i];
-
 		try {
 		    style.htmlURL = new URL(doc);
 		    style.file = style.htmlURL.toString();
@@ -246,10 +245,10 @@ public class StyleSheetCom implements HtmlParserListener {
 
 		String urlLower = style.htmlURL.toString().toLowerCase();
 		if (urlLower.endsWith(".css")) {
-		    style.cssRequest(selector, style.defaultmedium);
+		    style.cssRequest(selector, style.defaultmedium);		    
 		} else if (urlLower.endsWith(".html")
 			   || urlLower.endsWith(".shtml")
-			   || urlLower.endsWith("/")) {
+			   || urlLower.endsWith("/")) {		    
 		    style.htmlRequest();
 		} else if (urlLower.endsWith(".xml")) {
 		    style.xmlRequest();

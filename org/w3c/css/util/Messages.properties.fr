@@ -212,6 +212,10 @@ commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
 parser.charset: La règle @charset doit apparaitre au début du fichier. \
 Vérifiez qu'il n'y a pas d'espace avant.
 
+parser.charsetspecial:Ce profil a une syntaxe très spécifique pour @charset : \
+@charset suivi d'exactement un espace, suivi du nom de l'encodage entre \
+guillemets, immédiatement suivi par un point-virgule.
+
 warning.old_class: En CSS1, il est possible d'avoir un nom de classe \
 commençant par un chiffre (".55xx") sauf s'il s'agit d'une dimension \
 (".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \

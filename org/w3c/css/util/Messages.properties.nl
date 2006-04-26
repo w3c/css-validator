@@ -188,6 +188,10 @@ unless it is a dimension ("#55in").
 parser.charset:De @charset-regel mag alleen voorkomen aan het begin van een \
 style-sheet. Controleer dat er geen spaties aan voorafgaan.
 
+parser.charsetspecial:This profile has a very specific syntax for @charset: \
+@charset followed by exactly one space, followed by the name of the encoding \
+in quotes, followed immediately by a semicolon.
+
 warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)

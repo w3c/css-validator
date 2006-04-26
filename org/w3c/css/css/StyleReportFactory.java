@@ -29,6 +29,11 @@ public class StyleReportFactory {
 					 document,
 					 warningLevel);
 	}
+	if(document.equals("text")) {	    
+	    return new StyleSheetGenerator2(title, style,
+					    document,
+					    warningLevel);	    
+	}
 	return new StyleSheetGeneratorHTML2(ac, title, style,
 					    "html",
 					    warningLevel);

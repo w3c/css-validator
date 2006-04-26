@@ -26,7 +26,7 @@ import org.w3c.css.util.Warnings;
 /**
  * @version $Revision$
  */
-public final class StyleSheetGenerator2 {
+public final class StyleSheetGenerator2 extends StyleReport {
 
     //    SortedHashtable items;
     Hashtable items;
@@ -43,9 +43,9 @@ public final class StyleSheetGenerator2 {
 
     private int warningLevel;
 
-	private Utf8Properties general;
+    private Utf8Properties general;
 
-	private static Utf8Properties availableFormat;
+    private static Utf8Properties availableFormat;
 
     private static Hashtable formats = new Hashtable();
 
@@ -65,15 +65,15 @@ public final class StyleSheetGenerator2 {
 			String document, int warningLevel) {
 
 		// this small part prints the stylesheet to the screen
-	if (StyleSheetCom.showCSS == true) {
+	if (StyleSheetCom.showCSS == true || CssValidator.showCSS == true) {
 
 	    if (style.charset != null) {
 		System.out.println("@charset " + style.charset + ";\n");
 	    }
 	    Vector atRules = style.newGetRules();
+	    
 	    for (int i = 0; i < atRules.size(); i++) {
-				System.out.println(((CssRuleList) atRules.elementAt(i))
-						.toString());
+		System.out.println(((CssRuleList) atRules.elementAt(i)).toString());
 	    }
 	}
 
@@ -126,6 +126,7 @@ public final class StyleSheetGenerator2 {
     public void print(PrintWriter out) {
 	this.out = out; // must be in first !
 	String output = processSimple("document");
+	
 	if (output != null) {
 	    out.println(output);
 	} else {
@@ -255,7 +256,7 @@ public final class StyleSheetGenerator2 {
 	    if (warnings.getWarningCount() != 0) {
 		int i = 0;
 		warnings.sort();
-				for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
+		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
 
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
@@ -264,8 +265,9 @@ public final class StyleSheetGenerator2 {
 			    ret.append("\n URI : ");
 			    ret.append(oldSourceFile).append('\n');
 			}
-						if (warn.getLine() != oldLine
-								|| !warn.getWarningMessage().equals(oldMessage)) {
+			/*if (warn.getLine() != oldLine
+			    || !warn.getWarningMessage().equals(oldMessage)) {*/
+			    
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 			    ret.append("Line : ").append(oldLine);
@@ -281,7 +283,7 @@ public final class StyleSheetGenerator2 {
 			    }
 
 			    ret.append(" \n");
-			}
+			//}
 		    }
 		}
 	    }
@@ -304,7 +306,7 @@ public final class StyleSheetGenerator2 {
 	return processStyle(general.getProperty(s), general);
     }
 
-	private String processStyle(String str, Utf8Properties prop) {
+    private String processStyle(String str, Utf8Properties prop) {
 	if (str == null) {
 	    return "";
 	}

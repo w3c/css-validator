@@ -269,6 +269,7 @@ public final class CssValidator extends HttpServlet {
 	// CSS version
 	if (profile != null && !"none".equals(profile)) {
 	    if ("css1".equals(profile) || "css2".equals(profile)
+		|| "css21".equals(profile)
 		|| "css3".equals(profile) || "svg".equals(profile)
 		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
 		ac.setCssVersion(profile);
@@ -329,7 +330,7 @@ public final class CssValidator extends HttpServlet {
 	    try {
 		uri = HTTPURL.getURL(uri).toString(); // needed to be sure
 		// that it is a valid
-		// url
+		// url		
 		HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac,
 									  uri);
 
@@ -581,6 +582,8 @@ public final class CssValidator extends HttpServlet {
 	    output = "html";
 	} else if (soap12.equals(output)) {
 	    output = "soap12";
+	} else if(textplain.equals(output)) {
+	    output = "text";
 	}
 	styleSheet.findConflicts(ac);
 

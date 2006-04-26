@@ -91,9 +91,9 @@ public class Warning {
      * @see org.w3c.css.properties.css1.CssProperty#setInfo
      */
     public Warning(CssProperty property, String warningMessage, int level,
-		   ApplContext ac) {
+		   ApplContext ac) {	
 	this(property, warningMessage, level,
-	     property.getPropertyName(), "", ac);
+	     property.getPropertyName(), "", ac);	
 	this.selector = property.getSelectors();
     }
 

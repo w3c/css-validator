@@ -47,7 +47,7 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 	String urlLower = urlString.toLowerCase();
 	String media = ac.getMedium();
 
-	if (!"http".equals(htmlURL.getProtocol())) {
+	if (!"http".equals(htmlURL.getProtocol())) {	    	    
 	    if (urlLower.endsWith(".css")) {
 		StyleSheetParser parser = new StyleSheetParser();
 		parser.parseURL(ac, htmlURL, null, null, media,
@@ -78,8 +78,9 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		} finally {
 		    Util.fromHTMLFile = false;
 		}
-	    }
-	    throw new Exception("Unknown file");
+	    } else {
+		throw new Exception("Unknown file");
+	    }	    
 	} else {
 	    URLConnection connection = null;
 
@@ -171,8 +172,9 @@ public final class HTMLStyleSheetParser implements HtmlParserListener {
 		    XMLStyleSheetHandler handler;
 		    handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(urlString, connection);
-		    style = handler.getStyleSheet();
-		    if (style != null) {
+		    style = handler.getStyleSheet();		    
+		    
+		    if (style != null) {			
 			style.setType("text/xml");
 		    }
 		}

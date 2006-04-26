@@ -46,8 +46,31 @@ public class CssRuleList {
 
     public String toString() {
 	StringBuffer ret = new StringBuffer();
+	if (null != atRule && atRule.isEmpty()) {
+	    if (!atRuleString.equals("")) {		
+		ret.append(atRuleString);
+		ret.append("\n\n");
+	    }
+	} else {
+	    if (!atRuleString.equals("")) {		
+		ret.append(atRuleString);
+		ret.append(" {\n\n");
+	    }
+	    for (int i = 0; i < rulelist.size() ; i++ ) {
+		ret.append((CssStyleRule)rulelist.elementAt(i));
+	    }
 
-	if (atRule.isEmpty()) {
+	    if (!atRuleString.equals("")) {
+		ret.append("}\n");
+	    }
+	}
+	return ret.toString();
+    }
+    
+/*    public String toString() {
+	StringBuffer ret = new StringBuffer();
+
+	if (atRule == null || atRule.isEmpty()) {
 	    if (null != atRule && !atRuleString.equals("")) {
 		ret.append(atRuleString);
 		ret.append(' ');
@@ -72,7 +95,7 @@ public class CssRuleList {
 	    }
 	}
 	return ret.toString();
-    }
+    }*/
 
     /*    public String toHTML() {
      StringBuffer ret = new StringBuffer();

@@ -173,7 +173,7 @@ CssPrinterStyle {
 
     // prints the stylesheet at the screen
     public void produceStyleSheet() {
-	Vector atRules = style.newGetRules();
+	Vector atRules = style.newGetRules();	
 	for (int idx = 0; idx < atRules.size(); idx++) {
 	    // out.print(((CssRuleList)atRules.elementAt(idx)).toHTML());
 	    ((CssRuleList) atRules.elementAt(idx)).toHTML(out);
@@ -280,7 +280,7 @@ CssPrinterStyle {
 		    if (ex instanceof FileNotFoundException) {
 			ret.append("\n<p>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<span class='error'>");
+			ret.append("<span class='error'> ");
 			ret.append(ex.getMessage());
 			ret.append("</span>\n");
 		    } else if (ex instanceof CssParseException) {
