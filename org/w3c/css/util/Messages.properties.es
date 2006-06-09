@@ -151,7 +151,7 @@ generator.unrecognize: Error de análisis sintáctico
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: El pseudo-elemento :%s no puede aparecer aquí en el contexto %s
 error.pseudo-class: La pseudo-clase .%s no puede aparecer aquí en el contexto de HTML %s
-error.pseudo: Pseudo-clase o pseudo-elemento %s desconocido : %s
+error.pseudo: Pseudo-clase o pseudo-elemento %s desconocido(a)
 error.id: ¡El selector de ID #%s no es válido! En un selector simple sólo puede especificarse un selector de ID: %s.
 error.space: Si se utiliza el selector de atributo ~= entonces el valor de %s no puede contener espacios.
 error.todo: Lo lamentamos, la característica %s todavía no está implementada.

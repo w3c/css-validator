@@ -155,7 +155,7 @@ generator.unrecognize: Erreur lors de l'analyse grammaticale.
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Le pseudo-élément :%s ne peut apparaitre dans le contexte %s
 error.pseudo-class: La pseudo-classe .%s ne peut apparaitre dans le contexte HTML %s
-error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu
+error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu(e)
 error.id: Le sélécteur d'identificateur n'est pas valide! \
 Un selecteur simple: %s ne peut avoir qu'un seul sélécteur d'identificateur
 error.space: Si le sélécteur d'attribut ~= est utilisé, alors le mot de la \

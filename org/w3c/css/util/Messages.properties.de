@@ -120,7 +120,7 @@ generator.unrecognize: Einlese-Fehler
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontext %s vorkommen
 error.pseudo-class: Die Pseudoklasse .%s kann hier nicht in dem HTML-Kontext %s vorkommen
-error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse
+error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse: %s
 error.id: ID-Selektor #%s ist ungültig!  Nur ein ID-Selektor kann in einem einfachen Selektor angegeben werden: %s.
 error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert %s keine Leerzeichen enthalten.
 error.todo : Leider ist das Feature %s noch nicht implementiert.

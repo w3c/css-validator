@@ -129,7 +129,7 @@ generator.unrecognize: 文法解析エラーが発生しました
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
 error.pseudo-class: 疑似クラス .%s は HTMLコンテキスト %s 中のこの場所では使えません
-error.pseudo: 未知の疑似要素または疑似クラスです
+error.pseudo: %sは未知の疑似要素または疑似クラスです
 error.id: ID セレクタ #%s は間違っています!\
 単純セレクタ (simple selector) %s には一つのIDセレクタしか指定できません
 error.space: 属性セレクタ (attribute selector) ~= が用いられている場合、\

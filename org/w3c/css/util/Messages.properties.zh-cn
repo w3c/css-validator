@@ -117,7 +117,7 @@ error.unrecognize: 太多值不能识别
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: 伪元素: %s 不能在次处的上下文 %s 中出现
 error.pseudo-class: 伪类 .%s 不能在此处的HTML上下文 %s 中出现
-error.pseudo: 不识别的伪元素或伪类
+error.pseudo: 不识别的伪元素或伪类 %s
 error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普通选择符: %s.
 error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
 error.todo : 抱歉，特性 %s 还不能支持
