@@ -180,19 +180,16 @@ unless it is a dimension (".55in").
 parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in").
 
-parser.charset:The @charset rule may only occur at the start of the style \
-sheet. Please check that there are no spaces before it.
+parser.charset:@charset 規則が指定できるのは、スタイルシートの最初の部分のみです。直前にスペースが入っていたりしないか確認してみてください。
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
-@charset followed by exactly one space, followed by the name of the encoding \
-in quotes, followed immediately by a semicolon.
+parser.charsetspecial:このプロファイルには、固有の @charset 構文があります。@charset のあとには1つのスペース、引用符つきのエンコーディングの名前、セミコロンを並べます。
 
 warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
+warning.old_class:In CSS1, a class name can start with a digit (".55ft"), \
+unless it is a dimension (".55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
