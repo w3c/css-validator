@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Documentation for the W3C CSS Validator</title>
+  <link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Home Page" />
+  <style type="text/css" media="all">
+    @import "base.css";    
+    @import "docs.css";    
+  </style>
+  <meta name="revision" content="$Id$" />
+  <!-- SSI Template Version: $Id$ -->
+</head>
+
+<body>
+
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+   </div>
+
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+<h2>Documentation index for the CSS Validator</h2>
+
+<p id="skip"></p>
+
+<h3 id="use">User Resources</h3>
+
+<dl>
+    <dt><a href="./manual.html">User's Manual</a></dt>
+    <dd>The documentation on how to use the CSS validator</dd>
+    <dt><a href="about">About this service</a></dt>
+    <dd>Informations about the CSS Validator, and answers to some general questions</dd>
+    <dt><a href="http://www.websitedev.de/css/validator-faq">
+	CSS Validator FAQ
+    </a></dt>
+    <dd>Answers to technical questions frequently asked.</dd>
+    
+</dl>
+
+<h3 id="devel">Developper Resources</h3>
+
+
+<dl>
+    <dt><a href="DOWNLOAD">Download/Install</a></dt>
+    <dd>How to retrieve the source of the CSS validator and run it, either as a command line program or a Web Servlet.</dd>
+    
+    <dt><a href="README">developer's README</a></dt>
+    <dd>An overview of the code of the CSS Validator</dd>
+
+    <dt><a href="./api.html">Web Service API</a></dt>
+    <dd>SOAP 1.2 validation interface documentation</dd>
+    
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
+    <dd>Known issues in the current version of the validator, and an interface to submit new bugs and issues. 
+    See also <a href="email">the feedback instructions</a>.</dd>
+
+</dl>
+
+
+
+</div>
+</div>
+<!-- End of "main" DIV. -->
+
+   <ul class="navbar"  id="menu">
+	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
+	<li><a href="about" title="About this service">About</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+Support this tool, become a<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+
+  </body>
+</html>
+
+
