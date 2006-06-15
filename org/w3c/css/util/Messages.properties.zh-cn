@@ -151,40 +151,49 @@ generator.doc:<p>\
 # used by the parser
 parser.semi-colon: 试图寻找属性名前面的冒号。加上！
 
-parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
-除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
-被解释为不识别的尺寸值(以允许将来加入新的单位)
+# Xu Ting commented out this translation @ 2006.6.9
+# I changed a little bit of this translation.
+#parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \
+#除非它是一个尺寸值 (".55in")。在CSS2，以上的类 \
+#被解释为不识别的尺寸值(以允许将来加入新的单位)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
-unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+# Xu Ting's modification.
+parser.old_class:在CSS1，类名应该以点开始 (例如".55ft"), \
+但是不能是一个尺寸值 (例如".55in")。在CSS2，以上的类是不允许的，它会被解释成 \
+一个未知的尺寸(目的是为了以后可以增加新的单位)。
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in").
+# The following is translated by Xu Ting, you can contact me via tonny.xu@gmail.com
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in").
+parser.old_id:在CSS1中，一个id的名字可以是以数字开头(例如"#55ft")， \
+但是不能是一个尺寸值(例如"#55in")。 在CSS2中，这样的id是不允许的，它会被解释成 \
+一个未知的尺寸(目的是为了以后可以增加新的单位)。
 
-parser.charset:The @charset rule may only occur at the start of the style \
-sheet. Please check that there are no spaces before it.
+parser.class_dim:在CSS1中，一个类的名字可以是以数字开头(例如".55ft")， \
+但是不能是一个尺寸值(例如".55in")。
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
-@charset followed by exactly one space, followed by the name of the encoding \
-in quotes, followed immediately by a semicolon.
+parser.id_dim:在CSS1中，一个id的名字可以是以数字开头(例如"#55ft")，  \
+但是不能是一个尺寸值(例如"#55in")。
 
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.charset: @charset 条件只能在样式表的头部出现。 \
+请检查是否该条件前是否有空格。
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.charsetspecial:当前配置对@charset 而言，有个非常特殊的语法： \
+@charset 后面必须直接接一个空格，有且仅有一个空格，然后接上添加了引号的编码的名称 \
+在引号的后面直接接一个分号。
+
+warning.old_id:在CSS1中，一个id的名字可以是以数字开头(例如"#55ft")， \
+但是不能是一个尺寸值(例如"#55in")。 在CSS2中，这样的id是不允许的，它会被解释成 \
+一个未知的尺寸(目的是为了以后可以增加新的单位)。
+
+warning.old_class:在CSS1中，一个类的名字可以是以数字开头(例如".55ft")，\
+但是不能是一个尺寸值(例如".55in")。 在CSS2中，这样的类的名字是不允许的，它会被解释成 \
+一个未知的尺寸(目的是为了以后可以增加新的单位)。
 
 # used by the servlet
 servlet.invalid-request: 你发出了无效的请求
 servlet.process: 不能对对象进行处理
 
-error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+error.unrecognized.link: 不可识别的链接元素或者XML样式 PI.
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Combinator %s between selectors is not allowed in this profile or version
+error.nocomb: 在现有版本或者配置中，不允许在选择子之间使用连接子 %s 
