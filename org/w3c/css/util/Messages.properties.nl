@@ -169,36 +169,36 @@ HTML</a> dient te gebruiken.</p>
 
 
 # gebruikt door the parser
-parser.semi-colon: poging een puntkomma te vinden voor de eigenschapnaam: voog deze toe
+parser.semi-colon: poging een puntkomma te vinden voor de eigenschapnaam: voeg deze toe
 
-parser.old_class:In CSS1 kon een class naam beginnen met een getal (".55ft"), \
-tenzij het een dimensie was (".55in"). In CSS2 worden zulke classes geparsed als \
-onbekende dimensions (dit maakt het mogelijk later nieuwe units toe te voegen)
+parser.old_class:In CSS1 kon de naam van een klasse beginnen met een getal (".55ft"), \
+tenzij het een dimensie was (".55in"). In CSS2 worden zulke klassen geparsed als \
+onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
-unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.old_id:In CSS1 kon een id beginnen met een getal ("#55ft"), \
+tenzij het een dimensie was ("#55in"). In CSS2 worden zulke ids geparsed als \
+onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in").
+parser.class_dim:In CSS1 kan de naam van een klasse beginnen met een getal (".55ft"), \
+tenzij het een dimensie is (".55in").
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in").
+parser.id_dim:In CSS1 kan een id beginnen met een getal ("#55ft"), \
+tenzij het een dimensie is ("#55in").
 
 parser.charset:De @charset-regel mag alleen voorkomen aan het begin van een \
 style-sheet. Controleer dat er geen spaties aan voorafgaan.
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
-@charset followed by exactly one space, followed by the name of the encoding \
-in quotes, followed immediately by a semicolon.
+parser.charsetspecial:Dit profiel heeft een specifieke syntax voor @charset: \
+@charset gevolgd door precies een spatie, gevolgd door het type tussen aanhalingstekens \
+en een puntkomma.
 
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_id:In CSS1 kon de naam van een id beginnen met een getal ("#55ft"), \
+tenzij het een dimensie is ("#55in"). In CSS2 worden zulke ids geparded als \
+onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_class:In CSS1 kon de naam van een klasse beginnen met een getal (".55ft"), \
+tenzij het een dimensie is (".55in"). In CSS2 worden zulke klassen geparsed als \
+onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 
 # gebruikt door de servlet
 servlet.invalid-request: U hebt een ongeldig verzoek ingediend.
@@ -212,10 +212,10 @@ error.notformobile : %s kan niet worden gebruikt voor het mobile profiel
 warning.atsc : %s wordt mogelijk niet ondersteund door het medium atsc-tv
 error.onlyATSC : deze functie is alleen voor @media atsc-tv
 
-error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+error.unrecognized.link: Onherkenbaar link element of xml-stylesheet PI.
 
 warning.otherprofile : property %s bestaat niet in dit profiel, maar is gevalideerd conform een ander profiel
 warning.deprecated : deze waarde is verouderd en kan beter niet meer worden gebruikt
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Combinator %s between selectors is not allowed in this profile or version
+error.nocomb: Combinator %s tussen de selectors is niet toegestaan in dit profiel of versie
