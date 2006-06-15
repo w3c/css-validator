@@ -8,13 +8,8 @@
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
-@import "http://validator.w3.org/base.css";</style>
-  <meta name="keywords"
-  content="HTML, HyperText Markup Language, Validation,       W3C Markup Validation Service"
-  />
-  <meta name="description"
-  content="W3C's easy-to-use       HTML validation service, based on an SGML parser."
-  />
+@import "base.css";
+</style>
   <meta name="revision"
   content="$Id$" />
   <!-- SSI Template Version: $Id$ -->
@@ -22,30 +17,12 @@
 
 <body>
 
-<div id="banner">
-<h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C"
-id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" />
-</a> <a href="http://www.w3.org/QA/"><img
-src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" />
-</a> CSS Validation Service</h1>
-</div>
-<ul class="navbar" id="menu">
-  <li><span class="hideme"><a href="#skip" accesskey="2"
-    title="Skip past navigation to main part of page">Skip Navigation</a>
-    |</span> <a href="./" accesskey="1"
-    title="Go to the Home Page for The W3C CSS Validation Service"><strong>Home</strong></a></li>
-  <li><a href="http://validator.w3.org/"
-    title="In addition to fixing your CSS, fix your markup with the W3C Markup Validator">Markup
-    Validator</a></li>
-  <li><a href="http://validator.w3.org/checklink"
-    title="In addition to fixing your markup, fix your links with the W3C Link Checker">Link
-    Checker</a></li>
-</ul>
+  <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+   </div>
 
-<div id="main">
-<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
 
-<div class="doc">
 <h2>CSS Validator Web Service API<br />
 SOAP 1.2 validation interface documentation</h2>
 
@@ -70,80 +47,8 @@ SOAP 1.2 validation interface documentation</h2>
 
 <h3 id="requestformat">Validation Request Format</h3>
 
-<p>Below is a table of the parameter you can use to send a query to the W3C
-CSS Validator.</p>
-
-<p>If you want to use W3c's public validation server, use the parameters
-below in conjunction with the following base URI:<br />
-<kbd>http://jigsaw.w3.org/css-validator/validator</kbd><br />
-(replace with the address of your own server if you want to call a private
-instance of the validator.</p>
-
-<p><strong>Note</strong>: If you wish to call the validator programmatically
-for a batch of documents, please make sure that your script will
-<code>sleep</code> for <strong>at least 1 second</strong> between requests.
-The CSS Validation service is a free, public service for all, your respect is
-appreciated. thanks.</p>
-
-<table class="refdoc">
-  <tbody>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Default value</th>
-    </tr>
-    <tr>
-      <th>uri</th>
-      <td>The <acronym title="Universal Resource Locator">URL</acronym> of
-        the document to validate. CSS and HTML documents are allowed.</td>
-      <td>None, but either this parameter, or <code>text</code> must be
-      given.</td>
-    </tr>
-    <tr>
-      <th>text</th>
-      <td>The document to validate, only CSS is allowed.</td>
-      <td>None, but either this parameter, or <code>uri</code> must be
-      given.</td>
-    </tr>
-    <tr>
-      <th>usernedium</th>
-      <td>The medium used for the validation, like <code>screen</code>,
-        <code>print</code>, <code>braille</code>....</td>
-      <td><code>screen</code></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td>Triggers the various outputs formats of the validator. If unset,
-        the usual Web format will be sent. If set to <code>soap12</code>, the
-        SOAP1.2 interface will be triggered. See <a href="soap12format">below
-        for the SOAP 1.2 response format description</a>.</td>
-      <td>unset</td>
-    </tr>
-    <tr>
-      <th>profile</th>
-      <td>The CSS profile used for the validation. It can be
-        <code>css1</code>, <code>css2</code>, <code>css21</code>,
-        <code>css3</code>, <code>svg</code>, <code>svgbasic</code>,
-        <code>svgtiny</code>, <code>mobile</code>, <code>atsc-tv</code>,
-        <code>tv</code> or <code>none</code></td>
-      <td>By default the profile used is the one from the most recent W3C
-        Recommendation: CSS 2</td>
-    </tr>
-    <tr>
-      <th>lang</th>
-      <td>The language used for the response, currently, <code>en</code>,
-        <code>fr</code>, <code>ja</code>, <code>it</code>, <code>es</code>,
-        <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
-      <td>By default English (<code>en</code>) is used.</td>
-    </tr>
-    <tr>
-      <th>warning</th>
-      <td>The warning level, <code>0</code> for less warnings, <code>1</code>
-        or <code>2</code> for more warnings</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
+<p>The documentation on how to create a custom request to the CSS validation service is available, 
+with a table of all existing parameters and their values, in the <a href="manual">User Manual</a>.</p>
 
 <h3 id="soap12format">SOAP format description</h3>
 
@@ -308,41 +213,53 @@ href="soap12_error">error</a></code> element, but also the
     </tr>
   </tbody>
 </table>
-</div>
-</div>
-<!-- End of "main" DIV. -->
-<address>
-  <a href="../check?uri=referer"><img
-  src="http://www.w3.org/Icons/valid-xhtml10" height="31" width="88"
-  alt="Valid XHTML 1.0!" />
-  </a> Feedback: <a
-  title="Send Feedback for the W3C Markup Validation Service"
-  href="mailto:www-validator-css@w3.org">The W3C CSS Validator Team</a><br />
-  $Date$ <!-- SSI Template Version: $Id$ -->
 
-</address>
+   <ul class="navbar"  id="menu">
 
-<p class="copyright"><a rel="Copyright"
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-© 1994-2006 <a href="http://www.w3.org/"><acronym
-title="World Wide Web Consortium">W3C</acronym></a>® (<a
-href="http://www.csail.mit.edu/"><acronym
-title="Massachusetts Institute of Technology">MIT</acronym></a>, <a
-href="http://www.ercim.org/"><acronym
-title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-<a
-href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-<a rel="Copyright"
-href="http://www.w3.org/Consortium/Legal/copyright-documents">document
-use</a> and <a rel="Copyright"
-href="http://www.w3.org/Consortium/Legal/copyright-software">software
-licensing</a> rules apply. Your interactions with this site are in accordance
-with our <a
-href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a>
-and <a
-href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a>
-privacy statements.</p>
-</body>
+	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
+	<li><a href="about" title="About this service">About</a> <span class="hideme">|</span></li>
+
+        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
+
+        <li><a href="Email" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+
+   </p>
+
+   <p id="support_logo">
+Support this tool, become a<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+
+  </body>
+
 </html>
+
+
