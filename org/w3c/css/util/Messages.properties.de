@@ -155,33 +155,33 @@ HTML</a> verwenden sollten.</p>
 parser.semi-colon: Versuche ein Semikolon vor dem Eigenschaftsnamen zu finden. Füge es hinzu.
 
 parser.old_class: In CSS1 konnte ein Klassenname mit einer Ziffer beginnen  (".55ft"), \
-es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden sollche Klassen als \
+es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden solche Klassen als \
 unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
-unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.old_id: In CSS1 konnte ein id Bezeichner, außer wenn es sich um eine Dimension handelte ("#55in"), \
+mit einer Ziffer beginnen ("#55ft"). In CSS2 werden solche ids als \
+unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in").
+parser.class_dim: In CSS1 kann ein Klassenname mit einer Ziffer beginnen (".55ft"), \
+es sei denn es handelt sich um eine Dimension (".55in").
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in").
+parser.id_dim: In CSS1 kann ein id Bezeichner, außer wenn es sich um eine Dimension ("#55in") handelt, \
+mit einer Ziffer beginnen ("#55ft").
 
-parser.charset:The @charset rule may only occur at the start of the style \
-sheet. Please check that there are no spaces before it.
+parser.charset: Die Regel @charset darf nur zu Beginn eines Stylesheets verwendet werden. \
+Bitte überprüfen Sie, dass keine Leerzeichen davor zu finden sind.
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
-@charset followed by exactly one space, followed by the name of the encoding \
-in quotes, followed immediately by a semicolon.
+parser.charsetspecial: In diesem Profil gilt eine sehr spezielle Syntax für die @charset Regel: \
+Auf @charset muss genau ein Leerzeichen folgen, gefolgt vom Namen der Enkodierung in Anführungszeichen, \
+direkt danach ein Semikolon.
 
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_id: In CSS1 konnte ein id Bezeichner, außer wenn es sich um eine Dimension handelte ("#55in"), \
+mit einer Ziffer beginnen ("#55ft"). In CSS2 werden solche ids als \
+unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_class: In CSS1 konnte ein Klassenname mit einer Ziffer beginnen  (".55ft"), \
+es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden solche Klassen als \
+unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
 
 # used by the servlet
 servlet.invalid-request: Sie haben eine ungültige Anfrage gesendet.
@@ -201,10 +201,10 @@ error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
 warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
 
-error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+error.unrecognized.link: Nicht erkanntes Linkelement oder xml-stylesheet PI.
 
 warning.otherprofile : Die Eigenschaft %s existiert in der angegebenen Version von CSS nicht, ist aber in einer anderen Version vorhanden und valide 
 warning.deprecated : Dieser Wert ist abgelehnt
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Combinator %s between selectors is not allowed in this profile or version
+error.nocomb: Die Kombination %s von Selektoren ist in diesem Profil oder dieser Version nicht erlaubt.
