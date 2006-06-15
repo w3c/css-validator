@@ -8,53 +8,69 @@
    $Id$
 */
 
-@import url(navbar.css);  /* CSS for navigation menu. */
-
-
-html, body {
-  line-height:     120%;
-  color:           black;
-  background:      white;
-  font-weight:     normal;
-  font-family:     "Bitstream Vera Sans", sans-serif;
-  font-style:      normal;
-  text-decoration: none;
-  margin:  0;
-  padding: 0;
-  border:  0;
+/*                 
+   General styling 
+                   */
+html {
+    background-color: white;
+    color: #11111A;
 }
 
-div#main {
-  padding-top: 1em;
-/*   margin-right: 7.6em; */ /* no need for this without the righthand bar */
-margin: 1em;
+body {  
+    margin: auto auto;
+    padding-left: 6%;
+    padding-right: 6%;
+    background-color: white;
+    color: #11111A;
+    font-family: Helvetica, "Trebuchet MS", Arial, sans-serif;
+    font-size: 1em; /* setting base font to user's prefered size */
+    min-width: 50em;
+}
+p {     
+    line-height: 130%; 
+    padding-left: 20px;
 }
 
-div#main p, div#main dt {
-  padding-left: 1em;
-  padding-right: 1em;
+/*                                                   
+   Main blocks - see also #menu styled in navbar.css 
+                                                     */
+
+#banner {
+    background-color: white;
+    color: #11111A;
+    background-image: url(images/header.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: top right;
+    padding: 4px 0 0 0;
+    height: 55px; 
+    margin-bottom: 0;
+    margin-top: 4px;
+    border: 0;
+
 }
 
-dt {
-  margin-top: 1em;
+#banner h1 { 
+    vertical-align: middle;
+    font-size: 1.5em;
+    display: inline;
 }
 
-/* Fieldsets in general */
-fieldset {
-  max-width:     80%;
-  margin-left:   1em;
+p#tagline {
+    font-size: x-small;
+    padding: 0; 
+    line-height: 100%;
+    margin: 0 0 4em .8em;
+    background-color: white;
+    color: #11111A;
+    clear: both;
 }
 
-/* The front-page fieldsets */
-fieldset.front {
-  background: inherit;
-  border: 1px dotted #053188;
-}
-
-fieldset.front legend {
-  color: #053188;
-  font-variant: small-caps;
-  padding: .1ex .5ex;
+#main { 
+    padding: 15px 0;
+    background-color: white;
+    margin: 0;
+    color: #11111A;
 }
 
 .intro {
@@ -62,260 +78,377 @@ fieldset.front legend {
   text-align: justify;
 }
 
+/* 
+   Headers
+            */
+
+h1 { 
+    font-family: "Gill Sans", Helvetica, sans-serif;
+    font-size-adjust: .53;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+}
+
+h2 { 
+    color: #777742;
+    background: white;
+    padding: 5px 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Gill Sans", sans-serif;
+}
+
+h3 {
+    background-color: #fff;
+    color: #777742;
+    font-size: 1.1em;
+    padding: 2px 10px;
+    border-bottom: 1px dotted #aaaa77;
+    text-decoration: none;
+    font-family: "Gill Sans", sans-serif;
+} 
+
+h4 {
+    color: #777742;
+    background-color: white;
+    font-weight: 600;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 1.0em;
+    padding-left: 15px;
+    font-family: "Gill Sans", sans-serif;
+}
+
+h5,h6 {
+    background-color: white;
+    color: #11111A;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: normal;
+    padding-left: 15px;
+    }
+/* 
+   General link styling
+                         */
+
 a:link, a:visited {
-  color: blue;
+    color: #005A9C;
+    background-color: transparent;
+    text-decoration: none;
+
 }
 
-a:hover {
-  color: blue;
-  background-color: #eee;
+a:hover, a:active {
+    color: #005A9C;
+    background-color: transparent;
+    text-decoration: underline;
 }
 
-a:active {
-  color: red;
-  background-color: yellow;
+
+/* 
+   Other basic styles 
+                      */
+
+/* TODO - add ol, li, td here ? */
+p, dt {
+    margin-left: 15px;
+    margin-right: 25px;
 }
 
-acronym:hover, abbr:hover {cursor: help}
+dd {
+    margin-left: 35px;
+    margin-right: 25px;
+}
+
+#news dt {
+    font-weight: bold;
+     margin-top: 1em;
+   }
+
+img { 
+    margin:0;
+    padding: 0;
+    vertical-align: middle;
+    border: 0;
+}
+
+acronym:hover, abbr:hover {
+    cursor: help;
+}
+
 abbr[title], acronym[title], span[title], strong[title] {
-  border-bottom: thin dotted;
-  cursor: help;
+    border-bottom: thin dotted;
+    cursor: help;
 }
 
 pre, code, tt {
-  font-family: monospace;
-  line-height: 100%;
-  white-space: pre;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Andale Mono", monospace;
+    line-height: 100%;
+    white-space: pre;
 }
 
-a:link img, a:visited img {border-style: none}
-a img {color: black} /* The only way to hide the border in NS 4.x */
+a:link img, a:visited img {
+    border-style: none;
+}
 
 ul.toc {
-  list-style: none;
+    list-style: none;
 }
 
-ol li {
-  padding: .1em;
+/*
+   Stuff we don't actually want too visible - or not at all
+                                                            */
+.hideme { display: none; }
+
+
+/*
+   Forms on front page, with tabtastic and toggable extra options
+         */
+#frontforms {
+	margin-left: 12%;
+	margin-right: 12%;
+	
 }
 
-div.issue {
-  padding: 0.5em;
-  border: none;
-  margin-right: 5%;
+
+
+/* Fieldsets */
+
+/* generic style for form fields */
+fieldset {
+    border: 1px solid #005A9C;
+    background-color: #dfebf7;
+    color: #11111A;
+    margin-bottom: 3em;
+    margin-left: 0;
+}
+fieldset legend {
+    font-weight: bold;
+    background-color: #dfebf7;
+    color: #11111A;
+    border: 1px solid #005A9C;
+    padding: .5em;
+}
+fieldset p { 
+    margin: 0 0  0.8em 0; 
+    padding: 0; 
+}
+fieldset p.instructions {
+    padding-top: .5em;
+}
+fieldset p.submit_button {
+    text-align: right;
+    padding-top: .5em;
+}
+fieldset p.submit_button input {
+    font-weight: bold;
+    color: #005A9C;
+    background: #fff;
+    padding: 0.2em 2em;
+    border: 2px outset #005A9C;
+}
+input {
+    vertical-align: middle;
+}
+input.reset {
+    text-align: center;
+}
+input.default {
+    text-align: center;
+    font-weight: bold;
 }
 
-.hideme {display: none}
 
-#Notice {
-  border: solid;
-  margin: .2em;
-  padding: .5em;
-  text-align: justify;
+/* the following from http://www.mindsack.com/toggle/ (c) Kent Brewster */
+
+.toggle
+{
+        background: transparent url('images/arrow-down.gif')  0 0 no-repeat;
+        text-indent: 20px;
+        cursor:pointer;
 }
 
-/* dt a {color: black} */ /* These are usually targets and not links */
-h3 a {color: black} /* These are usually targets and not links */
-
-img {vertical-align: middle}
-
-
-
-/* done vs. tbc for the TODO list */
-.done { text-decoration: line-through; }
-
-address img {
-  float: right;
-  width: 88px;
+.toggle.closed
+{
+        background: transparent url('images/arrow-right.gif') 0 0 no-repeat;
 }
 
-address {
-  padding-top:     .5em;
-  padding-right:    1em;
-  padding-left:     1em;
-  padding-bottom:  .5em;
-  margin-top:       3em;;
-  border-top:       1px solid black;
-  background-color: #eee;
-  clear:            right;
+p.toggle {
+    color: #005A9C;
+    background-color: #dfebf7;
+}
+p.toggle:hover {
+	text-decoration: underline;
 }
 
-address {
-  background-image: url(images/footer);
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  height: 50px;
-  background-position: center;
-  margin:0; padding:0;
+.hidden
+{
+        display:none;
+}
+fieldset.moreoptions {
+border-style: dotted;
+margin-bottom: 0;
+padding-left: 0;
+}
+fieldset.moreoptions div {
+margin-left: .5em;
+font-size: smaller;
+}
+fieldset.closed {
+border: 0;
 }
 
+
+
+/* IE6 hack, avoid "leaking" of fiedset background into legend 
+(more hacking in tabtastic.css to make the "ghost" of the legend disappear) */
+* html legend { position:absolute; top: -25em !important; left: -25em !important; }
+* html fieldset{ position: relative; margin-top:0 !important; padding-top:0 !important; }
+
+
+
+/* tables in the documentation */
+
+table {
+	border-collapse: collapse;
+	border-right: 1px solid #ccc;
+}
+td, th{
+	border-top: 0px solid #ddd;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #eee;
+	padding: 6px;
+	border-collapse: collapse;
+}
+th {
+	background-color: #eee;
+	color: #11111A;
+	border-right: 1px solid #ccc;
+}
+
+/* 
+	Menu Bar
+			*/
+
+#menu {
+        color: #005A9C;
+	border-top: 1px solid #005A9C;
+	border-bottom: 1px solid #005A9C;
+        background-color: white;
+        margin: 3em 0 0 0;
+        padding: 3px 0 3px 0;
+        line-height: 140%;
+        vertical-align: bottom;
+        font-size: 0.9em;
+        list-style-type: none;
+	text-align: center;
+	font-weight: bold;
+}
+
+#menu { padding-left: 1em; padding-right: 1em}
+#menu li {
+  display: inline;
+}
+
+#menu li a {
+  padding-right: 1.2em;
+  padding-left: 1.2em;
+}
+
+/* 
+	legalese and logos beneath the menu bar
+							*/
+
+p#activity_logos {
+float:left; 
+width: 144px; 
+padding: 8px 0 40px 0; 
+}
+
+p#support_logo {
+float: right; width: 180px; padding: 0; margin-top: 12px; font-size: x-small; text-align:center;
+}
+
+                                                            
 p.copyright {
-  margin-top:     5em;
-  padding-top:    .5em;
-  font-size:      xx-small;
-  max-width:      85ex;
+  margin-top:     20px;
+  margin-left:    210px;
+  margin-right: 240px;
+  font-size:      x-small;
   text-align:     justify;
   text-transform: uppercase;
-  margin-left:    auto;
-  margin-right:   auto;
-  font-family:    monospace;
-  color:          #888;
+  font-family: "Bitstream Vera Sans Mono", monospace;
+  color: #888;
+  background-color: white;
   line-height:    120%;
 }
 
 p.copyright a {
   color: #88f;
+   background-color: white;
   text-decoration: none;
 }
 
-.stb {clear: left}
 
-div.colophon {
-  margin-left: 2em;
-  font-style: italic;
+
+/* 
+		Jump Bar  - results page 
+(from markup validator - note used in this design yet)
+								*/
+#jumpbar {
+    background-color: #dfebf7;
+    color: #11111A;
+    float: right;
+    width: 8em;
+    margin-right: 0; 
+    text-align: left;
+    text-decoration:  none;
+    padding:          1ex;
+    border-left:     1px solid #005A9C;
+    border-bottom:    1px solid #005A9C;
+    margin-top:       -15px; 
+    font-size: 0.9em;
+    font-weight:      bold;
+    margin-left: 1em;
 }
 
-div.colophon em {
-  font-style: normal;
+#jumpbar ul {
+  padding: 0;
+  margin:  0;
 }
 
-/* Various header(ish) things. Definitions cribbed from the CORE Styles. */
-h1 {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  font-size: 2em;
-  font-weight: bold;
-  font-style: normal;
-  text-decoration: none;
-}
-#banner h1 {font-size: 1.3em;
+#jumpbar li {
+  list-style-type: none;
+  text-align: right;
 }
 
-#banner {background-image: url(images/header);
-background-repeat: no-repeat;
-background-attachment: scroll;
-height: 50px;
-border-bottom: 1px solid black;
-background-position: right;
-margin:0; padding:0;}
-
-h1#title {
-/*  background-color: #eee; 
-  border-bottom: 1px solid black; 
-  padding: .25em;*/
-  padding:0;
-  margin: 0;
+div#jumpbar li a {
+  height: 20px;
+  padding-right: 20px;
+  padding-left: 25px;
 }
-
-/* Used for beta releases. */
-h1#title em {
-  color: red;
-}
-h1, h2 { color: rgb(  0,  79, 147) !important }
-
-h2 {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  font-size: 1.5em;
-  text-align: center;
-  font-weight: bold;
-  font-style: normal;
-  text-decoration: none;
-  margin-top : 2em;
-  margin-bottom : 1em;
-  line-height: 120%;  
-}
-
-h3 {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  font-size: 1.3em;
-  background-color: #eee;
-  text-indent: 2em;
-  padding: .2em;
-  border-top: 1px dotted black;
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: none;
-}
-
-h4 {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  font-size: 1.1em;
-  font-weight: 600;
-  font-style: normal;
+div#jumpbar li a:hover {
   text-decoration: underline;
 }
 
-h5, dt {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  font-size: 1em;
-  font-weight: bold;
-  font-style: normal;
+#jumpbar li a:link, #jumpbar li a:visited {
   text-decoration: none;
-  text-indent: .5em;
-  margin:0;
-}
-
-h6 {
-  font-family: "Bitstream Vera Sans", Tahoma, Verdana, "Myriad Web", Syntax, sans-serif;
-  font-size-adjust: .53;
-  color: #666;
-  text-indent: 1em;
-  font-size: 1em;
-  font-style: italic;
-  margin:0;
-  text-decoration: none;
-}
-
-/* comma tools table */
-
-td.comma-desc {
-  background: #ffeecc;
-  border : 1px solid black;
-  font-family: sans-serif
-}
-
-td.comma-shortcut {
-  background: #e7e7ff; 
-  border : 1px solid black;
-  font-family: monospace;
-}
-
-td.comma-tool {
-  background: #e7e7ff;
-  border: 1px solid black;
-}
-
-kbd {
-  font-weight: bold;
-}
-
-.shout {
-  background: yellow;
-  border: .5ex dotted black;
-  padding: 1em;
-}
-
-.shout strong {
+  text-align: right;
   display: block;
-  color: red;
+  width: 8em;
+  padding: 2px 0px;
+  margin: 0;
+  border-top: dotted 1px #053188;
 }
 
-input {
-  vertical-align: middle;
-}
-
-input.reset {
-  text-align: center;
-  font-family: monospace;
-}
-
-input.default {
-  text-align: center;
-  font-weight: bold;
-  font-family: monospace;
+#jumpbar li a#selected:link, #jumpbar li a#selected:visited {
+  text-decoration: underline;
+  background-color: #fff;
+  color: #053188;
+  border-right: solid 1px #ddd;
+  border-bottom: solid 1px #fff;
 }
 
