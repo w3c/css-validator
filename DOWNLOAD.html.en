@@ -54,7 +54,7 @@ are also given below. </p>
 <ul class="instructions">
 	<li>A working java environment,</li>
 	<li>The <a href="http://ant.apache.org/">Ant</a> java building tool</li>
-	<li>A java Web servlet container such as <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, 
+	<li>A java Web servlet container such as 
 		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> or
 		<a href="http://www.mortbay.org/">Jetty</a> if you plan on using the validator as an online service. 
 		This guide only covers Tomcat and Jigsaw in details.</li>
