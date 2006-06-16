@@ -1,82 +1,230 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
     <title>W3C CSS 検証サービス</title>
-
-    <meta lang="ja" name="Translator" content="Norio Touyama" />
-    
-    <meta name="keywords" content="W3C,validator,css,html,java" />
-    <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
-
-    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="Home Page" />
+    <style type="text/css" media="all">@import "base.css";</style>
+    <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
+    <script type="text/javascript" src="tabtastic/attachevent.js"></script>
+    <script type="text/javascript" src="tabtastic/addcss.js"></script>
+    <script type="text/javascript" src="tabtastic/tabtastic.js"></script>
+    <script src="toggle.js" type="text/javascript"></script>
+    <meta name="revision" content="$Id$" />
   </head>
+
   <body>
-    <a class="left" href="http://www.w3.org"><img
-	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
-	height="48" /></a>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><img
-	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
-	  border="0" width="94" height="52" /></a>
-    <br />
-
-    <div class="t1">CSS</div>
-    <div class="t2">Validator</div>
-
-    <h1>W3C CSS 検証サービス</h1>
-
-    <p>
-      W3C CSS 検証サービスへようこそ!
-    </p>
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>
+   </div>
+      <p id="tagline">
+        カスケーディングスタイルシート(CSS)を検証
+      </p>
+	<div id="frontforms">
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">URLで指定して</a></li><li><a href="#validate-by-upload">テキストエリアに直接入力して</a></li><li><a href="#validate-by-input">ソースファイルをアップロードして</a></li></ul>
     
-    <div class="main-text">
-      <h2>関連文書</h2>
-      <ul class="none">	
-	<li><a href="README.html">解説文書</a></li>
-	<li><a href="thanks.html">謝辞</a></li>
-      </ul>
-
-      <h2><a href="DOWNLOAD.html">validator(検証ソフト)のダウンロード</a></h2>
-    </div>
-    
-    <hr /><br />
-    
-    <div class="forms">
-      <h2 class="center">W3C CSS 検証サービス</h2>
-     <p>
-	カスケーディングスタイルシート(CSS)を<a href="validator-uri.html">URLで指定</a>して検証
+      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">URLで指定して検証</legend>
+      <form method="get" action="validator">
+      <p class="instructions">
+	検証したい文書(CSSと組み合わせたHTML文書、もしくはCSS単体の文書)のURIを入力してください:     
       </p>
       <p>
-	カスケーディングスタイルシート(CSS)を<a href="validator-text.html">テキストエリアに直接入力</a>して検証
+	<label title="Address of page to Validate" for="uri">アドレス:
+	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
-      <p>
-	カスケーディングスタイルシート(CSS)を<a href="validator-upload.html">ソースファイルをアップロード</a>して検証
-      </p>
-    </div>
+      <fieldset id="extra_opt_uri" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">オプション</p>
+      <div>
+      警告を:
+      <select name="warning"> 
+	<option value="2">全て出力</option>
+	<option selected="selected" value="1">一般的なものを出力</option>
+	<option value="0">重要なものだけ出力</option>
+	<option value="no">出力しない</option>
+      </select>      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+	<option value="css21">CSS version 2.1</option>
+ 	<option value="css3">CSS version 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG basic</option>
+	<option value="svgtiny">SVG tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
 
-    <hr /><br />
-    
-    <p>
-      CSSスタイルシートを意図した通りに機能させるには、
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+      </select>
+      </div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="検証する" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Validate by File Upload</legend>
+      <form method="post" enctype="multipart/form-data" action="validator">
+      <p class="instructions">検証したいCSS文書のソースファイル名を入力してください (CSSファイルのみ):</p>
+      <p>
+	<label title="Choose a Local File to Upload and Validate" for="file">CSSファイル:
+	<input type="file" id="file" name="file" size="30" /></label></p>
+      <fieldset id="extra_opt_upload" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">オプション</p>
+      <div>
+      警告を:
+      <select name="warning"> 
+	<option value="2">全て出力</option>
+	<option selected="selected" value="1">一般的なものを出力</option>
+	<option value="0">重要なものだけ出力</option>
+	<option value="no">出力しない</option>
+      </select>      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+	<option value="css21">CSS version 2.1</option>
+ 	<option value="css3">CSS version 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG basic</option>
+	<option value="svgtiny">SVG tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+      </select>
+      </div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="検証する" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">テキストエリアに直接入力して検証</legend>
+      <form action="validator" method="get">
+      <p class="instructions">検証したいCSSをテキストエリアに入力してください (CSSソースのみ):</p>
+      <p>
+	<textarea name="text" rows="12" cols="70"></textarea>
+	<input name="usermedium" value="all" type="hidden" />
+      </p>      
+      <fieldset id="extra_opt_direct" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">オプション</p>
+      <div>
+      警告を:
+      <select name="warning"> 
+	<option value="2">全て出力</option>
+	<option selected="selected" value="1">一般的なものを出力</option>
+	<option value="0">重要なものだけ出力</option>
+	<option value="no">出力しない</option>
+      </select>
+      
+      Profile :
+      <select name="profile">
+	<option value="none">No special profile</option>
+	<option value="css1">CSS version 1</option>
+	<option selected="selected" value="css2">CSS version 2</option>
+	<option value="css21">CSS version 2.1</option>
+ 	<option value="css3">CSS version 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG basic</option>
+	<option value="svgtiny">SVG tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
+
+      Medium :
+      <select name="usermedium">
+	<option selected="selected" value="all">all</option>
+	<option value="aural">aural</option>
+	<option value="braille">braille</option>
+	<option value="embossed">embossed</option>
+	<option value="handheld">handheld</option>
+	<option value="print">print</option>
+	<option value= "projection">projection</option>
+	<option value="screen">screen</option>
+	<option value="tty">tty</option>
+	<option value="tv">tv</option>
+	<option value="presentation">presentation</option>
+      </select>
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="検証する" /></label></p>
+      </form>
+      </fieldset>
+	</div> <!-- frontforms -->
+	<p><strong>Note</strong>: CSSスタイルシートを意図した通りに機能させるには、
       正しい文書解析木が必要です。つまり、
       <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
-      なHTML</a>
+      なHTML</a>。
+	</p>
+   <ul class="navbar"  id="menu">
+        <li><a href="about" title="About this service">このサービスについて</a> <span class="hideme">|</span></li>
+        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Download and install the CSS validator">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="Email" title="How to provide feedback on this service">お問い合わせ</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+        <li><a href="languages" hreflang="en" lang="en" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+Support this tool, become a<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
     </p>
-    
-    
-    <br />
-    <br />
-    <hr class="large" />
 
-
-    <a class="right" href="http://validator.w3.org/">
-      <img src="http://www.w3.org/Icons/valid-xhtml10" 
-	alt="Valid XHTML 1.0!"  border="0" width="88" height="31" /></a>
-    <a class="right" href="http://jigsaw.w3.org/css-validator">
-      <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" 
-	alt="Valid CSS!" /></a>
-
-    <address><a href="Email.html">validator-css</a></address><br />
-    $Date$
   </body>
 </html>
+
