@@ -99,3 +99,4 @@ span.balise > span.name {color:blue;}
 span.balise > span.attr {color:#009000;}
 span.balise > span.string {color:purple;}
 
+ul.instructions, ol.instructions { margin-left: 18px; }
