@@ -1,130 +1,233 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Le service de validation CSS du W3C</title>
-<link rev="made" href="mailto:www-validator-css@w3.org" />
-<link rev="start" href="./" title="Page d'accueil" />
-<style type="text/css" media="all">@import "./base.css";</style>
-<meta name="revision" content="$Id$" />
-</head>
+  <head>
+    <title>Service de validation CSS du W3C</title>
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="Home Page" />
+    <style type="text/css" media="all">@import "base.css";</style>
+    <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
+    <script type="text/javascript" src="tabtastic/attachevent.js"></script>
+    <script type="text/javascript" src="tabtastic/addcss.js"></script>
+    <script type="text/javascript" src="tabtastic/tabtastic.js"></script>
+    <script src="toggle.js" type="text/javascript"></script>
+    <meta name="revision" content="$Id$" />
+  </head>
 
-<body>
+  <body>
    <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home" /></a> Service de validation CSS</h1>
-    </div>
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>
+   </div>
+      <p id="tagline">
+        Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
+      </p>
+	<div id="frontforms">
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">par URI</a></li><li><a href="#validate-by-upload">par Upload de Fichier</a></li><li><a href="#validate-by-input">par Saisie Directe</a></li></ul>
     
-    
-    <ul class="navbar"  id="menu">
-      <li>
-    <span class="hideme"><a href="#skip" accesskey="s" title="Sauter la navigation pour aller à la partie principale de la page">Sauter la navigation</a> |</span>
-<a href="./" accesskey="h" title="Aller à la page d'accueil du service de validation CSS du W3C">[<em>Accueil</em>]</a> <span class="hideme">|</span></li>
-<li><a href="http://jigsaw.w3.org/css-validator/Email" title="Faire part de vos remarques sur ce service">Donner son avis</a> <span class="hideme">|</span></li>
-<li><a href="http://jigsaw.w3.org/css-validator/DOWNLOAD.html" title="Télécharger le validateur CSS">Télécharger</a> <span class="hideme">|</span></li>
-<li><a href="http://jigsaw.w3.org/css-validator/README.html" title="Documentation sur ce service">Documentation</a> <span class="hideme">|</span></li>
-<li><a href="http://jigsaw.w3.org/css-validator/thanks.html" title="Crédits et remerciements">Crédits</a><span class="hideme">|</span></li>
-</ul>
-
-<div id="main"><!-- This DIV encapsulates everything in each actual page. -->
-
-
-<div id="skip" class="intro">
-<p>
-Bienvenue sur le service de validation CSS du W3C, un service gratuit pour vérifier la conformité des feuilles de style en cascade
-(<abbr title="Cascading Style Sheets" lang="en">CSS</abbr>) autonomes ou intégrées aux documents (X)HTML vis-à-vis des recommandations du W3C.
-</p>
-	<p>
-	<strong>Remarque</strong> : Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML,
-	vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>.
-	</p>
-</div>
-
-<div>
-<h2>Validez votre feuille de style</h2>
-
-<p class="navigate">
-Validation CSS : <a href="#validate-by-uri">par URI</a> |
-<a href="#validate-by-upload">par téléchargement du fichier vers le serveur</a> |
-<a href="#validate-by-input">par saisie directe</a>
-</p>
-
-<fieldset id="validate-by-uri"><legend>Validation par URI</legend>
-<form method="get" action="validator">
-<p>
-	Saisissez l'URI du document (HTML avec CSS, ou CSS seul) dont vous souhaitez la validation&nbsp;:    
-</p>
-<p>
-	<label title="Adresse de la page à valider" for="uri">Adresse :
+      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validation par URI</legend>
+      <form method="get" action="validator">
+      <p class="instructions">
+	Saisissez l'URI du document (HTML avec CSS, ou CSS seul) dont vous souhaitez la validation:     
+      </p>
+      <p>
+	<label title="Address of page to Validate" for="uri">Address:
 	<input type="text" name="uri" id="uri" size="45" /></label>
-	<label title="Valider le fichier"><input type="submit" value="Soumettre l'adresse" /></label>
+      </p>
+      <fieldset id="extra_opt_uri" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">Options Supplémentaires</p>
+      <div>
+		Avertissements :
+		<select name="warning"> 
+			<option value="2">Tous</option>
+			<option selected="selected" value="1">Rapport normal</option>
+			<option value="0">Les plus importants</option>
+			<option value="no">Aucun avertissement</option>
+		</select>
+
+		Profil :
+		<select name="profile">
+			<option value="none">Aucun profil particulier</option>
+			<option value="css1">CSS niveau 1</option>
+			<option selected="selected" value="css2">CSS niveau 2</option>
+			<option value="css21">CSS niveau 2.1</option>
+			<option value="css3">CSS niveau 3</option>
+			<option value="svg">SVG</option>
+			<option value="svgbasic">SVG Basic</option>
+			<option value="svgtiny">SVG Tiny</option>	
+			<option value="mobile">Mobile</option>
+			<option value="atsc-tv">Profil ATSC TV</option>
+			<option value="tv">Profil TV</option>
+		</select>
+
+		Medium :
+		<select name="usermedium">
+			<option selected="selected" value="all">all</option>
+			<option value="aural">aural</option>
+			<option value="braille">braille</option>
+			<option value="embossed">embossed</option>
+			<option value="handheld">handheld</option>
+			<option value="print">print</option>
+			<option value= "projection">projection</option>
+			<option value="screen">screen</option>
+			<option value="tty">tty</option>
+			<option value="tv">tv</option>
+			<option value="presentation">presentation</option>
+		</select>
+
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Valider par Upload de Fichier</legend>
+      <form method="post" enctype="multipart/form-data" action="validator">
+      <p class="instructions">Choisissez le document dont vous souhaitez la validation (attention - feuilles de style CSS uniquement):</p>
+      <p>
+	<label title="Choose a Local File to Upload and Validate" for="file">Fichier CSS local:
+	<input type="file" id="file" name="file" size="30" /></label></p>
+      <fieldset id="extra_opt_upload" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">Options supplémentaires</p>
+      <div>
+		Avertissements :
+		<select name="warning"> 
+			<option value="2">Tous</option>
+			<option selected="selected" value="1">Rapport normal</option>
+			<option value="0">Les plus importants</option>
+			<option value="no">Aucun avertissement</option>
+		</select>
+
+		Profil :
+		<select name="profile">
+			<option value="none">Aucun profil particulier</option>
+			<option value="css1">CSS niveau 1</option>
+			<option selected="selected" value="css2">CSS niveau 2</option>
+			<option value="css21">CSS niveau 2.1</option>
+			<option value="css3">CSS niveau 3</option>
+			<option value="svg">SVG</option>
+			<option value="svgbasic">SVG Basic</option>
+			<option value="svgtiny">SVG Tiny</option>	
+			<option value="mobile">Mobile</option>
+			<option value="atsc-tv">Profil ATSC TV</option>
+			<option value="tv">Profil TV</option>
+		</select>
+
+		Medium :
+		<select name="usermedium">
+			<option selected="selected" value="all">all</option>
+			<option value="aural">aural</option>
+			<option value="braille">braille</option>
+			<option value="embossed">embossed</option>
+			<option value="handheld">handheld</option>
+			<option value="print">print</option>
+			<option value= "projection">projection</option>
+			<option value="screen">screen</option>
+			<option value="tty">tty</option>
+			<option value="tv">tv</option>
+			<option value="presentation">presentation</option>
+		</select>
+
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validation par Saisie Directe</legend>
+      <form action="validator" method="get">
+      <p class="instructions">Saisissez la feuille de style dont vous souhaitez la validation:</p>
+      <p>
+	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
-	<input name="warning" value="no" type="hidden" />
-</p>
-</form>
-<p>
-	Également disponible avec des options supplémentaires dans une <a href="validator-uri">interface évoluée</a>.
-</p>
-</fieldset>
+      </p>      
+      <fieldset id="extra_opt_direct" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">options supplémentaires</p>
+      <div>
+      	Avertissements :
+		<select name="warning"> 
+			<option value="2">Tous</option>
+			<option selected="selected" value="1">Rapport normal</option>
+			<option value="0">Les plus importants</option>
+			<option value="no">Aucun avertissement</option>
+		</select>
 
+		Profil :
+		<select name="profile">
+			<option value="none">Aucun profil particulier</option>
+			<option value="css1">CSS niveau 1</option>
+			<option selected="selected" value="css2">CSS niveau 2</option>
+			<option value="css21">CSS niveau 2.1</option>
+			<option value="css3">CSS niveau 3</option>
+			<option value="svg">SVG</option>
+			<option value="svgbasic">SVG Basic</option>
+			<option value="svgtiny">SVG Tiny</option>	
+			<option value="mobile">Mobile</option>
+			<option value="atsc-tv">Profil ATSC TV</option>
+			<option value="tv">Profil TV</option>
+		</select>
 
-<fieldset id="validate-by-upload"><legend>Validation par téléchargement du fichier vers le serveur</legend>
-<form method="post" enctype="multipart/form-data" action="validator">
-<p>Choisissez le document dont vous souhaitez la validation (attention - feuilles de style CSS uniquement)&nbsp;:</p>
-<p>
-	<label title="Choisissez un fichier local à télécharger vers le serveur et à valider" for="file">Fichier CSS local :</label>
-	<input type="file" id="file" name="file" size="30" />
-	<input name="usermedium" value="all" type="hidden" />
-	<input name="warning" value="no" type="hidden" />
-	<label title="Envoyer le fichier à valider"><input type="submit" value="Soumettre le fichier" /></label>
-</p>
-</form>
-<p>
-	Également disponible avec des options supplémentaires dans une <a href="validator-upload">interface de téléchargement de fichier évoluée</a>.
-</p>
-</fieldset>
+		Medium :
+		<select name="usermedium">
+			<option selected="selected" value="all">all</option>
+			<option value="aural">aural</option>
+			<option value="braille">braille</option>
+			<option value="embossed">embossed</option>
+			<option value="handheld">handheld</option>
+			<option value="print">print</option>
+			<option value= "projection">projection</option>
+			<option value="screen">screen</option>
+			<option value="tty">tty</option>
+			<option value="tv">tv</option>
+			<option value="presentation">presentation</option>
+		</select>
+	
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+      </form>
+      </fieldset>
+	</div> <!-- frontforms -->
+	<p><strong>Remarque</strong> : Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML,
+		vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>.
+	</p>
+   <ul class="navbar"  id="menu">
+        <li><a href="about" title="About this service">A Propos</a> <span class="hideme">|</span></li>
+        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email" title="How to provide feedback on this service">Contact</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Credits and Acknowlegments">Remerciements</a><span class="hideme">|</span></li>
+        <li><a href="languages" hreflang="en" lang="en" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
+      </ul>
 
-<fieldset id="validate-by-input"><legend>Validation par saisie directe</legend>
-<form action="validator" method="get">
-<p>Saisissez la feuille de style dont vous souhaitez la validation&nbsp;:</p>
-<p>
-	<textarea name="text" rows="12" cols="75"></textarea>
-	<input name="usermedium" value="all" type="hidden" />
-<br />
-	<label title="Envoyer le texte saisi pour validation">
-	<input type="submit" value="Soumettre la saisie" />
-	</label>
-</p>      
-</form>
-<p>
-	Également disponible avec des options supplémentaires dans une <a href="validator-text">interface de saisie directe évoluée</a>.
-</p>
-</fieldset>
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+Aidez le validateur, devenez<br />
+<a href="http://www.w3.org/Consortium/supporters" hreflang="en"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
 
-</div>
-</div><!-- End of "main" DIV. -->
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
-<address>
-	<a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" height="31" width="88" alt="Valid XHTML 1.0!" /></a>
-	<a class="right" href="http://jigsaw.w3.org/css-validator"><img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" /></a>
-	<a title="Faire part de vos remarques à l'équipe du service de validation du W3C" href="Email">L'équipe du validateur CSS du W3C</a><br />
-$Date$
-<!-- SSI Template Version: $Id$ -->
-</address>
-<p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2003
-<a href="http://www.w3.org/"><acronym title="World Wide Web Consortium" lang="en">W3C</acronym></a>&reg;
-(<a href="http://www.lcs.mit.edu/"><acronym title="Massachusetts Institute of Technology" lang="en">MIT</acronym></a>,
-<a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics" lang="en">ERCIM</acronym></a>,
-<a href="http://www.keio.ac.jp/">Keio</a>), tous droits réservés.
-Les règles de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
-de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marque de commerce</a>,
-d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
-et d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a> du
-W3C s'appliquent. Votre utilisation de ce site intervient conformément à nos déclarations
-<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a>
-et aux déclarations de confidentialité de nos <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
-</p>
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
 
-</body>
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+  </body>
 </html>
+
