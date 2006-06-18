@@ -135,7 +135,7 @@ error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás
 error.noexistence: La propiedad %s no existe
 error.noexistence-media: La propiedad %s no existe en el medio %s
 warning.noexistence-media: La propiedad %s no existe en el medio %s
-warning.notforusermedium : La propiedad %s no existe en éste medio de usuario
+warning.notforusermedium : La propiedad %s no existe en este medio de usuario
 warning.noothermedium : Las propiedades de otros medios podrían no funcionar en el medio de usuario
 # used by org.w3c.css.parser.AtRule*
 error.noatruleyet : Las reglas-arroba que no sean @import no son soportadas por CSS1 %s
@@ -154,13 +154,13 @@ error.pseudo-class: La pseudo-clase .%s no puede aparecer aquí en el contexto d
 error.pseudo: Pseudo-clase o pseudo-elemento %s desconocido(a)
 error.id: ¡El selector de ID #%s no es válido! En un selector simple sólo puede especificarse un selector de ID: %s.
 error.space: Si se utiliza el selector de atributo ~= entonces el valor de %s no puede contener espacios.
-error.todo: Lo lamentamos, la característica %s todavía no está implementada.
+error.todo: Lo lamentamos, esta función %s todavía no está implementada.
 error.incompatible: %s y %s son incompatibles
 warning.incompatible: %s y %s son incompatibles
 error.notformobile : %s no puede usarse en perfiles móviles
 error.notforatsc : %s no puede usarse en perfiles ATSC
 error.notfortv : %s no puede usarse en perfiles de televisión
-error.notversion : %s no puede usarse en ésta versión de CSS: %s
+error.notversion : %s no puede usarse en esta versión de CSS: %s
 
 error.media: medio no reconocido %s 
 error.page: página pseudo-nombrada no reconocida %s
@@ -194,40 +194,40 @@ parser.old_class: En CSS1, un nombre de clase puede empezar por un dígito (".55
 excepto si es una magnitud de medida (".55in"). En CSS2, esas clases son interpretadas como \
 magnitudes de medida desconocidas (para permitir añadir nuevas magnitudes en un futuro)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
-unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.old_id: En CSS1, un nombre de id puede empezar por un dígito ("#55ft"), \
+excepto si es una magnitud de medida ("#55in"). En CSS2, esos nombres son interpretados como \
+magnitudes de medida desconocidas (para permitir añadir nuevas magnitudes en un futuro)
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in").
+parser.class_dim: En CSS1, un nombre de clase puede empezar por un dígito (".55ft"), \
+excepto si es una magnitud de medida (".55in")
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in").
+parser.id_dim: En CSS1, un nombre de id puede empezar por un dígito ("#55ft"), \
+excepto si es una magnitud de medida ("#55in")
 
-parser.charset:The @charset rule may only occur at the start of the style \
-sheet. Please check that there are no spaces before it.
+parser.charset:La regla @charset sólo puede aparecer al comienzo de la hoja \
+de estilo. Por favor, compruebe que no hay espacios antes.
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
-@charset followed by exactly one space, followed by the name of the encoding \
-in quotes, followed immediately by a semicolon.
+parser.charsetspecial:Este perfil tiene una sintaxis muy específica para @charset: \
+@charset seguido de un espacio exactamente, seguido por el nombre de la codificación \
+entre comillas, seguido inmediatamente por un punto y coma.
 
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_id:En CSS1, un nombre de id puede empezar por un dígito ("#55ft"), \
+excepto si es una magnitud de medida ("#55in"). En CSS2, esos nombres son interpretados como \
+magnitudes de medida desconocidas (para permitir añadir nuevas magnitudes en un futuro)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_class:En CSS1, un nombre de id puede empezar por un dígito (".55ft"), \
+excepto si es una magnitud de medida (".55in"). En CSS2, esos nombres son interpretados como \
+magnitudes de medida desconocidas (para permitir añadir nuevas magnitudes en un futuro)
 
 # used by the servlet
 servlet.invalid-request: Se ha enviado una petición no válida.
 servlet.process: No se puede procesar el objeto
 
 warning.atsc : %s podría no ser compatible con el medio atsc-tv
-error.onlyATSC : %s ésta función es sólo para el medio atsc-tv
+error.onlyATSC : %s esta función es sólo para el medio atsc-tv
 
-warning.otherprofile : la propiedad %s no existe en éste perfil, pero es válida conforme a otro perfil
-warning.deprecated : éste valor está desaprobado
+warning.otherprofile : la propiedad %s no existe en este perfil, pero es válida conforme a otro perfil
+warning.deprecated : este valor está desaprobado
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: La combinación %s entre selectores no está permitida en éste perfil o versión
+error.nocomb: La combinación %s entre selectores no está permitida en este perfil o versión
