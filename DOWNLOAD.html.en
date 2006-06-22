@@ -83,8 +83,9 @@ are also given below. </p>
 		The Validator's sources are now in <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/css-validator</span>,
 		which we will now call <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>.
 	</li>
-	<li>In "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>" create a directory "<span class="dir">WEB-INF</span>".</li>
-	<li>In "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF</span>" create a directory "<span class="dir">lib</span>".</li>
+	<li>In "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>" create a directory "<span class="dir">WEB-INF</span>", and In "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF</span>" create a directory "<span class="dir">lib</span>":<br />
+		<kbd>mkdir -p WEB-INF/lib</kbd>
+		</li>
 	<li>Copy  all the jar files (from the <a href="#prereq-libs">prerequisites</a>) to the directory "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib</span>"</li>
 	<li>Compile the validator's source: from the directory <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>,
 		Run <kbd>ant</kbd>, while making sure that the jar files you downloaded are correctly set in you CLASSPATH environment variable. 
