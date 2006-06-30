@@ -34,7 +34,7 @@
 <dl>
     <dt><a href="./manual.html">User's Manual</a></dt>
     <dd>The documentation on how to use the CSS validator</dd>
-    <dt><a href="about">About this service</a></dt>
+    <dt><a href="about.html">About this service</a></dt>
     <dd>Informations about the CSS Validator, and answers to some general questions</dd>
     <dt><a href="http://www.websitedev.de/css/validator-faq">
 	CSS Validator FAQ
@@ -47,7 +47,7 @@
 
 
 <dl>
-    <dt><a href="DOWNLOAD">Download/Install</a></dt>
+    <dt><a href="DOWNLOAD.html">Download/Install</a></dt>
     <dd>How to retrieve the source of the CSS validator and run it, either as a command line program or a Web Servlet.</dd>
     
     <dt><a href="README">developer's README</a></dt>
