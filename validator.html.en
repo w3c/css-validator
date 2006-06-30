@@ -192,12 +192,12 @@
 	that the (X)HTML you use is valid</a>.
 	</p>
    <ul class="navbar"  id="menu">
-        <li><a href="about" title="About this service">About</a> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
-        <li><a href="languages" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
+        <li><a href="about.html" title="About this service">About</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+        <li><a href="languages.html" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
       </ul>
 
    <p id="activity_logos">
