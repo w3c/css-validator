@@ -1,0 +1,227 @@
+﻿# Defines your own error and warning message here
+content-type: text/html; charset=utf-8
+content-language: it
+output-encoding-name: utf-8
+
+# You can change the level warning like this (example) :
+# warning.redefinition.level: 5
+#  level is an integer between 0 and 9 (all others values are ignored)
+warning.redefinition: Ridefinizione di %s
+
+# used by org.w3c.css.properties.Css1Style
+warning.same-colors: Hai utilizzato lo stesso colore per %s e %s
+warning.no-color: Non è stato definito il valore di color mentre è presente il valore di background-color
+warning.no-background-color: Non è stato definito il valore di background-color mentre è presente il valore per color
+warning.color.mixed-capitalization: Anche se i nomi dei colori non sono sensibili all'uso di caratteri in maiuscolo e minuscolo, si raccomanda di non usare nomi con caratteri misti, in modo da renderli più leggibili: %s
+warning.no-generic-family: %s: si consiglia di fornire come ultima alternativa una tipologia generica di carattere.
+warning.with-space: Le tipologie di carattere che contengono degli spazi all'interno del nome dovrebbero essere racchiuse tra virgolette. Se si omettono le virgolette, qualsiasi spazio prima e dopo il nome viene ignorato e qualsiasi sequenza di caratteri di spaziatura all'interno del nome viene convertita in un singolo spazio. 
+warning.no-padding: si consiglia l'uso di un'area di padding in presenza di valori per background-color
+warning.same-colors2: Hai utilizzato lo stesso colore per il valore di color e per il valore di background-color in due contesti: %s e %s
+warning.relative-absolute: Utilizzi alcune unità di misura assolute ed altre di tipo relativo per %s. Questo non rende durevole il foglio di stile.
+ by org.w3c.css.properties.CssSelectors
+warning.unknown-html: %s non è un elemento HTML
+warning.html-inside: L'elemento HTML non può essere contenuto all'interno di un altro elemento
+warning.body-inside: L'elemento BODY non può essere utilizzato all'interno di un altro elemento ad eccezione dell'elemento HTML
+warning.pseudo-classes: La pseudo-classe per l'ancora %s non ha effetto se non per l'elemento 'A'
+
+# not used by org.w3c.css.properties.CssSelectors for the moment
+warning.noinside: %s non può essere contenuto in un elemento di tipo inline
+warning.withblock: Attenzione. Gli pseudo-elementi possono essere applicati solo a degli elementi di tipo block-level.
+warning.block-level: Questa proprietà si applica ad elementi di tipo block-level.
+
+# used by org.w3c.css.parser.Frame
+warning.no-declaration: Non sono presenti dichiarazioni
+
+# used by org.w3c.css.values.CssColor
+warning.out-of-range: %s è un valore non valido
+error.invalid-color: Funzione RGB non valida
+
+warning.marker: La proprietà marker-offset si applica agli elementi con 'display: marker'
+
+# used by org.w3c.css.properties.ACssStyle
+warning.relative: L'uso di unità relative garantisce maggior robustezza al foglio di stile nella proprietà %s
+
+# used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
+error.at-rule: Spiacente, at-rule %s non è implementata.
+
+# used by all properties and values
+error.operator: %s è un operatore non valido
+error.negative-value: non sono consentiti valori negativi per %s
+error.few-value: valori non sufficienti per la proprietà %s
+
+# be careful here, values comes first
+# You can't write something like this : For the color, blue is an incorrect value
+error.value: %s non è un valore per %s
+
+#used by org.w3c.css.properties3.CssToggleGroup
+error.groupname: %s non è un nome di gruppo corretto. Utilizza un identificatore valido
+
+#used by org.w3c.css.properties3.CssGroupReset
+error.nogroup: %s non è stato specificato dalla proprietà toggle-group
+
+#used by org.w3c.css.properties3.CssGlyphOrVert
+error.anglevalue: Il valore deve essere fra -360 e 360 ed essere dividibile per 90
+
+#used by org.w3c.css.properties3.CssTextKashidaSpace
+error.percentage: valore percentuale atteso
+
+#used by org.w3c.css.properties.CssTextAlign
+warning.xsl: il valore %s si applica solo a XSL
+
+#used by org.w3c.css.parser.analyzer.CssParser
+warning.medialist : medialist should start with 'media :' %s
+error.nocomb: Il combinatore %s fra selettori non è consentito in questo profilo o versione
+
+#used by org.w3c.css.properties.CssDirection
+warning.direction: invece di utilizzare 'direction' per elementi block-level  utilizza la nuova proprietà CSS3 'writing-mode'
+
+# used by org.w3c.css.properties.CssTextDecoration
+error.same-value: %s appare due volte
+
+error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
+
+# used by org.w3c.css.properties.CssClip
+error.shape: Definizione non valida per la forma rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: Separatore non valido nella definizione di forma. Deve essere una virgola.
+
+# used by org.w3c.css.properties.CssContent
+error.attr: Definizione di attr(X) non valida
+error.function: Definizione di funzione non valida
+error.counter: Definizione di counter non valida  counter(<identifier>[,<list-style-type>]?)
+error.counters: Definizione di counters non valida  counters(<identifier>,<string>[,<list-style-type>]?)
+
+# used by org.w3c.css.font.Src
+error.format: Definizione di format non valida format(<string>[,<string>]*)
+error.local: Definizione di local non valida  local(<string>|<ident>+)
+
+# used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
+error.unit: %s è un'unità non corretta
+
+# used by org.w3c.css.aural.ACssAzimuth
+error.degree: La posizione deve essere descritta in gradi.
+
+# used by org.w3c.css.aural.ACssElevation
+error.elevation.range: Specifica l'elevation come un angolo, fra '-90deg' e '90deg'.
+
+# used by org.w3c.css.aural.ACssPitchRange
+error.range: Il valore è fuori dalla gamma di valori. Tale valore deve essere fra '0' e '100'.
+
+# used by org.w3c.css.properties.CssTextShadow
+error.two-lengths: Uno shadow offset viene specificato con due valori <length>  (Un blur radius può essere specificato eventualmente dopo lo shadow offset.)
+
+error.integer: This number should be an integer.
+error.comma: Manca la virgola separatrice.
+
+# used by org.w3c.css.values.CssPercentage
+error.percent: %s è una percentuale non corretta
+
+# used by org.w3c.css.values.CssString
+error.string: %s è una stringa non corretta
+
+# used by org.w3c.css.values.CssURL
+error.url: %s è un URL non corretto
+
+# used by org.w3c.css.values.CssColor
+error.rgb: %s non è un valido colore da 3 o 6 numeri esadecimali
+error.angle: %s non è un angolo valido. Il valore dovrebbe essere fra 0 e 360
+
+# used by org.w3c.css.values.CssNumber
+error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
+
+# used by org.w3c.css.parser.CssPropertyFactory
+error.noexistence: La proprietà %s non esiste
+error.noexistence-media: La proprietà %s non esiste per il media %s
+warning.noexistence-media: La proprietà %s non esiste per il media %s
+warning.notforusermedium : La proprietà %s non esiste per questo usermedium
+warning.noothermedium : La proprietà per altri media non dovrebbero funzionare per usermedium
+# used by org.w3c.css.parser.AtRule*
+error.noatruleyet : Altre @rules diverse da @import non sono supportate dai CSS1 %s
+# used by org.w3c.css.parser.analyzer.CssParser
+error.notforcss1 : Il valore %s non esiste per i CSS1
+
+# used by org.w3c.css.parser.CssFouffa
+error.unrecognize: Vi sono troppi valori, oppure i valori non sono riconosciuti
+
+# used by org.w3c.css.parser.CssFouffa
+generator.unrecognize: Parse Error
+
+# used by org.w3c.css.parser.CssSelectors
+error.pseudo-element: Lo pseudo-element :%s non può apparire in questo contesto %s
+error.pseudo-class: La pseudo-class .%s non può apparire qui nel contesto HTML %s
+error.pseudo: Pseudo-elemento o pseudo-classe non conosciuto %s
+error.id: ID selector #%s is invalid ! Un solo selettore ID può essere specificato in un selettore semplice: %s.
+error.space: Se è utilizato il selettore di attributo ~= , la parole nel valore %s non deve contenere spazi.
+error.todo : Ci spiacema la caratteristica %s non è ancora implementata.
+error.incompatible: %s e %s sono incompatibili
+warning.incompatible: %s e %s sono incompatibili
+error.notformobile : %s non può essere usato con un mobile profile
+error.notforatsc : %s non può essere usato con un ATSC profile
+error.notfortv : %s non può essere usato con un TV profile
+error.notversion : %s non può essere usato con questa versione di CSS : %s
+
+error.media: media non riconosciuto %s 
+error.page: pseudo nome di pagina non riconosciuto %s
+
+error.unrecognized.link: Elemento link o xml-stylesheet PI non riconosciuto.
+
+# used by StyleSheetGeneratorHTML
+generator.context: Contesto
+generator.request: Vi è stato un errore durtante l'output del tuo foglio di stile. \
+Per favore correggi la tua richiesta o manda un'email a plh@w3.org.
+generator.unrecognized: Non riconosciuto
+generator.invalid-number: Numero non valido
+generator.property: Numero non valido
+generator.line: Linea
+generator.not-found: File non trovato
+generator.doc-html: <p class='vDocHTML'>\
+Affinchè funzioni a dovere, il tuo foglio di stile CSS necessita di un corretto document parse \
+tree. Significa che dovresti utilizzare un <a href="http://validator.w3.org/check?uri=\
+%s">valido documento HTML</a>.</p>
+
+generator.doc:<p class='vDocHTML'>\
+Affinchè funzioni a dovere, il tuo foglio di stile CSS necessita di un corretto document parse \
+tree. Significa che dovresti utilizzare un <a href="http://validator.w3.org/">valido documento \
+HTML</a>.</p>
+
+
+# used by the parser
+parser.semi-colon: provato a trovare un punto e virgola prima del nome della proprietà. aggiungilo
+
+parser.old_class:Nei CSS1, un nome di classe potrebbe cominciare con una cifra (".55ft"), \
+a meno che non sia una dimensione (".55in"). Nei CSS2, tali classi vengono analizzate (parsed) come \
+dimensioni sconosciute (per permettere future aggiunte di nuove unità)
+
+parser.old_id:Nei CSS1, un nome id potrebbe cominciare con una cifra ("#55ft"), \
+a meno che non sia una dimensione ("#55in"). Nei CSS2, tali id vengono analizzati (parsed) come \
+dimensioni sconosciute (per permettere future aggiunte di nuove unità)
+
+parser.class_dim:Nei CSS1, un nome di classe può cominciare con una cifra (".55ft"), \
+a meno che non sia una dimensione (".55in").
+
+parser.id_dim:Nei CSS1, un nome id potrebbe cominciare con una cifra ("#55ft"), \
+a meno che non sia una dimensione ("#55in").
+
+parser.charset:La regola @charset può comparire solo all'inizio del foglio di \
+stile. Per favore controlla che non vi siano spazi prima di essa.
+
+parser.charsetspecial:Questo profilo ha una sintassi specifica per @charset: \
+@charset seguito esattamente da uno spazio, seguito dal nome della codifica \
+in doppi apici, seguito immediatamente da un punto e virgola.
+
+warning.old_id:Nei CSS1, un nome id può cominciare con una cifra ("#55ft"), \
+a meno che non sia una dimensione ("#55in"). Nei CSS2, tali id vengono analizzati (parsed) come \
+dimensioni sconosciute (per permettere future aggiunte di nuove unità)
+
+warning.old_class:Nei CSS1, un nome di classe può cominciare con una cifra ("#55ft"), \
+a meno che non sia una dimensione ("#55in"). Nei CSS2, tali id vengono analizzati (parsed) come \
+dimensioni sconosciute (per permettere future aggiunte di nuove unità)
+
+# used by the servlet
+servlet.invalid-request: Hai inviato una richiesta non valida.
+servlet.process: Non è possibile processare l'oggetto
+
+warning.atsc : %s potrebbe non essere supportato dal medium atsc-tv
+error.onlyATSC : %s questa funzione è valida solo per il medium atsc-tv
+
+warning.otherprofile : la proprietà %s non esiste per questo profilo, ma viene validata in conformità ad un altro profilo 
+warning.deprecated : questo valore è deprecato
