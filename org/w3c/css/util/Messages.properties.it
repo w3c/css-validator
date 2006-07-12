@@ -78,7 +78,7 @@ warning.direction: invece di utilizzare 'direction' per elementi block-level  ut
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: %s appare due volte
 
-error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
+error.generic-family.quote: I nomi generici dei caratteri sono parole chiave, e percio non possono essere quotate.
 
 # used by org.w3c.css.properties.CssClip
 error.shape: Definizione non valida per la forma rect(<top>,<right>,<bottom>,<left>)
