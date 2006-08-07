@@ -18,7 +18,7 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>
+    <img src="images/css_validation_service.png" alt="Service de Validation CSS" /></h1>
    </div>
       <p id="tagline">
         Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
@@ -29,14 +29,14 @@
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validation par URI</legend>
       <form method="get" action="validator">
       <p class="instructions">
-	Saisissez l'URI du document (HTML avec CSS, ou CSS seul) dont vous souhaitez la validation:     
+	Saisissez l'URI du document (HTML avec CSS, ou CSS seul) à valider:     
       </p>
       <p>
-	<label title="Address of page to Validate" for="uri">Address:
+	<label title="Adresse du document à valider" for="uri">Address:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
       <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">Options Supplémentaires</p>
+      <p class="toggle closed" title="Cacher/Révéler les options supplémentaires de validation">Options Supplémentaires</p>
       <div>
 		Avertissements :
 		<select name="warning"> 
@@ -61,7 +61,7 @@
 			<option value="tv">Profil TV</option>
 		</select>
 
-		Medium :
+		Média :
 		<select name="usermedium">
 			<option selected="selected" value="all">all</option>
 			<option value="aural">aural</option>
@@ -78,18 +78,18 @@
 
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+	<p class="submit_button"><label title="Vérifier le document sélectionné"><input type="submit" value="Vérifier" /></label></p>
       </form>
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Valider par Upload de Fichier</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-      <p class="instructions">Choisissez le document dont vous souhaitez la validation (attention - feuilles de style CSS uniquement):</p>
+      <p class="instructions">Choisissez le document à valider (attention - feuilles de style CSS uniquement):</p>
       <p>
-	<label title="Choose a Local File to Upload and Validate" for="file">Fichier CSS local:
+	<label title="Choisir un fichier local à valider" for="file">Fichier CSS local:
 	<input type="file" id="file" name="file" size="30" /></label></p>
       <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">Options supplémentaires</p>
+      <p class="toggle closed" title="Cacher/Révéler les options supplémentaires de validation">Options supplémentaires</p>
       <div>
 		Avertissements :
 		<select name="warning"> 
@@ -114,7 +114,7 @@
 			<option value="tv">Profil TV</option>
 		</select>
 
-		Medium :
+		Média :
 		<select name="usermedium">
 			<option selected="selected" value="all">all</option>
 			<option value="aural">aural</option>
@@ -131,19 +131,19 @@
 
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+	<p class="submit_button"><label title="Valider le fichier selectionné"><input type="submit" value="Vérifier" /></label></p>
       </form>
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validation par Saisie Directe</legend>
       <form action="validator" method="get">
-      <p class="instructions">Saisissez la feuille de style dont vous souhaitez la validation:</p>
+      <p class="instructions">Saisissez la feuille de style à valider:</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
       <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">options supplémentaires</p>
+      <p class="toggle closed" title="Cacher/Révéler les options supplémentaires de validation">options supplémentaires</p>
       <div>
       	Avertissements :
 		<select name="warning"> 
@@ -168,7 +168,7 @@
 			<option value="tv">Profil TV</option>
 		</select>
 
-		Medium :
+		Média :
 		<select name="usermedium">
 			<option selected="selected" value="all">all</option>
 			<option value="aural">aural</option>
@@ -185,7 +185,7 @@
 	
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Vérifier" /></label></p>
+	<p class="submit_button"><label title="Valider la feuille de style"><input type="submit" value="Vérifier" /></label></p>
       </form>
       </fieldset>
 	</div> <!-- frontforms -->
@@ -193,16 +193,16 @@
 		vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>.
 	</p>
    <ul class="navbar"  id="menu">
-        <li><a href="about.html" title="About this service">A Propos</a> <span class="hideme">|</span></li>
-        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="How to provide feedback on this service">Contact</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Credits and Acknowlegments">Remerciements</a><span class="hideme">|</span></li>
+        <li><a href="about.html" title="A propos de ce service">A Propos</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Télécharger et installer le CSS validator">Téléchargement</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Vos commentaires sur ce service">Contact</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Auteurs et Contributeurs">Remerciements</a><span class="hideme">|</span></li>
         <li><a href="languages.html" hreflang="en" lang="en" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
       </ul>
 
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" hreflang="en" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" hreflang="en" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
 Aidez le validateur, devenez<br />
