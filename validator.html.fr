@@ -24,15 +24,15 @@
         Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
       </p>
 	<div id="frontforms">
-      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">par URI</a></li><li><a href="#validate-by-upload">par Upload de Fichier</a></li><li><a href="#validate-by-input">par Saisie Directe</a></li></ul>
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">par adresse URI</a></li><li><a href="#validate-by-upload">par chargement de Fichier</a></li><li><a href="#validate-by-input">par Saisie Directe</a></li></ul>
     
-      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validation par URI</legend>
+      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validation par adresse URI</legend>
       <form method="get" action="validator">
       <p class="instructions">
-	Saisissez l'URI du document (HTML avec CSS, ou CSS seul) à valider:     
+	Saisissez l'adresse URI du document (HTML avec CSS, ou CSS seul) à valider:     
       </p>
       <p>
-	<label title="Adresse du document à valider" for="uri">Address:
+	<label title="Adresse du document à valider" for="uri">Adresse:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
       <fieldset id="extra_opt_uri" class="moreoptions">
@@ -82,9 +82,9 @@
       </form>
       </fieldset>
 
-      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Valider par Upload de Fichier</legend>
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Valider par Chargement de Fichier</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-      <p class="instructions">Choisissez le document à valider (attention - feuilles de style CSS uniquement):</p>
+      <p class="instructions">Choisissez la feulle de style à valider (ATTENTION : feuilles de style CSS uniquement):</p>
       <p>
 	<label title="Choisir un fichier local à valider" for="file">Fichier CSS local:
 	<input type="file" id="file" name="file" size="30" /></label></p>
@@ -137,7 +137,7 @@
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validation par Saisie Directe</legend>
       <form action="validator" method="get">
-      <p class="instructions">Saisissez la feuille de style à valider:</p>
+      <p class="instructions">Saisissez la feuille de style à valider  (ATTENTION : feuilles de style CSS uniquement):</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
@@ -196,17 +196,17 @@
         <li><a href="about.html" title="A propos de ce service">A Propos</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
         <li><a href="DOWNLOAD.html" title="Télécharger et installer le CSS validator">Téléchargement</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="Vos commentaires sur ce service">Contact</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Auteurs et Contributeurs">Remerciements</a><span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Donner un avis à propos de ce service">Contact</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Mentions et remerciements">Remerciements</a><span class="hideme">|</span></li>
         <li><a href="languages.html" hreflang="en" lang="en" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
       </ul>
 
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" hreflang="en" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" hreflang="en" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" hreflang="en" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" hreflang="en" title="Plus d'informations sur les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
 Aidez le validateur, devenez<br />
-<a href="http://www.w3.org/Consortium/supporters" hreflang="en"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+<a href="http://www.w3.org/Consortium/supporters" hreflang="en"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Soutien du W3C" /></a>
    </p>
 
     <p class="copyright">
