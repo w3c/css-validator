@@ -32,7 +32,10 @@ public class StyleReportFactory {
 	if(document.equals("text")) {	    
 	    return new StyleSheetGenerator2(title, style,
 					    document,
-					    warningLevel);	    
+					    warningLevel);
+	}
+	if(document.equals("ucn")) {
+		return new StyleReportUCN(ac, title, style, document, warningLevel);
 	}
 	return new StyleSheetGeneratorHTML2(ac, title, style,
 					    "html",

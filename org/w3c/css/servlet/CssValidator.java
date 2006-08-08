@@ -637,6 +637,8 @@ public final class CssValidator extends HttpServlet {
 		outputMt = MimeType.TEXT_PLAIN.getClone();
 	    }
 	    //outputMt = MimeType.TEXT_PLAIN.getClone();
+	} else if(output.equals("ucn")) {
+		outputMt = MimeType.APPLICATION_XML.getClone();
 	} else {
 	    // Change this line if you want text/html output when incorrect
 	    // output is passed
