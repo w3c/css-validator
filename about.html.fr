@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<title>À propos du service de validation CSS du W3C</title>
+<link rev="made" href="mailto:www-validator-css@w3.org" />
+<link rev="start" href="./" title="Accueil" />
+<style type="text/css" media="all">
+@import "base.css";
+@import "docs.css";
+</style>
+<meta name="revision" content="$Id$" />
+</head>
+
+<body>
+<div id="banner">
+<h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+<a href="./"><img src="images/css_validation_service.png" alt="Service de validation CSS" /></a></h1>
+</div>
+
+<h2>À propos du service CSS</h2>
+
+<h3 id="TableOfContents">Table des matières</h3>
+<div id="toc">
+<ol>
+<li>À propos de ce service
+	<ol>
+	<li><a href="#what">De quoi s'agit-il ? Est-ce que c'est nécessaire ?</a></li>
+	<li><a href="#help">L'explication précédente est incompréhensible ! Au secours !</a></li>
+	<li><a href="#reference">C'est donc l'instance qui décide si le CSS est correct ou s'il ne l'est pas ?</a></li>
+	<li><a href="#free">Combien ça coûte ?</a></li>
+	<li><a href="#who">Qui a créé cet outil ? Qui l'entretient ?</a></li>
+	<li><a href="#contact">Comment contacter les auteurs ? Comment signaler un bogue ?</a></li>
+	<li><a href="#participate">Puis-je aider ?</a></li>
+	</ol>
+</li>
+<li>Le coin des développeurs
+	<ol>
+	<li><a href="#code">En quoi le validateur CSS est-il écrit ? Le code source est-il disponible quelque part ?</a></li>
+	<li><a href="#install">Puis-je installer et utiliser personnellement le validateur CSS ?</a></li>
+	<li><a href="#api">Puis-je créer une application utilisant ce validateur ? Existe-t-il une API ?</a></li>
+	</ol>
+</li>
+</ol>
+</div><!-- toc -->
+<h3 id="about">À propos de ce service</h3>
+
+<h4 id="what">De quoi s'agit-il ? Est-ce que c'est nécessaire ?</h4>
+
+<p>Le service de validation CSS du W3C est un logiciel libre créé par le W3C afin d'aider les concepteurs et les développeurs Web
+à vérifier leurs feuilles de style en cascade (CSS). On peut s'en <a href="./">servir librement</a> sur le Web, ou le télécharger
+et l'utiliser soit en tant que programme Java, soit en tant que servlet Java sur un serveur Web.</p>
+
+<p>Est-ce que <em>vous</em> en avez besoin ? Si vous êtes un développeur ou un concepteur Web, cet outil sera un allié inestimable.
+Il comparera non seulement vos feuilles de style aux spécifications CSS, en vous aidant à trouver des erreurs, des coquilles ou
+des utilisations incorrectes de CSS, mais il vous dira également si votre code CSS est risqué en ce qui concerne la convivialité.</p>
+
+<h4 id="help">L'explication précédente est incompréhensible ! Au secours !</h4>
+<p>La plupart des documents sur le Web sont écrits dans un langage informatique appelé HTML. Il peut servir à créer des pages avec
+des informations structurées, des liens et des objets multimédias. Pour la couleur, le texte et la mise en page, HTML utilise un
+langage de style appelé CSS, une abréviation pour « Cascading Style Sheets » (ou feuilles de style en cascade en français).
+Le validateur aide donc les créateurs CSS à vérifier et à réparer, le cas échéant, leurs feuilles de style CSS.</p>
+
+<h4 id="reference">C'est donc l'instance qui décide si le CSS est correct ou s'il ne l'est pas ?</h4>
+<p>Non. C'est un outil efficace et fiable, mais c'est un outil logiciel qui, comme tout logiciel, a des
+<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bogues et des problèmes</a>.
+Les véritables références pour les feuilles de style en cascade sont les <a href="http://www.w3.org/Style/CSS/#specs">spécifications CSS</a>.</p>
+
+<h4 id="free">Combien ça coûte ?</h4>
+<p>Rien. Le service est gratuit. Le code source est <a href="DOWNLOAD.html">ouvert</a> et vous pouvez le télécharger, l'utiliser,
+le modifier, le distribuer, et <a href="http://www.w3.org/Consortium/Legal/copyright-software">plus encore</a>.
+Si vous l'appréciez vraiment, vous êtes invité à <a href="#participate">joindre le projet</a>, ou vous pouvez faire un don au W3C
+par le biais du <a href="http://www.w3.org/Consortium/sup">programme de soutien du W3C</a>, rien ne vous y oblige cependant.</p>
+
+<h4 id="who">Qui a écrit cet outil ? Qui l'entretient ?</h4>
+<p>Le W3C entretient et héberge l'outil, grâce au travail et aux contributions du personnel du W3C, et de développeurs
+et traducteurs bénévoles. Voir la <a href="thanks.html">pages des mentions et remerciements</a> pour le détail.
+<a href="#participate">Vous pouvez aussi y participer</a>.</p>
+
+<h4 id="participate">Puis-je aider ?</h4>
+<p>Bien sûr. Si vous êtes un programmeur Java, vous pouvez contribuer au projet du validateur CSS en vérifiant le <a href="#code">code</a>,
+en prenant les <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bogues</a> à votre compte et en les réparant,
+ou en y apportant de nouvelles fonctionnalités.</p>
+<p>Mais il n'est pas nécessaire de programmer pour construire et entretenir cet outil : vous pouvez aussi contribuer en améliorant
+la documentation, en traduisant le validateur dans votre langue, ou vous inscrire à la 
+<a href="http://lists.w3.org/Archives/Public/www-validator-css/">liste de diffusion</a> et débattre au sujet de l'outil,
+ou encore aider d'autres utilisateurs.</p>
+
+<h4 id="contact">D'autres questions ?</h4>
+<p>Si vous avez une question concernant CSS ou le validateur CSS, interrogez les <a href="Email">listes de diffusion et les forums</a>
+disponibles. Mais avant de le faire, assurez-vous que votre question ou votre remarque ne sont pas déjà couvertes
+dans la <a href="http://www.websitedev.de/css/validator-faq"><abbr lang="fr" title="Foire Aux Questions">FAQ</abbr> du validateur CSS</a>.</p>
+
+<h3 id="dev">Le coin des développeurs</h3>
+<h4 id="code">En quoi le validateur CSS est-il écrit ? Le code source est-il disponible quelque part ?</h4>
+<p>Le validateur CSS du W3C est écrit dans le langage Java, et oui, son code source est disponible par CVS : vous pouvez
+<a href="http://dev.w3.org/cvsweb/2002/css-validator/">parcourir le code en ligne</a>, ou y suivre les instructions pour télécharger
+l'arbre source entier. Pour un aperçu des classes utilisées par le code du validateur CSS, voyez le fichier
+« <a href="README.html">README</a> ».</p>
+
+<h4 id="install">Puis-je installer et utiliser personnellement le validateur CSS ?</h4>
+<p>On peut télécharger et installer le validateur CSS, et l'exécuter en ligne de commande ou bien en tant que servlet dans un serveur Web.
+Lisez les <a href="RUN.html">instructions</a> d'installation et d'utilisation.</p>
+
+<h4 id="api">Puis-je créer une application utilisant ce validateur ? Existe-t-il une API ?</h4>
+<p>Oui, et <a href="api">oui</a>. Le validateur CSS possède une <a href="api">interface SOAP</a> (RESTful) qui devrait rendre
+la construction d'applications (Web ou autre) l'utilisant relativement aisée. Comme d'habitude, il faudra bien sûr se montrer bien élevé
+et avoir une utilisation respectueuse de ressources partagées : assurez-vous que vos applications marquent une pause (sleep)
+entre deux appels au validateur, ou alors installez et exécutez votre propre instance du validateur.</p>
+
+<ul class="navbar"  id="menu">
+<li><strong><a href="./" title="Accueil du service de validation CSS du W3C">Accueil</a></strong> <span class="hideme">|</span></li>
+<li><a href="documentation" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
+<li><a href="DOWNLOAD" title="Télécharger le validateur CSS">Téléchargement</a> <span class="hideme">|</span></li>
+<li><a href="Email" title="Donner un avis à propos de ce service">Commentaires</a> <span class="hideme">|</span></li>
+<li><a href="thanks" title="Mentions et remerciements">Remerciements</a><span class="hideme">|</span></li>
+</ul>
+
+<p id="activity_logos">
+<a href="http://www.w3.org/QA/" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Plus d'informations concernant les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
+</p>
+
+<p id="support_logo">
+Soutenez cet outil !<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Soutien du W3C" /></a>
+</p>
+
+<p class="copyright">
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+<a href="http://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
+(<a href="http://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
+<a href="http://www.ercim.org/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
+W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+rules apply. Your interactions with this site are in accordance
+with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy statements.
+</p>
+
+<p class="copyright">
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+<a href="http://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
+(<a href="http://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
+<a href="http://www.ercim.org/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), tous droits réservés.
+Les règles de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
+de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">nom de marque</a>,
+d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
+et d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a>
+du W3C s'appliquent. Vos interactions avec ce site sont conformes à nos déclarations de confidentialité
+<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
+de nos <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
+</p>
+
+</body>
+</html>

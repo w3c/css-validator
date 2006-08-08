@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<title>La documentation du validateur CSS du W3C</title>
+<link rev="made" href="mailto:www-validator-css@w3.org" />
+<link rev="start" href="./" title="Accueil" />
+<style type="text/css" media="all">
+@import "base.css";    
+@import "docs.css";    
+</style>
+<meta name="revision" content="$Id$" />
+<!-- SSI Template Version: $Id$ -->
+</head>
+
+<body>
+
+<div id="banner">
+<h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+<a href="./"><img src="images/css_validation_service.png" alt="Service de validation CSS" /></a></h1>
+   </div>
+
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+<h2>Index de la documentation du validateur CSS</h2>
+
+<p id="skip"></p>
+
+<h3 id="use">Les ressources de l'utilisateur</h3>
+
+<dl>
+<dt><a href="./manual.html">Le manuel de l'utilisateur</a></dt>
+<dd>La documentation pour l'utilisation du validateur CSS</dd>
+<dt><a href="about.html">À propos de ce service</a></dt>
+<dd>Les informations concernant le validateur CSS et les réponses à quelques questions générales</dd>
+<dt><a href="http://www.websitedev.de/css/validator-faq">FAQ du validateur CSS</a></dt>
+<dd>Les réponses aux questions techniques fréquemment posées.</dd>
+</dl>
+
+<h3 id="devel">Les ressources du développeur</h3>
+
+<dl>
+<dt><a href="DOWNLOAD.html">Télécharger/Installer</a></dt>
+<dd>Comment récupérer le code source du validateur CSS et l'exécuter, en tant que programme en ligne de commande ou bien en tant que servlet Web.</dd>
+<dt><a href="README">Le « README » du développeur</a></dt>
+<dd>Un aperçu du code du validateur CSS</dd>
+<dt><a href="./api.html">L'API de service Web</a></dt>
+<dd>La documentation de l'interface de validation SOAP 1.2</dd>
+<dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Les bogues</a></dt>
+<dd>Les problèmes connus de la version actuelle du validateur, et une interface pour soumettre des bogues et problèmes nouveaux. 
+Voir également les <a href="email">instructions pour laisser un commentaire</a>.</dd>
+</dl>
+
+</div>
+</div>
+<!-- End of "main" DIV. -->
+
+<ul class="navbar"  id="menu">
+<li><strong><a href="./" title="Accueil du service de validation CSS du W3C">Accueil</a></strong> <span class="hideme">|</span></li>
+<li><a href="about.html" title="À propos de ce service">À propos</a> <span class="hideme">|</span></li>
+<li><a href="DOWNLOAD.html" title="Télécharger et installer le validateur CSS">Téléchargement</a> <span class="hideme">|</span></li>
+<li><a href="Email.html" title="Donner un avis à propos de ce service">Commentaires</a> <span class="hideme">|</span></li>
+<li><a href="thanks.html" title="Mentions et remerciements">Remerciements</a><span class="hideme">|</span></li>
+</ul>
+
+<p id="activity_logos">
+<a href="http://www.w3.org/QA/" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Plus d'informations sur les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
+</p>
+
+<p id="support_logo">
+Soutenez cet outil !<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Soutien du W3C" /></a>
+</p>
+
+<p class="copyright">
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+<a href="http://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
+(<a href="http://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
+<a href="http://www.ercim.org/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
+W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+rules apply. Your interactions with this site are in accordance
+with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy statements.
+</p>
+
+<p class="copyright">
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+<a href="http://www.w3.org/"><abbr lang="en" title="World Wide Web Consortium">W3C</abbr></a>&reg;
+(<a href="http://www.csail.mit.edu/"><abbr lang="en" title="Massachusetts Institute of Technology">MIT</abbr></a>,
+<a href="http://www.ercim.org/"><abbr lang="en" title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), tous droits réservés.
+Les règles de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilité</a>,
+de <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">nom de marque</a>,
+d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">utilisation des documents</a>
+et d'<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">octroi de licences logicielles</a>
+du W3C s'appliquent. Vos interactions avec ce site sont conformes à nos déclarations de confidentialité
+<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
+de nos <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
+</p>
+
+</body>
+</html>
