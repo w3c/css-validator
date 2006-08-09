@@ -24,7 +24,7 @@
         カスケーディングスタイルシート(CSS)を検証
       </p>
 	<div id="frontforms">
-      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">URLで指定して</a></li><li><a href="#validate-by-upload">テキストエリアに直接入力して</a></li><li><a href="#validate-by-input">ソースファイルをアップロードして</a></li></ul>
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">URLを指定</a></li><li><a href="#validate-by-upload">アップロード</a></li><li><a href="#validate-by-input">直接入力</a></li></ul>
     
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">URLで指定して検証</legend>
       <form method="get" action="validator">
@@ -80,7 +80,7 @@
       </form>
       </fieldset>
 
-      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Validate by File Upload</legend>
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">ソースファイルをアップロードして検証</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
       <p class="instructions">検証したいCSS文書のソースファイル名を入力してください (CSSファイルのみ):</p>
       <p>
@@ -190,11 +190,11 @@
       なHTML</a>。
 	</p>
    <ul class="navbar"  id="menu">
-        <li><a href="about.html" title="About this service">このサービスについて</a> <span class="hideme">|</span></li>
-        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">ダウンロード</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="How to provide feedback on this service">お問い合わせ</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+        <li><a href="about.html" title="CSS Validator について">このサービスについて</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="CSS Validator ドキュメント: 目次">ドキュメント</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS Validator のダウンロードとインストール">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="フィードバック">お問い合わせ</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="謝辞">謝辞</a><span class="hideme">|</span></li>
         <li><a href="languages.html" hreflang="en" lang="en" title="How to use the CSS Validator in your language">Other Languages</a><span class="hideme">|</span></li>
       </ul>
 

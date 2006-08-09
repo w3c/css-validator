@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <title>W3C CSS Validator ドキュメント</title>
+  <link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Home Page" />
+  <style type="text/css" media="all">
+    @import "base.css";    
+    @import "docs.css";    
+  </style>
+  <meta name="revision" content="$Id$" />
+  <!-- SSI Template Version: $Id$ -->
+</head>
+
+<body>
+
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS 検証サービス" /></a></h1>
+   </div>
+
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+<h2>CSS Validator ドキュメント: 目次</h2>
+
+<p id="skip"></p>
+
+<h3 id="use">ユーザー向けリソース</h3>
+
+<dl>
+    <dt><a href="./manual.html">ユーザー・マニュアル</a></dt>
+    <dd>CSS Validatorの使い方についての文書</dd>
+    <dt><a href="about.html">このサービスについて</a></dt>
+    <dd>CSS Validator についての情報や、一般的な質問への回答など</dd>
+    <dt><a href="http://www.websitedev.de/css/validator-faq">
+	CSS Validator FAQ
+    </a></dt>
+    <dd>よくある技術的な質問への回答</dd>
+    
+</dl>
+
+<h3 id="devel">開発者向けリソース</h3>
+
+
+<dl>
+    <dt><a href="DOWNLOAD.html">ダウンロードとインストール</a></dt>
+    <dd>CSS Validator のソースを入手して、コマンドラインプログラムやサーブレットとして動作させるまでの手順について。</dd>
+    
+    <dt><a href="README">開発者向け README</a></dt>
+    <dd>CSS Validator のコードの概要</dd>
+
+    <dt><a href="./api.html">ウェブサービスAPI</a></dt>
+    <dd>SOAP 1.2 検査インターフェースについての文書</dd>
+    
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">バグ</a></dt>
+    <dd>現バージョンの Validator に既知の問題と、新しいバグや問題を投稿するためのインターフェース。
+    <a href="email">フィードバックの手引き</a>も参照してください。</dd>
+
+</dl>
+
+
+
+</div>
+</div>
+<!-- End of "main" DIV. -->
+
+   <ul class="navbar"  id="menu">
+	<li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
+	<li><a href="about.html" title="このサービスについて">このサービスについて</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS Validatorのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+W3Cサポーターになってこのツールを支援しよう<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">慶應義塾大学</a>),
+      All Rights Reserved.
+      W3C の<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
+      そして<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
+      の規則が適用されます。
+      このサイトの訪問者は、私たちの<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
+
+    </p>
+
+
+  </body>
+</html>
+
+
+

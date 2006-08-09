@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <title>W3C CSS 検査サービスについて</title>
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="ホーム" />
+    <style type="text/css" media="all">
+	@import "base.css";
+	@import "docs.css";
+    </style>
+    <meta name="revision" content="$Id$" />
+  </head>
+
+  <body>
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS 検査サービス" /></a></h1>
+   </div>
+
+      <h2>CSS Validator について</h2>
+
+<h3 id="TableOfContents">目次</h3>
+<div id="toc">
+<ol>
+  <li>このサービスについて
+  <ol>
+<li><a href="#what">これは何? 私には必要?</a></li>
+<li><a href="#help">言ってる意味がよくわかんない! 助けて!</a></li>
+<li><a href="#reference">つまり、これはCSSが正しいかどうかについて検査する「権威」なわけですね?</a></li>
+<li><a href="#free">使うのにいくらかかるの?</a></li>
+<li><a href="#who">誰が作ったの? 誰が管理しているの?</a></li>
+<li><a href="#contact">作者にコンタクトをとるには? バグを報告するには?</a></li>
+<li><a href="#participate">何か手伝えることは?</a></li>
+  </ol>
+  </li>
+  <li>開発者向け
+  <ol>
+    <li><a href="#code">CSS Validatorは何で書かれているの? ソースはどこかで手に入る?</a></li>
+    <li><a href="#install">自分でも CSS Validator をインストール・実行できる?</a></li>
+    <li><a href="#api">この Validator を使ってなにかアプリケーションを作れる? 何か API がある?</a></li>
+  </ol>
+  </li>
+</ol>
+</div><!-- toc -->
+<h3 id="about">このサービスについて</h3>
+
+<h4 id="what">これは何? 私には必要?</h4>
+
+<p>W3C CSS 検査サービスは、W3Cによって作られたフリーソフトウェアで、ウェブデザイナーやウェブ開発者が CSS (Cascading Style Sheets; カスケーディング・スタイルシート) をチェックするのに使うことができます。
+このサービスは、ウェブ上の<a href="./">フリーサービス</a>を通じて使ったり、ダウンロードして Java プログラムとして実行したりウェブサーバー上で Java サーブレットとして使ったりできます。</p>
+
+<p><em>あなた</em>に必要かどうか?
+もしあなたがウェブ開発者やウェブデザイナーなら、このツールがとても役立つでしょう。
+このツールは、あなたのスタイルシートを CSS 仕様と比較するだけではなく、エラーやタイプミス、CSS の誤用などを発見したり、
+あなたの書いた CSS が使い勝手を悪くするような場合に教えてくれたりします。
+</p>
+
+<h4 id="help">言ってる意味がよくわかんない! 助けて!</h4>
+<p>ウェブ上の文書のほとんどは、HTML と呼ばれるコンピュータ言語でかかれています。
+この言語は構造化された情報やリンク、マルチメディアオブジェクトなどをページ内に含めるのに使われています。
+色やレイアウトなどを表現するのにはスタイル言語である CSS ("Cascading Style Sheets" の略です) が用いられます。
+このツールは、CSS を使う人々が自分の CSS をチェックしたり必要に応じて修正するのを手助けするためのものです。</p>
+
+<h4 id="reference">つまり、これは CSS が正しいかどうかについて検査する「権威」なわけですね? </h4>
+<p>違います。
+確かにこれは便利で信頼できるツールですが、他のどんなソフトウェアもそうであるように、ソフトウェアである以上は<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグと問題</a>があるかもしれません。
+カスケーディング・スタイルシートの絶対的な参考文献は、<a href="http://www.w3.org/Style/CSS/#specs">CSS の仕様書</a>です。</p>
+
+<h4 id="free">使うのにいくらかかるの?</h4>
+<p>費用はかかりません。
+これは無償のサービスです。
+ソースは<a href="DOWNLOAD.html">オープン</a>で、自由にダウンロード・利用・修正・配布などすることができます (その他<a href="http://www.w3.org/Consortium/Legal/copyright-software">様々な使い方</a>ができます)。
+もしこのツールを気に入っていただけたのなら、<a href="#participate">このプロジェクトに参加</a>したり、<a href="http://www.w3.org/Consortium/sup">W3Cサポーター・プログラム</a>を使って W3C に寄付活動をすることができます。が、それは一切強制されるものではありません。</p>
+
+<h4 id="who">誰が作ったの? 誰が管理しているの?</h4>
+<p>
+W3C スタッフ、ボランティア開発者や翻訳者の協力の下、
+W3C がツールを管理・ホスティングしています。
+詳しくは、<a href="thanks.html">謝辞</a>のページをご覧下さい。
+<a href="#participate">あなたも何かできるはず</a>。</p>
+
+<h4 id="participate">何か手伝えることは?</h4>
+<p>もちろん。
+Java プログラマなら、CSS Validator プロジェクトの<a href="#code">コード</a>をチェック・選別して<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグ</a>を修正したり、新機能の構築を手伝っていただければ助かります。</p>
+<p>しかし、このツールの構築・運営に必要とされているのはプログラマだけではありません。文書を改良したり、Validator をあなたの言語に翻訳するのを手伝ったり、<a href="http://lists.w3.org/Archives/Public/www-validator-css/">メーリングリスト</a>に参加して議論したり他の参加者を手助けするのも、また大きな支援となります。</p>
+
+<h4 id="contact">作者にコンタクトをとるには? バグを報告するには?</h4>
+<p>CSS や CSS Validator についての質問があるなら、<a href="Email">メーリングリストやフォーラム</a>を見てください。でもその前に、あなたの質問やコメントがすでに <a href="http://www.websitedev.de/css/validator-faq">CSS Validator <acronym title="Frequently Asked Questions">FAQ</acronym></a> に登録されていないことを確認してください。</p>
+
+
+<h3 id="dev">開発者向け</h3>
+<h4 id="code">CSS Validator は何で書かれているの? ソースはどこかで手に入る? </h4>
+<p>W3C CSS Validator は、Java 言語を使って書かれています。
+ええ、もちろんコードも CVS で公開されています。
+<a href="http://dev.w3.org/cvsweb/2002/css-validator/">コードをオンラインで閲覧</a>することもできますし、リンク先のページの指示に従ってソースツリー全体をダウンロードすることもできます。
+CSS Validator で使われているクラスなどの概要は、<a href="README.html">README</a> ファイルをご覧ください。</a>
+
+<h4 id="install">自分でも CSS Validator をインストール・実行できる?</h4>
+<p>CSS Validator は、ダウンロードしてインストールして、コマンドラインから起動することもウェブサーバー上でサーブレットとして実行することも可能です。
+インストールして利用するには、<a href="RUN.html">ガイド</a>をお読みください。</p>
+
+<h4 id="api">この Validator を使ってなにかアプリケーションを作れる? 何か API がある?</h4>
+<p>はい。もう一つ、<a href="api">はい</a>。
+CSS Validator には、平和的 (RESTful) な <a href="api">SOAP インターフェース</a>があり、(ウェブかどうかに限らず) アプリケーションの構築が合理的で簡単にできるようになっています。
+もちろん良いマナーと共有資源利用への配慮をお願いします: Validator を呼ぶ間に sleep() するか、もしくはあなた自身の Validator インスタンスをインストールして実行するよう心がけてください。
+</p>
+
+   <ul class="navbar"  id="menu">
+        <li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="ドキュメント">ドキュメント</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS Validator のダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+W3Cサポーターになってこのツールを支援しよう<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">慶應義塾大学</a>),
+      All Rights Reserved.
+      W3C の<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">責任範囲</a>、
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商標</a>、
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文書の利用</a>、
+      そして<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">ライセンス</a>
+      の規則が適用されます。
+      このサイトの訪問者は、私たちの<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">一般</a>および<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">メンバー</a>プライバシー声明に従うものとします。
+
+    </p>
+
+
+  </body>
+</html>
