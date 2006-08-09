@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?xml version="1.0"?><HTML lang=it xml:lang="it" 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>CSS Validator User Manual</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+rev=made href="mailto:www-validator-css@w3.org"><LINK title="Home Page" 
+rev=start href="./">
+<STYLE type=text/css media=all>@import url( base.css );
+@import url( docs.css );
+</STYLE>
+
+<META content="$Id$" 
+name=revision><!-- SSI Template Version: $Id$ -->
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=banner>
+<H1 id=title><A href="http://www.w3.org/"><IMG id=logo height=48 alt=W3C 
+src="CSS Validator User Manual_file/w3c_home_nb.png"></A> <A 
+href="http://qa-dev.w3.org:8001/css-validator/"><IMG 
+alt="CSS Validation Service" 
+src="CSS Validator User Manual_file/css_validation_service.png"></A></H1></DIV>
+<DIV id=main><!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+<DIV class=doc>
+<H2>Manuale Utente del Validatore CSS</H2>
+<H3 id=TableOfContents>Sommario</H3>
+<DIV id=toc>
+<UL>
+  <LI><A href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#use">Come 
+	usare il Validatore CSS</A> 
+  <UL>
+    <LI><A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#url">Validazione 
+	tramite risposta URL</A> 
+    <LI><A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#fileupload">Validazione 
+	tramite caricamento del file (file upload)</A> 
+    <LI><A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#directinput">Validazione 
+	tramite immissione diretta</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#basicvalidation">
+	Cosa fa la validazione di base?</A> </LI></UL>
+  <LI>
+	<A 
+  href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#advanced">
+	Validazione avanzata</A> 
+  <UL>
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#paramwarnings">
+	Parametro degli avvisi</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#paramprofile">
+	Parametro del profilo</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#parammedium">
+	Parametro del medium</A> </LI></UL>
+  <LI>
+	<A 
+  href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#expert">Per gli 
+	esperti</A> 
+  <UL>
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#requestformat">
+	Formato della Richiesta della Validazione</A> 
+    <LI><A href="http://qa-dev.w3.org:8001/css-validator/manual.html.en#api">API 
+	per il Web Service del Validatore CSS</A> </LI></UL></LI></UL></DIV>
+<P id=skip></P>
+<H3 id=use>Come usare il Validatore CSS</H3>
+<P>La maniera più semplice per controllare un documento è quella di usare 
+l'interfaccia di base. In questa pagina troverai i tre moduli corrispondenti a 
+tre possibilità: </P>
+<H4 id=url>Validazione tramite URL</H4>
+<P>Inserire semplicemente l'URL del documento che vuoi validare. Questo 
+documento può essere in HTML o CSS. </P><IMG 
+style="DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto" 
+alt="Validation by URI form" src="CSS Validator User Manual_file/uri_basic.png"> 
+
+<H4 id=fileupload>Validazione tramite caricamento del file (file upload)</H4>
+<P>Questa soluzione ti permette di caricare e verificare un file locale. Clicca 
+il pulsante &quot;Browse...&quot; [=Naviga] e scegli il file che vuoi controllare. </P><IMG 
+style="DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto" 
+alt="Validation by File Upload" 
+src="CSS Validator User Manual_file/file_upload_basic.png"> 
+<P>In questo caso, sono consentiti solo i documenti CSS. Ciò significa che non 
+puoi caricare documenti (X)HTML. Devi anche fare attenzione alle regole @import 
+dal momento che saranno applicate solo se fanno esplicitamente riferimento a un 
+URL pubblico (perciò, dimenticati i percorsi relativi con questa soluzione).</P>
+<H4 id=directinput>Validazione tramite immissione diretta</H4>
+<P>Questo metodo è perfetto per verificare frammenti di CSS. Devi solo scrivere 
+il tuo codice CSS nella casella di testo </P><IMG 
+style="DISPLAY: block; MARGIN-LEFT: auto; MARGIN-RIGHT: auto" 
+alt="Validation by direct input" 
+src="CSS Validator User Manual_file/direct_input_basic.png"> 
+<P>Valgono le stesse avvertenze fatte prima. Nota che questa soluzione è molto 
+conveniente se hai un problema e hai bisogno di un po' d'aiuto dalla comunità. 
+Inoltre è molto utile per segnalare un bug, dal momento che puoi fare un 
+collegamento all'URL del risultato per fornire un caso di test. </P>
+<H4 id=basicvalidation>Cosa fa la validazione di base?</H4>
+<P>Quando si usa l'interfaccia di base, il validatore verificherà la conformità 
+a <A href="http://www.w3.org/TR/CSS2">CSS 2</A>, che è la raccomandazione 
+tecnica attuale dei CSS.<BR>Verrà prodotto un output XHTML senza alcun avviso 
+(vedrai solo gli errori).<BR>Il medium è impostato a "all" [=tutti], che è il 
+medium adatto a tutti i dispositivi (vedi <A 
+href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</A> 
+per una descrizione completa dei media). </P>
+<H3 id=advanced>Validazione avanzata</H3>
+<P>Se hai bisogno di un controllo più specifico, puoi usare l'interfaccia 
+avanazata che permette di specificare tre parametri. Di seguito c'è un piccolo 
+aiuto su ciascuno di questi parametri. </P>
+<H4 id=paramwarnings>Avvisi</H4>
+<P>Questo parametro è utile per regolare la verbosità del Validatore CSS. 
+Infatti, il validatore può darti due tipi di messaggio: errori e avvisi. Gli 
+errori vengono dati quando il CSS verificato non rispetta la raccomandazione 
+CSS. Gli avvisi sono diversi dagli errori dal momento che dichiarano un problema 
+che non riguarda la specifica. Sono lì per avvisare (!) lo sviluppatore CSS che 
+alcuni punti potrebbero essere pericolosi e portare a comportamenti strani su 
+alcuni agenti utenti. 
+</P>
+<P>Un avviso tipico riguarda font-family: se non fornisci un tipo di carattere 
+generico, avrai un avviso che dice che dovresti aggiungerne uno alla fine della 
+regola, altrimenti un agente utente che non conosce nessuno degli altri tipi di 
+carattere, si imposterà su quello proprio predefinito, il che potrebbe risultare 
+in una strana visualizzazione. </P>
+<H4 id=paramprofile>Profilo</H4>
+<P>Il validatore CSS può verificare differenti profili CSS. Un profilo elenca 
+tutte le caratteristiche che ci si aspetta che un'implementazione su una 
+particolare piattaforma implementi. La definizione è presa dal&nbsp;
+<A 
+href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+sito di CSS</A>. La scelta predefinita corrisponde a quella attualmente più 
+usata: <A 
+href="http://www.w3.org/TR/CSS2">CSS 2</A>. </P>
+<H4 id=parammedium>Medium</H4>
+<P>Il parametro del medium è equivalente alla regola @media, e si applica a 
+tutto il documento. Troverai maggiori informazioni riguardo ai media presso <A 
+href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</A>. 
+</P>
+<H3 id=expert>Solo per esperti</H3>
+<H4 id=requestformat>Formato della Richiesta della Validazione</H4>
+<P>Qui sotto c'è una tabella dei parametri che puoi usare per inviare una 
+richiesta al Validatore CSS del W3C.</P>
+<P>Se vuoi utilizzare il server pubblico di validazione del W3C's public validation server, usa 
+i parametri sottoriportati in congiunzione con il seguente URI di base:<BR><KBD>http://jigsaw.w3.org/css-validator/validator</KBD><BR>(sostituisci 
+con l'indirizzo del tuo server se vuoi invocare un'istanza privata del 
+validatore).</P>
+<P><STRONG>Nota</STRONG>: Se desideri chiamare il validatore in modo 
+programmatico per un insieme di documenti, ti preghiamo di assicurarti che il 
+tuo script invochi il metodo <CODE>sleep</CODE> 
+per <STRONG>almeno 1 secondo</STRONG> fra una richiesta e l'altra. Il servizio 
+di Validazione CSS è un servizio pubblico e gratuito, per tutti, il tuo rispetto 
+è apprezzato. Grazie.</P>
+<TABLE class=refdoc>
+  <TBODY>
+  <TR>
+    <TH>Parametro</TH>
+    <TH>Descrizione</TH>
+    <TH>Valore predefinito</TH></TR>
+  <TR>
+    <TH>uri</TH>
+    <TD>L'<ACRONYM title="Universal Resource Locator">URL</ACRONYM> del 
+	documento da validare. Sono consentiti i documenti CSS e HTML.</TD>
+    <TD>Nessuno, ma deve essere passato questo parametro oppure <CODE>text</CODE>.</TD></TR>
+  <TR>
+    <TH>text</TH>
+    <TD>Il documento da validare, è consentito solo CSS.</TD>
+    <TD>Nessuno, ma deve essere passato questo parametro oppure <CODE>uri</CODE>.</TD></TR>
+  <TR>
+    <TH>usermedium</TH>
+    <TD>Il <A href="http://www.w3.org/TR/CSS2/media.html">medium</A> utilizzato 
+	per la validazione, come <CODE>screen</CODE>, <CODE>print</CODE>, 
+      <CODE>braille</CODE>...</TD>
+    <TD><CODE>all</CODE></TD></TR>
+  <TR>
+    <TH>output</TH>
+    <TD>Imposta i vari formati di output del validatore. Formati possibili sono <CODE>text/html</CODE> 
+	e <CODE>html</CODE> (documento XHTML, 
+      Content-Type: text/html), <CODE>application/xhtml+xml</CODE> e 
+      <CODE>xhtml</CODE> (documento XHTML, Content-Type: application/xhtml+xml), 
+      <CODE>application/soap+xml</CODE> e <CODE>soap12</CODE> (documento SOAP 1.2, Content-Type: application/soap+xml), <CODE>text/plain</CODE> 
+	e 
+      <CODE>text</CODE> (documento di testo, Content-Type: text/plain), 
+	qualsiasi altro (documento XHTML, Content-Type: text/plain) </TD>
+    <TD>html</TD></TR>
+  <TR>
+    <TH>profile</TH>
+    <TD>Il profilo CSS utilizzato per la validazione. Può essere <CODE>css1</CODE>, 
+      <CODE>css2</CODE>, <CODE>css21</CODE>, <CODE>css3</CODE>, 
+      <CODE>svg</CODE>, <CODE>svgbasic</CODE>, <CODE>svgtiny</CODE>, 
+      <CODE>mobile</CODE>, <CODE>atsc-tv</CODE>, <CODE>tv</CODE> oppure 
+      <CODE>none</CODE></TD>
+    <TD>la Raccomandazione W3C più recente: CSS 2</TD></TR>
+  <TR>
+    <TH>lang</TH>
+    <TD>La lingua usata per la risposta, al momento, <CODE>en</CODE>, 
+      <CODE>fr</CODE>, <CODE>ja</CODE>, <CODE>es</CODE>, <CODE>zh-cn</CODE>, 
+      <CODE>nl</CODE>, <CODE>de</CODE>.</TD>
+    <TD>Inglese (<CODE>en</CODE>).</TD></TR>
+  <TR>
+    <TH>warning</TH>
+    <TD>Il livello degli avvisi, <CODE>no</CODE> per nessun avviso, <CODE>0</CODE> 
+	per meno avvisi, <CODE>1 </CODE>o <CODE>2</CODE> per maggiori avvisi </TD>
+    <TD>2</TD></TR></TBODY></TABLE>
+<H4 id=api>API per il Web Service del Validatore CSS: documentazione 
+dell'interfaccia di validazione SOAP 1.2</H4>
+<P>Per un maggior supporto tecnico, in particolare riguardo all'output SOAP 1.2 e 
+a tutte le maniere possibili per chiamare il validatore, vedi l'<A 
+href="http://qa-dev.w3.org:8001/css-validator/api.html">API per il Web Service 
+del Validatore CSS</A>. </P></DIV></DIV><!-- End of "main" DIV. -->
+<UL class=navbar id=menu>
+  <LI><STRONG><A title="Home page for the W3C CSS Validation Service" 
+  href="http://qa-dev.w3.org:8001/css-validator/">Home</A></STRONG> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI>
+	<A title="About this service" 
+  href="http://qa-dev.w3.org:8001/css-validator/about.html">Riguardo questo 
+	servizio</A> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI><A title="Documentation for the W3C CSS Validation Service" 
+  href="http://qa-dev.w3.org:8001/css-validator/documentation.html">Documentazione</A> 
+  <SPAN class=hideme>|</SPAN> 
+  <LI><A title="Download the CSS validator" 
+  href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">Download</A> 
+  <SPAN class=hideme>|</SPAN> 
+  <LI><A title="How to provide feedback on this service" 
+  href="http://qa-dev.w3.org:8001/css-validator/Email.html">Feedback</A> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI><A title="Credits and Acknowlegments" 
+  href="http://qa-dev.w3.org:8001/css-validator/thanks.html">Crediti</A><SPAN 
+  class=hideme>|</SPAN> </LI></UL>
+<P id=activity_logos><A 
+title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more" 
+href="http://www.w3.org/QA/"><IMG alt=QA 
+src="CSS Validator User Manual_file/qa-small.png"></A><A 
+title="Learn more about Cascading Style Sheets" 
+href="http://www.w3.org/Style/CSS/learning"><IMG alt=CSS 
+src="CSS Validator User Manual_file/woolly-icon.png"></A> </P>
+<P id=support_logo>Supporta questo strumento, diventa un<BR><A 
+href="http://www.w3.org/Consortium/supporters"><IMG alt="W3C Supporter" 
+src="CSS Validator User Manual_file/csupporter.png"></A> </P>
+<P class=copyright><A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" 
+rel=Copyright>Copyright</A> © 1994-2006 <A href="http://www.w3.org/"><ACRONYM 
+title="World Wide Web Consortium">W3C</ACRONYM></A>® (<A 
+href="http://www.csail.mit.edu/"><ACRONYM 
+title="Massachusetts Institute of Technology">MIT</ACRONYM></A>, <A 
+href="http://www.ercim.org/"><ACRONYM 
+title="European Research Consortium for Informatics and Mathematics">ERCIM</ACRONYM></A>, 
+<A href="http://www.keio.ac.jp/">Keio</A>), Tutti i Diritti Riservati. Si 
+applicano le regole del W3C su
+<A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+responsabilità</A>, 
+<A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marchio 
+registrato</A>,
+<A href="http://www.w3.org/Consortium/Legal/copyright-documents" 
+rel=Copyright>uso del documento</A> e
+<A 
+href="http://www.w3.org/Consortium/Legal/copyright-software" 
+rel=Copyright>licenza del software</A>. Le tue interazioni con questo sito 
+avvengono in conformità con le nostre dichiarazioni sulla riservatezza per il <A 
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</A> 
+e per i <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
+Membri del W3C</a>. </P></BODY></HTML>

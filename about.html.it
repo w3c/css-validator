@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?xml version="1.0" encoding="utf-8"?><HTML lang=it xml:lang="it" 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>About the W3C CSS Validation 
+Service</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+rev=made href="mailto:www-validator-css@w3.org"><LINK title="Home Page" 
+rev=start href="./">
+<STYLE type=text/css media=all>@import url( base.css );
+@import url( docs.css );
+</STYLE>
+
+<META content="$Id$" 
+name=revision>
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=banner>
+<H1 id=title><A href="http://www.w3.org/"><IMG id=logo height=48 alt=W3C 
+src="About the W3C CSS Validation Service_file/w3c_home_nb.png"></A> <A 
+href="http://qa-dev.w3.org:8001/css-validator/"><IMG 
+alt="CSS Validation Service" 
+src="About the W3C CSS Validation Service_file/css_validation_service.png"></A></H1></DIV>
+<H2>Riguardo il Validatore CSS</H2>
+<H3 id=TableOfContents>Sommario</H3>
+<DIV id=toc>
+<OL>
+  <LI>Riguardo questo Servizio 
+  <OL>
+    <LI><A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#what">Che cos'? 
+	Ne ho bisogno?</A> 
+    <LI><A href="http://qa-dev.w3.org:8001/css-validator/about.html.en#help">La 
+	spiegazione qui sopra ?incomprensibile! Aiuto!</A> 
+    <LI><A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#reference">In 
+	definitiva, questa ?l'autorit?che decide su ci?che ?CSS corretto e ci?
+	che non lo ?</A> 
+    <LI><A href="http://qa-dev.w3.org:8001/css-validator/about.html.en#free">
+	Quanto costa?</A> 
+    <LI><A href="http://qa-dev.w3.org:8001/css-validator/about.html.en#who">Chi 
+	ha creato questo strumento? Chi lo mantiene?</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#contact">Come 
+	contatto gli autori? Come segnalo un bug?</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#participate">
+	Posso essere d'aiuto?</A> </LI></OL>
+  <LI>L'angolo degli sviluppatori 
+  <OL>
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#code">In cosa ?
+	scritto il Validatore CSS? Il codice sorgente ?disponibile da qualche 
+	parte?</A> 
+    <LI>
+	<A 
+    href="http://qa-dev.w3.org:8001/css-validator/about.html.en#install">Posso 
+	installare ed eseguire il Validatore CSS per conto mio?</A> 
+    <LI><A href="http://qa-dev.w3.org:8001/css-validator/about.html.en#api">
+	Posso costruire un'applicazione appoggiandomi a questo validatore? Esiste 
+	un'API?</A> 
+  </LI></OL></LI></OL></DIV><!-- toc -->
+<H3 id=about>Riguardo questo Servizio</H3>
+<H4 id=what>Che cos'? Ne ho bisogno?</H4>
+<P>Il Servizio di Validazione del W3C ?un software gratuito creato dal W3C per 
+aiutare i designer e gli sviluppatori Web a verificare i Fogli di Stile a 
+Cascata [Cascading Style Sheets] (CSS). Pu?essere usato tramite questo
+<A href="http://qa-dev.w3.org:8001/css-validator/">servizio gratuito</A> sul 
+web, oppure scaricato e usato sia come programma java, che come servlet java su 
+un server Web.</P>
+<P><EM>Tu</EM> ne hai bisogno? Se sei uno sviluppatore o un designer Web, questo 
+strumento sar?un alleato inestimabile. Non solo cofronter?i tuoi fogli di 
+stile con le specifiche CSS, aiuandoti a trovare gli errori, i refusi o gli usi 
+scorretti di CSS, ma ti dir?in aggiunta quando il tuo CSS ?esposto a qualche 
+rischio in termini di usabilit?</P>
+<H4 id=help>La spiegazione qui sopra ?incomprensibile! Aiuto!</H4>
+<P>La maggior parte dei documenti sul Web sono scritti in un linguaggio per 
+computer chiamato HTML. Questo linguaggio pu?essere ustao per creare pagine con 
+informazioni strutturate, collegamenti, e oggetti multimediali. Per il colore, 
+il testo, e la presentazione, HTML utilizza un linguaggio di stile chiamato CSS, 
+un'abbreviazione di &quot;Cascading Style Sheets&quot; [= Fogli di Stile a Cascata]. Ci?
+che fa questo strumento ?aiutare le persone che producono CSS a verificare, e 
+correggere se necessario, i loro Fogli di Stile CSS.</P>
+<H4 id=reference>In definitva, questa ?l'autorit?che decide su ci?che ?CSS 
+corretto e ci?che non lo ?</H4>
+<P>No. &Egrave; uno strumento utile e affidabile, ma ?uno strumento software, e come 
+ogni strumento software, ha qualche 
+<A 
+href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bug e 
+incongruenza</A>. Il riferimento corrente per i Fogli di Stile a Cascata sono le
+<A 
+href="http://www.w3.org/Style/CSS/#specs">Specifiche CSS</A>.</P>
+<H4 id=free>Quanto costa?</H4>
+<P>Niente. Il servizio ?gratuito. Il codice sorgente ?
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">aperto</A> e sei 
+libero di scaricarlo, usarlo, modificarlo, distribuirlo, e
+<A 
+href="http://www.w3.org/Consortium/Legal/copyright-software">altro ancora</A>. 
+Se veramente ti piace, ti saremmo grati se
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/about.html.en#participate">
+aderissi al progetto</A> oppure facessi una donazione al W3C attraverso il
+<A 
+href="http://www.w3.org/Consortium/sup">programma dei sostenitori del W3C</A>, 
+ma nessuno ti costringe a farlo.</P>
+<H4 id=who>Chi ha creato questo strumento? Chi lo mantiene?</H4>
+<P>Il W3C mantiene e ospita lo strumento, grazie al lavoro e al contributo dello 
+staff del W3C, agli sviluppatori e ai traduttori volontari. Vedi i
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/thanks.html">la pagina dei crediti 
+e dei riconoscimenti</A> per i dettagli.
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/about.html.en#participate">Anche 
+tu puoi essere d'aiuto</A>.</P>
+<H4 id=participate>Posso essere d'aiuto?</H4>
+<P>Naturalmente. Se sei un programmatore java, puoi aiutare il progetto del 
+Validatore CSS verificando il <A 
+href="http://qa-dev.w3.org:8001/css-validator/about.html.en#code">codice</A>, 
+adottando e correggendo i
+<A 
+href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bug</A>, 
+oppure aiutando a integrare nuove caratteristiche.</P>
+<P>Ma non ?necessario che tu sia un programmatore per aiutare a costruire e 
+mantenere questo strumento: puoi anche aiutare migliorando la documentazione, 
+partecipando alle traduzione del validatore nella tua lingua o iscrivendoti alla <A 
+href="http://lists.w3.org/Archives/Public/www-validator-css/">mailing-list</A> 
+e discutendo dello strumento o supportando altri utenti.</P>
+<H4 id=contact>Qualche altra domanda?</H4>
+<P>Se hai qualunque domanda da porre che riguardi CSS e il validatore CSS, 
+controlla <A href="http://qa-dev.w3.org:8001/css-validator/Email">le 
+mailing-list e i forum</A> disponibili. Ma prima di farlo, assicurati che la tua 
+domanda o il tuo commento non sia gi?trattato nel
+<A href="http://www.websitedev.de/css/validator-faq">documento delle FAQ per il 
+Validatore CSS</A>.</P>
+<H3 id=dev>L'angolo degli sviluppatori</H3>
+<H4 id=code>In cosa ?scritto il Validatore CSS? Il codice sorgente ?
+disponibile da qualche parte?</H4>
+<P>Il validatore CSS del W3C ?stato scritto utilizzando il linguaggio java, e 
+s? il suo codice sorgente ?disponibile, utilizzando CVS: puoi scegliere di
+<A 
+href="http://dev.w3.org/cvsweb/2002/css-validator/">navigare il codice online</A> 
+oppure seguire le istruzioni qui presenti per scaricare l'intero albero dei 
+sorgenti. Per una rapida occhiata delle classi impiegate nel codice del 
+Validatore CSS, controlla il file <A 
+href="http://qa-dev.w3.org:8001/css-validator/README.html">README</A>.</P>
+<H4 id=install>Posso installare ed eseguire il Validatore CSS per conto mio?</H4>
+<P>?possibile scaricare e installare il validatore CSS, ed eseguirlo sia da 
+linea di comando, o come servlet in un server Web. Leggi le
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/RUN.html">istruzioni</A> per 
+l'installazione e l'utilizzo.</P>
+<H4 id=api>Posso costruire un'applicazione appoggiandomi a questo validatore? 
+Esiste un'API?</H4>
+<P>S? e <A href="http://qa-dev.w3.org:8001/css-validator/api">s?/A>. Il 
+Validatore CSS ha una (RESTful)
+<A 
+href="http://qa-dev.w3.org:8001/css-validator/api">interfaccia SOAP</A> che 
+dovrebbe rendere ragionevolmente facile costruire applicazioni (Web o di altro 
+tipo) su di esso. Le buone maniere e l'utilizzo rispettoso delle risorse 
+condivise, naturalmente, sono le solite: assicurati che le tue applicazioni 
+usino il metodo sleep() tra una chiamata e l'altra al validatore, oppure 
+installa ed esegui una tua istanza del validatore.</P>
+<UL class=navbar id=menu>
+  <LI><STRONG><A title="Home page for the W3C CSS Validation Service" 
+  href="http://qa-dev.w3.org:8001/css-validator/">Home</A></STRONG> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI><A title="Documentation for the W3C CSS Validation Service" 
+  href="http://qa-dev.w3.org:8001/css-validator/documentation">Documentazione</A> 
+  <SPAN class=hideme>|</SPAN> 
+  <LI><A title="Download the CSS validator" 
+  href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD">Download</A> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI><A title="How to provide feedback on this service" 
+  href="http://qa-dev.w3.org:8001/css-validator/Email">Feedback</A> <SPAN 
+  class=hideme>|</SPAN> 
+  <LI><A title="Credits and Acknowlegments" 
+  href="http://qa-dev.w3.org:8001/css-validator/thanks">Crediti</A><SPAN 
+  class=hideme>|</SPAN> </LI></UL>
+<P id=activity_logos><A 
+title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more" 
+href="http://www.w3.org/QA/"><IMG alt=QA 
+src="About the W3C CSS Validation Service_file/qa-small.png"></A><A 
+title="Learn more about Cascading Style Sheets" 
+href="http://www.w3.org/Style/CSS/learning"><IMG alt=CSS 
+src="About the W3C CSS Validation Service_file/woolly-icon.png"></A> </P>
+<P id=support_logo>Supporta questo strumento, diventa un<BR><A 
+href="http://www.w3.org/Consortium/supporters"><IMG alt="W3C Supporter" 
+src="About the W3C CSS Validation Service_file/csupporter.png"></A> </P>
+<p><A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" 
+rel=Copyright>Copyright</A> © 1994-2006 <A href="http://www.w3.org/"><ACRONYM 
+title="World Wide Web Consortium">W3C</ACRONYM></A>® (<A 
+href="http://www.csail.mit.edu/"><ACRONYM 
+title="Massachusetts Institute of Technology">MIT</ACRONYM></A>, <A 
+href="http://www.ercim.org/"><ACRONYM 
+title="European Research Consortium for Informatics and Mathematics">ERCIM</ACRONYM></A>, 
+<A href="http://www.keio.ac.jp/">Keio</A>), Tutti i Diritti Riservati. Si 
+applicano le regole del W3C su
+<A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+responsabilità</A>, 
+<A 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marchio 
+registrato</A>,
+<A href="http://www.w3.org/Consortium/Legal/copyright-documents" 
+rel=Copyright>uso del documento</A> e
+<A 
+href="http://www.w3.org/Consortium/Legal/copyright-software" 
+rel=Copyright>licenza del software</A>. Le tue interazioni con questo sito 
+avvengono in conformità con le nostre dichiarazioni sulla riservatezza per il <A 
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</A> 
+e per i <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
+Membri del W3C</a>. </p>
+
+</BODY></HTML>
