@@ -1,0 +1,138 @@
+# użyte przez StyleSheet2HTML
+
+# encje użyte przez generatora HTML 
+zobacz błędy: <li><a href="#errors">zobacz błędy</a></li>
+zobacz ostrzeżenia: <li><a href="#warnings">zobacz ostrzeżenia</a></li>
+zobacz reguły: <li><a href="#css">zobacz swój arkusz stylu</a></li>
+brak błędów i ostrzeżeń: <hr /><h2>brak błędów i ostrzeżeń</h2>
+
+brak błędów: \
+<div id='congrats'>\n\
+<h2>Gratulacje!</h2>\n\
+<p>\
+<a style="float: right" href="http://jigsaw.w3.org/css-validator/">\n\
+<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Poprawny CSS!" /></a>\
+ Dokument ten jest poprawnie napisanym arkuszem <a\ \
+href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
+  </p>\
+<p> \
+Aby pokazać czytelnikom swojej strony, ze stworzyłeś stronę interoperacyjną \
+, możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidacje. Oto kod HTML\
+, który możesz dodać do swojej strony: </p> <pre class='example'> \n\
+&lt;p>\n\
+\ &lt;a href="http://jigsaw.w3.org/css-validator/">\n\
+\ \ &lt;img style="border:0;width:88px;height:31px"\n\
+\ \ \ \ \ \ \ src="http://jigsaw.w3.org/css-validator/images/vcss" \n\
+\ \ \ \ \ \ \ alt="Poprawny CSS!">\n\
+\ &lt;/a>\n\
+&lt;/p>\
+</pre>\n\
+(zakończ znacznik obrazu z /&gt; jeśli używasz XHTML)\
+<p> \
+Jeśli chcesz, możesz ściągnąć kopię tej ikony i umieścić ją w lokalnym \
+katalogu swojego serwera oraz przerobić fragment HTML podając link prowadzący do ikony na swoim serwerze \
+zamiast do ikony na serwerze Walidatora CSS W3C. </p>\n\
+\
+<p>Jeśli chciałbyś stworzyć link do tej strony (np. do wyniku \
+walidacji) aby ułatwić sobie ponowną walidację w przyszłości lub w celu pozwolenia \
+innym na walidację tej strony, użyj następującego adresu: </p><pre>\n\
+\
+\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ \ \ \ \ lub http://jigsaw.w3.org/css-validator/check/referer (jedynie dla dokumentów HTML/XML)\n\
+</pre>\n\
+<p>(lub możesz dodać stronę do Ulubionych.)</p>\n\
+</div>
+
+brak regul: <div><h2>Nie znaleziono arkusza stylów</h2></div>
+styl niezgodny z css1: /* UWAGA ! To nie jest właściwością CSS1! */
+
+# Istnieją encje predefiniowane :
+#  nazwa pliku : nazwa arkusz stylów
+#  dzisiaj : dzisiejsza data
+#  ilość : ilość błędów
+#  ilość ostrzeżeń : ilość ostrzeżeń
+#  liczba reguł : ilość reguł na twoim arkuszu
+#  autor : imię autora :-)
+#  e-mail autora : e-mail autora :-))
+
+# można wprowadzić nowe linie w następujący sposób : \n
+
+#
+# Jak pisać reguły
+#
+# uważaj abyś używał jedynie :
+#   - selektora i deklaracji w regule 
+#   - elementu, klasy, identyfikatora, pseudo-klasy i pseudo-elementu w selektorze
+#   - nazwę właściwości, wartość właściwości, istotny styl i styl niezgodny z css1 w deklaracji
+
+reguły: \
+<div id="css">\n\
+<h2>Informacje na temat poprawnego CSS</h2> \n\
+<ul class='vAtRule'> \n\
+<!-- #charset-rule --> \
+<!-- #rule --> \
+</ul>\n\
+</div>
+
+reguła charset: \
+<li class='vCharset'>@charset <!-- #charset -->;</li>
+
+# Jak pisać błędy
+
+błędy : \
+<div id="errors">\n\
+<h2>Błędy</h2>\n\
+<!-- #error -->\n\
+</div>
+
+# Jak pisać ostrzeżenia
+
+ostrzeżenia: \
+<div id="warnings">\n\
+<h2>Ostrzeżenia</h2> \n\
+<!-- #warning -->\n\
+</div>
+
+ostrzeżenie:
+
+# Początek dokumentu
+dokument: \
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n\
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\
+<html lang='pl' xml:lang='pl' xmlns='http://www.w3.org/1999/xhtml'>\n\
+<?xml version="1.0" encoding="utf-8"?>\n\
+<head> \n\
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" /> \n\
+<title>Wyniki Walidatora CSS W3C dla <!-- #file-title --></title> \n\
+<link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
+<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css' />\n\
+<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css' />\n\
+</head> \n\
+<body> \n\
+<p>\n\
+<a href="http://www.w3.org"><img\n\
+src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" /></a> <a\n\
+style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
+src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
+height="52" /></a>\n\
+</p>\n\
+\n\
+<h1>Wyniki Walidatora CSS W3C dla \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
+<!-- #no-error-or-warning -->\n\
+<!-- #no-errors -->\n\
+<!-- #hook-html-validator -->\n\
+<!-- #errors -->\n\
+<!-- #warnings -->\n\
+<!-- #rules -->\n\
+<!-- #no-rules -->\
+<hr /> \n\
+<p><a class="right" href="http://jigsaw.w3.org/css-validator/">\
+ <img src="http://jigsaw.w3.org/css-validator/images/vcss" \
+	alt="Poprawny CSS!" height="31" width="88" /></a></p>\n\
+<address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
+Aktualizowano : <!-- #today --> </address> \n\
+\n\
+<!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \n\
+</body> \n\
+</html>

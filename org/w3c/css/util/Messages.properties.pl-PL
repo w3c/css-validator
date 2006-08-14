@@ -1,0 +1,229 @@
+# Definiuje komunikaty błędów i ostrzeżeń
+content-type: text/html; charset=utf-8
+content-language: pl
+output-encoding-name: utf-8
+
+# Można zmienić poziom ostrzeżeń w następujšcy sposób (przykład) :
+# warning.redefinition.level: 5
+#  poziom jest liczbš pomiędzy 0 i 9 (wszystkie inne wartoci sš ignorowane)
+warning.redefinition: Redefiniowanie %s
+
+# użyte przez org.w3c.css.properties.Css1Style
+warning.same-colors: Takie same kolory dla %s i %s
+warning.no-color: Brak koloru w background-color
+warning.no-background-color: Brak background-color with your color
+warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: %s
+warning.no-generic-family: %s: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostatecznoci
+warning.with-space: nazwy rodzin czcionek zawierajšce białe znaki powinny być w cudzysłowiu. Jeli pominie się cudzysłów, białe znaki \
+przed i po nazwie sš ignorowane oraz cišg białych znaków wewnštrz nazwy \
+jest przekształcony w jednš spację. 
+warning.no-padding: Zaleca się aby mieć padding z kolorem tła
+warning.same-colors2: Takie same kolory dla color i background-color w dwóch miejscach %s i %s
+warning.relative-absolute: Istniejš długoci absolutne i relatywne w %s. To nie jest mocny arkusz stylów.
+ by org.w3c.css.properties.CssSelectors
+warning.unknown-html: %s nie jest elementem HTML
+warning.html-inside: Element HTML nie może znajdować się wewnštrz innego elementu
+warning.body-inside: Element BODY nie może być wewnštrz innego elementu z wyjštkiem HTML
+warning.pseudo-classes: Anchor pseudo-class %s nie działa na inne elementy poza 'A'
+
+# nie użyte przez org.w3c.css.properties.CssSelectors na czas obecny
+warning.noinside: %s nie może być wewnštrz elementu inline 
+warning.withblock: Uwaga. Pseudo-elementy mogš być dołšczone jedynie do elementu block-level 
+warning.block-level: Właciwoć tš stosuje się jedynie do elementów block-level.
+
+# użyte przez org.w3c.css.parser.Frame
+warning.no-declaration: No declarations in the rule
+
+# użyte przez org.w3c.css.values.CssColor
+warning.out-of-range: %s is out of range
+error.invalid-color: Invalid RGB function
+
+warning.marker: Właciwoć marker-offset stosuje się do elementów z 'display: marker'
+
+# użyte przez org.w3c.css.properties.ACssStyle
+warning.relative: Zastosowanie jednostek relatywnych we właciwoci %s daje w rezultacie silniejszy arkusz stylów
+
+# użyte przez org.w3c.css.css.StyleSheetParser i org.w3c.css.css.StyleSheetXMLParser
+error.at-rule: Niestety ale at-rule %s jest nie wdrożony.
+
+# użyte przez wszystkie właciwoci i wartoci
+error.operator: %s jest niepoprawnym operatorem
+error.negative-value: Wartoci negatywne %s sš niedozwolone
+error.few-value: Zbyt mało wartoci dla właciwoci %s
+
+# Uwaga! Wartoci sš pierwsze
+# Można napisać co takiego : Dla color, blue nie jest wartociš poprawnš 
+error.value: %s nie jest wartociš %s 
+
+#użyte przez org.w3c.css.properties3.CssToggleGroup
+error.groupname: %s nie jest poprawnš groupname. Zastosuj poprawny identyfikator
+
+#użyte przez org.w3c.css.properties3.CssGroupReset
+error.nogroup: %s nie jest ustalona przez właciwoć toggle-group
+
+#użyte przez org.w3c.css.properties3.CssGlyphOrVert
+error.anglevalue: Wartoć powinna być pomiędzy -360 i 360 oraz podzielna przez 90
+
+#użyte przez org.w3c.css.properties3.CssTextKashidaSpace
+error.percentage: Oczekuje się wartoci procentowej
+
+#użyte przez org.w3c.css.properties.CssTextAlign
+warning.xsl: Wartoć %s stosuje się jedynie w XSL
+
+#użyte przez org.w3c.css.parser.analyzer.CssParser
+warning.medialist : medialist powinna zaczšć się z 'media :' %s
+error.nocomb: Kombinator %s pomiędzy selektorami nie jest dozwolony w tym profilu lub wersji
+
+#użyte przez org.w3c.css.properties.CssDirection
+warning.direction: Zamiast stosować 'direction' dla elemetów block-level, zastosuj nowš własnoć CSS3 'writing-mode' 
+
+# użyte przez org.w3c.css.properties.CssTextDecoration
+error.same-value: %s pojawia się dwukrotnie
+
+error.generic-family.quote: Nazwy rodzin rodzajowych sš słowami kluczowymi i nie mogš być cytowane.
+
+# użyte przez org.w3c.css.properties.CssClip
+error.shape: Niepoprawna definicja shape rect(<top>,<right>,<bottom>,<left>)
+error.shape-separator: Niepoprawny separator w definicji shape. Musi to być przecinek.
+
+# użyte przez org.w3c.css.properties.CssContent
+error.attr: Niepoprawna definicja attr, attr(X)
+error.function: Niepoprawna definicja function  
+error.counter: Niepoprawna definicja counter, counter(<identifier>[,<list-style-type>]?)
+error.counters: Niepoprawna definicja counters, counters(<identifier>,<string>[,<list-style-type>]?)
+
+# użyte przez org.w3c.css.font.Src
+error.format: Niepoprawna definicja format, format(<string>[,<string>]*)
+error.local: Niepoprawna definicja, local(<string>|<ident>+)
+
+# użyte przez org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
+error.unit: %s nie jest poprawnš jednostkš
+
+# użyte przez org.w3c.css.aural.ACssAzimuth
+error.degree: Pozycja musi być wyrażona w stopniach.
+
+# użyte przez org.w3c.css.aural.ACssElevation
+error.elevation.range: Okrela elewację jako kšt pomiędzy '-90deg' i '90deg'.
+
+# użyte przez org.w3c.css.aural.ACssPitchRange
+error.range: Wartoć jest poza zasięgiem. Wartoć powinna być pomiędzy '0' i '100'.
+
+# użyte przez org.w3c.css.properties.CssTextShadow
+error.two-lengths: Shadow offset jest okrelony dwoma wartociami <length>. (Blur radius może być okrelony po shadow offset.)
+
+error.integer: Liczba ta musi być liczbš całkowitš.
+error.comma: Brak przecinka jako separatora.
+
+# użyte przez org.w3c.css.values.CssPercentage
+error.percent: %s jest niepoprawnš wartociš procentowš
+
+# użyte przez org.w3c.css.values.CssString
+error.string: %s jest niepoprawnym cišgiem
+
+# użyte przez org.w3c.css.values.CssURL
+error.url: %s jest niepoprawnym URL
+
+# użyte przez org.w3c.css.values.CssColor
+error.rgb: %s nie jest prawidłowym numerem koloru 3 lub 6 hexadecimals 
+error.angle: %s jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 360
+
+# użyte przez org.w3c.css.values.CssNumber
+error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
+
+# użyte przez org.w3c.css.parser.CssPropertyFactory
+error.noexistence: Właciwoć %s nie istnieje
+error.noexistence-media: Właciwoć %s nie istnieje dla media %s
+warning.noexistence-media: Właciwoć %s nie istnieje dla media %s
+warning.notforusermedium : Właciwoć %s nie istnieje dla tego usermedium
+warning.noothermedium : Właciwoć dla innych mediów może nie działać dla usermedium
+# użyte przez org.w3c.css.parser.AtRule*
+error.noatruleyet : Inne @rules poza @import nie sš wspierane przez CSS1 %s
+# użyte przez org.w3c.css.parser.analyzer.CssParser
+error.notforcss1 : Wartoć %s nie istnieje w CSS1
+
+# użyte przez org.w3c.css.parser.CssFouffa
+error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
+
+# użyte przez org.w3c.css.parser.CssFouffa
+generator.unrecognize: Błšd parsowania
+
+# użyte przez org.w3c.css.parser.CssSelectors
+error.pseudo-element: Pseudo-element :%s nie może pojawić się w następujšcym kontekcie %s
+error.pseudo-class: Pseudo-class .%s nie może pojawić się w następujšcym kontekcie HTML %s
+error.pseudo: Niznany pseudo-element lub pseudo-class %s
+error.id: Selektor ID #%s jest niepoprawny ! Tylko jeden selektor ID może być okrelony w selektorze prostym: %s.
+error.space: Jeli stosuje się selektor atrybutu ~=, wyraz w wartoci %s nie powinien zawierać spacji.
+error.todo : Niestety, ale funkcja %s nie została jeszcze wdrożona.
+error.incompatible: %s i %s sš niekompatybilne
+warning.incompatible: %s i %s sš niekompatybilne
+error.notformobile : %s nie może być zastosowany w profilu mobilnym
+error.notforatsc : %s nie może być zastosowany w profilu ATSC
+error.notfortv : %s nie może być zastosowany w profilu TV
+error.notversion : %s nie może być zastosowany w tej wersji CSS : %s
+
+error.media: nierozpoznane media %s 
+error.page: nierozpoznana pseudo named page %s
+
+error.unrecognized.link: Nierozpoznany link element lub xml-stylesheet PI.
+
+# użyte przez StyleSheetGeneratorHTML
+generator.context: Kontekst
+generator.request: Wystšpił błšd podczas przetwarzania twojego arkusza stylów. \
+Proszę ponowić probę lub wysłać e-mail pod adres plh@w3.org.
+generator.unrecognized: Nierozpoznane
+generator.invalid-number: Niepoprawny numer
+generator.property: Niepoprawny numer
+generator.line: Linia
+generator.not-found: Pliku nie znaleziono
+generator.doc-html: <p class='vDocHTML'>\
+Aby poprawnie pracować, twój arkusz CSS potrzebuje właciwego document parse \
+tree. Oznacza to, że powiniene zastosować <a href="http://validator.w3.org/check?uri=\
+%s">poprawny HTML</a>.</p>
+
+generator.doc:<p class='vDocHTML'>\
+Aby poprawnie pracować, twój arkusz CSS potrzebuje właciwego document parse \
+tree. Oznacza to, że powiniene zastosować  <a href="http://validator.w3.org/">poprawny \
+HTML</a>.</p>
+
+
+# użyte przez parser
+parser.semi-colon: próba znalezienia rednika przed nazwš właciwoci. Dodaj go
+
+parser.old_class: W CSS1, nazwa klasy może zaczšć się od cyfry (".55ft"), \
+chyba, że jest to wymiar (".55in"). W CSS2 takie klasy sš parsowane jako \
+nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+
+parser.old_id:W CSS1 nazwa id może zaczšć się od cyfry("#55ft"), \
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
+nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+
+parser.class_dim:W CSS1 nazwa klasy może zaczšć się od cyfry (".55ft"), \
+chyba, że jest to wymiar (".55in").
+
+parser.id_dim:W CSS1 nazwa id  może zaczšć się od cyfry ("#55ft"), \
+chyba, że jest to wymiar ("#55in").
+
+parser.charset:Reguła @charset może pojawić się jedynie na poczštku \
+arkusza. Upewnij się, że nie ma przed niš spacji.
+
+parser.charsetspecial:Ten profil ma specyficzny syntax dla @charset: \
+@charset dokładnie po jednej spacji a następnie nazwa kodowania \
+w cudzysłowie zakończona bezporednio rednikiem.
+
+warning.old_id:W CSS1 nazwa id  może zaczšć się od cyfry ("#55ft"), \
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
+nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+
+warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+chyba, że jest to wymiar ("#55in"). W CSS2 takie klasy sš parsowane jako \
+nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
+
+# użyte przez servlet
+servlet.invalid-request: Wysłałe niewłaciwe polecenie.
+servlet.process: Nie można przetworzyć obiektu
+
+warning.atsc : %s może nie być wspieranym przez medium atsc-tv
+error.onlyATSC : %s ta funkcja jest jedynie dla medium atsc-tv
+
+warning.otherprofile : właciwoć %s nie istnieje dla tego profilu, ale wykazuje zgodnoć z innym profilem
+warning.deprecated : Wartoć jest przestarzała

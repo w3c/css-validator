@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+<head>
+  <title>Instrukcja dla użytkownika walidatora CSS</title>
+  <link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Strona Główna" />
+  <style type="text/css" media="all">
+    @import "base0003.css";    
+    @import "docs0003.css";
+  </style>
+  <meta name="revision"
+  content="$Id$" />
+  <!-- SSI Template Version: $Id$ -->
+
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-2">
+</head>
+
+<body>
+
+  <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homh.png" /></a>
+    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_vall.png" alt="Usługa Walidacji CSS" /></a></h1>
+</div>
+
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+<h2>Instrukcja obsługi walidatora CSS</h2>
+
+<h3 id="TableOfContents">Spis treści</h3>
+
+<div id="toc">
+<ul>
+  <li><a href="#use">Jak używać walidatora CSS</a>
+    <ul>
+      <li><a href="#url">Walidacja przez URL</a></li>
+      <li><a href="#fileupload">Walidacja poprzez załadowanie pliku</a></li>
+      <li><a href="#directinput">Walidacja poprzez wprowadzenie kodu</a></li>
+      <li><a href="#basicvalidation">Co robi podstawowa walidacja</a>
+    </ul>
+  </li>
+  <li><a href="#advanced">Zaawansowana walidacja</a>
+    <ul>
+	<li><a href="#paramwarnings">Parametr Ostrzegania</a></li>
+	<li><a href="#paramprofile">Parametr Profilu</a></li>
+	<li><a href="#parammedium">Parametr Medium</a></li>
+    </ul>
+  </li>
+  <li><a href="#expert">Dla Ekspertów</a>
+    <ul>
+	<li><a href="#requestformat">Format żądania walidacji</a></li>
+	<li><a href="#api">CSS Validator Web Service API</a></li>
+    </ul>
+   </li>
+</ul>
+</div>
+
+<p id="skip"></p>
+
+<h3 id="use">Jak używać walidatora CSS? </h3>
+
+<p>
+Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego interfejsu. Na tej stronie znajdziesz trzy formy odpowiadające trzem możliwościom:</p>
+
+<h4 id="url">Walidacja przez URL </h4>
+<p>
+    Wprowadź URL dokumentu, który chcesz sprawdzić. Może to być dokument HTML lub CSS. </p>
+<img style="display: block; margin-left:auto; margin-right: auto;" 
+    src="uri_basi.png" alt="Walidacja przez URI" />
+
+<h4 id="fileupload">Walidacja poprzez załadowanie pliku </h4>    
+<p>
+    To rozwiązanie pozwala na przesłanie oraz sprawdzenie pliku lokalnego. Naciśnij klawisz &quot;Choose&quot; i znajdź plik, który chcesz sprawdzić. </p>
+<img style="display: block; margin-left:auto; margin-right: auto;" 
+    src="file_upl.png" 
+    alt="Walidacja poprzez załadowanie pliku" />
+<p>
+    W tym wypadku zezwala się jedynie na dokumenty CSS. Oznacza to, że nie można wysyłać dokumentów (X)HTML. Trzeba także uważać na zasady @import, ponieważ będą one przestrzegane jedynie, gdy wyraźnie odwołują się do publicznego URL (nie używaj ścieżek relatywnych w tym rozwiązaniu). </p>
+   
+<h4 id="directinput">Walidacja poprzez wprowadzenie kodu </h4>
+<p>
+    Ta metoda jest idealna do testowania fragmentów CSS. Należy jedynie wpisać kod CSS w polu tekstowym. </p>
+<img style="display: block; margin-left:auto; margin-right: auto;" 
+    src="direct_i.png" 
+    alt="Walidacja poprzez wprowadzenie kodu" />
+<p>
+    Poprzednie komentarze mają zastosowanie także w tym wypadku. Proszę mieć na uwadze fakt, że takie rozwiązanie jest bardzo dogodne w przypadku pojawienia się problemów, wymagająch pomocy. Pomocne jest to także w zgłaszaniu błędów z uwagi na to, iż daje to możliwość zalinkowania do URL konkretnego przypadku. </p>    
+
+<h4 id="basicvalidation">Co robi podstawowa walidacja?</h4>
+
+<p>    
+    Używając podstawowego interfejsu walidator sprawdzi zgodność z <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, który jest obecną rekomendacją techniczną CSS. <br />
+    Poda on wynik w XHTML bez ostrzeżeń (widoczne będą jedynie błędy). <br />
+    Medium ustawione jest na &quot;wszystkie&quot;, co sprawia, że jest odpowiednie dla wyszystkich urządzeń 
+    (zobacz stronę <a href="http://www.w3.org/TR/CSS2/media.html">
+    http://www.w3.org/TR/CSS2/media.html</a> aby uzyskać kompletny opis mediów).
+</p>
+
+<h3 id="advanced">Zaawansowana walidacja</h3>
+
+<p>
+    Jeśli potrzebne jest bardziej szczegółowe sprawdzenie, można skorzystać z zaawansowanego interfejsu, który pozwala na sprecyzowanie trzech parametrów. Oto pomoc odnośnie każdego z tych parametrów.</p>
+
+<h4 id="paramwarnings">Ostrzeżenia</h4>
+
+<p>
+    Parametr ten jest pomocny do dostrojenia rozwlekłości (ilości opisów) walidatora CSS. W rzeczywistości, walidator może podać dwa rodzaje komunikatów: błędy i ostrzeżenia. Błędy podawane są wtedy, gdy sprawdzany arkusz CSS jest niezgodny z rekomendacją CSS. Ostrzeżenia różnią się od błędów tym, że nie stwierdzają problemów odnośnie specyfikacji. Są one po to by ostrzegać (!) deweloperów CSS, że niektóre punkty mogą być niebezpieczne i mogą prowadzić do nieprzewidzianego zachowania na niektórym sprzęcie czy oprogramowaniu. </p>
+<p>
+    Typowym ostrzeżeniem jest ostrzeżenia o rodzinie czcionek: jeśli nie poda się czcionki rodzajowej, wydane ostrzeżenie powiadomi o tym, że powinna ona zostać dodana na końcu reguły, w przeciwnym razie oprogramowanie użytkownika, które nie posiada innych czcionek może wyświetlać tekst w czcionce domyślnej, co może mieć niepożądane rezultaty. </p>
+
+<h4 id="paramprofile">Profile</h4>
+
+<p>
+    Walidator CSS może sprawdzić różne profile CSS. Profil wyszczególnia wszystkie cechy jakie implementacja na konkretnej platformie powinna zastosować. Definicja taka jest wzięta z <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
+	Witryny CSS</a>. Domyślna opcja odpowiada obecnie najbardziej używanemu<a href="http://www.w3.org/TR/CSS2"> CSS 2</a>.
+</p>
+
+<h4 id="parammedium">Medium</h4>
+
+<p>
+    Parametr medium jest równoważnikiem reguły @media stosującym się do całego dokumentu. Więcej informacji na temat mediów jest dostępnych na stronie <a href="http://www.w3.org/TR/CSS2/media.html">
+	http://www.w3.org/TR/CSS2/media.html
+    </a>.
+</p>
+
+<h3 id="expert">Tylko dla ekspertów</h3>
+
+<h4 id="requestformat">Format żądania walidacji</h4>
+<p>Poniżej zamieszczono tabelę parametrów, które można wykorzystać przy wysyłaniu polecenia do walidatora CSS W3C. </p>
+
+<p>Jeśli chcesz skorzystać z publicznego serwera walidacyjnego W3C, użyj poniższych parametrów razem z następującym URI:<br />
+<kbd>http://jigsaw.w3.org/css-validator/validator</kbd><br />
+(zamień na adres swojego własnego serwera, jeśli chcesz przywołać zainstalowany na nim walidator).</p>
+
+<p><strong>Uwaga</strong>: Jeśli wysyłasz żądanie do walidatora dla całej masy dokumentów, upewnij się, że skrypt, którego używasz jest uśpiony <strong>przynajmniej przez 1 sekundę</strong> między żądaniami.
+Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i doceniamy uszanowanie tego faktu. </p>
+
+<table class="refdoc">
+  <tbody>
+    <tr>
+      <th>Parametr</th>
+      <th>Opis</th>
+      <th>Wartość domyślna </th>
+    </tr>
+    <tr>
+      <th>uri</th>
+      <td><acronym title="Universal Resource Locator">URL</acronym> dokumentu, który ma być walidowany. Pozwala się na dokumenty CSS i HTML.</td>
+      <td>Nie ma, ale podać należy ten parametr lub <code>text</code>.</td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td>Dokument do walidacji, dozwolone jedynie dokumenty CSS.</td>
+      <td>Nie ma, ale podać należy ten parametr lub <code>uri</code>.</td>
+    </tr>
+    <tr>
+      <th>medium użytkownika</th>
+      <td><a href="http://www.w3.org/TR/CSS2/media.html">Medium</a> użyte do walidacji takie jak: ekran, <code>print</code>, <code>braille</code>...</td>
+      <td><code>Wszystkie</code></td>
+    </tr>
+    <tr>
+      <th>wyjście</th>
+      <td>uruchamia różnego rodzaju formaty &quot;wyjścia&quot; walidatora. Możliwe formaty to: <code>text/html</code> i <code>html</code> ( dokument XHTMLt, 
+	Content-Type: text/html), 
+	<code>application/xhtml+xml</code> i <code>xhtml</code> (dokument XHTMLt, Content-Type: application/xhtml+xml), 
+	<code>application/soap+xml</code> i <code>soap12</code> (dokument SOAP 1.2, Content-Type: application/soap+xml), 
+	<code>text/plain</code> i <code>text</code> (dokument text, 
+	Content-Type: text/plain),
+	pozostałe dokument (XHTML, Content-Type: text/plain)	
+      </td>
+      <td>html</td>
+    </tr>
+    <tr>
+      <th>profile</th>
+      <td>Profil CSS użyty przy walidacji. Może to być: <code>css1</code>, <code>css2</code>, <code>css21</code>,
+        <code>css3</code>, <code>svg</code>, <code>svgbasic</code>,
+        <code>svgtiny</code>, <code>mobile</code>, <code>atsc-tv</code>,
+        <code>tv</code> lub brak profilu.<code></code></td>
+      <td>najnowsza rekomendacja  W3C:
+         CSS 2</td>
+    </tr>
+    <tr>
+      <th>język</th>
+      <td>Język użyty w odpowiedzi - obecnie <code>en</code>,
+        <code>fr</code>, <code>ja</code>, <code>es</code>,
+        <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
+      <td>Angielski (<code>en</code>).</td>
+    </tr>
+    <tr>
+      <th>ostrzeżenia</th>
+      <td>poziom ostrzeżenia, &quot;brak&quot; - żadnych ostrzeżeń, <code>0</code> 
+	- mniej ostrzeżeń, <code>1 </code>lub <code>2</code> - więcej ostrzeżeń</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="api">API Usługi Sieciowej Walidacji CSS: dokumentacja interfejsu walidacji SOAP 1.2</h4>
+<p>    
+    Po więcej informacji technicznych w szczególności na temat wyjścia SOAP 1.2  i możliwych sposobów wywoływania walidatora, zobacz <a href="http://qa-dev.w3.org:8001/css-validator/api.html">API Sieciowej Usługi Walidatora CSS</a>.        
+</p>
+
+</div>
+</div>
+<!-- End of "main" DIV. -->
+
+  <ul class="navbar"  id="menu">
+        <li><a href="about.html" title="O serwisie">O nas</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Dokumentacja Usługi Walidacji CSS">Dokumentacja</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Ściągnij i zainstaluj walidator CSS">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Jak wysłać opinię na temat tej usługi">Opinie</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Podziękowania">Podziękowania</a><span class="hideme">|</span></li>
+        <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-smalo.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-l.png" alt="CSS" /></a>
+   </p>
+
+   <p id="support_logo">
+Wspierając to narzędzie zastaniesz<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="csupporw.png" alt="Przyjaciel W3C" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+
+</body>
+</html>
