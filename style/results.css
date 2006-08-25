@@ -1,27 +1,30 @@
-H2 {
-  font-weight: bold; 
-  font-size: large; 
-  font-family: helvetica, sans-serif; 
-  color: #007CBB; 
-  margin-top: 2.0%; 
+#congrats h2, #errors h2, #warnings h2 {
+          text-align: center;
+          margin: 0;
+        font-family: "Bitstream Vera Sans", sans-serif;
+        font-size-adjust:	.53;
+        font-size:		1.5em;
+        font-weight:		800;
+        font-style:		normal;
+        text-decoration:	none;
+        word-spacing:		normal;
+        letter-spacing:	normal;
+        text-transform:	none;
+        border-color:		black;
+        padding-top:		.5em;
+        padding-bottom: 	.5em;
 }
-div#errors H2 {
-  color: #E82848;
+#warnings h2 {
+  background: #FA9084;
+  color: white;
+}
+#congrats h2 {
+      background-color: #55B05A;
+      color: white;
+}
+#errors h2 {
+  background-color: #E82848;
+  color: white;
 }
 
-#Congrats H2 {
-  color: #0FBC8D;
-}
-BODY {
-  font-size: medium; 
-  font-family: verdana, arial, helvetica, sans-serif; 
-  color: rgb(0,0,0); 
-  background-color: white; 
-}
-ADDRESS {
-  font-weight: bold; 
-  text-align: right; 
-}
-HR {
-  margin-top: 2.0%; 
-}
+
