@@ -1,83 +1,224 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>W3C CSS Validation Service</title>
-
-    <meta lang="zh-cn" name="Translator" content="Water Tang" />
-
-    <meta name="keywords" content="W3C,validator,css,html,java" />
-    <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
-
-    <link href="style/general.css" type="text/css" rel="STYLESHEET" />
+    <title>W3C CSS 验证服务</title>
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="Home Page" />
+    <style type="text/css" media="all">@import "base.css";
+</style>
+    <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
+    <script type="text/javascript" src="tabtastic/attachevent.js"></script>
+    <script type="text/javascript" src="tabtastic/addcss.js"></script>
+    <script type="text/javascript" src="tabtastic/tabtastic.js"></script>
+    <script src="toggle.js" type="text/javascript"></script>
+    <meta name="revision" content="$Id$" />
   </head>
+
   <body>
-    <a class="left" href="http://www.w3.org"><img
-	src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" width="72"
-	height="48" /></a>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><img
-	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
-	  border="0" width="94" height="52" /></a>
-    <br />
-
-    <div class="t1">CSS</div>
-    <div class="t2">У����</div>
-
-    <h1>W3C CSS У�����</h1>
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>
+   </div>
+      <p id="tagline">
+        检查层叠样式表(CSS)文档和HTML或者XHTML文档中的CSS内容
+      </p>
+	<div id="frontforms">
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">通过指定URI</a></li><li><a href="#validate-by-upload">通过文件上传</a></li><li><a href="#validate-by-input">通过直接输入</a></li></ul>
     
-    <p>
-      ��ӭʹ����ά��Э��(W3C)��ʽ��(CSS)У�����
-    </p>
-    <hr />
-    <h2>У����Ĳ����ʽ��</h2>
-    
-    <div class="main-text">
-      <h2>�ĵ�</h2>
-      <ul class="none">	
-	<li><a href="README.html">�ĵ��ļ�</a></li>
-	<li><a href="thanks.html">��л</a></li>
+      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">验证指定URI的CSS内容</legend>
+      <form method="get" action="validator">
+      <p class="instructions">输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI： </p>
+      <p>
+	<label title="Address of page to Validate" for="uri">URI地址:
+	<input type="text" name="uri" id="uri" size="45" /></label>
+      </p>
+      <fieldset id="extra_opt_uri" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <div>
+      警告 :
+      <select name="warning"> 
+	<option value="2">全部</option>
+	<option selected="selected" value="1">正常</option>
+	<option value="0">最重要的</option>
+	<option value="no">取消警告</option>
+      </select>
+      
+      配置 :
+      <select name="profile">
+	<option value="none">不指定配置文件</option>
+	<option value="css1">CSS 版本 1</option>
+	<option selected="selected" value="css2">CSS 版本 2</option>
+	<option value="css21">CSS 版本 2.1</option>
+ 	<option value="css3">CSS 版本 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG 基本</option>
+	<option value="svgtiny">SVG Tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
+
+      媒介 :
+      <select name="usermedium">
+	<option selected="selected" value="all">全部</option>
+	<option value="aural">听觉设备</option>
+	<option value="braille">布莱叶点字</option>
+	<option value="embossed">浮雕</option>
+	<option value="handheld">手持设备</option>
+	<option value="print">印刷设备</option>
+	<option value= "projection">投影设备</option>
+	<option value="screen">银幕</option>
+	<option value="tty">tty</option>
+	<option value="tv">电视</option>
+	<option value="presentation">演示设备</option>
+      </select>
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Check" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">验证上传文件</legend>
+      <form method="post" enctype="multipart/form-data" action="validator">
+      <p class="instructions">选择需要验证的文件(必须是CCS格式的文件):</p>
+      <p>
+	<label title="Choose a Local File to Upload and Validate" for="file">本地CSS文件:
+	<input type="file" id="file" name="file" size="30" /></label></p>
+      <fieldset id="extra_opt_upload" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <div>
+      警告 :
+      <select name="warning"> 
+	<option value="2">全部</option>
+	<option selected="selected" value="1">正常</option>
+	<option value="0">最重要的</option>
+	<option value="no">取消警告</option>
+      </select>
+      配置 :
+      <select name="profile">
+	<option value="none">不指定配置文件</option>
+	<option value="css1">CSS 版本 1</option>
+	<option selected="selected" value="css2">CSS 版本 2</option>
+	<option value="css21">CSS 版本 2.1</option>
+ 	<option value="css3">CSS 版本 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG 基本</option>
+	<option value="svgtiny">SVG Tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
+
+      媒介 :
+      <select name="usermedium">
+	<option selected="selected" value="all">全部</option>
+	<option value="aural">听觉设备</option>
+	<option value="braille">布莱叶点字</option>
+	<option value="embossed">浮雕</option>
+	<option value="handheld">手持设备</option>
+	<option value="print">印刷设备</option>
+	<option value= "projection">投影设备</option>
+	<option value="screen">银幕</option>
+	<option value="tty">tty</option>
+	<option value="tv">电视</option>
+	<option value="presentation">演示设备</option>
+      </select>
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Check" /></label></p>
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">验证直接输入的内容</legend>
+      <form action="validator" method="get">
+      <p class="instructions">输入你要验证的CSS代码:</p>
+      <p>
+	<textarea name="text" rows="12" cols="70"></textarea>
+	<input name="usermedium" value="all" type="hidden" />
+      </p>      
+      <fieldset id="extra_opt_direct" class="moreoptions">
+      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <div>
+      警告 :
+      <select name="warning"> 
+	<option value="2">全部</option>
+	<option selected="selected" value="1">正常</option>
+	<option value="0">最重要的</option>
+	<option value="no">取消警告</option>
+      </select>
+      配置 :
+      <select name="profile">
+	<option value="none">不指定配置文件</option>
+	<option value="css1">CSS 版本 1</option>
+	<option selected="selected" value="css2">CSS 版本 2</option>
+	<option value="css21">CSS 版本 2.1</option>
+ 	<option value="css3">CSS 版本 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG 基本</option>
+	<option value="svgtiny">SVG Tiny</option>	
+	<option value="mobile">mobile</option>
+	<option value="atsc-tv">ATSC TV profile</option>
+	<option value="tv">TV profile</option>
+      </select>
+
+      媒介 :
+      <select name="usermedium">
+	<option selected="selected" value="all">全部</option>
+	<option value="aural">听觉设备</option>
+	<option value="braille">布莱叶点字</option>
+	<option value="embossed">浮雕</option>
+	<option value="handheld">手持设备</option>
+	<option value="print">印刷设备</option>
+	<option value= "projection">投影设备</option>
+	<option value="screen">银幕</option>
+	<option value="tty">tty</option>
+	<option value="tv">电视</option>
+	<option value="presentation">演示设备</option>
+      </select>
+</div><!-- item_contents -->
+</fieldset><!-- invisible -->
+	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Check" /></label></p>
+      </form>
+      </fieldset>
+	</div> <!-- frontforms -->
+	<p><strong>注意</strong>: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。
+	</p>
+   <ul class="navbar"  id="menu">
+        <li><a href="about.html" title="About this service">关于</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">文档</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">下载</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="How to provide feedback on this service">反馈</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Credits and Acknowlegments">感谢</a><span class="hideme">|</span></li>
+        <li><a href="languages.html" title="How to use the CSS Validator in your language">其他语言</a><span class="hideme">|</span></li>
       </ul>
 
-      <h2><a href="DOWNLOAD.html">����У����</a></h2>
-    </div>
-    
-    <hr /><br />
-    
-    <div class="forms">
-      <h2 class="center">W3C CSS У�����</h2>
-      <p>
-	<a href="validator-uri.html">ͨ��URL</a>У����Ĳ����ʽ��
-      </p>
-      <p>
-	<a href="validator-text.html">ʹ�ù����ı���</a>У����Ĳ����ʽ��
-      </p>
-      <p>
-	<a href="validator-upload.html">ͨ������</a>У����Ĳ����ʽ��
-      </p>
-    </div>
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+支持这个工具，加入<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
 
-    <hr /><br />
-    
-    <p>
-      ��Ҫ���ڹ��������CSS��ʽ����Ҫһ����ȷ���ĵ���������
-      ����ζ����Ӧ��ʹ��<a href="http://validator.w3.org/">��ȷ��HTML</a>
-      .
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      保留所有的权利
+      W3C 声明了有关<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">文档版权说明</a>
+      和 <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">软件授权</a>
+      的条例。你和本站点的互动都受到我们的<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a>和<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a>隐私条例保护
+      
     </p>
-    
-    
-    <br />
-    <br />
-    <hr class="large" />
 
-    <a class="right" href="http://validator.w3.org/">
-      <img src="http://www.w3.org/Icons/valid-xhtml10" 
-	alt="Valid XHTML 1.0!"  border="0" width="88" height="31" /></a>
-    <a class="right" href="http://jigsaw.w3.org/css-validator">
-      <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss.gif" 
-	alt="Valid CSS!" height="31"
-      width="88" /></a>
-
-    <address><a href="Email.html">www-validator-css</a></address><br />
-    $Date$
   </body>
 </html>
+
+
