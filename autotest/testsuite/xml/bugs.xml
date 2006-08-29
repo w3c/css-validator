@@ -208,13 +208,13 @@ test markup also accepts 3 properties: warning, profile and medium
 
     <test>
       <file>testsuite/bugs/2560.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2560&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=2560&lt;/a&gt;</description>
       <result valid="true"/>
     </test>
     <test>
       <file>testsuite/bugs/3037.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3037&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=3037&lt;/a&gt;</description>
       <result valid="false">
 	<errors>1</errors>
@@ -222,7 +222,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test>
       <file>testsuite/bugs/2800.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2800&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=2800&lt;/a&gt;</description>
       <result valid="false">
 	<errors>1</errors>
@@ -230,7 +230,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test>
       <file>testsuite/bugs/233.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=233&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=233&lt;/a&gt;</description>
       <result valid="true">
 	<warnings>272</warnings>
@@ -238,7 +238,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test>
       <file>testsuite/bugs/2919.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2919&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=2919&lt;/a&gt;</description>
       <result valid="false">
 	<errors>1</errors>
@@ -246,11 +246,65 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test>
       <file>testsuite/bugs/3099.css</file>
-      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=979&quot;&gt;
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3099&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=3099&lt;/a&gt;</description>
       <result valid="false">
 	<errors>3</errors>
       </result>
     </test>
+	<test>
+		<file>testsuite/bugs/3627.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3627&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3627&lt;/a&gt;</description>
+	      <result valid="true">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3628.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3628&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3628&lt;/a&gt;</description>
+	      <result valid="true">
+	</test>
+	<test profile="css1">
+		<file>testsuite/bugs/3628.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3628&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3628&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css1">
+		<file>testsuite/bugs/3630.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3630.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3631.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3631&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3631&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3632.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3632&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3632&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3633.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3633&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3633&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
+	<test profile="css2">
+		<file>testsuite/bugs/3634.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3634&quot;&gt;
+	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3634&lt;/a&gt;</description>
+	      <result valid="false">
+	</test>
   </type>
 </testsuite>
