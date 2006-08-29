@@ -274,13 +274,13 @@ test markup also accepts 3 properties: warning, profile and medium
 		<file>testsuite/bugs/3630.css</file>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&quot;&gt;
 	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&lt;/a&gt;</description>
-	      <result valid="false" >
+	      <result valid="false" />
 	</test>
 	<test profile="css2">
 		<file>testsuite/bugs/3630.css</file>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&quot;&gt;
 	      http://www.w3.org/Bugs/Public/show_bug.cgi?id=3630&lt;/a&gt;</description>
-	      <result valid="false" >
+	      <result valid="false" />
 	</test>
 	<test profile="css2">
 		<file>testsuite/bugs/3631.css</file>
