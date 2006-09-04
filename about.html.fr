@@ -7,8 +7,8 @@
 <link rev="made" href="mailto:www-validator-css@w3.org" />
 <link rev="start" href="./" title="Accueil" />
 <style type="text/css" media="all">
-@import "base.css";
-@import "docs.css";
+@import "style/base.css";
+@import "style/docs.css";
 </style>
 <meta name="revision" content="$Id$" />
 </head>

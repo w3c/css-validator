@@ -6,7 +6,7 @@
     <title>Usługa Walidacji CSS W3C</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Strona domowa" />
-    <style type="text/css" media="all">@import "base.css";
+    <style type="text/css" media="all">@import "style/base.css";
 </style>
     <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
     <script type="text/javascript" src="tabtastic/attachevent.js"></script>

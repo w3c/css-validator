@@ -6,7 +6,7 @@
     <title>Servizio W3C per la validazione dei fogli di stile a cascata (CSS)</title>
 	<link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Pagina Iniziale" />
-    <style type="text/css" media="all">@import "./base.css";</style>
+    <style type="text/css" media="all">@import "style/base.css";</style>
     <meta name="keywords" content="CSS, Fogli di stile a cascata, Validazione, Servizio di Validazione del W3C per i fogli di stile" />
     <meta name="description" content="Sistema di validazione per i fogli di stile" />
     <meta name="revision" content="$Id$" />

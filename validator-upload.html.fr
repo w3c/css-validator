@@ -6,7 +6,7 @@
 <title>Le service de validation CSS du W3C</title>
 <link rev="made" href="mailto:www-validator-css@w3.org" />
 <link rev="start" href="./" title="Page d'accueil" />
-<style type="text/css" media="all">@import "./base.css";</style>
+<style type="text/css" media="all">@import "./style/base.css";</style>
 <meta name="keywords" content="CSS, Cascading Style Sheets, Validation, W3C Markup Validation Service" />
 <meta name="description" content="Le service de validation HTML facile du W3C fondé sur un analyseur SGML." />
 <meta name="revision" content="$Id$" />

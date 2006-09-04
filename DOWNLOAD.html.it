@@ -4,8 +4,8 @@ xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Download and Install the CSS V
 <META http-equiv=Content-Type content="text/html; charset=utf-8"><LINK rev=made 
 href="mailto:www-validator-css@w3.org"><LINK title="Home Page" rev=start 
 href="./">
-<STYLE type=text/css media=all>@import url( base.css );
-@import url( docs.css );
+<STYLE type=text/css media=all>@import url( style/base.css );
+@import url( style/docs.css );
 </STYLE>
 
 <META content="$Id$" 

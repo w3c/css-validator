@@ -6,7 +6,7 @@
     <title>Servicio de Validación de CSS del W3C</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Página de Inicio" />
-    <style type="text/css" media="all">@import "./base.css";</style>
+    <style type="text/css" media="all">@import "style/base.css";</style>
     <meta name="revision" content="$Id$" />
   </head>
 
