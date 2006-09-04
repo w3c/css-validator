@@ -1,12 +1,6 @@
-.tabset_tabs	{ margin:0; padding:0; list-style-type:none; position:relative; z-index:2; white-space:nowrap; }
-.tabset_tabs li	{ margin:0; padding:0; display:inline;}
-.tabset_tabs a	{  border:1px solid #eef; text-decoration:none; padding:0 0.6em; border-left-width:0; border-bottom:none; padding-top: .4em; }
-.tabset_tabs a:hover	{ color:#424242 ! important; background-color: #E8F4FF ! important; text-decoration:none;  }
-.tabset_tabs a.active	{ color:#424242 ! important; background-color:#dfebf7 ! important; border-color:#005A9C; border-left-width:1px; cursor:default; border-bottom:white; padding-top:.4em; padding-bottom:1px;}
+/* specific style triggered by javascript */ 
 
-.tabset_tabs li.firstchild a	{ border-left-width:1px }
-
-.tabset_content	{ border: 1px solid #005A9C; background-color: #dfebf7; position:relative; z-index:1; padding:0.5em 1em; display:none; }
+.tabset_content	{ display:none; }
 .tabset_label	{ display:none }
 
 .tabset_content_active	{ display:block }
