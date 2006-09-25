@@ -30,7 +30,7 @@
 		tramite URI</a></li><li><a href="#validate-by-upload">tramite 
 		Caricamento File</a></li><li><a href="#validate-by-input">tramite 
 		Immissione diretta</a></li></ul>
-    
+    		    <div id="fields">
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validazione 
 		tramite URI</legend>
       <form method="get" action="validator">
@@ -199,6 +199,7 @@
 	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Verifica" /></label></p>
       </form>
       </fieldset>
+            </div><!-- fields -->
 	</div> <!-- frontforms -->
 	<p><strong>Nota</strong>: Se vuoi validare il tuo foglio di stile CSS 
 	incorporato in un documento (X)HTML, dovresti prima
@@ -220,34 +221,29 @@
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
-<P id=support_logo>Supporta questo strumento, diventa un<BR><A 
-href="http://www.w3.org/Consortium/supporters"><IMG alt="W3C Supporter" 
-src="http://www.w3.org/Consortium/supporter-logos/csupporter.png"></A> </P>
-<P class=copyright><A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" 
-rel=Copyright>Copyright</A> &#x00A9; 1994-2006 <A href="http://www.w3.org/"><ACRONYM 
-title="World Wide Web Consortium">W3C</ACRONYM></A>&#x00AE; (<A 
-href="http://www.csail.mit.edu/"><ACRONYM 
-title="Massachusetts Institute of Technology">MIT</ACRONYM></A>, <A 
-href="http://www.ercim.org/"><ACRONYM 
-title="European Research Consortium for Informatics and Mathematics">ERCIM</ACRONYM></A>, 
-<A href="http://www.keio.ac.jp/">Keio</A>), Tutti i Diritti Riservati. Si 
-applicano le regole del W3C su
-<A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
-responsabilit&#x00E0;</A>, 
-<A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marchio 
-registrato</A>,
-<A href="http://www.w3.org/Consortium/Legal/copyright-documents" 
-rel=Copyright>uso del documento</A> e
-<A 
-href="http://www.w3.org/Consortium/Legal/copyright-software" 
-rel=Copyright>licenza del software</A>. Le tue interazioni con questo sito 
-avvengono in conformit&#x00E0; con le nostre dichiarazioni sulla riservatezza per il <A 
-href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</A> 
-e per i <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
-Membri del W3C</a>. </P>
+   <p id="support_logo">
+Support this tool, become a<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
 
   </body>
 </html>

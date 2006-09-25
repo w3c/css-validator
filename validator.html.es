@@ -25,7 +25,8 @@
       </p>
 	<div id="frontforms">
       <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">Por URI</a></li><li><a href="#validate-by-upload">Enviando el Archivo</a></li><li><a href="#validate-by-input">Introduciendo la CSS directamente</a></li></ul>
-    
+    		    <div id="fields">
+
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validar por URI</legend>
       <form method="get" action="validator">
       <p class="instructions">
@@ -187,6 +188,7 @@
 	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Comprobar" /></label></p>
       </form>
       </fieldset>
+            </div><!-- fields -->
 	</div> <!-- frontforms -->
 	<p><strong>Nota</strong>: Si se quiere validar una hoja de estilo CSS dentro de un documento (X)HTML, primero se debería <a href="http://validator.w3.org/">comprobar que el (X)HTML utilizado es válido</a>.
 	</p>

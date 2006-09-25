@@ -26,7 +26,8 @@
       </p>
 	<div id="frontforms">
       <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">by URI</a></li><li><a href="#validate-by-upload">by File Upload</a></li><li><a href="#validate-by-input">by direct Input</a></li></ul>
-    
+    		    <div id="fields">
+
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validate by URI</legend>
       <form method="get" action="validator">
       <p class="instructions">
@@ -186,6 +187,7 @@
 	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Check" /></label></p>
       </form>
       </fieldset>
+      </div><!-- fields -->
 	</div> <!-- frontforms -->
 	<p><strong>Note</strong>: If you want to validate your CSS style sheet embedded 
 	in an (X)HTML document, you should first <a href="http://validator.w3.org/">check 
