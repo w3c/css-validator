@@ -68,12 +68,12 @@ Voir également les <a href="email">instructions pour laisser un commentaire</a>
 
 <p id="lang_choice">
     <a href="languages.html" title="the CSS validation service is available in a number of languages. Learn how to use it in your preferred language.">languages</a>:
-    <a href="documentation.html.en"><abbr title="english">en</abbr></a> &middot; 
-    <a href="documentation.html.fr"><abbr title="français">fr</abbr></a> &middot;
-    <a href="documentation.html.it"><abbr title="italiano">it</abbr></a> &middot;
-    <a href="documentation.html.ja"><abbr title="日本語">ja</abbr></a> &middot;
-    <a href="documentation.html.pl-PL"><abbr title="język polski">pl</abbr></a> &middot;
-    <a href="documentation.html.zh-cn"><abbr title="中文">zh-cn</abbr></a>
+    <a href="documentation.html.en">English</a> &middot; 
+    <a href="documentation.html.fr">Français</a> &middot;
+    <a href="documentation.html.it">Italiano</a> &middot;
+    <a href="documentation.html.ja">日本語</a> &middot;
+    <a href="documentation.html.pl-PL">Polski</a> &middot;
+    <a href="documentation.html.zh-cn">中文</a>
     </p>
 
 <p id="activity_logos">
