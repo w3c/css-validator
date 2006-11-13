@@ -75,15 +75,16 @@
         <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
       </ul>
 
-      <p id="lang_choice">
-          <a href="languages.html" title="the CSS validation service is available in a number of languages. Learn how to use it in your preferred language.">languages</a>:
-          <a href="documentation.html.en">English</a> &middot; 
-          <a href="documentation.html.fr">Français</a> &middot;
-          <a href="documentation.html.it">Italiano</a> &middot;
-          <a href="documentation.html.ja">日本語</a> &middot;
-          <a href="documentation.html.pl-PL">Polski</a> &middot;
-          <a href="documentation.html.zh-cn">中文</a>
-          </p>
+
+       <p id="lang_choice" title="this page in your language">
+           <a href="documentation.html.en">English</a> &middot; 
+           <a href="documentation.html.fr">Français</a> &middot;
+           <a href="documentation.html.it">Italiano</a> &middot;
+           <a href="documentation.html.ja">日本語</a> &middot;
+           <a href="documentation.html.pl-PL">Polski</a> &middot;
+           <a href="documentation.html.zh-cn">中文</a>
+      </p>
+
 
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-i.png" alt="CSS" /></a>
