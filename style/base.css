@@ -523,3 +523,13 @@ div#jumpbar li a:hover {
   border-bottom: solid 1px #fff;
 }
 
+/* language selection bar */
+#lang_choice {
+        position: absolute;
+        display: block;
+        width; 10em; 
+        top: 60px; 
+        text-align: right; 
+        right: 48px; 
+        font-size: x-small;
+}

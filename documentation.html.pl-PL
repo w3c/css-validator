@@ -5,22 +5,20 @@
 <head>
   <title>Dokumantacja Walidatora CSS W3C</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
-  <link rev="start" href="./" title="Strona Główna" />
+  <link rev="start" href="./" title="Strona GĹĂłwna" />
   <style type="text/css" media="all">
     @import "style/base.css";    
     @import "style/docs.css";    
   </style>
   <meta name="revision" content="$Id$" />
   <!-- SSI Template Version: $Id$ -->
-
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-2">
 </head>
 
 <body>
 
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_home.png" /></a>
-    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_vali.png" alt="Usługa Walidacji CSS" /></a></h1>
+    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_vali.png" alt="UsĹuga Walidacji CSS" /></a></h1>
    </div>
 
 <div id="main">
@@ -31,34 +29,34 @@
 
 <p id="skip"></p>
 
-<h3 id="use">Zasoby dla Użytkownika</h3>
+<h3 id="use">Zasoby dla UĹźytkownika</h3>
 
 <dl>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/manual.html">Instrukacja Obsługi dla Użytkownika</a></dt>
-    <dd>Dokumentacja dotycząca informacji na temat jak używać walidatora CSS</dd>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/about.html">O usłudze</a></dt>
-    <dd>Informacje na temat walidatora CSS oraz odpowiedzi na niektóre ogólne pytania</dd>
+    <dt><a href="http://qa-dev.w3.org:8001/css-validator/manual.html">Instrukacja ObsĹugi dla UĹźytkownika</a></dt>
+    <dd>Dokumentacja dotyczÄca informacji na temat jak uĹźywaÄ walidatora CSS</dd>
+    <dt><a href="http://qa-dev.w3.org:8001/css-validator/about.html">O usĹudze</a></dt>
+    <dd>Informacje na temat walidatora CSS oraz odpowiedzi na niektĂłre ogĂłlne pytania</dd>
     <dt><a href="http://www.websitedev.de/css/validator-faq">
-	Najczęsciej zadawane pytania na temat walidatora CSS</a></dt>
-    <dd>Odpowiedzi na częste pytania dotyczące aspektu technicznego.</dd>
+	NajczÄsciej zadawane pytania na temat walidatora CSS</a></dt>
+    <dd>Odpowiedzi na czÄste pytania dotyczÄce aspektu technicznego.</dd>
     
 </dl>
 
-<h3 id="devel">Zasoby dla Deweloperów</h3>
+<h3 id="devel">Zasoby dla DeweloperĂłw</h3>
 
 
 <dl>
     <dt><a href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">Download/Instalacja</a></dt>
-    <dd>Jak ściągnąć i uruchomić źródło walidatora CSS, zarówno w formie programu typu &quot;command line&quot; lub serwletu sieciowego.</dd>
+    <dd>Jak ĹciÄgnÄÄ i uruchomiÄ ĹşrĂłdĹo walidatora CSS, zarĂłwno w formie programu typu &quot;command line&quot; lub serwletu sieciowego.</dd>
     
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/README">README dla Deweloperów</a></dt>
-    <dd>Przegląd kodu walidatora CSS</dd>
+    <dt><a href="http://qa-dev.w3.org:8001/css-validator/README">README dla DeweloperĂłw</a></dt>
+    <dd>PrzeglÄd kodu walidatora CSS</dd>
 
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/api.html">API Usługi</a></dt>
+    <dt><a href="http://qa-dev.w3.org:8001/css-validator/api.html">API UsĹugi</a></dt>
     <dd>Dokumentacja interfejsu walidatora SOAP 1.2</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (bugs)</a></dt>
-    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="http://qa-dev.w3.org:8001/css-validator/email">instrukcje na temat dostarczania opinii.</a></dd>
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">BĹÄdy (bugs)</a></dt>
+    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgĹaszania bĹÄdĂłw i problemĂłw. Zobacz takĹźe <a href="http://qa-dev.w3.org:8001/css-validator/email">instrukcje na temat dostarczania opinii.</a></dd>
 
 </dl>
 
@@ -70,18 +68,29 @@
 
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="O serwisie">O nas</a> <span class="hideme">|</span></li>
-        <li><a href="documentation.html" title="Dokumentacja Usługi Walidacji CSS">Dokumentacja</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="Ściągnij i zainstaluj walidator CSS">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="Jak wysłać opinię na temat tej usługi">Opinie</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Podziękowania">Podziękowania</a><span class="hideme">|</span></li>
-        <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Dokumentacja UsĹugi Walidacji CSS">Dokumentacja</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="ĹciÄgnij i zainstaluj walidator CSS">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Jak wysĹaÄ opiniÄ na temat tej usĹugi">Opinie</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="PodziÄkowania">PodziÄkowania</a><span class="hideme">|</span></li>
+        <li><a href="languages.html" title="Walidator w twoim jÄzyku">Inne jÄzyki</a><span class="hideme">|</span></li>
       </ul>
 
+       <p id="lang_choice">
+             <a href="languages.html" title="the CSS validation service is available in a number of languages. Learn how to use it in your preferred language.">languages</a>:
+             <a href="documentation.html.en"><abbr title="english">en</abbr></a> &middot; 
+             <a href="documentation.html.fr"><abbr title="franĂ§ais">fr</abbr></a> &middot;
+             <a href="documentation.html.it"><abbr title="italiano">it</abbr></a> &middot;
+             <a href="documentation.html.ja"><abbr title="ćĽćŹčŞ">ja</abbr></a> &middot;
+             <a href="documentation.html.pl-PL"><abbr title="jÄzyk polski">pl</abbr></a> &middot;
+             <a href="documentation.html.zh-cn"><abbr title="ä¸­ć">zh-cn</abbr></a>
+             </p>
+
+
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-i.png" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" title="Kontrola jakoĹci W3C dostarcza narzÄdzi najwyĹźszej jakoĹci i o wiele wiÄcej"><img src="qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-i.png" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-Wspierając to narzędzie zostaniesz <br />
+WspierajÄc to narzÄdzie zostaniesz <br />
 <a href="http://www.w3.org/Consortium/supporters"><img src="csupport.png" alt="Przyjaciel W3C" /></a>
    </p>
 
@@ -92,11 +101,11 @@ Wspierając to narzędzie zostaniesz <br />
       (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
       <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
       <a href="http://www.keio.ac.jp/">Keio</a>),
-      Wszystkie prawa zastrzeżone. W3C stosuje zasady dotyczące    .<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">odpowiedzialności cywilnej</a>,
+      Wszystkie prawa zastrzeĹźone. W3C stosuje zasady dotyczÄce    .<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">odpowiedzialnoĹci cywilnej</a>,
       <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">używania dokumentu</a>
-      i <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">licencji oprogramowania.</a>. Wszelkie interakcje z tą witryną są zgodne z naszą <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiczną</a> i
-      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Członkowską</a> ochroną prywatności.
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">uĹźywania dokumentu</a>
+      i <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">licencji oprogramowania.</a>. Wszelkie interakcje z tÄ witrynÄ sÄ zgodne z naszÄ <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publicznÄ</a> i
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">CzĹonkowskÄ</a> ochronÄ prywatnoĹci.
     </p>
 
 

@@ -75,7 +75,15 @@
         <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
       </ul>
-
+      <p id="lang_choice">
+          <a href="languages.html" title="the CSS validation service is available in a number of languages. Learn how to use it in your preferred language.">languages</a>:
+          <a href="documentation.html.en"><abbr title="english">en</abbr></a> &middot; 
+          <a href="documentation.html.fr"><abbr title="français">fr</abbr></a> &middot;
+          <a href="documentation.html.it"><abbr title="italiano">it</abbr></a> &middot;
+          <a href="documentation.html.ja"><abbr title="日本語">ja</abbr></a> &middot;
+          <a href="documentation.html.pl-PL"><abbr title="język polski">pl</abbr></a> &middot;
+          <a href="documentation.html.zh-cn"><abbr title="中文">zh-cn</abbr></a>
+          </p>
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
