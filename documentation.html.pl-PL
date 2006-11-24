@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
@@ -75,15 +75,38 @@
         <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
       </ul>
 
-
-       <p id="lang_choice" title="this page in your language">
-           <a href="documentation.html.en">English</a> &middot; 
-           <a href="documentation.html.fr">Français</a> &middot;
-           <a href="documentation.html.it">Italiano</a> &middot;
-           <a href="documentation.html.ja">日本語</a> &middot;
-           <a href="documentation.html.pl-PL">Polski</a> &middot;
-           <a href="documentation.html.zh-cn">中文</a>
-      </p>
+       <ul id="lang_choice">
+           <li><a href="documentation.html.en"
+           lang="en"
+           xml:lang="en"
+           hreflang="en"
+           rel="alternate">English</a>  </li>
+           <li><a href="documentation.html.fr"
+           lang="fr"
+           xml:lang="fr"
+           hreflang="fr"
+           rel="alternate">Français</a> </li>
+           <li><a href="documentation.html.it"
+               lang="it"
+               xml:lang="it"
+               hreflang="it"
+               rel="alternate">Italiano</a> </li>
+           <li><a href="documentation.html.ja"
+               lang="ja"
+               xml:lang="ja"
+               hreflang="ja"
+               rel="alternate">日本語</a> </li>
+           <li><a href="documentation.html.pl-PL"
+               lang="pl"
+               xml:lang="pl"
+               hreflang="pl"
+               rel="alternate">Polski</a> </li>
+           <li><a href="documentation.html.zh-cn"
+               lang="zh-hans"
+               xml:lang="zh-hans"
+               hreflang="zh-hans"
+               rel="alternate">中文</a></li>
+      </ul>
 
 
    <p id="activity_logos">

@@ -530,6 +530,8 @@ div#jumpbar li a:hover {
         width; 10em; 
         top: 60px; 
         text-align: right; 
-        right: 48px; 
+        right: 78px; 
         font-size: x-small;
+	list-style: none;
 }
+#lang_choice li { display: inline; padding-left: .5em;}

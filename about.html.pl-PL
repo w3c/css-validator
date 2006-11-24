@@ -11,8 +11,7 @@
 	@import "style/docs.css";
     </style>
     <meta name="revision" content="$Id$" />
-  
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     </head>
 
   <body>
@@ -104,6 +103,40 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
         <li><a href="thanks.html" title="Podziękowania">Podziękowania</a><span class="hideme">|</span></li>
         <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
   </ul>
+
+   <ul id="lang_choice">
+       <li><a href="about.html.en"
+       lang="en"
+       xml:lang="en"
+       hreflang="en"
+       rel="alternate">English</a>  </li>
+       <li><a href="about.html.fr"
+       lang="fr"
+       xml:lang="fr"
+       hreflang="fr"
+       rel="alternate">Français</a> </li>
+       <li><a href="about.html.it"
+           lang="it"
+           xml:lang="it"
+           hreflang="it"
+           rel="alternate">Italiano</a> </li>
+       <li><a href="about.html.ja"
+           lang="ja"
+           xml:lang="ja"
+           hreflang="ja"
+           rel="alternate">日本語</a> </li>
+       <li><a href="about.html.pl-PL"
+           lang="pl"
+           xml:lang="pl"
+           hreflang="pl"
+           rel="alternate">Polski</a> </li>
+       <li><a href="about.html.zh-cn"
+           lang="zh-hans"
+           xml:lang="zh-hans"
+           hreflang="zh-hans"
+           rel="alternate">中文</a></li>
+  </ul>
+
 
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-smalm.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-j.png" alt="CSS" /></a>
