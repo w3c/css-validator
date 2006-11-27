@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+<head>
+  <title>Documentatie voor de W3C CSS Validator</title>
+  <link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Home Pagina" />
+  <style type="text/css" media="all">
+    @import "style/base.css";    
+    @import "style/docs.css";    
+  </style>
+  <meta name="revision" content="$Id$" />
+  <!-- SSI Template Version: $Id$ -->
+
+</head>
+
+<body>
+
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+   </div>
+
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+
+<h2>Documentatie index voor de CSS Validator</h2>
+
+<p id="skip"></p>
+
+<h3 id="use">Bronnen voor Gebruikers</h3>
+
+<dl>
+    <dt><a href="./manual.html">Gebruiksaanwijzing</a></dt>
+    <dd>Documentatie over het gebruik van de CSS Validator</dd>
+    <dt><a href="about.html">Over de service</a></dt>
+
+    <dd>Informatie over de CSS Validator, en antwoorden op een aantal veelgestelde vragen</dd>
+    <dt><a href="http://www.websitedev.de/css/validator-faq">
+	CSS Validator FAQ
+    </a></dt>
+    <dd>Antwoorden op veelgestelde technische vragen</dd>
+    
+</dl>
+
+<h3 id="devel">Bronnen voor Ontwikkelaars</h3>
+
+<dl>
+    <dt><a href="DOWNLOAD.html">Downloaden/Installeren</a></dt>
+    <dd>Hoe aan de code van de CSS Validator te komen en het als command line programma of als Web Servlet te gebruiken.</dd>
+    
+    <dt><a href="README">developer's README</a></dt>
+    <dd>Een overzicht van de CSS Validator code</dd>
+
+    <dt><a href="./api.html">Web Service API</a></dt>
+
+    <dd>SOAP 1.2 validation interface documentatie</dd>
+    
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
+    <dd>Bekende problemen in de huidige validator versie, en een mogelijkheid om nieuwe problemen in te sturen. 
+    Zie ook <a href="email">de feedback instructies</a>.</dd>
+
+</dl>
+
+
+
+</div>
+
+</div>
+<!-- End of "main" DIV. -->
+
+   <ul class="navbar"  id="menu">
+	<li><strong><a href="./" title="Home pagina van de W3C CSS Validatie Service">Home</a></strong> <span class="hideme">|</span></li>
+	<li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentatie voor de W3C CSS Validatie Service">Documentatie</a> <span class="hideme">|</span></li>
+
+        <li><a href="DOWNLOAD.html" title="Download de CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Hoe reacties te geven over deze service">Reacties</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Credits en Erkenning">Credits</a><span class="hideme">|</span></li>
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, brengt je gratis Web kwaliteits tools en meer"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+
+   <p id="support_logo">
+Steun deze tool, wordt een<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      Alle Rechten Voorbehouden.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">aansprakelijkheid</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">handelsmerk</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document gebruik</a>
+
+      en de <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licentie</a>
+
+      regels zijn van toepassing. Je interacties met deze site zijn in overeenstemming
+      met onze <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publieke</a> en
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      verklaringen.
+    </p>
+
+
+  </body>
+</html>
+
+
