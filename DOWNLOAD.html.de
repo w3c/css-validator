@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="de"><head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  
+  <title>Den CSS Validator herunterladen</title><link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Home Page" />
+  <style type="text/css" media="all">
+    @import "style/base.css";  
+    @import "style/docs.css";
+  </style>
+  <meta name="revision" content="$Id$" /><!-- SSI Template Version: $Id$ --></head>
+<body>
+
+  <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" height="48" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validierungsdienst" /></a></h1>
+   </div>
+
+
+<h2>CSS Validator herunterladen und installieren</h2>
+<h3 id="download">Den CSS Validator herunterladen</h3>	
+
+	<h4 id="source">Quellcode herunterladen</h4>
+    <p>Der <a href="http://dev.w3.org/cvsweb/2002/css-validator">CSS Validator</a> ist zum Download per CVS verfügbar. Folgen Sie den <a href="http://dev.w3.org/cvsweb/">Anweisungen</a>
+zum Zugriff auf den öffentlichen W3C CVS-Server und laden Sie
+2002/css-validator herunter. Beachten Sie, dass die Online-Version des
+CSS-Validators in der Regel älter ist als die CVS-Version. Ergebnisse
+und Aussehen können leicht abweichen... </p>	
+	<h4>Download als Java-Package (.jar oder .war)</h4>
+	<p>Noch offen. Wir brauchen noch einen stabilen Ort, an dem wir solche Packages regelmäßig ablegen können.</p>
+
+<h3>Installationsanleitung</h3>
+<p>Der CSS Validierungsservice ist eine in Java geschriebene
+Servlet-Anwendung. Sie kann auf jeder Servlet-Engine installiert oder
+auch als einfaches Kommandozeilen-Tool verwendet werden.Der offizielle
+W3C CSS Validierungsservice läuft mit dem Jigsaw-Server; das ist die
+empfohlene Konfiguration. Der Einfachheit halber werden wir in dieser
+Anleitung aber hauptsächlich Details über die Installation als
+Online-Servlet mit der Apache Servlet-Engine Tomcat geben. </p><p>Ein paar Anweisungen zur Installation als Servlet mit Jigsaw und zum Betrieb von der Kommandozeile finden Sie weiter unten.</p><h4 id="prereq">Voraussetzungen</h4>
+
+<p>Die Installationsanleitung geht davon aus, dass Sie die folgenden Werkzeuge heruntergeladen, installiert und getestet haben:</p><ul class="instructions"><li>Eine funktionierende Java-Umgebung</li>
+	<li>Das Bauwerkzeug <a href="http://ant.apache.org/">Ant</a></li>
+	<li>Einen Java Web-Servlet-Container wie <a href="http://www.w3.org/Jigsaw/">Jigsaw</a>, <a href="http://tomcat.apache.org/">Tomcat</a> oder <a href="http://www.mortbay.org/">Jetty</a>, falls Sie vorhaben den Validator als Online-Dienst zu betreiben. Die Anleitung behandelt nur Tomcat und Jigsaw im Detail..</li>
+
+</ul>
+<p id="prereq-libs">Für die Installation auf Ihrem System benötigen Sie die folgenden Java-Bibliotheken:</p>
+<ul class="instructions">
+	<li>servlet.jar (die Sie, wenn Sie Tomcat in [<span class="const">TOMCAT_DIR</span>] installiert haben, in [<span class="const">TOMCAT_DIR</span>]/common/lib/ finden sollten, möglicherweise unter dem Namen servlet-api.jar. Wenn nicht, können Sie die Bibliothek bei <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a> herunterladen</li>
+	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
+	<li>xercesImpl.jar und xml-apis.jar (beide können mit <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> heruntergeladen werden).</li>
+</ul>
+
+<h4>Installation des CSS Validators mit Tomcat</h4>
+<ol class="instructions">
+	<li>Laden Sie den Validator herunter wie <a href="#source">oben</a> erklärt.
+	</li>
+	<li>Kopieren Sie den gesamten Source-Ordner ("<span class="dir">.../css-validator/</span>") in das <span class="dir">webapps</span>-Verzeichnis von Tomcat. Normalerweise ist das 
+		<span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/</span>. Die Sourcen des Validators liegen jetzt in <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/css-validator</span>, was von jetzt an <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span> genannt wird.
+	</li>
+	<li>Legen Sie in "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>" ein Verzeichnis "<span class="dir">WEB-INF</span>" an und in "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF</span>" erzeugen Sie ein Verzeichnis "<span class="dir">lib</span>":<br />
+		<kbd>mkdir -p WEB-INF/lib</kbd>
+		</li>
+	<li>Kopieren Sie alle .jar-Dateien (aus den <a href="#prereq-libs">Voraussetzungen</a>) in das Verzeichnis "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib</span>"</li>
+	<li>Übersetzen Sie den Sourcecode: starten Sie im Verzeichnis <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span> den Befehl <kbd>ant</kbd><span style="font-family: monospace;">.</span> Stellen Sie dabei sicher, dass aller heruntergeladenen jar-Dateien sich korrekt im CLASSPATH gesetzt sind.<span style="font-family: monospace;"> Der folgende Befehl sollte in der Regel einfach funktionieren:<br />
+    </span><kbd>CLASSPATH=.:./WEB-INF/lib:$CLASSPATH ant</kbd>
+	</li>
+	<li>Kopieren oder verschieben Sie "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span><span class="file">css-validator.jar</span>" nach "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib/</span>".</li>
+	<li>
+		Kopieren oder verschieben Sie die Datei "<span class="file">web.xml</span>" aus
+		"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span>" nach
+		"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/</span>".
+	</li>
+    <li>
+		Zum Schluss starten Sie den Tomcat-Server neu:<br />
+<kbd>"cd <span class="dir">[<span class="const">TOMCAT_DIR</span>]</span>; <span class="dir">./bin/</span><span class="file">shutdown.sh</span>; <span class="dir">./bin/</span><span class="file">startup.sh</span>;"</kbd>
+	</li>
+</ol>
+
+<h4>Installation auf dem Jigsaw-Server</h4>
+<ol class="instructions">
+<li>Laden Sie den Sourcecode wie oben beschrieben herunter, besorgen Sie alle notwendigen jar-Files und übersetzen Sie den Code mit <kbd>ant</kbd> (Siehe Schritt 1-5 unter "Installation des CSS-Validators mit Tomcat".</li>
+
+<li>Danach müssen Sie das Validator-Homeverzeichnis konfigurieren (in der Regel ist das css-validator) so dass es als Servlet-Container
+fungieren kann. Dazu müssen Sie Jisaw installiert haben (siehe Jigsaw-Seiten für eine kurze Anleitung (wirklich einfach)) und dann
+Jigsaw Admin starten. ändern Sie HTTPFrame in ServletDirectoryFrame.</li><li>Der nächste Schritt ist, eine Resource namens "validator" mit "ServletWrapper" als Klasse und "ServletWrapperFrame" als Frame zu erzeugen. Letzterer sollte sich automagisch hinzufügen. Die Klasse des Servlets ist org.w3c.css.servlet.CssValidator. Wenn es schon eine Datei namens "validator" gibt, benennen Sie diese bitte um. Es ist wichtig, dass dieses "alias" immer "validator" heisst.".</li>
+
+<li>Zuletzt starten Sie Jigsaw und den Validator. Prüfen Sie, welches HTML Sie benutzen wollen. Normalerweise sieht die URL so aus:<br />
+http://localhost:8001/css-validator/validator.html</li>
+</ol>
+
+<h3>Start von der Kommandozeile</h3>
+
+<p>Der CSS Validator kann auch als Kommandozeilenprogramm genutzt werden, wenn auf Ihren Computer Java installiert ist. Übersetzen Sie
+das css-validator.jar wie oben beschrieben, und starten Sie es wie folgt:<br />
+<kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
+</p>
+
+
+   <ul class="navbar" id="menu">
+	<li><strong><a href="./" title="Homepage des W3C CSS Validators">Home</a></strong> <span class="hideme">|</span></li>
+	<li><a href="about.html" title="Über diesen Dienst">About</a> <span class="hideme">|</span></li>
+
+        <li><a href="documentation.html" title="Dokumentation zum CSS Validator">Dokumentation</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Wie Sie Feedback geben können">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Referenzen und Danksagungen">Credits</a><span class="hideme">|</span></li>
+
+      </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+
+   <p id="support_logo">
+Unterstützten Sie dieses Werkzeug, werden Sie <br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>®
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+
+  </body></html>
