@@ -17,7 +17,7 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homf.png" /></a>
-    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_valj.png" alt="Usługa Walidacji CSS" /></a></h1>
+    <a href="./"><img src="css_valj.png" alt="Usługa Walidacji CSS" /></a></h1>
    </div>
 
       <h2>Informacje na temat walidatora CSS</h2>
@@ -50,7 +50,7 @@
 <h4 id="what">Co to jest? Czy będę tego potrzebował?</h4>
 
 <p> Usługa Walidacji CSS W3C jest darmowym programem stworzonym przez  W3C, którego celem jest pomaganie projektantom stron i deweloperom w weryfikacji Kaskadowych Arkuszy Stylów (CSS). 
-Można z niego korzystać w sieci dzięki <a href="http://qa-dev.w3.org:8001/css-validator/">naszej darmowej usłudze</a> lub ściągnąć i korzystać z niego w formie programu napisanego w języku Java albo serwletu. </p>
+Można z niego korzystać w sieci dzięki <a href="./">naszej darmowej usłudze</a> lub ściągnąć i korzystać z niego w formie programu napisanego w języku Java albo serwletu. </p>
 
 <p>Czy będę tego potrzebował? Jeśli jesteś projektantem witryn lub deweloperem, narzędzie to będzie Twoim nieodzownym sprzymierzeńcem. Nie tylko porówna ono arkusze stylu zaprojektowane przez Ciebie do specyfikacji CSS, pomoże Ci również znaleźć błędy, niewłaściwe zastosowanie CSS, jak również powie Ci czy Twoje arkusze stylów są funkcjonalne. </p>
 
@@ -62,11 +62,12 @@ Można z niego korzystać w sieci dzięki <a href="http://qa-dev.w3.org:8001/css
 Właściwymi referencjami odnośnie Kaskadowych Arkuszy Stylów są <a href="http://www.w3.org/Style/CSS/#specs">specyfikacje CSS</a>.</p>
 
 <h4 id="free">Ile to kosztuje?</h4>
-<p>Nic. Usługa jest darmowa. Program posiada  <a href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">otwarty dostęp do kodu źródłowego</a> i można go ściągnąć za darmo, używać, modyfikować, rozprowadzać i <a href="http://www.w3.org/Consortium/Legal/copyright-software">o wiele więcej</a>.
+<p>Nic. Usługa jest darmowa. Program posiada  <a href="DOWNLOAD.html">otwarty dostęp do kodu źródłowego</a> i można go ściągnąć za darmo, używać, modyfikować, rozprowadzać i <a href="http://www.w3.org/Consortium/Legal/copyright-software">o wiele więcej</a>.
 Jeśli Ci się on podoba, zachęcamy do <a href="#participate">przyłączenia się do projektu</a> lub wsparcia finansowego  W3C poprzez <a href="http://www.w3.org/Consortium/sup">W3C supporters program</a>, ale nie jest to obligacją.</p>
 
 <h4 id="who">Kto jest autorem tego narzędzia? Kto je utrzymuje?</h4>
-<p>W3C utrzymuje i jest gospodarzem tego narzędzia dzięki pracy i wkładzie personelu W3C oraz ochotników takich jak deweloperzy i tłumacze. Zobacz także <a href="http://qa-dev.w3.org:8001/css-validator/thanks.html">stronę podziękowań i wyrazów uznania</a>
+<p>W3C utrzymuje i jest gospodarzem tego narzędzia dzięki pracy i wkładzie personelu W3C oraz ochotników takich jak deweloperzy i tłumacze. 
+Zobacz także <a href="thanks.html">stronę podziękowań i wyrazów uznania</a>
 po więcej szczegółów.<a href="#participate"> Ty również możesz pomóc</a>.</p>
 
 <h4 id="participate">Czy mogę pomóc?</h4>
@@ -76,13 +77,14 @@ lub budowanie nowych funkcji. </p>
 <p>Nie musisz być jednak programistą, aby pomóc w budowaniu i utrzymywaniu tego narzędzia: możesz również pomagać przy polepszaniu dokumentacji, tłumaczeniu Walidatora na inne języki lub poprzez wpisanie się na naszą <a href="http://lists.w3.org/Archives/Public/www-validator-css/">listę mailingową</a> w celu prowadzenia dyskusji na temat tego programu lub pomocy innym użytkownikom tego narzędzia. </p>
 
 <h4 id="contact">Inne pytania?</h4>
-<p>Jeśli masz jakiekolwiek pytania odnośnie CSS i walidatora CSS, sprawdź dostępne <a href="http://qa-dev.w3.org:8001/css-validator/Email">listy mailingowe i fora</a>. Zanim to jednak uczynisz, upewnij się, czy jest już odpowiedź na twoje pytanie w <a href="http://www.websitedev.de/css/validator-faq">dokumencie najczęściej zadawanych pytań na temat walidatora CSS</a>.</p>
+<p>Jeśli masz jakiekolwiek pytania odnośnie CSS i walidatora CSS, sprawdź dostępne <a href="Email">listy mailingowe i fora</a>. Zanim to jednak uczynisz, upewnij się, czy jest już odpowiedź na twoje pytanie w <a href="http://www.websitedev.de/css/validator-faq">dokumencie najczęściej zadawanych pytań na temat walidatora CSS</a>.</p>
 
 
 <h3 id="dev">Kącik dla Deweloperów</h3>
 <h4 id="code">W jakim języku jest napisany walidator? Czy źródło jest gdzieś dostępne?</h4>
 <p> W3C Walidator CSS jest napisany w języku Java i oczywiście kod jest dostępny używając  CVS: możesz <a href="http://dev.w3.org/cvsweb/2002/css-validator/">przeglądnąć kod  online</a> 
-lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas zastosowanych w kodzie walidatora CSS, sprawdź plik zatytułowany &quot; <a href="http://qa-dev.w3.org:8001/css-validator/README.html">README</a> &quot;.</p>
+lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas zastosowanych w kodzie walidatora CSS, sprawdź plik zatytułowany &quot; 
+<a href="README.html">README</a> &quot;.</p>
 
 <h4 id="install">Czy mogę sam zainstalować i uruchomić walidator CSS?</h4>
 <p>Możliwe jest 
@@ -90,10 +92,10 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
 
 ściągnięcie
 
- i zainstalowanie walidatora CSS jak również uruchomienie go poprzez &quot;command line&quot; lub jako serwletu na serwerze. Przeczytaj <a href="http://qa-dev.w3.org:8001/css-validator/RUN.html">instrukcje</a> instalacji i użycia.</p>
+ i zainstalowanie walidatora CSS jak również uruchomienie go poprzez &quot;command line&quot; lub jako serwletu na serwerze. Przeczytaj <a href="RUN.html">instrukcje</a> instalacji i użycia.</p>
 
 <h4 id="api">Czy mogę zbudować aplikację opartą na walidatorze? Czy dostępny jest API?</h4>
-<p>Tak i <a href="http://qa-dev.w3.org:8001/css-validator/api">tak</a>. Walidator CSS ma  (RESTful) <a href="http://qa-dev.w3.org:8001/css-validator/api">SOAP interfejs,</a> co powinno znacznie ułatwić budowę aplikacji (sieciowych lub innych). Oczywiście dobre maniery i właściwe zastosowanie otwartych kodów źródłowych powinny być w zwyczaju: : upewnij się, że Twoje aplikacje nie korzystają z zasobów walidatora non-stop (powinny być one uśpione do czasu aktywacji) lub zainstaluj i uruchom swój własny walidator.</p>
+<p>Tak i <a href="api">tak</a>. Walidator CSS ma  (RESTful) <a href="api">SOAP interfejs,</a> co powinno znacznie ułatwić budowę aplikacji (sieciowych lub innych). Oczywiście dobre maniery i właściwe zastosowanie otwartych kodów źródłowych powinny być w zwyczaju: : upewnij się, że Twoje aplikacje nie korzystają z zasobów walidatora non-stop (powinny być one uśpione do czasu aktywacji) lub zainstaluj i uruchom swój własny walidator.</p>
 
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="O serwisie">O nas</a> <span class="hideme">|</span></li>

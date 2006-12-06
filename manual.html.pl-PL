@@ -19,7 +19,7 @@
 
   <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homh.png" /></a>
-    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_vall.png" alt="Usługa Walidacji CSS" /></a></h1>
+    <a href="./"><img src="css_vall.png" alt="Usługa Walidacji CSS" /></a></h1>
 </div>
 
 <div id="main">
@@ -197,7 +197,7 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
 
 <h4 id="api">API Usługi Sieciowej Walidacji CSS: dokumentacja interfejsu walidacji SOAP 1.2</h4>
 <p>    
-    Po więcej informacji technicznych w szczególności na temat wyjścia SOAP 1.2  i możliwych sposobów wywoływania walidatora, zobacz <a href="http://qa-dev.w3.org:8001/css-validator/api.html">API Sieciowej Usługi Walidatora CSS</a>.        
+    Po więcej informacji technicznych w szczególności na temat wyjścia SOAP 1.2  i możliwych sposobów wywoływania walidatora, zobacz <a href="./api.html">API Sieciowej Usługi Walidatora CSS</a>.        
 </p>
 
 </div>

@@ -18,7 +18,7 @@
 
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_home.png" /></a>
-    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_vali.png" alt="Usługa Walidacji CSS" /></a></h1>
+    <a href="./"><img src="css_vali.png" alt="Usługa Walidacji CSS" /></a></h1>
    </div>
 
 <div id="main">
@@ -32,9 +32,9 @@
 <h3 id="use">Zasoby dla Użytkownika</h3>
 
 <dl>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/manual.html">Instrukacja Obsługi dla Użytkownika</a></dt>
+    <dt><a href="manual.html">Instrukacja Obsługi dla Użytkownika</a></dt>
     <dd>Dokumentacja dotycząca informacji na temat jak używać walidatora CSS</dd>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/about.html">O usłudze</a></dt>
+    <dt><a href="./about.html">O usłudze</a></dt>
     <dd>Informacje na temat walidatora CSS oraz odpowiedzi na niektóre ogólne pytania</dd>
     <dt><a href="http://www.websitedev.de/css/validator-faq">
 	Najczęsciej zadawane pytania na temat walidatora CSS</a></dt>
@@ -46,17 +46,17 @@
 
 
 <dl>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">Download/Instalacja</a></dt>
+    <dt><a href="./DOWNLOAD.html">Download/Instalacja</a></dt>
     <dd>Jak ściągnąć i uruchomić źródło walidatora CSS, zarówno w formie programu typu &quot;command line&quot; lub serwletu sieciowego.</dd>
     
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/README">README dla Deweloperów</a></dt>
+    <dt><a href="./README">README dla Deweloperów</a></dt>
     <dd>Przegląd kodu walidatora CSS</dd>
 
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/api.html">API Usługi</a></dt>
+    <dt><a href="./api.html">API Usługi</a></dt>
     <dd>Dokumentacja interfejsu walidatora SOAP 1.2</dd>
     
     <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (bugs)</a></dt>
-    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="http://qa-dev.w3.org:8001/css-validator/email">instrukcje na temat dostarczania opinii.</a></dd>
+    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="./email">instrukcje na temat dostarczania opinii.</a></dd>
 
 </dl>
 

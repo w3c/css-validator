@@ -22,7 +22,7 @@
 
   <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homg.png" /></a>
-    <a href="http://qa-dev.w3.org:8001/css-validator/"><img src="css_valk.png" alt="CSS Validation Service" /></a></h1>
+    <a href="./"><img src="css_valk.png" alt="CSS Validation Service" /></a></h1>
 </div>
 
 
