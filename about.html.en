@@ -113,7 +113,7 @@ overview of the classes used in the CSS Validator code, check out the
 as a servlet in a Web server. Read the <a href="RUN.html">instructions</a> for installation and use.</p>
 
 <h4 id="api">Can I build an application upon this validator? Is there an API?</h4>
-<p>Yes, and <a href="api">yes</a>. The CSS Validator has a (RESTful) <a href="api">SOAP interface</a>
+<p>Yes, and <a href="api.html">yes</a>. The CSS Validator has a (RESTful) <a href="api.html">SOAP interface</a>
 which should make it reasonably easy to build applications (Web or otherwise) upon it. Good manners and 
 respectful usage of shared resources are of course customary: make sure your applications sleep() between
 calls to the validator, or install and run your own instance of the validator.</p>

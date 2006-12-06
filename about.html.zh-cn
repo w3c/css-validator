@@ -80,7 +80,7 @@
 <p>当然可以，你还可以以命令行的形式或者安装到web服务器上以servlet的形式运行。你可以参考 <a href="RUN.html">如何安装和运行</a> 。</p>
 
 <h4 id="api">我能在我的应用程序中运用这个验证器么？有什么API么？</h4>
-<p>当然可以，当然有  <a href="api">API</a>。css验证器还有一个<a href="api">SOAP接口</a>来提供更多便利。在自己的程序中使用css验证器的时候，最好做法是在调用css验证器前调用自己程序的sleep()函数，或者将验证器作为一个单独的实例来使用</p>
+<p>当然可以，当然有  <a href="api.html">API</a>。css验证器还有一个<a href="api.html">SOAP接口</a>来提供更多便利。在自己的程序中使用css验证器的时候，最好做法是在调用css验证器前调用自己程序的sleep()函数，或者将验证器作为一个单独的实例来使用</p>
 
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">首页</a></strong> <span class="hideme">|</span></li>

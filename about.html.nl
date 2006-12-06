@@ -111,7 +111,7 @@ CSS Validator code kun je de <a href="README.html">README</a> lezen.</p>
 als een servlet op een Web server. Lees de <a href="RUN.html">instructies</a> voor meer informatie over de installatie en het gebruik van de validator.</p>
 
 <h4 id="api">Kan ik een applicatie maken die gebruik maakt van de validator? Is er een API?</h4>
-<p>Ja, en <a href="api">ja</a>. De CSS Validator heeft een (RESTful) <a href="api">SOAP interface</a>
+<p>Ja, en <a href="api.html">ja</a>. De CSS Validator heeft een (RESTful) <a href="api.html">SOAP interface</a>
 die het relatief gemakkelijk zou moeten maken om applicaties (zowel voor het Web of stand alone) op de validator te ontwikkelen. Natuurlijk is het hierbij 
 belangrijk de ter beschikking gestelde bronnen te respecteren: zorg ervoor dat je applicaties even wachten (sleep()) tussen de aanroepen naar de validator
 of installeer en draai je eigen instantie van de validator.</p>

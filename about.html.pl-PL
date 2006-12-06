@@ -95,7 +95,7 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
  i zainstalowanie walidatora CSS jak również uruchomienie go poprzez &quot;command line&quot; lub jako serwletu na serwerze. Przeczytaj <a href="RUN.html">instrukcje</a> instalacji i użycia.</p>
 
 <h4 id="api">Czy mogę zbudować aplikację opartą na walidatorze? Czy dostępny jest API?</h4>
-<p>Tak i <a href="api">tak</a>. Walidator CSS ma  (RESTful) <a href="api">SOAP interfejs,</a> co powinno znacznie ułatwić budowę aplikacji (sieciowych lub innych). Oczywiście dobre maniery i właściwe zastosowanie otwartych kodów źródłowych powinny być w zwyczaju: : upewnij się, że Twoje aplikacje nie korzystają z zasobów walidatora non-stop (powinny być one uśpione do czasu aktywacji) lub zainstaluj i uruchom swój własny walidator.</p>
+<p>Tak i <a href="api.html">tak</a>. Walidator CSS ma  (RESTful) <a href="api.html">SOAP interfejs,</a> co powinno znacznie ułatwić budowę aplikacji (sieciowych lub innych). Oczywiście dobre maniery i właściwe zastosowanie otwartych kodów źródłowych powinny być w zwyczaju: : upewnij się, że Twoje aplikacje nie korzystają z zasobów walidatora non-stop (powinny być one uśpione do czasu aktywacji) lub zainstaluj i uruchom swój własny walidator.</p>
 
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="O serwisie">O nas</a> <span class="hideme">|</span></li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+href="api.html"<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -104,7 +104,7 @@ l'arbre source entier. Pour un aperçu des classes utilisées par le code du val
 Lisez les <a href="RUN.html">instructions</a> d'installation et d'utilisation.</p>
 
 <h4 id="api">Puis-je créer une application utilisant ce validateur ? Existe-t-il une API ?</h4>
-<p>Oui, et <a href="api">oui</a>. Le validateur CSS possède une <a href="api">interface SOAP</a> (RESTful) qui devrait rendre
+<p>Oui, et <a href="api.html">oui</a>. Le validateur CSS possède une <a href="api.html">interface SOAP</a> (RESTful) qui devrait rendre
 la construction d'applications (Web ou autre) l'utilisant relativement aisée. Comme d'habitude, il faudra bien sûr se montrer bien élevé
 et avoir une utilisation respectueuse de ressources partagées : assurez-vous que vos applications marquent une pause (sleep)
 entre deux appels au validateur, ou alors installez et exécutez votre propre instance du validateur.</p>

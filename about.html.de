@@ -112,7 +112,7 @@ in einem Webserver betrieben werden. Lesen Sie die <a href="RUN.html">Anleitung<
 
 
 <h4 id="api">Kann ich Anwendungen mit dem Validator bauen? Gibt es ein API?</h4>
-<p>Ja und <a href="api">Ja</a>. Der CSS Validator hat ein (RESTful)&nbsp;<a href="api">SOAP-Interface</a>,
+<p>Ja und <a href="api.html">Ja</a>. Der CSS Validator hat ein (RESTful)&nbsp;<a href="api.html">SOAP-Interface</a>,
 mit dem es hinreichend einfach sein sollte, Anwendungen (Web- oder
 sonstige) darauf aufzubauen. Gute Manieren und respektvoller Umgang mit
 den zur Verfügung gestellten Resourcen sind natürlich

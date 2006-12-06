@@ -102,8 +102,8 @@ CSS Validator で使われているクラスなどの概要は、<a href="README
 インストールして利用するには、<a href="RUN.html">ガイド</a>をお読みください。</p>
 
 <h4 id="api">この Validator を使ってなにかアプリケーションを作れる? 何か API がある?</h4>
-<p>はい。もう一つ、<a href="api">はい</a>。
-CSS Validator には、平和的 (RESTful) な <a href="api">SOAP インターフェース</a>があり、(ウェブかどうかに限らず) アプリケーションの構築が合理的で簡単にできるようになっています。
+<p>はい。もう一つ、<a href="api.html">はい</a>。
+CSS Validator には、平和的 (RESTful) な <a href="api.html">SOAP インターフェース</a>があり、(ウェブかどうかに限らず) アプリケーションの構築が合理的で簡単にできるようになっています。
 もちろん良いマナーと共有資源利用への配慮をお願いします: Validator を呼ぶ間に sleep() するか、もしくはあなた自身の Validator インスタンスをインストールして実行するよう心がけてください。
 </p>
 
