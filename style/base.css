@@ -527,7 +527,7 @@ div#jumpbar li a:hover {
 #lang_choice {
         position: absolute;
         display: block;
-        width; 10em; 
+        width: 50em; 
         top: 0px; 
         text-align: right; 
         right: 75px; 
