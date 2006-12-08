@@ -95,7 +95,7 @@ Java プログラマなら、CSS Validator プロジェクトの<a href="#code">
 <p>W3C CSS Validator は、Java 言語を使って書かれています。
 ええ、もちろんコードも CVS で公開されています。
 <a href="http://dev.w3.org/cvsweb/2002/css-validator/">コードをオンラインで閲覧</a>することもできますし、リンク先のページの指示に従ってソースツリー全体をダウンロードすることもできます。
-CSS Validator で使われているクラスなどの概要は、<a href="README.html">README</a> ファイルをご覧ください。</a>
+CSS Validator で使われているクラスなどの概要は、<a href="README.html">README</a> ファイルをご覧ください。</p>
 
 <h4 id="install">自分でも CSS Validator をインストール・実行できる?</h4>
 <p>CSS Validator は、ダウンロードしてインストールして、コマンドラインから起動することもウェブサーバー上でサーブレットとして実行することも可能です。
