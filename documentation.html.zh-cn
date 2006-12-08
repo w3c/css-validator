@@ -69,18 +69,27 @@
 
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">首页</a></strong> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">文档</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Download the CSS validator">下载</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="How to provide feedback on this service">反馈</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Credits and Acknowlegments">创作者</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">文档</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Download the CSS validator">下载</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="How to provide feedback on this service">反馈</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Credits and Acknowlegments">创作者</a><span class="hideme">|</span></li>
 
       </ul>
 
        <ul id="lang_choice">
-           <li><a href="documentation.html.en" lang="en"
-           xml:lang="en"
+           <li><a href="documentation.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
+           <li><a href="documentation.html.en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
+           <li><a href="documentation.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="documentation.html.fr"
            lang="fr"
            xml:lang="fr"
@@ -91,6 +100,11 @@
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="documentation.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="documentation.html.ja"
                lang="ja"
                xml:lang="ja"

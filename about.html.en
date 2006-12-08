@@ -120,19 +120,27 @@ calls to the validator, or install and run your own instance of the validator.</
 
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
 
       </ul>
 
        <ul id="lang_choice">
+           <li><a href="about.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
            <li><a href="about.html.en"
-           lang="en"
-           xml:lang="en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
+           <li><a href="about.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="about.html.fr"
            lang="fr"
            xml:lang="fr"
@@ -143,6 +151,11 @@ calls to the validator, or install and run your own instance of the validator.</
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="about.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="about.html.ja"
                lang="ja"
                xml:lang="ja"
@@ -159,6 +172,7 @@ calls to the validator, or install and run your own instance of the validator.</
                hreflang="zh-hans"
                rel="alternate">中文</a></li>
       </ul>
+
 
 
    <p id="activity_logos">

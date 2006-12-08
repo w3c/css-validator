@@ -201,12 +201,20 @@
       </ul>
 
 
-       <ul id="lang_choice">
+      <ul id="lang_choice">
+           <li><a href="validator.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
            <li><a href="validator.html.en"
-           lang="en"
-           xml:lang="en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
+           <li><a href="validator.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="validator.html.fr"
            lang="fr"
            xml:lang="fr"
@@ -217,6 +225,11 @@
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="validator.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="validator.html.ja"
                lang="ja"
                xml:lang="ja"
@@ -233,6 +246,7 @@
                hreflang="zh-hans"
                rel="alternate">中文</a></li>
       </ul>
+
 
 
    <p id="activity_logos">

@@ -67,11 +67,19 @@ Voir également les <a href="email">instructions pour laisser un commentaire</a>
 </ul>
 
  <ul id="lang_choice">
-     <li><a href="documentation.html.en" 
-     lang="en"
-     xml:lang="en"
+     <li><a href="documentation.html.de"
+         lang="de"
+         xml:lang="de"
+         hreflang="de"
+         rel="alternate">Deutsch</a></li>
+     <li><a href="documentation.html.en"
+         lang="en"
+         xml:lang="en"
      hreflang="en"
      rel="alternate">English</a>  </li>
+     <li><a href="documentation.html.es"
+     lang="es" xml:lang="es" hreflang="es"
+     rel="alternate">Español</a></li>
      <li><a href="documentation.html.fr"
      lang="fr"
      xml:lang="fr"
@@ -82,6 +90,11 @@ Voir également les <a href="email">instructions pour laisser un commentaire</a>
          xml:lang="it"
          hreflang="it"
          rel="alternate">Italiano</a> </li>
+     <li><a href="documentation.html.nl"
+         lang="nl"
+         xml:lang="nl"
+         hreflang="nl"
+         rel="alternate">Nederlands</a> </li>
      <li><a href="documentation.html.ja"
          lang="ja"
          xml:lang="ja"

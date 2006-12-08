@@ -119,20 +119,28 @@ den zur Verfügung gestellten Resourcen sind natürlich
 selbstverständlich: Stellen Sie sicher, dass Ihre Applikationen
 zwischen zwei Aufrufem des Validators sleep() benutzen, oder
 installieren Sie Ihre eigene Instanz des Validators.</p><ul class="navbar" id="menu"><li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Dokumentation zum CSS Validierungsdienst">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Den CSS Validator herunterladen">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="Wie Sie Feedback geben können">Feedback</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Referenzen und Danksagungen">Credits</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Dokumentation zum CSS Validierungsdienst">Documentation</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Den CSS Validator herunterladen">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Wie Sie Feedback geben können">Feedback</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Referenzen und Danksagungen">Credits</a><span class="hideme">|</span></li>
 
       </ul>
 
 
        <ul id="lang_choice">
+           <li><a href="about.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
            <li><a href="about.html.en"
-           lang="en"
-           xml:lang="en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
+           <li><a href="about.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="about.html.fr"
            lang="fr"
            xml:lang="fr"
@@ -143,6 +151,11 @@ installieren Sie Ihre eigene Instanz des Validators.</p><ul class="navbar" id="m
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="about.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="about.html.ja"
                lang="ja"
                xml:lang="ja"
