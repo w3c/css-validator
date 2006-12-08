@@ -56,15 +56,15 @@
 drei Anwendungsmöglickeiten:</p>
 
 <h4 id="url">Validation per URL</h4>
-<p>Geben Sie einfach die URL des Dokuments ein, das Sie validieren möchten. Dabei kann es sich um ein HTML- oder CSS-Dokument handeln.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/uri_basic.png" alt="Validation by URI form" /></p>
+<p>Geben Sie einfach die URL des Dokuments ein, das Sie validieren möchten. Dabei kann es sich um ein HTML- oder CSS-Dokument handeln.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/uri_basic_de.png" alt="Validation by URI form" /></p>
 
 <h4 id="fileupload">Validierung per Datei-Upload</h4>
 <p>Diese Möglichkeit erlaubt es Ihnen, eine lokale Datei hochzuladen und zu überprüfen. Klicken Sie auf den "Browse..."-Button und wählen
-Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/file_upload_basic.png" alt="Validation by File Upload" />
+Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/file_upload_basic_de.png" alt="Validation by File Upload" />
 </p><p>In diesem Fall sind nur CSS-Dokumente erlaubt. Das bedeutet, dass Sie keine (X)HTML-Dokumente hochladen können. Sie sollten ausserdem mit @import-Regeln vorsichtig sein, weil diese nur berücksichtigt werden können, wenn Sie explizit eine öffentlich zugängliche URL referenzieren (relative Pfade funktionieren nicht).</p>
 
 <h4 id="directinput">Validierung per direkter Eingabe</h4>
-<p>Diese Methode ist perfekt zum Testen von CSS-Fragmenten. Sie müssen Ihr CSS nur in das Textfeld eingeben.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/direct_input_basic.png" alt="Validation by direct input" />
+<p>Diese Methode ist perfekt zum Testen von CSS-Fragmenten. Sie müssen Ihr CSS nur in das Textfeld eingeben.<img style="display: block; margin-left: auto; margin-right: auto;" src="./images/direct_input_basic_de.png" alt="Validation by direct input" />
 </p><p>Es gelten die gleichen Regeln wie bei der Validierung per Datei-Upload. Beachten Sie, dass diese Lösung sehr praktisch ist, wenn Sie ein Problem haben und Hilfe von der Community benötigen. Sie ist auch nützlich, um einen Bug zu melden, weil Sie auf das Ergebnis per URL verlinken können.</p>
 
 <h4 id="basicvalidation">Was tut die grundlegende Validierung?</h4>

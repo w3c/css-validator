@@ -71,7 +71,7 @@
     この「文書」は HTML でも CSS でも構いません。
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="Validation by URI form" />
+    src="./images/uri_basic_ja.png" alt="Validation by URI form" />
 
 <h4 id="fileupload">ファイルをアップロードして検証</h4>
 <p>
@@ -79,7 +79,7 @@
     「参照」ボタンをクリックし、チェックしたいファイルを選んでください。
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic.png" 
+    src="./images/file_upload_basic_ja.png" 
     alt="Validation by File Upload" />
 <p>
     この場合、CSS 文書のみチェック可能です。
@@ -93,7 +93,7 @@
     テキストエリアに自分で CSS を入力してください。
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic.png" 
+    src="./images/direct_input_basic_ja.png" 
     alt="Validation by direct input" />
 <p>
     なお、先ほどのコメントはこの方法にも当てはまります。

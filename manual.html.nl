@@ -77,7 +77,7 @@ De makkelijkste manier om een document te checken is door de basis interface te 
     Het document kan zowel het HTML als het CSS formaat zijn.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="Validatie door middel van een URI" />
+    src="./images/uri_basic_nl.png" alt="Validatie door middel van een URI" />
 
 <h4 id="fileupload">Valideren via het uploaden van een bestand</h4>    
 <p>
@@ -85,7 +85,7 @@ De makkelijkste manier om een document te checken is door de basis interface te 
 	Klik op de "Bladeren..." knop en selecteer het bestand dat je wilt controleren.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic.png" 
+    src="./images/file_upload_basic_nl.png" 
     alt="Valideren via het uploaden van een bestand" />
 
 <p>
@@ -101,7 +101,7 @@ De makkelijkste manier om een document te checken is door de basis interface te 
 	je CSS in het tekstveld.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic.png" 
+    src="./images/direct_input_basic_nl.png" 
     alt="Valideren via directe invoer" />
 <p>
     Dezelfde opmerkingen als hiervoor zijn van toepassing. Deze methode is erg handig als

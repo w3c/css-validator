@@ -69,14 +69,14 @@
     只需要指定一个你需要验证的文档的URL就可以验证该文档这个文档可以是HTML或者CSS文件
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="Validation by URI form" />
+    src="./images/uri_basic_zh.png" alt="Validation by URI form" />
 
 <h4 id="fileupload">通过上传文件来验证</h4>    
 <p>
     这个方法允许你上传然后验证你上传的文件。点击“浏览...”按钮，然后选择一个你的机器上的要进行验证的文件就可以进行验证
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic.png" 
+    src="./images/file_upload_basic_zh.png" 
     alt="Validation by File Upload" />
 <p>
     这种情况下，只允许使用CSS文档，也就是说，你不能上传HTML格式的文件。你还需要注意的一点是@import属性。只有当他们是一个明确的公开的URL的时候才会被验证(也就是说，不要使用相对路径)。 
@@ -87,7 +87,7 @@
     这个方法目的是为了测试一段CSS的代码。你只需要在文本输入框中输入你的CSS代码就可以了。
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic.png" 
+    src="./images/direct_input_basic_zh.png" 
     alt="Validation by direct input" />
 <p>
     和上一种方法一样需要注意只能使用CSS的代码并且只能使用绝对的URL路径。这种方法在你的某一段CSS代码有问题希望得到解决的时候非常有用，也非常方便。在报告某个bug的时候也很简单，因为你可以将验证结果的URL给我们。

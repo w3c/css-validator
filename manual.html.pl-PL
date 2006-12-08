@@ -18,8 +18,8 @@
 <body>
 
   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homh.png" /></a>
-    <a href="./"><img src="css_vall.png" alt="Usługa Walidacji CSS" /></a></h1>
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="Usługa Walidacji CSS" /></a></h1>
 </div>
 
 <div id="main">
@@ -67,13 +67,13 @@ Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego int
 <p>
     Wprowadź URL dokumentu, który chcesz sprawdzić. Może to być dokument HTML lub CSS. </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="uri_basi.png" alt="Walidacja przez URI" />
+    src="./images/uri_basic_pl.png" alt="Walidacja przez URI" />
 
 <h4 id="fileupload">Walidacja poprzez załadowanie pliku </h4>    
 <p>
     To rozwiązanie pozwala na przesłanie oraz sprawdzenie pliku lokalnego. Naciśnij klawisz &quot;Choose&quot; i znajdź plik, który chcesz sprawdzić. </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="file_upl.png" 
+    src="./images/file_upload_basic_pl.png"
     alt="Walidacja poprzez załadowanie pliku" />
 <p>
     W tym wypadku zezwala się jedynie na dokumenty CSS. Oznacza to, że nie można wysyłać dokumentów (X)HTML. Trzeba także uważać na zasady @import, ponieważ będą one przestrzegane jedynie, gdy wyraźnie odwołują się do publicznego URL (nie używaj ścieżek relatywnych w tym rozwiązaniu). </p>
@@ -82,7 +82,7 @@ Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego int
 <p>
     Ta metoda jest idealna do testowania fragmentów CSS. Należy jedynie wpisać kod CSS w polu tekstowym. </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="direct_i.png" 
+    src="./images/direct_input_basic_pl.png" 
     alt="Walidacja poprzez wprowadzenie kodu" />
 <p>
     Poprzednie komentarze mają zastosowanie także w tym wypadku. Proszę mieć na uwadze fakt, że takie rozwiązanie jest bardzo dogodne w przypadku pojawienia się problemów, wymagająch pomocy. Pomocne jest to także w zgłaszaniu błędów z uwagi na to, iż daje to możliwość zalinkowania do URL konkretnego przypadku. </p>    

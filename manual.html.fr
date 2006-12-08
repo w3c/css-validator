@@ -65,13 +65,13 @@ vous trouverez trois formulaires correspondant à trois possibilités :</p>
 <h4 id="url">La validation par interrogation d'adresse URL</h4>
 <p>Entrez simplement l'adresse URL du document à valider. Çà peut être un document HTML ou seulement CSS.</p>
 
-<img style="display: block; margin-left:auto; margin-right: auto;"  src="./images/uri_basic.png" alt="Forme de validation par adresse URI" />
+<img style="display: block; margin-left:auto; margin-right: auto;"  src="./images/uri_basic_fr.png" alt="Forme de validation par adresse URI" />
 
 <h4 id="fileupload">La validation par chargement de fichier</h4>    
 <p>Cette solution permet de charger un fichier local sur le serveur et le vérifier. Cliquez sur le bouton « Parcourir... »
 et sélectionnez le fichier à vérifier.</p>
 
-<img style="display: block; margin-left:auto; margin-right: auto;" src="./images/file_upload_basic.png" alt="Validation par chargement de fichier" />
+<img style="display: block; margin-left:auto; margin-right: auto;" src="./images/file_upload_basic_fr.png" alt="Validation par chargement de fichier" />
 
 <p>Dans ce cas, seuls les documents CSS sont permis. Vous ne pourrez donc pas charger de documents (X)HTML. Vous devrez aussi faire
 attention aux règles @import car elles ne seront suivies que si elles appellent explicitement une adresse URL publique (donc pas de
@@ -80,7 +80,7 @@ chemins relatifs avec cette méthode).</p>
 <h4 id="directinput">La validation par saisie directe</h4>
 <p>Cette méthode est parfaite pour tester des fragments CSS. Vous devez juste écrire votre code CSS dans la zone de saisie.</p>
 
-<img style="display: block; margin-left:auto; margin-right: auto;" src="./images/direct_input_basic.png" alt="Validation par saisie directe" />
+<img style="display: block; margin-left:auto; margin-right: auto;" src="./images/direct_input_basic_fr.png" alt="Validation par saisie directe" />
 
 <p>Les mêmes remarques que précédemment s'appliquent. Notez que cette solution est très pratique si vous rencontrez un problème et que
 vous avez besoin d'aide auprès de la communauté. Elle est également très utile pour signaler un bogue puisque vous pouvez indiquer un lien
