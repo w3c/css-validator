@@ -37,7 +37,7 @@
       <li><a href="#url">V通过URL的Response来验证</a></li>
       <li><a href="#fileupload">通过上传文件来验证</a></li>
       <li><a href="#directinput">通过直接输入的内容来验证</a></li>
-      <li><a href="#basicvalidation">基本验证都作了什么工作？</a>
+      <li><a href="#basicvalidation">基本验证都作了什么工作？</a></li>
     </ul>
   </li>
   <li><a href="#advanced">高级验证</a>

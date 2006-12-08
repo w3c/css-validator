@@ -38,7 +38,7 @@
       response</a></li>
       <li><a href="#fileupload">Validation by file upload</a></li>
       <li><a href="#directinput">Validation by direct input</a></li>
-      <li><a href="#basicvalidation">What does the basic validation do?</a>
+      <li><a href="#basicvalidation">What does the basic validation do?</a></li>
     </ul>
   </li>
   <li><a href="#advanced">Advanced validation</a>
