@@ -25,10 +25,7 @@
         Sprawdź Kaskadowe Arkusze Stylów CSS) i dokumenty (X)HTML z arkuszami stylów
       </p>
 	<div id="frontforms">
-      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">przez URI</a></li>
-      <li><a href="#validate-by-upload">poprzez załadowanie pliku</a></li>
-      <li><a href="#validate-by-input">poprzez wprowadzenie kodu</a></li>
-      </ul>
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">przez URI</a></li><li><a href="#validate-by-upload">poprzez załadowanie pliku</a></li><li><a href="#validate-by-input">poprzez wprowadzenie kodu</a></li></ul>
     		    <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Walidacja przez URI</legend>
