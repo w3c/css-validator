@@ -27,4 +27,17 @@
   color: white;
 }
 
+/* id="css" - to identify the validated style sheet */
+#css {}
 
+/* class="selector" - name of the selector */
+.selector {display: inline;}
+
+/* class='vRule' - block of all propertie-value*/
+.vRule {display: block;}
+
+/* class='Property' - block of propertie-value */
+.Property {display: block;}
+
+/* class='vPropertyValue' - block of value of property */
+.vPropertyValue {display: inline;}
