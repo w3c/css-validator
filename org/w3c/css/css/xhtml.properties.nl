@@ -90,48 +90,60 @@ warning:
 
 # het begin van een document
 document: \
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"\
-                      "http://www.w3.org/TR/REC-html40/loose.dtd">\n\
-<html lang="nl"> \n\
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n\
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\
+<html lang='nl' xml:lang='nl' xmlns='http://www.w3.org/1999/xhtml'>\n\
 <head> \n\
-<meta lang="nl" name="Translator" content="Sijtsche de Jong">\n\
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> \n\
-<title>CSS Validator resultaten</title> \n\
-<link href="http://jigsaw.w3.org/css-validator/" rel="validator">\n\
-<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css'>\n\
-<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css'>\n\
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW" /> \n\
+<title>W3C CSS Validator Resultaten met object : <!-- #file-title --></title> \n\
+<link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
+<link type="text/css" rel='stylesheet' href='style/base.css' />\n\
+<link type="text/css" rel='stylesheet' href='style/results.css' />\n\
 </head> \n\
 <body> \n\
-<p>\n\
-<a href="http://www.w3.org"><img\n\
-src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48"></a> <a\n\
-style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
-src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
-height="52"></a>\n\
-</p>\n\
-<h1>W3C CSS Validator Resultaten met object : \
-<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
-<ul> \n\
-<!-- #go-errors --> \
-<!-- #go-warnings --> \
-<!-- #go-rules --> \n\
-<li>\
-<a href="http://jigsaw.w3.org/css-validator/">Terug naar de CSS Validator</a></li>\
-</ul>\n\
-<!-- #no-error-or-warning -->\
-<!-- #no-errors -->\
-<!-- #hook-html-validator -->\
-<!-- #errors -->\
-<!-- #warnings -->\
-<!-- #rules -->\
-<!-- #no-rules -->\
-<hr /> \n\
-<a class="right" href="http://jigsaw.w3.org/css-validator">\
- <img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" \
-	alt="Correct CSS!" height="31" width="88"></a>\n\
-<address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
-Last Updated : <!-- #today --> </address> \n\
+<div id="banner">\n\
+ <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
+ <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+</div>\n\
 \n\
-<!-- Created: Wed Aug 20 14:40:43 GMT+03:30 1997--> \n\
-</body> \n\
-</html>
+<h2>W3C CSS Validator Resultaten met object : \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h2> \n\
+<!-- #no-error-or-warning -->\n\
+<!-- #no-errors -->\n\
+<!-- #hook-html-validator -->\n\
+<!-- #errors -->\n\
+<!-- #warnings -->\n\
+<!-- #rules -->\n\
+<!-- #no-rules -->\n\
+	<ul class="navbar"  id="menu">\n\
+		<li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>\n\
+  <li><a href="documentation.html" title="Documentatie voor de W3C CSS Validatie Service">Documentatie</a> <span class="hideme">|</span></li>\n\
+  <li><a href="DOWNLOAD.html" title="Download de CSS validator">Download</a> <span class="hideme">|</span></li>\n\
+  <li><a href="Email.html" title="Hoe reacties te geven over deze service">Reacties</a> <span class="hideme">|</span></li>\n\
+  <li><a href="thanks.html" title="Credits en Erkenning">Credits</a></li>\n\
+</ul>
+   <p id="activity_logos"> \n\
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a> \n\
+   </p> \n\
+   <p id="support_logo"> \n\
+Support this tool, become a<br /> \n\
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a> \n\
+   </p> \n\
+    <p class="copyright"> \n\
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006 \n\
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg; \n\
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, \n\
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, \n\
+      <a href="http://www.keio.ac.jp/">Keio</a>), \n\
+      All Rights Reserved. \n\
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, \n\
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, \n\
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> \n\
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a> \n\
+      rules apply. Your interactions with this site are in accordance \n\
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and \n\
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy \n\
+      statements. \n\
+    </p> \n\
+  </body> \n\
+</html> \n\

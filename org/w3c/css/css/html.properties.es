@@ -97,7 +97,6 @@ warning:
 
 # the beginning of the document
 document: \
-<?xml version='1.0' encoding='iso-8859-1'?>\n\
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n\
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\
 <html lang='es' xml:lang='es' xmlns='http://www.w3.org/1999/xhtml'>\n\
@@ -105,20 +104,17 @@ document: \
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" /> \n\
 <title>Resultados del Validador CSS del W3C para <!-- #file-title --></title> \n\
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
-<link type="text/css" rel='stylesheet' href='http://www.w3.org/StyleSheets/TR/base.css' />\n\
-<link type="text/css" rel='stylesheet' href='http://jigsaw.w3.org/css-validator/style/results.css' />\n\
+<link type="text/css" rel='stylesheet' href='style/base.css' />\n\
+<link type="text/css" rel='stylesheet' href='style/results.css' />\n\
 </head> \n\
 <body> \n\
-<p>\n\
-<a href="http://www.w3.org"><img\n\
-src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" /></a> <a\n\
-style="float: right" href="http://www.w3.org/Jigsaw/"><img\n\
-src="http://jigsaw.w3.org/Icons/jigpower" alt="Jigsaw Powered" width="94"\n\
-height="52" /></a>\n\
-</p>\n\
+<div id="banner">\n\
+ <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
+ <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+</div>\n\
 \n\
-<h1>Resultados del Validador de CSS del W3C para \
-<a href="<!-- #file-title -->"><!-- #file-title --></a></h1> \n\
+<h2>Resultados del Validador CSS del W3C para \
+<a href="<!-- #file-title -->"><!-- #file-title --></a></h2> \n\
 <!-- #no-error-or-warning -->\n\
 <!-- #no-errors -->\n\
 <!-- #hook-html-validator -->\n\
@@ -126,13 +122,35 @@ height="52" /></a>\n\
 <!-- #warnings -->\n\
 <!-- #rules -->\n\
 <!-- #no-rules -->\
-<hr /> \n\
-<p><a class="right" href="http://jigsaw.w3.org/css-validator/">\
- <img src="http://jigsaw.w3.org/css-validator/images/vcss" \
-	alt="¡CSS Válido!" height="31" width="88" /></a></p>\n\
-<address><a href="<!-- #author-email -->"><!-- #author --></a><br />\
-Última Modificación: <!-- #today --> </address> \n\
-\n\
-<!-- Created: Lun 27 Dic 14:40:43 GMT+03:30 2004--> \n\
-</body> \n\
-</html>
+<ul class="navbar"  id="menu">\n\
+	<li><strong><a href="./" title="P&aacute;gina de inicio del Servicio de Validaci&oacute;n CSS del  W3C">Inicio</a></strong> <span class="hideme">|</span></li>\n\
+	<li><a href="about.html" title="Acerca de este servicio">Acerca de este servicio</a> <span class="hideme">|</span></li>\n\
+     <li><a href="documentation.html" title="Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C">Documentaci&oacute;n</a> <span class="hideme">|</span></li>\n\
+     <li><a href="Email.html" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>\n\
+     <li><a href="thanks.html" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>\n\
+   </ul>\n\
+   <p id="activity_logos"> \n\
+      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a> \n\
+   </p> \n\
+   <p id="support_logo"> \n\
+Support this tool, become a<br /> \n\
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a> \n\
+   </p> \n\
+    <p class="copyright"> \n\
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006 \n\
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg; \n\
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, \n\
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, \n\
+      <a href="http://www.keio.ac.jp/">Keio</a>), \n\
+      All Rights Reserved. \n\
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, \n\
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, \n\
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> \n\
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a> \n\
+      rules apply. Your interactions with this site are in accordance \n\
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and \n\
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy \n\
+      statements. \n\
+    </p> \n\
+  </body> \n\
+</html> \n\
