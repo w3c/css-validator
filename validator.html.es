@@ -3,10 +3,11 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
-    <title>Servicio de Validación de CSS del W3C</title>
+    <title>El Servicio de Validaci&oacute;n de CSS del W3C</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Home Page" />
-    <style type="text/css" media="all">@import "style/base.css";</style>
+    <style type="text/css" media="all">@import "style/base.css";
+</style>
     <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
     <script type="text/javascript" src="tabtastic/attachevent.js"></script>
     <script type="text/javascript" src="tabtastic/addcss.js"></script>
@@ -18,223 +19,212 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>
+    <img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS" /></h1>
    </div>
       <p id="tagline">
-        Valide su Hoja de Estilo en Cascada (CSS) de los documentos (X)HTML, o independientes
+        Comprueba Hojas de Estilo en Cascada (CSS) y documentos (X)HTML con hojas de estilo
       </p>
 	<div id="frontforms">
-      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">Por URI</a></li><li><a href="#validate-by-upload">Enviando el Archivo</a></li><li><a href="#validate-by-input">Introduciendo la CSS directamente</a></li></ul>
+      <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">mediante URI</a></li><li><a href="#validate-by-upload">mediante Carga de Archivo</a></li><li><a href="#validate-by-input">mediante Entrada directa</a></li></ul>
     		    <div id="fields">
 
-      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validar por URI</legend>
+      <fieldset id="validate-by-uri" class="tabset_content front"><legend class="tabset_label">Validar mediante URI</legend>
       <form method="get" action="validator">
       <p class="instructions">
-	Introduzca el URI del documento (HTML con CSS o CSS sólo) que quiera validar:     
+	Introduce la URI de un documento (HTML con CSS o s&oacute;lo CSS) que desees validar:     
       </p>
       <p>
-	<label title="Address of page to Validate" for="uri">Dirección:
+	<label title="Direcci&oacute;n de la p&aacute;gina a Validar" for="uri">Direcci&oacute;n:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
       <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">Más Opciones</p>
+      <p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s Opciones</p>
       <div>
-		 Advertencias:
-		      <select name="warning"> 
-			<option value="2">Todas</option>
-			<option selected="selected" value="1">Informe normal</option>
-			<option value="0">Las más importantes</option>
-			<option value="no">Ninguna</option>
-		      </select>
+      Avisos :
+      <select name="warning"> 
+	<option value="2">Todos</option>
+	<option selected="selected" value="1">Informe normal</option>
+	<option value="0">Los m&aacute;s importantes</option>
+	<option value="no">Sin avisos</option>
+      </select>
+      
+      Perfil :
+      <select name="profile">
+	<option value="none">Ninguno en especial</option>
+	<option value="css1">CSS versi&oacute;n 1</option>
+	<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
+	<option value="css21">CSS versi&oacute;n 2.1</option>
+ 	<option value="css3">CSS versi&oacute;n 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG B&aacute;sico</option>
+	<option value="svgtiny">SVG Reducido</option>	
+	<option value="mobile">M&oacute;vil</option>
+	<option value="atsc-tv">Perfil de TV ATSC</option>
+	<option value="tv">Perfil de TV</option>
+      </select>
 
-		      Perfil:
-		      <select name="profile">
-			<option value="none">Ninguno en especial</option>
-			<option value="css1">CSS versión 1</option>
-			<option selected="selected" value="css2">CSS versión 2</option>
-			<option value="css21">CSS versión 2.1</option>
-		 	<option value="css3">CSS versión 3</option>
-			<option value="svg">SVG</option>
-			<option value="svgbasic">SVG Básico</option>
-			<option value="svgtiny">SVG Reducido</option>	
-			<option value="mobile">Móvil</option>
-			<option value="atsc-tv">Perfil de TV ATSC</option>
-			<option value="tv">Perfil de TV</option>
-		      </select>
-
-		      Medio:
-		      <select name="usermedium">
-			<option selected="selected" value="all">todos</option>	
-			<option value="aural">auditivo</option>
-			<option value="braille">braille</option>
-			<option value="print">impresión</option>	
-			<option value="screen">pantalla</option>
-			<option value="handheld">pequeños dispositivos</option>
-			<option value="presentation">presentación</option>
-			<option value= "projection">proyección</option>
-			<option value="embossed">relieve</option>
-			<option value="tty">teletipo</option>
-			<option value="tv">televisión</option>
-		      </select>
-
+      Medio :
+      <select name="usermedium">
+	<option selected="selected" value="all">todos</option>
+	<option value="aural">auditivo</option>
+	<option value="braille">braille</option>
+	<option value="embossed">relieve</option>
+	<option value="handheld">peque&ntilde;os dispositivos</option>
+	<option value="print">impresi&oacute;n</option>
+	<option value= "projection">proyecci&oacute;n</option>
+	<option value="screen">pantalla</option>
+	<option value="tty">teletipo</option>
+	<option value="tv">televisi&oacute;n</option>
+	<option value="presentation">presentaci&oacute;n</option>
+      </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Comprobar" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
       </form>
       </fieldset>
 
-      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Validar enviando el Archivo</legend>
+      <fieldset id="validate-by-upload"  class="tabset_content front"><legend class="tabset_label">Validar mediante Carga de un Archivo</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-      <p class="instructions">Indique el documento que quiera validar (sólo archivos CSS):</p>
+      <p class="instructions">Elige el documento que desees validar (&uacute;nicamente archivos CSS):</p>
       <p>
-	<label title="Choose a Local File to Upload and Validate" for="file">Archivo CSS local:
+	<label title="Elige un Archivo Local para su Carga y Validaci&oacute;n" for="file">Archivo CSS local:
 	<input type="file" id="file" name="file" size="30" /></label></p>
       <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">Más Opciones</p>
+      <p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</p>
       <div>
-		 Advertencias:
-		      <select name="warning"> 
-			<option value="2">Todas</option>
-			<option selected="selected" value="1">Informe normal</option>
-			<option value="0">Las más importantes</option>
-			<option value="no">Ninguna</option>
-		      </select>
+      Avisos :
+      <select name="warning"> 
+	<option value="2">Todos</option>
+	<option selected="selected" value="1">Informe normal</option>
+	<option value="0">Los m&aacute;s importantes</option>
+	<option value="no">Sin avisos</option>
+      </select>
+      
+      Perfil :
+      <select name="profile">
+	<option value="none">Ninguno en especial</option>
+	<option value="css1">CSS versi&oacute;n 1</option>
+	<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
+	<option value="css21">CSS versi&oacute;n 2.1</option>
+ 	<option value="css3">CSS versi&oacute;n 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG B&aacute;sico</option>
+	<option value="svgtiny">SVG Reducido</option>	
+	<option value="mobile">M&oacute;vil</option>
+	<option value="atsc-tv">Perfil de TV ATSC</option>
+	<option value="tv">Perfil de TV</option>
+      </select>
 
-		      Perfil:
-		      <select name="profile">
-			<option value="none">Ninguno en especial</option>
-			<option value="css1">CSS versión 1</option>
-			<option selected="selected" value="css2">CSS versión 2</option>
-			<option value="css21">CSS versión 2.1</option>
-		 	<option value="css3">CSS versión 3</option>
-			<option value="svg">SVG</option>
-			<option value="svgbasic">SVG Básico</option>
-			<option value="svgtiny">SVG Reducido</option>	
-			<option value="mobile">Móvil</option>
-			<option value="atsc-tv">Perfil de TV ATSC</option>
-			<option value="tv">Perfil de TV</option>
-		      </select>
-
-		      Medio:
-		      <select name="usermedium">
-			<option selected="selected" value="all">todos</option>	
-			<option value="aural">auditivo</option>
-			<option value="braille">braille</option>
-			<option value="print">impresión</option>	
-			<option value="screen">pantalla</option>
-			<option value="handheld">pequeños dispositivos</option>
-			<option value="presentation">presentación</option>
-			<option value= "projection">proyección</option>
-			<option value="embossed">relieve</option>
-			<option value="tty">teletipo</option>
-			<option value="tv">televisión</option>
-		      </select>
+      Medio :
+      <select name="usermedium">
+	<option selected="selected" value="all">todos</option>
+	<option value="aural">auditivo</option>
+	<option value="braille">braille</option>
+	<option value="embossed">relieve</option>
+	<option value="handheld">peque&ntilde;os dispositivos</option>
+	<option value="print">impresi&oacute;n</option>
+	<option value= "projection">proyecci&oacute;n</option>
+	<option value="screen">pantalla</option>
+	<option value="tty">teletipo</option>
+	<option value="tv">televisi&oacute;n</option>
+	<option value="presentation">presentaci&oacute;n</option>
+      </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Comprobar" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
       </form>
       </fieldset>
 
-      <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validar introduciendo CSS directamente</legend>
+      <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validar mediante entrada directa</legend>
       <form action="validator" method="get">
-      <p class="instructions">Enter the CSS you would like validated:</p>
+      <p class="instructions">Introduce el c&oacute;digo CSS que desees validar:</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
       <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">Más Opciones</p>
+      <p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</p>
       <div>
-		 Advertencias:
-		      <select name="warning"> 
-			<option value="2">Todas</option>
-			<option selected="selected" value="1">Informe normal</option>
-			<option value="0">Las más importantes</option>
-			<option value="no">Ninguna</option>
-		      </select>
+      Avisos :
+      <select name="warning"> 
+	<option value="2">Todos</option>
+	<option selected="selected" value="1">Informe normal</option>
+	<option value="0">Los m&aacute;s importantes</option>
+	<option value="no">Sin avisos</option>
+      </select>
+      
+      Perfil :
+      <select name="profile">
+	<option value="none">Ninguno en especial</option>
+	<option value="css1">CSS versi&oacute;n 1</option>
+	<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
+	<option value="css21">CSS versi&oacute;n 2.1</option>
+ 	<option value="css3">CSS versi&oacute;n 3</option>
+	<option value="svg">SVG</option>
+	<option value="svgbasic">SVG B&aacute;sico</option>
+	<option value="svgtiny">SVG Reducido</option>	
+	<option value="mobile">M&oacute;vil</option>
+	<option value="atsc-tv">Perfil de TV ATSC</option>
+	<option value="tv">Perfil de TV</option>
+      </select>
 
-		      Perfil:
-		      <select name="profile">
-			<option value="none">Ninguno en especial</option>
-			<option value="css1">CSS versión 1</option>
-			<option selected="selected" value="css2">CSS versión 2</option>
-			<option value="css21">CSS versión 2.1</option>
-		 	<option value="css3">CSS versión 3</option>
-			<option value="svg">SVG</option>
-			<option value="svgbasic">SVG Básico</option>
-			<option value="svgtiny">SVG Reducido</option>	
-			<option value="mobile">Móvil</option>
-			<option value="atsc-tv">Perfil de TV ATSC</option>
-			<option value="tv">Perfil de TV</option>
-		      </select>
-
-		      Medio:
-		      <select name="usermedium">
-			<option selected="selected" value="all">todos</option>	
-			<option value="aural">auditivo</option>
-			<option value="braille">braille</option>
-			<option value="print">impresión</option>	
-			<option value="screen">pantalla</option>
-			<option value="handheld">pequeños dispositivos</option>
-			<option value="presentation">presentación</option>
-			<option value= "projection">proyección</option>
-			<option value="embossed">relieve</option>
-			<option value="tty">teletipo</option>
-			<option value="tv">televisión</option>
-		      </select>
-
+      Medio :
+      <select name="usermedium">
+	<option selected="selected" value="all">todos</option>
+	<option value="aural">auditivo</option>
+	<option value="braille">braille</option>
+	<option value="embossed">relieve</option>
+	<option value="handheld">peque&ntilde;os dispositivos</option>
+	<option value="print">impresi&oacute;n</option>
+	<option value= "projection">proyecci&oacute;n</option>
+	<option value="screen">pantalla</option>
+	<option value="tty">teletipo</option>
+	<option value="tv">televisi&oacute;n</option>
+	<option value="presentation">presentaci&oacute;n</option>
+      </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Submit file for validation"><input type="submit" value="Comprobar" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
       </form>
       </fieldset>
-            </div><!-- fields -->
+      </div><!-- fields -->
 	</div> <!-- frontforms -->
-	<p><strong>Nota</strong>: Si se quiere validar una hoja de estilo CSS dentro de un documento (X)HTML, primero se debería <a href="http://validator.w3.org/">comprobar que el (X)HTML utilizado es válido</a>.
+	<p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deber&iacute;as antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es v&aacute;lido</a>.
 	</p>
    <ul class="navbar"  id="menu">
-        <li><a href="about.html" title="About this service">A Propósito</a> <span class="hideme">|</span></li>
-        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Descarga e Installación</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="How to provide feedback on this service">Sugerencias</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Credits and Acknowlegments">Créditos</a><span class="hideme">|</span></li>
+        <li><a href="about.html" title="Acerca de este servicio">Acerca de este servicio</a> <span class="hideme">|</span></li>
+        <li><a href="documentation" title="Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C">Documentaci&oacute;n</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Descarga el Validador CSS">Descarga</a> <span class="hideme">|</span></li>
+        <li><a href="Email" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
       </ul>
 
-
-      <ul id="lang_choice">
-           <li><a href="validator.html.de"
-               lang="de"
-               xml:lang="de"
-               hreflang="de"
-               rel="alternate">Deutsch</a></li>
+       <ul id="lang_choice">
            <li><a href="validator.html.en"
-               lang="en"
-               xml:lang="en"
+           lang="en"
+           xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
            <li><a href="validator.html.es"
-           lang="es" xml:lang="es" hreflang="es"
-           rel="alternate">Español</a></li>
+           lang="es"
+           xml:lang="es"
+           hreflang="es"
+           rel="alternate">Espa&ntilde;ol</a>  </li>
            <li><a href="validator.html.fr"
            lang="fr"
            xml:lang="fr"
            hreflang="fr"
-           rel="alternate">Français</a> </li>
+           rel="alternate">Fran&Atilde;&sect;ais</a> </li>
            <li><a href="validator.html.it"
                lang="it"
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
-           <li><a href="validator.html.nl"
-               lang="nl"
-               xml:lang="nl"
-               hreflang="nl"
-               rel="alternate">Nederlands</a> </li>
            <li><a href="validator.html.ja"
                lang="ja"
                xml:lang="ja"
                hreflang="ja"
-               rel="alternate">日本語</a> </li>
+               rel="alternate">&aelig;&#151;&yen;&aelig;&#156;&not;&egrave;&ordf;&#158;</a> </li>
            <li><a href="validator.html.pl-PL"
                lang="pl"
                xml:lang="pl"
@@ -244,38 +234,35 @@
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">中文</a></li>
+               rel="alternate">&auml;&cedil;&shy;&aelig;&#150;&#135;</a></li>
       </ul>
 
 
-
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-Support this tool, become a<br />
+Apoya esta herramienta, convi&eacute;rtete en un <br />
 <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
    </p>
 
     <p class="copyright">
-      	<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" hreflang="en-us"><br />
-		Copyright</a> &copy; 1994-2006 <a href="http://www.w3.org/" hreflang="en-us"><acronym
-		title="World Wide Web Consortium" xml:lang="en-us">W3C</acronym></a><sup>&reg;</sup> (<a
-		href="http://www.lcs.mit.edu/" hreflang="en-us"><acronym
-		title="Massachusetts Institute of Technology" xml:lang="en-us">MIT</acronym></a>, <a
-		href="http://www.ercim.org" hreflang="en-us"><acronym
-		title="European Research Consortium for Informatics and Mathematics" xml:lang="en-us">ERCIM</acronym></a>,
-		<a href="http://www.keio.ac.jp/" hreflang="en-us">Keio</a>), Todos los derechos reservados.
-		Son aplicables las reglas de <a
-		href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer" hreflang="en-us">responsabilidad</a>,
-		<a
-		href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks" hreflang="en-us">marcas registradas</a>,
-		<a rel="Copyright"
-		href="http://www.w3.org/Consortium/Legal/copyright-documents" hreflang="en-us">utilizaci&oacute;n de documentos</a> y <a rel="Copyright"
-		href="http://www.w3.org/Consortium/Legal/copyright-software" hreflang="en-us">licencias de software</a>.
-		Las interacciones con este sitio est&aacute;n de acuerdo con nuestra declaraci&oacute;n de privacidad de
-		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public" hreflang="en-us">usuarios</a>
-		y <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members" hreflang="en-us">miembros</a>.
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
     </p>
 
   </body>
