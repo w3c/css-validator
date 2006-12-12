@@ -31,7 +31,10 @@
 #css {}
 
 /* class="vAtRule" - block of all atSelector */
-.vAtRule {}
+.vAtRule {
+	font-family: monospace;
+	padding:1em;
+	border: 1px solid #422101;}
 
 /* class="atRule" - block of one atSelector */
 .atRule {}
@@ -40,19 +43,34 @@
 .atSelector {}
 
 /* class="selector" - block of the selector */
-.selector {}
+.selector {
+	background-color: #F1F1F1;
+	margin: 1em;
+	padding: 0.5em 0.5em;
+}
 
-/* class="selector" - value of the selector */
-.selectorValue {}
+/* class="selectorValue" - value of the selector */
+.selectorValue {font-weight: bold;}
 
-/* class='Rule' - block of all couple propertie-value*/
-.RuleList {}
+/* class='RuleList' - block of all couple propertie-value*/
+.RuleList {padding: 0 1em;
+}
 
 /* class='Rule' - one couple propertie-value*/
 .Rule {}
 
 /* class='Property' - propertie name */
-.Property {}
+.Property {
+	color: #006;
+	font-style: italic;
+	position: relative;
+	display: block;
+	float:left;
+	width: 12em;
+	overflow: hidden;
+	}
 
 /* class='PropertyValue' - value of property */
-.vPropertyValue {}
+.PropertyValue {
+	color: #66C;
+}
