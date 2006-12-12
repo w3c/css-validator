@@ -24,6 +24,8 @@ import java.util.Hashtable;
 
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.Errors;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
@@ -112,6 +114,12 @@ public class XMLStyleSheetHandler implements ContentHandler,
     public void comment (char ch[], int start, int length)
         throws SAXException {
 	if (inStyle) {
+            int line = (locator != null ? locator.getLineNumber() : -1);
+            Warning w = new Warning(baseURI.toString(), line,
+                    "style-inside-comment", 0, ac);
+            Warnings warnings = new Warnings();
+            warnings.addWarning(w);
+            styleSheetParser.notifyWarnings(warnings);
 	    text.append(ch, start, length);
 	}
     }
