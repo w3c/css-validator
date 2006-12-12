@@ -21,7 +21,7 @@ public class StyleReportFactory {
 	if ((document == null) || (document.equals("html"))
 	    || (document.equals("xhtml"))) {
 	    return new StyleSheetGeneratorHTML2(ac, title, style,
-						document,
+						"xhtml", // getting rid of duplicate templates
 						warningLevel);
 	}
 	if (document.equals("soap12")) {
@@ -38,7 +38,7 @@ public class StyleReportFactory {
 		return new StyleReportUCN(ac, title, style, document, warningLevel);
 	}
 	return new StyleSheetGeneratorHTML2(ac, title, style,
-					    "html",
+					    "xhtml",
 					    warningLevel);
     }
 }
