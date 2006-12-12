@@ -8,6 +8,9 @@ output-encoding-name: utf-8
 # level is een integer tussen 0 en 9 (alle andere waarden worden genegeerd)
 warning.redefinition: Herdefinitie van %s
 
+# used by xml parser
+warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Dezelfde kleuren voor %s en %s
 warning.no-color: U heeft geen kleur voor uw achtergrondkleur opgegeven

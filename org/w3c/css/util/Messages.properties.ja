@@ -8,6 +8,9 @@ output-encoding-name: utf-8
 #  level is an integer between 0 and 9 (all others values are ignored)
 warning.redefinition: %s が再定義されています
 
+# used by xml parser
+warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: %s と %s が同じ色です
 warning.no-color: 指定された背景色(background-color)に対応する前面色(color)が指定されていません
