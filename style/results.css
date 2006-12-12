@@ -28,13 +28,13 @@
 }
 
 /* id="css" - to identify the validated style sheet */
-#css {}
+#css {width: 70%;}
 
 /* class="vAtRule" - block of all atSelector */
 .vAtRule {
+	background-color: #76aae6;
 	font-family: monospace;
-	padding:1em;
-	border: 1px solid #422101;}
+	padding:1em;}
 
 /* class="atRule" - block of one atSelector */
 .atRule {
@@ -48,7 +48,8 @@
 
 /* class="selector" - block of the selector */
 .selector {
-	background-color: #F1F1F1;
+	background-color: #fff;
+	border-left: 10px solid #073583;
 	margin: 1em;
 	padding: 0.5em 0.5em;
 }
