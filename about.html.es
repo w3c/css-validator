@@ -98,10 +98,10 @@ o seguir las instrucciones para descargar el &aacute;rbol completo de la fuente.
 
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="P&aacute;gina de inicio del Servicio de Validaci&oacute;n CSS del W3C">Inicio</a></strong> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C">Documentaci&oacute;n</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Descarga el Validador CSS">Descarga</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C">Documentaci&oacute;n</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Descarga el Validador CSS">Descarga</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
 
       </ul>
 
