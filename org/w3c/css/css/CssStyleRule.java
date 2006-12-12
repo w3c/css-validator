@@ -78,7 +78,7 @@ public class CssStyleRule {
      */
     public void toHTML(PrintWriter out) {
 	if(properties != null) {
-	    out.print("<li><span class='selector'>");
+	    out.print("<div><span class='selector'>");
 	    if (selectors != null) {
 		out.print(selectors);
 		out.print("</span> {<span class='vRule'>\n");
@@ -96,7 +96,7 @@ public class CssStyleRule {
 		}
 		out.print(";</span>\n");
 	    }
-	    out.print("</span>}</li>\n\n");
+	    out.print("</span>}</div>\n\n");
 	}
     }
 
