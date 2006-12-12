@@ -120,7 +120,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
             Warnings warnings = new Warnings();
             warnings.addWarning(w);
             styleSheetParser.notifyWarnings(warnings);
-	    text.append(ch, start, length);
+	    //text.append(ch, start, length); // ignoring, per http://www.w3.org/Bugs/Public/show_bug.cgi?id=761
 	}
     }
 
