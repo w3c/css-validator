@@ -354,7 +354,7 @@ CssPrinterStyle {
 //				|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<li='warning'><span class='linenumber'>");
+			    ret.append("\n<li class='warning'><span class='linenumber'>");
 // to remove the trigger of line label in languages.
 //			    ret.append(ac.getMsg().getGeneratorString("line"));
 //			    ret.append(" : ");
