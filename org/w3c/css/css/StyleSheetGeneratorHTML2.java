@@ -364,7 +364,7 @@ CssPrinterStyle {
 			    if (warn.getLevel() != 0) {
 				ret.append("<span class='level");
 				ret.append(warn.getLevel());
-				ret.append("'");
+				ret.append("'>");
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    if (warn.getContext() != null) {
