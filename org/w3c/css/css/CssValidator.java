@@ -100,7 +100,7 @@ public class CssValidator {
 	    System.out.println("\t-lang LANG, --lang=LANG");
 	    System.out.println("\t\tPrints the result in the specified language");
 	    System.out.println("\t\tPossible values for LANG are " +
-		    "de, en (default), es, fr, ja, nl, zh-cn");
+		    "de, en (default), es, fr, ja, nl, zh-cn, pl, it");
 	    System.out.println("\t-warning WARN, --warning=WARN");
 	    System.out.println("\t\tWarnings verbosity level");
 	    System.out.println("\t\tPossible values for WARN are -1 (no " +

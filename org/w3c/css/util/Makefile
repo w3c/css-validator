@@ -43,7 +43,7 @@ Messages.class:: Messages.java\
 	/usr/local/java11/lib/classes.zip
 NVPair.class:: NVPair.java
 
-Messages.properties.ja: Messages.properties.ja.EUCJIS
-	native2ascii -encoding EUCJIS Messages.properties.ja.EUCJIS Messages.properties.ja 
-Messages.properties.zh-cn: Messages.properties.zh-cn.GB
-	native2ascii -encoding euc-cn Messages.properties.zh-cn.GB Messages.properties.zh-cn
+#Messages.properties.ja: Messages.properties.ja.EUCJIS
+#	native2ascii -encoding EUCJIS Messages.properties.ja.EUCJIS Messages.properties.ja 
+#Messages.properties.zh-cn: Messages.properties.zh-cn.GB
+#	native2ascii -encoding euc-cn Messages.properties.zh-cn.GB Messages.properties.zh-cn

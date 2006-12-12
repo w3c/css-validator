@@ -188,6 +188,7 @@ public class Messages {
 		tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("zh-cn", tmp);
+		languages.put("zh", tmp); // for now we have no other alternative for chinese
 	    } finally {
 		f.close();
 	    }
@@ -266,6 +267,40 @@ public class Messages {
 	} catch (Exception e) {
 	    System.err.println("org.w3c.css.util.Messages: "+
 			       "couldn't load properties nl");
+	    System.err.println("  " + e.toString());
+	}
+
+	// ------------------------------------------------
+	try {
+	    URL url = Messages.class.getResource("Messages.properties.it");
+	    java.io.InputStream f = url.openStream();
+	    try {
+		tmp = new Utf8Properties();
+		tmp.load(f);
+		languages.put("it", tmp);
+	    } finally {
+		f.close();
+	    }
+	} catch (Exception e) {
+	    System.err.println("org.w3c.css.util.Messages: "+
+			       "couldn't load properties it");
+	    System.err.println("  " + e.toString());
+	}
+
+	// ------------------------------------------------
+	try {
+	    URL url = Messages.class.getResource("Messages.properties.pl-PL");
+	    java.io.InputStream f = url.openStream();
+	    try {
+		tmp = new Utf8Properties();
+		tmp.load(f);
+		languages.put("pl", tmp);
+	    } finally {
+		f.close();
+	    }
+	} catch (Exception e) {
+	    System.err.println("org.w3c.css.util.Messages: "+
+			       "couldn't load properties pl");
 	    System.err.println("  " + e.toString());
 	}
 
