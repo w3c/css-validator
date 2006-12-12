@@ -30,6 +30,15 @@
 /* id="css" - to identify the validated style sheet */
 #css {}
 
+/* class="vAtRule" - block of all atSelector */
+.vAtRule {}
+
+/* class="atRule" - block of one atSelector */
+.atRule {}
+
+/* class="atSelector" - Value of atSelector */
+.atSelector {}
+
 /* class="selector" - block of the selector */
 .selector {}
 
