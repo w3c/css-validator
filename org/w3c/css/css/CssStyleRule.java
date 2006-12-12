@@ -78,15 +78,15 @@ public class CssStyleRule {
      */
     public void toHTML(PrintWriter out) {
 	if(properties != null) {
-	    out.print("<div class='selector'><span class='selectorValue'>");
+	    out.print("<div class='selector'>\n<span class='selectorValue'>");
 	    if (selectors != null) {
 		out.print(selectors);
-		out.print("</span> {<div class='vRuleList'>\n");
+		out.print("</span> {\n<div class='RuleList'>\n");
 	    }
 
 	    for (int i = 0; i < properties.size() ; i++) {
 		CssProperty property = (CssProperty)properties.elementAt(i);
-		out.print("<div class='Rule'>");
+		out.print("   <div class='Rule'>");
 		out.print("<span class='Property'>");
 		out.print(Util.escapeHTML(property.getPropertyName()));
 		out.print("</span>");
@@ -98,7 +98,7 @@ public class CssStyleRule {
 		}
 		out.print(";</div>\n");
 	    }
-	    out.print("</div>}</div>\n\n");
+	    out.print("</div>}\n</div>\n\n");
 	}
     }
 

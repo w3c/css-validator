@@ -126,13 +126,13 @@ public class CssRuleList {
     public void toHTML(PrintWriter out) {
 	if (null != atRule && atRule.isEmpty()) {
 	    if (!atRuleString.equals("")) {
-		out.print("<div><span class='atSelector'>");
+		out.print("<div class='atRule'><span class='atSelector'>");
 		out.print(Util.escapeHTML(atRuleString));
 		out.print("</span></div> \n\n");
 	    }
 	} else {
 	    if (!atRuleString.equals("")) {
-		out.print("<div><span class='atSelector'>");
+		out.print("<div class='atRule'><span class='atSelector'>");
 		out.print(Util.escapeHTML(atRuleString));
 		out.print("</span> {\n<div>\n");
 	    }
