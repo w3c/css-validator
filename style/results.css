@@ -37,7 +37,11 @@
 	border: 1px solid #422101;}
 
 /* class="atRule" - block of one atSelector */
-.atRule {}
+.atRule {
+	margin: 1em 0;
+	padding-left: 0.5em;
+	border-left: 3px solid #ddd;
+}
 
 /* class="atSelector" - Value of atSelector */
 .atSelector {}
