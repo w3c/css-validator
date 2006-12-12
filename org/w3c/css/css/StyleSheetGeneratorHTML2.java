@@ -354,21 +354,23 @@ CssPrinterStyle {
 //				|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<li><span class='warning'>");
-			    ret.append(ac.getMsg().getGeneratorString("line"));
-			    ret.append(" : ");
+			    ret.append("\n<li='warning'><span class='linenumber'>");
+// to remove the trigger of line label in languages.
+//			    ret.append(ac.getMsg().getGeneratorString("line"));
+//			    ret.append(" : ");
 			    ret.append(oldLine);
+			    ret.append("</span>. ");
+// <span class='level1'> - level of warning
 			    if (warn.getLevel() != 0) {
-				ret.append(" (Level : ");
+				ret.append("<span class='level");
 				ret.append(warn.getLevel());
-				ret.append(")");
+				ret.append("'");
 			    }
-			    ret.append("</span> ");
 			    ret.append(Util.escapeHTML(oldMessage));
-
 			    if (warn.getContext() != null) {
 				ret.append(" : ").append(warn.getContext());
 			    }
+			    ret.append("</span> ");
 			    ret.append("</li>");
 //			}
 		    }
