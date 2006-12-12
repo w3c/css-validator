@@ -79,7 +79,7 @@
       </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Comprobar" /></label></p>
       </form>
       </fieldset>
 
@@ -131,7 +131,7 @@
       </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Comprobar" /></label></p>
       </form>
       </fieldset>
 
@@ -184,7 +184,7 @@
       </select>
 </div><!-- item_contents -->
 </fieldset><!-- invisible -->
-	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Check" /></label></p>
+	<p class="submit_button"><label title="Enviar archivo para su validaci&oacute;n"><input type="submit" value="Comprobar" /></label></p>
       </form>
       </fieldset>
       </div><!-- fields -->
