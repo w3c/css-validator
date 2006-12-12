@@ -198,33 +198,41 @@
         <li><a href="Email" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
         <li><a href="thanks" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
       </ul>
-
-       <ul id="lang_choice">
+      
+      <ul id="lang_choice">
+           <li><a href="validator.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
            <li><a href="validator.html.en"
-           lang="en"
-           xml:lang="en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
            <li><a href="validator.html.es"
-           lang="es"
-           xml:lang="es"
-           hreflang="es"
-           rel="alternate">Espa&ntilde;ol</a>  </li>
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="validator.html.fr"
            lang="fr"
            xml:lang="fr"
            hreflang="fr"
-           rel="alternate">Fran&Atilde;&sect;ais</a> </li>
+           rel="alternate">Français</a> </li>
            <li><a href="validator.html.it"
                lang="it"
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="validator.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="validator.html.ja"
                lang="ja"
                xml:lang="ja"
                hreflang="ja"
-               rel="alternate">&aelig;&#151;&yen;&aelig;&#156;&not;&egrave;&ordf;&#158;</a> </li>
+               rel="alternate">日本語</a> </li>
            <li><a href="validator.html.pl-PL"
                lang="pl"
                xml:lang="pl"
@@ -234,9 +242,8 @@
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">&auml;&cedil;&shy;&aelig;&#150;&#135;</a></li>
+               rel="alternate">中文</a></li>
       </ul>
-
 
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>

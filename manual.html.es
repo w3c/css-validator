@@ -32,24 +32,24 @@
 
 <div id="toc">
 <ul>
-  <li><a href="#use">CÛmo utilizar el Validador de CSS</a>
+  <li><a href="#use">C√≥mo utilizar el Validador de CSS</a>
     <ul>
-      <li><a href="#url">ValidaciÛn mediante respuesta a URL</a></li>
-      <li><a href="#fileupload">ValidaciÛn mediante carga de archivo</a></li>
-      <li><a href="#directinput">ValidaciÛn mediante entrada directa</a></li>
-      <li><a href="#basicvalidation">øQuÈ hace la validaciÛn b·sica?</a></li>
+      <li><a href="#url">Validaci√≥n mediante respuesta a URL</a></li>
+      <li><a href="#fileupload">Validaci√≥n mediante carga de archivo</a></li>
+      <li><a href="#directinput">Validaci√≥n mediante entrada directa</a></li>
+      <li><a href="#basicvalidation">¬øQu√© hace la validaci√≥n b√°sica?</a></li>
     </ul>
   </li>
-  <li><a href="#advanced">ValidaciÛn avanzada</a>
+  <li><a href="#advanced">Validaci√≥n avanzada</a>
     <ul>
-	<li><a href="#paramwarnings">Par·metro warnings</a></li>
-	<li><a href="#paramprofile">Par·metro profile</a></li>
-	<li><a href="#parammedium">ParÈmetro medium</a></li>
+	<li><a href="#paramwarnings">Par√°metro warnings</a></li>
+	<li><a href="#paramprofile">Par√°metro profile</a></li>
+	<li><a href="#parammedium">Par√©metro medium</a></li>
     </ul>
   </li>
   <li><a href="#expert">Para expertos</a>
     <ul>
-	<li><a href="#requestformat">Formato de PeticiÛn de ValidaciÛn</a></li>
+	<li><a href="#requestformat">Formato de Petici√≥n de Validaci√≥n</a></li>
 	<li><a href="#api">API de Servicio Web del Validador CSS Validator Web Service API</a></li>
     </ul>
    </li>
@@ -58,144 +58,144 @@
 
 <p id="skip"></p>
 
-<h3 id="use">CÛmo utilizar el Validador de CSS</h3>
+<h3 id="use">C√≥mo utilizar el Validador de CSS</h3>
 
 <p>
-La manera m·s sencilla de comprobar un documento es utilizar la interfaz b·sica. En esta p·gina 
- encontrar·s tres formularios que corresponden a tres posibilidades:
+La manera m√°s sencilla de comprobar un documento es utilizar la interfaz b√°sica. En esta p√°gina 
+ encontrar√°s tres formularios que corresponden a tres posibilidades:
 </p>
 
-<h4 id="url">ValidaciÛn mediante URL</h4>
+<h4 id="url">Validaci√≥n mediante URL</h4>
 <p>
     Simplemente introduce la URL del documento que desees validar.
     Este documento puede ser HTML o CSS.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="ValidaciÛn mediante el formulario URI" />
+    src="./images/uri_basic.png" alt="Validaci√≥n mediante el formulario URI" />
 
-<h4 id="fileupload">ValidaciÛn mediante carga de archivo</h4>    
+<h4 id="fileupload">Validaci√≥n mediante carga de archivo</h4>    
 <p>
-    Esta soluciÛn te permite cargar y comprobar un archivo local. Haz clic en el 
-    botÛn "Examinar..." y selecciona el archivo que deseas validar.
+    Esta soluci√≥n te permite cargar y comprobar un archivo local. Haz clic en el 
+    bot√≥n "Examinar..." y selecciona el archivo que deseas validar.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
     src="./images/file_upload_basic.png" 
-    alt="ValidaciÛn mediante Carga de Archivo" />
+    alt="Validaci√≥n mediante Carga de Archivo" />
 <p>
-    En este caso, sÛlo se permiten documentos CSS. Esto significa que no puedes
-    cargar documentos (X)HTML. TambiÈn debes ser cuidadoso con las reglas 
-    @import pues sÛlo se seguir·n si referencian explÌcitamente a 
-    una URL p˙blica (de modo que olvida rutas relativas con esta soluciÛn)
+    En este caso, s√≥lo se permiten documentos CSS. Esto significa que no puedes
+    cargar documentos (X)HTML. Tambi√©n debes ser cuidadoso con las reglas 
+    @import pues s√≥lo se seguir√°n si referencian expl√≠citamente a 
+    una URL p√∫blica (de modo que olvida rutas relativas con esta soluci√≥n)
 </p>
    
-<h4 id="directinput">ValidaciÛn mediante entrada directa</h4>
+<h4 id="directinput">Validaci√≥n mediante entrada directa</h4>
 <p>
-    Este mÈtodo es perfecto para probar fragmentos de CSS. SÛlo tienes que escribir tu CSS en el textarea
+    Este m√©todo es perfecto para probar fragmentos de CSS. S√≥lo tienes que escribir tu CSS en el textarea
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
     src="./images/direct_input_basic.png" 
-    alt="ValidaciÛn mediante entrada directa" />
+    alt="Validaci√≥n mediante entrada directa" />
 <p>
-    Los mismos comentarios de antes son de aplicaciÛn. Advierte que esta soluciÛn es 
+    Los mismos comentarios de antes son de aplicaci√≥n. Advierte que esta soluci√≥n es 
     muy conveniente si tienes un problema y necesitas ayuda de la comunidad.
-    TambiÈn es muy ˙til para informar de un bug, dado que puedes enlazar a la URL 
+    Tambi√©n es muy √∫til para informar de un bug, dado que puedes enlazar a la URL 
     resultante para ofrecer un caso de prueba.
 </p>    
 
-<h4 id="basicvalidation">øQuÈ hace la validaciÛn b·sica?</h4>
+<h4 id="basicvalidation">¬øQu√© hace la validaci√≥n b√°sica?</h4>
 
 <p>    
-    Cuando se utiliza la interfaz b·sica, el validador comprobar· el cumplimiento 
-    de <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, que es la recomendaciÛn tÈcnica
+    Cuando se utiliza la interfaz b√°sica, el validador comprobar√° el cumplimiento 
+    de <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, que es la recomendaci√≥n t√©cnica
     actual de CSS.<br />
-    Esto producir· una salida XHTML sin ning˙n aviso (˙nicamente ver·s los errores).<br />
-    El par·metro medium est· fijado en "all", que es el medio adecuado para todos los dispositivos 
+    Esto producir√° una salida XHTML sin ning√∫n aviso (√∫nicamente ver√°s los errores).<br />
+    El par√°metro medium est√° fijado en "all", que es el medio adecuado para todos los dispositivos 
     (ver <a href="http://www.w3.org/TR/CSS2/media.html">
-    http://www.w3.org/TR/CSS2/media.html</a> para una descripciÛn completa de los medios).
+    http://www.w3.org/TR/CSS2/media.html</a> para una descripci√≥n completa de los medios).
 </p>
 
-<h3 id="advanced">ValidaciÛn avanzada</h3>
+<h3 id="advanced">Validaci√≥n avanzada</h3>
 
 <p>
-    Si necesitas una comprobaciÛn m·s especÌfica, puedes utilizar la intervaz avanzada que 
-    permite especificar tres par·metros. A continuaciÛn tienes una breve ayuda sobre cada uno
-    de estos par·metros.
+    Si necesitas una comprobaci√≥n m√°s espec√≠fica, puedes utilizar la intervaz avanzada que 
+    permite especificar tres par√°metros. A continuaci√≥n tienes una breve ayuda sobre cada uno
+    de estos par√°metros.
 </p>
 
 <h4 id="paramwarnings">Warnings</h4>
 
 <p>
-    Este par·metro es ˙til para ajustar la verbosidad del Validador de CSS. En efecto, 
+    Este par√°metro es √∫til para ajustar la verbosidad del Validador de CSS. En efecto, 
     el validador puede darte dos tipos de mensajes: errores (errors) y avisos (warnings).
-    Los errores ocurren cuando el CSS comprobado no respeta la recomendaciÛn CSS.
+    Los errores ocurren cuando el CSS comprobado no respeta la recomendaci√≥n CSS.
     Los avisos difieren de los errores en que no suponen un problema referente a la 
-    especificaciÛn. Se ofrecen para advertir (!) al desarrollador CSS de aquellos 
-    puntos que podrÌan ser peligrosos y podrÌan conducir a un comportamiento extraÒo
+    especificaci√≥n. Se ofrecen para advertir (!) al desarrollador CSS de aquellos 
+    puntos que podr√≠an ser peligrosos y podr√≠an conducir a un comportamiento extra√±o
     en algunos agentes de usuario.
 </p>
 <p>
-    Un aviso tÌpico concierne a font-family: si no ofreces una fuente genÈrica, 
-    obtendr·s un aviso diciendo que deberÌas aÒadir una al final de la regla, o 
+    Un aviso t√≠pico concierne a font-family: si no ofreces una fuente gen√©rica, 
+    obtendr√°s un aviso diciendo que deber√≠as a√±adir una al final de la regla, o 
     de otro modo un agente de usuario que no conozca ninguna de las otras fuentes 
-    activar· su fuente predeterminada, lo cual puede resultar en una visualizaciÛn 
-    extraÒa.
+    activar√° su fuente predeterminada, lo cual puede resultar en una visualizaci√≥n 
+    extra√±a.
 </p>
 
 <h4 id="paramprofile">Profile</h4>
 
 <p>
     El validador CSS puede comprobar diferentes perfiles de CSS. Un perfil lista todas las  
-    caracterÌsticas que se espera que una implementaciÛn tenga en una plataforma determinada. 
-    Esta definiciÛn est· tomada del  
+    caracter√≠sticas que se espera que una implementaci√≥n tenga en una plataforma determinada. 
+    Esta definici√≥n est√° tomada del  
     <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	sitio de CSS
-    </a>. La opciÛn predeterminada corresponde al, actualmente, m·s utilizado: 
+    </a>. La opci√≥n predeterminada corresponde al, actualmente, m√°s utilizado: 
     <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
 <h4 id="parammedium">Medium</h4>
 
 <p>
-    El par·metro medium es el equivalente a la regla @media, aplicada a todo el documento. Encontrar·s m·s informaciÛn sobre medios en  
+    El par√°metro medium es el equivalente a la regla @media, aplicada a todo el documento. Encontrar√°s m√°s informaci√≥n sobre medios en  
     <a href="http://www.w3.org/TR/CSS2/media.html">
 	http://www.w3.org/TR/CSS2/media.html
     </a>.
 </p>
 
-<h3 id="expert">SÛlo para Expertos</h3>
+<h3 id="expert">S√≥lo para Expertos</h3>
 
-<h4 id="requestformat">Formato de PeticiÛn de ValidaciÛn</h4>
-<p>Abajo se encuentra una tabla de los par·metros que pueden usarse para enviar una consulta al Validador de CSS del W3C.</p>
+<h4 id="requestformat">Formato de Petici√≥n de Validaci√≥n</h4>
+<p>Abajo se encuentra una tabla de los par√°metros que pueden usarse para enviar una consulta al Validador de CSS del W3C.</p>
 
-<p>Si deseas utilizar el servidor de validaciÛn p˙blica del W3C, utiliza los siguientes par·metros en conjunciÛn con la siguiente URI base:<br />
+<p>Si deseas utilizar el servidor de validaci√≥n p√∫blica del W3C, utiliza los siguientes par√°metros en conjunci√≥n con la siguiente URI base:<br />
 <kbd>http://jigsaw.w3.org/css-validator/validator</kbd><br />
-(sustituir por la direcciÛn de tu propio servidor si deseas llamar a una instancia privada del validador).</p>
+(sustituir por la direcci√≥n de tu propio servidor si deseas llamar a una instancia privada del validador).</p>
 
-<p><strong>Nota</strong>: Si deseas llamar al validador de forma programada para un conjunto de documentos, por favor aseg˙rate de que tu script <code>duerma</code> durante <strong>al menos 1 segundo</strong> entre peticiones.
-El servicio de validaciÛn de CSS es un servicio gratuito y p˙blico para todos, tu respeto es apreciado. Gracias.</p>
+<p><strong>Nota</strong>: Si deseas llamar al validador de forma programada para un conjunto de documentos, por favor aseg√∫rate de que tu script <code>duerma</code> durante <strong>al menos 1 segundo</strong> entre peticiones.
+El servicio de validaci√≥n de CSS es un servicio gratuito y p√∫blico para todos, tu respeto es apreciado. Gracias.</p>
 
 <table class="refdoc">
   <tbody>
     <tr>
-      <th>Par·metro</th>
-      <th>DescripciÛn</th>
+      <th>Par√°metro</th>
+      <th>Descripci√≥n</th>
       <th>Valor por defecto</th>
     </tr>
     <tr>
       <th>uri</th>
       <td>El <acronym title="Universal Resource Locator">URL</acronym> del 
         documento a validar. Se permiten documentos CSS y HTML.</td>
-      <td>Ninguno, pero debe proporcionarse este par·metro o bien <code>text</code>.</td>
+      <td>Ninguno, pero debe proporcionarse este par√°metro o bien <code>text</code>.</td>
     </tr>
     <tr>
       <th>text</th>
-      <td>El documento a validar, sÛlo se permite CSS.</td>
-      <td>Ninguno, pero debe proporcionarse este par·metro o bien <code>uri</code>.</td>
+      <td>El documento a validar, s√≥lo se permite CSS.</td>
+      <td>Ninguno, pero debe proporcionarse este par√°metro o bien <code>uri</code>.</td>
     </tr>
     <tr>
       <th>usermedium</th>
       <td>Se utiliza <a href="http://www.w3.org/TR/CSS2/media.html">medium</a> para la  
-	  validaciÛn, como <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
+	  validaci√≥n, como <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
     <tr>
@@ -213,33 +213,33 @@ El servicio de validaciÛn de CSS es un servicio gratuito y p˙blico para todos, t
     </tr>
     <tr>
       <th>profile</th>
-      <td>El perfil de CSS usado para la validaciÛn. Puede ser
+      <td>El perfil de CSS usado para la validaci√≥n. Puede ser
         <code>css1</code>, <code>css2</code>, <code>css21</code>,
         <code>css3</code>, <code>svg</code>, <code>svgbasic</code>,
         <code>svgtiny</code>, <code>mobile</code>, <code>atsc-tv</code>,
         <code>tv</code> o <code>none</code></td>
-      <td>la RecomendaciÛn m·s reciente del W3C: CSS 2</td>
+      <td>la Recomendaci√≥n m√°s reciente del W3C: CSS 2</td>
     </tr>
     <tr>
       <th>lang</th>
       <td>El lenguaje utilizado para la respuesta, actualmente <code>en</code>,
         <code>fr</code>, <code>ja</code>, <code>es</code>,
         <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
-      <td>InglÈs (<code>en</code>).</td>
+      <td>Ingl√©s (<code>en</code>).</td>
     </tr>
     <tr>
       <th>warning</th>
-      <td>El nivel de aviso, <code>no</code> para no mostrar ning˙n aviso, <code>0</code> 
-	para menos avisos, <code>1</code>o <code>2</code> para m·s avisos
+      <td>El nivel de aviso, <code>no</code> para no mostrar ning√∫n aviso, <code>0</code> 
+	para menos avisos, <code>1</code>o <code>2</code> para m√°s avisos
       </td>
       <td>2</td>
     </tr>
   </tbody>
 </table>
 
-<h4 id="api">API de Servicio Web del Validador de CSS: documentaciÛn de la interfaz de validaciÛn</h4>
+<h4 id="api">API de Servicio Web del Validador de CSS: documentaci√≥n de la interfaz de validaci√≥n</h4>
 <p>    
-    Para obtener m·s ayuda tÈcnica, en particular acerca de la salida SOAP 1.2 y todas las formas posibles de llamar al validador, ver la  
+    Para obtener m√°s ayuda t√©cnica, en particular acerca de la salida SOAP 1.2 y todas las formas posibles de llamar al validador, ver la  
     <a href="./api.html">API de Servicio Web del Validador de CSS</a>.       
 </p>
 
@@ -254,6 +254,52 @@ El servicio de validaciÛn de CSS es un servicio gratuito y p˙blico para todos, t
         <li><a href="DOWNLOAD.html" title="Descarga el validador CSS">Descarga</a> <span class="hideme">|</span></li>
         <li><a href="Email.html" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
+      </ul>
+
+      <ul id="lang_choice">
+           <li><a href="manual.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
+           <li><a href="manual.html.en"
+               lang="en"
+               xml:lang="en"
+           hreflang="en"
+           rel="alternate">English</a>  </li>
+           <li><a href="manual.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Espa√±ol</a></li>
+           <li><a href="manual.html.fr"
+           lang="fr"
+           xml:lang="fr"
+           hreflang="fr"
+           rel="alternate">Fran√ßais</a> </li>
+           <li><a href="manual.html.it"
+               lang="it"
+               xml:lang="it"
+               hreflang="it"
+               rel="alternate">Italiano</a> </li>
+           <li><a href="manual.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
+           <li><a href="manual.html.ja"
+               lang="ja"
+               xml:lang="ja"
+               hreflang="ja"
+               rel="alternate">Êó•Êú¨Ë™û</a> </li>
+           <li><a href="manual.html.pl-PL"
+               lang="pl"
+               xml:lang="pl"
+               hreflang="pl"
+               rel="alternate">Polski</a> </li>
+           <li><a href="manual.html.zh-cn"
+               lang="zh-hans"
+               xml:lang="zh-hans"
+               hreflang="zh-hans"
+               rel="alternate">‰∏≠Êñá</a></li>
       </ul>
 
    <p id="activity_logos">

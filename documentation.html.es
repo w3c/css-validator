@@ -76,43 +76,51 @@
         <li><a href="thanks.html" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a><span class="hideme">|</span></li>
       </ul>
 
-   <ul id="lang_choice">
-       <li><a href="documentation.html.en"
-       lang="en"
-       xml:lang="en"
-       hreflang="en"
-       rel="alternate">English</a>  </li>
-       <li><a href="documentation.html.es"
-       lang="es"
-       xml:lang="es"
-       hreflang="es"
-       rel="alternate">Espa&ntilde;ol</a>  </li>
-       <li><a href="documentation.html.fr"
-       lang="fr"
-       xml:lang="fr"
-       hreflang="fr"
-       rel="alternate">Fran&Atilde;&sect;ais</a> </li>
-       <li><a href="documentation.html.it"
-           lang="it"
-           xml:lang="it"
-           hreflang="it"
-           rel="alternate">Italiano</a> </li>
-       <li><a href="documentation.html.ja"
-           lang="ja"
-           xml:lang="ja"
-           hreflang="ja"
-           rel="alternate">&aelig;&#151;&yen;&aelig;&#156;&not;&egrave;&ordf;&#158;</a> </li>
-       <li><a href="documentation.html.pl-PL"
-           lang="pl"
-           xml:lang="pl"
-           hreflang="pl"
-           rel="alternate">Polski</a> </li>
-       <li><a href="documentation.html.zh-cn"
-           lang="zh-hans"
-           xml:lang="zh-hans"
-           hreflang="zh-hans"
-           rel="alternate">&auml;&cedil;&shy;&aelig;&#150;&#135;</a></li>
-  </ul>
+       <ul id="lang_choice">
+           <li><a href="documentation.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
+           <li><a href="documentation.html.en"
+               lang="en"
+               xml:lang="en"
+           hreflang="en"
+           rel="alternate">English</a>  </li>
+           <li><a href="documentation.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
+           <li><a href="documentation.html.fr"
+           lang="fr"
+           xml:lang="fr"
+           hreflang="fr"
+           rel="alternate">Français</a> </li>
+           <li><a href="documentation.html.it"
+               lang="it"
+               xml:lang="it"
+               hreflang="it"
+               rel="alternate">Italiano</a> </li>
+           <li><a href="documentation.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
+           <li><a href="documentation.html.ja"
+               lang="ja"
+               xml:lang="ja"
+               hreflang="ja"
+               rel="alternate">日本語</a> </li>
+           <li><a href="documentation.html.pl-PL"
+               lang="pl"
+               xml:lang="pl"
+               hreflang="pl"
+               rel="alternate">Polski</a> </li>
+           <li><a href="documentation.html.zh-cn"
+               lang="zh-hans"
+               xml:lang="zh-hans"
+               hreflang="zh-hans"
+               rel="alternate">中文</a></li>
+      </ul>
 
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>

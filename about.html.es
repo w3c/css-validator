@@ -106,31 +106,39 @@ o seguir las instrucciones para descargar el &aacute;rbol completo de la fuente.
       </ul>
 
        <ul id="lang_choice">
+           <li><a href="about.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
            <li><a href="about.html.en"
-           lang="en"
-           xml:lang="en"
+               lang="en"
+               xml:lang="en"
            hreflang="en"
            rel="alternate">English</a>  </li>
            <li><a href="about.html.es"
-           lang="es"
-           xml:lang="es"
-           hreflang="es"
-           rel="alternate">Espa&ntilde;ol</a>  </li>
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
            <li><a href="about.html.fr"
            lang="fr"
            xml:lang="fr"
            hreflang="fr"
-           rel="alternate">Fran&Atilde;&sect;ais</a> </li>
+           rel="alternate">Français</a> </li>
            <li><a href="about.html.it"
                lang="it"
                xml:lang="it"
                hreflang="it"
                rel="alternate">Italiano</a> </li>
+           <li><a href="about.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
            <li><a href="about.html.ja"
                lang="ja"
                xml:lang="ja"
                hreflang="ja"
-               rel="alternate">&aelig;&#151;&yen;&aelig;&#156;&not;&egrave;&ordf;&#158;</a> </li>
+               rel="alternate">日本語</a> </li>
            <li><a href="about.html.pl-PL"
                lang="pl"
                xml:lang="pl"
@@ -140,8 +148,9 @@ o seguir las instrucciones para descargar el &aacute;rbol completo de la fuente.
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">&auml;&cedil;&shy;&aelig;&#150;&#135;</a></li>
+               rel="alternate">中文</a></li>
       </ul>
+
 
 
    <p id="activity_logos">
