@@ -68,14 +68,14 @@ styl niezgodny z css1: /* UWAGA ! To nie jest właściwością CSS1! */
 reguły: \
 <div id="css">\n\
 <h2>Informacje na temat poprawnego CSS</h2> \n\
-<ul class='vAtRule'> \n\
+<div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</ul>\n\
+</div>\n\
 </div>
 
 reguła charset: \
-<li class='vCharset'>@charset <!-- #charset -->;</li>
+<div class='vCharset'>@charset <!-- #charset -->;</div>
 
 # Jak pisać błędy
 

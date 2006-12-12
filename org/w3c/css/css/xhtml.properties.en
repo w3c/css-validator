@@ -68,14 +68,14 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 rules: \
 <div id="css">\n\
 <h2>Valid CSS information</h2> \n\
-<ul class='vAtRule'> \n\
+<div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</ul>\n\
+</div>\n\
 </div>
 
 charset-rule: \
-<li class='vCharset'>@charset <!-- #charset -->;</li>
+<div class='vCharset'>@charset <!-- #charset -->;</div>
 
 # How to write errors
 

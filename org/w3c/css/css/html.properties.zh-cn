@@ -61,13 +61,13 @@ not-css1-style: /* 请注意！这不是CSS1的属性！ */
 
 rules: \
 <div id="css"><h2>你已经校验的层叠样式表：</h2> \
-<ul> \
+<div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</ul></div>
+</div></div>
 
 charset-rule: \
-<li class='vCharset'>@charset <!-- #charset -->;</li>
+<div class='vCharset'>@charset <!-- #charset -->;</div>
 
 # How to write errors
 

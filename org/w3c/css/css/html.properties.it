@@ -68,10 +68,10 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 rules: \
 <div id="css">\n\
 <h2>Informazioni valide per il Foglio di stile (CSS)</h2> \n\
-<ul class='vAtRule'> \n\
+<div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</ul>\n\
+</div>\n\
 </div>
 
 charset-rule: \

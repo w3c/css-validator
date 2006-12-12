@@ -66,13 +66,13 @@ not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 rules: \
 <div id="css">\n\
 <h2>Ihr validiertes Cascading Style Sheet:</h2> \
-<ul> \
+<div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</ul></div>
+</div></div>
 
 charset-rule: \
-<li class='vCharset'>@charset <!-- #charset -->;</li>
+<div class='vCharset'>@charset <!-- #charset -->;</div>
 
 # How to write errors
 
