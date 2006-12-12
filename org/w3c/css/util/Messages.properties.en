@@ -13,8 +13,8 @@ warning.style-inside-comment: Do not put style rules inside HTML comments as the
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Same colors for %s and %s
-warning.no-color: You have no color with your background-color
-warning.no-background-color: You have no background-color with your color
+warning.no-color: You have no color set (or color is set to transparent) but you have set a background-color. Make sure that cascading of colors keeps the text reasonably legible.
+warning.no-background-color: You have no background-color set (or background-color is set to transparent) but you have set a color. Make sure that cascading of colors keeps the text reasonably legible.
 warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
 warning.no-generic-family: %s: You are encouraged to offer a generic family as a last alternative
 warning.with-space: Family names containing whitespace should be quoted. If quoting is omitted, any whitespace \
