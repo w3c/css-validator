@@ -50,12 +50,12 @@ tr.warning {
 
 td.linenumber {
 	border-bottom: 1px solid #ccc !important;
-	background-color: #ddd;
+	background-color: #e1e1e1;
 	text-align:right;
 }
 td.codeContext {
 	border-bottom: 1px solid #ddd !important;
-	background-color: #eee;}
+	background-color: #F1F1F1;}
 
 td.level1, td.level2 {
 	padding: 5px 1em;
@@ -75,8 +75,7 @@ td.level1, td.level2 {
 /* class="vAtRule" - block of all atSelector */
 .vAtRule {
 	font-family: monospace;
-	padding:1em;
-	border: 1px solid #422101;}
+	padding:0em;}
 
 /* class="atRule" - block of one atSelector */
 .atRule {
@@ -91,8 +90,8 @@ td.level1, td.level2 {
 /* class="selector" - block of the selector */
 .selector {
 	background-color: #F1F1F1;
-	margin: 1em;
-	padding: 0.5em 0.5em;
+	padding: 1em;
+	border-bottom: 1px solid #ddd;
 }
 
 /* class="selectorValue" - value of the selector */
@@ -107,7 +106,7 @@ td.level1, td.level2 {
 
 /* class='Property' - propertie name */
 .Property {
-	color: #006;
+	color: #222;
 	font-style: italic;
 	position: relative;
 	display: block;
@@ -118,5 +117,5 @@ td.level1, td.level2 {
 
 /* class='PropertyValue' - value of property */
 .PropertyValue {
-	color: #66C;
+	color: #666;
 }
