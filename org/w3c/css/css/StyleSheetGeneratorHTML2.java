@@ -347,39 +347,38 @@ CssPrinterStyle {
 			    oldSourceFile = warn.getSourceFile();
 			    ret.append("\n<div><h3>URI : <a href=\"");
 			    ret.append(oldSourceFile).append("\">");
-			    ret.append(oldSourceFile).append("</a></h3><ul>");
+			    ret.append(oldSourceFile).append("</a></h3><table>");
 			    open = true;
 			}
 //			if (warn.getLine() != oldLine
 //				|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<li class='warning'><span class='linenumber'>");
+			    ret.append("\n<tr class='warning'><td class='linenumber'>");
 // to remove the trigger of line label in languages.
 //			    ret.append(ac.getMsg().getGeneratorString("line"));
 //			    ret.append(" : ");
 			    ret.append(oldLine);
-			    ret.append(".</span> ");
+			    ret.append("</td> ");
 // <span class='level1'> - level of warning
 			    if (warn.getLevel() != 0) {
-				ret.append("<span class='level");
+				ret.append("<td class='level");
 				ret.append(warn.getLevel());
 				ret.append("'>");
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
-			    ret.append("</span> ");
+			    ret.append("</td> ");
+				ret.append("<td class='codeContext'>");
 			    if (warn.getContext() != null) {
-				ret.append(" : ");
-				ret.append("<span class='codeContext'>");
 				ret.append(warn.getContext());
-			    ret.append("</span>");
 			    }
-			    ret.append("</li>");
+			    ret.append("</td>");
+			    ret.append("</tr>");
 //			}
 		    }
 		}
 		if (open) {
-		    ret.append("\n</ul>");
+		    ret.append("\n</table>");
 		}
 		ret.append("</div>");
 	    }
