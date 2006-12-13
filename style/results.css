@@ -70,8 +70,16 @@ td.level1, td.level2 {
 	border-left: 10px solid #FFB1A7 !important;
 	color: #000;
 }
+
+/*   ==== VALIDATED STYLESHEET =====  */
+
 /* id="css" - to identify the validated style sheet */
 #css {}
+
+#css h2 {
+      background-color: #55B05A;
+      color: white;
+}
 
 /* class="vAtRule" - block of all atSelector */
 .vAtRule {
