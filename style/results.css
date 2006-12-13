@@ -1,3 +1,5 @@
+/*   ==== CONGRATS =====  */
+
 #congrats h2, #errors h2, #warnings h2 {
           text-align: center;
           margin: 0;
@@ -14,19 +16,59 @@
         padding-top:		.5em;
         padding-bottom: 	.5em;
 }
-#warnings h2 {
-  background: #FA9084;
-  color: white;
-}
 #congrats h2 {
       background-color: #55B05A;
       color: white;
 }
+/*   ==== ERRORS =====  */
+
+/* id="errors" - start of the list of errors */
 #errors h2 {
   background-color: #E82848;
   color: white;
 }
 
+/*   ==== WARNINGS =====  */
+/* id="warnings" - start of the list of warnings */
+#warnings h2 {
+  background: #FA9084;
+  color: white;
+}
+
+#warnings table {
+	border-top: 1px solid #ccc !important;
+	line-height:120%;
+	}
+
+#warnings td {
+	border-width: 0;
+}
+
+
+tr.warning {
+	padding: 0;}
+
+td.linenumber {
+	border-bottom: 1px solid #ccc !important;
+	background-color: #ddd;
+	text-align:right;
+}
+td.codeContext {
+	border-bottom: 1px solid #ddd !important;
+	background-color: #eee;}
+
+td.level1, td.level2 {
+	padding: 5px 1em;
+	border-bottom: 1px solid #fdd !important;
+}
+.level1 {
+	border-left: 10px solid #FA9084 !important;
+	color: #000;
+}
+.level2 {
+	border-left: 10px solid #FFB1A7 !important;
+	color: #000;
+}
 /* id="css" - to identify the validated style sheet */
 #css {}
 
