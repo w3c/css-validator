@@ -359,7 +359,7 @@ CssPrinterStyle {
 //			    ret.append(ac.getMsg().getGeneratorString("line"));
 //			    ret.append(" : ");
 			    ret.append(oldLine);
-			    ret.append("</span>. ");
+			    ret.append(".</span> ");
 // <span class='level1'> - level of warning
 			    if (warn.getLevel() != 0) {
 				ret.append("<span class='level");
@@ -368,7 +368,10 @@ CssPrinterStyle {
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    if (warn.getContext() != null) {
-				ret.append(" : ").append(warn.getContext());
+				ret.append(" : ")
+				ret.append("<span class='codeContext'>");
+				ret.append(warn.getContext());
+			    ret.append("</span>");
 			    }
 			    ret.append("</span> ");
 			    ret.append("</li>");
