@@ -342,7 +342,7 @@ CssPrinterStyle {
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
 			    if (open) {
-				ret.append("\n</ul></div>");
+				ret.append("\n</table></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
 			    ret.append("\n<div><h3>URI : <a href=\"");
