@@ -367,13 +367,13 @@ CssPrinterStyle {
 				ret.append("'>");
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
+			    ret.append("</span> ");
 			    if (warn.getContext() != null) {
 				ret.append(" : ");
 				ret.append("<span class='codeContext'>");
 				ret.append(warn.getContext());
 			    ret.append("</span>");
 			    }
-			    ret.append("</span> ");
 			    ret.append("</li>");
 //			}
 		    }
