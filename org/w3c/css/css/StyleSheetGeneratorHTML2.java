@@ -368,7 +368,7 @@ CssPrinterStyle {
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    if (warn.getContext() != null) {
-				ret.append(" : ")
+				ret.append(" : ");
 				ret.append("<span class='codeContext'>");
 				ret.append(warn.getContext());
 			    ret.append("</span>");
