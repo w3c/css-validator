@@ -361,6 +361,11 @@ CssPrinterStyle {
 			    ret.append(oldLine);
 			    ret.append("</td> ");
 // <span class='level1'> - level of warning
+				ret.append("<td class='codeContext'>");
+				if (warn.getContext() != null) {
+					ret.append(warn.getContext());
+					}
+				ret.append("</td>");
 			    if (warn.getLevel() != 0) {
 				ret.append("<td class='level");
 				ret.append(warn.getLevel());
@@ -368,11 +373,6 @@ CssPrinterStyle {
 			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    ret.append("</td> ");
-				ret.append("<td class='codeContext'>");
-			    if (warn.getContext() != null) {
-				ret.append(warn.getContext());
-			    }
-			    ret.append("</td>");
 			    ret.append("</tr>");
 //			}
 		    }
