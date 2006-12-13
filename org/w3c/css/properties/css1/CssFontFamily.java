@@ -206,9 +206,12 @@ public class CssFontFamily extends CssProperty implements CssOperator {
 	if(check && !expression.end()) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-	if (!containsGenericFamily()) {
-	    ac.getFrame().addWarning("no-generic-family", "font-family");
-	}
+	// This looks like obsolete code: (no context, no level, and duplicate 
+	// of a warning handled already in CSS1Style.java
+	// olivier 2006-12-13
+	//if (!containsGenericFamily()) {
+	//    ac.getFrame().addWarning("no-generic-family", "font-family");
+	//}
     }
 
     public CssFontFamily(ApplContext ac, CssExpression expression)
