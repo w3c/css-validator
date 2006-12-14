@@ -371,11 +371,12 @@ CssPrinterStyle {
 					ret.append(warn.getContext());
 					}
 				ret.append("</td>");
-			    if (warn.getLevel() != 0) {
+//			    if (warn.getLevel() != 0) {
+// there are warnings with level 0 which need the table
 				ret.append("<td class='level");
 				ret.append(warn.getLevel());
 				ret.append("'>");
-			    }
+//			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    ret.append("</td> ");
 			    ret.append("</tr>");
