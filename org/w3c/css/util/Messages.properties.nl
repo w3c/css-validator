@@ -9,12 +9,13 @@ output-encoding-name: utf-8
 warning.redefinition: Herdefinitie van %s
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.style-inside-comment: Plaats geen style regels in HTML commentaar, \
+deze kunnen worden verwijderd door het programma van de gebruiker
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Dezelfde kleuren voor %s en %s
-warning.no-color: U heeft geen kleur voor uw achtergrondkleur opgegeven
-warning.no-background-color: U heeft geen achtergrondkleur opgegeven
+warning.no-color: Je hebt geen tekstkleur opgegeven (of de kleur is transparant) maar je hebt wel een achtergrondkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houd.
+warning.no-background-color: Je hebt geen achtergrondkleur opgegeven (of de achtergrondkleur is transparant) maar je hebt wel een tekstkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houd.
 warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
 warning.no-generic-family: %s: Het is beter een algemene font-family op te geven als laatste alternatief
 warning.with-space: Fanmilienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
