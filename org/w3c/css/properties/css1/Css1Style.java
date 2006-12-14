@@ -2584,7 +2584,7 @@ public class Css1Style extends CssStyle {
 			CssProperty.transparent)) {
 //		  It's better to have a background color with a color
 		    warnings.addWarning(new Warning(
-			    colorCSS3, "no-background-color", 1, ac));
+			    colorCSS3, "no-background-color", 2, ac));
 		}
 	    } else {
 		CssValue color = cssBackground.getColor();
@@ -2592,7 +2592,7 @@ public class Css1Style extends CssStyle {
 		if (!color.equals(CssBackgroundColor.transparent)) {
 		    // It's better to have a color when a background is defined.
 		    warnings.addWarning(new Warning(cssBackground.color,
-			    "no-color", 1, ac));
+			    "no-color", 2, ac));
 		}
 	    }
 
@@ -2669,7 +2669,7 @@ public class Css1Style extends CssStyle {
 			CssProperty.transparent)) {
 //		  It's better to have a background color with a color
 		    warnings.addWarning(new Warning(
-			    colorCSS1, "no-background-color", 1, ac));
+			    colorCSS1, "no-background-color", 2, ac));
 		}
 	    } else {
 		CssValue color = cssBackgroundCSS1.getColor();
@@ -2677,7 +2677,7 @@ public class Css1Style extends CssStyle {
 		if (!color.equals(CssBackgroundColorCSS1.transparent)) {
 		    // It's better to have a color when a background is defined.
 		    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-			    "no-color", 1, ac));
+			    "no-color", 2, ac));
 		}
 	    }
 
@@ -2742,7 +2742,7 @@ public class Css1Style extends CssStyle {
 			CssProperty.transparent)) {
 		    // It's better to have a background color with a color
 		    warnings.addWarning(new Warning(
-			    colorCSS2, "no-background-color", 1, ac));
+			    colorCSS2, "no-background-color", 2, ac));
 		}
 	    } else {
 		CssValue color = cssBackgroundCSS2.getColor();
@@ -2750,7 +2750,7 @@ public class Css1Style extends CssStyle {
 		if (!color.equals(CssBackgroundColorCSS2.transparent)) {
 		    // It's better to have a color when a background is defined.
 		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-			    "no-color", 1, ac));
+			    "no-color", 2, ac));
 		}
 	    }
 
@@ -2824,7 +2824,7 @@ public class Css1Style extends CssStyle {
 	    if(backgroundColor == null) {
 		// It's better to have a background color with a color
 		warnings.addWarning(new Warning(cssColor, 
-			"no-background-color", 1, ac));
+			"no-background-color", 2, ac));
 	    }
 	}
 	else if (cssColorCSS1 != null) {
@@ -2852,7 +2852,7 @@ public class Css1Style extends CssStyle {
 	    if(backgroundColor == null) {
 		// It's better to have a background color with a color
 		warnings.addWarning(new Warning(cssColorCSS1, 
-			"no-background-color", 1, ac));
+			"no-background-color", 2, ac));
 	    }
 	}
 	else if (cssColorCSS2 != null) {
@@ -2880,7 +2880,7 @@ public class Css1Style extends CssStyle {
 	    if(backgroundColor == null) {
 		// It's better to have a background color with a color
 		warnings.addWarning(new Warning(cssColorCSS2, 
-			"no-background-color", 1, ac));
+			"no-background-color", 2, ac));
 	    }
 	}
 
