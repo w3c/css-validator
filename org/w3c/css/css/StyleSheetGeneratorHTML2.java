@@ -181,8 +181,8 @@ CssPrinterStyle {
 
     public void produceParseException(CssParseException error, StringBuffer ret) {
 	ret.append(' ');
-	ret.append("\n   <td class='codeContext'>");
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
+		ret.append("\n   <td class='codeContext'>");
 	    StringBuffer buf = new StringBuffer();
 		// Loop on the list of contexts for errors
 	    for (Enumeration e = error.getContexts().elements(); e.hasMoreElements();) {
@@ -194,9 +194,11 @@ CssPrinterStyle {
 			}
 	    }
 	    if (buf.length() != 0) {ret.append(buf);}
+	} else {
+		ret.append("\n   <td class='nocontext'>");
 	}
 	ret.append("</td>");
-	ret.append("\n   <td class='message'>");	
+	ret.append("\n   <td class='message'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 		ret.append(ac.getMsg().getGeneratorString("property"));
