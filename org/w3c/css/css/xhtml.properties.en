@@ -15,7 +15,9 @@ no-errors: \
  This document validates as <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-<p> \
+<p class="toggle closed">More info</p>\
+<div>\
+        <p> \
 To show your readers that you've taken the care to create an interoperable Web \
 page, you may display this icon on any page that validates. Here is the XHTML \
 you could use to add this icon to your Web page:</p> <pre class='example'> \n\
@@ -27,7 +29,7 @@ you could use to add this icon to your Web page:</p> <pre class='example'> \n\
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
-(close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01)\
+<p>(close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01)</p>\
 <p> \
 If you like, you can download a copy of this image to keep in your local web \
 directory, and change the XHTML fragment above to reference your local image \
@@ -37,10 +39,11 @@ rather than the one on this server. </p>\n\
 result) to make it easier to re-validate this page in the future or to allow \
 others to validate your page, the URI is: </p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (for HTML/XML document only)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ or http://jigsaw.w3.org/css-validator/check/referer (for HTML/XML document only)\n\
 </pre>\n\
 <p>(Or, you can just add the current page to your bookmarks or hotlist.)</p>\n\
+</div>\
 </div>
 
 no-rules: <div><h2>No style sheet found</h2></div>

@@ -7,12 +7,15 @@ go-rules: <li><a href="#css">入力されたカスケーディングスタイル
 no-error-or-warning: <div><h2>エラー及び警告は見つかりませんでした。</h2></div>
 
 no-errors: \
-<div> \
+<div id='congrats'> \
+<h2>おめでとうございます！</h2>\
 <p>\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 おめでとうございます！ この文書は正当な<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 あなたがこのWebページを作るにあたって、\
 高度な相互運用性<span lang="en">(Interoperability)</span>\
@@ -38,11 +41,13 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
 リンクを組み込んでおく事で、後からもう一度このページの検証を行ったり、\
 他の人がこのページを検証する事が容易になります。</p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ または http://jigsaw.w3.org/css-validator/check/referer (HTML/XML 文書のみに有効)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ または http://jigsaw.w3.org/css-validator/check/referer (HTML/XML 文書のみに有効)\n\
 \n\
 (もちろん、このページをブックマークやホットリストに追加したのでもよいでしょう。)\
-</pre></div>
+</pre>\
+</div>\
+</div>
 
 no-rules: <div><h2>スタイルシートが見つかりませんでした。</h2></div>
 not-css1-style: /* 注意して下さい ! このプロパティはCSS1用ではありません ! */
@@ -68,7 +73,7 @@ not-css1-style: /* 注意して下さい ! このプロパティはCSS1用では
 
 rules: \
 <div id="css">\n\
-<h2>検証したスタイルシートを以下に示します</h2> \
+<h2 class="toggle closed">検証したスタイルシートを以下に示します</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -88,7 +93,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2>警告</h2> \n\
+<h2 class="toggle closed">警告</h2> \n\
 <!-- #warning --></div>\n
 
 warning:

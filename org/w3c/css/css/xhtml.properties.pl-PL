@@ -15,6 +15,8 @@ brak błędów: \
 Dokument ten jest poprawnie napisanym arkuszem <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjną \
 , możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidację. Oto kod HTML\
@@ -27,7 +29,7 @@ Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjn�
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
-(zakończ znacznik obrazu z &gt; zamiast /&gt; jeśli używasz HTML &lt;= 4.01)\
+<p>(zakończ znacznik obrazu z &gt; zamiast /&gt; jeśli używasz HTML &lt;= 4.01)</p>\
 <p> \
 Jeśli chcesz, możesz ściągnąć kopię tej ikony i umieścić ja w lokalnym \
 katalogu swojego serwera oraz przerobić fragment XHTML podając link prowadzący do ikony na swoim serwerze \
@@ -37,10 +39,11 @@ zamiast do ikony na serwerze Walidatora CSS W3C. </p>\n\
 walidacji) aby ułatwić sobie ponowną walidację w przyszłości lub w celu pozwolenia \
 innym na walidację tej strony, użyj następującego adresu: </p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (jedynie dla dokumentów HTML/XML)\n\
+\ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ or http://jigsaw.w3.org/css-validator/check/referer (jedynie dla dokumentów HTML/XML)\n\
 </pre>\n\
 <p>(lub możesz dodać stronę do Ulubionych.)</p>\n\
+</div>\
 </div>
 
 brak regul: <div><h2>Nie znaleziono arkusza stylów</h2></div>
@@ -67,7 +70,7 @@ styl niezgodny z css1: /* UWAGA ! To nie jest właściwością CSS1! */
 
 reguły: \
 <div id="css">\n\
-<h2>Informacje na temat poprawnego CSS</h2> \n\
+<h2 class="toggle closed">Informacje na temat poprawnego CSS</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -89,7 +92,7 @@ błędy : \
 
 ostrzeżenia: \
 <div id="warnings">\n\
-<h2>Ostrzeżenia</h2> \n\
+<h2 class="toggle closed">Ostrzeżenia</h2> \n\
 <!-- #warning -->\n\
 </div>
 

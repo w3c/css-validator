@@ -15,6 +15,8 @@ no-errors: \
  Questo documento è valido rispetto alla specifica <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Per rendere visibile ai tuoi lettori che hai curato lo sviluppo per creare una pagina Web \
 interoperabile, puoi pubblicare questa icona in qualsiasi pagina che rispetta la validazione. \
@@ -27,8 +29,8 @@ Di seguito il codice XHTML che puoi utilizzare per aggiungere questa icona alla 
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
-(Se si utilizza XHTML, chiudere l'elemento img con /&gt;)\
-(Se si utilizza HTML &lt;= 4.01, chiudere l'elemento img tag con &gt; invece di /&gt;)\
+<p>(Se si utilizza XHTML, chiudere l'elemento img con /&gt;)\
+(Se si utilizza HTML &lt;= 4.01, chiudere l'elemento img tag con &gt; invece di /&gt;)</p>\
 <p> \
 Se lo desideri, puoi scaricare una copie di questa immagine per salvarla all'interno del tuo sito Web,
 modificando il codice XHTML sopra riportato riferendolo all'immagine locale anziché a quella residente
@@ -38,10 +40,11 @@ in questo server. </p>\n\
 per rendere più facile una futura riverifica di questa pagina o per consentire ad altre persone
 di verificare la conformità della tua pagina, l'URI è: </p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (solo per documenti HTML/XML)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ or http://jigsaw.w3.org/css-validator/check/referer (solo per documenti HTML/XML)\n\
 </pre>\n\
 <p>(Oppure puoi solamente aggiungere la pagina corrente ai tuoi collegamenti preferiti.)</p>\n\
+</div>\
 </div>
 
 no-rules: <div><h2>Non è stato individuato alcun foglio di stile</h2></div>
@@ -68,7 +71,7 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 
 rules: \
 <div id="css">\n\
-<h2>Informazioni valide per il Foglio di stile (CSS)</h2> \n\
+<h2 class="toggle closed">Informazioni valide per il Foglio di stile (CSS)</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -90,7 +93,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2>Avvisi</h2> \n\
+<h2 class="toggle closed">Avvisi</h2> \n\
 <!-- #warning -->\n\
 </div>
 

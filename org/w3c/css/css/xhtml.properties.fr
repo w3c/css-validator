@@ -14,6 +14,8 @@ no-errors: \
 Ce document est valide conform&eacute;ment &agrave; la recommandation <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
 cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
@@ -27,7 +29,7 @@ cette ic&ocirc;ne &agrave; votre page Web:</p> <pre class='example'> \n\
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
-(fermez le tag img avec &gt; au lieu de /&gt; si vous utilisez HTML &lt;= 4.01)
+<p>(fermez le tag img avec &gt; au lieu de /&gt; si vous utilisez HTML &lt;= 4.01)</p>
 <p> \
 Si vous le d&eacute;sirez, vous pouvez t&eacute;l&eacute;charger une copie de cette image \
 dans un de vos document Web, et changer le fragment d'HTML d&eacute;crit ci-dessus pour \
@@ -37,10 +39,12 @@ r&eacute;ferencer le nouvel emplacement de celle-ci.</p>\
 afin de revalider facilement, ou de permettre &agrave; d'autres de v&eacute;rifier \
 facilement la validit&eacute; de votre document, l'URI de cette page est: </p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (uniquement avec des documents HTML/XML)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ ou http://jigsaw.w3.org/css-validator/check/referer (uniquement avec des documents HTML/XML)\n\
 \n\
 (Vous pouvez aussi l'ajouter directement &agrave; vos signets.)</pre>
+</div>\
+</div>
 
 no-rules: <h2>Aucune feuille de style trouv&eacute;e</h2>
 not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
@@ -66,7 +70,7 @@ not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
 
 rules: \
 <div id="css">\n\
-<h2>Votre feuille de style CSS valid&eacute;e :</h2> \
+<h2 class="toggle closed">Votre feuille de style CSS valid&eacute;e :</h2> \
 <div class='vAtRule'> \
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -88,7 +92,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2>Avertissements</h2> \n\
+<h2 class="toggle closed">Avertissements</h2> \n\
 <!-- #warning -->\n\
 </div>
 

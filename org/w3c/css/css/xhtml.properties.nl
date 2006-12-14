@@ -7,13 +7,15 @@ go-rules: <li><a href="#css">Ga naar uw gevalideerde Cascading Style Sheet</a></
 no-error-or-warning: <div><h2>Geen fout of waarschuwing gevonden</h2></div>
 
 no-errors: \
-<div> \
+<div id='congrats'> \
 <h2>Gefeliciteerd!</h2>
 <p>\
 <img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Correct CSS!">\
 Dit document is gevalideerd als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
 kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
@@ -35,10 +37,12 @@ in plaats van aan die op deze server.</p>\
 om het gemakkelijker te maken deze pagina later te revalideren of anderen \
 in staat te stellen uw pagina te valideren is de URL:</p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ of http://jigsaw.w3.org/css-validator/check/referer (alleen voor HTML documenten)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ of http://jigsaw.w3.org/css-validator/check/referer (alleen voor HTML documenten)\n\
 </pre>\n\
-<p>(Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.)</p></div>
+<p>(Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.)</p>\
+</div>\
+</div>
 
 no-rules: <H2>Geen style sheet gevonden</H2>
 not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
@@ -63,7 +67,8 @@ not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
 #   - property-name, property-value, important-style en niet-css1-style entiteiten in de entiteit declaratie
 
 rules: \
-<div id="css"><h2>Uw gevalideerde Cascading Style Sheet :</h2> \
+<div id="css">\
+<h2 class="toggle closed">Uw gevalideerde Cascading Style Sheet :</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -83,7 +88,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2>Waarschuwingen :</h2> \n\
+<h2 class="toggle closed">Waarschuwingen :</h2> \n\
 <!-- #warning --></div>\n
 
 warning:

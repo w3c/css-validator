@@ -7,13 +7,15 @@ go-rules: <li><a href="#css">Zu Ihrem validierten Cascading Style Sheet</a></li>
 no-error-or-warning: <div><h2>Keine Fehler oder Warnungen gefunden</h2></div>
 
 no-errors: \
-<div> \
+<div id='congrats'> \
 <h2>Gratulation</h2>\n\
 <p>\
 <img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" />\
 Dieses Dokument wurde als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> validiert! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Sie können dieses Icon auf jeder validierten Seite darstellen, um zu zeigen, \
 daß Sie sich die Mühe gemacht haben interoperable Web-Seiten zu erstellen.  \
@@ -36,10 +38,12 @@ obere XHTML-Fragment so verändern, daß es auf Ihr lokales Bild verweist. </p>\
 Seite zu erleichtern oder um es anderen zu ermöglichen Ihre Seite zu \
 validieren, so verwenden Sie folgenden URI:</p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\
 </pre>\n\
-<p>(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p></div>
+<p>(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p>\
+</div>\
+</div>
 
 no-rules: <div><h2>Kein Stylesheet gefunden</h2></div>
 not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
@@ -65,7 +69,7 @@ not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 
 rules: \
 <div id="css">\n\
-<h2>Ihr validiertes Cascading Style Sheet:</h2> \
+<h2 class="toggle closed">Ihr validiertes Cascading Style Sheet:</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -86,7 +90,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2>Warnungen:</h2> \n\
+<h2 class="toggle closed">Warnungen:</h2> \n\
 <!-- #warning -->\n\
 </div>
 

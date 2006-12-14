@@ -15,6 +15,8 @@ no-errors: \
  ¡Este documento es <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> válido! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 Puede mostrar este icono en cualquier página que valide para que los usuarios vean \
 que se ha preocupado por crear una página Web interoperable. A continuación \
@@ -27,7 +29,7 @@ se encuentra el XHTML que puede usar para añadir el icono a su página Web:</p>
 \ &lt;/a>\n\
 &lt;/p>\
 </pre>\n\
-(cierre la etiqueta img con &gt; en lugar de /&gt; si utiliza HTML &lt;= 4.01)\
+<p>(cierre la etiqueta img con &gt; en lugar de /&gt; si utiliza HTML &lt;= 4.01)</p>\
 <p> \
 Si lo desea, puede descargar una copia de la imagen para guardarla en su \
 directorio web local y cambiar el fragmento anterior de XHTML para referenciar \
@@ -37,10 +39,11 @@ a la imagen en local en lugar de a la de éste servidor. </p>\n\
 de la validación) para hacer que sea más fácil revalidar la página en el futuro, \
 o para permitir que otras personas validen su página, el URI es: </p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ o http://jigsaw.w3.org/css-validator/check/referer (para documentos HTML/XML únicamente)\n\
+\ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ \ o http://jigsaw.w3.org/css-validator/check/referer (para documentos HTML/XML únicamente)\n\
 </pre>\n\
 <p>(O, simplemente, puede añadir la página actual a su lista de marcadores o favoritos.)</p>\n\
+</div>\
 </div>
 
 no-rules: <div><h2>No se ha encontrado ninguna hoja de estilo</h2></div>
@@ -67,7 +70,7 @@ not-css1-style: /* ¡ TENGA CUIDADO ! ¡ Esta propiedad no está incluida en CSS
 
 rules: \
 <div id="css">\n\
-<h2>Información de CSS válida</h2> \n\
+<h2 class="toggle closed">Información de CSS válida</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -89,7 +92,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2>Advertencias</h2> \n\
+<h2 class="toggle closed">Advertencias</h2> \n\
 <!-- #warning -->\n\
 </div>
 

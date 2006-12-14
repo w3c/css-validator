@@ -7,12 +7,15 @@ go-rules: <li><a href="#css">查看你已经校验的层叠样式表</a></li>
 no-error-or-warning: <div><h2>没有找到错误或警告</h2></div>
 
 no-errors: \
-<div> \
+<div id='congrats'> \
+<h2>恭喜恭喜</h2>\
 <p>\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 恭喜恭喜，此文档已经通过<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
   </p>\
+  <p class="toggle closed">More info</p>\
+  <div>\
 <p> \
 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
@@ -28,14 +31,16 @@ href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
 如果你喜欢的话，你可以下载这个图象到你的网站目录下，并且 \
 改变以上的代码段以关联到你的当地图象而不是这个服务器。 \
 \
-<p>如果你愿意建立连接到此页 (例如，这个校验结果) \
+</p><p>如果你愿意建立连接到此页 (例如，这个校验结果) \
 以便以后更加容易地再校验次页，或者容许其它人校验 \
-你的网页，其 URI 是：<pre>\n\
+你的网页，其 URI 是：</p><pre>\n\
 \
-\ \ \ \ \ \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
-\ \ \ \ \ \ \ 或 http://jigsaw.w3.org/css-validator/check/referer (仅使用于HTML文档)\n\
+\ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
+\ \ 或 http://jigsaw.w3.org/css-validator/check/referer (仅使用于HTML文档)\n\
 \n\
-(或者，你可以加入当前也到你的书签或列表中。)</pre></div>
+(或者，你可以加入当前也到你的书签或列表中。)</pre>\
+</div>\
+</div>
 
 no-rules: <H2>没有找到样式表</H2>
 not-css1-style: /* 请注意！这不是CSS1的属性！ */
@@ -60,7 +65,8 @@ not-css1-style: /* 请注意！这不是CSS1的属性！ */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css"><h2>你已经校验的层叠样式表：</h2> \
+<div id="css">\
+<h2 class="toggle closed">你已经校验的层叠样式表：</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -80,7 +86,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2>警告：</h2> \
+<h2 class="toggle closed">警告：</h2> \
 <!-- #warning --></div>\n
 
 
