@@ -211,7 +211,7 @@ CssPrinterStyle {
 //		ret.append("</span> ");
 		ret.append("\n   <td class='codeContext'>");
 		ret.append(buf);
-		ret.append("   </td>");
+		ret.append("</td>");
 		ret.append("\n   <td class='message'>");
 	    }
 	}
@@ -282,7 +282,6 @@ CssPrinterStyle {
 //		    ret.append(": ").append(error[i].getLine());
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
-			ret.append("\n   <td class='message'>");
 		    if (ex instanceof FileNotFoundException) {
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
 			ret.append("<span class='notfound'> ");
