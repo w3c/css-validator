@@ -194,9 +194,9 @@ CssPrinterStyle {
 			}
 	    }
 	    if (buf.length() != 0) {ret.append(buf);}
-		ret.append("</td>");
-		ret.append("\n   <td class='message'>");	
 	}
+	ret.append("</td>");
+	ret.append("\n   <td class='message'>");	
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 		ret.append(ac.getMsg().getGeneratorString("property"));
@@ -265,7 +265,7 @@ CssPrinterStyle {
 
 
 		    if (ex instanceof FileNotFoundException) {
-				ret.append("<td class='nocontext'> </td><td class='notfound'> ");
+				ret.append("<td class='nocontext'> </td><td class='notfound'> ");
 				ret.append(ac.getMsg().getGeneratorString("not-found"));
 				ret.append(ex.getMessage());
 
@@ -273,24 +273,24 @@ CssPrinterStyle {
 				produceParseException((CssParseException) ex, ret);
 
 			} else if (ex instanceof InvalidParamException) {
-				ret.append("<td class='nocontext'> </td><td class='invalidparam'> ");
+				ret.append("<td class='nocontext'> </td><td class='invalidparam'> ");
 				ret.append(queryReplace(ex.getMessage()));
 
 			} else if (ex instanceof IOException) {
 				String stringError = ex.toString();
 				int index = stringError.indexOf(':');
 				ret.append(stringError.substring(0, index));
-				ret.append("<td class='nocontext'> </td><td class='io'> ");
+				ret.append("<td class='nocontext'> </td><td class='io'> ");
 				ret.append(ex.getMessage());
 
 			} else if (error[i] instanceof CssErrorToken) {
 				CssErrorToken terror = (CssErrorToken) error[i];
-				ret.append("<td class='nocontext'> </td><td class='errortoken'> ");
+				ret.append("<td class='nocontext'> </td><td class='errortoken'> ");
 				ret.append(terror.getErrorDescription()).append(" : ");
 				ret.append(terror.getSkippedString());
 
 		    } else {
-				ret.append("<td class='nocontext'> </td><td class='unkownerror'>Unknown Error");
+				ret.append("<td class='nocontext'> </td><td class='unkownerror'>Unknown Error");
 				ret.append(ex);
 				if (ex instanceof NullPointerException) {
 			    	// ohoh, a bug
