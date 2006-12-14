@@ -179,16 +179,8 @@ generator.invalid-number: Número no válido
 generator.property: Propiedad no válida
 generator.line: Línea
 generator.not-found: Archivo no encontrado
-generator.doc-html: <p class='vDocHTML'>\
-Su hoja de estilo CSS necesita un árbol de análisis del documento válido \
-para funcionar correctamente. Por tanto debe usar <a href="http://validator.w3.org/check?uri=\
-%s">HTML válido</a>.</p>
-
-generator.doc:<p class='vDocHTML'>\
-Su hoja de estilo CSS necesita un árbol de análisis del documento válido \
-para funcionar correctamente. Por tanto debe usar <a href="http://validator.w3.org/">HTML \
-válido</a>.</p>
-
+generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
+generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 
 # used by the parser
 parser.semi-colon: Tentativa de encontrar un punto y coma antes del nombre de la propiedad. Añádalo

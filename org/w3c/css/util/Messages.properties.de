@@ -143,15 +143,9 @@ generator.invalid-number: Ungültige Nummer
 generator.property: Ungültige Nummer
 generator.line: Zeile
 generator.not-found: Datei nicht gefunden
-generator.doc-html: <p>\
-Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, ist ein korrekter Parsebaum erforderlich. \
-Das bedeutet, daß Sie <a href="http://validator.w3.org/check?uri=\
-%s">gültiges HTML</a> verwenden sollten.</p>
 
-generator.doc:<p>\
-Damit Ihr CSS-Stylesheet wie gewünscht funktioniert, benötigen Sie einen korrekten Parsebaum des Dokuments. \
-Das bedeutet, daß Sie <a href="http://validator.w3.org/">validiertes \
-HTML</a> verwenden sollten.</p>
+generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
+generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # used by the parser

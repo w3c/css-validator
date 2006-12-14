@@ -160,15 +160,9 @@ generator.invalid-number: Ongeldig getal
 generator.property: Ongeldig getal
 generator.line: Regel
 generator.not-found: Bestand niet gevonden
-generator.doc-html: <p>\
-Om alles naar behoren te laten werken is het noodzakelijk dat uw document een correcte grammaticale opbouw heeft \
-Dit betekent dat u <a href="http://validator.w3.org/check?uri=\
-%s">correct HTML</a> dient te gebruiken.</p>
+generator.doc-html:<!-- removed this confusing message olivier 2006-12-14 -->
 
-generator.doc:<p>\
-Om alles naar behoren te laten werken is het noodzakelijk dat uw CSS stylesheet een correcte grammaticale \
-opbouw heeft. Dit betekent dat u <a href="http://validator.w3.org/">correct \
-HTML</a> dient te gebruiken.</p>
+generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # gebruikt door the parser

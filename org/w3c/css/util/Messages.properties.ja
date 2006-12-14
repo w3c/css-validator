@@ -154,18 +154,9 @@ generator.invalid-number: 正しい数字ではありません
 generator.property: 次のプロパティが正しくありません
 generator.line: 行番号
 generator.not-found: ファイルが見つかりません
-generator.doc-html: <p>\
-CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。\
-つまり、<a href="http://validator.w3.org/check?uri=%s">正当<span lang="en">(valid)</span>\
-なHTML</a>と共に、CSSスタイルシートを用いる必要があります。\
-</p>
+generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
 
-generator.doc:<p>\
-CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。\
-つまり、<a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>\
-なHTML</a>文書と共に、\
-CSSスタイルシートを用いる必要があります。\
-</p>
+generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 
 # used by the parser
 parser.semi-colon: プロパティ名の前にセミコロン(;)を追加してみて下さい

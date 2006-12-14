@@ -178,15 +178,9 @@ generator.invalid-number: Invalid number
 generator.property: Invalid number
 generator.line: Line
 generator.not-found: File not found
-generator.doc-html: <p class='vDocHTML'>\
-To work as intended, your CSS style sheet needs a correct document parse \
-tree. This means you should use <a href="http://validator.w3.org/check?uri=\
-%s">valid HTML</a>.</p>
 
-generator.doc:<p class='vDocHTML'>\
-To work as intended, your CSS style sheet needs a correct document parse \
-tree. This means you should use <a href="http://validator.w3.org/">valid \
-HTML</a>.</p>
+generator.doc-html:   <!-- removed this confusing message olivier 2006-12-14 -->
+generator.doc:  <!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # used by the parser

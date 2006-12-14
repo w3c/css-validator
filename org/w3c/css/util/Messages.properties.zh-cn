@@ -140,15 +140,8 @@ generator.invalid-number: 无效数字
 generator.property: 无效数字
 generator.line: 行
 generator.not-found: 找不到文件
-generator.doc-html: <p>\
-若要如期工作，你的CSS样式表需要一个正确的文档解释树。 \
-这意味着你应该使用<a href="http://validator.w3.org/check?uri=\
-%s">正确的HTML</a>。</p>
-
-generator.doc:<p>\
-若要正常工作，你的CSS样式表需要一个正确的文档解释树。 \
-这意味着你应该使用<a href="http://validator.w3.org/">正确 \
-的HTML</a>.</p>
+generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
+generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # used by the parser
