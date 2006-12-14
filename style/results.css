@@ -1,7 +1,6 @@
 /*   ==== CONGRATS =====  */
 
-#congrats h2, #errors h2, #warnings h2 {
-          text-align: center;
+#congrats h2, #errors h2 {
           margin: 0;
         font-family: "Bitstream Vera Sans", sans-serif;
         font-size-adjust:	.53;
@@ -19,6 +18,8 @@
 #congrats h2 {
       background-color: #55B05A;
       color: white;
+      text-align: center;
+      
 }
 /*   ==== ERRORS =====  */
 
@@ -30,9 +31,24 @@
 
 /*   ==== WARNINGS =====  */
 /* id="warnings" - start of the list of warnings */
-#warnings h2 {
-  background: #FA9084;
-  color: white;
+#warnings h2, #css h2  {
+  color: #005A9C;
+  text-align: left;
+  background: transparent url('../images/arrow-down.gif')  0 10px no-repeat;
+  
+}
+
+#warnings h2.closed, #css h2.closed {
+ background: transparent url('../images/arrow-right.gif') 0 10px no-repeat;       
+}
+
+#congrats p.toggle { text-indent: 10px;
+        background: transparent url('../images/arrow-down.gif')  15px 0 no-repeat;
+        }
+
+#congrats p.closed{
+        text-indent: 10px;
+                background: transparent url('../images/arrow-right.gif')  15px 0 no-repeat;
 }
 
 #warnings table {
@@ -75,14 +91,22 @@ td.level1, td.level2, td.level0 {
 	color: #000;
 }
 
+/* ==== example of code for icon ==== */
+pre {
+        margin-left: 30px;
+        padding: 2em;
+        border-left: thin solid #ddd;
+}
 /*   ==== VALIDATED STYLESHEET =====  */
 
 /* id="css" - to identify the validated style sheet */
 #css {}
 
-#css h2 {
-      background-color: #55B05A;
-      color: white;
+{
+        background-color: white;
+        color: #005A9C;
+        text-align: left;
+        
 }
 
 /* class="vAtRule" - block of all atSelector */

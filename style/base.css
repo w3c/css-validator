@@ -26,7 +26,7 @@ body {
     font-size: 1em; /* setting base font to user's prefered size */
     min-width: 50em;
 }
-p {     
+p, pre {     
     line-height: 130%; 
     padding-left: 20px;
 }
