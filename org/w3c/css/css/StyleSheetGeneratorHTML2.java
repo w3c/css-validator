@@ -214,7 +214,7 @@ CssPrinterStyle {
 		ret.append("</td>");
 	    }
 	}
-	ret.append("\n<td class='error'>");
+	ret.append("\n<td class='message'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
@@ -283,31 +283,31 @@ CssPrinterStyle {
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
 		    if (ex instanceof FileNotFoundException) {
-			ret.append("\n<td class='error'>");
+			ret.append("\n<td class='message'>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<span class='message'> ");
+			ret.append("<span class='notfound'> ");
 			ret.append(ex.getMessage());
 			ret.append("</span>\n");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n<td class='error'>");
+			ret.append("\n<td class='message'>");
 			ret.append(queryReplace(ex.getMessage())).append('\n');
 		    } else if (ex instanceof IOException) {
-			ret.append("\n<td class='error'>");
+			ret.append("\n<td class='message'>");
 			String stringError = ex.toString();
 			int index = stringError.indexOf(':');
 			ret.append(stringError.substring(0, index));
-			ret.append(" : <span class='message'>");
-			ret.append(ex.getMessage()).append("</strong>\n");
+			ret.append("<span class='io'>");
+			ret.append(ex.getMessage()).append("</span>\n");
 		    } else if (error[i] instanceof CssErrorToken) {
-			ret.append("\n<td class='error'>");
+			ret.append("\n<td class='message'>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
 			ret.append(terror.getSkippedString()).append('\n');
 		    } else {
-			ret.append("\n<td class='error'>"
-				+ "<span class='message'>Uncaught error</span> ");
+			ret.append("\n<td class='message'>");
+			ret.append("<span class='uncaught-error'>Uncaught error</span> ");
 			ret.append(ex).append('\n');
 
 			if (ex instanceof NullPointerException) {
