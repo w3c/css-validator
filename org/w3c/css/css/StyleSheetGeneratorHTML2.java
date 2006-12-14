@@ -86,8 +86,7 @@ CssPrinterStyle {
 	this.warningLevel = warningLevel;
 
 	general.put("errors-count", Integer.toString(errors.getErrorCount()));
-	general.put("warnings-count", Integer.toString(warnings
-		.getWarningCount()));
+	general.put("warnings-count", Integer.toString(warnings.getWarningCount()));
 	general.put("rules-count", Integer.toString(items.size()));
 
 	if (errors.getErrorCount() == 0) {
