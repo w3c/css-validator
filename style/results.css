@@ -58,10 +58,14 @@ td.codeContext {
 	border-bottom: 1px solid #ddd !important;
 	background-color: #F1F1F1;}
 
-td.level1, td.level2 {
+td.level1, td.level2, td.level0 {
 	padding: 5px 1em;
 	border-bottom: 1px solid #fdd !important;
 }
+.level0 {
+	border-left: 10px solid #C66 !important;
+	color: #000;}
+
 .level1 {
 	border-left: 10px solid #FA9084 !important;
 	color: #000;
