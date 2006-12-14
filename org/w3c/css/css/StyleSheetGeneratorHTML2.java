@@ -190,13 +190,10 @@ CssPrinterStyle {
 			// if the list is not null, add a comma
 			if (t != null) {
 		    	buf.append(t);
-		    	if (e.hasMoreElements())
-					buf.append(", ");
+		    	if (e.hasMoreElements()) {buf.append(", ");}
 			}
 	    }
-	    if (buf.length() != 0) {
-			ret.append(buf);
-	    }
+	    if (buf.length() != 0) {ret.append(buf);}
 		ret.append("</td>");
 		ret.append("\n   <td class='message'>");	
 	}
@@ -268,27 +265,33 @@ CssPrinterStyle {
 
 
 		    if (ex instanceof FileNotFoundException) {
+				ret.append("<td colspan='2' class='notfound'> ");
 				ret.append(ac.getMsg().getGeneratorString("not-found"));
-				ret.append("<span class='notfound'> ");
 				ret.append(ex.getMessage());
-				ret.append("</span>");
+
 		    } else if (ex instanceof CssParseException) {
 				produceParseException((CssParseException) ex, ret);
-		    } else if (ex instanceof InvalidParamException) {
+
+			} else if (ex instanceof InvalidParamException) {
+				ret.append("<td colspan='2' class='invalidparam'> ");
 				ret.append(queryReplace(ex.getMessage()));
-		    } else if (ex instanceof IOException) {
+
+			} else if (ex instanceof IOException) {
 				String stringError = ex.toString();
 				int index = stringError.indexOf(':');
 				ret.append(stringError.substring(0, index));
-				ret.append("<span class='io'>");
-				ret.append(ex.getMessage()).append("</span>");
-		    } else if (error[i] instanceof CssErrorToken) {
+				ret.append("<td colspan='2' class='io'> ");
+				ret.append(ex.getMessage());
+
+			} else if (error[i] instanceof CssErrorToken) {
 				CssErrorToken terror = (CssErrorToken) error[i];
+				ret.append("<td colspan='2' class='errortoken'> ");
 				ret.append(terror.getErrorDescription()).append(" : ");
 				ret.append(terror.getSkippedString());
+
 		    } else {
-				ret.append("<span class='uncaught-error'>Uncaught error</span>");
-				ret.append(ex).append('\n');
+				ret.append("<td colspan='2' class='notfound'>Unknown Error");
+				ret.append(ex);
 				if (ex instanceof NullPointerException) {
 			    	// ohoh, a bug
 			    	ex.printStackTrace();
