@@ -320,8 +320,8 @@ CssPrinterStyle {
 		if (open) {
 		    ret.append("\n</table>");
 		}
-		ret.append("</div>");
 	    }
+		ret.append("\n<!--end of warning section--></div>");
 
 	    out.println(ret.toString());
 	} catch (Exception e) {
