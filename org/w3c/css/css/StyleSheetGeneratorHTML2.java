@@ -206,9 +206,12 @@ CssPrinterStyle {
 		}
 	    }
 	    if (buf.length() != 0) {
-		ret.append(ac.getMsg().getGeneratorString("context"));
-		ret.append(" : <span class='error'>").append(buf);
-		ret.append("</span> ");
+//		ret.append(ac.getMsg().getGeneratorString("context"));
+//		ret.append(" : <span class='error'>").append(buf);
+//		ret.append("</span> ");
+		ret.append("<td class='codeContext'>");
+		ret.append(buf);
+		ret.append("</td>");
 	    }
 	}
 	ret.append("\n<p>");
@@ -267,42 +270,43 @@ CssPrinterStyle {
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
 			if (open) {
-			    ret.append("</ul>\n</div>");
+			    ret.append("\n</table></div>");
 			}
-			ret.append("\n<div><h3>URI : " + "<a href=\"");
+			ret.append("\n<div class='errors-section'><h3>URI : " + "<a href=\"");
 			ret.append(file).append("\">");
-			ret.append(file).append("</a></h3><ul>");
+			ret.append(file).append("</a></h3><table>");
 			open = true;
 		    }
-		    ret.append("\n<li>");
-		    ret.append(ac.getMsg().getGeneratorString("line"));
-		    ret.append(": ").append(error[i].getLine());
+		    ret.append("\n<tr class='error'><td class='linenumber'>");
+//		    ret.append(ac.getMsg().getGeneratorString("line"));
+//		    ret.append(": ").append(error[i].getLine());
+		    ret.append(error[i].getLine());
 		    if (ex instanceof FileNotFoundException) {
-			ret.append("\n<p>");
+			ret.append("\n<td class='error'>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<span class='error'> ");
+			ret.append("<span class='message'> ");
 			ret.append(ex.getMessage());
 			ret.append("</span>\n");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n<p>");
+			ret.append("\n<td class='error'>");
 			ret.append(queryReplace(ex.getMessage())).append('\n');
 		    } else if (ex instanceof IOException) {
-			ret.append("\n<p>");
+			ret.append("\n<td class='error'>");
 			String stringError = ex.toString();
 			int index = stringError.indexOf(':');
 			ret.append(stringError.substring(0, index));
-			ret.append(" : <span class='error'>");
+			ret.append(" : <span class='message'>");
 			ret.append(ex.getMessage()).append("</strong>\n");
 		    } else if (error[i] instanceof CssErrorToken) {
-			ret.append("\n<p>");
+			ret.append("\n<td class='error'>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
 			ret.append(terror.getSkippedString()).append('\n');
 		    } else {
-			ret.append("\n<p>"
-				+ "<span class='error'>Uncaught error</span> ");
+			ret.append("\n<td class='error'>"
+				+ "<span class='message'>Uncaught error</span> ");
 			ret.append(ex).append('\n');
 
 			if (ex instanceof NullPointerException) {
@@ -310,10 +314,10 @@ CssPrinterStyle {
 			    ex.printStackTrace();
 			}
 		    }
-		    ret.append("</p></li>");
+		    ret.append("</td></tr>");
 		}
 		if (open) {
-		    ret.append("\n</ul>");
+		    ret.append("\n</table>");
 		}
 		ret.append("</div>");
 	    }
@@ -345,7 +349,7 @@ CssPrinterStyle {
 				ret.append("\n</table></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div><h3>URI : <a href=\"");
+			    ret.append("\n<div class='warning-section'><h3>URI : <a href=\"");
 			    ret.append(oldSourceFile).append("\">");
 			    ret.append(oldSourceFile).append("</a></h3><table>");
 			    open = true;
