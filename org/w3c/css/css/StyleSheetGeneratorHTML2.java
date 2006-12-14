@@ -263,6 +263,7 @@ CssPrinterStyle {
 
 	try {
 	    if (errors.getErrorCount() != 0) {
+		ret.append("\n<div class='errors-section-all'>");
 		int i = 0;
 		for (CssError[] error = errors.getErrors(); i < error.length; i++) {
 		    Exception ex = error[i].getException();
@@ -320,8 +321,9 @@ CssPrinterStyle {
 		if (open) {
 		    ret.append("\n</table>");
 		}
+		ret.append("\n<!--end of individual error section--></div>");
 	    }
-		ret.append("\n<!--end of warning section--></div>");
+		ret.append("\n<!--end of all error sections--></div>");
 
 	    out.println(ret.toString());
 	} catch (Exception e) {
@@ -340,6 +342,7 @@ CssPrinterStyle {
 	try {
 	    if (warnings.getWarningCount() != 0) {
 		int i = 0;
+		ret.append("\n<div class='warnings-section-all'>");
 		warnings.sort();
 		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
 
@@ -350,7 +353,7 @@ CssPrinterStyle {
 				ret.append("\n</table></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div class='warning-section'><h3>URI : <a href=\"");
+			    ret.append("\n<div class='warnings-section'><h3>URI : <a href=\"");
 			    ret.append(oldSourceFile).append("\">");
 			    ret.append(oldSourceFile).append("</a></h3><table>");
 			    open = true;
@@ -386,8 +389,9 @@ CssPrinterStyle {
 		if (open) {
 		    ret.append("\n</table>");
 		}
-		ret.append("</div>");
+		ret.append("\n<!--end of individual warning section--></div>");
 	    }
+		ret.append("\n<!--end of all warning sections--></div>");
 	    out.println(ret.toString());
 	} catch (Exception e) {
 	    out.println(ac.getMsg().getGeneratorString("request"));
