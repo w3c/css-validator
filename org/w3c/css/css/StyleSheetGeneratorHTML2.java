@@ -230,8 +230,7 @@ CssPrinterStyle {
 		Exception ex = error.getException();
 		if (ex instanceof NumberFormatException) {
 		    ret
-		    .append(ac.getMsg().getGeneratorString(
-		    "invalid-number"));
+		    .append(ac.getMsg().getGeneratorString("invalid-number"));
 		} else {
 		    ret.append(queryReplace(ex.getMessage()));
 		}
@@ -243,13 +242,13 @@ CssPrinterStyle {
 	    } else if (error.getExp() != null) {
 		ret.append(" : ");
 		ret.append(queryReplace(error.getExp().toStringFromStart()));
-		ret.append("<span class='expression'>");
+		ret.append("<span class='exp'>");
 		ret.append(queryReplace(error.getExp().toString()));
 		ret.append("</span>");
 	    }
 	} else {            
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
-	    ret.append(" - <span class='expression'>");
+	    ret.append(" - <span class='other'>");
 	    ret.append(queryReplace(error.getSkippedString()));
 	    ret.append("</span>");
 	}
@@ -271,20 +270,20 @@ CssPrinterStyle {
 		    if (!file.equals(oldSourceFile)) {
 			oldSourceFile = file;
 			if (open) {
-			    ret.append("\n</table></div>");
+			    ret.append("\n</table>\n<!--end of individual error section--></div>");
 			}
 			ret.append("\n<div class='errors-section'><h3>URI : " + "<a href=\"");
 			ret.append(file).append("\">");
 			ret.append(file).append("</a></h3><table>");
 			open = true;
 		    }
-		    ret.append("\n<tr class='error'><td class='linenumber'>");
+		    ret.append("\n<tr class='error'>\n   <td class='linenumber'>");
 //		    ret.append(ac.getMsg().getGeneratorString("line"));
 //		    ret.append(": ").append(error[i].getLine());
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
-		    if (ex instanceof FileNotFoundException) {
 			ret.append("\n   <td class='message'>");
+		    if (ex instanceof FileNotFoundException) {
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
 			ret.append("<span class='notfound'> ");
 			ret.append(ex.getMessage());
@@ -292,22 +291,18 @@ CssPrinterStyle {
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n   <td class='message'>");
 			ret.append(queryReplace(ex.getMessage()));
 		    } else if (ex instanceof IOException) {
-			ret.append("\n   <td class='message'>");
 			String stringError = ex.toString();
 			int index = stringError.indexOf(':');
 			ret.append(stringError.substring(0, index));
 			ret.append("<span class='io'>");
 			ret.append(ex.getMessage()).append("</span>");
 		    } else if (error[i] instanceof CssErrorToken) {
-			ret.append("\n   <td class='message'>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
 			ret.append(terror.getSkippedString());
 		    } else {
-			ret.append("\n   <td class='message'>");
 			ret.append("<span class='uncaught-error'>Uncaught error</span>");
 			ret.append(ex).append('\n');
 
@@ -316,7 +311,7 @@ CssPrinterStyle {
 			    ex.printStackTrace();
 			}
 		    }
-		    ret.append("</td></tr>");
+		    ret.append("</td>\n</tr>");
 		}
 		if (open) {
 		    ret.append("\n</table>");
@@ -350,7 +345,7 @@ CssPrinterStyle {
 		    if (warn.getLevel() <= warningLevel) {
 			if (!warn.getSourceFile().equals(oldSourceFile)) {
 			    if (open) {
-				ret.append("\n</table></div>");
+				ret.append("\n</table>\n<!--end of individual warning section--></div>");
 			    }
 			    oldSourceFile = warn.getSourceFile();
 			    ret.append("\n<div class='warnings-section'><h3>URI : <a href=\"");
@@ -362,27 +357,27 @@ CssPrinterStyle {
 //				|| !warn.getWarningMessage().equals(oldMessage)) {
 			    oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
-			    ret.append("\n<tr class='warning'><td class='linenumber'>");
+			    ret.append("\n<tr class='warning'>\n   <td class='linenumber'>");
 // to remove the trigger of line label in languages.
 //			    ret.append(ac.getMsg().getGeneratorString("line"));
 //			    ret.append(" : ");
 			    ret.append(oldLine);
 			    ret.append("</td> ");
 // <span class='level1'> - level of warning
-				ret.append("<td class='codeContext'>");
+				ret.append("\n   <td class='codeContext'>");
 				if (warn.getContext() != null) {
 					ret.append(warn.getContext());
 					}
 				ret.append("</td>");
 //			    if (warn.getLevel() != 0) {
 // there are warnings with level 0 which need the table
-				ret.append("<td class='level");
+				ret.append("\n   <td class='level");
 				ret.append(warn.getLevel());
 				ret.append("'>");
 //			    }
 			    ret.append(Util.escapeHTML(oldMessage));
 			    ret.append("</td> ");
-			    ret.append("</tr>");
+			    ret.append("\n</tr>");
 //			}
 		    }
 		}
