@@ -182,7 +182,7 @@ CssPrinterStyle {
     public void produceParseException(CssParseException error, StringBuffer ret) {
 	ret.append(' ');
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
-		ret.append("\n   <td class='codeContext'>");
+		ret.append("   <td class='codeContext'>");
 	    StringBuffer buf = new StringBuffer();
 		// Loop on the list of contexts for errors
 	    for (Enumeration e = error.getContexts().elements(); e.hasMoreElements();) {
@@ -195,10 +195,10 @@ CssPrinterStyle {
 	    }
 	    if (buf.length() != 0) {ret.append(buf);}
 	} else {
-		ret.append("\n   <td class='nocontext'>");
+		ret.append("\n   <td class='nocontext'> ");
 	}
-	ret.append("</td>");
-	ret.append("\n   <td class='message'>");
+	ret.append("</td>\n");
+	ret.append("   <td class='message'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 		ret.append(ac.getMsg().getGeneratorString("property"));
@@ -267,7 +267,7 @@ CssPrinterStyle {
 
 
 		    if (ex instanceof FileNotFoundException) {
-				ret.append("<td class='nocontext'> </td><td class='notfound'> ");
+				ret.append("\n   <td class='nocontext'> </td>\n   <td class='notfound'> ");
 				ret.append(ac.getMsg().getGeneratorString("not-found"));
 				ret.append(ex.getMessage());
 
@@ -275,24 +275,24 @@ CssPrinterStyle {
 				produceParseException((CssParseException) ex, ret);
 
 			} else if (ex instanceof InvalidParamException) {
-				ret.append("<td class='nocontext'> </td><td class='invalidparam'> ");
+				ret.append("\n   <td class='nocontext'> </td>\n   <td class='invalidparam'> ");
 				ret.append(queryReplace(ex.getMessage()));
 
 			} else if (ex instanceof IOException) {
 				String stringError = ex.toString();
 				int index = stringError.indexOf(':');
 				ret.append(stringError.substring(0, index));
-				ret.append("<td class='nocontext'> </td><td class='io'> ");
+				ret.append("\n   <td class='nocontext'> </td>\n   <td class='io'> ");
 				ret.append(ex.getMessage());
 
 			} else if (error[i] instanceof CssErrorToken) {
 				CssErrorToken terror = (CssErrorToken) error[i];
-				ret.append("<td class='nocontext'> </td><td class='errortoken'> ");
+				ret.append("\n   <td class='nocontext'> </td>\n   <td class='errortoken'> ");
 				ret.append(terror.getErrorDescription()).append(" : ");
 				ret.append(terror.getSkippedString());
 
 		    } else {
-				ret.append("<td class='nocontext'> </td><td class='unkownerror'>Unknown Error");
+				ret.append("\n   <td class='nocontext'> </td>\n   <td class='unkownerror'>Unknown Error");
 				ret.append(ex);
 				if (ex instanceof NullPointerException) {
 			    	// ohoh, a bug
