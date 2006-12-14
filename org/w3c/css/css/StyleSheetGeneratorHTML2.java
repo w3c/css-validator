@@ -209,12 +209,12 @@ CssPrinterStyle {
 //		ret.append(ac.getMsg().getGeneratorString("context"));
 //		ret.append(" : <span class='error'>").append(buf);
 //		ret.append("</span> ");
-		ret.append("<td class='codeContext'>");
+		ret.append("\n   <td class='codeContext'>");
 		ret.append(buf);
-		ret.append("</td>");
+		ret.append("   </td>");
 	    }
 	}
-	ret.append("\n<td class='message'>");
+	ret.append("\n   <td class='message'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
@@ -225,7 +225,7 @@ CssPrinterStyle {
 	}
 	if ((error.getException() != null) && (error.getMessage() != null)) {
 	    if (error.isParseException()) {
-		ret.append(queryReplace(error.getMessage())).append('\n');
+		ret.append(queryReplace(error.getMessage()));
 	    } else {
 		Exception ex = error.getException();
 		if (ex instanceof NumberFormatException) {
@@ -237,21 +237,21 @@ CssPrinterStyle {
 		}
 	    }
 	    if (error.getSkippedString() != null) {
-		ret.append(" : <span>");
+		ret.append("<span class='skippedString'>");
 		ret.append(queryReplace(error.getSkippedString()));
-		ret.append("</span>\n");
+		ret.append("</span>");
 	    } else if (error.getExp() != null) {
 		ret.append(" : ");
 		ret.append(queryReplace(error.getExp().toStringFromStart()));
-		ret.append("<span>");
+		ret.append("<span class='expression'>");
 		ret.append(queryReplace(error.getExp().toString()));
-		ret.append("</span>\n");
+		ret.append("</span>");
 	    }
 	} else {            
 	    ret.append(ac.getMsg().getGeneratorString("unrecognize"));
-	    ret.append(" - <span class='error'>");
+	    ret.append(" - <span class='expression'>");
 	    ret.append(queryReplace(error.getSkippedString()));
-	    ret.append("</span>\n");
+	    ret.append("</span>");
 	}
 
     }
@@ -283,31 +283,31 @@ CssPrinterStyle {
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
 		    if (ex instanceof FileNotFoundException) {
-			ret.append("\n<td class='message'>");
+			ret.append("\n   <td class='message'>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
 			ret.append("<span class='notfound'> ");
 			ret.append(ex.getMessage());
-			ret.append("</span>\n");
+			ret.append("</span>");
 		    } else if (ex instanceof CssParseException) {
 			produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n<td class='message'>");
-			ret.append(queryReplace(ex.getMessage())).append('\n');
+			ret.append("\n   <td class='message'>");
+			ret.append(queryReplace(ex.getMessage()));
 		    } else if (ex instanceof IOException) {
-			ret.append("\n<td class='message'>");
+			ret.append("\n   <td class='message'>");
 			String stringError = ex.toString();
 			int index = stringError.indexOf(':');
 			ret.append(stringError.substring(0, index));
 			ret.append("<span class='io'>");
-			ret.append(ex.getMessage()).append("</span>\n");
+			ret.append(ex.getMessage()).append("</span>");
 		    } else if (error[i] instanceof CssErrorToken) {
-			ret.append("\n<td class='message'>");
+			ret.append("\n   <td class='message'>");
 			CssErrorToken terror = (CssErrorToken) error[i];
 			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');
+			ret.append(terror.getSkippedString());
 		    } else {
-			ret.append("\n<td class='message'>");
-			ret.append("<span class='uncaught-error'>Uncaught error</span> ");
+			ret.append("\n   <td class='message'>");
+			ret.append("<span class='uncaught-error'>Uncaught error</span>");
 			ret.append(ex).append('\n');
 
 			if (ex instanceof NullPointerException) {
