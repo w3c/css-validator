@@ -51,13 +51,13 @@
                 background: transparent url('../images/arrow-right.gif')  15px 0 no-repeat;
 }
 
-#warnings table {
+#warnings table, #errors table {
 	width:100%;
 	border-top: 1px solid #ccc !important;
 	line-height:120%;
 	}
 
-#warnings td {
+#warnings td, #errors td {
 	border-width: 0;
 }
 
