@@ -212,9 +212,9 @@ CssPrinterStyle {
 		ret.append("\n   <td class='codeContext'>");
 		ret.append(buf);
 		ret.append("   </td>");
+		ret.append("\n   <td class='message'>");
 	    }
 	}
-	ret.append("\n   <td class='message'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
