@@ -214,7 +214,7 @@ CssPrinterStyle {
 		ret.append("</td>");
 	    }
 	}
-	ret.append("\n<p>");
+	ret.append("\n<td class='error'>");
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
@@ -281,6 +281,7 @@ CssPrinterStyle {
 //		    ret.append(ac.getMsg().getGeneratorString("line"));
 //		    ret.append(": ").append(error[i].getLine());
 		    ret.append(error[i].getLine());
+		    ret.append("</td>");
 		    if (ex instanceof FileNotFoundException) {
 			ret.append("\n<td class='error'>");
 			ret.append(ac.getMsg().getGeneratorString("not-found"));
