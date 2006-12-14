@@ -38,35 +38,20 @@ import org.w3c.css.util.Warnings;
  */
 public final class StyleSheetGeneratorHTML2 extends StyleReport implements
 CssPrinterStyle {
-
     StyleSheet style;
-
     Vector items;
-
     Warnings warnings;
-
     Errors errors;
-
     ApplContext ac;
-
     private CssSelectors selector;
-
     //private CssProperty property;
-
     private PrintWriter out;
-
     private int warningLevel;
-
     private Utf8Properties general;
-
     private static Utf8Properties availableFormat;
-
     private static Utf8Properties availablePropertiesURL;
-
     private static Hashtable formats = new Hashtable();
-
     int counter = 0;
-
     /**
      * Create a new StyleSheetGenerator
      *
@@ -85,9 +70,11 @@ CssPrinterStyle {
 	if (document == null) {
 	    document = "html.en";
 	}
+
 	if (Util.onDebug) {
 	    System.err.println("document format is " + document);
 	}
+
 	this.ac = ac;
 	this.style = style;
 	general = new Utf8Properties(setDocumentBase(getDocumentName(ac, document))); 	 
@@ -129,21 +116,21 @@ CssPrinterStyle {
 	    general.put("no-error-or-warning", "");
 	}
 
-	if (Util.onDebug)
-	    general.list(System.err);
+	if (Util.onDebug) {
+		general.list(System.err);
+	}
 
 	DateFormat df = null;
 
 	if (ac.getLang() != null) {
 	    try {
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
-			DateFormat.FULL, new Locale(ac.getLang()
-				.substring(0, 2), "US"));
-	    } catch (Exception e) {
-		df = DateFormat.getDateTimeInstance(DateFormat.FULL,
-			DateFormat.FULL, Locale.US);
-	    }
-	}
+			df = DateFormat.getDateTimeInstance(DateFormat.FULL,
+				DateFormat.FULL, new Locale(ac.getLang().substring(0, 2), "US"));
+	    	} catch (Exception e) {
+				df = DateFormat.getDateTimeInstance(DateFormat.FULL,
+					DateFormat.FULL, Locale.US);
+	    	}
+		}
 	if (df != null) {
 	    general.put("today", df.format(new Date()));
 	} else {
@@ -196,25 +183,24 @@ CssPrinterStyle {
 	ret.append(' ');
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    StringBuffer buf = new StringBuffer();
-	    for (Enumeration e = error.getContexts().elements(); e
-	    .hasMoreElements();) {
-		Object t = e.nextElement();
-		if (t != null) {
-		    buf.append(t);
-		    if (e.hasMoreElements())
-			buf.append(", ");
-		}
-	    }
-	    if (buf.length() != 0) {
+	    for (Enumeration e = error.getContexts().elements(); e.hasMoreElements();) {
+			Object t = e.nextElement();
+			ret.append("\n   <td class='codeContext'>");
+			if (t != null) {
+		    	buf.append(t);
+		    	if (e.hasMoreElements())
+					buf.append(", ");
+				}
+	    	}
+	    	if (buf.length() != 0) {
 //		ret.append(ac.getMsg().getGeneratorString("context"));
 //		ret.append(" : <span class='error'>").append(buf);
 //		ret.append("</span> ");
-		ret.append("\n   <td class='codeContext'>");
-		ret.append(buf);
-		ret.append("</td>");
-		ret.append("\n   <td class='message'>");
-	    }
-	}
+				ret.append(buf);
+	    	}
+			ret.append("</td>");
+			ret.append("\n   <td class='message'>");
+		}
 	String name = error.getProperty();
 	if ((name != null) && (getURLProperty(name) != null)) {
 	    ret.append(ac.getMsg().getGeneratorString("property"));
@@ -229,8 +215,7 @@ CssPrinterStyle {
 	    } else {
 		Exception ex = error.getException();
 		if (ex instanceof NumberFormatException) {
-		    ret
-		    .append(ac.getMsg().getGeneratorString("invalid-number"));
+		    ret.append(ac.getMsg().getGeneratorString("invalid-number"));
 		} else {
 		    ret.append(queryReplace(ex.getMessage()));
 		}
@@ -279,47 +264,44 @@ CssPrinterStyle {
 		    }
 		    ret.append("\n<tr class='error'>\n   <td class='linenumber'>");
 //		    ret.append(ac.getMsg().getGeneratorString("line"));
-//		    ret.append(": ").append(error[i].getLine());
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
 		    if (ex instanceof FileNotFoundException) {
-			ret.append(ac.getMsg().getGeneratorString("not-found"));
-			ret.append("<span class='notfound'> ");
-			ret.append(ex.getMessage());
-			ret.append("</span>");
+				ret.append(ac.getMsg().getGeneratorString("not-found"));
+				ret.append("<span class='notfound'> ");
+				ret.append(ex.getMessage());
+				ret.append("</span>");
 		    } else if (ex instanceof CssParseException) {
-			produceParseException((CssParseException) ex, ret);
+				produceParseException((CssParseException) ex, ret);
 		    } else if (ex instanceof InvalidParamException) {
-			ret.append(queryReplace(ex.getMessage()));
+				ret.append(queryReplace(ex.getMessage()));
 		    } else if (ex instanceof IOException) {
-			String stringError = ex.toString();
-			int index = stringError.indexOf(':');
-			ret.append(stringError.substring(0, index));
-			ret.append("<span class='io'>");
-			ret.append(ex.getMessage()).append("</span>");
+				String stringError = ex.toString();
+				int index = stringError.indexOf(':');
+				ret.append(stringError.substring(0, index));
+				ret.append("<span class='io'>");
+				ret.append(ex.getMessage()).append("</span>");
 		    } else if (error[i] instanceof CssErrorToken) {
-			CssErrorToken terror = (CssErrorToken) error[i];
-			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString());
+				CssErrorToken terror = (CssErrorToken) error[i];
+				ret.append(terror.getErrorDescription()).append(" : ");
+				ret.append(terror.getSkippedString());
 		    } else {
-			ret.append("<span class='uncaught-error'>Uncaught error</span>");
-			ret.append(ex).append('\n');
-
-			if (ex instanceof NullPointerException) {
-			    // ohoh, a bug
-			    ex.printStackTrace();
-			}
+				ret.append("<span class='uncaught-error'>Uncaught error</span>");
+				ret.append(ex).append('\n');
+				if (ex instanceof NullPointerException) {
+			    	// ohoh, a bug
+			    	ex.printStackTrace();
+				}
 		    }
-		    ret.append("</td>\n</tr>");
+			ret.append("</td>\n</tr>");
 		}
 		if (open) {
 		    ret.append("\n</table>");
 		}
 		ret.append("\n<!--end of individual error section--></div>");
-	    }
-		ret.append("\n<!--end of all error sections--></div>");
-
-	    out.println(ret.toString());
+	}
+	ret.append("\n<!--end of all error sections--></div>");
+	out.println(ret.toString());
 	} catch (Exception e) {
 	    out.println(ac.getMsg().getGeneratorString("request"));
 	    e.printStackTrace();
