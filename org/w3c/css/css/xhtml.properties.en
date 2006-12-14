@@ -67,7 +67,7 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 
 rules: \
 <div id="css">\n\
-<h2>Valid CSS information</h2> \n\
+<h2 class="toggle closed">Valid CSS information</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -89,7 +89,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2>Warnings</h2> \n\
+<h2 class="toggle closed">Warnings</h2> \n\
 <!-- #warning -->\n\
 </div>
 
@@ -106,6 +106,7 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
+<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\
