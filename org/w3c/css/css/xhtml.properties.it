@@ -32,8 +32,8 @@ Di seguito il codice XHTML che puoi utilizzare per aggiungere questa icona alla 
 <p>(Se si utilizza XHTML, chiudere l'elemento img con /&gt;)\
 (Se si utilizza HTML &lt;= 4.01, chiudere l'elemento img tag con &gt; invece di /&gt;)</p>\
 <p> \
-Se lo desideri, puoi scaricare una copie di questa immagine per salvarla all'interno del tuo sito Web,
-modificando il codice XHTML sopra riportato riferendolo all'immagine locale anziché a quella residente
+Se lo desideri, puoi scaricare una copie di questa immagine per salvarla all'interno del tuo sito Web,\
+modificando il codice XHTML sopra riportato riferendolo all'immagine locale anziché a quella residente\
 in questo server. </p>\n\
 \
 <p>Se desideri creare un collegamento a questa pagina (per esempio, al risultato di validazione)
@@ -110,6 +110,7 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
+<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\

@@ -8,7 +8,7 @@ no-error-or-warning: <div><h2>Geen fout of waarschuwing gevonden</h2></div>
 
 no-errors: \
 <div id='congrats'> \
-<h2>Gefeliciteerd!</h2>
+<h2>Gefeliciteerd!</h2>\
 <p>\
 <img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Correct CSS!">\
 Dit document is gevalideerd als <a\ \
@@ -104,6 +104,7 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
+<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\
