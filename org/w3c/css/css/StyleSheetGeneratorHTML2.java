@@ -259,11 +259,12 @@ CssPrinterStyle {
 				ret.append(file).append("</a></h3>\n<table>");
 				open = true;
 		    }
-		    ret.append("\n<tr class='error'>\n   <td class='linenumber'>");
-//		    ret.append(ac.getMsg().getGeneratorString("line"));
+		    ret.append("\n<tr class='error'>\n   <td class='linenumber' title='");
+			ret.append(ac.getMsg().getGeneratorString("line"));
+		    ret.append(error[i].getLine());
+		    ret.append("'>");
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
-
 
 		    if (ex instanceof FileNotFoundException) {
 				ret.append("\n   <td class='nocontext'> </td>\n   <td class='notfound'> ");
@@ -345,7 +346,6 @@ CssPrinterStyle {
 				// Starting a line for each new warning
 			    ret.append("\n<tr class='warning'>\n   <td class='linenumber' title='");
 				ret.append(ac.getMsg().getGeneratorString("line"));
-			    ret.append(oldLine);
 			    ret.append(" ").append(oldLine);
 			    ret.append("'>");
 			    ret.append(oldLine);
@@ -361,7 +361,7 @@ CssPrinterStyle {
 				// creating a class and a title with the appropriate level number
 				ret.append("\n   <td class='level");
 				ret.append(warn.getLevel());
-				ret.append("' title='warning level '");
+				ret.append("' title='warning level ");
 				ret.append(warn.getLevel());
 				ret.append("'>");
 			    ret.append(Util.escapeHTML(oldMessage));
