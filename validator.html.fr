@@ -51,8 +51,8 @@
 		<select name="profile">
 			<option value="none">Aucun profil particulier</option>
 			<option value="css1">CSS niveau 1</option>
-			<option selected="selected" value="css2">CSS niveau 2</option>
-			<option value="css21">CSS niveau 2.1</option>
+			<option value="css2">CSS niveau 2</option>
+			<option selected="selected" value="css21">CSS niveau 2.1</option>
 			<option value="css3">CSS niveau 3</option>
 			<option value="svg">SVG</option>
 			<option value="svgbasic">SVG Basic</option>
@@ -104,8 +104,8 @@
 		<select name="profile">
 			<option value="none">Aucun profil particulier</option>
 			<option value="css1">CSS niveau 1</option>
-			<option selected="selected" value="css2">CSS niveau 2</option>
-			<option value="css21">CSS niveau 2.1</option>
+			<option value="css2">CSS niveau 2</option>
+			<option selected="selected" value="css21">CSS niveau 2.1</option>
 			<option value="css3">CSS niveau 3</option>
 			<option value="svg">SVG</option>
 			<option value="svgbasic">SVG Basic</option>
@@ -158,8 +158,8 @@
 		<select name="profile">
 			<option value="none">Aucun profil particulier</option>
 			<option value="css1">CSS niveau 1</option>
-			<option selected="selected" value="css2">CSS niveau 2</option>
-			<option value="css21">CSS niveau 2.1</option>
+			<option value="css2">CSS niveau 2</option>
+			<option selected="selected" value="css21">CSS niveau 2.1</option>
 			<option value="css3">CSS niveau 3</option>
 			<option value="svg">SVG</option>
 			<option value="svgbasic">SVG Basic</option>
