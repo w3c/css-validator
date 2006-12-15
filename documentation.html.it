@@ -1,108 +1,140 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<?xml version="1.0"?><HTML lang=it xml:lang="it" 
-xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Documentation for the W3C CSS Validator</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
-rev=made href="mailto:www-validator-css@w3.org"><LINK title="Home Page" 
-rev=start href="./">
-<STYLE type=text/css media=all>@import url( style/base.css );
-@import url( style/docs.css );
-</STYLE>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<head>
+  <title>Documentazione per il servizio di validazione CSS del W3C</title>
+  <link rev="made" href="mailto:www-validator-css@w3.org" />
+  <link rev="start" href="./" title="Pagina iniziale" />
+  <style type="text/css" media="all">
+    @import "style/base.css";    
+    @import "style/docs.css";    
+  </style>
+  <meta name="revision" content="$Id$" />
+  <meta name="translator" content="Roberto Scano - International Webmasters Association / The HTML Writers Guild" />
+  <!-- SSI Template Version: $Id$ -->
+</head>
 
-<META content="$Id$" 
-name=revision><!-- SSI Template Version: $Id$ -->
-<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
-<BODY>
-<DIV id=banner>
-<H1 id=title><A href="http://www.w3.org/"><IMG id=logo height=48 alt=W3C 
-src="Documentation for the W3C CSS Validator_file/w3c_home_nb.png"></A> <A 
-href="http://qa-dev.w3.org:8001/css-validator/"><IMG 
-alt="CSS Validation Service" 
-src="Documentation for the W3C CSS Validator_file/css_validation_service.png"></A></H1></DIV>
-<DIV id=main><!-- This DIV encapsulates everything in this page - necessary for the positioning -->
-<DIV class=doc>
-<H2>Indice della documentazione per il Validatore CSS</H2>
-<P id=skip></P>
-<H3 id=use>Risorse per l'utente</H3>
-<DL>
-  <DT><A href="http://qa-dev.w3.org:8001/css-validator/manual.html">Manuale 
-	Utente</A> 
-  <DD>La documentazione su come usare il validatore CSS 
-  <DT><A href="http://qa-dev.w3.org:8001/css-validator/about.html">Riguardo 
-	questo servizio</A> 
-  <DD>Informazioni sul Validatore CSS, e risposte ad alcune domande generali 
-  <DT><A href="http://www.websitedev.de/css/validator-faq">FAQ del Validatore CSS  
-</A>
-  <DD>Risposte a domande tecniche poste di frequente. </DD></DL>
-<H3 id=devel>Risorse per lo sviluppatore</H3>
-<DL>
-  <DT><A 
-  href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">Download/Installazione</A> 
+<body>
 
-  <DD>Come ottenere il codice sorgente del validatore CSS ed eseguirlo, sia come 
-	programma da linea di comando che come servlet Web. 
-  <DT><A href="http://qa-dev.w3.org:8001/css-validator/README">README dello 
-	sviluppatore</A> 
-  <DD>Un panoramica del codice sorgente del Validatore CSS 
-  <DT><A href="http://qa-dev.w3.org:8001/css-validator/api.html">Web Service 
-  API</A> 
-  <DD>Documentazione dell'interfaccia di validazione SOAP 1.2 
-  <DT><A 
-  href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bug</A> 
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="Servizio di validazione CSS" /></a></h1>
+   </div>
 
-  <DD>Problemi noti nella versione attuale del validatore, e un'interfaccia per 
-	segnalare nuovi bug e problemi. Vedi anche
-	<A 
-  href="http://qa-dev.w3.org:8001/css-validator/email">le istruzioni del feedback</A>. </DD></DL></DIV></DIV><!-- End of "main" DIV. -->
-<UL class=navbar id=menu>
-  <LI><STRONG><A title="Home page for the W3C CSS Validation Service" 
-  href="http://qa-dev.w3.org:8001/css-validator/">Home</A></STRONG> <SPAN 
-  class=hideme>|</SPAN> 
-  <LI>
-	<A title="About this service" 
-  href="http://qa-dev.w3.org:8001/css-validator/about.html">Riguardo questo 
-	servizio</A> <SPAN 
-  class=hideme>|</SPAN> 
-  <LI><A title="Download the CSS validator" 
-  href="http://qa-dev.w3.org:8001/css-validator/DOWNLOAD.html">Download</A> 
-  <SPAN class=hideme>|</SPAN> 
-  <LI><A title="How to provide feedback on this service" 
-  href="http://qa-dev.w3.org:8001/css-validator/Email.html">Feedback</A> <SPAN 
-  class=hideme>|</SPAN> 
-  <LI><A title="Credits and Acknowlegments" 
-  href="http://qa-dev.w3.org:8001/css-validator/thanks.html">Crediti</A><SPAN 
-  class=hideme>|</SPAN> </LI></UL>
-<P id=activity_logos><A 
-title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more" 
-href="http://www.w3.org/QA/"><IMG alt=QA 
-src="Documentation for the W3C CSS Validator_file/qa-small.png"></A><A 
-title="Learn more about Cascading Style Sheets" 
-href="http://www.w3.org/Style/CSS/learning"><IMG alt=CSS 
-src="Documentation for the W3C CSS Validator_file/woolly-icon.png"></A> </P>
-<P id=support_logo>Supporta questo strumento, diventa un<BR><A 
-href="http://www.w3.org/Consortium/supporters"><IMG alt="W3C Supporter" 
-src="Documentation for the W3C CSS Validator_file/csupporter.png"></A> </P>
-<P class=copyright><A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" 
-rel=Copyright>Copyright</A> � 1994-2006 <A href="http://www.w3.org/"><ACRONYM 
-title="World Wide Web Consortium">W3C</ACRONYM></A>� (<A 
-href="http://www.csail.mit.edu/"><ACRONYM 
-title="Massachusetts Institute of Technology">MIT</ACRONYM></A>, <A 
-href="http://www.ercim.org/"><ACRONYM 
-title="European Research Consortium for Informatics and Mathematics">ERCIM</ACRONYM></A>, 
-<A href="http://www.keio.ac.jp/">Keio</A>), Tutti i Diritti Riservati. Si 
-applicano le regole del W3C su
-<A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
-responsabilit�</A>, 
-<A 
-href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marchio 
-registrato</A>,
-<A href="http://www.w3.org/Consortium/Legal/copyright-documents" 
-rel=Copyright>uso del documento</A> e
-<A 
-href="http://www.w3.org/Consortium/Legal/copyright-software" 
-rel=Copyright>licenza del software</A>. Le tue interazioni con questo sito 
-avvengono in conformit� con le nostre dichiarazioni sulla riservatezza per il <A 
-href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</A> 
-e per i <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">
-Membri del W3C</a>. </P></BODY></HTML>
+<div id="main">
+<!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+<div class="doc">
+<h2>Indice della documentazione per il validatore CSS</h2>
+
+<p id="skip"></p>
+
+<h3 id="use">Risorse per gli utenti</h3>
+
+<dl>
+    <dt><a href="./manual.html">Manuale utente</a></dt>
+    <dd>La documentazione su come utilizzare il validatore CSS del W3C</dd>
+    <dt><a href="about.html">Informazioni sul servizio</a></dt>
+    <dd>Informazioni riguardo al validatore CSS e risposte ad alcune domande generali</dd>
+    <dt><a href="http://www.websitedev.de/css/validator-faq">
+	Domande più frequenti sul validatore CSS
+    </a></dt>
+    <dd>Risposte alle domande tecniche più frequenti.</dd>
+    
+</dl>
+
+<h3 id="devel">Risorse per gli sviluppatori</h3>
+
+
+<dl>
+    <dt><a href="DOWNLOAD.html">Scarica/installa</a></dt>
+    <dd>Come ottenere il sorgente del validatore CSS e come eseguirlo, sia come applicazione da riga di comando, o come servlet Web.</dd>
+    
+    <dt><a href="README">README per sviluppatori</a></dt>
+    <dd>Una panoramica del codice per il validatore CSS</dd>
+
+    <dt><a href="./api.html">Web Service API</a></dt>
+    <dd>Documentazione SOAP 1.2 per l'interfacciamento alla validazione</dd>
+    
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Problemi</a></dt>
+    <dd>Problematiche conosciute nella versione corrente del validatore, nonché un'interfaccia per segnalare nuovi problemi o argomenti di discussione. 
+    Consultare anche le <a href="email">istruzioni per l'invio di commenti</a>.</dd>
+
+</dl>
+
+
+
+</div>
+</div>
+<!-- End of "main" DIV. -->
+
+   <ul class="navbar"  id="menu">
+	<li><strong>a href="./" title="Pagina iniziale del servizio di validazione CSS del W3C">Pagina iniziale</a> <span class="hideme">|</span></li>
+	<li><a href="about.html" title="Informazioni sul servizio">Informazioni</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD" title="Scarica il Validatore CSS" xml:lang="en" lang="en">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
+        <li><a href="thanks" title="Crediti e ringraziamenti">Riconoscimenti</a><span class="hideme">|</span></li>
+      </ul>
+
+   <ul id="lang_choice">
+       <li><a href="documentation.html.en"
+       lang="en"
+       xml:lang="en"
+       hreflang="en"
+       rel="alternate">English</a>  </li>
+       <li><a href="documentation.html.fr"
+       lang="fr"
+       xml:lang="fr"
+       hreflang="fr"
+       rel="alternate">Français</a> </li>
+       <li><a href="documentation.html.it"
+           lang="it"
+           xml:lang="it"
+           hreflang="it"
+           rel="alternate">Italiano</a> </li>
+       <li><a href="documentation.html.ja"
+           lang="ja"
+           xml:lang="ja"
+           hreflang="ja"
+           rel="alternate">日本語</a> </li>
+       <li><a href="documentation.html.pl-PL"
+           lang="pl"
+           xml:lang="pl"
+           hreflang="pl"
+           rel="alternate">Polski</a> </li>
+       <li><a href="documentation.html.zh-cn"
+           lang="zh-hans"
+           xml:lang="zh-hans"
+           hreflang="zh-hans"
+           rel="alternate">中文</a></li>
+  </ul>
+
+   <p id="activity_logos">
+      <a href="http://www.w3.org/QA/" title="Attività di garanzia di qualità del W3C, che ti fornisce strumenti di qualità gratuiti per il Web e molto altro"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Maggiori informazioni sui fogli di stile a cascata"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+Aiuta questo strumento, diventa un<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      Tutti i diritti riservati.
+      Si applicano le regole del W3C riguardanti la <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">responsabilità</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">marchi depositati</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">l'utilizzo dei documenti</a>
+
+      e le <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">licenze software</a>. L'interazione con i contenuti di questi siti è in accordo con le nostre definizioni di <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</a> e <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">privato</a> per quanto riguarda la riservatezza delle informazioni. 
+    </p>
+
+
+  </body>
+</html>
+
+
