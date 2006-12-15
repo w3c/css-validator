@@ -295,6 +295,8 @@ public class Messages {
 		tmp = new Utf8Properties();
 		tmp.load(f);
 		languages.put("pl", tmp);
+		languages.put("pl_PL", tmp);
+		languages.put("pl-PL", tmp);
 	    } finally {
 		f.close();
 	    }

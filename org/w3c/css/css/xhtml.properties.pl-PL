@@ -1,12 +1,12 @@
-# użyte przez StyleSheet2HTML
+# used by StyleSheet2HTML
 
-# encje użyte przez generatora HTML 
-zobacz błędy: <li><a href="#errors">zobacz błędy</a></li>
-zobacz ostrzeżenia: <li><a href="#warnings">zobacz ostrzeżenia</a></li>
-zobacz reguły: <li><a href="#css">zobacz swój arkusz stylu</a></li>
-brak błędów i ostrzeżeń: <hr /><h2>brak błędów i ostrzeżeń</h2>
+# entites used by the HTML generator
+go-errors: <li><a href="#errors">zobacz błędy</a></li>
+go-warnings: <li><a href="#warnings">zobacz ostrzeżenia</a></li>
+go-rules: <li><a href="#css">zobacz swój arkusz stylu</a></li>
+no-error-or-warning: <hr /><h2>brak błędów i ostrzeżeń</h2>
 
-brak błędów: \
+no-errors: \
 <div id='congrats'>\n\
 <h2>Gratulacje!</h2>\n\
 <p>\
@@ -46,29 +46,29 @@ innym na walidację tej strony, użyj następującego adresu: </p><pre>\n\
 </div>\
 </div>
 
-brak regul: <div><h2>Nie znaleziono arkusza stylów</h2></div>
-styl niezgodny z css1: /* UWAGA ! To nie jest właściwością CSS1! */
+no-rules: <div><h2>Nie znaleziono arkusza stylów</h2></div>
+not-css1-style: /* UWAGA ! To nie jest właściwością CSS1! */
 
-# Istnieją encje predefiniowane :
-#  nazwa pliku : nazwa arkusz stylów
-#  dzisiaj : dzisiejsza data
-#  ilość : ilość błędów
-#  ilość ostrzeżeń : ilość ostrzeżeń
-#  liczba reguł : ilość reguł na twoim arkuszu
-#  autor : imię autora :-)
-#  e-mail autora : e-mail autora :-))
+# You have some predefined entities :
+#  file-title : the name of the style sheet
+#  today : the date of this day
+#  errors-count : number of errors
+#  warnings-count : number of warnings
+#  items-count : number of rules in your style sheet
+#  author : my name :-)
+#  author-email : my e-mail :-))
 
-# można wprowadzić nowe linie w następujący sposób : \n
+# you can add newlines like this : \n
 
 #
-# Jak pisać reguły
+# How to write all rules
 #
-# uważaj abyś używał jedynie :
-#   - selektora i deklaracji w regule 
-#   - elementu, klasy, identyfikatora, pseudo-klasy i pseudo-elementu w selektorze
-#   - nazwę właściwości, wartość właściwości, istotny styl i styl niezgodny z css1 w deklaracji
+# be careful, use only :
+#   - selector and declaration entities in the entity rule
+#   - element, class, id, pseudo-class and pseudo-element entities in the entity selector
+#   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
-reguły: \
+rules: \
 <div id="css">\n\
 <h2 class="toggle closed">Informacje na temat poprawnego CSS</h2> \n\
 <div class='vAtRule'> \n\
@@ -77,28 +77,28 @@ reguły: \
 </div>\n\
 </div>
 
-reguła charset: \
+charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
 
-# Jak pisać błędy
+# How to write errors
 
-błędy : \
+errors : \
 <div id="errors">\n\
 <h2>Błędy</h2>\n\
 <!-- #error -->\n\
 </div>
 
-# Jak pisać ostrzeżenia
+# How to write warnings
 
-ostrzeżenia: \
+warnings: \
 <div id="warnings">\n\
-<h2 class="toggle closed">Ostrzeżenia</h2> \n\
+<h2 class="toggle closed">Ostrzeżenia (<!-- #warnings-count-local -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 
-ostrzeżenie:
+warning:
 
-# Początek dokumentu
+# the beginning of the document
 document: \
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n\
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\
