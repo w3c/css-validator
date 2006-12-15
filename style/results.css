@@ -77,7 +77,6 @@ td.codeContext {
 td.message {
 	padding: 5px 1em;
 	border-bottom: 1px solid #fdd !important;
-	overflow: hidden;
 }
 
 td.nocontext {
@@ -86,7 +85,6 @@ td.nocontext {
 	background-color: #F1F1F1;}
 
 td.io, td.notfound, td.invalidparam, td.errortoken, td.unknownerror {
-	overflow: hidden;
 	padding: 5px 1em;
 	border-bottom: 1px solid #fdd !important;
 }
@@ -105,7 +103,6 @@ tr.warning {
 td.level1, td.level2, td.level0 {
 	padding: 5px 1em;
 	border-bottom: 1px solid #fdd !important;
-	overflow: hidden;
 }
 .level0 {
 	border-left: 10px solid #C66 !important;
@@ -177,8 +174,6 @@ pre {
 	position: relative;
 	display: block;
 	float:left;
-	width: 12em;
-	overflow: hidden;
 	}
 
 /* class='PropertyValue' - value of property */
