@@ -194,10 +194,10 @@
 	</p>
    <ul class="navbar"  id="menu">
 	<li><a href="about.html" title="Informazioni sul servizio">Informazioni</a> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentazione per il servizio di validazione CSS del W3C">Documentazione</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Scarica il Validatore CSS" xml:lang="en" lang="en">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Crediti e ringraziamenti">Riconoscimenti</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentazione per il servizio di validazione CSS del W3C">Documentazione</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Scarica il Validatore CSS" xml:lang="en" lang="en">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Crediti e ringraziamenti">Riconoscimenti</a><span class="hideme">|</span></li>
       </ul>
 
       <ul id="lang_choice">

@@ -70,14 +70,14 @@ Il metodo più semplice per verificare un documento è quello di utilizzare l'in
     E' sufficiente digitare l'URL del documento che si desidera verificare. Il documento può essere HTML oppure CSS.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="Modulo di validazione tramite URI" />
+    src="./images/uri_basic_it.png" alt="Modulo di validazione tramite URI" />
 
 <h4 id="fileupload">Validazione tramite trasferimento file</h4>    
 <p>
     Questa modalità consente di trasferire e di verificare un documento locale. Seleziona il pulsante "Sfoglia..." e verifica il documento che desideri verificare.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic.png" 
+    src="./images/file_upload_basic_it.png" 
     alt="Modulo di Validazione tramite trasferimento file" />
 <p>
     In questo caso, sono consentiti solamente documenti CSS. Questo significa che non puoi trasferire documenti (X)HTML. Devi inoltre porre attenzione con le regole di @import che possono essere seguite solamente se riferite esplicitamente ad un URL pubblico (pertanto, scordarsi di usare i percorsi relativi per questa modalità di verifica).
@@ -88,7 +88,7 @@ Il metodo più semplice per verificare un documento è quello di utilizzare l'in
     Questa modalità è perfetta per verificare porzioni di CSS. Per utilizzarla è sufficiente scrivere il tuo CSS nell'area di immissione testo.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic.png" 
+    src="./images/direct_input_basic_it.png" 
     alt="Modulo di Validazione tramite immissione diretta" />
 <p>
     Anche in questo caso si possono applicare i commenti precedenti. Nota che questa soluzione è molto utile se riscontri dei problemi e necessiti il supporto dalla comunità. E' utile anche per segnalare un problema tecnico, in quanto puoi inviare il collegamento all'URL del risultato della verifica per segnalare un caso di test.
@@ -222,10 +222,10 @@ Il servizio di validazione CSS è un servizio gratuito, pubblico e per tutti e p
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Pagina iniziale del servizio di validazione CSS del W3C">Pagina iniziale</a></strong> <span class="hideme">|</span></li>
 	<li><a href="about.html" title="Informazioni sul servizio">Informazioni</a> <span class="hideme">|</span></li>
-        <li><a href="documentation" title="Documentazione per il servizio di validazione CSS del W3C">Documentazione</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD" title="Scarica il Validatore CSS" xml:lang="en" lang="en">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
-        <li><a href="thanks" title="Crediti e ringraziamenti">Riconoscimenti</a><span class="hideme">|</span></li>
+        <li><a href="documentation.html" title="Documentazione per il servizio di validazione CSS del W3C">Documentazione</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="Scarica il Validatore CSS" xml:lang="en" lang="en">Download</a> <span class="hideme">|</span></li>
+        <li><a href="Email.html" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
+        <li><a href="thanks.html" title="Crediti e ringraziamenti">Riconoscimenti</a><span class="hideme">|</span></li>
       </ul>
 
    <p id="activity_logos">
