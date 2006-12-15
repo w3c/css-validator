@@ -262,7 +262,7 @@ CssPrinterStyle {
 		    ret.append("\n<tr class='error'>\n   <td class='linenumber' title='");
 			ret.append(ac.getMsg().getGeneratorString("line"));
 		    ret.append(error[i].getLine());
-		    ret.append("'>");
+		    ret.append(" '>");
 		    ret.append(error[i].getLine());
 		    ret.append("</td>");
 
