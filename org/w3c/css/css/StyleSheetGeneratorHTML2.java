@@ -343,10 +343,13 @@ CssPrinterStyle {
 			    oldMessage = warn.getWarningMessage();
 
 				// Starting a line for each new warning
-			    ret.append("\n<tr class='warning'>\n   <td class='linenumber'>");
+			    ret.append("\n<tr class='warning'>\n   <td class='linenumber' title='");
+				ret.append(ac.getMsg().getGeneratorString("line"));
+			    ret.append(oldLine);
+			    ret.append(" ").append(oldLine);
+			    ret.append("'>");
 			    ret.append(oldLine);
 			    ret.append("</td> ");
-
 				// Getting the code context of the CSS
 				ret.append("\n   <td class='codeContext'>");
 				if (warn.getContext() != null) {
