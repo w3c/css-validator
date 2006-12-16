@@ -16,18 +16,41 @@ public final class Warnings {
 
   private Warning[] warningData = new Warning[20];
 
-  private int       warningCount;
+  private int       warningCount = 0;
 
-  private final int capacityIncrement = 10;
+  private int ignoredWarningCount = 0;
 
-  /**
+  private int warningLevel = 0;
+  
+  public Warnings() {
+	  
+  }
+  
+  public Warnings(int level) {
+	  this.warningLevel = level;
+  }
+  
+  	public int getWarningLevel() {
+  		return warningLevel;
+  	}
+
+  	public void setWarningLevel(int warningLevel) {
+  		this.warningLevel = warningLevel;
+  	}
+
+/**
    * Add a warning.
    *
    * @param warm the warning
    */
   public final void addWarning(Warning warm) {
-    resize(1);
-    warningData[warningCount++] = warm;
+	  if(warm.getLevel() > warningLevel) {
+		  ignoredWarningCount++;
+	  }
+	  else {
+		  resize(1);
+		  warningData[warningCount++] = warm;
+	  }
   }
 
   /**
@@ -36,10 +59,10 @@ public final class Warnings {
    * @param warnings All warnings
    */
   public final void addWarnings(Warnings warnings) {
-    resize(warnings.warningCount);
-    System.arraycopy(warnings.warningData, 0, warningData, warningCount,
-		     warnings.warningCount);
-    warningCount += warnings.warningCount;
+    //resize(warnings.warningCount);
+    for(int i=0; i < warnings.warningCount; i++) {
+    	addWarning(warnings.warningData[i]);
+    }
   }
 
   /**
@@ -49,6 +72,13 @@ public final class Warnings {
     return warningCount;
   }
 
+  /**
+   * Get the number of ignored warnings (not corresponding to the warning level)
+   */
+  public final int getIgnoredWarningCount() {
+    return ignoredWarningCount;
+  }
+  
   /**
    * Get an array with all warnings.
    */

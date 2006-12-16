@@ -90,7 +90,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2 class="toggle closed">Warnungen:</h2> \n\
+<h2 class="toggle closed">Warnungen (<!-- #warnings-count -->):</h2> \n\
 <!-- #warning -->\n\
 </div>
 

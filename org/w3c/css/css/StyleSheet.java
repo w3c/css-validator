@@ -50,6 +50,10 @@ public class StyleSheet {
 	atRuleList = new Vector();
     }
 
+    public void setWarningLevel(int warningLevel) {
+    	warnings.setWarningLevel(warningLevel);
+    }
+    
     /**
      * Get a style in a specific context.
      * No resolution are perfomed when this function is called

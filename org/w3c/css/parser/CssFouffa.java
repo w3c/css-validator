@@ -107,7 +107,7 @@ public final class CssFouffa extends CssParser {
 	} else {
 	    setOrigin(ac.getOrigin()); // default is user
 	}
-	ac.setFrame(new Frame(this, file.toString(), beginLine));
+	ac.setFrame(new Frame(this, file.toString(), beginLine, ac.getWarningLevel()));
 	setApplContext(ac);
 	// @@this is a default media ...
 	/*
@@ -212,7 +212,7 @@ public final class CssFouffa extends CssParser {
 	this(ac, in, url, 0);
 	this.visited = urlvisited;
 	setURL(url);
-	ac.setFrame(new Frame(this, url.toString()));
+	ac.setFrame(new Frame(this, url.toString(), ac.getWarningLevel()));
 	setApplContext(ac);
 	this.listeners = listeners;
 	this.properties = cssfactory;
@@ -286,7 +286,7 @@ public final class CssFouffa extends CssParser {
      */
     public void ReInit(ApplContext ac, InputStream input, URL file,
 	    int beginLine) throws IOException {
-	Frame f = new Frame(this, file.toString(), beginLine);
+	Frame f = new Frame(this, file.toString(), beginLine, ac.getWarningLevel());
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
     }
@@ -303,7 +303,7 @@ public final class CssFouffa extends CssParser {
      */
     public void ReInit(ApplContext ac, InputStream input, URL file)
     throws IOException {
-	Frame f = new Frame(this, file.toString());
+	Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
     }
@@ -318,7 +318,7 @@ public final class CssFouffa extends CssParser {
      *                if an I/O error occurs.
      */
     public void ReInit(ApplContext ac, URL file) throws IOException {
-	Frame f = new Frame(this, file.toString());
+	Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
 	ac.setFrame(f);
 	URLConnection urlC = HTTPURL.getConnection(file, ac);
 	ReInit(ac, urlC.getInputStream(), urlC.getURL(), f);

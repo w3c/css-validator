@@ -117,7 +117,7 @@ public class XMLStyleSheetHandler implements ContentHandler,
             int line = (locator != null ? locator.getLineNumber() : -1);
             Warning w = new Warning(baseURI.toString(), line,
                     "style-inside-comment", 0, ac);
-            Warnings warnings = new Warnings();
+            Warnings warnings = new Warnings(ac.getWarningLevel());
             warnings.addWarning(w);
             styleSheetParser.notifyWarnings(warnings);
 	    //text.append(ch, start, length); // ignoring, per http://www.w3.org/Bugs/Public/show_bug.cgi?id=761

@@ -57,19 +57,23 @@ public final class StyleSheetParser
     StyleSheet style = new StyleSheet();
 
     public void reInit() {
-	style = new StyleSheet();
+    	style = new StyleSheet();
     }
 
     public StyleSheet getStyleSheet() {
 	return style;
     }
 
+    public void setWarningLevel(int warningLevel) {
+    	style.setWarningLevel(warningLevel);
+    }
+    
     public void notifyErrors(Errors errors) {
-	style.addErrors(errors);
+    	style.addErrors(errors);
     }
 
     public void notifyWarnings(Warnings warnings) {
-	style.addWarnings(warnings);
+    	style.addWarnings(warnings);
     }
 
     /**
@@ -169,6 +173,7 @@ public final class StyleSheetParser
     public void parseURL(ApplContext ac, URL url, String title,
 			 String kind, String media,
 			 int origin) {
+    	setWarningLevel(ac.getWarningLevel());
 	if (Util.onDebug) {
 	    System.err.println( "StyleSheet.parseURL(" + url + ", "
 				+ title + ", "
@@ -237,6 +242,7 @@ public final class StyleSheetParser
     public void parseStyleElement(ApplContext ac, InputStream input,
 				  String title, String media,
 				  URL url, int lineno) {
+    	style.setWarningLevel(ac.getWarningLevel());
 	if (Util.onDebug) {
 	    System.err.println("StyleSheet.parseStyleElement(" + title + ", "
 			       + media + ", " + url
@@ -327,6 +333,7 @@ public final class StyleSheetParser
      */
     public void parseStyleAttribute(ApplContext ac, InputStream input, String id,
 				    URL url, int lineno) {
+    	style.setWarningLevel(ac.getWarningLevel());
 	lineno--; // why ?!?!
 	if (Util.onDebug) {
 	    System.err.println("StyleSheet.parseStyleAttribute(" + id + ","

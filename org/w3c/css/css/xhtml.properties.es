@@ -92,7 +92,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2 class="toggle closed">Advertencias</h2> \n\
+<h2 class="toggle closed">Advertencias (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

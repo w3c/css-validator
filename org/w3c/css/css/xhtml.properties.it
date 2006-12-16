@@ -12,7 +12,7 @@ no-errors: \
 <p>\
 <a style="float: right" href="http://jigsaw.w3.org/css-validator/">\n\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS! Valido" /></a>\
- Questo documento è valido rispetto alla specifica <a\ \
+ Questo documento ï¿½ valido rispetto alla specifica <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
   <p class="toggle closed">More info</p>\
@@ -33,12 +33,12 @@ Di seguito il codice XHTML che puoi utilizzare per aggiungere questa icona alla 
 (Se si utilizza HTML &lt;= 4.01, chiudere l'elemento img tag con &gt; invece di /&gt;)</p>\
 <p> \
 Se lo desideri, puoi scaricare una copie di questa immagine per salvarla all'interno del tuo sito Web,\
-modificando il codice XHTML sopra riportato riferendolo all'immagine locale anziché a quella residente\
+modificando il codice XHTML sopra riportato riferendolo all'immagine locale anzichï¿½ a quella residente\
 in questo server. </p>\n\
 \
 <p>Se desideri creare un collegamento a questa pagina (per esempio, al risultato di validazione)\
-per rendere più facile una futura riverifica di questa pagina o per consentire ad altre persone\
-di verificare la conformità della tua pagina, l'URI è: </p><pre>\n\
+per rendere piï¿½ facile una futura riverifica di questa pagina o per consentire ad altre persone\
+di verificare la conformitï¿½ della tua pagina, l'URI ï¿½: </p><pre>\n\
 \
 \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
 \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (solo per documenti HTML/XML)\n\
@@ -47,7 +47,7 @@ di verificare la conformità della tua pagina, l'URI è: </p><pre>\n\
 </div>\
 </div>
 
-no-rules: <div><h2>Non è stato individuato alcun foglio di stile</h2></div>
+no-rules: <div><h2>Non ï¿½ stato individuato alcun foglio di stile</h2></div>
 not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 
 # You have some predefined entities :
@@ -93,7 +93,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2 class="toggle closed">Avvisi (<!-- #warnings-count-local -->)</h2> \n\
+<h2 class="toggle closed">Avvisi (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

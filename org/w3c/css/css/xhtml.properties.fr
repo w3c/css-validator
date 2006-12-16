@@ -4,7 +4,7 @@
 go-errors: <li><a href="#errors">Vers les erreurs</a></li>
 go-warnings: <li><a href="#warnings">Vers les avertissements</a></li>
 go-rules: <li><a href="#css">Vers votre feuille de style CSS validée</a></li>
-no-error-or-warning: <div><h2>Aucune erreur ou avertissement</h2></div>
+no-error-or-warning: <div><h2>Aucune erreur ou avertissement (<!-- #ignored-warnings-count --> ignorés)</h2></div>
 
 no-errors: \
 <div id='congrats'>\n\
@@ -92,7 +92,7 @@ errors : \
 
 warnings: \
 <div id="warnings">\n\
-<h2 class="toggle closed">Avertissements</h2> \n\
+<h2 class="toggle closed"><!-- #warnings-count --> Avertissements (<!-- #ignored-warnings-count --> ignoré(s))</h2> \n\
 <!-- #warning -->\n\
 </div>
 

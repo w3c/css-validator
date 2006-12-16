@@ -87,6 +87,7 @@ CssPrinterStyle {
 
 	general.put("errors-count", Integer.toString(errors.getErrorCount()));
 	general.put("warnings-count", Integer.toString(warnings.getWarningCount()));
+	general.put("ignored-warnings-count", Integer.toString(warnings.getIgnoredWarningCount()));
 	general.put("rules-count", Integer.toString(items.size()));
 
 	if (errors.getErrorCount() == 0) {
@@ -326,6 +327,7 @@ CssPrinterStyle {
 		int i = 0;
 		ret.append("\n<div class='warnings-section-all'>");
 		warnings.sort();
+		
 		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
 
 		    Warning warn = warning[i];
@@ -381,7 +383,7 @@ CssPrinterStyle {
 	    e.printStackTrace();
 	}
     }
-
+    
     private String queryReplace(String s) {
 	if (s != null) {
 	    int len = s.length();

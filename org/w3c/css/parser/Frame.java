@@ -30,11 +30,11 @@ public class Frame {
      * @param cssFouffa  The current parser.
      * @param sourceFile The name of the source file.
      */
-    public Frame(CssFouffa cssFouffa, String sourceFile) {
-    this.sourceFile = sourceFile;
-    this.cssFouffa = cssFouffa;
-    errors = new Errors();
-    warnings = new Warnings();
+    public Frame(CssFouffa cssFouffa, String sourceFile, int warningLevel) {
+    	this.sourceFile = sourceFile;
+    	this.cssFouffa = cssFouffa;
+    	errors = new Errors();
+    	warnings = new Warnings(warningLevel);
     }
 
     /**
@@ -44,12 +44,9 @@ public class Frame {
      * @param sourceFile The name of the source file.
      * @param beginLine  The begin line
      */
-    public Frame(CssFouffa cssFouffa, String sourceFile, int beginLine) {
-    this.sourceFile = sourceFile;
-    this.cssFouffa = cssFouffa;
-    line = beginLine;
-    errors = new Errors();
-    warnings = new Warnings();
+    public Frame(CssFouffa cssFouffa, String sourceFile, int beginLine, int warningLevel) {
+    	this(cssFouffa, sourceFile, warningLevel);
+    	line = beginLine;
     }
 
     /**

@@ -88,7 +88,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2 class="toggle closed">Waarschuwingen :</h2> \n\
+<h2 class="toggle closed">Waarschuwingen (<!-- #warnings-count -->) :</h2> \n\
 <!-- #warning --></div>\n
 
 warning:

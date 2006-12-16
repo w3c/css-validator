@@ -86,7 +86,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2 class="toggle closed">警告：</h2> \
+<h2 class="toggle closed">警告 (<!-- #warnings-count -->)：</h2> \
 <!-- #warning --></div>\n
 
 

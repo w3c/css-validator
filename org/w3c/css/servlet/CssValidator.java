@@ -308,6 +308,7 @@ public final class CssValidator extends HttpServlet {
 		    System.err.println(e);
 		}
 	    }
+	    ac.setWarningLevel(warningLevel);
 	}
 
 	// set the error report
@@ -538,6 +539,7 @@ public final class CssValidator extends HttpServlet {
 		    System.err.println(e);
 		}
 	    }
+	    ac.setWarningLevel(warningLevel);
 	}
 
 	// set the error report

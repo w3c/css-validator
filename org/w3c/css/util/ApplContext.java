@@ -45,6 +45,8 @@ public class ApplContext {
 
     String medium;
 
+    int warningLevel = 0;
+    
     static {
 	try {
 	    Class c = Class.forName("java.nio.charset.Charset");
@@ -65,7 +67,15 @@ public class ApplContext {
         msgs = new Messages(lang);
     }
 
-    // as ugly as everything else
+    public int getWarningLevel() {
+		return warningLevel;
+	}
+
+	public void setWarningLevel(int warningLevel) {
+		this.warningLevel = warningLevel;
+	}
+
+	// as ugly as everything else
     public String getCredential() {
 	return credential;
     }
