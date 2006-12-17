@@ -1,9 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
-  <title>Manual de Usuario del Validador CSS</title>
+  <title>Manual de Usuario del Validador de CSS</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
@@ -19,7 +19,7 @@
 
   <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+    <a href="./"><img src="images/css_validation_service.png" alt="Servicio de Validación de CSS" /></a></h1>
    </div>
 
 <div id="main">
@@ -44,13 +44,13 @@
     <ul>
 	<li><a href="#paramwarnings">Parámetro warnings</a></li>
 	<li><a href="#paramprofile">Parámetro profile</a></li>
-	<li><a href="#parammedium">Parémetro medium</a></li>
+	<li><a href="#parammedium">Parámetro medium</a></li>
     </ul>
   </li>
   <li><a href="#expert">Para expertos</a>
     <ul>
 	<li><a href="#requestformat">Formato de Petición de Validación</a></li>
-	<li><a href="#api">API de Servicio Web del Validador CSS Validator Web Service API</a></li>
+		<li><a href="#api">API de Servicio Web del Validador de CSS</a></li>
     </ul>
    </li>
 </ul>
@@ -71,34 +71,34 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
     Este documento puede ser HTML o CSS.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic_es.png" alt="Validación mediante el formulario URI" />
+    src="./images/uri_basic.png" alt="Validación mediante el formulario URI" />
 
 <h4 id="fileupload">Validación mediante carga de archivo</h4>    
 <p>
-    Esta solución te permite cargar y comprobar un archivo local. Haz clic en el 
+    Esta solución permite cargar y comprobar un archivo local. Haz clic en el 
     botón "Examinar..." y selecciona el archivo que deseas validar.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic_es.png" 
+    src="./images/file_upload_basic.png" 
     alt="Validación mediante Carga de Archivo" />
 <p>
     En este caso, sólo se permiten documentos CSS. Esto significa que no puedes
     cargar documentos (X)HTML. También debes ser cuidadoso con las reglas 
     @import pues sólo se seguirán si referencian explícitamente a 
-    una URL pública (de modo que olvida rutas relativas con esta solución)
+    una URL pública (olvida las rutas relativas con esta solución)
 </p>
    
 <h4 id="directinput">Validación mediante entrada directa</h4>
 <p>
-    Este método es perfecto para probar fragmentos de CSS. Sólo tienes que escribir tu CSS en el textarea
+    Este modo es perfecto para probar fragmentos de CSS. Sólo tienes que escribir tu CSS en el área de texto
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic_es.png" 
+    src="./images/direct_input_basic.png" 
     alt="Validación mediante entrada directa" />
 <p>
-    Los mismos comentarios de antes son de aplicación. Advierte que esta solución es 
+    Los mismos comentarios de antes son de aplicación. Ten en cuenta que esta solución es 
     muy conveniente si tienes un problema y necesitas ayuda de la comunidad.
-    También es muy útil para informar de un bug, dado que puedes enlazar a la URL 
+    También es muy útil para informar de un error del validador, ya que puedes enlazar a la URL 
     resultante para ofrecer un caso de prueba.
 </p>    
 
@@ -108,7 +108,7 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
     Cuando se utiliza la interfaz básica, el validador comprobará el cumplimiento 
     de <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, que es la recomendación técnica
     actual de CSS.<br />
-    Esto producirá una salida XHTML sin ningún aviso (únicamente verás los errores).<br />
+    Esto producirá una salida XHTML sin ninguna advertencia (únicamente verás los errores).<br />
     El parámetro medium está fijado en "all", que es el medio adecuado para todos los dispositivos 
     (ver <a href="http://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> para una descripción completa de los medios).
@@ -117,7 +117,7 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
 <h3 id="advanced">Validación avanzada</h3>
 
 <p>
-    Si necesitas una comprobación más específica, puedes utilizar la intervaz avanzada que 
+    Si necesitas una comprobación más específica, puedes utilizar la interfaz avanzada que 
     permite especificar tres parámetros. A continuación tienes una breve ayuda sobre cada uno
     de estos parámetros.
 </p>
@@ -125,31 +125,29 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
 <h4 id="paramwarnings">Warnings</h4>
 
 <p>
-    Este parámetro es útil para ajustar la verbosidad del Validador de CSS. En efecto, 
-    el validador puede darte dos tipos de mensajes: errores (errors) y avisos (warnings).
+    Este parámetro es para ajustar el nivel de detalle del Validador de CSS. El validador puede 
+    ofrecerte dos tipos de mensajes: errores (errors) y advertencias (warnings).
     Los errores ocurren cuando el CSS comprobado no respeta la recomendación CSS.
-    Los avisos difieren de los errores en que no suponen un problema referente a la 
-    especificación. Se ofrecen para advertir (!) al desarrollador CSS de aquellos 
-    puntos que podrían ser peligrosos y podrían conducir a un comportamiento extraño
-    en algunos agentes de usuario.
+    Las advertencias se diferencian de los errores en que no suponen un problema referente a la 
+    especificación. Se ofrecen para advertir (!) al desarrollador CSS sobre los 
+    puntos que podrían ser peligrosos y conducir a un comportamiento extraño en algunos agentes de usuario.
 </p>
 <p>
-    Un aviso típico concierne a font-family: si no ofreces una fuente genérica, 
-    obtendrás un aviso diciendo que deberías añadir una al final de la regla, o 
-    de otro modo un agente de usuario que no conozca ninguna de las otras fuentes 
-    activará su fuente predeterminada, lo cual puede resultar en una visualización 
-    extraña.
+    Una advertencia típica referente a font-family: si no ofreces un tipo de letra genérico, 
+    obtendrás un aviso diciendo que deberías añadir uno al final de la regla, 
+    de otro modo un agente de usuario que no conozca ninguna de los otros tipos 
+    activará su tipo predeterminado, lo que puede dar lugar a una visualización extraña
 </p>
 
 <h4 id="paramprofile">Profile</h4>
 
 <p>
-    El validador CSS puede comprobar diferentes perfiles de CSS. Un perfil lista todas las  
-    características que se espera que una implementación tenga en una plataforma determinada. 
+    El validador CSS puede comprobar diferentes perfiles de CSS. Un perfil engloba todas las  
+    características que se esperan de una implementación en una plataforma determinada. 
     Esta definición está tomada del  
     <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">
 	sitio de CSS
-    </a>. La opción predeterminada corresponde al, actualmente, más utilizado: 
+    </a>. La opción predeterminada corresponde al más utilizado en la actualidad: 
     <a href="http://www.w3.org/TR/CSS2">CSS 2</a>.
 </p>
 
@@ -165,13 +163,13 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
 <h3 id="expert">Sólo para Expertos</h3>
 
 <h4 id="requestformat">Formato de Petición de Validación</h4>
-<p>Abajo se encuentra una tabla de los parámetros que pueden usarse para enviar una consulta al Validador de CSS del W3C.</p>
+<p>A continuación se ofrece una tabla con los parámetros que pueden usarse para enviar una consulta al Validador de CSS del W3C.</p>
 
-<p>Si deseas utilizar el servidor de validación pública del W3C, utiliza los siguientes parámetros en conjunción con la siguiente URI base:<br />
+<p>Si deseas utilizar el servidor de validación público del W3C, utiliza los siguientes parámetros junto con la siguiente URI base:<br />
 <kbd>http://jigsaw.w3.org/css-validator/validator</kbd><br />
 (sustituir por la dirección de tu propio servidor si deseas llamar a una instancia privada del validador).</p>
 
-<p><strong>Nota</strong>: Si deseas llamar al validador de forma programada para un conjunto de documentos, por favor asegúrate de que tu script <code>duerma</code> durante <strong>al menos 1 segundo</strong> entre peticiones.
+<p><strong>Nota</strong>: Si deseas llamar al validador de forma programada para un conjunto de documentos, por favor asegúrate de que tu script duerma (<code>sleep</code>) durante <strong>al menos 1 segundo</strong> entre peticiones.
 El servicio de validación de CSS es un servicio gratuito y público para todos, tu respeto es apreciado. Gracias.</p>
 
 <table class="refdoc">
@@ -185,17 +183,17 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
       <th>uri</th>
       <td>El <acronym title="Universal Resource Locator">URL</acronym> del 
         documento a validar. Se permiten documentos CSS y HTML.</td>
-      <td>Ninguno, pero debe proporcionarse este parámetro o bien <code>text</code>.</td>
+      <td>Ninguno, pero debe proporcionarse un valor para este parámetro o bien el valor <code>text</code>.</td>
     </tr>
     <tr>
       <th>text</th>
       <td>El documento a validar, sólo se permite CSS.</td>
-      <td>Ninguno, pero debe proporcionarse este parámetro o bien <code>uri</code>.</td>
+      <td>Ninguno, pero debe proporcionarse un valor para este parámetro o bien el valor <code>uri</code>.</td>
     </tr>
     <tr>
       <th>usermedium</th>
       <td>Se utiliza <a href="http://www.w3.org/TR/CSS2/media.html">medium</a> para la  
-	  validación, como <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
+	  validación de medios como <code>screen</code>, <code>print</code>, <code>braille</code>...</td>
       <td><code>all</code></td>
     </tr>
     <tr>
@@ -229,8 +227,8 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
     </tr>
     <tr>
       <th>warning</th>
-      <td>El nivel de aviso, <code>no</code> para no mostrar ningún aviso, <code>0</code> 
-	para menos avisos, <code>1</code>o <code>2</code> para más avisos
+      <td>El nivel de advertencias, <code>no</code> para no mostrar ninguna, <code>0</code> 
+	para un nivel bajo, <code>1</code>o <code>2</code> para un nivel alto
       </td>
       <td>2</td>
     </tr>
@@ -301,6 +299,7 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
                hreflang="zh-hans"
                rel="alternate">中文</a></li>
       </ul>
+
 
    <p id="activity_logos">
       <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
