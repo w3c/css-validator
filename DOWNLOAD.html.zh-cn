@@ -94,7 +94,7 @@
 
 <h4>在Jigsaw Web服务器中的安装</h4>
 <ol class="instructions">
-<li>首先，按照上面所描述的那样下载源代码，必须得Jar文件，并且用<KBD>ant</KBD>编译源代码。</li>
+<li>首先，按照上面所描述的那样下载源代码，必须得Jar文件，并且用<kbd>ant</kbd>编译源代码。</li>
 
 <li>接下来，你需要配置验证器所在的工作目录(通常是css-validator), 让验证器能以Servlet的形式工作。为了这个目的，你需要首先安装好Jigsaw(请参考Jigsaw的主页中的一个简单的说明，真的很简单)，并且启动Jigsaw的管理者控制台，将HTTPFrame设为ServletDirectoryFrame。</li>
 
