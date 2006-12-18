@@ -56,7 +56,7 @@
     <dd>Dokumentacja interfejsu walidatora SOAP 1.2</dd>
     
     <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (bugs)</a></dt>
-    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="./email">instrukcje na temat dostarczania opinii.</a></dd>
+    <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="./Email.html">instrukcje na temat dostarczania opinii.</a></dd>
 
 </dl>
 
@@ -72,7 +72,6 @@
         <li><a href="DOWNLOAD.html" title="Ściągnij i zainstaluj walidator CSS">Download</a> <span class="hideme">|</span></li>
         <li><a href="Email.html" title="Jak wysłać opinię na temat tej usługi">Opinie</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="Podziękowania">Podziękowania</a><span class="hideme">|</span></li>
-        <li><a href="languages.html" title="Walidator w twoim języku">Inne języki</a><span class="hideme">|</span></li>
       </ul>
 
        <ul id="lang_choice">
