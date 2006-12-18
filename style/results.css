@@ -155,7 +155,7 @@ pre {
 	background-color: #F1F1F1;
 	padding: 1em;
 	border-bottom: 1px solid #ddd;
-}
+	clear:both;}
 
 /* class="selectorValue" - value of the selector */
 .selectorValue {font-weight: bold;}
@@ -169,11 +169,11 @@ pre {
 
 /* class='Property' - propertie name */
 .Property {
+	display:block;
+	float:left;
+	clear:left;
 	color: #222;
 	font-style: italic;
-	position: relative;
-	display: block;
-	float:left;
 	}
 
 /* class='PropertyValue' - value of property */
