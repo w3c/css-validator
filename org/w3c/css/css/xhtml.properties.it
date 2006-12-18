@@ -8,14 +8,14 @@ no-error-or-warning: <hr /><h2>Non sono stati identificati errori o avvisi</h2>
 
 no-errors: \
 <div id='congrats'>\n\
-<h2>Congraturazioni!</h2>\n\
+<h2>Congratulazioni!</h2>\n\
 <p>\
 <a style="float: right" href="http://jigsaw.w3.org/css-validator/">\n\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS! Valido" /></a>\
  Questo documento è valido rispetto alla specifica <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <p class="toggle closed">More info</p>\
+  <p class="toggle closed">Maggiori Informazioni</p>\
   <div>\
 <p> \
 Per rendere visibile ai tuoi lettori che hai curato lo sviluppo per creare una pagina Web \
