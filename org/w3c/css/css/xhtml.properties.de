@@ -90,7 +90,7 @@ errors : \
 
 warnings: \
 <div id="warnings"> \
-<h2 class="toggle closed">Warnungen (<!-- #warnings-count -->):</h2> \n\
+<h2 class="toggle closed">Warnungen (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 
@@ -112,7 +112,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>Ergebnisse des W3C CSS-Validator mit Objekt:  \
@@ -125,6 +125,7 @@ document: \
 <!-- #rules -->\n\
 <!-- #no-rules -->\
 <ul class="navbar"  id="menu">\n\
+	<li><strong><a href="./" title="Homepage des W3C CSS Validierungsdienstes">Home</a></strong> <span class="hideme">|</span></li>\n\
      <li><a href="about.html" title="Über den Dienst">About</a> <span class="hideme">|</span></li>\n\
      <li><a href="documentation.html" title="Dokumentation zum W3C CSS Validation Service">Dokumentation</a> <span class="hideme">|</span></li>\n\
      <li><a href="DOWNLOAD.html" title="Den CSS Validator herunterladen und installieren">Download</a> <span class="hideme">|</span></li>\n\

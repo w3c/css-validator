@@ -109,7 +109,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>W3C CSS Validator Resultaten met object : \
@@ -122,7 +122,8 @@ document: \
 <!-- #rules -->\n\
 <!-- #no-rules -->\n\
 	<ul class="navbar"  id="menu">\n\
-		<li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>\n\
+  <li><strong><a href="./" title="Home pagina van de W3C CSS Validatie Service">Home</a></strong> <span class="hideme">|</span></li>\n\
+  <li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>\n\
   <li><a href="documentation.html" title="Documentatie voor de W3C CSS Validatie Service">Documentatie</a> <span class="hideme">|</span></li>\n\
   <li><a href="DOWNLOAD.html" title="Download de CSS validator">Download</a> <span class="hideme">|</span></li>\n\
   <li><a href="Email.html" title="Hoe reacties te geven over deze service">Reacties</a> <span class="hideme">|</span></li>\n\

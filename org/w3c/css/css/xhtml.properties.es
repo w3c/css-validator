@@ -114,7 +114,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>Resultados del Validador CSS del W3C para \

@@ -108,7 +108,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>W3C CSS 校验器结果： \
@@ -121,6 +121,7 @@ document: \
 <!-- #rules -->\n\
 <!-- #no-rules -->\n\
 <ul class="navbar"  id="menu">\n\
+     	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">首页</a></strong> <span class="hideme">|</span></li>\n\
      <li><a href="about.html" title="About this service">关于</a> <span class="hideme">|</span></li>\n\
      <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">文档</a> <span class="hideme">|</span></li>\n\
      <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">下载</a> <span class="hideme">|</span></li>\n\
