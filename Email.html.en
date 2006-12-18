@@ -1,26 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-fr" xml:lang="en-fr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>CSS Validator Project: comments</title>
-
-    <link href="style/page.css" rel="STYLESHEET" />
-    <link rel="STYLESHEET" title="default" media="screen" 
-      href="style/general.css" type="text/css" />
-    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <title>Feedback for W3C CSS Validation Service</title>
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="Home Page" />
+    <style type="text/css" media="all">
+	@import "style/base.css";
+	@import "style/docs.css";
+    </style>
+    <meta name="revision" content="$Id$" />
   </head>
+
   <body>
-    <a class="left" href="http://www.w3.org">
-      <img src="http://www.w3.org/Icons/w3c_home" border="0" alt="W3C" /></a>
-    <a class="right" href="http://www.w3.org/Jigsaw/"><img
-	  src="http://jigsaw.w3.org/Icons/jigpower.gif" alt="Jigsaw Powered"
-	  border="0" width="94" height="52" /></a>
-    <br />
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+   </div>
 
-    <div class="t1">CSS</div>
-    <div class="t2">Validator</div>
-
-    <h1>How to Provide Feedback on W3C's CSS Validation Service</h1>
+      <h2>How to Provide Feedback on W3C's CSS Validation Service</h2>
 
     <p>
       <strong>If your document doesn't validate, and you don't know why,
@@ -52,12 +51,6 @@
 	  href='http://lists.w3.org/Archives/Public/www-validator-css/'>publicly
 	  archived</a></em>.
 	</p>
-	<p>
-	  To post messages to www-validator-css@w3.org, you have to be <a
-	  href="http://www.w3.org/Mail/Request">subscribed</a>. Messages
-	  from non-subscribers are diverted to a human moderator and may
-	  (or may not) appear with a delay.
-	</p>
       </dd>
       <dt><a href='mailto:www-style@w3.org'>www-style@w3.org</a></dt>
       <dd>
@@ -87,18 +80,50 @@
 	  href="http://www.websitetips.com/css/#newsgroups">Website
 	  Tips</a> has links to more fora.
 	</p>
-	<p>
-	  To post messages to www-style@w3.org, you have to be <a
-	  href="http://www.w3.org/Mail/Request">subscribed</a>. Messages
-	  from non-subscribers are diverted to a human moderator and may
-	  appear with a delay.
-	</p>
       </dd>
     </dl>
 
-    <hr />
-    <img src="images/mwcss.gif" alt="made with CSS" />
-    Philippe Le H&eacute;garet &amp; Sijtsche Smeman<br />
-    $Date$
-  </body>
-</html>
+       <ul class="navbar"  id="menu">
+    	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
+            <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
+            <li><a href="DOWNLOAD.html" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
+            <li><a href="Email.html" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
+            <li><a href="thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
+
+          </ul>
+
+
+
+       <p id="activity_logos">
+          <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+       </p>
+
+       <p id="support_logo">
+    Support this tool, become a<br />
+    <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+       </p>
+
+        <p class="copyright">
+          <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+          <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+          (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+          <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+          <a href="http://www.keio.ac.jp/">Keio</a>),
+          All Rights Reserved.
+          W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+          <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+          <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+
+          and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+          rules apply. Your interactions with this site are in accordance
+          with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+          <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+          statements.
+        </p>
+
+
+      </body>
+
+    </html>
