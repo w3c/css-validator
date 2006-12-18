@@ -12,7 +12,7 @@ no-errors: \
 <p>\
 <a style="float: right" href="http://jigsaw.w3.org/css-validator/">\n\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS! Valido" /></a>\
- Questo documento � valido rispetto alla specifica <a\ \
+ Questo documento è valido rispetto alla specifica <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
   <p class="toggle closed">More info</p>\
@@ -33,12 +33,12 @@ Di seguito il codice XHTML che puoi utilizzare per aggiungere questa icona alla 
 (Se si utilizza HTML &lt;= 4.01, chiudere l'elemento img tag con &gt; invece di /&gt;)</p>\
 <p> \
 Se lo desideri, puoi scaricare una copie di questa immagine per salvarla all'interno del tuo sito Web,\
-modificando il codice XHTML sopra riportato riferendolo all'immagine locale anzich� a quella residente\
+modificando il codice XHTML sopra riportato riferendolo all'immagine locale anziché a quella residente\
 in questo server. </p>\n\
 \
 <p>Se desideri creare un collegamento a questa pagina (per esempio, al risultato di validazione)\
-per rendere pi� facile una futura riverifica di questa pagina o per consentire ad altre persone\
-di verificare la conformit� della tua pagina, l'URI �: </p><pre>\n\
+per rendere più facile una futura riverifica di questa pagina o per consentire ad altre persone\
+di verificare la conformità della tua pagina, l'URI è: </p><pre>\n\
 \
 \ \ \ \ \ http://jigsaw.w3.org/css-validator/validator?uri=<!-- #file-title -->\n\
 \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (solo per documenti HTML/XML)\n\
@@ -47,7 +47,7 @@ di verificare la conformit� della tua pagina, l'URI �: </p><pre>\n\
 </div>\
 </div>
 
-no-rules: <div><h2>Non � stato individuato alcun foglio di stile</h2></div>
+no-rules: <div><h2>Non è stato individuato alcun foglio di stile</h2></div>
 not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 
 # You have some predefined entities :
@@ -115,7 +115,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <img src="images/css_validation_service.png" alt="CSS Validation Service" /></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>Risultati della validazione W3C dei Fogli di Stile a Cascata (CSS) per \
@@ -128,6 +128,7 @@ document: \
 <!-- #rules -->\n\
 <!-- #no-rules -->\n\
 <ul class="navbar"  id="menu">\n\
+     <li><strong><a href="./" title="Pagina iniziale del servizio di validazione CSS del W3C">Pagina iniziale</a></strong> <span class="hideme">|</span></li>\n\
      <li><a href="about.html" title="About this service">Riguardo questo servizio</a> <span class="hideme">|</span></li>\n\
      <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentazione</a> <span class="hideme">|</span></li>\n\
      <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>\n\
