@@ -260,14 +260,14 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
       </ul>
 
 
-   <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-smalo.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-l.png" alt="CSS" /></a>
-   </p>
+         <p id="activity_logos">
+            <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+         </p>
 
-   <p id="support_logo">
-Wspierając to narzędzie zastaniesz<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="csupporw.png" alt="Przyjaciel W3C" /></a>
-   </p>
+         <p id="support_logo">
+      Wspierając to narzędzie zastaniesz<br />
+      <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Przyjaciel W3C" /></a>
+         </p>
 
     <p class="copyright">
       <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006

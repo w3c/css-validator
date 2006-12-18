@@ -13,17 +13,15 @@
   <meta name="revision"
   content="$Id$" />
   <!-- SSI Template Version: $Id$ -->
-
-
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 </head>
 
 <body>
 
   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="w3c_homg.png" /></a>
-    <a href="./"><img src="css_valk.png" alt="CSS Validation Service" /></a></h1>
-</div>
+          <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+          <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
+  </div>
 
 
 <h2>Ściągnij i zainstaluj walidator CSS</h2>
@@ -195,12 +193,12 @@ http://localhost:8001/css-validator/validator.html</li>
 
 
    <p id="activity_logos">
-      <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="qa-smaln.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="woolly-k.png" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
 Wspierając to narzędzie zastaniesz<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="csupporv.png" alt="Przyjaciel W3C" /></a>
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Przyjaciel W3C" /></a>
    </p>
 
     <p class="copyright">
