@@ -154,24 +154,19 @@ pre {
 .selector {
 	background-color: #F1F1F1;
 	padding: 1em;
-	border-bottom: 1px solid #ddd;
-	clear:both;}
+	border-bottom: 1px solid #ddd;}
 
 /* class="selectorValue" - value of the selector */
 .selectorValue {font-weight: bold;}
 
 /* class='RuleList' - block of all couple propertie-value*/
-.RuleList {padding: 0 1em;
-}
+.RuleList {padding: 0 1em;}
 
 /* class='Rule' - one couple propertie-value*/
 .Rule {}
 
 /* class='Property' - propertie name */
 .Property {
-	display:block;
-	float:left;
-	clear:left;
 	color: #222;
 	font-style: italic;
 	}
