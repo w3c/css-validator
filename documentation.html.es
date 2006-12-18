@@ -64,7 +64,7 @@
 <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a>
 </dt>
 <dd>Incidencias conocidas en la versi&oacute;n actual del validador, y una interfaz para enviar nuevas incidencias o errores. 
-    Ver tambi&eacute;n <a href="email">las instrucciones de feedback</a>.</dd>
+    Ver tambi&eacute;n <a href="Email.html">las instrucciones de feedback</a>.</dd>
 </dl>
 </div>
 </div>

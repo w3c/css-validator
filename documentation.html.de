@@ -50,7 +50,7 @@
     <dd>Dokumentation zum SOAP 1.2 Interface</dd>
     
     <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
-    <dd>Bekannte Probleme in der aktuellen Version des Validators und ein Interface zum Melden von neuen Bugs und Problemen. Siehe auch <a href="email">Anleitung zum Feedback</a>.</dd>
+    <dd>Bekannte Probleme in der aktuellen Version des Validators und ein Interface zum Melden von neuen Bugs und Problemen. Siehe auch <a href="Email.html">Anleitung zum Feedback</a>.</dd>
 
 
 </dl>
