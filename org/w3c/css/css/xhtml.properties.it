@@ -115,7 +115,7 @@ document: \
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
- <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
+ <a href="./"><img src="images/css_validation_service.png" alt="Servizio di validazione CSS" /></a></h1>\n\
 </div>\n\
 \n\
 <h2>Risultati della validazione W3C dei Fogli di Stile a Cascata (CSS) per \
@@ -132,7 +132,7 @@ document: \
      <li><a href="about.html" title="About this service">Riguardo questo servizio</a> <span class="hideme">|</span></li>\n\
      <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentazione</a> <span class="hideme">|</span></li>\n\
      <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>\n\
-     <li><a href="Email.html" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>\n\
+     <li><a href="Email.html" title="How to provide feedback on this service">Commenti</a> <span class="hideme">|</span></li>\n\
      <li><a href="thanks.html" title="Credits and Acknowlegments">Crediti</a><span class="hideme">|</span></li>\n\
      <li>\n\
    </ul>\n\
@@ -140,7 +140,7 @@ document: \
       <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a> \n\
    </p> \n\
    <p id="support_logo"> \n\
-Support this tool, become a<br /> \n\
+Aiuta questo strumento, diventa un<br /> \n\
 <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a> \n\
    </p> \n\
     <p class="copyright"> \n\
