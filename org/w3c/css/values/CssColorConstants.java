@@ -18,11 +18,11 @@ public interface CssColorConstants {
    * All named colors.
    */
   public static final String[] COLORNAME = {
-    "aqua", "black", "blue", "fushia", "gray", "green", "lime", "maroon",
+    "aqua", "black", "blue", "fuchsia", "gray", "green", "lime", "maroon",
     "navy", "olive", "purple", "red", "silver", "teal", "white", "yellow" };
 
   public static final String[] COLORNAME_CSS21 = {
-      "aqua", "black", "blue", "fushia", "gray", "green", "lime", "maroon",
+      "aqua", "black", "blue", "fuchsia", "gray", "green", "lime", "maroon",
       "navy", "olive", "orange", "purple", "red", "silver", "teal", "white",
       "yellow" };
 
