@@ -348,9 +348,8 @@ input.default {
 p.toggle {
     color: #005A9C;
     background-color: transparent;
-}
-p.toggle:hover {
-	text-decoration: underline;
+    margin-bottom: 0;
+
 }
 
 .hidden
@@ -364,6 +363,7 @@ margin-bottom: 0;
 padding-left: .3em;
 }
 fieldset.moreoptions div {
+margin-top: 0;
 margin-left: .5em;
 font-size: smaller;
 }

@@ -51,6 +51,7 @@ W3C.QA.Validator.CSS.toggle =
 			link.href="#" + el.id;
 			link.onclick = this.newToggleState(this,paragraph,el);
 			paragraph.appendChild(link);
+			paragraph.className += ' toggle closed';
 			el.parentNode.insertBefore(paragraph, el);
 
 
