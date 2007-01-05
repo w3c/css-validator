@@ -1,12 +1,14 @@
 // toggling event visibility
-// v2.01 Kent Brewster, 6/8/2006
-// questions? comments? please visit:
-// http://www.mindsack.com
+// $Id$
+// v1.0 David Dorward for the W3C CSS Validation Service, 18/12/2006
+// Based on v2.01 Kent Brewster, 6/8/2006 http://www.mindsack.com
 
 // namespace protection: one global variable to rule them all
-var MINDSACK = {};
-MINDSACK.uxe = {};
-MINDSACK.uxe.toggle = 
+var W3C = {};
+W3C.QA = {};
+W3C.QA.Validator = {};
+W3C.QA.Validator.CSS = {};
+W3C.QA.Validator.CSS.toggle = 
 {	
 	init : function(toggle, closed, hidden)
 	{
@@ -22,18 +24,42 @@ MINDSACK.uxe.toggle =
 		// get this element's next sibling
 		var nextSib = this.getNextSibling(el);
 		
-		// if it has a class name, the class name matches our toggle class, and there's something there to toggle:
-		if (el.className && el.className.match(this.toggleClass) && nextSib)
+		// if it has a class name, the class name matches our toggle class
+		if (el.className && el.className.match(this.toggleClass))
 		{
-			// attach onmouseup to the toggle function
-			el.onmouseup = this.toggleState;
-			
+			// labels are nice, but redundant with the link we are adding
+		 	for (i=0;i<el.childNodes.length;i++)
+		  	{
+		    	  current_child_node=el.childNodes[i];
+			  if (current_child_node.tagName)
+			  {
+			    if (current_child_node.tagName.toLowerCase() == "legend")
+			    {
+			      current_child_node.className += 'hideme';
+			    }
+			  }
+			}
+
+			// Generate a paragraph for the pseudo-link we're adding
+			var paragraph = document.createElement('p');
+			var link = document.createElement('a');
+			//var text = el.className.match(/linkText_(\S*)/)[1];
+			//text = text.replace("_", " ", "g");
+			var text = "Show/Hide extra validation options";
+			text = document.createTextNode(text);
+			link.appendChild(text);
+			link.href="#" + el.id;
+			link.onclick = this.newToggleState(this,paragraph,el);
+			paragraph.appendChild(link);
+			el.parentNode.insertBefore(paragraph, el);
+
+
 			// if the next sib ought to be hidden and it isn't already, hide it
 			// you can hard-code class=hidden in the HTML if you like, and avoid the Flash of Unstyled Content
-			if (el.className.match(this.toggleClosed) && nextSib && !nextSib.className.match(this.toggleHidden))
+			if (el.className.match(this.toggleClosed))
 			{
-				nextSib.className += ' ' + this.toggleHidden;
-				el.parentNode.className += ' ' + this.toggleClosed;
+				el.className += ' ' + this.toggleHidden;
+				//el.parentNode.className += ' ' + this.toggleClosed;
 			}
 		}
 		
@@ -47,15 +73,14 @@ MINDSACK.uxe.toggle =
 			this.crawl(nextSib);
 		}
 	},
-	toggleState : function(v)
+	newToggleState : function(o,element,nextEl) {
+		return function () { return o.toggleState(element,nextEl) };
+	},
+	toggleState : function(el,nextEl)
 	{
 		// there's got to be a way to get this without stating it explicitly
-		var o = MINDSACK.uxe.toggle;
-		
-		// v is the event; we don't need to pass this in when calling!
-		// what element did we click?
-		var el = o.getEl(v);
-		
+		var o = W3C.QA.Validator.CSS.toggle;
+				
 		// change the style of the triggering element
 		if(el.className.match(o.toggleClosed))
 		{
@@ -65,28 +90,17 @@ MINDSACK.uxe.toggle =
 		{
 			el.className = el.className + ' ' + o.toggleClosed;
 		}
-		var p = el.parentNode;
-		if(p.className.match(o.toggleClosed))
-		{
-			p.className = p.className.replace(o.toggleClosed, '');
-		}
-		else
-		{
-			p.className = p.className + ' ' + o.toggleClosed;
-		}
-		
-		// change the style of the parent node's next block-level element
-		var nextSib = o.getNextSibling(el);
 		
 		// yes, we need to check if it's really there; other scripts could have removed it
-		if(nextSib && nextSib.className.match('hidden'))
+		if(nextEl && nextEl.className.match('hidden'))
 		{
-			nextSib.className = nextSib.className.replace(o.toggleHidden, '');
+			nextEl.className = nextEl.className.replace(o.toggleHidden, '');
 		}
 		else
 		{
-			nextSib.className += ' ' + o.toggleHidden;
+			nextEl.className += ' ' + o.toggleHidden;
 		}
+		return false;
 	},
 	getNextSibling : function(el)
 	{
@@ -118,6 +132,5 @@ MINDSACK.uxe.toggle =
 // feed it the CSS class names of your choice
 window.onload = function()
 { 
-	MINDSACK.uxe.toggle.init('toggle', 'closed', 'hidden');
+	W3C.QA.Validator.CSS.toggle.init('alttoggle', 'closed', 'hidden');
 };
-

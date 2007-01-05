@@ -37,8 +37,9 @@
 	<label title="Address of page to Validate" for="uri">Address:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
-      <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">More Options</p>
+      <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
+         <legend>More Options</legend>
+      
       <div>
       Warnings :
       <select name="warning"> 
@@ -89,8 +90,8 @@
       <p>
 	<label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:
 	<input type="file" id="file" name="file" size="30" /></label></p>
-      <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">More Options</p>
+      <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
+                <legend>More Options</legend>
       <div>
       Warnings :
       <select name="warning"> 
@@ -142,8 +143,8 @@
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
-      <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">More Options</p>
+      <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+              <legend>More Options</legend>
       <div>
       Warnings :
       <select name="warning"> 
