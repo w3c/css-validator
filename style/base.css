@@ -226,10 +226,10 @@ fieldset {
 }
 fieldset legend {
     font-weight: bold;
-    background-color: white;
-    color: #11111A;
-    border: 1px solid #005A9C;
     padding: .5em;
+}
+fieldset.moreoptions legend {
+    font-weight: normal;
 }
 fieldset p { 
     margin: 0 0  0.8em 0; 
