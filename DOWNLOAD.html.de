@@ -27,7 +27,8 @@ zum Zugriff auf den öffentlichen W3C CVS-Server und laden Sie
 CSS-Validators in der Regel älter ist als die CVS-Version. Ergebnisse
 und Aussehen können leicht abweichen... </p>	
 	<h4>Download als Java-Package (.jar oder .war)</h4>
-	<p>Noch offen. Wir brauchen noch einen stabilen Ort, an dem wir solche Packages regelmäßig ablegen können.</p>
+<!--	<p>Noch offen. Wir brauchen noch einen stabilen Ort, an dem wir solche Packages regelmäßig ablegen können.</p>-->
+	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Installationsanleitung</h3>
 <p>Der CSS Validierungsservice ist eine in Java geschriebene

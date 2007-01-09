@@ -34,7 +34,10 @@
       Seguire le <a href='http://dev.w3.org/cvsweb/'>istruzioni</a> per accedere al server CVS pubblico del W3C acquisendo la sezione 2002/css-validator. Nota che la versione in linea del validatore CSS generalmente è antecedente alla versione disponibile nel CVS e pertanto il risultato e l'aspetto dell'applicazione potrebbero avere delle piccole differenze...
     </p>	
 	<h4>Scarica come pacchetto java (jar oppure war)</h4>
-	<p>DA DEFINIRE... necessitiamo di definire una posizione stabile dove posizionare gli archivi jar/war ad intervalli regolari.</p>
+<!--	<p>DA DEFINIRE... necessitiamo di definire una posizione stabile dove posizionare gli archivi jar/war ad intervalli regolari.</p>-->
+	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+
+
 
 <h3>Guida all'installazione</h3>
 <p>Il servizio di validazione CSS è un software servlet, scritto in Java. Può essere installato in qualsiasi motore servlet e può anche essere utilizzato come strumento eseguibile da riga di comando. 

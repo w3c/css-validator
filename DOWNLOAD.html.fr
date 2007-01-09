@@ -32,7 +32,8 @@ Suivez les <a href='http://dev.w3.org/cvsweb/'>instructions</a> pour accéder au
 de sorte que les résultats et l'aspect peuvent varier légèrement.
 </p>	
 <h4>Télécharger un paquetage Java (jar ou war)</h4>
-<p>À faire... nous avons juste besoin d'un emplacement stable pour y placer régulièrement les archives jar/war.</p>
+<!--<p>À faire... nous avons juste besoin d'un emplacement stable pour y placer régulièrement les archives jar/war.</p>-->
+<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Guide d'installation</h3>
 <p>Le service de validation CSS est un servlet écrit en Java. On peut l'installer sur n'importe quel moteur de servlets,

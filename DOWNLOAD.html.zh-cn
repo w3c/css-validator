@@ -33,7 +33,9 @@
 注意：这些源代码和cvs中正在开发的版本相比有点旧，所以可能看起来会和现在的版本有一点不同...
     </p>	
 	<h4>下载Java包(jar包格式或者war包格式)</h4>
-	<p>请稍等...我们需要一个稳定的服务器来放置这些jar或者war的压缩包</p>
+<!--	<p>请稍等...我们需要一个稳定的服务器来放置这些jar或者war的压缩包</p>-->
+	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+
 
 <h3>安装指南</h3>
 <p>CSS 验证器其实是一个servlet的应用程序，用Java撰写。它应该可以放在任何一个标准的servlet引擎中，同时也支持用

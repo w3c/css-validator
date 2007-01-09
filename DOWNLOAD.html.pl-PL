@@ -38,7 +38,10 @@
       Postępuj zgodnie z <a href='http://dev.w3.org/cvsweb/'>instrukcjami</a> aby wejść na publiczny serwer  CVS należący do W3C i pobierz plik  2002/css-validator. Zauważ, że wersja walidatora online jest zazwyczaj starsza niż wersja CVS dlatego też rezultaty, jak i wygląd mogą być trochę odmienne...
     </p>	
 	<h4>Ściągnij jako pakiet Java (jar lub war)</h4>
-	<p>Wkrótce... Potrzebujemy stabilnej lokalizacji do regularnego umieszczania archiwów  jar/war.</p>
+<!--	<p>Wkrótce... Potrzebujemy stabilnej lokalizacji do regularnego umieszczania archiwów  jar/war.</p>-->
+	
+	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+
 
 <h3>Przewodnik instalacyjny</h3>
 <p>CSS validation service jest oprogramowaniem typu &quot;serwlet&quot; napisanym w języku Java. Może być ono zainstalowane na każdym silniku serwletu i może być także używane jako prosty program typu&quot;command line&quot;. Oficjalna Usługa Walidacji CSS W3C jest aktywna na serwerze  Jigsaw, który jest zalecanym ustawieniem. Jednakże, w celu uproszczenia,  przedstawimy szczegóły na temat jak zainstalować go na serwlecie online z silnikiem Apache  Tomcat.</p>

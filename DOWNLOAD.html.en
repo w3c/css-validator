@@ -36,7 +36,9 @@
       version so results and appearance may vary slightly...
     </p>	
 	<h4>Download as java package (jar or war)</h4>
-	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>
+<!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->
+	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
+
 
 <h3>Installation guide</h3>
 <p>The CSS validation service is a servlet software, written in Java. It may be installed on any servlet engine, 
