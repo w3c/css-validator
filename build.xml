@@ -72,7 +72,7 @@
 			<include name="org/**"/>
 			<include name="html/**"/>
 			<manifest>
-	      			<attribute name="Main-Class" value="org.w3c.css.css.StyleSheetCom"/>
+	      			<attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
 			</manifest>
 		</jar>
 	</target>
