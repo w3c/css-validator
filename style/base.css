@@ -333,24 +333,21 @@ input.default {
 
 /* the following from http://www.mindsack.com/toggle/ (c) Kent Brewster */
 
-.toggle
+p.toggle
 {
         background: transparent url('../images/arrow-down.gif')  0 0 no-repeat;
         text-indent: 20px;
         cursor:pointer;
-}
-
-.toggle.closed
-{
-        background: transparent url('../images/arrow-right.gif') 0 0 no-repeat;
-}
-
-p.toggle {
     color: #005A9C;
     background-color: transparent;
     margin-bottom: 0;
-
 }
+
+p.closed
+{
+        background: transparent url('../images/arrow-right.gif') 0 0 no-repeat !important;
+}
+
 
 .hidden
 {
