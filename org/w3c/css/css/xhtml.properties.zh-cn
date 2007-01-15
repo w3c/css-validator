@@ -14,8 +14,8 @@ no-errors: \
 恭喜恭喜，此文档已经通过<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
   </p>\
-  <p class="toggle closed">More info</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
 <p> \
 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
@@ -65,8 +65,8 @@ not-css1-style: /* 请注意！这不是CSS1的属性！ */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\
-<h2 class="toggle closed">你已经校验的层叠样式表：</h2> \
+<div id="css" class="alttoggle closed">\
+<h2 class="toggletext">你已经校验的层叠样式表：</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -85,8 +85,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings"> \
-<h2 class="toggle closed">警告 (<!-- #warnings-count -->)：</h2> \
+<div id="warnings" class="alttoggle closed"> \
+<h2 class="toggletext">警告 (<!-- #warnings-count -->)：</h2> \
 <!-- #warning --></div>\n
 
 

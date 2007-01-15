@@ -15,8 +15,8 @@ no-errors: \
  This document validates as <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-<p class="toggle closed">More info</p>\
-<div>\
+<div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
         <p> \
 To show your readers that you've taken the care to create an interoperable Web \
 page, you may display this icon on any page that validates. Here is the XHTML \
@@ -69,8 +69,8 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\n\
-<h2 class="toggle closed">Valid CSS information</h2> \n\
+<div id="css" class="alttoggle closed">\n\
+<h2 class="toggletext">Valid CSS information</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -91,8 +91,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings">\n\
-<h2 class="toggle closed">Warnings (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alttoggle closed">\n\
+<h2 class="toggletext">Warnings (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

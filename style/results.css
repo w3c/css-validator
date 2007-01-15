@@ -31,11 +31,22 @@
                 background: transparent url('../images/arrow-right.gif')  15px 0 no-repeat;
 }
 
+h2.toggle {
+  color: #005A9C;
+  text-align: left;
+  background: transparent url('../images/arrow-down.gif')  0 10px no-repeat !important;
+  text-indent: 10px;
+}
+
+h2.closed{
+ color: #005A9C;
+ text-align: left;
+ background: transparent url('../images/arrow-right.gif') 0 10px no-repeat !important;
+ text-indent: 10px; 
+}
+
 /*   ==== COMMON: ERRORS + WARNINGS =====  */
 
-#warnings h2.closed, #css h2.closed {
- background: transparent url('../images/arrow-right.gif') 0 10px no-repeat;       
-}
 
 #warnings table, #errors table {
 	width:100%;
@@ -92,10 +103,6 @@ td.io, td.notfound, td.invalidparam, td.errortoken, td.unknownerror {
 /*   ==== WARNINGS =====  */
 
 /* id="warnings" - start of the list of warnings */
-#warnings h2, #css h2  {
-  color: #005A9C;
-  text-align: left;
-  background: transparent url('../images/arrow-down.gif')  0 10px no-repeat;}
 
 tr.warning {
 	padding: 0;}

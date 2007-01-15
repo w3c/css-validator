@@ -14,8 +14,8 @@ no-errors: \
 Ce document est valide conform&eacute;ment &agrave; la recommandation <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <p class="toggle closed">More info</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
 <p> \
 Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
 cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
@@ -69,8 +69,8 @@ not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\n\
-<h2 class="toggle closed">Votre feuille de style CSS valid&eacute;e :</h2> \
+<div id="css" class="alttoggle closed">\n\
+<h2 class="toggletext">Votre feuille de style CSS valid&eacute;e :</h2> \
 <div class='vAtRule'> \
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -91,8 +91,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings">\n\
-<h2 class="toggle closed">Avertissements (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alttoggle closed">\n\
+<h2 class="toggletext">Avertissements (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

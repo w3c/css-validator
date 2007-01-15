@@ -15,8 +15,8 @@ no-errors: \
 Dokument ten jest poprawnie napisanym arkuszem <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <p class="toggle closed">More info</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
 <p> \
 Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjną \
 , możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidację. Oto kod HTML\
@@ -69,8 +69,8 @@ not-css1-style: /* UWAGA ! To nie jest właściwością CSS1! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\n\
-<h2 class="toggle closed">Informacje na temat poprawnego CSS</h2> \n\
+<div id="css" class="alttoggle closed">\n\
+<h2 class="toggletext">Informacje na temat poprawnego CSS</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -91,8 +91,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings">\n\
-<h2 class="toggle closed">Ostrzeżenia (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alttoggle closed">\n\
+<h2 class="toggletext">Ostrzeżenia (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

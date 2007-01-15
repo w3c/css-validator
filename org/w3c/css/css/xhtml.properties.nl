@@ -14,8 +14,8 @@ no-errors: \
 Dit document is gevalideerd als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <p class="toggle closed">More info</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
 <p> \
 Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
 kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
@@ -67,8 +67,8 @@ not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
 #   - property-name, property-value, important-style en niet-css1-style entiteiten in de entiteit declaratie
 
 rules: \
-<div id="css">\
-<h2 class="toggle closed">Uw gevalideerde Cascading Style Sheet :</h2> \
+<div id="css" class="alttoggle closed">\
+<h2 class="toggletext">Uw gevalideerde Cascading Style Sheet :</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -87,8 +87,8 @@ errors : \
 # Hoe waarschuwingen te melden
 
 warnings: \
-<div id="warnings"> \
-<h2 class="toggle closed">Waarschuwingen (<!-- #warnings-count -->) :</h2> \n\
+<div id="warnings" class="alttoggle closed"> \
+<h2 class="toggletext">Waarschuwingen (<!-- #warnings-count -->) :</h2> \n\
 <!-- #warning --></div>\n
 
 warning:

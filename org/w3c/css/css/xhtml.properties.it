@@ -15,8 +15,8 @@ no-errors: \
  Questo documento è valido rispetto alla specifica <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <p class="toggle closed">Maggiori Informazioni</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">Maggiori Informazioni</p>\
 <p> \
 Per rendere visibile ai tuoi lettori che hai curato lo sviluppo per creare una pagina Web \
 interoperabile, puoi pubblicare questa icona in qualsiasi pagina che rispetta la validazione. \
@@ -70,8 +70,8 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\n\
-<h2 class="toggle closed">Informazioni valide per il Foglio di stile (CSS)</h2> \n\
+<div id="css" class="alttoggle closed">\n\
+<h2 class="toggletext">Informazioni valide per il Foglio di stile (CSS)</h2> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -92,8 +92,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings">\n\
-<h2 class="toggle closed">Avvisi (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alttoggle closed">\n\
+<h2 class="toggletext">Avvisi (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 

@@ -14,8 +14,8 @@ no-errors: \
 Dieses Dokument wurde als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> validiert! \
   </p>\
-  <p class="toggle closed">More info</p>\
-  <div>\
+  <div class="alttoggle closed">\
+<p class="toggletext">More info</p>\
 <p> \
 Sie können dieses Icon auf jeder validierten Seite darstellen, um zu zeigen, \
 daß Sie sich die Mühe gemacht haben interoperable Web-Seiten zu erstellen.  \
@@ -68,8 +68,8 @@ not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css">\n\
-<h2 class="toggle closed">Ihr validiertes Cascading Style Sheet:</h2> \
+<div id="css" class="alttoggle closed">\n\
+<h2 class="toggletext">Ihr validiertes Cascading Style Sheet:</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
@@ -89,8 +89,8 @@ errors : \
 # How to write warnings
 
 warnings: \
-<div id="warnings"> \
-<h2 class="toggle closed">Warnungen (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alttoggle closed"> \
+<h2 class="toggletext">Warnungen (<!-- #warnings-count -->)</h2> \n\
 <!-- #warning -->\n\
 </div>
 
