@@ -14,5 +14,47 @@
        <servlet-name>validator</servlet-name>
        <url-pattern>/validator</url-pattern>
    </servlet-mapping>
+
+
+<!-- ===================== Additional MIME Type Mappings =================== -->
+<!-- tomcat does not know language file extensions, we have to force them    -->
+<!-- to properly be recognized as being html files...                        -->  
+
+    <mime-mapping>                                                          
+        <extension>en</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>de</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>fr</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>es</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>it</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>nl</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>ja</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>pl-PL</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>zh-cn</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
    
 </web-app>
