@@ -38,19 +38,19 @@
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
       <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
-         <legend>More Options</legend>
+         <legend class="toggletext">More Options</legend>
       
       <div>
-      Warnings :
-      <select name="warning"> 
+      <label for="warning_uri">Warnings :</label>
+      <select id="warning_uri" name="warning"> 
 	<option value="2">All</option>
 	<option selected="selected" value="1">Normal report</option>
 	<option value="0">Most important</option>
 	<option value="no">No warnings</option>
       </select>
       
-      Profile :
-      <select name="profile">
+      <label for="profile_uri">Profile :</label>
+      <select id="profile_uri" name="profile">
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option value="css2">CSS version 2</option>
@@ -64,8 +64,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_uri">Medium :</label>
+      <select id="medium_uri" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -91,18 +91,18 @@
 	<label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:
 	<input type="file" id="file" name="file" size="30" /></label></p>
       <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
-                <legend>More Options</legend>
+                <legend class="toggletext">More Options</legend>
       <div>
-      Warnings :
-      <select name="warning"> 
+      <label for="warning_upload">Warnings :</label>
+      <select id="warning_upload" name="warning"> 
 	<option value="2">All</option>
 	<option selected="selected" value="1">Normal report</option>
 	<option value="0">Most important</option>
 	<option value="no">No warnings</option>
       </select>
       
-      Profile :
-      <select name="profile">
+      <label for="profile_upload">Profile :</label>
+      <select id="profile_upload" name="profile">
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option value="css2">CSS version 2</option>
@@ -116,8 +116,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_upload">Medium :</label>
+      <select id="medium_upload" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -144,18 +144,18 @@
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
       <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
-              <legend>More Options</legend>
+              <legend class="toggletext">More Options</legend>
       <div>
-      Warnings :
-      <select name="warning"> 
+      <label for="warning_direct">Warnings :</label>
+      <select id="warning_direct" name="warning"> 
 	<option value="2">All</option>
 	<option selected="selected" value="1">Normal report</option>
 	<option value="0">Most important</option>
 	<option value="no">No warnings</option>
       </select>
       
-      Profile :
-      <select name="profile">
+      <label for="profile_direct">Profile :</label>
+      <select id="profile_direct" name="profile">
 	<option value="none">No special profile</option>
 	<option value="css1">CSS version 1</option>
 	<option value="css2">CSS version 2</option>
@@ -169,8 +169,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_direct">Medium :</label>
+      <select id="medium_direct" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>

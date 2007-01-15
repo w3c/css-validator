@@ -38,19 +38,19 @@
 	<label title="Indirizzo della pagina da verificare" for="uri">Indirizzo:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
-      <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</p>
+      <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</legend>
       <div>
-      Avvisi :
-      <select name="warning"> 
+      <label for="warning_uri">Avvisi :</label>
+      <select id="warning_uri" name="warning"> 
 	<option value="2">Tutti</option>
 	<option selected="selected" value="1">Rapporto normale</option>
 	<option value="0">I più importanti</option>
 	<option value="no">Nessun avviso</option>
       </select>
       
-      Profilo :
-      <select name="profile">
+      <label for="profile_uri">Profilo :</label>
+      <select id="profile_uri" name="profile">
 	<option value="none">Nessun profilo specifico</option>
 	<option value="css1">CSS versione 1</option>
 	<option selected="selected" value="css2">CSS versione 2</option>
@@ -64,8 +64,8 @@
 	<option value="tv">Profilo</option>
       </select>
 
-      Media :
-      <select name="usermedium">
+      <label for="medium_uri">Media :</label>
+      <select id="medium_uri" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -90,19 +90,19 @@
       <p>
 	<label title="Seleziona un documento locale per da trasferire e verificare" for="file">Documento CSS locale:
 	<input type="file" id="file" name="file" size="30" /></label></p>
-      <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</p>
+      <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</legend>
       <div>
-      Avvisi :
-      <select name="warning"> 
+      <label for="warning_upload">Avvisi :</label>
+      <select id="warning_upload" name="warning"> 
 	<option value="2">Tutti</option>
 	<option selected="selected" value="1">Rapporto normale</option>
 	<option value="0">I più importanti</option>
 	<option value="no">Nessun avviso</option>
       </select>
       
-      Profilo :
-      <select name="profile">
+      <label for="profile_upload">Profilo :</label>
+      <select id="profile_upload" name="profile">
 	<option value="none">Nessun profilo specifico</option>
 	<option value="css1">CSS versione 1</option>
 	<option selected="selected" value="css2">CSS versione 2</option>
@@ -116,8 +116,8 @@
 	<option value="tv">Profilo</option>
       </select>
 
-      Media :
-      <select name="usermedium">
+      <label for="medium_upload">Media :</label>
+      <select id="medium_upload" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -143,19 +143,19 @@
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
-      <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</p>
+      <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Visualizza/nascondi le modalità avanzate di verifica">Maggiori opzioni</legend>
       <div>
-      Avvisi :
-      <select name="warning"> 
+      <label for="warning_direct">Avvisi :</label>
+      <select id="warning_direct" name="warning"> 
 	<option value="2">Tutti</option>
 	<option selected="selected" value="1">Rapporto normale</option>
 	<option value="0">I più importanti</option>
 	<option value="no">Nessun avviso</option>
       </select>
       
-      Profilo :
-      <select name="profile">
+      <label for="profile_direct">Profilo :</label>
+      <select id="profile_direct" name="profile">
 	<option value="none">Nessun profilo specifico</option>
 	<option value="css1">CSS versione 1</option>
 	<option selected="selected" value="css2">CSS versione 2</option>
@@ -169,8 +169,8 @@
 	<option value="tv">Profilo</option>
       </select>
 
-      Media :
-      <select name="usermedium">
+      <label for="medium_direct">Media :</label>
+      <select id="medium_direct" name="usermedium">
 	<option selected="selected" value="all">all</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>

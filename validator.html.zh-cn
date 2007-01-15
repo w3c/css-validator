@@ -35,19 +35,19 @@
 	<label title="Address of page to Validate" for="uri">URI地址:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
-      <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Show/Hide extra validation options">更多选项</legend>
       <div>
-      警告 :
-      <select name="warning"> 
+      <label for="warning_uri">警告 :</label>
+      <select id="warning_uri" name="warning"> 
 	<option value="2">全部</option>
 	<option selected="selected" value="1">正常</option>
 	<option value="0">最重要的</option>
 	<option value="no">取消警告</option>
       </select>
       
-      配置 :
-      <select name="profile">
+      <label for="profile_uri">配置 :</label>
+      <select id="profile_uri" name="profile">
 	<option value="none">不指定配置文件</option>
 	<option value="css1">CSS 版本 1</option>
 	<option value="css2">CSS 版本 2</option>
@@ -61,8 +61,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      媒介 :
-      <select name="usermedium">
+      <label for="medium_uri">媒介 :</label>
+      <select id="medium_uri" name="usermedium">
 	<option selected="selected" value="all">全部</option>
 	<option value="aural">听觉设备</option>
 	<option value="braille">布莱叶点字</option>
@@ -87,18 +87,18 @@
       <p>
 	<label title="Choose a Local File to Upload and Validate" for="file">本地CSS文件:
 	<input type="file" id="file" name="file" size="30" /></label></p>
-      <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Show/Hide extra validation options">更多选项</legend>
       <div>
-      警告 :
-      <select name="warning"> 
+      <label for="warning_upload">警告 :</label>
+      <select id="warning_upload" name="warning"> 
 	<option value="2">全部</option>
 	<option selected="selected" value="1">正常</option>
 	<option value="0">最重要的</option>
 	<option value="no">取消警告</option>
       </select>
-      配置 :
-      <select name="profile">
+      <label for="profile_upload">配置 :</label>
+      <select id="profile_upload" name="profile">
 	<option value="none">不指定配置文件</option>
 	<option value="css1">CSS 版本 1</option>
 	<option value="css2">CSS 版本 2</option>
@@ -112,8 +112,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      媒介 :
-      <select name="usermedium">
+      <label for="medium_upload">媒介 :</label>
+      <select id="medium_upload" name="usermedium">
 	<option selected="selected" value="all">全部</option>
 	<option value="aural">听觉设备</option>
 	<option value="braille">布莱叶点字</option>
@@ -139,18 +139,18 @@
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
-      <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Show/Hide extra validation options">更多选项</p>
+      <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Show/Hide extra validation options">更多选项</legend>
       <div>
-      警告 :
-      <select name="warning"> 
+      <label for="warning_direct">警告 :</label>
+      <select id="warning_direct" name="warning"> 
 	<option value="2">全部</option>
 	<option selected="selected" value="1">正常</option>
 	<option value="0">最重要的</option>
 	<option value="no">取消警告</option>
       </select>
-      配置 :
-      <select name="profile">
+      <label for="profile_direct">配置 :</label>
+      <select id="profile_direct" name="profile">
 	<option value="none">不指定配置文件</option>
 	<option value="css1">CSS 版本 1</option>
 	<option value="css2">CSS 版本 2</option>
@@ -164,8 +164,8 @@
 	<option value="tv">TV profile</option>
       </select>
 
-      媒介 :
-      <select name="usermedium">
+      <label for="medium_direct">媒介 :</label>
+      <select id="medium_direct" name="usermedium">
 	<option selected="selected" value="all">全部</option>
 	<option value="aural">听觉设备</option>
 	<option value="braille">布莱叶点字</option>

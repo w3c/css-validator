@@ -41,19 +41,19 @@
 	<input type="text" name="uri" id="uri" size="45"/>
 </label>
 </p>
-<fieldset id="extra_opt_uri" class="moreoptions">
-<p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s Opciones</p>
+<fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
+<legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s Opciones</legend>
 <div>
-      Advertencias :
-      <select name="warning">
+      <label for="warning_uri">Advertencias :</label>
+      <select id="warning_uri" name="warning">
 <option value="2">Todas</option>
 <option selected="selected" value="1">Informe normal</option>
 <option value="0">Las m&aacute;s importantes</option>
 <option value="no">Sin advertencias</option>
 </select>
       
-      Perfil :
-      <select name="profile">
+      <label for="profile_uri">Perfil :</label>
+      <select id="profile_uri" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
 <option selected="selected" value="css2">CSS versi&oacute;n 2</option>
@@ -67,8 +67,8 @@
 <option value="tv">Perfil de TV</option>
 </select>
 
-      Medio :
-      <select name="usermedium">
+      <label for="medium_uri">Medio :</label>
+      <select id="medium_uri" name="usermedium">
 <option selected="selected" value="all">todos</option>
 <option value="aural">auditivo</option>
 <option value="braille">braille</option>
@@ -101,19 +101,19 @@
 	<input type="file" id="file" name="file" size="30"/>
 </label>
 </p>
-<fieldset id="extra_opt_upload" class="moreoptions">
-<p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</p>
+<fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
+<legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</legend>
 <div>
-      Advertencias :
-      <select name="warning">
+      <label for="warning_upload">Advertencias :</label>
+      <select id="warning_upload" name="warning">
 <option value="2">Todos</option>
 <option selected="selected" value="1">Informe normal</option>
 <option value="0">Las m&aacute;s importantes</option>
 <option value="no">Sin advertencias</option>
 </select>
       
-      Perfil :
-      <select name="profile">
+      <label for="profile_upload">Perfil :</label>
+      <select id="profile_upload" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
 <option selected="selected" value="css2">CSS versi&oacute;n 2</option>
@@ -127,8 +127,8 @@
 <option value="tv">Perfil de TV</option>
 </select>
 
-      Medio :
-      <select name="usermedium">
+      <label for="medium_upload">Medio :</label>
+      <select id="medium_upload" name="usermedium">
 <option selected="selected" value="all">todos</option>
 <option value="aural">auditivo</option>
 <option value="braille">braille</option>
@@ -160,19 +160,19 @@
 <textarea name="text" rows="12" cols="70"></textarea>
 <input name="usermedium" value="all" type="hidden"/>
 </p>
-<fieldset id="extra_opt_direct" class="moreoptions">
-<p class="toggle closed" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</p>
+<fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+<legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</legend>
 <div>
-      Advertencias :
-      <select name="warning">
+      <label for="warning_direct">Advertencias :</label>
+      <select id="warning_direct" name="warning">
 <option value="2">Todos</option>
 <option selected="selected" value="1">Informe normal</option>
 <option value="0">Las m&aacute;s importantes</option>
 <option value="no">Sin advertencias</option>
 </select>
       
-      Perfil :
-      <select name="profile">
+      <label for="profile_direct">Perfil :</label>
+      <select id="profile_direct" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
 <option selected="selected" value="css2">CSS versi&oacute;n 2</option>
@@ -186,8 +186,8 @@
 <option value="tv">Perfil de TV</option>
 </select>
 
-      Medio :
-      <select name="usermedium">
+      <label for="medium_direct">Medio :</label>
+      <select id="medium_direct" name="usermedium">
 <option selected="selected" value="all">todos</option>
 <option value="aural">auditivo</option>
 <option value="braille">braille</option>

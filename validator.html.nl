@@ -37,19 +37,19 @@
 	<label title="Address of page to Validate" for="uri">Adres:
 	<input type="text" name="uri" id="uri" size="45" /></label>
       </p>
-      <fieldset id="extra_opt_uri" class="moreoptions">
-      <p class="toggle closed" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</p>
+      <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</legend>
       <div>
-      Waarschuwingen :
-      <select name="warning"> 
+      <label for="warning_uri">Waarschuwingen :</label>
+      <select id="warning_uri" name="warning"> 
 	<option value="2">Alle</option>
 	<option selected="selected" value="1">Normaal</option>
 	<option value="0">Meest belangrijk</option>
 	<option value="no">Geen</option>
       </select>
       
-      Profiel :
-      <select name="profile">
+      <label for="profile_uri">Profiel :</label>
+      <select id="profile_uri" name="profile">
 	<option value="none">Geen speciaal profiel</option>
 	<option value="css1">CSS versie 1</option>
 	<option value="css2">CSS versie 2</option>
@@ -63,8 +63,8 @@
 	<option value="tv">TV profiel</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_uri">Medium :</label>
+      <select id="medium_uri" name="usermedium">
 	<option selected="selected" value="all">alle</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -89,19 +89,19 @@
       <p>
 	<label title="Kies een Lokaal Bestand dat je wilt Uploaden en Valideren" for="file">Local CSS file:
 	<input type="file" id="file" name="file" size="30" /></label></p>
-      <fieldset id="extra_opt_upload" class="moreoptions">
-      <p class="toggle closed" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</p>
+      <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</legend>
       <div>
-      Waarschuwingen :
-      <select name="warning"> 
+      <label for="warning_upload">Waarschuwingen :</label>
+      <select id="warning_upload" name="warning"> 
 	<option value="2">Alle</option>
 	<option selected="selected" value="1">Normaal</option>
 	<option value="0">Meest belangrijk</option>
 	<option value="no">Geen</option>
       </select>
       
-      Profiel :
-      <select name="profile">
+      <label for="profile_upload">Profiel :</label>
+      <select id="profile_upload" name="profile">
 	<option value="none">Geen speciaal profiel</option>
 	<option value="css1">CSS versie 1</option>
 	<option value="css2">CSS versie 2</option>
@@ -115,8 +115,8 @@
 	<option value="tv">TV profiel</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_upload">Medium :</label>
+      <select id="medium_upload" name="usermedium">
 	<option selected="selected" value="all">alle</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
@@ -142,19 +142,19 @@
 	<textarea name="text" rows="12" cols="70"></textarea>
 	<input name="usermedium" value="all" type="hidden" />
       </p>      
-      <fieldset id="extra_opt_direct" class="moreoptions">
-      <p class="toggle closed" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</p>
+      <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+      <legend class="toggletext" title="Weergeven/Verbergen van extra validatie opties">Meer Opties:</legend>
       <div>
-      Waarschuwingen :
-      <select name="warning"> 
+      <label for="warning_direct">Waarschuwingen :</label>
+      <select id="warning_direct" name="warning"> 
 	<option value="2">Alle</option>
 	<option selected="selected" value="1">Normaal</option>
 	<option value="0">Meest belangrijk</option>
 	<option value="no">Geen</option>
       </select>
       
-      Profiel :
-      <select name="profile">
+      <label for="profile_direct">Profiel :</label>
+      <select id="profile_direct" name="profile">
 	<option value="none">Geen speciaal profiel</option>
 	<option value="css1">CSS versie 1</option>
 	<option value="css2">CSS versie 2</option>
@@ -168,8 +168,8 @@
 	<option value="tv">TV profiel</option>
       </select>
 
-      Medium :
-      <select name="usermedium">
+      <label for="medium_direct">Medium :</label>
+      <select id="medium_direct" name="usermedium">
 	<option selected="selected" value="all">alle</option>
 	<option value="aural">aural</option>
 	<option value="braille">braille</option>
