@@ -56,8 +56,8 @@
       <select id="profile_uri" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
-<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
-<option value="css21">CSS versi&oacute;n 2.1</option>
+<option value="css2">CSS versi&oacute;n 2</option>
+<option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
 <option value="css3">CSS versi&oacute;n 3</option>
 <option value="svg">SVG</option>
 <option value="svgbasic">SVG B&aacute;sico</option>
@@ -116,8 +116,8 @@
       <select id="profile_upload" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
-<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
-<option value="css21">CSS versi&oacute;n 2.1</option>
+<option value="css2">CSS versi&oacute;n 2</option>
+<option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
 <option value="css3">CSS versi&oacute;n 3</option>
 <option value="svg">SVG</option>
 <option value="svgbasic">SVG B&aacute;sico</option>
@@ -175,8 +175,8 @@
       <select id="profile_direct" name="profile">
 <option value="none">Ninguno en especial</option>
 <option value="css1">CSS versi&oacute;n 1</option>
-<option selected="selected" value="css2">CSS versi&oacute;n 2</option>
-<option value="css21">CSS versi&oacute;n 2.1</option>
+<option value="css2">CSS versi&oacute;n 2</option>
+<option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
 <option value="css3">CSS versi&oacute;n 3</option>
 <option value="svg">SVG</option>
 <option value="svgbasic">SVG B&aacute;sico</option>
