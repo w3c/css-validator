@@ -16,6 +16,7 @@ W3C.QA.Validator.CSS.toggle =
 		this.toggleClass = toggle;
 		this.toggleClosed = closed;
 		this.toggleHidden = hidden;
+		this.toggleText = "toggletext";
 		// crawl through the document, look for toggled elements
 		this.crawl(document.body);
 	},
@@ -31,28 +32,32 @@ W3C.QA.Validator.CSS.toggle =
 		 	for (i=0;i<el.childNodes.length;i++)
 		  	{
 		    	  current_child_node=el.childNodes[i];
-			  if (current_child_node.tagName)
+			  if (current_child_node.tagName && current_child_node.className && current_child_node.className.match(this.toggleText))
+			  // we only want to match an element with a class
 			  {
-			    if (current_child_node.tagName.toLowerCase() == "legend")
-			    {
-			      current_child_node.className += 'hideme';
-			    }
+			            current_child_node.className = 'hideme';
+        			    if (current_child_node.tagName.toLowerCase() == "legend")
+        			    {
+        			            var paragraph = document.createElement('p');
+        			    }
+            			    else 
+            			    {
+            		                    var paragraph = document.createElement(current_child_node.tagName.toLowerCase());
+            		            }
+            		            var link = document.createElement('a');
+            			    var text = current_child_node.childNodes[0].nodeValue;
+            			    
+            			    //text = text.replace("_", " ", "g");
+            			    //var text = "Show/Hide extra validation options";
+            			    text = document.createTextNode(text);
+            			    link.appendChild(text);
+            			    link.href="#" + el.id;
+            			    link.onclick = this.newToggleState(this,paragraph,el);
+            			    paragraph.appendChild(link);
+            			    paragraph.className += ' toggle closed';
+            			    el.parentNode.insertBefore(paragraph, el);
 			  }
 			}
-
-			// Generate a paragraph for the pseudo-link we're adding
-			var paragraph = document.createElement('p');
-			var link = document.createElement('a');
-			//var text = el.className.match(/linkText_(\S*)/)[1];
-			//text = text.replace("_", " ", "g");
-			var text = "Show/Hide extra validation options";
-			text = document.createTextNode(text);
-			link.appendChild(text);
-			link.href="#" + el.id;
-			link.onclick = this.newToggleState(this,paragraph,el);
-			paragraph.appendChild(link);
-			paragraph.className += ' toggle closed';
-			el.parentNode.insertBefore(paragraph, el);
 
 
 			// if the next sib ought to be hidden and it isn't already, hide it
