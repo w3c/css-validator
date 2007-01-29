@@ -275,10 +275,10 @@ public final class CssValidator extends HttpServlet {
 		ac.setCssVersion(profile);
 	    } else {
 		ac.setProfile(profile);
-		ac.setCssVersion("css2");
+		ac.setCssVersion("css21");
 	    }
 	} else {
-	    ac.setCssVersion("css2");
+	    ac.setCssVersion("css21");
 	}
 	if (Util.onDebug) {
 	    System.err.println("[DEBUG]  profile is : " + ac.getCssVersion()
@@ -547,6 +547,21 @@ public final class CssValidator extends HttpServlet {
 	    errorReport = false;
 	}
 
+	// CSS version
+	if (profile != null && !"none".equals(profile)) {
+	    if ("css1".equals(profile) || "css2".equals(profile)
+		|| "css21".equals(profile)
+		|| "css3".equals(profile) || "svg".equals(profile)
+		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
+		ac.setCssVersion(profile);
+	    } else {
+		ac.setProfile(profile);
+		ac.setCssVersion("css21");
+	    }
+	} else {
+	    ac.setCssVersion("css21");
+	}
+	
 	Util.verbose("File : " + file.getName());
 
 	parser = new StyleSheetParser();
