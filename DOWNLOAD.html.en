@@ -66,7 +66,7 @@ are also given below. </p>
 <ul class="instructions">
 	<li>servlet.jar
 	(which, if you have Tomcat installed in [<span class="const">TOMCAT_DIR</span>],
-	 you should find in [<span class="const">TOMCAT_DIR</span>]/common/lib/, possibly 
+	 you should find in [<span class="const">TOMCAT_DIR</span>]/common/lib/) possibly 
 	under the name servlet-api.jar. If not, get it at 
 	<a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a></li>
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
@@ -80,7 +80,7 @@ are also given below. </p>
 		Download validator as explained <a href="#source">above</a>.
 	</li>
 	<li>Copy the whole source folder  ("<span class="dir">.../css-validator/</span>") to the <span class="dir">webapps</span>
-		directory within your installation of tomcat. usually, this will be 
+		directory within your installation of Tomcat. usually, this will be 
 		<span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/</span>.
 		The Validator's sources are now in <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/css-validator</span>,
 		which we will now call <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>.
@@ -124,7 +124,7 @@ org.w3c.css.servlet.CssValidator. If there already exists a file named
 'validator', please rename it. It is important that this 'alias' is always
 named 'validator'.</li>
 
-<li>Finally, start jigsaw and run the validator. Check which HTML you want to
+<li>Finally, start Jigsaw and run the validator. Check which HTML you want to
 invoke. Usually your URL will look like this:<br />
 http://localhost:8001/css-validator/validator.html</li>
 </ol>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -68,7 +68,7 @@ The simplest way to check a document is to use the basic interface. In this page
 
 <h4 id="url">Validation by URL</h4>
 <p>
-    Simply enter the URL of the doument you want to validate. 
+    Simply enter the URL of the document you want to validate. 
     This document can be HTML or CSS one.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
@@ -175,7 +175,7 @@ CSS Validator.</p>
 <p>If you want to use W3C's public validation server, use the parameters
 below in conjunction with the following base URI:<br />
 <kbd>http://jigsaw.w3.org/css-validator/validator</kbd><br />
-(replace with the address of your own server if you want to call a private
+replace with the address of your own server if you want to call a private
 instance of the validator.</p>
 
 <p><strong>Note</strong>: If you wish to call the validator programmatically
@@ -223,7 +223,7 @@ appreciated. thanks.</p>
 	document, Content-Type: application/soap+xml), 
 	<code>text/plain</code> and <code>text</code> (text document, 
 	Content-Type: text/plain),
-	everything else (XHTML document, Content-Type: text/plain)	
+	everything else (XHTML document, Content-Type: text/html)	
       </td>
       <td>html</td>
     </tr>
@@ -241,7 +241,8 @@ appreciated. thanks.</p>
       <th>lang</th>
       <td>The language used for the response, currently, <code>en</code>,
         <code>fr</code>, <code>ja</code>, <code>es</code>,
-        <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
+        <code>zh-cn</code>, <code>nl</code>, <code>de</code>, <code>it</code>, 
+        <code>pl</code>.</td>
       <td>English (<code>en</code>).</td>
     </tr>
     <tr>
