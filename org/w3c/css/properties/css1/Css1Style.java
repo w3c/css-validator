@@ -2958,7 +2958,7 @@ public class Css1Style extends CssStyle {
 	    if ((cssTextIndent != null)
 		    && (selector != null)
 		    && (!selector.isBlockLevelElement())) {
-		warnings.addWarning(new Warning(cssTextAlign,
+		warnings.addWarning(new Warning(cssTextIndent,
 			"block-level", 1, ac));
 	    }
 	    else if ((cssTextIndentMob != null)
