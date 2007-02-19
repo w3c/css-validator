@@ -175,7 +175,7 @@ generator.request: An error occured during the output of your style sheet. \
 Please correct your request or send a mail to plh@w3.org.
 generator.unrecognized: Unrecognized
 generator.invalid-number: Invalid number
-generator.property: Invalid number
+generator.property: Value Error
 generator.line: Line
 generator.not-found: File not found
 
