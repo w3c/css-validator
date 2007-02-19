@@ -23,7 +23,7 @@ name is converted to a single space.
 warning.no-padding: You are encouraged to have a padding area with a background color
 warning.same-colors2: Same colors for color and background-color in two contexts %s and %s
 warning.relative-absolute: You have some absolute and relative lengths in %s. This is not a robust style sheet.
- by org.w3c.css.properties.CssSelectors
+# used by org.w3c.css.properties.CssSelectors
 warning.unknown-html: %s is not an HTML Element
 warning.html-inside: HTML element can't be inside another element
 warning.body-inside: BODY element can't be inside another element except HTML
@@ -74,7 +74,7 @@ error.percentage: percentage value expected
 warning.xsl: value %s only applies to XSL
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist : medialist should start with 'media :' %s
+warning.medialist: medialist should start with 'media :' %s
 error.nocomb: Combinator %s between selectors is not allowed in this profile or version
 
 #used by org.w3c.css.properties.CssDirection
@@ -124,7 +124,7 @@ error.percent: %s is an incorrect percentage
 error.string: %s is an incorrect string
 
 # used by org.w3c.css.values.CssURL
-error.url: %s is not an incorrect URL
+error.url: %s is an incorrect URL
 
 # used by org.w3c.css.values.CssColor
 error.rgb: %s is not a valid color 3 or 6 hexadecimals numbers
@@ -140,9 +140,9 @@ warning.noexistence-media: Property %s doesn't exist for media %s
 warning.notforusermedium : Property %s doesn't exist for this usermedium
 warning.noothermedium : Properties for other media might not work for usermedium
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet : Other @rules than @import are not supported by CSS1 %s
+error.noatruleyet: Other @rules than @import are not supported by CSS1 %s
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1 : Value %s does not exist for CSS1
+error.notforcss1: Value %s does not exist for CSS1
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Too many values or values are not recognized
@@ -159,10 +159,10 @@ error.space: If the attribute selector ~= is used, the word in the value %s must
 error.todo : Sorry the feature %s is not implemented yet.
 error.incompatible: %s and %s are incompatible
 warning.incompatible: %s and %s are incompatible
-error.notformobile : %s can not be used with mobile profile
-error.notforatsc : %s can not be used with ATSC profile
-error.notfortv : %s can not be used with TV profile
-error.notversion : %s can not be used with this version of CSS : %s
+error.notformobile: %s can not be used with mobile profile
+error.notforatsc: %s can not be used with ATSC profile
+error.notfortv: %s can not be used with TV profile
+error.notversion: %s can not be used with this version of CSS : %s
 
 error.media: unrecognized media %s 
 error.page: unrecognized pseudo named page %s
@@ -186,41 +186,41 @@ generator.doc:  <!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: attempt to find a semi-colon before the property name. add it
 
-parser.old_class:In CSS1, a class name could start with a digit (".55ft"), \
+parser.old_class: In CSS1, a class name could start with a digit (".55ft"), \
 unless it was a dimension (".55in"). In CSS2, such classes are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
+parser.old_id: In CSS1, an id name could start with a digit ("#55ft"), \
 unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
+parser.class_dim: In CSS1, a class name can start with a digit (".55ft"), \
 unless it is a dimension (".55in").
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
+parser.id_dim: In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in").
 
-parser.charset:The @charset rule may only occur at the start of the style \
+parser.charset: The @charset rule may only occur at the start of the style \
 sheet. Please check that there are no spaces before it.
 
-parser.charsetspecial:This profile has a very specific syntax for @charset: \
+parser.charsetspecial: This profile has a very specific syntax for @charset: \
 @charset followed by exactly one space, followed by the name of the encoding \
 in quotes, followed immediately by a semicolon.
 
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
+warning.old_id: In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
-warning.old_class:In CSS1, a class name can start with a digit ("#55ft"), \
+warning.old_class: In CSS1, a class name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
 
 # used by the servlet
-servlet.invalid-request: You have send an invalid request.
+servlet.invalid-request: You have sent an invalid request.
 servlet.process: Can't process the object
 
-warning.atsc : %s might not be supported by the medium atsc-tv
-error.onlyATSC : %s this function is only for the atsc-tv medium
+warning.atsc: %s might not be supported by the medium atsc-tv
+error.onlyATSC: %s this function is only for the atsc-tv medium
 
-warning.otherprofile : property %s does not exist for this profile, but is validated conforming to another profile
-warning.deprecated : this value is deprecated
+warning.otherprofile: property %s does not exist for this profile, but is validated conforming to another profile
+warning.deprecated: this value is deprecated
