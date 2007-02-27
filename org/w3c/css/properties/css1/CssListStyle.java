@@ -211,7 +211,7 @@ public class CssListStyle extends CssProperty implements CssOperator {
 	    if (listStyleImage != null &&!listStyleImage.isDefault()) {
 		ret += " " + listStyleImage;
 	    }
-	    if (listStyleImage != null && !listStylePosition.isDefault()) {
+	    if (listStylePosition != null && !listStylePosition.isDefault()) {
 		ret += " " + listStylePosition;
 	    }
 	    return ret.trim();
