@@ -332,17 +332,18 @@ CssPrinterStyle {
 
 		    Warning warn = warning[i];
 		    if (warn.getLevel() <= warningLevel) {
-			if (!warn.getSourceFile().equals(oldSourceFile)) {
-			    if (open) {
-				ret.append("\n</table>\n<!--end of individual warning section--></div>");
-			    }
-			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n<div class='warnings-section'><h3>URI : <a href=\"");
-			    ret.append(oldSourceFile).append("\">");
-			    ret.append(oldSourceFile).append("</a></h3><table>");
-			    open = true;
-			}
-			    oldLine = warn.getLine();
+		        String currentSourceFile = warn.getSourceFile();
+		        if (currentSourceFile != null && !currentSourceFile.equals(oldSourceFile)) {
+		            if (open) {
+		                ret.append("\n</table>\n<!--end of individual warning section--></div>");
+		            }
+		            oldSourceFile = warn.getSourceFile();
+		            ret.append("\n<div class='warnings-section'><h3>URI : <a href=\"");
+		            ret.append(oldSourceFile).append("\">");
+		            ret.append(oldSourceFile).append("</a></h3><table>");
+		            open = true;
+		        }
+		        oldLine = warn.getLine();
 			    oldMessage = warn.getWarningMessage();
 
 				// Starting a line for each new warning
