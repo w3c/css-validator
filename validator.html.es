@@ -4,24 +4,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 <title>El Servicio de Validaci&oacute;n de CSS del W3C</title>
-<link rev="made" href="mailto:www-validator-css@w3.org"/>
-<link rev="start" href="./" title="Home Page"/>
+<link rev="made" href="mailto:www-validator-css@w3.org" />
+<link rev="start" href="./" title="Home Page" />
 <style type="text/css" media="all">@import "style/base.css";
 </style>
-<script type="text/javascript" src="tabtastic/addclasskillclass.js"/>
-<script type="text/javascript" src="tabtastic/attachevent.js"/>
-<script type="text/javascript" src="tabtastic/addcss.js"/>
-<script type="text/javascript" src="tabtastic/tabtastic.js"/>
-<script src="toggle.js" type="text/javascript"/>
-<meta name="revision" content="$Id$"/>
+<script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
+<script type="text/javascript" src="tabtastic/attachevent.js"></script>
+<script type="text/javascript" src="tabtastic/addcss.js"></script>
+<script type="text/javascript" src="tabtastic/tabtastic.js"></script>
+<script src="toggle.js" type="text/javascript"></script>
+<meta name="revision" content="$Id$" />
 </head>
 <body>
 <div id="banner">
 <h1 id="title">
 <a href="http://www.w3.org/">
-<img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb"/>
+<img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" />
 </a>
-<img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS"/>
+<img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS" />
 </h1>
 </div>
 <p id="tagline">
@@ -38,7 +38,7 @@
       </p>
 <p>
 <label title="Direcci&oacute;n de la p&aacute;gina a Validar" for="uri">Direcci&oacute;n:
-	<input type="text" name="uri" id="uri" size="45"/>
+	<input type="text" name="uri" id="uri" size="45" />
 </label>
 </p>
 <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
@@ -87,7 +87,7 @@
 <!-- invisible -->
 <p class="submit_button">
 <label title="Enviar archivo para su validaci&oacute;n">
-<input type="submit" value="Check"/>
+<input type="submit" value="Check" />
 </label>
 </p>
 </form>
@@ -98,7 +98,7 @@
 <p class="instructions">Elige el documento que desees validar (&uacute;nicamente archivos CSS):</p>
 <p>
 <label title="Elige un Archivo Local para su Carga y Validaci&oacute;n" for="file">Archivo CSS local:
-	<input type="file" id="file" name="file" size="30"/>
+	<input type="file" id="file" name="file" size="30" />
 </label>
 </p>
 <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
@@ -147,7 +147,7 @@
 <!-- invisible -->
 <p class="submit_button">
 <label title="Enviar archivo para su validaci&oacute;n">
-<input type="submit" value="Check"/>
+<input type="submit" value="Check" />
 </label>
 </p>
 </form>
@@ -158,7 +158,7 @@
 <p class="instructions">Introduce el c&oacute;digo CSS que desees validar:</p>
 <p>
 <textarea name="text" rows="12" cols="70"></textarea>
-<input name="usermedium" value="all" type="hidden"/>
+<input name="usermedium" value="all" type="hidden" />
 </p>
 <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
 <legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</legend>
@@ -206,7 +206,7 @@
 <!-- invisible -->
 <p class="submit_button">
 <label title="Enviar archivo para su validaci&oacute;n">
-<input type="submit" value="Check"/>
+<input type="submit" value="Check" />
 </label>
 </p>
 </form>
@@ -289,16 +289,16 @@
 
 <p id="activity_logos">
 <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s">
-<img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA"/>
+<img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" />
 </a>
 <a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada">
-<img src="images/woolly-icon" alt="CSS"/>
+<img src="images/woolly-icon" alt="CSS" />
 </a>
 </p>
 <p id="support_logo">
 Apoya esta herramienta, convi&eacute;rtete en un <br/>
 <a href="http://www.w3.org/Consortium/supporters">
-<img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter"/>
+<img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" />
 </a>
 </p>
 <p class="copyright">
