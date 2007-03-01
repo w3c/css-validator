@@ -296,7 +296,7 @@
 </a>
 </p>
 <p id="support_logo">
-Apoya esta herramienta, convi&eacute;rtete en un <br/>
+Apoya esta herramienta, convi&eacute;rtete en un <br />
 <a href="http://www.w3.org/Consortium/supporters">
 <img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" />
 </a>
