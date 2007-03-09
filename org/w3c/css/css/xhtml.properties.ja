@@ -1,21 +1,26 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">エラーの表示</a></li>
-go-warnings: <li><a href="#warnings">警告の表示</a></li>
-go-rules: <li><a href="#css">入力されたカスケーディングスタイルシート(CSS)の表示</a></li>
+go-errors: <li><a href="#errors">エラー (<!-- #errors-count -->)</a></li>
+go-warnings: <li><a href="#warnings">警告 (<!-- #warnings-count -->)</a></li>
+go-rules: <li><a href="#css">入力されたCSS</a></li>
 no-error-or-warning: <div><h2>エラー及び警告は見つかりませんでした。</h2></div>
+backtop: <p class="backtop"><a href="#banner">&uarr; Top</a></p>
+
+navbar: <ul class="navbar" id="jumpbar"><li><strong>表示:</strong></li>\n\
+<!-- #go-errors -->\n\
+<!-- #go-warnings -->\n\
+<!-- #go-rules -->\n\
+</ul>\n\
 
 no-errors: \
 <div id='congrats'> \
-<h2>おめでとうございます！</h2>\
+<h3>おめでとうございます！</h3>\
 <p>\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 おめでとうございます！ この文書は正当な<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
   </p>\
-  <div class="alttoggle closed">\
-<p class="toggletext">More info</p>\
 <p> \
 あなたがこのWebページを作るにあたって、\
 高度な相互運用性<span lang="en">(Interoperability)</span>\
@@ -46,8 +51,7 @@ href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました！ \
 \n\
 (もちろん、このページをブックマークやホットリストに追加したのでもよいでしょう。)\
 </pre>\
-</div>\
-</div>
+</div><!-- #backtop -->
 
 no-rules: <div><h2>スタイルシートが見つかりませんでした。</h2></div>
 not-css1-style: /* 注意して下さい ! このプロパティはCSS1用ではありません ! */
@@ -72,12 +76,12 @@ not-css1-style: /* 注意して下さい ! このプロパティはCSS1用では
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css" class="alttoggle closed">\n\
-<h2 class="toggletext">検証したスタイルシートを以下に示します</h2> \
+<div id="css" class="alt closed">\n\
+<h3>検証したスタイルシートを以下に示します</h3> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</div></div>
+</div></div><!-- #backtop -->
 
 charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
@@ -86,15 +90,15 @@ charset-rule: \
 
 errors : \
 <div id="errors">\
-<h2>エラー</h2>\n\
-<!-- #error --></div>\n
+<h3>エラー</h3>\n\
+<!-- #error --></div><!-- #backtop -->
 
 # How to write warnings
 
 warnings: \
-<div id="warnings" class="alttoggle closed"> \
-<h2 class="toggletext">警告 (<!-- #warnings-count -->)</h2> \n\
-<!-- #warning --></div>\n
+<div id="warnings" class="alt closed"> \
+<h3>警告 (<!-- #warnings-count -->)</h3> \n\
+<!-- #warning --></div><!-- #backtop -->
 
 warning:
 
@@ -109,7 +113,6 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
-<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\

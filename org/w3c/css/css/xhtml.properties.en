@@ -1,22 +1,28 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">Go to Errors</a></li>
-go-warnings: <li><a href="#warnings">Go to Warnings</a></li>
-go-rules: <li><a href="#css">Go to your validated Cascading Style Sheet</a></li>
-no-error-or-warning: <hr /><h2>No error or warning found</h2>
+go-errors: <li><a href="#errors">Errors (<!-- #errors-count -->)</a></li>
+go-warnings: <li><a href="#warnings">Warnings (<!-- #warnings-count -->)</a></li>
+go-rules: <li><a href="#css">Validated CSS</a> </li>
+no-error-or-warning: <!-- -->
+backtop: <p class="backtop"><a href="#banner">&uarr; Top</a></p>
+
+navbar: <ul class="navbar" id="jumpbar"><li><strong>Jump To:</strong></li>\n\
+<!-- #go-errors -->\n\
+<!-- #go-warnings -->\n\
+<!-- #go-rules -->\n\
+</ul>\n\
+
 
 no-errors: \
 <div id='congrats'>\n\
-<h2>Congratulations! No Error Found.</h2>\n\
+<h3>Congratulations! No Error Found.</h3>\n\
 <p>\
 <a style="float: right" href="http://jigsaw.w3.org/css-validator/">\n\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" /></a>\
  This document validates as <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-<div class="alttoggle closed">\
-<p class="toggletext">More info</p>\
         <p> \
 To show your readers that you've taken the care to create an interoperable Web \
 page, you may display this icon on any page that validates. Here is the XHTML \
@@ -43,8 +49,7 @@ others to validate your page, the URI is: </p><pre>\n\
 \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (for HTML/XML document only)\n\
 </pre>\n\
 <p>(Or, you can just add the current page to your bookmarks or hotlist.)</p>\n\
-</div>\
-</div>
+</div><!-- #backtop -->
 
 no-rules: <div><h2>No style sheet found</h2></div>
 not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
@@ -69,13 +74,13 @@ not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css" class="alttoggle closed">\n\
-<h2 class="toggletext">Valid CSS information</h2> \n\
+<div id="css">\n\
+<h3>Valid CSS information</h3> \n\
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
 </div>\n\
-</div>
+</div><!-- #backtop -->
 
 charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
@@ -84,17 +89,17 @@ charset-rule: \
 
 errors : \
 <div id="errors">\n\
-<h2>Sorry! We found the following errors</h2>\n\
+<h3>Sorry! We found the following errors</h3>\n\
 <!-- #error -->\n\
-</div>
+</div><!-- #backtop -->
 
 # How to write warnings
 
 warnings: \
-<div id="warnings" class="alttoggle closed">\n\
-<h2 class="toggletext">Warnings (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings">\n\
+<h3>Warnings (<!-- #warnings-count -->)</h3> \n\
 <!-- #warning -->\n\
-</div>
+</div><!-- #backtop -->
 
 
 warning:
@@ -110,17 +115,16 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
-<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\
  <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>\n\
  <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>\n\
 </div>\n\
-\n\
+<p id="tagline"></p>\n\
+<!-- #navbar -->\n\
 <h2>W3C CSS Validator Results for \
 <a href="<!-- #file-title -->"><!-- #file-title --></a></h2> \n\
-<!-- #no-error-or-warning -->\n\
 <!-- #no-errors -->\n\
 <!-- #hook-html-validator -->\n\
 <!-- #errors -->\n\

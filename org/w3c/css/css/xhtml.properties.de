@@ -1,21 +1,26 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">Zu den Fehlern</a></li>
-go-warnings: <li><a href="#warnings">Zu den Warnungen</a></li>
-go-rules: <li><a href="#css">Zu Ihrem validierten Cascading Style Sheet</a></li>
+go-errors: <li><a href="#errors">Fehlern (<!-- #errors-count -->)</a></li>
+go-warnings: <li><a href="#warnings">Warnungen (<!-- #warnings-count -->)</a></li>
+go-rules: <li><a href="#css"> Ihrem validierten Cascading Style Sheet</a></li>
 no-error-or-warning: <div><h2>Keine Fehler oder Warnungen gefunden</h2></div>
+backtop: <p class="backtop"><a href="#banner">&uarr; Top</a></p>
+
+navbar: <ul class="navbar" id="jumpbar"><li><strong>Zu:</strong></li>\n\
+<!-- #go-errors -->\n\
+<!-- #go-warnings -->\n\
+<!-- #go-rules -->\n\
+</ul>\n\
 
 no-errors: \
 <div id='congrats'> \
-<h2>Gratulation</h2>\n\
+<h3>Gratulation</h3>\n\
 <p>\
 <img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" />\
 Dieses Dokument wurde als <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a> validiert! \
   </p>\
-  <div class="alttoggle closed">\
-<p class="toggletext">More info</p>\
 <p> \
 Sie können dieses Icon auf jeder validierten Seite darstellen, um zu zeigen, \
 daß Sie sich die Mühe gemacht haben interoperable Web-Seiten zu erstellen.  \
@@ -42,8 +47,7 @@ validieren, so verwenden Sie folgenden URI:</p><pre>\n\
 \ \ \ or http://jigsaw.w3.org/css-validator/check/referer (nur für HTML/XML-Dokumente)\n\
 </pre>\n\
 <p>(Sie können die aktuelle Seite auch einfach in Ihre Bookmarks aufnehmen.)</p>\
-</div>\
-</div>
+</div><!-- #backtop -->
 
 no-rules: <div><h2>Kein Stylesheet gefunden</h2></div>
 not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
@@ -68,12 +72,12 @@ not-css1-style: /* Vorsicht: Dies ist keine CSS1-Eigenschaft! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css" class="alttoggle closed">\n\
-<h2 class="toggletext">Ihr validiertes Cascading Style Sheet:</h2> \
+<div id="css" class="alt closed">\n\
+<h3>Ihr validiertes Cascading Style Sheet:</h3> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</div></div>
+</div></div><!-- #backtop -->
 
 charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
@@ -82,17 +86,17 @@ charset-rule: \
 
 errors : \
 <div id="errors">\
-<h2>Fehler</h2>\n\
+<h3>Fehler</h3>\n\
 <!-- #error -->\n\
-</div>
+</div><!-- #backtop -->
 
 # How to write warnings
 
 warnings: \
-<div id="warnings" class="alttoggle closed"> \
-<h2 class="toggletext">Warnungen (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alt closed"> \
+<h3>Warnungen (<!-- #warnings-count -->)</h3> \n\
 <!-- #warning -->\n\
-</div>
+</div><!-- #backtop -->
 
 warning:
 
@@ -107,7 +111,6 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
-<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\

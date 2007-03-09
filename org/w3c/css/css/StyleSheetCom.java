@@ -202,10 +202,10 @@ public class StyleSheetCom implements HtmlParserListener {
 		style.ac.setCssVersion(style.cssversion);
 	    if (style.profile != null) {
 		style.ac.setProfile(style.profile);
-		style.ac.setCssVersion("css2");
+		style.ac.setCssVersion("css21");
 	    }
 	    if (style.cssversion == null && style.ac.getCssVersion() == null) {
-		style.ac.setCssVersion("css2");
+		style.ac.setCssVersion("css21");
 	    }
 	} catch (Exception e) {
 	    /* System.out.println( "Usage: validator " +

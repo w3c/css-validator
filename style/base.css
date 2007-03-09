@@ -32,7 +32,7 @@ p, pre, dt {
 }
 
 /*                                                   
-   Main blocks - see also #menu styled in navbar.css 
+   Main blocks - see also ul.navbar 
                                                      */
 
 #banner {
@@ -75,6 +75,7 @@ p#tagline {
 
 .intro {
   font-style: italic;
+  font-size: smaller;
   text-align: justify;
 }
 
@@ -359,11 +360,21 @@ border-style: dotted;
 margin-bottom: 0;
 padding-left: .3em;
 }
-fieldset.moreoptions div {
+fieldset.moreoptions div, fieldset.moreoptions table {
 margin-top: 0;
 margin-left: .5em;
 font-size: smaller;
 }
+
+fieldset.moreoptions td, fieldset.moreoptions th, fieldset.moreoptions table {
+        border: 0 !important;
+}
+fieldset.moreoptions th {
+	background-color: transparent !important;
+	text-align: left;   
+}
+
+
 fieldset.closed {
 border: 0;
 }
@@ -396,11 +407,12 @@ th {
 	border-right: 1px solid #ccc;
 }
 
+
 /* 
 	Menu Bar
 			*/
 
-#menu {
+ul.navbar {
         color: #005A9C;
 	border-top: 1px solid #005A9C;
 	border-bottom: 1px solid #005A9C;
@@ -415,12 +427,12 @@ th {
 	font-weight: bold;
 }
 
-#menu { padding-left: 1em; padding-right: 1em}
-#menu li {
+ul.navbar { padding-left: 1em; padding-right: 1em}
+ul.navbar li {
   display: inline;
 }
 
-#menu li a {
+ul.navbar li a {
   padding-right: 1.2em;
   padding-left: 1.2em;
 }
@@ -462,63 +474,16 @@ p.copyright a {
 
 
 /* 
-		Jump Bar  - results page 
+		Jump Bar  - results page - based on navbar styling
 (from markup validator - note used in this design yet)
 								*/
 #jumpbar {
-    background-color: #dfebf7;
-    color: #11111A;
-    float: right;
-    width: 8em;
-    margin-right: 0; 
-    text-align: left;
-    text-decoration:  none;
-    padding:          1ex;
-    border-left:     1px solid #005A9C;
-    border-bottom:    1px solid #005A9C;
-    margin-top:       -15px; 
-    font-size: 0.9em;
-    font-weight:      bold;
-    margin-left: 1em;
+    margin-top:    -1.5em; 
+    margin-bottom: 1em;
 }
-
-#jumpbar ul {
-  padding: 0;
-  margin:  0;
-}
-
 #jumpbar li {
-  list-style-type: none;
-  text-align: right;
+        color: #11111A !important;   
 }
-
-div#jumpbar li a {
-  height: 20px;
-  padding-right: 20px;
-  padding-left: 25px;
-}
-div#jumpbar li a:hover {
-  text-decoration: underline;
-}
-
-#jumpbar li a:link, #jumpbar li a:visited {
-  text-decoration: none;
-  text-align: right;
-  display: block;
-  width: 8em;
-  padding: 2px 0px;
-  margin: 0;
-  border-top: dotted 1px #053188;
-}
-
-#jumpbar li a#selected:link, #jumpbar li a#selected:visited {
-  text-decoration: underline;
-  background-color: #fff;
-  color: #053188;
-  border-right: solid 1px #ddd;
-  border-bottom: solid 1px #fff;
-}
-
 /* language selection bar */
 #lang_choice {
         position: absolute;

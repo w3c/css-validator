@@ -1,10 +1,8 @@
 /*   ==== CONGRATS =====  */
 
-#congrats h2, #errors h2 {
+#congrats h3, #errors h3 {
         margin: 0;
         font-family: "Bitstream Vera Sans", sans-serif;
-        font-size-adjust:	.53;
-        font-size:		1.5em;
         font-weight:		800;
         font-style:		normal;
         text-decoration:	none;
@@ -15,12 +13,12 @@
         padding-top:		.5em;
         padding-bottom: 	.5em;
 }
-#congrats h2 {
+#congrats h3 {
       background-color: #55B05A;
-      color: white;
-      text-align: center;
-      
+      color: white;      
 }
+
+
 
 #congrats p.toggle { text-indent: 10px;
         background: transparent url('../images/arrow-down.gif')  15px 0 no-repeat;
@@ -31,19 +29,6 @@
                 background: transparent url('../images/arrow-right.gif')  15px 0 no-repeat;
 }
 
-h2.toggle {
-  color: #005A9C;
-  text-align: left;
-  background: transparent url('../images/arrow-down.gif')  0 10px no-repeat !important;
-  text-indent: 10px;
-}
-
-h2.closed{
- color: #005A9C;
- text-align: left;
- background: transparent url('../images/arrow-right.gif') 0 10px no-repeat !important;
- text-indent: 10px; 
-}
 
 /*   ==== COMMON: ERRORS + WARNINGS =====  */
 
@@ -58,8 +43,10 @@ h2.closed{
 	border-width: 0;
 }
 
-#errors h3, #warnings h3  {
+#errors h4, #warnings h4  {
+  font-weight: bold;
   margin: 1em 0 0 0;
+  padding: .2em;
   background-color: #eee;
   color: black;
 }
@@ -84,6 +71,12 @@ td.codeContext {
   background-color: #E82848;
   color: white;
 }
+
+#errors h3 {
+background-color: #D23D24 !important;
+        color: white;
+}
+
 
 td.message {
 	padding: 5px 1em;
@@ -175,3 +168,23 @@ pre {
 .PropertyValue {
 	color: #666;
 }
+
+/* link to go back to top of page */
+p.backtop {
+        color: #bbc;
+        font-size: x-small;
+        padding-right: 0 !important;
+        margin: 1em !important;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-top: .3em;
+        text-align: right;
+        border-top: 1px solid #eef;
+        clear: both;
+}
+
+p.backtop a:link, p.backtop a:hover, p.backtop a:visited {
+        color: #bbc;
+        text-deciration: none;
+}
+

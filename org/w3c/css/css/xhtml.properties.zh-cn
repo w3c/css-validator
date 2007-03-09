@@ -1,21 +1,26 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">查看错误</a></li>
-go-warnings: <li><a href="#warnings">查看警告</a></li>
-go-rules: <li><a href="#css">查看你已经校验的层叠样式表</a></li>
+go-errors: <li><a href="#errors">错误 (<!-- #errors-count -->)</a></li>
+go-warnings: <li><a href="#warnings">警告 (<!-- #warnings-count -->)</a></li>
+go-rules: <li><a href="#css">已经校验的层叠样式表</a></li>
 no-error-or-warning: <div><h2>没有找到错误或警告</h2></div>
+backtop: <p class="backtop"><a href="#banner">&uarr; Top</a></p>
+
+navbar: <ul class="navbar" id="jumpbar"><li><strong>查看:</strong></li>\n\
+<!-- #go-errors -->\n\
+<!-- #go-warnings -->\n\
+<!-- #go-rules -->\n\
+</ul>\n\
 
 no-errors: \
 <div id='congrats'> \
-<h2>恭喜恭喜</h2>\
+<h3>恭喜恭喜</h3>\
 <p>\
 <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">\
 恭喜恭喜，此文档已经通过<a\ \
 href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
   </p>\
-  <div class="alttoggle closed">\
-<p class="toggletext">More info</p>\
 <p> \
 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
@@ -39,8 +44,7 @@ href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验! \
 \ \ 或 http://jigsaw.w3.org/css-validator/check/referer (仅使用于HTML文档)\n\
 \n\
 (或者，你可以加入当前也到你的书签或列表中。)</pre>\
-</div>\
-</div>
+</div><!-- #backtop -->
 
 no-rules: <H2>没有找到样式表</H2>
 not-css1-style: /* 请注意！这不是CSS1的属性！ */
@@ -65,12 +69,12 @@ not-css1-style: /* 请注意！这不是CSS1的属性！ */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css" class="alttoggle closed">\
-<h2 class="toggletext">你已经校验的层叠样式表：</h2> \
+<div id="css" class="alt closed">\
+<h2>你已经校验的层叠样式表：</h2> \
 <div class='vAtRule'> \n\
 <!-- #charset-rule --> \
 <!-- #rule --> \
-</div></div>
+</div></div><!-- #backtop -->
 
 charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
@@ -79,15 +83,15 @@ charset-rule: \
 
 errors : \
 <div id="errors">\
-<h2>错误：</h2>\
-<!-- #error --></div>\n
+<h3>错误：</h3>\
+<!-- #error --></div><!-- #backtop -->
 
 # How to write warnings
 
 warnings: \
-<div id="warnings" class="alttoggle closed"> \
-<h2 class="toggletext">警告 (<!-- #warnings-count -->)：</h2> \
-<!-- #warning --></div>\n
+<div id="warnings" class="alt closed"> \
+<h3>警告 (<!-- #warnings-count -->)：</h3> \
+<!-- #warning --></div><!-- #backtop -->
 
 
 warning:
@@ -103,7 +107,6 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
-<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\

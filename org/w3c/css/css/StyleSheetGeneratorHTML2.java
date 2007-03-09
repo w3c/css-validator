@@ -255,9 +255,9 @@ CssPrinterStyle {
 				if (open) {
 			    	ret.append("\n</table>\n<!--end of individual error section--></div>");
 				}
-				ret.append("\n<div class='errors-section'>\n<h3>URI : " + "<a href=\"");
+				ret.append("\n<div class='errors-section'>\n<h4>URI : " + "<a href=\"");
 				ret.append(file).append("\">");
-				ret.append(file).append("</a></h3>\n<table>");
+				ret.append(file).append("</a></h4>\n<table>");
 				open = true;
 		    }
 		    ret.append("\n<tr class='error'>\n   <td class='linenumber' title='");
@@ -338,9 +338,9 @@ CssPrinterStyle {
 		                ret.append("\n</table>\n<!--end of individual warning section--></div>");
 		            }
 		            oldSourceFile = warn.getSourceFile();
-		            ret.append("\n<div class='warnings-section'><h3>URI : <a href=\"");
+		            ret.append("\n<div class='warnings-section'><h4>URI : <a href=\"");
 		            ret.append(oldSourceFile).append("\">");
-		            ret.append(oldSourceFile).append("</a></h3><table>");
+		            ret.append(oldSourceFile).append("</a></h4><table>");
 		            open = true;
 		        }
 		        oldLine = warn.getLine();

@@ -1,21 +1,25 @@
 # used by StyleSheet2HTML
 
 # entites used by the HTML generator
-go-errors: <li><a href="#errors">Vers les erreurs</a></li>
-go-warnings: <li><a href="#warnings">Vers les avertissements</a></li>
-go-rules: <li><a href="#css">Vers votre feuille de style CSS validée</a></li>
+go-errors: <li><a href="#errors">Erreurs (<!-- #errors-count -->)</a></li>
+go-warnings: <li><a href="#warnings">Avertissements (<!-- #warnings-count -->)</a></li>
+go-rules: <li><a href="#css">Votre CSS validée</a></li>
 no-error-or-warning: <div><h2>Aucune erreur ou avertissement (<!-- #ignored-warnings-count --> ignorés)</h2></div>
+backtop: <p class="backtop"><a href="#banner">&uarr; Top</a></p>
 
+navbar: <ul class="navbar" id="jumpbar"><li><strong>Accès Direct:</strong></li>\n\
+<!-- #go-errors -->\n\
+<!-- #go-warnings -->\n\
+<!-- #go-rules -->\n\
+</ul>\n\
 no-errors: \
 <div id='congrats'>\n\
-<h2>F&eacute;licitations</h2>\n\
+<h3>F&eacute;licitations</h3>\n\
 <p>\
 <img class='right' src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" />\
 Ce document est valide conform&eacute;ment &agrave; la recommandation <a\ \
 href="http://www.w3.org/TR/REC-CSS2/">CSS</a>! \
   </p>\
-  <div class="alttoggle closed">\
-<p class="toggletext">More info</p>\
 <p> \
 Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
 cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
@@ -43,8 +47,7 @@ facilement la validit&eacute; de votre document, l'URI de cette page est: </p><p
 \ \ ou http://jigsaw.w3.org/css-validator/check/referer (uniquement avec des documents HTML/XML)\n\
 \n\
 (Vous pouvez aussi l'ajouter directement &agrave; vos signets.)</pre>\
-</div>\
-</div>
+</div><!-- #backtop -->
 
 no-rules: <h2>Aucune feuille de style trouv&eacute;e</h2>
 not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
@@ -69,13 +72,13 @@ not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
 #   - property-name, property-value, important-style and not-css1-style entities in the entity declaration
 
 rules: \
-<div id="css" class="alttoggle closed">\n\
-<h2 class="toggletext">Votre feuille de style CSS valid&eacute;e :</h2> \
+<div id="css" class="alt closed">\n\
+<h3>Votre feuille de style CSS valid&eacute;e :</h3> \
 <div class='vAtRule'> \
 <!-- #charset-rule --> \
 <!-- #rule --> \
 </div> \
-</div>
+</div><!-- #backtop -->
 
 charset-rule: \
 <div class='vCharset'>@charset <!-- #charset -->;</div>
@@ -84,17 +87,17 @@ charset-rule: \
 
 errors : \
 <div id="errors">\
-<h2>Erreurs</h2>\n\
+<h3>Erreurs</h3>\n\
 <!-- #error -->\n\
-</div>
+</div><!-- #backtop -->
 
 # How to write warnings
 
 warnings: \
-<div id="warnings" class="alttoggle closed">\n\
-<h2 class="toggletext">Avertissements (<!-- #warnings-count -->)</h2> \n\
+<div id="warnings" class="alt closed">\n\
+<h3>Avertissements (<!-- #warnings-count -->)</h3> \n\
 <!-- #warning -->\n\
-</div>
+</div><!-- #backtop -->
 
 warning:
 
@@ -109,7 +112,6 @@ document: \
 <link href="http://jigsaw.w3.org/css-validator/" rel="validator" />\n\
 <link type="text/css" rel='stylesheet' href='style/base.css' />\n\
 <link type="text/css" rel='stylesheet' href='style/results.css' />\n\
-<script src="toggle.js" type="text/javascript"></script>\n\
 </head> \n\
 <body> \n\
 <div id="banner">\n\

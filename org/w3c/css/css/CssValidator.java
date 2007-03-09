@@ -47,7 +47,7 @@ public class CssValidator {
 		 * 
 	 * Creates a new instance of CssValidator with the following default values:
 	 * <ul>
-	 *   <li>profile = css2</li>
+	 *   <li>profile = css21</li>
 	 *   <li>medium = all</li>
 	 *   <li>output = text</li>
 	 *   <li>lang = en</li>
@@ -57,7 +57,7 @@ public class CssValidator {
 	 */
     public CssValidator() {	
 	params = new Hashtable();
-	params.put("profile", "css2");
+	params.put("profile", "css21");
 	params.put("medium", "all");
 	params.put("output", "text");
 	params.put("lang", "en");
@@ -86,7 +86,7 @@ public class CssValidator {
 	    System.out.println("\t-profile PROFILE, --profile=PROFILE");
 	    System.out.println("\t\tChecks the Stylesheet against PROFILE");
 	    System.out.println("\t\tPossible values for PROFILE are css1, " +
-		    "css2 (default), css21, css3, svg, svgbasic, svgtiny, " +
+		    "css2, css21 (default), css3, svg, svgbasic, svgtiny, " +
 		    "atsc-tv, mobile, tv");
 	    System.out.println("\t-medium MEDIUM, --medium=MEDIUM");
 	    System.out.println("\t\tChecks the Stylesheet using the medium MEDIUM");
