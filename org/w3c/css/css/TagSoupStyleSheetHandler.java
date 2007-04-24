@@ -541,7 +541,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
     }
 
     void parse(String urlString, URLConnection connection) throws Exception {
-	org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
+	org.xml.sax.XMLReader xmlParser = new org.ccil.cowan.tagsoup.Parser();
 	try {
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
 				  this);
