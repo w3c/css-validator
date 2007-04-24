@@ -7,12 +7,8 @@
 
 package org.w3c.css.servlet;
 
-import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.net.URL;
+
 import java.util.Enumeration;
 
 import javax.servlet.ServletConfig;
@@ -21,15 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.w3c.css.css.CssParser;
-import org.w3c.css.css.HTMLStyleSheetParser;
-import org.w3c.css.css.StyleSheet;
-import org.w3c.css.css.StyleSheetGeneratorHTML2;
-import org.w3c.css.css.StyleSheetParser;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.HTTPURL;
-import org.w3c.css.util.Util;
-import org.xml.sax.SAXParseException;
 
 /**
  * This class is a servlet to use the validator.
