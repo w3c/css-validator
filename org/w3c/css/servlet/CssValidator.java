@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.w3c.css.css.CssParser;
-import org.w3c.css.css.HTMLStyleSheetParser;
+import org.w3c.css.css.DocumentParser;
 import org.w3c.css.css.StyleReport;
 import org.w3c.css.css.StyleReportFactory;
 import org.w3c.css.css.StyleSheet;
@@ -332,8 +332,7 @@ public final class CssValidator extends HttpServlet {
 		uri = HTTPURL.getURL(uri).toString(); // needed to be sure
 		// that it is a valid
 		// url		
-		HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(ac,
-									  uri);
+		DocumentParser URLparser = new DocumentParser(ac, uri);
 
 		handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
 			      warningLevel, errorReport);

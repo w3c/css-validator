@@ -143,7 +143,7 @@ public class CssValidator {
 		    uri = HTTPURL.getURL(uri).toString(); // needed to be sure
 		    // that it is a valid
 		    // url
-		    HTMLStyleSheetParser URLparser = new HTMLStyleSheetParser(style.ac,
+		    DocumentParser URLparser = new DocumentParser(style.ac,
 			    uri);
 		    
 		    style.handleRequest(style.ac, uri, URLparser.getStyleSheet(), 
