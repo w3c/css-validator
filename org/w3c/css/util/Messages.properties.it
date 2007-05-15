@@ -15,7 +15,8 @@ warning.style-inside-comment: Non inserire regole per i fogli di sile all'intern
 warning.same-colors: Hai utilizzato lo stesso colore per %s e %s
 warning.no-color: Non hai definito un colore per il contenuto (oppure il colore principale è definito come trasparente) mentre hai definito un colore di sfondo. Verifica che il sovrapporsi dei colori garantisca una discreta leggibilità.
 warning.no-background-color: Non hai definito un colore di sfondo (oppure il colore di sfondo è definito come trasparente) mentre hai definito un colore per il contenuto.Verifica che il sovrapporsi dei colori garantisca una discreta leggibilità.
-warning.color.mixed-capitalization: Anche se i nomi dei colori non sono sensibili all'uso di caratteri in maiuscolo e minuscolo, si raccomanda di non usare nomi con caratteri misti, in modo da renderli più leggibili: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Anche se i nomi dei colori non sono sensibili all'uso di caratteri in maiuscolo e minuscolo, si raccomanda di non usare nomi con caratteri misti, in modo da renderli più leggibili: %s
 warning.no-generic-family: %s: si consiglia di fornire come ultima alternativa una tipologia generica di carattere.
 warning.with-space: Le tipologie di carattere che contengono degli spazi all'interno del nome dovrebbero essere racchiuse tra virgolette. Se si omettono le virgolette, qualsiasi spazio prima e dopo il nome viene ignorato e qualsiasi sequenza di caratteri di spaziatura all'interno del nome viene convertita in un singolo spazio. 
 warning.no-padding: si consiglia l'uso di un'area di padding in presenza di valori per background-color

@@ -58,11 +58,12 @@ public class CssColorCSS21 extends CssColorCSS2 {
 		throw new InvalidParamException("value", s, "color", ac);
 	    }
 	}
+// 2007-05 - this warning on color string capitalization is plain silly, 
+// commenting it out-- ot@w3.org
+//	if(!s.equals(color)) {
+//	    ac.getFrame().addWarning("color.mixed-capitalization", s);
+//	}
 
-	// warning if the capitalization does not correspond to the standard one
-	if(!s.equals(color)) {
-	    ac.getFrame().addWarning("color.mixed-capitalization", s);
-	}
     }
 
     private int searchColor(int colorHash, int[] tableColorHash) {

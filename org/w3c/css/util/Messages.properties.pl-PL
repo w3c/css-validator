@@ -15,7 +15,8 @@ warning.style-inside-comment: Do not put style rules inside HTML comments as the
 warning.same-colors: Takie same kolory dla %s i %s
 warning.no-color: Brak koloru w background-color
 warning.no-background-color: Brak background-color with your color
-warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: %s
 warning.no-generic-family: %s: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostatecznoci
 warning.with-space: nazwy rodzin czcionek zawierajšce białe znaki powinny być w cudzysłowiu. Jeli pominie się cudzysłów, białe znaki \
 przed i po nazwie sš ignorowane oraz cišg białych znaków wewnštrz nazwy \

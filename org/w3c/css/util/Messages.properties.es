@@ -15,7 +15,8 @@ warning.style-inside-comment: Do not put style rules inside HTML comments as the
 warning.same-colors: Colores iguales para %s y %s
 warning.no-color: Hay un color de fondo establecido y no hay color de primer plano
 warning.no-background-color: Hay un color de primer plano establecido y no hay color de fondo
-warning.color.mixed-capitalization: Aunque los nombres de los colores no son sensibles a las mayúsculas, es recomendable utilizar capitalización mixta para hacerlos más legibles: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Aunque los nombres de los colores no son sensibles a las mayúsculas, es recomendable utilizar capitalización mixta para hacerlos más legibles: %s
 warning.no-generic-family: %s: Es recomendable ofrecer una familia genérica como última alternativa
 warning.with-space: Los nombres de familias que contengan espacios en blanco deben entrecomillarse. Si no se hace, cualquier espacio \
 en blanco anterior o posterior al nombre será ignorado y cualquier secuencia de espacios en blanco dentro del nombre \

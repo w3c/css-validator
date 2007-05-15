@@ -15,7 +15,8 @@ warning.style-inside-comment: Do not put style rules inside HTML comments as the
 warning.same-colors: Gleiche Farbe für %s und %s
 warning.no-color: Sie haben keine Vordergrundfarbe zu der Hintergrundfarbe angegeben
 warning.no-background-color: Sie haben keine Hintergrundfarbe zu der Vordergrundfarbe angegeben
-warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
 warning.no-generic-family: %s: Es wird empfohlen, daß Sie eine generische Familie als letzte Alternative angeben
 warning.with-space: Namen von Schriftfamilien, die Leerzeichen enthalten, sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Ohne Anführungszeichen werden alle Leerraumzeichen (Leerzeichen, Tabulatoren, etc.) vor und nach dem Namen ignoriert, und jede Sequenz von Leerraumzeichen innerhalb des Namens wird durch ein einzelnes Leerzeichen ersetzt.
 warning.no-padding: Es wird empfohlen, eine freie Umgebung (padding) mit der Hintergrundfarbe zu haben

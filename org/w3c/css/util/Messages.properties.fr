@@ -17,7 +17,8 @@ warning.no-color: Vous n'avez pas de couleur définie avec votre \
 couleur de fond
 warning.no-background-color: Vous n'avez pas de couleur de fond définie \
 avec votre couleur
-warning.color.mixed-capitalization: Bien que les noms de couleurs ne dépendent pas de la casse,\
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Bien que les noms de couleurs ne dépendent pas de la casse,\
 il est recommandé d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: %s
 warning.no-generic-family: %s: Vous êtes encouragés à proposer une famille \
 générique comme dernier choix

@@ -362,10 +362,12 @@ public class CssColorCSS1 extends CssColor {
 		rgb = (RGB) obj;
 	    } else if (obj instanceof String) {
 		color = (String) obj;
-		if (!obj.equals(s)) {
-		    ac.getFrame().addWarning("color.mixed-capitalization",
-					     s);
-		}
+// 2007-05 - this warning on color string capitalization is plain silly, 
+// commenting it out-- ot@w3.org
+//		if (!obj.equals(s)) {
+//		    ac.getFrame().addWarning("color.mixed-capitalization",
+//					     s);
+//		}
 	    }
 	    return;
 	}

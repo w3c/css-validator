@@ -14,7 +14,8 @@ warning.style-inside-comment: Do not put style rules inside HTML comments as the
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: 一样的颜色对于 %s 和 %s
 warning.no-color: 你没有为你的背景色设置(前景)颜色
-warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
 warning.no-background-color: 你没有为你的(前景)颜色设置背景色
 warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
 warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \

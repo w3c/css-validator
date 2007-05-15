@@ -16,7 +16,8 @@ deze kunnen worden verwijderd door het programma van de gebruiker
 warning.same-colors: Dezelfde kleuren voor %s en %s
 warning.no-color: Je hebt geen tekstkleur opgegeven (of de kleur is transparant) maar je hebt wel een achtergrondkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houdt.
 warning.no-background-color: Je hebt geen achtergrondkleur opgegeven (of de achtergrondkleur is transparant) maar je hebt wel een tekstkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houdt.
-warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
+#warning.color.mixed-capitalization is now obsolete
+#warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
 warning.no-generic-family: %s: Het is beter een algemene font-family op te geven als laatste alternatief
 warning.with-space: Fanmilienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
 Als quotes worden weggelaten wordt elke tussenruimte voor en achter de naam genegeerd en elke groep \
