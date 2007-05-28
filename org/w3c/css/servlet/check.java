@@ -42,6 +42,8 @@ public final class check extends HttpServlet {
     {
 
 	String uri = req.getHeader("Referer");
+	String encodeEnc = "UTF-8";
+	uri = java.net.URLEncoder.encode(uri, encodeEnc);
 
 	if (uri == null) {
 	    res.setContentType("text/plain");
@@ -83,8 +85,7 @@ public final class check extends HttpServlet {
 	    } else {
 		sb.append("&uri=");
 	    }
-	    sb.append(java.net.URLEncoder.encode(uri));
-	    //sb.append(uri);
+	    sb.append(uri);
 	}
 	res.sendRedirect(sb.toString());
     }
