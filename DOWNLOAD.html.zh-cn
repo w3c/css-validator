@@ -63,6 +63,7 @@
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar 和 xml-apis.jar (这些都可以在
 	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>)下载到。</li>
+	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>在Tomcat中安装CSS验证器</h4>

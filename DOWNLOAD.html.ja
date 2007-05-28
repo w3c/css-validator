@@ -68,6 +68,7 @@
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar と xml-apis.jar (どちらも
 	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> に含まれます)</li>
+		<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>Tomcat に CSS Validator をインストールする</h4>

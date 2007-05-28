@@ -63,6 +63,7 @@ chez <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</
 <li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 <li>xercesImpl.jar et xml-apis.jar (que l'on peut télécharger avec
 <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>Installation du validateur CSS avec Tomcat</h4>

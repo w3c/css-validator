@@ -69,6 +69,7 @@ Sin embargo, por simplicidad, en este documento proporcionaremos principalmente 
 </li>
 <li>xercesImpl.jar y xml-apis.jar (que puedes descargar con
 	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 <h4>Instalaci&oacute;n del Validador de CSS con Tomcat</h4>
 <ol class="instructions">

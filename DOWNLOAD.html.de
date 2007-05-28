@@ -49,6 +49,7 @@ Online-Servlet mit der Apache Servlet-Engine Tomcat geben. </p><p>Ein paar Anwei
 	<li>servlet.jar (die Sie, wenn Sie Tomcat in [<span class="const">TOMCAT_DIR</span>] installiert haben, in [<span class="const">TOMCAT_DIR</span>]/common/lib/ finden sollten, möglicherweise unter dem Namen servlet-api.jar. Wenn nicht, können Sie die Bibliothek bei <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a> herunterladen</li>
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar und xml-apis.jar (beide können mit <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> heruntergeladen werden).</li>
+	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>Installation des CSS Validators mit Tomcat</h4>

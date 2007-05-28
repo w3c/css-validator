@@ -73,6 +73,7 @@ znaleźć
  w [<span class="const">TOMCAT_DIR</span>]/common/lib/, najprawdopodobniej pod nazwą servlet-api.jar. Jeśli nie, możesz ściągnąć ten plik z <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a></li>
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar i xml-apis.jar (można je ściągnąć z <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>Zainstaluj walidator CSS na  Tomcat</h4>

@@ -63,6 +63,7 @@ In ogni caso, per semplicità, in questo documento forniremo dettagli su come in
 	 la trovi nella cartella [<span class="const">TOMCAT_DIR</span>]/common/lib/, possibilmente con il nome servlet-api.jar. Se non è presente, puoi ottenerne una nel sito <a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a></li>
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar e xml-apis.jar (le quali possono essere scaricatte con <a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
+		<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
 </ul>
 
 <h4>Installare il validatore CSS con Tomcat</h4>
