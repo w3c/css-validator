@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.net.URLEncoder;
 
 /**
  * This class is a servlet to use the validator.
@@ -83,7 +83,8 @@ public final class check extends HttpServlet {
 	    } else {
 		sb.append("&uri=");
 	    }
-	    sb.append(uri);
+	    sb.append(java.net.URLEncoder.encode(uri));
+	    //sb.append(uri);
 	}
 	res.sendRedirect(sb.toString());
     }
