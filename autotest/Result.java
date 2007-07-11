@@ -1,3 +1,5 @@
+package autotest;
+
 // $Id$
 // Author: Jean-Guilhem Rouel
 // (c) COPYRIGHT MIT, ERCIM and Keio, 2003.

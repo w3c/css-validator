@@ -1,3 +1,5 @@
+package autotest;
+
 import java.io.IOException;
 
 import org.xml.sax.SAXException;
@@ -64,7 +66,12 @@ public class AutoTest {
 	
 	try {	    
 	    AutoTest parser = new AutoTest();
-	    parser.parse(uri);
+	    for (int j = 0; j < 10; ++j) {
+	    	for (int i = 0; i < 1000; i++) {
+	    		parser.parse(uri);
+	    	}
+	    	Thread.sleep(5000);
+	    }
 	} catch (Throwable t) {
 	    t.printStackTrace();
 	}
