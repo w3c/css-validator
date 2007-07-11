@@ -27,53 +27,53 @@ import org.xml.sax.helpers.XMLReaderFactory;
  * </ul>
  */
 /**
-
+ * 
  */
 public class AutoTest {
-    
-    XMLReader saxReader;
-    
-    /**
-     * Constructor.
-     * @throws SAXException 
-     */
-    public AutoTest() throws SAXException {
-	saxReader = XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");
-	saxReader.setContentHandler(new AutoTestContentHandler());
-    }
-    
-    /**
-     * Parse an xml file 
-     * @param uri the uri of the file to parse
-     * @throws IOException
-     * @throws SAXException
-     */
-    public void parse(String uri) throws IOException, SAXException {
-	saxReader.parse(uri);
-    }
-    
-    /**
-     * Entry point of the program
-     * @param args list of arguments of the program: uri [options]
-     */
-    public static void main(String[] args) {
-	if (args.length != 1) {
-	    System.out.println("Usage : AutoTest uri");
-	    System.exit(1);
+
+	XMLReader saxReader;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @throws SAXException
+	 */
+	public AutoTest() throws SAXException {
+		saxReader = XMLReaderFactory.createXMLReader("org.apache.xerces.parsers.SAXParser");
+		saxReader.setContentHandler(new AutoTestContentHandler());
 	}
-	
-	String uri = args[0];
-	
-	try {	    
-	    AutoTest parser = new AutoTest();
-	    for (int j = 0; j < 10; ++j) {
-	    	for (int i = 0; i < 1000; i++) {
-	    		parser.parse(uri);
-	    	}
-	    	Thread.sleep(5000);
-	    }
-	} catch (Throwable t) {
-	    t.printStackTrace();
+
+	/**
+	 * Parse an xml file
+	 * 
+	 * @param uri
+	 *            the uri of the file to parse
+	 * @throws IOException
+	 * @throws SAXException
+	 */
+	public void parse(String uri) throws IOException, SAXException {
+		saxReader.parse(uri);
 	}
-    }
+
+	/**
+	 * Entry point of the program
+	 * 
+	 * @param args
+	 *            list of arguments of the program: uri [options]
+	 */
+	public static void main(String[] args) {
+		if (args.length != 1) {
+			System.out.println("Usage : AutoTest uri");
+			System.exit(1);
+		}
+
+		String uri = args[0];
+
+		try {
+			AutoTest parser = new AutoTest();
+			parser.parse(uri);
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
 }
