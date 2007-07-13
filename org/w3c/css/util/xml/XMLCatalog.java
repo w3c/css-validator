@@ -24,25 +24,25 @@ import org.xml.sax.SAXException;
 
 /**
  * @version $Revision$
- * @author  Philippe Le Hegaret
+ * @author Philippe Le Hegaret
  */
 public class XMLCatalog extends Utf8Properties implements ContentHandler {
 
-    URL baseURI;
+	URL baseURI;
 
-    /**
-     * Creates a new XMLCatalog
-     */
-    public XMLCatalog() {
-	try {
-	    baseURI = XMLCatalog.class.getResource("catalog.xml");
-	    parse(baseURI.toString());
-	} catch (Exception e) {
-	    System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
-			       + "couldn't load catalog.xml");
-			System.err.println("  " + e.toString());
+	/**
+	 * Creates a new XMLCatalog
+	 */
+	public XMLCatalog() {
+		try {
+			baseURI = XMLCatalog.class.getResource("catalog.xml");
+			parse("\"" + baseURI.toString() + "\"");
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
+					+ "couldn't load catalog.xml");
+			System.err.println("  " + e.getMessage());
+		}
 	}
-    }
 
 	public void setDocumentLocator(Locator locator) {
 	}
@@ -54,7 +54,7 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
 	}
 
 	public void startPrefixMapping(String prefix, String uri)
-        throws SAXException {
+			throws SAXException {
 	}
 
 	public void endPrefixMapping(String prefix) throws SAXException {
@@ -62,28 +62,28 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
 
 	public void startElement(String namespaceURI, String localName,
 			String qName, Attributes atts) throws SAXException {
-	if ("system".equals(qName)) {
-	    String systemId = atts.getValue("systemId");
-	    String uri = atts.getValue("uri");
-	    if ((systemId != null) && (uri != null)) {
-		try {
-		    setProperty(systemId, (new URL(baseURI, uri)).toString());
-		} catch (Exception e) {
-		    e.printStackTrace();
+		if ("system".equals(qName)) {
+			String systemId = atts.getValue("systemId");
+			String uri = atts.getValue("uri");
+			if ((systemId != null) && (uri != null)) {
+				try {
+					setProperty(systemId, (new URL(baseURI, uri)).toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} else if ("public".equals(qName)) {
+			String publicId = atts.getValue("publicId");
+			String uri = atts.getValue("uri");
+			if ((publicId != null) && (uri != null)) {
+				try {
+					setProperty(publicId, (new URL(baseURI, uri)).toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
-	    }
-	} else if ("public".equals(qName)) {
-	    String publicId = atts.getValue("publicId");
-	    String uri = atts.getValue("uri");
-	    if ((publicId != null) && (uri != null)) {
-		try {
-		    setProperty(publicId, (new URL(baseURI, uri)).toString());
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-	    }
 	}
-    }
 
 	public void endElement(String namespaceURI, String localName, String qName)
 			throws SAXException {
@@ -104,21 +104,21 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
 	public void skippedEntity(String name) throws SAXException {
 	}
 
-    void parse(String urlString) throws Exception {
-	org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
+	void parse(String urlString) throws Exception {
+		org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
 
-	try {
+		try {
 			xmlParser.setFeature(
 					"http://xml.org/sax/features/namespace-prefixes", true);
 
 			xmlParser.setFeature("http://xml.org/sax/features/validation",
 					false);
-	} catch (Exception ex) {
-	    ex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		xmlParser.setContentHandler(this);
+		InputSource source = new InputSource();
+		source.setSystemId(urlString);
+		xmlParser.parse(source);
 	}
-	xmlParser.setContentHandler(this);
-	InputSource source = new InputSource();
-	source.setSystemId(urlString);
-	xmlParser.parse(source);
-    }
 }

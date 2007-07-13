@@ -1,3 +1,59 @@
+language_name: English
+# Defines the variables
+W3C_validator_results: W3C CSS Validator results for
+# file_title: <!-- provided by the user -->
+CSS_validation_service: CSS validation Service
+jump_to: Jump to
+# errors_count: <!-- generated on the fly -->
+errors: Errors
+# warnings_count <!-- generated on the fly -->
+warnings: Warnings
+validated_CSS: Validated CSS
+congrats: Congratulations! No Error Found.
+doc_validates: This document validates as <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>!
+no_errors_interoperable_msg: To show your readers that you've taken the care to create an interoperable Web \
+page, you may display this icon on any page that validates. Here is the XHTML \
+you could use to add this icon to your Web page:
+valid_CSS: Valid CSS!
+# <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
+no_errors_close_tags_msg: close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01
+no_errors_dl_local_msg: If you like, you can download a copy of this image to keep in your local web \
+directory, and change the XHTML fragment above to reference your local image \
+rather than the one on this server.
+no_errors_create_link_msg: If you would like to create a link to this page (i.e., this validation \
+result) to make it easier to re-validate this page in the future or to allow \
+others to validate your page, the URI is:
+no_errors_forHTML_only_msg: for HTML/XML document only
+no_errors_bookmark_msg: Or, you can just add the current page to your bookmarks or hotlist.
+note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>.
+top: Top
+# hook_html_validator <!-- generated on the fly -->
+not-css1-style: /* BE CAREFUL ! This is not a CSS1 property ! */
+errors_sorry_msg: Sorry! We found the following errors
+# errors_list: <!-- generated on the fly -->
+# warnings_list: <!-- generated on the fly -->
+# rules_count: <!-- generated on the fly -->
+valid_CSS_info: Valid CSS information
+# charset: <!-- generated on the fly -->
+# rules_list: <!-- generated on the fly -->
+CSS_not_found: No style sheet found
+home: Home
+about: About
+doc: Documentation
+dl: Download
+feedback: Feedback
+credits: Credits
+home_title: Home page for the W3C CSS Validation Service
+about_title: About this service
+doc_title: Documentation for the W3C CSS Validation Service
+dl_title: Download and install the CSS validator
+feedback_title: How to provide feedback on this service
+credits_title: Credits and Acknowlegments
+W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more
+learn_more_msg: Learn more about Cascading Style Sheets
+support: Support this tool, become a
+supporter: W3C Supporter
+
 # Defines your own error and warning message here
 content-type: text/html; charset=utf-8
 content-language: en
@@ -151,6 +207,9 @@ error.unrecognize: Too many values or values are not recognized
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Parse Error
 
+# used by org.w3c.css.css.StyleSheetGeneratorHTML2
+error.unknown: Unknown error
+
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: The pseudo-element :%s can't appear here in the context %s
 error.pseudo-class: The pseudo-class .%s can't appear here in the HTML context %s
@@ -189,7 +248,8 @@ parser.semi-colon: attempt to find a semi-colon before the property name. add it
 
 parser.old_class: In CSS1, a class name could start with a digit (".55ft"), \
 unless it was a dimension (".55in"). In CSS2, such classes are parsed as \
-unknown dimensions (to allow for future additions of new units)
+unknown dimensions (to allow for future additions of new units) \
+To make ".%s" a valid class, CSS2 requires the first digit to be escaped ".\3%s"
 
 parser.old_id: In CSS1, an id name could start with a digit ("#55ft"), \
 unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
@@ -214,7 +274,7 @@ unknown dimensions (to allow for future additions of new units)
 
 warning.old_class: In CSS1, a class name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+unknown dimensions (to allow for future additions of new units).
 
 # used by the servlet
 servlet.invalid-request: You have sent an invalid request.

@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public abstract class StyleReport {
 
     abstract public void print(PrintWriter out);
-
+    
     abstract public void desactivateError();
 
 }

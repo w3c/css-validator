@@ -1,3 +1,56 @@
+language_name: Polski
+W3C_validator_results: Wyniki Walidatora CSS W3C dla
+# file_title: <!-- provided by the user -->
+CSS_validation_service: <!-- translation unavailable -->
+jump_to: Zobacz:
+# errors_count: <!-- generated on the fly -->
+errors: błędy
+# warnings_count <!-- generated on the fly -->
+warnings: ostrzeżenia
+validated_CSS: swój arkusz stylu
+congrats: Gratulacje!
+doc_validates: Dokument ten jest poprawnie napisanym arkuszem  <a href=" http://www.w3.org/TR/REC-CSS2/ ">CSS</a>!
+no_errors_interoperable_msg: Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjną \
+, możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidację. Oto kod HTML\
+, który możesz dodać do swojej strony:
+valid_CSS: Poprawny CSS!
+# <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
+no_errors_close_tags_msg: zakończ znacznik obrazu z &gt; zamiast /&gt; jeśli używasz HTML &lt;= 4.01
+no_errors_dl_local_msg: Jeśli chcesz, możesz ściągnąć kopię tej ikony i umieścić ja w lokalnym \
+katalogu swojego serwera oraz przerobić fragment XHTML podając link prowadzący do ikony na swoim serwerze \
+zamiast do ikony na serwerze Walidatora CSS W3C.
+no_errors_create_link_msg: Jeśli chciałbyś stworzyć link do tej strony (np. do wyniku \
+walidacji) aby ułatwić sobie ponowną walidację w przyszłości lub w celu pozwolenia \
+innym na walidację tej strony, użyj następującego adresu:
+no_errors_forHTML_only_msg: jedynie dla dokumentów HTML/XML
+no_errors_bookmark_msg: lub możesz dodać stronę do Ulubionych.
+top: Top <!-- translation unavailable -->
+# hook_html_validator <!-- generated on the fly -->
+errors_sorry_msg: Błędy
+# errors_list: <!-- generated on the fly -->
+# warnings_list: <!-- generated on the fly -->
+# rules_count: <!-- generated on the fly -->
+valid_CSS_info: Informacje na temat poprawnego CSS
+# charset: <!-- generated on the fly -->
+# rules_list: <!-- generated on the fly -->
+CSS_not_found: Nie znaleziono arkusza stylów
+home: Home <!-- translation unavailable -->
+about: O nas
+doc: Dokumentacja
+dl: Download
+feedback: Opinie
+credits: Podziękowania
+home_title: Home
+about_title: O serwisie
+doc_title: Dokumentacja Usługi Walidacji CSS
+dl_title: Ściągnij i zainstaluj walidator CSS
+feedback_title: Jak wysłać opinię na temat tej usługi
+credits_title: Podziękowania
+W3C_quality_msg: <!-- translation unavailable -->
+support: <!-- translation unavailable -->
+supporter: <!-- translation unavailable -->
+# End of recently added variables...!
+
 # Definiuje komunikaty błędów i ostrzeżeń
 content-type: text/html; charset=utf-8
 content-language: pl

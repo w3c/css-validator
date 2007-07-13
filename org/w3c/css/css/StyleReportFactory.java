@@ -9,37 +9,16 @@ import org.w3c.css.util.ApplContext;
 
 public class StyleReportFactory {
 
-    /**
-     * Give back a "StyleReport" object based on various
-     * parameters, but mainly output"
-     */
-    public static StyleReport getStyleReport(ApplContext ac,
-					     String title,
-					     StyleSheet style,
-					     String document,
-					     int warningLevel) {
-	if ((document == null) || (document.equals("html"))
-	    || (document.equals("xhtml"))) {
-	    return new StyleSheetGeneratorHTML2(ac, title, style,
-						"xhtml", // getting rid of duplicate templates
-						warningLevel);
+	/**
+	 * Give back a "StyleReport" object based on various parameters, but mainly
+	 * output"
+	 */
+	public static StyleReport getStyleReport(ApplContext ac, String title,
+			StyleSheet style, String document, int warningLevel) {
+		if (document.equals("text"))
+			return new StyleSheetGenerator(title, style, document, warningLevel);
+		if (document.equals("soap12") || document.equals("ucn") || document.equals("xml"))
+			return new StyleSheetGeneratorHTML(ac, title, style, document, warningLevel);
+		return new StyleSheetGeneratorHTML(ac, title, style, "xhtml", warningLevel);
 	}
-	if (document.equals("soap12")) {
-	    return new StyleReportSOAP12(ac, title, style,
-					 document,
-					 warningLevel);
-	}
-	if(document.equals("text")) {	    
-	    return new StyleSheetGenerator2(title, style,
-					    document,
-					    warningLevel);
-	}
-	if(document.equals("ucn")) {
-		return new StyleReportUCN(ac, title, style, document, warningLevel);
-	}
-	return new StyleSheetGeneratorHTML2(ac, title, style,
-					    "xhtml",
-					    warningLevel);
-    }
 }
-

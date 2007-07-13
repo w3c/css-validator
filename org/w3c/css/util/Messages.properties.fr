@@ -1,3 +1,59 @@
+language_name: Français
+# Defines the variables
+W3C_validator_results: R&eacute;sultats de la validation W3C CSS de
+# file_title: <!-- provided by the user -->
+CSS_validation_service: CSS validation Service
+jump_to: Aller &agrave;
+# errors_count: <!-- generated on the fly -->
+errors: Erreurs
+# warnings_count <!-- generated on the fly -->
+warnings: Avertissements
+validated_CSS: CSS valide
+congrats: Félicitation ! Aucune erreur trouvée.
+doc_validates: Ce document est valide conform&eacute;ment &agrave; la recommandation <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a> !
+no_errors_interoperable_msg: Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
+cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
+pages valides. Voici le fragment de XHTML que vous pouvez utiliser pour ajouter \
+cette ic&ocirc;ne &agrave; votre page Web:
+valid_CSS: CSS Valide !
+# <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
+no_errors_close_tags_msg: fermez le tag img avec &gt; au lieu de /&gt; si vous utilisez HTML &lt;= 4.01
+no_errors_dl_local_msg: Si vous le d&eacute;sirez, vous pouvez t&eacute;l&eacute;charger une copie de cette image \
+dans votre répertoire Web local, et changer le fragment d'HTML d&eacute;crit ci-dessus pour \
+r&eacute;ferencer le nouvel emplacement de celle-ci.
+no_errors_create_link_msg: Si vous voulez cr&eacute;er un lien direct sur le r&eacute;sultat de cette validation, \
+afin de revalider facilement, ou de permettre &agrave; d'autres de v&eacute;rifier \
+facilement la validit&eacute; de votre document, l'URI de cette page est :
+no_errors_forHTML_only_msg: uniquement avec des documents HTML/XML
+no_errors_bookmark_msg: Vous pouvez aussi l'ajouter directement &agrave; vos signets.
+top: Top
+# hook_html_validator <!-- generated on the fly -->
+not-css1-style: /* ATTENTION! Ce n'est pas une propri&eacute;t&eacute; CSS1! */
+errors_sorry_msg: D&eacute;sol&eacute; ! Les erreurs suivantes ont &eacute;t&eacute; trouv&eacute;es :
+# errors_list: <!-- generated on the fly -->
+# warnings_list: <!-- generated on the fly -->
+# rules_count: <!-- generated on the fly -->
+valid_CSS_info: Votre feuille de style CSS valid&eacute;e :
+# charset: <!-- generated on the fly -->
+# rules_list: <!-- generated on the fly -->
+CSS_not_found: Aucune feuille de style trouv&eacute;e
+home: Accueil
+about: &Agrave; propos
+doc: Documentation
+dl: T&eacute;l&eacute;charger
+feedback: Contact
+credits: Remerciements
+home_title: Page d'accueil du service de validation CSS de W3C
+about_title: &Agrave; propos de ce service
+doc_title: Documentation du service de validation CSS du W3C
+dl_title: T&eacute;l&eacute;charger et installer le CSS validator
+feedback_title: Donner un avis &agrave; propos de ce service
+credits_title: Mentions et remerciements
+W3C_quality_msg: L'activité Assurance Qualit&eacute; du W3C vous offre des outils Web gratuits de qualit&eacute; et plus encore
+learn_more_msg: Plus d'informations sur les feuilles de style en cascade
+support: Aidez le validateur, devenez
+supporter: Contributeur du W3C
+
 # Defines your own error and warning message here
 content-type: text/html; charset=utf-8
 content-language: fr
@@ -144,6 +200,9 @@ error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360
 
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. You must put an unit after your number
+
+# used by org.w3c.css.css.StyleSheetGeneratorHTML2
+error.unknown: Erreur inconnue
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence: La propriété %s n'existe pas.

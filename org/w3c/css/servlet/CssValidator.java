@@ -189,6 +189,7 @@ public final class CssValidator extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException {
 
+
 	boolean errorReport = true;
 	int warningLevel = 2;
 	CssParser parser = null;
@@ -208,6 +209,7 @@ public final class CssValidator extends HttpServlet {
 	    lang += ',' + req.getHeader("Accept-Language");
 	}
 	ApplContext ac = new ApplContext(lang);
+	ac.setLink(req.getQueryString());
 	ac.setContentEncoding(req.getHeader("Accept-Charset"));
 	String output = req.getParameter("output");
 	
@@ -331,7 +333,8 @@ public final class CssValidator extends HttpServlet {
 	    try {
 		uri = HTTPURL.getURL(uri).toString(); // needed to be sure
 		// that it is a valid
-		// url		
+		// url
+		uri = uri.replaceAll(" ", "%20");
 		DocumentParser URLparser = new DocumentParser(ac, uri);
 
 		handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
@@ -425,13 +428,14 @@ public final class CssValidator extends HttpServlet {
 	    lang += ',' + req.getHeader("Accept-Language");
 	}
 	ApplContext ac = new ApplContext(lang);
+	ac.setLink(req.getQueryString());
 
 	boolean errorReport = true;
 	int warningLevel = 2;
 	CssParser parser = null;
 	FakeFile file = null;
 	String output = null;
-	boolean XMLinput = false;
+	//boolean XMLinput = false;
 	String warning = null;
 	String error = null;
 	String profile = null;
@@ -497,8 +501,8 @@ public final class CssValidator extends HttpServlet {
 		    warning = (String) tmp[i].getValue();
 		} else if (tmp[i].getName().equals("error")) {
 		    warning = (String) tmp[i].getValue();
-		} else if (tmp[i].getName().equals("input")) {
-		    XMLinput = ((String) tmp[i].getValue()).equals("XML");
+		//} else if (tmp[i].getName().equals("input")) {
+		//    XMLinput = ((String) tmp[i].getValue()).equals("XML");
 		} else if (tmp[i].getName().equals("profile")) {
 		    profile = (String) tmp[i].getValue();
 		} else if (tmp[i].getName().equals("usermedium")) {
@@ -589,6 +593,8 @@ public final class CssValidator extends HttpServlet {
 	    throw new IOException(ac.getMsg().getServletString("process") + " "
 				  + title);
 	}
+
+	System.err.println(output);
 
 	// if the output parameter was a mime type, we convert it
 	// to an understandable value for the StyleReportFactory

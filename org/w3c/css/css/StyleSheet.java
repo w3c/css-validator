@@ -178,7 +178,7 @@ public class StyleSheet {
     }
 
     /**
-     * Returns the uniq context for a context
+     * Returns the unique context for a context
      *
      * @param selector the context to find.
      */

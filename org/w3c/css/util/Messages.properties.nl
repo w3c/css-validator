@@ -1,3 +1,4 @@
+language_name: Nederlands
 # Definieert uw eigen error en waarschuwingsberichten hier
 content-type: text/html; charset=utf-8
 content-language: nl

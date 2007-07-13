@@ -60,14 +60,14 @@ public class StyleSheetCom {
 	if (style != null) {
 	    style.findConflicts(ac);
 	    if (documentBase.startsWith("html")) {
-		StyleSheetGeneratorHTML2 output =
-		    new StyleSheetGeneratorHTML2(ac, file,
+		StyleSheetGeneratorHTML output =
+		    new StyleSheetGeneratorHTML(ac, file,
 						 style,
 						 documentBase,
 						 warningLevel);
 		output.print(out);
 	    } else {
-		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file,
+		StyleSheetGenerator style2 = new StyleSheetGenerator(file,
 								       style,
 								       documentBase,
 								       warningLevel);
@@ -91,14 +91,14 @@ public class StyleSheetCom {
 	if (style != null) {
 	    style.findConflicts(ac);
 	    if (documentBase.startsWith("html")) {
-		StyleSheetGeneratorHTML2 output =
-		    new StyleSheetGeneratorHTML2(ac, file,
+		StyleSheetGeneratorHTML output =
+		    new StyleSheetGeneratorHTML(ac, file,
 						 style,
 						 documentBase,
 						 warningLevel);
 		output.print(out);
 	    } else {
-		StyleSheetGenerator2 style2 = new StyleSheetGenerator2(file,
+		StyleSheetGenerator style2 = new StyleSheetGenerator(file,
 								       style,
 								       documentBase,
 								       warningLevel);
@@ -140,15 +140,15 @@ public class StyleSheetCom {
 		    }
 		});
 	} else if (documentBase.startsWith("html")) {
-	    StyleSheetGeneratorHTML2 output =
-		new StyleSheetGeneratorHTML2(ac, file,
+	    StyleSheetGeneratorHTML output =
+		new StyleSheetGeneratorHTML(ac, file,
 					     parser.getStyleSheet(),
 					     documentBase,
 					     warningLevel);
 	    output.print(out);
 	} else {
-	    StyleSheetGenerator2 output =
-		new StyleSheetGenerator2(file,
+	    StyleSheetGenerator output =
+		new StyleSheetGenerator(file,
 					 parser.getStyleSheet(),
 					 documentBase,
 					 warningLevel);
