@@ -133,7 +133,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">验证直接输入的内容</legend>
-      <form action="validator" method="post">
+      <form action="validator" enctype="multipart/form-data" method="post">
       <p class="instructions">输入你要验证的CSS代码:</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>

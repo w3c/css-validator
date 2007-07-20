@@ -137,7 +137,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validazione tramite immissione diretta</legend>
-      <form action="validator" method="post">
+      <form action="validator" enctype="multipart/form-data" method="post">
       <p class="instructions">Inserisci il testo del CSS che desideri validare:</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>

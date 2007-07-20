@@ -137,7 +137,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Validation par Saisie Directe</legend>
-      <form action="validator" method="post">
+      <form action="validator" enctype="multipart/form-data" method="post">
       <p class="instructions">Saisissez la feuille de style à valider  (ATTENTION : feuilles de style CSS uniquement):</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>

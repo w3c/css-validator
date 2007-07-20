@@ -154,7 +154,7 @@
 </fieldset>
 <fieldset id="validate-by-input" class="tabset_content front">
 <legend class="tabset_label">Validar mediante entrada directa</legend>
-<form action="validator" method="post">
+<form action="validator" enctype="multipart/form-data" method="post">
 <p class="instructions">Introduce el c&oacute;digo CSS que desees validar:</p>
 <p>
 <textarea name="text" rows="12" cols="70"></textarea>
