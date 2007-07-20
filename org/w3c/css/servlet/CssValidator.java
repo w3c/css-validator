@@ -582,7 +582,7 @@ public final class CssValidator extends HttpServlet {
   	    handleError(res, ac, output, file.getName(), e, false);
   	}
   }
-  else {
+  else if (text != null ){
       Util.verbose("- TextArea Data -");
 	    Util.verbose(text);
 	    Util.verbose("- End of TextArea Data");
