@@ -434,6 +434,7 @@ public final class CssValidator extends HttpServlet {
 	int warningLevel = 2;
 	CssParser parser = null;
 	FakeFile file = null;
+	String text = null;
 	String output = null;
 	//boolean XMLinput = false;
 	String warning = null;
