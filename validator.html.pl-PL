@@ -137,7 +137,7 @@
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front"><legend class="tabset_label">Walidacja poprzez bezpośrednie wprowadzenie kodu</legend>
-      <form action="validator" method="get">
+      <form action="validator" method="post">
       <p class="instructions">Wprowadź kod CSS do walidacji:</p>
       <p>
 	<textarea name="text" rows="12" cols="70"></textarea>
