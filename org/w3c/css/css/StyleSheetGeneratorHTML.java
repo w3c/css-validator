@@ -293,8 +293,7 @@ public class StyleSheetGeneratorHTML extends StyleReport {
 						String str = stringError.substring(0, index);
 						// The Exception name 'StringError' was previously
 						// displayed
-						errors_content[i].put("ErrorMsg", ac.getMsg().getGeneratorString("not-found") + ": <em>" + str
-								+ "</em>");
+						errors_content[i].put("ErrorMsg", ac.getMsg().getGeneratorString("not-found") + ": " + str);
 
 					} else if (ex instanceof CssParseException) {
 						produceParseException((CssParseException) ex, errors_content[i]);
@@ -384,39 +383,35 @@ public class StyleSheetGeneratorHTML extends StyleReport {
 		}
 		ht_error.put("ClassName", "message");
 		String name = error.getProperty();
-		String ret = "";
+		String ret;
 		if ((name != null) && (getURLProperty(name) != null)) {
-			ret += ac.getMsg().getGeneratorString("property");
-			ret += " : <a href=\"" + getURLProperty("@url-base");
-			ret += getURLProperty(name) + "\">" + name + "</a> ";
+			ht_error.put("link_before_parse_error", ac.getMsg().getGeneratorString("property"));
+			ht_error.put("link_value_parse_error", getURLProperty("@url-base") + getURLProperty(name));
+			ht_error.put("link_name_parse_error", name);
 		}
 		if ((error.getException() != null) && (error.getMessage() != null)) {
 			if (error.isParseException()) {
-				ret += queryReplace(error.getMessage());
+				ret = queryReplace(error.getMessage());
 			} else {
 				Exception ex = error.getException();
 				if (ex instanceof NumberFormatException) {
-					ret += ac.getMsg().getGeneratorString("invalid-number");
+					ret = ac.getMsg().getGeneratorString("invalid-number");
 				} else {
-					ret += queryReplace(ex.getMessage());
+					ret = queryReplace(ex.getMessage());
 				}
 			}
 			if (error.getSkippedString() != null) {
-				ret += "<span class='skippedString'>";
-				ret += queryReplace(error.getSkippedString());
-				ret += "</span>";
+				ht_error.put("span_class_parse_error", "skippedString");
+				ht_error.put("span_value_parse_error", queryReplace(error.getSkippedString()));
 			} else if (error.getExp() != null) {
-				ret += " : ";
-				ret += queryReplace(error.getExp().toStringFromStart());
-				ret += "<span class='exp'>";
-				ret += queryReplace(error.getExp().toString());
-				ret += "</span>";
+				ret += " : " + queryReplace(error.getExp().toStringFromStart());
+				ht_error.put("span_class_parse_error", "exp");
+				ht_error.put("span_value_parse_error", queryReplace(error.getExp().toString()));
 			}
 		} else {
-			ret += ac.getMsg().getGeneratorString("unrecognize");
-			ret += " - <span class='other'>";
-			ret += queryReplace(error.getSkippedString());
-			ret += "</span>";
+			ret = ac.getMsg().getGeneratorString("unrecognize");
+			ht_error.put("span_class_parse_error", "other");
+			ht_error.put("span_value_parse_error", queryReplace(error.getSkippedString()));
 		}
 		ht_error.put("ErrorMsg", ret);
 	}
@@ -431,7 +426,7 @@ public class StyleSheetGeneratorHTML extends StyleReport {
 		    	switch (c = s.charAt(i)) {
 			    	case '&'  : ret.append("&amp;"); break;
 			    	case '\'' : ret.append("&apos;"); break;
-			    	case '\"' : ret.append("&quote;"); break;
+			    	case '"' : ret.append("&quot;"); break;
 			    	case '<'  : ret.append("&lt;"); break;
 			    	case '>'  : ret.append("&gt;"); break;
 			    	default   : ret.append(c);
