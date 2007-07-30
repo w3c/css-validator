@@ -1,413 +1,424 @@
-/* Remade by Sijtsche de Jong */
-
 package org.w3c.css.css;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TimeZone;
 import java.util.Vector;
 
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.Template;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.MethodInvocationException;
+import org.w3c.css.error.ErrorReportHTML;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.Errors;
-import org.w3c.css.properties.css1.CssProperty;
-import org.w3c.css.util.Date;
+import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+
 /**
- * @version $Revision$
+ * @author Julien Grand-Mourcel
+ * @author Maria Kaceriakova
+ * @date 2007-06-29
+ * This class uses Velocity to output the validator results
+ * 
  */
-public final class StyleSheetGenerator extends StyleReport {
+public class StyleSheetGenerator extends StyleReport {
 
-    //    SortedHashtable items;
-    Hashtable items;
+	private PrintWriter out;
+	private Template template;
+	private String template_file;
+	private String default_lang = "en"; 
+	private ApplContext ac;
+	private StyleSheet style;
+	private String title;
+	private VelocityContext context;
+	private Warnings warnings;
+	private Errors errors;
+	private Vector items;
+	private static Utf8Properties availableFormat;
+	private static Utf8Properties availablePropertiesURL;
 
-    Warnings warnings;
+	static {
+		URL url;
+		availableFormat = new Utf8Properties();
+		try {
+			url = StyleSheetGenerator.class.getResource("format.properties");
+			java.io.InputStream f = url.openStream();
+			availableFormat.load(f);
+			f.close();
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.css.StyleSheetGeneratorHTML: couldn't load format properties ");
+			System.err.println("  " + e.toString());
+		}
 
-    Errors errors;
-
-    private CssSelectors selector;
-
-    private CssProperty property;
-
-    private PrintWriter out;
-
-    private int warningLevel;
-
-    private Utf8Properties general;
-
-    private static Utf8Properties availableFormat;
-
-    private static Hashtable formats = new Hashtable();
-
-    /**
-     * Create a new StyleSheetGenerator2
-     *
-	 * @param title
-	 *            The title for the generated document
-	 * @param style
-	 *            The style sheet
-	 * @param document
-	 *            The name of the source file
-	 * @param warningLevel
-	 *            If you want to reduce warning output. (-1 means no warnings)
-     */
-	public StyleSheetGenerator(String title, StyleSheet style,
-			String document, int warningLevel) {
-
-		// this small part prints the stylesheet to the screen
-	if (StyleSheetCom.showCSS == true || CssValidator.showCSS == true) {
-
-	    if (style.charset != null) {
-		System.out.println("@charset " + style.charset + ";\n");
-	    }
-	    Vector atRules = style.newGetRules();
-	    
-	    for (int i = 0; i < atRules.size(); i++) {
-		System.out.println(((CssRuleList) atRules.elementAt(i)).toString());
-	    }
+		availablePropertiesURL = new Utf8Properties();
+		try {
+			url = StyleSheetGenerator.class.getResource("urls.properties");
+			java.io.InputStream f = url.openStream();
+			availablePropertiesURL.load(f);
+			f.close();
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.css.StyleSheetGeneratorHTML: couldn't load URLs properties ");
+			System.err.println("  " + e.toString());
+		}
 	}
-
-		general = new Utf8Properties(setDocumentBase(getDocumentName(document)));
-	general.put("file-title", title);
-	general.put("today", new Date().toString());
-
-	warnings = style.getWarnings();
-	errors = style.getErrors();
-	items = style.getRules();
-	this.warningLevel = warningLevel;
-
-		general.put("errors-count", Integer.toString(errors.getErrorCount()));
-		general.put("warnings-count", Integer.toString(warnings
-				.getWarningCount()));
-		general.put("rules-count", Integer.toString(items.size()));
-
-	if (errors.getErrorCount() == 0) {
-	    desactivateError();
-	}
-	if (warnings.getWarningCount() == 0 || warningLevel == -1) {
-	    general.put("go-warnings", ""); // remove go-warnings
-	    general.put("warnings", ""); // remove warnings
-	}
-	if ((items.size() == 0) || (StyleSheetCom.showCSS == false)) {
-	    general.put("go-rules", ""); // remove go-rules
-	    general.put("rules", ""); // remove rules
-	} else {
-	    general.put("no-rules", ""); // remove no-rules
-	}
-
-	if (errors.getErrorCount() != 0 || warnings.getWarningCount() != 0) {
-	    // remove no-error-or-warning
-	    general.put("no-error-or-warning", "");
-	}
-
-		if (Util.onDebug)
-			general.list(System.err);
-
-    }
-
-    public void desactivateError() {
-	general.put("go-errors", ""); // remove go-errors
-	general.put("errors", ""); // remove errors
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public void print(PrintWriter out) {
-	this.out = out; // must be in first !
-	String output = processSimple("document");
 	
-	if (output != null) {
-	    out.println(output);
-	} else {
-	    out.println("An error occurred during the output "
-			+ "of your style sheet.");
-	    out.println("Please correct your request ");
-			out.println(" or send a mail to " + " www-validator-css@w3.org");
+	public StyleSheetGenerator(String title, StyleSheet style, String document, int warningLevel) {
+		this(null, title, style, document, warningLevel);
 	}
 
-	out.flush();
-    }
+	public StyleSheetGenerator(ApplContext ac, String title, StyleSheet style, String document, int warningLevel) {
+		this.ac = ac;
+		this.style = style;
+		this.title = title;
+		this.template_file = availableFormat.getProperty(document);
 
-    void produceParseException(CssParseException error, StringBuffer ret) {
-	if (error.getContexts() != null && error.getContexts().size() != 0) {
-	    StringBuffer buf = new StringBuffer();
-			for (Enumeration e = error.getContexts().elements(); e
-					.hasMoreElements();) {
-		Object t = e.nextElement();
-		if (t != null) {
-		    buf.append(t);
-		    if (e.hasMoreElements())
-			buf.append(", ");
-		}
-	    }
-	    if (buf.length() != 0) {
-		ret.append("Context : ").append(buf).append(' ');
-	    }
-	}
-	if (error.getProperty() != null) {
-	    ret.append("in property : ").append(error.getProperty());
-	    ret.append('\n');
-	}
+		context = new VelocityContext();
+		context.put("file_title", title);
+		// W3C_validator_result
+		warnings = style.getWarnings();
+		errors = style.getErrors();
+		items = style.newGetRules();
 
-	if (error.getException() != null && (error.getMessage() != null)) {
-	    ret.append('\t');
-	    if (error.isParseException()) {
-		ret.append(error.getMessage());
-	    } else {
-		Exception ex = error.getException();
-		if (ex instanceof NumberFormatException) {
-		    ret.append("Invalid number");
-		} else {
-		    ret.append(ex.getMessage());
-		}
-	    }
-	    if (error.getSkippedString() != null) {
-		ret.append(" : ");
-		ret.append(error.getSkippedString());
-	    } else if (error.getExp() != null) {
-		ret.append(" : ");
-		error.getExp().starts();
-		ret.append(queryReplace(error.getExp().toString()));
-	    }
-	    ret.append('\n');
-	} else {
-	    ret.append("\t");
-	    ret.append("Unrecognized ");
-	    ret.append(" - ");
-	    ret.append(queryReplace(error.getSkippedString()));
-	    ret.append("\n");
-	}
-    }
-
-    public void produceError() {
-	StringBuffer ret = new StringBuffer(1024);
-	String oldSourceFile = null;
-
-	try {
-	    if (errors.getErrorCount() != 0) {
-		int i = 0;
-				for (CssError[] error = errors.getErrors(); i < error.length; i++) {
-		    Exception ex = error[i].getException();
-		    if (!error[i].getSourceFile().equals(oldSourceFile)) {
-			oldSourceFile = error[i].getSourceFile();
-			ret.append("\nURI : ").append(oldSourceFile);
-			ret.append('\n');
-		    }
-		    ret.append(" Line : ").append(error[i].getLine());
-		    ret.append(" ");
-
-		    if (ex instanceof FileNotFoundException) {
-			ret.append("File not found ");
-			ret.append(ex.getMessage());
-			ret.append('\n');
-
-		    } else if (ex instanceof CssParseException) {
-			produceParseException((CssParseException) ex, ret);
-		    } else if (ex instanceof InvalidParamException) {
-			ret.append("\n\t");
-			ret.append(queryReplace(ex.getMessage())).append('\n');
-		    } else if (ex instanceof IOException) {
-			String stringError = ex.toString();
-			int index = stringError.indexOf(':');
-			ret.append(stringError.substring(0, index));
-			ret.append(" : ");
-			ret.append(ex.getMessage()).append('\n');
-
-		    } else if (error[i] instanceof CssErrorToken) {
-			CssErrorToken terror = (CssErrorToken) error[i];
-			ret.append("   ");
-			ret.append(terror.getErrorDescription()).append(" : ");
-			ret.append(terror.getSkippedString()).append('\n');
-
-		    } else {
-			ret.append(ex).append(" \n");
-
-			if (ex instanceof NullPointerException) {
-			    // ohoh, a bug
-			    ex.printStackTrace();
+		// Setting all the variables of the velocity context
+		ApplContext ac_default = new ApplContext(default_lang);
+		String k;
+		if (ac.getLang().equals(default_lang)) {
+			Iterator it = ac_default.getMsg().properties.keySet().iterator();
+			while (it.hasNext()) {
+				k = String.valueOf(it.next());
+				context.put(k, ac.getMsg().getString(k));
 			}
-		    }
-		}
-	    }
-	    out.println(ret.toString());
-	} catch (Exception e) {
-	    out.println("An error appears during error's ouput, sorry.");
-	    e.printStackTrace();
-	}
-    }
-
-    public void produceWarning() {
-	StringBuffer ret = new StringBuffer(1024);
-	String oldSourceFile = "";
-	int oldLine = -1;
-	String oldMessage = "";
-	try {
-	    if (warnings.getWarningCount() != 0) {
-		int i = 0;
-		warnings.sort();
-		for (Warning[] warning = warnings.getWarnings(); i < warning.length; i++) {
-
-		    Warning warn = warning[i];
-		    if (warn.getLevel() <= warningLevel) {
-			if (!warn.getSourceFile().equals(oldSourceFile)) {
-			    oldSourceFile = warn.getSourceFile();
-			    ret.append("\n URI : ");
-			    ret.append(oldSourceFile).append('\n');
-			}
-			/*if (warn.getLine() != oldLine
-			    || !warn.getWarningMessage().equals(oldMessage)) {*/
-			    
-			    oldLine = warn.getLine();
-			    oldMessage = warn.getWarningMessage();
-			    ret.append("Line : ").append(oldLine);
-
-			    if (warn.getLevel() != 0) {
-				ret.append(" Level : ");
-				ret.append(warn.getLevel());
-			    }
-			    ret.append(" ").append(oldMessage);
-
-			    if (warn.getContext() != null) {
-				ret.append(" : ").append(warn.getContext());
-			    }
-
-			    ret.append(" \n");
-			//}
-		    }
-		}
-	    }
-	    out.println(ret.toString());
-	} catch (Exception e) {
-	    out.println("An error appears during warning's ouput, sorry.");
-	    e.printStackTrace();
-	}
-    }
-
-    private String queryReplace(String s) {
-	if (s == null) {
-	    return "[empty string]";
-	} else {
-	    return s;
-	}
-    }
-
-    private final String processSimple(String s) {
-	return processStyle(general.getProperty(s), general);
-    }
-
-    private String processStyle(String str, Utf8Properties prop) {
-	if (str == null) {
-	    return "";
-	}
-
-	try {
-	    int i = 0;
-	    while ((i = str.indexOf("<!-- #", i)) >= 0) {
-		int lastIndexOfEntity = str.indexOf("-->", i);
-				String entity = str.substring(i + 6, lastIndexOfEntity - 1)
-						.toLowerCase();
-
-		if (entity.equals("warning")) {
-		    out.print(str.substring(0, i));
-					str = str.substring(lastIndexOfEntity + 3);
-		    i = 0;
-		    produceWarning();
-		} else if (entity.equals("error")) {
-		    out.print(str.substring(0, i));
-					str = str.substring(lastIndexOfEntity + 3);
-		    i = 0;
-		    produceError();
 		} else {
-		    String value = prop.getProperty(entity);
-		    if (value != null) {
-						str = str.substring(0, i) + value
-								+ str.substring(lastIndexOfEntity + 3);
-		    } else {
-			i += 6; // skip this unknown entity
-		    }
+			Iterator it = ac_default.getMsg().properties.keySet().iterator();
+			while (it.hasNext()) {
+				k = String.valueOf(it.next());
+				if (ac.getMsg().getString(k) == null)
+					context.put(k, ac_default.getMsg().getString(k));
+				else
+					context.put(k, ac.getMsg().getString(k));
+			}
 		}
-	    }
-			/*
-			 * if (errors.getErrorCount() == 0 && warnings.getWarningCount() ==
-			 * 0) { out.print("No errors or warnings found"); }
-			 */
-	    return str;
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    return str;
-	}
-    }
+		
+		if (ac.getLink() != null) {
+			HashMap[] languages = new HashMap[Messages.languages_name.size()];
+			String name;
+			for (int i = 0; i < Messages.languages_name.size(); ++i) {
+				name = String.valueOf(Messages.languages_name.get(i));
+				HashMap l = new HashMap();
+				l.put("name", name);
+				l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
+				languages[i] = l;
+			}
+			context.put("languages", languages);
+			String link = ac.getLink().replaceAll("&lang=.*&", "&");
+			link = link.replaceAll("&lang=.*$", "");
+			context.put("link", "?" + link.replaceAll("&", "&amp;"));
+		}
+		
+		// generated values
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mss'Z'");
+		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		context.put("currentdate", formatter.format(new Date()));
+		context.put("lang", ac.getContentLanguage());
+		context.put("errors_count", new Integer(errors.getErrorCount()));
+		context.put("warnings_count", new Integer(warnings.getWarningCount()));
+		context.put("ignored-warnings_count", new Integer(warnings.getIgnoredWarningCount()));
+		context.put("warning_level", new Integer(warningLevel));
+		context.put("rules_count", new Integer(items.size()));
+		context.put("no_errors_report", new Boolean(false));
+		context.put("charset", ac.getContentEncoding());
+		context.put("cssversion", ac.getCssVersion());
+		context.put("is_valid", (errors.getErrorCount() == 0) ? "true" : "false");
+		context.put("author", "www-validator-css");
+		context.put("author-email", "Email.html");
+		if (style.charset != null)
+			context.put("style_charset", style.charset);
 
-    public final static void printAvailableFormat(PrintWriter out) {
-	Enumeration e = availableFormat.propertyNames();
-		out.println(" -- listing available output format --");
-	while (e.hasMoreElements()) {
-	    String key = ((String) e.nextElement()).toLowerCase();
-			out.println("Format : " + key);
-			out.println("   File : " + getDocumentName(key));
-	}
-	out.flush();
-    }
+		produceError();
+		produceWarning();
+		produceStyleSheet();
 
-	private Utf8Properties setDocumentBase(String document) {
-		Utf8Properties properties = (Utf8Properties) formats.get(document);
-	if (properties == null) {
-	    URL url;
-			properties = new Utf8Properties();
-	    try {
-		url = StyleSheetGenerator.class.getResource(document);
-		java.io.InputStream f = url.openStream();
-		properties.load(f);
-		f.close();
-				properties.put("author", "Philippe Le Hegaret");
-				properties.put("author-email", "www-validator-css@w3.org");
-	    } catch (Exception e) {
-		System.err.println("org.w3c.css.css.StyleSheetGenerator: "
-				   + "couldn't load properties " + document);
-				System.err.println("  " + e.toString());
-		printAvailableFormat(new PrintWriter(System.err));
-	    }
-	    formats.put(document, properties);
+		try {
+            Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, this.getClass().getResource("").getPath());
+            Velocity.init();
+			template = Velocity.getTemplate(template_file);
+		} catch (ResourceNotFoundException rnfe) {
+			System.err.println(rnfe.getMessage());
+			rnfe.printStackTrace();
+		} catch (ParseErrorException pee) {
+			System.err.println(pee.getMessage());
+			pee.printStackTrace();
+		} catch (MethodInvocationException mie) {
+			System.err.println(mie.getMessage());
+			mie.printStackTrace();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
-		return new Utf8Properties(properties);
+	private final static String getURLProperty(String name) {
+		return availablePropertiesURL.getProperty(name);
+	}
+	
+	public final static void printAvailableFormat(PrintWriter out) {
+        Enumeration e = availableFormat.propertyNames();
+                out.println(" -- listing available output format --");
+        while (e.hasMoreElements()) {
+            String key = ((String) e.nextElement()).toLowerCase();
+                        out.println("Format : " + key);
+                        out.println("   File : " + getDocumentName(key));
+        }
+        out.flush();
     }
+	
+
+	/**
+	 * Test if <tt>document</tt> is an available output
+	 * @param document, the desired output
+	 * @return <tt>true</tt> if the desired output is available
+	*/
+	public static boolean isAvailableFormat(String document) {
+		return availableFormat.containsKey(document);
+	}
+	
 
     private final static String getDocumentName(String documentName) {
-		String document = availableFormat.getProperty(documentName
-				.toLowerCase());
-	if (document == null) {
-			System.err.println("Unable to find " + documentName.toLowerCase()
-					+ " output format");
-	    return documentName;
-	} else {
-	    return document;
-	}
+                String document = availableFormat.getProperty(documentName
+                                .toLowerCase());
+        if (document == null) {
+                        System.err.println("Unable to find " + documentName.toLowerCase()
+                                        + " output format");
+            return documentName;
+        } else {
+            return document;
+        }
     }
+	
+	/**
+	 * Add the style information to the context
+	 */
+	private void produceStyleSheet() {
+		context.put("at_rules_list", style.newGetRules());
+	}
 
-    static {
-	URL url;
-		availableFormat = new Utf8Properties();
-	try {
-	    url = StyleSheetGenerator.class.getResource("format.properties");
-	    java.io.InputStream f = url.openStream();
-	    availableFormat.load(f);
-	    f.close();
-	} catch (Exception e) {
-	    System.err.println("org.w3c.css.css.StyleSheetGenerator: "
-			       + "couldn't load format properties ");
-			System.err.println("  " + e.toString());
+	/**
+	 * Add the errors information to the context
+	 * For each error,
+	 * <ul>
+	 * <li> the error type and message, and
+	 * <li> the context type and value
+	 * </ul>
+	 * are set.
+	 */
+	private void produceError() {
+		Hashtable[] errors_content = new Hashtable[errors.getErrorCount()];
+
+		try {
+			if (errors.getErrorCount() != 0) {
+				int i = 0;
+				for (CssError[] error = errors.getErrors(); i < error.length; i++) {
+					Exception ex = error[i].getException();
+					errors_content[i] = new Hashtable();
+					errors_content[i].put("Error", error[i]);
+					errors_content[i].put("CtxName", "nocontext");
+					errors_content[i].put("CtxMsg", "");
+					errors_content[i].put("ErrorMsg", ((ex.getMessage() == null) ? "" : ex.getMessage()));
+					errors_content[i].put("ClassName", "unkownerror");
+
+					if (ex instanceof FileNotFoundException) {
+						errors_content[i].put("ClassName", "notfound");
+						String stringError = ex.getMessage();
+						int index = stringError.lastIndexOf(':');
+						String str = stringError.substring(0, index);
+						// The Exception name 'StringError' was previously
+						// displayed
+						errors_content[i].put("ErrorMsg", ac.getMsg().getGeneratorString("not-found") + ": " + str);
+
+					} else if (ex instanceof CssParseException) {
+						produceParseException((CssParseException) ex, errors_content[i]);
+					} else if (ex instanceof InvalidParamException) {
+						errors_content[i].put("ClassName", "invalidparam");
+
+					} else if (ex instanceof IOException) {
+						String stringError = ex.toString();
+						// int index = stringError.indexOf(':');
+						// The Exception name 'StringError' was previously
+						// displayed
+						// between </td> and <td class='nocontext' ...
+						// It's now displayed inside the <td class='nocontext'>
+						// tag
+						// because we would need a new variable to put it there
+						// for
+						// just one rare case
+						// TODO: why not using ex.toString()?
+						errors_content[i].put("CtxMsg", stringError);// .substring(0,
+																		// index));
+						errors_content[i].put("ClassName", "io");
+
+					} else if (error[i] instanceof CssErrorToken) {
+						CssErrorToken terror = (CssErrorToken) error[i];
+						errors_content[i].put("ClassName", "errortoken");
+						errors_content[i].put("ErrorMsg", terror.getErrorDescription() + " : "
+								+ terror.getSkippedString());
+					} else {
+						errors_content[i].put("ClassName", "unkownerror");
+						errors_content[i].put("ErrorMsg", ac.getMsg().getErrorString("unknown") + " " + ex);
+						if (ex instanceof NullPointerException) {
+							// ohoh, a bug
+							ex.printStackTrace();
+						}
+					}
+				}
+			}
+			context.put("errors_content", errors_content);
+		} catch (Exception e) {
+			context.put("errors_content", errors_content);
+			context.put("request", ac.getMsg().getGeneratorString("request"));
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
-    }
+
+	/**
+	 * Add an array of warnings to the context so it c an be displayed
+	 * 
+	 */
+	private void produceWarning() {
+		try {
+			if (warnings.getWarningCount() != 0) {
+				warnings.sort();
+				context.put("warnings_list", warnings.getWarnings());
+			}
+		} catch (Exception e) {
+			out.println(ac.getMsg().getGeneratorString("request"));
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Some error need more details
+	 * We can add a link or information of this kind
+	 * @param error, the error to check
+	 * @param ht_error, the Hastable with information about this error
+	 */
+	private void produceParseException(CssParseException error, Hashtable ht_error) {
+		if (error.getContexts() != null && error.getContexts().size() != 0) {
+			ht_error.put("CtxName", "codeContext");
+			StringBuffer buf = new StringBuffer();
+			// Loop on the list of contexts for errors
+			for (Enumeration e = error.getContexts().elements(); e.hasMoreElements();) {
+				Object t = e.nextElement();
+				// if the list is not null, add a comma
+				if (t != null) {
+					buf.append(t);
+					if (e.hasMoreElements()) {
+						buf.append(", ");
+					}
+				}
+			}
+			if (buf.length() != 0)
+				ht_error.put("CtxMsg", String.valueOf(buf));
+		} else {
+			ht_error.put("CtxName", "nocontext");
+		}
+		ht_error.put("ClassName", "message");
+		String name = error.getProperty();
+		String ret;
+		if ((name != null) && (getURLProperty(name) != null)) {
+			//we add a link information
+			ht_error.put("link_before_parse_error", ac.getMsg().getGeneratorString("property"));
+			ht_error.put("link_value_parse_error", getURLProperty("@url-base") + getURLProperty(name));
+			ht_error.put("link_name_parse_error", name);
+		}
+		if ((error.getException() != null) && (error.getMessage() != null)) {
+			if (error.isParseException()) {
+				ret = queryReplace(error.getMessage());
+			} else {
+				Exception ex = error.getException();
+				if (ex instanceof NumberFormatException) {
+					ret = ac.getMsg().getGeneratorString("invalid-number");
+				} else {
+					ret = queryReplace(ex.getMessage());
+				}
+			}
+			if (error.getSkippedString() != null) {
+				ht_error.put("span_class_parse_error", "skippedString");
+				ht_error.put("span_value_parse_error", queryReplace(error.getSkippedString()));
+			} else if (error.getExp() != null) {
+				ret += " : " + queryReplace(error.getExp().toStringFromStart());
+				ht_error.put("span_class_parse_error", "exp");
+				ht_error.put("span_value_parse_error", queryReplace(error.getExp().toString()));
+			}
+		} else {
+			ret = ac.getMsg().getGeneratorString("unrecognize");
+			ht_error.put("span_class_parse_error", "other");
+			ht_error.put("span_value_parse_error", queryReplace(error.getSkippedString()));
+		}
+		ht_error.put("ErrorMsg", ret);
+	}
+
+	/**
+	 * 
+	 * @param s, the string to convert
+	 * @return the string s with html character escaped
+	 */
+	private String queryReplace(String s) {
+		if (s != null) {
+		    int len = s.length();
+		    StringBuffer ret = new StringBuffer(len);
+		    char c;
+
+		    for (int i = 0; i < len; i++) {
+		    	switch (c = s.charAt(i)) {
+			    	case '&'  : ret.append("&amp;"); break;
+			    	case '\'' : ret.append("&apos;"); break;
+			    	case '"'  : ret.append("&quot;"); break;
+			    	case '<'  : ret.append("&lt;"); break;
+			    	case '>'  : ret.append("&gt;"); break;
+			    	default   : ret.append(c);
+		    	}
+		    }
+		    return ret.toString();
+		}
+		return "[empty string]";
+	}
+
+	/**
+	 * Display the output 
+	 */
+	public void print(PrintWriter out) {
+		this.out = out;
+		try {
+			template.merge(context, out);
+		} catch (Exception e) {
+			new ErrorReportHTML(ac, title, "", e).print(out);
+		}
+		out.flush();
+	}
+
+	/**
+	 * The user doesn't want to see the error report when this function is called
+	 */
+	public void desactivateError() {
+		context.put("no_errors_report", new Boolean(true)); // activate the no errors report
+	}
+
 }
