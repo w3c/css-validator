@@ -13,12 +13,9 @@ public class StyleReportFactory {
 	 * Give back a "StyleReport" object based on various parameters, but mainly
 	 * output"
 	 */
-	public static StyleReport getStyleReport(ApplContext ac, String title,
-			StyleSheet style, String document, int warningLevel) {
-		if (document.equals("text"))
-			return new StyleSheetGenerator(title, style, document, warningLevel);
-		if (document.equals("soap12") || document.equals("ucn") || document.equals("xml"))
-			return new StyleSheetGeneratorHTML(ac, title, style, document, warningLevel);
-		return new StyleSheetGeneratorHTML(ac, title, style, "xhtml", warningLevel);
+	public static StyleReport getStyleReport(ApplContext ac, String title, StyleSheet style, String document,
+			int warningLevel) {
+		String output = (StyleSheetGenerator.isAvailableFormat(document)) ? document : "xhtml";
+		return new StyleSheetGenerator(ac, title, style, output, warningLevel);
 	}
 }
