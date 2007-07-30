@@ -31,6 +31,7 @@ import org.w3c.css.css.StyleSheet;
 import org.w3c.css.css.StyleSheetParser;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
+import org.w3c.css.index.IndexGenerator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
 import org.w3c.css.util.FakeFile;
@@ -124,6 +125,15 @@ public final class CssValidator extends HttpServlet {
 	    && (config.getInitParameter("import").equals("false"))) {
 	    Util.importSecurity = true;
 	}
+	
+	// The following code will check if the index files are missing or outdated
+	// If so, the files will be regenerated
+	// This is done in a Thread so that the validation can carry on.
+	new Thread () {
+		public void run () {
+			IndexGenerator.generatesIndex(true);
+		}
+	}.start();
 
     }
 
@@ -488,7 +498,7 @@ public final class CssValidator extends HttpServlet {
 	} finally {
 	    in.close();
 	}
-
+	
 	try {
 	    buf = new byte[count];
 	    System.arraycopy(general, 0, buf, 0, count);
@@ -525,7 +535,7 @@ public final class CssValidator extends HttpServlet {
 	if (output == null) {
 	    output = texthtml;
 	}
-	if (file == null || file.getSize() == 0 || text == null || text.length() == 0) {
+	if ((file == null || file.getSize() == 0) && (text == null || text.length() == 0)) {
 	    // res.sendError(res.SC_BAD_REQUEST,
 	    // "You have send an invalid request");
 	    handleError(res, ac, output, "No file",
@@ -620,8 +630,6 @@ public final class CssValidator extends HttpServlet {
 	    throw new IOException(ac.getMsg().getServletString("process") + " "
 				  + title);
 	}
-
-	System.err.println(output);
 
 	// if the output parameter was a mime type, we convert it
 	// to an understandable value for the StyleReportFactory
