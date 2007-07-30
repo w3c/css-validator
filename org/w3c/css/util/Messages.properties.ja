@@ -48,10 +48,7 @@ validate_by_input: テキストエリアに直接入力して検証
 enter_CSS: 検証したいCSSをテキストエリアに入力してください (CSSソースのみ)
 submit_input: Submit your input for validation
 note: Note
-note_xhtml_valid: CSSスタイルシートを意図した通りに機能させるには、
-      正しい文書解析木が必要です。つまり、
-      <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
-      なHTML</a>
+note_xhtml_valid: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当<span lang="en">(valid)</span> なHTML</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: CSS Validator 検証結果 
