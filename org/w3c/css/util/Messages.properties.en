@@ -1,5 +1,56 @@
 language_name: English
-# Defines the variables
+more_options: More Options
+title_more_options: Show/Hide extra validation options
+all: All
+normal_report: Normal report
+most_important: Most important
+no_warnings: No warnings
+profile: Profile
+no_special_profile: No special profile
+CSS1: CSS version 1
+CSS2: CSS version 2
+CSS2.1: CSS version 2.1
+CSS3: CSS version 3
+SVG: SVG
+SVG_basic: SVG Basic
+SVG_tiny: SVG tiny
+mobile: Mobile
+ATSC_TV_profile: ATSC TV profile
+TV_profile: TV profile
+medium: Medium
+aural: aural
+braille: braille
+embossed: embossed
+handheld: handheld
+print: print
+projection: projection
+screen: screen
+tty: TTY
+tv: TV
+presentation: presentation
+check: Check
+W3C_CSS_validation_service: The W3C CSS Validation Service
+check_CSS: Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+by_URI: By URI
+by_file_upload: By file upload
+by_direct_input: By direct input
+validate_by_URI: Validate by URI
+enter_uri: Enter the URI of a document (HTML with CSS or CSS only) you would like validated
+page_address: Address of page to Validate
+address: Address
+submit_uri: Submit URI for validation
+validate_by_file_upload: Validate by file upload
+choose_document: Choose the document you would like validated (CSS files only)
+choose_local_file: Choose a Local File to Upload and Validate
+local_CSS_file: Local CSS file
+submit_file: Submit file for validation
+validate_by_input: Validate by direct input
+enter_CSS: Enter the CSS you would like validated
+submit_input: Submit your input for validation
+note: Note
+note_xhtml_valid: If you want to validate your CSS style sheet embedded in an (X)HTML document, you should first <a href="http://validator.w3.org/">check that the (X)HTML you use is valid</a>
+# End of variables added along with Index page template
+
 W3C_validator_results: W3C CSS Validator results for
 # file_title: <!-- provided by the user -->
 CSS_validation_service: CSS validation Service
@@ -53,6 +104,7 @@ W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality
 learn_more_msg: Learn more about Cascading Style Sheets
 support: Support this tool, become a
 supporter: W3C Supporter
+# End of variables added along with Velocity
 
 # Defines your own error and warning message here
 content-type: text/html; charset=utf-8

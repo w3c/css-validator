@@ -1,14 +1,66 @@
 language_name: Polski
+more_options: Więcej opcji
+title_more_options: Pokaż/schowaj dodatkowe opcje
+all: Wszystkie
+normal_report: Zwyczajny raport
+most_important: Najważniejsze
+no_warnings: Brak ostrzeżeń
+profile: Profil
+no_special_profile: Brak specjalnego profilu
+CSS1: CSS wersja 1
+CSS2: CSS wersja 2
+CSS2.1: CSS wersja 2.1
+CSS3: CSS wersja 3
+SVG: SVG
+SVG_basic: SVG Basic
+SVG_tiny: SVG tiny
+mobile: mobilny
+ATSC_TV_profile: ATSC TV profil
+TV_profile: TV profil
+medium: Medium
+aural: dźwiękowe
+braille: braille
+embossed: wytłaczane
+handheld: ręczne
+print: druk
+projection: projekcja
+screen: ekran
+tty: TTY
+tv: TV
+presentation: prezentacja
+check: Sprawdź
+W3C_CSS_validation_service: Usługa Walidacji CSS W3C
+check_CSS: Sprawdź Kaskadowe Arkusze Stylów CSS) i dokumenty (X)HTML z arkuszami stylów
+by_URI: przez URI
+by_file_upload: poprzez załadowanie pliku
+by_direct_input: poprzez wprowadzenie kodu
+validate_by_URI: Walidacja przez URI
+enter_uri: Wprowadź URI dokumentu (HTML z CSS lub tylko CSS) do walidacji  
+page_address: Adres strony, która ma być walidowana
+address: Adres
+submit_uri: Prześlij plik do walidacji
+validate_by_file_upload: Walidacja poprzez załadowanie pliku
+choose_document: Wybierz dokument do walidacji (jedynie pliki CSS)
+choose_local_file: Wybierz lokalny plik, który chcesz walidować
+local_CSS_file: Lokalny plik CSS
+submit_file: Prześlij plik do walidacji
+validate_by_input: Walidacja poprzez bezpośrednie wprowadzenie kodu
+enter_CSS: Wprowadź kod CSS do walidacji
+submit_input: Prześlij plik do walidacji
+note: Uwaga
+note_xhtml_valid: Jeśli chcesz walidować arkusz CSS umieszczony w dokumencie (X)HTML, powinieneś wpierw <a href="http://validator.w3.org/">sprawdzić, czy użyty (X)HTML jest poprawny</a>
+# End of variables added along with Index page template
+
 W3C_validator_results: Wyniki Walidatora CSS W3C dla
 # file_title: <!-- provided by the user -->
 CSS_validation_service: <!-- translation unavailable -->
-jump_to: Zobacz:
+jump_to: Zobacz
 # errors_count: <!-- generated on the fly -->
-errors: błędy
+errors: Błędy
 # warnings_count <!-- generated on the fly -->
-warnings: ostrzeżenia
-validated_CSS: swój arkusz stylu
-congrats: Gratulacje!
+warnings: Ostrzeżenia
+validated_CSS: Swój arkusz stylu
+congrats: Gratulacje! <!-- translation unavailable for "No Error Found." -->
 doc_validates: Dokument ten jest poprawnie napisanym arkuszem  <a href=" http://www.w3.org/TR/REC-CSS2/ ">CSS</a>!
 no_errors_interoperable_msg: Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjną \
 , możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidację. Oto kod HTML\
@@ -23,9 +75,11 @@ no_errors_create_link_msg: Jeśli chciałbyś stworzyć link do tej strony (np. 
 walidacji) aby ułatwić sobie ponowną walidację w przyszłości lub w celu pozwolenia \
 innym na walidację tej strony, użyj następującego adresu:
 no_errors_forHTML_only_msg: jedynie dla dokumentów HTML/XML
-no_errors_bookmark_msg: lub możesz dodać stronę do Ulubionych.
+no_errors_bookmark_msg: Lub możesz dodać stronę do Ulubionych.
+note_valide_html: <!-- translation unavailable -->
 top: Top <!-- translation unavailable -->
 # hook_html_validator <!-- generated on the fly -->
+not-css1-style: <!-- translation unavailable --> 
 errors_sorry_msg: Błędy
 # errors_list: <!-- generated on the fly -->
 # warnings_list: <!-- generated on the fly -->
@@ -47,9 +101,10 @@ dl_title: Ściągnij i zainstaluj walidator CSS
 feedback_title: Jak wysłać opinię na temat tej usługi
 credits_title: Podziękowania
 W3C_quality_msg: <!-- translation unavailable -->
+learn_more_msg: <!-- translation unavailable -->
 support: <!-- translation unavailable -->
 supporter: <!-- translation unavailable -->
-# End of recently added variables...!
+# End of variables added along with Velocity
 
 # Definiuje komunikaty błędów i ostrzeżeń
 content-type: text/html; charset=utf-8

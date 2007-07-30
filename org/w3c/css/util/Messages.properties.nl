@@ -1,4 +1,111 @@
 language_name: Nederlands
+more_options: Meer Opties
+title_more_options: Weergeven/Verbergen van extra validatie opties
+all: Alle
+normal_report: Normaal
+most_important: Meest belangrijk
+no_warnings: Geen
+profile: Profiel
+no_special_profile: Geen speciaal profiel
+CSS1: CSS versie 1
+CSS2: CSS versie 2
+CSS2.1: CSS versie 2.1
+CSS3: CSS versie 3
+SVG: SVG
+SVG_basic: SVG Basic
+SVG_tiny: SVG tiny
+mobile: Mobile
+ATSC_TV_profile: ATSC TV profiel
+TV_profile: TV profiel
+medium: Medium
+aural: aural
+braille: braille
+embossed: embossed
+handheld: handheld
+print: print
+projection: projection
+screen: screen
+tty: TTY
+tv: TV
+presentation: presentation
+check: Controleer
+W3C_CSS_validation_service: De W3C CSS Validatie Service
+check_CSS:Controleer Cascading Style Sheets (CSS) en (X)HTML documenten die gebruik maken van style sheets
+by_URI: via een URI
+by_file_upload: via het uploaden van een bestand
+by_direct_input: via directe invoer
+validate_by_URI: Validate via een URI
+enter_uri: Geef de URI op van een document (HTML met CSS of alleen CSS) die je wilt valideren
+page_address: Address of page to Validate
+address: Adres
+submit_uri: Verzenden om te valideren
+validate_by_file_upload: Valideer via het uploaden van een bestand
+choose_document: Kies het document dat je wilt valideren (alleen CSS bestanden)
+choose_local_file: Kies een Lokaal Bestand dat je wilt Uploaden en Valideren
+local_CSS_file: Local CSS file
+submit_file: Verzenden om te valideren
+validate_by_input: Valideer via directe invoer
+enter_CSS: Voer de CSS in die je wilt valideren
+submit_input: Verzenden om te valideren
+note: Opmerking
+note_xhtml_valid: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>
+# End of variables added along with Index page template
+
+W3C_validator_results: W3C CSS Validator Resultaten met object : 
+# file_title: <!-- provided by the user -->
+CSS_validation_service: CSS validation Service <!-- translation unavailable -->
+jump_to: Ga naar
+# errors_count: <!-- generated on the fly -->
+errors: Fouten 
+# warnings_count <!-- generated on the fly -->
+warnings: Waarschuwingen
+validated_CSS: Uw gevalideerde CSS
+congrats: Gefeliciteerd! <!-- translation unavailable for "No Error Found." -->
+doc_validates: Dit document is gevalideerd als <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>!
+no_errors_interoperable_msg: Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
+kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
+die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen:
+valid_CSS: Valid CSS! <!-- translation unavailable -->
+# <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
+no_errors_close_tags_msg: close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01 <!-- translation unavailable -->
+no_errors_dl_local_msg: Als u wilt, kunt u een kopie van dit plaatje downloaden en in uw locale webdirectory \
+te zetten en in het XHTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
+in plaats van aan die op deze server.
+no_errors_create_link_msg: Als u een link wilt maken naar deze pagina (i.e. naar dit validatieresultaat \
+om het gemakkelijker te maken deze pagina later te revalideren of anderen \
+in staat te stellen uw pagina te valideren is de URL:
+no_errors_forHTML_only_msg: alleen voor HTML documenten
+no_errors_bookmark_msg: Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.
+note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>. <!-- translation unavailable -->
+top: Top
+# hook_html_validator <!-- generated on the fly -->
+not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
+errors_sorry_msg: Fouten <!-- translation unavailable for "Sorry! We found the following errors" -->
+# errors_list: <!-- generated on the fly -->
+# warnings_list: <!-- generated on the fly -->
+# rules_count: <!-- generated on the fly -->
+valid_CSS_info: Uw gevalideerde Cascading Style Sheet :
+# charset: <!-- generated on the fly -->
+# rules_list: <!-- generated on the fly -->
+CSS_not_found: Geen style sheet gevonden
+home: Home
+about: Over
+doc: Documentatie
+dl: Download
+feedback: Reacties
+credits: Credits
+home_title: Home pagina van de W3C CSS Validatie Service
+about_title: Over deze service
+doc_title: Documentatie voor de W3C CSS Validatie Service
+dl_title: Download de CSS validator
+feedback_title: Hoe reacties te geven over deze service
+credits_title: Credits en Erkenning
+W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more
+learn_more_msg: Learn more about Cascading Style Sheets
+support: Support this tool, become a
+supporter: W3C Supporter
+# End of variables added along with Velocity
+
 # Definieert uw eigen error en waarschuwingsberichten hier
 content-type: text/html; charset=utf-8
 content-language: nl

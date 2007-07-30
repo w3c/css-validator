@@ -1,4 +1,111 @@
 language_name: Español
+more_options: M&aacute;s opciones
+title_more_options: Show/Hide extra validation options
+all: Todos
+normal_report: Informe normal
+most_important: Las m&aacute;s importantes
+no_warnings: Sin advertencias
+profile: Perfil
+no_special_profile: Ninguno en especial
+CSS1: CSS versi&oacute;n 1
+CSS2: CSS versi&oacute;n 2
+CSS2.1: CSS versi&oacute;n 2.1
+CSS3: CSS versi&oacute;n 3
+SVG: SVG
+SVG_basic: SVG B&aacute;sico
+SVG_tiny: SVG Reducido
+mobile: M&oacute;vil
+ATSC_TV_profile: Perfil de TV ATSC
+TV_profile: Perfil de TV
+medium: Medio
+aural: auditivo
+braille: braille
+embossed: relieve
+handheld: peque&ntilde;os dispositivos
+print: impresi&oacute;n
+projection: proyecci&oacute;n
+screen: pantalla
+tty: teletipo
+tv: televisi&oacute;n
+presentation: presentaci&oacute;n
+check: Check
+W3C_CSS_validation_service: El Servicio de Validaci&oacute;n de CSS del W3C
+check_CSS: Verifica Hojas de Estilo en Cascada (CSS) y documentos (X)HTML con hojas de estilo
+by_URI: mediante URI
+by_file_upload: mediante Carga de Archivo
+by_direct_input: mediante Entrada directa
+validate_by_URI: Validar mediante URI
+enter_uri: Introduce la URI de un documento (HTML con CSS o s&oacute;lo CSS) que desees validar
+page_address: Direcci&oacute;n de la p&aacute;gina a Validar
+address: Direcci&oacute;n
+submit_uri: Enviar archivo para su validaci&oacute;n
+validate_by_file_upload: Validar mediante Carga de un Archivo
+choose_document: Elige el documento que desees validar (&uacute;nicamente archivos CSS)
+choose_local_file: Elige un Archivo Local para su Carga y Validaci&oacute;n
+local_CSS_file: Archivo CSS local
+submit_file: Enviar archivo para su validaci&oacute;n
+validate_by_input: Validar mediante entrada directa
+enter_CSS: Introduce el c&oacute;digo CSS que desees validar
+submit_input: Enviar archivo para su validaci&oacute;n
+note: Nota
+note_xhtml_valid: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deber&iacute;as antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es v&aacute;lido</a>
+# End of variables added along with Index page template
+
+W3C_validator_results: Resultados del Validador CSS del W3C para 
+# file_title: <!-- provided by the user -->
+CSS_validation_service: Servicio de Validaci&oacute;n CSS
+jump_to: Ir a
+# errors_count: <!-- generated on the fly -->
+errors: Los Errores 
+# warnings_count <!-- generated on the fly -->
+warnings: Las Advertencias 
+validated_CSS: Su Hoja de Estilo validada
+congrats: ¡Enhorabuena! No error encontrado.
+doc_validates: ¡Este documento es <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a> válido!
+no_errors_interoperable_msg: Puede mostrar este icono en cualquier página que valide para que los usuarios vean \
+que se ha preocupado por crear una página Web interoperable. A continuación \
+se encuentra el XHTML que puede usar para añadir el icono a su página Web:
+valid_CSS: ¡CSS Válido!
+# <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
+no_errors_close_tags_msg: cierre la etiqueta img con &gt; en lugar de /&gt; si utiliza HTML &lt;= 4.01
+no_errors_dl_local_msg: Si lo desea, puede descargar una copia de la imagen para guardarla en su \
+directorio web local y cambiar el fragmento anterior de XHTML para referenciar \
+a la imagen en local en lugar de a la de éste servidor.
+no_errors_create_link_msg: Si desea crear un enlace con esta página (es decir, con los resultados \
+de la validación) para hacer que sea más fácil revalidar la página en el futuro, \
+o para permitir que otras personas validen su página, el URI es:
+no_errors_forHTML_only_msg: para documentos HTML/XML únicamente
+no_errors_bookmark_msg: O, simplemente, puede añadir la página actual a su lista de marcadores o favoritos.
+note_valide_html: Para funcionar como previsto, tu hoja de estilo CSS necesita un "arbol sintactico". Esto significa que usted necesita usar <a href="http://validator.w3.org/"> un valido codigo HTML</a>.
+top: Top
+# hook_html_validator <!-- generated on the fly -->
+not-css1-style: /* ¡ TENGA CUIDADO ! ¡ Esta propiedad no está incluida en CSS1 ! */
+errors_sorry_msg: Disculpas! Hemos encontrado las siguientes errores
+# errors_list: <!-- generated on the fly -->
+# warnings_list: <!-- generated on the fly -->
+# rules_count: <!-- generated on the fly -->
+valid_CSS_info: Información de CSS válida
+# charset: <!-- generated on the fly -->
+# rules_list: <!-- generated on the fly -->
+CSS_not_found: No se ha encontrado ninguna hoja de estilo
+home: Inicio
+about: Acerca de este servicio
+doc: Documentaci&oacute;n
+dl: Download
+feedback: Comentarios
+credits: Cr&eacute;ditos
+home_title: P&aacute;gina de inicio del Servicio de Validaci&oacute;n CSS del  W3C
+about_title: Acerca de este servicio
+doc_title: Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C
+dl_title: Descargar y installar el validador CSS
+feedback_title: C&oacute;mo realizar comentarios sobre este servicio
+credits_title: Cr&eacute;ditos y Agradecimientos
+W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more <!-- translation unavailable -->
+learn_more_msg: Learn more about Cascading Style Sheets <!-- translation unavailable -->
+support: Support this tool, become a <!-- translation unavailable -->
+supporter: W3C Supporter <!-- translation unavailable -->
+# End of variables added along with Velocity
+
 # Defines your own error and warning message here
 content-type: text/html; charset=utf-8
 content-language: es

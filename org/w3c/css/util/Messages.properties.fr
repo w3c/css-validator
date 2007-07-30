@@ -1,5 +1,56 @@
 language_name: Français
-# Defines the variables
+more_options: Options supplémentaires
+title_more_options: Cacher/Révéler les options supplémentaires de validation
+all: Tous
+normal_report: Rapport normal
+most_important: Les plus importants
+no_warnings: Aucun avertissement
+profile: Profil
+no_special_profile: Aucun profil particulier
+CSS1: CSS niveau 1
+CSS2: CSS niveau 2
+CSS2.1: CSS niveau 2.1
+CSS3: CSS niveau 3
+SVG: SVG
+SVG_basic: SVG Basic
+SVG_tiny: SVG tiny
+mobile: Mobile
+ATSC_TV_profile: Profil ATSC TV
+TV_profile: Profil TV
+medium: Média
+aural: aural
+braille: braille
+embossed: embossed
+handheld: handheld
+print: print
+projection: projection
+screen: screen
+tty: TTY
+tv: TV
+presentation: presentation
+check: Vérifier
+W3C_CSS_validation_service: Service de validation CSS du W3C
+check_CSS: Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
+by_URI: par adresse URI
+by_file_upload: par chargement de Fichier
+by_direct_input: par Saisie Directe
+validate_by_URI: Validation par adresse URI
+enter_uri: Saisissez l'adresse URI du document (HTML avec CSS, ou CSS seul) à valider
+page_address: Adresse du document à valider
+address: Adresse
+submit_uri: Vérifier le document sélectionné
+validate_by_file_upload: Valider par Chargement de Fichier
+choose_document: Choisissez la feulle de style à valider (ATTENTION : feuilles de style CSS uniquement)
+choose_local_file: Choisir un fichier local à valider
+local_CSS_file: Fichier CSS local
+submit_file: Valider le fichier selectionné
+validate_by_input: Validation par Saisie Directe
+enter_CSS: Saisissez la feuille de style à valider  (ATTENTION : feuilles de style CSS uniquement)
+submit_input: Valider la feuille de style
+note: Remarque
+note_xhtml_valid: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>
+# End of variables added along with Index page template
+
 W3C_validator_results: R&eacute;sultats de la validation W3C CSS de
 # file_title: <!-- provided by the user -->
 CSS_validation_service: CSS validation Service
@@ -53,6 +104,7 @@ W3C_quality_msg: L'activité Assurance Qualit&eacute; du W3C vous offre des outi
 learn_more_msg: Plus d'informations sur les feuilles de style en cascade
 support: Aidez le validateur, devenez
 supporter: Contributeur du W3C
+# End of variables added along with Velocity
 
 # Defines your own error and warning message here
 content-type: text/html; charset=utf-8
