@@ -1,0 +1,178 @@
+#macro( moreOptionMacro $submit_message)
+  <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+    <legend class="toggletext" title="$title_more_options">$more_options</legend>
+    <div>
+      <label for="warning_direct">$warnings :</label>
+      <select id="warning_direct" name="warning"> 
+        <option value="2">$all</option>
+        <option selected="selected" value="1">$normal_report</option>
+        <option value="0">$most_important</option>
+        <option value="no">$no_warnings</option>
+      </select>
+      
+      <label for="profile_direct">$profile :</label>
+      <select id="profile_direct" name="profile">
+        <option value="none">$no_special_profile</option>
+        <option value="css1">$CSS1</option>
+        <option value="css2">$CSS2</option>
+        <option selected="selected" value="css21">$CSS2.1</option>
+        <option value="css3">$CSS3</option>
+        <option value="svg">$SVG</option>
+        <option value="svgbasic">$SVG_basic</option>
+        <option value="svgtiny">$SVG_tiny</option>  
+        <option value="mobile">$mobile</option>
+        <option value="atsc-tv">$ATSC_TV_profile</option>
+        <option value="tv">$TV_profile</option>
+      </select>
+
+      <label for="medium_direct">$medium :</label>
+      <select id="medium_direct" name="usermedium">
+        <option selected="selected" value="all">$all</option>
+        <option value="aural">$aural</option>
+        <option value="braille">$braille</option>
+        <option value="embossed">$embossed</option>
+        <option value="handheld">$handheld</option>
+        <option value="print">$print</option>
+        <option value= "projection">$projection</option>
+        <option value="screen">$screen</option>
+        <option value="tty">$tty</option>
+        <option value="tv">$tv</option>
+        <option value="presentation">$presentation</option>
+      </select>
+    </div><!-- item_contents -->
+  </fieldset><!-- invisible -->
+  <input type="hidden" name="lang" value="$lang" />
+  
+  <p class="submit_button">
+    <label title="$submit_message">
+      <input type="submit" value="$check" />
+    </label>
+  </p>
+#end
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="$lang" lang="$lang">
+  <head>
+    <title>$W3C_CSS_validation_service</title>
+    <link rev="made" href="mailto:www-validator-css@w3.org" />
+    <link rev="start" href="./" title="$home_title" />
+    <style type="text/css" media="all">@import "style/base.css";</style>
+    <script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
+    <script type="text/javascript" src="tabtastic/attachevent.js"></script>
+    <script type="text/javascript" src="tabtastic/addcss.js"></script>
+    <script type="text/javascript" src="tabtastic/tabtastic.js"></script>
+    <script src="toggle.js" type="text/javascript"></script>
+    <meta name="revision" content="\$Id\$" />
+  </head>
+
+  <body>
+   <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
+    <img src="images/css_validation_service.png" alt="$W3C_CSS_validation_service" /></h1>
+   </div>
+      <p id="tagline">
+        $check_CSS
+      </p>
+  <div id="frontforms">
+      <ul class="tabset_tabs">
+        <li><a href="#validate-by-uri" class="active">$by_URI</a></li><li><a href="#validate-by-upload">$by_file_upload</a></li><li><a href="#validate-by-input">$by_direct_input</a></li>
+      </ul>
+      <div id="fields">
+
+      <fieldset id="validate-by-uri" class="tabset_content front">
+        <legend class="tabset_label">$validate_by_URI</legend>
+        <form method="get" action="validator">
+        <p class="instructions">
+          $enter_uri :
+        </p>
+        <p>
+           <label title="$page_address" for="uri">$address :
+             <input type="text" name="uri" id="uri" size="45" />
+           </label>
+        </p>
+      #moreOptionMacro($submit_uri)
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-upload"  class="tabset_content front">
+        <legend class="tabset_label">$validate_by_file_upload</legend>
+      <form method="post" enctype="multipart/form-data" action="validator">
+        <p class="instructions">$choose_document :</p>
+        <p>
+          <label title="$choose_local_file" for="file">$local_CSS_file :
+          <input type="file" id="file" name="file" size="30" /></label></p>
+      #moreOptionMacro($submit_file)
+      </form>
+      </fieldset>
+
+      <fieldset id="validate-by-input"  class="tabset_content front">
+        <legend class="tabset_label">$validate_by_input</legend>
+        <form action="validator" enctype="multipart/form-data" method="post">
+        <p class="instructions">$enter_CSS :</p>
+        <p>
+          <textarea name="text" rows="12" cols="70"></textarea>
+        </p>      
+      #moreOptionMacro($submit_input)
+      </form>
+      </fieldset>
+      </div><!-- fields -->
+  </div> <!-- frontforms -->
+  <p><strong>$note</strong>: $note_xhtml_valid.
+  </p>
+  <ul class="navbar" id="menu">
+    <li><a href="about.html" title="$about_title">$about</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="$doc_title">$doc</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="$dl_title">$dl</a> <span class="hideme">|</span></li>
+    <li><a href="Email.html" title="$feedback_title">$feedback</a> <span class="hideme">|</span></li>
+    <li><a href="thanks.html" title="$credits_title">$credits</a></li>
+  </ul>
+
+   <ul id="lang_choice">
+#foreach ( $language in $languages )
+    #set ( $name = $language.get("name") )
+    #if ( $language.get("real") )
+        #set ( $real =  $language.get("real") )
+    #else
+        #set ( $real = $language.get("name") )
+    #end
+
+        <li><a href="validator.html.$name"
+            lang="$name"
+            xml:lang="$name"
+            hreflang="$name"
+            rel="alternate">$real</a>
+        </li>
+#end
+   </ul>
+
+   <p id="activity_logos">
+     <a href="http://www.w3.org/QA/" title="$W3C_quality_msg"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="$learn_more_msg"><img src="images/woolly-icon" alt="CSS" /></a>
+   </p>
+   <p id="support_logo">
+     $support<br />
+     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="$supporter" /></a>
+   </p>
+
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
+
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+  </body>
+</html>
+
