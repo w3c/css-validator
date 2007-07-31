@@ -211,10 +211,7 @@ public final class StyleSheetParser
 	    }
 	    AtRuleMedia m = new AtRuleMedia();
 	    try {
-		StringTokenizer tokens = new StringTokenizer(media, ",");
-		while (tokens.hasMoreTokens()) {
-		    m.addMedia(tokens.nextToken().trim(), ac);
-		}
+	    addMedias(m, media, ac);
 		cssFouffa.setAtRule(m);
 	    } catch (org.w3c.css.util.InvalidParamException e) {
 		Errors er = new Errors();
@@ -230,6 +227,13 @@ public final class StyleSheetParser
 							-1, e));
 	    notifyErrors(er);
 	}
+    }
+    
+    private void addMedias(AtRuleMedia m, String medias, ApplContext ac) throws InvalidParamException {
+    	StringTokenizer tokens = new StringTokenizer(medias, ",");
+		while (tokens.hasMoreTokens()) {
+	        m.addMedia(tokens.nextToken().trim(), ac);
+		}
     }
 
     /**
@@ -267,7 +271,7 @@ public final class StyleSheetParser
 
 	    AtRuleMedia m = new AtRuleMedia();
 	    try {
-		m.addMedia(media, ac);
+	    	addMedias(m, media, ac);
 		cssFouffa.setAtRule(m);
 	    } catch (org.w3c.css.util.InvalidParamException e) {
 		Errors er = new Errors();
