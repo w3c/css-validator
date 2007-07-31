@@ -339,7 +339,7 @@ public class StyleSheetGenerator extends StyleReport {
 		} else {
 			ht_error.put("CtxName", "nocontext");
 		}
-		ht_error.put("ClassName", "message");
+		ht_error.put("ClassName", "parse-error");
 		String name = error.getProperty();
 		String ret;
 		if ((name != null) && (getURLProperty(name) != null)) {
