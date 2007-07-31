@@ -78,7 +78,7 @@ background-color: #D23D24 !important;
 }
 
 
-td.message {
+td.parse-error {
 	padding: 5px 1em;
 	border-bottom: 1px solid #fdd !important;
 }
