@@ -7,7 +7,6 @@
   <!-- =================================================================== -->
       
   <property file="build.properties"/>
-	<!--  <property name="servlet.lib" value="C:/Documents and Settings/julien/My Documents/Java/servlet-api.jar"/> -->
   <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
   <property name="jigsaw.lib" value="/usr/share/java/jigsaw-2.2.5a.jar"/>
 
