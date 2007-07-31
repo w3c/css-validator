@@ -40,6 +40,10 @@ public class CssRuleList {
 	public String getAtRule() {
 		return atRuleString;
 	}
+	
+	public boolean isEmpty() {
+		return rulelist.isEmpty();
+	}
 
 	public String toString() {
 		StringBuffer ret = new StringBuffer();
