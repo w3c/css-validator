@@ -57,7 +57,7 @@ public class CssValidator {
 	 */
     public CssValidator() {	
 	params = new Hashtable();
-	params.put("profile", "css21");
+	params.put("profile", "css2.1");
 	params.put("medium", "all");
 	params.put("output", "text");
 	params.put("lang", "en");
@@ -115,16 +115,16 @@ public class CssValidator {
 	// CSS version to use
 	String profile = (String) style.params.get("profile");
 	if (profile != null && !"none".equals(profile)) {
-	    if ("css1".equals(profile) || "css2".equals(profile) || "css21".equals(profile)
+	    if ("css1".equals(profile) || "css2".equals(profile) || "css2.1".equals(profile)
 	    || "css3".equals(profile) || "svg".equals(profile)
 	    || "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
 		style.ac.setCssVersion(profile);
 	    } else {
 		style.ac.setProfile(profile);
-		style.ac.setCssVersion("css21");
+		style.ac.setCssVersion("css2.1");
 	    }
 	} else {
-	    style.ac.setCssVersion("css21");
+	    style.ac.setCssVersion("css2.1");
 	}
 	
 	// medium to use
