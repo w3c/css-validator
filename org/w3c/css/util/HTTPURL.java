@@ -157,7 +157,6 @@ public class HTTPURL {
 	}
 
 	if (Util.servlet) {
-	    int port = url.getPort();
 	    String protocol = url.getProtocol();
 	if (! (
 		("https".equalsIgnoreCase(protocol)) || ("http".equalsIgnoreCase(protocol))
