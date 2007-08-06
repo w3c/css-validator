@@ -153,13 +153,13 @@ implements CssOperator {
      */
     public String toString() {
 	String ret = "";
-	if (fes.isByUser()) {
+	if (fes != null && fes.isByUser()) {
 	    ret += " " + fes;
 	}
-	if (fep.isByUser()) {
+	if (fep != null && fep.isByUser()) {
 	    ret += " " + fep;
 	}
-	return ret.substring(1);
+	return ret.length() >= 1 ? ret.substring(1) : ret;
     }
 
     /*
