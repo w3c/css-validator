@@ -243,7 +243,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 				    new PseudoFunctionNthChild(pseudo, param));
 			}
 			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ac);
+			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
 			}
 			return;
 		    }
@@ -254,7 +254,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 					    pseudo, param));
 			}
 			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ac);
+			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
 			}
 			return;
 		    }
@@ -265,7 +265,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 					    pseudo, param));
 			}
 			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ac);
+			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
 			}
 			return;
 		    }
@@ -276,13 +276,13 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 					    pseudo, param));
 			}
 			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ac);
+			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
 			}
 			return;
 		    }
 		}
 	    }
-	    throw new InvalidParamException("pseudo", ac);
+	    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
 	}
     }
 
