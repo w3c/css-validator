@@ -15,7 +15,7 @@
         <option value="none">$no_special_profile</option>
         <option value="css1">$CSS1</option>
         <option value="css2">$CSS2</option>
-        <option selected="selected" value="css21">$CSS2.1</option>
+        <option selected="selected" value="css2.1">$CSS2_1</option>
         <option value="css3">$CSS3</option>
         <option value="svg">$SVG</option>
         <option value="svgbasic">$SVG_basic</option>
