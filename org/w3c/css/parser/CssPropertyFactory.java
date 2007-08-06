@@ -200,7 +200,7 @@ public class CssPropertyFactory implements Cloneable {
 		// this is an error... or a warning if it exists in another
 		// profile... FIXME
 		if (classname == null) {
-			throw new InvalidParamException("noexistence", property, ac);
+			throw new InvalidParamException("noexistence", property, ac.getCssVersion(), ac);
 		}
 
 		CssIdent initial = new CssIdent("initial");
