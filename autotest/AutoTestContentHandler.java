@@ -34,7 +34,7 @@ import org.xml.sax.*;
  */
 public class AutoTestContentHandler implements ContentHandler {
 
-	public static final String VALIDATOR = "http://10.1.2.79:8080/css-validator/validator?";
+	public static final String VALIDATOR = "http://localhost:8080/css-validator/validator?";
 	public static final String PARAMS = "&output=soap12";
 	public static final int TESTSUITE = "testsuite".hashCode();
 	public static final int TEST = "test".hashCode();
@@ -506,6 +506,7 @@ public class AutoTestContentHandler implements ContentHandler {
 		res = res.replaceAll("\\|", "%7C");
 		res = res.replaceAll("~'", "%7E");
 		res = res.replaceAll("\\\n", "");
+		res = res.replaceAll("\\\r", "");
 		return res;
 	}
 
