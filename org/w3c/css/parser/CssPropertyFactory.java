@@ -200,7 +200,7 @@ public class CssPropertyFactory implements Cloneable {
 		// this is an error... or a warning if it exists in another
 		// profile... FIXME
 		if (classname == null) {
-			throw new InvalidParamException("noexistence", property, ac.getCssVersion(), ac);
+			throw new InvalidParamException("noexistence", property, format(ac.getCssVersion()), ac);
 		}
 
 		CssIdent initial = new CssIdent("initial");
@@ -234,5 +234,18 @@ public class CssPropertyFactory implements Cloneable {
 				throw ex;
 			}
 		}
+	}
+
+	private String format(String cssVersion) {
+		if (!cssVersion.toLowerCase().startsWith("css"))
+			return cssVersion;
+		char number[] = cssVersion.substring(3).toCharArray();
+		String num = "CSS ";
+		for (int i = 0; i < number.length; ++i) {
+			num += number[i];
+			if (i != number.length - 1)
+				num += ".";
+		}
+		return num;
 	}
 }
