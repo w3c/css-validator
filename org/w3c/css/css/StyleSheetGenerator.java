@@ -145,7 +145,7 @@ public class StyleSheetGenerator extends StyleReport {
 		context.put("rules_count", new Integer(items.size()));
 		context.put("no_errors_report", new Boolean(false));
 		context.put("charset", ac.getContentEncoding());
-		context.put("cssversion", ac.getCssVersion());
+		context.put("cssversion", ac.getFormatedCssVersion());
 		context.put("css_link", getURLProperty("@url-base_"+ac.getCssVersion()));
 		context.put("is_valid", (errors.getErrorCount() == 0) ? "true" : "false");
 		context.put("author", "www-validator-css");
