@@ -75,7 +75,7 @@ public class PseudoFactory {
      * @return the possible pseudo-classes for the profile
      */
     public static String[] getPseudoClass(String profile) {
-	if(profile == null || profile.equals("css2")|| profile.equals("css2.1")) {
+	if(profile == null || profile.equals("css2")|| profile.equals("css21")) {
 	    return PSEUDOCLASS_CONSTANTSCSS2;
 	}
 	if(profile.equals("css1")) {
@@ -99,7 +99,7 @@ public class PseudoFactory {
      * @return the possible pseudo-elements for the profile
      */
     public static String[] getPseudoElement(String profile) {
-	if(profile == null || profile.equals("css2") || profile.equals("css2.1")
+	if(profile == null || profile.equals("css2") || profile.equals("css21")
 	    || profile.equals("tv")) {
 	    return PSEUDOELEMENT_CONSTANTSCSS2;
 	}
@@ -118,7 +118,7 @@ public class PseudoFactory {
      * @return the possible pseudo-functions for the profile
      */
     public static String[] getPseudoFunction(String profile) {
-	if(profile == null || profile.equals("css2") || profile.equals("css2.1") ||
+	if(profile == null || profile.equals("css2") || profile.equals("css21") ||
 		profile.equals("mobile") || profile.equals("tv")) {
 	    return PSEUDOFUNCTION_CONSTANTSCSS2;
 	}
