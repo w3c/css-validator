@@ -62,6 +62,7 @@ public final class CssValidator extends HttpServlet {
     final static String server_name = "Jigsaw/2.2.2 "
 	+ "W3C_CSS_Validator_JFouffa/2.0";
 
+    final static String headers_name = "X-W3C-Validator-";
     /**
      * Create a new CssValidator.
      */
@@ -654,9 +655,13 @@ public final class CssValidator extends HttpServlet {
 	}
 	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
 					      .getContentEncoding());
+	int nb_errors = styleSheet.getErrors().getErrorCount();
+    res.setHeader(headers_name + "Errors", String.valueOf(nb_errors));
+    res.setHeader(headers_name + "Status", nb_errors == 0 ? "Valid" : "Invalid");
 
 	try {
 	    style.print(out);
+	    
 	} finally {
 	    out.close();
 	}
@@ -754,6 +759,7 @@ public final class CssValidator extends HttpServlet {
 
 	ErrorReport error = ErrorReportFactory.getErrorReport(ac, title, output,
 							      e, validURI);
+    res.setHeader(headers_name + "Status", "Abort");
 
 	try {
 	    error.print(out);
