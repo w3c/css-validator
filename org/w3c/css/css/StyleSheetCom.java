@@ -159,7 +159,7 @@ public class StyleSheetCom {
 		    style.defaultmedium = argument;
 		} else if (argument.equals("css1") ||
                           argument.equals("css2") ||
-                          argument.equals("css2.1") ||
+                          argument.equals("css21") ||
                           argument.equals("css3") ||
 			   argument.equals("svg") ||
 			   argument.equals("svgbasic") ||
@@ -185,10 +185,10 @@ public class StyleSheetCom {
 		style.ac.setCssVersion(style.cssversion);
 	    if (style.profile != null) {
 		style.ac.setProfile(style.profile);
-		style.ac.setCssVersion("css2.1");
+		style.ac.setCssVersion("css21");
 	    }
 	    if (style.cssversion == null && style.ac.getCssVersion() == null) {
-		style.ac.setCssVersion("css2.1");
+		style.ac.setCssVersion("css21");
 	    }
 	} catch (Exception e) {
 	    /* System.out.println( "Usage: validator " +
