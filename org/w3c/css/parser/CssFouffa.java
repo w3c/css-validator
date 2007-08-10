@@ -404,6 +404,12 @@ public final class CssFouffa extends CssParser {
 	public void handleImport(URL url, String file, AtRuleMedia media) {
 		// CssError cssError = null;
 
+		//if it's not permitted to import... (direct input)
+		if (url.getProtocol().equals("file")) {
+			ac.getFrame().addWarning("unsupported-import");
+			return;
+		}
+
 		try {
 			URL importedURL = HTTPURL.getURL(url, file);
 			String surl = importedURL.toString();
