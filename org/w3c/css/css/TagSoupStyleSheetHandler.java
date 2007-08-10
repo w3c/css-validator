@@ -495,6 +495,28 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 	    return new InputSource(new URL(baseURI, systemId).toString());
 	}
     }
+    
+    public void parse(InputStream in, String fileName) throws IOException, SAXException {
+    	InputSource source = new InputSource(in);
+    	org.xml.sax.XMLReader xmlParser = new org.ccil.cowan.tagsoup.Parser();
+    	try {
+    	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
+    				  this);
+    	    xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+    	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
+    	} catch (Exception ex) {
+    	    ex.printStackTrace();
+    	}
+    	xmlParser.setContentHandler(this);
+    	baseURI = new URL(fileName);
+    	documentURI = new URL(fileName);
+    	source.setSystemId(fileName);
+    	try {
+			xmlParser.parse(source);
+    	} finally {
+			in.close();
+    	}
+    }
 
     void parse(URL url) throws Exception {
 	InputSource source = new InputSource();

@@ -29,6 +29,7 @@ import org.w3c.css.css.StyleReport;
 import org.w3c.css.css.StyleReportFactory;
 import org.w3c.css.css.StyleSheet;
 import org.w3c.css.css.StyleSheetParser;
+import org.w3c.css.css.TagSoupStyleSheetHandler;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
@@ -338,7 +339,7 @@ public final class CssValidator extends HttpServlet {
 	}
 	// verbose("From " + req.getRemoteHost() +
 	// " (" + req.getRemoteAddr() + ") at " + (new Date()) );
-
+	
 	if (uri != null) {
 	    // HTML document
 	    try {
@@ -359,31 +360,59 @@ public final class CssValidator extends HttpServlet {
 	    } catch (Exception e) {
 		handleError(res, ac, output, uri, e, true);
 	    }
-	} else {
-	    Util.verbose("- TextArea Data -");
-	    Util.verbose(text);
-	    Util.verbose("- End of TextArea Data");
-
-	    parser = new StyleSheetParser();
-
-	    try {
-                
-		parser.parseStyleElement(ac,
-			new ByteArrayInputStream(text.getBytes()),
-			null, usermedium,
-			new URL("file://localhost/TextArea"), 0);
-
-		handleRequest(ac, res, "file://localhost/TextArea",
-			parser.getStyleSheet(), output, warningLevel,
-			errorReport);
-	    } catch (Exception e) {
-		handleError(res, ac, output, "TextArea", e, false);
-	    }
+	} else if (text != null) {
+		String fileName = "TextArea";
+		Util.verbose("- " + fileName + " Data -");
+		Util.verbose(text);
+		Util.verbose("- End of " + fileName + " Data");
+		InputStream is = new ByteArrayInputStream(text.getBytes());
+		fileName = "file://localhost/" + fileName;
+		
+		try {
+		
+			if (isCSS(text)) {
+				parser = new StyleSheetParser();
+		  	    parser.parseStyleElement(ac, is, null, usermedium,
+		  			new URL(fileName), 0);
+		  	  
+		  	    handleRequest(ac, res, fileName, parser
+		  			  .getStyleSheet(), output, warningLevel, errorReport);
+			} else {
+				// try HTML
+				TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+				handler.parse(is, fileName);
+	
+				handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+					      warningLevel, errorReport);
+			}
+		} catch (ProtocolException pex) {
+			if (Util.onDebug) {
+			    pex.printStackTrace();
+			}
+			res.setHeader("WWW-Authenticate", pex.getMessage());
+			res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+	  	} catch (Exception e) {
+	  	    handleError(res, ac, output, fileName, e, false);
+	  	}
 	}
 	Util.verbose("CssValidator: Request terminated.\n");
     }
 
     /**
+     * This method is used for the direct input
+     * If the &lt;style&gt; tag is found, it may be an HTML entry
+     * The exception is when this tag is inside comment
+     * It might also be an HTML document with no CSS => why ?
+     * Or with only imports (we can't chack thoses imports...)
+     * @param text, the textarea to test
+     * @return <tt>false</tt> if it contains the style tag well formed 
+     */
+    private boolean isCSS(String text) {
+		String anyChar = "(.|\n|\r)*";
+		return !text.toLowerCase().matches(anyChar + "<style"+anyChar+">"+anyChar+"</style>"+anyChar);
+	}
+
+	/**
      * Performs the HTTP POST operation. An HTTP BAD_REQUEST error is reported
      * if an error occurs. The headers that are set should include content type,
      * length, and encoding. Setting content length allows the servlet to take
@@ -581,43 +610,54 @@ public final class CssValidator extends HttpServlet {
 	} else {
 	    ac.setCssVersion("css21");
 	}
+	String fileName = "";
+	InputStream is = null;
+	boolean isCSS = false;
+	
 	if (file != null && file.getSize() != 0) {
-  	Util.verbose("File : " + file.getName());
-
-  	parser = new StyleSheetParser();
-
+		fileName = file.getName();
+		Util.verbose("File : " + fileName);
+		is = file.getInputStream();
+		if (fileName.endsWith(".css"))
+			isCSS = true;
+	} else if (text != null ) {
+		fileName = "TextArea";
+		Util.verbose("- " + fileName + " Data -");
+		Util.verbose(text);
+		Util.verbose("- End of " + fileName + " Data");
+		is = new ByteArrayInputStream(text.getBytes());
+		//quick test that works in most cases to determine wether it's HTML or CSS
+		isCSS = isCSS(text);
+	}
+	fileName = "file://localhost/" + fileName;
+	//TODO: define the content-type
   	try {
-  	    parser.parseStyleElement(ac, file.getInputStream(), null, null,
-  				     new URL("file://localhost/" + file.getName()), 0);
+		//if CSS:
+		
+		if (isCSS) {
+			parser = new StyleSheetParser();
+	  	    parser.parseStyleElement(ac, is, null, usermedium,
+	  			new URL(fileName), 0);
+	  	  
+	  	    handleRequest(ac, res, fileName, parser
+	  			  .getStyleSheet(), output, warningLevel, errorReport);
+		} else {
+			// try HTML
+			TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+			handler.parse(is, fileName);
 
-  	    handleRequest(ac, res, "file://localhost/" + file.getName(), parser
-  			  .getStyleSheet(), output, warningLevel, errorReport);
+			handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+				      warningLevel, errorReport);
+		}
+	} catch (ProtocolException pex) {
+		if (Util.onDebug) {
+		    pex.printStackTrace();
+		}
+		res.setHeader("WWW-Authenticate", pex.getMessage());
+		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
   	} catch (Exception e) {
-  	    handleError(res, ac, output, file.getName(), e, false);
+  	    handleError(res, ac, output, fileName, e, false);
   	}
-  }
-  else if (text != null ){
-      Util.verbose("- TextArea Data -");
-	    Util.verbose(text);
-	    Util.verbose("- End of TextArea Data");
-
-	    parser = new StyleSheetParser();
-
-	    try {
-                
-		parser.parseStyleElement(ac,
-			new ByteArrayInputStream(text.getBytes()),
-			null, usermedium,
-			new URL("file://localhost/TextArea"), 0);
-
-		handleRequest(ac, res, "file://localhost/TextArea",
-			parser.getStyleSheet(), output, warningLevel,
-			errorReport);
-	    } catch (Exception e) {
-		handleError(res, ac, output, "TextArea", e, false);
-	    }
-	  
-  }
   
   
 	Util.verbose("CssValidator: Request terminated.\n");
