@@ -126,19 +126,6 @@ public class ApplContext {
 		}
 		return cssversion;
 	}
-	
-	public String getFormatedCssVersion() {
-		if (!this.cssversion.toLowerCase().startsWith("css"))
-			return this.cssversion;
-		char number[] = this.cssversion.substring(3).toCharArray();
-		String css = "CSS ";
-		for (int i = 0; i < number.length; ++i) {
-			css += number[i];
-			if (i != number.length - 1)
-				css += ".";
-		}
-		return css;
-	}
 
 	public void setProfile(String profile) {
 		this.profile = profile;
