@@ -24,7 +24,7 @@ body {
     color: #11111A;
     font-family: Helvetica, "Trebuchet MS", Arial, sans-serif;
     font-size: 1em; /* setting base font to user's prefered size */
-    min-width: 50em;
+    min-width: 63em;
 }
 p, pre, dt {     
     line-height: 130%; 

@@ -7,10 +7,10 @@ most_important: Most important
 no_warnings: No warnings
 profile: Profile
 no_special_profile: No special profile
-CSS1: CSS version 1
-CSS2: CSS version 2
-CSS2.1: CSS version 2.1
-CSS3: CSS version 3
+css1: CSS level 1
+css2: CSS level 2
+css21: CSS level 2.1
+css3: CSS level 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,10 @@ screen: screen
 tty: TTY
 tv: TV
 presentation: presentation
+type:Type
+no_special_type:No special type
+html_doc:HTML
+css_doc:CSS
 check: Check
 W3C_CSS_validation_service: The W3C CSS Validation Service
 check_CSS: Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -61,7 +65,8 @@ errors: Errors
 warnings: Warnings
 validated_CSS: Validated CSS
 congrats: Congratulations! No Error Found.
-doc_validates: This document validates as <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>!
+doc_validates_before_link: This document validates as
+doc_validates_after_link:!
 no_errors_interoperable_msg: To show your readers that you've taken the care to create an interoperable Web \
 page, you may display this icon on any page that validates. Here is the XHTML \
 you could use to add this icon to your Web page:
@@ -145,6 +150,9 @@ warning.block-level: This property applies to block-level elements.
 
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: No declarations in the rule
+
+# used by org.w3c.css.parser.CssFouffa
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload mode
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s is out of range
@@ -243,7 +251,7 @@ error.angle: %s is not a valid angle. Value should be between 0 and 360
 error.zero: only 0 can be a %s. You must put an unit after your number
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: Property %s doesn't exist
+error.noexistence: Property %s doesn't exist in %s
 error.noexistence-media: Property %s doesn't exist for media %s
 warning.noexistence-media: Property %s doesn't exist for media %s
 warning.notforusermedium : Property %s doesn't exist for this usermedium
