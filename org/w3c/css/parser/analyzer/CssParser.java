@@ -2617,7 +2617,7 @@ public abstract class CssParser implements CssParserConstants {
 					{
 						if (true)
 							throw new InvalidParamException("pseudo-element",
-									":" + convertIdent(n.image).toLowerCase(), ac.getCssVersion(), ac);
+									convertIdent(n.image).toLowerCase(), ac.getMsg().getString(ac.getCssVersion()), ac);
 					}
 				}
 			} catch (InvalidParamException e) {

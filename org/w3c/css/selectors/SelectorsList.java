@@ -117,7 +117,7 @@ public class SelectorsList {
 	if(selectors.size() > 0) {
 	    Selector last = (Selector) selectors.get(selectors.size() - 1);
 	    if(last instanceof PseudoElementSelector) {
-		throw new InvalidParamException("pseudo-element", selector, ac);
+		throw new InvalidParamException("pseudo-element", selector, ac.getMsg().getString(ac.getCssVersion()), ac);
 	    }
 	}
 	selectors.add(selector);
