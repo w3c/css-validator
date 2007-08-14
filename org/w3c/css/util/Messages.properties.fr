@@ -7,10 +7,10 @@ most_important: Les plus importants
 no_warnings: Aucun avertissement
 profile: Profil
 no_special_profile: Aucun profil particulier
-CSS1: CSS niveau 1
-CSS2: CSS niveau 2
-CSS2.1: CSS niveau 2.1
-CSS3: CSS niveau 3
+css1: CSS niveau 1
+css2: CSS niveau 2
+css21: CSS niveau 2.1
+css3: CSS niveau 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: screen
 tty: TTY
 tv: TV
 presentation: presentation
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Vérifier
 W3C_CSS_validation_service: Service de validation CSS du W3C
 check_CSS: Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
@@ -61,7 +68,13 @@ errors: Erreurs
 warnings: Avertissements
 validated_CSS: CSS valide
 congrats: Félicitation ! Aucune erreur trouvée.
-doc_validates: Ce document est valide conform&eacute;ment &agrave; la recommandation <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a> !
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: Ce document est valide conform&eacute;ment &agrave; la recommandation 
+doc_validates_after_link: !
 no_errors_interoperable_msg: Pour montrer &agrave; vos lecteurs votre souci d'interop&eacute;rabilit&eacute; lors de la \
 cr&eacute;ation de cette page Web, vous pouvez afficher cette ic&ocirc;ne sur toutes les \
 pages valides. Voici le fragment de XHTML que vous pouvez utiliser pour ajouter \
@@ -156,6 +169,9 @@ warning.block-level: Cette propriété ne s'applique qu'aux éléments de type \
 
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: Pas de déclarations dans cette règle
+
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s est hors-limites
@@ -256,7 +272,7 @@ error.zero: only 0 can be a %s. You must put an unit after your number
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Erreur inconnue
 
-# used by org.w3c.css.parser.CssPropertyFactory
+# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: La propriété %s n'existe pas.
 error.noexistence-media: La propriété %s n'existe pas pour le media %s
 warning.noexistence-media: La propriété %s n'existe pas pour le media %s

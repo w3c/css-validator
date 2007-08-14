@@ -7,10 +7,10 @@ most_important: Las m&aacute;s importantes
 no_warnings: Sin advertencias
 profile: Perfil
 no_special_profile: Ninguno en especial
-CSS1: CSS versi&oacute;n 1
-CSS2: CSS versi&oacute;n 2
-CSS2.1: CSS versi&oacute;n 2.1
-CSS3: CSS versi&oacute;n 3
+css1: CSS versi&oacute;n 1
+css2: CSS versi&oacute;n 2
+css21: CSS versi&oacute;n 2.1
+css3: CSS versi&oacute;n 3
 SVG: SVG
 SVG_basic: SVG B&aacute;sico
 SVG_tiny: SVG Reducido
@@ -28,6 +28,13 @@ screen: pantalla
 tty: teletipo
 tv: televisi&oacute;n
 presentation: presentaci&oacute;n
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Check
 W3C_CSS_validation_service: El Servicio de Validaci&oacute;n de CSS del W3C
 check_CSS: Verifica Hojas de Estilo en Cascada (CSS) y documentos (X)HTML con hojas de estilo
@@ -61,7 +68,13 @@ errors: Los Errores
 warnings: Las Advertencias 
 validated_CSS: Su Hoja de Estilo validada
 congrats: ¡Enhorabuena! No error encontrado.
-doc_validates: ¡Este documento es <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a> válido!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: ¡Este documento es
+doc_validates_after_link: válido!
 no_errors_interoperable_msg: Puede mostrar este icono en cualquier página que valide para que los usuarios vean \
 que se ha preocupado por crear una página Web interoperable. A continuación \
 se encuentra el XHTML que puede usar para añadir el icono a su página Web:
@@ -146,6 +159,9 @@ warning.block-level: Estas propiedad se aplica a elementos de bloque.
 
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: No hay declaraciones en la regla
+
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s está fuera de rango
@@ -243,7 +259,7 @@ error.angle: %s no es un ángulo válido. El valor debe estar comprendido entre 
 # used by org.w3c.css.values.CssNumber
 error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás de la cifra
 
-# used by org.w3c.css.parser.CssPropertyFactory
+# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: La propiedad %s no existe
 error.noexistence-media: La propiedad %s no existe en el medio %s
 warning.noexistence-media: La propiedad %s no existe en el medio %s

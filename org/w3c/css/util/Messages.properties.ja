@@ -7,10 +7,10 @@ most_important: 重要なものだけ出力
 no_warnings: 出力しない
 profile: Profile
 no_special_profile: No special profile
-CSS1: CSS version 1
-CSS2: CSS version 2
-CSS2.1: CSS version 2.1
-CSS3: CSS version 3
+css1: CSS level 1
+css2: CSS level 2
+css21: CSS level 2.1
+css3: CSS level 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: Screen
 tty: TTY
 tv: TV
 presentation: Presentation
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: 検証する
 W3C_CSS_validation_service: W3C CSS 検証サービス
 check_CSS: カスケーディングスタイルシート(CSS)を検証
@@ -61,7 +68,13 @@ errors: エラー
 warnings: 警告 
 validated_CSS: 入力されたCSS
 congrats: おめでとうございます！ <!-- translation unavailable for "No Error Found." -->
-doc_validates: おめでとうございます！ この文書は正当な<a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>として検証できました!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: おめでとうございます！ この文書は正当な
+doc_validates_after_link: として検証できました!
 no_errors_interoperable_msg: あなたがこのWebページを作るにあたって、\
 高度な相互運用性<span lang="en">(Interoperability)</span>\
 に対する配慮を行った事を読者に示すため、このアイコンを張る事をお勧めします。\
@@ -154,6 +167,9 @@ warning.block-level: このプロパティはブロックレベル要素に適�
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: 宣言(declarations)がルール中に存在しません
 
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s は指定可能範囲を越えています
 error.invalid-color: 正しい RGB 関数の指定ではありません
@@ -229,7 +245,7 @@ error.rgb: %s は、3または6つの16進数の数字による正しい色の�
 # used by org.w3c.css.values.CssNumber
 error.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
 
-# used by org.w3c.css.parser.CssPropertyFactory
+# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: プロパティ %s は存在しません
 error.noexistence-media: プロパティ %s はメディア %s には存在しません
 warning.noexistence-media: プロパティ %s はメディア %s には存在しません

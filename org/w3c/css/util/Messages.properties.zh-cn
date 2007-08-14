@@ -7,10 +7,10 @@ most_important: 最重要的
 no_warnings: 取消警告
 profile: 配置
 no_special_profile: 不指定配置文件
-CSS1: CSS 版本 1
-CSS2: CSS 版本 2
-CSS2.1: CSS 版本 2.1
-CSS3: CSS 版本 3
+css1: CSS 版本 1
+css2: CSS 版本 2
+css21: CSS 版本 2.1
+css3: CSS 版本 3
 SVG: SVG
 SVG_basic: SVG 基本
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: 银幕
 tty: TTY
 tv: 电视
 presentation: 演示设备
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Check
 W3C_CSS_validation_service: W3C CSS 验证服务
 check_CSS: 检查层叠样式表(CSS)文档和HTML或者XHTML文档中的CSS内容
@@ -61,7 +68,13 @@ errors: 错误
 warnings: 警告 
 validated_CSS: 已经校验的层叠样式表
 congrats: 恭喜恭喜
-doc_validates: 恭喜恭喜，此文档已经通过<a href="http://www.w3.org/TR/REC-CSS2/">样式表</a>校验!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: 恭喜恭喜，此文档已经通过
+doc_validates_after_link: 校验!
 no_errors_interoperable_msg: 为了告诉你的访客你曾致力于建立交互性的网页 \
 你可以显示这个图标在任意经过检验的网页上。这里是 \
 你用作加入图标到你的网页上的HTML代码：
@@ -146,6 +159,9 @@ warning.block-level: 这个属性应用于块级元素
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: 在规则中没有声明
 
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围
 
@@ -217,7 +233,7 @@ error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
 # used by org.w3c.css.values.CssNumber
 error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 
-# used by org.w3c.css.parser.CssPropertyFactory
+# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: 属性 %s 不存在
 error.noexistence-media: 媒体 %s 的属性 %s 不存在
 warning.noexistence-media: 媒体 %s 的属性 %s 不存在

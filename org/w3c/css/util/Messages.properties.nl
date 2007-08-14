@@ -7,10 +7,10 @@ most_important: Meest belangrijk
 no_warnings: Geen
 profile: Profiel
 no_special_profile: Geen speciaal profiel
-CSS1: CSS versie 1
-CSS2: CSS versie 2
-CSS2.1: CSS versie 2.1
-CSS3: CSS versie 3
+css1: CSS versie 1
+css2: CSS versie 2
+css21: CSS versie 2.1
+css3: CSS versie 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: screen
 tty: TTY
 tv: TV
 presentation: presentation
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Controleer
 W3C_CSS_validation_service: De W3C CSS Validatie Service
 check_CSS:Controleer Cascading Style Sheets (CSS) en (X)HTML documenten die gebruik maken van style sheets
@@ -35,7 +42,7 @@ by_URI: via een URI
 by_file_upload: via het uploaden van een bestand
 by_direct_input: via directe invoer
 validate_by_URI: Validate via een URI
-enter_uri: Geef de URI op van een document (HTML met CSS of alleen CSS) die je wilt valideren
+enter_uri: Geef de URI op van een document (HTML met CSS of alleen CSS) dat je wilt valideren
 page_address: Address of page to Validate
 address: Adres
 submit_uri: Verzenden om te valideren
@@ -61,7 +68,13 @@ errors: Fouten
 warnings: Waarschuwingen
 validated_CSS: Uw gevalideerde CSS
 congrats: Gefeliciteerd! <!-- translation unavailable for "No Error Found." -->
-doc_validates: Dit document is gevalideerd als <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: Dit document is gevalideerd als 
+doc_validates_after_link: !
 no_errors_interoperable_msg: Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
 kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
 die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen:
@@ -147,6 +160,9 @@ warning.block-level: Deze eigenschap is van toepassing op block-level elementen.
 
 # gebruikt door org.w3c.css.parser.Frame
 warning.no-declaration: Geen declaraties in de regel
+
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # gebruikt door org.w3c.css.values.CssColor
 warning.out-of-range: %s valt buiten het bereik
@@ -236,7 +252,7 @@ error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 # gebruikt door org.w3c.css.values.CssNumber
 error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
 
-# gebruikt door org.w3c.css.parser.CssPropertyFactory
+# gebruikt door org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: Eigenschap %s bestaat niet
 error.noexistence-media: Eigenschap %s bestaat niet voor media %s
 warning.noexistence-media: Eigenschap %s bestaat niet voor media %s

@@ -7,10 +7,10 @@ most_important: Najważniejsze
 no_warnings: Brak ostrzeżeń
 profile: Profil
 no_special_profile: Brak specjalnego profilu
-CSS1: CSS wersja 1
-CSS2: CSS wersja 2
-CSS2.1: CSS wersja 2.1
-CSS3: CSS wersja 3
+css1: CSS wersja 1
+css2: CSS wersja 2
+css21: CSS wersja 2.1
+css3: CSS wersja 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: ekran
 tty: TTY
 tv: TV
 presentation: prezentacja
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Sprawdź
 W3C_CSS_validation_service: Usługa Walidacji CSS W3C
 check_CSS: Sprawdź Kaskadowe Arkusze Stylów CSS) i dokumenty (X)HTML z arkuszami stylów
@@ -61,7 +68,13 @@ errors: Błędy
 warnings: Ostrzeżenia
 validated_CSS: Swój arkusz stylu
 congrats: Gratulacje! <!-- translation unavailable for "No Error Found." -->
-doc_validates: Dokument ten jest poprawnie napisanym arkuszem  <a href=" http://www.w3.org/TR/REC-CSS2/ ">CSS</a>!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: Dokument ten jest poprawnie napisanym arkuszem  
+doc_validates_after_link: !
 no_errors_interoperable_msg: Aby pokazać czytelnikom swojej strony, że stworzyłeś stronę interoperacyjną \
 , możesz umieścić ikonę na każdej stronie, która pomyślnie przeszła walidację. Oto kod HTML\
 , który możesz dodać do swojej strony:
@@ -145,6 +158,9 @@ warning.block-level: Właciwoć tš stosuje się jedynie do elementów block
 
 # użyte przez org.w3c.css.parser.Frame
 warning.no-declaration: No declarations in the rule
+
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # użyte przez org.w3c.css.values.CssColor
 warning.out-of-range: %s is out of range
@@ -242,7 +258,7 @@ error.angle: %s jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 3
 # użyte przez org.w3c.css.values.CssNumber
 error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
 
-# użyte przez org.w3c.css.parser.CssPropertyFactory
+# użyte przez org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: Właciwoć %s nie istnieje
 error.noexistence-media: Właciwoć %s nie istnieje dla media %s
 warning.noexistence-media: Właciwoć %s nie istnieje dla media %s

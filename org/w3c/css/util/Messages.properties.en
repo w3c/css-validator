@@ -28,10 +28,10 @@ screen: screen
 tty: TTY
 tv: TV
 presentation: presentation
-type:Type
-no_special_type:No special type
-html_doc:HTML
-css_doc:CSS
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
 check: Check
 W3C_CSS_validation_service: The W3C CSS Validation Service
 check_CSS: Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
@@ -65,8 +65,13 @@ errors: Errors
 warnings: Warnings
 validated_CSS: Validated CSS
 congrats: Congratulations! No Error Found.
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
 doc_validates_before_link: This document validates as
-doc_validates_after_link:!
+doc_validates_after_link: !
 no_errors_interoperable_msg: To show your readers that you've taken the care to create an interoperable Web \
 page, you may display this icon on any page that validates. Here is the XHTML \
 you could use to add this icon to your Web page:
@@ -152,7 +157,7 @@ warning.block-level: This property applies to block-level elements.
 warning.no-declaration: No declarations in the rule
 
 # used by org.w3c.css.parser.CssFouffa
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload mode
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s is out of range

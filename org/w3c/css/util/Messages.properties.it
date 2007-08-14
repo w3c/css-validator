@@ -7,10 +7,10 @@ most_important: I più importanti
 no_warnings: Nessun avviso
 profile: Profilo
 no_special_profile: Nessun profilo specifico
-CSS1: CSS versione 1
-CSS2: CSS versione 2
-CSS2.1: CSS versione 2.1
-CSS3: CSS versione 3
+css1: CSS versione 1
+css2: CSS versione 2
+css21: CSS versione 2.1
+css3: CSS versione 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -28,6 +28,13 @@ screen: screen
 tty: TTY
 tv: TV
 presentation: presentation
+
+# The following 4 variables need to be translated
+type: Type
+no_special_type: Automatic
+html_doc: HTML
+css_doc: CSS
+
 check: Verifica
 W3C_CSS_validation_service: Servizio di validazione del W3C per i fogli di stile a cascata (CSS)
 check_CSS: Verifica i fogli di stile a cascata (CSS) e i documenti (X)HTML contenenti fogli di stile
@@ -61,7 +68,13 @@ errors: Errori
 warnings: Avvisi
 validated_CSS: Foglio CSS validato
 congrats: Congratulazioni! <!-- translation unavailable for "No Error Found." -->
-doc_validates: Questo documento è valido rispetto alla specifica <a href="http://www.w3.org/TR/REC-CSS2/">CSS</a>!
+# The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
+# "This document validates as CSSXX!" where XX stands for the CSS version used \
+# Since the content of the link about the CSS version is generated on the fly, \
+# it is important to define what goes before the link and what goes afterwards in 2 separate \
+# variables because the position of the link in the sentence varies in different languages
+doc_validates_before_link: Questo documento è valido rispetto alla specifica 
+doc_validates_after_link: !
 no_errors_interoperable_msg: Per rendere visibile ai tuoi lettori che hai curato lo sviluppo per creare una pagina Web \
 interoperabile, puoi pubblicare questa icona in qualsiasi pagina che rispetta la validazione. \
 Di seguito il codice XHTML che puoi utilizzare per aggiungere questa icona alla tua pagina Web:
@@ -144,6 +157,9 @@ warning.block-level: Questa proprietà si applica ad elementi di tipo block-leve
 
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: Non sono presenti dichiarazioni
+
+# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s è un valore non valido
@@ -241,7 +257,7 @@ error.angle: %s non è un angolo valido. Il valore dovrebbe essere fra 0 e 360
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
 
-# used by org.w3c.css.parser.CssPropertyFactory
+# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: La proprietà %s non esiste
 error.noexistence-media: La proprietà %s non esiste per il media %s
 warning.noexistence-media: La proprietà %s non esiste per il media %s
