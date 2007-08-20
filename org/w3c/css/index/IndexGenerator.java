@@ -36,6 +36,7 @@ public class IndexGenerator {
 	// (NB: the same context is used for each index page, changing every thing
 	// inside)
 	public static VelocityContext vc = new VelocityContext();
+	private static String template_name = "validator.vm";
 
 	/**
 	 * @param args
@@ -77,7 +78,9 @@ public class IndexGenerator {
 				path = new URI(path).getPath();
 			Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
 			Velocity.init();
-			Template tpl = Velocity.getTemplate("validator.vm", "UTF-8");
+			if (!new File(path + template_name).exists())
+				template_name = "org/w3c/css/css/" + template_name;
+			Template tpl = Velocity.getTemplate(template_name, "UTF-8");
 			int count = 0;
 
 			// For each language, we set the context are create the template
@@ -89,7 +92,6 @@ public class IndexGenerator {
 				// and if they have been created after the last template modification
 				if ((tmpFile.lastModified() < tpl.getLastModified()) || !tmpFile.exists()) {
 					ApplContext ac = new ApplContext(name);
-					vc.put("link", "validator." + name);
 					vc.put("lang", name);
 
 					if (ac.getLang().equals(default_lang)) {
