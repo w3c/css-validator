@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.TimeZone;
 import java.util.Vector;
@@ -29,8 +30,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Warnings;
-
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 /**
  * @author Julien Grand-Mourcel
