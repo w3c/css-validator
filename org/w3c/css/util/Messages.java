@@ -7,6 +7,7 @@
 
 package org.w3c.css.util;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -162,7 +163,7 @@ public class Messages {
 	static {
 		Utf8Properties tmp;
 		try {
-			URL url = Messages.class.getResource("Messages.properties.de");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.de"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -183,7 +184,7 @@ public class Messages {
 		// ------------------------------------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.en");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.en"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -201,7 +202,7 @@ public class Messages {
 		// ------------------------------------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.es");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.es"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -220,7 +221,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.fr");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.fr"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -239,7 +240,7 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = Messages.class.getResource("Messages.properties.it");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.it"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -257,7 +258,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.nl");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.nl"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -275,7 +276,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.ja");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.ja"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -293,7 +294,7 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = Messages.class.getResource("Messages.properties.pl-PL");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.pl-PL"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -313,7 +314,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = Messages.class.getResource("Messages.properties.zh-cn");
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.zh-cn"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
@@ -329,5 +330,16 @@ public class Messages {
 			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties cn");
 			System.err.println("  " + e.toString());
 		}
+	}
+
+	private static URL adjustURL(URL resource) throws MalformedURLException {
+		String urlStr = resource.getFile();
+		System.err.println(urlStr);
+		if (urlStr.startsWith("file://"))
+			urlStr.replaceFirst("file://localhost", "file://");
+		else
+			urlStr = "file:///" + urlStr;
+		System.err.println(urlStr);
+		return new URL(urlStr);
 	}
 }
