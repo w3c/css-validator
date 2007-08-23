@@ -58,7 +58,7 @@ public class StyleSheetGenerator extends StyleReport {
 		URL url;
 		availableFormat = new Utf8Properties();
 		try {
-			url = StyleSheetGenerator.class.getResource("format.properties");
+			url = Messages.adjustURL(StyleSheetGenerator.class.getResource("format.properties"));
 			java.io.InputStream f = url.openStream();
 			availableFormat.load(f);
 			f.close();
@@ -69,7 +69,7 @@ public class StyleSheetGenerator extends StyleReport {
 
 		availablePropertiesURL = new Utf8Properties();
 		try {
-			url = StyleSheetGenerator.class.getResource("urls.properties");
+			url = Messages.adjustURL(StyleSheetGenerator.class.getResource("urls.properties"));
 			java.io.InputStream f = url.openStream();
 			availablePropertiesURL.load(f);
 			f.close();

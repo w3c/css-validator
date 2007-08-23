@@ -37,6 +37,7 @@ public class IndexGenerator {
 	// inside)
 	public static VelocityContext vc = new VelocityContext();
 	private static String template_name = "validator.vm";
+	private static String html_files_path = "../../../../";
 
 	/**
 	 * @param args
@@ -78,15 +79,17 @@ public class IndexGenerator {
 				path = new URI(path).getPath();
 			Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
 			Velocity.init();
-			if (!new File(path + template_name).exists())
+			if (!new File(path + template_name).exists()) {
 				template_name = "org/w3c/css/css/" + template_name;
+				html_files_path = "";
+			}
 			Template tpl = Velocity.getTemplate(template_name, "UTF-8");
 			int count = 0;
 
 			// For each language, we set the context are create the template
 			for (int i = 0; i < Messages.languages_name.size(); ++i) {
 				name = String.valueOf(Messages.languages_name.get(i));
-				tmpFile = new File(path + "../../../../validator.html." + name);
+				tmpFile = new File(path + html_files_path + "validator.html." + name);
 
 				// Checking if the index files exists
 				// and if they have been created after the last template modification
