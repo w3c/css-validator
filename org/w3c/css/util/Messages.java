@@ -332,14 +332,12 @@ public class Messages {
 		}
 	}
 
-	private static URL adjustURL(URL resource) throws MalformedURLException {
+	public static URL adjustURL(URL resource) throws MalformedURLException {
 		String urlStr = resource.getFile();
-		System.err.println(urlStr);
 		if (urlStr.startsWith("file://"))
 			urlStr.replaceFirst("file://localhost", "file://");
 		else
 			urlStr = "file:///" + urlStr;
-		System.err.println(urlStr);
 		return new URL(urlStr);
 	}
 }
