@@ -30,8 +30,8 @@ tv: televisi&oacute;n
 presentation: presentaci&oacute;n
 
 # The following 4 variables need to be translated
-type: Type
-no_special_type: Automatic
+type: Tipo
+no_special_type: Automático
 html_doc: HTML
 css_doc: CSS
 
@@ -161,7 +161,7 @@ warning.block-level: Estas propiedad se aplica a elementos de bloque.
 warning.no-declaration: No hay declaraciones en la regla
 
 # used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+warning.unsupported-import: Las hojas de estilo importadas no se comprueban en los modos de entrada directa y carga de archivo
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s está fuera de rango
@@ -259,8 +259,8 @@ error.angle: %s no es un ángulo válido. El valor debe estar comprendido entre 
 # used by org.w3c.css.values.CssNumber
 error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás de la cifra
 
-# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: La propiedad %s no existe
+# used by org.w3c.css.parser.CssPropertyFactory 
+error.noexistence: La propiedad %s no existe en %s
 error.noexistence-media: La propiedad %s no existe en el medio %s
 warning.noexistence-media: La propiedad %s no existe en el medio %s
 warning.notforusermedium : La propiedad %s no existe en este medio de usuario
