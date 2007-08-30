@@ -29,9 +29,8 @@ tty: TTY
 tv: TV
 presentation: presentation
 
-# The following 4 variables need to be translated
-type: Type
-no_special_type: Automatic
+type: Tipo
+no_special_type: Automatico
 html_doc: HTML
 css_doc: CSS
 
@@ -158,8 +157,8 @@ warning.block-level: Questa proprietà si applica ad elementi di tipo block-leve
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: Non sono presenti dichiarazioni
 
-# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+# used by org.w3c.css.parser.CssFouffa
+warning.unsupported-import: I fogli di stile importati non vengono validati nelle modalità di immissione diretta e di caricamento file
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s è un valore non valido
@@ -257,8 +256,8 @@ error.angle: %s non è un angolo valido. Il valore dovrebbe essere fra 0 e 360
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
 
-# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: La proprietà %s non esiste
+# used by org.w3c.css.parser.CssPropertyFactory
+error.noexistence: La proprietà %s non esiste per %s
 error.noexistence-media: La proprietà %s non esiste per il media %s
 warning.noexistence-media: La proprietà %s non esiste per il media %s
 warning.notforusermedium : La proprietà %s non esiste per questo usermedium
