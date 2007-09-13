@@ -18,6 +18,7 @@ import java.net.URLConnection;
 import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
@@ -185,10 +186,10 @@ public class StyleSheetCom {
 		style.ac.setCssVersion(style.cssversion);
 	    if (style.profile != null) {
 		style.ac.setProfile(style.profile);
-		style.ac.setCssVersion("css21");
+		style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	    if (style.cssversion == null && style.ac.getCssVersion() == null) {
-		style.ac.setCssVersion("css21");
+		style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} catch (Exception e) {
 	    /* System.out.println( "Usage: validator " +
