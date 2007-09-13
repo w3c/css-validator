@@ -125,7 +125,7 @@ public final class CssFouffa extends CssParser {
 		}
 
 		String profile = ac.getProfile();
-		if (profile == null || profile.equals("")) {
+		if (profile == null || profile.equals("") || profile.equals("none")) {
 			profile = ac.getCssVersion();
 		}
 
@@ -240,7 +240,7 @@ public final class CssFouffa extends CssParser {
 		}
 
 		String profile = ac.getProfile();
-		if (profile == null || profile.equals("")) {
+		if (profile == null || profile.equals("") || profile.equals("none")) {
 			profile = ac.getCssVersion();
 		}
 
