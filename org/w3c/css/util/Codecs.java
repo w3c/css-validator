@@ -198,7 +198,7 @@ public class Codecs {
 
 	    // parse header(s)
 
-	    String hdr, lchdr, name=null, filename=null, cont_disp = null;
+	    String hdr, lchdr, name=null, filename=null, cont_disp = null, mimeType=null;
 	    Object value;
 
 	    while (true) {
@@ -231,7 +231,9 @@ public class Codecs {
 
 		lchdr = hdr.toLowerCase();
 
-		if (!lchdr.startsWith("content-disposition")) continue;
+		if (lchdr.startsWith("content-type"))
+			mimeType = lchdr.substring("content-type: ".length());
+		else if (!lchdr.startsWith("content-disposition")) continue;
 
 		int off = lchdr.indexOf("form-data", 20);
 
@@ -305,6 +307,7 @@ public class Codecs {
 		FakeFile file = new FakeFile(filename);
 
 		file.write(data, start, end-start);
+		file.setContentType(mimeType);
 
 		value = file;
 	    } else {					// It's simple data
@@ -339,7 +342,6 @@ public class Codecs {
      * @return the value for this parameter, or null if not found.
      */
     public final static String getParameter(String param, String hdr) {
-	char ch;
 	int  pbeg,	// parameter name begin
 	    pend,	// parameter name end
 	    vbeg,	// parameter value begin
@@ -394,14 +396,7 @@ public class Codecs {
 
 
     private static void printData(byte[] data) {
-	for (int i = 0; i < data.length; i++) {
-	    if (data[i] == '\n' || data[i] == '\r') {
-		System.err.print( "&" + ((int) data[i]) );
-		System.err.println();
-	    } else {
-		System.err.print( (char) data[i] );
-	    }
-	}
+    	printData(data, 0);
     }
 
     private static void printData(byte[] data, int offset) {
