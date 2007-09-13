@@ -21,6 +21,7 @@ import java.util.Vector;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Utf8Properties;
@@ -57,7 +58,7 @@ public class CssValidator {
 	 */
     public CssValidator() {	
 	params = new Hashtable();
-	params.put("profile", "css21");
+	params.put("profile", PropertiesLoader.config.getProperty("defaultProfile"));
 	params.put("medium", "all");
 	params.put("output", "text");
 	params.put("lang", "en");
@@ -121,10 +122,11 @@ public class CssValidator {
 		style.ac.setCssVersion(profile);
 	    } else {
 		style.ac.setProfile(profile);
-		style.ac.setCssVersion("css21");
+		style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} else {
-	    style.ac.setCssVersion("css21");
+		style.ac.setProfile(profile);
+	    style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	}
 	
 	// medium to use
