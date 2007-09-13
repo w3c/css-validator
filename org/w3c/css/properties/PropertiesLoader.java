@@ -8,7 +8,10 @@ package org.w3c.css.properties;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
@@ -103,6 +106,31 @@ public class PropertiesLoader {
 	else {
 	    return result;
 	}
+    }
+    
+    /**
+     * This method returns the profile to check against 
+     * when no special profile is specified 
+     * This function is used in CssPropertyFactory
+     * @return the sorted list of profiles as a string array
+     */
+    public static String[] getProfiles() {
+    	//initializations
+    	Iterator it = profiles.keySet().iterator();
+    	
+    	ArrayList res = new ArrayList();
+    	String profil;
+    	
+    	while (it.hasNext()) {
+    		// we filtered only the profiles that we're interessted in
+    		profil = it.next().toString();
+    		if (profil.startsWith("css"))
+	    		res.add(profil);
+    	}
+    	// we sort them
+    	Collections.sort(res);
+    	// return them as an array
+    	return (String[]) res.toArray(new String[res.size()]);
     }
 
     static {
