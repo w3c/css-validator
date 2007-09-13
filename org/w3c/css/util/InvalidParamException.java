@@ -37,8 +37,7 @@ public class InvalidParamException extends ParseException {
      * @param message a message to add
      */
     public InvalidParamException(String error, Object message, ApplContext ac) {
-	super(processError(error,
-			   (message != null)?message.toString():null, "", ac));
+    	super(processError(error, (message != null)?message:null, ac));
     }
 
     /**
@@ -55,6 +54,30 @@ public class InvalidParamException extends ParseException {
 			   (message2 != null)?message2.toString():null,
 			   ac));
     }
+    
+    private static String processError(String error, Object args, ApplContext ac) {
+    	if (args instanceof String[]) {
+			String str = null;
+			
+			if (error != null) {
+			str = ac.getMsg().getErrorString(error);
+			}
+			if (str == null)
+				return "can't find the error message for " + error;
+			else {
+			// replace all parameters
+				int j = 0;
+				for (int i = 0; (i = str.indexOf("%s")) >= 0 && j < ((String[]) args).length; ) {
+					str = str.substring(0, i) + ((String[]) args)[j++] + str.substring(i+2);
+				}
+				return str;
+			}
+    	} else {
+    		return processError(error, args.toString(), "", ac);
+    	}
+    }
+    
+    
 
     private static String processError(String error, String arg1,
 				       String arg2, ApplContext ac) {
