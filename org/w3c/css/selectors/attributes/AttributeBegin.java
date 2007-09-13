@@ -75,12 +75,12 @@ public class AttributeBegin extends AttributeSelector {
 	    }
 	    if (!value.equals(v)) {
 		// [lang|=fr][lang=en-US]
-		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	    }
 	} else if (attr instanceof AttributeBegin) {
 	    if (!value.equals(((AttributeBegin) attr).value)) {
 		// [lang|=fr][lang|=en]
-		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	    }
 	}
 

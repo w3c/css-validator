@@ -56,17 +56,17 @@ public class AttributeExact extends AttributeSelector {
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
 	if (attr instanceof AttributeExact) {
 	    if (!value.equals(((AttributeExact) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	    }
 	}
 	else if(attr instanceof AttributeOneOf) {
 	    if (!value.equals(((AttributeOneOf) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	    }
 	}
 	else if(attr instanceof AttributeBegin) {
 	    if (!value.equals(((AttributeBegin) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	    }
 	}
     }

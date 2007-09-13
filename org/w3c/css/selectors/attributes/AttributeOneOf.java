@@ -65,7 +65,7 @@ public class AttributeOneOf extends AttributeSelector {
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
 	if((attr instanceof AttributeExact) &&
 		!value.equals(((AttributeExact) attr).getValue())) {
-	    ac.getFrame().addWarning("incompatible", toString(), attr.toString());
+	    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 	}
     }
 

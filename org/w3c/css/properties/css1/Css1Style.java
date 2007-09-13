@@ -2816,8 +2816,8 @@ public class Css1Style extends CssStyle {
 		if (style.cssBackground.getColor() != null) {
 		    if (style.cssBackground.getColor().equals(cssColor.getColor())) {
 			warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-				style.cssBackground.color.getSelectors().toString(),
-				cssColor.getSelectors().toString(), ac));
+				new String[] { style.cssBackground.color.getSelectors().toString(),
+				cssColor.getSelectors().toString() }, ac));
 		    }
 		}
 	    }
@@ -2844,8 +2844,8 @@ public class Css1Style extends CssStyle {
 		if (style.cssBackgroundCSS1.getColor() != null) {
 		    if (style.cssBackgroundCSS1.getColor().equals(cssColorCSS1.getColor())) {
 			warnings.addWarning(new Warning(cssColorCSS1, "same-colors2", 1,
-				style.cssBackgroundCSS1.color.getSelectors().toString(),
-				cssColorCSS1.getSelectors().toString(), ac));
+					new String[] { style.cssBackgroundCSS1.color.getSelectors().toString(),
+				cssColorCSS1.getSelectors().toString() }, ac));
 		    }
 		}
 	    }
@@ -2872,8 +2872,8 @@ public class Css1Style extends CssStyle {
 		if (style.cssBackgroundCSS2.getColor() != null) {
 		    if (style.cssBackgroundCSS2.getColor().equals(cssColorCSS2.getColor())) {
 			warnings.addWarning(new Warning(cssColorCSS2, "same-colors2", 1,
-				style.cssBackgroundCSS2.color.getSelectors().toString(),
-				cssColorCSS2.getSelectors().toString(), ac));
+					new String[] { style.cssBackgroundCSS2.color.getSelectors().toString(),
+				cssColorCSS2.getSelectors().toString() }, ac));
 		    }
 		}
 	    }
@@ -2902,7 +2902,7 @@ public class Css1Style extends CssStyle {
 	    warnings.addWarning(new Warning(info.getSourceFile(),
 		    info.getLine(),
 		    "relative-absolute", 2,
-		    "margin", "", ac));
+		    new String[] { "margin" }, ac));
 	}
 	checker.reset();
 
@@ -2918,7 +2918,7 @@ public class Css1Style extends CssStyle {
 	    warnings.addWarning(new Warning(info.getSourceFile(),
 		    info.getLine(),
 		    "relative-absolute", 2,
-		    "margin", "", ac));
+		    new String[] { "margin" }, ac));
 	}
 	checker.reset();
 
@@ -2934,7 +2934,7 @@ public class Css1Style extends CssStyle {
 	    warnings.addWarning(new Warning(info.getSourceFile(),
 		    info.getLine(),
 		    "relative-absolute", 2,
-		    "padding", "", ac));
+		    new String[] { "padding" }, ac));
 	}
 	checker.reset();
 
@@ -2951,7 +2951,7 @@ public class Css1Style extends CssStyle {
 	    warnings.addWarning(new Warning(info.getSourceFile(),
 		    info.getLine(),
 		    "relative-absolute", 2,
-		    "padding", "", ac));
+		    new String[] { "padding" }, ac));
 	}
 
 	if (Util.fromHTMLFile) {
