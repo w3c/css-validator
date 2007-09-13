@@ -18,7 +18,6 @@ import org.apache.velocity.Template;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.exception.ParseErrorException;
-import org.apache.velocity.exception.MethodInvocationException;
 import org.w3c.css.error.ErrorReportHTML;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
@@ -145,6 +144,7 @@ public class StyleSheetGenerator extends StyleReport {
 		context.put("no_errors_report", new Boolean(false));
 		context.put("charset", ac.getContentEncoding());
 		context.put("cssversion", ac.getCssVersion());
+		context.put("css_profile", ac.getProfile());
 		context.put("css", ac.getMsg().getString(ac.getCssVersion()));
 		context.put("css_link", getURLProperty("@url-base_"+ac.getCssVersion()));
 		context.put("is_valid", (errors.getErrorCount() == 0) ? "true" : "false");
@@ -158,8 +158,6 @@ public class StyleSheetGenerator extends StyleReport {
 		produceStyleSheet();
 
 		try {
-            Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, this.getClass().getResource("").getPath());
-            Velocity.init();
 			template = Velocity.getTemplate(template_file);
 		} catch (ResourceNotFoundException rnfe) {
 			System.err.println(rnfe.getMessage());
@@ -167,9 +165,6 @@ public class StyleSheetGenerator extends StyleReport {
 		} catch (ParseErrorException pee) {
 			System.err.println(pee.getMessage());
 			pee.printStackTrace();
-		} catch (MethodInvocationException mie) {
-			System.err.println(mie.getMessage());
-			mie.printStackTrace();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
@@ -413,10 +408,12 @@ public class StyleSheetGenerator extends StyleReport {
 
 	/**
 	 * Display the output 
+	 * @require VelocityContext to be set and init()
 	 */
 	public void print(PrintWriter out) {
 		this.out = out;
 		try {
+			// Velocity context must have been setup in IndexGenerator
 			template.merge(context, out);
 		} catch (Exception e) {
 			new ErrorReportHTML(ac, title, "", e).print(out);
