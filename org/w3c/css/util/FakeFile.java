@@ -15,7 +15,7 @@ import java.io.InputStream;
  */
 public class FakeFile {
 
-  protected String fileName;
+  protected String fileName, contentType;
 
   /**
    * The array buffer into which the components of this object are
@@ -35,6 +35,7 @@ public class FakeFile {
    */
   public FakeFile(String fileName) {
     this.fileName = fileName;
+    this.contentType = "none";
     data = new byte[255];
   }
 
@@ -119,5 +120,13 @@ public class FakeFile {
     }
     count += len;
   }
+
+	public void setContentType(String mimeType) {
+		contentType = mimeType;
+	}
+	
+	public String getContentType() {
+		return contentType;
+	}
 
 }
