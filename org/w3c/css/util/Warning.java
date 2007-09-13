@@ -33,11 +33,11 @@ public class Warning {
      * @see org.w3c.css.util.Messages
      */
     public Warning(String sourceFile, int line, String warningMessage, int level,
-		   String message1, String message2, ApplContext ac) {
+		   String[] messages, ApplContext ac) {
 	this.sourceFile = sourceFile;
 	this.hashSource = sourceFile.hashCode() % 100;
 	this.line = line;
-	this.warningMessage = warm(warningMessage, message1, message2, ac);
+	this.warningMessage = warm(warningMessage, messages, ac);
 	this.line = getLevel(warningMessage, level, ac) + (line * 10);
     }
 
@@ -53,7 +53,7 @@ public class Warning {
      */
     public Warning(String sourceFile, int line,
 		   String warningMessage, int level, ApplContext ac) {
-	this(sourceFile, line, warningMessage, level, "", "", ac);
+	this(sourceFile, line, warningMessage, level, new String[] {}, ac);
     }
 
     /**
@@ -68,12 +68,33 @@ public class Warning {
      * @see org.w3c.css.util.Messages
      */
     public Warning(CssProperty property, String warningMessage, int level,
-		   String message1, String message2, ApplContext ac) {
+		   String message1, String message2, ApplContext ac, int i) {
 	this.sourceFile = property.getSourceFile();
 	if (sourceFile != null) {
 	    this.hashSource = sourceFile.hashCode() % 100;
 	}
-	this.warningMessage = warm(warningMessage, message1, message2, ac);
+	this.warningMessage = warm(warningMessage, new String[] { message1, message2 }, ac);
+	this.line = getLevel(warningMessage, level, ac)
+	    + (property.getLine() * 10);
+    }
+
+    /**
+     * Create a new Warning with a property and insert n message(s) inside.
+     *
+     * @param property The property where the warning came
+     * @param warningMessage The warning message to find in the properties file
+     * @param level the warning level
+     * @param messages the list of messages to add
+     *
+     * @see org.w3c.css.util.Messages
+     */
+    public Warning(CssProperty property, String warningMessage, int level,
+		   String[] messages, ApplContext ac) {
+	this.sourceFile = property.getSourceFile();
+	if (sourceFile != null) {
+	    this.hashSource = sourceFile.hashCode() % 100;
+	}
+	this.warningMessage = warm(warningMessage, messages, ac);
 	this.line = getLevel(warningMessage, level, ac)
 	    + (property.getLine() * 10);
     }
@@ -92,9 +113,9 @@ public class Warning {
      */
     public Warning(CssProperty property, String warningMessage, int level,
 		   ApplContext ac) {	
-	this(property, warningMessage, level,
-	     property.getPropertyName(), "", ac);	
-	this.selector = property.getSelectors();
+		this(property, warningMessage, level,
+		     new String[] { property.getPropertyName() }, ac);	
+		this.selector = property.getSelectors();
     }
 
     /**
@@ -110,9 +131,9 @@ public class Warning {
      */
     public Warning(CssProperty property, String warningMessage, int level,
 		   CssProperty property2, ApplContext ac) {
-	this(property, warningMessage, level,
-	     property.getPropertyName(), property2.getPropertyName(), ac);
-	this.selector = property.getSelectors();
+		this(property, warningMessage, level,
+		     new String[] { property.getPropertyName(), property2.getPropertyName() }, ac);
+		this.selector = property.getSelectors();
     }
 
     /**
@@ -164,17 +185,16 @@ public class Warning {
 	System.err.println( getLevel() );
     }
 
-    private String warm(String warning, String arg1, String arg2,
-			ApplContext ac) {
+    private String warm(String warning, String[] args, ApplContext ac) {
 	String str = ac.getMsg().getWarningString(warning);
 	if (str == null) {
 	    return "can't find the warning message for " + warning;
 	} else {
 	    // replace all parameters.
-	    for (int i = 0; (i = str.indexOf("%s", i)) >= 0 ; ) {
-		StringBuffer stb = new StringBuffer(str.substring(0, i));
-		str = stb.append(arg1).append(str.substring(i+2)).toString();
-		arg1 = arg2;
+		int j = 0;
+	    for (int i = 0; (i = str.indexOf("%s", i)) >= 0 && j < args.length; ) {
+			StringBuffer stb = new StringBuffer(str.substring(0, i));
+			str = stb.append(args[j++]).append(str.substring(i+2)).toString();
 	    }
 	    return str;
 	}
