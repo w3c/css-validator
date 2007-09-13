@@ -33,6 +33,7 @@ import org.w3c.css.css.TagSoupStyleSheetHandler;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
+import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
 import org.w3c.css.util.FakeFile;
@@ -55,6 +56,8 @@ public final class CssValidator extends HttpServlet {
     final static String applxhtml   = "application/xhtml+xml";
     
     final static String textplain   = "text/plain";
+    
+    final static String textcss   = "text/css";
 
     final static String textunknwon = "text/unknown";
 
@@ -249,6 +252,9 @@ public final class CssValidator extends HttpServlet {
 	String error = req.getParameter("error");
 	String profile = req.getParameter("profile");
 	String usermedium = req.getParameter("usermedium");
+	String type = req.getParameter("type");
+	if (type == null)
+		type = "none";
 
 	String credential = req.getHeader("Authorization");
 	if ((credential != null) && (credential.length() > 1)) {
@@ -281,18 +287,19 @@ public final class CssValidator extends HttpServlet {
 	}
 
 	// CSS version
-	if (profile != null && !"none".equals(profile)) {
+	if (profile != null && (!"none".equals(profile) || "".equals(profile))) {
 	    if ("css1".equals(profile) || "css2".equals(profile)
 		|| "css21".equals(profile)
 		|| "css3".equals(profile) || "svg".equals(profile)
 		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-		ac.setCssVersion(profile);
+	    	ac.setCssVersion(profile);
 	    } else {
-		ac.setProfile(profile);
-		ac.setCssVersion("css21");
+			ac.setProfile(profile);
+			ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} else {
-	    ac.setCssVersion("css21");
+		ac.setProfile("none");
+	    ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	}
 	if (Util.onDebug) {
 	    System.err.println("[DEBUG]  profile is : " + ac.getCssVersion()
@@ -370,7 +377,8 @@ public final class CssValidator extends HttpServlet {
 		
 		try {
 		
-			if (isCSS(text)) {
+			if ("css".equals(type) || ( "none".equals(type) && isCSS(text))) {
+				// if CSS:
 				parser = new StyleSheetParser();
 		  	    parser.parseStyleElement(ac, is, null, usermedium,
 		  			new URL(fileName), 0);
@@ -378,7 +386,7 @@ public final class CssValidator extends HttpServlet {
 		  	    handleRequest(ac, res, fileName, parser
 		  			  .getStyleSheet(), output, warningLevel, errorReport);
 			} else {
-				// try HTML
+				// else, trying HTML
 				TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
 				handler.parse(is, fileName);
 	
@@ -477,10 +485,11 @@ public final class CssValidator extends HttpServlet {
 	//boolean XMLinput = false;
 	String warning = null;
 	String error = null;
-	String profile = null;
+	String profile = "none";
 	String usermedium = "all";
 
 	ServletInputStream in = req.getInputStream();
+
 	byte[] buf = new byte[2048];
 	byte[] general = new byte[65536];
 	int count = 0;
@@ -604,18 +613,19 @@ public final class CssValidator extends HttpServlet {
 	}
 
 	// CSS version
-	if (profile != null && !"none".equals(profile)) {
+	if (profile != null && (!"none".equals(profile) || "".equals(profile))) {
 	    if ("css1".equals(profile) || "css2".equals(profile)
 		|| "css21".equals(profile)
 		|| "css3".equals(profile) || "svg".equals(profile)
 		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-		ac.setCssVersion(profile);
+	    	ac.setCssVersion(profile);
 	    } else {
-		ac.setProfile(profile);
-		ac.setCssVersion("css21");
+			ac.setProfile(profile);
+			ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} else {
-	    ac.setCssVersion("css21");
+		ac.setProfile("none");
+	    ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	}
 	String fileName = "";
 	InputStream is = null;
@@ -625,8 +635,8 @@ public final class CssValidator extends HttpServlet {
 		fileName = file.getName();
 		Util.verbose("File : " + fileName);
 		is = file.getInputStream();
-		if (fileName.endsWith(".css"))
-			isCSS = true;
+		// another way to get file type...
+		isCSS = file.getContentType().equals(textcss);
 	} else if (text != null ) {
 		fileName = "TextArea";
 		Util.verbose("- " + fileName + " Data -");
@@ -637,12 +647,10 @@ public final class CssValidator extends HttpServlet {
 		isCSS = isCSS(text);
 	}
 	fileName = "file://localhost/" + fileName;
-	//TODO: define the content-type
   	try {
-		//if CSS:
 		
 		if (isCSS) {
-			System.err.println("css");
+			//if CSS:
 			parser = new StyleSheetParser();
 	  	    parser.parseStyleElement(ac, is, null, usermedium,
 	  			new URL(fileName), 0);
@@ -650,8 +658,7 @@ public final class CssValidator extends HttpServlet {
 	  	    handleRequest(ac, res, fileName, parser
 	  			  .getStyleSheet(), output, warningLevel, errorReport);
 		} else {
-			System.err.println("html");
-			// try HTML
+			// else, trying HTML
 			TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
 			handler.parse(is, fileName);
 
