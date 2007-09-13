@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -21,7 +23,6 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.w3c.css.css.StyleSheetGenerator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
@@ -72,12 +73,22 @@ public class IndexGenerator {
 
 		try {
 			//setting the path were to find the template
-			path = StyleSheetGenerator.class.getResource("").toString();
+			path = IndexGenerator.class.getResource("").getPath();
 			if (servlet)
 				path = path.replace("file://localhost", "");
 			else
 				path = new URI(path).getPath();
+
+			/*
+			 * This code set the velocity properties to be used
+			 * A new jar is needed to use file logging (avalon-logkit.jar)
+			 */
 			Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
+			Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../css/");
+			Velocity.setProperty(Velocity.RUNTIME_LOG,
+					"velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
+			
+		    Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
 			Velocity.init();
 			if (!new File(path + template_name).exists()) {
 				template_name = "org/w3c/css/css/" + template_name;
@@ -119,7 +130,7 @@ public class IndexGenerator {
 					++count;
 				}
 			}
-			System.err.println("INFO: IndexGenerator : " + count + " index file(s) created or modified");
+			Velocity.getLog().info("IndexGenerator : " + count + " index file(s) created or modified");
 		} catch (ResourceNotFoundException e) {
 			e.printStackTrace();
 		} catch (ParseErrorException e) {
