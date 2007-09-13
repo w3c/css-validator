@@ -2299,7 +2299,7 @@ public abstract class CssParser implements CssParserConstants {
 				cl += n.image.substring(1);
 
 				String profile = ac.getProfile();
-				if (profile == null || profile.equals("")) {
+				if (profile == null || profile.equals("") || profile.equals("none")) {
 					profile = ac.getCssVersion();
 				}
 
@@ -2731,7 +2731,7 @@ public abstract class CssParser implements CssParserConstants {
 		n.image = n.image.substring(1);
 		if (Character.isDigit(n.image.charAt(0))) {
 			String profile = ac.getProfile();
-			if (profile == null || profile.equals("")) {
+			if (profile == null || profile.equals("") || profile.equals("none")) {
 				profile = ac.getCssVersion();
 			}
 

@@ -180,7 +180,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	}
 
 	String profile = ac.getProfile();
-	if(profile == null || profile.equals("")) {
+	if(profile == null || profile.equals("") || profile.equals("none")) {
 	    profile = ac.getCssVersion();
 	}
 
@@ -214,7 +214,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     public void setPseudoFun(String pseudo, String param)
     throws InvalidParamException {
 	String profile = ac.getProfile();
-	if(profile == null || profile.equals("")) {
+	if(profile == null || profile.equals("") || profile.equals("none")) {
 	    profile = ac.getCssVersion();
 	}
 

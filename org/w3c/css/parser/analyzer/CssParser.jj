@@ -1330,7 +1330,7 @@ n.image = n.image.substring(1);
           cl += n.image.substring(1);
           
           String profile = ac.getProfile();
-          if(profile == null || profile.equals("")) {
+          if(profile == null || profile.equals("") || profile.equals("none")) {
               profile = ac.getCssVersion(); 
           }     
           
@@ -1555,7 +1555,7 @@ void hash(CssSelectors s) :
       n.image = n.image.substring(1);
       if(Character.isDigit(n.image.charAt(0))) { 
 	  String profile = ac.getProfile();
-	  if(profile == null || profile.equals("")) {
+	  if(profile == null || profile.equals("") || profile.equals("none")) {
 	      profile = ac.getCssVersion(); 
 	  }     
 	  
