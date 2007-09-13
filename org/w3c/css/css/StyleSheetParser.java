@@ -157,8 +157,8 @@ public final class StyleSheetParser
 						   cssFouffa.getLine(),
 						   "at-rule",
 						   2,
-						   ident,
-						   string, ac));
+						   new String[] { ident, string },
+						   ac));
 	//stylesheet.addAtRule(atRule);
     }
 
