@@ -89,7 +89,7 @@ public class Frame {
      */
     public void addWarning(String warningMessage, String message) {
     warnings.addWarning(new Warning(getSourceFile(), getLine(),
-                    warningMessage, 0, message, "", ac));
+                    warningMessage, 0, new String[] { message }, ac));
     }
 
     /**
@@ -97,14 +97,13 @@ public class Frame {
      *
      * @param warningMessage the warning message
      *                       (see org.w3c.css.util.Messages.properties).
-     * @param message        An add-on message.
+     * @param messages       Some add-on messages.
      * @see                  org.w3c.css.util.Warning
      */
-    public void addWarning(String warningMessage, String message1,
-	    String message2) {
-    warnings.addWarning(new Warning(getSourceFile(), getLine(),
-                    warningMessage, 0, message1, message2, ac));
-    }
+	public void addWarning(String warningMessage, String[] messages) {
+		warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, 0, messages, ac));
+	}
 
     /**
      * Get all warnings.
