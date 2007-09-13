@@ -9,6 +9,7 @@ package org.w3c.css.parser;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -28,6 +29,9 @@ public class CssPropertyFactory implements Cloneable {
 
 	// all recognized properties are here.
 	private Utf8Properties properties;
+	
+	//all used profiles are here (in the priority order)
+	private static String[] SORTEDPROFILES = PropertiesLoader.getProfiles();
 
 	// private Utf8Properties allprops;
 
@@ -178,61 +182,82 @@ public class CssPropertyFactory implements Cloneable {
 
 		media = media.trim();
 
-		Vector list = new Vector(getVector(media));
-
-		if (atRule instanceof AtRuleMedia) {
-			classname = properties.getProperty(property);
-			// a list of media has been specified
-			if (classname != null && !media.equals("all")) {
-				String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
-				for (int i = 0; i < list.size(); i++) {
-					String medium = (String) list.elementAt(i);
-					if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
-						ac.getFrame().addWarning("noexistence-media", property, medium + " (" + propMedia + ")");
-					}
+		classname = setClassName(atRule, media, ac, property);
+		
+		// the property does not exist in this profile
+		// this is an error... or a warning if it exists in another profile
+		if (classname == null) {
+			ArrayList pfsOk = new ArrayList();
+			
+			for (int i=0; i<SORTEDPROFILES.length; ++i) {
+				String p = String.valueOf(SORTEDPROFILES[i]);
+				if (!p.equals(ac.getCssVersion()) && PropertiesLoader.getProfile(p).containsKey(property)) {
+					pfsOk.add(p);
 				}
 			}
-		} else {
-			classname = properties.getProperty("@" + atRule.keyword() + "." + property);
-		}
-
-		// the property does not exist in this profile
-		// this is an error... or a warning if it exists in another
-		// profile... FIXME
-		if (classname == null) {
-			throw new InvalidParamException("noexistence", property, ac.getMsg().getString(ac.getCssVersion()), ac);
+			
+			if (pfsOk.size() > 0) {
+				if (ac.getProfile().equals("none")) {
+					// the last one should be the best one to use
+					String	pf = (String) pfsOk.get(pfsOk.size()-1),
+							old_pf = ac.getCssVersion();
+					ac.setCssVersion(pf);
+					ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
+					classname = setClassName(atRule, media, ac, property);
+					ac.setCssVersion(old_pf);
+				}
+				else
+					throw new InvalidParamException("noexistence", new String[] { property, ac.getMsg().getString(ac.getCssVersion()), pfsOk.toString() }, ac);
+			} else {
+					throw new InvalidParamException("noexistence-at-all", property, ac);
+			}
 		}
 
 		CssIdent initial = new CssIdent("initial");
 
-		if (expression.getValue().equals(initial) && ac.getCssVersion().equals("css3")) {
-			try {
+		try {
+			if (expression.getValue().equals(initial) && ac.getCssVersion().equals("css3")) {
 				// create an instance of your property class
 				Class[] parametersType = {};
 				Constructor constructor = Class.forName(classname).getConstructor(parametersType);
 				Object[] parameters = {};
 				// invoke the constructor
 				return (CssProperty) constructor.newInstance(parameters);
-			} catch (InvocationTargetException e) {
-				// catch InvalidParamException
-				InvocationTargetException iv = e;
-				Exception ex = (Exception) iv.getTargetException();
-				throw ex;
-			}
-		} else {
-			try {
+			} else {
 				// create an instance of your property class
 				Class[] parametersType = { ac.getClass(), expression.getClass(), boolean.class };
 				Constructor constructor = Class.forName(classname).getConstructor(parametersType);
 				Object[] parameters = { ac, expression, new Boolean(true) };
 				// invoke the constructor
 				return (CssProperty) constructor.newInstance(parameters);
-			} catch (InvocationTargetException e) {
-				// catch InvalidParamException
-				InvocationTargetException iv = e;
-				Exception ex = (Exception) iv.getTargetException();
-				throw ex;
+			
 			}
+		} catch (InvocationTargetException e) {
+			// catch InvalidParamException
+			InvocationTargetException iv = e;
+			Exception ex = (Exception) iv.getTargetException();
+			throw ex;
 		}
+	}
+
+	private String setClassName(AtRule atRule, String media, ApplContext ac, String property) {
+		String className;
+		Vector list = new Vector(getVector(media));
+		if (atRule instanceof AtRuleMedia) {
+			className = PropertiesLoader.getProfile(ac.getCssVersion()).getProperty(property);
+			// a list of media has been specified
+			if (className != null && !media.equals("all")) {
+				String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
+				for (int i = 0; i < list.size(); i++) {
+					String medium = (String) list.elementAt(i);
+					if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
+						ac.getFrame().addWarning("noexistence-media", new String[] { property, medium + " (" + propMedia + ")" });
+					}
+				}
+			}
+		} else {
+			className = PropertiesLoader.getProfile(ac.getCssVersion()).getProperty("@" + atRule.keyword() + "." + property);
+		}
+		return className;
 	}
 }
