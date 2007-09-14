@@ -29,9 +29,8 @@ tty: TTY
 tv: TV
 presentation: Presentation
 
-# The following 4 variables need to be translated
-type: Type
-no_special_type: Automatic
+type: 種類
+no_special_type: 自動
 html_doc: HTML
 css_doc: CSS
 
@@ -168,7 +167,7 @@ warning.block-level: このプロパティはブロックレベル要素に適�
 warning.no-declaration: 宣言(declarations)がルール中に存在しません
 
 # used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+warning.unsupported-import: @importでインポートされるスタイルシートは直接入力やファイルアップロードでは検証されません。
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s は指定可能範囲を越えています
@@ -245,8 +244,8 @@ error.rgb: %s は、3または6つの16進数の数字による正しい色の�
 # used by org.w3c.css.values.CssNumber
 error.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
 
-# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: プロパティ %s は存在しません
+# used by org.w3c.css.parser.CssPropertyFactory 
+error.noexistence: プロパティ %s は %s に存在しません
 error.noexistence-media: プロパティ %s はメディア %s には存在しません
 warning.noexistence-media: プロパティ %s はメディア %s には存在しません
 
