@@ -43,6 +43,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
+import org.apache.velocity.io.UnicodeInputStream;
+
 /**
  * @version $Revision$
  * @author Philippe Le Hegaret
