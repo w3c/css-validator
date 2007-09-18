@@ -43,12 +43,14 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
+import org.apache.velocity.io.UnicodeInputStream;
+
 /**
  * @version $Revision$
  * @author  Philippe Le Hegaret
  */
 public class TagSoupStyleSheetHandler implements ContentHandler,
-    LexicalHandler, ErrorHandler, EntityResolver {
+				      LexicalHandler, ErrorHandler, EntityResolver {
 
     static String XHTML_NS = "http://www.w3.org/1999/xhtml";
 
@@ -100,9 +102,9 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
         throws SAXException {
     }
 
-     public void endPrefixMapping (String prefix)
-	 throws SAXException {
-     }
+    public void endPrefixMapping (String prefix)
+	throws SAXException {
+    }
 
     public void characters (char ch[], int start, int length)
         throws SAXException {
@@ -116,7 +118,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 	if (inStyle) {
             int line = (locator != null ? locator.getLineNumber() : -1);
             Warning w = new Warning(baseURI.toString(), line,
-                    "style-inside-comment", 0, ac);
+				    "style-inside-comment", 0, ac);
             Warnings warnings = new Warnings(ac.getWarningLevel());
             warnings.addWarning(w);
             styleSheetParser.notifyWarnings(warnings);
@@ -173,8 +175,8 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		    new MimeType(type);
 		} catch (Exception ex) { /* at worst, null */ };
 		if (mt != null && (MimeType.TEXT_CSS.match(mt) ==
-		                           MimeType.MATCH_SPECIFIC_SUBTYPE)) {
-		// we're dealing with a stylesheet...
+				   MimeType.MATCH_SPECIFIC_SUBTYPE)) {
+		    // we're dealing with a stylesheet...
 		    URL url;
 
 		    try {
@@ -263,7 +265,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		    return;
 		}
 		if (MimeType.TEXT_CSS.match(mt) !=
-		                            MimeType.MATCH_SPECIFIC_SUBTYPE) {
+		    MimeType.MATCH_SPECIFIC_SUBTYPE) {
 		    return;
 		}
 		if (href == null) {
@@ -274,8 +276,8 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		    }
 		    CssError er =
 			new CssError(baseURI.toString(), line,
-				                    new InvalidParamException(
-					            "unrecognized.link", ac));
+				     new InvalidParamException(
+					 "unrecognized.link", ac));
 		    Errors ers = new Errors();
 		    ers.addError(er);
 		    styleSheetParser.notifyErrors(ers);
@@ -283,7 +285,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		}
 
 		if ((rel != null) &&
-		              rel.toLowerCase().indexOf("stylesheet") != -1) {
+		    rel.toLowerCase().indexOf("stylesheet") != -1) {
 		    // we're dealing with a stylesheet...
 		    // @@TODO alternate stylesheet
 		    URL url;
@@ -340,7 +342,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		    CssError er =
 			new CssError(baseURI.toString(), line,
 				     new InvalidParamException(
-					             "unrecognized.link", ac));
+					 "unrecognized.link", ac));
 		    Errors ers = new Errors();
 		    ers.addError(er);
 		    styleSheetParser.notifyErrors(ers);
@@ -348,7 +350,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 		    try {
 			MimeType mt = new MimeType(type);
 			if (MimeType.TEXT_CSS.match(mt) ==
-			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
+			    MimeType.MATCH_SPECIFIC_SUBTYPE) {
 			    text.setLength(0);
 			    inStyle = true;
 			}
@@ -426,7 +428,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
     }
 
     public void startDTD (String name, String publicId,
-                                   String systemId)
+			  String systemId)
         throws SAXException {
     }
 
@@ -512,16 +514,16 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
     	documentURI = new URL(fileName);
     	source.setSystemId(fileName);
     	try {
-			xmlParser.parse(source);
+	    xmlParser.parse(source);
     	} finally {
-			in.close();
+	    in.close();
     	}
     }
 
     void parse(URL url) throws Exception {
 	InputSource source = new InputSource();
 	URLConnection connection;
-	InputStream in;
+	UnicodeInputStream in;
 	org.xml.sax.XMLReader xmlParser = new org.ccil.cowan.tagsoup.Parser();
 	try {
 	    xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
@@ -530,9 +532,9 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 	    xmlParser.setFeature("http://xml.org/sax/features/validation", false);
 	    /*
 	      xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
-				  false);
-	    xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
-				  false);
+	      false);
+	      xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
+	      false);
 	    */
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -540,19 +542,25 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 	xmlParser.setContentHandler(this);
 
 	connection = HTTPURL.getConnection(url, ac);
-	in = connection.getInputStream();
+	in = new UnicodeInputStream(connection.getInputStream());
+	String streamEncoding = in.getEncodingFromStream();
+
 	String httpCL = connection.getHeaderField("Content-Location");
 	if (httpCL != null) {
 	    baseURI = HTTPURL.getURL(baseURI, httpCL);
 	    documentURI = baseURI;
 	}
-	String ctype = connection.getContentType();
-	if (ctype != null) {
-	    try {
-		MimeType repmime = new MimeType(ctype);
-		if (repmime.hasParameter("charset"))
-		    source.setEncoding(repmime.getParameterValue("charset"));
-	    } catch (Exception ex) {}
+	if (streamEncoding != null) {
+	    source.setEncoding(streamEncoding);
+	} else {
+	    String ctype = connection.getContentType();
+	    if (ctype != null) {
+		try {
+		    MimeType repmime = new MimeType(ctype);
+		    if (repmime.hasParameter("charset"))
+			source.setEncoding(repmime.getParameterValue("charset"));
+		} catch (Exception ex) {}
+	    }
 	}
 	source.setByteStream(in);
 	try {
@@ -576,24 +584,30 @@ public class TagSoupStyleSheetHandler implements ContentHandler,
 	    ex.printStackTrace();
 	}
 	xmlParser.setContentHandler(this);
-	InputStream cis = connection.getInputStream();
+	UnicodeInputStream cis = new UnicodeInputStream(connection.getInputStream());
 	InputSource source = new InputSource(cis);
-	String ctype = connection.getContentType();
-	if (ctype != null) {
-	    try {
-		MimeType repmime = new MimeType(ctype);
-		if (repmime.hasParameter("charset")) {
-		    source.setEncoding(repmime.getParameterValue("charset"));
-		} else {
-		    // if text/html and no given charset, let's assume
-		    // iso-8859-1. Ideally, the parser would change the
-		    // encoding if it find a mismatch, not sure, but well...
-		    if (repmime.match(MimeType.TEXT_HTML) ==
-			                     MimeType.MATCH_SPECIFIC_SUBTYPE) {
-			source.setEncoding("iso-8859-1");
+	String streamEncoding = cis.getEncodingFromStream();
+	// if we get a BOM, use that for the encoding... otherwise CT, then iso-8859-1
+	if (streamEncoding != null) {
+	    source.setEncoding(streamEncoding);
+	} else {
+	    String ctype = connection.getContentType();
+	    if (ctype != null) {
+		try {
+		    MimeType repmime = new MimeType(ctype);
+		    if (repmime.hasParameter("charset")) {
+			source.setEncoding(repmime.getParameterValue("charset"));
+		    } else {
+			// if text/html and no given charset, let's assume
+			// iso-8859-1. Ideally, the parser would change the
+			// encoding if it find a mismatch, not sure, but well...
+			if (repmime.match(MimeType.TEXT_HTML) ==
+			    MimeType.MATCH_SPECIFIC_SUBTYPE) {
+			    source.setEncoding("iso-8859-1");
+			}
 		    }
-		}
-	    } catch (Exception ex) {}
+		} catch (Exception ex) {}
+	    }
 	}
 	source.setSystemId(urlString);
 	try {
