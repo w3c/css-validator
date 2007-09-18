@@ -483,7 +483,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
     void parse(URL url) throws Exception {
 	InputSource source = new InputSource();
 	URLConnection connection;
-	InputStream in;
+	UnicodeInputStream in;
 	org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
 	try {
 	    xmlParser.setProperty(
