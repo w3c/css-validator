@@ -53,7 +53,7 @@ public class IndexGenerator {
 	 * @param servlet, if this method is called from the servlet,
 	 * the path is a bit different and need to be changed.
 	 */
-	public static void generatesIndex(boolean servlet) {
+	public synchronized static void generatesIndex(boolean servlet) {
 		String default_lang = "en", k, name, path;
 		ApplContext ac_default = new ApplContext(default_lang);
 		File tmpFile;
