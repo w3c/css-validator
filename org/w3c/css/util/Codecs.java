@@ -231,9 +231,10 @@ public class Codecs {
 
 		lchdr = hdr.toLowerCase();
 
-		if (lchdr.startsWith("content-type"))
+		if (lchdr.startsWith("content-type")) {
 			mimeType = lchdr.substring("content-type: ".length());
-		else if (!lchdr.startsWith("content-disposition")) continue;
+			continue;
+		}else if (!lchdr.startsWith("content-disposition")) continue;
 
 		int off = lchdr.indexOf("form-data", 20);
 
