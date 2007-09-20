@@ -136,6 +136,32 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
   </type>
+  <type title="no profile">
+    <test profile="none">
+      <file>testsuite/general/no_profile/valid.css</file>
+      <description>properties don't exist in CSS 2.1 but exists in CSS3</description>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>2</warnings>
+      </result>
+    </test>
+    <test profile="css21">
+      <file>testsuite/general/no_profile/valid.css</file>
+      <description>properties don't exist in CSS 2.1 but exists in CSS3&lt;br/&gt;But profile is set to CSS 2.1</description>
+      <result valid="true">
+        <errors>2</errors>
+        <warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="none">
+      <file>testsuite/general/no_profile/invalid.css</file>
+      <description>properties don't exist in CSS 2.1 but exists in CSS3.&lt;br/&gt;But values are wrong</description>
+      <result valid="false">
+        <errors>2</errors>
+        <warnings>2</warnings>
+      </result>
+    </test>
+  </type>
   <type title="parse-errors">
     <test>
       <file>testsuite/general/parse/parse-error1.css</file>
