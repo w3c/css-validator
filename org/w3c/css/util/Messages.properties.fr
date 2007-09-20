@@ -272,8 +272,10 @@ error.zero: only 0 can be a %s. You must put an unit after your number
 error.unknown: Erreur inconnue
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: La propriété %s n'existe pas dans %s.
+error.noexistence-at-all: La propriété %s n'existe pas
 error.noexistence-media: La propriété %s n'existe pas pour le media %s
+error.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
+warning.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
 warning.noexistence-media: La propriété %s n'existe pas pour le media %s
 
 # used by org.w3c.css.parser.CssFouffa

@@ -260,8 +260,12 @@ error.angle: %s no es un ángulo válido. El valor debe estar comprendido entre 
 error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás de la cifra
 
 # used by org.w3c.css.parser.CssPropertyFactory 
-error.noexistence: La propiedad %s no existe en %s
+error.noexistence-at-all: La propiedad %s no existe
 error.noexistence-media: La propiedad %s no existe en el medio %s
+# *********** v Need translation!!! v *********** #
+error.noexistence: La propiedad %s no existe en %s but exists in %s
+warning.noexistence: La propiedad %s no existe en %s but exists in %s
+# *********** ^ Need translation!!! ^ *********** #
 warning.noexistence-media: La propiedad %s no existe en el medio %s
 warning.notforusermedium : La propiedad %s no existe en este medio de usuario
 warning.noothermedium : Las propiedades de otros medios podrían no funcionar en el medio de usuario

@@ -256,8 +256,10 @@ error.angle: %s is not a valid angle. Value should be between 0 and 360
 error.zero: only 0 can be a %s. You must put an unit after your number
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: Property %s doesn't exist in %s
+error.noexistence-at-all: Property %s doesn't exist
 error.noexistence-media: Property %s doesn't exist for media %s
+error.noexistence: Property %s doesn't exist in %s but exists in %s
+warning.noexistence: Property %s doesn't exist in %s but exists in %s
 warning.noexistence-media: Property %s doesn't exist for media %s
 warning.notforusermedium : Property %s doesn't exist for this usermedium
 warning.noothermedium : Properties for other media might not work for usermedium

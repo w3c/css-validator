@@ -234,8 +234,12 @@ error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
 error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 
 # used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: 属性 %s 不存在
+error.noexistence-at-all: 属性 %s 不存在
 error.noexistence-media: 媒体 %s 的属性 %s 不存在
+# *********** v Need translation!!! v *********** #
+error.noexistence: 属性 %s 不存在 in %s but exists in %s
+warning.noexistence: 属性 %s 不存在 in %s but exists in %s
+# *********** ^ Need translation!!! ^ *********** #
 warning.noexistence-media: 媒体 %s 的属性 %s 不存在
 
 # used by org.w3c.css.parser.CssFouffa

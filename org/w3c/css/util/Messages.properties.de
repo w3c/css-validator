@@ -237,9 +237,13 @@ error.angle: %s ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 lieg
 error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 
 # used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: Die Eigenschaft %s existiert nicht
-error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
+error.noexistence-at-all: Die Eigenschaft %s existiert nicht
 warning.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
+# *********** v Need translation!!! v *********** #
+error.noexistence: Die Eigenschaft %s existiert nicht in %s but exists in %s
+warning.noexistence: Die Eigenschaft %s existiert nicht in %s but exists in %s
+# *********** ^ Need translation!!! ^ *********** #
+error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt

@@ -257,8 +257,12 @@ error.angle: %s non è un angolo valido. Il valore dovrebbe essere fra 0 e 360
 error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence: La proprietà %s non esiste per %s
+error.noexistence-at-all: La proprietà %s non esiste
 error.noexistence-media: La proprietà %s non esiste per il media %s
+# *********** v Need translation!!! v *********** #
+error.noexistence: La proprietà %s non esiste per %s but exists in %s
+warning.noexistence: La proprietà %s non esiste per %s but exists in %s
+# *********** ^ Need translation!!! ^ *********** #
 warning.noexistence-media: La proprietà %s non esiste per il media %s
 warning.notforusermedium : La proprietà %s non esiste per questo usermedium
 warning.noothermedium : La proprietà per altri media non dovrebbero funzionare per usermedium

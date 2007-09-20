@@ -253,7 +253,11 @@ error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
 
 # gebruikt door org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: Eigenschap %s bestaat niet
+error.noexistence-at-all: Eigenschap %s bestaat niet
+# *********** v Need translation!!! v *********** #
+error.noexistence: Eigenschap %s bestaat niet in %s but exists in %s
+warning.noexistence: Eigenschap %s bestaat niet in %s but exists in %s
+# *********** ^ Need translation!!! ^ *********** #
 error.noexistence-media: Eigenschap %s bestaat niet voor media %s
 warning.noexistence-media: Eigenschap %s bestaat niet voor media %s
 
