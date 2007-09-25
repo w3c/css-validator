@@ -267,6 +267,12 @@ warning.noothermedium : Properties for other media might not work for usermedium
 error.noatruleyet: Other @rules than @import are not supported by CSS1 %s
 # used by org.w3c.css.parser.analyzer.CssParser
 error.notforcss1: Value %s does not exist for CSS1
+warning.pseudo: Unknown pseudo-element or pseudo-class %s in the default profile (%s)
+warning.nocomb: Combinator %s between selectors is not allowed in this profile (%s)
+warning.charsetspecial: This profile has a very specific syntax for @charset: \
+@charset followed by exactly one space, followed by the name of the encoding \
+in quotes, followed immediately by a semicolon.
+warning.notversion: %s can not be used with this version of CSS : %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Too many values or values are not recognized
