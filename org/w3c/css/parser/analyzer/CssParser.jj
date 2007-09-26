@@ -1414,18 +1414,18 @@ void element_name(CssSelectors s) :
   n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
       s.addType(new TypeSelector(convertIdent(n.image)));}
   | "*" { 
-		if (!ac.getCssVersion().equals("css1") && !"none".equals(ac.getProfile())) {
-            if (ac.getCssVersion().equals("css1") && "none".equals(ac.getProfile())) {
+        if (!ac.getCssVersion().equals("css1")) {
+//          s.setElement(null);
+            s.addUniversal(new UniversalSelector());
+        } else {
+            if ("none".equals(ac.getProfile())) {
                 ac.getFrame().addWarning("notversion");
             } else {
-//              s.setElement(null);
-                s.addUniversal(new UniversalSelector());
+                ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
+                "*", ac.getCssVersion(), ac)));
             }
-		} else {
-		    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-			"*", ac.getCssVersion(), ac)));
-		}
-	}
+        }
+    }
 }
 
 /**
