@@ -197,6 +197,8 @@ public class CssPropertyFactory implements Cloneable {
 			}
 			
 			if (pfsOk.size() > 0) {
+				/*
+				// This should be uncommented when no-profile in enabled
 				if (ac.getProfile().equals("none")) {
 					// the last one should be the best one to use
 					String	pf = (String) pfsOk.get(pfsOk.size()-1),
@@ -207,9 +209,10 @@ public class CssPropertyFactory implements Cloneable {
 					ac.setCssVersion(old_pf);
 				}
 				else
-					throw new InvalidParamException("noexistence", new String[] { property, ac.getMsg().getString(ac.getCssVersion()), pfsOk.toString() }, ac);
+				 */
+				throw new InvalidParamException("noexistence", new String[] { property, ac.getMsg().getString(ac.getCssVersion()), pfsOk.toString() }, ac);
 			} else {
-					throw new InvalidParamException("noexistence-at-all", property, ac);
+				throw new InvalidParamException("noexistence-at-all", property, ac);
 			}
 		}
 
