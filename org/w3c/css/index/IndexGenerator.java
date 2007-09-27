@@ -39,6 +39,7 @@ public class IndexGenerator {
 	public static VelocityContext vc = new VelocityContext();
 	private static String template_name = "validator.vm";
 	private static String html_files_path = "../../../../";
+	private static boolean done = false;
 
 	/**
 	 * @param args
@@ -53,7 +54,10 @@ public class IndexGenerator {
 	 * @param servlet, if this method is called from the servlet,
 	 * the path is a bit different and need to be changed.
 	 */
-	public synchronized static void generatesIndex(boolean servlet) {
+	public static synchronized void generatesIndex(boolean servlet) {
+		if (done)
+			return;
+		
 		String default_lang = "en", k, name, path;
 		ApplContext ac_default = new ApplContext(default_lang);
 		File tmpFile;
@@ -131,6 +135,7 @@ public class IndexGenerator {
 				}
 			}
 			Velocity.getLog().info("IndexGenerator : " + count + " index file(s) created or modified");
+			done = true;
 		} catch (ResourceNotFoundException e) {
 			e.printStackTrace();
 		} catch (ParseErrorException e) {
@@ -143,6 +148,8 @@ public class IndexGenerator {
 			e1.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			done = true;
 		}
 	}
 
