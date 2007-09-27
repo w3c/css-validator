@@ -84,6 +84,17 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
     <test>
+      <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=471</uri>
+      <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=697&quot;&gt;
+      http://www.w3.org/Bugs/Public/show_bug.cgi?id=697&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>0</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+
+
+    <test>
       <file>testsuite/bugs/764.css</file>
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&lt;/a&gt;</description>
