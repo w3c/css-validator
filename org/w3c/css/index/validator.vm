@@ -1,7 +1,7 @@
 #macro( moreOptionMacro $submit_message)
-  <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
+  <fieldset id="extra_opt_direct" class="moreoptions">
     <legend class="toggletext" title="$title_more_options">$more_options</legend>
-    <div>
+    <div class="options">
       <label for="warning_direct">$warnings :</label>
       <select id="warning_direct" name="warning"> 
         <option value="2">$all</option>
@@ -74,8 +74,8 @@
 
   <body>
    <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <img src="images/css_validation_service.png" alt="$W3C_CSS_validation_service" /></h1>
+    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+    <a href="./"><span>CSS Validation Service" </span></a></h1>
     <p id="tagline">
       $check_CSS
     </p>
