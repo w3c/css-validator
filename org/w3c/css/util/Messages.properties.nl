@@ -140,7 +140,7 @@ warning.no-background-color: Je hebt geen achtergrondkleur opgegeven (of de acht
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
 warning.no-generic-family: %s: Het is beter een algemene font-family op te geven als laatste alternatief
-warning.with-space: Fanmilienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
+warning.with-space: Familienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
 Als quotes worden weggelaten wordt elke tussenruimte voor en achter de naam genegeerd en elke groep \
 whitespace-tekens in de naam wordt omgezet naar een spatie.
 warning.no-padding: Het is beter een padding te gebruiken met een achtergrondkleur
