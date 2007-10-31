@@ -1,499 +1,720 @@
-/*
-   Base Style Sheet for the W3C CSS validation service
-	based on the one for Markup Validation Service.
+/* @group Reset */
 
-   Copyright 2000 W3C (MIT, INRIA, Keio). All Rights Reserved.
-   See http://www.w3.org/Consortium/Legal/ipr-notice.html#Copyright
-
-   $Id$
-*/
-
-/*                 
-   General styling 
-                   */
-html {
-    background-color: white;
-    color: #11111A;
+html, body, form, fieldset, p, a, ul, ol, li, div, legend, label,
+br, input, button, textarea, h1, h2, h3, h4, h5, strong {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 100%;
+	font-family: Helvetica, Arial, Sans-Serif;
+	vertical-align: baseline;
+	background-color: white;
+	color: #1f2126;
+	line-height: 1;
+	text-align: left;
 }
 
-body {  
-    margin: auto auto;
-    padding-left: 6%;
-    padding-right: 6%;
-    background-color: white;
-    color: #11111A;
-    font-family: Helvetica, "Trebuchet MS", Arial, sans-serif;
-    font-size: 1em; /* setting base font to user's prefered size */
-    min-width: 50em;
+a img {
+	border: 0;
 }
-p, pre, dt {     
-    line-height: 130%; 
-    padding-left: 20px;
-}
-
-/*                                                   
-   Main blocks - see also ul.navbar 
-                                                     */
-
-#banner {
-    background-color: white;
-    color: #11111A;
-    background-image: url(../images/header.jpg);
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: top right;
-    padding: 4px 0 0 0;
-    height: 55px; 
-    margin-bottom: 0;
-    margin-top: 22px;
-    border: 0;
-
-}
-
-#banner h1 { 
-    vertical-align: middle;
-    font-size: 1.5em;
-    display: inline;
-}
-
-p#tagline {
-    font-size: x-small;
-    padding: 0; 
-    line-height: 100%;
-    margin: 0 0 4em .8em;
-    background-color: white;
-    color: #11111A;
-    clear: both;
-}
-
-#main { 
-    padding: 15px 0;
-    background-color: white;
-    margin: 0;
-    color: #11111A;
-}
-
-.intro {
-  font-style: italic;
-  font-size: smaller;
-  text-align: justify;
-}
-
-/* 
-   Headers
-            */
-
-h1 { 
-    font-family: "Gill Sans", Helvetica, sans-serif;
-    font-weight: bold;
-    font-style: normal;
-    text-decoration: none;
-}
-
-h2 { 
-    color: #777742;
-    background: white;
-    padding: 5px 15px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-size: 1.3em;
-    text-align: center;
-    text-decoration: none;
-    font-family: "Gill Sans", sans-serif;
-}
-
-h3 {
-    background-color: #fff;
-    color: #777742;
-    font-size: 1.1em;
-    padding: 2px 10px;
-    border-bottom: 1px dotted #aaaa77;
-    text-decoration: none;
-    font-family: "Gill Sans", sans-serif;
-} 
-
-h4 {
-    color: #777742;
-    background-color: white;
-    font-weight: 600;
-    font-style: italic;
-    text-decoration: none;
-    font-size: 1.0em;
-    padding-left: 15px;
-    font-family: "Gill Sans", sans-serif;
-}
-
-h5,h6 {
-    background-color: white;
-    color: #11111A;
-    font-family: "Gill Sans", sans-serif;
-    font-weight: normal;
-    padding-left: 15px;
-    }
-/* 
-   General link styling
-                         */
 
 a:link, a:visited {
-    color: #005A9C;
-    background-color: transparent;
-    text-decoration: none;
-
+	text-decoration: underline;
+	color: #365D95;
 }
 
 a:hover, a:active {
-    color: #005A9C;
-    background-color: transparent;
-    text-decoration: underline;
+	text-decoration: underline;
+	color: #1f2126;
 }
 
-
-/* 
-   Other basic styles 
-                      */
-
-/* TODO - add ol, li, td here ? */
-p, dt {
-    margin-left: 15px;
-    margin-right: 25px;
-}
-
-dd {
-    margin-left: 35px;
-    margin-right: 25px;
-}
-
-#news dt {
-    font-weight: bold;
-     margin-top: 1em;
-   }
-
-img { 
-    margin:0;
-    padding: 0;
-    vertical-align: middle;
-    border: 0;
-}
-
-acronym:hover, abbr:hover {
-    cursor: help;
+ul, ol {
+	list-style: none;
 }
 
 abbr[title], acronym[title], span[title], strong[title] {
-    border-bottom: thin dotted;
-    cursor: help;
+	border-bottom: thin dotted;
+	cursor: help;
 }
 
-pre, code, tt {
-    font-family: "Bitstream Vera Sans Mono", Monaco, "Andale Mono", monospace;
-    line-height: 100%;
-    white-space: pre;
+acronym:hover, abbr:hover {
+	cursor: help;
 }
 
-a:link img, a:visited img {
-    border-style: none;
+/* @end */
+
+/* @group Basics */
+
+body {
+	padding-bottom: 6em;
+	min-width: 40em; /* for the tabs, mostly */
 }
 
-ul.toc {
-    list-style: none;
+p {
+  line-height: 130%;   
 }
 
-/*
-   Stuff we don't actually want too visible - or not at all
-                                                            */
-.hideme { display: none; }
-
-
-/*
-   Forms on front page, with tabtastic and toggable extra options
-         */
-#frontforms {
-	margin-left: 12%;
-	margin-right: 12%;
-	
+strong { 
+  font-weight: bold;
 }
 
-
-
-/* Fieldsets */
-
-/* generic style for form fields */
-fieldset {
-    border: 1px solid #005A9C;
-    background-color: transparent;
-    color: #11111A;
-    margin-bottom: 3em;
-    margin-left: 0;
+h2 { 
+    color: #690;
+    font-family:Verdana,Arial,sans-serif;
+    background-color: white;
+    font-size: 1.3em;
+    margin-bottom: 1em;    
 }
-fieldset legend {
-    font-weight: bold;
-    padding: .5em;
+
+h3 {
+    font-family:Verdana,Arial,sans-serif;
+    color: #690;
+    background-color: white;
+    font-size: 1.1em;
+    border-bottom: 1px dotted #aaaa77;
+    text-decoration: none;
+    margin-top: 1em;
+    margin-bottom: 1em;
+} 
+
+h4 {
+    font-family:Verdana,Arial,sans-serif;
+    color: #690;
+    font-style: italic;
+    text-decoration: none;
+    font-size: .9em;
+    font-weight:600;
+    margin-top: 1.5em;
+    margin-bottom: .5em;
 }
-fieldset.moreoptions legend {
+
+h5,h6 {
+    font-family:Verdana,Arial,sans-serif;
+    color: #11111a;
+    background-color: white;
     font-weight: normal;
-}
-fieldset p { 
-    margin: 0 0  0.8em 0; 
-    padding: 0; 
+    font-size: small;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-bottom: .7em;
+    }
+
+    /* tables in the documentation */
+
+    table {
+    }
+    td, th{
+    	padding: 6px;
+    }
+    
+/* @end */
+
+
+/* @group Inputs */
+
+input#uri, input#file, input#uploaded_file, input#keywords, input#short_desc, textarea {
+	font-family: Monaco, "Courier New", Monospace;
+	font-size: 0.9em;
+	border: 1px solid #bbb;
+	border-top: 1px solid #777;
+	border-bottom: 1px solid #ddd;
+	background: #fefefe url(../images/textbg.png) no-repeat top left;
+	padding: 0.2em 0.2em;
+	max-width: 1000px;
+	font-variant: normal;
 }
 
-fieldset div {
-    padding-top: 1em;
+input#uri, input#file, input#uploaded_file {
+	width: 85%;
+	margin: 0.3em 0 0 1em;
 }
 
-fieldset p.instructions {
-    padding-top: 1em;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-fieldset p.submit_button {
-    text-align: right;
-    padding-top: .5em;
-}
-fieldset p.submit_button input {
-    font-weight: bold;
-    color: #005A9C;
-    background: #fff;
-    padding: 0.2em 2em;
-    border: 2px outset #005A9C;
+input#file, input#uploaded_file {
+	width: 30em;
 }
 
-/* home page fieldsets */
-
-.tabset_tabs	{ 
-    margin:0; 
-    padding:0; 
-    list-style-type:none; 
-    position:relative; 
-    z-index:2; 
-    white-space:nowrap; 
+input#mailsearch, input#bugsearch {
+    background-color: #EAEBEE;
+    color: #365D95;
+    padding: .3em 1em;
+    border: 1px outset #ccc;
+  }
+  input#mailsearch:active, input#bugsearch:active {
+    border-style: inset !important;
+  }
+a.submit {
+	display: block;
+	width: 10em;
+	text-align: center;
+	margin: 0 auto;
+	background: url(../images/button-left.png) no-repeat center left;
+	text-decoration: none;
 }
 
-.tabset_tabs li	{ 
-    margin:0; 
-    padding:0; 
-    display:inline;
+a.submit span {
+	display: block;
+	padding: 1.2em 2em;
+	background: url(../images/button-right.png) no-repeat center right;
 }
 
-.tabset_tabs a	{  
-    border: 0;
-    border-left: 1px solid #ADDBFE; 
-    text-decoration:none; 
-    padding: 0.8em 0.6em 0 0.6em;
-    background: white;
-    font-weight: bold;
+textarea {
+	width: 98.5%;
 }
 
-.tabset_tabs a:hover	{ 
-    color:#424242 ! important; 
-    background: #E1F0FD url(../images/sm_gradient_hover.gif) 0 0 repeat-x;
-    text-decoration:none;  
+p.submit_button input {
+	overflow: visible;
+	width: auto;
+	background: #fff;
+  color: #365D95;
+  padding: 0.3em 0.4em 0.1em 0.3em;
+	font-size: 1.2em;
+	width: 12em;
+	text-align: center;
+	border-bottom: 2px solid #444;
+	border-right: 2px solid #444;
+	border-top: 1px solid #aaa;
+	border-left: 1px solid #aaa;
+	background: #eee url(../images/grad.png) repeat-x top left;
+	cursor: pointer;
 }
 
-.tabset_tabs a.active, .tabset_tabs a.active:hover { 
-    color:#424242 ! important; 
-    background-color: #8FCFFD !important;
-    background: #8FCFFD url(../images/sm_gradient_active.gif) 0 0 repeat-x;
-    border-color: #ADDBFE; 
-    border-left-width:1px; 
-    cursor:default; 
-    border-bottom: white; 
-    padding-top:0.8em; 
-    padding-bottom:1px; 
-    color: #fffff0 !important; 
- }
-
-.tabset_tabs li.firstchild a, .tabset_tabs li:first-child a { 
-    border-left: 1px solid white; 
+p.submit_button input:active {
+  color: #1f2126;
+	border-bottom: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	border-top: 2px solid #444;
+	border-left: 2px solid #444;
 }
+
+label {
+	font-size: 0.9em;
+	padding-left: .2em;
+	padding-right: .2em;
+}
+
+div.options select {
+	margin-right: 0.8em;
+}
+
+div.options label {
+	margin-right: 0.3em;
+}
+
+
+div.options table, div.options tbody, div.options td, div.options th, div.options tr {
+	margin: 0;
+	padding: 0;
+}
+
+div.options table {
+	border-collapse: collapse;
+}
+
+div.options th, div.options th label {
+	font-weight: bold;
+}
+
+div.options td, div.options th {
+	padding: 0.5em 1.1em 0.5em 0;
+	text-align: left;
+}
+
+div.options td input {
+	margin-right: 0.2em;
+}
+
+div.options select {
+	width: 100%;
+}
+
+div.options table tr.subchoice th {
+    padding-left: 3em;
+}
+tr.subchoice th label {
+  padding-left: 0;
+}
+tr.subchoice th, tr.subchoice th label {
+  font-size: 1em;
+  font-weight: normal;
+}
+/* @end */
+
+/* @group Header */
+
+h1#title {
+	font-family: "Myriad Web", "Myriad Pro", "Gill Sans", Helvetica, Arial, Sans-Serif;
+	background-color: #365D95;
+	color: #fdfdfd;
+	font-size: 1.6em;
+	background: url(../images/head-bl.png) bottom left no-repeat;
+	padding-bottom: 0.430em;
+}
+h1#title a, h1#title a img {
+background-color: #365D95;
+}
+
+h1 span {
+	border-bottom: 1px solid #6383b1;
+	border-color: #4e6f9e;
+}
+
+h1#title a:link, h1#title a:hover, h1#title a:visited, h1#title a:active {
+  color: #fdfdfd !important;
+  text-decoration: none;
+}
+
+h1#title img {
+	vertical-align: middle;
+	margin-right: 0.7em;
+}
+
+div#banner {
+	background: #365D95 url(../images/head-br.png) bottom right no-repeat;
+	margin: 1.5em 2em;
+}
+
+p#tagline {
+	font-size: 0.7em;
+	margin: -2em 0 0 12.1em;
+	padding-bottom: 1em;
+	letter-spacing: 0.1em;
+	line-height: 100% !important;
+	color: #D0DCEE;
+	background-color: transparent;
+}
+
+ul#lang_choice {
+	position: absolute;
+	text-align: right;
+	top: 0;
+	right: 0;
+	font-size: 0.7em;
+	padding: 0.5em 0;
+	line-height: 100%;
+	margin-right: 3.3em;
+	min-width: 40em;
+	background-color: transparent;
+}
+
+ul#lang_choice a:link, ul#lang_choice a:visited {
+	text-decoration: none;
+}
+
+ul#lang_choice a:hover, ul#lang_choice a:active {
+	text-decoration: underline;
+}
+
+ul#lang_choice li {
+	display: inline;
+	padding-left: 0.5em;
+}
+
+/* @end */
+
+/* @group Tabs */
+
+ul#tabset_tabs {
+	height: 1.59em;
+}
+
+ul#tabset_tabs li {
+	cursor: pointer;
+	float: left;
+	margin-right: 0.245em;
+	background: #DADDE3 url(../images/tab-tl.png) no-repeat top left;
+	border-bottom: 1px solid #CBD0DB;
+}
+
+ul#tabset_tabs li.selected {
+	background: #EAEBEE url(../images/round-tl.png) no-repeat top left;
+	border-bottom: 1px solid #EAEBEE;
+}
+
+ul#tabset_tabs li.selected a:link, ul#tabset_tabs li.selected a:visited {
+	color: #1f2126;
+	background: #EAEBEE url(../images/round-tr.png) no-repeat top right;
+}
+
+ul#tabset_tabs li span {
+	color: #616571;
+}
+
+body ul#tabset_tabs li.selected a span {
+	color: #3d424f;
+}
+
+ul#tabset_tabs li a:link, ul#tabset_tabs li a:visited {
+	color: #365D95;
+	display: block;
+	padding: 0.515em 1.3em 0.215em 0.8em;
+	background: #DADDE3 url(../images/tab-tr.png) no-repeat top right;
+	margin-left: 0.5em;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+ul#tabset_tabs li a:hover, ul#tabset_tabs li a:active {
+	color: #1f2126;
+}
+
+ul#tabset_tabs li a:hover span, ul#tabset_tabs li a:active span {
+	color: #3d424f;
+}
+
+ul#tabset_tabs li.selected span {
+	color: #5d6371;
+}
+
+/* @end */
+
+/* @group Contents */
+
+div#frontforms {
+	background: #fff;
+	padding: 0 2em;
+}
+
 div#fields {
-    background: #8FCFFD url(../images/lg_gradient.gif) bottom left repeat-x;
-    margin: 0;
-    padding: 0;
-}
-.tabset_content	{ 
-    border: none;
-    position:relative; 
-    z-index:1; 
-    padding:0.5em 1em; 
-    border-left: 1px solid white;
-    padding-bottom: 2em;
+	clear: both;
+	background: #EAEBEE url(../images/round-tr.png) no-repeat top right;
+	padding: 0.5em 1.3em;
+	border-bottom: 1px solid #DCDDE0;
 }
 
-input {
-    vertical-align: middle;
+div#fields legend, div#fields p, div#fields fieldset, div#fields form,div#fields form fieldset legend a, div#fields form p label, div#fields tr label   {
+  background-color: #EAEBEE;
 }
-input.reset {
-    text-align: center;
+
+fieldset {
+	background: #EAEBEE;
 }
-input.default {
+
+legend {
+	font-size: 1.1em;
+	padding: 1em 0 0.23em;
+	letter-spacing: 0.06em;
+}
+
+legend a:link, legend a:visited, legend a:hover, legend a:active {
+	text-decoration: none;
+}
+
+legend.toggletext {
+	cursor: pointer;
+	padding-left: 0.8em;
+	background: #EAEBEE url(../images/arrow-closed.png) 0 1.2em no-repeat;
+}
+
+legend.toggled {
+	background: #EAEBEE url(../images/arrow-open.png) 0 1.4em no-repeat;
+}
+
+p.instructions {
+	color: #4D525E;
+	font-size: 0.80em;
+	padding-bottom: 1em;
+	padding-top: 0.5em;
+}
+
+p.instructions label {
+	color: #4D525E;
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+}
+
+div.options {
+	padding: 0.7em 0 0.5em 1em;
+}
+
+div.options, p.submit_button, p.instructions, p#note {
+	border-top: 1px solid #cbcdd5;
+	background: #EAEBEE url(../images/double.png) left top repeat-x;
+}
+
+p.submit_button {
+	padding: 0.6em 0 0;
+	margin: 0;
+	text-align: center;
+}
+
+
+p#note {
+	clear: both;
+	color: #4D525E;
+	font-size: 0.9em;
+	padding: 0.5em 0 0.1em;
+}
+
+/* @end */
+
+/* @group Menu */
+
+ul#menu {
+	text-align: center;
+	margin: 1em 2em;
+	background: #EAEBEE url(../images/round-br.png) no-repeat bottom right;
+	padding: 0.5em 0 0.3em;
+	border-top: 1px solid #DCDDE0;
+}
+
+ul#menu span {
+	display: none;
+}
+
+ul#menu a:link, ul#menu a:visited {
+	background: #EAEBEE;
+	color: #365D95;
+	text-decoration: none;
+}
+
+ul#menu a:hover, ul#menu a:active {
+	color: #1f2126;
+	text-decoration: underline;
+}
+
+ul#menu li {
+	display: inline;
+	margin-right: 0.8em;
+}
+
+
+
+/* @end */
+
+/* @group Footer */
+
+div#footer {
+	padding: 0 2em;
+}
+
+p#activity_logos {
+	float: left;
+	margin-right: 2em;
+}
+
+p#support_logo {
+	float: right;
+	font-size: 0.8em;
+	text-align: center;
+	margin-left: 2em;
+}
+
+p.copyright {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 0.7em;
+	line-height: 1.4;
+}
+
+p.copyright, p.copyright a {
+	text-decoration: none;
+	color: #7C8395;
+}
+
+p.copyright a:link, p.copyright a:visited {
+	color: #A3756E;
+}
+
+p.copyright a:hover, p.copyright a:active {
+	color: #7D4A42;
+}
+
+p#version_info {
+    font-size:      small;
     text-align: center;
+    color: #888;
+    background-color: white;
+}
+
+/* @end */
+
+/* @group Docs */
+
+div.doc {
+  margin: 1em 2em;
+	padding: 0.5em 0 0.3em;	  
+}
+
+
+/* Set line height to 1.4x (from 1.3x on general site) to allow for various inline decoration. */
+div.doc p, div.doc li {
+  line-height: 150% !important; 
+}
+div.doc p {
+  margin-bottom: .7em;
+  margin-top: .5em;
+}
+
+div.doc p, div.doc dt, div.doc ul, div.doc ol {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+div.doc ul li {
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
+/* documentation - table of contents */
+#toc { /* making the toc a bit more compact and standing out */
+    font-size: .85em;
     font-weight: bold;
+    margin-bottom: 2em;
+    margin-left: 3em;
+}
+
+div.doc div#toc ol {
+   list-style-type: decimal;
+}
+div.doc div#toc ol li {
+  line-height: 130%;
+  font-weight: bold;
+}
+div.doc div#toc ol li ol {
+   list-style-type: lower-alpha;
+   font-weight: normal;
+   margin-left: 1em;
+}
+div.doc div#toc ol li ol li ol{
+   list-style-type: lower-roman;
 }
 
 
-/* the following from http://www.mindsack.com/toggle/ (c) Kent Brewster */
-
-p.toggle
-{
-        background: transparent url('../images/arrow-down.gif')  0 0 no-repeat;
-        text-indent: 20px;
-        cursor:pointer;
-    color: #005A9C;
-    background-color: transparent;
-    margin-bottom: 0;
+/* documentation - error explanations */
+dl#expl dt code { /* headings for an error */
+  white-space: normal;
+  font-weight: bold;
 }
 
-p.closed
-{
-        background: transparent url('../images/arrow-right.gif') 0 0 no-repeat !important;
+dl#expl dt {
+  border-top: 1px dashed black;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
-
-.hidden
-{
-        display:none;
+div.doc dt {
+  margin-top: 1.2em;
+  margin-bottom: .2em;
 }
-fieldset.moreoptions {
-border-color: white;
-border-style: dotted;
-margin-bottom: 0;
-padding-left: .3em;
+div.doc dt, div.doc dt a {
+  font-style: italic;
 }
-fieldset.moreoptions div, fieldset.moreoptions table {
-margin-top: 0;
-margin-left: .5em;
-font-size: smaller;
+div.doc dd {
+  margin-right: 0; /* no need for the extra margin if we nicely put the text of the dd in a paragraph */
+}
+div.doc var { /* headings for an error */
+  color: #006;
 }
 
-fieldset.moreoptions td, fieldset.moreoptions th, fieldset.moreoptions table {
-        border: 0 !important;
-}
-fieldset.moreoptions th {
-	background-color: transparent !important;
-	text-align: left;   
-}
-
-
-fieldset.closed {
-border: 0;
+/* A snippet of code used inline. */
+div.doc code {
+  white-space: normal;
+  display: inline;
+  padding-left: .2em;
+  padding-right: .2em;
+  color:      black;
+  font-family: Monaco, "Courier New", monospace;
+  border: 1px dotted #ccc;
 }
 
+div.doc code.block {
+  display: block;
+  padding: 1em;
+  white-space: pre;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right:  3em;
+}
 
+div.doc code samp {
+  font-weight: normal;
+  color: black;
+  font-style: italic;
+}
 
-/* IE6 hack, avoid "leaking" of fiedset background into legend 
-(more hacking in tabtastic.css to make the "ghost" of the legend disappear) */
-* html legend { position:absolute; top: -25em !important; left: -25em !important; }
-* html fieldset{ position: relative; margin-top:0 !important; padding-top:0 !important; }
+/* reference tables */
 
-
-
-/* tables in the documentation */
-
-table {
+div.doc table {
 	border-collapse: collapse;
 	border-right: 1px solid #ccc;
 }
-td, th{
+div.doc table td, .doc table th{
 	border-top: 0px solid #ddd;
 	border-bottom: 1px solid #ccc;
 	border-left: 1px solid #eee;
 	padding: 6px;
 	border-collapse: collapse;
 }
-th {
+div.doc table th {
 	background-color: #eee;
 	color: #11111A;
 	border-right: 1px solid #ccc;
 }
 
-
-/* 
-	Menu Bar
-			*/
-
-ul.navbar {
-        color: #005A9C;
-	border-top: 1px solid #005A9C;
-	border-bottom: 1px solid #005A9C;
-        background-color: white;
-        margin: 3em 0 0 0;
-        padding: 3px 0 3px 0;
-        line-height: 140%;
-        vertical-align: bottom;
-        font-size: 0.9em;
-        list-style-type: none;
-	text-align: center;
-	font-weight: bold;
+div.doc table {
+  margin-top: 1em;
+  margin-bottom: .5em;
+ 	border-collapse: collapse;
+	border-right: 1px solid #ccc; 
 }
 
-ul.navbar { padding-left: 1em; padding-right: 1em}
-ul.navbar li {
-  display: inline;
+div.doc td, div.doc th {
+	border-top: 0px solid #ddd;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #eee;
+	border-collapse: collapse;
+  
+}
+div.doc th {
+	background-color: #eee;
+	color: #11111A;
+	border-right: 1px solid #ccc;
 }
 
-ul.navbar li a {
-  padding-right: 1.2em;
-  padding-left: 1.2em;
-}
-
-/* 
-	legalese and logos beneath the menu bar
-							*/
-
-p#activity_logos {
-float:left; 
-width: 144px; 
-padding: 8px 0 40px 0; 
-}
-
-p#support_logo {
-float: right; width: 180px; padding: 0; margin-top: 12px; font-size: x-small; text-align:center;
-}
-
-                                                            
-p.copyright {
-  margin-top:     20px;
-  margin-left:    210px;
-  margin-right: 240px;
-  font-size:      x-small;
-  text-align:     justify;
-  text-transform: uppercase;
-  font-family: "Bitstream Vera Sans Mono", monospace;
-  color: #888;
-  background-color: white;
-  line-height:    120%;
-}
-
-p.copyright a {
-  color: #88f;
-   background-color: white;
-  text-decoration: none;
-}
+/* @end */
 
 
+/* @group home page, news text */
 
-/* 
-		Jump Bar  - results page - based on navbar styling
-(from markup validator - note used in this design yet)
-								*/
-#jumpbar {
-    margin-top:    -1.5em; 
-    margin-bottom: 1em;
+div.intro {
+  margin: 1em 2em;
+	padding: 0.5em 0 0.3em;	
 }
-#jumpbar li {
-        color: #11111A !important;   
+
+#news dt {
+    font-weight: bold;
+     margin-top: 1.5em;
+     margin-bottom: .3em;
+   }
+
+#news dd {
+       margin-left: 2.5em;
+       margin-right: 1.5em;
+   }
+
+
+/* warning on the home page for test instances */
+#test_warning {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    line-height: 160%;
+    text-align: center;
+    margin-top: 2em;
+	margin-left: 12%;
+	margin-right: 12%;
+	padding-left: 1.5em;
+   padding-right: 1.5em;
+	color: black;
+	background-color: white;
 }
-/* language selection bar */
-#lang_choice {
-        position: absolute;
-        display: block;
-        width: 50em; 
-        top: 0px; 
-        text-align: right; 
-        right: 75px; 
-	margin-top: 6px;
-        font-size: x-small;
-	list-style: none;
+
+#test_warning img {
+    width: 1.3em;
+    vertical-align: middle;
 }
-#lang_choice li { display: inline; padding-left: .5em;}
+
+/* @end */
