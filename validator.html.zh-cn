@@ -241,7 +241,9 @@
                rel="alternate">中文</a></li>
       </ul>
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
@@ -264,7 +266,7 @@
       的条例。你和本站点的互动都受到我们的<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">公开</a>和<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a>隐私条例保护
       
     </p>
-
+</div>
   </body>
 </html>
 
