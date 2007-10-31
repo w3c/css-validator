@@ -14,10 +14,15 @@
   </head>
 
   <body>
-   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
-   </div>
+    <div id="banner">
+     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <a href="./"><span>CSS Validation Service</span></a></h1>
+     <p id="tagline">
+       Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+     </p>
+    </div>
+
+   <div class="doc">
 
       <h2>关于CSS验证器</h2>
 
@@ -81,7 +86,7 @@
 
 <h4 id="api">我能在我的应用程序中运用这个验证器么？有什么API么？</h4>
 <p>当然可以，当然有  <a href="api.html">API</a>。css验证器还有一个<a href="api.html">SOAP接口</a>来提供更多便利。在自己的程序中使用css验证器的时候，最好做法是在调用css验证器前调用自己程序的sleep()函数，或者将验证器作为一个单独的实例来使用</p>
-
+</div>
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">首页</a></strong> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">文档</a> <span class="hideme">|</span></li>
@@ -138,7 +143,9 @@
       </ul>
 
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
@@ -165,7 +172,7 @@
       <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">会员</a> 隐私声明。
     </p>
 
-
+</div>
   </body>
 
 </html>

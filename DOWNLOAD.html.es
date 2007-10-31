@@ -14,16 +14,15 @@
 <!-- SSI Template Version: $Id$ -->
 </head>
 <body>
-<div id="banner">
-<h1 id="title">
-<a href="http://www.w3.org/">
-<img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb"/>
-</a>
-<a href="./">
-<img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS"/>
-</a>
-</h1>
-</div>
+  <div id="banner">
+   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
+   <p id="tagline">
+     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+   </p>
+  </div>
+
+<div class="doc">
 <h2>Descarga e instalaci&oacute;n del Validador de CSS</h2>
 <h3 id="download">Descarga el Validador de CSS</h3>
 <h4 id="source">Descarga la fuente</h4>
@@ -120,6 +119,7 @@ http://localhost:8001/css-validator/validator.html</li>
 <p>El validador CSS puede utilizarse tambi&eacute;n como una herramienta de l&iacute;nea de comandos, si tu ordenador tiene instalado java. Compila css-validator.jar seg&uacute;n lo explicado anteriormente, y ejecuta:<br/>
 <kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
 </p>
+</div>
 <ul class="navbar" id="menu">
 <li>
 <strong>
@@ -192,7 +192,9 @@ http://localhost:8001/css-validator/validator.html</li>
 </ul>
 
 
-<p id="activity_logos">
+<div id="footer">
+   <p id="activity_logos">
+
 <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more">
 <img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA"/>
 </a>
@@ -231,5 +233,6 @@ Support this tool, become a<br/>
       <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
+  </div>
 </body>
 </html>

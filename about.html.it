@@ -15,10 +15,15 @@
   </head>
 
   <body>
-   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="Servizio di validazione CSS" /></a></h1>
-   </div>
+    <div id="banner">
+     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <a href="./"><span>Servizio di validazione CSS</span></a></h1>
+     <p id="tagline">
+       Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+     </p>
+    </div>
+
+   <div class="doc">
 
       <h2>Informazionu sul validatore CSS</h2>
 
@@ -89,7 +94,7 @@ Se realmente il prodotto ti piace, sei il benvenuto ad <a href="#participate">ac
 
 <h4 id="api">Posso sviluppare un'applicazione basata su questo validatore? Ci sono delle API?</h4>
 <p>Si, e and <a href="api.html">si</a>. Il validatore CSS ha una <a href="api.html">interfaccia SOAP</a> che consente con discreta facilità di costruire applicazioni (Web o altro) basate sullo stesso. Logicamente le buone maniere e il rispetto nell'uso delle risorse condivise è un requisito basilare: verifica che le tue applicazioni eseguano sleep() tra le diverse chiamate al validatore, oppure installa direttamente nel tuo computer una versione del validatore.</p>
-
+</div>
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Pagina iniziale del servizio di validazione CSS del W3C">Pagina iniziale</a></strong> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Documentazione per il servizio di validazione CSS del W3C">Documentazione</a> <span class="hideme">|</span></li>
@@ -147,7 +152,9 @@ Se realmente il prodotto ti piace, sei il benvenuto ad <a href="#participate">ac
 
 
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="Attività di garanzia di qualità del W3C, che ti fornisce strumenti di qualità gratuiti per il Web e molto altro"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Maggiori informazioni sui fogli di stile a cascata"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
@@ -171,7 +178,7 @@ Aiuta questo strumento, diventa un<br />
       e le <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">licenze software</a>. L'interazione con i contenuti di questi siti è in accordo con le nostre definizioni di <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">pubblico</a> e <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">privato</a> per quanto riguarda la riservatezza delle informazioni. 
     </p>
 
-
+</div>
   </body>
 
 </html>

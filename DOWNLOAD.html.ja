@@ -17,13 +17,16 @@
 </head>
 
 <body>
-
   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="CSS 検査サービス" /></a></h1>
-   </div>
+   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <a href="./"><span>CSS 検証サービス</span></a></h1>
+   <p id="tagline">
+     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+   </p>
+  </div>
 
 
+<div class="doc">
 <h2>CSS Validator のダウンロードとインストール</h2>
 <h3 id="download">CSS Validator のダウンロード</h3>
 
@@ -130,7 +133,7 @@ http://localhost:8001/css-validator/validator.html</li>
 css-validator.jar を上の説明にしたがって作成したら、次のように起動します:<br />
 <kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
 </p>
-
+</div>
    <ul class="navbar"  id="menu">
 
         <li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
@@ -187,7 +190,9 @@ css-validator.jar を上の説明にしたがって作成したら、次のよ�
       </ul>
 
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
@@ -212,6 +217,6 @@ W3Cサポーターになってこのツールを支援しよう<br />
 
     </p>
 
-
+</div>
   </body>
 </html>

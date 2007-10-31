@@ -15,10 +15,15 @@
     </head>
 
   <body>
-   <div id="banner">
-           <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-           <img src="images/css_validation_service.png" alt="Usługa Walidacji CSS" /></h1>
-   </div>
+    <div id="banner">
+     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <a href="./"><span>Usługa Walidacji CSS</span></a></h1>
+     <p id="tagline">
+       Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+     </p>
+    </div>
+
+   <div class="doc">
 
       <h2>Informacje na temat walidatora CSS</h2>
 
@@ -96,7 +101,7 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
 
 <h4 id="api">Czy mogę zbudować aplikację opartą na walidatorze? Czy dostępny jest API?</h4>
 <p>Tak i <a href="api.html">tak</a>. Walidator CSS ma  (RESTful) <a href="api.html">SOAP interfejs,</a> co powinno znacznie ułatwić budowę aplikacji (sieciowych lub innych). Oczywiście dobre maniery i właściwe zastosowanie otwartych kodów źródłowych powinny być w zwyczaju: : upewnij się, że Twoje aplikacje nie korzystają z zasobów walidatora non-stop (powinny być one uśpione do czasu aktywacji) lub zainstaluj i uruchom swój własny walidator.</p>
-
+</div>
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="O serwisie">O nas</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Dokumentacja Usługi Walidacji CSS">Dokumentacja</a> <span class="hideme">|</span></li>
@@ -154,7 +159,9 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
 
 
 
-     <p id="activity_logos">
+     <div id="footer">
+   <p id="activity_logos">
+
         <a href="http://www.w3.org/QA/" title="Kontrola jakości W3C dostarcza narzędzi najwyższej jakości i o wiele więcej"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
      </p>
 
@@ -183,7 +190,7 @@ lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas 
       statements.
     </p>
 
-
+</div>
   </body>
 
 </html>

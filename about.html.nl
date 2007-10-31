@@ -15,10 +15,15 @@
   </head>
 
   <body>
-   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="CSS Validation Service" /></a></h1>
-   </div>
+    <div id="banner">
+     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+     <a href="./"><span>CSS Validation Service</span></a></h1>
+     <p id="tagline">
+       Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+     </p>
+    </div>
+    
+   <div class="doc">
 
       <h2>Over de CSS Validator</h2>
 
@@ -115,7 +120,7 @@ als een servlet op een Web server. Lees de <a href="RUN.html">instructies</a> vo
 die het relatief gemakkelijk zou moeten maken om applicaties (zowel voor het Web of stand alone) op de validator te ontwikkelen. Natuurlijk is het hierbij 
 belangrijk de ter beschikking gestelde bronnen te respecteren: zorg ervoor dat je applicaties even wachten (sleep()) tussen de aanroepen naar de validator
 of installeer en draai je eigen instantie van de validator.</p>
-
+</div>
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home pagina van de W3C CSS Validatie Service">Home</a></strong> <span class="hideme">|</span></li>
 	<li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>
@@ -172,7 +177,9 @@ of installeer en draai je eigen instantie van de validator.</p>
                rel="alternate">中文</a></li>
       </ul>
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, brengt je gratis Web kwaliteits tools en meer"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
@@ -202,7 +209,7 @@ Steun deze tool, wordt een<br />
       verklaringen.
     </p>
 
-
+</div>
   </body>
 
 </html>

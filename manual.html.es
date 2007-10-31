@@ -16,11 +16,13 @@
 </head>
 
 <body>
-
   <div id="banner">
-    <h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-    <a href="./"><img src="images/css_validation_service.png" alt="Servicio de Validación de CSS" /></a></h1>
-   </div>
+   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
+   <p id="tagline">
+     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+   </p>
+  </div>
 
 <div id="main">
 <!-- This DIV encapsulates everything in this page - necessary for the positioning -->
@@ -301,7 +303,9 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
       </ul>
 
 
+   <div id="footer">
    <p id="activity_logos">
+
       <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprende m&aacute;s sobre Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
@@ -328,7 +332,7 @@ Apoya esta herramienta, convi&eacute;rtete en un <br />
       statements.
     </p>
 
-
+</div>
   </body>
 </html>
 

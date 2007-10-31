@@ -13,16 +13,16 @@
 <meta name="revision" content="$Id$"/>
 </head>
 <body>
-<div id="banner">
-<h1 id="title">
-<a href="http://www.w3.org/">
-<img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb"/>
-</a>
-<a href="./">
-<img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS"/>
-</a>
-</h1>
-</div>
+  <div id="banner">
+   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <a href="./"><span>Servicio de Validaci&oacute;n de CSS</span></a></h1>
+   <p id="tagline">
+     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+   </p>
+  </div>
+  
+  
+<div class="doc">
 <h2>Acerca del Validador de CSS</h2>
 <h3 id="TableOfContents">&Iacute;ndice</h3>
 <div id="toc">
@@ -104,6 +104,7 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 <p>Es posible descargar e instalar el validador CSS, y ejecutarlo bien desde la l&iacute;nea de comandos, o como un servlet en un servidor Web. Lee las <a href="RUN.html">instrucciones</a> para la instalaci&oacute;n y utilizaci&oacute;n.</p>
 <h4 id="api">&iquest;Puedo construir una aplicaci&oacute;n basada en este validador? &iquest;Existe una API?</h4>
 <p>S&iacute;, y <a href="api">s&iacute;</a>. El validador CSS tiene una (RESTful) <a href="api">interfaz SOAP</a> que deber&iacute;a hacer razonablemente f&aacute;cil construir aplicaciones (Web o de otro tipo) basadas en &eacute;l. Las buenas maneras y el uso respetuoso de recursos compartidos son, por supuesto, convencionales: aseg&uacute;rate que tus aplicaciones realizan pausas (sleep) entre llamadas al validador, o instala y ejecuta tu propio validador.</p>
+</div>
 <ul class="navbar" id="menu">
 <li>
 <strong>
@@ -176,7 +177,9 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 
 
 </ul>
-<p id="activity_logos">
+<div id="footer">
+   <p id="activity_logos">
+
 <a href="http://www.w3.org/QA/" title="Actividad de Garant&iacute;a de Calidad del W3C, ofreci&eacute;ndote herramientas Web de calidad libres y m&aacute;s">
 <img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA"/>
 </a>
@@ -215,5 +218,6 @@ Apoya esta herramienta, convi&eacute;rtete en un <br/>
       <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
       statements.
     </p>
+  </div>
 </body>
 </html>

@@ -14,11 +14,15 @@
 </head>
 
 <body>
-<div id="banner">
-<h1 id="title"><a href="http://www.w3.org/"><img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" /></a>
-<a href="./"><img src="images/css_validation_service.png" alt="Service de validation CSS" /></a></h1>
-</div>
+  <div id="banner">
+   <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+   <a href="./"><span>Service de validation CSS</span></a></h1>
+   <p id="tagline">
+     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+   </p>
+  </div>
 
+<div class="doc">
 <h2>À propos du service CSS</h2>
 
 <h3 id="TableOfContents">Table des matières</h3>
@@ -108,7 +112,7 @@ Lisez les <a href="RUN.html">instructions</a> d'installation et d'utilisation.</
 la construction d'applications (Web ou autre) l'utilisant relativement aisée. Comme d'habitude, il faudra bien sûr se montrer bien élevé
 et avoir une utilisation respectueuse de ressources partagées : assurez-vous que vos applications marquent une pause (sleep)
 entre deux appels au validateur, ou alors installez et exécutez votre propre instance du validateur.</p>
-
+</div>
 <ul class="navbar"  id="menu">
 <li><strong><a href="./" title="Accueil du service de validation CSS du W3C">Accueil</a></strong> <span class="hideme">|</span></li>
 <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
@@ -164,7 +168,9 @@ entre deux appels au validateur, ou alors installez et exécutez votre propre in
 </ul>
 
 
-<p id="activity_logos">
+<div id="footer">
+   <p id="activity_logos">
+
 <a href="http://www.w3.org/QA/" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Plus d'informations concernant les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
 </p>
 
@@ -202,6 +208,6 @@ du W3C s'appliquent. Vos interactions avec ce site sont conformes à nos déclar
 <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">publiques</a> et vis-à-vis
 de nos <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">membres</a>.
 </p>
-
+</div>
 </body>
 </html>
