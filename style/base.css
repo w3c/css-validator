@@ -479,7 +479,7 @@ ul#menu a:hover, ul#menu a:active {
 ul#menu li {
 	display: inline;
 	margin-right: 0.8em;
-}
+        background: #EAEBEE; }
 
 
 
