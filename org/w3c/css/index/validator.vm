@@ -65,7 +65,7 @@
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="$home_title" />
     <style type="text/css" media="all">
-      @import "http://validator.w3.org/style/base.css";
+      @import "style/base.css";
     </style>   
     <script type="text/javascript" src="http://validator.w3.org/scripts/mootools.js"></script>
     <script type="text/javascript" src="http://validator.w3.org/scripts/w3c-validator.js"></script>
@@ -75,7 +75,7 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
-    <a href="./"><span>CSS Validation Service" </span></a></h1>
+    <a href="./"><span>CSS Validation Service</span></a></h1>
     <p id="tagline">
       $check_CSS
     </p>
@@ -124,8 +124,10 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  <div class="intro">
   <p><strong>$note</strong>: $note_xhtml_valid.
   </p>
+  </div>
   <ul class="navbar" id="menu">
     <li><a href="about.html" title="$about_title">$about</a> <span class="hideme">|</span></li>
     <li><a href="documentation.html" title="$doc_title">$doc</a> <span class="hideme">|</span></li>
