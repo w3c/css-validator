@@ -23,7 +23,7 @@
    </div>
 
 <div id="frontforms">
-<ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">mediante URI</a></li><li><a href="#validate-by-upload">mediante Carga de Archivo</a></li><li><a href="#validate-by-input">mediante Entrada directa</a></li></ul>
+<ul id="tabset_tabs"><li><a href="#validate-by-uri" class="active">mediante URI</a></li><li><a href="#validate-by-upload">mediante Carga de Archivo</a></li><li><a href="#validate-by-input">mediante Entrada directa</a></li></ul>
 <div id="fields">
 <fieldset id="validate-by-uri" class="tabset_content front">
 <legend class="tabset_label">Validar mediante URI</legend>
