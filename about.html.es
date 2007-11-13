@@ -194,7 +194,7 @@ Apoya esta herramienta, convi&eacute;rtete en un <br/>
 </a>
 </p>
 <p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2006
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
       <a href="http://www.w3.org/">
 <acronym title="World Wide Web Consortium">W3C</acronym>
 </a>&reg;
