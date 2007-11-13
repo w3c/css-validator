@@ -1,4 +1,37 @@
+/* == internal navigation bar == */
+
+#jumpbar {
+margin: 1em 2.4em;
+}
+#jumpbar li {
+color:#11111A !important;
+}
+#jumpbar {
+background-color:white;
+border-bottom:1px solid #005A9C;
+border-top:1px solid #005A9C;
+color:#005A9C;
+font-size:0.9em;
+font-weight:bold;
+line-height:140%;
+list-style-type:none;
+padding:3px 0;
+text-align:center;
+vertical-align:bottom;
+}
+#jumpbar li {
+display:inline;
+}
+#jumpbar li a {
+font-weight: 700;
+padding-left:1.2em;
+padding-right:1.2em;
+text-decoration: none;
+}
 /*   ==== CONGRATS =====  */
+div#results_container {
+  margin: 2em;
+}
 
 #congrats h3, #errors h3 {
         margin: 0;
@@ -10,8 +43,7 @@
         letter-spacing:	normal;
         text-transform:	none;
         border-color:		black;
-        padding-top:		.5em;
-        padding-bottom: 	.5em;
+        padding:		.4em;
 }
 #congrats h3 {
       background-color: #55B05A;
@@ -37,6 +69,8 @@
 	width:100%;
 	border-top: 1px solid #ccc !important;
 	line-height:120%;
+	border-collapse:collapse;
+  border-right:1px solid #CCCCCC;
 	}
 
 #warnings td, #errors td {
@@ -45,10 +79,14 @@
 
 #errors h4, #warnings h4  {
   font-weight: bold;
-  margin: 1em 0 0 0;
-  padding: .2em;
+  margin: 0;
+  padding: .4em;
   background-color: #eee;
   color: black;
+}
+#errors h4 a, #warnings h4 a {
+  background-color: #eee;
+  
 }
 
 td.linenumber {
@@ -146,6 +184,7 @@ pre {
 /* class="selector" - block of the selector */
 .selector {
 	background-color: #F1F1F1;
+	font-family: monospace;
 	padding: 1em;
 	border-bottom: 1px solid #ddd;}
 
@@ -153,14 +192,21 @@ pre {
 .selectorValue {font-weight: bold;}
 
 /* class='RuleList' - block of all couple propertie-value*/
-.RuleList {padding: 0 1em;}
+.RuleList {padding: 0 1em;
+  background-color: #F1F1F1;
+  }
 
 /* class='Rule' - one couple propertie-value*/
-.Rule {}
+.Rule {
+  background-color: #F1F1F1;
+  font-family: monospace;
+	
+}
 
 /* class='Property' - propertie name */
 .Property {
 	color: #222;
+	font-family: monospace;
 	font-style: italic;
 	}
 
@@ -174,7 +220,7 @@ p.backtop {
         color: #bbc;
         font-size: x-small;
         padding-right: 0 !important;
-        margin: 1em !important;
+        margin: 1em 0 !important;
         text-transform: uppercase;
         font-weight: bold;
         padding-top: .3em;
