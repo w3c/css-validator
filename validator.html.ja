@@ -185,11 +185,13 @@
       </fieldset>
             </div><!-- fields -->
 	</div> <!-- frontforms -->
+	<div class="intro">
 	<p><strong>Note</strong>: CSSスタイルシートを意図した通りに機能させるには、
       正しい文書解析木が必要です。つまり、
       <a href="http://validator.w3.org/">正当<span lang="en">(valid)</span>
       なHTML</a>。
 	</p>
+	</div>
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="CSS Validator について">このサービスについて</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="CSS Validator ドキュメント: 目次">ドキュメント</a> <span class="hideme">|</span></li>

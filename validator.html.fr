@@ -190,9 +190,11 @@
       </fieldset>
             </div><!-- fields -->
 	</div> <!-- frontforms -->
+<div class="intro">
 	<p><strong>Remarque</strong> : Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML,
 		vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>.
 	</p>
+</div>
    <ul class="navbar"  id="menu">
         <li><a href="about.html" title="A propos de ce service">A Propos</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>

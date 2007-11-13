@@ -210,9 +210,11 @@
 <!-- fields -->
 </div>
 <!-- frontforms -->
+<div class="intro">
 <p>
 <strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deber&iacute;as antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es v&aacute;lido</a>.
 	</p>
+</div>
 <ul class="navbar" id="menu">
 <li>
 <a href="about.html" title="Acerca de este servicio">Acerca de este servicio</a>

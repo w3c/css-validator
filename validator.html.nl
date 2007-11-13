@@ -187,9 +187,11 @@
       </fieldset>
       </div><!-- fields -->
 	</div> <!-- frontforms -->
+	<div class="intro">
 	<p><strong>Opmerking</strong>: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document,
 	zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>.
 	</p>
+	</div>
 	<ul class="navbar"  id="menu">
 		<li><a href="about.html" title="Over deze service">Over</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="Documentatie voor de W3C CSS Validatie Service">Documentatie</a> <span class="hideme">|</span></li>
