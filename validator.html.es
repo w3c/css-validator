@@ -6,27 +6,22 @@
 <title>El Servicio de Validaci&oacute;n de CSS del W3C</title>
 <link rev="made" href="mailto:www-validator-css@w3.org" />
 <link rev="start" href="./" title="Home Page" />
-<style type="text/css" media="all">@import "style/base.css";
-</style>
-<script type="text/javascript" src="tabtastic/addclasskillclass.js"></script>
-<script type="text/javascript" src="tabtastic/attachevent.js"></script>
-<script type="text/javascript" src="tabtastic/addcss.js"></script>
-<script type="text/javascript" src="tabtastic/tabtastic.js"></script>
-<script src="toggle.js" type="text/javascript"></script>
+<style type="text/css" media="all">
+  @import "style/base.css";
+</style>   
+<script type="text/javascript" src="scripts/mootools.js"></script>
+<script type="text/javascript" src="scripts/w3c-validator.js"></script>
 <meta name="revision" content="$Id$" />
 </head>
 <body>
-<div id="banner">
-<h1 id="title">
-<a href="http://www.w3.org/">
-<img height="48" alt="W3C" id="logo" src="http://www.w3.org/Icons/WWW/w3c_home_nb" />
-</a>
-<img src="images/css_validation_service.png" alt="Servicio de Validaci&oacute;n de CSS" />
-</h1>
-</div>
-<p id="tagline">
-        Verifica Hojas de Estilo en Cascada (CSS) y documentos (X)HTML con hojas de estilo
-      </p>
+  <div id="banner">
+    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
+    <a href="./"><span>CSS Validation Service</span></a></h1>
+    <p id="tagline">
+      Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+    </p>
+   </div>
+
 <div id="frontforms">
 <ul class="tabset_tabs"><li><a href="#validate-by-uri" class="active">mediante URI</a></li><li><a href="#validate-by-upload">mediante Carga de Archivo</a></li><li><a href="#validate-by-input">mediante Entrada directa</a></li></ul>
 <div id="fields">
@@ -43,7 +38,7 @@
 </p>
 <fieldset id="extra_opt_uri" class="moreoptions alttoggle closed">
 <legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s Opciones</legend>
-<div>
+<div class="options">
       <label for="warning_uri">Advertencias :</label>
       <select id="warning_uri" name="warning">
 <option value="2">Todas</option>
@@ -103,7 +98,7 @@
 </p>
 <fieldset id="extra_opt_upload" class="moreoptions alttoggle closed">
 <legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</legend>
-<div>
+<div class="options">
       <label for="warning_upload">Advertencias :</label>
       <select id="warning_upload" name="warning">
 <option value="2">Todos</option>
@@ -162,7 +157,7 @@
 </p>
 <fieldset id="extra_opt_direct" class="moreoptions alttoggle closed">
 <legend class="toggletext" title="Mostrar/Ocultar opciones extra de validaci&oacute;n">M&aacute;s opciones</legend>
-<div>
+<div class="options">
       <label for="warning_direct">Advertencias :</label>
       <select id="warning_direct" name="warning">
 <option value="2">Todos</option>
