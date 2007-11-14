@@ -1,17 +1,17 @@
-#macro( moreOptionMacro $submit_message)
-  <fieldset id="extra_opt_direct" class="moreoptions">
+#macro( moreOptionMacro $submit_message $tab_id)
+  <fieldset id="extra_opt_$tab_id" class="moreoptions">
     <legend class="toggletext" title="$title_more_options">$more_options</legend>
     <div class="options">
-      <label for="warning_direct">$warnings :</label>
-      <select id="warning_direct" name="warning"> 
+      <label for="warning_$tab_id">$warnings :</label>
+      <select id="warning_$tab_id" name="warning"> 
         <option value="2">$all</option>
         <option selected="selected" value="1">$normal_report</option>
         <option value="0">$most_important</option>
         <option value="no">$no_warnings</option>
       </select>
       
-      <label for="profile_direct">$profile :</label>
-      <select id="profile_direct" name="profile">
+      <label for="profile_$tab_id">$profile :</label>
+      <select id="profile_$tab_id" name="profile">
         <option value="none">$no_special_profile</option>
         <option value="css1">$css1</option>
         <option value="css2">$css2</option>
@@ -25,8 +25,8 @@
         <option value="tv">$TV_profile</option>
       </select>
 
-      <label for="medium_direct">$medium :</label>
-      <select id="medium_direct" name="usermedium">
+      <label for="medium_$tab_id">$medium :</label>
+      <select id="medium_$tab_id" name="usermedium">
         <option selected="selected" value="all">$all</option>
         <option value="aural">$aural</option>
         <option value="braille">$braille</option>
@@ -40,8 +40,8 @@
         <option value="presentation">$presentation</option>
       </select>
 
-      <label for="type_direct">$type :</label>
-      <select id="type_direct" name="type">
+      <label for="type_$tab_id">$type :</label>
+      <select id="type_$tab_id" name="type">
         <option selected="selected" value="none">$no_special_type</option>
         <option value="html">$html_doc</option>
         <option value="css">$css_doc</option>
