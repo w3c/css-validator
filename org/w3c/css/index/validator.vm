@@ -42,6 +42,7 @@
     </td>
     </tr>
     <tr>
+    #if ($tab_id == "input")
     <th id="header_type_$tab_id">
       <label for="type_$tab_id">$type :</label>
     </th>
@@ -52,10 +53,15 @@
         <option value="css">$css_doc</option>
       </select>
     </td>
+    #end
     <th id="header_warning_$tab_id">
       <label for="warning_$tab_id">$warnings :</label>
     </th>
-    <td headers="header_warning_$tab_id">
+    <td
+    #if ($tab_id != "input")
+    rowspan="3"
+    #end
+     headers="header_warning_$tab_id">
       <select id="warning_$tab_id" name="warning"> 
         <option value="2">$all</option>
         <option selected="selected" value="1">$normal_report</option>
@@ -140,7 +146,7 @@
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
-      #set($tab_id = "text")
+      #set($tab_id = "input")
       #moreOptionMacro($submit_input $tab_id)
       </form>
       </fieldset>
