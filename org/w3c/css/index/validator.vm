@@ -97,7 +97,8 @@
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
-      #moreOptionMacro($submit_uri)
+      #set($tab_id = "uri")
+      #moreOptionMacro($submit_uri $tab_id)
       </form>
       </fieldset>
 
@@ -108,7 +109,8 @@
         <p>
           <label title="$choose_local_file" for="file">$local_CSS_file :
           <input type="file" id="file" name="file" size="30" /></label></p>
-      #moreOptionMacro($submit_file)
+          #set($tab_id = "upload")
+          #moreOptionMacro($submit_file $tab_id)
       </form>
       </fieldset>
 
@@ -119,7 +121,8 @@
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
-      #moreOptionMacro($submit_input)
+      #set($tab_id = "text")
+      #moreOptionMacro($submit_input $tab_id)
       </form>
       </fieldset>
       </div><!-- fields -->
