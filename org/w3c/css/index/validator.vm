@@ -4,23 +4,10 @@
     <div class="options">
     <table>
     <tr>
-    <th>
-      <label for="warning_$tab_id">$warnings :</label>
-    </th>
-    <td>
-      <select id="warning_$tab_id" name="warning"> 
-        <option value="2">$all</option>
-        <option selected="selected" value="1">$normal_report</option>
-        <option value="0">$most_important</option>
-        <option value="no">$no_warnings</option>
-      </select>
-    </td>
-    </tr>
-    <tr>
-    <th>
+    <th id="header_profile_$tab_id">
       <label for="profile_$tab_id">$profile :</label>
     </th>
-    <td>
+    <td headers="header_profile_$tab_id">
       <select id="profile_$tab_id" name="profile">
         <option value="none">$no_special_profile</option>
         <option value="css1">$css1</option>
@@ -37,10 +24,10 @@
     </td>
     </tr>
     <tr>
-    <th>
+    <th id="header_medium_$tab_id">
       <label for="medium_$tab_id">$medium :</label>
     </th>
-    <td>
+    <td headers="header_medium_$tab_id">
       <select id="medium_$tab_id" name="usermedium">
         <option selected="selected" value="all">$all</option>
         <option value="aural">$aural</option>
@@ -57,14 +44,25 @@
     </td>
     </tr>
     <tr>
-    <th>
+    <th id="header_type_$tab_id">
       <label for="type_$tab_id">$type :</label>
     </th>
-    <td>
+    <td headers="header_type_$tab_id">
       <select id="type_$tab_id" name="type">
         <option selected="selected" value="none">$no_special_type</option>
         <option value="html">$html_doc</option>
         <option value="css">$css_doc</option>
+      </select>
+    </td>
+    <th id="header_warning_$tab_id">
+      <label for="warning_$tab_id">$warnings :</label>
+    </th>
+    <td headers="header_warning_$tab_id">
+      <select id="warning_$tab_id" name="warning"> 
+        <option value="2">$all</option>
+        <option selected="selected" value="1">$normal_report</option>
+        <option value="0">$most_important</option>
+        <option value="no">$no_warnings</option>
       </select>
     </td>
     </tr>
