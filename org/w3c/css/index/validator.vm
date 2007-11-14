@@ -59,7 +59,7 @@
     </th>
     <td
     #if ($tab_id != "input")
-    rowspan="3"
+    colspan="3"
     #end
      headers="header_warning_$tab_id">
       <select id="warning_$tab_id" name="warning"> 
