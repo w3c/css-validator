@@ -48,9 +48,9 @@
       </select>
     </div><!-- item_contents -->
   </fieldset><!-- invisible -->
-  <input type="hidden" name="lang" value="$lang" />
   
   <p class="submit_button">
+  <input type="hidden" name="lang" value="$lang" />
     <label title="$submit_message">
       <input type="submit" value="$check" />
     </label>
