@@ -22,8 +22,6 @@
         <option value="tv">$TV_profile</option>
       </select>
     </td>
-    </tr>
-    <tr>
     <th id="header_medium_$tab_id">
       <label for="medium_$tab_id">$medium :</label>
     </th>
