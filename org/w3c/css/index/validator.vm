@@ -67,8 +67,8 @@
     <style type="text/css" media="all">
       @import "style/base.css";
     </style>   
-    <script type="text/javascript" src="http://validator.w3.org/scripts/mootools.js"></script>
-    <script type="text/javascript" src="http://validator.w3.org/scripts/w3c-validator.js"></script>
+    <script type="text/javascript" src="scripts/mootools.js"></script>
+    <script type="text/javascript" src="scripts/w3c-validator.js"></script>
     <meta name="revision" content="\$Id$" />
   </head>
 
@@ -81,7 +81,7 @@
     </p>
    </div>
   <div id="frontforms">
-      <ul class="tabset_tabs">
+      <ul id="tabset_tabs">
         <li><a href="#validate-by-uri" class="active">$by_URI</a></li><li><a href="#validate-by-upload">$by_file_upload</a></li><li><a href="#validate-by-input">$by_direct_input</a></li>
       </ul>
       <div id="fields">
