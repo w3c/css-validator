@@ -2,15 +2,25 @@
   <fieldset id="extra_opt_$tab_id" class="moreoptions">
     <legend class="toggletext" title="$title_more_options">$more_options</legend>
     <div class="options">
+    <table>
+    <tr>
+    <th>
       <label for="warning_$tab_id">$warnings :</label>
+    </th>
+    <td>
       <select id="warning_$tab_id" name="warning"> 
         <option value="2">$all</option>
         <option selected="selected" value="1">$normal_report</option>
         <option value="0">$most_important</option>
         <option value="no">$no_warnings</option>
       </select>
-      
+    </td>
+    </tr>
+    <tr>
+    <th>
       <label for="profile_$tab_id">$profile :</label>
+    </th>
+    <td>
       <select id="profile_$tab_id" name="profile">
         <option value="none">$no_special_profile</option>
         <option value="css1">$css1</option>
@@ -24,8 +34,13 @@
         <option value="atsc-tv">$ATSC_TV_profile</option>
         <option value="tv">$TV_profile</option>
       </select>
-
+    </td>
+    </tr>
+    <tr>
+    <th>
       <label for="medium_$tab_id">$medium :</label>
+    </th>
+    <td>
       <select id="medium_$tab_id" name="usermedium">
         <option selected="selected" value="all">$all</option>
         <option value="aural">$aural</option>
@@ -39,13 +54,20 @@
         <option value="tv">$tv</option>
         <option value="presentation">$presentation</option>
       </select>
-
+    </td>
+    </tr>
+    <tr>
+    <th>
       <label for="type_$tab_id">$type :</label>
+    </th>
+    <td>
       <select id="type_$tab_id" name="type">
         <option selected="selected" value="none">$no_special_type</option>
         <option value="html">$html_doc</option>
         <option value="css">$css_doc</option>
       </select>
+    </td>
+    </tr>
     </div><!-- item_contents -->
   </fieldset><!-- invisible -->
   
