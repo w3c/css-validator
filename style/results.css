@@ -50,7 +50,7 @@ div#results_container {
       color: white;      
 }
 
-
+#congrats p { padding: .5em 1em; }
 
 #congrats p.toggle { text-indent: 10px;
         background: transparent url('../images/arrow-down.gif')  15px 0 no-repeat;
@@ -61,6 +61,7 @@ div#results_container {
                 background: transparent url('../images/arrow-right.gif')  15px 0 no-repeat;
 }
 
+#congrats pre { overflow: auto;}
 
 /*   ==== COMMON: ERRORS + WARNINGS =====  */
 
