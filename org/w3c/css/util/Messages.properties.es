@@ -113,10 +113,10 @@ doc_title: Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C
 dl_title: Descargar y installar el validador CSS
 feedback_title: C&oacute;mo realizar comentarios sobre este servicio
 credits_title: Cr&eacute;ditos y Agradecimientos
-W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more <!-- translation unavailable -->
-learn_more_msg: Learn more about Cascading Style Sheets <!-- translation unavailable -->
-support: Support this tool, become a <!-- translation unavailable -->
-supporter: W3C Supporter <!-- translation unavailable -->
+W3C_quality_msg: Actividad de Garant&iacute; de Calidad del W3C, ofreci&eacute;ndole herramientas de calidad Web gratu&iacute;tas y m&aacute;s 
+learn_more_msg: Aprenda m&aacute; sobre las Hojas de Estilo en Cascada
+support: Apoye esta herramienta, convi&eacute;rtase en un 
+supporter: Contribuidor del W3C
 # End of variables added along with Velocity
 
 # Defines your own error and warning message here
