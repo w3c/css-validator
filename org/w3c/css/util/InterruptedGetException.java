@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Thrown when a HTTP Get is interrupted
  * @version $Revision$
- * @author  Benoît Mahé (bmahe@w3.org)
+ * @author  Benoit Mahe (bmahe@w3.org)
  */
 public class InterruptedGetException extends IOException {
 

@@ -10,7 +10,7 @@ package org.w3c.css.util;
  * This class is only to sort an array with an abstract algorithm.
  *
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public abstract class SortAlgorithm {
 

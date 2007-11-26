@@ -12,7 +12,7 @@ package org.w3c.css.parser;
 
 /**
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public abstract class AtRule {
 

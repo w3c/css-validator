@@ -15,7 +15,7 @@ import org.w3c.css.util.ApplContext;
 /**
  *
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public class AtRulePhoneticAlphabet extends AtRule {
     static int internal = 0;

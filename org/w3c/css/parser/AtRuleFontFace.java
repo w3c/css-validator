@@ -14,7 +14,7 @@ package org.w3c.css.parser;
  * This class manages all media defines by CSS2
  *
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public class AtRuleFontFace extends AtRule {
     static int internal = 0;

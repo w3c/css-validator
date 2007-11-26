@@ -10,7 +10,7 @@ package org.w3c.css.util;
  * The quicksort algorithm.
  *
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public class QuickSortAlgorithm extends SortAlgorithm {
     int partition(Object[] objs,

@@ -9,7 +9,7 @@ package org.w3c.css.css;
 
 /**
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public interface StyleSheetOrigin {
 

@@ -19,7 +19,7 @@ import org.w3c.css.util.InvalidParamException;
  * This class manages all media defines by CSS2
  *
  * @version $Revision$
- * @author  Philippe Le H�garet
+ * @author  Philippe Le Hegaret
  */
 public class AtRuleMediaCSS1 extends AtRuleMedia {
 
