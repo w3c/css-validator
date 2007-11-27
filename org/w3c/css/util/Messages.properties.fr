@@ -55,6 +55,7 @@ enter_CSS: Saisissez la feuille de style à valider  (ATTENTION : feuilles de st
 submit_input: Valider la feuille de style
 note: Remarque
 note_xhtml_valid: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>
+note_valide_html: Les resultats de la validation de feuilles de styles incorporées dans un document (X)HTML ne sont fiables que si <a href="http://validator.w3.org/">le document HTML est valide</a>.
 # End of variables added along with Index page template
 
 W3C_validator_results: R&eacute;sultats de la validation W3C CSS de
@@ -356,10 +357,20 @@ servlet.invalid-request: Vous avez envoyé une requète érronée.
 servlet.process: Impossible de travailler sur l'objet.
 
 error.notforcss1 : La valeur %s n'existe pas dans le cadre de CSS1
+warning.pseudo: Le pseudo-element ou pseudo-class %s est inconnu dans le profil par défaut (%s)
+warning.nocomb: La combinaison de selecteurs %s n'est pas autorisée pour ce profil CSS (%s)
+warning.charsetspecial: Ce profil possède une syntaxe très particulière pour @charset: \
+@charset doit être immédiatement suivi d'un espace, puis le nom de l'encodage \
+entre guillemets, suivi immédiatement d'un point-virgule..
+warning.notversion: %s ne peut être utilisé dans cette version de CSS : %s
+
 warning.noothermedium : Certaines propriétés relatives à d'autres media peuvent ne pas s'appliquer à ce medium
 warning.notforusermedium : La propriété %s n'existe pas pour ce medium d'utilisateur
 error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 %
 error.notformobile : %s ne peut pas être utilisé pour le profile mobile
+error.notforatsc: %s ne peut pas être utilisé pour le profil ATSC
+error.notfortv: %s ne peut pas être utilisé pour le profil TV
+error.notversion: %s ne peut pas être utilisé pour cette version CSS: %s
 
 warning.atsc : il se peut que %s ne soit pas supporté par atsc-tv
 error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
