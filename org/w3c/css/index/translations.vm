@@ -1,7 +1,10 @@
 #parse("./header.vm")
 <div class="intro">
-<h2>W3C CSS Validator localization</h2><p>This table lists all the text strings used to translate the CSS validator in many languages.</p><p> Cells marked <span class='table_translation_missing'>✘</span> need a new or updated translation. Cells marked <span class='table_translation_ok'>✔</span> are translated and up-to-date.</p>
-<p>Hover above each  ✘ or ✔ to read the current translation for each string.</p>
+<h2>Translation of the W3C CSS Validator</h2>
+<p>The CSS Validation service is currently available in $num_languages languages. The table below lists all the text strings used to translate the CSS validator:</p>
+<p>Cells marked <span class='table_translation_missing'><a title="Cross Mark">✘</a></span> need a new or updated translation. Click on the relevant ✘ to submit a translation by mail.</p>
+<p>Cells marked <span class='table_translation_ok'>✔</span> are translated and up-to-date. Hover above  ✔ to read the current translation for each string.</p>
+<p>You can help fill the blanks and complete the translation in <strong>your</strong> language!</p>
 </div>
 $translations_table
 #parse("./footer.vm")

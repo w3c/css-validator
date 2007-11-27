@@ -111,12 +111,9 @@ h5,h6 {
    
    /* translation summary table */
 table#translation_summary {
-	margin-left: auto;
-	margin-right: auto;
+    margin: 1em 10%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
-  margin-top: 1em;
-  margin-bottom: .5em;
 }
 table#translation_summary td, table#translation_summary th{
 	border-top: 0px solid #ddd;
@@ -151,6 +148,18 @@ padding-bottom: .4em;
 .table_translation_missing {
     background-color: #F55;
 }
+.table_translation_missing a, .table_translation_missing a:link, .table_translation_missing a:visited {
+    background-color: #F55;
+    text-decoration: none;
+    color: yellow;
+}
+
+.table_translation_missing a:hover, .table_translation_missing a:active {
+    background-color: #F55;
+    text-decoration: underline;
+    color: #5589E3;
+}
+
 .table_translation_ok {
     background-color: #89E5A7;
 }

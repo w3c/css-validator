@@ -21,6 +21,9 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.commons.lang.StringEscapeUtils;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Vector;
+import java.util.Collections;
+import java.util.Comparator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
@@ -31,6 +34,14 @@ import org.w3c.css.util.Utf8Properties;
  * 
  * 
  */
+class AlphaComparator implements Comparator {
+  public int compare(Object o1, Object o2) {
+    String s1 = (String) o1;
+    String s2 = (String) o2;
+    return s1.toLowerCase().compareTo(s2.toLowerCase());
+  }
+}
+
 public class TranslationTableGenerator {
 
 	// the velocity context used to generate the index
@@ -81,10 +92,15 @@ public class TranslationTableGenerator {
     			languages[i] = l;
     			ApplContext ac_translated = new ApplContext(name);
     			translations.put(name,ac_translated);
-    			translations_table = translations_table + "<th scope=\"col\">"+l.get("real")+"</th>";
+    			if (!name.equals(default_lang)){
+    			    translations_table = translations_table + "<th scope=\"col\">"+l.get("real")+"</th>";
+                }
     		}
     		vc.put("languages", languages);
-            Iterator properties_iterator = ac_default.getMsg().properties.keySet().iterator();
+    		vc.put("num_languages", Messages.languages_name.size());
+    		Vector sorted_properties_keys = new Vector(ac_default.getMsg().properties.keySet());
+    		Collections.sort(sorted_properties_keys, new AlphaComparator());
+            Iterator properties_iterator = sorted_properties_keys.iterator();
     		translations_table = translations_table + "</tr>";
     		while (properties_iterator.hasNext()) {
     		    String property_name = String.valueOf(properties_iterator.next());
@@ -97,15 +113,18 @@ public class TranslationTableGenerator {
     			    if (language.get("name").equals(default_lang)) {
     			        vc.put(property_name, property_translated);
     			    }
-    			    if (property_translated == null) {
-        			    translations_table = translations_table + "<td class=\"table_translation_missing\">✘</td>";    			        
-    			    }
-    			    else if ( property_translated.matches(".*translation unavailable.*")){
-        			    translations_table = translations_table + "<td class=\"table_translation_missing\"><span title=\""+StringEscapeUtils.escapeHtml(property_translated)+"\">✘</span></td>";
-    			    }
     			    else {
-    			        translations_table = translations_table + "<td class=\"table_translation_ok\"><span title=\""+StringEscapeUtils.escapeHtml(property_translated)+"\">✔</span></td>";
-    			    }
+    			        URI mail_translation = new URI("mailto", "w3c-translators@w3.org?Subject=["+property_name+"] CSS Validator Translation&body=Property:\n  "+property_name+"\n\nText in English:\n  "+ac_default.getMsg().getString(property_name)+"\n\nLanguage:\n  "+language.get("name")+"\n\nTranslation:\n\n\n-- Help translate the CSS Validator:\nhttp://qa-dev.w3.org:8001/css-validator/translations.html", "");
+        			    if (property_translated == null) {
+            			    translations_table = translations_table + "<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\""+StringEscapeUtils.escapeHtml(mail_translation.toASCIIString())+"\">✘</a></td>\n";    			        
+        			    }
+        			    else if ( property_translated.matches(".*translation unavailable.*")){
+            			    translations_table = translations_table + "<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\""+StringEscapeUtils.escapeHtml(mail_translation.toASCIIString())+"\">✘</a></td>\n";
+        			    }
+        			    else {
+        			        translations_table = translations_table + "<td class=\"table_translation_ok\"><span title=\""+StringEscapeUtils.escapeHtml(property_translated)+"\">✔</span></td>\n";
+        			    }
+        			}
                 }
                 translations_table = translations_table + "</tr>";
     		}
