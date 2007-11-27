@@ -127,7 +127,8 @@ table#translation_summary th {
 	background-color: #eee;
 	color: #11111A;
 	border-right: 1px solid #ccc;
-	padding: .1em;
+	padding: .3em .5em;
+	line-height: 120%;
 }
 
 table#translation_summary th#properties {
@@ -135,6 +136,10 @@ width: 15em;
 padding: 0 !important;
 padding-top: .5em;
 }
+table#translation_summary th.property_name {
+padding: .2em 0 0 0 !important;
+}
+
 table#translation_summary th p {
 /*width: 100%;*/
 font-size: xx-small;

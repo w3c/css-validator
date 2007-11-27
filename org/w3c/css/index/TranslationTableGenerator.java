@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import java.util.Collections;
 import java.util.Comparator;
+import java.lang.Integer;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
@@ -65,7 +66,7 @@ public class TranslationTableGenerator {
 	 */
 	public static synchronized void generateTable() {
 		
-		String default_lang = "en", name, path, translations_table;
+		String default_lang = "en", name, path, translations_table, table_head;
 		File out_file;
 		path = TranslationTableGenerator.class.getResource("").getPath();
         try {
@@ -83,7 +84,8 @@ public class TranslationTableGenerator {
     		// Getting the differents languages informations (for the lang choice)
     		HashMap[] languages = new HashMap[Messages.languages_name.size()];
     		HashMap translations = new HashMap();
-            translations_table = "<table id=\"translation_summary\"><tr><th scope='col' id=\"properties\">Property</th>";
+    		HashMap translation_completeness = new HashMap();
+    		table_head ="<thead><tr><th scope='col' id=\"properties\">Property</th>";
     		for (int i = 0; i < Messages.languages_name.size(); ++i) {
     			name = String.valueOf(Messages.languages_name.get(i));
     			HashMap l = new HashMap();
@@ -91,20 +93,23 @@ public class TranslationTableGenerator {
     			l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
     			languages[i] = l;
     			ApplContext ac_translated = new ApplContext(name);
-    			translations.put(name,ac_translated);
     			if (!name.equals(default_lang)){
-    			    translations_table = translations_table + "<th scope=\"col\">"+l.get("real")+"</th>";
+    			    table_head=table_head+"<th>"+l.get("real")+"</th>";
                 }
+    			translations.put(name,ac_translated);
+    			translation_completeness.put(name, 0);
+		        
     		}
-    		vc.put("languages", languages);
-    		vc.put("num_languages", Messages.languages_name.size());
+    		table_head=table_head+"</thead>";
     		Vector sorted_properties_keys = new Vector(ac_default.getMsg().properties.keySet());
     		Collections.sort(sorted_properties_keys, new AlphaComparator());
             Iterator properties_iterator = sorted_properties_keys.iterator();
-    		translations_table = translations_table + "</tr>";
+    		translations_table = "<tbody>";
+    		int num_properties = 0;
     		while (properties_iterator.hasNext()) {
+    		    ++num_properties;
     		    String property_name = String.valueOf(properties_iterator.next());
-    			translations_table = translations_table + "<tr><th scope=\"row\">"+property_name;
+    			translations_table = translations_table + "<tr><th scope=\"row\" class=\"property_name\">"+property_name;
     			translations_table = translations_table+"<p>"+StringEscapeUtils.escapeHtml(ac_default.getMsg().getString(property_name))+"</p></th>";
     			for (int i = 0; i < Messages.languages_name.size(); ++i) {
     			    HashMap language = languages[i];
@@ -123,12 +128,30 @@ public class TranslationTableGenerator {
         			    }
         			    else {
         			        translations_table = translations_table + "<td class=\"table_translation_ok\"><span title=\""+StringEscapeUtils.escapeHtml(property_translated)+"\">✔</span></td>\n";
+        			        int completed = Integer.parseInt(translation_completeness.get(language.get("name")).toString());
+        			        ++completed;
+        			        translation_completeness.put(language.get("name"), completed);
+        			        //System.out.println(language.get("name")+": "+completed);
         			    }
         			}
                 }
                 translations_table = translations_table + "</tr>";
+                if(num_properties%12 == 0) {
+                    translations_table = translations_table+"</tbody>"+table_head+"<tbody>";
+                }
+            }
+            translations_table = translations_table + "</tbody></table>";
+            for (int i = 0; i < Messages.languages_name.size(); ++i) {
+    			name = String.valueOf(Messages.languages_name.get(i));
+    		    HashMap l = (HashMap) languages[i];
+    		    int completeness_percent = 100*Integer.parseInt(translation_completeness.get(l.get("name")).toString());
+    		    completeness_percent = completeness_percent /ac_default.getMsg().properties.size();
+    		    l.put("completeness", completeness_percent);
+    		    languages[i] = l;
     		}
-            translations_table = translations_table + "</table>";
+    		vc.put("languages", languages);
+    		vc.put("num_languages", Messages.languages_name.size());
+    		vc.put("total_properties", ac_default.getMsg().properties.size());
     	    vc.put("translations_table", translations_table);
     	    vc.put("lang", "en");
         	OutputStreamWriter aFileWriter = new OutputStreamWriter(new FileOutputStream(out_file), "UTF-8");

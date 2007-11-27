@@ -6,5 +6,23 @@
 <p>Cells marked <span class='table_translation_ok'>✔</span> are translated and up-to-date. Hover above  ✔ to read the current translation for each string.</p>
 <p>You can help fill the blanks and complete the translation in <strong>your</strong> language!</p>
 </div>
+<table id="translation_summary">
+<thead><tr>
+<th scope='col' class="property_name" id="properties">Property</th>
+#foreach ( $language in $languages )
+    #set ( $name = $language.get("name") )
+	#if ($name != "en")
+	    #if ( $language.get("real") )
+	        #set ( $real =  $language.get("real") )
+	    #else
+	        #set ( $real = $language.get("name") )
+	    #end
+		#set ($completeness = $language.get("completeness") )
+		<th scope='col'>$real <br /> $completeness%</th>
+	#end
+#end
+</tr></thead>
+
+
 $translations_table
 #parse("./footer.vm")
