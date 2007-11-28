@@ -150,7 +150,7 @@ warning.unknown-html: %s no es un elemento de HTML
 warning.html-inside: El elemento HTML no puede estar dentro de otro elemento
 warning.body-inside: El elemento BODY no puede estar dentro de otro elemento que no sea el elemento HTML
 warning.pseudo-classes: La pseudo-clase de Anchor %s sólo tiene efecto en los elementos 'A'
-
+warning.pseudo:  Pseudo-elemento o pseudo-clase %s desconocido(a) en el perfil por defecto (%s)
 # not used by org.w3c.css.properties.CssSelectors for the moment
 warning.noinside: %s no puede estar dentro de un elemento de línea
 warning.withblock: Cuidado. Los pseudo-elementos sólo se pueden unir a elementos de bloque
@@ -290,6 +290,7 @@ error.notformobile : %s no puede usarse en perfiles móviles
 error.notforatsc : %s no puede usarse en perfiles ATSC
 error.notfortv : %s no puede usarse en perfiles de televisión
 error.notversion : %s no puede usarse en esta versión de CSS: %s
+warning.notversion: %s no se puede utilizar en esta versión de CSS: %s
 
 error.media: medio no reconocido %s 
 error.page: página pseudo-nombrada no reconocida %s
@@ -331,6 +332,9 @@ de estilo. Por favor, compruebe que no hay espacios antes.
 parser.charsetspecial:Este perfil tiene una sintaxis muy específica para @charset: \
 @charset seguido de un espacio exactamente, seguido por el nombre de la codificación \
 entre comillas, seguido inmediatamente por un punto y coma.
+warning.charsetspecial:Este perfil tiene una sintaxis muy específica para @charset: \
+@charset seguido de un espacio exactamente, seguido por el nombre de la codificación \
+entre comillas, seguido inmediatamente por un punto y coma.
 
 warning.old_id:En CSS1, un nombre de id puede empezar por un dígito ("#55ft"), \
 excepto si es una magnitud de medida ("#55in"). En CSS2, esos nombres son interpretados como \
@@ -352,3 +356,5 @@ warning.deprecated : este valor está desaprobado
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: La combinación %s entre selectores no está permitida en este perfil o versión
+warning.nocomb: No se permite el combinador %s entre selectores en este perfil (%s)
+error.unknown: Error desconocido
