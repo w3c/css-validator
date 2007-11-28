@@ -66,7 +66,7 @@ errors: Errori
 # warnings_count <!-- generated on the fly -->
 warnings: Avvisi
 validated_CSS: Foglio CSS validato
-congrats: Congratulazioni! <!-- translation unavailable for "No Error Found." -->
+congrats: Congratulazioni! Nessun errore trovato.
 # The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
 # "This document validates as CSSXX!" where XX stands for the CSS version used \
 # Since the content of the link about the CSS version is generated on the fly, \
@@ -148,7 +148,7 @@ warning.unknown-html: %s non è un elemento HTML
 warning.html-inside: L'elemento HTML non può essere contenuto all'interno di un altro elemento
 warning.body-inside: L'elemento BODY non può essere utilizzato all'interno di un altro elemento ad eccezione dell'elemento HTML
 warning.pseudo-classes: La pseudo-classe per l'ancora %s non ha effetto se non per l'elemento 'A'
-
+warning.pseudo: Il pseudo-elemento o la pseudo-classe %s è sconosciuta nel profilo predefinito (%s)
 # not used by org.w3c.css.properties.CssSelectors for the moment
 warning.noinside: %s non può essere contenuto in un elemento di tipo inline
 warning.withblock: Attenzione. Gli pseudo-elementi possono essere applicati solo a degli elementi di tipo block-level.
@@ -199,6 +199,7 @@ warning.xsl: il valore %s si applica solo a XSL
 #used by org.w3c.css.parser.analyzer.CssParser
 warning.medialist : medialist should start with 'media :' %s
 error.nocomb: Il combinatore %s fra selettori non è consentito in questo profilo o versione
+warning.nocomb: Non è consentito il combinatore %s tra i selettori per questo profilo (%s)
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: invece di utilizzare 'direction' per elementi block-level  utilizza la nuova proprietà CSS3 'writing-mode'
@@ -259,10 +260,8 @@ error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: La proprietà %s non esiste
 error.noexistence-media: La proprietà %s non esiste per il media %s
-# *********** v Need translation!!! v *********** #
-error.noexistence: La proprietà %s non esiste per %s but exists in %s
-warning.noexistence: La proprietà %s non esiste per %s but exists in %s
-# *********** ^ Need translation!!! ^ *********** #
+error.noexistence: La proprietà %s non esiste per %s ma esiste in %s
+warning.noexistence: La proprietà %s non esiste per %s ma esiste in %s
 warning.noexistence-media: La proprietà %s non esiste per il media %s
 warning.notforusermedium : La proprietà %s non esiste per questo usermedium
 warning.noothermedium : La proprietà per altri media non dovrebbero funzionare per usermedium
@@ -290,6 +289,7 @@ error.notformobile : %s non può essere usato con un mobile profile
 error.notforatsc : %s non può essere usato con un ATSC profile
 error.notfortv : %s non può essere usato con un TV profile
 error.notversion : %s non può essere usato con questa versione di CSS : %s
+warning.notversion: %s non può essere utilizzato con questa versione di CSS : %s
 
 error.media: media non riconosciuto %s 
 error.page: pseudo nome di pagina non riconosciuto %s
@@ -332,6 +332,11 @@ parser.charsetspecial:Questo profilo ha una sintassi specifica per @charset: \
 @charset seguito esattamente da uno spazio, seguito dal nome della codifica \
 in doppi apici, seguito immediatamente da un punto e virgola.
 
+warning.charsetspecial: Questo profilo ha una sintassi molto
+particolare per @charset: @charset seguito da esattamente un singolo spazio,
+seguito dal nome della codifica fra doppie virgolette, seguito immediatamente
+da un punto e virgola.
+
 warning.old_id:Nei CSS1, un nome id può cominciare con una cifra ("#55ft"), \
 a meno che non sia una dimensione ("#55in"). Nei CSS2, tali id vengono analizzati (parsed) come \
 dimensioni sconosciute (per permettere future aggiunte di nuove unità)
@@ -349,3 +354,4 @@ error.onlyATSC : %s questa funzione è valida solo per il medium atsc-tv
 
 warning.otherprofile : la proprietà %s non esiste per questo profilo, ma viene validata in conformità ad un altro profilo 
 warning.deprecated : questo valore è deprecato
+error.unknown: Errore sconosciuto
