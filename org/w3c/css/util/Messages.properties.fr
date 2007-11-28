@@ -278,7 +278,7 @@ error.noexistence-media: La propriété %s n'existe pas pour le media %s
 error.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
 warning.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
 warning.noexistence-media: La propriété %s n'existe pas pour le media %s
-
+warning.medialist: La liste de media (medialist) doit commencer par 'media :' %s
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Trop de valeurs, ou valeurs non reconnues
 
@@ -288,6 +288,7 @@ generator.unrecognize: Erreur lors de l'analyse grammaticale.
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Le pseudo-élément :%s ne peut apparaitre dans le contexte %s
 error.pseudo-class: La pseudo-classe .%s ne peut apparaitre dans le contexte HTML %s
+warning.pseudo-classes: La pseudo-class d'ancre %s n'a d'effet que sur l'element 'A'
 error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu(e)
 error.id: Le sélécteur d'identificateur n'est pas valide! \
 Un selecteur simple: %s ne peut avoir qu'un seul sélécteur d'identificateur
@@ -299,7 +300,7 @@ warning.incompatible: %s et %s ne sont pas compatibles.
 
 error.media: media %s non reconnu 
 error.page: Page pseudo-nommée %s non reconnue
-
+warning.xsl: %s ne s'applique qu'aux feuilles de style XSL
 
 # used by StyleSheetGeneratorHTML
 generator.context: Contexte
