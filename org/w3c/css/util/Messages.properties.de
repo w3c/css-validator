@@ -29,9 +29,8 @@ tty: TTY
 tv: TV
 presentation: presentation
 
-# The following 4 variables need to be translated
-type: Type
-no_special_type: Automatic
+type: Typ
+no_special_type: Automatisch
 html_doc: HTML
 css_doc: CSS
 
@@ -240,8 +239,8 @@ error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 error.noexistence-at-all: Die Eigenschaft %s existiert nicht
 warning.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
 # *********** v Need translation!!! v *********** #
-error.noexistence: Die Eigenschaft %s existiert nicht in %s but exists in %s
-warning.noexistence: Die Eigenschaft %s existiert nicht in %s but exists in %s
+error.noexistence: Die Eigenschaft %s existiert nicht in %s <!-- translation unavailable --> but exists in %s
+warning.noexistence: Die Eigenschaft %s existiert nicht in %s <!-- translation unavailable --> but exists in %s
 # *********** ^ Need translation!!! ^ *********** #
 error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
 

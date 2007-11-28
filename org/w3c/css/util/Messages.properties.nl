@@ -29,7 +29,6 @@ tty: TTY
 tv: TV
 presentation: presentation
 
-# The following 4 variables need to be translated
 type: Type
 no_special_type: Automatisch
 html_doc: HTML
