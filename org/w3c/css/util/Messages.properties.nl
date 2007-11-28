@@ -31,25 +31,25 @@ presentation: presentation
 
 # The following 4 variables need to be translated
 type: Type
-no_special_type: Automatic
+no_special_type: Automatisch
 html_doc: HTML
 css_doc: CSS
 
 check: Controleer
 W3C_CSS_validation_service: De W3C CSS Validatie Service
-check_CSS:Controleer Cascading Style Sheets (CSS) en (X)HTML documenten die gebruik maken van style sheets
+check_CSS: Controleer Cascading Style Sheets (CSS) en (X)HTML documenten die gebruik maken van style sheets
 by_URI: via een URI
 by_file_upload: via het uploaden van een bestand
 by_direct_input: via directe invoer
-validate_by_URI: Validate via een URI
+validate_by_URI: Valideer via een URI
 enter_uri: Geef de URI op van een document (HTML met CSS of alleen CSS) dat je wilt valideren
-page_address: Address of page to Validate
+page_address: Adres van de pagina om de valideren
 address: Adres
 submit_uri: Verzenden om te valideren
 validate_by_file_upload: Valideer via het uploaden van een bestand
 choose_document: Kies het document dat je wilt valideren (alleen CSS bestanden)
-choose_local_file: Kies een Lokaal Bestand dat je wilt Uploaden en Valideren
-local_CSS_file: Local CSS file
+choose_local_file: Kies een lokaal bestand dat je wilt uploaden en valideren
+local_CSS_file: Lokaal CSS bestand
 submit_file: Verzenden om te valideren
 validate_by_input: Valideer via directe invoer
 enter_CSS: Voer de CSS in die je wilt valideren
@@ -60,14 +60,14 @@ note_xhtml_valid: Als je een CSS style sheet wilt valideren die gebruikt wordt i
 
 W3C_validator_results: W3C CSS Validator Resultaten met object : 
 # file_title: <!-- provided by the user -->
-CSS_validation_service: CSS validation Service <!-- translation unavailable -->
+CSS_validation_service: CSS Validatie Service
 jump_to: Ga naar
 # errors_count: <!-- generated on the fly -->
 errors: Fouten 
 # warnings_count <!-- generated on the fly -->
 warnings: Waarschuwingen
 validated_CSS: Uw gevalideerde CSS
-congrats: Gefeliciteerd! <!-- translation unavailable for "No Error Found." -->
+congrats: Gefeliciteerd! Geen fouten gevonden.
 # The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
 # "This document validates as CSSXX!" where XX stands for the CSS version used \
 # Since the content of the link about the CSS version is generated on the fly, \
@@ -78,22 +78,22 @@ doc_validates_after_link: !
 no_errors_interoperable_msg: Om uw lezers te laten zien dat u de moeite heeft genomen om een interoperabele webpagina te maken, \
 kunt u dit pictogram op elke gevalideerde pagina plaatsen. Hier is de HTML code \
 die u kunt gebruiken om dit pictogram aan uw webpagina toe te voegen:
-valid_CSS: Valid CSS! <!-- translation unavailable -->
+valid_CSS: Valide CSS!
 # <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
-no_errors_close_tags_msg: close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01 <!-- translation unavailable -->
-no_errors_dl_local_msg: Als u wilt, kunt u een kopie van dit plaatje downloaden en in uw locale webdirectory \
-te zetten en in het XHTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
+no_errors_close_tags_msg: Sluit de img tag met &gt; in plaats van met /&gt; als u HTML versie 4.01 of eerder gebruikt
+no_errors_dl_local_msg: Als u wilt, kunt u een kopie van dit plaatje downloaden, in uw locale webdirectory \
+zetten en in het XHTML fragment hierboven refereren aan uw lokaal opgeslagen afbeelding \
 in plaats van aan die op deze server.
 no_errors_create_link_msg: Als u een link wilt maken naar deze pagina (i.e. naar dit validatieresultaat \
 om het gemakkelijker te maken deze pagina later te revalideren of anderen \
 in staat te stellen uw pagina te valideren is de URL:
-no_errors_forHTML_only_msg: alleen voor HTML documenten
-no_errors_bookmark_msg: Of u kunt de huidige pagina toevoegen aan uw bookmarks of hotlist.
-note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>. <!-- translation unavailable -->
+no_errors_forHTML_only_msg: Alleen voor HTML documenten
+no_errors_bookmark_msg: Of u kunt de huidige pagina toevoegen aan uw favorieten of hotlist.
+note_valide_html: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>.
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* VOORZICHTIG ! Dit is geen CSS1 eigenschap ! */
-errors_sorry_msg: Fouten <!-- translation unavailable for "Sorry! We found the following errors" -->
+errors_sorry_msg: Sorry! We vonden de volgende fouten
 # errors_list: <!-- generated on the fly -->
 # warnings_list: <!-- generated on the fly -->
 # rules_count: <!-- generated on the fly -->
@@ -114,8 +114,8 @@ dl_title: Download de CSS validator
 feedback_title: Hoe reacties te geven over deze service
 credits_title: Credits en Erkenning
 W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more
-learn_more_msg: Learn more about Cascading Style Sheets
-support: Support this tool, become a
+learn_more_msg: Leer meer over Cascading Style Sheets
+support: Ondersteun de validator, wordt een
 supporter: W3C Supporter
 # End of variables added along with Velocity
 
@@ -161,8 +161,8 @@ warning.block-level: Deze eigenschap is van toepassing op block-level elementen.
 # gebruikt door org.w3c.css.parser.Frame
 warning.no-declaration: Geen declaraties in de regel
 
-# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+# used by org.w3c.css.parser.CssFouffa
+warning.unsupported-import: De ge&iuml;mporteerde style sheets worden niet gecontroleerd bij het direct invoeren of uploaden van een style sheet
 
 # gebruikt door org.w3c.css.values.CssColor
 warning.out-of-range: %s valt buiten het bereik
@@ -186,6 +186,10 @@ error.groupname: %s is geen correcte groepnaam. Gebruik een geldige identifier
 
 # gebruikt door org.w3c.css.properties3.CssGroupReset
 error.nogroup: %s is niet geinitialiseerd door een toggle-group eigenschap
+
+error.notforatsc: %s kan niet gebruikt worden met het ATSC profiel
+error.notfortv: %s kan niet gebruikt worden met het TV profiel
+error.notversion: %s kan niet worden gebruikt met deze versie van CSS : %s
 
 # gebruikt door org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Waarde moet tussen -360 en 360 zijn en deelbaar zijn door 90
@@ -221,6 +225,8 @@ error.local: Ongeldige format definitie local(<string>|<ident>+)
 # gebruikt door org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
 error.unit: %s is een incorrecte unit
 
+error.unknown: Onbekende error
+
 # gebruikt door org.w3c.css.aural.ACssAzimuth
 error.degree: De positie moet worden beschreven in gradaties.
 
@@ -252,12 +258,12 @@ error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 # gebruikt door org.w3c.css.values.CssNumber
 error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
 
-# gebruikt door org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
+# gebruikt door org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Eigenschap %s bestaat niet
-# *********** v Need translation!!! v *********** #
-error.noexistence: Eigenschap %s bestaat niet in %s but exists in %s
-warning.noexistence: Eigenschap %s bestaat niet in %s but exists in %s
-# *********** ^ Need translation!!! ^ *********** #
+
+error.noexistence: Eigenschap %s bestaat niet in %s maar wel in %s
+warning.noexistence: Eigenschap %s bestaat niet in %s maar wel in %s
+
 error.noexistence-media: Eigenschap %s bestaat niet voor media %s
 warning.noexistence-media: Eigenschap %s bestaat niet voor media %s
 
@@ -320,7 +326,7 @@ parser.charsetspecial:Dit profiel heeft een specifieke syntax voor @charset: \
 en een puntkomma.
 
 warning.old_id:In CSS1 kon de naam van een id beginnen met een getal ("#55ft"), \
-tenzij het een dimensie is ("#55in"). In CSS2 worden zulke ids geparded als \
+tenzij het een dimensie is ("#55in"). In CSS2 worden zulke ids geparsed als \
 onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 
 warning.old_class:In CSS1 kon de naam van een klasse beginnen met een getal (".55ft"), \
