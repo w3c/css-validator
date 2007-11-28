@@ -30,8 +30,8 @@ tv: 电视
 presentation: 演示设备
 
 # The following 4 variables need to be translated
-type: Type
-no_special_type: Automatic
+type: <!-- translation unavailable -->
+no_special_type: <!-- translation unavailable -->
 html_doc: HTML
 css_doc: CSS
 
@@ -159,8 +159,8 @@ warning.block-level: 这个属性应用于块级元素
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: 在规则中没有声明
 
-# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
-warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
+# used by org.w3c.css.parser.CssFouffa 
+warning.unsupported-import: <!-- translation unavailable -->Imported style sheets are not checked in direct input and file upload modes
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围

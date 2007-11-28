@@ -29,7 +29,6 @@ tty: teletipo
 tv: televisi&oacute;n
 presentation: presentaci&oacute;n
 
-# The following 4 variables need to be translated
 type: Tipo
 no_special_type: Automático
 html_doc: HTML
@@ -160,7 +159,7 @@ warning.block-level: Estas propiedad se aplica a elementos de bloque.
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: No hay declaraciones en la regla
 
-# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+# used by org.w3c.css.parser.CssFouffa
 warning.unsupported-import: Las hojas de estilo importadas no se comprueban en los modos de entrada directa y carga de archivo
 
 # used by org.w3c.css.values.CssColor
@@ -262,10 +261,8 @@ error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: La propiedad %s no existe
 error.noexistence-media: La propiedad %s no existe en el medio %s
-# *********** v Need translation!!! v *********** #
-error.noexistence: La propiedad %s no existe en %s but exists in %s
-warning.noexistence: La propiedad %s no existe en %s but exists in %s
-# *********** ^ Need translation!!! ^ *********** #
+error.noexistence: La propiedad %s no existe en %s pero existe en %s
+warning.noexistence: La propiedad %s no existe en %s pero existe en %s
 warning.noexistence-media: La propiedad %s no existe en el medio %s
 warning.notforusermedium : La propiedad %s no existe en este medio de usuario
 warning.noothermedium : Las propiedades de otros medios podrían no funcionar en el medio de usuario

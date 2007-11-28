@@ -166,7 +166,7 @@ warning.block-level: このプロパティはブロックレベル要素に適�
 # used by org.w3c.css.parser.Frame
 warning.no-declaration: 宣言(declarations)がルール中に存在しません
 
-# used by org.w3c.css.parser.CssFouffa AND NEEDS TRANSLATION
+# used by org.w3c.css.parser.CssFouffa
 warning.unsupported-import: @importでインポートされるスタイルシートは直接入力やファイルアップロードでは検証されません。
 
 # used by org.w3c.css.values.CssColor
@@ -247,10 +247,8 @@ error.zero: %s には 0 だけが使えます。数字の後には単位を入�
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: プロパティ %s は %s に存在しません
 error.noexistence-media: プロパティ %s はメディア %s には存在しません
-# *********** v Need translation!!! v *********** #
-error.noexistence: プロパティ %s は %s に存在しません  but exists in %s
-warning.noexistence: プロパティ %s は %s に存在しません  but exists in %s
-# *********** ^ Need translation!!! ^ *********** #
+error.noexistence: プロパティ %s は %s に存在しません  <!-- translation unavailable -->but exists in %s
+warning.noexistence: プロパティ %s は %s に存在しません  <!-- translation unavailable -->but exists in %s
 warning.noexistence-media: プロパティ %s はメディア %s には存在しません
 
 # used by org.w3c.css.parser.CssFouffa
