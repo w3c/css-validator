@@ -351,3 +351,11 @@ warning.deprecated : deze waarde is verouderd en kan beter niet meer worden gebr
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Combinator %s tussen de selectors is niet toegestaan in dit profiel of versie
+
+error.function: Ongeldige functie definitie
+warning.charsetspecial: Dit profiel heeft een specifieke syntax voor @charset: @charset, gevolgd door een spatie, gevolgd door de naam van de encoding tussen quotes, direct gevolgd door een puntkomma.
+warning.medialist: De medialijst moet starten met 'media :' %s
+warning.nocomb: Combinatieteken %s tussen selectors is niet toegestaan binnen dit profiel (%s)
+warning.notversion: %s kan niet gebruikt worden in deze CSS-versie: %s
+warning.pseudo: Onbekend pseudo-element of pseudo-class %s in het standaard profiel (%s)
+warning.xsl: waarde %s is alleen geldig voor XSL
