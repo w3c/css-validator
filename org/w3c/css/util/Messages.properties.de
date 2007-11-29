@@ -163,7 +163,7 @@ warning.block-level: Diese Eigenschaft gilt für Elemente auf Block-Level.
 warning.no-declaration: Keine Deklaration in der Regel
 
 # used by org.w3c.css.parser.CssFouffa 
-warning.unsupported-import: <!-- translation unavailable -->Imported style sheets are not checked in direct input and file upload modes
+warning.unsupported-import: Importierte Style Sheets werden bei den Modi Direkteingabe und Datei-Upload nicht &uuml;berpr&uuml;ft
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s ist außerhalb des Wertebereichs
@@ -241,8 +241,8 @@ error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Die Eigenschaft %s existiert nicht
 warning.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
-error.noexistence: Die Eigenschaft %s existiert nicht in %s <!-- translation unavailable --> but exists in %s
-warning.noexistence: Die Eigenschaft %s existiert nicht in %s <!-- translation unavailable --> but exists in %s
+error.noexistence: Die Eigenschaft %s existiert nicht in %s, aber in %s
+warning.noexistence: Die Eigenschaft %s existiert nicht in %s, aber in %s
 error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
 
 # used by org.w3c.css.parser.CssFouffa
