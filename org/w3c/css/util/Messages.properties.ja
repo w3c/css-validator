@@ -261,6 +261,7 @@ generator.unrecognize: 文法解析エラーが発生しました
 error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
 error.pseudo-class: 疑似クラス .%s は HTMLコンテキスト %s 中のこの場所では使えません
 error.pseudo: %sは未知の疑似要素または疑似クラスです
+warning.pseudo: <!-- translation unavailable -->
 error.id: ID セレクタ #%s は間違っています!\
 単純セレクタ (simple selector) %s には一つのIDセレクタしか指定できません
 error.space: 属性セレクタ (attribute selector) ~= が用いられている場合、\
@@ -305,7 +306,7 @@ unless it is a dimension ("#55in").
 parser.charset:@charset 規則が指定できるのは、スタイルシートの最初の部分のみです。直前にスペースが入っていたりしないか確認してみてください。
 
 parser.charsetspecial:このプロファイルには、固有の @charset 構文があります。@charset のあとには1つのスペース、引用符つきのエンコーディングの名前、セミコロンを並べます。
-
+warning.charsetspecial: このプロファイルには、固有の @charset 構文があります。@charset のあとには1つのスペース、引用符つきのエンコーディングの名前、セミコロンを並べます。
 warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
 unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
 unknown dimensions (to allow for future additions of new units)
@@ -321,4 +322,28 @@ servlet.process: 指定されたオブジェクトは処理できません
 error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Combinator %s between selectors is not allowed in this profile or version
+error.nocomb: <!-- translation unavailable -->
+warning.nocomb: <!-- translation unavailable -->
+error.angle: <!-- translation unavailable -->
+error.anglevalue: <!-- translation unavailable -->
+error.function: <!-- translation unavailable -->
+error.groupname: <!-- translation unavailable -->
+error.noatruleyet: <!-- translation unavailable -->
+error.nogroup: <!-- translation unavailable -->
+error.notforatsc: <!-- translation unavailable -->
+error.notforcss1: <!-- translation unavailable -->
+error.notformobile: <!-- translation unavailable -->
+error.notfortv: <!-- translation unavailable -->
+error.notversion: <!-- translation unavailable -->
+error.onlyATSC: <!-- translation unavailable -->
+warning.atsc: <!-- translation unavailable -->
+error.percentage: <!-- translation unavailable -->
+error.unknown:<!-- translation unavailable -->
+warning.deprecated: <!-- translation unavailable -->
+warning.direction: <!-- translation unavailable -->
+warning.medialist:  <!-- translation unavailable -->
+warning.noothermedium: <!-- translation unavailable -->
+warning.notforusermedium: <!-- translation unavailable -->
+warning.notversion: <!-- translation unavailable -->
+warning.otherprofile: <!-- translation unavailable -->
+warning.xsl: <!-- translation unavailable -->
