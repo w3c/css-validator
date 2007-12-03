@@ -108,15 +108,15 @@ dl: Download
 feedback: Commenti
 credits: Crediti
 home_title: Pagina iniziale del servizio di validazione CSS del W3C
-about_title: About this service<!-- translation unavailable -->
-doc_title: Documentation for the W3C CSS Validation Service<!-- translation unavailable -->
-dl_title: Download and install the CSS validator<!-- translation unavailable -->
-feedback_title: How to provide feedback on this service<!-- translation unavailable -->
-credits_title: Credits and Acknowlegments<!-- translation unavailable -->
-W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more<!-- translation unavailable -->
-learn_more_msg: Learn more about Cascading Style Sheets<!-- translation unavailable -->
+about_title: Informazioni sul servizio
+doc_title: Documentazione per il servizio di validazione W3C per i fogli di stile CSS
+dl_title: Scarica ed installa il validatore CSS
+feedback_title: Come fornire commenti al servizio
+credits_title: Crediti e ringraziamenti
+W3C_quality_msg: Attività W3C per la garanzia di qualità, fornisce strumenti gratuiti per la qualità del web e molto altro
+learn_more_msg: Maggiori informazioni sui fogli di stile a cascata (CSS)
 support: Aiuta questo strumento, diventa un
-supporter: W3C Supporter<!-- translation unavailable -->
+supporter: Sostenitore del W3C
 # End of variables added along with Velocity
 
 ﻿# Defines your own error and warning message here
