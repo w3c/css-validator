@@ -1,16 +1,16 @@
 language_name: 日本語
 more_options: オプション
-title_more_options: Show/Hide extra validation options
+title_more_options: その他の検査オプションを表示する/隠す
 all: 全て出力
 normal_report: 一般的なものを出力
 most_important: 重要なものだけ出力
 no_warnings: 出力しない
 profile: Profile
-no_special_profile: No special profile
-css1: CSS level 1
-css2: CSS level 2
-css21: CSS level 2.1
-css3: CSS level 3
+no_special_profile: 特にプロファイルを指定しない
+css1: CSS レベル 1
+css2: CSS レベル 2
+css21: CSS レベル 2.1
+css3: CSS レベル 3
 SVG: SVG
 SVG_basic: SVG Basic
 SVG_tiny: SVG tiny
@@ -42,31 +42,31 @@ by_file_upload: アップロード
 by_direct_input: 直接入力
 validate_by_URI: URLで指定して検証
 enter_uri: 検証したい文書(CSSと組み合わせたHTML文書、もしくはCSS単体の文書)のURIを入力してください
-page_address: Address of page to Validate
+page_address: 検証対象のアドレスを入力してください
 address: アドレス
-submit_uri: Submit URI for validation
+submit_uri: 検証するためのURIを送信します
 validate_by_file_upload: ソースファイルをアップロードして検証
 choose_document: 検証したいCSS文書のソースファイル名を入力してください (CSSファイルのみ)
-choose_local_file: Choose a Local File to Upload and Validate
+choose_local_file: アップロード・検証するローカルのファイルを選択します
 local_CSS_file: CSSファイル
-submit_file: Submit file for validation
+submit_file: 検証するファイルを送信します
 validate_by_input: テキストエリアに直接入力して検証
 enter_CSS: 検証したいCSSをテキストエリアに入力してください (CSSソースのみ)
-submit_input: Submit your input for validation
-note: Note
-note_xhtml_valid: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当<span lang="en">(valid)</span> なHTML</a>
+submit_input: 入力したテキストを検証するために送信します
+note: メモ
+note_xhtml_valid: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当なHTML</a>を用いるべきです。
 # End of variables added along with Index page template
 
 W3C_validator_results: CSS Validator 検証結果 
 # file_title: <!-- provided by the user -->
-CSS_validation_service: CSS validation Service <!-- translation unavailable -->
+CSS_validation_service: CSS 検証サービス
 jump_to: 表示
 # errors_count: <!-- generated on the fly -->
 errors: エラー 
 # warnings_count <!-- generated on the fly -->
 warnings: 警告 
 validated_CSS: 入力されたCSS
-congrats: おめでとうございます！ <!-- translation unavailable for "No Error Found." -->
+congrats: おめでとうございます！ エラーはありません。
 # The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
 # "This document validates as CSSXX!" where XX stands for the CSS version used \
 # Since the content of the link about the CSS version is generated on the fly, \
@@ -78,9 +78,9 @@ no_errors_interoperable_msg: あなたがこのWebページを作るにあたっ
 高度な相互運用性<span lang="en">(Interoperability)</span>\
 に対する配慮を行った事を読者に示すため、このアイコンを張る事をお勧めします。\
 あなたのWebページにこのアイコンを張るためには、次のHTMLの断片を利用すると良いでしょう。
-valid_CSS: Valid CSS! <!-- translation unavailable -->
+valid_CSS: 正当なCSSです!
 # <!-- close the img tag with > instead of /> if using HTML<= 4.01 -->
-no_errors_close_tags_msg: close the img tag with &gt; instead of /&gt; if using HTML &lt;= 4.01 <!-- translation unavailable -->
+no_errors_close_tags_msg: HTML 4.01 以前を使用する場合は img タグを /&gt; ではなく &gt; で閉じてください。
 no_errors_dl_local_msg: この画像はローカルコピーを使っても構いません。\
 つまり、あなたのWebサーバにこの画像のコピーをダウンロードしてディレクトリに保存し、\
 上記のHTMLの断片について、ダウンロードしたものを参照するように変更して使う事もできます。
@@ -90,11 +90,11 @@ no_errors_create_link_msg: この検証結果のページに対するリンク�
 他の人がこのページを検証する事が容易になります。
 no_errors_forHTML_only_msg: HTML/XML 文書のみに有効
 no_errors_bookmark_msg: もちろん、このページをブックマークやホットリストに追加したのでもよいでしょう。
-note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>. <!-- translation unavailable -->
+note_valide_html: あなたの CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正しいHTML</a>を用いるべきです。
 top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* 注意して下さい ! このプロパティはCSS1用ではありません ! */
-errors_sorry_msg: エラー <!-- translation unavailable for "Sorry! We found the following errors" -->
+errors_sorry_msg: エラー: 以下のエラーが見つかりました。
 # errors_list: <!-- generated on the fly -->
 # warnings_list: <!-- generated on the fly -->
 # rules_count: <!-- generated on the fly -->
@@ -114,10 +114,10 @@ doc_title: CSS Validator ドキュメント: 目次
 dl_title: CSS Validator のダウンロードとインストール
 feedback_title: フィードバック
 credits_title: 謝辞
-W3C_quality_msg: W3C's Quality Assurance Activity, bringing you free Web quality tools and more
-learn_more_msg: Learn more about Cascading Style Sheets
-support: Support this tool, become a
-supporter: W3C Supporter
+W3C_quality_msg: W3CのQuality Assurance Activityによって、フリーなウェブ品質ツールなどが提供されています。
+learn_more_msg: カスケーディングスタイルシートについてもっと知る
+support: このツールを支援するために加入しましょう：
+supporter: W3C サポーター
 # End of variables added along with Velocity
 
 # Defines your own error and warning message here
@@ -247,8 +247,8 @@ error.zero: %s には 0 だけが使えます。数字の後には単位を入�
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: プロパティ %s は %s に存在しません
 error.noexistence-media: プロパティ %s はメディア %s には存在しません
-error.noexistence: プロパティ %s は %s に存在しません  <!-- translation unavailable -->but exists in %s
-warning.noexistence: プロパティ %s は %s に存在しません  <!-- translation unavailable -->but exists in %s
+error.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
+warning.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
 warning.noexistence-media: プロパティ %s はメディア %s には存在しません
 
 # used by org.w3c.css.parser.CssFouffa
@@ -290,60 +290,55 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: プロパティ名の前にセミコロン(;)を追加してみて下さい
 
-parser.old_class: CSS1では、 dimension (".55in") でない限り、クラス名は数値 (".55ft") から始まる事ができます。\
+parser.old_class: CSS1では、 クラス名はdimension (".55in" など) でない限り、数字から始める事ができました (".55ft" など)。\
 CSS2では、このようなクラスは未知の dimension として解析されます。(これは、将来新しい単位が追加される可能性を保つためです)
 
-parser.old_id:In CSS1, an id name could start with a digit ("#55ft"), \
-unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+parser.old_id: CSS1では、id名は dimension ("#55in"など) でない限り、数字から始めることができました ("#55ft" など)。 \
+CSS2では、このようなidは不明な dimension として解析されます。これは、将来新しい単位を追加できるようにするためです。
 
-parser.class_dim:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in").
+parser.class_dim:CSS1では、 クラス名はdimension (".55in") でない限り、数字から始める事ができます (".55ft")
 
-parser.id_dim:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in").
+parser.id_dim: CSS1では、id名は dimension ("#55in"など) でない限り、数字から始めることができます ("#55ft" など)。
 
 parser.charset:@charset 規則が指定できるのは、スタイルシートの最初の部分のみです。直前にスペースが入っていたりしないか確認してみてください。
 
 parser.charsetspecial:このプロファイルには、固有の @charset 構文があります。@charset のあとには1つのスペース、引用符つきのエンコーディングの名前、セミコロンを並べます。
 warning.charsetspecial: このプロファイルには、固有の @charset 構文があります。@charset のあとには1つのスペース、引用符つきのエンコーディングの名前、セミコロンを並べます。
-warning.old_id:In CSS1, an id name can start with a digit ("#55ft"), \
-unless it is a dimension ("#55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_id: CSS1では、id名は dimension ("#55in"など) でない限り、数字から始めることができました ("#55ft" など)。 \
+CSS2では、このようなidは不明な dimension として解析されます。これは、将来新しい単位を追加できるようにするためです。
 
-warning.old_class:In CSS1, a class name can start with a digit (".55ft"), \
-unless it is a dimension (".55in"). In CSS2, such ids are parsed as \
-unknown dimensions (to allow for future additions of new units)
+warning.old_class: CSS1では、 クラス名はdimension (".55in" など) でない限り、数字から始める事ができました (".55ft" など)。\
+CSS2では、このようなクラスは未知の dimension として解析されます。(これは、将来新しい単位が追加される可能性を保つためです)
 
 # used by the servlet
 servlet.invalid-request: 正しいリクエストではありません
 servlet.process: 指定されたオブジェクトは処理できません
 
-error.unrecognized.link: Unrecognized link element or xml-stylesheet PI.
+error.unrecognized.link: 認識できないリンク要素またはxml-stylesheet PIです。
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: <!-- translation unavailable -->
-warning.nocomb: <!-- translation unavailable -->
-error.angle: <!-- translation unavailable -->
-error.anglevalue: <!-- translation unavailable -->
-error.function: <!-- translation unavailable -->
-error.groupname: <!-- translation unavailable -->
-error.noatruleyet: <!-- translation unavailable -->
-error.nogroup: <!-- translation unavailable -->
-error.notforatsc: <!-- translation unavailable -->
-error.notforcss1: <!-- translation unavailable -->
-error.notformobile: <!-- translation unavailable -->
-error.notfortv: <!-- translation unavailable -->
-error.notversion: <!-- translation unavailable -->
-error.onlyATSC: <!-- translation unavailable -->
-warning.atsc: <!-- translation unavailable -->
-error.percentage: <!-- translation unavailable -->
-error.unknown:<!-- translation unavailable -->
-warning.deprecated: <!-- translation unavailable -->
-warning.direction: <!-- translation unavailable -->
-warning.medialist:  <!-- translation unavailable -->
-warning.noothermedium: <!-- translation unavailable -->
-warning.notforusermedium: <!-- translation unavailable -->
-warning.notversion: <!-- translation unavailable -->
-warning.otherprofile: <!-- translation unavailable -->
-warning.xsl: <!-- translation unavailable -->
+error.nocomb: セレクタ間の結合子 %s はこのプロファイルまたはバージョンでは利用できません
+warning.nocomb: セレクタ間の結合子 %s はこのプロファイルまたはバージョンでは利用できません
+error.angle: %s は正しい角度ではありません。値は 0 から 360 の間である必要があります
+error.anglevalue: 値は -360 から 360 の間で、かつ 90 で割り切れる必要があります
+error.function: 正しくない関数定義です
+error.groupname: %s は正しくないgroupnameです。正しい identifier を使ってください
+error.noatruleyet: @import 以外の @rules は CSS1 %s ではサポートされていません
+error.nogroup: %s は toggle-group プロパティによって指定されていません
+error.notforatsc: %s は ATSC プロファイルでは利用できません
+error.notforcss1: 値 %s は CSS1 には存在しません
+error.notformobile: %s は mobile プロファイルでは利用できません
+error.notfortv: %s は TV プロファイルでは利用できません
+error.notversion: %s は CSS : %s バージョンでは利用できません
+error.onlyATSC: %s この関数は atsc-tv メディアでしか利用できません
+warning.atsc: %s は atsc-tv メディアでサポートされていない可能性があります
+error.percentage: パーセンテージ値が必要です
+error.unknown: 不明なエラー
+warning.deprecated: この値は廃止されました
+warning.direction: ブロックレベル要素には'direction'ではなく新しいCSS3の'writing-mode'プロパティを用いてください
+warning.medialist:  メディアリストは 'media :' %s で始まるべきです
+warning.noothermedium: 他のメディア用のプロパティは usermedium では動作しない可能性があります
+warning.notforusermedium: プロパティ %s はこの usermedium には存在しません
+warning.notversion: %s はこの CSS : %s バージョンでは利用できません
+warning.otherprofile: プロパティ %s はこのプロファイルには存在しませんが、他のプロファイルでは正当です
+warning.xsl: 値 %s は XSL にのみ適用可能です
