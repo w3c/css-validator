@@ -8,10 +8,14 @@
     <link rev="start" href="./" title="$home_title" />
     <style type="text/css" media="all">
       @import "style/base.css";
+	  #if ( $page_type == "doc" )
+      @import "style/docs.css";
+	  #end
     </style>   
+  #if ( $page_type != "doc" )
     <script type="text/javascript" src="scripts/mootools.js"></script>
     <script type="text/javascript" src="scripts/w3c-validator.js"></script>
-    <meta name="revision" content="\$Id$" />
+  #end
   </head>
 
   <body>
