@@ -116,7 +116,7 @@ feedback_title: フィードバック
 credits_title: 謝辞
 W3C_quality_msg: W3CのQuality Assurance Activityによって、フリーなウェブ品質ツールなどが提供されています。
 learn_more_msg: カスケーディングスタイルシートについてもっと知る
-support: このツールを支援するために加入しましょう：
+support: 参加してこのツールを支援しましょう：
 supporter: W3C サポーター
 # End of variables added along with Velocity
 
@@ -131,10 +131,10 @@ output-encoding-name: utf-8
 warning.redefinition: %s が再定義されています
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.style-inside-comment: ユーザエージェントによって削除される可能性があるので、スタイルルールはHTMLコメントの中に記述しないでください
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: %s と %s が同じ色です
+warning.same-colors: %s と %s は同じ色です
 warning.no-color: 指定された背景色(background-color)に対応する前面色(color)が指定されていません
 warning.no-background-color: 指定された全面色(color)に対応する背景色(background-color)が指定されていません
 #warning.color.mixed-capitalization is now obsolete
@@ -261,7 +261,7 @@ generator.unrecognize: 文法解析エラーが発生しました
 error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
 error.pseudo-class: 疑似クラス .%s は HTMLコンテキスト %s 中のこの場所では使えません
 error.pseudo: %sは未知の疑似要素または疑似クラスです
-warning.pseudo: <!-- translation unavailable -->
+warning.pseudo: 未知の疑似要素または疑似クラス %s がデフォルトプロファイル (%s) にあります
 error.id: ID セレクタ #%s は間違っています!\
 単純セレクタ (simple selector) %s には一つのIDセレクタしか指定できません
 error.space: 属性セレクタ (attribute selector) ~= が用いられている場合、\
