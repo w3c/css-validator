@@ -161,7 +161,7 @@ warning.block-level: Deze eigenschap is van toepassing op block-level elementen.
 warning.no-declaration: Geen declaraties in de regel
 
 # used by org.w3c.css.parser.CssFouffa
-warning.unsupported-import: De ge&iuml;mporteerde style sheets worden niet gecontroleerd bij het direct invoeren of uploaden van een style sheet
+warning.unsupported-import: De geïmporteerde style sheets worden niet gecontroleerd bij het direct invoeren of uploaden van een style sheet
 
 # gebruikt door org.w3c.css.values.CssColor
 warning.out-of-range: %s valt buiten het bereik

@@ -1,33 +1,33 @@
 language_name: Español
-more_options: M&aacute;s opciones
+more_options: Más opciones
 title_more_options: Show/Hide extra validation options
 all: Todos
 normal_report: Informe normal
-most_important: Las m&aacute;s importantes
+most_important: Las más importantes
 no_warnings: Sin advertencias
 profile: Perfil
 no_special_profile: Ninguno en especial
-css1: CSS versi&oacute;n 1
-css2: CSS versi&oacute;n 2
-css21: CSS versi&oacute;n 2.1
-css3: CSS versi&oacute;n 3
+css1: CSS versión 1
+css2: CSS versión 2
+css21: CSS versión 2.1
+css3: CSS versión 3
 SVG: SVG
-SVG_basic: SVG B&aacute;sico
+SVG_basic: SVG Básico
 SVG_tiny: SVG Reducido
-mobile: M&oacute;vil
+mobile: Móvil
 ATSC_TV_profile: Perfil de TV ATSC
 TV_profile: Perfil de TV
 medium: Medio
 aural: auditivo
 braille: braille
 embossed: relieve
-handheld: peque&ntilde;os dispositivos
-print: impresi&oacute;n
-projection: proyecci&oacute;n
+handheld: pequeños dispositivos
+print: impresión
+projection: proyección
 screen: pantalla
 tty: teletipo
-tv: televisi&oacute;n
-presentation: presentaci&oacute;n
+tv: televisión
+presentation: presentación
 
 type: Tipo
 no_special_type: Automático
@@ -35,31 +35,31 @@ html_doc: HTML
 css_doc: CSS
 
 check: Check
-W3C_CSS_validation_service: El Servicio de Validaci&oacute;n de CSS del W3C
+W3C_CSS_validation_service: El Servicio de Validación de CSS del W3C
 check_CSS: Verifica Hojas de Estilo en Cascada (CSS) y documentos (X)HTML con hojas de estilo
 by_URI: mediante URI
 by_file_upload: mediante Carga de Archivo
 by_direct_input: mediante Entrada directa
 validate_by_URI: Validar mediante URI
-enter_uri: Introduce la URI de un documento (HTML con CSS o s&oacute;lo CSS) que desees validar
-page_address: Direcci&oacute;n de la p&aacute;gina a Validar
-address: Direcci&oacute;n
-submit_uri: Enviar archivo para su validaci&oacute;n
+enter_uri: Introduce la URI de un documento (HTML con CSS o sólo CSS) que desees validar
+page_address: Dirección de la página a Validar
+address: Dirección
+submit_uri: Enviar archivo para su validación
 validate_by_file_upload: Validar mediante Carga de un Archivo
-choose_document: Elige el documento que desees validar (&uacute;nicamente archivos CSS)
-choose_local_file: Elige un Archivo Local para su Carga y Validaci&oacute;n
+choose_document: Elige el documento que desees validar (únicamente archivos CSS)
+choose_local_file: Elige un Archivo Local para su Carga y Validación
 local_CSS_file: Archivo CSS local
-submit_file: Enviar archivo para su validaci&oacute;n
+submit_file: Enviar archivo para su validación
 validate_by_input: Validar mediante entrada directa
-enter_CSS: Introduce el c&oacute;digo CSS que desees validar
-submit_input: Enviar archivo para su validaci&oacute;n
+enter_CSS: Introduce el código CSS que desees validar
+submit_input: Enviar archivo para su validación
 note: Nota
-note_xhtml_valid: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deber&iacute;as antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es v&aacute;lido</a>
+note_xhtml_valid: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deberías antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es válido</a>
 # End of variables added along with Index page template
 
 W3C_validator_results: Resultados del Validador CSS del W3C para 
 # file_title: <!-- provided by the user -->
-CSS_validation_service: Servicio de Validaci&oacute;n CSS
+CSS_validation_service: Servicio de Validación CSS
 jump_to: Ir a
 # errors_count: <!-- generated on the fly -->
 errors: Los Errores 
@@ -102,19 +102,19 @@ valid_CSS_info: Información de CSS válida
 CSS_not_found: No se ha encontrado ninguna hoja de estilo
 home: Inicio
 about: Acerca de este servicio
-doc: Documentaci&oacute;n
+doc: Documentación
 dl: Download
 feedback: Comentarios
-credits: Cr&eacute;ditos
-home_title: P&aacute;gina de inicio del Servicio de Validaci&oacute;n CSS del  W3C
+credits: Créditos
+home_title: Página de inicio del Servicio de Validación CSS del  W3C
 about_title: Acerca de este servicio
-doc_title: Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C
+doc_title: Documentación del Servicio de Validación CSS del W3C
 dl_title: Descargar y installar el validador CSS
-feedback_title: C&oacute;mo realizar comentarios sobre este servicio
-credits_title: Cr&eacute;ditos y Agradecimientos
-W3C_quality_msg: Actividad de Garant&iacute; de Calidad del W3C, ofreci&eacute;ndole herramientas de calidad Web gratu&iacute;tas y m&aacute;s 
-learn_more_msg: Aprenda m&aacute; sobre las Hojas de Estilo en Cascada
-support: Apoye esta herramienta, convi&eacute;rtase en un 
+feedback_title: Cómo realizar comentarios sobre este servicio
+credits_title: Créditos y Agradecimientos
+W3C_quality_msg: Actividad de Garantí de Calidad del W3C, ofreciéndole herramientas de calidad Web gratuítas y más 
+learn_more_msg: Aprenda má sobre las Hojas de Estilo en Cascada
+support: Apoye esta herramienta, conviértase en un 
 supporter: Contribuidor del W3C
 # End of variables added along with Velocity
 
