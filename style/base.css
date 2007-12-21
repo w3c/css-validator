@@ -227,7 +227,7 @@ div.options td input {
 }
 
 div.options select {
-	width: 100%;
+	width: 12em;
 }
 
 div.options table tr.subchoice th {
