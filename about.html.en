@@ -33,6 +33,7 @@
 <li><a href="#what">What is this? Do I need it?</a></li>
 <li><a href="#help">The explanation above is incomprehensible! Help!</a></li>
 <li><a href="#reference">So, this is the authority on what is correct CSS and what isn't?</a></li>
+<li><a href="#validCSS">What does “Valid CSS” mean? Which version of CSS does this validator use?</a></li>
 <li><a href="#free">How much does it cost?</a></li>
 <li><a href="#who">Who wrote this tool? Who maintains it?</a></li>
 <li><a href="#contact">How do I contact the authors? Report a bug?</a></li>
@@ -73,6 +74,23 @@ What this tool does is help people authoring CSS check, and fix if necessary, th
 <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs and issues</a>.
 The actual reference on Cascading Style Sheets are the <a href="http://www.w3.org/Style/CSS/#specs">CSS 
 Specifications</a>.</p>
+
+<h4 id="validCSS">What does “Valid CSS” mean? Which version of CSS does this validator use?</h4>
+<p>According to the <a href="http://www.w3.org/TR/CSS21/conform.html#valid-style-sheet" 
+title="CSS 2.1 Specification – Conformance: requirements and recommendations">CSS 2.1 Specification</a>:
+<q cite="http://www.w3.org/TR/CSS21/conform.html">The validity of a style sheet depends on the level of 
+CSS used for the style sheet. […]  valid CSS 2.1 style sheet must be written according to the grammar of CSS 2.1. 
+Furthermore, it must contain only at-rules, property names, and property values defined in this specification.</q></p>
+
+<p>By default, this validator checks style sheets against the grammar, properties and values defined in the 
+<a href="http://www.w3.org/TR/CSS21/" 
+title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">CSS&nbsp;2.1</a> specification, 
+but other CSS profiles can be checked against by using the options.</p>
+
+<p>CSS is an evolving language, and it is considered by many that “CSS” is a single grammar 
+(the one defined in the latest specification) with a number of properties and acceptable 
+values defined in various profiles.In a future version of this validator, the default behavior may be to check
+style sheets against that latest “CSS grammar” and the cloud of all standardized CSS properties and values.</p>
 
 <h4 id="free">How much does it cost?</h4>
 <p>Nothing. The service is free. The source is <a href="DOWNLOAD.html">open</a> and you are free
