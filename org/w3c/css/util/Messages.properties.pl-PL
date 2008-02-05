@@ -60,7 +60,6 @@ note_xhtml_valid: Jeśli chcesz walidować arkusz CSS umieszczony w dokumencie (
 
 W3C_validator_results: Wyniki Walidatora CSS W3C dla
 # file_title: <!-- provided by the user -->
-CSS_validation_service: <!-- translation unavailable -->
 jump_to: Zobacz
 # errors_count: <!-- generated on the fly -->
 errors: Błędy
