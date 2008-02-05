@@ -29,13 +29,14 @@ tty: TTY
 tv: TV
 presentation: prezentacja
 
-type: <!-- translation unavailable -->
-no_special_type: <!-- translation unavailable -->
+type: Typ
+no_special_type: Automatycznie
 html_doc: HTML
 css_doc: CSS
 
 check: Sprawdź
 W3C_CSS_validation_service: Usługa Walidacji CSS W3C
+CSS_validation_service: Usługa Walidacji CSS W3C
 check_CSS: Sprawdź Kaskadowe Arkusze Stylów CSS) i dokumenty (X)HTML z arkuszami stylów
 by_URI: przez URI
 by_file_upload: poprzez załadowanie pliku
@@ -66,7 +67,7 @@ errors: Błędy
 # warnings_count <!-- generated on the fly -->
 warnings: Ostrzeżenia
 validated_CSS: Swój arkusz stylu
-congrats: Gratulacje! <!-- translation unavailable for "No Error Found." -->
+congrats: Gratulacje! Nie znaleziono żadnych błędów.
 # The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
 # "This document validates as CSSXX!" where XX stands for the CSS version used \
 # Since the content of the link about the CSS version is generated on the fly, \
@@ -88,10 +89,10 @@ walidacji) aby ułatwić sobie ponowną walidację w przyszłości lub w celu po
 innym na walidację tej strony, użyj następującego adresu:
 no_errors_forHTML_only_msg: jedynie dla dokumentów HTML/XML
 no_errors_bookmark_msg: Lub możesz dodać stronę do Ulubionych.
-note_valide_html: <!-- translation unavailable -->
-top: Top <!-- translation unavailable -->
+note_valide_html: Aby działał poprawnie, Twój arkusz CSS wymaga poprawnego drzewa dokumentu. To znaczy, że powinieneś upewnić się, że używasz <a href = "http://validator.w3.org/">poprawnego HTMLa</a>.
+top: Szczyt
 # hook_html_validator <!-- generated on the fly -->
-not-css1-style: <!-- translation unavailable --> 
+not-css1-style: /* OSTROŻNIE ! To nie jest właściwość pochodząca z CSS1 ! */ 
 errors_sorry_msg: Błędy
 # errors_list: <!-- generated on the fly -->
 # warnings_list: <!-- generated on the fly -->
@@ -100,7 +101,7 @@ valid_CSS_info: Informacje na temat poprawnego CSS
 # charset: <!-- generated on the fly -->
 # rules_list: <!-- generated on the fly -->
 CSS_not_found: Nie znaleziono arkusza stylów
-home: Home <!-- translation unavailable -->
+home: Strona początkowa
 about: O nas
 doc: Dokumentacja
 dl: Download
@@ -113,9 +114,9 @@ dl_title: Ściągnij i zainstaluj walidator CSS
 feedback_title: Jak wysłać opinię na temat tej usługi
 credits_title: Podziękowania
 W3C_quality_msg: <!-- translation unavailable -->
-learn_more_msg: <!-- translation unavailable -->
-support: <!-- translation unavailable -->
-supporter: <!-- translation unavailable -->
+learn_more_msg: Dowiedz się więcej o Kaskadowych Arkuszach Styli
+support: Wesprzyj to narzędzie, zostań
+supporter: Osoba wspierająca W3C
 # End of variables added along with Velocity
 
 # Definiuje komunikaty błędów i ostrzeżeń
@@ -260,6 +261,7 @@ error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
 # użyte przez org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
 error.noexistence: Właciwoć %s nie istnieje
 error.noexistence-media: Właciwoć %s nie istnieje dla media %s
+error.noexistence-at-all: Właściwość %s nie istnieje
 warning.noexistence-media: Właciwoć %s nie istnieje dla media %s
 warning.notforusermedium : Właciwoć %s nie istnieje dla tego usermedium
 warning.noothermedium : Właciwoć dla innych mediów może nie działać dla usermedium
@@ -273,6 +275,9 @@ error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
 
 # użyte przez org.w3c.css.parser.CssFouffa
 generator.unrecognize: Błšd parsowania
+
+# used by org.w3c.css.css.StyleSheetGeneratorHTML2
+error.unknown: Unknown error
 
 # użyte przez org.w3c.css.parser.CssSelectors
 error.pseudo-element: Pseudo-element :%s nie może pojawić się w następujšcym kontekcie %s
