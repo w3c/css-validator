@@ -2,6 +2,7 @@
 #parse("./header.vm")
 <div class="doc">
 <h2>Translation of the W3C CSS Validator</h2>
+
 <p>The CSS Validation service is currently available in $num_languages languages. The translations are mainly contributed by <a href="thanks.html">volunteers</a>.</p>
 
 <h3>Translate the CSS validator in a new language</h3>
