@@ -164,7 +164,7 @@ warning.unsupported-import: <!-- translation unavailable -->Imported style sheet
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围
-
+error.invalid-color: 无效的 RGB 函数
 warning.marker: The marker-offset property applies on elements with 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
@@ -184,6 +184,9 @@ error.value: %s 不是一个 %s 值
 
 error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
 
+#used by org.w3c.css.properties3.CssTextKashidaSpace
+error.percentage: 预期是百分比数值
+
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: %s 重复出现
 
@@ -193,12 +196,18 @@ error.shape-separator: 形状定义的分隔符无效，必须为逗号
 
 # used by org.w3c.css.properties.CssContent
 error.attr: 无效的属性定义 attr(X)
+error.function: 无效的函数定义
 error.counter: 无效的计数器定义 counter(<identifier>[,<list-style-type>]?)
 error.counters: 无效的计数器定义 counters(<identifier>,<string>[,<list-style-type>]?)
 
 # used by org.w3c.css.font.Src
 error.format: 无效的格式定义 format(<string>[,<string>]*)
 error.local: 无效的格式定义 local(<string>|<ident>+)
+
+#used by org.w3c.css.properties3.CssGlyphOrVert
+error.anglevalue: 值必须介于 -360 和 360 之间，并且能被 90 整除
+
+error.angle: %s 不是有效的角度数值。值应该介于 0 和 360 之间
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
 error.unit: %s 是错误的单位
@@ -233,17 +242,18 @@ error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
 # used by org.w3c.css.values.CssNumber
 error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 
-# used by org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
+# used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: 属性 %s 不存在
 error.noexistence-media: 媒体 %s 的属性 %s 不存在
-# *********** v Need translation!!! v *********** #
-error.noexistence: 属性 %s 不存在 in %s but exists in %s
-warning.noexistence: 属性 %s 不存在 in %s but exists in %s
-# *********** ^ Need translation!!! ^ *********** #
+error.noexistence: 属性 %s 不存在 in %s but exists in %s<!-- translation unavailable -->
+warning.noexistence: 属性 %s 不存在 in %s but exists in %s<!-- translation unavailable -->
 warning.noexistence-media: 媒体 %s 的属性 %s 不存在
+error.notforcss1: 值 %s 不存在 CSS1 里
+error.noatruleyet: CSS1 没有支援 @import 以外的 @rule %s
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: 太多值不能识别
+error.unknown: 未知错误
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: 伪元素: %s 不能在次处的上下文 %s 中出现
@@ -254,7 +264,7 @@ error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不�
 error.todo : 抱歉，特性 %s 还不能支持
 error.incompatible: %s 和 %s 不兼容
 warning.incompatible: %s 和 %s 不兼容
-
+error.notversion: %s 在这个 CSS 版本无法使用: %s
 error.media: 不能识别的媒体 %s 
 error.page: 不能职别的伪命名页 %s
 
