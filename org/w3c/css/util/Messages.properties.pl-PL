@@ -112,7 +112,7 @@ doc_title: Dokumentacja Usługi Walidacji CSS
 dl_title: Ściągnij i zainstaluj walidator CSS
 feedback_title: Jak wysłać opinię na temat tej usługi
 credits_title: Podziękowania
-W3C_quality_msg: <!-- translation unavailable -->
+W3C_quality_msg: W3C's Quality Assurance Activity dostarcza darmowych narzędzi webowych i wiele więcej
 learn_more_msg: Dowiedz się więcej o Kaskadowych Arkuszach Styli
 support: Wesprzyj to narzędzie, zostań
 supporter: Osoba wspierająca W3C
@@ -257,8 +257,9 @@ error.angle: %s jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 3
 # użyte przez org.w3c.css.values.CssNumber
 error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
 
-# użyte przez org.w3c.css.parser.CssPropertyFactory <--ADD "in %s" at the end of error.noexistence when the translations is available
-error.noexistence: Właciwoć %s nie istnieje
+# użyte przez org.w3c.css.parser.CssPropertyFactory 
+error.noexistence: WłaWłaściwość %s nie istnieje w %s, ale istnieje w %s
+warning.noexistence: Właściwość %s nie istnieje w %s, ale istnieje w %s
 error.noexistence-media: Właciwoć %s nie istnieje dla media %s
 error.noexistence-at-all: Właściwość %s nie istnieje
 warning.noexistence-media: Właciwoć %s nie istnieje dla media %s
@@ -268,6 +269,10 @@ warning.noothermedium : Właciwoć dla innych mediów może nie działać dl
 error.noatruleyet : Inne @rules poza @import nie sš wspierane przez CSS1 %s
 # użyte przez org.w3c.css.parser.analyzer.CssParser
 error.notforcss1 : Wartoć %s nie istnieje w CSS1
+warning.pseudo: Nieznany pesudo-element lub pseudo-klasa %s w domyślnym profilu (%s)
+warning.nocomb: Kombinator %s pomiędzy selektorami nie jest dozwolony w tym profilu (%s)
+warning.charsetspecial: Ten profil ma ściśle określoną składnię dla reguły @charset: @charset, dokładnie jedna spacja, nazwa kodowania w cudzysłowie, średnik.
+warning.notversion: %s nie może zostać użyty z tą wersją CSS: %s
 
 # użyte przez org.w3c.css.parser.CssFouffa
 error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
