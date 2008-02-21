@@ -182,7 +182,7 @@ public final class StyleSheetParser
 	}
 	if (kind != null) {
 	    kind = kind.trim().toLowerCase();
-	    if (!kind.equals("stylesheet")) {
+	    if (!kind.equals("stylesheet") && !kind.equals("alternate stylesheet")) {
 		return;
 	    }
 	}
