@@ -9,6 +9,8 @@ package org.w3c.css.servlet;
 
 import java.io.IOException;
 
+import java.net.URLEncoder;
+
 import java.util.Enumeration;
 
 import javax.servlet.ServletConfig;
@@ -41,8 +43,11 @@ public final class check extends HttpServlet {
     {
 
 	String uri = req.getHeader("Referer");
-	String encodeEnc = "UTF-8";
-	uri = java.net.URLEncoder.encode(uri, encodeEnc);
+	String encodeEnc = req.getCharacterEncoding();
+	if (encodeEnc == null) {
+	    encodeEnc = "8859_1";
+	}
+	uri = URLEncoder.encode(uri, encodeEnc);
 
 	if (uri == null) {
 	    res.setContentType("text/plain");
