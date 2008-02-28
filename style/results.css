@@ -63,6 +63,21 @@ div#results_container {
 
 #congrats pre { overflow: auto;}
 
+img.inline-badge {
+  float: left;
+  padding: 10px;
+  margin-left: 3em;
+}
+
+pre.badgeSnippet {
+  margin-left: 108px !important; /* give room to the image */
+  padding-left: 3em;
+  font-size: x-small;
+  color: #777;
+  margin-bottom: 2em;
+}
+
+
 /*   ==== COMMON: ERRORS + WARNINGS =====  */
 
 
