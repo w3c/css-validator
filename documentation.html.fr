@@ -111,7 +111,7 @@ Voir également les <a href="Email.html">instructions pour laisser un commentair
          lang="zh-hans"
          xml:lang="zh-hans"
          hreflang="zh-hans"
-         rel="alternate">中文</a></li>
+         rel="alternate">简体中文</a></li>
 </ul>
 
 

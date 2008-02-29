@@ -347,7 +347,7 @@
             lang="zh-cn"
             xml:lang="zh-cn"
             hreflang="zh-cn"
-            rel="alternate">中文</a>
+            rel="alternate">简体中文</a>
         </li>
    </ul>
 <div id="footer">

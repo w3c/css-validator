@@ -172,7 +172,7 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
          lang="zh-hans"
          xml:lang="zh-hans"
          hreflang="zh-hans"
-         rel="alternate">中文</a></li>
+         rel="alternate">简体中文</a></li>
 </ul>
 
 

@@ -252,7 +252,7 @@ le validateur, voir l'<a href="./api.html">API de service Web du validateur CSS<
          lang="zh-hans"
          xml:lang="zh-hans"
          hreflang="zh-hans"
-         rel="alternate">中文</a></li>
+         rel="alternate">简体中文</a></li>
 </ul>
 
 

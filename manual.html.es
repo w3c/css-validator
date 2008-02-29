@@ -299,7 +299,7 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">中文</a></li>
+               rel="alternate">简体中文</a></li>
       </ul>
 
 

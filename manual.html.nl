@@ -327,7 +327,7 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">中文</a></li>
+               rel="alternate">简体中文</a></li>
       </ul>
 
 
