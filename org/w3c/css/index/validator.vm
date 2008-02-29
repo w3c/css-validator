@@ -1,3 +1,4 @@
+#set ( $page_type = "UI" )
 #macro( moreOptionMacro $submit_message $tab_id)
   <fieldset id="extra_opt_$tab_id" class="moreoptions">
     <legend class="toggletext" title="$title_more_options">$more_options</legend>
