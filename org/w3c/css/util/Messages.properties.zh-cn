@@ -1,6 +1,6 @@
 language_name: 简体中文
 more_options: 更多选项
-title_more_options: Show/Hide extra validation options
+title_more_options: <!-- translation unavailable -->
 all: 全部
 normal_report: 正常
 most_important: 最重要的
@@ -12,8 +12,8 @@ css2: CSS 版本 2
 css21: CSS 版本 2.1
 css3: CSS 版本 3
 SVG: SVG
-SVG_basic: SVG 基本
-SVG_tiny: SVG tiny
+SVG_basic: SVG Basic
+SVG_tiny: SVG Tiny
 mobile: Mobile
 ATSC_TV_profile: ATSC TV profile
 TV_profile: TV profile
@@ -29,9 +29,8 @@ tty: TTY
 tv: 电视
 presentation: 演示设备
 
-# The following 4 variables need to be translated
-type: <!-- translation unavailable -->
-no_special_type: <!-- translation unavailable -->
+type: 类别
+no_special_type: 自动
 html_doc: HTML
 css_doc: CSS
 
@@ -43,24 +42,24 @@ by_file_upload: 通过文件上传
 by_direct_input: 通过直接输入
 validate_by_URI: 验证指定URI的CSS内容
 enter_uri: 输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI
-page_address: Address of page to Validate
+page_address: <!-- translation unavailable -->
 address: URI地址
-submit_uri: Submit URI for validation
+submit_uri: <!-- translation unavailable -->
 validate_by_file_upload: 验证上传文件
 choose_document: 选择需要验证的文件(必须是CCS格式的文件)
-choose_local_file: Choose a Local File to Upload and Validate
+choose_local_file: <!-- translation unavailable -->
 local_CSS_file: 本地CSS文件
-submit_file: Submit file for validation
+submit_file: <!-- translation unavailable -->
 validate_by_input: 验证直接输入的内容
 enter_CSS: 输入你要验证的CSS代码
-submit_input: Submit your input for validation
+submit_input: <!-- translation unavailable -->
 note: 注意
 note_xhtml_valid: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS 校验器结果：  
 # file_title: <!-- provided by the user -->
-CSS_validation_service: CSS validation Service
+CSS_validation_service: <!-- translation unavailable -->
 jump_to: 查看
 # errors_count: <!-- generated on the fly -->
 errors: 错误 
@@ -88,8 +87,8 @@ no_errors_create_link_msg: 如果你愿意建立连接到此页 (例如，这个
 你的网页，其 URI 是：
 no_errors_forHTML_only_msg: 仅使用于HTML文档
 no_errors_bookmark_msg: 或者，你可以加入当前也到你的书签或列表中。
-note_valide_html: To work as intended, your CSS style sheet needs a correct document parse tree. This means you should use <a href="http://validator.w3.org/">valid HTML</a>.
-top: Top
+note_valide_html: <!-- translation unavailable -->
+top: <!-- translation unavailable -->
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* 请注意！这不是CSS1的属性！ */
 errors_sorry_msg: 错误：
@@ -129,7 +128,7 @@ output-encoding-name: utf-8
 warning.redefinition: 重定义了 %s
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.style-inside-comment: <!-- translation unavailable -->
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: 一样的颜色对于 %s 和 %s
@@ -160,12 +159,12 @@ warning.block-level: 这个属性应用于块级元素
 warning.no-declaration: 在规则中没有声明
 
 # used by org.w3c.css.parser.CssFouffa 
-warning.unsupported-import: <!-- translation unavailable -->Imported style sheets are not checked in direct input and file upload modes
+warning.unsupported-import: 通过直接输入及文件上传模式导入的样式表未经检查
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围
 error.invalid-color: 无效的 RGB 函数
-warning.marker: The marker-offset property applies on elements with 'display: marker'
+warning.marker: <!-- translation unavailable -->
 
 # used by org.w3c.css.properties.ACssStyle
 warning.relative: 在属性 %s 使用相对单位令样式表更加棒
@@ -182,10 +181,17 @@ error.few-value: 属性 %s 的值太小
 # You can't write something like this : For the color, blue is an incorrect value
 error.value: %s 不是一个 %s 值
 
-error.generic-family.quote: Generic family names are keywords, and therefore must not be quoted.
+#used by org.w3c.css.properties3.CssToggleGroup
+error.groupname: %s 不是正确的组名称. 请使用合法的标识符
+
+#used by org.w3c.css.properties3.CssGroupReset
+error.nogroup: %s 没有在 toggle-group 属性中指定
 
 #used by org.w3c.css.properties3.CssTextKashidaSpace
 error.percentage: 预期是百分比数值
+
+#used by org.w3c.css.properties.CssTextAlign
+warning.xsl: 值 %s 仅在XSL中生效
 
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: %s 重复出现
@@ -245,11 +251,20 @@ error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: 属性 %s 不存在
 error.noexistence-media: 媒体 %s 的属性 %s 不存在
-error.noexistence: 属性 %s 不存在 in %s but exists in %s<!-- translation unavailable -->
-warning.noexistence: 属性 %s 不存在 in %s but exists in %s<!-- translation unavailable -->
+error.noexistence: 属性 %s 不存在于 %s , 但存在于 %s
+warning.noexistence: 属性 %s 不存在于 %s , 但存在于 %s
 warning.noexistence-media: 媒体 %s 的属性 %s 不存在
 error.notforcss1: 值 %s 不存在 CSS1 里
+warning.notforusermedium : 属性在该usermedium中不存在
+warning.noothermedium : 其他媒介中的属性在usermedium中未必正常工作
 error.noatruleyet: CSS1 没有支援 @import 以外的 @rule %s
+# used by org.w3c.css.parser.analyzer.CssParser
+warning.pseudo: 未知的伪元素或伪类 %s 出现在默认配置 (%s) 中
+warning.nocomb: 选择子之间的连接子 %s 不允许使用在该配置 (%s) 中
+warning.charsetspecial: 该配置的 @charset 具有特定的语法规则: 后边紧随一个空格, 之后紧随引号引起的编码名称, 最后跟一个分号.
+warning.notversion: %s 不能用于该版本的CSS : %s
+
+
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: 太多值不能识别
@@ -264,6 +279,9 @@ error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不�
 error.todo : 抱歉，特性 %s 还不能支持
 error.incompatible: %s 和 %s 不兼容
 warning.incompatible: %s 和 %s 不兼容
+error.notforatsc: %s 不能在 ATSC 配置中使用
+error.notformobile: %s 不能在 mobile 配置中使用
+error.notfortv: %s 不能在 TV 配置中使用
 error.notversion: %s 在这个 CSS 版本无法使用: %s
 error.media: 不能识别的媒体 %s 
 error.page: 不能职别的伪命名页 %s
@@ -274,6 +292,7 @@ generator.context: 上下文
 generator.request: 导出你的样式表时发生错误 \
 请更正你的请求或发送邮件到 plh@w3.org.
 generator.unrecognized: 不能识别的
+generator.unrecognize: 语法错误
 generator.invalid-number: 无效数字
 generator.property: 无效数字
 generator.line: 行
@@ -330,4 +349,16 @@ servlet.process: 不能对对象进行处理
 error.unrecognized.link: 不可识别的链接元素或者XML样式 PI.
 
 #used by org.w3c.css.parser.analyzer.CssParser
+warning.medialist: 媒介列表应以 'media :' %s 开始
 error.nocomb: 在现有版本或者配置中，不允许在选择子之间使用连接子 %s 
+
+#used by org.w3c.css.properties.CssDirection
+warning.direction: 不应该在块级别的元素中使用 'direction' , 应使用新的 CSS3 属性 'writing-mode'
+
+
+warning.atsc: %s 也许没有被 atsc-tv 媒介所支持
+error.onlyATSC: %s 该函式只能在 atsc-tv 媒介中使用
+
+
+warning.otherprofile: 属性 %s 不存在于该配置中, 但在另一个配置中有效
+warning.deprecated: 该值已作废
