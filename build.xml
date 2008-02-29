@@ -36,7 +36,6 @@
 			encoding="ISO-8859-15"
 			debug="yes">
 			<src path="./org/w3c"/>
-			<src path="./html"/>
 		</javac>
 		<copy todir="./build">
 		    <fileset dir="./">
@@ -70,7 +69,6 @@
 		<jar jarfile="${jar.file}"
 			basedir="build">
 			<include name="org/**"/>
-			<include name="html/**"/>
 			<manifest>
 	      			<attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
 			</manifest>
