@@ -85,7 +85,7 @@ public class TranslationTableGenerator {
     		HashMap[] languages = new HashMap[Messages.languages_name.size()];
     		HashMap translations = new HashMap();
     		HashMap translation_completeness = new HashMap();
-    		table_head ="<tr><th scope='col' id=\"properties\">Property</th>";
+    		table_head ="<tr><th scope='col'>Property</th>";
     		for (int i = 0; i < Messages.languages_name.size(); ++i) {
     			name = String.valueOf(Messages.languages_name.get(i));
     			HashMap l = new HashMap();
