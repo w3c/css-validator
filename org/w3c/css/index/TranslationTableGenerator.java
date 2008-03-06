@@ -100,7 +100,7 @@ public class TranslationTableGenerator {
     			translation_completeness.put(name, 0);
 		        
     		}
-    		table_head = table_head+"</tr>"
+    		table_head = table_head+"</tr>";
     		Vector sorted_properties_keys = new Vector(ac_default.getMsg().properties.keySet());
     		Collections.sort(sorted_properties_keys, new AlphaComparator());
             Iterator properties_iterator = sorted_properties_keys.iterator();
