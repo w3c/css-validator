@@ -82,7 +82,6 @@
     </label>
   </p>
 #end
-
 #parse("./header.vm")
 
   <div id="frontforms">
