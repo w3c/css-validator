@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,11 +9,10 @@
     <link rev="start" href="./" title="Pagina iniziale del servizio di validazione CSS del W3C" />
     <style type="text/css" media="all">
       @import "style/base.css";
-    </style>   
-    <script type="text/javascript" src="scripts/mootools.js"></script>
+	      </style>   
+      <script type="text/javascript" src="scripts/mootools.js"></script>
     <script type="text/javascript" src="scripts/w3c-validator.js"></script>
-    <meta name="revision" content="\$Id$" />
-  </head>
+    </head>
 
   <body>
    <div id="banner">
@@ -278,11 +278,11 @@
   </p>
   </div>
   <ul class="navbar" id="menu">
-    <li><a href="about.html" title="About this service">Riguardo questo servizio</a> <span class="hideme">|</span></li>
-    <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentazione</a> <span class="hideme">|</span></li>
-    <li><a href="DOWNLOAD.html" title="Download and install the CSS validator">Download</a> <span class="hideme">|</span></li>
-    <li><a href="Email.html" title="How to provide feedback on this service">Commenti</a> <span class="hideme">|</span></li>
-    <li><a href="thanks.html" title="Credits and Acknowlegments">Crediti</a></li>
+    <li><a href="about.html" title="Informazioni sul servizio">Riguardo questo servizio</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="Documentazione per il servizio di validazione W3C per i fogli di stile CSS">Documentazione</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="Scarica ed installa il validatore CSS">Download</a> <span class="hideme">|</span></li>
+    <li><a href="Email.html" title="Come fornire commenti al servizio">Commenti</a> <span class="hideme">|</span></li>
+    <li><a href="thanks.html" title="Crediti e ringraziamenti">Crediti</a></li>
   </ul>
 
    <ul id="lang_choice">
@@ -350,13 +350,14 @@
             rel="alternate">简体中文</a>
         </li>
    </ul>
+
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="http://www.w3.org/QA/" title="Attività W3C per la garanzia di qualità, fornisce strumenti gratuiti per la qualità del web e molto altro"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Maggiori informazioni sui fogli di stile a cascata (CSS)"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Support this tool, become a<br />
-     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+     Aiuta questo strumento, diventa un<br />
+     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Sostenitore del W3C" /></a>
    </p>
 
     <p class="copyright">

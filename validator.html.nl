@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,11 +9,10 @@
     <link rev="start" href="./" title="Home pagina van de W3C CSS Validatie Service" />
     <style type="text/css" media="all">
       @import "style/base.css";
-    </style>   
-    <script type="text/javascript" src="scripts/mootools.js"></script>
+	      </style>   
+      <script type="text/javascript" src="scripts/mootools.js"></script>
     <script type="text/javascript" src="scripts/w3c-validator.js"></script>
-    <meta name="revision" content="\$Id$" />
-  </head>
+    </head>
 
   <body>
    <div id="banner">
@@ -29,13 +29,13 @@
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Validate via een URI</legend>
+        <legend class="tabset_label">Valideer via een URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
           Geef de URI op van een document (HTML met CSS of alleen CSS) dat je wilt valideren :
         </p>
         <p>
-           <label title="Address of page to Validate" for="uri">Adres :
+           <label title="Adres van de pagina om de valideren" for="uri">Adres :
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
@@ -114,7 +114,7 @@
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">Kies het document dat je wilt valideren (alleen CSS bestanden) :</p>
         <p>
-          <label title="Kies een Lokaal Bestand dat je wilt Uploaden en Valideren" for="file">Local CSS file :
+          <label title="Kies een lokaal bestand dat je wilt uploaden en valideren" for="file">Lokaal CSS bestand :
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
     <legend class="toggletext" title="Weergeven/Verbergen van extra validatie opties">Meer Opties</legend>
@@ -241,7 +241,7 @@
     </th>
     <td headers="header_type_input">
       <select id="type_input" name="type">
-        <option selected="selected" value="none">Automatic</option>
+        <option selected="selected" value="none">Automatisch</option>
         <option value="html">HTML</option>
         <option value="css">CSS</option>
       </select>
@@ -350,12 +350,13 @@
             rel="alternate">简体中文</a>
         </li>
    </ul>
+
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Leer meer over Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Support this tool, become a<br />
+     Ondersteun de validator, wordt een<br />
      <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
    </p>
 

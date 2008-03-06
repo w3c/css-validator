@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,11 +9,10 @@
     <link rev="start" href="./" title="W3C CSS 検証サービスのホーム" />
     <style type="text/css" media="all">
       @import "style/base.css";
-    </style>   
-    <script type="text/javascript" src="scripts/mootools.js"></script>
+	      </style>   
+      <script type="text/javascript" src="scripts/mootools.js"></script>
     <script type="text/javascript" src="scripts/w3c-validator.js"></script>
-    <meta name="revision" content="\$Id$" />
-  </head>
+    </head>
 
   <body>
    <div id="banner">
@@ -35,12 +35,12 @@
           検証したい文書(CSSと組み合わせたHTML文書、もしくはCSS単体の文書)のURIを入力してください :
         </p>
         <p>
-           <label title="Address of page to Validate" for="uri">アドレス :
+           <label title="検証対象のアドレスを入力してください" for="uri">アドレス :
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
               <fieldset id="extra_opt_uri" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">オプション</legend>
+    <legend class="toggletext" title="その他の検査オプションを表示する/隠す">オプション</legend>
     <div class="options">
     <table>
     <tr>
@@ -49,11 +49,11 @@
     </th>
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
-        <option value="none">No special profile</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="none">特にプロファイルを指定しない</option>
+        <option value="css1">CSS レベル 1</option>
+        <option value="css2">CSS レベル 2</option>
+        <option selected="selected" value="css21">CSS レベル 2.1</option>
+        <option value="css3">CSS レベル 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -102,7 +102,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="ja" />
-    <label title="Submit URI for validation">
+    <label title="検証するためのURIを送信します">
       <input type="submit" value="検証する" />
     </label>
   </p>
@@ -114,10 +114,10 @@
       <form method="post" enctype="multipart/form-data" action="validator">
         <p class="instructions">検証したいCSS文書のソースファイル名を入力してください (CSSファイルのみ) :</p>
         <p>
-          <label title="Choose a Local File to Upload and Validate" for="file">CSSファイル :
+          <label title="アップロード・検証するローカルのファイルを選択します" for="file">CSSファイル :
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">オプション</legend>
+    <legend class="toggletext" title="その他の検査オプションを表示する/隠す">オプション</legend>
     <div class="options">
     <table>
     <tr>
@@ -126,11 +126,11 @@
     </th>
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
-        <option value="none">No special profile</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="none">特にプロファイルを指定しない</option>
+        <option value="css1">CSS レベル 1</option>
+        <option value="css2">CSS レベル 2</option>
+        <option selected="selected" value="css21">CSS レベル 2.1</option>
+        <option value="css3">CSS レベル 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -179,7 +179,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="ja" />
-    <label title="Submit file for validation">
+    <label title="検証するファイルを送信します">
       <input type="submit" value="検証する" />
     </label>
   </p>
@@ -194,7 +194,7 @@
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
               <fieldset id="extra_opt_input" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">オプション</legend>
+    <legend class="toggletext" title="その他の検査オプションを表示する/隠す">オプション</legend>
     <div class="options">
     <table>
     <tr>
@@ -203,11 +203,11 @@
     </th>
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
-        <option value="none">No special profile</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="none">特にプロファイルを指定しない</option>
+        <option value="css1">CSS レベル 1</option>
+        <option value="css2">CSS レベル 2</option>
+        <option selected="selected" value="css21">CSS レベル 2.1</option>
+        <option value="css3">CSS レベル 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -265,7 +265,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="ja" />
-    <label title="Submit your input for validation">
+    <label title="入力したテキストを検証するために送信します">
       <input type="submit" value="検証する" />
     </label>
   </p>
@@ -274,7 +274,7 @@
       </div><!-- fields -->
   </div> <!-- frontforms -->
   <div class="intro">
-  <p><strong>Note</strong>: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当<span lang="en">(valid)</span> なHTML</a>.
+  <p><strong>メモ</strong>: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当なHTML</a>を用いるべきです。.
   </p>
   </div>
   <ul class="navbar" id="menu">
@@ -350,13 +350,14 @@
             rel="alternate">简体中文</a>
         </li>
    </ul>
+
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="http://www.w3.org/QA/" title="W3CのQuality Assurance Activityによって、フリーなウェブ品質ツールなどが提供されています。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディングスタイルシートについてもっと知る"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Support this tool, become a<br />
-     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+     参加してこのツールを支援しましょう：<br />
+     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C サポーター" /></a>
    </p>
 
     <p class="copyright">

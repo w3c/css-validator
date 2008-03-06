@@ -1,18 +1,18 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
-    <title>El Servicio de Validaci&oacute;n de CSS del W3C</title>
+    <title>El Servicio de Validación de CSS del W3C</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
-    <link rev="start" href="./" title="P&aacute;gina de inicio del Servicio de Validaci&oacute;n CSS del  W3C" />
+    <link rev="start" href="./" title="Página de inicio del Servicio de Validación CSS del  W3C" />
     <style type="text/css" media="all">
       @import "style/base.css";
-    </style>   
-    <script type="text/javascript" src="scripts/mootools.js"></script>
+	      </style>   
+      <script type="text/javascript" src="scripts/mootools.js"></script>
     <script type="text/javascript" src="scripts/w3c-validator.js"></script>
-    <meta name="revision" content="\$Id$" />
-  </head>
+    </head>
 
   <body>
    <div id="banner">
@@ -32,15 +32,15 @@
         <legend class="tabset_label">Validar mediante URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
-          Introduce la URI de un documento (HTML con CSS o s&oacute;lo CSS) que desees validar :
+          Introduce la URI de un documento (HTML con CSS o sólo CSS) que desees validar :
         </p>
         <p>
-           <label title="Direcci&oacute;n de la p&aacute;gina a Validar" for="uri">Direcci&oacute;n :
+           <label title="Dirección de la página a Validar" for="uri">Dirección :
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
               <fieldset id="extra_opt_uri" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">M&aacute;s opciones</legend>
+    <legend class="toggletext" title="Show/Hide extra validation options">Más opciones</legend>
     <div class="options">
     <table>
     <tr>
@@ -50,14 +50,14 @@
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
         <option value="none">Ninguno en especial</option>
-        <option value="css1">CSS versi&oacute;n 1</option>
-        <option value="css2">CSS versi&oacute;n 2</option>
-        <option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
-        <option value="css3">CSS versi&oacute;n 3</option>
+        <option value="css1">CSS versión 1</option>
+        <option value="css2">CSS versión 2</option>
+        <option selected="selected" value="css21">CSS versión 2.1</option>
+        <option value="css3">CSS versión 3</option>
         <option value="svg">SVG</option>
-        <option value="svgbasic">SVG B&aacute;sico</option>
+        <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
-        <option value="mobile">M&oacute;vil</option>
+        <option value="mobile">Móvil</option>
         <option value="atsc-tv">Perfil de TV ATSC</option>
         <option value="tv">Perfil de TV</option>
       </select>
@@ -71,13 +71,13 @@
         <option value="aural">auditivo</option>
         <option value="braille">braille</option>
         <option value="embossed">relieve</option>
-        <option value="handheld">peque&ntilde;os dispositivos</option>
-        <option value="print">impresi&oacute;n</option>
-        <option value= "projection">proyecci&oacute;n</option>
+        <option value="handheld">pequeños dispositivos</option>
+        <option value="print">impresión</option>
+        <option value= "projection">proyección</option>
         <option value="screen">pantalla</option>
         <option value="tty">teletipo</option>
-        <option value="tv">televisi&oacute;n</option>
-        <option value="presentation">presentaci&oacute;n</option>
+        <option value="tv">televisión</option>
+        <option value="presentation">presentación</option>
       </select>
     </td>
     </tr>
@@ -91,7 +91,7 @@
       <select id="warning_uri" name="warning"> 
         <option value="2">Todos</option>
         <option selected="selected" value="1">Informe normal</option>
-        <option value="0">Las m&aacute;s importantes</option>
+        <option value="0">Las más importantes</option>
         <option value="no">Sin advertencias</option>
       </select>
     </td>
@@ -102,7 +102,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="es" />
-    <label title="Enviar archivo para su validaci&oacute;n">
+    <label title="Enviar archivo para su validación">
       <input type="submit" value="Check" />
     </label>
   </p>
@@ -112,12 +112,12 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validar mediante Carga de un Archivo</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Elige el documento que desees validar (&uacute;nicamente archivos CSS) :</p>
+        <p class="instructions">Elige el documento que desees validar (únicamente archivos CSS) :</p>
         <p>
-          <label title="Elige un Archivo Local para su Carga y Validaci&oacute;n" for="file">Archivo CSS local :
+          <label title="Elige un Archivo Local para su Carga y Validación" for="file">Archivo CSS local :
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">M&aacute;s opciones</legend>
+    <legend class="toggletext" title="Show/Hide extra validation options">Más opciones</legend>
     <div class="options">
     <table>
     <tr>
@@ -127,14 +127,14 @@
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
         <option value="none">Ninguno en especial</option>
-        <option value="css1">CSS versi&oacute;n 1</option>
-        <option value="css2">CSS versi&oacute;n 2</option>
-        <option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
-        <option value="css3">CSS versi&oacute;n 3</option>
+        <option value="css1">CSS versión 1</option>
+        <option value="css2">CSS versión 2</option>
+        <option selected="selected" value="css21">CSS versión 2.1</option>
+        <option value="css3">CSS versión 3</option>
         <option value="svg">SVG</option>
-        <option value="svgbasic">SVG B&aacute;sico</option>
+        <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
-        <option value="mobile">M&oacute;vil</option>
+        <option value="mobile">Móvil</option>
         <option value="atsc-tv">Perfil de TV ATSC</option>
         <option value="tv">Perfil de TV</option>
       </select>
@@ -148,13 +148,13 @@
         <option value="aural">auditivo</option>
         <option value="braille">braille</option>
         <option value="embossed">relieve</option>
-        <option value="handheld">peque&ntilde;os dispositivos</option>
-        <option value="print">impresi&oacute;n</option>
-        <option value= "projection">proyecci&oacute;n</option>
+        <option value="handheld">pequeños dispositivos</option>
+        <option value="print">impresión</option>
+        <option value= "projection">proyección</option>
         <option value="screen">pantalla</option>
         <option value="tty">teletipo</option>
-        <option value="tv">televisi&oacute;n</option>
-        <option value="presentation">presentaci&oacute;n</option>
+        <option value="tv">televisión</option>
+        <option value="presentation">presentación</option>
       </select>
     </td>
     </tr>
@@ -168,7 +168,7 @@
       <select id="warning_upload" name="warning"> 
         <option value="2">Todos</option>
         <option selected="selected" value="1">Informe normal</option>
-        <option value="0">Las m&aacute;s importantes</option>
+        <option value="0">Las más importantes</option>
         <option value="no">Sin advertencias</option>
       </select>
     </td>
@@ -179,7 +179,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="es" />
-    <label title="Enviar archivo para su validaci&oacute;n">
+    <label title="Enviar archivo para su validación">
       <input type="submit" value="Check" />
     </label>
   </p>
@@ -189,12 +189,12 @@
       <fieldset id="validate-by-input"  class="tabset_content front">
         <legend class="tabset_label">Validar mediante entrada directa</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
-        <p class="instructions">Introduce el c&oacute;digo CSS que desees validar :</p>
+        <p class="instructions">Introduce el código CSS que desees validar :</p>
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
               <fieldset id="extra_opt_input" class="moreoptions">
-    <legend class="toggletext" title="Show/Hide extra validation options">M&aacute;s opciones</legend>
+    <legend class="toggletext" title="Show/Hide extra validation options">Más opciones</legend>
     <div class="options">
     <table>
     <tr>
@@ -204,14 +204,14 @@
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
         <option value="none">Ninguno en especial</option>
-        <option value="css1">CSS versi&oacute;n 1</option>
-        <option value="css2">CSS versi&oacute;n 2</option>
-        <option selected="selected" value="css21">CSS versi&oacute;n 2.1</option>
-        <option value="css3">CSS versi&oacute;n 3</option>
+        <option value="css1">CSS versión 1</option>
+        <option value="css2">CSS versión 2</option>
+        <option selected="selected" value="css21">CSS versión 2.1</option>
+        <option value="css3">CSS versión 3</option>
         <option value="svg">SVG</option>
-        <option value="svgbasic">SVG B&aacute;sico</option>
+        <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
-        <option value="mobile">M&oacute;vil</option>
+        <option value="mobile">Móvil</option>
         <option value="atsc-tv">Perfil de TV ATSC</option>
         <option value="tv">Perfil de TV</option>
       </select>
@@ -225,13 +225,13 @@
         <option value="aural">auditivo</option>
         <option value="braille">braille</option>
         <option value="embossed">relieve</option>
-        <option value="handheld">peque&ntilde;os dispositivos</option>
-        <option value="print">impresi&oacute;n</option>
-        <option value= "projection">proyecci&oacute;n</option>
+        <option value="handheld">pequeños dispositivos</option>
+        <option value="print">impresión</option>
+        <option value= "projection">proyección</option>
         <option value="screen">pantalla</option>
         <option value="tty">teletipo</option>
-        <option value="tv">televisi&oacute;n</option>
-        <option value="presentation">presentaci&oacute;n</option>
+        <option value="tv">televisión</option>
+        <option value="presentation">presentación</option>
       </select>
     </td>
     </tr>
@@ -254,7 +254,7 @@
       <select id="warning_input" name="warning"> 
         <option value="2">Todos</option>
         <option selected="selected" value="1">Informe normal</option>
-        <option value="0">Las m&aacute;s importantes</option>
+        <option value="0">Las más importantes</option>
         <option value="no">Sin advertencias</option>
       </select>
     </td>
@@ -265,7 +265,7 @@
   
   <p class="submit_button">
   <input type="hidden" name="lang" value="es" />
-    <label title="Enviar archivo para su validaci&oacute;n">
+    <label title="Enviar archivo para su validación">
       <input type="submit" value="Check" />
     </label>
   </p>
@@ -274,15 +274,15 @@
       </div><!-- fields -->
   </div> <!-- frontforms -->
   <div class="intro">
-  <p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deber&iacute;as antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es v&aacute;lido</a>.
+  <p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deberías antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es válido</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">
     <li><a href="about.html" title="Acerca de este servicio">Acerca de este servicio</a> <span class="hideme">|</span></li>
-    <li><a href="documentation.html" title="Documentaci&oacute;n del Servicio de Validaci&oacute;n CSS del W3C">Documentaci&oacute;n</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="Documentación del Servicio de Validación CSS del W3C">Documentación</a> <span class="hideme">|</span></li>
     <li><a href="DOWNLOAD.html" title="Descargar y installar el validador CSS">Download</a> <span class="hideme">|</span></li>
-    <li><a href="Email.html" title="C&oacute;mo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
-    <li><a href="thanks.html" title="Cr&eacute;ditos y Agradecimientos">Cr&eacute;ditos</a></li>
+    <li><a href="Email.html" title="Cómo realizar comentarios sobre este servicio">Comentarios</a> <span class="hideme">|</span></li>
+    <li><a href="thanks.html" title="Créditos y Agradecimientos">Créditos</a></li>
   </ul>
 
    <ul id="lang_choice">
@@ -350,13 +350,14 @@
             rel="alternate">简体中文</a>
         </li>
    </ul>
+
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more <!-- translation unavailable -->"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets <!-- translation unavailable -->"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="http://www.w3.org/QA/" title="Actividad de Garantí de Calidad del W3C, ofreciéndole herramientas de calidad Web gratuítas y más "><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Aprenda má sobre las Hojas de Estilo en Cascada"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Support this tool, become a <!-- translation unavailable --><br />
-     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter <!-- translation unavailable -->" /></a>
+     Apoye esta herramienta, conviértase en un <br />
+     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Contribuidor del W3C" /></a>
    </p>
 
     <p class="copyright">
