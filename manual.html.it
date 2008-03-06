@@ -40,7 +40,7 @@
       <li><a href="#url">Validazione tramite URL</a></li>
       <li><a href="#fileupload">Validazione tramite trasferimento file</a></li>
       <li><a href="#directinput">Validazione tramite immissione diretta</a></li>
-      <li><a href="#basicvalidation">Cosa fa la validazione base?</a>
+      <li><a href="#basicvalidation">Cosa fa la validazione base?</a></li>
     </ul>
   </li>
   <li><a href="#advanced">Validazione avanzata</a>
