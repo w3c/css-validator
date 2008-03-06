@@ -25,8 +25,7 @@
     <h1 class="center">CSS Validator versie 2.0</h1>
     
     <p>
-      Dit is een CSS validator voor <a href="http://www.w3.org/TR/REC-CSS2/">Cascading Style Sheets, 
-      versie 2.</a>. Zie de <a href="COPYRIGHT.html">copyright notities</a>.
+      Dit is een validator voor CSS. Zie de <a href="COPYRIGHT.html">copyright notities</a>.
     </p>
     <p>
       U kunt het programma op een webserver uitvoeren, op de command line of
