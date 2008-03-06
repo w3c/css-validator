@@ -174,9 +174,6 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
          hreflang="zh-hans"
          rel="alternate">简体中文</a></li>
 </ul>
-
-
-</ul>
 <div id="footer">
    <p id="activity_logos">
 
