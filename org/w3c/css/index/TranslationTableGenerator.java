@@ -85,7 +85,7 @@ public class TranslationTableGenerator {
     		HashMap[] languages = new HashMap[Messages.languages_name.size()];
     		HashMap translations = new HashMap();
     		HashMap translation_completeness = new HashMap();
-    		table_head ="<thead><tr><th scope='col' id=\"properties\">Property</th>";
+    		table_head ="<tr><th scope='col' id=\"properties\">Property</th>";
     		for (int i = 0; i < Messages.languages_name.size(); ++i) {
     			name = String.valueOf(Messages.languages_name.get(i));
     			HashMap l = new HashMap();
@@ -100,7 +100,7 @@ public class TranslationTableGenerator {
     			translation_completeness.put(name, 0);
 		        
     		}
-    		table_head=table_head+"</thead>";
+    		table_head = table_head+"</tr>"
     		Vector sorted_properties_keys = new Vector(ac_default.getMsg().properties.keySet());
     		Collections.sort(sorted_properties_keys, new AlphaComparator());
             Iterator properties_iterator = sorted_properties_keys.iterator();
