@@ -110,7 +110,7 @@ The simplest way to check a document is to use the basic interface. In this page
 
 <p>    
     When using the basic interface, the validator will check the compliance 
-    against <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, which is the current 
+    against <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, which is the current 
     CSS technical recommendation.<br />
     It will produce an XHTML output without any warning (you will only see 
     errors).<br />

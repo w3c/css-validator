@@ -107,7 +107,7 @@
 <h4 id="basicvalidation">基本的な検証で行われること</h4>
 
 <p>    
-    基本インターフェースを使うと、Validator は <a href="http://www.w3.org/TR/CSS2">CSS 2</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
+    基本インターフェースを使うと、Validator は <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
     この画面では、警告を出さずに(エラーのみ表示されます) XHTML で結果を表示します。<br />
     基本的な検証ではメディアは "all" に設定されますが、これはすべてのデバイスに適切なメディアです
     (メディアについてのちゃんとした説明は <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> を参照してください)。

@@ -99,7 +99,7 @@ Il metodo più semplice per verificare un documento è quello di utilizzare l'in
 <h4 id="basicvalidation">Cosa fa la validazione base?</h4>
 
 <p>    
-    Quando si utilizza l'interfaccia base, il validatore effettuerà la verifica di conformità rispetto alla specifica <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, ossia la raccomandazione attuale per i CSS.<br />
+    Quando si utilizza l'interfaccia base, il validatore effettuerà la verifica di conformità rispetto alla specifica <a href="http://www.w3.org/TR/CSS2.1">CSS 2.1</a>, ossia la raccomandazione attuale per i CSS.<br />
     Tale visualizzazione produrrà una pagina XHTML senza nessun avviso (saranno visibili solamente gli errori).<br />
     Il tipo di media selezionato è "all", ossia un tipo di media adatto per tutte le periferiche (consulta <a href="http://www.w3.org/TR/CSS2/media.html">
     http://www.w3.org/TR/CSS2/media.html</a> per ottenere una descrizione completa sui diversi media).

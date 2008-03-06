@@ -108,7 +108,7 @@ La manera más sencilla de comprobar un documento es utilizar la interfaz básic
 
 <p>    
     Cuando se utiliza la interfaz básica, el validador comprobará el cumplimiento 
-    de <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, que es la recomendación técnica
+    de <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, que es la recomendación técnica
     actual de CSS.<br />
     Esto producirá una salida XHTML sin ninguna advertencia (únicamente verás los errores).<br />
     El parámetro medium está fijado en "all", que es el medio adecuado para todos los dispositivos 

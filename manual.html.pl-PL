@@ -92,7 +92,7 @@ Najprostszym sposobem sprawdzenia dokumentu jest skorzystanie z podstawowego int
 <h4 id="basicvalidation">Co robi podstawowa walidacja?</h4>
 
 <p>    
-    Używając podstawowego interfejsu walidator sprawdzi zgodność z <a href="http://www.w3.org/TR/CSS2">CSS 2</a>, który jest obecną rekomendacją techniczną CSS. <br />
+    Używając podstawowego interfejsu walidator sprawdzi zgodność z <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, który jest obecną rekomendacją techniczną CSS. <br />
     Poda on wynik w XHTML bez ostrzeżeń (widoczne będą jedynie błędy). <br />
     Medium ustawione jest na &quot;wszystkie&quot;, co sprawia, że jest odpowiednie dla wyszystkich urządzeń 
     (zobacz stronę <a href="http://www.w3.org/TR/CSS2/media.html">

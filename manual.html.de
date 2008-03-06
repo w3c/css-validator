@@ -71,7 +71,7 @@ Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; m
 </p><p>Es gelten die gleichen Regeln wie bei der Validierung per Datei-Upload. Beachten Sie, dass diese Lösung sehr praktisch ist, wenn Sie ein Problem haben und Hilfe von der Community benötigen. Sie ist auch nützlich, um einen Bug zu melden, weil Sie auf das Ergebnis per URL verlinken können.</p>
 
 <h4 id="basicvalidation">Was tut die grundlegende Validierung?</h4>
-<p>Wenn Sie das Basis-Interface benutzen, prüft der Validator die Einhaltung von&nbsp;<a href="http://www.w3.org/TR/CSS2">CSS 2</a>, das die gegenwärtige Technical Recommendation darstellt.<br /> Es produziert eine Ausgabe in XHTML ohne Warnungen (nur Fehler werden angezeigt).<br /> Das Medium ist auf "all" eingestellt, was das geeignete Medium für alle Geräte ist (siehe <a href="http://www.w3.org/TR/CSS2/media.html"> http://www.w3.org/TR/CSS2/media.html</a> für eine vollständige Beschreibung von Medien).</p>
+<p>Wenn Sie das Basis-Interface benutzen, prüft der Validator die Einhaltung von&nbsp;<a href="http://www.w3.org/TR/CSS21">CSS 2.1</a>, das die gegenwärtige Technical Recommendation darstellt.<br /> Es produziert eine Ausgabe in XHTML ohne Warnungen (nur Fehler werden angezeigt).<br /> Das Medium ist auf "all" eingestellt, was das geeignete Medium für alle Geräte ist (siehe <a href="http://www.w3.org/TR/CSS2/media.html"> http://www.w3.org/TR/CSS2/media.html</a> für eine vollständige Beschreibung von Medien).</p>
 
 <h3 id="advanced">Erweiterte Validierung</h3>
 
