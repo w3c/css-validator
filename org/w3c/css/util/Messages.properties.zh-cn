@@ -1,6 +1,6 @@
 language_name: 简体中文
 more_options: 更多选项
-title_more_options: <!-- translation unavailable -->
+title_more_options: Show/Hide extra validation options
 all: 全部
 normal_report: 正常
 most_important: 最重要的
@@ -42,24 +42,24 @@ by_file_upload: 通过文件上传
 by_direct_input: 通过直接输入
 validate_by_URI: 验证指定URI的CSS内容
 enter_uri: 输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI
-page_address: <!-- translation unavailable -->
+page_address: Address of page to Validate
 address: URI地址
-submit_uri: <!-- translation unavailable -->
+submit_uri: Submit URI for validation
 validate_by_file_upload: 验证上传文件
 choose_document: 选择需要验证的文件(必须是CCS格式的文件)
-choose_local_file: <!-- translation unavailable -->
+choose_local_file: Choose a Local File to Upload and Validate
 local_CSS_file: 本地CSS文件
-submit_file: <!-- translation unavailable -->
+submit_file: Submit file for validation
 validate_by_input: 验证直接输入的内容
 enter_CSS: 输入你要验证的CSS代码
-submit_input: <!-- translation unavailable -->
+submit_input: Submit your input for validation
 note: 注意
 note_xhtml_valid: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。
 # End of variables added along with Index page template
 
 W3C_validator_results: W3C CSS 校验器结果：  
 # file_title: <!-- provided by the user -->
-CSS_validation_service: <!-- translation unavailable -->
+CSS_validation_service: CSS 验证服务
 jump_to: 查看
 # errors_count: <!-- generated on the fly -->
 errors: 错误 
@@ -87,8 +87,8 @@ no_errors_create_link_msg: 如果你愿意建立连接到此页 (例如，这个
 你的网页，其 URI 是：
 no_errors_forHTML_only_msg: 仅使用于HTML文档
 no_errors_bookmark_msg: 或者，你可以加入当前也到你的书签或列表中。
-note_valide_html: <!-- translation unavailable -->
-top: <!-- translation unavailable -->
+note_valide_html: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。 
+top: Top
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* 请注意！这不是CSS1的属性！ */
 errors_sorry_msg: 错误：
@@ -128,7 +128,7 @@ output-encoding-name: utf-8
 warning.redefinition: 重定义了 %s
 
 # used by xml parser
-warning.style-inside-comment: <!-- translation unavailable -->
+warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by the user agent <!-- translation unavailable -->
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: 一样的颜色对于 %s 和 %s
@@ -164,7 +164,7 @@ warning.unsupported-import: 通过直接输入及文件上传模式导入的样�
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围
 error.invalid-color: 无效的 RGB 函数
-warning.marker: <!-- translation unavailable -->
+warning.marker: The marker-offset property applies on elements with 'display: marker' <!-- translation unavailable -->
 
 # used by org.w3c.css.properties.ACssStyle
 warning.relative: 在属性 %s 使用相对单位令样式表更加棒
