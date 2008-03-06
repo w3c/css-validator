@@ -137,7 +137,7 @@ public class TranslationTableGenerator {
                 }
                 translations_table = translations_table + "</tr>";
                 if(num_properties%12 == 0) {
-                    translations_table = translations_table+"</tbody>"+table_head+"<tbody>";
+                    translations_table = translations_table+"</tbody><tbody>"+table_head;
                 }
             }
             translations_table = translations_table + "</tbody></table>";
