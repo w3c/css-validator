@@ -323,38 +323,38 @@ test markup also accepts 3 properties: warning, profile and medium
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-1.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=528</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-2.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=529</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-3.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=530</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-4.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=531</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-5.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=532</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-6.css</file>
+        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=533</uri>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-		<file>testsuite/bugs/2920-7.css</file>
-		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+    <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=534</uri>
+        <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
   </type>
