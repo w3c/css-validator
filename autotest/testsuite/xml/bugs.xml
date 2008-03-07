@@ -10,7 +10,7 @@ test markup also accepts 3 properties: warning, profile and medium
 	See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=750&quot;&gt;
 	http://www.w3.org/Bugs/Public/show_bug.cgi?id=750&lt;/a&gt;</description>
       <result valid="false">
-	<errors>5</errors>
+	<errors>4</errors>
 	<warnings>0</warnings>
       </result>
     </test>
