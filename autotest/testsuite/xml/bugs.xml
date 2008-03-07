@@ -133,7 +133,6 @@ test markup also accepts 3 properties: warning, profile and medium
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=1885&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=1885&lt;/a&gt;</description>
       <result valid="true">
-	<warnings>1</warnings>
       </result>
     </test>
     <!--<test>
@@ -171,7 +170,6 @@ test markup also accepts 3 properties: warning, profile and medium
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=763&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=763&lt;/a&gt;</description>
       <result valid="true">
-	<warnings>1</warnings>
       </result>
     </test>
     <test>
@@ -239,7 +237,7 @@ test markup also accepts 3 properties: warning, profile and medium
 	<errors>1</errors>
       </result>
     </test>
-    <test>
+    <test warning="2">
       <file>testsuite/bugs/233.css</file>
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=233&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=233&lt;/a&gt;</description>
