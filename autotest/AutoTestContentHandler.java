@@ -66,7 +66,7 @@ public class AutoTestContentHandler implements ContentHandler {
 	Result awaitedResult = new Result();
 	Result result = new Result();
 	String profile;
-	String warnings;
+	String warning;
 	String medium;
 	
 	/**
@@ -185,13 +185,13 @@ public class AutoTestContentHandler implements ContentHandler {
 			desc = "";
 			result = new Result();
 
-			warnings = null;
+			warning = null;
 			profile = null;
 			medium = null;
 			for (int i = 0; i < attributs.getLength(); i++) {
 				String currentAttr = attributs.getLocalName(i);
-				if (currentAttr.equals("warnings")) {
-					warnings = attributs.getValue(i);
+				if (currentAttr.equals("warning")) {
+					warning = attributs.getValue(i);
 				} else if (currentAttr.equals("profile")) {
 					profile = attributs.getValue(i);
 				} else if (currentAttr.equals("medium")) {
@@ -277,8 +277,8 @@ public class AutoTestContentHandler implements ContentHandler {
 				val = VALIDATOR + "uri=" + validURL;
 			}
 
-			if (warnings != null) {
-				val += "&warning=" + warnings;
+			if (warning != null) {
+				val += "&warning=" + warning;
 			}
 			if (profile != null) {
 				val += "&profile=" + profile;
@@ -381,7 +381,7 @@ public class AutoTestContentHandler implements ContentHandler {
 		} else if (inWarnings) {
 			int warnings;
 			try {
-				warnings = Integer.parseInt(new String(ch, start, end));
+				warnings= Integer.parseInt(new String(ch, start, end));
 			} catch (NumberFormatException e) {
 				warnings = 0;
 			}

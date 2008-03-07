@@ -44,7 +44,7 @@ examples:
 
     <test profile="css1"> ...</test>
     <test medium="print,screen">...</test>
-    <test warnings="2"> ...</test>
+    <test warning="2"> ...</test>
 
 ================================================================================
 FRENCH
@@ -84,7 +84,7 @@ Exemples de tests:
 	is used as the UA default.
       </description>
  
-L'element <test> peut prendre plusieurs parametres (profile, medium et warnings)
+L'element <test> peut prendre plusieurs parametres (profile, medium et warning)
 dont les valeurs sont equivalentes a celles du service de validation (Cf. manuel
 du validateur pour les valeurs acceptées).
 
@@ -92,6 +92,6 @@ exemples:
 
     <test profile="css1"> ...</test>
     <test medium="print,screen">...</test>
-    <test warnings="2"> ...</test>
+    <test warning="2"> ...</test>
 
    </test>
