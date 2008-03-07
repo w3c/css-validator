@@ -322,5 +322,40 @@ test markup also accepts 3 properties: warning, profile and medium
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=4981&quot;&gt;Bug 4981&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-1.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-2.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-3.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-4.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-5.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-6.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
+	<test profile="css21">
+		<file>testsuite/bugs/2920-7.css</file>
+		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
+	      <result valid="false" />
+	</test>
   </type>
 </testsuite>
