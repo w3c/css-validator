@@ -84,7 +84,7 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
     <test>
-      <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=471</uri>
+      <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=471</url>
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=697&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=697&lt;/a&gt;</description>
       <result valid="false">
@@ -323,37 +323,37 @@ test markup also accepts 3 properties: warning, profile and medium
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=528</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=528</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=529</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=529</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=530</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=530</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=531</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=531</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=532</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=532</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-        <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=533</uri>
+        <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=533</url>
 		<description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
 	<test profile="css21">
-    <uri>http://www.w3.org/Bugs/Public/attachment.cgi?id=534</uri>
+    <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=534</url>
         <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=2920&quot;&gt;Bug 2920&lt;/a&gt;</description>
 	      <result valid="false" />
 	</test>
