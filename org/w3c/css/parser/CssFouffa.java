@@ -218,7 +218,7 @@ public final class CssFouffa extends CssParser {
     private void ReInit(ApplContext ac, InputStream input, URL file, Frame frame) {
 	// reinitialize the parser with a new data input
 	// and a new frame for errors and warnings
-	super.ReInit(input, ac);
+	super.ReInitWithAc(input, ac);
 	// @@this is a default media ...
 	// AtRuleMedia media;
 	// if ("css1".equals(ac.getCssVersion())) {
