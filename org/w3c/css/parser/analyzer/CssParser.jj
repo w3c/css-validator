@@ -173,7 +173,7 @@ public abstract class CssParser {
      * @param stream the stream data to parse.
      * @param ac  the new ac to use for parsing.
      */
-    public void ReInit(InputStream stream, ApplContext ac) {
+    public void ReInitWithAc(InputStream stream, ApplContext ac) {
     	ReInit(new CommentSkipperInputStream(stream));
 	markRule = false;
 	setApplContext(ac);
@@ -1861,26 +1861,37 @@ String skipStatement() {
 	s.append(tok.image);	
     }
     while (true) {
-	tok = getToken(1);
-	if (tok.kind == EOF) {
-	    return null;
-	} 
-	s.append(tok.image);
-	if (tok.kind == LBRACE) {
-	    getNextToken();
-	    s.append(skip_to_matching_brace());
-	    getNextToken();
+	try {
 	    tok = getToken(1);
-	    break;
-	} else if ((tok.kind == RBRACE) || (tok.kind == SEMICOLON)) {
+	    if (tok.kind == EOF) {
+		return null;
+	    } 
+	    s.append(tok.image);
+	    if (tok.kind == LBRACE) {
+		getNextToken();
+		s.append(skip_to_matching_brace());
+		getNextToken();
+		tok = getToken(1);
+		break;
+	    } else if ((tok.kind == RBRACE) || (tok.kind == SEMICOLON)) {
+		getNextToken();
+		tok = getToken(1);
+		break;
+	    }
 	    getNextToken();
-	    tok = getToken(1);
-	    break;
+	} catch (TokenMgrError tokenerror) {
+	    // read one char at a time, and loop
+	    try {
+	        s.append(jj_input_stream.readChar());
+	        continue;
+            } catch (java.io.IOException ioex) { 
+		return s.toString().trim();
+	    }
 	}
-	getNextToken();
     }
     
     // skip white space
+    // FIXME check for error as well here.
     while (tok.kind == S) {
 	getNextToken();
 	tok = getToken(1);
