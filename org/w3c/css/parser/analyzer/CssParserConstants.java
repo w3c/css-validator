@@ -4,111 +4,147 @@ package org.w3c.css.parser.analyzer;
 public interface CssParserConstants {
 
   int EOF = 0;
-  int S = 1;
-  int CDO = 5;
-  int CDC = 6;
-  int LBRACE = 7;
-  int RBRACE = 8;
-  int DASHMATCH = 9;
-  int INCLUDES = 10;
-  int PREFIXMATCH = 11;
-  int SUFFIXMATCH = 12;
-  int SUBSTRINGMATCH = 13;
-  int TILDE = 14;
-  int EQ = 15;
-  int PLUS = 16;
-  int MINUS = 17;
-  int COMMA = 18;
-  int SEMICOLON = 19;
-  int PRECEDES = 20;
-  int DIV = 21;
-  int LBRACKET = 22;
-  int RBRACKET = 23;
-  int ANY = 24;
-  int DOT = 25;
-  int LPARAN = 26;
-  int RPARAN = 27;
-  int COLON = 28;
-  int AND = 29;
-  int MEDIARESTRICTOR = 30;
-  int NONASCII = 31;
-  int H = 32;
-  int UNICODE = 33;
-  int ESCAPE = 34;
-  int NMSTART = 35;
-  int NMCHAR = 36;
-  int STRINGCHAR = 37;
-  int D = 38;
-  int NAME = 39;
-  int STRING = 40;
-  int IDENT = 41;
-  int NUMBER = 42;
-  int _URL = 43;
-  int URL = 44;
-  int PERCENTAGE = 45;
-  int LENGTH = 46;
-  int EMS = 47;
-  int EXS = 48;
-  int ANGLE = 49;
-  int TIME = 50;
-  int FREQ = 51;
-  int RESOLUTION = 52;
-  int DATE = 53;
-  int DIMEN = 54;
-  int HASH = 55;
-  int IMPORTANT_SYM = 56;
-  int IMPORT_SYM = 57;
-  int MEDIA_SYM = 58;
-  int PAGE_SYM = 59;
-  int FONT_FACE_SYM = 60;
-  int PREF_SYM = 61;
-  int COLOR_PROFILE = 62;
-  int CHARSET_SYM = 63;
-  int ATTOP = 64;
-  int ATRIGHT = 65;
-  int ATBOTTOM = 66;
-  int ATLEFT = 67;
-  int ATCOUNTER = 68;
-  int PHONETIC_ALPHABET_SYM = 69;
-  int ATKEYWORD = 70;
-  int RANGE0 = 71;
-  int RANGE1 = 72;
-  int RANGE2 = 73;
-  int RANGE3 = 74;
-  int RANGE4 = 75;
-  int RANGE5 = 76;
-  int RANGE6 = 77;
-  int RANGE = 78;
-  int UNI = 79;
-  int UNICODERANGE = 80;
-  int CLASS = 81;
-  int FUNCTION = 82;
+  int H = 4;
+  int NONASCII = 5;
+  int UNICODE = 6;
+  int ESCAPE = 7;
+  int NMSTART = 8;
+  int NMCHAR = 9;
+  int STRING1 = 10;
+  int STRING2 = 11;
+  int INVALID1 = 12;
+  int INVALID2 = 13;
+  int _IDENT = 14;
+  int NAME = 15;
+  int NUM = 16;
+  int _STRING = 17;
+  int _INVALID = 18;
+  int _URL = 19;
+  int _S = 20;
+  int _W = 21;
+  int NL = 22;
+  int S = 23;
+  int CDO = 24;
+  int CDC = 25;
+  int INCLUDES = 26;
+  int DASHMATCH = 27;
+  int LBRACE = 28;
+  int PLUS = 29;
+  int GREATER = 30;
+  int COMMA = 31;
+  int TILDE = 32;
+  int AND = 33;
+  int STRING = 34;
+  int INVALID = 35;
+  int IDENT = 36;
+  int HASH = 37;
+  int RBRACE = 38;
+  int PREFIXMATCH = 39;
+  int SUFFIXMATCH = 40;
+  int SUBSTRINGMATCH = 41;
+  int EQ = 42;
+  int MINUS = 43;
+  int SEMICOLON = 44;
+  int DIV = 45;
+  int LBRACKET = 46;
+  int RBRACKET = 47;
+  int ANY = 48;
+  int DOT = 49;
+  int LPARAN = 50;
+  int RPARAN = 51;
+  int COLON = 52;
+  int MEDIARESTRICTOR = 53;
+  int URL = 54;
+  int LENGTH = 55;
+  int EMS = 56;
+  int EXS = 57;
+  int ANGLE = 58;
+  int TIME = 59;
+  int FREQ = 60;
+  int RESOLUTION = 61;
+  int DATE = 62;
+  int DIMEN = 63;
+  int PERCENTAGE = 64;
+  int NUMBER = 65;
+  int IMPORTANT_SYM = 66;
+  int PSEUDOCLASS_SYM = 67;
+  int CHARSET_SYM = 68;
+  int IMPORT_SYM = 69;
+  int MEDIA_SYM = 70;
+  int PAGE_SYM = 71;
+  int FONT_FACE_SYM = 72;
+  int PREF_SYM = 73;
+  int COLOR_PROFILE = 74;
+  int ATTOP = 75;
+  int ATRIGHT = 76;
+  int ATBOTTOM = 77;
+  int ATLEFT = 78;
+  int ATCOUNTER = 79;
+  int PHONETIC_ALPHABET_SYM = 80;
+  int ATKEYWORD = 81;
+  int RANGE0 = 82;
+  int RANGE1 = 83;
+  int RANGE2 = 84;
+  int RANGE3 = 85;
+  int RANGE4 = 86;
+  int RANGE5 = 87;
+  int RANGE6 = 88;
+  int RANGE = 89;
+  int UNI = 90;
+  int UNICODERANGE = 91;
+  int CLASS = 92;
+  int FUNCTIONLANG = 93;
+  int FUNCTION = 94;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
 
   String[] tokenImage = {
     "<EOF>",
-    "<S>",
     "\"/*\"",
     "\"*/\"",
-    "<token of kind 4>",
+    "<token of kind 3>",
+    "<H>",
+    "<NONASCII>",
+    "<UNICODE>",
+    "<ESCAPE>",
+    "<NMSTART>",
+    "<NMCHAR>",
+    "<STRING1>",
+    "<STRING2>",
+    "<INVALID1>",
+    "<INVALID2>",
+    "<_IDENT>",
+    "<NAME>",
+    "<NUM>",
+    "<_STRING>",
+    "<_INVALID>",
+    "<_URL>",
+    "<_S>",
+    "<_W>",
+    "<NL>",
+    "<S>",
     "\"<!--\"",
     "\"-->\"",
-    "\"{\"",
-    "\"}\"",
-    "\"|=\"",
     "\"~=\"",
+    "\"|=\"",
+    "<LBRACE>",
+    "<PLUS>",
+    "<GREATER>",
+    "<COMMA>",
+    "<TILDE>",
+    "\"and\"",
+    "<STRING>",
+    "<INVALID>",
+    "<IDENT>",
+    "<HASH>",
+    "\"}\"",
     "\"^=\"",
     "\"$=\"",
     "\"*=\"",
-    "\"~\"",
     "\"=\"",
-    "\"+\"",
     "\"-\"",
-    "\",\"",
     "\";\"",
-    "\">\"",
     "\"/\"",
     "\"[\"",
     "\"]\"",
@@ -117,23 +153,8 @@ public interface CssParserConstants {
     "\")\"",
     "\"(\"",
     "\":\"",
-    "<AND>",
     "<MEDIARESTRICTOR>",
-    "<NONASCII>",
-    "<H>",
-    "<UNICODE>",
-    "<ESCAPE>",
-    "<NMSTART>",
-    "<NMCHAR>",
-    "<STRINGCHAR>",
-    "<D>",
-    "<NAME>",
-    "<STRING>",
-    "<IDENT>",
-    "<NUMBER>",
-    "<_URL>",
     "<URL>",
-    "<PERCENTAGE>",
     "<LENGTH>",
     "<EMS>",
     "<EXS>",
@@ -143,15 +164,17 @@ public interface CssParserConstants {
     "<RESOLUTION>",
     "<DATE>",
     "<DIMEN>",
-    "<HASH>",
+    "<PERCENTAGE>",
+    "<NUMBER>",
     "<IMPORTANT_SYM>",
+    "\"::\"",
+    "\"@charset\"",
     "\"@import\"",
     "\"@media\"",
     "\"@page\"",
     "\"@font-face\"",
     "\"@preference\"",
     "\"@color-profile\"",
-    "\"@charset\"",
     "\"@top\"",
     "\"@right\"",
     "\"@bottom\"",
@@ -170,8 +193,8 @@ public interface CssParserConstants {
     "<UNI>",
     "<UNICODERANGE>",
     "<CLASS>",
+    "\"lang(\"",
     "<FUNCTION>",
-    "\"::\"",
   };
 
 }

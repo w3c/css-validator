@@ -10,8 +10,8 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /*DEBUG_TOKEN_MANAGER = true;
-	  DEBUG_PARSER = true; */
+    /*  DEBUG_TOKEN_MANAGER = true;
+	DEBUG_PARSER = true;  */
 	  
 }
 
@@ -198,7 +198,7 @@ public abstract class CssParser {
      */  
     public abstract void handleAtRule(String ident, String string);
 
-	/* added by Sijtsche Smeman */
+    /* added by Sijtsche Smeman */
     public abstract void addCharSet(String charset);
     public abstract void newAtRule(AtRule atRule);
     public abstract void endOfAtRule();
@@ -240,7 +240,7 @@ public abstract class CssParser {
     public abstract void handleRule(CssSelectors selector, 
 				    Vector declarations);
 
-/*Added by Sijtsche Smeman */
+    /*Added by Sijtsche Smeman */
 
     /**
      * Returns the source file of the style sheet
@@ -282,14 +282,14 @@ public abstract class CssParser {
      */
     private void setValue(CssValue v, CssExpression expr, 
 			  char operator, Token n, int token) 
-	    throws ParseException {
+	throws ParseException {
 	if (n != null) {
   
-	    if (ac.getCssVersion().equals("css1") && (n.image).equals("inherit")) {
-		
+	    if (ac.getCssVersion().equals("css1") && 
+		(n.image).equals("inherit")) {
 		incompatible_error = true;
 	    }	
-
+	    
 	    if (n.kind == CssParserConstants.IDENT) {
 		v.set( convertIdent(operator+n.image).trim(), ac);
 	    } else if (n.kind == CssParserConstants.STRING) {
@@ -297,8 +297,8 @@ public abstract class CssParser {
 	    } else {
 		v.set((operator+n.image).trim(), ac);
 	    }
-	 }
-	    expr.addValue(v);
+	}
+	expr.addValue(v);
     }
 
     /*
@@ -316,7 +316,7 @@ public abstract class CssParser {
 	CssError error = new CssError(getSourceFile(), getLine(), ex);
 	ac.getFrame().addError(error);
     }
-
+    
     /*
      * Error control 2
      */
@@ -325,15 +325,15 @@ public abstract class CssParser {
 	    System.err.println(e.getMessage());
 	    e.printStackTrace();
 	}
-
+	
 	//	if ((exp != null) && (exp.getCount() != 0)) {
-	    CssParseException ex = new CssParseException(e);
-	    ex.setExp(exp);
-	    ex.setProperty(currentProperty);
-	    ex.setContexts(currentContext);
-	    CssError error = new CssError(getSourceFile(), getLine(), ex);
-	    ac.getFrame().addError(error);
-	    //	}
+	CssParseException ex = new CssParseException(e);
+	ex.setExp(exp);
+	ex.setProperty(currentProperty);
+	ex.setContexts(currentContext);
+	CssError error = new CssError(getSourceFile(), getLine(), ex);
+	ac.getFrame().addError(error);
+	//	}
     }
 }
 
@@ -344,49 +344,100 @@ PARSER_END(CssParser)
  */
 
 <DEFAULT>
-TOKEN :
-{
-    < S : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ > 
-         /*{ image = CssParser.SPACE; }*/
-}
-
-<DEFAULT>
-MORE : /* Comments */
+    MORE : /* Comments */
 {
     < "/*" > : IN_COMMENT
 }
 
 <IN_COMMENT>
-SKIP :
+    SKIP :
 {
     < "*/" > : DEFAULT
 }
 
 <IN_COMMENT>
-MORE :
+    MORE :
 {
     < ~[] > : IN_COMMENT
- }
+}
+
+
+<DEFAULT>
+    TOKEN [IGNORE_CASE] : /* basic tokens */
+{ 
+    < #H          : ["0"-"9", "a"-"f"] > 
+  | < #NONASCII   : ["\200"-"\377"] >
+  | < #UNICODE    : "\\" <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )? 
+	            ( "\r\n" | [ " ", "\t" , "\n" , "\r", "\f" ] )? >
+  | < #ESCAPE     : <UNICODE> | ( "\\" ~[ "\r", "\n", "\f", "0"-"9", "a"-"f" ] ) >
+  | < #NMSTART    : [ "a"-"z", "_" ] | <NONASCII> | <ESCAPE> >
+  | < #NMCHAR     : ["a"-"z", "0"-"9", "-", "_"] | <NONASCII> | <ESCAPE> >
+  | < #STRING1    : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* "\"" >
+  | < #STRING2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* "\'" >
+  | < #INVALID1    : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* >
+  | < #INVALID2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* >  
+  | < #_IDENT     : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
+  | < #NAME       : ( <NMCHAR> )+ >
+  | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
+  | < #_STRING    : <STRING1> | <STRING2> >
+  | < #_INVALID    : <INVALID1> | <INVALID2> >
+	// FIXME check _URL definition, CSS21 doesn't seem to match
+  | < #_URL       : ( [ "!", "#", "$", "%", "&", "*", "+", "-"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >
+  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ >
+  | < #_W         : ( <_S> )? >
+  | < #NL         : ( "\n" | "\r\n" | "\r" | "\f" ) >
+}
 
 <DEFAULT>
 TOKEN :
 {
-  < CDO : "<!--" >
+  < S : ( <_S> ) >
+}
+
+<DEFAULT>
+    TOKEN :
+{
+    < CDO : "<!--" >
   | < CDC : "-->" >
-  | < LBRACE : "{" >
-  | < RBRACE : "}">
-  | < DASHMATCH : "|=" >
   | < INCLUDES  : "~=" >
+  | < DASHMATCH : "|=" >
+}
+
+<DEFAULT>
+TOKEN :
+{
+  < LBRACE : <_W> "{" >
+  | < PLUS      : <_W>  "+" >
+  | < GREATER   : <_W> ">" >
+  | < COMMA     : <_W> "," >
+  | < TILDE     : <_W> "~" >
+}
+
+<DEFAULT>
+    TOKEN :
+{
+    < AND : "and" > 
+}  
+
+<DEFAULT>
+TOKEN :
+{
+    <STRING  : <_STRING> >
+  | <INVALID : <_INVALID> >
+  | <IDENT   : <_IDENT> >
+  | <HASH    : "#" <NAME> >
+}
+
+<DEFAULT>
+TOKEN :
+{
+  < RBRACE : "}">
   | < PREFIXMATCH : "^=" >
   | < SUFFIXMATCH : "$=" >
   | < SUBSTRINGMATCH : "*=" >
-  | < TILDE     : "~" >
   | < EQ        : "=" >
-  | < PLUS      : "+" >
   | < MINUS     : "-" >
-  | < COMMA     : "," >
   | < SEMICOLON : ";" >
-  | < PRECEDES  : ">" >
   | < DIV       : "/" >
   | < LBRACKET  : "[" >
   | < RBRACKET  : "]" >
@@ -397,135 +448,115 @@ TOKEN :
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
-  < COLON     : ":" >
+    < COLON     : ":" >
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
-  < AND : "AND" | "and" >
-}  
-
-<DEFAULT>
-TOKEN :
-{
-  < MEDIARESTRICTOR : "ONLY" | "only" | "NOT" | "not" >
+    < MEDIARESTRICTOR : "only" | "not" >
 }
 
 <DEFAULT>
-TOKEN : /* basic tokens */
-{ 
-    < NONASCII    : ["\200"-"\377"] >
-  | < #H          : ["0"-"9", "a"-"f"] >
-  | < #UNICODE    : "\\" <H> ( <H> )? /* I can't say {1,6} */
-                         ( <H> )? ( <H> )?
-                         ( <H> )? ( <H> )? 
-                    ( [ " ", "\t" , "\n" , "\r", "\f" ] )? >
-  | < #ESCAPE     : <UNICODE> | ( "\\" [ " "-"~","\200"-"\377" ] ) >
-  | < #NMSTART    : [ "a"-"z", "_" ] | <NONASCII> | <ESCAPE> >
-  | < #NMCHAR	  : ["a"-"z", "0"-"9", "-", "_"] | <NONASCII> | <ESCAPE> >
-  | < #STRINGCHAR : [ "\t"," ","!","#","$","%","&","("-"[","]"-"~" ] 
-                    | "\\\n" | "\\\r\n" | <NONASCII> | <ESCAPE> >
-  | < #D          : ["0"-"9"] >
-  | < #NAME       : ( <NMCHAR> )+ >
+    TOKEN :
+{
+  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* ")" >
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
-  < STRING      : ( "\"" ( <STRINGCHAR> | "'" )* "\"" ) | 
-                  ( "'" ( <STRINGCHAR> | "\"" )* "'" ) >
-  | < IDENT         : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
-  | < NUMBER	  : ( <D> )+ | ( <D> )* "." ( <D> )+ > 
-  | < #_URL       : [ "!","#","$","%","&","*"-"~" ] | <NONASCII> | <ESCAPE> >
-  | < URL         : "url(" ( <S> )*
-                    ( <STRING> | ( <_URL> )* ) ( <S> )* ")" >            
+  < LENGTH     : <NUM> "pt" 
+                   | <NUM> "mm" 
+	           | <NUM> "cm" 
+	           | <NUM> "pc" 
+	           | <NUM> "in"
+	           | <NUM> "gd" 
+	           | <NUM> "px" >
+  | < EMS        : <NUM> "em" >
+  | < EXS        : <NUM> "ex" >
+  | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" ) >
+  | < TIME       : <NUM> ( "ms" | "s" ) >
+  | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
+  | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
+  | < DATE       : <NUM> "/" <NUM> "/" <NUM> >
+  | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
+  | < PERCENTAGE : <NUM> "%" >
+  | < NUMBER     : <NUM> >
 }
 
 <DEFAULT>
-TOKEN :
-{
-   < PERCENTAGE : <NUMBER> "%" >
- | < LENGTH : <NUMBER> "pt" 
-            | <NUMBER> "mm" 
-            | <NUMBER> "cm" 
-            | <NUMBER> "pc" 
-            | <NUMBER> "in"
-	    | <NUMBER> "gd" 
-            | <NUMBER> "px" >
- | < EMS    : <NUMBER> "em" >
- | < EXS    : <NUMBER> "ex" >
- | < ANGLE  : <NUMBER> ( "deg" | "rad" | "grad" ) >
- | < TIME   : <NUMBER> "ms"
-            | <NUMBER> "s" >
- | < FREQ   : <NUMBER> "Hz" 
-            | <NUMBER> "kHz" >
- | < RESOLUTION : <NUMBER> ("dpi" | "dpcm") >
- | < DATE   : <NUMBER> "/" <NUMBER> "/" <NUMBER> >
- | < DIMEN  : <NUMBER> <IDENT> >
+    TOKEN :
+{   /* FIXME multiple spaces allowed? */
+    < IMPORTANT_SYM : "!" ( <_W> )* "important" >
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
-  < HASH : "#" <NAME> >
-}
-
-<DEFAULT>
-TOKEN :
-{
- < IMPORTANT_SYM : "!" ( <S> )? "important" >
+    <PSEUDOCLASS_SYM : "::" >
 }
 
 /* RESERVED ATRULE WORDS */
 <DEFAULT>
-TOKEN : 
+TOKEN : // FIXME force to be case-sensitive
 {
-    < IMPORT_SYM   : "@import">
-  | < MEDIA_SYM    : "@media" >
-  | < PAGE_SYM     : "@page"  >
-  | < FONT_FACE_SYM: "@font-face" >
-  | < PREF_SYM     : "@preference" >
-  | < COLOR_PROFILE: "@color-profile" >
-  | < CHARSET_SYM  : "@charset" >
-  | < ATTOP	   : "@top" >
-  | < ATRIGHT      : "@right" >
-  | < ATBOTTOM     : "@bottom" >
-  | < ATLEFT       : "@left" >
-  | < ATCOUNTER    : "@counter" >
+   < CHARSET_SYM           : "@charset" >
+}
+
+<DEFAULT>
+    TOKEN : 
+{ 
+    < IMPORT_SYM            : "@import">
+  | < MEDIA_SYM             : "@media" >
+  | < PAGE_SYM              : "@page"  >
+  | < FONT_FACE_SYM         : "@font-face" >
+  | < PREF_SYM              : "@preference" >
+  | < COLOR_PROFILE         : "@color-profile" >
+  | < ATTOP	            : "@top" >
+  | < ATRIGHT               : "@right" >
+  | < ATBOTTOM              : "@bottom" >
+  | < ATLEFT                : "@left" >
+  | < ATCOUNTER             : "@counter" >
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
-  | < ATKEYWORD    : "@" <IDENT> >
+  | < ATKEYWORD             : "@" <IDENT> >
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
-    < #RANGE0 : <H> <H> <H> <H>  <H> >
-    | < #RANGE1 : <H> <H> <H> <H> <H> ( "?" )? >
-    | < #RANGE2 : <H> <H> <H> <H> ( "?" )? ( "?" )? >
-    | < #RANGE3 : <H> <H> <H> ( "?" )? ( "?" )? ( "?" )? >
-    | < #RANGE4 : <H> <H> ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
-    | < #RANGE5 : <H> ( "?" )? ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
-    | < #RANGE6 : "?" ( "?" )? ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
-    | < #RANGE  : <RANGE0> | <RANGE1> | <RANGE2> 
-                  | <RANGE3> | <RANGE4> | <RANGE5> | <RANGE6> >
-    | < #UNI    : <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )? >
-    | < UNICODERANGE : "U+" <RANGE>
-                        | "U+" <UNI> "-" <UNI> >
+    < #RANGE0 : <H> <H> <H> <H> <H> <H> > /* FIXME add <H> to make 6 <H> */
+  | < #RANGE1 : <H> <H> <H> <H> <H> ( "?" )? >
+  | < #RANGE2 : <H> <H> <H> <H> ( "?" )? ( "?" )? >
+  | < #RANGE3 : <H> <H> <H> ( "?" )? ( "?" )? ( "?" )? >
+  | < #RANGE4 : <H> <H> ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
+  | < #RANGE5 : <H> ( "?" )? ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
+  | < #RANGE6 : "?" ( "?" )? ( "?" )? ( "?" )? ( "?" )? ( "?" )? >
+  | < #RANGE  : <RANGE0> | <RANGE1> | <RANGE2> 
+                | <RANGE3> | <RANGE4> | <RANGE5> | <RANGE6> >
+  | < #UNI    : <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )? >
+  | < UNICODERANGE : "U+" <RANGE> | "U+" <UNI> "-" <UNI> >
 }
 
 <DEFAULT>
-TOKEN:
+    TOKEN:
 {
-  < CLASS : "." <IDENT> >
+    < CLASS : "." <IDENT> >
+}
+
+/* FIXED, added a spacial case for lang pseudoclass */
+<DEFAULT>
+    TOKEN:
+{
+    < FUNCTIONLANG : "lang(" >
 }
 
 <DEFAULT>
-TOKEN :
+    TOKEN :
 {
- < FUNCTION : <IDENT> "(" >
+    < FUNCTION : <IDENT> "(" >
 }
 
 //<DEFAULT, IN_COMMENT>
@@ -546,11 +577,11 @@ TOKEN :
 void parserUnit() :
 {}
 {
-  ( charset() )?
-  ( <S> | ignoreStatement() )*
-  ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
-  afterImportDeclaration()
-  <EOF>
+    ( charset() )?
+    ( <S> | ignoreStatement() )*
+    ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
+    afterImportDeclaration()
+    <EOF>
 }
 
 void charset() :
@@ -564,24 +595,24 @@ void charset() :
     try {
 	// There was * instead of ? in previous versions, but it's useless since
 	// <S> is already a +
-	charsetToken=<CHARSET_SYM> ( space1Token=<S> )? n=<STRING> ( space2Token=<S> )? ";"
-	{
-            // the @charset must be at the beginning of the document
-            if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {                     
-                throw new ParseException(
-                    ac.getMsg().getString("parser.charset"));                    
-            }
+	charsetToken=<CHARSET_SYM> ( space1Token=<S> )? n=<STRING> ( space2Token=<S> )? <SEMICOLON>
+	    {
+		// the @charset must be at the beginning of the document
+		if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {                     
+		    throw new ParseException(
+					     ac.getMsg().getString("parser.charset"));                    
+		}
 	        // stricter rule for CSS21 and soon for CSS3
-            else if("css21".equals(ac.getCssVersion()) &&
-			       (!" ".equals(space1Token.image) || (space2Token != null &&
-			       !"".equals(space2Token.image)))) {
-					    throw new ParseException(ac.getMsg().getString(
-						    "parser.charsetspecial"));
-			}
-	    else {
-                addCharSet(n.image);                    
-            }
-	}
+		else if("css21".equals(ac.getCssVersion()) &&
+			(!" ".equals(space1Token.image) || (space2Token != null &&
+							    !"".equals(space2Token.image)))) {
+		    throw new ParseException(ac.getMsg().getString(
+								   "parser.charsetspecial"));
+		}
+		else {
+		    addCharSet(n.image);                    
+		}
+	    }
     } catch (Exception e) {
 	String skip = charsetToken +
 	    ((space1Token == null) ? "" : space1Token.image) +
@@ -596,32 +627,32 @@ void charset() :
 void afterImportDeclaration() :
 {String ret; }
 {
-  ( ( ruleSet() | media() | page() | fontFace() | preference() | colorprofile() | phoneticAlphabet()
-      | ret=skipStatement() 
-      { if ((ret == null) || (ret.length() == 0)) {
-	    return; 
-        }
-        // quite ugly but necessary to avoid probably a lot of changes in the
-        // grammar, still having a beatiful error message
-        else if(ret.startsWith("@charset")) {
-            ParseException e = 
+    ( ( ruleSet() | media() | page() | fontFace() | preference() | 
+	colorprofile() | phoneticAlphabet() | ret=skipStatement() 
+	{ if ((ret == null) || (ret.length() == 0)) {
+		return; 
+	    }
+	  // quite ugly but necessary to avoid probably a lot of changes in the
+	  // grammar, still having a beatiful error message
+	    else if(ret.startsWith("@charset")) {
+		ParseException e = 
 		new ParseException(ac.getMsg().getString("parser.charset"));
-	    addError(e, ret);
-        }
-        else {
-	    ParseException e = 
+		addError(e, ret);
+	    }
+	    else {
+		ParseException e = 
 		new ParseException("Parse error - Unrecognized ");
-	    addError(e, ret);
-        }
-      }
-     )
-    ( ignoreStatement() ( <S> )* )* )*
+		addError(e, ret);
+	    }
+	}
+	)
+      ( ignoreStatement() ( <S> )* )* )*
 }
 
 void ignoreStatement() :
 {}
 {
-   <CDO> | <CDC> | atRuleDeclaration()
+    <CDO> | <CDC> | atRuleDeclaration()
 }
 
 /**
@@ -631,37 +662,37 @@ void ignoreStatement() :
  */
 void importDeclaration() :
 {Token n;
- AtRuleMedia media = new AtRuleMedia();
- CssValue val; 
- String importFile;
+    AtRuleMedia media = new AtRuleMedia();
+    CssValue val; 
+    String importFile;
 }
 {
- try {
-  <IMPORT_SYM> ( <S> )*
-       ( n=<STRING> {
-		     importFile = n.image.substring(1, n.image.length() -1);
-       } 
-         | n=<URL> {
-	     val = new CssURL(); 
-	     ((CssURL) val).set(n.image, ac, url);
-	     importFile = (String) val.get();
-	     if ((importFile.charAt(0) == '"')
-		 || (importFile.charAt(0) == '\'')) {
-		importFile = importFile.substring(1, importFile.length()-1);
-	     }
-	 }
-	 )
-       ( <S> )*
-       ( medium(media) 
-	 ( <COMMA> ( <S> )* medium(media) 
-	   )* )? ";"
-       ( <S> )*
-   { 
-     handleImport(getURL(), importFile, media);
-   } 
- } catch (ParseException e) {
-   addError(e, skipStatement()); 
- }
+    try {
+	<IMPORT_SYM> ( <S> )*
+	    ( n=<STRING> {
+		importFile = n.image.substring(1, n.image.length() -1);
+	    } 
+	      | n=<URL> {
+		val = new CssURL(); 
+		((CssURL) val).set(n.image, ac, url);
+		importFile = (String) val.get();
+		if ((importFile.charAt(0) == '"')
+		    || (importFile.charAt(0) == '\'')) {
+		    importFile = importFile.substring(1, importFile.length()-1);
+		}
+	    } 
+	    )
+	    ( <S> )*
+	    ( medium(media) 
+	      ( <COMMA> ( <S> )* medium(media) 
+		)* )? <SEMICOLON> // FIXME why not <SEMICOLON> ?
+	    ( <S> )*
+	    { 
+		handleImport(getURL(), importFile, media);
+	    } 
+    } catch (ParseException e) {
+	addError(e, skipStatement()); 
+    }
 }
 
 /**
@@ -669,50 +700,50 @@ void importDeclaration() :
  */
 void media() :
 {
-  AtRule old = getAtRule();
-  AtRuleMedia newRule = new AtRuleMedia();
-  setAtRule(newRule);
-  Token n;
-  CssProperty p = null;
- }
+    AtRule old = getAtRule();
+    AtRuleMedia newRule = new AtRuleMedia();
+    setAtRule(newRule);
+    Token n;
+    CssProperty p = null;
+}
 {
- try {
-  <MEDIA_SYM> ( <S> )* (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)?
-   medium(newRule) 
-   ( <COMMA> ( <S> )* medium(newRule) ( <S> )* )* 
-     (<AND> ( <S> )* <RPARAN> ( <S> )* p=mediadeclaration() { newRule.addMediaFeature(p); } ( <S> )* <LPARAN> ( <S> )* )*
+    try {
+	<MEDIA_SYM> ( <S> )* (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)?
+	    medium(newRule) 
+	    ( <COMMA> ( <S> )* medium(newRule) )* 
+	    (<AND> ( <S> )* <RPARAN> ( <S> )* p=mediadeclaration() { newRule.addMediaFeature(p); } <LPARAN> ( <S> )* )*
    
- {
-	String media = getAtRule().toString();
-	if (ac.getMedium() != null && 
-		!(media.equals(ac.getMedium())) &&
-		!(ac.getMedium().equals("all"))) {
+	    {
+		String media = getAtRule().toString();
+		if (ac.getMedium() != null && 
+		    !(media.equals(ac.getMedium())) &&
+		    !(ac.getMedium().equals("all"))) {
 		 
-	     ac.getFrame().addWarning("noothermedium", 
-                                       getAtRule().toString());
-        }
-	if (ac.getCssVersion().equals("css1")) {
-	    skipStatement();
-	    addError(new InvalidParamException("noatruleyet", "", ac),
-						 getAtRule().toString());
-        }
-    	if (!ac.getCssVersion().equals("css1")) {
-	    newAtRule(getAtRule());	
-        }
-}
-   <LBRACE> ( <S> )* ( ruleSet() )* <RBRACE> ( <S> )*
-{
+		    ac.getFrame().addWarning("noothermedium", 
+					     getAtRule().toString());
+		}
+		if (ac.getCssVersion().equals("css1")) {
+		    skipStatement();
+		    addError(new InvalidParamException("noatruleyet", "", ac),
+			     getAtRule().toString());
+		}
+		if (!ac.getCssVersion().equals("css1")) {
+		    newAtRule(getAtRule());	
+		}
+	    }
+	<LBRACE> ( <S> )* ( ruleSet() )* <RBRACE> ( <S> )*
+	     {
+		 if (!ac.getCssVersion().equals("css1")) {
+		     endOfAtRule();
+		 }
+	     }
+    } catch (ParseException e) {
 	if (!ac.getCssVersion().equals("css1")) {
-	    endOfAtRule();
-        }
-}
- } catch (ParseException e) {
-       if (!ac.getCssVersion().equals("css1")) {
-       		addError(e, skipStatement()); 
-       }
- } finally {
-     setAtRule(old);
- }
+	    addError(e, skipStatement()); 
+	}
+    } finally {
+	setAtRule(old);
+    }
 }
 
 /**
@@ -721,14 +752,15 @@ void media() :
 void medium(AtRuleMedia media) : /* tv, projection, screen, ... */
 {Token n;}
 {
-  n=<IDENT> ( <S> )*
-  { try {
-        media.addMedia(convertIdent(n.image), ac); 
-    } catch (InvalidParamException e) {
-	CssError error = new CssError(getSourceFile(), getLine(), e);
-	ac.getFrame().addError(error);	
+    n=<IDENT> ( <S> )*
+    {
+	try {
+	    media.addMedia(convertIdent(n.image), ac); 
+	} catch (InvalidParamException e) {
+	    CssError error = new CssError(getSourceFile(), getLine(), e);
+	    ac.getFrame().addError(error);	
+	}
     }
-  }
 }
 
 /**
@@ -736,84 +768,78 @@ void medium(AtRuleMedia media) : /* tv, projection, screen, ... */
  */
 void page() :
 {
- Token n = null;
- Vector collectv = new Vector();
- Vector v;
- CssSelectors s = new CssSelectors(ac);
- AtRule old = getAtRule();
- AtRulePage newRule = new AtRulePage();
- setAtRule(newRule);
- s.setAtRule(getAtRule());
+    Vector       v                              ;
+    Token        n        = null                ;
+    Vector       collectv = new Vector()        ;
+    CssSelectors s        = new CssSelectors(ac);
+    AtRule       old      = getAtRule()         ;
+    AtRulePage   newRule  = new AtRulePage()    ;
+    setAtRule(newRule);
+    s.setAtRule(getAtRule());
 }
 {
- try {
-  <PAGE_SYM> ( <S> )* ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
-			( <S> )* )?
+    try {
+	<PAGE_SYM> ( <S> )* ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
+			      ( <S> )* )?
 
-  ( pseudo_page(newRule) )? <LBRACE> ( <S> )* ( v=pageContent() 
-	{ 
-		collectv = v;
-	}
- ) <RBRACE> ( <S> )*
-   {
+	    ( pseudo_page(newRule) )? <LBRACE> ( <S> )* ( v=pageContent() 
+		{ 
+		    collectv = v;
+		}
+							  ) <RBRACE> ( <S> )*
+	    {
+		if (!ac.getCssVersion().equals("css1")) {
+		    newAtRule(getAtRule());
+		}
+
+		if (!ac.getCssVersion().equals("css1")) {
+		    addProperty(collectv);
+		    endOfRule();
+		    endOfAtRule();
+		}
+		if (v == null) {
+		    ac.getFrame().addWarning("no-declaration");
+		} else {
+		    handleRule(s, collectv);
+		}
+	    }
+    } catch (InvalidParamException ie) {
 	if (!ac.getCssVersion().equals("css1")) {
-	    newAtRule(getAtRule());
+	    skipStatement();
+	    removeThisAtRule();
+	    ac.getFrame().addError(new CssError(ie));
 	}
-
-   	if (!ac.getCssVersion().equals("css1")) {
-            addProperty(collectv);
-            endOfRule();
-            endOfAtRule();
-      }
-      if (v == null) {
-	ac.getFrame().addWarning("no-declaration");
-      } else {
-	  handleRule(s, collectv);
-      }
-   }
- } catch (InvalidParamException ie) {
-      if (!ac.getCssVersion().equals("css1")) {
-	  skipStatement();
-	  removeThisAtRule();
-	  ac.getFrame().addError(new CssError(ie));
-      }
-} catch (ParseException e) {
-      if (!ac.getCssVersion().equals("css1")) {
-	  removeThisAtRule();
-          addError(e, skipStatement()); 
-      }
- } finally {
-     setAtRule(old);
- }
+    } catch (ParseException e) {
+	if (!ac.getCssVersion().equals("css1")) {
+	    removeThisAtRule();
+	    addError(e, skipStatement()); 
+	}
+    } finally {
+	setAtRule(old);
+    }
 }
 
 Vector pageContent() :
 { CssProperty prop;
-  Vector v = new Vector();
+    Vector v = new Vector();
 }
 {
-	v=declarations()
-	{
-		return v;
-	}
-    |   
-	v=prefAtRule()
-	{
-		return v;
-	}
+    v=prefAtRule() { return v;}
+    |
+    v=declarations() { return v;} /* FIXME warning, can match empty */
 }
 
 Vector prefAtRule() :
 { Token n; 
-  Vector v;
+    Vector v;
 }
 {
     try {
         (n=<ATTOP> | n=<ATBOTTOM> | n=<ATLEFT> | n=<ATRIGHT> ) ( <S> )*
-        <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* 
-	{
+	    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* 
+	    {
 		return v;
-	}
+	    }
     } catch (ParseException e) {
 	addError(e, skipStatement());
     }
@@ -822,103 +848,104 @@ Vector prefAtRule() :
 void pseudo_page(AtRulePage page) :
 { Token n; }
 {
-  ":" n=<IDENT> ( <S> )*
-  { try {
-        page.setName(":" + convertIdent(n.image), ac); 
-    } catch (InvalidParamException e) {
-	throw new InvalidParamException("pseudo", n.image, ac );
-	/*CssError error = new CssError(getSourceFile(), getLine(), e);
-	ac.getFrame().addError(error);	*/
+    ":" n=<IDENT> ( <S> )*
+    { 
+	try {
+	    page.setName(":" + convertIdent(n.image), ac); 
+	} catch (InvalidParamException e) {
+	    throw new InvalidParamException("pseudo", n.image, ac );
+	    /*CssError error = new CssError(getSourceFile(), getLine(), e);
+	      ac.getFrame().addError(error);	*/
+	}
     }
-  }
 }
 
 void fontFace() :
 {
- Vector v;
- AtRule old = getAtRule();
- setAtRule(new AtRuleFontFace());
- CssSelectors s = new CssSelectors(ac);
- s.setAtRule(getAtRule());
+    Vector v;
+    AtRule old = getAtRule();
+    setAtRule(new AtRuleFontFace());
+    CssSelectors s = new CssSelectors(ac);
+    s.setAtRule(getAtRule());
 }
 {
- try {
-  <FONT_FACE_SYM> ( <S> )* 
-{
-	if (ac.getCssVersion().equals("css1")) {
-	    skipStatement();
-	    addError(new InvalidParamException("noatruleyet", "", ac),
-						 getAtRule().toString());
-        }
-    	if (!ac.getCssVersion().equals("css1")) {
-	    newAtRule(getAtRule());	
-        }
+    try {
+	<FONT_FACE_SYM> ( <S> )* 
+	    {
+		if (ac.getCssVersion().equals("css1")) {
+		    skipStatement();
+		    addError(new InvalidParamException("noatruleyet", "", ac),
+			     getAtRule().toString());
+		}
+		if (!ac.getCssVersion().equals("css1")) {
+		    newAtRule(getAtRule());	
+		}
 
-}
-  <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
-   {
-	if (!ac.getCssVersion().equals("css1")) {
-            addProperty(v);
-            endOfRule();
-            endOfAtRule();
-	}
-      if (v == null) {
-	ac.getFrame().addWarning("no-declaration");
-      } else {
-	  handleRule(s, v);
-      }
-   }
- } catch (ParseException e) {
+	    }
+	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
+	     {
+		 if (!ac.getCssVersion().equals("css1")) {
+		     addProperty(v);
+		     endOfRule();
+		     endOfAtRule();
+		 }
+		 if (v == null) {
+		     ac.getFrame().addWarning("no-declaration");
+		 } else {
+		     handleRule(s, v);
+		 }
+	     }
+    } catch (ParseException e) {
 	if (!ac.getCssVersion().equals("css1")) {
 	    addError(e, skipStatement()); 
         }
- } finally {
-     setAtRule(old);
- }
+    } finally {
+	setAtRule(old);
+    }
 }
 
 void colorprofile() :
 {
- Vector v;
- AtRule old = getAtRule();
- setAtRule(new AtRuleColorProfile());
- CssSelectors s = new CssSelectors(ac);
- s.setAtRule(getAtRule());
+    Vector v;
+    AtRule old = getAtRule();
+    setAtRule(new AtRuleColorProfile());
+    CssSelectors s = new CssSelectors(ac);
+    s.setAtRule(getAtRule());
 }
 {
-  try {
-    <COLOR_PROFILE> ( <S> )*
-{
-	if (!ac.getCssVersion().equals("svg")) {
-	    skipStatement();
-	    addError(new InvalidParamException("onlysvg", "", ac),
-						 getAtRule().toString());
-        }
-    	if (ac.getCssVersion().equals("svg")) {
-	    	newAtRule(getAtRule());	
-        }
+    try {
+	<COLOR_PROFILE> ( <S> )*
+	    {
+		if (!ac.getCssVersion().equals("svg")) {
+		    skipStatement();
+		    addError(new InvalidParamException("onlysvg", "", ac),
+			     getAtRule().toString());
+		}
+		if (ac.getCssVersion().equals("svg")) {
+		    newAtRule(getAtRule());	
+		}
 
-}
-    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
-    {
-	if (ac.getCssVersion().equals("svg")) {
-	    addProperty(v);
-	    endOfRule();
-	    endOfAtRule();
-	}
+	    }
+	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
+	     {
+		 if (ac.getCssVersion().equals("svg")) {
+		     addProperty(v);
+		     endOfRule();
+		     endOfAtRule();
+		 }
 
-        if (v == null) {
-       	    //ac.getFrame().addWarning("medialist");
-        } else {
-            handleRule(s, v);  
-        }
+		 if (v == null) {
+		     //ac.getFrame().addWarning("medialist");
+		 } else {
+		     handleRule(s, v);  
+		 }
+	     }
     }
-   }
-   catch (ParseException e) {
+    catch (ParseException e) {
 	if (ac.getCssVersion().equals("svg")) {
             addError(e, skipStatement());
 	}
-   } finally {
+    } finally {
 	setAtRule(old);
     }
 }
@@ -926,82 +953,82 @@ void colorprofile() :
 
 void preference() :
 {
- Vector v;
- AtRule old = getAtRule();
- setAtRule(new AtRulePreference());
- CssSelectors s = new CssSelectors(ac);
- s.setAtRule(getAtRule());
+    Vector v;
+    AtRule old = getAtRule();
+    setAtRule(new AtRulePreference());
+    CssSelectors s = new CssSelectors(ac);
+    s.setAtRule(getAtRule());
 }
 {
-  try {
-    <PREF_SYM> ( <S> )*
-{
-	if (ac.getCssVersion().equals("css1")) {
-	    skipStatement();
-	    addError(new InvalidParamException("noatruleyet", "", ac),
-						 getAtRule().toString());
-        }
-    	if (!ac.getCssVersion().equals("css1")) {
-	    newAtRule(getAtRule());	
-        }
+    try {
+	<PREF_SYM> ( <S> )*
+	    {
+		if (ac.getCssVersion().equals("css1")) {
+		    skipStatement();
+		    addError(new InvalidParamException("noatruleyet", "", ac),
+			     getAtRule().toString());
+		}
+		if (!ac.getCssVersion().equals("css1")) {
+		    newAtRule(getAtRule());	
+		}
 
-}
-    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
-    {
-	if (!ac.getCssVersion().equals("css1")) {
-	    addProperty(v);
-	    endOfRule();
-	    endOfAtRule();
-	}
+	    }
+	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
+	     {
+		 if (!ac.getCssVersion().equals("css1")) {
+		     addProperty(v);
+		     endOfRule();
+		     endOfAtRule();
+		 }
 
-        if (v == null) {
-       	    ac.getFrame().addWarning("medialist");
-        } else {
-            handleRule(s, v);  
-        }
+		 if (v == null) {
+		     ac.getFrame().addWarning("medialist");
+		 } else {
+		     handleRule(s, v);  
+		 }
+	     }
     }
-   }
-   catch (ParseException e) {
+    catch (ParseException e) {
 	if (!ac.getCssVersion().equals("css1")) {
             addError(e, skipStatement());
 	}
-   } finally {
+    } finally {
 	setAtRule(old);
     }
 }
 
 void phoneticAlphabet() :
 {
- Vector v;
- AtRule old = getAtRule();
- AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
- setAtRule(alphabetrule);
- Token n;
+    Vector v;
+    AtRule old = getAtRule();
+    AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
+    setAtRule(alphabetrule);
+    Token n;
 }
 {
- try {
-   <PHONETIC_ALPHABET_SYM> ( <S> )* n=<STRING> ( <S> )* ";"
-   {
-	if (!ac.getCssVersion().equals("css3")) {
-	    skipStatement();
-	    addError(new InvalidParamException("noatruleyet", "", ac),
-						 getAtRule().toString());
-        }
+    try {
+	<PHONETIC_ALPHABET_SYM> ( <S> )* n=<STRING> ( <S> )* ";"
+	    {
+		if (!ac.getCssVersion().equals("css3")) {
+		    skipStatement();
+		    addError(new InvalidParamException("noatruleyet", "", ac),
+			     getAtRule().toString());
+		}
 
-        alphabetrule.addAlphabet(convertIdent(n.image), ac);
+		alphabetrule.addAlphabet(convertIdent(n.image), ac);
 
-    	if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
-	    newAtRule(getAtRule());	
-        }
+		if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
+		    newAtRule(getAtRule());	
+		}
         
-   }
- } catch (ParseException e) {
+	    }
+    } catch (ParseException e) {
 	if (!ac.getCssVersion().equals("css1")) {
 	    addError(e, skipStatement()); 
         }
- } finally {
-     setAtRule(old);
- }
+    } finally {
+	setAtRule(old);
+    }
 }
 
 /**
@@ -1010,13 +1037,14 @@ void phoneticAlphabet() :
 void atRuleDeclaration() :
 {Token n;}
 {
- n=<ATKEYWORD>
-    {
-	//ac.getFrame().addWarning("at-rule", token.toString());
-	ac.getFrame().addError(
-        	new CssError(new InvalidParamException("at-rule", token, ac)));
-	skipStatement();
-    }
+    n=<ATKEYWORD>
+	{
+	    //ac.getFrame().addWarning("at-rule", token.toString());
+	    ac.getFrame().addError(
+		          new CssError(new InvalidParamException("at-rule", 
+								 token, ac)));
+	    skipStatement();
+	}
 }
 
 /**
@@ -1025,8 +1053,10 @@ void atRuleDeclaration() :
 void operator(CssExpression expr) :
 {}
 {
-  "/" ( <S> )* { if (expr.getCount() > 0) expr.setOperator('/'); }
-| "," ( <S> )* { if (expr.getCount() > 0) expr.setOperator(','); }
+    // FIXME ( <DIV> | <COMMA> ) ( <S> )*
+    ( <DIV> { if (expr.getCount() > 0) expr.setOperator('/'); }
+    | <COMMA> { if (expr.getCount() > 0) expr.setOperator(','); }
+    ) ( <S> )*
 }
 
 /**
@@ -1034,16 +1064,18 @@ void operator(CssExpression expr) :
  */
 char combinator() :
 {
-char connector = ' ';
+    char connector = ' ';
 }
 {
-    "+" ( <S> )* {  return '+'; }
-  | ">" ( <S> )* { return '>'; }
-  | "~" ( <S> )* { return '~'; }
-  | <S>  ( ( "+" { connector = '+'; } 
-           | ">" { connector = '>'; } 
-	   | "~" { connector = '~'; }) 
-  ( <S> )* )? { return connector; }
+    ( (   <PLUS> { connector = '+' ; }
+        | <GREATER> { connector = '>' ; }
+        | <TILDE> { connector = '~' ; }
+      ) ( <S> )*
+    | ( <S> )+ { connector = ' ' ; }
+    )
+    {
+	return connector;
+    }
 }
 
 /**
@@ -1052,8 +1084,9 @@ char connector = ' ';
 char unaryOperator() :
 {}
 {
-  "-" { return '-'; }
-| "+" { return '+'; }
+    // FIXME <MINUS> | <PLUS>
+    <MINUS> { return '-'; }
+    | <PLUS> { return '+'; }
 }
 
 /**
@@ -1062,8 +1095,8 @@ char unaryOperator() :
 String property() :
 {Token n; }
 {
-  n=<IDENT> ( <S> )* { currentProperty = convertIdent(n.image); 
-		       return currentProperty; }
+    n=<IDENT> ( <S> )* { currentProperty = convertIdent(n.image); 
+			 return currentProperty; }
 }
 
 /**
@@ -1071,53 +1104,53 @@ String property() :
  */
 void ruleSet() :
 { CssSelectors contextual;
-  Vector context_set = new Vector();
-  Vector value_set = null;
-  currentContext = context_set;
+    Vector context_set = new Vector();
+    Vector value_set = null;
+    currentContext = context_set;
 }
 {
- try {
-     contextual=selector()
-     { 
-	if (contextual != null) {
-        context_set.addElement(contextual); 
-       }
-     }
+    try {
+	contextual=selector()
+	    { 
+		if (contextual != null) {
+		    context_set.addElement(contextual); 
+		}
+	    }
    
-     ( <COMMA> ( <S> )*
-       contextual=selector()
-       { if (contextual != null) {
-          context_set.addElement(contextual); 
-         }
-       }  
-     )*
-     <LBRACE> ( <S> )*
-     value_set=declarations()
-     <RBRACE> ( <S> )*
-    {
-      markRule = true;
+	( <COMMA> ( <S> )*
+	  contextual=selector()
+	    { if (contextual != null) {
+		    context_set.addElement(contextual); 
+		}
+	    }  
+	  )*
+	    <LBRACE> ( <S> )*
+	    value_set=declarations()
+	    <RBRACE> ( <S> )*
+	    {
+		markRule = true;
 
-/*      if (value_set == null) {
-	ac.getFrame().addWarning("no-declaration");
-      } else {*/
-	if (value_set != null) {
-	  for (Enumeration e = context_set.elements(); e.hasMoreElements();) {
-	      handleRule((CssSelectors) e.nextElement(), value_set);
-          }
-     	  setSelectorList(context_set);
-          endOfRule();
-      }
-      currentContext = null;
+		/*      if (value_set == null) {
+			ac.getFrame().addWarning("no-declaration");
+			} else {*/
+		if (value_set != null) {
+		    for (Enumeration e = context_set.elements(); e.hasMoreElements();) {
+			handleRule((CssSelectors) e.nextElement(), value_set);
+		    }
+		    setSelectorList(context_set);
+		    endOfRule();
+		}
+		currentContext = null;
+	    }
+    } catch (ParseException e) {
+	if (ac.getProfile() != null) {
+	    if (!ac.getProfile().equals("mobile") && !context_set.isEmpty()) {
+		addError(e, skipStatement()); 
+	    }
+	}
+    } catch (TokenMgrError e) {
+	addError(new ParseException(e.getMessage()), skipStatement());
     }
- } catch (ParseException e) {
-     if (ac.getProfile() != null) {
-        if (!ac.getProfile().equals("mobile") && !context_set.isEmpty()) {
-           addError(e, skipStatement()); 
-        }
-     }
- } catch (TokenMgrError e) {
-     addError(new ParseException(e.getMessage()), skipStatement());
- }
 }
 
 Vector declarations() :
@@ -1128,40 +1161,40 @@ Vector declarations() :
         return null;
     }
 
-  CssProperty values;
-  Vector value_set   = new Vector();
-  boolean wrong_value = true;
+    CssProperty values;
+    Vector value_set   = new Vector();
+    boolean wrong_value = true;
 }
 {    
-     ( values=declaration() 
-       { if (values != null) {
-	   value_set.addElement(values);
-	   wrong_value = false;
-       } /* else {
-	   wrong_value = true;
-	   } */
-         currentProperty = null;
-       }
-     )? 
-     ( ";" ( <S> )*
-       ( values=declaration() 
+    ( values=declaration() 
 	{ if (values != null) {
-	   value_set.addElement(values);
-	   wrong_value = false;
-        }/* else {
-	   wrong_value = true;
-	   }*/
-         currentProperty = null;
-       }
-       )? )* 
-    {  	
-	if (!wrong_value) {
-	    addProperty(value_set);
- 	    return value_set; 
-	} else {
-	    return null;
+		value_set.addElement(values);
+		wrong_value = false;
+	    } /* else {
+		 wrong_value = true;
+		 } */
+	  currentProperty = null;
 	}
-    }
+      )? 
+	( ";" ( <S> )*
+	  ( values=declaration() 
+	      { if (values != null) {
+		      value_set.addElement(values);
+		      wrong_value = false;
+		  }/* else {
+		      wrong_value = true;
+		      }*/
+		currentProperty = null;
+	      }
+	    )? )* 
+	{  	
+	    if (!wrong_value) {
+		addProperty(value_set);
+		return value_set; 
+	    } else {
+		return null;
+	    }
+	}
 }
 
 /**
@@ -1171,84 +1204,84 @@ CssSelectors selector() :
 {   char comb;
     CssSelectors current; }
 {
- try {
-   current=simple_selector(null) 
-       ( LOOKAHEAD(2) 
-         comb=combinator() { 
-	       if (ac.getProfile() != null) {
-			  if (ac.getProfile().equals("mobile") || 
-				getAtRule().toString().equals("@media atsc-tv") ||
-				ac.getCssVersion().equals("css1")) {
-			    if (comb == '+')
-				throw new InvalidParamException("nocomb", "+", ac);
-			    if (comb == '>')
-				throw new InvalidParamException("nocomb", ">", ac);
-			  } else if (ac.getProfile().equals("tv")) {
-			    if (comb == '+')
-				throw new InvalidParamException("nocomb", "+", ac);
-		    
-			  }
-			}
-			if (!ac.getCssVersion().equals("css3")) {
-	    	      if (comb == '~') {
-			  throw new InvalidParamException("nocomb", "~", ac);
-            }
-	    }
+    try {
+	current=simple_selector(null) 
+	    (  /* FIXME see combinator() */
+	      comb=combinator() { 
+		if (ac.getProfile() != null) {
+		    if (ac.getProfile().equals("mobile") || 
+			getAtRule().toString().equals("@media atsc-tv") ||
+			ac.getCssVersion().equals("css1")) {
+			if (comb == '+')
+			    throw new InvalidParamException("nocomb", "+", ac);
+			if (comb == '>')
+			    throw new InvalidParamException("nocomb", ">", ac);
+		    } else if (ac.getProfile().equals("tv")) {
+			if (comb == '+')
+			    throw new InvalidParamException("nocomb", "+", ac);
+		   
+		    }
+		}
+		if (!ac.getCssVersion().equals("css3")) {
+		    if (comb == '~') {
+			throw new InvalidParamException("nocomb", "~", ac);
+		    }
+		}
 		switch(comb) {
-                case '+': 
-                    current.addAdjacent(new AdjacentSelector());
-                    break;
-                case '>':
-                    current.addChild(new ChildSelector());
-                    break;
-                default:
-                    current.addDescendant(new DescendantSelector());
-                }                  
-              //current.setConnector(comb); 
-	  }
-	 current=simple_selector(current) 
-	 )* ( <S> )*
-   { return current; }
- }
- catch (InvalidParamException ie) {    
-     skipStatement();
-     removeThisRule();
-     ac.getFrame().addError(new CssError(ie));
-    
-     return null;
- }
- catch (ParseException e) {
+		case '+': 
+		current.addAdjacent(new AdjacentSelector());
+		break;
+		case '>':
+		current.addChild(new ChildSelector());
+		break;
+		default:
+		current.addDescendant(new DescendantSelector());
+		}                  
+		//current.setConnector(comb); 
+	    }
+	      current=simple_selector(current) 
+	      )* 
+	    { return current; }
+    }
+    catch (InvalidParamException ie) {    
+	skipStatement();
+	removeThisRule();
+	ac.getFrame().addError(new CssError(ie));
+	
+	return null;
+    }
+    catch (ParseException e) {
         validSelector = false;
 	if (ac.getProfile() != null) {
 	    if(!(ac.getProfile().equals("mobile"))) {
-	       Token t = getToken(1);
-	       StringBuffer s = new StringBuffer();
-	       s.append(getToken(0).image);
-	       while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-			 s.append(t.image);
-			 getNextToken();
-			 t = getToken(1);
-     	   }
+		Token t = getToken(1);
+		StringBuffer s = new StringBuffer();
+		s.append(getToken(0).image);
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+		    s.append(t.image);
+		    getNextToken();
+		    t = getToken(1);
+		}
 
-     	   addError(e, s.toString());
+		addError(e, s.toString());
      
-           return null;
-        }
-    } else {
-	       Token t = getToken(1);
-	       StringBuffer s = new StringBuffer();
-	       s.append(getToken(0).image);
-	       while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-			 s.append(t.image);
-			 getNextToken();
-			 t = getToken(1);
-     	   }
+		return null;
+	    }
+	} else {
+	    Token t = getToken(1);
+	    StringBuffer s = new StringBuffer();
+	    s.append(getToken(0).image);
+	    while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+		s.append(t.image);
+		getNextToken();
+		t = getToken(1);
+	    }
 
-     	   addError(e, s.toString());
+	    addError(e, s.toString());
      
-           return null;    	
+	    return null;    	
+	}
     }
-  }
 }
 
 /**
@@ -1259,11 +1292,11 @@ CssSelectors externalSelector() :
 {
     CssSelectors current; }
 {
-   current=simple_selector(null) 
-       ( ( <S> )+
-	 current=simple_selector(current) 
-	 )*
-   { return current; }
+    current=simple_selector(null) 
+	( ( <S> )+
+	  current=simple_selector(current) 
+	  )*
+	{ return current; }
 }
 
 /**
@@ -1271,36 +1304,20 @@ CssSelectors externalSelector() :
  */
 CssSelectors simple_selector(CssSelectors next) :
 { CssSelectors selector = new CssSelectors(ac, next);
-  selector.setAtRule(getAtRule());
-  //selector.setUserMedium(getUserMedium());
+    selector.setAtRule(getAtRule());
+    //selector.setUserMedium(getUserMedium());
 }
 {
     element_name(selector) ( hash(selector) | _class(selector)
 			     | attrib(selector) | pseudo(selector) )*
-   {   
-       return selector;
-    }
- | hash(selector) 
-  ( _class(selector) | attrib(selector) | pseudo(selector) )*
-   {
-       return selector;
-   }
- | _class(selector) 
-       ( hash(selector) | _class(selector) 
-	 | attrib(selector) | pseudo(selector) )*
-   {
-       return selector;
-    }
- | pseudo(selector) ( hash(selector) | _class(selector) 
-		      | attrib(selector) | pseudo(selector) )*
-   {
-       return selector;
-    }
- | attrib(selector) ( hash(selector) | _class(selector) 
-		      | attrib(selector) | pseudo(selector) )*
-   {
-       return selector;
-    }
+	{   
+	    return selector;
+	}
+    | ( hash(selector) | _class(selector) | attrib(selector) 
+	| pseudo(selector) )+ 
+	{
+	    return selector;
+	}
 }
 
 /**
@@ -1309,78 +1326,79 @@ CssSelectors simple_selector(CssSelectors next) :
 void _class(CssSelectors s) :
 {Token n; }
 {
-/*  "." n=<IDENT> { */
+    /*  "." n=<IDENT> { */
     n=<CLASS> {
-      try {
-	  s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
-//        s.addAttribute("class", convertIdent(n.image.substring(1)),
-//           CssSelectors.ATTRIBUTE_CLASS_SEL);
-      } catch (InvalidParamException e) {
-	     removeThisRule();
-	     ac.getFrame().addError(new CssError(e));
-      }
-   } 
-  
-  | n=deprecated_class() {
-      if (n.image.charAt(0) == '.') {
-n.image = n.image.substring(1);
+	try {
+	    s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
+	    //        s.addAttribute("class", convertIdent(n.image.substring(1)),
+	    //           CssSelectors.ATTRIBUTE_CLASS_SEL);
+	} catch (InvalidParamException e) {
+	    removeThisRule();
+	    ac.getFrame().addError(new CssError(e));
+	}
+    } 
+    /* FIXME <DOT> n=deprecated_class() ... */ 
+    | n=deprecated_class() {
+	if (n.image.charAt(0) == '.') {
+	    n.image = n.image.substring(1);
           
-          // the class with the first digit escaped
-          String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
-          cl += n.image.substring(1);
+	    // the class with the first digit escaped
+	    String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
+	    cl += n.image.substring(1);
           
-          String profile = ac.getProfile();
-          if(profile == null || profile.equals("") || profile.equals("none")) {
-              profile = ac.getCssVersion(); 
-          }     
+	    String profile = ac.getProfile();
+	    if(profile == null || profile.equals("") || profile.equals("none")) {
+		profile = ac.getCssVersion(); 
+	    }     
           
-          if(!profile.equals("css1")) {
-              addError(new ParseException(ac.getMsg().getString(
-        	      "parser.old_class")),
-        	      "To make \"." + n.image + "\" a valid class, CSS2" +
-        	      " requires the first digit to be escaped " +
-        	      "(\"." + cl + "\")");
-              s.addClass(new ClassSelector(n.image));                            
-              removeThisRule();              
-          }
-          else {
-              CssLength length = new CssLength();
-              boolean isLength = false;
-              try {              
-        	  length.set(n.image, ac);
-        	  isLength = true;               
-              }
-              catch(Exception e) {
-        	  isLength = false;              
-              }
-              if(isLength) {
-        	  addError(new ParseException(ac.getMsg().getString(
-        	  "parser.class_dim")), n.image);
-        	  s.addClass(new ClassSelector(n.image));                            
-        	  removeThisRule();
-              }        
-              else {
-        	  try {
-        	      // for css > 1, we add the rule to have a context, 
-        	      // and we then remove it
-        	      s.addClass(new ClassSelector(n.image));                      	          	  
+	    if(!profile.equals("css1")) {
+		addError(new ParseException(ac.getMsg().getString(
+								  "parser.old_class")),
+			 "To make \"." + n.image + "\" a valid class, CSS2" +
+			 " requires the first digit to be escaped " +
+			 "(\"." + cl + "\")");
+		s.addClass(new ClassSelector(n.image));                            
+		removeThisRule();              
+	    }
+	    else {
+		CssLength length = new CssLength();
+		boolean isLength = false;
+		try {              
+		    length.set(n.image, ac);
+		    isLength = true;               
+		}
+		catch(Exception e) {
+		    isLength = false;              
+		}
+		if(isLength) {
+		    addError(new ParseException(ac.getMsg().getString(
+								      "parser.class_dim")), n.image);
+		    s.addClass(new ClassSelector(n.image));                            
+		    removeThisRule();
+		}        
+		else {
+		    try {
+			// for css > 1, we add the rule to have a context, 
+			// and we then remove it
+			s.addClass(new ClassSelector(n.image));                      	          	  
         	      
-        	      ac.getFrame().addWarning("old_class");              
-        	  } catch (InvalidParamException e) {
-        	      ac.getFrame().addError(new CssError(e));
-        	      removeThisRule();
-        	  }
-              }
-          }
-      } else {
-	  throw new ParseException("Unrecognized ");
-      }
-  }
+			ac.getFrame().addWarning("old_class");              
+		    } catch (InvalidParamException e) {
+			ac.getFrame().addError(new CssError(e));
+			removeThisRule();
+		    }
+		}
+	    }
+	} else {
+	    throw new ParseException("Unrecognized ");
+	}
+    }
 }
 
 Token deprecated_class() :
 {Token n; }
 {
+    /* FIXME ( n=<LENGTH> | ... ) { return n;} doesn't work ? */
     n=<LENGTH> { return n; }
     | n=<EMS> { return n; }
     | n=<EXS> { return n; }
@@ -1397,17 +1415,18 @@ Token deprecated_class() :
 void element_name(CssSelectors s) :
 {Token n; }
 {
-  n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
-      s.addType(new TypeSelector(convertIdent(n.image)));}
-  | "*" { 
+    n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
+	s.addType(new TypeSelector(convertIdent(n.image)));}
+    /* FIXME <ANY> */
+    | <ANY> { 
         if (!ac.getCssVersion().equals("css1")) {
-//          s.setElement(null);
+	    //          s.setElement(null);
             s.addUniversal(new UniversalSelector());
         } else {
-                ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-                "*", ac.getCssVersion(), ac)));
-            }
-        }
+	    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
+									  "*", ac.getCssVersion(), ac)));
+	}
+    }
 }
 
 /**
@@ -1420,8 +1439,9 @@ void attrib(CssSelectors s) :
     int selectorType = CssSelectors.ATTRIBUTE_ANY;
 }
 {
-  "[" ( <S> )* att=<IDENT> ( <S> )*
-      ( ("=" { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
+    <LBRACKET> ( <S> )* att=<IDENT> ( <S> )*
+	/* FIXME <EQ> */
+	( (<EQ> { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
         | <INCLUDES> { selectorType = CssSelectors.ATTRIBUTE_ONE_OF; }
 	| <DASHMATCH> { selectorType = CssSelectors.ATTRIBUTE_BEGIN; }
 	| <PREFIXMATCH> { selectorType = CssSelectors.ATTRIBUTE_START; }
@@ -1434,7 +1454,7 @@ void attrib(CssSelectors s) :
 	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1);} 
 			   ) 
 	   ( <S> )* ) )?
-  "]"
+  <RBRACKET>
       {
 	  if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
 	      try {
@@ -1497,7 +1517,8 @@ Token language = null;
 CssSelectors param = null;
 }
 {
-  "::" ( ( n=<IDENT>
+    /* FIXME declade :: as token */
+  <PSEUDOCLASS_SYM> ( ( n=<IDENT>
 	  { 
 		try {
 			if (ac.getCssVersion().equals("css3")) {
@@ -1511,9 +1532,10 @@ CssSelectors param = null;
 		     removeThisRule();
 		     ac.getFrame().addError(new CssError(e));
 		}
- } ))
+	  } ) )
 	|  
-  ":" ( ( n=<IDENT>
+      // FIXME <COLON>
+  <COLON> ( ( n=<IDENT>
 	  { 
 		try {
 		     s.addPseudo(convertIdent(n.image).toLowerCase());
@@ -1522,27 +1544,30 @@ CssSelectors param = null;
 		     removeThisRule();
 		     ac.getFrame().addError(new CssError(e));
 		}
- } )
-	| ( n=<FUNCTION> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> | param=simple_selector(null)) ( <S> )* ")"
-	    // :lang(en) is a very special case ...
-	    // since CSS3: contains(String), nth-of-type(n) and nth-child(n) and not(simple selector) too
-	    { 
+	  } )
+	// FXIXME rewrite to make :lang( use a special case
+	| ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ) {
 		try {
-			if (language != null) {
-				s.setPseudoFun(convertStringIndex(n.image, 0,
-				         n.image.length() -1).toLowerCase(),
-		    	  	         convertIdent(language.image));
-		    } else if (param != null) {
-				s.setPseudoFun(convertStringIndex(n.image, 0,
-				         n.image.length() -1).toLowerCase(),
-		    	  	         param.toString());
-		    }
+		    s.setPseudoFun(convertStringIndex(n.image, 0,
+					    n.image.length() -1).toLowerCase(),
+				   convertIdent(language.image));
 		} catch(InvalidParamException e) {
 			removeThisRule();
 			ac.getFrame().addError(new CssError(e));
 		}
-	  } )
-	)
+	    }
+	    | ( n=<FUNCTION> ( <S> )* param=simple_selector(null) ) {
+		try {
+		    s.setPseudoFun(convertStringIndex(n.image, 0,
+					    n.image.length() -1).toLowerCase(),
+				   param.toString());
+		} catch(InvalidParamException e) {
+		    removeThisRule();
+		    ac.getFrame().addError(new CssError(e));
+		} 
+	    }
+	    ) ( <S> )* <LPARAN>
+	    )
 }
 
 /**
@@ -1860,6 +1885,12 @@ String skipStatement() {
     if (tok.image != null) {
 	s.append(tok.image);	
     }
+    /* FIXME here, two option, we skip during an error, or outside
+       an error, currently both can fail with a TokenMgrError, should
+       we catch all, or only when filling message for errors? 
+       
+       -> taking the "always skip" approach.
+    */
     while (true) {
 	try {
 	    tok = getToken(1);
@@ -1891,7 +1922,6 @@ String skipStatement() {
     }
     
     // skip white space
-    // FIXME check for error as well here.
     while (tok.kind == S) {
 	getNextToken();
 	tok = getToken(1);
@@ -1904,6 +1934,8 @@ String skip_to_matching_brace() {
     StringBuffer s = new StringBuffer();
     Token tok;
     int nesting = 1;
+    /* FIXME
+       same as above */
     while (true) {
 	tok = getToken(1);
 	if (tok.kind == EOF) {
@@ -1943,7 +1975,7 @@ void skipAfterExpression(Exception e) {
     Token t = getToken(1);
     StringBuffer s = new StringBuffer();
     s.append(getToken(0).image);
-    
+    // FIXME same as above (token consumption may throw an exception)
     while ((t.kind != RBRACE) && (t.kind != SEMICOLON) && (t.kind != EOF)) {
 	s.append(t.image);
 	getNextToken();
