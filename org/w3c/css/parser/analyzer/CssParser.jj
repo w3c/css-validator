@@ -283,18 +283,18 @@ public abstract class CssParser {
 			  char operator, Token n, int token) 
 	throws ParseException {
 	if (n != null) {
-  
 	    if (ac.getCssVersion().equals("css1") && 
 		(n.image).equals("inherit")) {
 		incompatible_error = true;
 	    }	
-	    
+	    String val = (operator == ' ') ? n.image : operator+n.image;
+
 	    if (n.kind == CssParserConstants.IDENT) {
-		v.set( convertIdent(operator+n.image).trim(), ac);
+		v.set(convertIdent(val), ac);
 	    } else if (n.kind == CssParserConstants.STRING) {
-		v.set((operator+n.image).trim(), ac);
+		v.set(val, ac); 
 	    } else {
-		v.set((operator+n.image).trim(), ac);
+		v.set(val, ac); 
 	    }
 	}
 	expr.addValue(v);
