@@ -11,8 +11,7 @@ options {
     IGNORE_CASE  = true;
     STATIC = false;
     /*  DEBUG_TOKEN_MANAGER = true;
-	DEBUG_PARSER = true;  */
-	  
+	DEBUG_PARSER = true; */
 }
 
 PARSER_BEGIN(CssParser)
@@ -77,7 +76,7 @@ import org.w3c.css.selectors.attributes.AttributeSuffix;
 /**
  * A CSS3 parser  
  *
- * @author Philippe Le H???garet and Sijtsche Smeman
+ * @author Philippe Le Hegaret and Sijtsche Smeman
  * @version $Revision$
  */
 public abstract class CssParser {
@@ -559,6 +558,17 @@ TOKEN : // FIXME force to be case-sensitive
     < FUNCTION : <IDENT> "(" >
 }
 
+/* Quick and dirty way to catch HTML tags starting CSS documents 
+  (common mistake) */
+<DEFAULT>
+    TOKEN:
+{
+    <HTMLSTARTTAG : "<" ( <S> )* <IDENT> ( <S> )* 
+	                ( <IDENT> "=" ( <IDENT> | <STRING> ) ( <S> )* )* 
+	            ">" >
+  | <HTMLENDTAG : "</" ( <S> )* <IDENT> ( <S> )* ">" >
+}
+
 //<DEFAULT, IN_COMMENT>
 //TOKEN :
 //{ /* avoid token manager error */
@@ -575,12 +585,21 @@ TOKEN : // FIXME force to be case-sensitive
  * @exception ParseException exception during the parse
  */
 void parserUnit() :
-{}
 {
-    ( charset() )?
-    ( <S> | ignoreStatement() )*
-    ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
-    afterImportDeclaration()
+    Token n = null;
+}
+{
+    try {
+	// used as an error recovery for HTML tags in CSS pages
+        ( ( n=<HTMLSTARTTAG> | n=<HTMLENDTAG> ) {
+	    addError ( new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), n.image); } )*
+	( charset() )?
+	    ( <S> | ignoreStatement() )*
+	    ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
+	    afterImportDeclaration()
+	 } catch (TokenMgrError err) {
+	addError (new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), err.getMessage());
+    }
     <EOF>
 }
 
@@ -641,7 +660,7 @@ void afterImportDeclaration() :
 	    }
 	    else {
 		ParseException e = 
-		new ParseException("Parse error - Unrecognized ");
+		    new ParseException(ac.getMsg().getString("Parse error - Unrecognized"));
 		addError(e, ret);
 	    }
 	}
@@ -1882,6 +1901,8 @@ JAVACODE
 String skipStatement() {
     StringBuffer s = new StringBuffer();
     Token tok = getToken(0);
+    boolean first = true;
+
     if (tok.image != null) {
 	s.append(tok.image);	
     }
@@ -1895,7 +1916,11 @@ String skipStatement() {
 	try {
 	    tok = getToken(1);
 	    if (tok.kind == EOF) {
-		return null;
+		if (first) {
+		    return null;
+		} else {
+		    break;
+		}
 	    } 
 	    s.append(tok.image);
 	    if (tok.kind == LBRACE) {
@@ -1919,6 +1944,7 @@ String skipStatement() {
 		return s.toString().trim();
 	    }
 	}
+	first = false;
     }
     
     // skip white space
