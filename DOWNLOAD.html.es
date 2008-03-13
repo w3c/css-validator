@@ -209,7 +209,7 @@ Support this tool, become a<br/>
 </a>
 </p>
 <p class="copyright">
-<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
+<a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2008
       <a href="http://www.w3.org/">
 <acronym title="World Wide Web Consortium">W3C</acronym>
 </a>&reg;
