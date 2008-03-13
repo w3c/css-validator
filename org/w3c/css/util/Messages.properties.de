@@ -250,6 +250,7 @@ error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Einlese-Fehler
+generator.dontmixhtml: Einlese-Fehler. Style sheets should not include HTML syntax. <!-- translation unavailable -->
 
 # used by org.w3c.css.parser.CssSelectors 
 error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontext %s vorkommen

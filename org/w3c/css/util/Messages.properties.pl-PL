@@ -279,6 +279,7 @@ error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
 
 # użyte przez org.w3c.css.parser.CssFouffa
 generator.unrecognize: Błšd parsowania
+generator.dontmixhtml: Błšd parsowania: Style sheets should not include HTML syntax. <!-- translation unavailable -->
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Unknown error

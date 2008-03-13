@@ -284,6 +284,7 @@ error.unrecognize: Trop de valeurs, ou valeurs non reconnues
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Erreur lors de l'analyse grammaticale.
+generator.dontmixhtml: Erreur de Syntaxe: une feuille de style ne peut inclure de fragments de HTML.
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Le pseudo-élément :%s ne peut apparaitre dans le contexte %s

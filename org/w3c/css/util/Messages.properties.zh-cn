@@ -293,6 +293,7 @@ generator.request: 导出你的样式表时发生错误 \
 请更正你的请求或发送邮件到 plh@w3.org.
 generator.unrecognized: 不能识别的
 generator.unrecognize: 语法错误
+generator.dontmixhtml: 语法错误. Style sheets should not include HTML syntax. <!-- translation unavailable -->
 generator.invalid-number: 无效数字
 generator.property: 无效数字
 generator.line: 行

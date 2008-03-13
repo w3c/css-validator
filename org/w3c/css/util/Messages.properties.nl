@@ -271,6 +271,7 @@ error.unrecognize: Te veel waarden of teveel onbekende waarden
 
 # gebruikt door org.w3c.css.parser.CssFouffa
 generator.unrecognize: Parse Error
+generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax. <!-- translation unavailable -->
 
 # gebruikt door org.w3c.css.parser.CssSelectors
 error.pseudo-element: Het pseudo-element :%s kan niet in deze context voorkomen %s

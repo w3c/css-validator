@@ -276,6 +276,7 @@ error.unrecognize: Faltan valores o no se reconocen los valores
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Error de análisis sintáctico
+generator.dontmixhtml: Error sintáctica. Hoja de estilo ne pueden incluir fragmentos de HTML. 
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: El pseudo-elemento :%s no puede aparecer aquí en el contexto %s

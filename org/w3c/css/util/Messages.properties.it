@@ -275,6 +275,7 @@ error.unrecognize: Vi sono troppi valori, oppure i valori non sono riconosciuti
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Parse Error
+generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax. <!-- translation unavailable -->
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Lo pseudo-element :%s non può apparire in questo contesto %s

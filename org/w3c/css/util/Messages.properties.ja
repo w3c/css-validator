@@ -256,6 +256,7 @@ error.unrecognize: 値が多すぎるか、もしくは値が解析できませ�
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: 文法解析エラーが発生しました
+generator.dontmixhtml: 文法解析エラーが発生しました. Style sheets should not include HTML syntax. <!-- translation unavailable -->
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
