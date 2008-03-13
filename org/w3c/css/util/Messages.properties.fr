@@ -102,7 +102,7 @@ valid_CSS_info: Votre feuille de style CSS validée :
 # rules_list: <!-- generated on the fly -->
 CSS_not_found: Aucune feuille de style trouvée
 home: Accueil
-about: Àgrave; propos
+about: À propos
 doc: Documentation
 dl: Télécharger
 feedback: Contact
