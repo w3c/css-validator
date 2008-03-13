@@ -592,13 +592,13 @@ void parserUnit() :
     try {
 	// used as an error recovery for HTML tags in CSS pages
         ( ( n=<HTMLSTARTTAG> | n=<HTMLENDTAG> ) {
-	    addError ( new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), n.image); } )*
+	    addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); } )*
 	( charset() )?
 	    ( <S> | ignoreStatement() )*
 	    ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
 	    afterImportDeclaration()
 	 } catch (TokenMgrError err) {
-	addError (new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), err.getMessage());
+	addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
     }
     <EOF>
 }
@@ -660,7 +660,7 @@ void afterImportDeclaration() :
 	    }
 	    else {
 		ParseException e = 
-		    new ParseException(ac.getMsg().getString("Parse error - Unrecognized"));
+		    new ParseException(ac.getMsg().getString("generator.unrecognize"));
 		addError(e, ret);
 	    }
 	}
