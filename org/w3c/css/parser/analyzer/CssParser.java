@@ -359,7 +359,7 @@ public abstract class CssParser implements CssParserConstants {
           jj_consume_token(-1);
           throw new ParseException();
         }
-            addError ( new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), n.image);
+            addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CHARSET_SYM:
@@ -437,7 +437,7 @@ public abstract class CssParser implements CssParserConstants {
       }
       afterImportDeclaration();
     } catch (TokenMgrError err) {
-        addError (new ParseException(ac.getMsg().getString("Parse error - Unrecognized")), err.getMessage());
+        addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
     }
     jj_consume_token(0);
   }
@@ -551,7 +551,7 @@ public abstract class CssParser implements CssParserConstants {
             }
             else {
                 ParseException e =
-                    new ParseException(ac.getMsg().getString("Parse error - Unrecognized"));
+                    new ParseException(ac.getMsg().getString("generator.unrecognize"));
                 addError(e, ret);
             }
       }
