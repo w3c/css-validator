@@ -16,8 +16,8 @@
         <option selected="selected" value="css21">$css21</option>
         <option value="css3">$css3</option>
         <option value="svg">$SVG</option>
-        <option value="svgbasic">$SVG_basic</option>
-        <option value="svgtiny">$SVG_tiny</option>  
+        <option value="svgbasic">$svgbasic</option>
+        <option value="svgtiny">$svgtiny</option>  
         <option value="mobile">$mobile</option>
         <option value="atsc-tv">$ATSC_TV_profile</option>
         <option value="tv">$TV_profile</option>

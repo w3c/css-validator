@@ -12,8 +12,8 @@ css2: CSS niveau 2
 css21: CSS niveau 2.1
 css3: CSS niveau 3
 SVG: SVG
-SVG_basic: SVG Basic
-SVG_tiny: SVG tiny
+svgbasic: SVG Basic
+svgtiny: SVG tiny
 mobile: Mobile
 ATSC_TV_profile: Profil ATSC TV
 TV_profile: Profil TV

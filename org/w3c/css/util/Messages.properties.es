@@ -12,8 +12,8 @@ css2: CSS versión 2
 css21: CSS versión 2.1
 css3: CSS versión 3
 SVG: SVG
-SVG_basic: SVG Básico
-SVG_tiny: SVG Reducido
+svgbasic: SVG Básico
+svgtiny: SVG Reducido
 mobile: Móvil
 ATSC_TV_profile: Perfil de TV ATSC
 TV_profile: Perfil de TV
