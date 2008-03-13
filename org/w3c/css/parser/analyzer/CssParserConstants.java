@@ -95,6 +95,8 @@ public interface CssParserConstants {
   int CLASS = 92;
   int FUNCTIONLANG = 93;
   int FUNCTION = 94;
+  int HTMLSTARTTAG = 95;
+  int HTMLENDTAG = 96;
 
   int DEFAULT = 0;
   int IN_COMMENT = 1;
@@ -195,6 +197,8 @@ public interface CssParserConstants {
     "<CLASS>",
     "\"lang(\"",
     "<FUNCTION>",
+    "<HTMLSTARTTAG>",
+    "<HTMLENDTAG>",
   };
 
 }
