@@ -104,6 +104,10 @@ public class CssBackgroundCSS2 extends CssProperty
 	    if(manyValues && val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
 	    }
+	    // quoted strings are not allowed (CssString)
+	    if(check && (val instanceof CssString)) {
+		throw new InvalidParamException("unrecognize", ac);
+	    }
 
 	    if (color == null) {
 		try {
@@ -293,35 +297,41 @@ public class CssBackgroundCSS2 extends CssProperty
 	if (same) {
 	    return inherit.toString();
 	} else {*/
-	String ret = "";
-	if(color != null) {
-	    ret += color;
+	StringBuilder sb = new StringBuilder();
+	boolean addspace = false;
+
+	if (color != null) {
+	    sb.append(color);
+	    addspace = true;
 	}
-	if(image != null) {
-	    if(ret != null) {
-		ret += " ";
+	if (image != null) {
+	    if(addspace) {
+		sb.append(' ');
 	    }
-	    ret += image;
+	    sb.append(image);
+	    addspace = true;
 	}
-	if(repeat != null) {
-	    if(ret != null) {
-		ret += " ";
+	if (repeat != null) {
+	    if (addspace) {
+		sb.append(' ');
 	    }
-	    ret += repeat;
+	    sb.append(repeat);
+	    addspace = true;
 	}
-	if(attachment != null) {
-	    if(ret != null) {
-		ret += " ";
+	if (attachment != null) {
+	    if (addspace) {
+		sb.append(' ');
 	    }
-	    ret += attachment;
+	    sb.append(attachment);
+	    addspace = true;
 	}
-	if(position != null) {
-	    if(ret != null) {
-		ret += " ";
+	if (position != null) {
+	    if (addspace) {
+		sb.append(' ');
 	    }
-	    ret += position;
+	    sb.append(position);
 	}
-	return ret;
+	return sb.toString();
 	/*
 	if (color.byUser)
 	    ret += " " + color.toString();
