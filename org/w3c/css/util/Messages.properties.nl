@@ -304,6 +304,8 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # gebruikt door the parser
 parser.semi-colon: poging een puntkomma te vinden voor de eigenschapnaam: voeg deze toe
 
+parser.unknown-dimension: Unknown dimension
+
 parser.old_class:In CSS1 kon de naam van een klasse beginnen met een getal (".55ft"), \
 tenzij het een dimensie was (".55in"). In CSS2 worden zulke klassen geparsed als \
 onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)

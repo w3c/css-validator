@@ -319,6 +319,8 @@ generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 parser.semi-colon: impossible de trouver un point-virgule avant le nom de la \
 propriété, ajoutez-le.
 
+parser.unknown-dimension: Dimension inconnue
+
 parser.old_class: En CSS1, il était possible d'avoir un nom de classe \
 commençant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
 (".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \

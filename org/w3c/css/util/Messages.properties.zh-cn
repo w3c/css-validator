@@ -305,6 +305,8 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: 试图寻找属性名前面的冒号。加上！
 
+parser.unknown-dimension: Unknown dimension
+
 # Xu Ting commented out this translation @ 2006.6.9
 # I changed a little bit of this translation.
 #parser.old_class:在CSS1，类名应该以点开始 (".55ft"), \

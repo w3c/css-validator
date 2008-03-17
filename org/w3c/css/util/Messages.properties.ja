@@ -291,6 +291,8 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: プロパティ名の前にセミコロン(;)を追加してみて下さい
 
+parser.unknown-dimension: Unknown dimension
+
 parser.old_class: CSS1では、 クラス名はdimension (".55in" など) でない限り、数字から始める事ができました (".55ft" など)。\
 CSS2では、このようなクラスは未知の dimension として解析されます。(これは、将来新しい単位が追加される可能性を保つためです)
 

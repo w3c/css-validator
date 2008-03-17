@@ -320,6 +320,8 @@ generator.doc:  <!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: attempt to find a semi-colon before the property name. add it
 
+parser.unknown-dimension: Unknown dimension
+
 parser.old_class: In CSS1, a class name could start with a digit (".55ft"), \
 unless it was a dimension (".55in"). In CSS2, such classes are parsed as \
 unknown dimensions (to allow for future additions of new units) \

@@ -319,6 +319,9 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # użyte przez parser
 parser.semi-colon: próba znalezienia rednika przed nazwš właciwoci. Dodaj go
 
+parser.unknown-dimension: Unknown dimension
+
+
 parser.old_class: W CSS1, nazwa klasy może zaczšć się od cyfry (".55ft"), \
 chyba, że jest to wymiar (".55in"). W CSS2 takie klasy sš parsowane jako \
 nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)

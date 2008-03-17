@@ -313,6 +313,8 @@ generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: Tentativa de encontrar un punto y coma antes del nombre de la propiedad. Añádalo
 
+parser.unknown-dimension: Unknown dimension
+
 parser.old_class: En CSS1, un nombre de clase puede empezar por un dígito (".55ft"), \
 excepto si es una magnitud de medida (".55in"). En CSS2, esas clases son interpretadas como \
 magnitudes de medida desconocidas (para permitir añadir nuevas magnitudes en un futuro)

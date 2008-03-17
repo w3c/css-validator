@@ -284,6 +284,8 @@ generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: Versuche ein Semikolon vor dem Eigenschaftsnamen zu finden. Füge es hinzu.
 
+parser.unknown-dimension: Unbekanntes dimension
+
 parser.old_class: In CSS1 konnte ein Klassenname mit einer Ziffer beginnen  (".55ft"), \
 es sei denn es handelte sich um eine Dimension (".55in"). In CSS2 werden solche Klassen als \
 unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einheiten zu erlauben)
