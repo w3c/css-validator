@@ -308,7 +308,7 @@ public final class Util {
             // nothing to escape in the string
             return s;
         }
-        StringBuffer sb = new StringBuffer(newLength);
+        StringBuilder sb = new StringBuilder(newLength);
         for (int i=0; i<length; i++){
             char c = s.charAt(i);
             int cint = 0xffff & c;
