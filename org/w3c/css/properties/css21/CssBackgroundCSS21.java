@@ -12,6 +12,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssString;
 
 /**
  * CssBackgroundCSS21<br />
@@ -34,7 +35,7 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
     public CssBackgroundCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 
-	CssValue val = expression.getValue();
+	CssValue val;
 	char op = SPACE;
 	boolean find = true;
 
@@ -59,6 +60,9 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 	    // if there are many values, we can't have inherit as one of them
 	    if(manyValues && val != null && val.equals(inherit)) {
 		throw new InvalidParamException("unrecognize", null, null, ac);
+	    }
+	    if(check && (val instanceof CssString)) {
+		throw new InvalidParamException("unrecognize", ac);
 	    }
 
 	    if (getColor2() == null) {
