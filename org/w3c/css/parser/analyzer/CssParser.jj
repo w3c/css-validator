@@ -8,10 +8,10 @@
  */
 
 options {
-    IGNORE_CASE  = true;
+    /*    IGNORE_CASE  = true; */
     STATIC = false;
-    /*  DEBUG_TOKEN_MANAGER = true;
-	DEBUG_PARSER = true; */
+    /*   DEBUG_TOKEN_MANAGER = true;
+	 DEBUG_PARSER = true; */
 }
 
 PARSER_BEGIN(CssParser)
@@ -380,7 +380,6 @@ PARSER_END(CssParser)
   | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
   | < #_STRING    : <STRING1> | <STRING2> >
   | < #_INVALID    : <INVALID1> | <INVALID2> >
-	// FIXME check _URL definition, CSS21 doesn't seem to match
   | < #_URL       : ( [ "!", "#", "$", "%", "&", "*", "+", "-"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >
   | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ >
   | < #_W         : ( <_S> )? >
@@ -413,7 +412,7 @@ TOKEN :
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN [IGNORE_CASE] :
 {
     < AND : "and" > 
 }  
@@ -453,19 +452,19 @@ TOKEN :
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN [IGNORE_CASE] :
 {
     < MEDIARESTRICTOR : "only" | "not" >
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN [IGNORE_CASE] :
 {
   < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* ")" >
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN [IGNORE_CASE] :
 {
   < LENGTH     : <NUM> "pt" 
                    | <NUM> "mm" 
@@ -487,13 +486,13 @@ TOKEN :
 }
 
 <DEFAULT>
-    TOKEN :
-{   /* FIXME multiple spaces allowed? */
+TOKEN [IGNORE_CASE] :
+{  
     < IMPORTANT_SYM : "!" ( <_W> )* "important" >
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN :
 {
     <PSEUDOCLASS_SYM : "::" >
 }
@@ -506,7 +505,7 @@ TOKEN : // FIXME force to be case-sensitive
 }
 
 <DEFAULT>
-    TOKEN : 
+TOKEN [IGNORE_CASE] :
 { 
     < IMPORT_SYM            : "@import">
   | < MEDIA_SYM             : "@media" >
@@ -524,9 +523,9 @@ TOKEN : // FIXME force to be case-sensitive
 }
 
 <DEFAULT>
-    TOKEN :
+TOKEN [IGNORE_CASE] :
 {
-    < #RANGE0 : <H> <H> <H> <H> <H> <H> > /* FIXME add <H> to make 6 <H> */
+    < #RANGE0 : <H> <H> <H> <H> <H> <H> > 
   | < #RANGE1 : <H> <H> <H> <H> <H> ( "?" )? >
   | < #RANGE2 : <H> <H> <H> <H> ( "?" )? ( "?" )? >
   | < #RANGE3 : <H> <H> <H> ( "?" )? ( "?" )? ( "?" )? >
@@ -547,7 +546,7 @@ TOKEN : // FIXME force to be case-sensitive
 
 /* FIXED, added a spacial case for lang pseudoclass */
 <DEFAULT>
-    TOKEN:
+TOKEN [IGNORE_CASE] :
 {
     < FUNCTIONLANG : "lang(" >
 }
@@ -593,9 +592,9 @@ void parserUnit() :
 	// used as an error recovery for HTML tags in CSS pages
         ( ( n=<HTMLSTARTTAG> | n=<HTMLENDTAG> ) {
 	    addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); } )*
-	( charset() )?
-	    ( <S> | ignoreStatement() )*
-	    ( importDeclaration() ( ignoreStatement() ( <S> )* )* )*
+	( charset() ";" )?
+	    ( <S> | <CDO> | <CDC> )*
+	    ( importDeclaration() ( ignoreStatement() ) )*
 	    afterImportDeclaration()
 	 } catch (TokenMgrError err) {
 	addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
@@ -614,7 +613,7 @@ void charset() :
     try {
 	// There was * instead of ? in previous versions, but it's useless since
 	// <S> is already a +
-	charsetToken=<CHARSET_SYM> ( space1Token=<S> )? n=<STRING> ( space2Token=<S> )? <SEMICOLON>
+	charsetToken=<CHARSET_SYM> ( space1Token=<S> )? n=<STRING> ( space2Token=<S> )?
 	    {
 		// the @charset must be at the beginning of the document
 		if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {                     
@@ -664,14 +663,13 @@ void afterImportDeclaration() :
 		addError(e, ret);
 	    }
 	}
-	)
-      ( ignoreStatement() ( <S> )* )* )*
+	) ignoreStatement() )*
 }
 
 void ignoreStatement() :
 {}
 {
-    <CDO> | <CDC> | atRuleDeclaration()
+    ( ( <CDO> | <CDC> | atRuleDeclaration() ) ( <S> )* )*
 }
 
 /**
@@ -704,7 +702,7 @@ void importDeclaration() :
 	    ( <S> )*
 	    ( medium(media) 
 	      ( <COMMA> ( <S> )* medium(media) 
-		)* )? <SEMICOLON> // FIXME why not <SEMICOLON> ?
+		)* )? <SEMICOLON> 
 	    ( <S> )*
 	    { 
 		handleImport(getURL(), importFile, media);
@@ -727,10 +725,15 @@ void media() :
 }
 {
     try {
-	<MEDIA_SYM> ( <S> )* (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)?
+	<MEDIA_SYM> ( <S> )*
+            // <CSS3>
+	    (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)? 
 	    medium(newRule) 
+            // </CSS3>
 	    ( <COMMA> ( <S> )* medium(newRule) )* 
+            // <CSS3>
 	    (<AND> ( <S> )* <RPARAN> ( <S> )* p=mediadeclaration() { newRule.addMediaFeature(p); } <LPARAN> ( <S> )* )*
+            // </CSS3>
    
 	    {
 		String media = getAtRule().toString();
@@ -798,9 +801,11 @@ void page() :
 }
 {
     try {
-	<PAGE_SYM> ( <S> )* ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
-			      ( <S> )* )?
-
+	<PAGE_SYM> ( <S> )*
+            // FIXME <CSS3> ?
+            ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
+	      ( <S> )* )?
+            // </CSS3>
 	    ( pseudo_page(newRule) )? <LBRACE> ( <S> )* ( v=pageContent() 
 		{ 
 		    collectv = v;
@@ -843,9 +848,11 @@ Vector pageContent() :
     Vector v = new Vector();
 }
 {
+    // <CSS3> ?? FIXME
     v=prefAtRule() { return v;}
+    // </CSS3>
     |
-    v=declarations() { return v;} /* FIXME warning, can match empty */
+    v=declarations() { return v;} /* FIXME moved here as it can match empty string */
 }
 
 Vector prefAtRule() :
@@ -1072,10 +1079,9 @@ void atRuleDeclaration() :
 void operator(CssExpression expr) :
 {}
 {
-    // FIXME ( <DIV> | <COMMA> ) ( <S> )*
-    ( <DIV> { if (expr.getCount() > 0) expr.setOperator('/'); }
+  ( ( <DIV> { if (expr.getCount() > 0) expr.setOperator('/'); }
     | <COMMA> { if (expr.getCount() > 0) expr.setOperator(','); }
-    ) ( <S> )*
+    ) ( <S> )* )?
 }
 
 /**
@@ -1103,8 +1109,8 @@ char combinator() :
 char unaryOperator() :
 {}
 {
-    // FIXME <MINUS> | <PLUS>
-    <MINUS> { return '-'; }
+    // FIXME <MINUS> | <PLUS> ? warning as <PLUS> is <_W>? "+"
+    "-" { return '-'; }
     | <PLUS> { return '+'; }
 }
 
@@ -1205,7 +1211,7 @@ Vector declarations() :
 		      }*/
 		currentProperty = null;
 	      }
-	    )? )* 
+	      )? )* 
 	{  	
 	    if (!wrong_value) {
 		addProperty(value_set);
@@ -1225,7 +1231,7 @@ CssSelectors selector() :
 {
     try {
 	current=simple_selector(null) 
-	    (  /* FIXME see combinator() */
+	    (  
 	      comb=combinator() { 
 		if (ac.getProfile() != null) {
 		    if (ac.getProfile().equals("mobile") || 
@@ -1356,8 +1362,8 @@ void _class(CssSelectors s) :
 	    ac.getFrame().addError(new CssError(e));
 	}
     } 
-    /* FIXME <DOT> n=deprecated_class() ... */ 
-    | n=deprecated_class() {
+    /* FIXME <DOT> n=deprecated_class() ... ?? (DONE-> to be tested) */ 
+    | <DOT> n=deprecated_class() {
 	if (n.image.charAt(0) == '.') {
 	    n.image = n.image.substring(1);
           
@@ -1415,17 +1421,21 @@ void _class(CssSelectors s) :
 }
 
 Token deprecated_class() :
-{Token n; }
 {
-    /* FIXME ( n=<LENGTH> | ... ) { return n;} doesn't work ? */
-    n=<LENGTH> { return n; }
-    | n=<EMS> { return n; }
-    | n=<EXS> { return n; }
-    | n=<ANGLE> { return n; }
-    | n=<TIME> { return n; }
-    | n=<FREQ> { return n; }
-    | n=<RESOLUTION> { return n; }
-    | n=<DIMEN> { return n; }
+    Token n;
+}
+{
+    ( n=<LENGTH>
+    | n=<EMS> 
+    | n=<EXS> 
+    | n=<ANGLE>
+    | n=<TIME> 
+    | n=<FREQ> 
+    | n=<RESOLUTION>
+    | n=<DIMEN> )
+    { 
+	return n;
+    }
 }
 
 /**
@@ -1436,7 +1446,6 @@ void element_name(CssSelectors s) :
 {
     n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
 	s.addType(new TypeSelector(convertIdent(n.image)));}
-    /* FIXME <ANY> */
     | <ANY> { 
         if (!ac.getCssVersion().equals("css1")) {
 	    //          s.setElement(null);
@@ -1459,7 +1468,6 @@ void attrib(CssSelectors s) :
 }
 {
     <LBRACKET> ( <S> )* att=<IDENT> ( <S> )*
-	/* FIXME <EQ> */
 	( (<EQ> { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
         | <INCLUDES> { selectorType = CssSelectors.ATTRIBUTE_ONE_OF; }
 	| <DASHMATCH> { selectorType = CssSelectors.ATTRIBUTE_BEGIN; }
@@ -1536,7 +1544,6 @@ Token language = null;
 CssSelectors param = null;
 }
 {
-    /* FIXME declade :: as token */
   <PSEUDOCLASS_SYM> ( ( n=<IDENT>
 	  { 
 		try {
@@ -1553,7 +1560,6 @@ CssSelectors param = null;
 		}
 	  } ) )
 	|  
-      // FIXME <COLON>
   <COLON> ( ( n=<IDENT>
 	  { 
 		try {
@@ -1778,7 +1784,7 @@ CssExpression expr() :
   CssExpression values = new CssExpression();
 }
 {
-  term(values) ( ( operator(values) )? term(values) )*
+  term(values) ( operator(values) term(values) )*
   { return values; }
 }
 
@@ -1804,7 +1810,7 @@ void term(CssExpression exp) :
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
     | n=<DATE> { setValue(new CssDate(), exp, operator, n, DATE); }
     | n=<DIMEN> {  
-	addError(new ParseException("Unknown dimension"), n.image); }    
+	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -1835,7 +1841,7 @@ void term(CssExpression exp) :
     | hexcolor(exp)
     | n=<URL> { 
 	CssURL _u = new CssURL();
-	_u.set(n.image.trim(), ac, url);
+	_u.set(n.image, ac, url);
 	exp.addValue(_u);
       }
     | n=<UNICODERANGE> { setValue(new CssUnicodeRange(), exp, operator, n, 
@@ -1952,7 +1958,8 @@ String skipStatement() {
 	getNextToken();
 	tok = getToken(1);
     }
-    return s.toString().trim();
+    String statement = s.toString().trim();
+    return statement;
 }
 
 JAVACODE
@@ -1998,16 +2005,37 @@ void rejectToken(Token t) {
  */
 JAVACODE
 void skipAfterExpression(Exception e) {
-    Token t = getToken(1);
     StringBuffer s = new StringBuffer();
     s.append(getToken(0).image);
-    // FIXME same as above (token consumption may throw an exception)
-    while ((t.kind != RBRACE) && (t.kind != SEMICOLON) && (t.kind != EOF)) {
-	s.append(t.image);
-	getNextToken();
-	t = getToken(1);
+    while (true) {
+	try {
+	    Token t = getToken(1);
+	    if (t.kind == LBRACE) {
+		s.append(t.image);
+		getNextToken();
+		s.append(skip_to_matching_brace());
+		getNextToken();
+		t = getToken(1);
+		continue;
+	    }
+	    if ((t.kind == SEMICOLON) || (t.kind == RBRACE) 
+		                      || (t.kind == EOF)) {
+		break;
+	    }
+	    s.append(t.image);
+	    getNextToken();
+	    t = getToken(1);
+	} catch (TokenMgrError tmerr) {
+	    try {
+		s.append(jj_input_stream.readChar());
+	        continue;
+	    } catch (java.io.IOException ioex) { 
+		ioex.printStackTrace();
+		break;
+	    }
+	}
     }
-    
+    String statement = s.toString().trim();
     addError(e, s.toString()); 
 }
 
