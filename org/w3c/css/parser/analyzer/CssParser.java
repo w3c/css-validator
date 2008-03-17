@@ -334,116 +334,123 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void parserUnit() throws ParseException {
-    Token n = null;
+    trace_call("parserUnit");
     try {
-      label_1:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HTMLSTARTTAG:
-        case HTMLENDTAG:
-          ;
-          break;
-        default:
-          jj_la1[0] = jj_gen;
-          break label_1;
-        }
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HTMLSTARTTAG:
-          n = jj_consume_token(HTMLSTARTTAG);
-          break;
-        case HTMLENDTAG:
-          n = jj_consume_token(HTMLENDTAG);
-          break;
-        default:
-          jj_la1[1] = jj_gen;
-          jj_consume_token(-1);
-          throw new ParseException();
-        }
+    Token n = null;
+      try {
+        label_1:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HTMLSTARTTAG:
+          case HTMLENDTAG:
+            ;
+            break;
+          default:
+            jj_la1[0] = jj_gen;
+            break label_1;
+          }
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HTMLSTARTTAG:
+            n = jj_consume_token(HTMLSTARTTAG);
+            break;
+          case HTMLENDTAG:
+            n = jj_consume_token(HTMLENDTAG);
+            break;
+          default:
+            jj_la1[1] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
             addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case CHARSET_SYM:
-        charset();
-        jj_consume_token(SEMICOLON);
-        break;
-      default:
-        jj_la1[2] = jj_gen;
-        ;
-      }
-      label_2:
-      while (true) {
+        }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-        case CDO:
-        case CDC:
+        case CHARSET_SYM:
+          charset();
+          jj_consume_token(SEMICOLON);
+          break;
+        default:
+          jj_la1[2] = jj_gen;
           ;
-          break;
-        default:
-          jj_la1[3] = jj_gen;
-          break label_2;
         }
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          jj_consume_token(S);
-          break;
-        case CDO:
-          jj_consume_token(CDO);
-          break;
-        case CDC:
-          jj_consume_token(CDC);
-          break;
-        default:
-          jj_la1[4] = jj_gen;
-          jj_consume_token(-1);
-          throw new ParseException();
+        label_2:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+          case CDO:
+          case CDC:
+            ;
+            break;
+          default:
+            jj_la1[3] = jj_gen;
+            break label_2;
+          }
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            jj_consume_token(S);
+            break;
+          case CDO:
+            jj_consume_token(CDO);
+            break;
+          case CDC:
+            jj_consume_token(CDC);
+            break;
+          default:
+            jj_la1[4] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
         }
-      }
-      label_3:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case IMPORT_SYM:
-          ;
-          break;
-        default:
-          jj_la1[5] = jj_gen;
-          break label_3;
+        label_3:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case IMPORT_SYM:
+            ;
+            break;
+          default:
+            jj_la1[5] = jj_gen;
+            break label_3;
+          }
+          importDeclaration();
+          ignoreStatement();
         }
-        importDeclaration();
-        ignoreStatement();
-      }
-      afterImportDeclaration();
-    } catch (TokenMgrError err) {
+        afterImportDeclaration();
+      } catch (TokenMgrError err) {
         addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
+      }
+      jj_consume_token(0);
+    } finally {
+      trace_return("parserUnit");
     }
-    jj_consume_token(0);
   }
 
   final public void charset() throws ParseException {
+    trace_call("charset");
+    try {
     Token n = null;
     Token charsetToken = null;
     Token space1Token = null;
     Token space2Token = null;
-    try {
-      // There was * instead of ? in previous versions, but it's useless since
-              // <S> is already a +
-              charsetToken = jj_consume_token(CHARSET_SYM);
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        space1Token = jj_consume_token(S);
-        break;
-      default:
-        jj_la1[6] = jj_gen;
-        ;
-      }
-      n = jj_consume_token(STRING);
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        space2Token = jj_consume_token(S);
-        break;
-      default:
-        jj_la1[7] = jj_gen;
-        ;
-      }
+      try {
+        // There was * instead of ? in previous versions, but it's useless since
+                // <S> is already a +
+                charsetToken = jj_consume_token(CHARSET_SYM);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          space1Token = jj_consume_token(S);
+          break;
+        default:
+          jj_la1[6] = jj_gen;
+          ;
+        }
+        n = jj_consume_token(STRING);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          space2Token = jj_consume_token(S);
+          break;
+        default:
+          jj_la1[7] = jj_gen;
+          ;
+        }
                 // the @charset must be at the beginning of the document
                 if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {
                     {if (true) throw new ParseException(
@@ -459,54 +466,59 @@ public abstract class CssParser implements CssParserConstants {
                 else {
                     addCharSet(n.image);
                 }
-    } catch (Exception e) {
+      } catch (Exception e) {
         String skip = charsetToken +
             ((space1Token == null) ? "" : space1Token.image) +
             n +
             ((space2Token == null) ? "" : space2Token.image) +
             ";";
         addError(e, skip);
+      }
+    } finally {
+      trace_return("charset");
     }
   }
 
 /* Modified by Sijtsche Smeman, preference, colorprofile and phoneticAlphabet added for CSS3 */
   final public void afterImportDeclaration() throws ParseException {
+    trace_call("afterImportDeclaration");
+    try {
  String ret;
-    label_4:
-    while (true) {
-      ;
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-      case HASH:
-      case LBRACKET:
-      case ANY:
-      case DOT:
-      case COLON:
-      case PSEUDOCLASS_SYM:
-      case CLASS:
-        ruleSet();
-        break;
-      case MEDIA_SYM:
-        media();
-        break;
-      case PAGE_SYM:
-        page();
-        break;
-      case FONT_FACE_SYM:
-        fontFace();
-        break;
-      case PREF_SYM:
-        preference();
-        break;
-      case COLOR_PROFILE:
-        colorprofile();
-        break;
-      case PHONETIC_ALPHABET_SYM:
-        phoneticAlphabet();
-        break;
-      default:
-        jj_la1[8] = jj_gen;
-        ret = skipStatement();
+      label_4:
+      while (true) {
+        ;
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case IDENT:
+        case HASH:
+        case LBRACKET:
+        case ANY:
+        case DOT:
+        case COLON:
+        case PSEUDOCLASS_SYM:
+        case CLASS:
+          ruleSet();
+          break;
+        case MEDIA_SYM:
+          media();
+          break;
+        case PAGE_SYM:
+          page();
+          break;
+        case FONT_FACE_SYM:
+          fontFace();
+          break;
+        case PREF_SYM:
+          preference();
+          break;
+        case COLOR_PROFILE:
+          colorprofile();
+          break;
+        case PHONETIC_ALPHABET_SYM:
+          phoneticAlphabet();
+          break;
+        default:
+          jj_la1[8] = jj_gen;
+          ret = skipStatement();
           if ((ret == null) || (ret.length() == 0)) {
                 {if (true) return;}
             }
@@ -522,51 +534,59 @@ public abstract class CssParser implements CssParserConstants {
                     new ParseException(ac.getMsg().getString("generator.unrecognize"));
                 addError(e, ret);
             }
+        }
+        ignoreStatement();
       }
-      ignoreStatement();
+    } finally {
+      trace_return("afterImportDeclaration");
     }
   }
 
   final public void ignoreStatement() throws ParseException {
-    label_5:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case CDO:
-      case CDC:
-      case ATKEYWORD:
-        ;
-        break;
-      default:
-        jj_la1[9] = jj_gen;
-        break label_5;
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case CDO:
-        jj_consume_token(CDO);
-        break;
-      case CDC:
-        jj_consume_token(CDC);
-        break;
-      case ATKEYWORD:
-        atRuleDeclaration();
-        break;
-      default:
-        jj_la1[10] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_6:
+    trace_call("ignoreStatement");
+    try {
+      label_5:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
+        case CDO:
+        case CDC:
+        case ATKEYWORD:
           ;
           break;
         default:
-          jj_la1[11] = jj_gen;
-          break label_6;
+          jj_la1[9] = jj_gen;
+          break label_5;
         }
-        jj_consume_token(S);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case CDO:
+          jj_consume_token(CDO);
+          break;
+        case CDC:
+          jj_consume_token(CDC);
+          break;
+        case ATKEYWORD:
+          atRuleDeclaration();
+          break;
+        default:
+          jj_la1[10] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
+        label_6:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[11] = jj_gen;
+            break label_6;
+          }
+          jj_consume_token(S);
+        }
       }
+    } finally {
+      trace_return("ignoreStatement");
     }
   }
 
@@ -576,31 +596,33 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void importDeclaration() throws ParseException {
+    trace_call("importDeclaration");
+    try {
  Token n;
     AtRuleMedia media = new AtRuleMedia();
     CssValue val;
     String importFile;
-    try {
-      jj_consume_token(IMPORT_SYM);
-      label_7:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[12] = jj_gen;
-          break label_7;
+      try {
+        jj_consume_token(IMPORT_SYM);
+        label_7:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[12] = jj_gen;
+            break label_7;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case STRING:
-        n = jj_consume_token(STRING);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case STRING:
+          n = jj_consume_token(STRING);
                 importFile = n.image.substring(1, n.image.length() -1);
-        break;
-      case URL:
-        n = jj_consume_token(URL);
+          break;
+        case URL:
+          n = jj_consume_token(URL);
                 val = new CssURL();
                 ((CssURL) val).set(n.image, ac, url);
                 importFile = (String) val.get();
@@ -608,73 +630,76 @@ public abstract class CssParser implements CssParserConstants {
                     || (importFile.charAt(0) == '\'')) {
                     importFile = importFile.substring(1, importFile.length()-1);
                 }
-        break;
-      default:
-        jj_la1[13] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_8:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
           break;
         default:
-          jj_la1[14] = jj_gen;
-          break label_8;
+          jj_la1[13] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
         }
-        jj_consume_token(S);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-        medium(media);
-        label_9:
+        label_8:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case COMMA:
+          case S:
             ;
             break;
           default:
-            jj_la1[15] = jj_gen;
-            break label_9;
+            jj_la1[14] = jj_gen;
+            break label_8;
           }
-          jj_consume_token(COMMA);
-          label_10:
+          jj_consume_token(S);
+        }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case IDENT:
+          medium(media);
+          label_9:
           while (true) {
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-            case S:
+            case COMMA:
               ;
               break;
             default:
-              jj_la1[16] = jj_gen;
-              break label_10;
+              jj_la1[15] = jj_gen;
+              break label_9;
             }
-            jj_consume_token(S);
+            jj_consume_token(COMMA);
+            label_10:
+            while (true) {
+              switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+              case S:
+                ;
+                break;
+              default:
+                jj_la1[16] = jj_gen;
+                break label_10;
+              }
+              jj_consume_token(S);
+            }
+            medium(media);
           }
-          medium(media);
-        }
-        break;
-      default:
-        jj_la1[17] = jj_gen;
-        ;
-      }
-      jj_consume_token(SEMICOLON);
-      label_11:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
           break;
         default:
-          jj_la1[18] = jj_gen;
-          break label_11;
+          jj_la1[17] = jj_gen;
+          ;
         }
-        jj_consume_token(S);
-      }
+        jj_consume_token(SEMICOLON);
+        label_11:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[18] = jj_gen;
+            break label_11;
+          }
+          jj_consume_token(S);
+        }
                 handleImport(getURL(), importFile, media);
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         addError(e, skipStatement());
+      }
+    } finally {
+      trace_return("importDeclaration");
     }
   }
 
@@ -682,124 +707,126 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void media() throws ParseException {
+    trace_call("media");
+    try {
     AtRule old = getAtRule();
     AtRuleMedia newRule = new AtRuleMedia();
     setAtRule(newRule);
     Token n;
     CssProperty p = null;
-    try {
-      jj_consume_token(MEDIA_SYM);
-      label_12:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[19] = jj_gen;
-          break label_12;
+      try {
+        jj_consume_token(MEDIA_SYM);
+        label_12:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[19] = jj_gen;
+            break label_12;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case MEDIARESTRICTOR:
-        n = jj_consume_token(MEDIARESTRICTOR);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case MEDIARESTRICTOR:
+          n = jj_consume_token(MEDIARESTRICTOR);
                                    newRule.addMediaRestrictor(convertIdent(n.image), ac);
-        label_13:
-        while (true) {
-          jj_consume_token(S);
-          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
-            ;
-            break;
-          default:
-            jj_la1[20] = jj_gen;
-            break label_13;
+          label_13:
+          while (true) {
+            jj_consume_token(S);
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[20] = jj_gen;
+              break label_13;
+            }
           }
-        }
-        break;
-      default:
-        jj_la1[21] = jj_gen;
-        ;
-      }
-      medium(newRule);
-      label_14:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case COMMA:
-          ;
           break;
         default:
-          jj_la1[22] = jj_gen;
-          break label_14;
-        }
-        jj_consume_token(COMMA);
-        label_15:
-        while (true) {
-          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
-            ;
-            break;
-          default:
-            jj_la1[23] = jj_gen;
-            break label_15;
-          }
-          jj_consume_token(S);
+          jj_la1[21] = jj_gen;
+          ;
         }
         medium(newRule);
-      }
-      label_16:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case AND:
-          ;
-          break;
-        default:
-          jj_la1[24] = jj_gen;
-          break label_16;
-        }
-        jj_consume_token(AND);
-        label_17:
+        label_14:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
+          case COMMA:
             ;
             break;
           default:
-            jj_la1[25] = jj_gen;
-            break label_17;
+            jj_la1[22] = jj_gen;
+            break label_14;
           }
-          jj_consume_token(S);
+          jj_consume_token(COMMA);
+          label_15:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[23] = jj_gen;
+              break label_15;
+            }
+            jj_consume_token(S);
+          }
+          medium(newRule);
         }
-        jj_consume_token(RPARAN);
-        label_18:
+        label_16:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
+          case AND:
             ;
             break;
           default:
-            jj_la1[26] = jj_gen;
-            break label_18;
+            jj_la1[24] = jj_gen;
+            break label_16;
           }
-          jj_consume_token(S);
-        }
-        p = mediadeclaration();
+          jj_consume_token(AND);
+          label_17:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[25] = jj_gen;
+              break label_17;
+            }
+            jj_consume_token(S);
+          }
+          jj_consume_token(RPARAN);
+          label_18:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[26] = jj_gen;
+              break label_18;
+            }
+            jj_consume_token(S);
+          }
+          p = mediadeclaration();
                                                                      newRule.addMediaFeature(p);
-        jj_consume_token(LPARAN);
-        label_19:
-        while (true) {
-          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
-            ;
-            break;
-          default:
-            jj_la1[27] = jj_gen;
-            break label_19;
+          jj_consume_token(LPARAN);
+          label_19:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[27] = jj_gen;
+              break label_19;
+            }
+            jj_consume_token(S);
           }
-          jj_consume_token(S);
         }
-      }
                 String media = getAtRule().toString();
                 if (ac.getMedium() != null &&
                     !(media.equals(ac.getMedium())) &&
@@ -816,60 +843,63 @@ public abstract class CssParser implements CssParserConstants {
                 if (!ac.getCssVersion().equals("css1")) {
                     newAtRule(getAtRule());
                 }
-      jj_consume_token(LBRACE);
-      label_20:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[28] = jj_gen;
-          break label_20;
+        jj_consume_token(LBRACE);
+        label_20:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[28] = jj_gen;
+            break label_20;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      label_21:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case IDENT:
-        case HASH:
-        case LBRACKET:
-        case ANY:
-        case DOT:
-        case COLON:
-        case PSEUDOCLASS_SYM:
-        case CLASS:
-          ;
-          break;
-        default:
-          jj_la1[29] = jj_gen;
-          break label_21;
+        label_21:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case IDENT:
+          case HASH:
+          case LBRACKET:
+          case ANY:
+          case DOT:
+          case COLON:
+          case PSEUDOCLASS_SYM:
+          case CLASS:
+            ;
+            break;
+          default:
+            jj_la1[29] = jj_gen;
+            break label_21;
+          }
+          ruleSet();
         }
-        ruleSet();
-      }
-      jj_consume_token(RBRACE);
-      label_22:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[30] = jj_gen;
-          break label_22;
+        jj_consume_token(RBRACE);
+        label_22:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[30] = jj_gen;
+            break label_22;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                  if (!ac.getCssVersion().equals("css1")) {
                      endOfAtRule();
                  }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (!ac.getCssVersion().equals("css1")) {
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("media");
     }
   }
 
@@ -877,32 +907,39 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void medium(AtRuleMedia media) throws ParseException {
+    trace_call("medium");
+    try {
  Token n;
-    n = jj_consume_token(IDENT);
-    label_23:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[31] = jj_gen;
-        break label_23;
+      n = jj_consume_token(IDENT);
+      label_23:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          ;
+          break;
+        default:
+          jj_la1[31] = jj_gen;
+          break label_23;
+        }
+        jj_consume_token(S);
       }
-      jj_consume_token(S);
-    }
         try {
             media.addMedia(convertIdent(n.image), ac);
         } catch (InvalidParamException e) {
             CssError error = new CssError(getSourceFile(), getLine(), e);
             ac.getFrame().addError(error);
         }
+    } finally {
+      trace_return("medium");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void page() throws ParseException {
+    trace_call("page");
+    try {
     Vector       v                              ;
     Token        n        = null                ;
     Vector       collectv = new Vector()        ;
@@ -911,77 +948,77 @@ public abstract class CssParser implements CssParserConstants {
     AtRulePage   newRule  = new AtRulePage()    ;
     setAtRule(newRule);
     s.setAtRule(getAtRule());
-    try {
-      jj_consume_token(PAGE_SYM);
-      label_24:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[32] = jj_gen;
-          break label_24;
-        }
-        jj_consume_token(S);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-        n = jj_consume_token(IDENT);
-                          newRule.setIdent(convertIdent(n.image));
-        label_25:
+      try {
+        jj_consume_token(PAGE_SYM);
+        label_24:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case S:
             ;
             break;
           default:
-            jj_la1[33] = jj_gen;
-            break label_25;
+            jj_la1[32] = jj_gen;
+            break label_24;
           }
           jj_consume_token(S);
         }
-        break;
-      default:
-        jj_la1[34] = jj_gen;
-        ;
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case COLON:
-        pseudo_page(newRule);
-        break;
-      default:
-        jj_la1[35] = jj_gen;
-        ;
-      }
-      jj_consume_token(LBRACE);
-      label_26:
-      while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
+        case IDENT:
+          n = jj_consume_token(IDENT);
+                          newRule.setIdent(convertIdent(n.image));
+          label_25:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[33] = jj_gen;
+              break label_25;
+            }
+            jj_consume_token(S);
+          }
           break;
         default:
-          jj_la1[36] = jj_gen;
-          break label_26;
+          jj_la1[34] = jj_gen;
+          ;
         }
-        jj_consume_token(S);
-      }
-      v = pageContent();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case COLON:
+          pseudo_page(newRule);
+          break;
+        default:
+          jj_la1[35] = jj_gen;
+          ;
+        }
+        jj_consume_token(LBRACE);
+        label_26:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[36] = jj_gen;
+            break label_26;
+          }
+          jj_consume_token(S);
+        }
+        v = pageContent();
                     collectv = v;
-      jj_consume_token(RBRACE);
-      label_27:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[37] = jj_gen;
-          break label_27;
+        jj_consume_token(RBRACE);
+        label_27:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[37] = jj_gen;
+            break label_27;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                 if (!ac.getCssVersion().equals("css1")) {
                     newAtRule(getAtRule());
                 }
@@ -996,126 +1033,141 @@ public abstract class CssParser implements CssParserConstants {
                 } else {
                     handleRule(s, collectv);
                 }
-    } catch (InvalidParamException ie) {
+      } catch (InvalidParamException ie) {
         if (!ac.getCssVersion().equals("css1")) {
             skipStatement();
             removeThisAtRule();
             ac.getFrame().addError(new CssError(ie));
         }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (!ac.getCssVersion().equals("css1")) {
             removeThisAtRule();
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("page");
     }
   }
 
   final public Vector pageContent() throws ParseException {
+    trace_call("pageContent");
+    try {
   CssProperty prop;
     Vector v = new Vector();
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case ATTOP:
-    case ATRIGHT:
-    case ATBOTTOM:
-    case ATLEFT:
-      // <CSS3> ?? FIXME
-          v = prefAtRule();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case ATTOP:
+      case ATRIGHT:
+      case ATBOTTOM:
+      case ATLEFT:
+        // <CSS3> ?? FIXME
+            v = prefAtRule();
                      {if (true) return v;}
-      break;
-    default:
-      jj_la1[38] = jj_gen;
-      v = declarations();
+        break;
+      default:
+        jj_la1[38] = jj_gen;
+        v = declarations();
                        {if (true) return v;}
-    }
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("pageContent");
+    }
   }
 
   final public Vector prefAtRule() throws ParseException {
+    trace_call("prefAtRule");
+    try {
   Token n;
     Vector v;
-    try {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case ATTOP:
-        n = jj_consume_token(ATTOP);
-        break;
-      case ATBOTTOM:
-        n = jj_consume_token(ATBOTTOM);
-        break;
-      case ATLEFT:
-        n = jj_consume_token(ATLEFT);
-        break;
-      case ATRIGHT:
-        n = jj_consume_token(ATRIGHT);
-        break;
-      default:
-        jj_la1[39] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_28:
-      while (true) {
+      try {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
+        case ATTOP:
+          n = jj_consume_token(ATTOP);
+          break;
+        case ATBOTTOM:
+          n = jj_consume_token(ATBOTTOM);
+          break;
+        case ATLEFT:
+          n = jj_consume_token(ATLEFT);
+          break;
+        case ATRIGHT:
+          n = jj_consume_token(ATRIGHT);
           break;
         default:
-          jj_la1[40] = jj_gen;
-          break label_28;
+          jj_la1[39] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
         }
-        jj_consume_token(S);
-      }
-      jj_consume_token(LBRACE);
-      label_29:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[41] = jj_gen;
-          break label_29;
+        label_28:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[40] = jj_gen;
+            break label_28;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      v = declarations();
-      jj_consume_token(RBRACE);
-      label_30:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[42] = jj_gen;
-          break label_30;
+        jj_consume_token(LBRACE);
+        label_29:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[41] = jj_gen;
+            break label_29;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
+        v = declarations();
+        jj_consume_token(RBRACE);
+        label_30:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[42] = jj_gen;
+            break label_30;
+          }
+          jj_consume_token(S);
+        }
                 {if (true) return v;}
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         addError(e, skipStatement());
-    }
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("prefAtRule");
+    }
   }
 
   final public void pseudo_page(AtRulePage page) throws ParseException {
+    trace_call("pseudo_page");
+    try {
   Token n;
-    jj_consume_token(COLON);
-    n = jj_consume_token(IDENT);
-    label_31:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[43] = jj_gen;
-        break label_31;
+      jj_consume_token(COLON);
+      n = jj_consume_token(IDENT);
+      label_31:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          ;
+          break;
+        default:
+          jj_la1[43] = jj_gen;
+          break label_31;
+        }
+        jj_consume_token(S);
       }
-      jj_consume_token(S);
-    }
         try {
             page.setName(":" + convertIdent(n.image), ac);
         } catch (InvalidParamException e) {
@@ -1123,28 +1175,33 @@ public abstract class CssParser implements CssParserConstants {
             /*CssError error = new CssError(getSourceFile(), getLine(), e);
 	      ac.getFrame().addError(error);	*/
         }
+    } finally {
+      trace_return("pseudo_page");
+    }
   }
 
   final public void fontFace() throws ParseException {
+    trace_call("fontFace");
+    try {
     Vector v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleFontFace());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
-    try {
-      jj_consume_token(FONT_FACE_SYM);
-      label_32:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[44] = jj_gen;
-          break label_32;
+      try {
+        jj_consume_token(FONT_FACE_SYM);
+        label_32:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[44] = jj_gen;
+            break label_32;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                 if (ac.getCssVersion().equals("css1")) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
@@ -1153,33 +1210,33 @@ public abstract class CssParser implements CssParserConstants {
                 if (!ac.getCssVersion().equals("css1")) {
                     newAtRule(getAtRule());
                 }
-      jj_consume_token(LBRACE);
-      label_33:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[45] = jj_gen;
-          break label_33;
+        jj_consume_token(LBRACE);
+        label_33:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[45] = jj_gen;
+            break label_33;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      v = declarations();
-      jj_consume_token(RBRACE);
-      label_34:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[46] = jj_gen;
-          break label_34;
+        v = declarations();
+        jj_consume_token(RBRACE);
+        label_34:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[46] = jj_gen;
+            break label_34;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                  if (!ac.getCssVersion().equals("css1")) {
                      addProperty(v);
                      endOfRule();
@@ -1190,35 +1247,40 @@ public abstract class CssParser implements CssParserConstants {
                  } else {
                      handleRule(s, v);
                  }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (!ac.getCssVersion().equals("css1")) {
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("fontFace");
     }
   }
 
   final public void colorprofile() throws ParseException {
+    trace_call("colorprofile");
+    try {
     Vector v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleColorProfile());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
-    try {
-      jj_consume_token(COLOR_PROFILE);
-      label_35:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[47] = jj_gen;
-          break label_35;
+      try {
+        jj_consume_token(COLOR_PROFILE);
+        label_35:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[47] = jj_gen;
+            break label_35;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                 if (!ac.getCssVersion().equals("svg")) {
                     skipStatement();
                     addError(new InvalidParamException("onlysvg", "", ac),
@@ -1227,33 +1289,33 @@ public abstract class CssParser implements CssParserConstants {
                 if (ac.getCssVersion().equals("svg")) {
                     newAtRule(getAtRule());
                 }
-      jj_consume_token(LBRACE);
-      label_36:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[48] = jj_gen;
-          break label_36;
+        jj_consume_token(LBRACE);
+        label_36:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[48] = jj_gen;
+            break label_36;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      v = declarations();
-      jj_consume_token(RBRACE);
-      label_37:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[49] = jj_gen;
-          break label_37;
+        v = declarations();
+        jj_consume_token(RBRACE);
+        label_37:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[49] = jj_gen;
+            break label_37;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                  if (ac.getCssVersion().equals("svg")) {
                      addProperty(v);
                      endOfRule();
@@ -1265,35 +1327,40 @@ public abstract class CssParser implements CssParserConstants {
                  } else {
                      handleRule(s, v);
                  }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (ac.getCssVersion().equals("svg")) {
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("colorprofile");
     }
   }
 
   final public void preference() throws ParseException {
+    trace_call("preference");
+    try {
     Vector v;
     AtRule old = getAtRule();
     setAtRule(new AtRulePreference());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
-    try {
-      jj_consume_token(PREF_SYM);
-      label_38:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[50] = jj_gen;
-          break label_38;
+      try {
+        jj_consume_token(PREF_SYM);
+        label_38:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[50] = jj_gen;
+            break label_38;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                 if (ac.getCssVersion().equals("css1")) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
@@ -1302,33 +1369,33 @@ public abstract class CssParser implements CssParserConstants {
                 if (!ac.getCssVersion().equals("css1")) {
                     newAtRule(getAtRule());
                 }
-      jj_consume_token(LBRACE);
-      label_39:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[51] = jj_gen;
-          break label_39;
+        jj_consume_token(LBRACE);
+        label_39:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[51] = jj_gen;
+            break label_39;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      v = declarations();
-      jj_consume_token(RBRACE);
-      label_40:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[52] = jj_gen;
-          break label_40;
+        v = declarations();
+        jj_consume_token(RBRACE);
+        label_40:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[52] = jj_gen;
+            break label_40;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
                  if (!ac.getCssVersion().equals("css1")) {
                      addProperty(v);
                      endOfRule();
@@ -1340,49 +1407,54 @@ public abstract class CssParser implements CssParserConstants {
                  } else {
                      handleRule(s, v);
                  }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (!ac.getCssVersion().equals("css1")) {
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("preference");
     }
   }
 
   final public void phoneticAlphabet() throws ParseException {
+    trace_call("phoneticAlphabet");
+    try {
     Vector v;
     AtRule old = getAtRule();
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
     setAtRule(alphabetrule);
     Token n;
-    try {
-      jj_consume_token(PHONETIC_ALPHABET_SYM);
-      label_41:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[53] = jj_gen;
-          break label_41;
+      try {
+        jj_consume_token(PHONETIC_ALPHABET_SYM);
+        label_41:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[53] = jj_gen;
+            break label_41;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      n = jj_consume_token(STRING);
-      label_42:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[54] = jj_gen;
-          break label_42;
+        n = jj_consume_token(STRING);
+        label_42:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[54] = jj_gen;
+            break label_42;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
-      jj_consume_token(SEMICOLON);
+        jj_consume_token(SEMICOLON);
                 if (!ac.getCssVersion().equals("css3")) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
@@ -1394,12 +1466,15 @@ public abstract class CssParser implements CssParserConstants {
                 if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
                     newAtRule(getAtRule());
                 }
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (!ac.getCssVersion().equals("css1")) {
             addError(e, skipStatement());
         }
-    } finally {
+      } finally {
         setAtRule(old);
+      }
+    } finally {
+      trace_return("phoneticAlphabet");
     }
   }
 
@@ -1407,52 +1482,62 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void atRuleDeclaration() throws ParseException {
+    trace_call("atRuleDeclaration");
+    try {
  Token n;
-    n = jj_consume_token(ATKEYWORD);
+      n = jj_consume_token(ATKEYWORD);
             //ac.getFrame().addWarning("at-rule", token.toString());
             ac.getFrame().addError(
                           new CssError(new InvalidParamException("at-rule",
                                                                  token, ac)));
             skipStatement();
+    } finally {
+      trace_return("atRuleDeclaration");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void operator(CssExpression expr) throws ParseException {
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case COMMA:
-    case DIV:
+    trace_call("operator");
+    try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case DIV:
-        jj_consume_token(DIV);
-              if (expr.getCount() > 0) expr.setOperator('/');
-        break;
       case COMMA:
-        jj_consume_token(COMMA);
-                if (expr.getCount() > 0) expr.setOperator(',');
-        break;
-      default:
-        jj_la1[55] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_43:
-      while (true) {
+      case DIV:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
+        case DIV:
+          jj_consume_token(DIV);
+              if (expr.getCount() > 0) expr.setOperator('/');
+          break;
+        case COMMA:
+          jj_consume_token(COMMA);
+                if (expr.getCount() > 0) expr.setOperator(',');
           break;
         default:
-          jj_la1[56] = jj_gen;
-          break label_43;
+          jj_la1[55] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
         }
-        jj_consume_token(S);
+        label_43:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[56] = jj_gen;
+            break label_43;
+          }
+          jj_consume_token(S);
+        }
+        break;
+      default:
+        jj_la1[57] = jj_gen;
+        ;
       }
-      break;
-    default:
-      jj_la1[57] = jj_gen;
-      ;
+    } finally {
+      trace_return("operator");
     }
   }
 
@@ -1460,178 +1545,195 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public char combinator() throws ParseException {
+    trace_call("combinator");
+    try {
     char connector = ' ';
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case PLUS:
-    case GREATER:
-    case TILDE:
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case PLUS:
-        jj_consume_token(PLUS);
-                   connector = '+' ;
-        break;
       case GREATER:
-        jj_consume_token(GREATER);
-                      connector = '>' ;
-        break;
       case TILDE:
-        jj_consume_token(TILDE);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case PLUS:
+          jj_consume_token(PLUS);
+                   connector = '+' ;
+          break;
+        case GREATER:
+          jj_consume_token(GREATER);
+                      connector = '>' ;
+          break;
+        case TILDE:
+          jj_consume_token(TILDE);
                     connector = '~' ;
-        break;
-      default:
-        jj_la1[58] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_44:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
           break;
         default:
-          jj_la1[59] = jj_gen;
-          break label_44;
+          jj_la1[58] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
         }
-        jj_consume_token(S);
-      }
-      break;
-    case S:
-      label_45:
-      while (true) {
-        jj_consume_token(S);
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[60] = jj_gen;
-          break label_45;
-        }
-      }
-                 connector = ' ' ;
-      break;
-    default:
-      jj_la1[61] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
-        {if (true) return connector;}
-    throw new Error("Missing return statement in function");
-  }
-
-/**
- * @exception ParseException exception during the parse
- */
-  final public char unaryOperator() throws ParseException {
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case MINUS:
-      jj_consume_token(MINUS);
-          {if (true) return '-';}
-      break;
-    case PLUS:
-      jj_consume_token(PLUS);
-               {if (true) return '+';}
-      break;
-    default:
-      jj_la1[62] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
-    throw new Error("Missing return statement in function");
-  }
-
-/**
- * @exception ParseException exception during the parse
- */
-  final public String property() throws ParseException {
- Token n;
-    n = jj_consume_token(IDENT);
-    label_46:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[63] = jj_gen;
-        break label_46;
-      }
-      jj_consume_token(S);
-    }
-                         currentProperty = convertIdent(n.image);
-                         {if (true) return currentProperty;}
-    throw new Error("Missing return statement in function");
-  }
-
-/**
- * @exception ParseException exception during the parse
- */
-  final public void ruleSet() throws ParseException {
-  CssSelectors contextual;
-    Vector context_set = new Vector();
-    Vector value_set = null;
-    currentContext = context_set;
-    try {
-      contextual = selector();
-                if (contextual != null) {
-                    context_set.addElement(contextual);
-                }
-      label_47:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case COMMA:
-          ;
-          break;
-        default:
-          jj_la1[64] = jj_gen;
-          break label_47;
-        }
-        jj_consume_token(COMMA);
-        label_48:
+        label_44:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case S:
             ;
             break;
           default:
-            jj_la1[65] = jj_gen;
-            break label_48;
+            jj_la1[59] = jj_gen;
+            break label_44;
           }
           jj_consume_token(S);
         }
+        break;
+      case S:
+        label_45:
+        while (true) {
+          jj_consume_token(S);
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[60] = jj_gen;
+            break label_45;
+          }
+        }
+                 connector = ' ' ;
+        break;
+      default:
+        jj_la1[61] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+        {if (true) return connector;}
+    throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("combinator");
+    }
+  }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+  final public char unaryOperator() throws ParseException {
+    trace_call("unaryOperator");
+    try {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case MINUS:
+        jj_consume_token(MINUS);
+          {if (true) return '-';}
+        break;
+      case PLUS:
+        jj_consume_token(PLUS);
+               {if (true) return '+';}
+        break;
+      default:
+        jj_la1[62] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+    throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("unaryOperator");
+    }
+  }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+  final public String property() throws ParseException {
+    trace_call("property");
+    try {
+ Token n;
+      n = jj_consume_token(IDENT);
+      label_46:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          ;
+          break;
+        default:
+          jj_la1[63] = jj_gen;
+          break label_46;
+        }
+        jj_consume_token(S);
+      }
+                         currentProperty = convertIdent(n.image);
+                         {if (true) return currentProperty;}
+    throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("property");
+    }
+  }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+  final public void ruleSet() throws ParseException {
+    trace_call("ruleSet");
+    try {
+  CssSelectors contextual;
+    Vector context_set = new Vector();
+    Vector value_set = null;
+    currentContext = context_set;
+      try {
         contextual = selector();
+                if (contextual != null) {
+                    context_set.addElement(contextual);
+                }
+        label_47:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case COMMA:
+            ;
+            break;
+          default:
+            jj_la1[64] = jj_gen;
+            break label_47;
+          }
+          jj_consume_token(COMMA);
+          label_48:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[65] = jj_gen;
+              break label_48;
+            }
+            jj_consume_token(S);
+          }
+          contextual = selector();
               if (contextual != null) {
                     context_set.addElement(contextual);
                 }
-      }
-      jj_consume_token(LBRACE);
-      label_49:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[66] = jj_gen;
-          break label_49;
         }
-        jj_consume_token(S);
-      }
-      value_set = declarations();
-      jj_consume_token(RBRACE);
-      label_50:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[67] = jj_gen;
-          break label_50;
+        jj_consume_token(LBRACE);
+        label_49:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[66] = jj_gen;
+            break label_49;
+          }
+          jj_consume_token(S);
         }
-        jj_consume_token(S);
-      }
+        value_set = declarations();
+        jj_consume_token(RBRACE);
+        label_50:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[67] = jj_gen;
+            break label_50;
+          }
+          jj_consume_token(S);
+        }
                 markRule = true;
 
                 /*      if (value_set == null) {
@@ -1645,18 +1747,23 @@ public abstract class CssParser implements CssParserConstants {
                     endOfRule();
                 }
                 currentContext = null;
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         if (ac.getProfile() != null) {
             if (!ac.getProfile().equals("mobile") && !context_set.isEmpty()) {
                 addError(e, skipStatement());
             }
         }
-    } catch (TokenMgrError e) {
+      } catch (TokenMgrError e) {
         addError(new ParseException(e.getMessage()), skipStatement());
+      }
+    } finally {
+      trace_return("ruleSet");
     }
   }
 
   final public Vector declarations() throws ParseException {
+    trace_call("declarations");
+    try {
     if(!validSelector) {
         validSelector = true;
         skip_to_matching_brace();
@@ -1666,9 +1773,9 @@ public abstract class CssParser implements CssParserConstants {
     CssProperty values;
     Vector value_set   = new Vector();
     boolean wrong_value = true;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case IDENT:
-      values = declaration();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case IDENT:
+        values = declaration();
           if (values != null) {
                 value_set.addElement(values);
                 wrong_value = false;
@@ -1676,37 +1783,37 @@ public abstract class CssParser implements CssParserConstants {
 		 wrong_value = true;
 		 } */
           currentProperty = null;
-      break;
-    default:
-      jj_la1[68] = jj_gen;
-      ;
-    }
-    label_51:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case SEMICOLON:
-        ;
         break;
       default:
-        jj_la1[69] = jj_gen;
-        break label_51;
+        jj_la1[68] = jj_gen;
+        ;
       }
-      jj_consume_token(SEMICOLON);
-      label_52:
+      label_51:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
+        case SEMICOLON:
           ;
           break;
         default:
-          jj_la1[70] = jj_gen;
-          break label_52;
+          jj_la1[69] = jj_gen;
+          break label_51;
         }
-        jj_consume_token(S);
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-        values = declaration();
+        jj_consume_token(SEMICOLON);
+        label_52:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[70] = jj_gen;
+            break label_52;
+          }
+          jj_consume_token(S);
+        }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case IDENT:
+          values = declaration();
                 if (values != null) {
                       value_set.addElement(values);
                       wrong_value = false;
@@ -1714,12 +1821,12 @@ public abstract class CssParser implements CssParserConstants {
 		      wrong_value = true;
 		      }*/
                 currentProperty = null;
-        break;
-      default:
-        jj_la1[71] = jj_gen;
-        ;
+          break;
+        default:
+          jj_la1[71] = jj_gen;
+          ;
+        }
       }
-    }
             if (!wrong_value) {
                 addProperty(value_set);
                 {if (true) return value_set;}
@@ -1727,30 +1834,35 @@ public abstract class CssParser implements CssParserConstants {
                 {if (true) return null;}
             }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("declarations");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public CssSelectors selector() throws ParseException {
+    trace_call("selector");
+    try {
     char comb;
     CssSelectors current;
-    try {
-      current = simple_selector(null);
-      label_53:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-        case PLUS:
-        case GREATER:
-        case TILDE:
-          ;
-          break;
-        default:
-          jj_la1[72] = jj_gen;
-          break label_53;
-        }
-        comb = combinator();
+      try {
+        current = simple_selector(null);
+        label_53:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+          case PLUS:
+          case GREATER:
+          case TILDE:
+            ;
+            break;
+          default:
+            jj_la1[72] = jj_gen;
+            break label_53;
+          }
+          comb = combinator();
                 if (ac.getProfile() != null) {
                     if (ac.getProfile().equals("mobile") ||
                         getAtRule().toString().equals("@media atsc-tv") ||
@@ -1782,16 +1894,16 @@ public abstract class CssParser implements CssParserConstants {
                 }
                 //current.setConnector(comb); 
 
-        current = simple_selector(current);
-      }
+          current = simple_selector(current);
+        }
               {if (true) return current;}
-    } catch (InvalidParamException ie) {
+      } catch (InvalidParamException ie) {
         skipStatement();
         removeThisRule();
         ac.getFrame().addError(new CssError(ie));
 
         {if (true) return null;}
-    } catch (ParseException e) {
+      } catch (ParseException e) {
         validSelector = false;
         if (ac.getProfile() != null) {
             if(!(ac.getProfile().equals("mobile"))) {
@@ -1822,8 +1934,11 @@ public abstract class CssParser implements CssParserConstants {
 
             {if (true) return null;}
         }
-    }
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("selector");
+    }
   }
 
 /**
@@ -1831,145 +1946,157 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public CssSelectors externalSelector() throws ParseException {
+    trace_call("externalSelector");
+    try {
     CssSelectors current;
-    current = simple_selector(null);
-    label_54:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[73] = jj_gen;
-        break label_54;
-      }
-      label_55:
+      current = simple_selector(null);
+      label_54:
       while (true) {
-        jj_consume_token(S);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case S:
           ;
           break;
         default:
-          jj_la1[74] = jj_gen;
-          break label_55;
+          jj_la1[73] = jj_gen;
+          break label_54;
         }
+        label_55:
+        while (true) {
+          jj_consume_token(S);
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[74] = jj_gen;
+            break label_55;
+          }
+        }
+        current = simple_selector(current);
       }
-      current = simple_selector(current);
-    }
           {if (true) return current;}
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("externalSelector");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public CssSelectors simple_selector(CssSelectors next) throws ParseException {
+    trace_call("simple_selector");
+    try {
   CssSelectors selector = new CssSelectors(ac, next);
     selector.setAtRule(getAtRule());
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case IDENT:
-    case ANY:
-      element_name(selector);
-      label_56:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HASH:
-        case LBRACKET:
-        case DOT:
-        case COLON:
-        case PSEUDOCLASS_SYM:
-        case CLASS:
-          ;
-          break;
-        default:
-          jj_la1[75] = jj_gen;
-          break label_56;
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case IDENT:
+      case ANY:
+        element_name(selector);
+        label_56:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HASH:
+          case LBRACKET:
+          case DOT:
+          case COLON:
+          case PSEUDOCLASS_SYM:
+          case CLASS:
+            ;
+            break;
+          default:
+            jj_la1[75] = jj_gen;
+            break label_56;
+          }
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HASH:
+            hash(selector);
+            break;
+          case DOT:
+          case CLASS:
+            _class(selector);
+            break;
+          case LBRACKET:
+            attrib(selector);
+            break;
+          case COLON:
+          case PSEUDOCLASS_SYM:
+            pseudo(selector);
+            break;
+          default:
+            jj_la1[76] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
         }
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HASH:
-          hash(selector);
-          break;
-        case DOT:
-        case CLASS:
-          _class(selector);
-          break;
-        case LBRACKET:
-          attrib(selector);
-          break;
-        case COLON:
-        case PSEUDOCLASS_SYM:
-          pseudo(selector);
-          break;
-        default:
-          jj_la1[76] = jj_gen;
-          jj_consume_token(-1);
-          throw new ParseException();
-        }
-      }
             {if (true) return selector;}
-      break;
-    case HASH:
-    case LBRACKET:
-    case DOT:
-    case COLON:
-    case PSEUDOCLASS_SYM:
-    case CLASS:
-      label_57:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HASH:
-          hash(selector);
-          break;
-        case DOT:
-        case CLASS:
-          _class(selector);
-          break;
-        case LBRACKET:
-          attrib(selector);
-          break;
-        case COLON:
-        case PSEUDOCLASS_SYM:
-          pseudo(selector);
-          break;
-        default:
-          jj_la1[77] = jj_gen;
-          jj_consume_token(-1);
-          throw new ParseException();
+        break;
+      case HASH:
+      case LBRACKET:
+      case DOT:
+      case COLON:
+      case PSEUDOCLASS_SYM:
+      case CLASS:
+        label_57:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HASH:
+            hash(selector);
+            break;
+          case DOT:
+          case CLASS:
+            _class(selector);
+            break;
+          case LBRACKET:
+            attrib(selector);
+            break;
+          case COLON:
+          case PSEUDOCLASS_SYM:
+            pseudo(selector);
+            break;
+          default:
+            jj_la1[77] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case HASH:
+          case LBRACKET:
+          case DOT:
+          case COLON:
+          case PSEUDOCLASS_SYM:
+          case CLASS:
+            ;
+            break;
+          default:
+            jj_la1[78] = jj_gen;
+            break label_57;
+          }
         }
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case HASH:
-        case LBRACKET:
-        case DOT:
-        case COLON:
-        case PSEUDOCLASS_SYM:
-        case CLASS:
-          ;
-          break;
-        default:
-          jj_la1[78] = jj_gen;
-          break label_57;
-        }
-      }
             {if (true) return selector;}
-      break;
-    default:
-      jj_la1[79] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
+        break;
+      default:
+        jj_la1[79] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("simple_selector");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void _class(CssSelectors s) throws ParseException {
+    trace_call("_class");
+    try {
  Token n;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case CLASS:
-      /*  "." n=<IDENT> { */
-          n = jj_consume_token(CLASS);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case CLASS:
+        /*  "." n=<IDENT> { */
+            n = jj_consume_token(CLASS);
         try {
             s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
             //        s.addAttribute("class", convertIdent(n.image.substring(1)),
@@ -1978,10 +2105,10 @@ public abstract class CssParser implements CssParserConstants {
             removeThisRule();
             ac.getFrame().addError(new CssError(e));
         }
-      break;
-    case DOT:
-      jj_consume_token(DOT);
-      n = deprecated_class();
+        break;
+      case DOT:
+        jj_consume_token(DOT);
+        n = deprecated_class();
         if (n.image.charAt(0) == '.') {
             n.image = n.image.substring(1);
 
@@ -2035,63 +2162,73 @@ public abstract class CssParser implements CssParserConstants {
         } else {
             {if (true) throw new ParseException("Unrecognized ");}
         }
-      break;
-    default:
-      jj_la1[80] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
+        break;
+      default:
+        jj_la1[80] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+    } finally {
+      trace_return("_class");
     }
   }
 
   final public Token deprecated_class() throws ParseException {
+    trace_call("deprecated_class");
+    try {
     Token n;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case LENGTH:
-      n = jj_consume_token(LENGTH);
-      break;
-    case EMS:
-      n = jj_consume_token(EMS);
-      break;
-    case EXS:
-      n = jj_consume_token(EXS);
-      break;
-    case ANGLE:
-      n = jj_consume_token(ANGLE);
-      break;
-    case TIME:
-      n = jj_consume_token(TIME);
-      break;
-    case FREQ:
-      n = jj_consume_token(FREQ);
-      break;
-    case RESOLUTION:
-      n = jj_consume_token(RESOLUTION);
-      break;
-    case DIMEN:
-      n = jj_consume_token(DIMEN);
-      break;
-    default:
-      jj_la1[81] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case LENGTH:
+        n = jj_consume_token(LENGTH);
+        break;
+      case EMS:
+        n = jj_consume_token(EMS);
+        break;
+      case EXS:
+        n = jj_consume_token(EXS);
+        break;
+      case ANGLE:
+        n = jj_consume_token(ANGLE);
+        break;
+      case TIME:
+        n = jj_consume_token(TIME);
+        break;
+      case FREQ:
+        n = jj_consume_token(FREQ);
+        break;
+      case RESOLUTION:
+        n = jj_consume_token(RESOLUTION);
+        break;
+      case DIMEN:
+        n = jj_consume_token(DIMEN);
+        break;
+      default:
+        jj_la1[81] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
         {if (true) return n;}
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("deprecated_class");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void element_name(CssSelectors s) throws ParseException {
+    trace_call("element_name");
+    try {
  Token n;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case IDENT:
-      n = jj_consume_token(IDENT);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case IDENT:
+        n = jj_consume_token(IDENT);
                 //              s.setElement(convertIdent(n.image), ac);
         s.addType(new TypeSelector(convertIdent(n.image)));
-      break;
-    case ANY:
-      jj_consume_token(ANY);
+        break;
+      case ANY:
+        jj_consume_token(ANY);
         if (!ac.getCssVersion().equals("css1")) {
             //          s.setElement(null);
             s.addUniversal(new UniversalSelector());
@@ -2099,11 +2236,14 @@ public abstract class CssParser implements CssParserConstants {
             ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
                                                                           "*", ac.getCssVersion(), ac)));
         }
-      break;
-    default:
-      jj_la1[82] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
+        break;
+      default:
+        jj_la1[82] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+    } finally {
+      trace_return("element_name");
     }
   }
 
@@ -2111,116 +2251,118 @@ public abstract class CssParser implements CssParserConstants {
  * @exception ParseException exception during the parse
  */
   final public void attrib(CssSelectors s) throws ParseException {
+    trace_call("attrib");
+    try {
     Token att = null;
     Token val = null;
     int selectorType = CssSelectors.ATTRIBUTE_ANY;
-    jj_consume_token(LBRACKET);
-    label_58:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[83] = jj_gen;
-        break label_58;
-      }
-      jj_consume_token(S);
-    }
-    att = jj_consume_token(IDENT);
-    label_59:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[84] = jj_gen;
-        break label_59;
-      }
-      jj_consume_token(S);
-    }
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case INCLUDES:
-    case DASHMATCH:
-    case PREFIXMATCH:
-    case SUFFIXMATCH:
-    case SUBSTRINGMATCH:
-    case EQ:
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case EQ:
-        jj_consume_token(EQ);
-                  selectorType = CssSelectors.ATTRIBUTE_EXACT;
-        break;
-      case INCLUDES:
-        jj_consume_token(INCLUDES);
-                       selectorType = CssSelectors.ATTRIBUTE_ONE_OF;
-        break;
-      case DASHMATCH:
-        jj_consume_token(DASHMATCH);
-                        selectorType = CssSelectors.ATTRIBUTE_BEGIN;
-        break;
-      case PREFIXMATCH:
-        jj_consume_token(PREFIXMATCH);
-                          selectorType = CssSelectors.ATTRIBUTE_START;
-        break;
-      case SUFFIXMATCH:
-        jj_consume_token(SUFFIXMATCH);
-                          selectorType = CssSelectors.ATTRIBUTE_SUFFIX;
-        break;
-      case SUBSTRINGMATCH:
-        jj_consume_token(SUBSTRINGMATCH);
-                             selectorType = CssSelectors.ATTRIBUTE_SUBSTR;
-        break;
-      default:
-        jj_la1[85] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_60:
+      jj_consume_token(LBRACKET);
+      label_58:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case S:
           ;
           break;
         default:
-          jj_la1[86] = jj_gen;
-          break label_60;
+          jj_la1[83] = jj_gen;
+          break label_58;
+        }
+        jj_consume_token(S);
+      }
+      att = jj_consume_token(IDENT);
+      label_59:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          ;
+          break;
+        default:
+          jj_la1[84] = jj_gen;
+          break label_59;
         }
         jj_consume_token(S);
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-        val = jj_consume_token(IDENT);
-               val.image = convertIdent(val.image);
-        break;
-      case STRING:
-        val = jj_consume_token(STRING);
-                 val.image = convertStringIndex(val.image, 1, val.image.length() -1);
-        label_61:
+      case INCLUDES:
+      case DASHMATCH:
+      case PREFIXMATCH:
+      case SUFFIXMATCH:
+      case SUBSTRINGMATCH:
+      case EQ:
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case EQ:
+          jj_consume_token(EQ);
+                  selectorType = CssSelectors.ATTRIBUTE_EXACT;
+          break;
+        case INCLUDES:
+          jj_consume_token(INCLUDES);
+                       selectorType = CssSelectors.ATTRIBUTE_ONE_OF;
+          break;
+        case DASHMATCH:
+          jj_consume_token(DASHMATCH);
+                        selectorType = CssSelectors.ATTRIBUTE_BEGIN;
+          break;
+        case PREFIXMATCH:
+          jj_consume_token(PREFIXMATCH);
+                          selectorType = CssSelectors.ATTRIBUTE_START;
+          break;
+        case SUFFIXMATCH:
+          jj_consume_token(SUFFIXMATCH);
+                          selectorType = CssSelectors.ATTRIBUTE_SUFFIX;
+          break;
+        case SUBSTRINGMATCH:
+          jj_consume_token(SUBSTRINGMATCH);
+                             selectorType = CssSelectors.ATTRIBUTE_SUBSTR;
+          break;
+        default:
+          jj_la1[85] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
+        label_60:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case S:
             ;
             break;
           default:
-            jj_la1[87] = jj_gen;
-            break label_61;
+            jj_la1[86] = jj_gen;
+            break label_60;
           }
           jj_consume_token(S);
         }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case IDENT:
+          val = jj_consume_token(IDENT);
+               val.image = convertIdent(val.image);
+          break;
+        case STRING:
+          val = jj_consume_token(STRING);
+                 val.image = convertStringIndex(val.image, 1, val.image.length() -1);
+          label_61:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[87] = jj_gen;
+              break label_61;
+            }
+            jj_consume_token(S);
+          }
+          break;
+        default:
+          jj_la1[88] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
         break;
       default:
-        jj_la1[88] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
+        jj_la1[89] = jj_gen;
+        ;
       }
-      break;
-    default:
-      jj_la1[89] = jj_gen;
-      ;
-    }
-    jj_consume_token(RBRACKET);
+      jj_consume_token(RBRACKET);
           if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
               try {
                   s.addAttribute(new AttributeAny(att.image.toLowerCase()));
@@ -2270,19 +2412,24 @@ public abstract class CssParser implements CssParserConstants {
                   ac.getFrame().addError(new CssError(e));
               }
           }
+    } finally {
+      trace_return("attrib");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void pseudo(CssSelectors s) throws ParseException {
+    trace_call("pseudo");
+    try {
  Token n;
 Token language = null;
 CssSelectors param = null;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case PSEUDOCLASS_SYM:
-      jj_consume_token(PSEUDOCLASS_SYM);
-      n = jj_consume_token(IDENT);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case PSEUDOCLASS_SYM:
+        jj_consume_token(PSEUDOCLASS_SYM);
+        n = jj_consume_token(IDENT);
                 try {
                         if (ac.getCssVersion().equals("css3")) {
                                 s.addPseudo(convertIdent(n.image).toLowerCase());
@@ -2295,12 +2442,12 @@ CssSelectors param = null;
                      removeThisRule();
                      ac.getFrame().addError(new CssError(e));
                 }
-      break;
-    case COLON:
-      jj_consume_token(COLON);
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IDENT:
-        n = jj_consume_token(IDENT);
+        break;
+      case COLON:
+        jj_consume_token(COLON);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case IDENT:
+          n = jj_consume_token(IDENT);
                 try {
                      s.addPseudo(convertIdent(n.image).toLowerCase());
                 } catch(InvalidParamException e) {
@@ -2308,39 +2455,39 @@ CssSelectors param = null;
                      removeThisRule();
                      ac.getFrame().addError(new CssError(e));
                 }
-        break;
-      case FUNCTIONLANG:
-      case FUNCTION:
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          break;
         case FUNCTIONLANG:
-          n = jj_consume_token(FUNCTIONLANG);
-          label_62:
-          while (true) {
+        case FUNCTION:
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case FUNCTIONLANG:
+            n = jj_consume_token(FUNCTIONLANG);
+            label_62:
+            while (true) {
+              switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+              case S:
+                ;
+                break;
+              default:
+                jj_la1[90] = jj_gen;
+                break label_62;
+              }
+              jj_consume_token(S);
+            }
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-            case S:
-              ;
+            case NUMBER:
+              language = jj_consume_token(NUMBER);
+              break;
+            case IDENT:
+              language = jj_consume_token(IDENT);
+              break;
+            case STRING:
+              language = jj_consume_token(STRING);
               break;
             default:
-              jj_la1[90] = jj_gen;
-              break label_62;
+              jj_la1[91] = jj_gen;
+              jj_consume_token(-1);
+              throw new ParseException();
             }
-            jj_consume_token(S);
-          }
-          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case NUMBER:
-            language = jj_consume_token(NUMBER);
-            break;
-          case IDENT:
-            language = jj_consume_token(IDENT);
-            break;
-          case STRING:
-            language = jj_consume_token(STRING);
-            break;
-          default:
-            jj_la1[91] = jj_gen;
-            jj_consume_token(-1);
-            throw new ParseException();
-          }
                 try {
                     s.setPseudoFun(convertStringIndex(n.image, 0,
                                             n.image.length() -1).toLowerCase(),
@@ -2349,22 +2496,22 @@ CssSelectors param = null;
                         removeThisRule();
                         ac.getFrame().addError(new CssError(e));
                 }
-          break;
-        case FUNCTION:
-          n = jj_consume_token(FUNCTION);
-          label_63:
-          while (true) {
-            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-            case S:
-              ;
-              break;
-            default:
-              jj_la1[92] = jj_gen;
-              break label_63;
+            break;
+          case FUNCTION:
+            n = jj_consume_token(FUNCTION);
+            label_63:
+            while (true) {
+              switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+              case S:
+                ;
+                break;
+              default:
+                jj_la1[92] = jj_gen;
+                break label_63;
+              }
+              jj_consume_token(S);
             }
-            jj_consume_token(S);
-          }
-          param = simple_selector(null);
+            param = simple_selector(null);
                 try {
                     s.setPseudoFun(convertStringIndex(n.image, 0,
                                             n.image.length() -1).toLowerCase(),
@@ -2373,36 +2520,39 @@ CssSelectors param = null;
                     removeThisRule();
                     ac.getFrame().addError(new CssError(e));
                 }
+            break;
+          default:
+            jj_la1[93] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
+          label_64:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[94] = jj_gen;
+              break label_64;
+            }
+            jj_consume_token(S);
+          }
+          jj_consume_token(LPARAN);
           break;
         default:
-          jj_la1[93] = jj_gen;
+          jj_la1[95] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
-        label_64:
-        while (true) {
-          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
-            ;
-            break;
-          default:
-            jj_la1[94] = jj_gen;
-            break label_64;
-          }
-          jj_consume_token(S);
-        }
-        jj_consume_token(LPARAN);
         break;
       default:
-        jj_la1[95] = jj_gen;
+        jj_la1[96] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
-      break;
-    default:
-      jj_la1[96] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
+    } finally {
+      trace_return("pseudo");
     }
   }
 
@@ -2410,8 +2560,10 @@ CssSelectors param = null;
  * @exception ParseException exception during the parse
  */
   final public void hash(CssSelectors s) throws ParseException {
+    trace_call("hash");
+    try {
  Token n;
-    n = jj_consume_token(HASH);
+      n = jj_consume_token(HASH);
       n.image = n.image.substring(1);
       if(Character.isDigit(n.image.charAt(0))) {
           String profile = ac.getProfile();
@@ -2470,47 +2622,52 @@ CssSelectors param = null;
               removeThisRule();
           }
       }
+    } finally {
+      trace_return("hash");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public CssProperty mediadeclaration() throws ParseException {
+    trace_call("mediadeclaration");
+    try {
   String string_property;
   CssExpression values = null;
   boolean important = false;
   setMediaDeclaration("on");
-    try {
-      string_property = property();
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case COLON:
-        jj_consume_token(COLON);
-        label_65:
-        while (true) {
+      try {
+        string_property = property();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case COLON:
+          jj_consume_token(COLON);
+          label_65:
+          while (true) {
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case S:
+              ;
+              break;
+            default:
+              jj_la1[97] = jj_gen;
+              break label_65;
+            }
+            jj_consume_token(S);
+          }
+          values = expr();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case S:
-            ;
+          case IMPORTANT_SYM:
+            important = prio();
             break;
           default:
-            jj_la1[97] = jj_gen;
-            break label_65;
+            jj_la1[98] = jj_gen;
+            ;
           }
-          jj_consume_token(S);
-        }
-        values = expr();
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case IMPORTANT_SYM:
-          important = prio();
           break;
         default:
-          jj_la1[98] = jj_gen;
+          jj_la1[99] = jj_gen;
           ;
         }
-        break;
-      default:
-        jj_la1[99] = jj_gen;
-        ;
-      }
         try {
 
             setImportant(important);
@@ -2531,49 +2688,54 @@ CssSelectors param = null;
                 addError(e, (CssExpression) values);
         }
         {if (true) return null;}
-    } catch (NumberFormatException e) {
+      } catch (NumberFormatException e) {
      skipAfterExpression(e);
      {if (true) return null;}
-    } catch (ParseException e) {
+      } catch (ParseException e) {
      skipAfterExpression(e);
      {if (true) return null;}
-    } finally {
+      } finally {
      setMediaDeclaration("off");
-    }
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("mediadeclaration");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public CssProperty declaration() throws ParseException {
+    trace_call("declaration");
+    try {
   String string_property;
   CssExpression values;
   boolean important = false;
-    try {
-      string_property = property();
-      jj_consume_token(COLON);
-      label_66:
-      while (true) {
+      try {
+        string_property = property();
+        jj_consume_token(COLON);
+        label_66:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[100] = jj_gen;
+            break label_66;
+          }
+          jj_consume_token(S);
+        }
+        values = expr();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
+        case IMPORTANT_SYM:
+          important = prio();
           break;
         default:
-          jj_la1[100] = jj_gen;
-          break label_66;
+          jj_la1[101] = jj_gen;
+          ;
         }
-        jj_consume_token(S);
-      }
-      values = expr();
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case IMPORTANT_SYM:
-        important = prio();
-        break;
-      default:
-        jj_la1[101] = jj_gen;
-        ;
-      }
         try {
 
             setImportant(important);
@@ -2601,197 +2763,212 @@ CssSelectors param = null;
                 addError(e, (CssExpression) values);
         }
         {if (true) return null;}
-    } catch (NumberFormatException e) {
+      } catch (NumberFormatException e) {
      skipAfterExpression(e);
      {if (true) return null;}
-    } catch (ParseException e) {
+      } catch (ParseException e) {
      skipAfterExpression(e);
      {if (true) return null;}
-    } catch (NullPointerException e) {
+      } catch (NullPointerException e) {
         // NullPointerException happen if in handling a property
         // something bad happen (like setting values on sub properties
         // that had not been initialized (for an unknown reason yet).
      skipAfterExpression(e);
      {if (true) return null;}
-    }
+      }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("declaration");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public boolean prio() throws ParseException {
-    jj_consume_token(IMPORTANT_SYM);
-    label_67:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[102] = jj_gen;
-        break label_67;
-      }
-      jj_consume_token(S);
-    }
-                             {if (true) return true;}
-    throw new Error("Missing return statement in function");
-  }
-
-/**
- * @exception ParseException exception during the parse
- */
-  final public CssExpression expr() throws ParseException {
-  CssExpression values = new CssExpression();
-    term(values);
-    label_68:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case PLUS:
-      case COMMA:
-      case STRING:
-      case IDENT:
-      case HASH:
-      case MINUS:
-      case DIV:
-      case URL:
-      case LENGTH:
-      case EMS:
-      case EXS:
-      case ANGLE:
-      case TIME:
-      case FREQ:
-      case RESOLUTION:
-      case DATE:
-      case DIMEN:
-      case PERCENTAGE:
-      case NUMBER:
-      case UNICODERANGE:
-      case FUNCTION:
-        ;
-        break;
-      default:
-        jj_la1[103] = jj_gen;
-        break label_68;
-      }
-      operator(values);
-      term(values);
-    }
-    {if (true) return values;}
-    throw new Error("Missing return statement in function");
-  }
-
-/**
- * @exception ParseException exception during the parse
- */
-  final public void term(CssExpression exp) throws ParseException {
-  Token n;
-  char operator = ' ';
-  CssValue func;
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case PLUS:
-    case MINUS:
-    case LENGTH:
-    case EMS:
-    case EXS:
-    case ANGLE:
-    case TIME:
-    case FREQ:
-    case RESOLUTION:
-    case DATE:
-    case DIMEN:
-    case PERCENTAGE:
-    case NUMBER:
-    case FUNCTION:
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case PLUS:
-      case MINUS:
-        operator = unaryOperator();
-        break;
-      default:
-        jj_la1[104] = jj_gen;
-        ;
-      }
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case NUMBER:
-        n = jj_consume_token(NUMBER);
-                   setValue(new CssNumber(), exp, operator, n, NUMBER);
-        break;
-      case PERCENTAGE:
-        n = jj_consume_token(PERCENTAGE);
-                       setValue(new CssPercentage(), exp, operator, n,
-                                PERCENTAGE);
-        break;
-      case LENGTH:
-        n = jj_consume_token(LENGTH);
-                   setValue(new CssLength(), exp, operator, n, LENGTH);
-        break;
-      case EMS:
-        n = jj_consume_token(EMS);
-                setValue(new CssLength(), exp, operator, n, EMS);
-        break;
-      case EXS:
-        n = jj_consume_token(EXS);
-                setValue(new CssLength(), exp, operator, n, EXS);
-        break;
-      case ANGLE:
-        n = jj_consume_token(ANGLE);
-                  setValue(new CssAngle(), exp, operator, n, ANGLE);
-        break;
-      case TIME:
-        n = jj_consume_token(TIME);
-                 setValue(new CssTime(), exp, operator, n, TIME);
-        break;
-      case FREQ:
-        n = jj_consume_token(FREQ);
-                 setValue(new CssFrequency(), exp, operator, n, FREQ);
-        break;
-      case RESOLUTION:
-        n = jj_consume_token(RESOLUTION);
-                       setValue(new CssResolution(), exp, operator, n, RESOLUTION);
-        break;
-      case DATE:
-        n = jj_consume_token(DATE);
-                 setValue(new CssDate(), exp, operator, n, DATE);
-        break;
-      case DIMEN:
-        n = jj_consume_token(DIMEN);
-          addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
-        break;
-      case FUNCTION:
-        func = function();
-                        setValue(func, exp, operator, null, FUNCTION);
-        break;
-      default:
-        jj_la1[105] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
-      }
-      label_69:
+    trace_call("prio");
+    try {
+      jj_consume_token(IMPORTANT_SYM);
+      label_67:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case S:
           ;
           break;
         default:
-          jj_la1[106] = jj_gen;
-          break label_69;
+          jj_la1[102] = jj_gen;
+          break label_67;
         }
         jj_consume_token(S);
       }
-      break;
-    case STRING:
-    case IDENT:
-    case HASH:
-    case URL:
-    case UNICODERANGE:
+                             {if (true) return true;}
+    throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("prio");
+    }
+  }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+  final public CssExpression expr() throws ParseException {
+    trace_call("expr");
+    try {
+  CssExpression values = new CssExpression();
+      term(values);
+      label_68:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case PLUS:
+        case COMMA:
+        case STRING:
+        case IDENT:
+        case HASH:
+        case MINUS:
+        case DIV:
+        case URL:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DATE:
+        case DIMEN:
+        case PERCENTAGE:
+        case NUMBER:
+        case UNICODERANGE:
+        case FUNCTION:
+          ;
+          break;
+        default:
+          jj_la1[103] = jj_gen;
+          break label_68;
+        }
+        operator(values);
+        term(values);
+      }
+    {if (true) return values;}
+    throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("expr");
+    }
+  }
+
+/**
+ * @exception ParseException exception during the parse
+ */
+  final public void term(CssExpression exp) throws ParseException {
+    trace_call("term");
+    try {
+  Token n;
+  char operator = ' ';
+  CssValue func;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case STRING:
-        n = jj_consume_token(STRING);
-                    setValue(new CssString(), exp, operator, n, STRING);
+      case PLUS:
+      case MINUS:
+      case LENGTH:
+      case EMS:
+      case EXS:
+      case ANGLE:
+      case TIME:
+      case FREQ:
+      case RESOLUTION:
+      case DATE:
+      case DIMEN:
+      case PERCENTAGE:
+      case NUMBER:
+      case FUNCTION:
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case PLUS:
+        case MINUS:
+          operator = unaryOperator();
+          break;
+        default:
+          jj_la1[104] = jj_gen;
+          ;
+        }
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case NUMBER:
+          n = jj_consume_token(NUMBER);
+                   setValue(new CssNumber(), exp, operator, n, NUMBER);
+          break;
+        case PERCENTAGE:
+          n = jj_consume_token(PERCENTAGE);
+                       setValue(new CssPercentage(), exp, operator, n,
+                                PERCENTAGE);
+          break;
+        case LENGTH:
+          n = jj_consume_token(LENGTH);
+                   setValue(new CssLength(), exp, operator, n, LENGTH);
+          break;
+        case EMS:
+          n = jj_consume_token(EMS);
+                setValue(new CssLength(), exp, operator, n, EMS);
+          break;
+        case EXS:
+          n = jj_consume_token(EXS);
+                setValue(new CssLength(), exp, operator, n, EXS);
+          break;
+        case ANGLE:
+          n = jj_consume_token(ANGLE);
+                  setValue(new CssAngle(), exp, operator, n, ANGLE);
+          break;
+        case TIME:
+          n = jj_consume_token(TIME);
+                 setValue(new CssTime(), exp, operator, n, TIME);
+          break;
+        case FREQ:
+          n = jj_consume_token(FREQ);
+                 setValue(new CssFrequency(), exp, operator, n, FREQ);
+          break;
+        case RESOLUTION:
+          n = jj_consume_token(RESOLUTION);
+                       setValue(new CssResolution(), exp, operator, n, RESOLUTION);
+          break;
+        case DATE:
+          n = jj_consume_token(DATE);
+                 setValue(new CssDate(), exp, operator, n, DATE);
+          break;
+        case DIMEN:
+          n = jj_consume_token(DIMEN);
+          addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+          break;
+        case FUNCTION:
+          func = function();
+                        setValue(func, exp, operator, null, FUNCTION);
+          break;
+        default:
+          jj_la1[105] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
+        label_69:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[106] = jj_gen;
+            break label_69;
+          }
+          jj_consume_token(S);
+        }
         break;
+      case STRING:
       case IDENT:
-        n = jj_consume_token(IDENT);
+      case HASH:
+      case URL:
+      case UNICODERANGE:
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case STRING:
+          n = jj_consume_token(STRING);
+                    setValue(new CssString(), exp, operator, n, STRING);
+          break;
+        case IDENT:
+          n = jj_consume_token(IDENT);
         /*
 	 * Common error :
 	 * H1 {
@@ -2813,43 +2990,46 @@ CssSelectors param = null;
         } else {
             setValue(new CssIdent(), exp, operator, n, IDENT);
         }
-        break;
-      case HASH:
-        hexcolor(exp);
-        break;
-      case URL:
-        n = jj_consume_token(URL);
+          break;
+        case HASH:
+          hexcolor(exp);
+          break;
+        case URL:
+          n = jj_consume_token(URL);
         CssURL _u = new CssURL();
         _u.set(n.image, ac, url);
         exp.addValue(_u);
-        break;
-      case UNICODERANGE:
-        n = jj_consume_token(UNICODERANGE);
+          break;
+        case UNICODERANGE:
+          n = jj_consume_token(UNICODERANGE);
                          setValue(new CssUnicodeRange(), exp, operator, n,
                                 UNICODERANGE);
+          break;
+        default:
+          jj_la1[107] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
+        label_70:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case S:
+            ;
+            break;
+          default:
+            jj_la1[108] = jj_gen;
+            break label_70;
+          }
+          jj_consume_token(S);
+        }
         break;
       default:
-        jj_la1[107] = jj_gen;
+        jj_la1[109] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
-      label_70:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case S:
-          ;
-          break;
-        default:
-          jj_la1[108] = jj_gen;
-          break label_70;
-        }
-        jj_consume_token(S);
-      }
-      break;
-    default:
-      jj_la1[109] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
+    } finally {
+      trace_return("term");
     }
   }
 
@@ -2857,25 +3037,27 @@ CssSelectors param = null;
  * @exception ParseException exception during the parse
  */
   final public CssValue function() throws ParseException {
+    trace_call("function");
+    try {
  Token n;
  CssExpression exp;
  org.w3c.css.values.CssColor color = new org.w3c.css.values.CssColor();
  org.w3c.css.values.ATSCColor colorATSC = new org.w3c.css.values.ATSCColor();
-    n = jj_consume_token(FUNCTION);
-    label_71:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case S:
-        ;
-        break;
-      default:
-        jj_la1[110] = jj_gen;
-        break label_71;
+      n = jj_consume_token(FUNCTION);
+      label_71:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case S:
+          ;
+          break;
+        default:
+          jj_la1[110] = jj_gen;
+          break label_71;
+        }
+        jj_consume_token(S);
       }
-      jj_consume_token(S);
-    }
-    exp = expr();
-    jj_consume_token(LPARAN);
+      exp = expr();
+      jj_consume_token(LPARAN);
         if (n.image.toLowerCase().equals("rgb(")) {
             if (!getAtRule().toString().equals("@media atsc-tv")) {
                color.setRGBColor(exp, ac);
@@ -2900,19 +3082,29 @@ CssSelectors param = null;
             {if (true) return f;}
         }
     throw new Error("Missing return statement in function");
+    } finally {
+      trace_return("function");
+    }
   }
 
 /**
  * @exception ParseException exception during the parse
  */
   final public void hexcolor(CssExpression exp) throws ParseException {
+    trace_call("hexcolor");
+    try {
  Token n;
-    n = jj_consume_token(HASH);
+      n = jj_consume_token(HASH);
             n.image = Util.strip(n.image);
  setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
+    } finally {
+      trace_return("hexcolor");
+    }
   }
 
   String skipStatement() throws ParseException {
+    trace_call("skipStatement");
+    try {
     StringBuffer s = new StringBuffer();
     Token tok = getToken(0);
     boolean first = true;
@@ -2968,9 +3160,14 @@ CssSelectors param = null;
     }
     String statement = s.toString().trim();
     return statement;
+    } finally {
+      trace_return("skipStatement");
+    }
   }
 
   String skip_to_matching_brace() throws ParseException {
+    trace_call("skip_to_matching_brace");
+    try {
     StringBuffer s = new StringBuffer();
     Token tok;
     int nesting = 1;
@@ -2993,16 +3190,26 @@ CssSelectors param = null;
         getNextToken();
     }
     return s.toString();
+    } finally {
+      trace_return("skip_to_matching_brace");
+    }
   }
 
   void rejectToken(Token t) throws ParseException {
+    trace_call("rejectToken");
+    try {
     Token fakeToken = new Token();
     t.next = token;
     fakeToken.next = t;
     token = fakeToken;
+    } finally {
+      trace_return("rejectToken");
+    }
   }
 
   void skipAfterExpression(Exception e) throws ParseException {
+    trace_call("skipAfterExpression");
+    try {
     StringBuffer s = new StringBuffer();
     s.append(getToken(0).image);
     while (true) {
@@ -3035,9 +3242,14 @@ CssSelectors param = null;
     }
     String statement = s.toString().trim();
     addError(e, s.toString());
+    } finally {
+      trace_return("skipAfterExpression");
+    }
   }
 
   String convertStringIndex(String s, int start, int len) throws ParseException {
+    trace_call("convertStringIndex");
+    try {
     StringBuffer buf = new StringBuffer(len);
     int index = start;
 
@@ -3097,14 +3309,27 @@ CssSelectors param = null;
     }
 
     return buf.toString();
+    } finally {
+      trace_return("convertStringIndex");
+    }
   }
 
   String convertIdent(String s) throws ParseException {
+    trace_call("convertIdent");
+    try {
     return convertStringIndex(s, 0, s.length());
+    } finally {
+      trace_return("convertIdent");
+    }
   }
 
   String convertString(String s) throws ParseException {
+    trace_call("convertString");
+    try {
     return convertStringIndex(s, 0, s.length());
+    } finally {
+      trace_return("convertString");
+    }
   }
 
   public CssParserTokenManager token_source;
@@ -3201,6 +3426,7 @@ CssSelectors param = null;
     jj_ntk = -1;
     if (token.kind == kind) {
       jj_gen++;
+      trace_token(token, "");
       return token;
     }
     token = oldToken;
@@ -3213,6 +3439,7 @@ CssSelectors param = null;
     else token = token.next = token_source.getNextToken();
     jj_ntk = -1;
     jj_gen++;
+      trace_token(token, " (in getNextToken)");
     return token;
   }
 
@@ -3278,10 +3505,53 @@ CssSelectors param = null;
     return new ParseException(token, exptokseq, tokenImage);
   }
 
+  private int trace_indent = 0;
+  private boolean trace_enabled = true;
+
   final public void enable_tracing() {
+    trace_enabled = true;
   }
 
   final public void disable_tracing() {
+    trace_enabled = false;
+  }
+
+  final private void trace_call(String s) {
+    if (trace_enabled) {
+      for (int i = 0; i < trace_indent; i++) { System.out.print(" "); }
+      System.out.println("Call:   " + s);
+    }
+    trace_indent = trace_indent + 2;
+  }
+
+  final private void trace_return(String s) {
+    trace_indent = trace_indent - 2;
+    if (trace_enabled) {
+      for (int i = 0; i < trace_indent; i++) { System.out.print(" "); }
+      System.out.println("Return: " + s);
+    }
+  }
+
+  final private void trace_token(Token t, String where) {
+    if (trace_enabled) {
+      for (int i = 0; i < trace_indent; i++) { System.out.print(" "); }
+      System.out.print("Consumed token: <" + tokenImage[t.kind]);
+      if (t.kind != 0 && !tokenImage[t.kind].equals("\"" + t.image + "\"")) {
+        System.out.print(": \"" + t.image + "\"");
+      }
+      System.out.println(" at line " + t.beginLine + " column " + t.beginColumn + ">" + where);
+    }
+  }
+
+  final private void trace_scan(Token t1, int t2) {
+    if (trace_enabled) {
+      for (int i = 0; i < trace_indent; i++) { System.out.print(" "); }
+      System.out.print("Visited token: <" + tokenImage[t1.kind]);
+      if (t1.kind != 0 && !tokenImage[t1.kind].equals("\"" + t1.image + "\"")) {
+        System.out.print(": \"" + t1.image + "\"");
+      }
+      System.out.println(" at line " + t1.beginLine + " column " + t1.beginColumn + ">; Expected token: <" + tokenImage[t2] + ">");
+    }
   }
 
 }
