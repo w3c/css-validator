@@ -10,8 +10,8 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-       DEBUG_TOKEN_MANAGER = true;
-	 DEBUG_PARSER = true; 
+/*       DEBUG_TOKEN_MANAGER = true;
+	 DEBUG_PARSER = true;  */
 }
 
 PARSER_BEGIN(CssParser)
