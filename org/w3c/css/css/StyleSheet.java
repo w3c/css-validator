@@ -173,6 +173,10 @@ public class StyleSheet {
     public void findConflicts(ApplContext ac) {
 	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
 	    CssSelectors sel = (CssSelectors) e.nextElement();
+	    sel.markAsFinal();
+	}
+	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
+	    CssSelectors sel = (CssSelectors) e.nextElement();
 	    sel.findConflicts(ac, warnings, getRules().elements());
 	}
     }
