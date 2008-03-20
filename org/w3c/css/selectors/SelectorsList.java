@@ -53,17 +53,19 @@ import org.w3c.css.util.InvalidParamException;
 public class SelectorsList {
 
     // the list of selectors
-    private ArrayList selectors;
+    private ArrayList<Selector> selectors;
 
     private ApplContext ac;
 
     private int specificity;
 
+    private String stringrep = null;
+
     /**
      * Creates a new empty SelectorsList
      */
     public SelectorsList() {
-	selectors = new ArrayList();
+	selectors = new ArrayList<Selector>();
     }
 
     /**
@@ -72,14 +74,14 @@ public class SelectorsList {
      */
     public SelectorsList(ApplContext ac) {
 	this.ac = ac;
-	selectors = new ArrayList();
+	selectors = new ArrayList<Selector>();
     }
 
     /**
      * Returns the selectors list
      * @return Returns the selectors list.
      */
-    public ArrayList getSelectors() {
+    public ArrayList<Selector> getSelectors() {
         return selectors;
     }
 
@@ -87,8 +89,9 @@ public class SelectorsList {
      * Sets the selectors list
      * @param selectors The selectors list to set.
      */
-    public void setSelectors(ArrayList selectors) {
+    public void setSelectors(ArrayList<Selector> selectors) {
         this.selectors = selectors;
+	stringrep = null;
     }
 
     /**
@@ -97,7 +100,7 @@ public class SelectorsList {
      * @return the nth selector
      */
     public Selector getSelector(int index) {
-	return (Selector) selectors.get(index);
+	return selectors.get(index);
     }
 
     /**
@@ -115,12 +118,14 @@ public class SelectorsList {
      */
     public void addSelector(Selector selector) throws InvalidParamException {
 	if(selectors.size() > 0) {
-	    Selector last = (Selector) selectors.get(selectors.size() - 1);
+	    Selector last = selectors.get(selectors.size() - 1);
 	    if(last instanceof PseudoElementSelector) {
-		throw new InvalidParamException("pseudo-element", selector, ac.getMsg().getString(ac.getCssVersion()), ac);
+		throw new InvalidParamException("pseudo-element", selector, 
+						ac.getMsg().getString(ac.getCssVersion()), ac);
 	    }
 	}
 	selectors.add(selector);
+	stringrep = null;
     }
 
     /**
@@ -235,11 +240,20 @@ public class SelectorsList {
      * @return  the String representation of this SelectorsList
      */
     public String toString() {
-	StringBuffer res = new StringBuffer();
-	for(int i = 0; i < selectors.size(); i++) {
+	if (stringrep != null ) {
+	    return stringrep;
+	}
+	StringBuilder res = new StringBuilder();
+	int selsize = selectors.size();
+	for(int i = 0; i < selsize; i++) {
 	    res.append(selectors.get(i));
 	}
-	return res.toString();
+	stringrep = res.toString();
+	return stringrep;
+    }
+    
+    public boolean isToStringCached() {
+	return (stringrep != null);
     }
 
     /**
