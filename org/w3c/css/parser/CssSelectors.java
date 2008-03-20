@@ -81,6 +81,8 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     // see isEmpty and addProperty
     private boolean Init;
 
+    private String cachedRepresentation = null;
+
     /**
      * Create a new CssSelectors with no previous selector.
      */
@@ -155,14 +157,14 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
      *
      * @return the value of the attribute
      */
-    public AtRule getAtRule() {
+    public final AtRule getAtRule() {
 	return atRule;
     }
 
     /**
      * Get the element.
      */
-    public String getElement() {
+    public final String getElement() {
 	return element;
     }
 
@@ -170,7 +172,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
      * Returns <code>true</code> if the element is a block level element (HTML
      * only)
      */
-    public boolean isBlockLevelElement() {
+    public final boolean isBlockLevelElement() {
 	return isBlock;
     }
 
@@ -311,7 +313,8 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 
     public void addAttribute(AttributeSelector attribute)
     throws InvalidParamException {
-	for(int i = 0; i < size(); i++) {
+	int _s = size();
+	for(int i = 0; i < _s; i++) {
 	    Selector s = (Selector) getSelector(i);
 	    // add warnings if some selectors are incompatible
 	    // e.g. [lang=en][lang=fr]
@@ -350,12 +353,26 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
      */
     public String toString() {
 	// I'm in reverse order, so compute the next before the current
-	StringBuffer sbrep = new StringBuffer();
+	if (isToStringCached()) {
+	    return cachedRepresentation;
+	}
+	StringBuilder sbrep = new StringBuilder();
 	if (next != null) {
 	    sbrep.append(next.toString());
 	}
 	sbrep.append(super.toString());
-	return sbrep.toString();
+	cachedRepresentation = sbrep.toString();
+	return cachedRepresentation;
+    }
+
+    public boolean isToStringCached() {
+	if (cachedRepresentation == null) {
+	    return false;
+	}
+	if (next != null) {
+	    return super.isToStringCached() && next.isToStringCached();
+	}
+	return super.isToStringCached();
     }
 
     /**
@@ -456,15 +473,15 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	}
     }
 
-    final boolean canApply(ArrayList attrs, ArrayList attrs2) {
+    final boolean canApply(ArrayList<Selector> attrs, ArrayList<Selector> attrs2) {
 	if(attrs.size() > 0) {
 	    for(int i = 0; i < attrs.size(); i++) {
-		Selector selector = (Selector) attrs.get(i);
+		Selector selector = attrs.get(i);
 
 		Selector other = null;
 		int j = 0;
 		for(; j < attrs2.size(); j++) {
-		    other = (Selector) attrs2.get(j);
+		    other = attrs2.get(j);
 		    if(!other.equals(selector)) {
 			other = null;
 		    }
