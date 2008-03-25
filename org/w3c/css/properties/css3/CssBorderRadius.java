@@ -15,6 +15,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
 
 
@@ -24,12 +26,16 @@ public class CssBorderRadius extends CssProperty {
     String value;
     ApplContext ac;
 
+    private static final String defaultValue;
+    
+    static {
+	defaultValue = (new CssNumber((float) 1.0)).toString();
+    }
+    
     /**
      * Create new CssBorderRadius
      */
     public CssBorderRadius() {
-	CssNumber cssnum =  new CssNumber((float) 1.0);
-	value = cssnum.toString();
     }
 
     /**
@@ -39,46 +45,68 @@ public class CssBorderRadius extends CssProperty {
      * @exception InvalidParamException Values are incorrect
      */
     public CssBorderRadius(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+			   boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
+	char op = expression.getOperator();
+	StringBuilder sb = new StringBuilder();
 
-	if (val instanceof CssLength) {
-	    value = val.toString();
+	if (op != CssOperator.SPACE) {
+	    throw new InvalidParamException("operator", Character.toString(op),
+					    ac);
+	}
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
+	    val = ((CssNumber)val).getLength();
+	case CssTypes.CSS_LENGTH:
+	    sb.append(val.toString());
+	    
 	    expression.next();
-
 	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val != null) {
-
-		if (val instanceof CssLength) {
-		    value += " " + val.toString();
+		if (op != CssOperator.SPACE) {
+		    throw new InvalidParamException("operator", 
+						    Character.toString(op),
+						    ac);
+		}
+		switch (val.getType()) {
+		case CssTypes.CSS_NUMBER:
+		    val = ((CssNumber)val).getLength();
+		case CssTypes.CSS_LENGTH:
+		    sb.append(' ').append(val.toString());
 		    expression.next();
-		} else {
-		    throw new InvalidParamException("value", expression.getValue(),
-			    getPropertyName(), ac);
+		    break;
+		default:
+		    throw new InvalidParamException("value", 
+						    val,
+						    getPropertyName(), ac);
 		}
 	    }
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-		    getPropertyName(), ac);
+	    value = sb.toString();
+	    break;
+	default:
+	    throw new InvalidParamException("value", 
+					    val,
+					    getPropertyName(), ac);
 	}
     }
-
+    
     public CssBorderRadius(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
+	throws InvalidParamException {
 	this(ac, expression, false);
     }
-
+    
     /**
      * Add this property to the CssStyle.
      *
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssBorderRadius != null)
+	Css3Style c3style = (Css3Style) style;
+	if (c3style.cssBorderRadius != null)
 	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssBorderRadius = this;
+	c3style.cssBorderRadius = this;
     }
 
     /**
@@ -138,8 +166,6 @@ public class CssBorderRadius extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-	return value == cssnum.toString();
+	return defaultValue.equals(value);
     }
-
 }
