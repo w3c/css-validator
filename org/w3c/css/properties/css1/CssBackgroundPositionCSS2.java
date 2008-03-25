@@ -493,6 +493,15 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	return -1;
     }
 
+    static public boolean checkMatchingIdent(CssIdent idval) {
+	for (int i=0 ; i < hash_values.length; i++) {
+	    if (hash_values[i] == idval.hashCode()) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
     private static int[] hash_values;
 
     //private static int INVALID = -1;

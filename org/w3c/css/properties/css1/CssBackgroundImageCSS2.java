@@ -12,6 +12,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssValue;
 
@@ -38,7 +39,16 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 
     CssValue url;
 
-    private static CssIdent none = new CssIdent("none");
+    public static CssIdent none;
+    private static final String property_name = "background-image";
+
+    static {
+	none = new CssIdent("none");
+    }
+
+    static public boolean checkMatchingIdent(CssIdent idval) {
+	return none.hashCode() == idval.hashCode();
+    }
 
     /**
      * Create a new CssBackgroundImageCSS2
@@ -59,25 +69,30 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-
+	
 	setByUser();
-
+	
 	CssValue val = expression.getValue();
-	if (val instanceof CssURL) {
+	switch (val.getType()) {
+	case CssTypes.CSS_URL:
 	    url = val;
-	    expression.next();
-	} else if (val.equals(inherit)) {
-	    url = inherit;
-	    expression.next();
-	} else if (val.equals(none)) {
-	    url = none;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(val)) {
+		url = inherit;
+		break;
+	    }
+	    if (none.equals(val)) {
+		url = none;
+		break;
+	    }
+	default:
+	    throw new InvalidParamException("value", val,
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
-
+    
     public CssBackgroundImageCSS2(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
@@ -96,7 +111,7 @@ public class CssBackgroundImageCSS2 extends CssProperty {
      */
     public boolean isSoftlyInherited() {
 	if (url != null) {
-	    return url.equals(inherit);
+	    return inherit.equals(url);
 	}
 	return false;
     }
@@ -115,7 +130,7 @@ public class CssBackgroundImageCSS2 extends CssProperty {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "background-image";
+	return property_name;
     }
 
     /**
@@ -125,8 +140,9 @@ public class CssBackgroundImageCSS2 extends CssProperty {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
 	CssBackgroundCSS2 cssBackground = ((Css1Style) style).cssBackgroundCSS2;
-	if (cssBackground.image != null)
+	if (cssBackground.image != null) {
 	    style.addRedefinitionWarning(ac, this);
+	}
 	cssBackground.image = this;
     }
 

@@ -10,6 +10,7 @@ import org.w3c.css.properties.css1.CssBorderTopCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -34,7 +35,7 @@ public class CssBorderTopCSS21 extends CssBorderTopCSS2 {
     public CssBorderTopCSS21(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 	CssValue val = null;
-	char op = SPACE;
+	char op;
 	boolean find = true;
 
 	if(check && expression.getCount() > 3) {
@@ -46,42 +47,60 @@ public class CssBorderTopCSS21 extends CssBorderTopCSS2 {
 	setByUser();
 
 	while (find) {
-	    find = false;
 	    val = expression.getValue();
-	    op = expression.getOperator();
 	    if (val == null)
 		break;
-
-	    // if there are many values, we can't have inherit as one of them
-	    if(manyValues && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", null, null, ac);
-	    }
-
+	    op = expression.getOperator();
 	    if (op != SPACE)
 		throw new InvalidParamException("operator",
-						((new Character(op)).toString()),
-						ac);
-	    if (getWidth() == null) {
-		try {
+						Character.toString(op),
+						ac);	 
+	    switch (val.getType()) {
+	    case CssTypes.CSS_COLOR:
+		if (getColor() == null) {
+		    // throws an exception if the value is not valid
+		    setColor(new CssBorderTopColorCSS21(ac, expression));
+		    continue;
+		}
+		break;
+	    case CssTypes.CSS_NUMBER:
+	    case CssTypes.CSS_LENGTH:
+		if (getWidth() == null) {
 		    setWidth(new CssBorderTopWidthCSS2(ac, expression));
-		    find = true;
-		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value
+		    continue;
 		}
-	    }
-	    if (!find && getStyle() == null) {
-		try {
-		    setStyle(new CssBorderTopStyleCSS2(ac, expression));
-		    find = true;
-		} catch(InvalidParamException e){
-		    // nothing to do, color will test this value
+		break;
+	    case CssTypes.CSS_IDENT:
+		if(manyValues && inherit.equals(val)) {
+		    throw new InvalidParamException("unrecognize", null, 
+						    null, ac);
 		}
+		if (getWidth() == null) {
+		    try {
+			setWidth(new CssBorderTopWidthCSS2(ac, expression));
+			continue;
+		    } catch(InvalidParamException e){
+			// nothing to do, color will test this value
+		    }
+		}
+		if (getStyle() == null) {
+		    try {
+			setStyle(new CssBorderTopStyleCSS2(ac, expression));
+			continue;
+		    } catch(InvalidParamException e){
+			// nothing to do, color will test this value
+		    }
+		}
+		if (getColor() == null) {
+		    // throws an exception if the value is not valid
+		    setColor(new CssBorderTopColorCSS21(ac, expression));
+		    continue;
+		}
+	    default:
+		find = false;
 	    }
-	    if (!find && getColor() == null) {
-		// throws an exception if the value is not valid
-		setColor(new CssBorderTopColorCSS21(ac, expression));
-		find = true;
-	    }
+	    throw new InvalidParamException("unrecognize", null, 
+					    null, ac);
 	}
     }
 

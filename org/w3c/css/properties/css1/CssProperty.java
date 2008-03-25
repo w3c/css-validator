@@ -78,18 +78,23 @@ public abstract class CssProperty
     /**
      * This keyword is used a lot of time in CSS2
      */
-    public static final CssIdent inherit = new CssIdent("inherit");
-
+    public static final CssIdent inherit;
+    
     /**
      * Used in all CSS versions
      */
-    public static final CssIdent transparent = new CssIdent("transparent");
+    public static final CssIdent transparent;
 
     /**
     * Value introduced in CSS3
     */
-    public static final CssIdent initial = new CssIdent("initial");
+    public static final CssIdent initial;
 
+    static {
+	inherit     = new CssIdent("inherit");
+	transparent = new CssIdent("transparent");
+	initial     = new CssIdent("initial");
+    }
     /**
      * Create a new CssProperty.
      */

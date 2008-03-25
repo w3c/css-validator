@@ -163,6 +163,15 @@ public class CssBackgroundRepeatCSS2 extends CssProperty
 	return repeat == 0;
     }
 
+    static public boolean checkMatchingIdent(CssIdent idval) {
+	for (int i=0 ; i < hash_values.length; i++) {
+	    if (hash_values[i] == idval.hashCode()) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
     static {
 	hash_values = new int[REPEAT.length];
 	for (int i = 0; i < REPEAT.length; i++)

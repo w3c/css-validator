@@ -159,9 +159,20 @@ public class CssBackgroundAttachmentCSS2 extends CssProperty
 	return attachment == 0;
     }
 
+    static public boolean checkMatchingIdent(CssIdent idval) {
+	for (int i=0 ; i < hash_values.length; i++) {
+	    if (hash_values[i] == idval.hashCode()) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
     static {
 	hash_values = new int[ATTACHMENT.length];
 	for (int i = 0; i < ATTACHMENT.length; i++)
 	    hash_values[i] = ATTACHMENT[i].hashCode();
     }
+
+    
 }

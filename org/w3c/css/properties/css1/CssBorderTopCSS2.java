@@ -50,10 +50,11 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
 
-    CssBorderTopWidthCSS2 width;
-    CssBorderTopStyleCSS2 style;
-    CssBorderTopColorCSS2 color;
-
+    CssBorderTopWidthCSS2 width = null;
+    CssBorderTopStyleCSS2 style = null;
+    CssBorderTopColorCSS2 color = null;
+    String output = null;
+    
     /**
      * Create a new CssBorderFaceCSS2
      */
@@ -164,6 +165,7 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
      */
     public void setColor(CssBorderTopColorCSS2 color) {
         this.color = color;
+	output = null;
     }
 
     /**
@@ -171,6 +173,7 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
      */
     public void setStyle(CssBorderTopStyleCSS2 style) {
         this.style = style;
+	output = null;
     }
 
     /**
@@ -178,6 +181,7 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
      */
     public void setWidth(CssBorderTopWidthCSS2 width) {
         this.width = width;
+	output = null;
     }
 
     /**
@@ -193,9 +197,8 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
     public CssValue getColor() {
 	if (color != null) {
 	    return color.getColor();
-	} else {
-	    return null;
 	}
+	return null;
     }
 
     /**
@@ -204,9 +207,8 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
     public CssValue getWidth() {
 	if (width != null) {
 	    return width.getValue();
-	} else {
-	    return null;
 	}
+	return null;
     }
 
     /**
@@ -215,34 +217,40 @@ public class CssBorderTopCSS2 extends CssProperty implements CssOperator {
     public String getStyle() {
 	if (style != null) {
 	    return style.getStyle();
-	} else {
-	    return null;
 	}
+	return null;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "";
+	if (output != null) {
+	    return output;
+	}
+	StringBuilder sb = new StringBuilder();
+	boolean first = true;
 	if(width != null) {
-	    ret += width;
+	    sb.append(width.toString());
+	    first = false;
 	}
 	if(style != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += style;
+	    if (!first) {
+		sb.append(' ');
+	    } 
+	    first = false;
+	    sb.append(style.toString());
 	}
 	if(color != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += color;
+	    if (!first) {
+		sb.append(' ');
+	    } 	    
+	    sb.append(color);
 	}
-	return ret;
+	output = sb.toString();
+	return output;
     }
-
+    
     /**
      * Returns the name of this property
      */
