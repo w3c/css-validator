@@ -15,6 +15,10 @@ import java.util.Vector;
  */
 public class CssExpression implements CssOperator {
 
+    private Vector<ValueOperator> items = new Vector<ValueOperator>();
+    private int count = 0;
+    private int index = 0;
+
     /**
      * Add a value to the end of the expression
      * By default the next operator is a space
@@ -34,7 +38,7 @@ public class CssExpression implements CssOperator {
      * @see CssOperator
      */
     public void setOperator(char operator) {
-	((ValueOperator) items.elementAt(count-1)).operator = operator;
+	(items.elementAt(count-1)).operator = operator;
     }
 
     /**
@@ -45,7 +49,7 @@ public class CssExpression implements CssOperator {
      * @see CssOperator
      */
     public void setCurrentOperator(char operator) {
-	((ValueOperator) items.elementAt(index)).operator = operator;
+	(items.elementAt(index)).operator = operator;
     }
 
     /**
@@ -56,7 +60,7 @@ public class CssExpression implements CssOperator {
 	if (index == count)
 	    return null;
 	else
-	    return ((ValueOperator) items.elementAt(index)).value;
+	    return (items.elementAt(index)).value;
     }
 
     /**
@@ -67,7 +71,7 @@ public class CssExpression implements CssOperator {
 	if (index+1 >= count)
 	    return null;
 	else
-	    return ((ValueOperator) items.elementAt(index+1)).value;
+	    return (items.elementAt(index+1)).value;
     }
 
     /* Modified by Sijtsche de Jong */
@@ -79,7 +83,7 @@ public class CssExpression implements CssOperator {
 	if (index == count)
 	    return SPACE;
 	else
-	    return ((ValueOperator) items.elementAt(index)).operator;
+	    return (items.elementAt(index)).operator;
     }
 
     /**
@@ -151,7 +155,7 @@ public class CssExpression implements CssOperator {
     public String toString() {
 	StringBuilder sb = new StringBuilder();
 	for (int i = index; i < count; i++) {
-	    ValueOperator vo = (ValueOperator) items.elementAt(i);
+	    ValueOperator vo = items.elementAt(i);
 	    sb.append(vo.value.toString()).append(vo.operator);
 	}
 	// remove the last one
@@ -168,7 +172,7 @@ public class CssExpression implements CssOperator {
     public String toStringFromStart() {
 	StringBuilder sb = new StringBuilder();
 	for (int i = 0; i < index; i++) {
-	    ValueOperator vo = (ValueOperator) items.elementAt(i);
+	    ValueOperator vo = items.elementAt(i);
 	    sb.append(vo.value.toString()).append(vo.operator);
 	}
 
@@ -183,8 +187,4 @@ public class CssExpression implements CssOperator {
 	CssValue value;
 	char operator;
     }
-
-    private Vector items = new Vector();
-    private int count = 0;
-    private int index = 0;
 }

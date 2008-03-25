@@ -17,7 +17,13 @@ import org.w3c.css.util.InvalidParamException;
  */
 public class CssString extends CssValue {
 
+    public static final int type = CssTypes.CSS_STRING;
+    
     String value;
+
+    public final int getType() {
+	return type;
+    }
 
     /**
      * Create a new CssString
@@ -40,10 +46,11 @@ public class CssString extends CssValue {
      * @exception InvalidParamException The unit is incorrect
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
-	if (s.indexOf('\'') == -1 &&
-	    s.indexOf('"') == -1) {
-	    throw new InvalidParamException("string", s, ac);
-	}
+//	if (s.indexOf('\'') == -1 &&
+//	    s.indexOf('"') == -1) {
+//	    throw new InvalidParamException("string", s, ac);
+//      }
+// tokenizer is taking care of the validity of the value
 	value = s;
     }
 

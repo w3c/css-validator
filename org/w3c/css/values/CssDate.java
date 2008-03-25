@@ -17,10 +17,16 @@ import org.w3c.css.util.InvalidParamException;
  * @version $Revision$
  */
 public class CssDate extends CssValue {
+    
+    public static final int type = CssTypes.CSS_DATE;
+    
+    public final int getType() {
+	return type;
+    }
 
-	String day = new String();
-	String month = new String();
-	String year = new String();
+    String day = new String();
+    String month = new String();
+    String year = new String();
 
   /**
    * Create a new CssDate.

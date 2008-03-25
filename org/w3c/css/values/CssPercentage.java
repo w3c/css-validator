@@ -34,6 +34,12 @@ import org.w3c.css.util.Util;
  */
 public class CssPercentage extends CssValue {
 
+    public static final int type = CssTypes.CSS_PERCENTAGE;
+    
+    public final int getType() {
+	return type;
+    }
+
     static Float defaultValue = new Float(0);
     Float value;
 

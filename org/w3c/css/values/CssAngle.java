@@ -29,6 +29,12 @@ import org.w3c.css.util.Util;
  * @version $Revision$ */
 public class CssAngle extends CssValue implements CssValueFloat {
 
+    public static final int type = CssTypes.CSS_ANGLE;
+    
+    public final int getType() {
+	return type;
+    }
+
     Float value;
     int unit;
     static String[] units = { "deg", "grad", "rad" };

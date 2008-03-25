@@ -6,7 +6,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -163,7 +163,7 @@ public class ATSCColor extends CssValue
 
     Object color;
     RGBATSC rgb;
-    static Hashtable definedColors;
+    static HashMap<String,Object> definedColors;
     static CssIdent inherit = new CssIdent("inherit");
 
     /**
@@ -471,7 +471,7 @@ public class ATSCColor extends CssValue
     }
 
     static {
-	definedColors = new Hashtable();
+	definedColors = new HashMap<String,Object>();
 	definedColors.put("black",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),

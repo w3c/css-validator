@@ -14,6 +14,12 @@ import org.w3c.css.util.ApplContext;
  */
 public class CssUnicodeRange extends CssValue {
 
+    public static final int type = CssTypes.CSS_UNICODE_RANGE;
+    
+    public final int getType() {
+	return type;
+    }
+
     String value;
 
     /**

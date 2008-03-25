@@ -28,6 +28,12 @@ import org.w3c.css.util.Util;
  */
 public class CssTime extends CssValue {
 
+    public static final int type = CssTypes.CSS_TIME;
+    
+    public final int getType() {
+	return type;
+    }
+
   /**
    * Create a new CssTime.
    */

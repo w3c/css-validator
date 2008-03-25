@@ -28,6 +28,12 @@ import org.w3c.css.util.Util;
  */
 public class CssFrequency extends CssValue {
 
+    public static final int type = CssTypes.CSS_FREQUENCY;
+    
+    public final int getType() {
+	return type;
+    }
+
   /**
    * Create a new CssFrequency
    */

@@ -90,95 +90,102 @@ import org.w3c.css.util.Util;
  */
 public class CssLength extends CssValue {
 
-  /**
-   * Create a new CssLength
-   */
-  public CssLength() {
-    value = defaultValue;
-  }
+    public static final int type = CssTypes.CSS_LENGTH;
+    
+    public final int getType() {
+	return type;
+    }
+    
+    /**
+     * Create a new CssLength
+     */
+    public CssLength() {
+	value = defaultValue;
+    }
 
-  /**
-   * Set the value of this length.
-   *
-   * @param s     the string representation of the length.
-   * @param frame For errors and warnings reports.
-   * @exception InvalidParamException The unit is incorrect
-   */
-  public void set(String s, ApplContext ac) throws InvalidParamException {
-    s = s.toLowerCase();
-    int length = s.length();
-    String unit = s.substring(length-2, length);
-    this.value = new Float(s.substring(0, length-2));
+    /**
+     * Set the value of this length.
+     *
+     * @param s     the string representation of the length.
+     * @param frame For errors and warnings reports.
+     * @exception InvalidParamException The unit is incorrect
+     */
+    public void set(String s, ApplContext ac) throws InvalidParamException {
+	s = s.toLowerCase();
+	int length = s.length();
+	String unit = s.substring(length-2, length);
+	this.value = new Float(s.substring(0, length-2));
 
-    this.unit = 2; // there is no unit by default
+	this.unit = 2; // there is no unit by default
 
-    if (unit.equals("gd") && (cssversion.equals("css2"))) {
+	if (unit.equals("gd") && (cssversion.equals("css2"))) {
+	    throw new InvalidParamException("unit", unit, ac);
+	}
+
+	if (value.floatValue() != 0) {
+	    int hash = unit.hashCode();
+	    int i = 0;
+	    while (i<units.length) {
+		if (hash == hash_units[i]) {
+		    this.unit = i;
+		    return;
+		}
+		i++;
+	    }
+	} else {
+	    return;
+	}
+
 	throw new InvalidParamException("unit", unit, ac);
     }
 
-    if (value.floatValue() != 0) {
-      int hash = unit.hashCode();
-      int i = 0;
-      while (i<units.length) {
-	if (hash == hash_units[i]) {
-	  this.unit = i;
-	  return;
-	}
-	i++;
-      }
-    } else {
-      return;
+    /**
+     * Returns the current value
+     */
+    public Object get() {
+	return value;
     }
 
-    throw new InvalidParamException("unit", unit, ac);
-  }
+    /**
+     * Returns the current value
+     */
+    public String getUnit() {
+	return units[unit];
+    }
 
-  /**
-   * Returns the current value
-   */
-  public Object get() {
-    return value;
-  }
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+	if (value.floatValue() != 0) {
+	    return Util.displayFloat(value) + getUnit();
+	} else {
+	    return Util.displayFloat(value);
+	}
+    }
 
-  /**
-   * Returns the current value
-   */
-  public String getUnit() {
-    return units[unit];
-  }
+    /**
+     * Compares two values for equality.
+     *
+     * @param value The other value.
+     */
+    public boolean equals(Object value) {
+	return (value instanceof CssLength &&
+		this.value.equals(((CssLength) value).value) &&
+		unit == ((CssLength) value).unit);
+    }
 
-  /**
-   * Returns a string representation of the object.
-   */
-  public String toString() {
-      if (value.floatValue() != 0) {
-	  return Util.displayFloat(value) + getUnit();
-      } else {
-	  return Util.displayFloat(value);
-      }
-  }
+    private Float value;
+    private int unit;
+    private static String[] units = { "mm", "cm", "pt", "pc", "em", 
+				      "ex", "px", "in", "gd" };
+    private static int[] hash_units;
+    private static Float defaultValue = new Float(0);
 
-  /**
-   * Compares two values for equality.
-   *
-   * @param value The other value.
-   */
-  public boolean equals(Object value) {
-    return (value instanceof CssLength &&
-	    this.value.equals(((CssLength) value).value) &&
-	     unit == ((CssLength) value).unit);
-  }
-
-  private Float value;
-  private int unit;
-  private static String[] units = { "mm", "cm", "pt", "pc", "em", "ex", "px", "in", "gd" };
-  private static int[] hash_units;
-  private static Float defaultValue = new Float(0);
-
-  static {
-    hash_units = new int[units.length];
-    for (int i=0; i<units.length; i++)
-      hash_units[i] = units[i].hashCode();
-  }
+    static {
+	hash_units = new int[units.length];
+	for (int i=0; i<units.length; i++)
+	    hash_units[i] = units[i].hashCode();
+    }
 }
 

@@ -48,7 +48,14 @@ import org.w3c.css.util.InvalidParamException;
  */
 public class CssURL extends CssValue {
 
+    public static final int type = CssTypes.CSS_URL;
+
+    public final int getType() {
+	return type;
+    }
+
     String value;
+    String full = null;
 
     URL base;
 
@@ -79,14 +86,14 @@ public class CssURL extends CssValue {
 	String urlname = s.substring(4, s.length()-1).trim();
 	this.base = base;
 
-	try {
-	    CssString convert = new CssString();
-	    convert.set(urlname, ac);
-	    value = (String) convert.get();
-	} catch (InvalidParamException e) {
+//	try {
+//	    CssString convert = new CssString();
+//	    convert.set(urlname, ac);
+//	    value = (String) convert.get();
+//	} catch (InvalidParamException e) {
 	    value = urlname;
-	}
-
+	    full = null;
+//	}
 	if (!urlHeading.startsWith("url"))
 	    throw new InvalidParamException("url", s, ac);
     }
@@ -109,7 +116,12 @@ public class CssURL extends CssValue {
      * Returns a string representation of the object.
      */
     public String toString() {
-	return "url(" + value + ")";
+	if (full != null) {
+	    return full;
+	}
+	StringBuilder sb = new StringBuilder("url(");
+	sb.append(value).append(')');
+	return full = sb.toString();
     }
 
     /**

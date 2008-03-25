@@ -29,7 +29,9 @@ public class CssColorCSS21 extends CssColorCSS2 {
 	}
     }
 
-    public CssColorCSS21(ApplContext ac, String s) throws InvalidParamException {
+    public CssColorCSS21(ApplContext ac, String s)
+	throws InvalidParamException 
+    {
 	setIdentColor(s, ac);
     }
 
@@ -39,7 +41,6 @@ public class CssColorCSS21 extends CssColorCSS2 {
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-
 	int hash = lower_s.hashCode();
 
 	int indexOfColor = searchColor(hash, tableColorHash);

@@ -14,8 +14,14 @@ import org.w3c.css.util.InvalidParamException;
  */
 public abstract class CssValue {
 
+    public static int type = CssTypes.CSS_UNKNOWN;
+
     String cssversion;
 
+    public int getType() {
+	return type;
+    }
+    
   /**
    * Set the value of this value.
    *

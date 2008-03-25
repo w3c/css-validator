@@ -13,8 +13,14 @@ import org.w3c.css.util.ApplContext;
  */
 public class CssIdent extends CssValue {
 
+    public static final int type = CssTypes.CSS_IDENT;
+    
     private int hashcode = 0;
 
+    public final int getType() {
+	return type;
+    }
+    
     /**
      * Create a new CssIdent
      */
@@ -65,9 +71,19 @@ public class CssIdent extends CssValue {
     }
 
     /**
+     * Compares two values for equality.
+     *
+     * @param value The other value.
+     */
+    public boolean equals(CssIdent value) {
+	return (value.hashCode() == hashCode());
+    }
+
+    /**
      * Returns a hashcode for this ident.
      */
     public int hashCode() {
+	// we cache, as we use toLowerCase and don't store the resulting string
 	if (hashcode == 0) {
 	    hashcode = value.toLowerCase().hashCode();
 	}

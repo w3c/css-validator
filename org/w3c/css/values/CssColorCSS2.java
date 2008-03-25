@@ -6,7 +6,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -161,11 +161,6 @@ import org.w3c.css.util.Util;
  */
 public class CssColorCSS2 extends CssColor {
 
-    Object color;
-    RGB rgb;
-    static Hashtable definedColors;
-    static CssIdent inherit = new CssIdent("inherit");
-
     /**
      * Create a new CssColorCSS2.
      */
@@ -182,171 +177,6 @@ public class CssColorCSS2 extends CssColor {
     public CssColorCSS2(ApplContext ac, String s) throws InvalidParamException {
 	//	setIdentColor(s.toLowerCase(), ac);
 	setIdentColor(s, ac);
-    }
-
-    /**
-     * Set the value from a defined color RBG.
-     *
-     * @param s the string representation of the color.
-     * @exception InvalidParamException the color is incorrect.
-     */
-    public void set(String s, ApplContext ac)  throws InvalidParamException {
-	if (s.startsWith("#")) {
-	    setShortRGBColor(s.toLowerCase(), ac);
-	} else {
-	    setIdentColor(s, ac);
-	}
-    }
-
-    /**
-     * Return the internal value.
-     */
-    public Object get() {
-	if (color != null) {
-	    if (color == inherit) {
-		return null;
-	    } else {
-		return color;
-	    }
-	} else {
-	    return rgb.r;
-	}
-    }
-
-    /**
-     * Returns <code>true</code> if the internal value is the default value
-     * (e.g. 'inherited').
-     */
-    public boolean isDefault() {
-	return color == inherit;
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-	if (color != null) {
-	    if (color == inherit) {
-		return inherit.toString();
-	    } else {
-		return color.toString();
-	    }
-	} else {
-	    return rgb.toString();
-	}
-    }
-
-    /**
-     * Parse a RGB color.
-     * format rgb(<num>%?, <num>%?, <num>%?)
-     */
-    public void setRGBColor(CssExpression exp, ApplContext ac)
-  	    throws InvalidParamException {
-	CssValue val = exp.getValue();
-	char op = exp.getOperator();
-	color = null;
-	rgb = new RGB();
-
-	if (val == null || op != COMMA) {
-	    throw new InvalidParamException("invalid-color", ac);
-	}
-
-	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;
-	    rgb.r = clippedIntValue(number.getInt(), ac);
-	    rgb.setPercent(false);
-	} else if (val instanceof CssPercentage) {
-	    rgb.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	    rgb.setPercent(true);
-	} else {
-	    throw new InvalidParamException("rgb", val, ac);
-	}
-
-	exp.next();
-	val = exp.getValue();
-	op = exp.getOperator();
-
-	if (val == null || op != COMMA) {
-	    throw new InvalidParamException("invalid-color", ac);
-	}
-
-	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;
-	    if (rgb.isPercent()) {
-		throw new InvalidParamException("percent", val, ac);
-	    }
-	    rgb.g = clippedIntValue(number.getInt(), ac);
-	} else if (val instanceof CssPercentage) {
-	    if (!rgb.isPercent()) {
-		throw new InvalidParamException("integer", val, ac);
-	    }
-	    rgb.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	} else {
-	    throw new InvalidParamException("rgb", val, ac);
-	}
-
-	exp.next();
-	val = exp.getValue();
-	op = exp.getOperator();
-
-	if (val == null) {
-	    throw new InvalidParamException("invalid-color", ac);
-	}
-
-	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;
-	    if (rgb.isPercent()) {
-		throw new InvalidParamException("percent", val, ac);
-	    }
-	    rgb.b = clippedIntValue(number.getInt(), ac);
-	} else if (val instanceof CssPercentage) {
-	    if (!rgb.isPercent()) {
-		throw new InvalidParamException("integer", val, ac);
-	    }
-	    rgb.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	} else {
-	    throw new InvalidParamException("rgb", val, ac);
-	}
-
-	exp.next();
-	if (exp.getValue() != null) {
-	    throw new InvalidParamException("rgb", exp.getValue(), ac);
-	}
-    }
-
-    /**
-     * Parse a RGB color.
-     * format #(3-6)<hexnum>
-     */
-    private void setShortRGBColor(String s, ApplContext ac)
-	    throws InvalidParamException {
-	int r;
-	int g;
-	int b;
-
-	rgb = new RGB();
-	color = null;
-	s = s.substring(1);
-
-	if (s.length() != 3 && s.length() != 6) {
-	    throw new InvalidParamException("rgb", s, ac);
-	}
-	if (s.length() == 3) {
-	    String sh = s.substring(0,1);
-	    r = Integer.parseInt(sh+sh, 16);
-	    sh = s.substring(1,2);
-	    g = Integer.parseInt(sh+sh, 16);
-	    sh = s.substring(2,3);
-	    b = Integer.parseInt(sh+sh, 16);
-	} else {
-	    r = Integer.parseInt(s.substring(0,2), 16);
-	    g = Integer.parseInt(s.substring(2,4), 16);
-	    b = Integer.parseInt(s.substring(4,6), 16);
-	}
-	rgb.r = new Integer(r);
-	rgb.g = new Integer(g);
-	rgb.b = new Integer(b);
-	rgb.output = "#" + s;
     }
 
     /**
@@ -375,125 +205,40 @@ public class CssColorCSS2 extends CssColor {
 	throw new InvalidParamException("value", s, "color", ac);
     }
 
-    private static Integer clippedIntValue(int rgb, ApplContext ac) {
-	if (rgb < 0 || rgb > 255) {
-	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
-	    return new Integer((rgb<0)?0:255);
-	}
-	else return(new Integer(rgb));
-    }
-
-    private static Float clippedPercentValue(float p, ApplContext ac) {
-	if (p < 0. || p > 100.) {
-	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-	    return new Float((p<0.)?0.:100.);
-	}
-	else return(new Float(p));
-    }
-
-    /**
-     * Compares two values for equality.
-     *
-     * @param value The other value.
-     */
-    public boolean equals(Object cssColor) {
-	return ((cssColor instanceof CssColorCSS2) &&
-		((color != null && color.equals(((CssColorCSS2) cssColor).color))
-		 || ((color == null)
-		     && (rgb != null)
-		     && (((CssColorCSS2) cssColor).rgb != null)
-		     && (rgb.r.equals(((CssColorCSS2) cssColor).rgb.r)
-			 && rgb.g.equals(((CssColorCSS2) cssColor).rgb.g)
-			 && rgb.b.equals(((CssColorCSS2) cssColor).rgb.b)))));
-    }
-
-    /**
-     * Gets the red component of this color.
-     */
-    public Object getRed() {
-	return rgb.r;
-    }
-
-    /**
-     * Gets the green component of this color.
-     */
-    public Object getGreen() {
-	return rgb.g;
-    }
-
-    /**
-     * Gets the blue component of this color.
-     */
-    public Object getBlue() {
-	return rgb.b;
-    }
-
     static {
-	definedColors = new Hashtable();
+	definedColors = new HashMap<String,Object>();
 	definedColors.put("black",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(0)));
+			  new RGB(0, 0, 0));
 	definedColors.put("silver",
-			  new RGB(new Integer(192),
-				  new Integer(192),
-				  new Integer(192)));
+			  new RGB(192, 192, 192));
 	definedColors.put("gray",
-			  new RGB(new Integer(128),
-				  new Integer(128),
-				  new Integer(128)));
+			  new RGB(128, 128, 128));
 	definedColors.put("white",
-			  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(255)));
+			  new RGB(255, 255, 255));
 	definedColors.put("maroon",
-			  new RGB(new Integer(128),
-				  new Integer(0),
-				  new Integer(0)));
+			  new RGB(128, 0, 0));
 	definedColors.put("red",
-			  new RGB(new Integer(255),
-				  new Integer(0),
-				  new Integer(0)));
+			  new RGB(255, 0, 0));
 	definedColors.put("purple",
-			  new RGB(new Integer(128),
-				  new Integer(0),
-				  new Integer(128)));
+			  new RGB(128, 0, 128));
 	definedColors.put("fuchsia",
-			  new RGB(new Integer(255),
-				  new Integer(0),
-				  new Integer(255)));
+			  new RGB(255, 0, 255));
 	definedColors.put("green",
-			  new RGB(new Integer(0),
-				  new Integer(128),
-				  new Integer(0)));
+			  new RGB(0, 128, 0));
 	definedColors.put("lime",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(0)));
+			  new RGB(0, 255, 0));
 	definedColors.put("olive",
-			  new RGB(new Integer(128),
-				  new Integer(128),
-				  new Integer(0)));
+			  new RGB(128, 128, 0));
 	definedColors.put("yellow",
-			  new RGB(new Integer(255),
-				  new Integer(255),
-				  new Integer(0)));
+			  new RGB(255, 255, 0));
 	definedColors.put("navy",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(128)));
+			  new RGB(0, 0, 128));
 	definedColors.put("blue",
-			  new RGB(new Integer(0),
-				  new Integer(0),
-				  new Integer(255)));
+			  new RGB(0, 0, 255));
 	definedColors.put("teal",
-			  new RGB(new Integer(0),
-				  new Integer(128),
-				  new Integer(128)));
+			  new RGB(0, 128, 128));
 	definedColors.put("aqua",
-			  new RGB(new Integer(0),
-				  new Integer(255),
-				  new Integer(255)));
+			  new RGB(0, 255, 255));
         definedColors.put("activeborder", "ActiveBorder");
         definedColors.put("activecaption", "ActiveCaption");
         definedColors.put("appworkspace", "AppWorkspace");

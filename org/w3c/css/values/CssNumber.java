@@ -16,6 +16,12 @@ import org.w3c.css.util.InvalidParamException;
  */
 public class CssNumber extends CssValue implements CssValueFloat {
 
+    public static final int type = CssTypes.CSS_NUMBER;
+    
+    public final int getType() {
+	return type;
+    }
+
     ApplContext ac;
     Float value;
     boolean isInt = false;
