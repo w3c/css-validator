@@ -10,8 +10,8 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-/*       DEBUG_TOKEN_MANAGER = true;
-	 DEBUG_PARSER = true;  */
+/*       DEBUG_TOKEN_MANAGER = true; 
+	 DEBUG_PARSER = true;       */
 }
 
 PARSER_BEGIN(CssParser)
@@ -343,7 +343,7 @@ PARSER_END(CssParser)
  */
 
 <DEFAULT>
-    MORE : /* Comments */
+    MORE : 
 {
     < "/*" > : IN_COMMENT
 }
@@ -362,6 +362,12 @@ PARSER_END(CssParser)
 
 
 <DEFAULT>
+SKIP :
+{
+    < #COMMENT : "/*" ( ~["*"] )* (  "*" ( ~["/"] )+ ( ~["*"] )* )* "*/" >
+} 
+
+<DEFAULT>
     TOKEN [IGNORE_CASE] : /* basic tokens */
 { 
     < #H          : ["0"-"9", "a"-"f"] > 
@@ -373,15 +379,15 @@ PARSER_END(CssParser)
   | < #NMCHAR     : ["a"-"z", "0"-"9", "-", "_"] | <NONASCII> | <ESCAPE> >
   | < #STRING1    : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* "\"" >
   | < #STRING2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* "\'" >
-  | < #INVALID1    : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* >
+  | < #INVALID1   : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* >
   | < #INVALID2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* >  
   | < #_IDENT     : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
   | < #NAME       : ( <NMCHAR> )+ >
   | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
   | < #_STRING    : <STRING1> | <STRING2> >
-  | < #_INVALID    : <INVALID1> | <INVALID2> >
+  | < #_INVALID   : <INVALID1> | <INVALID2> >
   | < #_URL       : ( [ "!", "#", "$", "%", "&", "*", "+", "-"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >
-  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ >
+  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] ( <COMMENT> )? )+ >
   | < #_W         : ( <_S> )? >
   | < #NL         : ( "\n" | "\r\n" | "\r" | "\f" ) >
 }
@@ -1095,7 +1101,7 @@ char combinator() :
     ( (   <PLUS> { connector = '+' ; }
         | <GREATER> { connector = '>' ; }
         | <TILDE> { connector = '~' ; }
-      ) ( <S> )*
+      ) ( <S> )* 
     | ( <S> )+ { connector = ' ' ; }
     )
     {
@@ -1129,7 +1135,7 @@ String property() :
  */
 void ruleSet() :
 { CssSelectors contextual;
-    Vector context_set = new Vector();
+    Vector<CssSelectors> context_set = new Vector<CssSelectors>();
     Vector value_set = null;
     currentContext = context_set;
 }
