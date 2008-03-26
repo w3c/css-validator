@@ -363,5 +363,22 @@ test markup also accepts 3 properties: warning, profile and medium
 	      <result valid="false" />
 	      <errors>2</errors>
 	</test>
-  </type>
+	<test profile="css21">
+    <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=536</url>
+        <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3632&quot;&gt;Bug 3632&lt;/a&gt;</description>
+	      <result valid="false" />
+	      <errors>1</errors>
+	</test>
+	<test profile="css21">
+    <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=537</url>
+        <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=3634&quot;&gt;Bug 3634&lt;/a&gt;</description>
+	      <result valid="false" />
+	      <errors>1</errors>
+	</test>
+	<test profile="css3">
+    <url>http://www.w3.org/Bugs/Public/attachment.cgi?id=540</url>
+        <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=5588&quot;&gt;Bug 5588&lt;/a&gt;</description>
+	      <result valid="true" />
+	</test>
+  </type>  
 </testsuite>
