@@ -15,6 +15,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 public class CssBorderBottomLeftRadius extends CssProperty {
@@ -22,12 +24,18 @@ public class CssBorderBottomLeftRadius extends CssProperty {
     String value;
     ApplContext ac;
 
+    private static final String defaultValue;
+    private final static String propertyName = "border-bottom-left-radius";
+    
+    static {
+	defaultValue = (new CssNumber((float) 1.0)).toString();
+    }
+    
     /**
      * Create new CssBorderBottomLeftRadius
      */
     public CssBorderBottomLeftRadius() {
-	CssNumber cssnum =  new CssNumber((float) 1.0);
-	value = cssnum.toString();
+	value = defaultValue;
     }
 
     /**
@@ -40,26 +48,47 @@ public class CssBorderBottomLeftRadius extends CssProperty {
 	    boolean check) throws InvalidParamException {
 	setByUser();
 	CssValue val = expression.getValue();
+	char op = expression.getOperator();
+	StringBuilder sb = new StringBuilder();
 
-	if (val instanceof CssLength) {
-	    value = val.toString();
+	if (op != CssOperator.SPACE) {
+	    throw new InvalidParamException("operator", Character.toString(op),
+					    ac);
+	}
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
+	    val = ((CssNumber)val).getLength();
+	case CssTypes.CSS_LENGTH:
+	    sb.append(val.toString());
+	    
 	    expression.next();
-
 	    val = expression.getValue();
+	    op = expression.getOperator();
 	    if (val != null) {
-
-		if (val instanceof CssLength) {
-		    value += " " + val.toString();
+		if (op != CssOperator.SPACE) {
+		    throw new InvalidParamException("operator", 
+						    Character.toString(op),
+						    ac);
+		}
+		switch (val.getType()) {
+		case CssTypes.CSS_NUMBER:
+		    val = ((CssNumber)val).getLength();
+		case CssTypes.CSS_LENGTH:
+		    sb.append(' ').append(val.toString());
 		    expression.next();
-		} else {
-		    throw new InvalidParamException("value", expression.getValue(),
-			    getPropertyName(), ac);
+		    break;
+		default:
+		    throw new InvalidParamException("value", 
+						    val,
+						    getPropertyName(), ac);
 		}
 	    }
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-		    getPropertyName(), ac);
+	    value = sb.toString();
+	    break;
+	default:
+	    throw new InvalidParamException("value", 
+					    val,
+					    getPropertyName(), ac);
 	}
     }
 
@@ -106,8 +135,8 @@ public class CssBorderBottomLeftRadius extends CssProperty {
     /**
      * Returns the name of this property
      */
-    public String getPropertyName() {
-	return "border-bottom-left-radius";
+    public final String getPropertyName() {
+	return propertyName;
     }
 
     /**
@@ -128,7 +157,7 @@ public class CssBorderBottomLeftRadius extends CssProperty {
      * Returns a string representation of the object
      */
     public String toString() {
-	return value.toString();
+	return value;
     }
 
     /**
@@ -136,8 +165,8 @@ public class CssBorderBottomLeftRadius extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-	return value == cssnum.toString();
+	return (defaultValue == value);
+
     }
 
 }

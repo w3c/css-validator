@@ -26,7 +26,7 @@ public class CssBorderRadius extends CssProperty {
     String value;
     ApplContext ac;
 
-    private static final String defaultValue;
+    private static String defaultValue;
     
     static {
 	defaultValue = (new CssNumber((float) 1.0)).toString();
@@ -36,6 +36,7 @@ public class CssBorderRadius extends CssProperty {
      * Create new CssBorderRadius
      */
     public CssBorderRadius() {
+	value = defaultValue;
     }
 
     /**
@@ -166,6 +167,6 @@ public class CssBorderRadius extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return defaultValue.equals(value);
+	return (defaultValue == value);
     }
 }
