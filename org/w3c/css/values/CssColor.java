@@ -422,7 +422,6 @@ public class CssColor extends CssValue
 	    if (obj instanceof RGB) {
 		color = lower_s;
 		rgb = (RGB) obj;
-		System.err.println("*** CssColor: setting RGB to: "+rgb);
 	    } else if (obj instanceof RGBA) {
 		color = lower_s;
 		rgba = (RGBA) obj;
