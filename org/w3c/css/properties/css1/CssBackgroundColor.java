@@ -12,6 +12,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -35,7 +36,12 @@ public class CssBackgroundColor extends CssProperty {
 
     CssValue color;
 
-    static CssIdent transparent = new CssIdent("transparent"); //not in CSS3 anymore, has become color value
+    static CssIdent transparent;
+    private static final String propertyName = "background-color";
+
+    static {
+	transparent = new CssIdent("transparent"); 
+    }
 
     /**
      * Create a new CssBackgroundColor
@@ -60,26 +66,22 @@ public class CssBackgroundColor extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	if (val instanceof org.w3c.css.values.CssColor) {
+	switch (val.getType()) {
+	case CssTypes.CSS_COLOR:
 	    color = val;
-	    expression.next();
-	} else if (val instanceof CssIdent) {
-	    //if (val.equals(transparent)) { // obsolete, transparent is a color value now
-		//color = transparent;
-		//expression.next();
-	    //} else
-	    if (val.equals(inherit)) {
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(val)) {
 		color = inherit;
-		expression.next();
+		break;
 	    }
-	    else {
-		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
-		expression.next();
-	    }
-	} else {
+	    color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+	    break;
+	default:
 	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssBackgroundColor(ApplContext ac, CssExpression expression)
@@ -157,7 +159,7 @@ public class CssBackgroundColor extends CssProperty {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "background-color";
+	return propertyName;
     }
 
     /**
