@@ -1136,7 +1136,7 @@ String property() :
 void ruleSet() :
 { CssSelectors contextual;
     Vector<CssSelectors> context_set = new Vector<CssSelectors>();
-    Vector value_set = null;
+    Vector<CssProperty> value_set = null;
     currentContext = context_set;
 }
 {
@@ -1165,8 +1165,22 @@ void ruleSet() :
 			ac.getFrame().addWarning("no-declaration");
 			} else {*/
 		if (value_set != null) {
-		    for (Enumeration e = context_set.elements(); e.hasMoreElements();) {
-			handleRule((CssSelectors) e.nextElement(), value_set);
+		    boolean first = true;
+		    for (Enumeration e = context_set.elements(); e.hasMoreElements();) {	
+			if (first) {
+			    handleRule((CssSelectors) e.nextElement(), value_set);
+			    first = false;
+			} else {
+			    // we need to duplicate properties in that case
+			    // as property holds reference to the selectors and it interact
+			    // badly with conflict detection
+			    int vsize = value_set.size();
+			    Vector<CssProperty> v = new Vector<CssProperty>(vsize);
+			    for (int i=0; i<vsize; i++) {
+				v.addElement(value_set.elementAt(i).duplicate());
+			    }
+			    handleRule((CssSelectors) e.nextElement(), v);
+			}
 		    }
 		    setSelectorList(context_set);
 		    endOfRule();
@@ -1184,7 +1198,7 @@ void ruleSet() :
     }
 }
 
-Vector declarations() :
+Vector<CssProperty> declarations() :
 {
     if(!validSelector) {        
         validSelector = true;
@@ -1193,7 +1207,7 @@ Vector declarations() :
     }
 
     CssProperty values;
-    Vector value_set   = new Vector();
+    Vector<CssProperty> value_set   = new Vector<CssProperty>();
     boolean wrong_value = true;
 }
 {    
