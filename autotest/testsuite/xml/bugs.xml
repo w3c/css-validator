@@ -380,5 +380,12 @@ test markup also accepts 3 properties: warning, profile and medium
         <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=5588&quot;&gt;Bug 5588&lt;/a&gt;</description>
 	      <result valid="true" />
 	</test>
+    <test profile="css21">
+      <file>testsuite/general/selectors/multipleattribute.css</file>
+      <description>See &lt;a href=&quot;http://www.w3.org/TR/CSS21/selector.html#matching-attrs&quot;&gt;css21 spec&lt;/a&gt;</description>
+      <result valid="false">
+	<errors>1</errors>
+      </result>
+    </test>
   </type>  
 </testsuite>
