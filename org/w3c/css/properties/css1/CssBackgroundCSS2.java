@@ -65,6 +65,33 @@ public class CssBackgroundCSS2 extends CssProperty
     boolean same;
 
     /**
+     * Duplicate this property.
+     *
+     * @see org.w3c.css.css.CssCascadingOrder#order
+     */
+    public CssProperty duplicate() {
+	CssBackgroundCSS2 cloned = (CssBackgroundCSS2) super.duplicate();
+	if (cloned != null) {
+	    if (color != null) {
+		cloned.color = (CssBackgroundColorCSS2) color.duplicate();
+	    }
+	    if (image != null) {
+		cloned.image = (CssBackgroundImageCSS2) image.duplicate();
+	    }
+	    if (repeat != null) {
+		cloned.repeat = (CssBackgroundRepeatCSS2) repeat.duplicate();
+	    }
+	    if (attachment != null) {
+		cloned.attachment = (CssBackgroundAttachmentCSS2) attachment.duplicate();
+	    }
+	    if (position != null) {
+		cloned.position = (CssBackgroundPositionCSS2) position.duplicate();
+	    }
+	}
+	return cloned;
+    }
+
+    /**
      * Create a new CssBackgroundCSS2
      */
     public CssBackgroundCSS2() {
