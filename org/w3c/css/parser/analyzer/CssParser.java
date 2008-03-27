@@ -1570,7 +1570,7 @@ public abstract class CssParser implements CssParserConstants {
   final public void ruleSet() throws ParseException {
   CssSelectors contextual;
     Vector<CssSelectors> context_set = new Vector<CssSelectors>();
-    Vector value_set = null;
+    Vector<CssProperty> value_set = null;
     currentContext = context_set;
     try {
       contextual = selector();
@@ -1638,8 +1638,22 @@ public abstract class CssParser implements CssParserConstants {
 			ac.getFrame().addWarning("no-declaration");
 			} else {*/
                 if (value_set != null) {
+                    boolean first = true;
                     for (Enumeration e = context_set.elements(); e.hasMoreElements();) {
-                        handleRule((CssSelectors) e.nextElement(), value_set);
+                        if (first) {
+                            handleRule((CssSelectors) e.nextElement(), value_set);
+                            first = false;
+                        } else {
+                            // we need to duplicate properties in that case
+                            // as property holds reference to the selectors and it interact
+                            // badly with conflict detection
+                            int vsize = value_set.size();
+                            Vector<CssProperty> v = new Vector<CssProperty>(vsize);
+                            for (int i=0; i<vsize; i++) {
+                                v.addElement(value_set.elementAt(i).duplicate());
+                            }
+                            handleRule((CssSelectors) e.nextElement(), v);
+                        }
                     }
                     setSelectorList(context_set);
                     endOfRule();
@@ -1656,7 +1670,7 @@ public abstract class CssParser implements CssParserConstants {
     }
   }
 
-  final public Vector declarations() throws ParseException {
+  final public Vector<CssProperty> declarations() throws ParseException {
     if(!validSelector) {
         validSelector = true;
         skip_to_matching_brace();
@@ -1664,7 +1678,7 @@ public abstract class CssParser implements CssParserConstants {
     }
 
     CssProperty values;
-    Vector value_set   = new Vector();
+    Vector<CssProperty> value_set   = new Vector<CssProperty>();
     boolean wrong_value = true;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:
