@@ -10,8 +10,8 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-/*       DEBUG_TOKEN_MANAGER = true; 
-	 DEBUG_PARSER = true;       */
+    /*    DEBUG_TOKEN_MANAGER = true; 
+	  DEBUG_PARSER = true;      */
 }
 
 PARSER_BEGIN(CssParser)
@@ -81,6 +81,10 @@ import org.w3c.css.selectors.attributes.AttributeSuffix;
  */
 public abstract class CssParser {
 
+    private static char hexdigits[] = { '0', '1', '2', '3',
+					'4', '5', '6', '7', 
+					'8', '9', 'a', 'b', 
+					'c', 'd', 'e', 'f' };
     // the current atRule
     protected AtRule atRule;
     protected String mediaDeclaration = "off";
@@ -1147,10 +1151,11 @@ void ruleSet() :
 		    context_set.addElement(contextual); 
 		}
 	    }
-   
+	
 	( <COMMA> ( <S> )*
 	  contextual=selector()
-	    { if (contextual != null) {
+	    { 
+		if (contextual != null) {
 		    context_set.addElement(contextual); 
 		}
 	    }  
@@ -1160,15 +1165,18 @@ void ruleSet() :
 	    <RBRACE> ( <S> )*
 	    {
 		markRule = true;
-
+		
 		/*      if (value_set == null) {
 			ac.getFrame().addWarning("no-declaration");
 			} else {*/
 		if (value_set != null) {
 		    boolean first = true;
-		    for (Enumeration e = context_set.elements(); e.hasMoreElements();) {	
+		    CssSelectors sel = null;
+		    Enumeration<CssSelectors> e = context_set.elements();
+		    while (e.hasMoreElements()) {
+			sel = e.nextElement();
 			if (first) {
-			    handleRule((CssSelectors) e.nextElement(), value_set);
+			    handleRule(sel, value_set);
 			    first = false;
 			} else {
 			    // we need to duplicate properties in that case
@@ -1179,7 +1187,7 @@ void ruleSet() :
 			    for (int i=0; i<vsize; i++) {
 				v.addElement(value_set.elementAt(i).duplicate());
 			    }
-			    handleRule((CssSelectors) e.nextElement(), v);
+			    handleRule(sel, v);
 			}
 		    }
 		    setSelectorList(context_set);
@@ -2062,8 +2070,10 @@ void skipAfterExpression(Exception e) {
 
 JAVACODE
 String convertStringIndex(String s, int start, int len) {
-    StringBuffer buf = new StringBuffer(len);
+    StringBuilder buf = new StringBuilder(len);
     int index = start;
+    int t;
+    int maxCount = 0;
 
     while (index < len) {
 	char c = s.charAt(index);
@@ -2077,26 +2087,51 @@ String convertStringIndex(String s, int start, int len) {
 		case 'A': case 'B': case 'C': case 'D': case 'E': case 'F':
 		    int numValue = Character.digit(c, 16);
 		    int count = 1;
-		    int p = 16;
-
-	            int maxCount = (ac.getCssVersion().equals("css1") ? 4 : 6);
+		    if (maxCount == 0) {
+			maxCount = (ac.getCssVersion().equals("css1") ? 
+				    4 : 6);
+		    }
 		    while (index + 1 < len) {
 			c = s.charAt(index+1);
-
-			if (Character.digit(c, 16) != -1 && count++ < maxCount) {
-			    numValue = (numValue * 16) + Character.digit(c, 16);
-			    p *= 16;
+			t = Character.digit(c, 16);
+			if (t != -1 && count++ < maxCount) {
+			    numValue = (numValue<<4) | t;
 			    index++;
 			} else {
-			    if (c == ' ' || c == '\t' ) {
+			    if (c == ' ' || c == '\t' || 
+				c == '\n' || c == '\f' ) {
 				// skip the latest white space
 				index++;
+			    } else if ( c == '\r' ) {
+				index++;
+				// special case for \r\n
+				if (index+1 < len) {
+				    if (s.charAt(index + 1) == '\n') {
+					index++;
+				    }
+				}
 			    }
 			    break;
 			}
 		    }
-		    
-		    buf.append((char) numValue);
+		    if (numValue < 255 && numValue>31) { 
+			if (! ( (numValue>96 && numValue<123) // [a-z]
+				|| (numValue>64 && numValue<91) // [A-Z]
+				|| (numValue>47 && numValue<58) // [0-9]
+				|| (numValue == 95) // _
+				|| (numValue == 45) )) { // -
+			    buf.append('\\');
+			}
+			buf.append((char) numValue);
+			break;
+		    }
+		    char b[] = new char[maxCount];
+		    t = maxCount;
+		    while (t > 0) {
+			b[--t] = hexdigits[numValue & 0xF];
+			numValue >>>= 4;
+		    }
+		    buf.append('\\').append(b);
 		    break;
 		case '\n':
 		case '\f':
@@ -2108,8 +2143,21 @@ String convertStringIndex(String s, int start, int len) {
 			}
 		    }
 		    break;
-		default:
+		case '-' : case '_' : case 'g' : case 'G' :
+		case 'h' : case 'H' : case 'i' : case 'I' :
+		case 'j' : case 'J' : case 'k' : case 'K' :
+		case 'l' : case 'L' : case 'm' : case 'M' :
+		case 'n' : case 'N' : case 'o' : case 'O' :
+		case 'p' : case 'P' : case 'q' : case 'Q' :
+		case 'r' : case 'R' : case 's' : case 'S' :
+		case 't' : case 'T' : case 'u' : case 'U' :
+		case 'v' : case 'V' : case 'w' : case 'W' :
+		case 'x' : case 'X' : case 'y' : case 'Y' :
+		case 'z' : case 'Z' : 
 		    buf.append(c);
+		    break;
+		default:
+		    buf.append('\\').append(c);
 		}
 	    } else {
 		throw new ParseException("invalid string");
@@ -2119,7 +2167,6 @@ String convertStringIndex(String s, int start, int len) {
 	}
 	index++;
     }
-
     return buf.toString();
 }
 
