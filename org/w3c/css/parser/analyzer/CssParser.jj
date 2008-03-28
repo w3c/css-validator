@@ -10,7 +10,7 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /*    DEBUG_TOKEN_MANAGER = true; 
+/*        DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      */
 }
 
@@ -347,28 +347,9 @@ PARSER_END(CssParser)
  */
 
 <DEFAULT>
-    MORE : 
+SPECIAL_TOKEN :
 {
-    < "/*" > : IN_COMMENT
-}
-
-<IN_COMMENT>
-    SKIP :
-{
-    < "*/" > : DEFAULT
-}
-
-<IN_COMMENT>
-    MORE :
-{
-    < ~[] > : IN_COMMENT
-}
-
-
-<DEFAULT>
-SKIP :
-{
-    < #COMMENT : "/*" ( ~["*"] )* ( "*" )+ ( ~["/", "*"] ( ~["*"] )* ( "*" )+ )* "/" >
+    < COMMENT : "/*" ( ~["*"] )* ( "*" )+ ( ~["/", "*"] ( ~["*"] )* ( "*" )+ )* "/" >
 } 
 
 <DEFAULT>
@@ -391,7 +372,7 @@ SKIP :
   | < #_STRING    : <STRING1> | <STRING2> >
   | < #_INVALID   : <INVALID1> | <INVALID2> >
   | < #_URL       : ( [ "!", "#", "$", "%", "&", "*", "+", "-"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >
-  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] ( <COMMENT> )? )+ >
+  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ >
   | < #_W         : ( <_S> )? >
   | < #NL         : ( "\n" | "\r\n" | "\r" | "\f" ) >
 }
@@ -509,7 +490,7 @@ TOKEN :
 
 /* RESERVED ATRULE WORDS */
 <DEFAULT>
-TOKEN : // FIXME force to be case-sensitive
+TOKEN : 
 {
    < CHARSET_SYM           : "@charset" >
 }
@@ -602,7 +583,7 @@ void parserUnit() :
 	// used as an error recovery for HTML tags in CSS pages
         ( ( n=<HTMLSTARTTAG> | n=<HTMLENDTAG> ) {
 	    addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); } )*
-	( charset() ";" )?
+	( charset() )?
 	    ( <S> | <CDO> | <CDC> )*
 	    ( importDeclaration() ( ignoreStatement() ) )*
 	    afterImportDeclaration()
@@ -618,28 +599,37 @@ void charset() :
     Token charsetToken = null;
     Token space1Token = null;
     Token space2Token = null;
+    Token semicolonToken = null;
+    int nb_S = 0;
 }
 {  
     try {
-	// There was * instead of ? in previous versions, but it's useless since
-	// <S> is already a +
-	charsetToken=<CHARSET_SYM> ( space1Token=<S> )? n=<STRING> ( space2Token=<S> )?
+	charsetToken=<CHARSET_SYM> ( space1Token=<S> { nb_S++;} )* 
+	    n=<STRING> ( space2Token=<S> )* semicolonToken=<SEMICOLON>
 	    {
 		// the @charset must be at the beginning of the document
 		if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {                     
 		    throw new ParseException(
 					     ac.getMsg().getString("parser.charset"));                    
 		}
+		// the @charset is case sensitive
+		if (!"@charset".equals(charsetToken.image)) {
+		    throw new ParseException(
+			ac.getMsg().getString("parser.charsetspecial"));   
+		}
 	        // stricter rule for CSS21 and soon for CSS3
-		else if("css21".equals(ac.getCssVersion()) &&
-			(!" ".equals(space1Token.image) || (space2Token != null &&
-							    !"".equals(space2Token.image)))) {
-		    throw new ParseException(ac.getMsg().getString(
-								   "parser.charsetspecial"));
+		if ("css21".equals(ac.getCssVersion())) {
+		    if ( (nb_S != 1) ||
+			 (!" ".equals(space1Token.image)) || 
+			 (space2Token != null && !"".equals(space2Token.image)) ||
+			 (space1Token.specialToken != null) ||
+			 (semicolonToken.specialToken != null)
+			) {
+			throw new ParseException(ac.getMsg().getString(
+						     "parser.charsetspecial"));
+		    }
 		}
-		else {
-		    addCharSet(n.image);                    
-		}
+		addCharSet(n.image);                    
 	    }
     } catch (Exception e) {
 	String skip = charsetToken +
