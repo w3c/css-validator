@@ -612,18 +612,20 @@ void charset() :
 		    throw new ParseException(
 					     ac.getMsg().getString("parser.charset"));                    
 		}
-		// the @charset is case sensitive
-		if (!"@charset".equals(charsetToken.image)) {
-		    throw new ParseException(
-			ac.getMsg().getString("parser.charsetspecial"));   
-		}
 	        // stricter rule for CSS21 and soon for CSS3
 		if ("css21".equals(ac.getCssVersion())) {
+		    // single space before
+		    // case sensitive
+		    // no space before ;
+		    // no comments
+		    // string must start with "
 		    if ( (nb_S != 1) ||
+			 (!"@charset".equals(charsetToken.image)) ||
 			 (!" ".equals(space1Token.image)) || 
 			 (space2Token != null && !"".equals(space2Token.image)) ||
 			 (space1Token.specialToken != null) ||
-			 (semicolonToken.specialToken != null)
+			 (semicolonToken.specialToken != null) ||
+			 (n.image.charAt(0) != '\"')
 			) {
 			throw new ParseException(ac.getMsg().getString(
 						     "parser.charsetspecial"));
