@@ -2527,7 +2527,7 @@ public class Css1Style extends CssStyle {
      * @param allSelectors All contexts is the entire style sheet.
      */
     public void findConflicts(ApplContext ac, Warnings warnings, 
-	    CssSelectors selector, Enumeration allSelectors) {
+	    CssSelectors selector, CssSelectors[] allSelectors) {
 	// if border-style == none, border-width should be 0
 	// @@ this is a horrible place to do this ...
 	cssBorder.check();
@@ -2567,9 +2567,8 @@ public class Css1Style extends CssStyle {
 	    CssColor colorCSS3 = cssColor;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (colorCSS3 == null && allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();		
+	    for (int i=0;(colorCSS3 == null) && (i<allSelectors.length); i++) {
+		CssSelectors sel = allSelectors[i];	
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS3 = ((Css1Style) sel.getStyle()).cssColor;
 		}
@@ -2652,9 +2651,8 @@ public class Css1Style extends CssStyle {
 	    CssColorCSS1 colorCSS1 = cssColorCSS1;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (colorCSS1 == null && allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();		
+	    for (int i=0; (colorCSS1 == null) && i < allSelectors.length; i++) {
+		CssSelectors sel = allSelectors[i];		
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS1 = ((Css1Style) sel.getStyle()).cssColorCSS1;
 		}
@@ -2725,9 +2723,8 @@ public class Css1Style extends CssStyle {
 	    CssColorCSS2 colorCSS2 = cssColorCSS2;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (colorCSS2 == null && allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();		
+	    for (int i=0; (colorCSS2 == null) && (i<allSelectors.length); i++) {
+		CssSelectors sel = allSelectors[i];		
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS2 = ((Css1Style) sel.getStyle()).cssColorCSS2;
 		}
@@ -2803,13 +2800,12 @@ public class Css1Style extends CssStyle {
 	    CssValue backgroundColor = null;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();
+	    for (int i=0; i<allSelectors.length; i++) {
+		CssSelectors sel = allSelectors[i];
 		Css1Style style =
 		    (Css1Style) sel.getStyle();
 		if(backgroundColor == null &&
-			sel.toString().equals(selector.toString())) {
+		   sel.toString().equals(selector.toString())) {
 		    backgroundColor = ((Css1Style) sel.getStyle()).
 		    	cssBackground.getColor();
 		}
@@ -2817,7 +2813,7 @@ public class Css1Style extends CssStyle {
 		    if (style.cssBackground.getColor().equals(cssColor.getColor())) {
 			warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
 				new String[] { style.cssBackground.color.getSelectors().toString(),
-				cssColor.getSelectors().toString() }, ac));
+					       cssColor.getSelectors().toString() }, ac));
 		    }
 		}
 	    }
@@ -2831,11 +2827,9 @@ public class Css1Style extends CssStyle {
 	    CssValue backgroundColor = null;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();
-		Css1Style style =
-		    (Css1Style) sel.getStyle();
+	    for (int i=0; i<allSelectors.length; i++) {
+		CssSelectors sel = allSelectors[i];
+		Css1Style style = (Css1Style) sel.getStyle();
 		if(backgroundColor == null &&
 			sel.toString().equals(selector.toString())) {
 		    backgroundColor = ((Css1Style) sel.getStyle()).
@@ -2859,11 +2853,9 @@ public class Css1Style extends CssStyle {
 	    CssValue backgroundColor = null;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    while (allSelectors.hasMoreElements()) {
-		CssSelectors sel = 
-			(CssSelectors) allSelectors.nextElement();		
-		Css1Style style =
-		    (Css1Style) sel.getStyle();
+	    for (int i=0; i<allSelectors.length; i++) {
+		CssSelectors sel = allSelectors[i];
+		Css1Style style = (Css1Style) sel.getStyle();
 		if(backgroundColor == null && 
 			sel.toString().equals(selector.toString())) {
 		    backgroundColor = ((Css1Style) sel.getStyle()).

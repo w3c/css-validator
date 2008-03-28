@@ -639,7 +639,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
     }
     
     public void findConflicts(ApplContext ac, Warnings warnings,
-	    Enumeration allSelectors) {
+			      CssSelectors[] allSelectors) {
 	CssStyle style = getStyle();
 	style.findConflicts(ac, warnings, this, allSelectors);
     }

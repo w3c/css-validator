@@ -97,8 +97,8 @@ public class CssStyle {
    * @param warnings For warnings reports.
    * @param allSelectors All contexts is the entire style sheet.
    */
-  public void findConflicts(ApplContext ac, Warnings warnings,
-	  CssSelectors selector, Enumeration allSelectors) {
+    public void findConflicts(ApplContext ac, Warnings warnings,
+			      CssSelectors selector, CssSelectors[] allSelectors) {
     // nothing to do
   }
 }

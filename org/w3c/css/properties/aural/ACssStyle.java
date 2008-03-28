@@ -428,7 +428,7 @@ public class ACssStyle extends Css1Style {
    * @param allSelectors All contexts is the entire style sheet.
    */
   public void findConflicts(ApplContext ac, Warnings warnings,
-	  CssSelectors selector, Enumeration allSelectors) {
+	  CssSelectors selector, CssSelectors[] allSelectors) {
     super.findConflicts(ac, warnings, selector, allSelectors);
     if (acssVoiceFamily != null) {
 	if (!acssVoiceFamily.containsGenericFamily()) {

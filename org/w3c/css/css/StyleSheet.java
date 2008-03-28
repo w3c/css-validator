@@ -171,13 +171,15 @@ public class StyleSheet {
      * Find all conflicts for this style sheet.
      */
     public void findConflicts(ApplContext ac) {
-	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
-	    CssSelectors sel = (CssSelectors) e.nextElement();
-	    sel.markAsFinal();
+	Hashtable rules = getRules();
+	CssSelectors[] all = new CssSelectors[rules.size()];
+	all = (CssSelectors[]) rules.values().toArray(all);
+	for (int i = 0; i< all.length; i++) {
+	    all[i].markAsFinal();
 	}
-	for (Enumeration e = getRules().elements(); e.hasMoreElements();) {
-	    CssSelectors sel = (CssSelectors) e.nextElement();
-	    sel.findConflicts(ac, warnings, getRules().elements());
+	for (int i = 0; i< all.length; i++) {
+	    CssSelectors sel = all[i];
+	    sel.findConflicts(ac, warnings, all);
 	}
     }
 
