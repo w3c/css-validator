@@ -1375,7 +1375,7 @@ void _class(CssSelectors s) :
     /*  "." n=<IDENT> { */
     n=<CLASS> {
 	try {
-	    s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
+	    s.addClass(new ClassSelector(convertClassIdent(n.image.substring(1))));
 	    //        s.addAttribute("class", convertIdent(n.image.substring(1)),
 	    //           CssSelectors.ATTRIBUTE_CLASS_SEL);
 	} catch (InvalidParamException e) {
@@ -1499,7 +1499,7 @@ void attrib(CssSelectors s) :
 	 ( val=<IDENT> 
 	     { val.image = convertIdent(val.image); }
 	   | ( val=<STRING> 
-	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1);} 
+	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);} 
 			   ) 
 	   ( <S> )* ) )?
   <RBRACKET>
@@ -1595,7 +1595,7 @@ CssSelectors param = null;
 	| ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
-					    n.image.length() -1).toLowerCase(),
+						      n.image.length() -1, false).toLowerCase(),
 				   convertIdent(language.image));
 		} catch(InvalidParamException e) {
 			removeThisRule();
@@ -1605,7 +1605,7 @@ CssSelectors param = null;
 	    | ( n=<FUNCTION> ( <S> )* param=simple_selector(null) ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
-					    n.image.length() -1).toLowerCase(),
+						      n.image.length() -1, false).toLowerCase(),
 				   param.toString());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
@@ -2060,9 +2060,8 @@ void skipAfterExpression(Exception e) {
     addError(e, s.toString()); 
 }
 
-
 JAVACODE
-String convertStringIndex(String s, int start, int len) {
+String convertStringIndex(String s, int start, int len, boolean escapeFirst) {
     StringBuilder buf = new StringBuilder(len);
     int index = start;
     int t;
@@ -2107,12 +2106,14 @@ String convertStringIndex(String s, int start, int len) {
 			    break;
 			}
 		    }
-		    if (numValue < 255 && numValue>31) { 
+		    if (!escapeFirst && numValue < 255 && numValue>31) { 
 			if (! ( (numValue>96 && numValue<123) // [a-z]
 				|| (numValue>64 && numValue<91) // [A-Z]
 				|| (numValue>47 && numValue<58) // [0-9]
 				|| (numValue == 95) // _
-				|| (numValue == 45) )) { // -
+				|| (numValue == 45) // -
+				)
+			    ) {
 			    buf.append('\\');
 			}
 			buf.append((char) numValue);
@@ -2158,6 +2159,7 @@ String convertStringIndex(String s, int start, int len) {
 	} else {
 	    buf.append(c);
 	}
+	escapeFirst = false;
 	index++;
     }
     return buf.toString();
@@ -2165,12 +2167,17 @@ String convertStringIndex(String s, int start, int len) {
 
 JAVACODE
 String convertIdent(String s) {
-    return convertStringIndex(s, 0, s.length());
+    return convertStringIndex(s, 0, s.length(), false);
+}
+
+JAVACODE
+String convertClassIdent(String s) {
+    return convertStringIndex(s, 0, s.length(), true);
 }
 
 JAVACODE
 String convertString(String s) {
-    return convertStringIndex(s, 0, s.length());
+    return convertStringIndex(s, 0, s.length(), false);
 }
 
 /*
