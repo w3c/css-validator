@@ -474,6 +474,7 @@ public abstract class CssParser implements CssParserConstants {
                          (!" ".equals(space1Token.image)) ||
                          (space2Token != null && !"".equals(space2Token.image)) ||
                          (space1Token.specialToken != null) ||
+                         (n.specialToken != null) ||
                          (semicolonToken.specialToken != null) ||
                          (n.image.charAt(0) != '\"')
                         ) {
