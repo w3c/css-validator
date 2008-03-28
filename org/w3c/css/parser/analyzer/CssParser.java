@@ -2012,7 +2012,7 @@ public abstract class CssParser implements CssParserConstants {
       /*  "." n=<IDENT> { */
           n = jj_consume_token(CLASS);
         try {
-            s.addClass(new ClassSelector(convertIdent(n.image.substring(1))));
+            s.addClass(new ClassSelector(convertClassIdent(n.image.substring(1))));
             //        s.addAttribute("class", convertIdent(n.image.substring(1)),
             //           CssSelectors.ATTRIBUTE_CLASS_SEL);
         } catch (InvalidParamException e) {
@@ -2237,7 +2237,7 @@ public abstract class CssParser implements CssParserConstants {
         break;
       case STRING:
         val = jj_consume_token(STRING);
-                 val.image = convertStringIndex(val.image, 1, val.image.length() -1);
+                 val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);
         label_63:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2384,7 +2384,7 @@ CssSelectors param = null;
           }
                 try {
                     s.setPseudoFun(convertStringIndex(n.image, 0,
-                                            n.image.length() -1).toLowerCase(),
+                                                      n.image.length() -1, false).toLowerCase(),
                                    convertIdent(language.image));
                 } catch(InvalidParamException e) {
                         removeThisRule();
@@ -2408,7 +2408,7 @@ CssSelectors param = null;
           param = simple_selector(null);
                 try {
                     s.setPseudoFun(convertStringIndex(n.image, 0,
-                                            n.image.length() -1).toLowerCase(),
+                                                      n.image.length() -1, false).toLowerCase(),
                                    param.toString());
                 } catch(InvalidParamException e) {
                     removeThisRule();
@@ -3078,7 +3078,7 @@ CssSelectors param = null;
     addError(e, s.toString());
   }
 
-  String convertStringIndex(String s, int start, int len) throws ParseException {
+  String convertStringIndex(String s, int start, int len, boolean escapeFirst) throws ParseException {
     StringBuilder buf = new StringBuilder(len);
     int index = start;
     int t;
@@ -3123,12 +3123,14 @@ CssSelectors param = null;
                             break;
                         }
                     }
-                    if (numValue < 255 && numValue>31) {
+                    if (!escapeFirst && numValue < 255 && numValue>31) {
                         if (! ( (numValue>96 && numValue<123) // [a-z]
                                 || (numValue>64 && numValue<91) // [A-Z]
                                 || (numValue>47 && numValue<58) // [0-9]
                                 || (numValue == 95) // _
-                                || (numValue == 45) )) { // -
+                                || (numValue == 45) // -
+                                )
+                            ) {
                             buf.append('\\');
                         }
                         buf.append((char) numValue);
@@ -3174,17 +3176,22 @@ CssSelectors param = null;
         } else {
             buf.append(c);
         }
+        escapeFirst = false;
         index++;
     }
     return buf.toString();
   }
 
   String convertIdent(String s) throws ParseException {
-    return convertStringIndex(s, 0, s.length());
+    return convertStringIndex(s, 0, s.length(), false);
+  }
+
+  String convertClassIdent(String s) throws ParseException {
+    return convertStringIndex(s, 0, s.length(), true);
   }
 
   String convertString(String s) throws ParseException {
-    return convertStringIndex(s, 0, s.length());
+    return convertStringIndex(s, 0, s.length(), false);
   }
 
   public CssParserTokenManager token_source;
