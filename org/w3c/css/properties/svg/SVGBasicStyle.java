@@ -160,7 +160,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	if (mask == null) {
 	    mask =
 		(Mask) style.CascadingOrder (
-		    new ImageRendering(), style, selector);
+		    new Mask(), style, selector);
 	}
 	return mask;
     }
