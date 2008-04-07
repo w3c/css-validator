@@ -81,9 +81,9 @@ public class Filter extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).filter != null)
+	if (((SVGBasicStyle) style).filter != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).filter = this;
+	((SVGBasicStyle) style).filter = this;
     }
 
     /**
@@ -94,9 +94,9 @@ public class Filter extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getFilter();
+	    return ((SVGBasicStyle) style).getFilter();
 	} else {
-	    return ((SVGStyle) style).filter;
+	    return ((SVGBasicStyle) style).filter;
 	}
     }
 

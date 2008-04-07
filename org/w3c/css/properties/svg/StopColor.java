@@ -156,9 +156,9 @@ public class StopColor extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).stopColor != null)
+	if (((SVGBasicStyle) style).stopColor != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).stopColor = this;
+	((SVGBasicStyle) style).stopColor = this;
     }
 
     /**
@@ -169,9 +169,9 @@ public class StopColor extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStopColor();
+	    return ((SVGBasicStyle) style).getStopColor();
 	} else {
-	    return ((SVGStyle) style).stopColor;
+	    return ((SVGBasicStyle) style).stopColor;
 	}
     }
 

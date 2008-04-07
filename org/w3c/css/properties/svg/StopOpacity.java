@@ -81,9 +81,9 @@ public class StopOpacity extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).stopOpacity != null)
+	if (((SVGBasicStyle) style).stopOpacity != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).stopOpacity = this;
+	((SVGBasicStyle) style).stopOpacity = this;
     }
 
     /**
@@ -94,9 +94,9 @@ public class StopOpacity extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStopOpacity();
+	    return ((SVGBasicStyle) style).getStopOpacity();
 	} else {
-	    return ((SVGStyle) style).stopOpacity;
+	    return ((SVGBasicStyle) style).stopOpacity;
 	}
     }
 

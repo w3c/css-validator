@@ -80,9 +80,9 @@ public class StrokeLinejoin extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).strokeLinejoin != null)
+	if (((SVGTinyStyle) style).strokeLinejoin != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).strokeLinejoin = this;
+	((SVGTinyStyle) style).strokeLinejoin = this;
     }
 
     /**
@@ -93,10 +93,10 @@ public class StrokeLinejoin extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeLinejoin();
+	    return ((SVGTinyStyle) style).getStrokeLinejoin();
 	}
 	else {
-	    return ((SVGStyle) style).strokeLinejoin;
+	    return ((SVGTinyStyle) style).strokeLinejoin;
 	}
     }
 

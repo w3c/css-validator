@@ -83,9 +83,9 @@ public class ColorRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).colorRendering != null)
+	if (((SVGBasicStyle) style).colorRendering != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).colorRendering = this;
+	((SVGBasicStyle) style).colorRendering = this;
     }
 
     /**
@@ -96,9 +96,9 @@ public class ColorRendering extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getColorRendering();
+	    return ((SVGBasicStyle) style).getColorRendering();
 	} else {
-	    return ((SVGStyle) style).colorRendering;
+	    return ((SVGBasicStyle) style).colorRendering;
 	}
     }
 

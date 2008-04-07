@@ -239,9 +239,9 @@ public class Stroke extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).stroke != null)
+	if (((SVGTinyStyle) style).stroke != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).stroke = this;
+	((SVGTinyStyle) style).stroke = this;
     }
 
     /**
@@ -252,9 +252,9 @@ public class Stroke extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStroke();
+	    return ((SVGTinyStyle) style).getStroke();
 	} else {
-	    return ((SVGStyle) style).stroke;
+	    return ((SVGTinyStyle) style).stroke;
 	}
     }
 

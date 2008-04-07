@@ -109,7 +109,7 @@ public class StrokeMiterLimit extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	SVGStyle style0 = (SVGStyle) style;
+	SVGTinyStyle style0 = (SVGTinyStyle) style;
 	if (style0.strokeMiterLimit != null)
 	    style0.addRedefinitionWarning(ac, this);
 	style0.strokeMiterLimit = this;
@@ -123,9 +123,9 @@ public class StrokeMiterLimit extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeMiterLimit();
+	    return ((SVGTinyStyle) style).getStrokeMiterLimit();
 	} else {
-	    return ((SVGStyle) style).strokeMiterLimit;
+	    return ((SVGTinyStyle) style).strokeMiterLimit;
 	}
     }
 

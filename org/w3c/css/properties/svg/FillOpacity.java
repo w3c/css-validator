@@ -82,9 +82,9 @@ public class FillOpacity extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).fillOpacity != null)
+	if (((SVGBasicStyle) style).fillOpacity != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).fillOpacity = this;
+	((SVGBasicStyle) style).fillOpacity = this;
     }
 
     /**
@@ -95,9 +95,9 @@ public class FillOpacity extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getFillOpacity();
+	    return ((SVGBasicStyle) style).getFillOpacity();
 	} else {
-	    return ((SVGStyle) style).fillOpacity;
+	    return ((SVGBasicStyle) style).fillOpacity;
 	}
     }
 

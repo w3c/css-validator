@@ -80,9 +80,9 @@ public class StrokeLineCap extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).strokeLineCap != null)
+	if (((SVGTinyStyle) style).strokeLineCap != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).strokeLineCap = this;
+	((SVGTinyStyle) style).strokeLineCap = this;
     }
 
     /**
@@ -93,10 +93,10 @@ public class StrokeLineCap extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeLineCap();
+	    return ((SVGTinyStyle) style).getStrokeLineCap();
 	}
 	else {
-	    return ((SVGStyle) style).strokeLineCap;
+	    return ((SVGTinyStyle) style).strokeLineCap;
 	}
     }
 

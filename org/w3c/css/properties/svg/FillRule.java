@@ -79,9 +79,9 @@ public class FillRule extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).fillRule != null)
+	if (((SVGTinyStyle) style).fillRule != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).fillRule = this;
+	((SVGTinyStyle) style).fillRule = this;
     }
 
     /**
@@ -92,9 +92,9 @@ public class FillRule extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getFillRule();
+	    return ((SVGTinyStyle) style).getFillRule();
 	} else {
-	    return ((SVGStyle) style).fillRule;
+	    return ((SVGTinyStyle) style).fillRule;
 	}
     }
 

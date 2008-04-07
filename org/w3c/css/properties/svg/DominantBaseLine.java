@@ -93,9 +93,9 @@ public class DominantBaseLine extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).dominantBaseLine != null)
+	if (((SVGBasicStyle) style).dominantBaseLine != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).dominantBaseLine = this;
+	((SVGBasicStyle) style).dominantBaseLine = this;
     }
 
     /**
@@ -106,10 +106,10 @@ public class DominantBaseLine extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getDominantBaseLineSVG();
+	    return ((SVGBasicStyle) style).getDominantBaseLineSVG();
 	}
 	else {
-	    return ((SVGStyle) style).dominantBaseLine;
+	    return ((SVGBasicStyle) style).dominantBaseLine;
 	}
     }
 

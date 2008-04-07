@@ -156,9 +156,9 @@ public class FloodColor extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).floodColor != null)
+	if (((SVGBasicStyle) style).floodColor != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).floodColor = this;
+	((SVGBasicStyle) style).floodColor = this;
     }
 
     /**
@@ -169,9 +169,9 @@ public class FloodColor extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getFloodColor();
+	    return ((SVGBasicStyle) style).getFloodColor();
 	} else {
-	    return ((SVGStyle) style).floodColor;
+	    return ((SVGBasicStyle) style).floodColor;
 	}
     }
 

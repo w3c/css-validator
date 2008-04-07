@@ -81,9 +81,9 @@ public class ShapeRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).shapeRendering != null)
+	if (((SVGBasicStyle) style).shapeRendering != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).shapeRendering = this;
+	((SVGBasicStyle) style).shapeRendering = this;
     }
 
     /**
@@ -94,10 +94,10 @@ public class ShapeRendering extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getShapeRendering();
+	    return ((SVGBasicStyle) style).getShapeRendering();
 	}
 	else {
-	    return ((SVGStyle) style).shapeRendering;
+	    return ((SVGBasicStyle) style).shapeRendering;
 	}
     }
 

@@ -80,9 +80,9 @@ public class TextAnchor extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).textAnchor != null)
+	if (((SVGBasicStyle) style).textAnchor != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).textAnchor = this;
+	((SVGBasicStyle) style).textAnchor = this;
     }
 
     /**
@@ -93,10 +93,10 @@ public class TextAnchor extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getTextAnchor();
+	    return ((SVGBasicStyle) style).getTextAnchor();
 	}
 	else {
-	    return ((SVGStyle) style).textAnchor;
+	    return ((SVGBasicStyle) style).textAnchor;
 	}
     }
 

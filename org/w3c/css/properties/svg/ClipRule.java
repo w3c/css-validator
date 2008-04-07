@@ -79,9 +79,9 @@ public class ClipRule extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).clipRule != null)
+	if (((SVGBasicStyle) style).clipRule != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).clipRule = this;
+	((SVGBasicStyle) style).clipRule = this;
     }
 
     /**
@@ -92,9 +92,9 @@ public class ClipRule extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getClipRule();
+	    return ((SVGBasicStyle) style).getClipRule();
 	} else {
-	    return ((SVGStyle) style).clipRule;
+	    return ((SVGBasicStyle) style).clipRule;
 	}
     }
 

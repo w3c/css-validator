@@ -82,9 +82,9 @@ public class PointerEvents extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).pointerEvents != null)
+	if (((SVGBasicStyle) style).pointerEvents != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).pointerEvents = this;
+	((SVGBasicStyle) style).pointerEvents = this;
     }
 
     /**
@@ -95,10 +95,10 @@ public class PointerEvents extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getPointerEvents();
+	    return ((SVGBasicStyle) style).getPointerEvents();
 	}
 	else {
-	    return ((SVGStyle) style).pointerEvents;
+	    return ((SVGBasicStyle) style).pointerEvents;
 	}
     }
 

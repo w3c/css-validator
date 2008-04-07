@@ -81,9 +81,9 @@ public class ClipPath extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).clipPath != null)
+	if (((SVGBasicStyle) style).clipPath != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).clipPath = this;
+	((SVGBasicStyle) style).clipPath = this;
     }
 
     /**
@@ -94,9 +94,9 @@ public class ClipPath extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getClipPath();
+	    return ((SVGBasicStyle) style).getClipPath();
 	} else {
-	    return ((SVGStyle) style).clipPath;
+	    return ((SVGBasicStyle) style).clipPath;
 	}
     }
 

@@ -10,7 +10,7 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.parser.CssPrinterStyle;
 
-public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
+public class SVGBasicStyle extends SVGTinyStyle {
 
     AlignmentBaseline alignmentBaseline;
     ClipPath clipPath;
@@ -22,7 +22,6 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
     WritingModeSVG writingModeSVG;
     FloodOpacity floodOpacity;
     Filter filter;
-    FillRule fillRule;
     FillOpacity fillOpacity;
     ImageRendering imageRendering;
     Mask mask;
@@ -32,27 +31,19 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
     ShapeRendering shapeRendering;
     TextRendering textRendering;
     TextAnchor textAnchor;
-    StrokeLinejoin strokeLinejoin;
-    StrokeLineCap strokeLineCap;
-    StrokeMiterLimit strokeMiterLimit;
     StrokeOpacity strokeOpacity;
-    StrokeWidth strokeWidth;
-    StrokeDashOffset strokeDashOffset;
-    StrokeDashArray strokeDashArray;
     StopColor stopColor;
     SolidColor solidColor;
     FloodColor floodColor;
-    Stroke stroke;
     ColorProfile colorProfile;
-	DominantBaseLine dominantBaseLine;
-	SolidOpacity solidOpacity;
-	Fill fill;
+    DominantBaseLine dominantBaseLine;
+    SolidOpacity solidOpacity;
 
     public AlignmentBaseline getAlignmentBaseline() {
 	if (alignmentBaseline == null) {
 	    alignmentBaseline =
 		(AlignmentBaseline) style.CascadingOrder (
-			    new AlignmentBaseline(), style, selector);
+		    new AlignmentBaseline(), style, selector);
 	}
 	return alignmentBaseline;
     }
@@ -61,7 +52,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (dominantBaseLine == null) {
 	    dominantBaseLine =
 		(DominantBaseLine) style.CascadingOrder (
-			    new DominantBaseLine(), style, selector);
+		    new DominantBaseLine(), style, selector);
 	}
 	return dominantBaseLine;
     }
@@ -70,7 +61,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (clipPath == null) {
 	    clipPath =
 		(ClipPath) style.CascadingOrder (
-			    new ClipPath(), style, selector);
+		    new ClipPath(), style, selector);
 	}
 	return clipPath;
     }
@@ -79,7 +70,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (clipRule == null) {
 	    clipRule =
 		(ClipRule) style.CascadingOrder (
-			    new ClipRule(), style, selector);
+		    new ClipRule(), style, selector);
 	}
 	return clipRule;
     }
@@ -88,7 +79,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (colorInterpolation == null) {
 	    colorInterpolation =
 		(ColorInterpolation) style.CascadingOrder (
-			    new ColorInterpolation(), style, selector);
+		    new ColorInterpolation(), style, selector);
 	}
 	return colorInterpolation;
     }
@@ -97,7 +88,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (colorInterpolationFilters == null) {
 	    colorInterpolationFilters =
 		(ColorInterpolationFilters) style.CascadingOrder (
-			    new ColorInterpolationFilters(), style, selector);
+		    new ColorInterpolationFilters(), style, selector);
 	}
 	return colorInterpolationFilters;
     }
@@ -106,7 +97,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (colorRendering == null) {
 	    colorRendering =
 		(ColorRendering) style.CascadingOrder (
-			    new ColorRendering(), style, selector);
+		    new ColorRendering(), style, selector);
 	}
 	return colorRendering;
     }
@@ -115,7 +106,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (enableBackground == null) {
 	    enableBackground =
 		(EnableBackground) style.CascadingOrder (
-			    new EnableBackground(), style, selector);
+		    new EnableBackground(), style, selector);
 	}
 	return enableBackground;
     }
@@ -124,7 +115,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (writingModeSVG == null) {
 	    writingModeSVG =
 		(WritingModeSVG) style.CascadingOrder (
-			   new WritingModeSVG(), style, selector);
+		    new WritingModeSVG(), style, selector);
 	}
 	return writingModeSVG;
     }
@@ -133,7 +124,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (floodOpacity == null) {
 	    floodOpacity =
 		(FloodOpacity) style.CascadingOrder (
-			   new FloodOpacity(), style, selector);
+		    new FloodOpacity(), style, selector);
 	}
 	return floodOpacity;
     }
@@ -142,25 +133,16 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (filter == null) {
 	    filter =
 		(Filter) style.CascadingOrder (
-			   new Filter(), style, selector);
+		    new Filter(), style, selector);
 	}
 	return filter;
-    }
-
-    public FillRule getFillRule() {
-	if (fillRule == null) {
-	    fillRule =
-		(FillRule) style.CascadingOrder (
-			   new FillRule(), style, selector);
-	}
-	return fillRule;
     }
 
     public FillOpacity getFillOpacity() {
 	if (fillOpacity == null) {
 	    fillOpacity =
 		(FillOpacity) style.CascadingOrder (
-			   new FillOpacity(), style, selector);
+		    new FillOpacity(), style, selector);
 	}
 	return fillOpacity;
     }
@@ -169,7 +151,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (imageRendering == null) {
 	    imageRendering =
 		(ImageRendering) style.CascadingOrder (
-			   new ImageRendering(), style, selector);
+		    new ImageRendering(), style, selector);
 	}
 	return imageRendering;
     }
@@ -178,7 +160,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (mask == null) {
 	    mask =
 		(Mask) style.CascadingOrder (
-			   new ImageRendering(), style, selector);
+		    new ImageRendering(), style, selector);
 	}
 	return mask;
     }
@@ -187,7 +169,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (stopOpacity == null) {
 	    stopOpacity =
 		(StopOpacity) style.CascadingOrder (
-			   new StopOpacity(), style, selector);
+		    new StopOpacity(), style, selector);
 	}
 	return stopOpacity;
     }
@@ -196,7 +178,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (kerning == null) {
 	    kerning =
 		(Kerning) style.CascadingOrder (
-			   new Kerning(), style, selector);
+		    new Kerning(), style, selector);
 	}
 	return kerning;
     }
@@ -205,7 +187,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (pointerEvents == null) {
 	    pointerEvents =
 		(PointerEvents) style.CascadingOrder (
-			    new PointerEvents(), style, selector);
+		    new PointerEvents(), style, selector);
 	}
 	return pointerEvents;
     }
@@ -214,7 +196,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (shapeRendering == null) {
 	    shapeRendering =
 		(ShapeRendering) style.CascadingOrder (
-			    new ShapeRendering(), style, selector);
+		    new ShapeRendering(), style, selector);
 	}
 	return shapeRendering;
     }
@@ -223,7 +205,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (textRendering == null) {
 	    textRendering =
 		(TextRendering) style.CascadingOrder (
-			    new TextRendering(), style, selector);
+		    new TextRendering(), style, selector);
 	}
 	return textRendering;
     }
@@ -232,79 +214,25 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (textAnchor == null) {
 	    textAnchor =
 		(TextAnchor) style.CascadingOrder (
-			     new TextAnchor(), style, selector);
+		    new TextAnchor(), style, selector);
 	}
 	return textAnchor;
-    }
-
-    public StrokeLinejoin getStrokeLinejoin() {
-	if (strokeLinejoin == null) {
-	    strokeLinejoin =
-		(StrokeLinejoin) style.CascadingOrder (
-			     new StrokeLinejoin(), style, selector);
-	}
-	return strokeLinejoin;
-    }
-
-    public StrokeLineCap getStrokeLineCap() {
-	if (strokeLineCap == null) {
-	    strokeLineCap =
-		(StrokeLineCap) style.CascadingOrder (
-			     new StrokeLineCap(), style, selector);
-	}
-	return strokeLineCap;
-    }
-
-    public StrokeMiterLimit getStrokeMiterLimit() {
-	if (strokeMiterLimit == null) {
-	    strokeMiterLimit =
-		(StrokeMiterLimit) style.CascadingOrder (
-			     new StrokeMiterLimit(), style, selector);
-	}
-	return strokeMiterLimit;
     }
 
     public StrokeOpacity getStrokeOpacity() {
 	if (strokeOpacity == null) {
 	    strokeOpacity =
 		(StrokeOpacity) style.CascadingOrder (
-			      new StrokeOpacity(), style, selector);
+		    new StrokeOpacity(), style, selector);
 	}
 	return strokeOpacity;
-    }
-
-    public StrokeWidth getStrokeWidth() {
-	if (strokeWidth == null) {
-	    strokeWidth =
-		(StrokeWidth) style.CascadingOrder (
-			      new StrokeWidth(), style, selector);
-	}
-	return strokeWidth;
-    }
-
-    public StrokeDashOffset getStrokeDashOffset() {
-	if (strokeDashOffset == null) {
-	    strokeDashOffset =
-		(StrokeDashOffset) style.CascadingOrder (
-			      new StrokeDashOffset(), style, selector);
-	}
-	return strokeDashOffset;
-    }
-
-    public StrokeDashArray getStrokeDashArray() {
-	if (strokeDashArray == null) {
-	    strokeDashArray =
-		(StrokeDashArray) style.CascadingOrder (
-			      new StrokeDashArray(), style, selector);
-	}
-	return strokeDashArray;
     }
 
     public StopColor getStopColor() {
 	if (stopColor == null) {
 	    stopColor =
 		(StopColor) style.CascadingOrder (
-			       new StopColor(), style, selector);
+		    new StopColor(), style, selector);
 	}
 	return stopColor;
     }
@@ -313,7 +241,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (solidColor == null) {
 	    solidColor =
 		(SolidColor) style.CascadingOrder (
-			       new SolidColor(), style, selector);
+		    new SolidColor(), style, selector);
 	}
 	return solidColor;
     }
@@ -322,7 +250,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (floodColor == null) {
 	    floodColor =
 		(FloodColor) style.CascadingOrder (
-			       new FloodColor(), style, selector);
+		    new FloodColor(), style, selector);
 	}
 	return floodColor;
     }
@@ -331,38 +259,20 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (colorProfile == null) {
 	    colorProfile =
 		(ColorProfile) style.CascadingOrder (
-			       new ColorProfile(), style, selector);
+		    new ColorProfile(), style, selector);
 	}
 	return colorProfile;
     }
 
-    public Stroke getStroke() {
-	if (stroke == null) {
-	    stroke =
-		(Stroke) style.CascadingOrder (
-			       new Stroke(), style, selector);
+    public SolidOpacity getSolidOpacity() {
+	if (solidOpacity == null) {
+	    solidOpacity =
+		(SolidOpacity) style.CascadingOrder (
+		    new SolidOpacity(), style, selector);
 	}
-	return stroke;
+	return solidOpacity;
     }
-
-	public SolidOpacity getSolidOpacity() {
-		if (solidOpacity == null) {
-			solidOpacity =
-				(SolidOpacity) style.CascadingOrder (
-					new SolidOpacity(), style, selector);
-		}
-		return solidOpacity;
-	}
-
-	public Fill getFill() {
-		if (fill == null) {
-			fill =
-				(Fill) style.CascadingOrder (
-					new Fill(), style, selector);
-		}
-		return fill;
-	}
-
+    
     /**
      * Print this style
      *
@@ -375,7 +285,7 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	    alignmentBaseline.print(printer);
 	}
 	if (dominantBaseLine != null) {
-		dominantBaseLine.print(printer);
+	    dominantBaseLine.print(printer);
 	}
 	if (clipPath != null) {
 	    clipPath.print(printer);
@@ -385,6 +295,9 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	if (colorInterpolation != null) {
 	    colorInterpolation.print(printer);
+	}
+	if (colorInterpolationFilters != null) {
+	    colorInterpolationFilters.print(printer);
 	}
 	if (colorRendering != null) {
 	    colorRendering.print(printer);
@@ -400,9 +313,6 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	}
 	if (filter != null) {
 	    filter.print(printer);
-	}
-	if (fillRule != null) {
-	    fillRule.print(printer);
 	}
 	if (fillOpacity != null) {
 	    fillOpacity.print(printer);
@@ -431,56 +341,23 @@ public class SVGBasicStyle extends org.w3c.css.properties.css3.Css3Style {
 	if (textAnchor != null) {
 	    textAnchor.print(printer);
 	}
-	if (strokeLinejoin != null) {
-	    strokeLinejoin.print(printer);
-	}
-	if (strokeLineCap != null) {
-	    strokeLineCap.print(printer);
-	}
-	if (strokeMiterLimit != null) {
-	    strokeMiterLimit.print(printer);
-	}
 	if (strokeOpacity != null) {
 	    strokeOpacity.print(printer);
-	}
-	if (strokeWidth != null) {
-	    strokeWidth.print(printer);
-	}
-	if (strokeDashOffset != null) {
-	    strokeDashOffset.print(printer);
-	}
-	if (strokeDashArray != null) {
-	    strokeDashArray.print(printer);
 	}
 	if (stopColor != null) {
 	    stopColor.print(printer);
 	}
 	if (solidColor != null) {
-		solidColor.print(printer);
+	    solidColor.print(printer);
 	}
 	if (floodColor != null) {
 	    floodColor.print(printer);
-	}
-	if (stroke != null) {
-	    stroke.print(printer);
 	}
 	if (colorProfile != null) {
 	    colorProfile.print(printer);
 	}
 	if (solidOpacity != null) {
-		solidOpacity.print(printer);
-	}
-	if (fill != null) {
-		fill.print(printer);
+	    solidOpacity.print(printer);
 	}
     }
-
-    /**
-     * Returns the name of the actual selector
-     */
-    public String getSelector()
-    {
-	return (selector.getElement().toLowerCase());
-    }
-
 }

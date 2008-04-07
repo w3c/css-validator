@@ -119,9 +119,9 @@ public class ColorProfile extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).colorProfile != null)
+	if (((SVGBasicStyle) style).colorProfile != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).colorProfile = this;
+	((SVGBasicStyle) style).colorProfile = this;
 
     }
 
@@ -133,9 +133,9 @@ public class ColorProfile extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getColorProfileSVG();
+	    return ((SVGBasicStyle) style).getColorProfileSVG();
 	} else {
-	    return ((SVGStyle) style).colorProfile;
+	    return ((SVGBasicStyle) style).colorProfile;
 	}
     }
 

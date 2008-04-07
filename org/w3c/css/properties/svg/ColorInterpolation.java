@@ -84,9 +84,9 @@ public class ColorInterpolation extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).colorInterpolation != null)
+	if (((SVGBasicStyle) style).colorInterpolation != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).colorInterpolation = this;
+	((SVGBasicStyle) style).colorInterpolation = this;
     }
 
     /**
@@ -97,9 +97,9 @@ public class ColorInterpolation extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getColorInterpolation();
+	    return ((SVGBasicStyle) style).getColorInterpolation();
 	} else {
-	    return ((SVGStyle) style).colorInterpolation;
+	    return ((SVGBasicStyle) style).colorInterpolation;
 	}
     }
 

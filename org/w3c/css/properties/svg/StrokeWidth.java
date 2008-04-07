@@ -81,9 +81,9 @@ public class StrokeWidth extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).strokeWidth != null)
+	if (((SVGTinyStyle) style).strokeWidth != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).strokeWidth = this;
+	((SVGTinyStyle) style).strokeWidth = this;
     }
 
     /**
@@ -94,9 +94,9 @@ public class StrokeWidth extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeWidth();
+	    return ((SVGTinyStyle) style).getStrokeWidth();
 	} else {
-	    return ((SVGStyle) style).strokeWidth;
+	    return ((SVGTinyStyle) style).strokeWidth;
 	}
     }
 

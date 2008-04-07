@@ -81,9 +81,9 @@ public class Mask extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).mask != null)
+	if (((SVGBasicStyle) style).mask != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).mask = this;
+	((SVGBasicStyle) style).mask = this;
     }
 
     /**
@@ -94,9 +94,9 @@ public class Mask extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getMask();
+	    return ((SVGBasicStyle) style).getMask();
 	} else {
-	    return ((SVGStyle) style).mask;
+	    return ((SVGBasicStyle) style).mask;
 	}
     }
 

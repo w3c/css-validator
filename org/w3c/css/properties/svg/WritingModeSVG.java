@@ -100,9 +100,9 @@ public class WritingModeSVG extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).writingModeSVG != null)
+	if (((SVGBasicStyle) style).writingModeSVG != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).writingModeSVG = this;
+	((SVGBasicStyle) style).writingModeSVG = this;
     }
 
     /**
@@ -113,10 +113,10 @@ public class WritingModeSVG extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getWritingModeSVG();
+	    return ((SVGBasicStyle) style).getWritingModeSVG();
 	}
 	else {
-	    return ((SVGStyle) style).writingModeSVG;
+	    return ((SVGBasicStyle) style).writingModeSVG;
 	}
     }
 

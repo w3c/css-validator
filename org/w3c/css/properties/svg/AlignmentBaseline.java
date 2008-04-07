@@ -82,9 +82,9 @@ public class AlignmentBaseline extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).alignmentBaseline != null)
+	if (((SVGBasicStyle) style).alignmentBaseline != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).alignmentBaseline = this;
+	((SVGBasicStyle) style).alignmentBaseline = this;
     }
 
     /**
@@ -95,10 +95,10 @@ public class AlignmentBaseline extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getAlignmentBaseline();
+	    return ((SVGBasicStyle) style).getAlignmentBaseline();
 	}
 	else {
-	    return ((SVGStyle) style).alignmentBaseline;
+	    return ((SVGBasicStyle) style).alignmentBaseline;
 	}
     }
 

@@ -132,9 +132,9 @@ public class EnableBackground extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).enableBackground != null)
+	if (((SVGBasicStyle) style).enableBackground != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).enableBackground = this;
+	((SVGBasicStyle) style).enableBackground = this;
     }
 
     /**
@@ -145,9 +145,9 @@ public class EnableBackground extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getEnableBackground();
+	    return ((SVGBasicStyle) style).getEnableBackground();
 	} else {
-	    return ((SVGStyle) style).enableBackground;
+	    return ((SVGBasicStyle) style).enableBackground;
 	}
     }
 

@@ -81,9 +81,9 @@ public class TextRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).textRendering != null)
+	if (((SVGBasicStyle) style).textRendering != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).textRendering = this;
+	((SVGBasicStyle) style).textRendering = this;
     }
 
     /**
@@ -94,10 +94,10 @@ public class TextRendering extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getTextRendering();
+	    return ((SVGBasicStyle) style).getTextRendering();
 	}
 	else {
-	    return ((SVGStyle) style).textRendering;
+	    return ((SVGBasicStyle) style).textRendering;
 	}
     }
 

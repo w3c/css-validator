@@ -91,9 +91,9 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).strokeDashArray != null)
+	if (((SVGTinyStyle) style).strokeDashArray != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).strokeDashArray = this;
+	((SVGTinyStyle) style).strokeDashArray = this;
 
     }
 
@@ -105,9 +105,9 @@ public class StrokeDashArray extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeDashArray();
+	    return ((SVGTinyStyle) style).getStrokeDashArray();
 	} else {
-	    return ((SVGStyle) style).strokeDashArray;
+	    return ((SVGTinyStyle) style).strokeDashArray;
 	}
     }
 

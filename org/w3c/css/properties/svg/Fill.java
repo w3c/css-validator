@@ -240,9 +240,9 @@ public class Fill extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).fill != null)
+	if (((SVGTinyStyle) style).fill != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).fill = this;
+	((SVGTinyStyle) style).fill = this;
     }
 
     /**
@@ -253,9 +253,9 @@ public class Fill extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getFill();
+	    return ((SVGTinyStyle) style).getFill();
 	} else {
-	    return ((SVGStyle) style).fill;
+	    return ((SVGTinyStyle) style).fill;
 	}
     }
 

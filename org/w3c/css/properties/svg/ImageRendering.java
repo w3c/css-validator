@@ -83,9 +83,9 @@ public class ImageRendering extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).imageRendering != null)
+	if (((SVGBasicStyle) style).imageRendering != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).imageRendering = this;
+	((SVGBasicStyle) style).imageRendering = this;
     }
 
     /**
@@ -96,9 +96,9 @@ public class ImageRendering extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getImageRendering();
+	    return ((SVGBasicStyle) style).getImageRendering();
 	} else {
-	    return ((SVGStyle) style).imageRendering;
+	    return ((SVGBasicStyle) style).imageRendering;
 	}
     }
 

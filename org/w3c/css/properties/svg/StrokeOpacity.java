@@ -82,9 +82,9 @@ public class StrokeOpacity extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((SVGStyle) style).strokeOpacity != null)
+	if (((SVGBasicStyle) style).strokeOpacity != null)
 	    style.addRedefinitionWarning(ac, this);
-	((SVGStyle) style).strokeOpacity = this;
+	((SVGBasicStyle) style).strokeOpacity = this;
     }
 
     /**
@@ -95,9 +95,9 @@ public class StrokeOpacity extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((SVGStyle) style).getStrokeOpacity();
+	    return ((SVGBasicStyle) style).getStrokeOpacity();
 	} else {
-	    return ((SVGStyle) style).strokeOpacity;
+	    return ((SVGBasicStyle) style).strokeOpacity;
 	}
     }
 
