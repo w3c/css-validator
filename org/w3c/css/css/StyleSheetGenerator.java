@@ -396,7 +396,7 @@ public class StyleSheetGenerator extends StyleReport {
 	    for (int i = 0; i < len; i++) {
 		switch (c = s.charAt(i)) {
 		case '&'  : ret.append("&amp;"); break;
-		case '\'' : ret.append("&apos;"); break;
+		case '\'' : ret.append("&#39;"); break;
 		case '"'  : ret.append("&quot;"); break;
 		case '<'  : ret.append("&lt;"); break;
 		case '>'  : ret.append("&gt;"); break;
