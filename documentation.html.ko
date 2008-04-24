@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Documentation for the W3C CSS Validator</title>
+  <title>W3C CSS 검사 서비스 설명서</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
@@ -17,9 +17,9 @@
 <body>
   <div id="banner">
    <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
-   <a href="./"><span>CSS Validation Service</span></a></h1>
+   <a href="./"><span>CSS 검사 서비스</span></a></h1>
    <p id="tagline">
-     Check Cascading Style Sheets (CSS) and (X)HTML documents with style sheets
+	 캐스케이딩 스타일시트 (CSS)와 스타일시트를 포함한 문서를 검사
    </p>
   </div>
 
@@ -28,46 +28,38 @@
 <!-- This DIV encapsulates everything in this page - necessary for the positioning -->
 
 <div class="doc">
-<h2>Documentation index for the CSS Validator</h2>
+<h2>CSS 검사 서비스 설명서 목차</h2>
 
 <p id="skip"></p>
 
 <h3 id="use">User Resources</h3>
 
 <dl>
-    <dt><a href="./manual.html">User's Manual</a></dt>
-    <dd>The documentation on how to use the CSS validator</dd>
-    <dt><a href="about.html">About this service</a></dt>
-    <dd>Informations about the CSS Validator, and answers to some general questions</dd>
-    <dt><a href="http://www.websitedev.de/css/validator-faq">
-	CSS Validator FAQ
-    </a></dt>
-    <dd>Answers to technical questions frequently asked.</dd>
+    <dt><a href="./manual.html">사용자 설명서</a></dt>
+    <dd>CSS 검사 서비스를 이용하는 방법을 서술한 문서</dd>
+    <dt><a href="about.html">이 서비스에 대하여</a></dt>
+    <dd>CSS 검사 서비스에 대한 정보, 그리고 일반적인 질문에 대한 답변</dd>
+    <dt><a href="http://www.websitedev.de/css/validator-faq">CSS 검사 서비스 자주 묻는 질문</a></dt>
+    <dd>자주 묻는 기술적인 질문에 대한 답변</dd>
     
 </dl>
 
-<h3 id="translat">Translator's Corner</h3>
-<dl>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/translations.html" title="CSS Validation Service Translation">Translation of the CSS Validator</a></dt>
-    <dd>Table of the state of all current translations, translations needing help, and instructions on making the validator available in an additional language.</dd>
-</dl>
-
-<h3 id="devel">Developper Resources</h3>
+<h3 id="devel">개발자 리소스</h3>
 
 
 <dl>
-    <dt><a href="DOWNLOAD.html">Download/Install</a></dt>
-    <dd>How to retrieve the source of the CSS validator and run it, either as a command line program or a Web Servlet.</dd>
+    <dt><a href="DOWNLOAD.html">다운로드/설치l</a></dt>
+    <dd>콘솔 프로그램 또는 웹 서블릿으로 CSS 검사 서비스 소스 코드를 받아서 실행시키는 방법</dd>
     
-    <dt><a href="README">developer's README</a></dt>
-    <dd>An overview of the code of the CSS Validator</dd>
+    <dt><a href="README">개발자용 README</a></dt>
+    <dd>CSS 검사 서비스의 코드에 대한 전반적인 설명</dd>
 
-    <dt><a href="./api.html">Web Service API</a></dt>
-    <dd>SOAP 1.2 validation interface documentation</dd>
+    <dt><a href="./api.html">웹 서비스 API</a></dt>
+    <dd>SOAP 1.2로 검사 서비스 연동 관련 기술 문서</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
-    <dd>Known issues in the current version of the validator, and an interface to submit new bugs and issues. 
-    See also <a href="Email.html">the feedback instructions</a>.</dd>
+    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">버그</a></dt>
+    <dd>현 버전의 검사 서비스에서 알려진 문제점, 그리고 새로운 버그와 문제점을 보고할 수 있습니다.
+	보다 효율적으로 이용할 수 있게 <a href="Email.html">피드백 설명</a>이 제공됩니다.</dd>
 
 </dl>
 
@@ -133,7 +125,7 @@
                lang="zh-hans"
                xml:lang="zh-hans"
                hreflang="zh-hans"
-               rel="alternate">简体中文</a></li>
+               rel="alternate">中文</a></li>
       </ul>
 
      
@@ -148,7 +140,7 @@ Support this tool, become a<br />
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2008
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2007
       <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
       (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,

@@ -213,7 +213,7 @@
     <tr>
       <th>lang</th>
       <td>応答に用いられる言語。現在は <code>en</code>、
-        <code>fr</code>、<code>ja</code>、<code>es</code>、
+        <code>fr</code>、<code>it</code>、<code>ko</code>、<code>ja</code>、<code>es</code>、
         <code>zh-cn</code>、<code>nl</code>、<code>de</code> を指定できる。</td>
       <td>英語 (<code>en</code>)。</td>
     </tr>
@@ -267,6 +267,11 @@
            xml:lang="fr"
            hreflang="fr"
            rel="alternate">Français</a> </li>
+           <li><a href="manual.html.ko"
+               lang="ko"
+               xml:lang="ko"
+               hreflang="ko"
+               rel="alternate">한국어</a> </li>
            <li><a href="manual.html.it"
                lang="it"
                xml:lang="it"

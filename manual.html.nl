@@ -247,7 +247,7 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
     <tr>
       <th>lang</th>
       <td>De taal die gebruikt wordt voor de reactie, op dit moment <code>en</code>,
-        <code>fr</code>, <code>ja</code>, <code>es</code>,
+        <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>,
         <code>zh-cn</code>, <code>nl</code> en <code>de</code>.</td>
 
       <td>English (<code>en</code>).</td>
@@ -303,6 +303,11 @@ service voor iedereen, je respect wordt gewaardeerd. Bedankt.</p>
            xml:lang="fr"
            hreflang="fr"
            rel="alternate">Français</a> </li>
+           <li><a href="manual.html.ko"
+               lang="ko"
+               xml:lang="ko"
+               hreflang="ko"
+               rel="alternate">한국어</a> </li>
            <li><a href="manual.html.it"
                lang="it"
                xml:lang="it"

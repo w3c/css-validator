@@ -180,7 +180,7 @@ du W3C est un service public gratuit, merci de le respecter.</p>
 </tr>
 <tr>
 <th>lang</th>
-<td>La langue utilisée pour la réponse, actuellement : <code>en</code>, <code>fr</code>, <code>ja</code>, <code>es</code>,
+<td>La langue utilisée pour la réponse, actuellement : <code>en</code>, <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>,
 <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
 <td>Anglais (<code>en</code>).</td>
 </tr>
@@ -233,6 +233,11 @@ le validateur, voir l'<a href="./api.html">API de service Web du validateur CSS<
          xml:lang="it"
          hreflang="it"
          rel="alternate">Italiano</a> </li>
+         <li><a href="manual.html.ko"
+             lang="ko"
+             xml:lang="ko"
+             hreflang="ko"
+             rel="alternate">한국어</a> </li>
      <li><a href="manual.html.nl"
          lang="nl"
          xml:lang="nl"

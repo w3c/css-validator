@@ -141,7 +141,7 @@ Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; m
     </tr>
     <tr>
       <th>lang</th>
-      <td>Die Ausgabesprache; zur Zeit werden unterstützt: <code>en</code>, <code>fr</code>, <code>ja</code>, <code>es</code>, <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
+      <td>Die Ausgabesprache; zur Zeit werden unterstützt: <code>en</code>, <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>, <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
       <td>Englisch (<code>en</code>).</td>
     </tr>
     <tr>
@@ -191,6 +191,11 @@ Sie die zu überprüfende Datei.<img style="display: block; margin-left: auto; m
            xml:lang="fr"
            hreflang="fr"
            rel="alternate">Français</a> </li>
+           <li><a href="manual.html.ko"
+               lang="ko"
+               xml:lang="ko"
+               hreflang="ko"
+               rel="alternate">한국어</a> </li>
            <li><a href="manual.html.it"
                lang="it"
                xml:lang="it"

@@ -184,7 +184,7 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
     <tr>
       <th>język</th>
       <td>Język użyty w odpowiedzi - obecnie <code>en</code>,
-        <code>fr</code>, <code>ja</code>, <code>es</code>,
+        <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>,
         <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
       <td>Angielski (<code>en</code>).</td>
     </tr>
@@ -233,6 +233,11 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
            xml:lang="fr"
            hreflang="fr"
            rel="alternate">Français</a> </li>
+           <li><a href="manual.html.ko"
+               lang="ko"
+               xml:lang="ko"
+               hreflang="ko"
+               rel="alternate">한국어</a> </li>
            <li><a href="manual.html.it"
                lang="it"
                xml:lang="it"
