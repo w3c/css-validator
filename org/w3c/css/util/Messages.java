@@ -238,6 +238,24 @@ public class Messages {
 		}
 
 		// -----------------------
+
+		try {
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.ko"));
+			java.io.InputStream f = url.openStream();
+			try {
+				tmp = new Utf8Properties();
+				tmp.load(f);
+				languages_name.add("ko");
+				languages.put("ko", tmp);
+			} finally {
+				f.close();
+			}
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties ko");
+			System.err.println("  " + e.toString());
+		}
+
+		// -----------------------
 		
 		try {
 			URL url = adjustURL(Messages.class.getResource("Messages.properties.it"));
@@ -331,23 +349,6 @@ public class Messages {
 			System.err.println("  " + e.toString());
 		}
 
-		// -----------------------
-
-		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.ko"));
-			java.io.InputStream f = url.openStream();
-			try {
-				tmp = new Utf8Properties();
-				tmp.load(f);
-				languages_name.add("ko");
-				languages.put("ko", tmp);
-			} finally {
-				f.close();
-			}
-		} catch (Exception e) {
-			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties ko");
-			System.err.println("  " + e.toString());
-		}
 	}
 
 	/**
