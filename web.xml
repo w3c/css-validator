@@ -56,5 +56,9 @@
         <extension>zh-cn</extension>
         <mime-type>text/html</mime-type>
     </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>ko</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
    
 </web-app>
