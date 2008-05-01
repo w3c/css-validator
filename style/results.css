@@ -66,14 +66,17 @@ div#results_container {
 img.inline-badge {
   float: left;
   padding: 10px;
-  margin-left: 3em;
+  padding-top: 3em;
+  margin: 0;
+  margin-left: 1.6em;
 }
 
 pre.badgeSnippet {
   margin-left: 108px !important; /* give room to the image */
-  padding-left: 3em;
-  font-size: x-small;
-  color: #777;
+  margin-top:0;
+  padding-left: 1em;
+  font-size: small;
+  color: #444;
   margin-bottom: 2em;
 }
 
@@ -173,9 +176,11 @@ td.level1, td.level2, td.level0 {
 
 /* ==== example of code for icon ==== */
 pre {
-        margin-left: 30px;
+        margin-left: 1em;
         padding: 2em;
         border-left: thin solid #ddd;
+	padding: 2em;
+
 }
 /*   ==== VALIDATED STYLESHEET =====  */
 
