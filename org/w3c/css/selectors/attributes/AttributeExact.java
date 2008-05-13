@@ -101,7 +101,7 @@ public class AttributeExact extends AttributeSelector {
 				  new String[] { toString(), attr.toString() });
 		}
 	    } else if (attr instanceof AttributeSuffix) {
-		String othervalue = ((AttributeStart) attr).getValue();
+		String othervalue = ((AttributeSuffix) attr).getValue();
 		if (!value.endsWith(othervalue)) {
 		     ac.getFrame().addWarning("incompatible", 
 				  new String[] { toString(), attr.toString() });
