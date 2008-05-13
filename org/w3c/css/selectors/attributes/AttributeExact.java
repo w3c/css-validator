@@ -36,21 +36,27 @@ public class AttributeExact extends AttributeSelector {
     }
 
     public boolean canApply(Selector other) {
-	if (other instanceof AttributeAny) {
-	    // [lang=fr][lang]
-	    return true;
-	} else if (other instanceof AttributeExact ||
-		other instanceof AttributeOneOf ||
-		other instanceof AttributeBegin) {
-	    if (!value.equals(((AttributeExact) other).getValue())) {
-		// [lang=fr][lang=en]
-		return false;
-	    } else {
-		// [lang=en][lang=en]
+	if (getName().equals(other.getName())) {
+	    if (other instanceof AttributeAny) {
+		// [lang=fr][lang]
 		return true;
+	    } else if (other instanceof AttributeExact ||
+		       other instanceof AttributeOneOf ||
+		       other instanceof AttributeBegin) {
+		// FIXME sounds like canApply is not used anyway
+		// + the comparison function is not right and doesn't
+		// take into account all kind the selector attributes
+		if (!value.equals(((AttributeExact) other).getValue())) {
+		    // [lang=fr][lang=en]
+		    return false;
+		} else {
+		    // [lang=en][lang=en]
+		    return true;
+		}
 	    }
+	    return false;
 	}
-	return false;
+	return true;
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
