@@ -54,19 +54,32 @@ public class AttributeExact extends AttributeSelector {
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
+	String name = getName();
 	if (attr instanceof AttributeExact) {
-	    if (!value.equals(((AttributeExact) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+	    // if we have the same name...
+	    if (name.equals(attr.getName())) {
+		// and not the same value, raise a warning
+		if (!value.equals(((AttributeExact) attr).getValue())) {
+		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		}
 	    }
-	}
-	else if(attr instanceof AttributeOneOf) {
-	    if (!value.equals(((AttributeOneOf) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+	} else if(attr instanceof AttributeOneOf) {
+	    if (name.equals(attr.getName())) {
+		// FIXME check that the parsed one of value are matching before doing the conclict check
+		// requires breaking down the OneOf
+		if (!value.equals(((AttributeOneOf) attr).getValue())) {
+		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		}
 	    }
-	}
-	else if(attr instanceof AttributeBegin) {
-	    if (!value.equals(((AttributeBegin) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+	} else if(attr instanceof AttributeBegin) {
+	    if (name.equals(attr.getName())) {
+		String othervalue = ((AttributeBegin) attr).getValue();
+		// check if [lang|=en][lang=fr-FR] are incompatible 
+		// form CSS3 selectors about AttributeBegin
+		// its value either being exactly "val" or beginning with "val" immediately followed by "-" (U+002D). 
+		if (!value.equals(othervalue) && !value.startsWith(othervalue+"-")) {
+		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		}
 	    }
 	}
     }
