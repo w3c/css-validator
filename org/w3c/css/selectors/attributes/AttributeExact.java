@@ -66,21 +66,45 @@ public class AttributeExact extends AttributeSelector {
 	    if (attr instanceof AttributeExact) {
 		// and not the same value, raise a warning
 		if (!value.equals(((AttributeExact) attr).getValue())) {
-		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
 		}
 	    } else if(attr instanceof AttributeOneOf) {
-		// FIXME check that the parsed one of value are matching before doing the conclict check
-		// requires breaking down the OneOf
+		// FIXME check that the parsed one of value are matching 
+		// before doing the conclict check requires breaking down 
+		// the OneOf
 		if (!value.equals(((AttributeOneOf) attr).getValue())) {
-		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		    ac.getFrame().addWarning("incompatible", 
+			          new String[] { toString(), attr.toString() });
 		}
 	    } else if(attr instanceof AttributeBegin) {
 		String othervalue = ((AttributeBegin) attr).getValue();
 		// check if [lang|=en][lang=fr-FR] are incompatible 
 		// form CSS3 selectors about AttributeBegin
-		// its value either being exactly "val" or beginning with "val" immediately followed by "-" (U+002D). 
-		if (!value.equals(othervalue) && !value.startsWith(othervalue+"-")) {
-		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+		// [[ its value either being exactly "val" or beginning 
+		//    with "val" immediately followed by "-" (U+002D).  ]]
+		if (!value.equals(othervalue) && 
+		    !value.startsWith(othervalue+"-")) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeSubstr) {
+		String othervalue = ((AttributeSubstr) attr).getValue();
+		if (value.indexOf(othervalue) < 0) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeStart) {
+		String othervalue = ((AttributeStart) attr).getValue();
+		if (!value.startsWith(othervalue)) {
+		     ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeSuffix) {
+		String othervalue = ((AttributeStart) attr).getValue();
+		if (!value.endsWith(othervalue)) {
+		     ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
 		}
 	    }
 	}
