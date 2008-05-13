@@ -55,24 +55,20 @@ public class AttributeExact extends AttributeSelector {
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
 	String name = getName();
-	if (attr instanceof AttributeExact) {
-	    // if we have the same name...
-	    if (name.equals(attr.getName())) {
+	// if same name... check if they are incompatible or not
+	if (name.equals(attr.getName())) {
+	    if (attr instanceof AttributeExact) {
 		// and not the same value, raise a warning
 		if (!value.equals(((AttributeExact) attr).getValue())) {
 		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 		}
-	    }
-	} else if(attr instanceof AttributeOneOf) {
-	    if (name.equals(attr.getName())) {
+	    } else if(attr instanceof AttributeOneOf) {
 		// FIXME check that the parsed one of value are matching before doing the conclict check
 		// requires breaking down the OneOf
 		if (!value.equals(((AttributeOneOf) attr).getValue())) {
 		    ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
 		}
-	    }
-	} else if(attr instanceof AttributeBegin) {
-	    if (name.equals(attr.getName())) {
+	    } else if(attr instanceof AttributeBegin) {
 		String othervalue = ((AttributeBegin) attr).getValue();
 		// check if [lang|=en][lang=fr-FR] are incompatible 
 		// form CSS3 selectors about AttributeBegin
