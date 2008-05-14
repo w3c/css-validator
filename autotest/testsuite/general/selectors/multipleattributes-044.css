@@ -1,0 +1,1 @@
+span[tst^="hello"][tst~="foo bar"] { color: blue; }
