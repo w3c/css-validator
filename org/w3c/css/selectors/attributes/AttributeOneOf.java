@@ -14,11 +14,13 @@ import org.w3c.css.util.ApplContext;
  */
 public class AttributeOneOf extends AttributeSelector {
 
-    String value;
+    String   value;
+    String[] values;
 
     public AttributeOneOf(String name, String value) {
 	setName(name);
 	this.value = value;
+	this.values = null;
     }
 
     /**
@@ -33,6 +35,7 @@ public class AttributeOneOf extends AttributeSelector {
      */
     public void setValue(String value) {
         this.value = value;
+	values = null;
     }
 
     public boolean canApply(Selector other) {
@@ -62,11 +65,89 @@ public class AttributeOneOf extends AttributeSelector {
 	return "[" + getName() + "~=\"" + value + "\"]";
     }
 
+    private String[] computeValues() {
+	values = value.split("\\s");
+	return values;
+    }
+
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
-	if (getName().equals(attr.getName())) {
-	    if((attr instanceof AttributeExact) &&
-	       !value.equals(((AttributeExact) attr).getValue())) {
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+	String name = getName();
+	int i;
+	String val;
+	boolean ok;
+
+	if (name.equals(attr.getName())) {
+	    if (values == null) {
+		computeValues();
+	    }
+	    if (attr instanceof AttributeExact) {
+		val = ((AttributeExact) attr).getValue();
+		ok = false;
+		for (i=0;!ok && i<values.length; i++) {
+		    ok = val.equals(values[i]);
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeBegin) {
+		val = ((AttributeBegin) attr).getValue();
+		ok = false;
+		String pval = val + '-';
+		for (i=0;!ok && i<values.length; i++) {
+		    ok = values[i].equals(val) || values[i].startsWith(pval);
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeStart) {
+		val = ((AttributeStart) attr).getValue();
+		ok = false;
+		for (i=0;!ok && i<values.length; i++) {
+		    ok = values[i].startsWith(val);
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeSubstr) {
+		val = ((AttributeSubstr) attr).getValue();
+		ok = false;
+		for (i=0;!ok && i<values.length; i++) {
+		    ok = (values[i].indexOf(val) >= 0);
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeSuffix) {
+		val = ((AttributeSuffix) attr).getValue();
+		ok = false;
+		for (i=0;!ok && i<values.length; i++) {
+		    ok = values[i].endsWith(val);
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeOneOf) {
+		AttributeOneOf otherattr = (AttributeOneOf) attr;
+		String[] othervalues = otherattr.values;
+		int j;
+		if (othervalues == null) {
+		    othervalues = otherattr.computeValues();
+		}
+		ok = false;
+		for (i=0;!ok && i<values.length; i++) {
+		    for(j=0;!ok && j<othervalues.length; j++) {
+			ok = values[i].equals(othervalues[j]);
+		    }
+		}
+		if (!ok) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
 	    }
 	}
     }

@@ -67,23 +67,30 @@ public class AttributeBegin extends AttributeSelector {
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
-	if (attr instanceof AttributeExact) {
-	    String v = ((AttributeExact) attr).getValue();
-	    int index = v.indexOf('-');
-	    if (index > 0) {
-		v = v.substring(0, index);
-	    }
-	    if (!value.equals(v)) {
-		// [lang|=fr][lang=en-US]
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
-	    }
-	} else if (attr instanceof AttributeBegin) {
-	    if (!value.equals(((AttributeBegin) attr).value)) {
-		// [lang|=fr][lang|=en]
-		ac.getFrame().addWarning("incompatible", new String[] { toString(), attr.toString() });
+	String name = getName();
+	if (name.equals(attr.getName())) {
+	    // attribute exact knows how to match, delegate...
+	    if (attr instanceof AttributeExact) {
+		((AttributeExact) attr).applyAttribute(ac, this);
+	    } else if (attr instanceof AttributeBegin) {
+		String val = ((AttributeBegin) attr).getValue();
+		// check if one start with the other or not
+		if (!val.equals(value) && !value.startsWith(val+'-')
+		    && !val.startsWith(value+'-')) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeStart) {
+		String val = ((AttributeStart) attr).getValue();
+		if (!val.equals(value) && !value.startsWith(val)
+		    && !val.startsWith(value+'-')) {
+		    ac.getFrame().addWarning("incompatible", 
+				  new String[] { toString(), attr.toString() });
+		}
+	    } else if (attr instanceof AttributeOneOf) {
+		((AttributeOneOf) attr).applyAttribute(ac, this);
 	    }
 	}
-
     }
 
     public String toString() {

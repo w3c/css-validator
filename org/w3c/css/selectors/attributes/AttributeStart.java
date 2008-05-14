@@ -44,7 +44,17 @@ private String value;
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
-
+	String name = getName();
+	if (name.equals(attr.getName())) {
+	    // attribute exact knows how to match, delegate...
+	    if (attr instanceof AttributeExact) {
+		((AttributeExact) attr).applyAttribute(ac, this);
+	    } else if (attr instanceof AttributeBegin) {
+		((AttributeBegin) attr).applyAttribute(ac, this);
+	    } else if (attr instanceof AttributeOneOf) {
+		((AttributeOneOf) attr).applyAttribute(ac, this);
+	    }
+	}
     }
 
 }
