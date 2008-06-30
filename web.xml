@@ -53,6 +53,10 @@
         <mime-type>text/html</mime-type>
     </mime-mapping>
     <mime-mapping>                                                          
+        <extension>pt-br</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
         <extension>zh-cn</extension>
         <mime-type>text/html</mime-type>
     </mime-mapping>
