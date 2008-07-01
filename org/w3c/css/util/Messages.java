@@ -337,7 +337,8 @@ public class Messages {
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
-				languages_name.add("pt-bt");
+				languages_name.add("pt-br");
+				languages_name.add("pt_BR");
 				languages.put("pt", tmp);
 			} finally {
 				f.close();
