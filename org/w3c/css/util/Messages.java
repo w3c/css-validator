@@ -332,13 +332,15 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.pt-br"));
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.pt-BR"));
 			java.io.InputStream f = url.openStream();
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
-				languages_name.add("pt-br");
-				languages_name.add("pt_BR");
+				languages_name.add("pt-BR");
+				languages.put("pt-br", tmp);
+				languages.put("pt-BR", tmp);
+				languages.put("pt_BR", tmp);
 				languages.put("pt", tmp);
 			} finally {
 				f.close();
