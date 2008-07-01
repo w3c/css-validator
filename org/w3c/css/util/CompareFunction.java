@@ -10,7 +10,7 @@ package org.w3c.css.util;
  * The comparaison function for the SortAlgorithm class
  *
  * @version $Revision$
- * @author  Philippe Le Hégaret
+ * @author  Philippe Le Hegaret
  */
 public abstract class CompareFunction {
     public abstract boolean compare(Object obj1, Object obj2);
