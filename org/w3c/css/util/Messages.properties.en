@@ -130,7 +130,7 @@ warning.redefinition: Redefinition of %s
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Same colors for %s and %s
+warning.same-colors: Same color for %s and %s
 warning.no-color: You have no color set (or color is set to transparent) but you have set a background-color. Make sure that cascading of colors keeps the text reasonably legible.
 warning.no-background-color: You have no background-color set (or background-color is set to transparent) but you have set a color. Make sure that cascading of colors keeps the text reasonably legible.
 #warning.color.mixed-capitalization is now obsolete
