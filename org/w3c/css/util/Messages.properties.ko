@@ -12,6 +12,8 @@ css2: CSS 레벨 2
 css21: CSS 레벨 2.1
 css3: CSS 레벨 3
 SVG: SVG
+svgbasic: SVG Basic
+svgtiny: SVG Tiny
 SVG_basic: SVG Basic
 SVG_tiny: SVG Tiny
 mobile: 모바일
