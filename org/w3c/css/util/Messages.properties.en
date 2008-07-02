@@ -253,7 +253,7 @@ error.rgb: %s is not a valid color 3 or 6 hexadecimals numbers
 error.angle: %s is not a valid angle. Value should be between 0 and 360
 
 # used by org.w3c.css.values.CssNumber
-error.zero: only 0 can be a %s. You must put an unit after your number
+error.zero: only 0 can be a %s. You must put a unit after your number
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Property %s doesn't exist
