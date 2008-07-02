@@ -1,4 +1,4 @@
-language_name: Brazilian-Portuguese
+language_name: Português
 more_options: Mais opções
 title_more_options: Mostra/oculta opções extras de validação
 all: Todos
@@ -12,8 +12,10 @@ css2: CSS nível 2
 css21: CSS nível 2.1
 css3: CSS nível 3
 SVG: SVG
-SVG_basic: SVG Básico
-SVG_tiny: SVG mínimo
+SVG Basic: SVG Basic
+SVG_basic: SVG Basic
+SVG tiny: SVG Tiny
+SVG_tiny: SVG Tiny
 mobile: Móvel
 ATSC_TV_profile: Perfil TV ATSC 
 TV_profile: Perfil TV
@@ -359,3 +361,5 @@ error.onlyATSC: %s esta função é exclusiva para a mídia atsc-tv
 
 warning.otherprofile: A propriedade %s não existe nesse perfil, mas valida em outro perfil.
 warning.deprecated: este valor está em desuso
+parser.unknown-dimension: Dimensão desconhecida
+generator.dontmixhtml: Erro de parseamento. Sintaxe HTML não é permitida em folhas de estilo
