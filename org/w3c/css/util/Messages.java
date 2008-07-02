@@ -351,6 +351,23 @@ public class Messages {
 		}
 
 		// -----------------------
+		try {
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.sv"));
+			java.io.InputStream f = url.openStream();
+			try {
+				tmp = new Utf8Properties();
+				tmp.load(f);
+				languages_name.add("sv");
+				languages.put("sv", tmp);
+			} finally {
+				f.close();
+			}
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties sv");
+			System.err.println("  " + e.toString());
+		}
+
+		// -----------------------
 
 		try {
 			URL url = adjustURL(Messages.class.getResource("Messages.properties.zh-cn"));
