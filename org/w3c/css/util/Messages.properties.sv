@@ -12,6 +12,8 @@ css2: CSS nivå 2
 css21: CSS nivå 2.1
 css3: CSS nivå 3
 SVG: SVG
+svgbasic: SVG Basic
+svgtiny: SVG Tiny
 SVG_basic: SVG Basic
 SVG_tiny: SVG Tiny
 mobile: Mobil
@@ -359,43 +361,3 @@ error.onlyATSC: %s denna funktion enbart avsedd för medium atsc-tv
 warning.otherprofile: egenskap %s finns inte i denna profil, men valideras mot annan profil
 warning.deprecated: detta värde är föråldrat
 
-
-{{{{{{{{OLLE}}}}}}}}
-
-* What about breaking messages into lines?
-Should translations not exactly copy existing line breaks, but rather aim for
-keeping lines below some max number of characters? If so, what max line length?
-
-* The following two uses "atsc", but other occurences are expressed as "ATSC"
-warning.atsc: %s might not be supported by the medium atsc-tv
-error.onlyATSC: %s this function is only for the atsc-tv medium
-
-
-* spelling: "an unit" ==> "a unit"
-error.zero: only 0 can be a %s. You must put an unit after your number
-
-
-* should be singular noun, right? "media" ==> "medium"
-error.media: unrecognized media %s 
-
-error.noexistence-media: Property %s doesn't exist for media %s
-
-warning.noexistence-media: Property %s doesn't exist for media %s
-
-
-* Capital letter? "tiny" ==> "Tiny". compare to SVG_basic
-SVG_tiny: SVG tiny
-
-=== Specific translation ambiguities
-
-* Verb or noun? "Note that you must" vs "Make a note of ...."
-note: Note
-
-
-* plural or not? "Same colors ..." vs "Same color ...". Compare "Same book as ..." vs "Same books as ..."
-warning.same-colors: Same colors for %s and %s
-
-
-
-
---olle---end---
