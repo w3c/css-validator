@@ -361,3 +361,5 @@ error.onlyATSC: %s denna funktion enbart avsedd för medium atsc-tv
 warning.otherprofile: egenskap %s finns inte i denna profil, men valideras mot annan profil
 warning.deprecated: detta värde är föråldrat
 
+parser.unknown-dimension: Okänd dimension
+generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-syntax.
