@@ -132,7 +132,7 @@ public class StyleSheetGenerator extends StyleReport {
 	}
 		
 	// generated values
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mss'Z'");
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
 	formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 	context.put("currentdate", formatter.format(new Date()));
 	context.put("lang", ac.getContentLanguage());
