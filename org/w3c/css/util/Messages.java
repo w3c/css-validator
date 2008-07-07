@@ -349,6 +349,22 @@ public class Messages {
 			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties pt-br");
 			System.err.println("  " + e.toString());
 		}
+		// -----------------------
+		try {
+			URL url = adjustURL(Messages.class.getResource("Messages.properties.ru"));
+			java.io.InputStream f = url.openStream();
+			try {
+				tmp = new Utf8Properties();
+				tmp.load(f);
+				languages_name.add("ru");
+				languages.put("ru", tmp);
+			} finally {
+				f.close();
+			}
+		} catch (Exception e) {
+			System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties ru");
+			System.err.println("  " + e.toString());
+		}
 
 		// -----------------------
 		try {
