@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sv" lang="sv">
   <head>
-    <title>Service de validation CSS du W3C</title>
+    <title>W3C:s CSS-valideringstjänst</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
-    <link rev="start" href="./" title="Page d'accueil du service de validation CSS de W3C" />
+    <link rev="start" href="./" title="Hemsida för W3C:s CSS-valideringstjänst" />
     <style type="text/css" media="all">
       @import "style/base.css";
 	      </style>   
@@ -18,28 +18,28 @@
     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
     <a href="./"><span>CSS Validation Service</span></a></h1>
     <p id="tagline">
-      Vérifiez vos feuilles de style CSS et vos documents HTML stylés avec CSS
+      Granska Cascading Style Sheets (CSS) och (X)HTML-dokument med formatmallar
     </p>
    </div>
   <div id="frontforms">
       <ul id="tabset_tabs">
-        <li><a href="#validate-by-uri" class="active">par adresse URI</a></li><li><a href="#validate-by-upload">par chargement de Fichier</a></li><li><a href="#validate-by-input">par Saisie Directe</a></li>
+        <li><a href="#validate-by-uri" class="active">Genom URI</a></li><li><a href="#validate-by-upload">Genom filuppladdning</a></li><li><a href="#validate-by-input">Genom direktinmatning</a></li>
       </ul>
       <div id="fields">
 
       <fieldset id="validate-by-uri" class="tabset_content front">
-        <legend class="tabset_label">Validation par adresse URI</legend>
+        <legend class="tabset_label">Validera genom URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
-          Saisissez l'adresse URI du document (HTML avec CSS, ou CSS seul) à valider :
+          Mata in URI för det dokument (HTML med CSS eller enbart CSS) som du vill validera :
         </p>
         <p>
-           <label title="Adresse du document à valider" for="uri">Adresse :
+           <label title="Adress för den sida som skall valideras" for="uri">Adress :
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
               <fieldset id="extra_opt_uri" class="moreoptions">
-    <legend class="toggletext" title="Cacher/Révéler les options supplémentaires de validation">Options supplémentaires</legend>
+    <legend class="toggletext" title="Visa/Dölj andra valideringsval">Fler val</legend>
     <div class="options">
     <table>
     <tr>
@@ -48,32 +48,32 @@
     </th>
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
-        <option value="none">Aucun profil particulier</option>
-        <option value="css1">CSS niveau 1</option>
-        <option value="css2">CSS niveau 2</option>
-        <option selected="selected" value="css21">CSS niveau 2.1</option>
-        <option value="css3">CSS niveau 3</option>
+        <option value="none">Ingen speciell profil</option>
+        <option value="css1">CSS nivå 1</option>
+        <option value="css2">CSS nivå 2</option>
+        <option selected="selected" value="css21">CSS nivå 2.1</option>
+        <option value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
-        <option value="mobile">Mobile</option>
-        <option value="atsc-tv">Profil ATSC TV</option>
-        <option value="tv">Profil TV</option>
+        <option value="svgtiny">SVG Tiny</option>  
+        <option value="mobile">Mobil</option>
+        <option value="atsc-tv">ATSC TV-profil</option>
+        <option value="tv">TV-profil</option>
       </select>
     </td>
     <th id="header_medium_uri">
-      <label for="medium_uri">Média :</label>
+      <label for="medium_uri">Medium :</label>
     </th>
     <td headers="header_medium_uri">
       <select id="medium_uri" name="usermedium">
-        <option selected="selected" value="all">Tous</option>
-        <option value="aural">aural</option>
+        <option selected="selected" value="all">Alla</option>
+        <option value="aural">ljud</option>
         <option value="braille">braille</option>
-        <option value="embossed">embossed</option>
-        <option value="handheld">handheld</option>
-        <option value="print">print</option>
-        <option value= "projection">projection</option>
-        <option value="screen">screen</option>
+        <option value="embossed">präglad</option>
+        <option value="handheld">handhållen</option>
+        <option value="print">skriv ut</option>
+        <option value= "projection">projicering</option>
+        <option value="screen">skärm</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
         <option value="presentation">presentation</option>
@@ -82,16 +82,16 @@
     </tr>
     <tr>
         <th id="header_warning_uri">
-      <label for="warning_uri">Avertissements :</label>
+      <label for="warning_uri">Varningar :</label>
     </th>
     <td
         colspan="3"
          headers="header_warning_uri">
       <select id="warning_uri" name="warning"> 
-        <option value="2">Tous</option>
-        <option selected="selected" value="1">Rapport normal</option>
-        <option value="0">Les plus importants</option>
-        <option value="no">Aucun avertissement</option>
+        <option value="2">Alla</option>
+        <option selected="selected" value="1">Normal rapport</option>
+        <option value="0">Mest viktigt</option>
+        <option value="no">Inga varningar</option>
       </select>
     </td>
     </tr>
@@ -100,23 +100,23 @@
   </fieldset><!-- invisible -->
   
   <p class="submit_button">
-  <input type="hidden" name="lang" value="fr" />
-    <label title="Vérifier le document sélectionné">
-      <input type="submit" value="Vérifier" />
+  <input type="hidden" name="lang" value="sv" />
+    <label title="Skicka in URI för validering">
+      <input type="submit" value="Granska" />
     </label>
   </p>
       </form>
       </fieldset>
 
       <fieldset id="validate-by-upload"  class="tabset_content front">
-        <legend class="tabset_label">Valider par Chargement de Fichier</legend>
+        <legend class="tabset_label">Validera genom att ladda upp fil</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Choisissez la feulle de style à valider (ATTENTION : feuilles de style CSS uniquement) :</p>
+        <p class="instructions">Välj det dokument som du vill validera (enbart för CSS-filer) :</p>
         <p>
-          <label title="Choisir un fichier local à valider" for="file">Fichier CSS local :
+          <label title="Välj en lokalt lagrad fil att ladda upp och validera" for="file">Lokal CSS-fil :
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
-    <legend class="toggletext" title="Cacher/Révéler les options supplémentaires de validation">Options supplémentaires</legend>
+    <legend class="toggletext" title="Visa/Dölj andra valideringsval">Fler val</legend>
     <div class="options">
     <table>
     <tr>
@@ -125,32 +125,32 @@
     </th>
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
-        <option value="none">Aucun profil particulier</option>
-        <option value="css1">CSS niveau 1</option>
-        <option value="css2">CSS niveau 2</option>
-        <option selected="selected" value="css21">CSS niveau 2.1</option>
-        <option value="css3">CSS niveau 3</option>
+        <option value="none">Ingen speciell profil</option>
+        <option value="css1">CSS nivå 1</option>
+        <option value="css2">CSS nivå 2</option>
+        <option selected="selected" value="css21">CSS nivå 2.1</option>
+        <option value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
-        <option value="mobile">Mobile</option>
-        <option value="atsc-tv">Profil ATSC TV</option>
-        <option value="tv">Profil TV</option>
+        <option value="svgtiny">SVG Tiny</option>  
+        <option value="mobile">Mobil</option>
+        <option value="atsc-tv">ATSC TV-profil</option>
+        <option value="tv">TV-profil</option>
       </select>
     </td>
     <th id="header_medium_upload">
-      <label for="medium_upload">Média :</label>
+      <label for="medium_upload">Medium :</label>
     </th>
     <td headers="header_medium_upload">
       <select id="medium_upload" name="usermedium">
-        <option selected="selected" value="all">Tous</option>
-        <option value="aural">aural</option>
+        <option selected="selected" value="all">Alla</option>
+        <option value="aural">ljud</option>
         <option value="braille">braille</option>
-        <option value="embossed">embossed</option>
-        <option value="handheld">handheld</option>
-        <option value="print">print</option>
-        <option value= "projection">projection</option>
-        <option value="screen">screen</option>
+        <option value="embossed">präglad</option>
+        <option value="handheld">handhållen</option>
+        <option value="print">skriv ut</option>
+        <option value= "projection">projicering</option>
+        <option value="screen">skärm</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
         <option value="presentation">presentation</option>
@@ -159,16 +159,16 @@
     </tr>
     <tr>
         <th id="header_warning_upload">
-      <label for="warning_upload">Avertissements :</label>
+      <label for="warning_upload">Varningar :</label>
     </th>
     <td
         colspan="3"
          headers="header_warning_upload">
       <select id="warning_upload" name="warning"> 
-        <option value="2">Tous</option>
-        <option selected="selected" value="1">Rapport normal</option>
-        <option value="0">Les plus importants</option>
-        <option value="no">Aucun avertissement</option>
+        <option value="2">Alla</option>
+        <option selected="selected" value="1">Normal rapport</option>
+        <option value="0">Mest viktigt</option>
+        <option value="no">Inga varningar</option>
       </select>
     </td>
     </tr>
@@ -177,23 +177,23 @@
   </fieldset><!-- invisible -->
   
   <p class="submit_button">
-  <input type="hidden" name="lang" value="fr" />
-    <label title="Valider le fichier selectionné">
-      <input type="submit" value="Vérifier" />
+  <input type="hidden" name="lang" value="sv" />
+    <label title="Skicka in fil för validering">
+      <input type="submit" value="Granska" />
     </label>
   </p>
       </form>
       </fieldset>
 
       <fieldset id="validate-by-input"  class="tabset_content front">
-        <legend class="tabset_label">Validation par Saisie Directe</legend>
+        <legend class="tabset_label">Validera genom direkt inmatning</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
-        <p class="instructions">Saisissez la feuille de style à valider  (ATTENTION : feuilles de style CSS uniquement) :</p>
+        <p class="instructions">Mata in den CSS du vill validera :</p>
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
               <fieldset id="extra_opt_input" class="moreoptions">
-    <legend class="toggletext" title="Cacher/Révéler les options supplémentaires de validation">Options supplémentaires</legend>
+    <legend class="toggletext" title="Visa/Dölj andra valideringsval">Fler val</legend>
     <div class="options">
     <table>
     <tr>
@@ -202,32 +202,32 @@
     </th>
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
-        <option value="none">Aucun profil particulier</option>
-        <option value="css1">CSS niveau 1</option>
-        <option value="css2">CSS niveau 2</option>
-        <option selected="selected" value="css21">CSS niveau 2.1</option>
-        <option value="css3">CSS niveau 3</option>
+        <option value="none">Ingen speciell profil</option>
+        <option value="css1">CSS nivå 1</option>
+        <option value="css2">CSS nivå 2</option>
+        <option selected="selected" value="css21">CSS nivå 2.1</option>
+        <option value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
-        <option value="mobile">Mobile</option>
-        <option value="atsc-tv">Profil ATSC TV</option>
-        <option value="tv">Profil TV</option>
+        <option value="svgtiny">SVG Tiny</option>  
+        <option value="mobile">Mobil</option>
+        <option value="atsc-tv">ATSC TV-profil</option>
+        <option value="tv">TV-profil</option>
       </select>
     </td>
     <th id="header_medium_input">
-      <label for="medium_input">Média :</label>
+      <label for="medium_input">Medium :</label>
     </th>
     <td headers="header_medium_input">
       <select id="medium_input" name="usermedium">
-        <option selected="selected" value="all">Tous</option>
-        <option value="aural">aural</option>
+        <option selected="selected" value="all">Alla</option>
+        <option value="aural">ljud</option>
         <option value="braille">braille</option>
-        <option value="embossed">embossed</option>
-        <option value="handheld">handheld</option>
-        <option value="print">print</option>
-        <option value= "projection">projection</option>
-        <option value="screen">screen</option>
+        <option value="embossed">präglad</option>
+        <option value="handheld">handhållen</option>
+        <option value="print">skriv ut</option>
+        <option value= "projection">projicering</option>
+        <option value="screen">skärm</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
         <option value="presentation">presentation</option>
@@ -236,25 +236,25 @@
     </tr>
     <tr>
         <th id="header_type_input">
-      <label for="type_input">Type :</label>
+      <label for="type_input">Typ :</label>
     </th>
     <td headers="header_type_input">
       <select id="type_input" name="type">
-        <option selected="selected" value="none">Automatique</option>
+        <option selected="selected" value="none">Automatisk</option>
         <option value="html">HTML</option>
         <option value="css">CSS</option>
       </select>
     </td>
         <th id="header_warning_input">
-      <label for="warning_input">Avertissements :</label>
+      <label for="warning_input">Varningar :</label>
     </th>
     <td
          headers="header_warning_input">
       <select id="warning_input" name="warning"> 
-        <option value="2">Tous</option>
-        <option selected="selected" value="1">Rapport normal</option>
-        <option value="0">Les plus importants</option>
-        <option value="no">Aucun avertissement</option>
+        <option value="2">Alla</option>
+        <option selected="selected" value="1">Normal rapport</option>
+        <option value="0">Mest viktigt</option>
+        <option value="no">Inga varningar</option>
       </select>
     </td>
     </tr>
@@ -263,9 +263,9 @@
   </fieldset><!-- invisible -->
   
   <p class="submit_button">
-  <input type="hidden" name="lang" value="fr" />
-    <label title="Valider la feuille de style">
-      <input type="submit" value="Vérifier" />
+  <input type="hidden" name="lang" value="sv" />
+    <label title="Skicka in data för validering">
+      <input type="submit" value="Granska" />
     </label>
   </p>
       </form>
@@ -273,15 +273,15 @@
       </div><!-- fields -->
   </div> <!-- frontforms -->
   <div class="intro">
-  <p><strong>Remarque</strong>: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>.
+  <p><strong>Märk</strong>: Om du vill validera din CSS-formatmall inbäddad i ett (X)HTML-dokument, så bör du först <a href="http://validator.w3.org/">kontrollera att den (X)HTML du använder är giltig</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">
-    <li><a href="about.html" title="À propos de ce service">À propos</a> <span class="hideme">|</span></li>
-    <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
-    <li><a href="DOWNLOAD.html" title="Télécharger et installer le CSS validator">Télécharger</a> <span class="hideme">|</span></li>
-    <li><a href="Email.html" title="Donner un avis à propos de ce service">Contact</a> <span class="hideme">|</span></li>
-    <li><a href="thanks.html" title="Mentions et remerciements">Remerciements</a></li>
+    <li><a href="about.html" title="Om denna tjänst">Om</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="Dokumentation om W3C:s CSS-valideringstjänst">Dokumentation</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="Ladda ner och installera CSS-valideraren">Ladda ner</a> <span class="hideme">|</span></li>
+    <li><a href="Email.html" title="Hur man kan ge synpunkter på denna tjänst">Synpunkter</a> <span class="hideme">|</span></li>
+    <li><a href="thanks.html" title="Hjälp och tack">Tack till</a></li>
   </ul>
 
    <ul id="lang_choice">
@@ -380,11 +380,11 @@
 
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Plus d'informations sur les feuilles de style en cascade"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="http://www.w3.org/QA/" title="W3C:s kvalitetssäkringsaktivitet, ger dig gratis verktyg för webbkvalitet och annat"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Lär dig mer om Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Aidez le validateur, devenez<br />
-     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Contributeur du W3C" /></a>
+     Stöd detta verktyg, bli<br />
+     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
    </p>
 
     <p class="copyright">

@@ -55,7 +55,7 @@
         <option value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
+        <option value="svgtiny">SVG Tiny</option>  
         <option value="mobile">모바일</option>
         <option value="atsc-tv">ATSC TV 프로필</option>
         <option value="tv">TV 프로필</option>
@@ -132,7 +132,7 @@
         <option value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
+        <option value="svgtiny">SVG Tiny</option>  
         <option value="mobile">모바일</option>
         <option value="atsc-tv">ATSC TV 프로필</option>
         <option value="tv">TV 프로필</option>
@@ -209,7 +209,7 @@
         <option value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
-        <option value="svgtiny">SVG tiny</option>  
+        <option value="svgtiny">SVG Tiny</option>  
         <option value="mobile">모바일</option>
         <option value="atsc-tv">ATSC TV 프로필</option>
         <option value="tv">TV 프로필</option>
@@ -349,11 +349,25 @@
             rel="alternate">Polski</a>
         </li>
         
-        <li><a href="validator.html.pt-br"
-            lang="pt-br"
-            xml:lang="pt-br"
-            hreflang="pt-br"
-            rel="alternate">Brazilian-Portuguese</a>
+        <li><a href="validator.html.pt-BR"
+            lang="pt-BR"
+            xml:lang="pt-BR"
+            hreflang="pt-BR"
+            rel="alternate">Português</a>
+        </li>
+        
+        <li><a href="validator.html.ru"
+            lang="ru"
+            xml:lang="ru"
+            hreflang="ru"
+            rel="alternate">Русский</a>
+        </li>
+        
+        <li><a href="validator.html.sv"
+            lang="sv"
+            xml:lang="sv"
+            hreflang="sv"
+            rel="alternate">Svenska</a>
         </li>
         
         <li><a href="validator.html.zh-cn"

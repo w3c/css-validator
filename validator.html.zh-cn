@@ -314,6 +314,13 @@
             rel="alternate">Français</a>
         </li>
         
+        <li><a href="validator.html.ko"
+            lang="ko"
+            xml:lang="ko"
+            hreflang="ko"
+            rel="alternate">한국어</a>
+        </li>
+        
         <li><a href="validator.html.it"
             lang="it"
             xml:lang="it"
@@ -340,6 +347,27 @@
             xml:lang="pl-PL"
             hreflang="pl-PL"
             rel="alternate">Polski</a>
+        </li>
+        
+        <li><a href="validator.html.pt-BR"
+            lang="pt-BR"
+            xml:lang="pt-BR"
+            hreflang="pt-BR"
+            rel="alternate">Português</a>
+        </li>
+        
+        <li><a href="validator.html.ru"
+            lang="ru"
+            xml:lang="ru"
+            hreflang="ru"
+            rel="alternate">Русский</a>
+        </li>
+        
+        <li><a href="validator.html.sv"
+            lang="sv"
+            xml:lang="sv"
+            hreflang="sv"
+            rel="alternate">Svenska</a>
         </li>
         
         <li><a href="validator.html.zh-cn"
