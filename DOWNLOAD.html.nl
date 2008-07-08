@@ -74,7 +74,7 @@ onderaan gegeven.</p>
 	<li>servlet.jar
 	(deze bevind zich, als je Tomcat ge&iuml;nstalleerd hebt, in [<span class="const">TOMCAT_DIR</span>]/common/lib/, 
 	waarschijnlijk on de naam servlet-api.jar. Zo niet, haal hem hier op: 
-	<a href="http://java.sun.com/products/servlet/download.html">java.sun.com</a></li>
+	<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a></li>
 	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
 	<li>xercesImpl.jar en xml-apis.jar (die gedownload worden met
 	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
@@ -160,50 +160,99 @@ Java ge&iuml;nstalleerd heeft. Build de css-validator.jar zoals hierboven beschr
       </ul>
 
       <ul id="lang_choice">
-           <li><a href="DOWNLOAD.html.de"
-               lang="de"
-               xml:lang="de"
-               hreflang="de"
-               rel="alternate">Deutsch</a></li>
-           <li><a href="DOWNLOAD.html.en"
-               lang="en"
-               xml:lang="en"
-           hreflang="en"
-           rel="alternate">English</a>  </li>
-           <li><a href="DOWNLOAD.html.es"
-           lang="es" xml:lang="es" hreflang="es"
-           rel="alternate">Español</a></li>
-           <li><a href="DOWNLOAD.html.fr"
-           lang="fr"
-           xml:lang="fr"
-           hreflang="fr"
-           rel="alternate">Français</a> </li>
-           <li><a href="DOWNLOAD.html.it"
-               lang="it"
-               xml:lang="it"
-               hreflang="it"
-               rel="alternate">Italiano</a> </li>
-           <li><a href="DOWNLOAD.html.nl"
-               lang="nl"
-               xml:lang="nl"
-               hreflang="nl"
-               rel="alternate">Nederlands</a> </li>
-           <li><a href="DOWNLOAD.html.ja"
-               lang="ja"
-               xml:lang="ja"
-               hreflang="ja"
-               rel="alternate">日本語</a> </li>
-           <li><a href="DOWNLOAD.html.pl-PL"
-               lang="pl"
-               xml:lang="pl"
-               hreflang="pl"
-               rel="alternate">Polski</a> </li>
-           <li><a href="DOWNLOAD.html.zh-cn"
-               lang="zh-hans"
-               xml:lang="zh-hans"
-               hreflang="zh-hans"
-               rel="alternate">简体中文</a></li>
-      </ul>
+     
+     <li><a href="$filename.de"
+         lang="de"
+         xml:lang="de"
+         hreflang="de"
+         rel="alternate">Deutsch</a>
+     </li>
+     
+     <li><a href="$filename.en"
+         lang="en"
+         xml:lang="en"
+         hreflang="en"
+         rel="alternate">English</a>
+     </li>
+     
+     <li><a href="$filename.es"
+         lang="es"
+         xml:lang="es"
+         hreflang="es"
+         rel="alternate">Español</a>
+     </li>
+     
+     <li><a href="$filename.fr"
+         lang="fr"
+         xml:lang="fr"
+         hreflang="fr"
+         rel="alternate">Français</a>
+     </li>
+     
+     <li><a href="$filename.ko"
+         lang="ko"
+         xml:lang="ko"
+         hreflang="ko"
+         rel="alternate">한국어</a>
+     </li>
+     
+     <li><a href="$filename.it"
+         lang="it"
+         xml:lang="it"
+         hreflang="it"
+         rel="alternate">Italiano</a>
+     </li>
+     
+     <li><a href="$filename.nl"
+         lang="nl"
+         xml:lang="nl"
+         hreflang="nl"
+         rel="alternate">Nederlands</a>
+     </li>
+     
+     <li><a href="$filename.ja"
+         lang="ja"
+         xml:lang="ja"
+         hreflang="ja"
+         rel="alternate">日本語</a>
+     </li>
+     
+     <li><a href="$filename.pl-PL"
+         lang="pl-PL"
+         xml:lang="pl-PL"
+         hreflang="pl-PL"
+         rel="alternate">Polski</a>
+     </li>
+     
+     <li><a href="$filename.pt-BR"
+         lang="pt-BR"
+         xml:lang="pt-BR"
+         hreflang="pt-BR"
+         rel="alternate">Português</a>
+     </li>
+     
+     <li><a href="$filename.ru"
+         lang="ru"
+         xml:lang="ru"
+         hreflang="ru"
+         rel="alternate">Русский</a>
+     </li>
+     
+     <li><a href="$filename.sv"
+         lang="sv"
+         xml:lang="sv"
+         hreflang="sv"
+         rel="alternate">Svenska</a>
+     </li>
+     
+     <li><a href="$filename.zh-cn"
+         lang="zh-cn"
+         xml:lang="zh-cn"
+         hreflang="zh-cn"
+         rel="alternate">简体中文</a>
+     </li>
+</ul>
+
 
 
    <div id="footer">

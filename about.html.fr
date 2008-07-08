@@ -219,6 +219,8 @@ entre deux appels au validateur, ou alors installez et exécutez votre propre in
 
 
 
+
+
 <div id="footer">
    <p id="activity_logos">
 

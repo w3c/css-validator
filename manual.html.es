@@ -354,6 +354,8 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
 
 
 
+
+
    <div id="footer">
    <p id="activity_logos">
 
