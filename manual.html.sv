@@ -370,91 +370,91 @@ möjligheter:
 
 <ul id="lang_choice">
      
-     <li><a href="$filename.de"
+     <li><a href="manual.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"
          rel="alternate">Deutsch</a>
      </li>
      
-     <li><a href="$filename.en"
+     <li><a href="manual.html.en"
          lang="en"
          xml:lang="en"
          hreflang="en"
          rel="alternate">English</a>
      </li>
      
-     <li><a href="$filename.es"
+     <li><a href="manual.html.es"
          lang="es"
          xml:lang="es"
          hreflang="es"
          rel="alternate">Español</a>
      </li>
      
-     <li><a href="$filename.fr"
+     <li><a href="manual.html.fr"
          lang="fr"
          xml:lang="fr"
          hreflang="fr"
          rel="alternate">Français</a>
      </li>
      
-     <li><a href="$filename.ko"
+     <li><a href="manual.html.ko"
          lang="ko"
          xml:lang="ko"
          hreflang="ko"
          rel="alternate">한국어</a>
      </li>
      
-     <li><a href="$filename.it"
+     <li><a href="manual.html.it"
          lang="it"
          xml:lang="it"
          hreflang="it"
          rel="alternate">Italiano</a>
      </li>
      
-     <li><a href="$filename.nl"
+     <li><a href="manual.html.nl"
          lang="nl"
          xml:lang="nl"
          hreflang="nl"
          rel="alternate">Nederlands</a>
      </li>
      
-     <li><a href="$filename.ja"
+     <li><a href="manual.html.ja"
          lang="ja"
          xml:lang="ja"
          hreflang="ja"
          rel="alternate">日本語</a>
      </li>
      
-     <li><a href="$filename.pl-PL"
+     <li><a href="manual.html.pl-PL"
          lang="pl-PL"
          xml:lang="pl-PL"
          hreflang="pl-PL"
          rel="alternate">Polski</a>
      </li>
      
-     <li><a href="$filename.pt-BR"
+     <li><a href="manual.html.pt-BR"
          lang="pt-BR"
          xml:lang="pt-BR"
          hreflang="pt-BR"
          rel="alternate">Português</a>
      </li>
      
-     <li><a href="$filename.ru"
+     <li><a href="manual.html.ru"
          lang="ru"
          xml:lang="ru"
          hreflang="ru"
          rel="alternate">Русский</a>
      </li>
      
-     <li><a href="$filename.sv"
+     <li><a href="manual.html.sv"
          lang="sv"
          xml:lang="sv"
          hreflang="sv"
          rel="alternate">Svenska</a>
      </li>
      
-     <li><a href="$filename.zh-cn"
+     <li><a href="manual.html.zh-cn"
          lang="zh-cn"
          xml:lang="zh-cn"
          hreflang="zh-cn"

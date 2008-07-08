@@ -81,91 +81,91 @@
 
 <ul id="lang_choice">
      
-     <li><a href="$filename.de"
+     <li><a href="documentation.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"
          rel="alternate">Deutsch</a>
      </li>
      
-     <li><a href="$filename.en"
+     <li><a href="documentation.html.en"
          lang="en"
          xml:lang="en"
          hreflang="en"
          rel="alternate">English</a>
      </li>
      
-     <li><a href="$filename.es"
+     <li><a href="documentation.html.es"
          lang="es"
          xml:lang="es"
          hreflang="es"
          rel="alternate">Español</a>
      </li>
      
-     <li><a href="$filename.fr"
+     <li><a href="documentation.html.fr"
          lang="fr"
          xml:lang="fr"
          hreflang="fr"
          rel="alternate">Français</a>
      </li>
      
-     <li><a href="$filename.ko"
+     <li><a href="documentation.html.ko"
          lang="ko"
          xml:lang="ko"
          hreflang="ko"
          rel="alternate">한국어</a>
      </li>
      
-     <li><a href="$filename.it"
+     <li><a href="documentation.html.it"
          lang="it"
          xml:lang="it"
          hreflang="it"
          rel="alternate">Italiano</a>
      </li>
      
-     <li><a href="$filename.nl"
+     <li><a href="documentation.html.nl"
          lang="nl"
          xml:lang="nl"
          hreflang="nl"
          rel="alternate">Nederlands</a>
      </li>
      
-     <li><a href="$filename.ja"
+     <li><a href="documentation.html.ja"
          lang="ja"
          xml:lang="ja"
          hreflang="ja"
          rel="alternate">日本語</a>
      </li>
      
-     <li><a href="$filename.pl-PL"
+     <li><a href="documentation.html.pl-PL"
          lang="pl-PL"
          xml:lang="pl-PL"
          hreflang="pl-PL"
          rel="alternate">Polski</a>
      </li>
      
-     <li><a href="$filename.pt-BR"
+     <li><a href="documentation.html.pt-BR"
          lang="pt-BR"
          xml:lang="pt-BR"
          hreflang="pt-BR"
          rel="alternate">Português</a>
      </li>
      
-     <li><a href="$filename.ru"
+     <li><a href="documentation.html.ru"
          lang="ru"
          xml:lang="ru"
          hreflang="ru"
          rel="alternate">Русский</a>
      </li>
      
-     <li><a href="$filename.sv"
+     <li><a href="documentation.html.sv"
          lang="sv"
          xml:lang="sv"
          hreflang="sv"
          rel="alternate">Svenska</a>
      </li>
      
-     <li><a href="$filename.zh-cn"
+     <li><a href="documentation.html.zh-cn"
          lang="zh-cn"
          xml:lang="zh-cn"
          hreflang="zh-cn"
