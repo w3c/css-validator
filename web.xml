@@ -53,7 +53,11 @@
         <mime-type>text/html</mime-type>
     </mime-mapping>
     <mime-mapping>                                                          
-        <extension>pt-br</extension>
+        <extension>pt-BR</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>                                                          
+        <extension>sv</extension>
         <mime-type>text/html</mime-type>
     </mime-mapping>
     <mime-mapping>                                                          
