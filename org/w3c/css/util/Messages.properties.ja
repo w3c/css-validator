@@ -345,3 +345,6 @@ warning.notforusermedium: プロパティ %s はこの usermedium には存在�
 warning.notversion: %s はこの CSS : %s バージョンでは利用できません
 warning.otherprofile: プロパティ %s はこのプロファイルには存在しませんが、他のプロファイルでは正当です
 warning.xsl: 値 %s は XSL にのみ適用可能です
+
+parser.unknown-dimension: 不明なディメンション
+generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax.
