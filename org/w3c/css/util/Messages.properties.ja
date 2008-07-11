@@ -347,4 +347,4 @@ warning.otherprofile: プロパティ %s はこのプロファイルには存在
 warning.xsl: 値 %s は XSL にのみ適用可能です
 
 parser.unknown-dimension: 不明なディメンション
-generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax.
+generator.dontmixhtml: パースエラーが発生しました。スタイルシートにHTMLシンタックスが含まれています。
