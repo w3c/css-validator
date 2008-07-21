@@ -354,3 +354,4 @@ warning.nocomb: die Kombinator %s zwischen Selektoren ist in diesem Profil (%s) 
 warning.xsl: der Wert %s funktioniert nur mit XSL
 error.function: Invalide Funktionsdefinition
 error.unknown: Unbekannter Fehler
+generator.dontmixhtml: Syntax Fehler. Style sheets dürfen keine HTML Syntax enthalten.
