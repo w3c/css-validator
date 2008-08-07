@@ -308,8 +308,8 @@ generator.context: Contexte
 generator.request: Une erreur s'est produite lors de l'ecriture de votre feuille de style. \
 Veuillez corriger votre requète, ou envoyez un courrier électronique à plh@w3.org.
 generator.unrecognized: Non reconnu
-generator.invalid-number: Nombre érroné
-generator.property: Propriété érronée
+generator.invalid-number: Nombre erroné
+generator.property: Propriété erronée
 generator.line: Ligne
 generator.not-found: Fichier introuvable
 generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
@@ -357,7 +357,7 @@ commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
 inconnues, pour permettre l'ajout de nouvelles unités).
 
 # used by the servlet
-servlet.invalid-request: Vous avez envoyé une requète érronée.
+servlet.invalid-request: Vous avez envoyé une requète erronée.
 servlet.process: Impossible de travailler sur l'objet.
 
 error.notforcss1 : La valeur %s n'existe pas dans le cadre de CSS1
