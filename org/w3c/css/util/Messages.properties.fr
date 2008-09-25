@@ -370,7 +370,7 @@ warning.notversion: %s ne peut être utilisé dans cette version de CSS : %s
 
 warning.noothermedium : Certaines propriétés relatives à d'autres media peuvent ne pas s'appliquer à ce medium
 warning.notforusermedium : La propriété %s n'existe pas pour ce medium d'utilisateur
-error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 %
+error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 : %s
 error.notformobile : %s ne peut pas être utilisé pour le profile mobile
 error.notforatsc: %s ne peut pas être utilisé pour le profil ATSC
 error.notfortv: %s ne peut pas être utilisé pour le profil TV
