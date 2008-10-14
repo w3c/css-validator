@@ -271,6 +271,7 @@ error.unrecognize: 너무 많은 값 또는 값이 인식되지 않습니다
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: 해석 오류
+generator.dontmixhtml:  해석 오류. 스타일 시트는 HTML 구문을 포함해서는 안된다.
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: 알 수 없는 오류
@@ -305,7 +306,6 @@ generator.not-found: 파일이 없습니다
 
 generator.doc-html:   <!-- removed this confusing message olivier 2006-12-14 -->
 generator.doc:  <!-- removed this confusing message olivier 2006-12-14 -->
-
 
 # used by the parser
 parser.semi-colon: 속성 앞에 세미콜론을 찾으려고 시도하였습니다. 추가하여 주시기 바랍니다

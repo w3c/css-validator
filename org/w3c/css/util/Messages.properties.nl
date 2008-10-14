@@ -271,7 +271,7 @@ error.unrecognize: Te veel waarden of teveel onbekende waarden
 
 # gebruikt door org.w3c.css.parser.CssFouffa
 generator.unrecognize: Parse Error
-generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax. <!-- translation unavailable -->
+generator.dontmixhtml: Parse Error. Style sheets mogen geen HTML syntax.
 
 # gebruikt door org.w3c.css.parser.CssSelectors
 error.pseudo-element: Het pseudo-element :%s kan niet in deze context voorkomen %s
@@ -304,7 +304,7 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # gebruikt door the parser
 parser.semi-colon: poging een puntkomma te vinden voor de eigenschapnaam: voeg deze toe
 
-parser.unknown-dimension: Unknown dimension <!-- translation unavailable -->
+parser.unknown-dimension: Onbekend dimensie.
 
 parser.old_class:In CSS1 kon de naam van een klasse beginnen met een getal (".55ft"), \
 tenzij het een dimensie was (".55in"). In CSS2 worden zulke klassen geparsed als \

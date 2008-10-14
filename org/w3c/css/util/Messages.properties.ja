@@ -256,7 +256,7 @@ error.unrecognize: 値が多すぎるか、もしくは値が解析できませ�
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: 文法解析エラーが発生しました
-generator.dontmixhtml: 文法解析エラーが発生しました. Style sheets should not include HTML syntax. <!-- translation unavailable -->
+generator.dontmixhtml: 文法解析エラーが発生しました. スタイルシートのHTML構文が含まれてはならない。
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
@@ -291,7 +291,7 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: プロパティ名の前にセミコロン(;)を追加してみて下さい
 
-parser.unknown-dimension: Unknown dimension <!-- translation unavailable -->
+parser.unknown-dimension: 未知の次元。
 
 parser.old_class: CSS1では、 クラス名はdimension (".55in" など) でない限り、数字から始める事ができました (".55ft" など)。\
 CSS2では、このようなクラスは未知の dimension として解析されます。(これは、将来新しい単位が追加される可能性を保つためです)

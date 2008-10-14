@@ -275,7 +275,7 @@ error.unrecognize: Vi sono troppi valori, oppure i valori non sono riconosciuti
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Parse Error
-generator.dontmixhtml: Parse Error. Style sheets should not include HTML syntax. <!-- translation unavailable -->
+generator.dontmixhtml: Parse Error. Fogli di stile non deve includere la sintassi HTML.
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: Lo pseudo-element :%s non può apparire in questo contesto %s
@@ -312,7 +312,7 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: provato a trovare un punto e virgola prima del nome della proprietà. aggiungilo
 
-parser.unknown-dimension: Unknown dimension <!-- translation unavailable -->
+parser.unknown-dimension: Sconosciuto dimensione.
 
 parser.old_class:Nei CSS1, un nome di classe potrebbe cominciare con una cifra (".55ft"), \
 a meno che non sia una dimensione (".55in"). Nei CSS2, tali classi vengono analizzate (parsed) come \
