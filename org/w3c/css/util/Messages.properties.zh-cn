@@ -128,7 +128,7 @@ output-encoding-name: utf-8
 warning.redefinition: 重定义了 %s
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by the user agent <!-- translation unavailable -->
+warning.style-inside-comment: 不要把样式表的规则放入HTML注释中，以避免被用户代理删掉。
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: 一样的颜色对于 %s 和 %s
@@ -137,6 +137,7 @@ warning.no-color: 你没有为你的背景色设置(前景)颜色
 #warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
 warning.no-background-color: 你没有为你的(前景)颜色设置背景色
 warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
+error.generic-family.quote: 总族名称是保留字，所以不能被引用。
 warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
 名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
 符号会被转换为单一个空格。
@@ -164,7 +165,7 @@ warning.unsupported-import: 通过直接输入及文件上传模式导入的样�
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s 超出范围
 error.invalid-color: 无效的 RGB 函数
-warning.marker: The marker-offset property applies on elements with 'display: marker' <!-- translation unavailable -->
+warning.marker: Marker-offset属性对标有’display: marker’的元素有效。
 
 # used by org.w3c.css.properties.ACssStyle
 warning.relative: 在属性 %s 使用相对单位令样式表更加棒
@@ -293,7 +294,7 @@ generator.request: 导出你的样式表时发生错误 \
 请更正你的请求或发送邮件到 plh@w3.org.
 generator.unrecognized: 不能识别的
 generator.unrecognize: 语法错误
-generator.dontmixhtml: 语法错误. Style sheets should not include HTML syntax. <!-- translation unavailable -->
+generator.dontmixhtml: 解析错误：样式表中不应包含HTML语法。 
 generator.invalid-number: 无效数字
 generator.property: 无效数字
 generator.line: 行
@@ -305,7 +306,7 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 # used by the parser
 parser.semi-colon: 试图寻找属性名前面的冒号。加上！
 
-parser.unknown-dimension: Unknown dimension <!-- translation unavailable -->
+parser.unknown-dimension: 未知因素
 
 # Xu Ting commented out this translation @ 2006.6.9
 # I changed a little bit of this translation.
