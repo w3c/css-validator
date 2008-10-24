@@ -67,7 +67,7 @@ errors: Erreurs
 # warnings_count <!-- generated on the fly -->
 warnings: Avertissements
 validated_CSS: CSS valide
-congrats: Félicitation ! Aucune erreur trouvée.
+congrats: Félicitations ! Aucune erreur trouvée.
 # The sentence defined by doc_validates_before_link and doc_validates_after_link variables goes: \
 # "This document validates as CSSXX!" where XX stands for the CSS version used \
 # Since the content of the link about the CSS version is generated on the fly, \
