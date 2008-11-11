@@ -276,12 +276,12 @@
   <p><strong>주의</strong>: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="http://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다..
   </p>
   </div>
-  <ul class="navbar" id="menu">
-    <li><a href="about.html" title="이 서비스에 대하여">정보</a> <span class="hideme">|</span></li>
-    <li><a href="documentation.html" title="W3C CSS 검사 서비스에 대한 설명서">설명서</a> <span class="hideme">|</span></li>
-    <li><a href="DOWNLOAD.html" title="CSS 검사 도구 다운로드 받기">다운로드</a> <span class="hideme">|</span></li>
-    <li><a href="Email.html" title="이 서비스에 대한 의견 또는 건의를 하는 방법">의견/건의</a> <span class="hideme">|</span></li>
-    <li><a href="thanks.html" title="제작자들과 도움 주신 분들">credits?</a></li>
+  <ul class="navbar"  id="menu">
+		<li><a href="about.html" title="이 서비스에 대하여">정보</a> <span class="hideme">|</span></li>
+		<li><a href="documentation.html" title="W3C CSS 검사도구 관련 설명서 와 기타 문서">설명서</a> <span class="hideme">|</span></li>
+		<li><a href="DOWNLOAD.html" title="CSS 검사도구 다운로드">다운로드</a> <span class="hideme">|</span></li>
+		<li><a href="Email.html" title="이 서비스에 대한 의견 제공">피드백</a> <span class="hideme">|</span></li>
+		<li><a href="thanks.html" title="도움 주신 분">도움 주신 분</a><span class="hideme">|</span></li>
   </ul>
 
    <ul id="lang_choice">

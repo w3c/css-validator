@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>CSS 검사 서비스 사용자 설명서</title>
+  <title>W3C CSS 검사 서비스 안내</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
@@ -66,12 +66,12 @@
 가장 쉽게 검사하는 방법은 기본 인터페이스를 사용하는 방법입니다. 이 페이지에서는 3가지 기능을 갖고 있는 3가지 양식을 볼 수 있습니다:
 </p>
 
-<h4 id="url">URL을 통한 검사</h4>
+<h4 id="url">URL을 이용하여 검사</h4>
 <p>
     검사하고자 하는 문서의 URL을 입력하는 방법입니다. 이 문서는 HTML 또는 CSS 모두 가능합니다.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="Validation by URI form" />
+    src="./images/uri_basic.png" alt="URL을 이용하여 검사" />
 
 <h4 id="fileupload">파일 업로드를 통한 검사</h4>    
 <p>
@@ -79,20 +79,20 @@
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
     src="./images/file_upload_basic.png" 
-    alt="Validation by File Upload" />
+    alt="파일 업로드를 통한 검사" />
 <p>
 	이 경우, CSS 문서만 가능합니다. 즉, (X)HTML 문서를 업로드할 경우 작동하지 않습니다. 또한, @import등의
 	규칙을 사용하였을 경우 공개된 URL일 경우에만 정상적인 검사가 가능하기 때문에 주의하여야 합니다. (즉, 이 방식을 이용할
 	경우 상대 경로를 이용하는 것은 불가능합니다.)
 </p>
    
-<h4 id="directinput">직접 입력을 통한 검사</h4>
+<h4 id="directinput">직접 입력 검사</h4>
 <p>
 	이 방식은 CSS 문서의 일부분만 검사할 경우에 적합합니다. 텍스트 박스에 검사 대상 CSS를 적어 넣으면 됩니다.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
     src="./images/direct_input_basic.png" 
-    alt="Validation by direct input" />
+    alt="직접 입력 검사" />
 <p>
 	위와 같이 불가능한 조건이 있으므로 주의하여야 합니다. 이 기능은 온라인 상에서 누군가의 도움을 요청할 경우에도 URL만
 	제공하여도 되기 때문에 유용하게 사용할 수 있습니다. 또한, 이 기능은 버그를 제보할 때에도 유용하게 사용될 수 있는데,
@@ -214,7 +214,7 @@
     <tr>
       <th>lang</th>
       <td>검사 결과를 표시할 대상 언어, 현재 <code>en</code>,
-        <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>,
+        <code>fr</code>, <code>ja</code>, <code>es</code>,
         <code>zh-cn</code>, <code>nl</code>, <code>de</code>, <code>it</code>, 
         <code>pl</code>이 지원됩니다.</td>
       <td>영어 (<code>en</code>).</td>
@@ -239,124 +239,69 @@
 </div>
 <!-- End of "main" DIV. -->
 
-   <ul class="navbar"  id="menu">
-	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>
-	<li><a href="about.html" title="About this service">About</a> <span class="hideme">|</span></li>
-        <li><a href="documentation.html" title="Documentation for the W3C CSS Validation Service">Documentation</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="Download the CSS validator">Download</a> <span class="hideme">|</span></li>
-        <li><a href="Email.html" title="How to provide feedback on this service">Feedback</a> <span class="hideme">|</span></li>
-        <li><a href="thanks.html" title="Credits and Acknowlegments">Credits</a><span class="hideme">|</span></li>
-      </ul>
-
-      <ul id="lang_choice">
-     
-     <li><a href="manual.html.de"
-         lang="de"
-         xml:lang="de"
-         hreflang="de"
-         rel="alternate">Deutsch</a>
-     </li>
-     
-     <li><a href="manual.html.en"
-         lang="en"
-         xml:lang="en"
-         hreflang="en"
-         rel="alternate">English</a>
-     </li>
-     
-     <li><a href="manual.html.es"
-         lang="es"
-         xml:lang="es"
-         hreflang="es"
-         rel="alternate">Español</a>
-     </li>
-     
-     <li><a href="manual.html.fr"
-         lang="fr"
-         xml:lang="fr"
-         hreflang="fr"
-         rel="alternate">Français</a>
-     </li>
-     
-     <li><a href="manual.html.ko"
-         lang="ko"
-         xml:lang="ko"
-         hreflang="ko"
-         rel="alternate">한국어</a>
-     </li>
-     
-     <li><a href="manual.html.it"
-         lang="it"
-         xml:lang="it"
-         hreflang="it"
-         rel="alternate">Italiano</a>
-     </li>
-     
-     <li><a href="manual.html.nl"
-         lang="nl"
-         xml:lang="nl"
-         hreflang="nl"
-         rel="alternate">Nederlands</a>
-     </li>
-     
-     <li><a href="manual.html.ja"
-         lang="ja"
-         xml:lang="ja"
-         hreflang="ja"
-         rel="alternate">日本語</a>
-     </li>
-     
-     <li><a href="manual.html.pl-PL"
-         lang="pl-PL"
-         xml:lang="pl-PL"
-         hreflang="pl-PL"
-         rel="alternate">Polski</a>
-     </li>
-     
-     <li><a href="manual.html.pt-BR"
-         lang="pt-BR"
-         xml:lang="pt-BR"
-         hreflang="pt-BR"
-         rel="alternate">Português</a>
-     </li>
-     
-     <li><a href="manual.html.ru"
-         lang="ru"
-         xml:lang="ru"
-         hreflang="ru"
-         rel="alternate">Русский</a>
-     </li>
-     
-     <li><a href="manual.html.sv"
-         lang="sv"
-         xml:lang="sv"
-         hreflang="sv"
-         rel="alternate">Svenska</a>
-     </li>
-     
-     <li><a href="manual.html.zh-cn"
-         lang="zh-cn"
-         xml:lang="zh-cn"
-         hreflang="zh-cn"
-         rel="alternate">简体中文</a>
-     </li>
+<ul class="navbar"  id="menu">
+		<li><a href="./" title="W3C CSS 검사 서비스 홈페이지">홈</a> <span class="hideme">|</span></li>
+		<li><a href="about.html" title="이 서비스에 대하여">정보</a> <span class="hideme">|</span></li>
+		<li><a href="DOWNLOAD.html" title="CSS 검사도구 다운로드">다운로드</a> <span class="hideme">|</span></li>
+		<li><a href="Email.html" title="이 서비스에 대한 의견 제공">피드백</a> <span class="hideme">|</span></li>
+		<li><a href="thanks.html" title="도움 주신 분">도움 주신 분</a><span class="hideme">|</span></li>
 </ul>
 
-
-
-
-
+      <ul id="lang_choice">
+           <li><a href="manual.html.de"
+               lang="de"
+               xml:lang="de"
+               hreflang="de"
+               rel="alternate">Deutsch</a></li>
+           <li><a href="manual.html.en"
+               lang="en"
+               xml:lang="en"
+           hreflang="en"
+           rel="alternate">English</a>  </li>
+           <li><a href="manual.html.es"
+           lang="es" xml:lang="es" hreflang="es"
+           rel="alternate">Español</a></li>
+           <li><a href="manual.html.fr"
+           lang="fr"
+           xml:lang="fr"
+           hreflang="fr"
+           rel="alternate">Français</a> </li>
+           <li><a href="manual.html.it"
+               lang="it"
+               xml:lang="it"
+               hreflang="it"
+               rel="alternate">Italiano</a> </li>
+           <li><a href="manual.html.nl"
+               lang="nl"
+               xml:lang="nl"
+               hreflang="nl"
+               rel="alternate">Nederlands</a> </li>
+           <li><a href="manual.html.ja"
+               lang="ja"
+               xml:lang="ja"
+               hreflang="ja"
+               rel="alternate">日本語</a> </li>
+           <li><a href="manual.html.pl-PL"
+               lang="pl"
+               xml:lang="pl"
+               hreflang="pl"
+               rel="alternate">Polski</a> </li>
+           <li><a href="manual.html.zh-cn"
+               lang="zh-hans"
+               xml:lang="zh-hans"
+               hreflang="zh-hans"
+               rel="alternate">中文</a></li>
+      </ul>
 
 
    <div id="footer">
    <p id="activity_logos">
-
-      <a href="http://www.w3.org/QA/" title="W3C's Quality Assurance Activity, bringing you free Web quality tools and more"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Learn more about Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" title="W3C의 품질 보증 활동은 여러가지 도구를 무료로 제공합니다"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="CSS에 대하여 더 많은 것을 알아보기"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
    <p id="support_logo">
-Support this tool, become a<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
+여러분도 W3C 후원자가 되어 이 툴을 지원할 수 있습니다:<br />
+<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C 후원자" /></a>
    </p>
 
     <p class="copyright">
