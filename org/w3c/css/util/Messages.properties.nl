@@ -1,3 +1,5 @@
+# Dutch translation, last updated in sync with Messages.properties.en,v 1.31
+
 language_name: Nederlands
 more_options: Meer Opties
 title_more_options: Weergeven/Verbergen van extra validatie opties

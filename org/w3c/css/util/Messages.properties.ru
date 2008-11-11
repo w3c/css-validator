@@ -1,3 +1,5 @@
+# Russian translation, last updated in sync with Messages.properties.en,v 1.31
+
 language_name: Русский
 more_options: Дополнительные возможности
 title_more_options: Показать/скрыть дополнительные возможности
