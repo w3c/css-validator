@@ -16,7 +16,7 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
-    <a href="./"><span>CSS Validation Service</span></a></h1>
+    <a href="./"><span>CSS 검사 서비스</span></a></h1>
     <p id="tagline">
       캐스케이딩 스타일시트 (CSS) 와 스타일시트를 포함한 (X)HTML 문법검사
     </p>
