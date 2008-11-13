@@ -220,7 +220,7 @@
       <td>영어 (<code>en</code>).</td>
     </tr>
     <tr>
-      <th>경고</th>
+      <th>warning</th>
       <td>경고 표시 수준입니다. <code>no</code> 로 경고를 생략할 수 있으며, <code>0</code> 
 	은 보다 적은 경고, <code>1</code> 또는 <code>2</code>를 사용 할 경우 보다 많은 경고 표시
       </td>
