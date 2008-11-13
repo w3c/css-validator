@@ -1,5 +1,4 @@
-# Korean translation, last updated in sync with Messages.properties.en,v 1.31
-
+# Korean translation, last updated at 2008-11-11 based on Messages.properties.en,v 1.31
 language_name: 한국어
 more_options: 추가 설정
 title_more_options: 추가 설정 표시/숨김
@@ -16,8 +15,8 @@ css3: CSS 레벨 3
 SVG: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
-SVG_basic: SVG Basic
-SVG_tiny: SVG Tiny
+SVG_basic: <!-- SVG Basic , deprecated as per master language file -->
+SVG_tiny: <!-- SVG Tiny , deprecated as per master language file -->
 mobile: 모바일
 ATSC_TV_profile: ATSC TV 프로필
 TV_profile: TV 프로필
