@@ -29,6 +29,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Warnings;
+import org.w3c.css.util.Warning;
 
 /**
  * @author Julien Grand-Mourcel
@@ -120,7 +121,7 @@ public class StyleSheetGenerator extends StyleReport {
 	    String name;
 	    for (int i = 0; i < Messages.languages_name.size(); ++i) {
 		name = String.valueOf(Messages.languages_name.get(i));
-		HashMap l = new HashMap();
+		HashMap<String,String> l = new HashMap<String,String>();
 		l.put("name", name);
 		l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
 		languages[i] = l;
@@ -234,8 +235,8 @@ public class StyleSheetGenerator extends StyleReport {
 		int nbError = error.length;
 		for (int i=0; i < nbError; i++) {
 		    CssError csserror = error[i];
-		    Exception ex = csserror.getException();
-		    Hashtable h = new Hashtable();
+		    Throwable ex = csserror.getException();
+		    Hashtable<String,Object> h = new Hashtable<String,Object>();
 		    errors_content[i] = h;
 		    h.put("Error", csserror);
 		    h.put("CtxName", "nocontext");
@@ -312,7 +313,7 @@ public class StyleSheetGenerator extends StyleReport {
      * @param error, the error to check
      * @param ht_error, the Hastable with information about this error
      */
-    private void produceParseException(CssParseException error, Hashtable ht_error) {
+    private void produceParseException(CssParseException error, Hashtable<String,Object> ht_error) {
 	if (error.getContexts() != null && error.getContexts().size() != 0) {
 	    ht_error.put("CtxName", "codeContext");
 	    StringBuffer buf = new StringBuffer();
@@ -390,7 +391,7 @@ public class StyleSheetGenerator extends StyleReport {
     private String queryReplace(String s) {
 	if (s != null) {
 	    int len = s.length();
-	    StringBuffer ret = new StringBuffer(len);
+	    StringBuilder ret = new StringBuilder(len+16);
 	    char c;
 
 	    for (int i = 0; i < len; i++) {

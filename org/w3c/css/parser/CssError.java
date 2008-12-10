@@ -27,7 +27,7 @@ public class CssError {
   /**
    * The unknown error
    */
-  Exception error;
+  Throwable error;
 
   /**
    * Create a new CssError
@@ -42,7 +42,7 @@ public class CssError {
    * @param line       The error line number
    * @param error      The exception
    */
-  public CssError(String sourceFile, int line, Exception error) {
+  public CssError(String sourceFile, int line, Throwable error) {
     this.sourceFile = sourceFile;
     this.line = line;
     this.error = error;
@@ -53,7 +53,7 @@ public class CssError {
    *
    * @param error      The exception
    */
-  public CssError(Exception error) {
+  public CssError(Throwable error) {
     this.error = error;
   }
 
@@ -74,7 +74,7 @@ public class CssError {
   /**
    * get the unknown error
    */
-  public Exception getException() {
+  public Throwable getException() {
     return error;
   }
 }
