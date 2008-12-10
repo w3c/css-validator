@@ -79,7 +79,7 @@ public final class CssFouffa extends CssParser {
     // static private Utf8Properties config = null;
 
     // all listeners
-    Vector listeners;
+    Vector<CssValidatorListener> listeners;
 
     // all errors
     Errors errors;
@@ -87,7 +87,7 @@ public final class CssFouffa extends CssParser {
     // origin of the style sheet
     int origin;
 
-    Vector visited = null;
+    Vector<String> visited = null;
 
     /**
      * Create a new CssFouffa with a data input and a begin line number.
@@ -148,7 +148,7 @@ public final class CssFouffa extends CssParser {
 	}
 
 	properties = new CssPropertyFactory(profile);
-	listeners = new Vector();
+	listeners = new Vector<CssValidatorListener>();
     }
 
     /**
@@ -203,7 +203,7 @@ public final class CssFouffa extends CssParser {
      * @exception IOException
      *                if an I/O error occurs.
      */
-    private CssFouffa(ApplContext ac, InputStream in, URL url, Vector listeners, Vector urlvisited,
+    private CssFouffa(ApplContext ac, InputStream in, URL url, Vector<CssValidatorListener> listeners, Vector<String> urlvisited,
 		      CssPropertyFactory cssfactory, boolean mode) throws IOException {
 	this(ac, in, url, 0);
 	this.visited = urlvisited;
@@ -387,9 +387,9 @@ public final class CssFouffa extends CssParser {
 	}
 
 	// That's all folks, notify all errors and warnings
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
 	    CssValidatorListener listener;
-	    listener = (CssValidatorListener) e.nextElement();
+	    listener = e.nextElement();
 	    listener.notifyErrors(ac.getFrame().getErrors());
 	    listener.notifyWarnings(ac.getFrame().getWarnings());
 	}
@@ -417,7 +417,7 @@ public final class CssFouffa extends CssParser {
 	    String surl = importedURL.toString();
 
 	    if (visited == null) {
-		visited = new Vector(2);
+		visited = new Vector<String>(2);
 	    } else {
 		// check that we didn't already got this URL, or that the
 		// number of imports is not exploding
@@ -431,7 +431,7 @@ public final class CssFouffa extends CssParser {
 		    return;
 		}
 	    }
-	    Vector newVisited = (Vector) visited.clone();
+	    Vector<String> newVisited = new Vector<String>(visited);
 	    newVisited.addElement(surl);
 
 	    if (Util.importSecurity) {
@@ -486,9 +486,9 @@ public final class CssFouffa extends CssParser {
      */
     public void handleAtRule(String ident, String string) {
 	if (mode) {
-	    Enumeration e = listeners.elements();
+	    Enumeration<CssValidatorListener> e = listeners.elements();
 	    while (e.hasMoreElements()) {
-		CssValidatorListener listener = (CssValidatorListener) e.nextElement();
+		CssValidatorListener listener = e.nextElement();
 		listener.handleAtRule(ac, ident, string);
 	    }
 	} else {
@@ -593,8 +593,8 @@ public final class CssFouffa extends CssParser {
 	}
 
 	if (!Util.noErrorTrace) {
-	    for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-		CssValidatorListener listener = (CssValidatorListener) e.nextElement();
+	    for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+		CssValidatorListener listener = e.nextElement();
 		listener.notifyErrors(ac.getFrame().getErrors());
 		listener.notifyWarnings(ac.getFrame().getWarnings());
 	    }
@@ -610,8 +610,8 @@ public final class CssFouffa extends CssParser {
      *       added to the storage for the output
      */
     public void newAtRule(AtRule atRule) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).newAtRule(atRule);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().newAtRule(atRule);
 	}
     }
 
@@ -623,8 +623,8 @@ public final class CssFouffa extends CssParser {
      * @charset rule that has been found by the parser
      */
     public void addCharSet(String charset) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).addCharSet(charset);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().addCharSet(charset);
 	}
     }
 
@@ -635,8 +635,8 @@ public final class CssFouffa extends CssParser {
      *       in it.
      */
     public void endOfAtRule() {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).endOfAtRule();
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().endOfAtRule();
 	}
     }
 
@@ -647,8 +647,8 @@ public final class CssFouffa extends CssParser {
      *            true if the rule was declared important in the stylesheet
      */
     public void setImportant(boolean important) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).setImportant(important);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().setImportant(important);
 	}
     }
 
@@ -660,8 +660,8 @@ public final class CssFouffa extends CssParser {
      *            stylesheet
      */
     public void setSelectorList(Vector selectors) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).setSelectorList(selectors);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().setSelectorList(selectors);
 	}
     }
 
@@ -674,8 +674,8 @@ public final class CssFouffa extends CssParser {
      * @rule)
      */
     public void addProperty(Vector properties) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).setProperty(properties);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().setProperty(properties);
 	}
     }
 
@@ -684,8 +684,8 @@ public final class CssFouffa extends CssParser {
      * been read by the parser
      */
     public void endOfRule() {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).endOfRule();
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().endOfRule();
 	}
     }
 
@@ -695,8 +695,8 @@ public final class CssFouffa extends CssParser {
      * won't appear on the screen
      */
     public void removeThisRule() {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).removeThisRule();
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().removeThisRule();
 	}
     }
 
@@ -707,8 +707,8 @@ public final class CssFouffa extends CssParser {
      * @rule from the memorystructure so that it won't appear on the screen
      */
     public void removeThisAtRule() {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).removeThisAtRule();
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().removeThisAtRule();
 	}
     }
 
@@ -721,8 +721,8 @@ public final class CssFouffa extends CssParser {
      *            Properties to associate with contexts
      */
     public void handleRule(CssSelectors selector, Vector declarations) {
-	for (Enumeration e = listeners.elements(); e.hasMoreElements();) {
-	    ((CssValidatorListener) e.nextElement()).handleRule(ac, selector, declarations);
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	    e.nextElement().handleRule(ac, selector, declarations);
 	}
     }
 

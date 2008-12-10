@@ -34,7 +34,7 @@ public class AtRuleMedia extends AtRule {
     String[] media = new String[mediaCSS3.length];
     // media list coming from the stylesheet (ie. with case)
     String[] originalMedia = new String[mediaCSS3.length];
-    Vector mediafeatures = new Vector();
+    Vector<String> mediafeatures = new Vector<String>();
 
     boolean empty = true;
 
@@ -72,11 +72,12 @@ public class AtRuleMedia extends AtRule {
 
     public void addMediaFeature(CssProperty prop) {
 	if (prop != null) {
-	    String expression = prop.getPropertyName();
-	    if (prop.toString() != null) {
-		expression += " : " + prop.toString();
+	    StringBuilder expression = new StringBuilder(prop.getPropertyName());
+	    String propval = prop.toString();
+	    if (propval != null) {
+		expression.append(" : ").append(propval);
 	    }
-	    mediafeatures.addElement(expression);
+	    mediafeatures.addElement(expression.toString());
 	}
     }
 
@@ -137,7 +138,7 @@ public class AtRuleMedia extends AtRule {
      * Returns a string representation of the object.
      */
     public String toString() {
-	StringBuffer ret  = new StringBuffer();
+	StringBuilder ret  = new StringBuilder();
 
 	ret.append('@');
 	ret.append(keyword());
@@ -161,7 +162,7 @@ public class AtRuleMedia extends AtRule {
 
 	for (int i = 0; i < mediafeatures.size(); i++) {
 	    ret.append(" and (");
-	    ret.append(((String)mediafeatures.elementAt(i)));
+	    ret.append(mediafeatures.elementAt(i));
 	    ret.append(')');
 	}
 	return ret.toString();
