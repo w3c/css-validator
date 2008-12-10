@@ -18,11 +18,11 @@ import java.util.StringTokenizer;
  */
 public class Messages {
 
-	/**
-	 * Message properties
-	 */
-	public Utf8Properties properties;
-
+    /**
+     * Message properties
+     */
+    public Utf8Properties properties;
+    
 	public static Hashtable languages = new Hashtable();
 	public static ArrayList languages_name = new ArrayList();
 	

@@ -20,7 +20,7 @@ import java.io.StringBufferInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.Errors;
@@ -77,7 +77,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 
     String title = null;
 
-    StringBuffer text = new StringBuffer(255);
+    StringBuilder text = new StringBuilder(255);
 
     Locator locator;
 
@@ -136,12 +136,12 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 
     public void processingInstruction(String target, String data)
 	throws SAXException {
-	Hashtable atts = getValues(data);
+	HashMap<String,String> atts = getValues(data);
 
 	if ("xml-stylesheet".equals(target)) {
-	    String rel = (String) atts.get("alternate");
-	    String type = (String) atts.get("type");
-	    String href = (String) atts.get("href");
+	    String rel  = atts.get("alternate");
+	    String type = atts.get("type");
+	    String href = atts.get("href");
 
 	    if (Util.onDebug) {
 		System.err.println("<?xml-stylesheet alternate=\"" + rel
@@ -199,12 +199,12 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 					   + "initialize(): " + "should parse CSS url: "
 					   + url.toString() + "]");
 		    }
-		    String media = (String) atts.get("media");
+		    String media = atts.get("media");
 		    if (media == null) {
 			media = "all";
 		    }
-		    styleSheetParser.parseURL(ac, url, (String) atts
-					      .get("title"), rel, media, StyleSheetOrigin.AUTHOR);
+		    styleSheetParser.parseURL(ac, url, atts.get("title"), rel, media,
+					      StyleSheetOrigin.AUTHOR);
 		    if (Util.onDebug) {
 			System.err.println("[parsed!]");
 		    }
@@ -384,7 +384,6 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 							   title, media, documentURI, line);
 		    }
 		}
-
 	    }
 	}
     }
@@ -392,9 +391,10 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
     public void handleStyleAttribute(String value, String id) {
 	if (id == null) { // but we have no id: create one.
 	    // a normal id should NOT contain a "#" character.
-	    id = "#autoXML" + autoIdCount;
-	    // workaround a java hashcode bug.
-	    id += "" + autoIdCount++;
+	    StringBuilder sb = new StringBuilder("#autoXML");
+	    // FIXME why two times, then increment?
+	    sb.append(autoIdCount).append(autoIdCount++);
+	    id = sb.toString();
 	}
 	int line = 0;
 	if (locator != null) {
@@ -582,15 +582,15 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 	}
     }
 
-    Hashtable getValues(String data) {
+    HashMap<String,String> getValues(String data) {
 	int length = data.length();
 	int current = 0;
 	char c;
-	StringBuffer name = new StringBuffer(10);
-	StringBuffer value = new StringBuffer(128);
-	StringBuffer entity_name = new StringBuffer(16);
+	StringBuilder name = new StringBuilder(10);
+	StringBuilder value = new StringBuilder(128);
+	StringBuilder entity_name = new StringBuilder(16);
 	int state = 0;
-	Hashtable table = new Hashtable();
+	HashMap<String,String> table = new HashMap<String,String>();
 
 	while (current < length) {
 	    c = data.charAt(current);
