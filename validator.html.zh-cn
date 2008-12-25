@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">验证上传文件</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">选择需要验证的文件(必须是CCS格式的文件) :</p>
+        <p class="instructions">选择需要验证的文件(必须是CSS格式的文件) :</p>
         <p>
           <label title="Choose a Local File to Upload and Validate" for="file">本地CSS文件 :
           <input type="file" id="file" name="file" size="30" /></label></p>
