@@ -718,4 +718,13 @@ div.intro {
     vertical-align: middle;
 }
 
+/* donation and sponsorship program */
+
+div#don_program { border: 1px solid #55b05a; padding: .5em; line-height: 150%; text-align: center; margin-top: .5em; }
+div#don_program span#don_program_img {float: left; width: 150px; height: 60px;}
+div#don_program span#don_program_img img {vertical-align: middle;}
+div#don_program span#don_program_text { }
+div#don_program span#don_program_text a {font-weight: bold;}
+/* @end */
+
 /* @end */
