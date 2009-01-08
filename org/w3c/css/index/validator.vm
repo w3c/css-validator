@@ -131,6 +131,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>$note</strong>: $note_xhtml_valid.
   </p>
