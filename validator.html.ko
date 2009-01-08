@@ -16,7 +16,7 @@
   <body>
    <div id="banner">
     <h1 id="title"><a href="http://www.w3.org/"><img alt="W3C" width="110" height="61" id="logo" src="./images/w3c.png" /></a>
-    <a href="./"><span>CSS 검사 서비스</span></a></h1>
+    <a href="./"><span>CSS Validation Service</span></a></h1>
     <p id="tagline">
       캐스케이딩 스타일시트 (CSS) 와 스타일시트를 포함한 (X)HTML 문법검사
     </p>
@@ -276,107 +276,107 @@
   <p><strong>주의</strong>: (X)HTML 문서에 포함된 CSS 스타일시트를 검사하기 이전에, <a href="http://validator.w3.org/">(X)HTML 문법 검사</a>를 하는 것을 권장합니다..
   </p>
   </div>
-  <ul class="navbar"  id="menu">
-		<li><a href="about.html" title="이 서비스에 대하여">정보</a> <span class="hideme">|</span></li>
-		<li><a href="documentation.html" title="W3C CSS 검사도구 관련 설명서 와 기타 문서">설명서</a> <span class="hideme">|</span></li>
-		<li><a href="DOWNLOAD.html" title="CSS 검사도구 다운로드">다운로드</a> <span class="hideme">|</span></li>
-		<li><a href="Email.html" title="이 서비스에 대한 의견 제공">피드백</a> <span class="hideme">|</span></li>
-		<li><a href="thanks.html" title="도움 주신 분">도움 주신 분</a><span class="hideme">|</span></li>
+  <ul class="navbar" id="menu">
+    <li><a href="about.html" title="이 서비스에 대하여">정보</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="W3C CSS 검사 서비스에 대한 설명서">설명서</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="CSS 검사 도구 다운로드 받기">다운로드</a> <span class="hideme">|</span></li>
+    <li><a href="Email.html" title="이 서비스에 대한 의견 또는 건의를 하는 방법">의견/건의</a> <span class="hideme">|</span></li>
+    <li><a href="thanks.html" title="제작자들과 도움 주신 분들">credits?</a></li>
   </ul>
 
-  <ul id="lang_choice">
-       
-       <li><a href="validator.html.de"
-           lang="de"
-           xml:lang="de"
-           hreflang="de"
-           rel="alternate">Deutsch</a>
-       </li>
-       
-       <li><a href="validator.html.en"
-           lang="en"
-           xml:lang="en"
-           hreflang="en"
-           rel="alternate">English</a>
-       </li>
-       
-       <li><a href="validator.html.es"
-           lang="es"
-           xml:lang="es"
-           hreflang="es"
-           rel="alternate">Español</a>
-       </li>
-       
-       <li><a href="validator.html.fr"
-           lang="fr"
-           xml:lang="fr"
-           hreflang="fr"
-           rel="alternate">Français</a>
-       </li>
-       
-       <li><a href="validator.html.ko"
-           lang="ko"
-           xml:lang="ko"
-           hreflang="ko"
-           rel="alternate">한국어</a>
-       </li>
-       
-       <li><a href="validator.html.it"
-           lang="it"
-           xml:lang="it"
-           hreflang="it"
-           rel="alternate">Italiano</a>
-       </li>
-       
-       <li><a href="validator.html.nl"
-           lang="nl"
-           xml:lang="nl"
-           hreflang="nl"
-           rel="alternate">Nederlands</a>
-       </li>
-       
-       <li><a href="validator.html.ja"
-           lang="ja"
-           xml:lang="ja"
-           hreflang="ja"
-           rel="alternate">日本語</a>
-       </li>
-       
-       <li><a href="validator.html.pl-PL"
-           lang="pl-PL"
-           xml:lang="pl-PL"
-           hreflang="pl-PL"
-           rel="alternate">Polski</a>
-       </li>
-       
-       <li><a href="validator.html.pt-BR"
-           lang="pt-BR"
-           xml:lang="pt-BR"
-           hreflang="pt-BR"
-           rel="alternate">Português</a>
-       </li>
-       
-       <li><a href="validator.html.ru"
-           lang="ru"
-           xml:lang="ru"
-           hreflang="ru"
-           rel="alternate">Русский</a>
-       </li>
-       
-       <li><a href="validator.html.sv"
-           lang="sv"
-           xml:lang="sv"
-           hreflang="sv"
-           rel="alternate">Svenska</a>
-       </li>
-       
-       <li><a href="validator.html.zh-cn"
-           lang="zh-cn"
-           xml:lang="zh-cn"
-           hreflang="zh-cn"
-           rel="alternate">简体中文</a>
-       </li>
-  </ul>
+   <ul id="lang_choice">
+        
+        <li><a href="validator.html.de"
+            lang="de"
+            xml:lang="de"
+            hreflang="de"
+            rel="alternate">Deutsch</a>
+        </li>
+        
+        <li><a href="validator.html.en"
+            lang="en"
+            xml:lang="en"
+            hreflang="en"
+            rel="alternate">English</a>
+        </li>
+        
+        <li><a href="validator.html.es"
+            lang="es"
+            xml:lang="es"
+            hreflang="es"
+            rel="alternate">Español</a>
+        </li>
+        
+        <li><a href="validator.html.fr"
+            lang="fr"
+            xml:lang="fr"
+            hreflang="fr"
+            rel="alternate">Français</a>
+        </li>
+        
+        <li><a href="validator.html.ko"
+            lang="ko"
+            xml:lang="ko"
+            hreflang="ko"
+            rel="alternate">한국어</a>
+        </li>
+        
+        <li><a href="validator.html.it"
+            lang="it"
+            xml:lang="it"
+            hreflang="it"
+            rel="alternate">Italiano</a>
+        </li>
+        
+        <li><a href="validator.html.nl"
+            lang="nl"
+            xml:lang="nl"
+            hreflang="nl"
+            rel="alternate">Nederlands</a>
+        </li>
+        
+        <li><a href="validator.html.ja"
+            lang="ja"
+            xml:lang="ja"
+            hreflang="ja"
+            rel="alternate">日本語</a>
+        </li>
+        
+        <li><a href="validator.html.pl-PL"
+            lang="pl-PL"
+            xml:lang="pl-PL"
+            hreflang="pl-PL"
+            rel="alternate">Polski</a>
+        </li>
+        
+        <li><a href="validator.html.pt-BR"
+            lang="pt-BR"
+            xml:lang="pt-BR"
+            hreflang="pt-BR"
+            rel="alternate">Português</a>
+        </li>
+        
+        <li><a href="validator.html.ru"
+            lang="ru"
+            xml:lang="ru"
+            hreflang="ru"
+            rel="alternate">Русский</a>
+        </li>
+        
+        <li><a href="validator.html.sv"
+            lang="sv"
+            xml:lang="sv"
+            hreflang="sv"
+            rel="alternate">Svenska</a>
+        </li>
+        
+        <li><a href="validator.html.zh-cn"
+            lang="zh-cn"
+            xml:lang="zh-cn"
+            hreflang="zh-cn"
+            rel="alternate">简体中文</a>
+        </li>
+   </ul>
 
 <div id="footer">
    <p id="activity_logos">
@@ -388,7 +388,7 @@
    </p>
 
     <p class="copyright">
-      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2008
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009
       <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>&reg;
 
       (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
