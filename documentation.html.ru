@@ -180,8 +180,10 @@
       <a href="http://www.w3.org/QA/" title="Сообщество контроля качества в W3C, распространяющее бесплатные утилиты"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="Сообщество контроля качества" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Изучите больше о Cascading Style Sheets"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
 
-   <p id="support_logo">Поддержите проект&#x00a0;— внесите пожертвования.<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Люди, поддерживающие W3C" /></a>
+   <p id="support_logo">
+   <a href="http://www.w3.org/QA/Tools/Donate">
+   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   </a>
    </p>
 
     <p class="copyright">

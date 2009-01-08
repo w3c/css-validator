@@ -336,10 +336,11 @@ Il servizio di validazione CSS è un servizio gratuito, pubblico e per tutti e p
 
 
 
-   <p id="support_logo">
-Aiuta questo strumento, diventa un<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter" /></a>
-   </p>
+<p id="support_logo">
+<a href="http://www.w3.org/QA/Tools/Donate">
+<img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+</a>
+</p>
 
     <p class="copyright">
       <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2009

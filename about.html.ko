@@ -222,8 +222,9 @@ CSS 검사 도구에서 사용하는 클래스에 대한 개괄적인 설명은 
    </p>
 
    <p id="support_logo">
-여러분도 W3C 후원자가 되어 이 툴을 지원할 수 있습니다:<br />
-<a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C 후원자" /></a>
+   <a href="http://www.w3.org/QA/Tools/Donate">
+   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   </a>
    </p>
 
     <p class="copyright">

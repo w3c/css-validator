@@ -197,9 +197,8 @@
 </a>
 </p>
 <p id="support_logo">
-Apoya esta herramienta, convi&eacute;rtete en un <br/>
-<a href="http://www.w3.org/Consortium/supporters">
-<img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="W3C Supporter"/>
+<a href="http://www.w3.org/QA/Tools/Donate">
+<img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
 </a>
 </p>
 <p class="copyright">

@@ -383,8 +383,9 @@
      <a href="http://www.w3.org/QA/" title="Attività W3C per la garanzia di qualità, fornisce strumenti gratuiti per la qualità del web e molto altro"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Maggiori informazioni sui fogli di stile a cascata (CSS)"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-     Aiuta questo strumento, diventa un<br />
-     <a href="http://www.w3.org/Consortium/supporters"><img src="http://www.w3.org/Consortium/supporter-logos/csupporter.png" alt="Sostenitore del W3C" /></a>
+   <a href="http://www.w3.org/QA/Tools/Donate">
+   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   </a>
    </p>
 
     <p class="copyright">
