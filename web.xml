@@ -15,6 +15,9 @@
        <url-pattern>/validator</url-pattern>
    </servlet-mapping>
 
+   <welcome-file-list>
+     <welcome-file>validator.html.en</welcome-file>
+   </welcome-file-list>
 
 <!-- ===================== Additional MIME Type Mappings =================== -->
 <!-- tomcat does not know language file extensions, we have to force them    -->

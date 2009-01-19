@@ -8,7 +8,6 @@
       
   <property file="build.properties"/>
   <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
-  <property name="jigsaw.lib" value="/usr/share/java/jigsaw-2.2.5a.jar"/>
 
   <!-- =================================================================== -->
   <!-- Project-wide properties                                           -->
@@ -25,7 +24,9 @@
 
 	<path id="build.class.path">
 		<pathelement location="${servlet.lib}"/>
-		<pathelement location="${jigsaw.lib}"/>
+    <fileset dir="lib">
+        <include name="*.jar"/>
+    </fileset>
 	</path>
 	
 	<target name="build" description="Builds the validator">
@@ -33,22 +34,14 @@
 		<javac 
 			classpathref="build.class.path"
 			destdir="./build" 
-			encoding="ISO-8859-15"
+			encoding="UTF-8"
 			debug="yes">
 			<src path="./org/w3c"/>
 		</javac>
 		<copy todir="./build">
 		    <fileset dir="./">
-		      <exclude name="**/*.java"/>
-		      <exclude name="*.html*"/>
-		      <exclude name="*.css"/>
-		      <exclude name="*.bat"/>
-		      <exclude name="*.bat"/>
-		      <exclude name="*.xml"/>
-		      <exclude name="*.ico"/>
-		      <exclude name="*.cvs"/>
-		      <exclude name="**/style/*"/>
-		      <exclude name="**/images/*"/>
+		      <exclude name="*"/>
+		      <exclude name="**"/>
 		    </fileset>
 		</copy>
 	</target>
@@ -77,12 +70,13 @@
 
 	<target name="war" depends="build" description="Creates the webapp module">
 		<delete file="${war.file}"/>
-		<war warfile="${war.file}"
-			webxml="web.xml"
-			basedir="."
-			excludes="**/src/**,**/docs/**,**/build/**,**/*.tmp,*.jar,*.war,**/org/**,**/html/**"
-		>
+		<war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html">
 			<classes dir="build"/>
+      <classes dir=".">
+        <exclude name="org/**/*.java"/>
+        <include name="org/**"/>
+      </classes>
+      <lib dir="lib"/>
 		</war>
 	</target>
 

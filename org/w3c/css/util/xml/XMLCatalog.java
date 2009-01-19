@@ -36,7 +36,7 @@ public class XMLCatalog extends Utf8Properties implements ContentHandler {
 	public XMLCatalog() {
 		try {
 			baseURI = XMLCatalog.class.getResource("catalog.xml");
-			parse("\"" + baseURI.toString() + "\"");
+			parse(baseURI.toString());
 		} catch (Exception e) {
 			System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
 					+ "couldn't load catalog.xml");
