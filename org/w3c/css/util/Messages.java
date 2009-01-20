@@ -392,20 +392,4 @@ public class Messages {
 
 	}
 
-	/**
-	 * This method is called to clean the URL
-	 * /path/to/file will , file://localhost/path/to/file, file://C:\path\to\file, ...
-	 * will become file:///path/to/file 
-	 * @param resource, the URL to "clean"
-	 * @return the clean URL
-	 * @throws MalformedURLException
-	 */
-	public static URL adjustURL(URL resource) throws MalformedURLException {
-		String urlStr = resource.getFile();
-		if (urlStr.startsWith("file://"))
-			urlStr.replaceFirst("file://localhost", "file://");
-		else
-			urlStr = "file:///" + urlStr;
-		return new URL(urlStr);
-	}
 }
