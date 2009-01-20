@@ -76,18 +76,14 @@
 
 	<target name="build" description="Builds the validator" depends="prepare">
 		<mkdir dir="./build"/>
-		<javac 
-			classpathref="build.class.path"
-			destdir="./build" 
-			encoding="UTF-8"
-			debug="yes">
-			<src path="./org/w3c"/>
-		</javac>
+		<javac classpathref="build.class.path" destdir="./build" encoding="UTF-8"
+           debug="yes" includes="org/w3c/**" srcdir="."/>
 		<copy todir="./build">
-		    <fileset dir="./">
-		      <exclude name="*"/>
-		      <exclude name="**"/>
-		    </fileset>
+      <fileset dir="./">
+        <include name="org/**"/>
+        <exclude name="**/*.java"/>
+        <exclude name="**/*.class"/>
+      </fileset>
 		</copy>
 	</target>
 
@@ -95,7 +91,7 @@
 		<mkdir dir="./build"/>
 		<javac 
 			classpathref="build.class.path"
-			destdir=".d" 
+			destdir="." 
 			encoding="UTF-8"
 			debug="yes">
 			<src path="./org/w3c"/>
@@ -115,23 +111,19 @@
 	
 	<target name="jar" depends="build" description="Creates the lib archive">
 		<delete file="${jar.file}"/>
-		<jar jarfile="${jar.file}"
-			basedir="build">
+		<jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
 			<include name="org/**"/>
 			<manifest>
-	      			<attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
+        <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
+        <attribute name="Class-path" value="lib/commons-collections-3.2.1.jar lib/commons-lang-2.4.jar lib/jigsaw.jar lib/tagsoup-1.2.jar lib/velocity-1.6.1.jar lib/xercesImpl.jar lib/xml-apis.jar"/>
 			</manifest>
 		</jar>
 	</target>
 
 	<target name="war" depends="build" description="Creates the webapp module">
 		<delete file="${war.file}"/>
-		<war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html">
-			<classes dir="build"/>
-      <classes dir=".">
-        <exclude name="org/**/*.java"/>
-        <include name="org/**"/>
-      </classes>
+		<war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html,css-validator.*">
+      <classes dir="build"/>
       <lib dir="lib"/>
 		</war>
 	</target>

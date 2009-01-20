@@ -163,8 +163,7 @@ public class Messages {
 	static {
 		Utf8Properties tmp;
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.de"));
-			java.io.InputStream f = url.openStream();
+      java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.de");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -184,8 +183,7 @@ public class Messages {
 		// ------------------------------------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.en"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.en");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -202,8 +200,7 @@ public class Messages {
 		// ------------------------------------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.es"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.es");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -221,8 +218,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.fr"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.fr");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -240,8 +236,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.ko"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ko");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -258,8 +253,7 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.it"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.it");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -276,8 +270,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.nl"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.nl");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -294,8 +287,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.ja"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ja");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -312,8 +304,7 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.pl-PL"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.pl-PL");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -332,8 +323,7 @@ public class Messages {
 		// -----------------------
 		
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.pt-BR"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.pt-BR");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -351,8 +341,7 @@ public class Messages {
 		}
 		// -----------------------
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.ru"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ru");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -368,8 +357,7 @@ public class Messages {
 
 		// -----------------------
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.sv"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.sv");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
@@ -386,8 +374,7 @@ public class Messages {
 		// -----------------------
 
 		try {
-			URL url = adjustURL(Messages.class.getResource("Messages.properties.zh-cn"));
-			java.io.InputStream f = url.openStream();
+			java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.zh-cn");
 			try {
 				tmp = new Utf8Properties();
 				tmp.load(f);
