@@ -74,6 +74,19 @@ public class StyleSheetGenerator extends StyleReport {
             System.err.println("org.w3c.css.css.StyleSheetGeneratorHTML: couldn't load URLs properties ");
             System.err.println("  " + e.toString());
         }
+
+        try {
+            Velocity.setProperty(Velocity.RESOURCE_LOADER, "file");
+            Velocity.addProperty(Velocity.RESOURCE_LOADER, "jar");
+            Velocity.setProperty("jar." + Velocity.RESOURCE_LOADER + ".class", "org.apache.velocity.runtime.resource.loader.JarResourceLoader");
+            URL jarFile = StyleSheetGenerator.class.getResource("/css-validator.jar");
+            if(jarFile != null) {
+                Velocity.setProperty( "jar." + Velocity.RESOURCE_LOADER + ".path", "jar:" + jarFile);
+            }
+            Velocity.init();
+        } catch(Exception e) {
+            System.err.println("Failed to initialize Velocity. Validator might not work as expected.");
+        }
     }
 	
     public StyleSheetGenerator(String title, StyleSheet style, String document, int warningLevel) {
