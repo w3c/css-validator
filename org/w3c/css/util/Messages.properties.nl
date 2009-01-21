@@ -48,7 +48,7 @@ page_address: Adres van de pagina om de valideren
 address: Adres
 submit_uri: Verzenden om te valideren
 validate_by_file_upload: Valideer via het uploaden van een bestand
-choose_document: Kies het document dat je wilt valideren (alleen CSS bestanden)
+choose_document: Kies het document dat je wilt valideren
 choose_local_file: Kies een lokaal bestand dat je wilt uploaden en valideren
 local_CSS_file: Lokaal CSS bestand
 submit_file: Verzenden om te valideren

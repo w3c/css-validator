@@ -48,7 +48,7 @@ page_address: Indirizzo della pagina da verificare
 address: Indirizzo
 submit_uri: Invia il file per la validazione
 validate_by_file_upload: Validazione tramite trasferimento file
-choose_document: Seleziona il documento che desideri verificare (solo documenti CSS)
+choose_document: Seleziona il documento che desideri verificare
 choose_local_file: Seleziona un documento locale per da trasferire e verificare
 local_CSS_file: Documento CSS locale
 submit_file: Invia il file per la verifica

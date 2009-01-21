@@ -49,7 +49,7 @@ page_address: Adres strony, która ma być walidowana
 address: Adres
 submit_uri: Prześlij plik do walidacji
 validate_by_file_upload: Walidacja poprzez załadowanie pliku
-choose_document: Wybierz dokument do walidacji (jedynie pliki CSS)
+choose_document: Wybierz dokument do walidacji
 choose_local_file: Wybierz lokalny plik, który chcesz walidować
 local_CSS_file: Lokalny plik CSS
 submit_file: Prześlij plik do walidacji

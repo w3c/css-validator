@@ -48,7 +48,7 @@ page_address: 検証対象のアドレスを入力してください
 address: アドレス
 submit_uri: 検証するためのURIを送信します
 validate_by_file_upload: ソースファイルをアップロードして検証
-choose_document: 検証したいCSS文書のソースファイル名を入力してください (CSSファイルのみ)
+choose_document: 検証したいCSS文書のソースファイル名を入力してください
 choose_local_file: アップロード・検証するローカルのファイルを選択します
 local_CSS_file: CSSファイル
 submit_file: 検証するファイルを送信します

@@ -47,7 +47,7 @@ page_address: 검사할 웹 페이지의 주소
 address: 주소
 submit_uri: 검사를 위한 주소 저장
 validate_by_file_upload: 파일 업로드를 통한 검사
-choose_document: 검사를 할 문서를 선택하여 주십시오 (CSS 파일만 지원)
+choose_document: 검사를 할 문서를 선택하여 주십시오
 choose_local_file: 컴퓨터에 저장된 CSS 문서를 선택하여 주십시오
 local_CSS_file: 컴퓨터에 저장된 CSS 문서
 submit_file: 검사할 파일 업로드

@@ -48,7 +48,7 @@ page_address: Adresse du document à valider
 address: Adresse
 submit_uri: Vérifier le document sélectionné
 validate_by_file_upload: Valider par Chargement de Fichier
-choose_document: Choisissez la feulle de style à valider (ATTENTION : feuilles de style CSS uniquement)
+choose_document: Choisissez la feulle de style à valider
 choose_local_file: Choisir un fichier local à valider
 local_CSS_file: Fichier CSS local
 submit_file: Valider le fichier selectionné

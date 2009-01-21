@@ -48,7 +48,7 @@ page_address: Adress för den sida som skall valideras
 address: Adress
 submit_uri: Skicka in URI för validering
 validate_by_file_upload: Validera genom att ladda upp fil
-choose_document: Välj det dokument som du vill validera (enbart för CSS-filer)
+choose_document: Välj det dokument som du vill validera
 choose_local_file: Välj en lokalt lagrad fil att ladda upp och validera
 local_CSS_file: Lokal CSS-fil
 submit_file: Skicka in fil för validering

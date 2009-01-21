@@ -45,7 +45,7 @@ page_address: Address of page to Validate
 address: Address
 submit_uri: Submit URI for validation
 validate_by_file_upload: Validate by file upload
-choose_document: Choose the document you would like validated (CSS files only)
+choose_document: Choose the document you would like validated
 choose_local_file: Choose a Local File to Upload and Validate
 local_CSS_file: Local CSS file
 submit_file: Submit file for validation

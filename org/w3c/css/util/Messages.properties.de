@@ -48,7 +48,7 @@ page_address: Adresse des zu prüfenden Dokuments
 address: Adresse
 submit_uri: Validierung starten
 validate_by_file_upload: Validierung per Datei-Upload
-choose_document: Wählen Sie eine lokale Datei, die Sie validieren möchten (nur CSS-Dateien)
+choose_document: Wählen Sie eine lokale Datei, die Sie validieren möchten
 choose_local_file: Wählen Sie eine lokale Datei zum Hochladen und Validieren
 local_CSS_file: Lokale CSS-Datei
 submit_file: Datei zum Validieren abschicken

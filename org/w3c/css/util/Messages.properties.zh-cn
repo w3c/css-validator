@@ -48,7 +48,7 @@ page_address: Address of page to Validate
 address: URI地址
 submit_uri: Submit URI for validation
 validate_by_file_upload: 验证上传文件
-choose_document: 选择需要验证的文件(必须是CSS格式的文件)
+choose_document: 选择需要验证的文件
 choose_local_file: Choose a Local File to Upload and Validate
 local_CSS_file: 本地CSS文件
 submit_file: Submit file for validation
