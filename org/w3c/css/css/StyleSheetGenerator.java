@@ -79,10 +79,12 @@ public class StyleSheetGenerator extends StyleReport {
             Velocity.setProperty(Velocity.RESOURCE_LOADER, "file");
             Velocity.addProperty(Velocity.RESOURCE_LOADER, "jar");
             Velocity.setProperty("jar." + Velocity.RESOURCE_LOADER + ".class", "org.apache.velocity.runtime.resource.loader.JarResourceLoader");
-            URL jarFile = StyleSheetGenerator.class.getResource("/css-validator.jar");
-            if(jarFile != null) {
-                Velocity.setProperty( "jar." + Velocity.RESOURCE_LOADER + ".path", "jar:" + jarFile);
+            URL path = StyleSheetGenerator.class.getResource("/");
+            if(path != null) {
+                Velocity.addProperty("file." + Velocity.RESOURCE_LOADER + ".path", path.getFile());
+                Velocity.setProperty( "jar." + Velocity.RESOURCE_LOADER + ".path", "jar:" + path + "css-validator.jar");
             }
+
             Velocity.init();
         } catch(Exception e) {
             System.err.println("Failed to initialize Velocity. Validator might not work as expected.");
