@@ -87,7 +87,7 @@
 		</copy>
 	</target>
 
-	<target name="jigsaw" description="Builds the validator for Jigsaw">
+	<target name="jigsaw" description="Builds the validator for Jigsaw" depends="prepare">
 		<mkdir dir="./build"/>
 		<javac classpathref="build.class.path" destdir="." encoding="UTF-8"
            debug="yes" source="1.5" target="1.5">
