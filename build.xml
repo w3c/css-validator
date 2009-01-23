@@ -6,7 +6,6 @@
   <!-- User-overrideable properties                                      -->
   <!-- =================================================================== -->
       
-  <property file="build.properties"/>
   <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
 
   <!-- =================================================================== -->
