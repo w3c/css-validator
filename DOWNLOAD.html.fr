@@ -34,8 +34,8 @@ Suivez les <a href='http://dev.w3.org/cvsweb/'>instructions</a> pour accéder au
 2002/css-validator. Notez que la version en ligne du validateur CSS est en général plus ancienne que la version CVS,
 de sorte que les résultats et l'aspect peuvent varier légèrement.
 </p>	
-<h4>Télécharger un paquetage Java (jar ou war)</h4>
-<!--<p>À faire... nous avons juste besoin d'un emplacement stable pour y placer régulièrement les archives jar/war.</p>-->
+<h4>Télécharger un paquetage Java (jar)</h4>
+<!--<p>À faire... nous avons juste besoin d'un emplacement stable pour y placer régulièrement les archives jar.</p>-->
 <p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Guide d'installation</h3>
@@ -57,41 +57,26 @@ en ligne de commande.</p>
 <a href="http://tomcat.apache.org/">Tomcat</a> ou <a href="http://www.mortbay.org/">Jetty</a>, si vous prévoyez d'utiliser le validateur
 comme service en ligne. Ce guide couvre dans le détail seulement Tomcat et Jigsaw.</li>
 </ul>
-<p id="prereq-libs">Pour l'installation du validateur sur votre système, il vous faudra charger et/ou rechercher dans votre système
-plusieurs bibliothèques Java :</p>
-<ul class="instructions">
-<li>servlet.jar (que vous trouverez dans [<span class="const">TOMCAT_DIR</span>]/common/lib/, si Tomcat est installé dans
-[<span class="const">TOMCAT_DIR</span>], probablement sous le nom servlet-api.jar). Sinon, récupérez le
-chez <a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a> ;</li>
-<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
-<li>xercesImpl.jar et xml-apis.jar (que l'on peut télécharger avec
-<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a>).</li>
-	<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
-</ul>
+<p id="prereq-libs">
+  Pour l'installation du validateur sur votre système, il vous faudra le chemin complet vers la bibliothèqueJava <span class="file">servlet.jar</span>.
+  Elle se trouve généralement dans <span class="dir">[<span class="const">TOMCAT_DIR</span>]/common/lib/</span>, si Tomcat est installé dans
+  <span class="dir">[<span class="const">TOMCAT_DIR</span>]</span>, probablement sous le nom servlet-api.jar). Sinon, récupérez-la
+  chez <a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a>.
+</p>
 
 <h4>Installation du validateur CSS avec Tomcat</h4>
 <ol class="instructions">
-<li>Téléchargez le validateur comme expliqué <a href="#source">précédemment</a> ;</li>
-<li>Copiez le dossier source entier ("<span class="dir">.../css-validator/</span>") dans le répertoire <span class="dir">webapps</span>
-de votre installation de Tomcat. Ce sera habituellement dans <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/</span>.
-Les sources du validateur se trouvent maintenant dans <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/css-validator</span>,
-que nous appellerons désormais <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span> ;</li>
-<li>Dans "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>", créez un répertoire "<span class="dir">WEB-INF</span>",
-puis dans "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF</span>", créez un répertoire "<span class="dir">lib</span>" :<br />
-<kbd>mkdir -p WEB-INF/lib</kbd>
+<li>Téléchargez la version CVS du validateur comme expliqué <a href="#source">précédemment</a> ;</li>
+<li>Éditez le fichier <span class="file">[<span class="const">VALIDATOR_DIR</span>]build.xml</span> pour remplacer la valeur de la propriété servlet.lib 
+par le chemin vers le fichier <span class="file">servlet.jar</span>
 </li>
-<li>Copiez tous les fichiers jar (cf. <a href="#prereq-libs">Préalables</a>) dans le répertoire
-"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib</span>" ;</li>
-<li>Compiler la source du validateur : depuis le répertoire <span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>,
-lancez <kbd>ant</kbd>, tout en vous assurant que les fichiers jar téléchargés sont correctement définis
-dans votre variable d'environnement CLASSPATH. En général, ce qui suit fonctionnera :<br />
-<kbd>CLASSPATH=.:./WEB-INF/lib:$CLASSPATH ant</kbd>
+<li>
+Compilez la source du validateur : depuis <span class="dir">[<span class="const">VALIDATOR_DIR</span>lancez <kbd>ant war</kbd>.
+Cette commande devrait télécharger les bibliothèques nécessaires au bon fonctionnement du validateur puis le compiler et produire
+un fichier <span class="file">css-validator.war</span>.
 </li>
-<li>Copiez ou déplacez "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span><span class="file">css-validator.jar</span>"
-dans "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib/</span>" ;</li>
-<li>Copiez ou déplacez le fichier "<span class="file">web.xml</span>" depuis
-"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span>" vers
-"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/</span>" ;</li>
+<li>
+Copiez ou déplacez <span class="file">css-validator.war</span> dans le dossier <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps</span>.
 <li>Enfin, relancez le serveur Tomcat :<br />
 <kbd>"cd <span class="dir">[<span class="const">TOMCAT_DIR</span>]</span>; <span class="dir">./bin/</span><span class="file">shutdown.sh</span>; <span class="dir">./bin/</span><span class="file">startup.sh</span>;"</kbd>
 </li>
@@ -99,8 +84,8 @@ dans "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib/<
 
 <h4>Installation sur le serveur Web Jigsaw</h4>
 <ol class="instructions">
-<li>Téléchargez d'abord la source comme décrit précédemment, récupérez les fichiers jar nécessaires et construisez la source
-avec <kbd>ant</kbd> ;
+<li>Téléchargez d'abord la source comme décrit précédemment dans le dossier <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>
+et construisez la source avec <kbd>ant jigsaw</kbd> ;
 </li>
 <li>Configurez ensuite le répertoire racine du validateur (en général, c'est css-validator), afin qu'il puisse fonctionner
 comme conteneur de servlets. Pour ce faire, vous devrez avoir installé Jigsaw (cf. les pages de Jigsaw pour quelques instructions,
@@ -108,6 +93,8 @@ ce n'est vraiment pas difficile) puis lancez Jigsaw Admin. Changez HTTPFrame pou
 <li>La prochaine étape consiste à créer une ressource "validator", avec pour classe 'ServletWrapper' et pour cadre 'ServletWrapperFrame'.
 Ce dernier devrait s'ajouter comme par magie. La classe du servlet est org.w3c.css.servlet.CssValidator. S'il existe déjà un fichier
 nommé 'validator', veuillez le renommer. Il importe que cet 'alias' soit toujours nommé 'validator' ;</li>
+<li>Assurez-vous d'ajouter les bibliothèques .jar du dossier <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW/css-validator/lib</span>
+sont bien dans le CLASSPATH de Jigsaw.</li>
 <li>Enfin, démarrez jigsaw et lancez le validateur. Vérifiez quel type de HTML vous souhaitez invoquer. Habituellement, l'adresse URL
 ressemblera à ça :<br />
 http://localhost:8001/css-validator/validator.html</li>
@@ -116,7 +103,7 @@ http://localhost:8001/css-validator/validator.html</li>
 <h3>Utilisation en ligne de commande</h3>
 
 <p>On peut aussi utiliser le validateur CSS comme un outil en ligne de commande, si Java est installé sur votre ordinateur.
-Construisez le fichier css-validator.jar comme expliqué précédemment, et exécutez de cette façon :<br />
+Construisez le fichier css-validator.jar avec la commande <kbd>ant jar</kbd>, et exécutez de cette façon :<br />
 <kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
 </p>
 </div>
