@@ -9,11 +9,6 @@
   <property file="build.properties"/>
   <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
 
-	<!-- Configure these properties to access the Manager application -->
-	<property name="url"      value="http://localhost:8080/manager"/>
-	<property name="username" value="tomcat"/>
-	<property name="password" value="tomcat"/>
-
   <!-- =================================================================== -->
   <!-- Project-wide properties                                           -->
   <!-- =================================================================== -->
