@@ -104,8 +104,9 @@ http://localhost:8001/css-validator/validator.html</li>
 
 <p>On peut aussi utiliser le validateur CSS comme un outil en ligne de commande, si Java est installé sur votre ordinateur.
 Construisez le fichier css-validator.jar avec la commande <kbd>ant jar</kbd>, et exécutez de cette façon :<br />
-<kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
+<kbd>java -jar css-validator.jar http://www.w3.org/</kbd>.
 </p>
+<p> Nota Bene : le répertoire lib/ doit être au même niveau que css-validator.jar </p>
 </div>
 <ul class="navbar"  id="menu">
 <li><strong><a href="./" title="Accueil du service de validation CSS du W3C">Accueil</a></strong> <span class="hideme">|</span></li>
