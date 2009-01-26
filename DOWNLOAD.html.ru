@@ -27,6 +27,9 @@
 
 <div class="doc">
 <h2>Загрузка и установка сервиса проверки CSS</h2>
+
+<p>This translation of the installation guide for the CSS validator may be out of date. For a reliable, up-to-date guide, refer to the <a href="DOWNLOAD.html.en">English</a> or <a href="DOWNLOAD.html.fr">French</a> versions.</p>
+
 <h3 id="download">Загрузка</h3>	
 
 	<h4 id="source">Загрузка исходных файлов</h4>

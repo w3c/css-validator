@@ -24,6 +24,9 @@
 
 <div class="doc">
 <h2>Descarga e instalaci&oacute;n del Validador de CSS</h2>
+
+<p>This translation of the installation guide for the CSS validator may be out of date. For a reliable, up-to-date guide, refer to the <a href="DOWNLOAD.html.en">English</a> or <a href="DOWNLOAD.html.fr">French</a> versions.</p>
+
 <h3 id="download">Descarga el Validador de CSS</h3>
 <h4 id="source">Descarga la fuente</h4>
 <p>
