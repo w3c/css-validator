@@ -43,9 +43,6 @@ generally a little older than the version under CVS, and their results and behav
 <h4>Download the Java archive (jar)</h4>
 <p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
-<h4>Download the Web archive (war)</h4>
-<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.war">css-validator.war</a></p>
-
 <h3>Installation Guide</h3>
 <p>The CSS Validation service is based on a servlet written in the cross-platform Java language, and can
   be installed on any servlet platform. While the official service from W3C runs under the Jigsaw server 
