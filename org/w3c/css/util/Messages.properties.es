@@ -363,3 +363,5 @@ warning.deprecated : este valor está desaprobado
 error.nocomb: La combinación %s entre selectores no está permitida en este perfil o versión
 warning.nocomb: No se permite el combinador %s entre selectores en este perfil (%s)
 error.unknown: Error desconocido
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

@@ -365,3 +365,5 @@ warning.otherprofile: A propriedade %s não existe nesse perfil, mas valida em o
 warning.deprecated: este valor está em desuso
 parser.unknown-dimension: Dimensão desconhecida
 generator.dontmixhtml: Erro de parseamento. Sintaxe HTML não é permitida em folhas de estilo
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

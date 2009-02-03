@@ -364,3 +364,5 @@ warning.nocomb: Combinatieteken %s tussen selectors is niet toegestaan binnen di
 warning.notversion: %s kan niet gebruikt worden in deze CSS-versie: %s
 warning.pseudo: Onbekend pseudo-element of pseudo-class %s in het standaard profiel (%s)
 warning.xsl: waarde %s is alleen geldig voor XSL
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

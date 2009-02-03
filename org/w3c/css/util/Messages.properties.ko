@@ -337,3 +337,5 @@ error.onlyATSC: %s는 atsc-tv 매체에서만 사용 가능합니다
 
 warning.otherprofile: 속성 %s는 이 프로파일에 존재하지 않습니다만, 다른 프로파일에 의하여 유효하다고 검증되었습니다
 warning.deprecated: 이 값은 더 이상 사용되지 않습니다
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

@@ -365,3 +365,5 @@ warning.deprecated: detta värde är föråldrat
 
 parser.unknown-dimension: Okänd dimension
 generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-syntax.
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

@@ -350,3 +350,5 @@ warning.xsl: 値 %s は XSL にのみ適用可能です
 
 parser.unknown-dimension: 不明なディメンション
 generator.dontmixhtml: パースエラーが発生しました。スタイルシートにHTMLシンタックスが含まれています。
+
+warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->

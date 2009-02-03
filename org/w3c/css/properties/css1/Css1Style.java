@@ -2563,6 +2563,14 @@ public class Css1Style extends CssStyle {
 	    }
 	}
 
+    if (CssFloat.get() != null) {
+        if(CssWidth.get() == null ) {
+            // TODO do NOT send warning if element in context
+            // is html, img, input, textarea, select, or object
+		    warnings.addWarning(new Warning(cssFloat, "float-no-width", 2, ac));
+        }
+    }
+
 	if (cssBackground.getColor() != null) {
 	    CssColor colorCSS3 = cssColor;
 	    // we need to look if there is the same selector elsewhere
