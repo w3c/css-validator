@@ -43,7 +43,7 @@
 	<dt>Result</dt>
 	<dd>Not valid</dd>
 	<dd>Errors: 1</dd>
-	<dd>Warnings: 1</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <div class="res">
@@ -58,7 +58,7 @@
 	<dt>Result</dt>
 	<dd>Valid</dd>
 	<dd>Errors: 0</dd>
-	<dd>Warnings: 3</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <h2>bugs</h2>
@@ -89,7 +89,7 @@
 	<dt>Result</dt>
 	<dd>Not valid</dd>
 	<dd>Errors: 1</dd>
-	<dd>Warnings: 1</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <div class="res">
@@ -109,7 +109,7 @@
     </div>
     <div class="res">
       <h3><a href="testsuite/general/bugs/corrected-bug_invalid-value2.css">testsuite/general/bugs/corrected-bug_invalid-value2.css</a></h3>
-      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=%2F*+Should+not+be+valid%2C+badly+validated+by+the+validator++*%2Fimg+%7B++++background%3A+%22red%22%7D+%2F*+keywords+cannot+be+quoted+*%2F">Go to the Validator page</a></p>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=%2F*+Should+not+be+valid%2C+badly+validated+by+the+validator++*%2Fimg+%7B++++background-color%3A+%22red%22%7D+%2F*+keywords+cannot+be+quoted+*%2F">Go to the Validator page</a></p>
       <p>Quoted keyword</p>
       <dl>
 	<dt>Awaited result</dt>
@@ -207,8 +207,8 @@
 	<dd>Errors: 0</dd>
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
-	<dd>Not valid</dd>
-	<dd>Errors: 1</dd>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
 	<dd>Warnings: 0</dd>
       </dl>
     </div>
@@ -225,7 +225,7 @@
 	<dt>Result</dt>
 	<dd>Not valid</dd>
 	<dd>Errors: 1</dd>
-	<dd>Warnings: 3</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <div class="res">
@@ -238,8 +238,8 @@
 	<dd>Errors: 1</dd>
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
-	<dd>Not valid</dd>
-	<dd>Errors: 1</dd>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
 	<dd>Warnings: 1</dd>
       </dl>
     </div>
@@ -253,8 +253,8 @@
 	<dd>Errors: 1</dd>
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
-	<dd>Not valid</dd>
-	<dd>Errors: 1</dd>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
 	<dd>Warnings: 1</dd>
       </dl>
     </div>
@@ -285,7 +285,7 @@
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
 	<dd>Not valid</dd>
-	<dd>Errors: 2</dd>
+	<dd>Errors: 3</dd>
 	<dd>Warnings: 0</dd>
       </dl>
     </div>
@@ -300,7 +300,7 @@
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
 	<dd>Not valid</dd>
-	<dd>Errors: 1</dd>
+	<dd>Errors: 2</dd>
 	<dd>Warnings: 0</dd>
       </dl>
     </div>
@@ -423,7 +423,7 @@
 	<dt>Result</dt>
 	<dd>Not valid</dd>
 	<dd>Errors: 1</dd>
-	<dd>Warnings: 1</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <h2>values</h2>
@@ -470,7 +470,7 @@
 	<dt>Result</dt>
 	<dd>Valid</dd>
 	<dd>Errors: 0</dd>
-	<dd>Warnings: 76</dd>
+	<dd>Warnings: 1</dd>
       </dl>
     </div>
     <h2>Valid CSS with warnings</h2>
@@ -486,21 +486,39 @@
 	<dt>Result</dt>
 	<dd>Valid</dd>
 	<dd>Errors: 0</dd>
-	<dd>Warnings: 2</dd>
+	<dd>Warnings: 0</dd>
       </dl>
     </div>
     <h2>URI errors</h2>
-    <div class="error">
+    <div class="res">
       <h3><a href="http://sdfsdf.org">http://sdfsdf.org</a></h3>
-      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?uri=http%3A%2F%2Fsdfsdf%2Eorg&amp;output=soap12">Go to the Validator page</a></p>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?uri=http%3A%2F%2Fsdfsdf%2Eorg">Go to the Validator page</a></p>
       <p>Inexistant URI</p>
-      <p>Reply status code: 500<br/>Invalid URL: Sender error</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
     </div>
-    <div class="error">
+    <div class="res">
       <h3><a href="file://tmp/tmp.css">file://tmp/tmp.css</a></h3>
-      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?uri=file%3A%2F%2Ftmp%2Ftmp%2Ecss&amp;output=soap12">Go to the Validator page</a></p>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?uri=file%3A%2F%2Ftmp%2Ftmp%2Ecss">Go to the Validator page</a></p>
       <p>Forbidden protocol</p>
-      <p>Reply status code: 500<br/>Invalid URL: Sender error</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Not valid</dd>
+	<dd>Errors: 1</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
     </div>
     <div class="error">
       <h3><a href="https://www.test.com">https://www.test.com</a></h3>
@@ -508,6 +526,18 @@
       <p>Forbidden protocol</p>
       <p>Reply status code: 500<br/>Invalid URL: Sender error</p>
     </div>
+ <p id="valid">
+ <a href="http://validator.w3.org/check?uri=referer">
+ <img style="border:0;width:88px;height:31px"
+ src="http://www.w3.org/Icons/valid-xhtml10"
+ alt="Valid XHTML 1.0!" height="31" width="88" />
+ </a>
+ <a href="http://jigsaw.w3.org/css-validator/check/referer">
+ <img style="border:0;width:88px;height:31px"
+ src="http://jigsaw.w3.org/css-validator/images/vcss"
+ alt="Valid CSS!" />
+ </a>
+ </p>
 </body>
 
 </html>
