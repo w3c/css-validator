@@ -12,8 +12,11 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import org.apache.velocity.VelocityContext;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
@@ -49,14 +52,11 @@ public class TranslationTableGenerator {
     // the velocity context used to generate the index
     // (NB: the same context is used for each index page, changing every thing
     // inside)
+    public static VelocityContext vc = new VelocityContext();
     private static String html_files_path = "../../../../";
     private static boolean done = false;
-    public static VelocityContext vc;
     private static String template_name = "translations.vm";
     
-    static {
-	vc = new VelocityContext();
-    }
 
     /**
      * @param args
@@ -82,6 +82,10 @@ public class TranslationTableGenerator {
 	    path = new URI(path).getPath();
 	    Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
 	    Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../css/");
+        Velocity.setProperty(Velocity.RUNTIME_LOG,
+                             "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
+                    
+        Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
 	    Velocity.init();
 		
 	    Template tpl = Velocity.getTemplate(template_name, "UTF-8");
