@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Проверить загруженный файл</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Выберите документ, который вы хотели бы проверить (только CSS) :</p>
+        <p class="instructions">Выберите документ, который вы хотели бы проверить :</p>
         <p>
           <label title="Выберите локальный файл для загрузки и проверки" for="file">Локальный файл CSS :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Примечание</strong>: Если вы хотите проверить каскадные таблицы стилей, встроенные в документ (X)HTML, вы должны сначала <a href="http://validator.w3.org/">проверить на корректность сам документ (X)HTML</a>.
   </p>

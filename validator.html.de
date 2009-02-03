@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validierung per Datei-Upload</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Wählen Sie eine lokale Datei, die Sie validieren möchten (nur CSS-Dateien) :</p>
+        <p class="instructions">Wählen Sie eine lokale Datei, die Sie validieren möchten :</p>
         <p>
           <label title="Wählen Sie eine lokale Datei zum Hochladen und Validieren" for="file">Lokale CSS-Datei :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Achtung</strong>: Wenn Sie CSS-Code in einem (X)HTML-Dokument validieren möchten, sollten Sie zunächst <a href="http://validator.w3.org/">prüfen, ob das (X)HTML-Dokument valide ist</a>.
   </p>

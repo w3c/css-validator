@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Valideer via het uploaden van een bestand</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Kies het document dat je wilt valideren (alleen CSS bestanden) :</p>
+        <p class="instructions">Kies het document dat je wilt valideren :</p>
         <p>
           <label title="Kies een lokaal bestand dat je wilt uploaden en valideren" for="file">Lokaal CSS bestand :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Opmerking</strong>: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>.
   </p>

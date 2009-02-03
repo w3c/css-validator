@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Walidacja poprzez załadowanie pliku</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Wybierz dokument do walidacji (jedynie pliki CSS) :</p>
+        <p class="instructions">Wybierz dokument do walidacji :</p>
         <p>
           <label title="Wybierz lokalny plik, który chcesz walidować" for="file">Lokalny plik CSS :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Uwaga</strong>: Jeśli chcesz walidować arkusz CSS umieszczony w dokumencie (X)HTML, powinieneś wpierw <a href="http://validator.w3.org/">sprawdzić, czy użyty (X)HTML jest poprawny</a>.
   </p>

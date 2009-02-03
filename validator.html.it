@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validazione tramite trasferimento file</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Seleziona il documento che desideri verificare (solo documenti CSS) :</p>
+        <p class="instructions">Seleziona il documento che desideri verificare :</p>
         <p>
           <label title="Seleziona un documento locale per da trasferire e verificare" for="file">Documento CSS locale :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Nota</strong>: Se desideri verificare un foglio di stile CSS interno ad un documento (X)HTML, dovresti prima <a href="http://validator.w3.org/">verificare la validità del codice (X)HTML</a>.
   </p>

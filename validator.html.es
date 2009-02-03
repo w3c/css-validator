@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validar mediante Carga de un Archivo</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Elige el documento que desees validar (únicamente archivos CSS) :</p>
+        <p class="instructions">Elige el documento que desees validar :</p>
         <p>
           <label title="Elige un Archivo Local para su Carga y Validación" for="file">Archivo CSS local :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Nota</strong>: Si deseas validar tu hoja de estilo CSS incrustada en un documento (X)HTML, deberías antes <a href="http://validator.w3.org/">comprobar que el  (X)HTML utilizado es válido</a>.
   </p>

@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validera genom att ladda upp fil</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Välj det dokument som du vill validera (enbart för CSS-filer) :</p>
+        <p class="instructions">Välj det dokument som du vill validera :</p>
         <p>
           <label title="Välj en lokalt lagrad fil att ladda upp och validera" for="file">Lokal CSS-fil :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>Märk</strong>: Om du vill validera din CSS-formatmall inbäddad i ett (X)HTML-dokument, så bör du först <a href="http://validator.w3.org/">kontrollera att den (X)HTML du använder är giltig</a>.
   </p>

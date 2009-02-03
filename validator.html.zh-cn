@@ -111,7 +111,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">验证上传文件</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">选择需要验证的文件(必须是CCS格式的文件) :</p>
+        <p class="instructions">选择需要验证的文件 :</p>
         <p>
           <label title="Choose a Local File to Upload and Validate" for="file">本地CSS文件 :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -272,6 +272,11 @@
       </fieldset>
       </div><!-- fields -->
   </div> <!-- frontforms -->
+  
+  <div class="intro" id="don_program"></div>  
+  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
+  
+  
   <div class="intro">
   <p><strong>注意</strong>: 如果你想验证一段嵌入在HTML或者XHTML文档中的CSS，你首先要<a href="http://validator.w3.org/">验证你的HTML或者XHTML文档</a>是正确的。.
   </p>
