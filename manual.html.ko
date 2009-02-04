@@ -71,14 +71,14 @@
     검사하고자 하는 문서의 URL을 입력하는 방법입니다. 이 문서는 HTML 또는 CSS 모두 가능합니다.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/uri_basic.png" alt="URL을 이용하여 검사" />
+    src="./images/uri_basic_ko.png" alt="URL을 이용하여 검사" />
 
 <h4 id="fileupload">파일 업로드를 통한 검사</h4>    
 <p>
     이 기능은 컴퓨터에 있는 파일을 업로드하여 검사를 할 수 있도록 합니다. 파일 선택 버튼을 누른 다음, 검사를 원하는 파일을 선택하면 됩니다.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/file_upload_basic.png" 
+    src="./images/file_upload_basic_ko.png" 
     alt="파일 업로드를 통한 검사" />
 <p>
 	이 경우, CSS 문서만 가능합니다. 즉, (X)HTML 문서를 업로드할 경우 작동하지 않습니다. 또한, @import등의
@@ -91,7 +91,7 @@
 	이 방식은 CSS 문서의 일부분만 검사할 경우에 적합합니다. 텍스트 박스에 검사 대상 CSS를 적어 넣으면 됩니다.
 </p>
 <img style="display: block; margin-left:auto; margin-right: auto;" 
-    src="./images/direct_input_basic.png" 
+    src="./images/direct_input_basic_ko.png" 
     alt="직접 입력 검사" />
 <p>
 	위와 같이 불가능한 조건이 있으므로 주의하여야 합니다. 이 기능은 온라인 상에서 누군가의 도움을 요청할 경우에도 URL만
