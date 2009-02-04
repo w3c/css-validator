@@ -345,4 +345,4 @@ warning.deprecated: это значение является нежелател�
 generator.dontmixhtml: Ошибка парсера: в таблицах стилей не должно быть HTML разметки
 parser.unknown-dimension: Неизвестные размеры
 
-warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->

@@ -364,4 +364,4 @@ error.nocomb: La combinación %s entre selectores no está permitida en este per
 warning.nocomb: No se permite el combinador %s entre selectores en este perfil (%s)
 error.unknown: Error desconocido
 
-warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->

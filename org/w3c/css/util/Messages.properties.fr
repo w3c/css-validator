@@ -390,4 +390,4 @@ warning.deprecated : cette valeur est deconseillÃ©e
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Combinator %s between selectors is not allowed in this profile or version
 
-warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->

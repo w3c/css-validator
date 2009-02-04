@@ -366,4 +366,4 @@ warning.deprecated: detta värde är föråldrat
 parser.unknown-dimension: Okänd dimension
 generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-syntax.
 
-warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->

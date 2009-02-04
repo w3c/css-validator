@@ -363,4 +363,4 @@ error.onlyATSC: %s this function is only for the atsc-tv medium
 warning.otherprofile: property %s does not exist for this profile, but is validated conforming to another profile
 warning.deprecated: this value is deprecated
 
-warning.float-no-width: Floated elements without intrinsic width (i.e anything but html, img, input, textarea, select, or object) should be given a width
+warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected
