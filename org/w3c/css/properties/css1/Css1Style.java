@@ -2571,7 +2571,7 @@ public class Css1Style extends CssStyle {
             }
             else {
                 // for elements without intrinsic width, float needs a declared width
-    		    warnings.addWarning(new Warning(cssFloat, "float-no-width", 2, ac));                
+    		    warnings.addWarning(new Warning(cssFloat, "float-no-width", 1, ac));                
             }
         }
     }
