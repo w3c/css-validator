@@ -17,6 +17,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.util.zip.GZIPInputStream;
+
 /**
  * @version $Revision$
  * @author  Philippe Le Hegaret
@@ -260,6 +262,24 @@ public class HTTPURL {
 	throws IOException
     {
 	return getConnection(url, 0, ac);
+    }
+
+    /* more madness */
+    public static InputStream getInputStream(URLConnection uco) throws IOException {
+	InputStream orig_stream = uco.getInputStream();
+	String encoding;
+	if (orig_stream == null) {
+	    return orig_stream; // let it fail elsewhere
+	}
+	encoding = uco.getContentEncoding();
+	// not set -> return
+	if (encoding == null) {
+	    return orig_stream;
+	}
+	if (encoding.equalsIgnoreCase("gzip")) {
+	    return new GZIPInputStream(orig_stream);
+	}
+	return orig_stream;
     }
     /**
      *
