@@ -77,7 +77,7 @@ congrats: おめでとうございます！ エラーはありません。
 doc_validates_before_link: おめでとうございます！ この文書は正当な
 doc_validates_after_link: として検証できました!
 no_errors_interoperable_msg: あなたがこのWebページを作るにあたって、\
-高度な相互運用性<span lang="en">(Interoperability)</span>\
+高度な相互運用性<span lang="en" xml:lang="en">(Interoperability)</span>\
 に対する配慮を行った事を読者に示すため、このアイコンを張る事をお勧めします。\
 あなたのWebページにこのアイコンを張るためには、次のHTMLの断片を利用すると良いでしょう。
 valid_CSS: 正当なCSSです!
