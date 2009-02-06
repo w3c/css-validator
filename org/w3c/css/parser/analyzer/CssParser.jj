@@ -10,8 +10,10 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-/*        DEBUG_TOKEN_MANAGER = true; 
-	  DEBUG_PARSER = true;      */
+    /*
+          DEBUG_TOKEN_MANAGER = true; 
+	  DEBUG_PARSER = true;      
+    */
 }
 
 PARSER_BEGIN(CssParser)
@@ -372,10 +374,14 @@ SPECIAL_TOKEN :
   | < #_STRING    : <STRING1> | <STRING2> >
   | < #_INVALID   : <INVALID1> | <INVALID2> >
   | < #_URL       : ( [ "!", "#", "$", "%", "&", "*", "+", "-"-"[", "]"-"~" ] | <NONASCII> | <ESCAPE> )* >
-  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] )+ >
+  | < #_S         : ( [ " ", "\t" , "\n" , "\r", "\f" ] ) ( <COMMENT> | [ " ", "\t" , "\n" , "\r", "\f" ] )*  >
   | < #_W         : ( <_S> )? >
   | < #NL         : ( "\n" | "\r\n" | "\r" | "\f" ) >
 }
+/*
+ * The _S definition is not  ( [ " ", "\t" , "\n" , "\r", "\f" ] ) + as we need to add support
+ * for the unput(' ') (see http://www.w3.org/TR/CSS21/grammar.html#scanner )
+ */
 
 <DEFAULT>
 TOKEN :
