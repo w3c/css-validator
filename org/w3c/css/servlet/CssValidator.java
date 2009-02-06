@@ -63,7 +63,9 @@ public final class CssValidator extends HttpServlet {
 
     final static String soap12      = "application/soap+xml";
 
-    final static String server_name = "Jigsaw/2.2.2 "
+    final static String json      = "application/json";
+
+    final static String server_name = "Jigsaw/2.2.5 "
 	+ "W3C_CSS_Validator_JFouffa/2.0";
 
     final static String headers_name = "X-W3C-Validator-";
@@ -699,6 +701,8 @@ public final class CssValidator extends HttpServlet {
 	    output = "html";
 	} else if (soap12.equals(output)) {
 	    output = "soap12";
+	} else if (json.equals(output)) {
+	    output = "json";
 	} else if(textplain.equals(output)) {
 	    output = "text";
 	}
@@ -760,6 +764,13 @@ public final class CssValidator extends HttpServlet {
 	    //outputMt = MimeType.TEXT_PLAIN.getClone();
 	} else if(output.equals("ucn")) {
 		outputMt = MimeType.APPLICATION_XML.getClone();
+        } else if(output.equals("json")) {
+            try {
+                outputMt = new MimeType(json);
+            }
+            catch (MimeTypeFormatException e) {
+                outputMt = MimeType.TEXT_PLAIN.getClone();
+            }
 	} else {
 	    // Change this line if you want text/html output when incorrect
 	    // output is passed
