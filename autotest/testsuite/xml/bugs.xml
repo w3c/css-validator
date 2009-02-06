@@ -5,6 +5,17 @@ test markup also accepts 3 properties: warning, profile and medium
 <testsuite>
   <type title="bugs">
     <test>
+      <file>testsuite/bugs/4870-5586.css</file>
+      <description>
+        See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=4870&quot;&gt;
+        http://www.w3.org/Bugs/Public/show_bug.cgi?id=4870&lt;/a&gt;&amp;nbsp;and&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=5586&quot;&gt
+;        http://www.w3.org/Bugs/Public/show_bug.cgi?id=5586&lt;/a&gt;</description>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
+    </test>
+    <test>
       <file>testsuite/bugs/750.css</file>
       <description>
 	See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=750&quot;&gt;
