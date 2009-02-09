@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>El Servicio de Validación de CSS del W3C</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Página de inicio del Servicio de Validación CSS del  W3C" />
