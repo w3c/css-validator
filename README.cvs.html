@@ -9,7 +9,7 @@
     </p>
 
    <h2>Get the source</h2>
-
+   <h3>Latest development code</h3>
 <p>In order to get the latest development code:</p>
 
           <pre>
@@ -20,8 +20,21 @@
     bash$ <kbd>cvs get 2002/css-validator</kbd>
     ...
     </pre>
+    <p>Note that in spite of our best efforts, the latest development code may be broken at any time.</p>
 
-<p>Note that in spite of our best efforts, the latest development code may be broken at any time.</p>
+<h3>Latest stable release</h3>
+<p>In order to get the latest stable release:</p>
+
+      <pre>
+bash$ <kbd>export CVSROOT=":pserver:anonymous@dev.w3.org:/sources/public"</kbd>
+bash$ <kbd>cvs login</kbd>
+(Logging in to anonymous@dev.w3.org)
+CVS password: <kbd>anonymous</kbd>
+bash$ <kbd>cvs get -r nytrulce 2002/css-validator</kbd>
+...
+</pre>
+
+
 
    <h2>Contact / Bugs</h2>
 
