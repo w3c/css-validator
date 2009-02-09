@@ -500,8 +500,8 @@
 	<dd>Errors: 0</dd>
 	<dd>Warnings: 0</dd>
 	<dt>Result</dt>
-	<dd>Valid</dd>
-	<dd>Errors: 0</dd>
+	<dd>Not valid</dd>
+	<dd>Errors: 6</dd>
 	<dd>Warnings: 0</dd>
       </dl>
     </div>
@@ -525,6 +525,877 @@
       <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?uri=https%3A%2F%2Fwww%2Etest%2Ecom&amp;output=soap12">Go to the Validator page</a></p>
       <p>Forbidden protocol</p>
       <p>Reply status code: 500<br/>Invalid URL: Sender error</p>
+    </div>
+    <h2>Attribute Selectors</h2>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-001.css">testsuite/general/selectors/multipleattributes-001.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Bhello%3D%22Cleveland%22%5D%5Bgoodbye%3D%22Columbus%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-002.css">testsuite/general/selectors/multipleattributes-002.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Bhello%3D%22Cleveland%22%5D%5Bhello%3D%22Columbus%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-003.css">testsuite/general/selectors/multipleattributes-003.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo-bar%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-004.css">testsuite/general/selectors/multipleattributes-004.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-005.css">testsuite/general/selectors/multipleattributes-005.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foobar%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-006.css">testsuite/general/selectors/multipleattributes-006.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo%22%5D%5Btst%7C%3D%22foobar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-007.css">testsuite/general/selectors/multipleattributes-007.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo%22%5D%5Btst%5E%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-008.css">testsuite/general/selectors/multipleattributes-008.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo-bar%22%5D%5Btst%5E%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-009.css">testsuite/general/selectors/multipleattributes-009.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foobar%22%5D%5Btst%5E%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-010.css">testsuite/general/selectors/multipleattributes-010.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foobar%22%5D%5Btst%5E%3D%22fooc%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-011.css">testsuite/general/selectors/multipleattributes-011.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo-bar%22%5D%5Btst*%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-012.css">testsuite/general/selectors/multipleattributes-012.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22barfoobar%22%5D%5Btst*%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-013.css">testsuite/general/selectors/multipleattributes-013.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22barfobar%22%5D%5Btst*%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-014.css">testsuite/general/selectors/multipleattributes-014.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22barfoo%22%5D%5Btst*%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-015.css">testsuite/general/selectors/multipleattributes-015.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22barfoo%22%5D%5Btst$%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-016.css">testsuite/general/selectors/multipleattributes-016.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo%22%5D%5Btst$%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-017.css">testsuite/general/selectors/multipleattributes-017.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foobar%22%5D%5Btst$%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-018.css">testsuite/general/selectors/multipleattributes-018.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foobar%22%5D%5Btst%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-019.css">testsuite/general/selectors/multipleattributes-019.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-020.css">testsuite/general/selectors/multipleattributes-020.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22bar%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-021.css">testsuite/general/selectors/multipleattributes-021.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22foo+bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-022.css">testsuite/general/selectors/multipleattributes-022.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22hello%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-023.css">testsuite/general/selectors/multipleattributes-023.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%3D%22bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-024.css">testsuite/general/selectors/multipleattributes-024.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo-bar%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-025.css">testsuite/general/selectors/multipleattributes-025.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-026.css">testsuite/general/selectors/multipleattributes-026.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo-bar%22%5D%5Btst%7C%3D%22foobar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-027.css">testsuite/general/selectors/multipleattributes-027.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foobar%22%5D%5Btst%7C%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-028.css">testsuite/general/selectors/multipleattributes-028.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foobar%22%5D%5Btst%5E%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-029.css">testsuite/general/selectors/multipleattributes-029.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo%22%5D%5Btst%5E%3D%22foo%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-030.css">testsuite/general/selectors/multipleattributes-030.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo%22%5D%5Btst%5E%3D%22foobar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-031.css">testsuite/general/selectors/multipleattributes-031.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo%22%5D%5Btst%5E%3D%22foo-bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-032.css">testsuite/general/selectors/multipleattributes-032.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-033.css">testsuite/general/selectors/multipleattributes-033.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22bar%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-034.css">testsuite/general/selectors/multipleattributes-034.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22bar%22%5D%5Btst~%3D%22foo+bar-glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-035.css">testsuite/general/selectors/multipleattributes-035.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22bar%22%5D%5Btst~%3D%22foo+barglop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-036.css">testsuite/general/selectors/multipleattributes-036.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22foo+bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-037.css">testsuite/general/selectors/multipleattributes-037.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22hello%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-038.css">testsuite/general/selectors/multipleattributes-038.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%7C%3D%22bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-039.css">testsuite/general/selectors/multipleattributes-039.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-040.css">testsuite/general/selectors/multipleattributes-040.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22bar%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-041.css">testsuite/general/selectors/multipleattributes-041.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22bar%22%5D%5Btst~%3D%22foo+bar-glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-042.css">testsuite/general/selectors/multipleattributes-042.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22bar%22%5D%5Btst~%3D%22foo+barglop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-043.css">testsuite/general/selectors/multipleattributes-043.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22foo+bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-044.css">testsuite/general/selectors/multipleattributes-044.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22hello%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-045.css">testsuite/general/selectors/multipleattributes-045.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst%5E%3D%22bar%22%5D%5Btst~%3D%22foo+bar%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-046.css">testsuite/general/selectors/multipleattributes-046.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst*%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-047.css">testsuite/general/selectors/multipleattributes-047.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst*%3D%22p+t%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-048.css">testsuite/general/selectors/multipleattributes-048.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst*%3D%22lo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-049.css">testsuite/general/selectors/multipleattributes-049.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst*%3D%22le%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-050.css">testsuite/general/selectors/multipleattributes-050.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst$%3D%22ar%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-051.css">testsuite/general/selectors/multipleattributes-051.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst$%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-052.css">testsuite/general/selectors/multipleattributes-052.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst$%3D%22to%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-053.css">testsuite/general/selectors/multipleattributes-053.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst$%3D%22le%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-054.css">testsuite/general/selectors/multipleattributes-054.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst$%3D%22p+toto%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-055.css">testsuite/general/selectors/multipleattributes-055.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst~%3D%22foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-056.css">testsuite/general/selectors/multipleattributes-056.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst~%3D%22glop%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-057.css">testsuite/general/selectors/multipleattributes-057.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst~%3D%22bar+foo%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 0</dd>
+      </dl>
+    </div>
+    <div class="res">
+      <h3><a href="testsuite/general/selectors/multipleattributes-058.css">testsuite/general/selectors/multipleattributes-058.css</a></h3>
+      <p><a href="http://qa-dev.w3.org:8001/css-validator/validator?text=span%5Btst~%3D%22boo+far%22%5D%5Btst~%3D%22foo+bar+glop+toto%22%5D+%7B+color%3A+blue%3B+%7D&amp;profile=css21">Go to the Validator page</a></p>
+      <p>Conflict checks when multiple selectors attributes are defined</p>
+      <dl>
+	<dt>Awaited result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+	<dt>Result</dt>
+	<dd>Valid</dd>
+	<dd>Errors: 0</dd>
+	<dd>Warnings: 1</dd>
+      </dl>
     </div>
  <p id="valid">
  <a href="http://validator.w3.org/check?uri=referer">

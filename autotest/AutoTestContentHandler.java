@@ -34,7 +34,8 @@ import org.xml.sax.*;
  */
 public class AutoTestContentHandler implements ContentHandler {
 
-	public static final String VALIDATOR = "http://localhost:8080/css-validator/validator?";
+	//public static final String VALIDATOR = "http://jigsaw.w3.org/css-validator/validator?";
+	public static final String VALIDATOR = "http://qa-dev.w3.org:8001/css-validator/validator?";
 	public static final String PARAMS = "&output=soap12";
 	public static final int TESTSUITE = "testsuite".hashCode();
 	public static final int TEST = "test".hashCode();
