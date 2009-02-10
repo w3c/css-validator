@@ -1926,7 +1926,7 @@ void hexcolor(CssExpression exp) :
 {Token n; 
 }
 {
- n=<HASH> { n.image = Util.strip(n.image);
+ n=<HASHIDENT>|n=<HASH> { n.image = Util.strip(n.image);
  setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH); }
 }
 
