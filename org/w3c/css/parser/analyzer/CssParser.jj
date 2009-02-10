@@ -1689,9 +1689,6 @@ void hash(CssSelectors s) :
 	  }
       }
   }
-  | n=<HASH> {
-   throw new ParseException("Unrecognized ");
-   }
 }
 
 /**
