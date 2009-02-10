@@ -501,11 +501,19 @@ public abstract class CssParser implements CssParserConstants {
       ;
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IDENT:
+      case HASHIDENT:
       case HASH:
       case LBRACKET:
       case ANY:
-      case DOT:
       case COLON:
+      case LENGTH:
+      case EMS:
+      case EXS:
+      case ANGLE:
+      case TIME:
+      case FREQ:
+      case RESOLUTION:
+      case DIMEN:
       case PSEUDOCLASS_SYM:
       case CLASS:
         ruleSet();
@@ -857,11 +865,19 @@ public abstract class CssParser implements CssParserConstants {
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
+        case HASHIDENT:
         case HASH:
         case LBRACKET:
         case ANY:
-        case DOT:
         case COLON:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DIMEN:
         case PSEUDOCLASS_SYM:
         case CLASS:
           ;
@@ -1915,10 +1931,18 @@ public abstract class CssParser implements CssParserConstants {
       label_58:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case HASHIDENT:
         case HASH:
         case LBRACKET:
-        case DOT:
         case COLON:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DIMEN:
         case PSEUDOCLASS_SYM:
         case CLASS:
           ;
@@ -1928,10 +1952,18 @@ public abstract class CssParser implements CssParserConstants {
           break label_58;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case HASHIDENT:
         case HASH:
           hash(selector);
           break;
-        case DOT:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DIMEN:
         case CLASS:
           _class(selector);
           break;
@@ -1950,19 +1982,35 @@ public abstract class CssParser implements CssParserConstants {
       }
             {if (true) return selector;}
       break;
+    case HASHIDENT:
     case HASH:
     case LBRACKET:
-    case DOT:
     case COLON:
+    case LENGTH:
+    case EMS:
+    case EXS:
+    case ANGLE:
+    case TIME:
+    case FREQ:
+    case RESOLUTION:
+    case DIMEN:
     case PSEUDOCLASS_SYM:
     case CLASS:
       label_59:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case HASHIDENT:
         case HASH:
           hash(selector);
           break;
-        case DOT:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DIMEN:
         case CLASS:
           _class(selector);
           break;
@@ -1979,10 +2027,18 @@ public abstract class CssParser implements CssParserConstants {
           throw new ParseException();
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case HASHIDENT:
         case HASH:
         case LBRACKET:
-        case DOT:
         case COLON:
+        case LENGTH:
+        case EMS:
+        case EXS:
+        case ANGLE:
+        case TIME:
+        case FREQ:
+        case RESOLUTION:
+        case DIMEN:
         case PSEUDOCLASS_SYM:
         case CLASS:
           ;
@@ -2020,8 +2076,14 @@ public abstract class CssParser implements CssParserConstants {
             ac.getFrame().addError(new CssError(e));
         }
       break;
-    case DOT:
-      jj_consume_token(DOT);
+    case LENGTH:
+    case EMS:
+    case EXS:
+    case ANGLE:
+    case TIME:
+    case FREQ:
+    case RESOLUTION:
+    case DIMEN:
       n = deprecated_class();
         if (n.image.charAt(0) == '.') {
             n.image = n.image.substring(1);
@@ -2452,7 +2514,9 @@ CssSelectors param = null;
  */
   final public void hash(CssSelectors s) throws ParseException {
  Token n;
-    n = jj_consume_token(HASH);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case HASHIDENT:
+      n = jj_consume_token(HASHIDENT);
       n.image = n.image.substring(1);
       if(Character.isDigit(n.image.charAt(0))) {
           String profile = ac.getProfile();
@@ -2511,6 +2575,16 @@ CssSelectors param = null;
               removeThisRule();
           }
       }
+      break;
+    case HASH:
+      n = jj_consume_token(HASH);
+      {if (true) throw new ParseException("Unrecognized ");}
+      break;
+    default:
+      jj_la1[97] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
   }
 
 /**
@@ -2533,7 +2607,7 @@ CssSelectors param = null;
             ;
             break;
           default:
-            jj_la1[97] = jj_gen;
+            jj_la1[98] = jj_gen;
             break label_67;
           }
           jj_consume_token(S);
@@ -2544,12 +2618,12 @@ CssSelectors param = null;
           important = prio();
           break;
         default:
-          jj_la1[98] = jj_gen;
+          jj_la1[99] = jj_gen;
           ;
         }
         break;
       default:
-        jj_la1[99] = jj_gen;
+        jj_la1[100] = jj_gen;
         ;
       }
         try {
@@ -2601,7 +2675,7 @@ CssSelectors param = null;
           ;
           break;
         default:
-          jj_la1[100] = jj_gen;
+          jj_la1[101] = jj_gen;
           break label_68;
         }
         jj_consume_token(S);
@@ -2612,7 +2686,7 @@ CssSelectors param = null;
         important = prio();
         break;
       default:
-        jj_la1[101] = jj_gen;
+        jj_la1[102] = jj_gen;
         ;
       }
         try {
@@ -2670,7 +2744,7 @@ CssSelectors param = null;
         ;
         break;
       default:
-        jj_la1[102] = jj_gen;
+        jj_la1[103] = jj_gen;
         break label_69;
       }
       jj_consume_token(S);
@@ -2712,7 +2786,7 @@ CssSelectors param = null;
         ;
         break;
       default:
-        jj_la1[103] = jj_gen;
+        jj_la1[104] = jj_gen;
         break label_70;
       }
       operator(values);
@@ -2750,7 +2824,7 @@ CssSelectors param = null;
         operator = unaryOperator();
         break;
       default:
-        jj_la1[104] = jj_gen;
+        jj_la1[105] = jj_gen;
         ;
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2804,7 +2878,7 @@ CssSelectors param = null;
                         setValue(func, exp, operator, null, FUNCTION);
         break;
       default:
-        jj_la1[105] = jj_gen;
+        jj_la1[106] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2815,7 +2889,7 @@ CssSelectors param = null;
           ;
           break;
         default:
-          jj_la1[106] = jj_gen;
+          jj_la1[107] = jj_gen;
           break label_71;
         }
         jj_consume_token(S);
@@ -2870,7 +2944,7 @@ CssSelectors param = null;
                                 UNICODERANGE);
         break;
       default:
-        jj_la1[107] = jj_gen;
+        jj_la1[108] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2881,14 +2955,14 @@ CssSelectors param = null;
           ;
           break;
         default:
-          jj_la1[108] = jj_gen;
+          jj_la1[109] = jj_gen;
           break label_72;
         }
         jj_consume_token(S);
       }
       break;
     default:
-      jj_la1[109] = jj_gen;
+      jj_la1[110] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2910,7 +2984,7 @@ CssSelectors param = null;
         ;
         break;
       default:
-        jj_la1[110] = jj_gen;
+        jj_la1[111] = jj_gen;
         break label_73;
       }
       jj_consume_token(S);
@@ -3202,7 +3276,7 @@ CssSelectors param = null;
   public Token token, jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[111];
+  final private int[] jj_la1 = new int[112];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -3212,13 +3286,13 @@ CssSelectors param = null;
       jj_la1_2();
    }
    private static void jj_la1_0() {
-      jj_la1_0 = new int[] {0x0,0x0,0x0,0xe00000,0xe00000,0x0,0x200000,0x200000,0x0,0xc00000,0xc00000,0x200000,0x200000,0x0,0x200000,0x20000000,0x200000,0x0,0x200000,0x200000,0x200000,0x0,0x20000000,0x200000,0x80000000,0x200000,0x200000,0x200000,0x200000,0x0,0x200000,0x200000,0x200000,0x200000,0x0,0x0,0x200000,0x200000,0x0,0x0,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x20000000,0x200000,0x20000000,0x58000000,0x200000,0x200000,0x58200000,0x8000000,0x200000,0x20000000,0x200000,0x200000,0x200000,0x0,0x0,0x200000,0x0,0x58200000,0x200000,0x200000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200000,0x200000,0x3000000,0x200000,0x200000,0x0,0x3000000,0x200000,0x0,0x200000,0x0,0x200000,0x0,0x0,0x200000,0x0,0x0,0x200000,0x0,0x200000,0x28000000,0x8000000,0x0,0x200000,0x0,0x200000,0x8000000,0x200000,};
+      jj_la1_0 = new int[] {0x0,0x0,0x0,0xe00000,0xe00000,0x0,0x200000,0x200000,0x0,0xc00000,0xc00000,0x200000,0x200000,0x0,0x200000,0x20000000,0x200000,0x0,0x200000,0x200000,0x200000,0x0,0x20000000,0x200000,0x80000000,0x200000,0x200000,0x200000,0x200000,0x0,0x200000,0x200000,0x200000,0x200000,0x0,0x0,0x200000,0x200000,0x0,0x0,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x200000,0x20000000,0x200000,0x20000000,0x58000000,0x200000,0x200000,0x58200000,0x8000000,0x200000,0x20000000,0x200000,0x200000,0x200000,0x0,0x0,0x200000,0x0,0x58200000,0x200000,0x200000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200000,0x200000,0x3000000,0x200000,0x200000,0x0,0x3000000,0x200000,0x0,0x200000,0x0,0x200000,0x0,0x0,0x0,0x200000,0x0,0x0,0x200000,0x0,0x200000,0x28000000,0x8000000,0x0,0x200000,0x0,0x200000,0x8000000,0x200000,};
    }
    private static void jj_la1_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4d00c,0x0,0x0,0x0,0x0,0x100001,0x0,0x0,0x0,0x4,0x0,0x0,0x0,0x80000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4d00c,0x0,0x0,0x0,0x0,0x4,0x40000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x800,0x0,0x800,0x0,0x0,0x0,0x0,0x200,0x0,0x0,0x0,0x0,0x0,0x4,0x400,0x0,0x4,0x0,0x0,0x0,0x49008,0x49008,0x49008,0x49008,0x4d00c,0x8000,0x2fe00000,0x4004,0x0,0x0,0x1e0,0x0,0x0,0x5,0x1e0,0x0,0x80000005,0x0,0x0,0x0,0x4,0x40000,0x0,0x0,0x40000,0x0,0x0,0x0,0xfff00a0d,0x200,0xffe00000,0x0,0x10000d,0x0,0xfff0020d,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x5fc8a01c,0x0,0x0,0x0,0x0,0x200001,0x0,0x0,0x0,0x4,0x0,0x0,0x0,0x100000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x5fc8a01c,0x0,0x0,0x0,0x0,0x4,0x80000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1000,0x0,0x1000,0x0,0x0,0x0,0x0,0x400,0x0,0x0,0x0,0x0,0x0,0x4,0x800,0x0,0x4,0x0,0x0,0x0,0x5fc82018,0x5fc82018,0x5fc82018,0x5fc82018,0x5fc8a01c,0x5fc00000,0x5fc00000,0x8004,0x0,0x0,0x3c0,0x0,0x0,0x5,0x3c0,0x0,0x5,0x0,0x0,0x0,0x4,0x80000,0x18,0x0,0x0,0x80000,0x0,0x0,0x0,0xffe01415,0x400,0xffc00000,0x0,0x200015,0x0,0xffe00415,0x0,};
    }
    private static void jj_la1_2() {
-      jj_la1_2 = new int[] {0x60000000,0x60000000,0x4,0x0,0x0,0x8,0x0,0x0,0x40041f2,0x8000,0x8000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4000002,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1e00,0x1e00,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4000002,0x4000002,0x4000002,0x4000002,0x4000002,0x4000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x18000000,0x0,0x18000000,0x2,0x0,0x1,0x0,0x0,0x1,0x0,0x12000000,0x0,0x10000000,0x0,0x2000000,0x0,0x12000000,0x0,};
+      jj_la1_2 = new int[] {0xc0000000,0xc0000000,0x8,0x0,0x0,0x10,0x0,0x0,0x80083e4,0x10000,0x10000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x8000004,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x3c00,0x3c00,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x8000004,0x8000004,0x8000004,0x8000004,0x8000004,0x8000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x30000000,0x0,0x30000000,0x4,0x0,0x0,0x2,0x0,0x0,0x2,0x0,0x24000001,0x0,0x20000001,0x0,0x4000000,0x0,0x24000001,0x0,};
    }
 
   public CssParser(java.io.InputStream stream) {
@@ -3230,7 +3304,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   public void ReInit(java.io.InputStream stream) {
@@ -3242,7 +3316,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   public CssParser(java.io.Reader stream) {
@@ -3251,7 +3325,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   public void ReInit(java.io.Reader stream) {
@@ -3260,7 +3334,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   public CssParser(CssParserTokenManager tm) {
@@ -3268,7 +3342,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   public void ReInit(CssParserTokenManager tm) {
@@ -3276,7 +3350,7 @@ CssSelectors param = null;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 111; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 112; i++) jj_la1[i] = -1;
   }
 
   final private Token jj_consume_token(int kind) throws ParseException {
@@ -3323,15 +3397,15 @@ CssSelectors param = null;
 
   public ParseException generateParseException() {
     jj_expentries.removeAllElements();
-    boolean[] la1tokens = new boolean[95];
-    for (int i = 0; i < 95; i++) {
+    boolean[] la1tokens = new boolean[96];
+    for (int i = 0; i < 96; i++) {
       la1tokens[i] = false;
     }
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 111; i++) {
+    for (int i = 0; i < 112; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -3346,7 +3420,7 @@ CssSelectors param = null;
         }
       }
     }
-    for (int i = 0; i < 95; i++) {
+    for (int i = 0; i < 96; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

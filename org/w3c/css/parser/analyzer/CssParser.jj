@@ -10,7 +10,7 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /*    
+    /*
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
     */
@@ -420,8 +420,8 @@ TOKEN :
     <STRING    : <_STRING> >
   | <INVALID   : <_INVALID> >
   | <IDENT     : <_IDENT> >
-  | <HASH      : "#" <NAME> >
   | <HASHIDENT : "#" <_IDENT> >
+  | <HASH      : "#" <NAME> >
 }
 
 <DEFAULT>
@@ -1688,6 +1688,9 @@ void hash(CssSelectors s) :
 	      removeThisRule();
 	  }
       }
+  }
+  | n=<HASH> {
+      throw new ParseException("Unrecognized ");	 
   }
 }
 
