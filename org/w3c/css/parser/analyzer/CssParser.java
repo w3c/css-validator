@@ -3028,11 +3028,13 @@ CssSelectors param = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case HASHIDENT:
       n = jj_consume_token(HASHIDENT);
+     n.image = Util.strip(n.image);
+     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
       break;
     case HASH:
       n = jj_consume_token(HASH);
-                          n.image = Util.strip(n.image);
- setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
+     n.image = Util.strip(n.image);
+     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
       break;
     default:
       jj_la1[112] = jj_gen;
