@@ -10,7 +10,7 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /*    
+    /*
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
     */
@@ -1926,8 +1926,14 @@ void hexcolor(CssExpression exp) :
 {Token n; 
 }
 {
- n=<HASHIDENT>|n=<HASH> { n.image = Util.strip(n.image);
- setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH); }
+ n=<HASHIDENT> { 
+     n.image = Util.strip(n.image);
+     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH); 
+ }
+ |n=<HASH> { 
+     n.image = Util.strip(n.image);
+     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
+ }
 }
 
 /*
