@@ -45,18 +45,19 @@ public class PropertiesLoader {
      * This hashtable contains for each css profile, an Utf8Properties
      * containing all its properties
      */
-    private static Hashtable allProps;
+    private static Hashtable<String, Utf8Properties> allProps;
 
     private static Utf8Properties loadProfile(String profile,
-	    String profilePath) throws IOException {
-
+					      String profilePath) 
+	throws IOException 
+    {
 	Utf8Properties result = new Utf8Properties();
 	InputStream f = null;
 
 	URL url = null;
 
 	// the url of the properties file of the selected profile
-	if(profilePath != null) {
+	if (profilePath != null) {
 	    url = PropertiesLoader.class.getResource(profilePath);
 	}
 
@@ -67,7 +68,7 @@ public class PropertiesLoader {
 	// we add the profile to the profiles Hashtable
 	allProps.put(new String(profile), result);
 
-	if(Util.onDebug) {
+	if (Util.onDebug) {
 	    System.out.println(profile + " profile loaded");
 	}
 	return result;
@@ -75,26 +76,26 @@ public class PropertiesLoader {
 
     /**
      *
-     * @param profile the profile needed
-     * @return an Utf8Properties containing all the properties for the specified profile
+     * @param  profile the profile needed
+     * @return an Utf8Properties containing all the properties 
+     *         for the specified profile
      */
     public static Utf8Properties getProfile(String profile) {
 	Utf8Properties result = (Utf8Properties) allProps.get(profile);
 	// the profile has not been loaded yet
-	if(result == null) {
+	if (result == null) {
 	    result = new Utf8Properties();
 
 	    String profilePath = (String) profiles.get(profile);
 
-	    if(profilePath != null && !profilePath.equals("")) {
+	    if (profilePath != null && !profilePath.equals("")) {
 		try {
 		    return loadProfile(profile, profilePath);
-		}
-		catch(IOException e) {
+		} catch(IOException e) {
 		    if(Util.onDebug) {
 			System.out.println(PropertiesLoader.class +
-				": Error while loading " + profile +
-				" profile");
+					   ": Error while loading " + profile +
+					   " profile");
 		    }
 		    e.printStackTrace();
 		}
@@ -102,8 +103,7 @@ public class PropertiesLoader {
 	    // if the wanted profile is unknown, or there has been an error
 	    // while loading it, we return the default profile
 	    return DEFAULT_PROFILE;
-	}
-	else {
+	} else {
 	    return result;
 	}
     }
@@ -118,14 +118,14 @@ public class PropertiesLoader {
     	//initializations
     	Iterator it = profiles.keySet().iterator();
     	
-    	ArrayList res = new ArrayList();
+    	ArrayList<String> res = new ArrayList<String>();
     	String profil;
     	
     	while (it.hasNext()) {
-    		// we filtered only the profiles that we're interessted in
-    		profil = it.next().toString();
-    		if (profil.startsWith("css"))
-	    		res.add(profil);
+	    // we filtered only the profiles that we're interessted in
+	    profil = it.next().toString();
+	    if (profil.startsWith("css"))
+		res.add(profil);
     	}
     	// we sort them
     	Collections.sort(res);
@@ -138,7 +138,7 @@ public class PropertiesLoader {
 	mediaProperties = new Utf8Properties();
 	profiles = new Utf8Properties();
 
-	allProps = new Hashtable();
+	allProps = new Hashtable<String, Utf8Properties>();
 
 	InputStream f = null;
 
@@ -149,13 +149,14 @@ public class PropertiesLoader {
 	    config.load(f);
 
 	    // the media associated to each property
-	    url = PropertiesLoader.class.getResource(config.getProperty("media"));
+	    url = PropertiesLoader.class.getResource(
+						   config.getProperty("media"));
 	    f = url.openStream();
 	    mediaProperties.load(f);
 
 	    // profiles
 	    url = PropertiesLoader.class.getResource(
-		    config.getProperty("profilesProperties"));
+				      config.getProperty("profilesProperties"));
 
 	    f = url.openStream();
 	    profiles.load(f);
@@ -167,12 +168,11 @@ public class PropertiesLoader {
 
 	    if(Util.onDebug) {
 		System.out.println("Default profile (" + defaultProfile +
-			") loaded");
+				   ") loaded");
 	    }
-
 	} catch (Exception e) {
 	    System.err.println(PropertiesLoader.class +
-		    ": Error while loading default config");
+			       ": Error while loading default config");
 	    e.printStackTrace();
 	} finally {
 	    try {
