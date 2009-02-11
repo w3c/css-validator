@@ -10,7 +10,7 @@
 options {
     IGNORE_CASE  = true;
     STATIC = false;
-    /*
+    /*    
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
     */
@@ -394,7 +394,7 @@ TOKEN :
 {
     < CDO : "<!--" >
   | < CDC : "-->" >
-  | < INCLUDES  : "~=" >
+  | < INCLUDES  : <TILDE> "=" >
   | < DASHMATCH : "|=" >
 }
 
