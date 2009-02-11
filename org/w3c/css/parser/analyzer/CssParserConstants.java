@@ -127,7 +127,7 @@ public interface CssParserConstants {
     "<S>",
     "\"<!--\"",
     "\"-->\"",
-    "\"~=\"",
+    "<INCLUDES>",
     "\"|=\"",
     "<LBRACE>",
     "<PLUS>",
