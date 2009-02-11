@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -40,24 +41,27 @@ public class CssBackgroundColorCSS21 extends CssBackgroundColorCSS2 {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	if (val instanceof org.w3c.css.values.CssColor) {
+	switch (val.getType()) {
+	case CssTypes.CSS_COLOR:
 	    setColor(val);
-	    expression.next();
-	} else if (val instanceof CssIdent) {
-	    if (val.equals(transparent)) {
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (transparent.equals(val)) {
 		setColor(transparent);
-		expression.next();
-	    } else if (val.equals(inherit)) {
+		break;
+	    }  
+	    if (inherit.equals(val)) {
 		setColor(inherit);
-		expression.next();
-	    } else {
-		setColor(new org.w3c.css.values.CssColorCSS21(ac, (String) val.get()));
-		expression.next();
-	    }
-	} else {
+		break;
+	    } 
+	    setColor(new org.w3c.css.values.CssColorCSS21(ac,
+							  (String) val.get()));
+	    break;
+	default:
 	    throw new InvalidParamException("value", val.toString(),
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssBackgroundColorCSS21(ApplContext ac, CssExpression expression)
