@@ -11,10 +11,10 @@ package org.w3c.css.properties.css1;
  */
 public interface CssBackgroundConstants {
   static String[] REPEAT = { "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" };
-
+    
   static String[] ATTACHMENT = { "scroll", "fixed", "inherit" };
-    static String[] ATTACHMENTMOB = { "scroll", "inherit" };
-
+  static String[] ATTACHMENTMOB = { "scroll", "inherit" };
+    
   static String[] POSITION = { "top", "center", "bottom", "left", "right", "inherit" };
 
   /**

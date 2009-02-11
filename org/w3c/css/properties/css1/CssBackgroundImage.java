@@ -12,6 +12,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssValue;
 
@@ -36,7 +37,8 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$ */
 public class CssBackgroundImage extends CssProperty {
 
-    CssValue url;
+    CssValue url      = null ;
+    boolean inherited = false;
 
     private static CssIdent none = new CssIdent("none");
 
@@ -63,19 +65,24 @@ public class CssBackgroundImage extends CssProperty {
 	setByUser();
 
 	CssValue val = expression.getValue();
-	if (val instanceof CssURL) {
+
+	switch(val.getType()) {
+	case CssTypes.CSS_URL:
 	    url = val;
-	    expression.next();
-	} else if (val.equals(inherit)) {
-	    url = inherit;
-	    expression.next();
-	} else if (val.equals(none)) {
-	    url = none;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(val)) {
+		inherited = true;
+		break;
+	    } else if (none.equals(val)) {
+		url = none;
+		break;
+	    }
+	default:
+	    throw new InvalidParamException("value", val,
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssBackgroundImage(ApplContext ac, CssExpression expression)
@@ -95,16 +102,16 @@ public class CssBackgroundImage extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	if (url != null) {
-	    return url.equals(inherit);
-	}
-	return false;
+	return inherited;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
+	if (inherited) {
+	    return inherit.toString();
+	}
 	if (url != null) {
 	    return url.toString();
 	}

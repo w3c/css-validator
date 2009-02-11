@@ -13,9 +13,9 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
-//import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -65,7 +65,8 @@ import org.w3c.css.values.CssValue;
  *     <LI>
  *       'bottom left' and 'left bottom' mean the same as '0% 100%'.
  *     <LI>
- *       'bottom', 'bottom center' and 'center bottom' mean the same as '50% 100%'.
+ *       'bottom', 'bottom center' and 'center bottom' mean the same as 
+         '50% 100%'.
  *     <LI>
  *       'bottom right' and 'right bottom' mean the same as '100% 100%'.
  *   </UL>
@@ -104,7 +105,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * Create a new CssBackgroundPositionCSS2
      */
     public CssBackgroundPositionCSS2() {
-	first = DefaultValue0;
+	first  = DefaultValue0;
 	second = DefaultValue0;
     }
 
@@ -117,213 +118,133 @@ public class CssBackgroundPositionCSS2 extends CssProperty
     public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 2) {
+	int nb_val =  expression.getCount();
+	boolean first_is_keyword, second_is_keyword;
+	int index_first, index_second;
+
+	if(check && nb_val > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
 
 	setByUser();
-	CssValue val = expression.getValue();
-	char op  = expression.getOperator();
+	CssValue nextval;
+	CssValue val     = expression.getValue();
+	char     op      = expression.getOperator();
 
 	if (op != SPACE)
 	    throw new  InvalidParamException("operator",
 					     ((new Character(op)).toString()),
 					     ac);
-
-	if (val.equals(inherit)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    first = inherit;
-	    second = inherit;
-	    expression.next();
-	    return;
+	
+	if (nb_val == 1) { /* default to 'center' */
+	    second_is_keyword = true;
+	    second = null;
 	}
 
-	CssValue next = expression.getNextValue();
+	index_first = -1;
+	index_second = -1;
 
-	if(val instanceof CssIdent) {
-	    int index1 = IndexOfIdent((String) val.get());
-	    if(index1 == -1) {
-		throw new InvalidParamException("value", val, "background-position", ac);
-	    }
-	    // two keywords
-	    if(next instanceof CssIdent) {
-		int index2 = IndexOfIdent((String) next.get());
-		if(index2 == -1 && check) {
-		    throw new InvalidParamException("value", next, "background-position", ac);
-		}
-		// one is vertical, the other is horizontal
-		// or the two are 'center'
-		if((isHorizontal(index1) && isVertical(index2)) ||
-			(isHorizontal(index2) && isVertical(index1))) {
-		    first = val;
-		    second = next;
-		}
-		// both are horizontal or vertical but not 'center'
-		else if(check){
-		    throw new InvalidParamException("incompatible",
-			    val, next, ac);
-		}
-		else {
-		    first = val;
-		}
-	    }
-	    // a keyword and a percentage/length
-	    else if(next instanceof CssLength || next instanceof CssPercentage
-		    || next instanceof CssNumber) {
-		if(isHorizontal(index1)) {
-		    if(next instanceof CssNumber) {
-			next = ((CssNumber) next).getLength();
-		    }
-		    setFirst(val);
-		    setSecond(next);
-		}
-		// if the keyword is the first value, it can only be an
-		// horizontal one
-		else {
-		    throw new InvalidParamException("incompatible",
-			    val, next, ac);
-		}
-	    }
-	    // only one value
-	    else if(next == null || !check) {
-		first = val;
-	    }
-	    // the second value is invalid
-	    else if(check) {
-		throw new InvalidParamException("value", next,
-			getPropertyName(), ac);
-	    }
-	}
-	else if(val instanceof CssLength || val instanceof CssPercentage ||
-		val instanceof CssNumber) {
-	    if(val instanceof CssNumber) {
-		val = ((CssNumber) val).getLength();
-	    }
-	    if(next instanceof CssIdent) {
-		int index = IndexOfIdent((String) next.get());
-		if(check && index == -1) {
-		    throw new InvalidParamException("value", next, "background-position", ac);
-		}
-		// the keyword must be a vertical one
-		if(isVertical(index)) {
-		    setFirst(val);
-		    setSecond(next);
-		}
-		else if(check) {
-		    throw new InvalidParamException("incompatible",
-			    val, next, ac);
-		}
-		else {
-		    setFirst(val);
-		}
-	    }
-	    else if(next instanceof CssLength || next instanceof CssPercentage
-		    || next instanceof CssNumber) {
-		if(next instanceof CssNumber) {
-		    next = ((CssNumber) next).getLength();
-		}
-		first = val;
-		second = next;
-	    }
-	    else if(next == null || !check) {
-		first = val;
-	    }
-	    else {
-		throw new InvalidParamException("incompatible", val, next, ac);
-	    }
-	}
-	else if(check) {
-	    throw new InvalidParamException("value", expression.getValue(),
-		    getPropertyName(), ac);
-	}
-
-	// we only move the cursor if we found valid values
-	if(first != null) {
-	    expression.next();
-	}
-	if(second != null) {
-	    expression.next();
-	}
-	/*
-	else if (val instanceof CssIdent
-	    && (index=IndexOfIdent((String) val.get())) != INVALID) {
-	    CssValue next = expression.getNextValue();
-	    expression.next();
-	    if (next == null) {
-		getPercentageFromIdent(index, INVALID);
-	    } else if(next instanceof CssIdent) {
-		int index2 = IndexOfIdent((String) next.get());
-		if(next != null && next.equals(inherit)) {
+	first = null;
+	switch(val.getType()) {
+	case CssTypes.CSS_IDENT:
+	    /* check for inherit, only one value allowed */
+	    if (inherit.equals(val)) {
+		if(nb_val > 1) {
 		    throw new InvalidParamException("unrecognize", ac);
 		}
-		if (index2 != INVALID) {
-		    getPercentageFromIdent(index, index2);
-		    expression.next();
-		} else {
-		    getPercentageFromIdent(index, INVALID);
-		}
+		first = inherit;
+		second = inherit;
+		expression.next();
+		return;
 	    }
-	    else if (next instanceof CssLength ||
-		next instanceof CssPercentage || next instanceof CssNumber) {
-		if (next instanceof CssNumber) {
-		    next = ((CssNumber) next).getLength();
-		}
-		if(index == POSITION_LEFT || index == POSITION_RIGHT ||
-			index == POSITION_CENTER) {
-		    vertical = next;
-		}
-		else {
-		    throw new InvalidParamException("incompatible", val ,
-			    next , ac);
-		}
+	    first_is_keyword = true;
+	    // FIXME do something better
+	    index_first = IndexOfIdent((String) val.get());
+	    if(index_first == -1) {
+		throw new InvalidParamException("value", val,
+						"background-position", ac);
+	    }
+	    first = val;
+	    break;
+	case CssTypes.CSS_NUMBER:
+	    val = ((CssNumber) val).getLength();
+	case CssTypes.CSS_PERCENTAGE:
+	case CssTypes.CSS_LENGTH:
+	    first_is_keyword = false;
+	    first = val;
+	    break;
+	default:
+	    throw new InvalidParamException("value", val,
+					    "background-position", ac);
+	}
+	if (nb_val == 1) {
+	    if (first != null) {
 		expression.next();
 	    }
-	    else {
-		throw new InvalidParamException("incompatible", val ,
-			next , ac);
-	    }
-	} else if (val instanceof CssLength ||
-		   val instanceof CssPercentage || val instanceof CssNumber) {
-	    if (val instanceof CssNumber) {
-		val = ((CssNumber) val).getLength();
-	    }
-	    horizontal = val;
-	    expression.next();
-	    CssValue next = expression.getValue();
-	    if(next != null && next.equals(inherit)) {
+	    return;
+	}
+	/* now check the second value */
+	nextval = expression.getNextValue();
+	second = null;
+	switch(nextval.getType()) {
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(nextval)) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    System.out.println(next);
-	    if (next instanceof CssLength ||
-		next instanceof CssPercentage || next instanceof CssNumber) {
-		if (next instanceof CssNumber) {
-		    next = ((CssNumber) next).getLength();
+	    index_second = IndexOfIdent((String) nextval.get());
+	    if(index_second == -1 && check) {
+		throw new InvalidParamException("value", nextval, 
+						"background-position", ac);
+	    }
+	    if (first_is_keyword) {
+		// two keywords, check that they are compatible
+		if((isHorizontal(index_first) && isVertical(index_second)) ||
+		   (isHorizontal(index_second) && isVertical(index_first))) {
+		    second = nextval;
+		} else {
+		    if (check) {
+			throw new InvalidParamException("incompatible",
+							val, nextval, ac);
+		    }
 		}
-		vertical = next;
+	    } else {
+	// first was not a keyword, so second should be vertical
+	// http://www.w3.org/TR/CSS21/colors.html#propdef-background-position
+		if (isVertical(index_second)) {
+		    second = nextval;
+		} else {
+        // FIXME, should we create a better error msg, like "wrong order" ?
+		    if (check) {
+			throw new InvalidParamException("incompatible",
+							val, nextval, ac);
+		    }
+		} 
+	    }
+	    break;
+	case CssTypes.CSS_NUMBER:
+	    nextval = ((CssNumber) nextval).getLength();
+	case CssTypes.CSS_PERCENTAGE:
+	case CssTypes.CSS_LENGTH:
+	    if (first_is_keyword) {
+       	// check that the first is indeed horizontal
+       	// http://www.w3.org/TR/CSS21/colors.html#propdef-background-position
+		if (!isHorizontal(index_first) && check) {
+		    throw new InvalidParamException("incompatible",
+						    val, nextval, ac);
+		} 
+	    }
+	    second = nextval;
+	    break;
+	default:
+	    throw new InvalidParamException("value", nextval,
+					    "background-position", ac);
+	}
+	if (first != null) {
+	    expression.next();
+	    if (second != null) {
 		expression.next();
 	    }
-	    else if(next instanceof CssIdent) {
-		int index2 = IndexOfIdent((String) next.get());
-		if(index2 == POSITION_TOP || index2 == POSITION_BOTTOM ||
-			index2 == POSITION_CENTER) {
-		    getPercentageFromIdent(INVALID, index2);
-		    horizontal = val;
-		}
-		else {
-		    throw new InvalidParamException("incompatible",
-			    horizontal, next, ac);
-		}
-	    }
-	    else if(next != null) {
-		throw new InvalidParamException("incompatible",
-			horizontal, val, ac);
-	    }
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}*/
+	}   
     }
 
     protected boolean isHorizontal(int index) {
@@ -412,34 +333,20 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 	if (first == inherit) {
 	    return inherit.toString();
 	} else {
-	    String ret = "";
+	    StringBuilder sb = new StringBuilder();
 	    if (first != null) {
-		ret += first;
+		sb.append(first);
 	    }
 	    if (second != null) {
-		if (!ret.equals("")) {
-		    ret += " ";
+		if (first != null) {
+		    sb.append(' ');
 		}
-		ret += second;
+		sb.append(second);
 	    }
-
-	    return ret;
+	    return sb.toString();
 	}
     }
-    /*
-    private void getPercentageFromIdent(int first, int second) {
-	horizontal = DefaultValue50;
-	vertical = DefaultValue50;
-	if (first == POSITION_LEFT || second == POSITION_LEFT)
-	    horizontal = DefaultValue0;
-	if (first == POSITION_RIGHT || second == POSITION_RIGHT)
-	    horizontal = DefaultValue100;
-	if (first == POSITION_TOP || second == POSITION_TOP)
-	    vertical = DefaultValue0;
-	if (first == POSITION_BOTTOM || second == POSITION_BOTTOM)
-	    vertical = DefaultValue100;
-    }
-    */
+
     /**
      * Add this property to the CssStyle.
      *
@@ -472,9 +379,11 @@ public class CssBackgroundPositionCSS2 extends CssProperty
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBackgroundPositionCSS2 &&
-		first.equals(((CssBackgroundPositionCSS2) property).first)
-		&& second.equals(((CssBackgroundPositionCSS2) property).second));
+	if (!(property instanceof CssBackgroundPositionCSS2)) {
+	    return false;
+	}
+	CssBackgroundPositionCSS2 cprop = (CssBackgroundPositionCSS2) property;
+	return (first.equals(cprop.first) && second.equals(cprop.second));
     }
 
     /**
@@ -504,10 +413,7 @@ public class CssBackgroundPositionCSS2 extends CssProperty
 
     private static int[] hash_values;
 
-    //private static int INVALID = -1;
     private static CssPercentage DefaultValue0 = new CssPercentage(0);
-    //private static CssPercentage DefaultValue50 = new CssPercentage(50);
-    //private static CssPercentage DefaultValue100 = new CssPercentage(100);
 
     static {
 	hash_values = new int[POSITION.length];

@@ -37,7 +37,8 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$ */
 public class CssBackgroundImageCSS2 extends CssProperty {
 
-    CssValue url;
+    CssValue url = null;
+    boolean inherited = false;
 
     public static CssIdent none;
     private static final String property_name = "background-image";
@@ -83,7 +84,7 @@ public class CssBackgroundImageCSS2 extends CssProperty {
 		break;
 	    }
 	    if (none.equals(val)) {
-		url = none;
+		inherited = true;
 		break;
 	    }
 	default:
@@ -110,16 +111,16 @@ public class CssBackgroundImageCSS2 extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	if (url != null) {
-	    return inherit.equals(url);
-	}
-	return false;
+	return inherited;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
+	if (inherited) {
+	    return inherit.toString();
+	}
 	if (url != null) {
 	    return url.toString();
 	}
