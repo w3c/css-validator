@@ -59,11 +59,12 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
 import org.w3c.css.css.StyleSheetCom;
 
-import org.w3c.css.selectors.AdjacentSelector;
+import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
 import org.w3c.css.selectors.ChildSelector;
 import org.w3c.css.selectors.ClassSelector;
 import org.w3c.css.selectors.DescendantSelector;
+import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.UniversalSelector;
@@ -1282,10 +1283,13 @@ CssSelectors selector() :
 		}
 		switch(comb) {
 		case '+': 
-		current.addAdjacent(new AdjacentSelector());
+		current.addAdjacentSibling(new AdjacentSiblingSelector());
 		break;
 		case '>':
 		current.addChild(new ChildSelector());
+		break;
+		case '~':
+		current.addGeneralSibling(new GeneralSiblingSelector());
 		break;
 		default:
 		current.addDescendant(new DescendantSelector());
@@ -1572,33 +1576,33 @@ Token language = null;
 CssSelectors param = null;
 }
 {
-  <PSEUDOCLASS_SYM> ( ( n=<IDENT>
-	  { 
-		try {
-			if (ac.getCssVersion().equals("css3")) {
-				s.addPseudo(convertIdent(n.image).toLowerCase());
-			} else {
-			 	throw new InvalidParamException("pseudo-element", ":" + convertIdent(n.image).toLowerCase() ,
-			 		ac.getCssVersion() ,ac);
-			}
-		} catch(InvalidParamException e) {
-		     //e.printStackTrace();	
-		     removeThisRule();
-		     ac.getFrame().addError(new CssError(e));
+    <PSEUDOCLASS_SYM> ( ( n=<IDENT>
+	{ 
+	    try {
+		if (ac.getCssVersion().equals("css3")) {
+		    s.addPseudoElement(convertIdent(n.image).toLowerCase());
+		} else {
+		    throw new InvalidParamException("pseudo-element", "::" + convertIdent(n.image).toLowerCase() ,
+						    ac.getCssVersion() ,ac);
 		}
-	  } ) )
+	    } catch(InvalidParamException e) {
+		//e.printStackTrace();	
+		removeThisRule();
+		ac.getFrame().addError(new CssError(e));
+	    }
+	} ) )
 	|  
-  <COLON> ( ( n=<IDENT>
-	  { 
+	<COLON> ( ( n=<IDENT>
+	    { 
 		try {
-		     s.addPseudo(convertIdent(n.image).toLowerCase());
+		    s.addPseudoClass(convertIdent(n.image).toLowerCase());
 		} catch(InvalidParamException e) {
-		     //e.printStackTrace();	
-		     removeThisRule();
-		     ac.getFrame().addError(new CssError(e));
+		    //e.printStackTrace();	
+		    removeThisRule();
+		    ac.getFrame().addError(new CssError(e));
 		}
-	  } )
-	// FXIXME rewrite to make :lang( use a special case
+	    } )
+		  // FXIXME rewrite to make :lang( use a special case
 	| ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
@@ -1926,14 +1930,10 @@ void hexcolor(CssExpression exp) :
 {Token n; 
 }
 {
- n=<HASHIDENT> { 
+    ( n=<HASHIDENT> | n=<HASH> ) { 
      n.image = Util.strip(n.image);
      setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH); 
- }
- |n=<HASH> { 
-     n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
- }
+    }
 }
 
 /*

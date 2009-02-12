@@ -37,6 +37,8 @@ public interface CssSelectorsConstant {
     public static final char DESCENDANT = ' ';
     /** child connector */
     public static final char CHILD = '>';
-    /** adjacent connector */
-    public static final char ADJACENT = '+';
+    /** adjacent sibling connector */
+    public static final char ADJACENT_SIBLING = '+';
+    /** general sibling connector */
+    public static final char GENERAL_SIBLING = '~';
 }

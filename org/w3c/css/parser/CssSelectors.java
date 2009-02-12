@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import org.w3c.css.properties.css1.CssProperty;
-import org.w3c.css.selectors.AdjacentSelector;
+import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
 import org.w3c.css.selectors.ChildSelector;
 import org.w3c.css.selectors.DescendantSelector;
+import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.PseudoClassSelector;
 import org.w3c.css.selectors.PseudoElementSelector;
 import org.w3c.css.selectors.PseudoFactory;
@@ -44,7 +45,8 @@ import org.w3c.css.util.Warnings;
  *
  * @version $Revision$
  */
-public final class CssSelectors extends SelectorsList implements CssSelectorsConstant {
+public final class CssSelectors extends SelectorsList 
+    implements CssSelectorsConstant {
 
     ApplContext ac;
 
@@ -177,17 +179,16 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	return isBlock;
     }
 
-    public void addPseudo(String pseudo) throws InvalidParamException {
-	if(pseudo == null) {
+    public void addPseudoClass(String pseudo) throws InvalidParamException {
+ 	if(pseudo == null) {
 	    return;
 	}
 
 	String profile = ac.getProfile();
 	if(profile == null || profile.equals("") || profile.equals("none")) {
 	    profile = ac.getCssVersion();
-	}
-
-	// is it a pseudo-class?
+	}   
+		// is it a pseudo-class?
 	String[] ps = PseudoFactory.getPseudoClass(profile);
 	if(ps != null) {
 	    for(int i = 0; i < ps.length; i++) {
@@ -198,9 +199,21 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	    }
 	}
 	// it's not a pseudo-class
+        throw new InvalidParamException("pseudo", ":" + pseudo, ac);
+    }
+    
+    public void addPseudoElement(String pseudo) throws InvalidParamException {
+ 	if(pseudo == null) {
+	    return;
+	}
+
+	String profile = ac.getProfile();
+	if(profile == null || profile.equals("") || profile.equals("none")) {
+	    profile = ac.getCssVersion();
+	}   
 
 	// is it a pseudo-element?
-	ps = PseudoFactory.getPseudoElement(profile);
+	String[] ps = PseudoFactory.getPseudoElement(profile);
 	if(ps != null) {
 	    for(int i = 0; i < ps.length; i++) {
 		if(pseudo.equals(ps[i])) {
@@ -211,7 +224,7 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	}
         
         // the ident isn't a valid pseudo-something
-        throw new InvalidParamException("pseudo", ":" + pseudo, ac);
+        throw new InvalidParamException("pseudo", "::" + pseudo, ac);
     }
 
     public void setPseudoFun(String pseudo, String param)
@@ -306,11 +319,18 @@ public final class CssSelectors extends SelectorsList implements CssSelectorsCon
 	connector = CHILD;
     }
 
-    public void addAdjacent(AdjacentSelector adjacent)
+    public void addAdjacentSibling(AdjacentSiblingSelector adjacent)
     throws InvalidParamException {
-	super.addAdjacent(adjacent);
-	connector = ADJACENT;
+	super.addAdjacentSibling(adjacent);
+	connector = ADJACENT_SIBLING;
     }
+
+    public void addGeneralSibling(GeneralSiblingSelector sibling)
+    throws InvalidParamException {
+	super.addGeneralSibling(sibling);
+	connector = GENERAL_SIBLING;
+    }
+
 
     public void addAttribute(AttributeSelector attribute)
     throws InvalidParamException {

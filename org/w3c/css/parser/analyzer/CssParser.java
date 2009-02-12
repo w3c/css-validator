@@ -40,11 +40,12 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
 import org.w3c.css.css.StyleSheetCom;
 
-import org.w3c.css.selectors.AdjacentSelector;
+import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
 import org.w3c.css.selectors.ChildSelector;
 import org.w3c.css.selectors.ClassSelector;
 import org.w3c.css.selectors.DescendantSelector;
+import org.w3c.css.selectors.GeneralSiblingSelector;
 import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.UniversalSelector;
@@ -1829,10 +1830,13 @@ public abstract class CssParser implements CssParserConstants {
                 }
                 switch(comb) {
                 case '+':
-                current.addAdjacent(new AdjacentSelector());
+                current.addAdjacentSibling(new AdjacentSiblingSelector());
                 break;
                 case '>':
                 current.addChild(new ChildSelector());
+                break;
+                case '~':
+                current.addGeneralSibling(new GeneralSiblingSelector());
                 break;
                 default:
                 current.addDescendant(new DescendantSelector());
@@ -2386,18 +2390,18 @@ CssSelectors param = null;
     case PSEUDOCLASS_SYM:
       jj_consume_token(PSEUDOCLASS_SYM);
       n = jj_consume_token(IDENT);
-                try {
-                        if (ac.getCssVersion().equals("css3")) {
-                                s.addPseudo(convertIdent(n.image).toLowerCase());
-                        } else {
-                                {if (true) throw new InvalidParamException("pseudo-element", ":" + convertIdent(n.image).toLowerCase() ,
-                                        ac.getCssVersion() ,ac);}
-                        }
-                } catch(InvalidParamException e) {
-                     //e.printStackTrace();	
-                     removeThisRule();
-                     ac.getFrame().addError(new CssError(e));
+            try {
+                if (ac.getCssVersion().equals("css3")) {
+                    s.addPseudoElement(convertIdent(n.image).toLowerCase());
+                } else {
+                    {if (true) throw new InvalidParamException("pseudo-element", "::" + convertIdent(n.image).toLowerCase() ,
+                                                    ac.getCssVersion() ,ac);}
                 }
+            } catch(InvalidParamException e) {
+                //e.printStackTrace();	
+                removeThisRule();
+                ac.getFrame().addError(new CssError(e));
+            }
       break;
     case COLON:
       jj_consume_token(COLON);
@@ -2405,11 +2409,11 @@ CssSelectors param = null;
       case IDENT:
         n = jj_consume_token(IDENT);
                 try {
-                     s.addPseudo(convertIdent(n.image).toLowerCase());
+                    s.addPseudoClass(convertIdent(n.image).toLowerCase());
                 } catch(InvalidParamException e) {
-                     //e.printStackTrace();	
-                     removeThisRule();
-                     ac.getFrame().addError(new CssError(e));
+                    //e.printStackTrace();	
+                    removeThisRule();
+                    ac.getFrame().addError(new CssError(e));
                 }
         break;
       case FUNCTIONLANG:
@@ -3028,19 +3032,17 @@ CssSelectors param = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case HASHIDENT:
       n = jj_consume_token(HASHIDENT);
-     n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
       break;
     case HASH:
       n = jj_consume_token(HASH);
-     n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
       break;
     default:
       jj_la1[112] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
+     n.image = Util.strip(n.image);
+     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
   }
 
   String skipStatement() throws ParseException {

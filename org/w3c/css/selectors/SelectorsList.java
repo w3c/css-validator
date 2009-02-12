@@ -208,13 +208,23 @@ public class SelectorsList {
     }
 
     /**
-     * Adds an adjacent selector
+     * Adds an adjacent sibling selector
      * @param adjacent the adjacent selector to add
      * @throws InvalidParamException when trying to add a selector after a pseudo-element
      */
-    public void addAdjacent(AdjacentSelector adjacent)
+    public void addAdjacentSibling(AdjacentSiblingSelector adjacent)
     throws InvalidParamException {
 	addSelector(adjacent);
+    }
+
+    /**
+     * Adds an adjacent sibling selector
+     * @param adjacent the adjacent selector to add
+     * @throws InvalidParamException when trying to add a selector after a pseudo-element
+     */
+    public void addGeneralSibling(GeneralSiblingSelector sibling)
+    throws InvalidParamException {
+	addSelector(sibling);
     }
 
     /**
@@ -308,7 +318,7 @@ public class SelectorsList {
 	    s.addType(new TypeSelector("F"));
 	    s.addAttribute(new AttributeBegin("lang", "en"));
 	    s.addAttribute(new AttributeAny("bar"));
-	    s.addAdjacent(new AdjacentSelector());
+	    s.addAdjacentSibling(new AdjacentSiblingSelector());
 	    s.addType(new TypeSelector("G"));
 	    s.addId(new IdSelector("id"));
 	    s.addAttribute(new AttributeAny("blop"));
