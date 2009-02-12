@@ -12,13 +12,9 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
  */
 public class PseudoFunctionNthLastOfType extends PseudoFunctionSelector {
 
-    public PseudoFunctionNthLastOfType(String name, Integer n) {
-	setName(name);
-	setParam(n);
-    }
-
     public PseudoFunctionNthLastOfType(String name, String value) {
-	this(name, new Integer(value));
+	setName(name);
+	setParam(value);
     }
 
 }

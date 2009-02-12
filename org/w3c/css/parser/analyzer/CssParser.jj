@@ -493,7 +493,7 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN :
 {
-    <PSEUDOCLASS_SYM : "::" >
+    <PSEUDOELEMENT_SYM : "::" >
 }
 
 /* RESERVED ATRULE WORDS */
@@ -507,6 +507,7 @@ TOKEN :
 TOKEN [IGNORE_CASE] :
 { 
     < IMPORT_SYM            : "@import">
+  | < NAMESPACE_SYM         : "@namespace">
   | < MEDIA_SYM             : "@media" >
   | < PAGE_SYM              : "@page"  >
   | < FONT_FACE_SYM         : "@font-face" >
@@ -549,6 +550,13 @@ TOKEN [IGNORE_CASE] :
 {
     < FUNCTIONLANG : "lang(" >
 }
+
+<DEFAULT>
+TOKEN [IGNORE_CASE] :
+{
+    < FUNCTIONNOT : ":not(" >
+}
+
 
 <DEFAULT>
     TOKEN :
@@ -594,6 +602,7 @@ void parserUnit() :
 	( charset() )?
 	    ( <S> | <CDO> | <CDC> )*
 	    ( importDeclaration() ( ignoreStatement() ) )*
+	    ( namespaceDeclaration() ( ignoreStatement() ) )*
 	    afterImportDeclaration()
 	 } catch (TokenMgrError err) {
 	addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
@@ -683,6 +692,25 @@ void ignoreStatement() :
     ( ( <CDO> | <CDC> | atRuleDeclaration() ) ( <S> )* )*
 }
 
+void namespaceDeclaration() :
+{ Token n=null;}
+{
+    // FIXME add namespaces in context to match when a definition happens
+    ( <NAMESPACE_SYM> 
+      ( <S> )* 
+      ( n=<IDENT> ( <S> )* )? ( <STRING> | <URL> ) 
+      ( <S> )*
+      <SEMICOLON> 
+      ( <S> )*
+      ) {
+	if (!ac.getCssVersion().equals("css3")) {
+	    addError(new InvalidParamException("at-rule", "@namespace", ac),
+		     n.toString());
+	}
+	if (n != null) {
+	}
+    }
+}
 /**
  * The import statement
  *
@@ -1365,13 +1393,15 @@ CssSelectors simple_selector(CssSelectors next) :
     //selector.setUserMedium(getUserMedium());
 }
 {
+
     element_name(selector) ( hash(selector) | _class(selector)
-			     | attrib(selector) | pseudo(selector) )*
+			     | attrib(selector) | pseudo(selector) 
+			     | negation(selector) )*
 	{   
 	    return selector;
 	}
     | ( hash(selector) | _class(selector) | attrib(selector) 
-	| pseudo(selector) )+ 
+	| pseudo(selector) | negation(selector) )+ 
 	{
 	    return selector;
 	}
@@ -1474,9 +1504,23 @@ Token deprecated_class() :
  * @exception ParseException exception during the parse
  */
 void element_name(CssSelectors s) :
-{Token n; }
+{Token n=null;
+    Token p=null; }
 {
-    n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
+    ( LOOKAHEAD(2) (n=<IDENT> | n=<ANY>)? p="|" )? {
+	// FIXME namespace, check versions of CSS in a better way.
+	if (!ac.getCssVersion().equals("css3") && (p!=null)) {
+	    StringBuilder sb = new StringBuilder("namespace \"");
+	    if (n != null) sb.append(n.toString());
+	    sb.append("\"");
+	    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
+									  "namespace",
+								  ac.getCssVersion(), ac)));
+	    //	    addError(new ParseException("namespace"), sb.toString());
+	    skipStatement();
+	}
+    }
+    ( n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
 	s.addType(new TypeSelector(convertIdent(n.image)));}
     | <ANY> { 
         if (!ac.getCssVersion().equals("css1")) {
@@ -1487,6 +1531,7 @@ void element_name(CssSelectors s) :
 									  "*", ac.getCssVersion(), ac)));
 	}
     }
+	)
 }
 
 /**
@@ -1567,22 +1612,45 @@ void attrib(CssSelectors s) :
       }
 }
 
+void negation(CssSelectors s) :
+{
+    Token n;
+    CssSelectors ns = new CssSelectors(ac, null);
+}
+{ // S* negation_arg S* ')'
+    // type_selector | universal | HASH | class | attrib | pseudo
+
+    <FUNCTIONNOT> ( <S> )*
+	(
+	 element_name(ns) |
+	 hash(ns) | 
+	 _class(ns) |
+	 attrib(ns) | 
+	 pseudo(ns)
+	 )
+	( <S> )* <LPARAN>
+	{ 
+	    s.setPseudoFun("not", ns.toString());
+	}
+}
+
 /**
  * @exception ParseException exception during the parse
  */
 void pseudo(CssSelectors s) :
 {Token n;
 Token language = null;
-CssSelectors param = null;
+CssExpression param = null;
 }
 {
-    <PSEUDOCLASS_SYM> ( ( n=<IDENT>
+    <PSEUDOELEMENT_SYM> ( ( n=<IDENT>
 	{ 
 	    try {
 		if (ac.getCssVersion().equals("css3")) {
 		    s.addPseudoElement(convertIdent(n.image).toLowerCase());
 		} else {
-		    throw new InvalidParamException("pseudo-element", "::" + convertIdent(n.image).toLowerCase() ,
+		    throw new InvalidParamException("pseudo-element",
+						    "::" + convertIdent(n.image).toLowerCase() ,
 						    ac.getCssVersion() ,ac);
 		}
 	    } catch(InvalidParamException e) {
@@ -1603,7 +1671,7 @@ CssSelectors param = null;
 		}
 	    } )
 		  // FXIXME rewrite to make :lang( use a special case
-	| ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ) {
+		  | ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ( <S> )* ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
 						      n.image.length() -1, false).toLowerCase(),
@@ -1613,17 +1681,18 @@ CssSelectors param = null;
 			ac.getFrame().addError(new CssError(e));
 		}
 	    }
-	    | ( n=<FUNCTION> ( <S> )* param=simple_selector(null) ) {
+	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
-						      n.image.length() -1, false).toLowerCase(),
+						      n.image.length() -1, 
+						      false).toLowerCase(),
 				   param.toString());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
 		    ac.getFrame().addError(new CssError(e));
 		} 
 	    }
-	    ) ( <S> )* <LPARAN>
+	    ) <LPARAN>
 	    )
 }
 
@@ -1811,6 +1880,23 @@ boolean prio() :
   <IMPORTANT_SYM> ( <S> )* { return true; }
 }
 
+CssExpression expression() :
+{
+    CssExpression exp = new CssExpression();
+    char operator = ' ';
+    Token n = null;
+}
+{
+    ( ( <PLUS> { operator = '+' ; } 
+	| <MINUS> { operator = '-'; }
+	| n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+	// FIXME dimen should be a CssDimension()
+	| n=<DIMEN> { setValue(new CssIdent(), exp, operator, n, IDENT); } 
+	| n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); } 
+	| n=<IDENT> { setValue(new CssIdent(), exp, operator, n, IDENT); } 
+	) ( <S> )* )+
+   { return exp; }
+}     
 /**
  * @exception ParseException exception during the parse
  */

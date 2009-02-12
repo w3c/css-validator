@@ -167,5 +167,32 @@ public class AtRuleMedia extends AtRule {
 	}
 	return ret.toString();
     }
+
+    public String getValueString() {
+	StringBuilder ret  = new StringBuilder();
+	if (!restrictor.equals("")) {
+	    ret.append(restrictor);
+	    ret.append(' ');
+	}
+	boolean f = true;
+	for (int i = 0; i < media.length; i++) {
+	    if (originalMedia[i] != null) {
+		if (!f) {
+		    ret.append(',');
+		    ret.append(' ');
+		} else {
+		    f = false;
+		}
+		ret.append(originalMedia[i]);
+	    }
+	}
+
+	for (int i = 0; i < mediafeatures.size(); i++) {
+	    ret.append(" and (");
+	    ret.append(mediafeatures.elementAt(i));
+	    ret.append(')');
+	}
+	return ret.toString();
+    }
 }
 

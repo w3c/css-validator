@@ -12,13 +12,8 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
  */
 public class PseudoFunctionNthLastChild extends PseudoFunctionSelector {
 
-    public PseudoFunctionNthLastChild(String name, Integer n) {
-	setName(name);
-	setParam(n);
-    }
-
     public PseudoFunctionNthLastChild(String name, String value) {
-	this(name, new Integer(value));
+	setName(name);
+	setParam(value);
     }
-
 }

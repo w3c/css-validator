@@ -610,7 +610,8 @@ public final class CssFouffa extends CssParser {
      *       added to the storage for the output
      */
     public void newAtRule(AtRule atRule) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
+	     e.hasMoreElements();) {
 	    e.nextElement().newAtRule(atRule);
 	}
     }
@@ -623,7 +624,8 @@ public final class CssFouffa extends CssParser {
      * @charset rule that has been found by the parser
      */
     public void addCharSet(String charset) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
+	     e.hasMoreElements();) {
 	    e.nextElement().addCharSet(charset);
 	}
     }
@@ -635,7 +637,8 @@ public final class CssFouffa extends CssParser {
      *       in it.
      */
     public void endOfAtRule() {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
+	     e.hasMoreElements();) {
 	    e.nextElement().endOfAtRule();
 	}
     }
@@ -647,7 +650,8 @@ public final class CssFouffa extends CssParser {
      *            true if the rule was declared important in the stylesheet
      */
     public void setImportant(boolean important) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
+	     e.hasMoreElements();) {
 	    e.nextElement().setImportant(important);
 	}
     }

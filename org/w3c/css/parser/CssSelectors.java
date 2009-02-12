@@ -242,69 +242,15 @@ public final class CssSelectors extends SelectorsList
 	if(profile == null || profile.equals("") || profile.equals("none")) {
 	    profile = ac.getCssVersion();
 	}
-
 	String[] ps = PseudoFactory.getPseudoFunction(profile);
 	if(ps != null) {
 	    for(int i = 0; i < ps.length; i++) {
 		if(pseudo.equals(ps[i])) {
-		    if(pseudo.equals("contains")) {
-			addPseudoFunction(
-				new PseudoFunctionContains(pseudo, param));
-			return;
-		    }
-		    if(pseudo.equals("lang")) {
-			addPseudoFunction(
-				new PseudoFunctionLang(pseudo, param));
-			return;
-		    }
-		    if(pseudo.equals("not")) {
-			addPseudoFunction(
-				new PseudoFunctionNot(pseudo, param));
-			return;
-		    }
-		    if(pseudo.equals("nth-child")) {
-			try {
-			    addPseudoFunction(
-				    new PseudoFunctionNthChild(pseudo, param));
-			}
-			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
-			}
-			return;
-		    }
-		    if(pseudo.equals("nth-last-child")) {
-			try {
-			    addPseudoFunction(
-				    new PseudoFunctionNthLastChild(
-					    pseudo, param));
-			}
-			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
-			}
-			return;
-		    }
-		    if(pseudo.equals("nth-of-type")) {
-			try {
-			    addPseudoFunction(
-				    new PseudoFunctionNthOfType(
-					    pseudo, param));
-			}
-			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
-			}
-			return;
-		    }
-		    if(pseudo.equals("nth-last-of-type")) {
-			try {
-			    addPseudoFunction(
-				    new PseudoFunctionNthLastOfType(
-					    pseudo, param));
-			}
-			catch(NumberFormatException e) {
-			    throw new InvalidParamException("pseudo", ":" + pseudo, ac);
-			}
-			return;
-		    }
+		    addPseudoFunction(
+				  PseudoFactory.newPseudoFunction(pseudo, 
+								  param, 
+								  ac));
+		    return;
 		}
 	    }
 	    throw new InvalidParamException("pseudo", ":" + pseudo, ac);

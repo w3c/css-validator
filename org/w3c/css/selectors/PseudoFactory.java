@@ -4,6 +4,17 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.selectors;
 
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionContains;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
+import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
+
 /**
  * PseudoFactory<br />
  * Created: Sep 2, 2005 2:41:09 PM<br />
@@ -142,5 +153,44 @@ public class PseudoFactory {
 	}
 	return null;
     }
-    
+
+    /**
+     * Returns a PseudoFunctionSelector based on the name of the 
+     * selector
+     * @param name, the name of the pseudofun selector
+     * @param value, its value
+     * @throws InvalidParamException
+     */
+    public static PseudoFunctionSelector newPseudoFunction(String name, 
+					       String value, ApplContext ac) 
+	throws InvalidParamException
+    {
+	if (name == null) {
+	    throw new InvalidParamException("pseudo", 
+					    "null pseudofunction", ac);
+	}
+	if (name.equals("lang")) {
+	    return new PseudoFunctionLang(name, value);
+	}
+	if (name.equals("not")) {
+	    return new PseudoFunctionNot(name, value);
+	}
+	if (name.equals("contains")) {
+	    return new PseudoFunctionContains(name, value);
+	}
+	if (name.equals("nth-child")) {
+	    return new PseudoFunctionNthChild(name, value);
+	}
+	if (name.equals("nth-last-child")) {
+	    return new PseudoFunctionNthLastChild(name, value);
+	}
+	if (name.equals("nth-of-type")) {
+	    return new PseudoFunctionNthOfType(name, value);
+	}
+	if (name.equals("nth-last-of-type")) {
+	    return new PseudoFunctionNthLastOfType(name, value);
+	}
+	throw new InvalidParamException("pseudo", 
+					":"+name, ac);
+    }
 }

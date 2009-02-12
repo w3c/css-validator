@@ -69,36 +69,38 @@ public interface CssParserConstants {
   int PERCENTAGE = 63;
   int NUMBER = 64;
   int IMPORTANT_SYM = 65;
-  int PSEUDOCLASS_SYM = 66;
+  int PSEUDOELEMENT_SYM = 66;
   int CHARSET_SYM = 67;
   int IMPORT_SYM = 68;
-  int MEDIA_SYM = 69;
-  int PAGE_SYM = 70;
-  int FONT_FACE_SYM = 71;
-  int PREF_SYM = 72;
-  int COLOR_PROFILE = 73;
-  int ATTOP = 74;
-  int ATRIGHT = 75;
-  int ATBOTTOM = 76;
-  int ATLEFT = 77;
-  int ATCOUNTER = 78;
-  int PHONETIC_ALPHABET_SYM = 79;
-  int ATKEYWORD = 80;
-  int RANGE0 = 81;
-  int RANGE1 = 82;
-  int RANGE2 = 83;
-  int RANGE3 = 84;
-  int RANGE4 = 85;
-  int RANGE5 = 86;
-  int RANGE6 = 87;
-  int RANGE = 88;
-  int UNI = 89;
-  int UNICODERANGE = 90;
-  int CLASS = 91;
-  int FUNCTIONLANG = 92;
-  int FUNCTION = 93;
-  int HTMLSTARTTAG = 94;
-  int HTMLENDTAG = 95;
+  int NAMESPACE_SYM = 69;
+  int MEDIA_SYM = 70;
+  int PAGE_SYM = 71;
+  int FONT_FACE_SYM = 72;
+  int PREF_SYM = 73;
+  int COLOR_PROFILE = 74;
+  int ATTOP = 75;
+  int ATRIGHT = 76;
+  int ATBOTTOM = 77;
+  int ATLEFT = 78;
+  int ATCOUNTER = 79;
+  int PHONETIC_ALPHABET_SYM = 80;
+  int ATKEYWORD = 81;
+  int RANGE0 = 82;
+  int RANGE1 = 83;
+  int RANGE2 = 84;
+  int RANGE3 = 85;
+  int RANGE4 = 86;
+  int RANGE5 = 87;
+  int RANGE6 = 88;
+  int RANGE = 89;
+  int UNI = 90;
+  int UNICODERANGE = 91;
+  int CLASS = 92;
+  int FUNCTIONLANG = 93;
+  int FUNCTIONNOT = 94;
+  int FUNCTION = 95;
+  int HTMLSTARTTAG = 96;
+  int HTMLENDTAG = 97;
 
   int DEFAULT = 0;
 
@@ -172,6 +174,7 @@ public interface CssParserConstants {
     "\"::\"",
     "\"@charset\"",
     "\"@import\"",
+    "\"@namespace\"",
     "\"@media\"",
     "\"@page\"",
     "\"@font-face\"",
@@ -196,9 +199,11 @@ public interface CssParserConstants {
     "<UNICODERANGE>",
     "<CLASS>",
     "\"lang(\"",
+    "\":not(\"",
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
+    "\"|\"",
   };
 
 }

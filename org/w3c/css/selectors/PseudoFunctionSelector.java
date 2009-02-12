@@ -12,7 +12,7 @@ public class PseudoFunctionSelector implements Selector {
 
     private String name;
     private Object param;
-
+    private String representation = null;
     /**
      * Creates a new empty function selector
      */
@@ -70,6 +70,15 @@ public class PseudoFunctionSelector implements Selector {
      * @see Selector#toString()
      */
     public String toString() {
-	return ":" + name + "(" + param + ")";
+	if (representation == null) {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append(':');
+	    sb.append(name);
+	    sb.append('(');
+	    sb.append(param);
+	    sb.append(')');
+	    representation = sb.toString();
+	}
+	return representation;
     }
 }
