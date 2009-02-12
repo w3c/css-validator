@@ -188,7 +188,7 @@ public final class CssSelectors extends SelectorsList
 	if(profile == null || profile.equals("") || profile.equals("none")) {
 	    profile = ac.getCssVersion();
 	}   
-		// is it a pseudo-class?
+	// is it a pseudo-class?
 	String[] ps = PseudoFactory.getPseudoClass(profile);
 	if(ps != null) {
 	    for(int i = 0; i < ps.length; i++) {
@@ -198,7 +198,16 @@ public final class CssSelectors extends SelectorsList
 		}
 	    }
 	}
-	// it's not a pseudo-class
+	// it's not a pseudo-class, maybe one pseudo element exception
+	ps = PseudoFactory.getPseudoElementExceptions(profile);
+	if(ps != null) {
+	    for(int i = 0; i < ps.length; i++) {
+		if(pseudo.equals(ps[i])) {
+		    addPseudoClass(new PseudoClassSelector(pseudo));
+		    return;
+		}
+	    }
+	}	
         throw new InvalidParamException("pseudo", ":" + pseudo, ac);
     }
     

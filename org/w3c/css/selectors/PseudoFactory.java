@@ -128,4 +128,19 @@ public class PseudoFactory {
 	return null;
     }
 
+    /**
+     * Returns the possible pseudo-elements written as pseudo-classes
+     * for a specific profile
+     * @param profile the profile to get associated exceptions to the rule
+     * @return the possible pseudo-elements/classes for the profile
+     */  
+    public static String[] getPseudoElementExceptions(String profile) {
+	if(profile == null || profile.equals("css2") ||
+	   profile.equals("css21") || profile.equals("css3") ||
+	   profile.equals("mobile") || profile.equals("tv")) {
+	    return PSEUDOELEMENT_CONSTANTSCSS2;
+	}
+	return null;
+    }
+    
 }
