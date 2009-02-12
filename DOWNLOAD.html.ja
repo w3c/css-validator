@@ -4,10 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>CSS Validator のダウンロードとインストール</title>
+   <meta http-equiv="Content-Style-Type" content="text/css" />
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
-    @import "style/base.css";  
+    @import "style/base.css";
   	@import "style/docs.css";
   </style>
   <meta name="revision"
@@ -29,101 +30,53 @@
 <div class="doc">
 <h2>CSS Validator のダウンロードとインストール</h2>
 
-<p>This translation of the installation guide for the CSS validator may be out of date. For a reliable, up-to-date guide, refer to the <a href="DOWNLOAD.html.en">English</a> or <a href="DOWNLOAD.html.fr">French</a> versions.</p>
-
 <h3 id="download">CSS Validator のダウンロード</h3>
+
+<p>　CSS Validatorは、3種類のパッケージで利用可能です。最新版にを使いたい開発者のためのCVS、コマンドラインツールとしての使用のためのjarアーカイブ、そして(2009年以降の) サーバサイドアプリケーションのためのwarアーカイブです。</p>
 
 	<h4 id="source">ソースのダウンロード</h4>
     <p>
       <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS Validator</a> は、CVS を使ってダウンロードできます。
-      <a href='http://dev.w3.org/cvsweb/'>ガイド</a>に従って W3C CVS 公開サーバーにアクセスし、2002/css-validator を取得してください。オンライン版の CSS Validator は一般的に CVS 版のものより古く、結果表示などが若干異なる可能性があります。</p>
+      <a href='http://dev.w3.org/cvsweb/'>ガイド</a>に従って W3C CVS 公開サーバーにアクセスし、2002/css-validator を取得してください。オンライン版の CSS Validator は、stable releaseなので、一般的に CVS 版のものより古く、結果表示などが若干異なる可能性があります。</p>
 
 	<h4>Java パッケージ (jar/war) としてダウンロード</h4>
-<!--	<p>未定です…。jar/war アーカイブを定期的に置ける、安定した場所を探しています。</p>-->
 	<p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
 
 <h3>インストールガイド</h3>
 <p>CSS 検査サービスはサーブレットであり、Java で書かれています。
-どんなサーブレットエンジン上にでもインストール可能で、またシンプルなコマンドラインツールとして使うこともできます。
-公式の W3C CSS 検査サービスは Jigsaw サーバー上で動いており、これがお勧めのセットアップです。
-ただしこの文書では単純化のために、Apache のサーブレットエンジンである Tomcat 用のオンラインサーブレットとしてインストールする方法についてより詳しく説明してあります。
-</p>
-
-<p>Jigsaw でサーブレットとしてインストールする方法や、コマンドライン環境で実行するためのガイドもこのページ下部にあります。</p>
+どんなサーブレットエンジン上にでもインストール可能で、またシンプルなコマンドラインツールとして使うこともできます。公式の W3C CSS 検査サービスは Jigsaw サーバー上で動いており、これがお勧めのセットアップです。ただしこの文書では単純化のために、Apache のサーブレットエンジンである Tomcat 用のオンラインサーブレットとしてインストールする方法についてより詳しく説明してあります。Jigsaw でサーブレットとしてインストールする方法や、コマンドライン環境で実行するためのガイドもこのページ下部にあります。</p>
 
 <h4 id="prereq">あらかじめ必要なもの</h4>
 
-<p>このインストールガイドを読む前に、すでに次のものがインストールされ動作確認されているものとします: </p>
+<p>このインストールガイドでは、すでに次のものがインストールされ動作確認されているものとします: </p>
 <ul class="instructions">
-	<li>すでに動作している Java 環境</li>
+	<li>ただしく動作する Java 環境</li>
 	<li>Java 構築ツール「<a href="http://ant.apache.org/">Ant</a>」</li>
-	<li>
-		<a href="http://www.w3.org/Jigsaw/">Jigsaw</a>、<a href="http://tomcat.apache.org/">Tomcat</a> や
-		<a href="http://www.mortbay.org/">Jetty</a>
-       などの Java ウェブサーブレットコンテナ (オンラインサービスとして利用する場合のみ)。
-		このガイドでは、Tomcat と Jigsaw について説明しています。</li>
+	<li><a href="http://www.w3.org/Jigsaw/">Jigsaw</a>、<a href="http://tomcat.apache.org/">Tomcat</a>や<a href="http://www.mortbay.org/">Jetty</a>などの Java ウェブサーブレットコンテナ (オンラインサービスとして利用する場合のみ)。</li>
 </ul>
-<p id="prereq-libs">各自のシステムに Validator をインストールするには、以下の Java ライブラリが必要で、システムになければダウンロードする必要があります:</p>
-<ul class="instructions">
-	<li>servlet.jar
-	(これは、Tomcat のインストールパスを [<span class="const">TOMCAT_DIR</span>] とすると、
-	[<span class="const">TOMCAT_DIR</span>]/common/lib/ にあるでしょう。
-	servlet-api.jar という名前になっていることもあります。
-	見当たらない場合は、<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a> で入手して下さい。</li>
-	<li><a href="http://jigsaw.w3.org/Devel/classes-2.2/20060329/">jigsaw.jar</a></li>
-	<li>xercesImpl.jar と xml-apis.jar (どちらも
-	<a href="http://www.apache.org/dist/xml/xerces-j/">xerces-j-bin</a> に含まれます)</li>
-		<li><a href="http://ccil.org/~cowan/XML/tagsoup/">tagsoup.jar</a></li>
-</ul>
+
+<p id="prereq-libs">各自のシステムに Validator をインストールするには、<span class="file">servlet.jar</span>という Java ライブラリが必要です。これは、Tomcat のインストールパスを [<span class="const">TOMCAT_DIR</span>] とすると、[<span class="const">TOMCAT_DIR</span>]/common/lib/ にあるでしょう。servlet-api.jar という名前になっていることもあります。見当たらない場合は、<a href="http://java.sun.com/products/servlet/DOWNLOAD.html">java.sun.com</a> で入手して下さい。</p>
+
 
 <h4>Tomcat に CSS Validator をインストールする</h4>
 <ol class="instructions">
-	<li>
-		Validator を<a href="#source">上記</a>の通りダウンロードしてください。
-	</li>
-	<li>ソースのフォルダ全体 ("<span class="dir">.../css-validator/</span>") を Tomcat のインストール場所にある <span class="dir">webapps</span>
-		ディレクトリにコピーしてください。
-		通常は、<span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/</span> となります。
-		これにより、Validator のソースは <span class="dir">[<span class="const">TOMCAT_DIR</span>]/webapps/css-validator</span> になりますので、以後これを
-		<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span> とします。
-	</li>
-	<li>"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span>" ディレクトリに、"<span class="dir">WEB-INF</span>" という名前のディレクトリを作成し、さらに "<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF</span>" の中に "<span class="dir">lib</span>" ディレクトリを作成します。これは UNIX の次のようなコマンドで作成できます:<br />
-		<kbd>mkdir -p WEB-INF/lib</kbd>
-		</li>
-	<li>「<a href="prereq-libs">あらかじめ必要なもの</a>」の項目で挙げたすべての jar ファイルを、"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib</span>" ディレクトリにコピーします。</li>
-	<li>Validator のソースをコンパイルします。ダウンロードした jar ファイルが CLASSPATH 環境変数の中に含まれるようにして、<span class="dir">[<span class="const">VALIDATOR_DIR</span>]</span> ディレクトリで <kbd>ant</kbd> を実行します。
-		一般的には、単に次のコマンドだけで十分でしょう:<br />
-		<kbd>CLASSPATH=.:./WEB-INF/lib:$CLASSPATH ant</kbd>
-	</li>
-	<li>"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span><span class="file">css-validator.jar</span>" を
-	"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib/</span>" にコピーまたは移動します。</li>
-	<li>
-		"<span class="file">web.xml</span>" ファイルを
-		"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span>" ディレクトリから
-		"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/</span>" ディレクトリへコピー又は移動します。
-	</li>
-    <li>
-		最後に、Tomcat サーバーを再起動します: <br />
+	<li>Validator を<a href="#source">上記</a>の通りダウンロードしてください。</li>
+	<li><span class="file">[<span class="const">VALIDATOR_DIR</span>]build.xml</span>を編集して、servlet.libの値を<span class="file">servlet.jar</span>がある場所へのフルパスに変更してください。</li>
+	<li><span class="dir">[<span class="const">VALIDATOR_DIR</span></span>上で、<kbd>ant war</kbd>を実行するとビルドできます。antは、必要なライブラリをダウンロードして、<span class="file">css-validator.war</span>というアーカイブを作るはずです。</li>
+	<li>"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/</span><span class="file">css-validator.jar</span>" を"<span class="dir">[<span class="const">VALIDATOR_DIR</span>]/WEB-INF/lib/</span>" にコピーまたは移動します。</li>
+    <li>最後に、Tomcat サーバーを再起動します: <br />
 <kbd>"cd <span class="dir">[<span class="const">TOMCAT_DIR</span>]</span>; <span class="dir">./bin/</span><span class="file">shutdown.sh</span>; <span class="dir">./bin/</span><span class="file">startup.sh</span>;"</kbd>
 	</li>
 </ol>
 
 <h4>Jigsaw ウェブサーバーへのインストール</h4>
 <ol class="instructions">
-<li>まず上記ガイドに沿って、ソースをダウンロードして必要な jar ファイルを用意し、ソースを <kbd>ant</kbd> でビルドします。</li>
-
-<li>次に、Validator をサーブレットのコンテナとして動作させるために、ホームディレクトリを設定します(通常は css-validator)。
-
-このために、Jigsawをインストールする必要があります (Jigsawのページに簡単なガイドがあります(本当に簡単です))。そして Jigsaw Admin を起動したら、HTTPFrame を ServletDirectoryFrame に変えてください。</li>
-
-<li>次のステップは "validator" リソースの作成です。
-これは、"ServletWrapper" クラスで "ServletWrapperFrame" フレームに属するリソースです。
-フレームについては自動的に設定されます。サーブレットのクラスは org.w3c.css.servlet.CssValidator です。
-すでに "validator" という名前のファイルが存在するなら、その名前を変えてください。
-このエイリアスの名前は必ず "validator" である必要があります。
-</li>
-
+<li>上記ガイドに沿って、ソースをダウンロードして<span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>に展開して、<kbd>ant jigsaw</kbd> でビルドします。</li>
+<li>次に、Validator をサーブレットのコンテナとして動作させるために、ホームディレクトリを設定します(通常は css-validator)。そして Jigsaw Admin を起動したら、HTTPFrame を ServletDirectoryFrame に変えてください。</li>
+<li>次のステップは "validator" リソースの作成です。これは、"ServletWrapper" クラスで "ServletWrapperFrame" フレームに属するリソースです。フレームについては自動的に設定されます。サーブレットのクラスは org.w3c.css.servlet.CssValidator です。すでに "validator" という名前のファイルが存在するなら、その名前を変えてください。
+このエイリアスの名前は必ず "validator" である必要があります。</li>
+<li>すべてのjarライブラリが<span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW/css-validator/lib</span>フォルダにありJigsawのCLASSPATHに設定さてれいることを確認してください。</li>
 <li>最後に Jigsaw を起動し、Validator を実行します。
 HTMLの場所を確認してください。
 一般的なURLは次のようになるはずです:<br />
@@ -136,6 +89,7 @@ http://localhost:8001/css-validator/validator.html</li>
 css-validator.jar を上の説明にしたがって作成したら、次のように起動します:<br />
 <kbd>java -jar css-validator.jar http://www.w3.org/</kbd>
 </p>
+<p>注意:css-validator.jarは/libフォルダと同じ場所にある必要があります。</p>
 </div>
    <ul class="navbar"  id="menu">
 
@@ -147,91 +101,91 @@ css-validator.jar を上の説明にしたがって作成したら、次のよ�
       </ul>
 
       <ul id="lang_choice">
-     
+
      <li><a href="DOWNLOAD.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"
          rel="alternate">Deutsch</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.en"
          lang="en"
          xml:lang="en"
          hreflang="en"
          rel="alternate">English</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.es"
          lang="es"
          xml:lang="es"
          hreflang="es"
          rel="alternate">Español</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.fr"
          lang="fr"
          xml:lang="fr"
          hreflang="fr"
          rel="alternate">Français</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.ko"
          lang="ko"
          xml:lang="ko"
          hreflang="ko"
          rel="alternate">한국어</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.it"
          lang="it"
          xml:lang="it"
          hreflang="it"
          rel="alternate">Italiano</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.nl"
          lang="nl"
          xml:lang="nl"
          hreflang="nl"
          rel="alternate">Nederlands</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.ja"
          lang="ja"
          xml:lang="ja"
          hreflang="ja"
          rel="alternate">日本語</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.pl-PL"
          lang="pl-PL"
          xml:lang="pl-PL"
          hreflang="pl-PL"
          rel="alternate">Polski</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.pt-BR"
          lang="pt-BR"
          xml:lang="pt-BR"
          hreflang="pt-BR"
          rel="alternate">Português</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.ru"
          lang="ru"
          xml:lang="ru"
          hreflang="ru"
          rel="alternate">Русский</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.sv"
          lang="sv"
          xml:lang="sv"
          hreflang="sv"
          rel="alternate">Svenska</a>
      </li>
-     
+
      <li><a href="DOWNLOAD.html.zh-cn"
          lang="zh-cn"
          xml:lang="zh-cn"
@@ -245,11 +199,11 @@ css-validator.jar を上の説明にしたがって作成したら、次のよ�
    <div id="footer">
    <p id="activity_logos">
 
-      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" alt="CSS" /></a>
+      <a href="http://www.w3.org/QA/" title="W3Cの品質保証活動は、フリーなウェブ品質管理ツールなどを提供します。"><img src="http://www.w3.org/QA/2002/12/qa-small.png" width="72" height="48" alt="QA" /></a> <a href="http://www.w3.org/Style/CSS/learning" title="カスケーディング・スタイルシートについてもっと知るには"><img src="images/woolly-icon" width="72" height="48" alt="CSS" /></a>
    </p>
    <p id="support_logo">
    <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <img src="http://www.w3.org/QA/Tools/I_heart_validator" width="80" height="15" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 

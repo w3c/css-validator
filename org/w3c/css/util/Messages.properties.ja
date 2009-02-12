@@ -138,7 +138,7 @@ warning.style-inside-comment: ユーザエージェントによって削除さ�
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: %s と %s は同じ色です
 warning.no-color: 指定された背景色(background-color)に対応する前面色(color)が指定されていません
-warning.no-background-color: 指定された全面色(color)に対応する背景色(background-color)が指定されていません
+warning.no-background-color: 指定された前面色(color)に対応する背景色(background-color)が指定されていません
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: 色の名前に大文字／小文字の区別はありませんが、\
 名前をより区別しやすくするため、大文字を混ぜて使う事が推奨されます: %s
@@ -351,4 +351,4 @@ warning.xsl: 値 %s は XSL にのみ適用可能です
 parser.unknown-dimension: 不明なディメンション
 generator.dontmixhtml: パースエラーが発生しました。スタイルシートにHTMLシンタックスが含まれています。
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
+warning.float-no-width: (X)HTML+CSSでは浮動要素には幅属性の宣言が必要です。固有の幅属性を持つ(すなわちhtml, img, input, textarea, select, またはobject)は対象外です。
