@@ -32,6 +32,6 @@ public abstract class AtRule {
     public abstract boolean canMatched(AtRule atRule);
 
     public boolean isEmpty() {
-		return false;
-	}
+	return false;
+    }
 }

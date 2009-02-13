@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -130,16 +131,18 @@ public class StyleSheetGenerator extends StyleReport {
         }
 		
         if (ac.getLink() != null) {
-            HashMap[] languages = new HashMap[Messages.languages_name.size()];
+	    int arraysize = Messages.languages_name.size();
+	    ArrayList<HashMap<String,String>> languages;
+	    languages = new ArrayList<HashMap<String,String>>(arraysize);
             String name;
-            for (int i = 0; i < Messages.languages_name.size(); ++i) {
+            for (int i = 0; i < arraysize; ++i) {
                 name = String.valueOf(Messages.languages_name.get(i));
                 HashMap<String,String> l = new HashMap<String,String>();
                 l.put("name", name);
                 l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
-                languages[i] = l;
+		languages.add(i, l);
             }
-            context.put("languages", languages);
+            context.put("languages", languages.toArray());
             String link = ac.getLink().replaceAll("&lang=.*&", "&");
             link = link.replaceAll("&lang=.*$", "");
             context.put("link", "?" + link.replaceAll("&", "&amp;"));

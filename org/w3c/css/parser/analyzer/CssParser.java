@@ -174,7 +174,18 @@ public abstract class CssParser implements CssParserConstants {
      * @param url  The style sheet where this import statement appears.
      * @param file the file name in the import
      */
-    public abstract void handleImport(URL url, String file, AtRuleMedia media);
+    public abstract void handleImport(URL url, String file,
+                                      boolean is_url, AtRuleMedia media);
+
+    /**
+     * Call by the namespace declaration statement.
+     *
+     * @param url  The style sheet where this namespace statement appears.
+     * @param file the file/url name in the namespace declaration
+     */
+    public abstract void handleNamespaceDeclaration(URL url, String prefix,
+                                                    String file,
+                                                    boolean is_url);
 
     /**
      * Call by the at-rule statement.
@@ -619,7 +630,12 @@ public abstract class CssParser implements CssParserConstants {
   }
 
   final public void namespaceDeclaration() throws ParseException {
-  Token n=null;
+    Token n=null;
+    Token v=null;
+    boolean is_url; /* for formatting */
+    String nsname;
+    String prefix = null;
+    CssValue val;
     jj_consume_token(NAMESPACE_SYM);
     label_10:
     while (true) {
@@ -636,6 +652,7 @@ public abstract class CssParser implements CssParserConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:
       n = jj_consume_token(IDENT);
+          prefix = convertIdent(n.image);
       label_11:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -655,10 +672,20 @@ public abstract class CssParser implements CssParserConstants {
     }
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case STRING:
-      jj_consume_token(STRING);
+      v = jj_consume_token(STRING);
+              is_url = false;
+              nsname = v.image.substring(1, n.image.length() -1);
       break;
     case URL:
-      jj_consume_token(URL);
+      v = jj_consume_token(URL);
+              is_url = true;
+              val = new CssURL();
+              ((CssURL) val).set(v.image, ac, url);
+              nsname = (String) val.get();
+              if ((nsname.charAt(0) == '"')
+                  || (nsname.charAt(0) == '\'')) {
+                  nsname = nsname.substring(1, nsname.length()-1);
+              }
       break;
     default:
       jj_la1[16] = jj_gen;
@@ -693,8 +720,10 @@ public abstract class CssParser implements CssParserConstants {
         if (!ac.getCssVersion().equals("css3")) {
             addError(new InvalidParamException("at-rule", "@namespace", ac),
                      n.toString());
-        }
-        if (n != null) {
+        } else {
+            if (v != null) {
+                handleNamespaceDeclaration(getURL(), prefix, nsname, is_url);
+            }
         }
   }
 
@@ -708,6 +737,7 @@ public abstract class CssParser implements CssParserConstants {
     AtRuleMedia media = new AtRuleMedia();
     CssValue val;
     String importFile;
+    boolean is_url = false;
     try {
       jj_consume_token(IMPORT_SYM);
       label_14:
@@ -726,6 +756,7 @@ public abstract class CssParser implements CssParserConstants {
       case STRING:
         n = jj_consume_token(STRING);
                 importFile = n.image.substring(1, n.image.length() -1);
+                is_url = false;
         break;
       case URL:
         n = jj_consume_token(URL);
@@ -736,6 +767,7 @@ public abstract class CssParser implements CssParserConstants {
                     || (importFile.charAt(0) == '\'')) {
                     importFile = importFile.substring(1, importFile.length()-1);
                 }
+                is_url = true;
         break;
       default:
         jj_la1[20] = jj_gen;
@@ -800,7 +832,7 @@ public abstract class CssParser implements CssParserConstants {
         }
         jj_consume_token(S);
       }
-                handleImport(getURL(), importFile, media);
+                handleImport(getURL(), importFile, is_url, media);
     } catch (ParseException e) {
         addError(e, skipStatement());
     }
@@ -3573,14 +3605,6 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
-  final private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_83()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3588,6 +3612,14 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
+    return false;
+  }
+
+  final private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_83()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
     return false;
   }
 
