@@ -2,6 +2,8 @@
 package org.w3c.css.parser.analyzer;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Vector;
 import java.util.Enumeration;
 import java.net.URL;
@@ -160,8 +162,17 @@ public abstract class CssParser implements CssParserConstants {
      * @param stream the stream data to parse.
      * @param ac  the new ac to use for parsing.
      */
-    public void ReInitWithAc(InputStream stream, ApplContext ac) {
-        ReInit(new CommentSkipperInputStream(stream));
+    public void ReInitWithAc(InputStream stream, ApplContext ac, String charset) {
+        InputStream is = new  CommentSkipperInputStream(stream);
+        if (charset == null) {
+            charset = "iso-8859-1";
+        }
+        InputStreamReader isr = null;
+        try {
+            isr = new InputStreamReader(is, charset);
+        } catch (UnsupportedEncodingException uex) {}; // reinit, it can not happen...
+        // ...in theory ;)
+        ReInit(isr);
         markRule = false;
         setApplContext(ac);
     }
@@ -3605,6 +3616,14 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
+  final private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_83()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3612,14 +3631,6 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
-    return false;
-  }
-
-  final private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_83()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
     return false;
   }
 

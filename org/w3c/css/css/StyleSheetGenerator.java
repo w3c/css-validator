@@ -176,6 +176,7 @@ public class StyleSheetGenerator extends StyleReport {
 
         try {
             template = Velocity.getTemplate("org/w3c/css/css/" + template_file);
+	    template.setEncoding("utf-8");
         } catch (ResourceNotFoundException rnfe) {
             System.err.println(rnfe.getMessage());
             rnfe.printStackTrace();

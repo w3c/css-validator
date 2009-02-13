@@ -43,8 +43,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
-import org.apache.velocity.io.UnicodeInputStream;
-
 /**
  * @version $Revision$
  * @author Philippe Le Hegaret
@@ -483,7 +481,7 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
     void parse(URL url) throws Exception {
 	InputSource source = new InputSource();
 	URLConnection connection;
-	UnicodeInputStream in;
+	InputStream in;
 	org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
 	try {
 	    xmlParser.setProperty(
@@ -504,27 +502,31 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 	xmlParser.setContentHandler(this);
 	    
 	connection = HTTPURL.getConnection(url, ac);
-	in = new UnicodeInputStream(connection.getInputStream());
-	String streamEncoding = in.getEncodingFromStream();
+	in = HTTPURL.getInputStream(ac, connection);
+	String streamEncoding = HTTPURL.getCharacterEncoding(ac, connection);
 
 	String httpCL = connection.getHeaderField("Content-Location");
 	if (httpCL != null) {
 	    baseURI = HTTPURL.getURL(baseURI, httpCL);
 	    documentURI = baseURI;
+	    if (streamEncoding != null) {
+		ac.setCharsetForURL(baseURI, streamEncoding);
+	    }
 	}
 	if (streamEncoding != null) {
 	    source.setEncoding(streamEncoding);
-	} else {
-	    String ctype = connection.getContentType();
-	    if (ctype != null) {
-		try {
-		    MimeType repmime = new MimeType(ctype);
-		    if (repmime.hasParameter("charset"))
-			source.setEncoding(repmime.getParameterValue("charset"));
-		} catch (Exception ex) {
-		}
-	    }
-	}
+	} 
+	// else {
+	//    String ctype = connection.getContentType();
+	//   if (ctype != null) {
+	//	try {
+	//	    MimeType repmime = new MimeType(ctype);
+	//	    if (repmime.hasParameter("charset"))
+	//		source.setEncoding(repmime.getParameterValue("charset"));
+	//	} catch (Exception ex) {
+	//    }
+	//    }
+	//}
 	source.setByteStream(in);
 	try {
 	    xmlParser.parse(url.toString());
@@ -549,31 +551,38 @@ public class XMLStyleSheetHandler implements ContentHandler, LexicalHandler,
 	    ex.printStackTrace();
 	}
 	xmlParser.setContentHandler(this);
-	UnicodeInputStream cis = new UnicodeInputStream(connection.getInputStream());
+	InputStream cis = HTTPURL.getInputStream(ac, connection);
 	InputSource source = new InputSource(cis);
-	String streamEncoding = cis.getEncodingFromStream();
-	// if we get a BOM, use that for the encoding... otherwise CT, then iso-8859-1
-	if (streamEncoding != null) {
-	    source.setEncoding(streamEncoding);
-	} else {
-	    String ctype = connection.getContentType();
-	    if (ctype != null) {
-		try {
-		    MimeType repmime = new MimeType(ctype);
-		    if (repmime.hasParameter("charset")) {
-			source.setEncoding(repmime.getParameterValue("charset"));
-		    } else {
-			// if text/html and no given charset, let's assume
-			// iso-8859-1. Ideally, the parser would change the
-			// encoding if it find a mismatch, not sure, but well...
-			if (repmime.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-			    source.setEncoding("iso-8859-1");
-			}
-		    }
-		} catch (Exception ex) {
-		}
+	String streamEncoding = HTTPURL.getCharacterEncoding(ac, connection);
+	String httpCL = connection.getHeaderField("Content-Location");
+	if (httpCL != null) {
+	    baseURI = HTTPURL.getURL(baseURI, httpCL);
+	    documentURI = baseURI;
+	    if (streamEncoding != null) {
+		ac.setCharsetForURL(baseURI, streamEncoding);
 	    }
 	}
+	if (streamEncoding != null) {
+	    source.setEncoding(streamEncoding);
+	} //else {
+	//    String ctype = connection.getContentType();
+	//   if (ctype != null) {
+	//	try {
+	//	    MimeType repmime = new MimeType(ctype);
+	//	    if (repmime.hasParameter("charset")) {
+	//		source.setEncoding(repmime.getParameterValue("charset"));
+	//	    } else {
+	//		// if text/html and no given charset, let's assume
+	//		// iso-8859-1. Ideally, the parser would change the
+	//		// encoding if it find a mismatch, not sure, but well...
+	//		if (repmime.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
+	//		    source.setEncoding("iso-8859-1");
+	//		}
+	//	    }
+	//	} catch (Exception ex) {
+	//	}
+	//   }
+	//}
 	source.setSystemId(urlString);
 	try {
 	    xmlParser.parse(source);

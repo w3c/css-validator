@@ -19,6 +19,11 @@ import java.net.URLConnection;
 
 import java.util.zip.GZIPInputStream;
 
+import org.w3c.www.mime.MimeType;
+import org.w3c.www.mime.MimeTypeFormatException;
+
+import org.apache.velocity.io.UnicodeInputStream;
+
 /**
  * @version $Revision$
  * @author  Philippe Le Hegaret
@@ -265,21 +270,54 @@ public class HTTPURL {
     }
 
     /* more madness */
-    public static InputStream getInputStream(URLConnection uco) throws IOException {
+    public static InputStream getInputStream(ApplContext ac, URLConnection uco) 
+	throws IOException 
+    {
 	InputStream orig_stream = uco.getInputStream();
+	String charset;
 	String encoding;
 	if (orig_stream == null) {
 	    return orig_stream; // let it fail elsewhere
 	}
 	encoding = uco.getContentEncoding();
 	// not set -> return
-	if (encoding == null) {
-	    return orig_stream;
+	if (encoding != null) {
+	    if (encoding.equalsIgnoreCase("gzip")) {
+		orig_stream = new GZIPInputStream(orig_stream);
+	    }
 	}
-	if (encoding.equalsIgnoreCase("gzip")) {
-	    return new GZIPInputStream(orig_stream);
+	charset = getCharacterEncoding(ac, uco);
+	if ((charset == null) || (charset.regionMatches(true, 0, "utf", 0, 3))) {
+	    UnicodeInputStream is = new UnicodeInputStream(orig_stream);
+	    charset =  is.getEncodingFromStream();
+	    if (charset != null) {
+		ac.setCharsetForURL(uco.getURL(), charset);
+	    }
+	    return is;
 	}
 	return orig_stream;
+    }
+
+    public static String getCharacterEncoding(ApplContext ac, URLConnection uco) {
+	String charset = ac.getCharsetForURL(uco.getURL());
+	if (charset != null) {
+	    return charset;
+	}
+	String mtypestr = uco.getContentType();
+	if (mtypestr == null) {
+	    return mtypestr;
+	}
+	MimeType mt;
+	try { 
+	    mt = new MimeType(mtypestr);
+	} catch (MimeTypeFormatException mex) {
+	    return null;
+	}
+        charset =  mt.getParameterValue("charset");
+	if (charset != null) {
+	    ac.setCharsetForURL(uco.getURL(), charset);
+	}
+	return charset;
     }
     /**
      *

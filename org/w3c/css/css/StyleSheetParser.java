@@ -255,7 +255,8 @@ public final class StyleSheetParser
 	try {
 
 //	    if (cssFouffa == null) {
-		cssFouffa = new CssFouffa(ac, input, url, lineno);
+	    String charset = ac.getCharsetForURL(url);
+	    cssFouffa = new CssFouffa(ac, input, charset, url, lineno);
 		cssFouffa.addListener(this);
 //	    } else {
 //		cssFouffa.ReInit(ac, input, url, lineno);
@@ -345,10 +346,11 @@ public final class StyleSheetParser
 	}
 
 	try {
-//	    if (cssFouffa == null) {
-		cssFouffa = new CssFouffa(ac, input, url, lineno);
-		cssFouffa.addListener(this);
-//	    } else
+	    //	    if (cssFouffa == null) {
+	    String charset = ac.getCharsetForURL(url);
+	    cssFouffa = new CssFouffa(ac, input, charset, url, lineno);
+	    cssFouffa.addListener(this);
+	    //	    } else
 //		cssFouffa.ReInit(ac, input, url, lineno);
 	    CssSelectors selector = new CssSelectors(ac);
 

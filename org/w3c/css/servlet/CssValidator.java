@@ -137,9 +137,9 @@ public final class CssValidator extends HttpServlet {
 	// If so, the files will be regenerated
 	// This is done in a Thread so that the validation can carry on.
 	new Thread () {
-		public void run () {
-			IndexGenerator.generatesIndex(true);
-		}
+	    public void run () {
+		IndexGenerator.generatesIndex(true);
+	    }
 	}.start();
 
     }
@@ -237,7 +237,7 @@ public final class CssValidator extends HttpServlet {
 	} catch (Exception ex) {
 	    // pb in URI decoding (bad escaping, most probably)
 	    handleError(res, ac, output, "No file", new IOException(
-			"Invalid escape sequence in URI"), false);
+								    "Invalid escape sequence in URI"), false);
 	}
 	String text = null;
 	try {
@@ -247,7 +247,7 @@ public final class CssValidator extends HttpServlet {
 	    // not sure it will work here, as it may be catched by the first
 	    // getParameter call
 	    handleError(res, ac, output, "Invalid text", new IOException(
-			"Invalid escape sequence in URI"), false);
+									 "Invalid escape sequence in URI"), false);
 	}
 
 	String warning = req.getParameter("warning");
@@ -256,7 +256,7 @@ public final class CssValidator extends HttpServlet {
 	String usermedium = req.getParameter("usermedium");
 	String type = req.getParameter("type");
 	if (type == null)
-		type = "none";
+	    type = "none";
 
 	String credential = req.getHeader("Authorization");
 	if ((credential != null) && (credential.length() > 1)) {
@@ -296,11 +296,11 @@ public final class CssValidator extends HttpServlet {
 		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
 	    	ac.setCssVersion(profile);
 	    } else {
-			ac.setProfile(profile);
-			ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
+		ac.setProfile(profile);
+		ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} else {
-		ac.setProfile("none");
+	    ac.setProfile("none");
 	    ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	}
 	if (Util.onDebug) {
@@ -313,8 +313,8 @@ public final class CssValidator extends HttpServlet {
 	    // res.sendError(res.SC_BAD_REQUEST,
 	    // "You have send an invalid request.");
 	    handleError(res, ac, output, "No file",
-		    new IOException(ac.getMsg().getServletString("invalid-request")),
-		    false);
+			new IOException(ac.getMsg().getServletString("invalid-request")),
+			false);
 	    return;
 	}
 
@@ -370,40 +370,40 @@ public final class CssValidator extends HttpServlet {
 		handleError(res, ac, output, uri, e, true);
 	    }
 	} else if (text != null) {
-		String fileName = "TextArea";
-		Util.verbose("- " + fileName + " Data -");
-		Util.verbose(text);
-		Util.verbose("- End of " + fileName + " Data");
-		InputStream is = new ByteArrayInputStream(text.getBytes());
-		fileName = "file://localhost/" + fileName;
+	    String fileName = "TextArea";
+	    Util.verbose("- " + fileName + " Data -");
+	    Util.verbose(text);
+	    Util.verbose("- End of " + fileName + " Data");
+	    InputStream is = new ByteArrayInputStream(text.getBytes());
+	    fileName = "file://localhost/" + fileName;
 		
-		try {
+	    try {
 		
-			if ("css".equals(type) || ( "none".equals(type) && isCSS(text))) {
-				// if CSS:
-				parser = new StyleSheetParser();
-		  	    parser.parseStyleElement(ac, is, null, usermedium,
-		  			new URL(fileName), 0);
+		if ("css".equals(type) || ( "none".equals(type) && isCSS(text))) {
+		    // if CSS:
+		    parser = new StyleSheetParser();
+		    parser.parseStyleElement(ac, is, null, usermedium,
+					     new URL(fileName), 0);
 		  	  
-		  	    handleRequest(ac, res, fileName, parser
-		  			  .getStyleSheet(), output, warningLevel, errorReport);
-			} else {
-				// else, trying HTML
-				TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
-				handler.parse(is, fileName);
+		    handleRequest(ac, res, fileName, parser
+				  .getStyleSheet(), output, warningLevel, errorReport);
+		} else {
+		    // else, trying HTML
+		    TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+		    handler.parse(is, fileName);
 	
-				handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
-					      warningLevel, errorReport);
-			}
-		} catch (ProtocolException pex) {
-			if (Util.onDebug) {
-			    pex.printStackTrace();
-			}
-			res.setHeader("WWW-Authenticate", pex.getMessage());
-			res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-	  	} catch (Exception e) {
-	  	    handleError(res, ac, output, fileName, e, false);
-	  	}
+		    handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+				  warningLevel, errorReport);
+		}
+	    } catch (ProtocolException pex) {
+		if (Util.onDebug) {
+		    pex.printStackTrace();
+		}
+		res.setHeader("WWW-Authenticate", pex.getMessage());
+		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+	    } catch (Exception e) {
+		handleError(res, ac, output, fileName, e, false);
+	    }
 	}
 	Util.verbose("CssValidator: Request terminated.\n");
     }
@@ -418,18 +418,18 @@ public final class CssValidator extends HttpServlet {
      * @return <tt>false</tt> if it contains the style tag well formed 
      */
     private boolean isCSS(String text) {
-		try {
-			text = text.toLowerCase();
-			int p = text.indexOf("<style");
-			return p == -1 || p > text.indexOf("</style>");
-		} catch (Exception e) {
-			System.err.println("error: " + e.getMessage());
-			return true;
-		}
-		
+	try {
+	    text = text.toLowerCase();
+	    int p = text.indexOf("<style");
+	    return p == -1 || p > text.indexOf("</style>");
+	} catch (Exception e) {
+	    System.err.println("error: " + e.getMessage());
+	    return true;
 	}
+		
+    }
 
-	/**
+    /**
      * Performs the HTTP POST operation. An HTTP BAD_REQUEST error is reported
      * if an error occurs. The headers that are set should include content type,
      * length, and encoding. Setting content length allows the servlet to take
@@ -555,8 +555,8 @@ public final class CssValidator extends HttpServlet {
 		    warning = (String) tmp[i].getValue();
 		} else if (tmp[i].getName().equals("error")) {
 		    warning = (String) tmp[i].getValue();
-		//} else if (tmp[i].getName().equals("input")) {
-		//    XMLinput = ((String) tmp[i].getValue()).equals("XML");
+		    //} else if (tmp[i].getName().equals("input")) {
+		    //    XMLinput = ((String) tmp[i].getValue()).equals("XML");
 		} else if (tmp[i].getName().equals("profile")) {
 		    profile = (String) tmp[i].getValue();
 		} else if (tmp[i].getName().equals("usermedium")) {
@@ -622,11 +622,11 @@ public final class CssValidator extends HttpServlet {
 		|| "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
 	    	ac.setCssVersion(profile);
 	    } else {
-			ac.setProfile(profile);
-			ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
+		ac.setProfile(profile);
+		ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	    }
 	} else {
-		ac.setProfile("none");
+	    ac.setProfile("none");
 	    ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
 	}
 	String fileName = "";
@@ -634,45 +634,45 @@ public final class CssValidator extends HttpServlet {
 	boolean isCSS = false;
 	
 	if (file != null && file.getSize() != 0) {
-		fileName = file.getName();
-		Util.verbose("File : " + fileName);
-		is = file.getInputStream();
-		// another way to get file type...
-		isCSS = file.getContentType().equals(textcss);
+	    fileName = file.getName();
+	    Util.verbose("File : " + fileName);
+	    is = file.getInputStream();
+	    // another way to get file type...
+	    isCSS = file.getContentType().equals(textcss);
 	} else if (text != null ) {
-		fileName = "TextArea";
-		Util.verbose("- " + fileName + " Data -");
-		Util.verbose(text);
-		Util.verbose("- End of " + fileName + " Data");
-		is = new ByteArrayInputStream(text.getBytes());
-		//quick test that works in most cases to determine wether it's HTML or CSS
-		isCSS = isCSS(text);
+	    fileName = "TextArea";
+	    Util.verbose("- " + fileName + " Data -");
+	    Util.verbose(text);
+	    Util.verbose("- End of " + fileName + " Data");
+	    is = new ByteArrayInputStream(text.getBytes());
+	    //quick test that works in most cases to determine wether it's HTML or CSS
+	    isCSS = isCSS(text);
 	}
 	fileName = "file://localhost/" + fileName;
   	try {
 		
-		if (isCSS) {
-			//if CSS:
-			parser = new StyleSheetParser();
-	  	    parser.parseStyleElement(ac, is, null, usermedium,
-	  			new URL(fileName), 0);
+	    if (isCSS) {
+		//if CSS:
+		parser = new StyleSheetParser();
+		parser.parseStyleElement(ac, is, null, usermedium,
+					 new URL(fileName), 0);
 	  	  
-	  	    handleRequest(ac, res, fileName, parser
-	  			  .getStyleSheet(), output, warningLevel, errorReport);
-		} else {
-			// else, trying HTML
-			TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
-			handler.parse(is, fileName);
+		handleRequest(ac, res, fileName, parser
+			      .getStyleSheet(), output, warningLevel, errorReport);
+	    } else {
+		// else, trying HTML
+		TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+		handler.parse(is, fileName);
 
-			handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
-				      warningLevel, errorReport);
-		}
+		handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+			      warningLevel, errorReport);
+	    }
 	} catch (ProtocolException pex) {
-		if (Util.onDebug) {
-		    //pex.printStackTrace();
-		}
-		res.setHeader("WWW-Authenticate", pex.getMessage());
-		res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+	    if (Util.onDebug) {
+		//pex.printStackTrace();
+	    }
+	    res.setHeader("WWW-Authenticate", pex.getMessage());
+	    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
   	} catch (Exception e) {
   	    handleError(res, ac, output, fileName, e, false);
   	}
@@ -716,8 +716,8 @@ public final class CssValidator extends HttpServlet {
 	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
 					      .getContentEncoding());
 	int nb_errors = styleSheet.getErrors().getErrorCount();
-    res.setHeader(headers_name + "Errors", String.valueOf(nb_errors));
-    res.setHeader(headers_name + "Status", nb_errors == 0 ? "Valid" : "Invalid");
+	res.setHeader(headers_name + "Errors", String.valueOf(nb_errors));
+	res.setHeader(headers_name + "Status", nb_errors == 0 ? "Valid" : "Invalid");
 
 	try {
 	    style.print(out);
@@ -763,7 +763,7 @@ public final class CssValidator extends HttpServlet {
 	    }
 	    //outputMt = MimeType.TEXT_PLAIN.getClone();
 	} else if(output.equals("ucn")) {
-		outputMt = MimeType.APPLICATION_XML.getClone();
+	    outputMt = MimeType.APPLICATION_XML.getClone();
         } else if(output.equals("json")) {
             try {
                 outputMt = new MimeType(json);
@@ -801,7 +801,7 @@ public final class CssValidator extends HttpServlet {
     }
 
     private void handleError(HttpServletResponse res, ApplContext ac,
-	String output, String title, Exception e, boolean validURI)
+			     String output, String title, Exception e, boolean validURI)
     	throws IOException {
 
 	System.err.println("[ERROR VALIDATOR] " + title);
@@ -822,11 +822,11 @@ public final class CssValidator extends HttpServlet {
 	}
 
 	PrintWriter out = getLocalPrintWriter(res.getOutputStream(), ac
-		      .getContentEncoding());
+					      .getContentEncoding());
 
 	ErrorReport error = ErrorReportFactory.getErrorReport(ac, title, output,
 							      e, validURI);
-    res.setHeader(headers_name + "Status", "Abort");
+	res.setHeader(headers_name + "Status", "Abort");
 
 	try {
 	    error.print(out);
