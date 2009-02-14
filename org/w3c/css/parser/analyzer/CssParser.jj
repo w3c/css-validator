@@ -672,7 +672,7 @@ void charset() :
 						     "parser.charsetspecial"));
 		    }
 		}
-		addCharSet(n.image);                    
+		addCharSet(n.image.substring(1, n.image.length()-1));
 	    }
     } catch (Exception e) {
 	String skip = charsetToken +
@@ -734,7 +734,7 @@ void namespaceDeclaration() :
 	  ( <S> )* )?
       ( v=<STRING> { 
 	      is_url = false;
-	      nsname = v.image.substring(1, n.image.length() -1);
+	      nsname = v.image.substring(1, v.image.length()-1);
 	  } 
 	  | v=<URL> {
 	      is_url = true;
