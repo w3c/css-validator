@@ -100,16 +100,19 @@ public final class CssFouffa extends CssParser {
      * @exception IOException
      *                if an I/O error occurs.
      */
-    public CssFouffa(ApplContext ac, InputStream input, String charset, URL file, int beginLine) 
+    public CssFouffa(ApplContext ac, InputStream input, String charset, 
+		     URL file, int beginLine) 
 	throws IOException
     {
-	super(new InputStreamReader(input, (charset == null) ? "iso-8859-1" : charset));
+	super(new InputStreamReader(input, (charset == null) ? 
+				    "iso-8859-1" : charset));
 	if (ac.getOrigin() == -1) {
 	    setOrigin(StyleSheetOrigin.AUTHOR); // default is user
 	} else {
 	    setOrigin(ac.getOrigin()); // default is user
 	}
-	ac.setFrame(new Frame(this, file.toString(), beginLine, ac.getWarningLevel()));
+	ac.setFrame(new Frame(this, file.toString(), beginLine, 
+			      ac.getWarningLevel()));
 	setApplContext(ac);
 	// @@this is a default media ...
 	/*
@@ -123,7 +126,8 @@ public final class CssFouffa extends CssParser {
 	 */
 	setURL(file);
 	if (Util.onDebug) {
-	    System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + " medium " + ac.getMedium() + " at-rule "
+	    System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + 
+			       " medium " + ac.getMedium() + " at-rule "
 			       + getAtRule() + " profile " + ac.getProfile());
 	}
 
@@ -144,7 +148,8 @@ public final class CssFouffa extends CssParser {
 	    style = Class.forName(classStyle);
 	    ac.setCssSelectorsStyle(style);
 	} catch (ClassNotFoundException e) {
-	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the style");
+	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + 
+			       " load the style");
 	    e.printStackTrace();
 	}
 
@@ -162,8 +167,11 @@ public final class CssFouffa extends CssParser {
      * @exception IOException
      *                if an I/O error occurs.
      */
-    public CssFouffa(ApplContext ac, InputStream input, URL file) throws IOException {
-	this(ac, input, "iso-8859-1", file, 0);
+    public CssFouffa(ApplContext ac, InputStream input, URL file) 
+	throws IOException 
+    {
+	this(ac, input, (ac.getCharsetForURL(file) != null) ?
+	     ac.getCharsetForURL(file):"iso-8859-1", file, 0);
     }
 
     /**
@@ -208,7 +216,9 @@ public final class CssFouffa extends CssParser {
     private CssFouffa(ApplContext ac, InputStream in, URL url, 
 		      Vector<CssValidatorListener> listeners, 
 		      Vector<String> urlvisited,
-		      CssPropertyFactory cssfactory, boolean mode) throws IOException {
+		      CssPropertyFactory cssfactory, boolean mode) 
+	throws IOException 
+    {
 	this(ac, in, ac.getCharsetForURL(url), url, 0);
 	this.visited = urlvisited;
 	setURL(url);
@@ -219,7 +229,8 @@ public final class CssFouffa extends CssParser {
 	this.mode = mode;
     }
 
-    private void ReInit(ApplContext ac, InputStream input, URL file, Frame frame) {
+    private void ReInit(ApplContext ac, InputStream input, 
+			URL file, Frame frame) {
 	// reinitialize the parser with a new data input
 	// and a new frame for errors and warnings
 	super.ReInitWithAc(input, ac, ac.getCharsetForURL(file));
@@ -281,10 +292,12 @@ public final class CssFouffa extends CssParser {
      * @exception IOException
      *                if an I/O error occurs.
      */
-    public void ReInit(ApplContext ac, InputStream input, URL file, int beginLine) 
+    public void ReInit(ApplContext ac, InputStream input, URL file, 
+		       int beginLine) 
 	throws IOException 
     {
-	Frame f = new Frame(this, file.toString(), beginLine, ac.getWarningLevel());
+	Frame f = new Frame(this, file.toString(), beginLine, 
+			    ac.getWarningLevel());
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
     }
@@ -299,7 +312,9 @@ public final class CssFouffa extends CssParser {
      * @exception IOException
      *                if an I/O error occurs.
      */
-    public void ReInit(ApplContext ac, InputStream input, URL file) throws IOException {
+    public void ReInit(ApplContext ac, InputStream input, URL file) 
+	throws IOException 
+    {
 	Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
 	ac.setFrame(f);
 	ReInit(ac, input, file, f);
@@ -447,11 +462,15 @@ public final class CssFouffa extends CssParser {
 		// check that we didn't already got this URL, or that the
 		// number of imports is not exploding
 		if (visited.contains(surl)) {
-		    CssError cerr = new CssError(new Exception("Import loop" + " detected in " + surl));
+		    CssError cerr = new CssError(new Exception("Import loop" +
+							       " detected in "+
+							       surl));
 		    ac.getFrame().addError(cerr);
 		    return;
 		} else if (visited.size() > 42) {
-		    CssError cerr = new CssError(new Exception("Maximum number" + " of imports " + "reached"));
+		    CssError cerr = new CssError(new Exception("Maximum number"+
+							       " of imports " +
+							       "reached"));
 		    ac.getFrame().addError(cerr);
 		    return;
 		}
@@ -460,7 +479,8 @@ public final class CssFouffa extends CssParser {
 	    newVisited.addElement(surl);
 
 	    if (Util.importSecurity) {
-		throw new FileNotFoundException("[SECURITY] You can't " + "import URL sorry.");
+		throw new FileNotFoundException("[SECURITY] You can't " +
+						"import URL sorry.");
 	    }
 
 	    URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
@@ -474,7 +494,8 @@ public final class CssFouffa extends CssParser {
 		}
 		String mtype = httpURL.getContentType();
 		if (mtype == null) {
-		    throw new FileNotFoundException(importURL.getURL() + "No Media Type defined");
+		    throw new FileNotFoundException(importURL.getURL() + 
+						    "No Media Type defined");
 		} else {
 		    if (mtype.toLowerCase().indexOf("text/html") != -1) {
 			throw new FileNotFoundException(importURL.getURL() + 
@@ -485,9 +506,10 @@ public final class CssFouffa extends CssParser {
 	    }
 	    Frame f = ac.getFrame();
 	    try {
-		CssFouffa cssFouffa = new CssFouffa(ac, HTTPURL.getInputStream(ac, importURL),
-						    importedURL, listeners, newVisited,
-						    properties, mode);
+		CssFouffa cssFouffa = new CssFouffa(ac, 
+					  HTTPURL.getInputStream(ac, importURL),
+					  importedURL, listeners, newVisited,
+					  properties, mode);
 		cssFouffa.setOrigin(getOrigin());
 		if (!media.isEmpty()) {
 		    cssFouffa.setAtRule(media);
@@ -656,6 +678,21 @@ public final class CssFouffa extends CssParser {
 	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
 	     e.hasMoreElements();) {
 	    e.nextElement().addCharSet(charset);
+	}
+	String originalCharset = ac.getCharsetForURL(getURL());
+	if (!charset.equalsIgnoreCase(originalCharset)) {
+	    if (originalCharset == null) {
+		ac.setCharsetForURL(getURL(), charset);
+		try {
+		    ReInit(ac, getURL());
+		} catch (IOException ioex) {}
+	    } else {
+		Exception ex = new Exception("Conflicting charset definition"+
+					     "between network and @charset "+
+					     originalCharset+" and "+charset);
+		CssError cerr = new CssError(ex);
+		ac.getFrame().addError(cerr);
+	    }
 	}
     }
 

@@ -44,7 +44,9 @@ public class Frame {
      * @param sourceFile The name of the source file.
      * @param beginLine  The begin line
      */
-    public Frame(CssFouffa cssFouffa, String sourceFile, int beginLine, int warningLevel) {
+    public Frame(CssFouffa cssFouffa, String sourceFile, int beginLine,
+		 int warningLevel)
+    {
     	this(cssFouffa, sourceFile, warningLevel);
     	line = beginLine;
     }
@@ -55,16 +57,16 @@ public class Frame {
      * @param error The new error.
      */
     public void addError(CssError error) {
-    error.sourceFile = getSourceFile();
-    error.line = getLine();
-    errors.addError(error);
+	error.sourceFile = getSourceFile();
+	error.line = getLine();
+	errors.addError(error);
     }
 
     /**
      * Returns all errors.
      */
     public Errors getErrors() {
-    return errors;
+	return errors;
     }
 
     /**
@@ -75,8 +77,8 @@ public class Frame {
      * @see                  org.w3c.css.util.Warning
      */
     public void addWarning(String warningMessage) {
-    warnings.addWarning(new Warning(getSourceFile(), getLine(),
-                    warningMessage, 0, ac));
+	warnings.addWarning(new Warning(getSourceFile(), getLine(),
+					warningMessage, 0, ac));
     }
 
     /**
@@ -88,8 +90,9 @@ public class Frame {
      * @see                  org.w3c.css.util.Warning
      */
     public void addWarning(String warningMessage, String message) {
-    warnings.addWarning(new Warning(getSourceFile(), getLine(),
-                    warningMessage, 0, new String[] { message }, ac));
+	warnings.addWarning(new Warning(getSourceFile(), getLine(),
+					warningMessage, 0, 
+					new String[] { message }, ac));
     }
 
     /**
@@ -100,38 +103,38 @@ public class Frame {
      * @param messages       Some add-on messages.
      * @see                  org.w3c.css.util.Warning
      */
-	public void addWarning(String warningMessage, String[] messages) {
-		warnings.addWarning(new Warning(getSourceFile(), getLine(),
-                warningMessage, 0, messages, ac));
-	}
+    public void addWarning(String warningMessage, String[] messages) {
+	warnings.addWarning(new Warning(getSourceFile(), getLine(),
+					warningMessage, 0, messages, ac));
+    }
 
     /**
      * Get all warnings.
      */
     public Warnings getWarnings() {
-    return warnings;
+	return warnings;
     }
 
     /**
      * Get the name of the source file.
      */
     public String getSourceFile() {
-    return sourceFile;
+	return sourceFile;
     }
 
     /**
      * Get the begin line.
      */
     public int getBeginLine() {
-    return line;
+	return line;
     }
 
     /**
      * Get the current line.
      */
     public int getLine() {
-    //return line; //+ cssFouffa.token.beginLine;
-    return line + cssFouffa.token.beginLine;
+	//return line; //+ cssFouffa.token.beginLine;
+	return line + cssFouffa.token.beginLine;
     }
 
     /**
@@ -140,8 +143,8 @@ public class Frame {
      * @param frame The other frame for merging.
      */
     public void join(Frame frame) {
-    errors.addErrors(frame.errors);
-    warnings.addWarnings(frame.warnings);
+	errors.addErrors(frame.errors);
+	warnings.addWarnings(frame.warnings);
     }
 }
 

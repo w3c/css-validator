@@ -106,6 +106,8 @@ public abstract class CssParser implements CssParserConstants {
      */
     protected boolean markRule;
 
+    private boolean reinited = false;
+
     static StringBuffer SPACE = new StringBuffer(" ");
 
     // to be able to remove a ruleset if the selector is not valid
@@ -162,18 +164,24 @@ public abstract class CssParser implements CssParserConstants {
      * @param stream the stream data to parse.
      * @param ac  the new ac to use for parsing.
      */
-    public void ReInitWithAc(InputStream stream, ApplContext ac, String charset) {
-        InputStream is = new  CommentSkipperInputStream(stream);
+    public void ReInitWithAc(InputStream stream, ApplContext ac,
+                             String charset)
+    {
+        InputStream is = /*new  CommentSkipperInputStream(stream);*/stream;
         if (charset == null) {
             charset = "iso-8859-1";
         }
         InputStreamReader isr = null;
         try {
             isr = new InputStreamReader(is, charset);
-        } catch (UnsupportedEncodingException uex) {}; // reinit, it can not happen...
+        } catch (UnsupportedEncodingException uex) {
+            isr = new InputStreamReader(is);
+        }
+        // reinit, it can not happen...
         // ...in theory ;)
         ReInit(isr);
         markRule = false;
+        reinited = true;
         setApplContext(ac);
     }
 
@@ -386,7 +394,8 @@ public abstract class CssParser implements CssParserConstants {
           jj_consume_token(-1);
           throw new ParseException();
         }
-            addError ( new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
+            addError (
+new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CHARSET_SYM:
@@ -452,7 +461,8 @@ public abstract class CssParser implements CssParserConstants {
       }
       afterImportDeclaration();
     } catch (TokenMgrError err) {
-        addError (new ParseException(ac.getMsg().getString("generator.unrecognize")), err.getMessage());
+   addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
+             err.getMessage());
     }
     jj_consume_token(0);
   }
@@ -494,9 +504,10 @@ public abstract class CssParser implements CssParserConstants {
       }
       semicolonToken = jj_consume_token(SEMICOLON);
                 // the @charset must be at the beginning of the document
-                if(charsetToken.beginLine != 1 || charsetToken.beginColumn != 1) {
+                if(charsetToken.beginLine != 1 ||
+                   charsetToken.beginColumn != 1) {
                     {if (true) throw new ParseException(
-                                             ac.getMsg().getString("parser.charset"));}
+                                  ac.getMsg().getString("parser.charset"));}
                 }
                 // stricter rule for CSS21 and soon for CSS3
                 if ("css21".equals(ac.getCssVersion())) {
@@ -508,7 +519,8 @@ public abstract class CssParser implements CssParserConstants {
                     if ( (nb_S != 1) ||
                          (!"@charset".equals(charsetToken.image)) ||
                          (!" ".equals(space1Token.image)) ||
-                         (space2Token != null && !"".equals(space2Token.image)) ||
+                         (space2Token != null &&
+                          !"".equals(space2Token.image)) ||
                          (space1Token.specialToken != null) ||
                          (n.specialToken != null) ||
                          (semicolonToken.specialToken != null) ||
@@ -520,6 +532,7 @@ public abstract class CssParser implements CssParserConstants {
                 }
                 addCharSet(n.image.substring(1, n.image.length()-1));
     } catch (Exception e) {
+e.printStackTrace();
         String skip = charsetToken +
             ((space1Token == null) ? "" : space1Token.image) +
             n +
@@ -582,14 +595,13 @@ public abstract class CssParser implements CssParserConstants {
             }
           // quite ugly but necessary to avoid probably a lot of changes in the
           // grammar, still having a beatiful error message
-            else if(ret.startsWith("@charset")) {
+            else if (!reinited && ret.startsWith("@charset")) {
                 ParseException e =
                 new ParseException(ac.getMsg().getString("parser.charset"));
                 addError(e, ret);
-            }
-            else {
+            } else if (!reinited) {
                 ParseException e =
-                    new ParseException(ac.getMsg().getString("generator.unrecognize"));
+             new ParseException(ac.getMsg().getString("generator.unrecognize"));
                 addError(e, ret);
             }
       }
@@ -3616,14 +3628,6 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
-  final private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_83()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3631,6 +3635,14 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
+    return false;
+  }
+
+  final private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_83()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
     return false;
   }
 
