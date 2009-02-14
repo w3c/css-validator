@@ -532,7 +532,6 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 }
                 addCharSet(n.image.substring(1, n.image.length()-1));
     } catch (Exception e) {
-e.printStackTrace();
         String skip = charsetToken +
             ((space1Token == null) ? "" : space1Token.image) +
             n +
@@ -3628,6 +3627,14 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
+  final private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_83()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3635,14 +3642,6 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
-    return false;
-  }
-
-  final private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_83()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
     return false;
   }
 
