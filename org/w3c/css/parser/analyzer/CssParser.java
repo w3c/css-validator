@@ -518,7 +518,7 @@ public abstract class CssParser implements CssParserConstants {
                                                      "parser.charsetspecial"));}
                     }
                 }
-                addCharSet(n.image);
+                addCharSet(n.image.substring(1, n.image.length()-1));
     } catch (Exception e) {
         String skip = charsetToken +
             ((space1Token == null) ? "" : space1Token.image) +
@@ -685,7 +685,7 @@ public abstract class CssParser implements CssParserConstants {
     case STRING:
       v = jj_consume_token(STRING);
               is_url = false;
-              nsname = v.image.substring(1, n.image.length() -1);
+              nsname = v.image.substring(1, v.image.length()-1);
       break;
     case URL:
       v = jj_consume_token(URL);
