@@ -121,12 +121,12 @@ public class FakeFile {
     count += len;
   }
 
-	public void setContentType(String mimeType) {
-		contentType = mimeType;
-	}
-	
-	public String getContentType() {
-		return contentType;
-	}
+    public void setContentType(String mimeType) {
+	contentType = mimeType;
+    }
+    
+    public String getContentType() {
+	return contentType;
+    }
 
 }

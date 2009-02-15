@@ -298,7 +298,9 @@ public class HTTPURL {
 	return orig_stream;
     }
 
-    public static String getCharacterEncoding(ApplContext ac, URLConnection uco) {
+    public static String getCharacterEncoding(ApplContext ac, 
+					      URLConnection uco) 
+    {
 	String charset = ac.getCharsetForURL(uco.getURL());
 	if (charset != null) {
 	    return charset;

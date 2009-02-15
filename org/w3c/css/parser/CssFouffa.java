@@ -20,6 +20,8 @@ import java.net.URLConnection;
 import java.util.Enumeration;
 import java.util.Vector;
 
+import java.nio.charset.Charset;
+
 import org.w3c.css.css.StyleSheetOrigin;
 import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.CssParserTokenManager;
@@ -330,10 +332,21 @@ public final class CssFouffa extends CssParser {
      *                if an I/O error occurs.
      */
     public void ReInit(ApplContext ac, URL file) throws IOException {
-	Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
+	InputStream is;
+	URL url;
+	Frame f;
+	
+	f = new Frame(this, file.toString(), ac.getWarningLevel());
 	ac.setFrame(f);
-	URLConnection urlC = HTTPURL.getConnection(file, ac);
-	ReInit(ac, HTTPURL.getInputStream(ac, urlC), urlC.getURL(), f);
+	if (ac.isInputFake()) {
+	    is = ac.getFakeInputStream();
+	    url = file;
+	} else {
+	    URLConnection urlC = HTTPURL.getConnection(file, ac);
+	    is  = HTTPURL.getInputStream(ac, urlC);
+	    url = urlC.getURL();
+	}
+	ReInit(ac, is, url, f);
     }
 
     /**
@@ -679,20 +692,24 @@ public final class CssFouffa extends CssParser {
 	     e.hasMoreElements();) {
 	    e.nextElement().addCharSet(charset);
 	}
-	String originalCharset = ac.getCharsetForURL(getURL());
-	if (!charset.equalsIgnoreCase(originalCharset)) {
-	    if (originalCharset == null) {
-		ac.setCharsetForURL(getURL(), charset);
-		try {
-		    ReInit(ac, getURL());
-		} catch (IOException ioex) {}
-	    } else {
-		Exception ex = new Exception("Conflicting charset definition"+
-					     "between network and @charset "+
-					     originalCharset+" and "+charset);
-		CssError cerr = new CssError(ex);
-		ac.getFrame().addError(cerr);
-	    }
+	Charset c = null;
+	try {
+	    c = Charset.forName(charset);
+	} catch (Exception ex) {
+	    return;
+	}
+	Charset originalCharset = ac.getCharsetObjForURL(getURL());
+	if (originalCharset == null) {
+	    ac.setCharsetForURL(getURL(), c);
+	    try {
+		ReInit(ac, getURL());
+	    } catch (IOException ioex) {}
+	} else if (c.compareTo(originalCharset) != 0) {
+	    Exception ex = new Exception("Conflicting charset definition "+
+					 "between network and @charset "+
+					 originalCharset+" and "+charset);
+	    CssError cerr = new CssError(ex);
+	    ac.getFrame().addError(cerr);
 	}
     }
 

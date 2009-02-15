@@ -8,9 +8,16 @@
  */
 package org.w3c.css.util;
 
-import java.nio.charset.Charset;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.IOException;
+
 import java.util.HashMap;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.nio.charset.UnsupportedCharsetException;
 
 import org.w3c.css.parser.Frame;
 import org.w3c.www.http.HttpAcceptCharset;
@@ -22,6 +29,8 @@ import org.w3c.www.http.HttpFactory;
  * @author Philippe Le Hegaret
  */
 public class ApplContext {
+
+    public static Charset defaultCharset;
 
     String credential = null;
     String lang;
@@ -36,7 +45,20 @@ public class ApplContext {
     private String link;
     int warningLevel = 0;
 
-    private HashMap<URL,String> uricharsets = null;
+    FakeFile fakefile = null;
+    String   faketext = null;
+    URL      fakeurl  = null;
+
+    private HashMap<URL,Charset> uricharsets = null;
+
+    static {
+	try {
+	    defaultCharset = Charset.forName("iso-8859-1");
+	} catch (Exception ex) {
+	    // we are in deep trouble here
+	    defaultCharset = null;
+	}
+    }
 
     /**
      * Creates a new ApplContext
@@ -211,7 +233,8 @@ public class ApplContext {
 		    // we prefer utf-8
 		    // FIXME (the bias value and the biased charset
 		    // should be dependant on the language)
-		    if ((biasedcharset != null) && !biasedcharset.equalsIgnoreCase(currentCharset)) {
+		    if ((biasedcharset != null) && 
+			!biasedcharset.equalsIgnoreCase(currentCharset)) {
 			currentQuality = currentQuality * 0.5;
 		    }
 		    if (currentQuality > quality) {
@@ -243,18 +266,107 @@ public class ApplContext {
 	}
     }
 
+    /**
+     * used for storing the charset of the document in use
+     *  and its update by a @charset statement, or through 
+     *  automatic discovery
+     */
     public void setCharsetForURL(URL url, String charset) {
 	if (uricharsets == null) {
-	    uricharsets = new HashMap<URL,String>();
+	    uricharsets = new HashMap<URL,Charset>();
+	}
+	Charset c = null;
+	try {
+	    c = Charset.forName(charset);
+	} catch (IllegalCharsetNameException icex) {
+	    // FIXME add a warning in the CSS
+	} catch (UnsupportedCharsetException ucex) {
+	    // FIXME inform about lack of support
+	}
+	if (c != null) {
+	    uricharsets.put(url, c);
+	}
+    }
+
+    /**
+     * used for storing the charset of the document in use
+     *  and its update by a @charset statement, or through 
+     *  automatic discovery
+     */
+    public void setCharsetForURL(URL url, Charset charset) {
+	if (uricharsets == null) {
+	    uricharsets = new HashMap<URL,Charset>();
 	}
 	uricharsets.put(url, charset);
     }
-    
+  
+    /**
+     * used for storing the charset of the document in use
+     *  and its update by a @charset statement, or through 
+     *  automatic discovery
+     */
     public String getCharsetForURL(URL url) {
+	Charset c;
+	if (uricharsets == null) {
+	    return null;
+	}
+	c = uricharsets.get(url);
+	if (c != null) {
+	    return c.toString();
+	}
+	return null;
+    }
+    
+    /**
+     * used for storing the charset of the document in use
+     *  and its update by a @charset statement, or through 
+     *  automatic discovery
+     */
+    public Charset getCharsetObjForURL(URL url) {
+	Charset c;
 	if (uricharsets == null) {
 	    return null;
 	}
 	return uricharsets.get(url);
     }
+
+    /**
+     * store content of uploaded file 
+     */
+    public void setFakeFile(FakeFile fakefile) {
+	this.fakefile = fakefile;
+    }
+
+    /**
+     * store content of entered text
+     */
+    public void setFakeText(String faketext) {
+	this.faketext = faketext;
+    }
+
+    public InputStream getFakeInputStream() throws IOException {
+	if (fakefile != null) {
+	    return fakefile.getInputStream();
+	}
+	if (faketext != null) {
+	    return new ByteArrayInputStream(faketext.getBytes());
+	}
+	return null;
+    }
     
+    public boolean isInputFake() {
+	return ((faketext != null) || (fakefile != null));
+    }
+
+    public void setFakeURL(String fakeurl) {
+	try {
+	    this.fakeurl = new URL(fakeurl);
+	} catch (Exception ex) {
+	}
+    }
+
+    public URL getFakeURL() {
+	return fakeurl;
+    }
+	
 }

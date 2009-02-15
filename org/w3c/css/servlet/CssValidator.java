@@ -586,11 +586,13 @@ public final class CssValidator extends HttpServlet {
 	if (output == null) {
 	    output = texthtml;
 	}
-	if ((file == null || file.getSize() == 0) && (text == null || text.length() == 0)) {
+	if ((file == null || file.getSize() == 0) && 
+	    (text == null || text.length() == 0)) {
 	    // res.sendError(res.SC_BAD_REQUEST,
 	    // "You have send an invalid request");
 	    handleError(res, ac, output, "No file",
-		    	new IOException(ac.getMsg().getServletString("invalid-request")),
+		    	new IOException(ac.getMsg().getServletString(
+							   "invalid-request")),
 		    	false);
 	    return;
 	}
@@ -615,7 +617,7 @@ public final class CssValidator extends HttpServlet {
 	}
 
 	// CSS version
-	if (profile != null && (!"none".equals(profile) || "".equals(profile))) {
+	if (profile != null && (!"none".equals(profile) ||"".equals(profile))) {
 	    if ("css1".equals(profile) || "css2".equals(profile)
 		|| "css21".equals(profile)
 		|| "css3".equals(profile) || "svg".equals(profile)
@@ -623,34 +625,39 @@ public final class CssValidator extends HttpServlet {
 	    	ac.setCssVersion(profile);
 	    } else {
 		ac.setProfile(profile);
-		ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
+		ac.setCssVersion(PropertiesLoader.config.getProperty(
+							     "defaultProfile"));
 	    }
 	} else {
 	    ac.setProfile("none");
-	    ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
+	    ac.setCssVersion(PropertiesLoader.config.getProperty(
+							     "defaultProfile"));
 	}
 	String fileName = "";
 	InputStream is = null;
 	boolean isCSS = false;
 	
 	if (file != null && file.getSize() != 0) {
+	    ac.setFakeFile(file);
 	    fileName = file.getName();
 	    Util.verbose("File : " + fileName);
 	    is = file.getInputStream();
 	    // another way to get file type...
 	    isCSS = file.getContentType().equals(textcss);
 	} else if (text != null ) {
+	    ac.setFakeText(text);
 	    fileName = "TextArea";
 	    Util.verbose("- " + fileName + " Data -");
 	    Util.verbose(text);
 	    Util.verbose("- End of " + fileName + " Data");
 	    is = new ByteArrayInputStream(text.getBytes());
-	    //quick test that works in most cases to determine wether it's HTML or CSS
+	    //quick test that works in most cases to determine wether it's 
+	    //HTML or CSS
 	    isCSS = isCSS(text);
 	}
 	fileName = "file://localhost/" + fileName;
   	try {
-		
+	    ac.setFakeURL(fileName);
 	    if (isCSS) {
 		//if CSS:
 		parser = new StyleSheetParser();
@@ -801,7 +808,8 @@ public final class CssValidator extends HttpServlet {
     }
 
     private void handleError(HttpServletResponse res, ApplContext ac,
-			     String output, String title, Exception e, boolean validURI)
+			     String output, String title, Exception e,
+			     boolean validURI)
     	throws IOException {
 
 	System.err.println("[ERROR VALIDATOR] " + title);
