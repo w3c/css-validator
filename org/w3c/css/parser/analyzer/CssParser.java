@@ -740,7 +740,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
         if (!ac.getCssVersion().equals("css3")) {
             addError(new InvalidParamException("at-rule", "@namespace", ac),
-                     n.toString());
+                     (n==null)?"default":n.toString());
         } else {
             if (v != null) {
                 handleNamespaceDeclaration(getURL(), prefix, nsname, is_url);
@@ -2009,7 +2009,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 Token t = getToken(1);
                 StringBuffer s = new StringBuffer();
                 s.append(getToken(0).image);
-                while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+                while ((t.kind != COMMA) && (t.kind != LBRACE) &&
+                       (t.kind != EOF)) {
                     s.append(t.image);
                     getNextToken();
                     t = getToken(1);
@@ -2350,8 +2351,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
  * @exception ParseException exception during the parse
  */
   final public void element_name(CssSelectors s) throws ParseException {
- Token n=null;
+    Token n=null;
     Token p=null;
+    String prefix = null;
     if (jj_2_1(2)) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IDENT:
@@ -2391,29 +2393,30 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             //	    addError(new ParseException("namespace"), sb.toString());
                 //		ignoreStatement();
             } else if (n!=null) {
-                String nsprefix = convertIdent(n.image);
-                if (!ac.isNamespaceDefined(getURL(), nsprefix)) {
+                prefix = convertIdent(n.image);
+                if (!ac.isNamespaceDefined(getURL(), prefix)) {
                     // ns is not defined
                     addError(new ParseException("Undefined namespace"),
-                             ": The namespace \""+nsprefix
+                             ": The namespace \""+prefix
                              +"\" is not defined. "
-                             + nsprefix );
-                    ignoreStatement();
-                    //		skipStatement();
+                             + prefix );
+                    removeThisRule();
                 }
+            } else {
+                prefix = "";
             }
         }
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:
       n = jj_consume_token(IDENT);
                   //              s.setElement(convertIdent(n.image), ac);
-        s.addType(new TypeSelector(convertIdent(n.image)));
+        s.addType(new TypeSelector(prefix, convertIdent(n.image)));
       break;
     case ANY:
       jj_consume_token(ANY);
         if (!ac.getCssVersion().equals("css1")) {
             //          s.setElement(null);
-            s.addUniversal(new UniversalSelector());
+            s.addUniversal(new UniversalSelector(prefix));
         } else {
             ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
                                                                           "*", ac.getCssVersion(), ac)));
@@ -3641,14 +3644,6 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
-  final private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_83()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_83() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3656,6 +3651,14 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
+    return false;
+  }
+
+  final private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_83()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
     return false;
   }
 
