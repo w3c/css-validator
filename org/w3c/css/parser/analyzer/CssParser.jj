@@ -1588,8 +1588,7 @@ void element_name(CssSelectors s) :
 								"namespace",
 							    ac.getCssVersion(),
 								ac)));
-	    //	    addError(new ParseException("namespace"), sb.toString());
-		//		ignoreStatement();
+		removeThisRule();
 	    } else if (n!=null) {
 		prefix = convertIdent(n.image);
 		if (!ac.isNamespaceDefined(getURL(), prefix)) {
