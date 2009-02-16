@@ -339,7 +339,7 @@ public final class CssFouffa extends CssParser {
 	f = new Frame(this, file.toString(), ac.getWarningLevel());
 	ac.setFrame(f);
 	if (ac.isInputFake()) {
-	    is = ac.getFakeInputStream();
+	    is = ac.getFakeInputStream(file);
 	    url = file;
 	} else {
 	    URLConnection urlC = HTTPURL.getConnection(file, ac);

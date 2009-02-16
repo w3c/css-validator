@@ -24,6 +24,8 @@ import org.w3c.www.http.HttpAcceptCharset;
 import org.w3c.www.http.HttpAcceptCharsetList;
 import org.w3c.www.http.HttpFactory;
 
+import org.apache.velocity.io.UnicodeInputStream;
+
 /**
  * @version $Revision$
  * @author Philippe Le Hegaret
@@ -32,13 +34,16 @@ public class ApplContext {
 
     // the charset of the first source (url/uploaded/text)
     public static Charset defaultCharset;  
+    public static Charset utf8Charset;
 
     static {
 	try {
 	    defaultCharset = Charset.forName("iso-8859-1");
+	    utf8Charset = Charset.forName("utf-8");
 	} catch (Exception ex) {
 	    // we are in deep trouble here
 	    defaultCharset = null;
+	    utf8Charset    = null;
 	}
     }
 
@@ -353,14 +358,33 @@ public class ApplContext {
 	this.faketext = faketext;
     }
 
-    public InputStream getFakeInputStream() throws IOException {
+    public InputStream getFakeInputStream(URL source) 
+	throws IOException 
+    {
+	InputStream is = null;
 	if (fakefile != null) {
-	    return fakefile.getInputStream();
+	    is = fakefile.getInputStream();
 	}
 	if (faketext != null) {
-	    return new ByteArrayInputStream(faketext.getBytes());
+	    is = new ByteArrayInputStream(faketext.getBytes());
 	}
-	return null;
+	if (is == null) {
+	    return null;
+	}
+	Charset c = getCharsetObjForURL(source);
+	if (c == null) {
+	    UnicodeInputStream uis = new UnicodeInputStream(is);
+	    String guessedCharset = uis.getEncodingFromStream();
+	    if (guessedCharset != null) {
+		setCharsetForURL(source, guessedCharset);
+	    }
+	    return uis;
+	} else {
+	    if (utf8Charset.compareTo(c) == 0) {
+		return new UnicodeInputStream(is);
+	    }
+	}
+	return is;
     }
     
     public boolean isInputFake() {
