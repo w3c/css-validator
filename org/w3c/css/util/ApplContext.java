@@ -30,7 +30,27 @@ import org.w3c.www.http.HttpFactory;
  */
 public class ApplContext {
 
-    public static Charset defaultCharset;
+    // the charset of the first source (url/uploaded/text)
+    public static Charset defaultCharset;  
+
+    static {
+	try {
+	    defaultCharset = Charset.forName("iso-8859-1");
+	} catch (Exception ex) {
+	    // we are in deep trouble here
+	    defaultCharset = null;
+	}
+    }
+
+    // charset definition of traversed URLs
+    private HashMap<URL,Charset> uricharsets = null;
+
+    // namespace definitions
+    private HashMap<URL,HashMap<String,String>> namespaces = null;
+
+    // default prefix
+    public static String defaultPrefix = "*defaultprefix*";
+    public static String noPrefix = "*noprefix*";
 
     String credential = null;
     String lang;
@@ -48,17 +68,6 @@ public class ApplContext {
     FakeFile fakefile = null;
     String   faketext = null;
     URL      fakeurl  = null;
-
-    private HashMap<URL,Charset> uricharsets = null;
-
-    static {
-	try {
-	    defaultCharset = Charset.forName("iso-8859-1");
-	} catch (Exception ex) {
-	    // we are in deep trouble here
-	    defaultCharset = null;
-	}
-    }
 
     /**
      * Creates a new ApplContext
@@ -369,4 +378,45 @@ public class ApplContext {
 	return fakeurl;
     }
 	
+    /**
+     * support for namespaces
+     */
+    public void setNamespace(URL url, String prefix, String nsname) {
+	if (namespaces == null) {
+	    namespaces = new HashMap<URL,HashMap<String,String>>();
+	}
+	// reformat the prefix if null.
+	if ((prefix == null) || "".equals(prefix)) {
+	    prefix = defaultPrefix;
+	}
+
+	HashMap<String,String> nsdefs = namespaces.get(url);
+	if (nsdefs == null) {
+	    nsdefs =  new HashMap<String,String>();
+	    nsdefs.put(prefix, nsname);
+	    namespaces.put(url, nsdefs);
+	} else {
+	    // do we need to check if we have a redefinition ?
+	    nsdefs.put(prefix, nsname);
+	}
+    }
+
+    // true if a namespace is defined in the document (CSS fragment)
+    // defined by the URL, with prefix "prefix"
+    public boolean isNamespaceDefined(URL url, String prefix) {
+	if (prefix == null) { // no prefix, always match
+	    return true;
+	}
+	if (prefix.equals("*")) { // any ns, always true
+	    return true;
+	}
+	if ("".equals(prefix)) {
+	    prefix = "*defaultprefix*";
+	}
+	HashMap<String,String> nsdefs = namespaces.get(url);
+	if (nsdefs == null) {
+	    return false;
+	}
+	return nsdefs.containsKey(prefix);
+    }
 }

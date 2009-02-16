@@ -541,7 +541,6 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
   }
 
-/* Modified by Sijtsche Smeman, preference, colorprofile and phoneticAlphabet added for CSS3 */
   final public void afterImportDeclaration() throws ParseException {
  String ret;
     label_7:
@@ -2379,15 +2378,30 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       ;
     }
         // FIXME namespace, check versions of CSS in a better way.
-        if (!ac.getCssVersion().equals("css3") && (p!=null)) {
-            StringBuilder sb = new StringBuilder("namespace \"");
-            if (n != null) sb.append(n.toString());
-            sb.append("\"");
-            ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-                                                                          "namespace",
-                                                                  ac.getCssVersion(), ac)));
+        if (p != null) {
+            if (!ac.getCssVersion().equals("css3")) {
+                StringBuilder sb = new StringBuilder("namespace \"");
+                if (n != null) sb.append(n.toString());
+                sb.append("\"");
+                ac.getFrame().addError(new CssError(new
+                                          InvalidParamException("notversion",
+                                                                "namespace",
+                                                            ac.getCssVersion(),
+                                                                ac)));
             //	    addError(new ParseException("namespace"), sb.toString());
-            skipStatement();
+                //		ignoreStatement();
+            } else if (n!=null) {
+                String nsprefix = convertIdent(n.image);
+                if (!ac.isNamespaceDefined(getURL(), nsprefix)) {
+                    // ns is not defined
+                    addError(new ParseException("Undefined namespace"),
+                             ": The namespace \""+nsprefix
+                             +"\" is not defined. "
+                             + nsprefix );
+                    ignoreStatement();
+                    //		skipStatement();
+                }
+            }
         }
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:

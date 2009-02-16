@@ -421,7 +421,8 @@ public final class CssFouffa extends CssParser {
 	}
 
 	// That's all folks, notify all errors and warnings
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
+	     e.hasMoreElements();) {
 	    CssValidatorListener listener;
 	    listener = e.nextElement();
 	    listener.notifyErrors(ac.getFrame().getErrors());
@@ -442,7 +443,8 @@ public final class CssFouffa extends CssParser {
 	AtRuleNamespace nsrule = new AtRuleNamespace(prefix, nsname, is_url);
 	newAtRule(nsrule);
 	endOfAtRule(); 
-	// FIXME add in the NS declaration for the document
+	// add the NS in the global context definition
+	ac.setNamespace(url, prefix, nsname);
     }
     /**
      * Call by the import statement.
