@@ -10,10 +10,19 @@ package org.w3c.css.selectors;
  */
 public class UniversalSelector implements Selector {
 
+    String prefix = null;
+
+    public UniversalSelector(String prefix) {
+	this.prefix = prefix;
+    }
+
     /**
      * @see Selector#toString()
      */
     public String toString() {
+	if (prefix != null) {
+	    return prefix+"|*";
+	}
 	return "*";
     }
 

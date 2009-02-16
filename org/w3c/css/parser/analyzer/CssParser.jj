@@ -765,7 +765,7 @@ void namespaceDeclaration() :
       ) {
 	if (!ac.getCssVersion().equals("css3")) {
 	    addError(new InvalidParamException("at-rule", "@namespace", ac),
-		     n.toString());
+		     (n==null)?"default":n.toString());
 	} else {
 	    if (v != null) {
 		handleNamespaceDeclaration(getURL(), prefix, nsname, is_url);
@@ -1407,7 +1407,8 @@ CssSelectors selector() :
 		Token t = getToken(1);
 		StringBuffer s = new StringBuffer();
 		s.append(getToken(0).image);
-		while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+		while ((t.kind != COMMA) && (t.kind != LBRACE) && 
+		       (t.kind != EOF)) {
 		    s.append(t.image);
 		    getNextToken();
 		    t = getToken(1);
@@ -1569,8 +1570,11 @@ Token deprecated_class() :
  * @exception ParseException exception during the parse
  */
 void element_name(CssSelectors s) :
-{Token n=null;
-    Token p=null; }
+{
+    Token n=null;
+    Token p=null;
+    String prefix = null;
+}
 {
     ( LOOKAHEAD(2) (n=<IDENT> | n=<ANY>)? p="|" )? {
 	// FIXME namespace, check versions of CSS in a better way.
@@ -1587,25 +1591,27 @@ void element_name(CssSelectors s) :
 	    //	    addError(new ParseException("namespace"), sb.toString());
 		//		ignoreStatement();
 	    } else if (n!=null) {
-		String nsprefix = convertIdent(n.image);
-		if (!ac.isNamespaceDefined(getURL(), nsprefix)) {
+		prefix = convertIdent(n.image);
+		if (!ac.isNamespaceDefined(getURL(), prefix)) {
 		    // ns is not defined
 		    addError(new ParseException("Undefined namespace"), 
-			     ": The namespace \""+nsprefix
+			     ": The namespace \""+prefix
 			     +"\" is not defined. "
-			     + nsprefix );
-		    ignoreStatement();
-		    //		skipStatement();
+			     + prefix );
+		    removeThisRule();
 		}
+	    } else {
+		prefix = "";
 	    }
 	}
     }
     ( n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
-	s.addType(new TypeSelector(convertIdent(n.image)));}
+	s.addType(new TypeSelector(prefix, convertIdent(n.image)));
+    }
     | <ANY> { 
         if (!ac.getCssVersion().equals("css1")) {
 	    //          s.setElement(null);
-            s.addUniversal(new UniversalSelector());
+            s.addUniversal(new UniversalSelector(prefix));
         } else {
 	    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
 									  "*", ac.getCssVersion(), ac)));
