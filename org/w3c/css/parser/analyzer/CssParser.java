@@ -2390,8 +2390,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                                                                 "namespace",
                                                             ac.getCssVersion(),
                                                                 ac)));
-            //	    addError(new ParseException("namespace"), sb.toString());
-                //		ignoreStatement();
+                removeThisRule();
             } else if (n!=null) {
                 prefix = convertIdent(n.image);
                 if (!ac.isNamespaceDefined(getURL(), prefix)) {
