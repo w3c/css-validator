@@ -510,9 +510,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                                   ac.getMsg().getString("parser.charset"));}
                 }
                 if ("css1".equals(ac.getCssVersion())) {
-                    {if (true) throw new ParseException("No @charset rule is allowed "+
-                                             "in CSS1");}
-                    /* ac.getMsg().getString("parser.charsetcss1") */
+                    {if (true) throw new ParseException(ac.getMsg().getString(
+                                                         "parser.charsetcss1"));}
                 }
                 // stricter rule for CSS21 and soon for CSS3
                 if ("css21".equals(ac.getCssVersion())) {
@@ -2548,11 +2547,21 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
     jj_consume_token(RBRACKET);
           if ("css1".equals(ac.getCssVersion())) {
+              StringBuilder reason;
+              CssParseException cp;
               ParseException p;
-              p = new ParseException("attribute selectors are invalid "+
-                                     "in CSS1");
-              /* ParseException(ac.getMsg().getString("parser.attrcss1")) */
-              ac.getFrame().addError(new CssError(p));
+              reason = new StringBuilder(" [");
+              if (att != null) {
+                  reason.append(convertIdent(att.image));
+              }
+              if (val != null ) {
+                  reason.append('=').append(val.image);
+              }
+              reason.append(']');
+              p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
+                                     reason.toString());
+              cp = new CssParseException(p);
+              ac.getFrame().addError(new CssError(cp));
               removeThisRule();
           }
           if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
