@@ -509,6 +509,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                     {if (true) throw new ParseException(
                                   ac.getMsg().getString("parser.charset"));}
                 }
+                if ("css1".equals(ac.getCssVersion())) {
+                    {if (true) throw new ParseException("No @charset rule is allowed "+
+                                             "in CSS1");}
+                    /* ac.getMsg().getString("parser.charsetcss1") */
+                }
                 // stricter rule for CSS21 and soon for CSS3
                 if ("css21".equals(ac.getCssVersion())) {
                     // single space before
