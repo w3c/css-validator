@@ -460,11 +460,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         ignoreStatement();
       }
       afterImportDeclaration();
+      jj_consume_token(0);
     } catch (TokenMgrError err) {
    addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
              err.getMessage());
     }
-    jj_consume_token(0);
   }
 
   final public void charset() throws ParseException {
