@@ -339,3 +339,6 @@ warning.otherprofile: 속성 %s는 이 프로파일에 존재하지 않습니다
 warning.deprecated: 이 값은 더 이상 사용되지 않습니다
 
 warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
+
+parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
+parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
