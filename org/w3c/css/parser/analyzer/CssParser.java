@@ -597,7 +597,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 {if (true) return;}
             }
           // quite ugly but necessary to avoid probably a lot of changes in the
-          // grammar, still having a beatiful error message
+          // grammar, still having a beautiful error message
             else if (!reinited && ret.startsWith("@charset")) {
                 ParseException e =
                 new ParseException(ac.getMsg().getString("parser.charset"));
@@ -2547,6 +2547,14 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       ;
     }
     jj_consume_token(RBRACKET);
+          if ("css1".equals(ac.getCssVersion())) {
+              ParseException p;
+              p = new ParseException("attribute selectors are invalid "+
+                                     "in CSS1");
+              /* ParseException(ac.getMsg().getString("parser.attrcss1")) */
+              ac.getFrame().addError(new CssError(p));
+              removeThisRule();
+          }
           if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
               try {
                   s.addAttribute(new AttributeAny(att.image.toLowerCase()));
