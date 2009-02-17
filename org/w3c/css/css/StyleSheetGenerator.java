@@ -115,13 +115,12 @@ public class StyleSheetGenerator extends StyleReport {
         this.template_file = availableFormat.getProperty(document);
 
         context = new VelocityContext();
+	// adjust the source name if needed
 	if (ac.isInputFake()) {
 	    title = title.substring(title.lastIndexOf('/')+1);
-	    context.put("file_title", title);
-	} else {
-	    context.put("file_title", title);
-	}	    
-        
+	}
+	context.put("file_title", title);
+	        
         // W3C_validator_result
         warnings = style.getWarnings();
         errors = style.getErrors();
