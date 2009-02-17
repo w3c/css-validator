@@ -638,11 +638,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
 	    ( importDeclaration() ( ignoreStatement() ) )*
 	    ( namespaceDeclaration() ( ignoreStatement() ) )*
 	    afterImportDeclaration()
+	    <EOF>
 	 } catch (TokenMgrError err) {
    addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
 	     err.getMessage());
     }
-    <EOF>
 }
 
 void charset() :
