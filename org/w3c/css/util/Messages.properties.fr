@@ -391,5 +391,5 @@ warning.deprecated : cette valeur est déconseillÃ©e
 error.nocomb: Le Combinateur de sélecteurs %s n'est pas admis dans ce profile ou cette version
 
 warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir leur largeur déclarée. Seul les éléments ayant une largeur intrinsève (html, img, input, textarea, select, or object) ne sont pas sujets a cette règle
-parser.charsetcss1: la rè @charset ne doit pas être utilisée en CSS1
+parser.charsetcss1: la règle @charset ne doit pas être utilisée en CSS1
 parser.attrcss1: les sélecteurs d'attribut ne doivent pas être utilisés en CSS1
