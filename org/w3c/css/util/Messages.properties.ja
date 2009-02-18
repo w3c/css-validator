@@ -351,7 +351,7 @@ warning.xsl: 値 %s は XSL にのみ適用可能です
 parser.unknown-dimension: 不明なディメンション
 generator.dontmixhtml: パースエラーが発生しました。スタイルシートにHTMLシンタックスが含まれています。
 
-warning.float-no-width: (X)HTML+CSSでは浮動要素には幅属性の宣言が必要です。固有の幅属性を持つ(すなわちhtml, img, input, textarea, select, またはobject)は対象外です。
+warning.float-no-width: (X)HTML+CSSでは浮動要素には幅属性の宣言が必要です。固有の幅属性を持つ要素(すなわちhtml, img, input, textarea, select, またはobject)は対象外です。
 
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
+parser.charsetcss1: @charset は CSS1 には存在しません。
+parser.attrcss1: 属性選択子 は CSS1 には存在しません。
