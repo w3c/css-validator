@@ -11,7 +11,7 @@ options {
     IGNORE_CASE  = true;
     STATIC = false;
     UNICODE_INPUT = true;
-    /*        
+    /*
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
     */
@@ -1643,10 +1643,10 @@ void attrib(CssSelectors s) :
 	 ) ( <S> )* 
 	 ( val=<IDENT> 
 	     { val.image = convertIdent(val.image); }
-	   | ( val=<STRING> 
+	   | val=<STRING> 
 	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);} 
-			   ) 
-	   ( <S> )* ) )?
+	   ) 
+	   ( <S> )* )?
   <RBRACKET>
       {
 	  if ("css1".equals(ac.getCssVersion())) {
@@ -1714,7 +1714,7 @@ void attrib(CssSelectors s) :
 	      } catch (InvalidParamException e) {
 	     	  removeThisRule();
 	          ac.getFrame().addError(new CssError(e));
-      	      }
+      	      } 
 	  }
       }
 }
