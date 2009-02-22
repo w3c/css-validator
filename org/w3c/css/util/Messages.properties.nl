@@ -276,7 +276,7 @@ generator.unrecognize: Parse Error
 generator.dontmixhtml: Parse Error. Style sheets mogen geen HTML syntax.
 
 # gebruikt door org.w3c.css.parser.CssSelectors
-error.pseudo-element: Het pseudo-element :%s kan niet in deze context voorkomen %s
+error.pseudo-element: Het pseudo-element %s kan niet in deze context voorkomen %s
 error.pseudo-class: De pseudo-class .%s kan niet in deze HTML context voorkomen %s
 error.pseudo: Onbekend pseudo-element of pseudo-class %s
 error.id: ID selector #%s is ongeldig ! Slechts een ID selector kan worden gespecificeerd in een eenvoudige selector: %s.

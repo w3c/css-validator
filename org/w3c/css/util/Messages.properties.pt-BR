@@ -289,7 +289,7 @@ generator.unrecognize: Erro de parseamento
 error.unknown: Erro desconhecido
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: O pseudo-elemento :%s ão pode aparecer nesse contexto HTML %s
+error.pseudo-element: O pseudo-elemento %s ão pode aparecer nesse contexto HTML %s
 error.pseudo-class: A pseudo classe .%s não pode aparecer nesse contexto HTML  %s
 error.pseudo: Pseudo-elemento ou pseudo classe %s desconhecido
 error.id: O seletor ID #%s é inválido! Somente um seletor ID pode ser definido em um seletor simples: %s.

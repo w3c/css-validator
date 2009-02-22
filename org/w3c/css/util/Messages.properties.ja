@@ -261,7 +261,7 @@ generator.unrecognize: 文法解析エラーが発生しました
 generator.dontmixhtml: 文法解析エラーが発生しました. スタイルシートのHTML構文が含まれてはならない。
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: 疑似要素 :%s はコンテキスト %s 中のこの場所では使えません
+error.pseudo-element: 疑似要素 %s はコンテキスト %s 中のこの場所では使えません
 error.pseudo-class: 疑似クラス .%s は HTMLコンテキスト %s 中のこの場所では使えません
 error.pseudo: %sは未知の疑似要素または疑似クラスです
 warning.pseudo: 未知の疑似要素または疑似クラス %s がデフォルトプロファイル (%s) にあります

@@ -278,7 +278,7 @@ generator.dontmixhtml:  해석 오류. 스타일 시트는 HTML 구문을 포함
 error.unknown: 알 수 없는 오류
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: 비정규 요소 :%s는 %s에서 나타날 수 없습니다
+error.pseudo-element: 비정규 요소 %s는 %s에서 나타날 수 없습니다
 error.pseudo-class: 비정규 클래스 .%s는 HTML문서상 %s에서 나타날 수 없습니다
 error.pseudo: 알 수 없는 비정규 요소 또는 비정규 클래스 %s
 error.id: ID 지시지 #%s는 올바르지 않습니다 ! 단순 지시자에서는 한가지 ID지시자만 사용될 수 있습니다: %s.

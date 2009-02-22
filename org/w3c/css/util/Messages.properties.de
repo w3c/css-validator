@@ -255,7 +255,7 @@ generator.unrecognize: Einlese-Fehler
 generator.dontmixhtml: Einlese-Fehler. Style Sheets sollte keine HTML-Syntax.
 
 # used by org.w3c.css.parser.CssSelectors 
-error.pseudo-element: Das Pseudoelement :%s kann hier nicht in dem Kontext %s vorkommen
+error.pseudo-element: Das Pseudoelement %s kann hier nicht in dem Kontext %s vorkommen
 error.pseudo-class: Die Pseudoklasse .%s kann hier nicht in dem HTML-Kontext %s vorkommen
 error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse: %s
 warning.pseudo: Unbekanntes Pseudoelement oder unbekannte Pseudoklasse %s im Standard Profile (%s)

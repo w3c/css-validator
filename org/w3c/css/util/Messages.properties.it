@@ -280,7 +280,7 @@ generator.unrecognize: Parse Error
 generator.dontmixhtml: Parse Error. Fogli di stile non deve includere la sintassi HTML.
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Lo pseudo-element :%s non può apparire in questo contesto %s
+error.pseudo-element: Lo pseudo-element %s non può apparire in questo contesto %s
 error.pseudo-class: La pseudo-class .%s non può apparire qui nel contesto HTML %s
 error.pseudo: Pseudo-elemento o pseudo-classe non conosciuto %s
 error.id: ID selector #%s is invalid ! Un solo selettore ID può essere specificato in un selettore semplice: %s.

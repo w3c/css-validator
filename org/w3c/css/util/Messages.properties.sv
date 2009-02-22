@@ -288,7 +288,7 @@ generator.unrecognize: Parsningsfel
 error.unknown: Okänt fel
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudoelement :%s kan inte förekomma här i kontextet %s
+error.pseudo-element: Pseudoelement %s kan inte förekomma här i kontextet %s
 error.pseudo-class: Pseudoklass .%s kan inte förekomma här i HTML-kontextet %s
 error.pseudo: Okänt pseudoelement eller pseudoklass %s
 error.id: ID-selektor #%s ogiltig ! Endast en ID-selektor kan anges i en enkel selektor: %s.

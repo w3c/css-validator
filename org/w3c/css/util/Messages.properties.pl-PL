@@ -287,7 +287,7 @@ generator.dontmixhtml: Błąd parsowania: Arkusz styli nie powinien zawierać sk
 error.unknown: Unknown error
 
 # użyte przez org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudo-element :%s nie może pojawić się w następujšcym kontekcie %s
+error.pseudo-element: Pseudo-element %s nie może pojawić się w następujšcym kontekcie %s
 error.pseudo-class: Pseudo-class .%s nie może pojawić się w następujšcym kontekcie HTML %s
 error.pseudo: Niznany pseudo-element lub pseudo-class %s
 error.id: Selektor ID #%s jest niepoprawny ! Tylko jeden selektor ID może być okrelony w selektorze prostym: %s.

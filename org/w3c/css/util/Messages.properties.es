@@ -281,7 +281,7 @@ generator.unrecognize: Error de análisis sintáctico
 generator.dontmixhtml: Error sintáctica. Hoja de estilo ne pueden incluir fragmentos de HTML. 
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: El pseudo-elemento :%s no puede aparecer aquí en el contexto %s
+error.pseudo-element: El pseudo-elemento %s no puede aparecer aquí en el contexto %s
 error.pseudo-class: La pseudo-clase .%s no puede aparecer aquí en el contexto de HTML %s
 error.pseudo: Pseudo-clase o pseudo-elemento %s desconocido(a)
 error.id: ¡El selector de ID #%s no es válido! En un selector simple sólo puede especificarse un selector de ID: %s.
