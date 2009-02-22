@@ -193,7 +193,7 @@ public class Warning {
 	    // replace all parameters.
 		int j = 0;
 	    for (int i = 0; (i = str.indexOf("%s", i)) >= 0 && j < args.length; ) {
-			StringBuffer stb = new StringBuffer(str.substring(0, i));
+			StringBuilder stb = new StringBuilder(str.substring(0, i));
 			str = stb.append(args[j++]).append(str.substring(i+2)).toString();
 	    }
 	    return str;

@@ -141,11 +141,12 @@ public class Utf8Properties extends Properties {
      * @return 	the converted line
      */
     private String loadConversion(String line) {
-	StringBuffer val = new StringBuffer(line.length());
+	StringBuilder val = new StringBuilder(line.length());
 
 	int index = 0;
 
-	// Replace all the "\." substrings with their corresponding escaped characters
+	// Replace all the "\." substrings with their corresponding 
+	// escaped characters
 	for(; index < line.length(); index++) {
 	    char currentChar = line.charAt(index);
 	    if(currentChar == '\\') {
@@ -211,7 +212,7 @@ public class Utf8Properties extends Properties {
      */
     private String storeConversion(String line) {
 	int length = line.length();
-	StringBuffer outBuffer = new StringBuffer(length*2);
+	StringBuilder outBuffer = new StringBuilder(length*2);
 
 	for(int i = 0; i < length; i++) {
 	    char currentChar = line.charAt(i);
@@ -246,8 +247,10 @@ public class Utf8Properties extends Properties {
 
     /**
      * Indicates wether the property continues on the next line or not
-     * @param 	line 	the beginning of the property that might be continued on the next line
-     * @return 	true if the propertiy continues on the following line, false otherwise
+     * @param 	line 	the beginning of the property that might be continued
+     * on the next line
+     * @return 	true if the propertiy continues on the following line, 
+     * false otherwise
      */
     private boolean continueLine(String line) {
 	if(line != null && !line.equals("")) {

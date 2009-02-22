@@ -65,11 +65,11 @@ public class Date {
   private void computeDate () {
     int day;
     int hr,mn,sec;
-    StringBuffer sbdate, ldate;
+    StringBuilder sbdate, ldate;
     Calendar cal;
 
-    sbdate = new StringBuffer(30);
-    ldate = new StringBuffer(30);
+    sbdate = new StringBuilder(30);
+    ldate = new StringBuilder(30);
 
     cal = new GregorianCalendar(tz, Locale.getDefault());
     day = cal.get(Calendar.DAY_OF_MONTH);

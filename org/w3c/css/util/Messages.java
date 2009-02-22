@@ -100,7 +100,7 @@ public class Messages {
      *            the warning property.
      */
     public String getWarningString(String message) {
-	return getString(new StringBuffer("warning.").append(message).toString());
+	return getString("warning."+message);
     }
 
     /**
@@ -110,7 +110,7 @@ public class Messages {
      *            the warning property.
      */
     public String getWarningLevelString(String message) {
-	return getString(new StringBuffer("warning.").append(message).append(".level").toString());
+	return getString(new StringBuilder("warning.").append(message).append(".level").toString());
     }
 
     /**
@@ -120,7 +120,7 @@ public class Messages {
      *            the error property.
      */
     public String getErrorString(String message) {
-	return getString(new StringBuffer("error.").append(message).toString());
+	return getString("error."+message);
     }
 
     /**
@@ -130,7 +130,7 @@ public class Messages {
      *            the generator property.
      */
     public String getGeneratorString(String message) {
-	return getString(new StringBuffer("generator.").append(message).toString());
+	return getString("generator."+message);
     }
 
     /**
@@ -140,7 +140,7 @@ public class Messages {
      *            the generator property.
      */
     public String getGeneratorString(String message, String param) {
-	String str = getString(new StringBuffer("generator.").append(message).toString());
+	String str = getString("generator."+message);
 
 	// replace all parameters
 	int i = str.indexOf("%s");
@@ -157,7 +157,7 @@ public class Messages {
      *            the generator property.
      */
     public String getServletString(String message) {
-	return getString(new StringBuffer("servlet.").append(message).toString());
+	return getString("servlet."+message);
     }
 
     static {
@@ -389,7 +389,5 @@ public class Messages {
 	    System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties cn");
 	    System.err.println("  " + e.toString());
 	}
-
     }
-
 }
