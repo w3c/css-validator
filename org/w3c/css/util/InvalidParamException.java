@@ -57,20 +57,26 @@ public class InvalidParamException extends ParseException {
     
     private static String processError(String error, Object args, ApplContext ac) {
     	if (args instanceof String[]) {
+	    String[] s_args = (String[]) args;
+	    StringBuilder sb = new StringBuilder();
 	    String str = null;
-	    
+
 	    if (error != null) {
 		str = ac.getMsg().getErrorString(error);
 	    }
-	    if (str == null)
+	    if (str == null) {
 		return "can't find the error message for " + error;
-	    else {
+	    } else {
 		// replace all parameters
+		String[] msg_parts = str.split("%s");
 		int j = 0;
-		for (int i = 0; (i = str.indexOf("%s")) >= 0 && j < ((String[]) args).length; ) {
-		    str = str.substring(0, i) + ((String[]) args)[j++] + str.substring(i+2);
+		for (int i = 0; i< msg_parts.length; i++) {
+		    sb.append(msg_parts[i]);
+		    if (j < s_args.length) {
+			sb.append(s_args[j++]);
+		    }
 		}
-		return str;
+		return sb.toString();
 	    }
     	} else {
 	    return processError(error, args.toString(), "", ac);
