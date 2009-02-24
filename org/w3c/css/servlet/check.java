@@ -58,7 +58,7 @@ public final class check extends HttpServlet {
 	res.setHeader("Vary", "Referer");
 
 	Enumeration e = req.getParameterNames();
-	StringBuffer sb = new StringBuffer(validatorURI);
+	StringBuilder sb = new StringBuilder(validatorURI);
 	boolean first = true;
 	boolean uridone = false;
 

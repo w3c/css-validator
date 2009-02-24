@@ -52,7 +52,7 @@ public class TypeSelector implements Selector {
      */
     public String toString() {
 	if (prefix != null) {
-	    StringBuffer sb = new StringBuffer(prefix);
+	    StringBuilder sb = new StringBuilder(prefix);
 	    sb.append('|');
 	    sb.append(name);
 	    return sb.toString();

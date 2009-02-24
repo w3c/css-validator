@@ -17,12 +17,13 @@ public class CssProperties {
     public static Utf8Properties properties;
 
     public static String getString(CssProperty property, String prop) {
-	StringBuffer st = new StringBuffer(property.getPropertyName());
-	return properties.getProperty(st.append('.').append(prop).toString());
+	StringBuilder st = new StringBuilder(property.getPropertyName());
+	st.append('.').append(prop);
+	return properties.getProperty(st.toString());
     }
 
     public static boolean getInheritance(CssProperty property) {
-	return getString(property, "inherited").equals("true");
+	return "true".equals(getString(property, "inherited"));
     }
 
     static {
@@ -33,8 +34,8 @@ public class CssProperties {
 	    properties.load(f);
 	    f.close();
 	} catch (Exception e) {
-	    System.err
-	    .println("org.w3c.css.properties.CssProperties: couldn't load properties ");
+	    System.err.println("org.w3c.css.properties.CssProperties: "+
+			       "couldn't load properties ");
 	    System.err.println("  " + e.toString());
 	}
     }

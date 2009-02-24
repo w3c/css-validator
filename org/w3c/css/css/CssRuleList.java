@@ -11,61 +11,61 @@ import org.w3c.css.parser.AtRule;
 
 public class CssRuleList {
 
-	AtRule atRule;
-	String atRuleString;
-	Vector rulelist;
-	public String pseudopage;
-	String indent;
+    AtRule atRule;
+    String atRuleString;
+    Vector rulelist;
+    public String pseudopage;
+    String indent;
 
-	public CssRuleList() {
-		atRule = null;
-		atRuleString = new String();
-		rulelist = new Vector();
-		indent = new String();
-	}
+    public CssRuleList() {
+	atRule = null;
+	atRuleString = new String();
+	rulelist = new Vector();
+	indent = new String();
+    }
 
-	public void addStyleRule(CssStyleRule stylerule) {
-		rulelist.addElement(stylerule);
-	}
+    public void addStyleRule(CssStyleRule stylerule) {
+	rulelist.addElement(stylerule);
+    }
 
-	public Vector getStyleRules() {
-		return rulelist;
-	}
+    public Vector getStyleRules() {
+	return rulelist;
+    }
 
-	public void addAtRule(AtRule atRule) {
-		this.atRule = atRule;
-		atRuleString = atRule.toString();
-	}
+    public void addAtRule(AtRule atRule) {
+	this.atRule = atRule;
+	atRuleString = atRule.toString();
+    }
 
-	public String getAtRule() {
-		return atRuleString;
-	}
+    public String getAtRule() {
+	return atRuleString;
+    }
 	
-	public boolean isEmpty() {
-		return rulelist.isEmpty();
-	}
+    public boolean isEmpty() {
+	return rulelist.isEmpty();
+    }
 
-	public String toString() {
-		StringBuffer ret = new StringBuffer();
-		if (null != atRule && atRule.isEmpty()) {
-			if (!atRuleString.equals("")) {
-				ret.append(atRuleString);
-				ret.append("\n\n");
-			}
-		} else {
-			if (!atRuleString.equals("")) {
-				ret.append(atRuleString);
-				ret.append(" {\n\n");
-			}
-			for (int i = 0; i < rulelist.size(); i++) {
-				ret.append((CssStyleRule) rulelist.elementAt(i));
-			}
+    public String toString() {
+	StringBuilder ret = new StringBuilder();
+	if (null != atRule && atRule.isEmpty()) {
+	    if (!atRuleString.equals("")) {
+		ret.append(atRuleString);
+		ret.append("\n\n");
+	    }
+	} else {
+	    if (!atRuleString.equals("")) {
+		ret.append(atRuleString);
+		ret.append(" {\n\n");
+	    }
+	    for (int i = 0; i < rulelist.size(); i++) {
+		ret.append((CssStyleRule) rulelist.elementAt(i));
+	    }
 
-			if (!atRuleString.equals("")) {
-				ret.append("}\n");
-			}
-		}
-		return ret.toString();
+	    if (!atRuleString.equals("")) {
+		ret.append("}\n");
+	    }
 	}
+	return ret.toString();
+    }
 
 }

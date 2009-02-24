@@ -356,7 +356,7 @@ public class StyleSheetGenerator extends StyleReport {
 				       Hashtable<String,Object> ht_error) {
         if (error.getContexts() != null && error.getContexts().size() != 0) {
             ht_error.put("CtxName", "codeContext");
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             // Loop on the list of contexts for errors
 	    Enumeration e;
             for (e = error.getContexts().elements(); e.hasMoreElements();) {

@@ -71,7 +71,7 @@ public class PseudoFunctionSelector implements Selector {
      */
     public String toString() {
 	if (representation == null) {
-	    StringBuffer sb = new StringBuffer();
+	    StringBuilder sb = new StringBuilder();
 	    sb.append(':');
 	    sb.append(name);
 	    sb.append('(');
