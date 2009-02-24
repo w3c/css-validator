@@ -168,12 +168,12 @@ public class Messages {
 	}
 	String[] msg_parts = getString(message).split("%s");
 	Iterator<String> param_it = params.iterator();
-	StringBuilder sb = new StringBuilder(message.length());
-	for (int i=0; i<msg_parts.length; i++) {
-	    sb.append(msg_parts[i]);
+	StringBuilder sb = new StringBuilder(msg_parts[0]);
+	for (int i=1; i<msg_parts.length; i++) {
 	    if (param_it.hasNext()) {
 		sb.append(param_it.next());
 	    }
+	    sb.append(msg_parts[i]);
 	}
 	return sb.toString();
     }
