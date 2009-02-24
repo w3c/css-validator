@@ -70,11 +70,12 @@ public class InvalidParamException extends ParseException {
 		// replace all parameters
 		String[] msg_parts = str.split("%s");
 		int j = 0;
-		for (int i = 0; i< msg_parts.length; i++) {
-		    sb.append(msg_parts[i]);
+		sb.append(msg_parts[0]);
+		for (int i = 1; i< msg_parts.length; i++) {
 		    if (j < s_args.length) {
 			sb.append(s_args[j++]);
 		    }
+		    sb.append(msg_parts[i]);
 		}
 		return sb.toString();
 	    }
