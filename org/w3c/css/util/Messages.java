@@ -10,8 +10,10 @@ package org.w3c.css.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 /**
  * @version $Revision$
@@ -158,6 +160,22 @@ public class Messages {
      */
     public String getServletString(String message) {
 	return getString("servlet."+message);
+    }
+
+    public String getString(String message, Vector<String> params) {
+	if ((params == null) || params.size() == 0) {
+	    return getString(message);
+	}
+	String[] msg_parts = getString(message).split("%s");
+	Iterator<String> param_it = params.iterator();
+	StringBuilder sb = new StringBuilder(message.length());
+	for (int i=0; i<msg_parts.length; i++) {
+	    sb.append(msg_parts[i]);
+	    if (param_it.hasNext()) {
+		sb.append(param_it.next());
+	    }
+	}
+	return sb.toString();
     }
 
     static {
