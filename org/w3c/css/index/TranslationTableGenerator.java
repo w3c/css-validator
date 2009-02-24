@@ -22,11 +22,13 @@ import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.commons.lang.StringEscapeUtils;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Set;
 import java.lang.Integer;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Messages;
@@ -38,11 +40,8 @@ import org.w3c.css.util.Utf8Properties;
  * 
  * 
  */
-class AlphaComparator implements Comparator {
-    public int compare(Object o1, Object o2) {
-	String s1 = (String) o1;
-	String s2 = (String) o2;
-	//	return s1.toLowerCase().compareTo(s2.toLowerCase());
+class AlphaComparator implements Comparator<String> {
+    public int compare(String s1, String s2) {
 	return s1.compareToIgnoreCase(s2);
     }
 }
@@ -82,10 +81,10 @@ public class TranslationTableGenerator {
 	    path = new URI(path).getPath();
 	    Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
 	    Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../css/");
-        Velocity.setProperty(Velocity.RUNTIME_LOG,
-                             "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
-                    
-        Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
+	    Velocity.setProperty(Velocity.RUNTIME_LOG,
+				 "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
+	    
+	    Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
 	    Velocity.init();
 		
 	    Template tpl = Velocity.getTemplate(template_name, "UTF-8");
@@ -93,16 +92,17 @@ public class TranslationTableGenerator {
 		
             ApplContext ac_default= new ApplContext(default_lang);
 	    // Getting the differents languages informations (for the lang choice)
-	    HashMap[] languages = new HashMap[Messages.languages_name.size()];
-	    HashMap translations = new HashMap();
-	    HashMap translation_completeness = new HashMap();
+	    ArrayList<HashMap<String,String>> languages;
+	    languages = new ArrayList<HashMap<String,String>>(Messages.languages_name.size());
+	    HashMap<String,ApplContext> translations = new HashMap<String,ApplContext>();
+	    HashMap<String,Integer> translation_completeness = new HashMap<String,Integer>();
 	    table_head.append("<tr><th scope='col'>Property</th>");
 	    for (int i = 0; i < Messages.languages_name.size(); ++i) {
 		name = String.valueOf(Messages.languages_name.get(i));
-		HashMap l = new HashMap();
+		HashMap<String,String> l = new HashMap<String,String>();
 		l.put("name", name);
 		l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
-		languages[i] = l;
+		languages.add(i, l);
 		ApplContext ac_translated = new ApplContext(name);
 		if (!name.equals(default_lang)) {
 		    table_head.append("<th>").append(l.get("real")).append("</th>");
@@ -112,7 +112,9 @@ public class TranslationTableGenerator {
 		        
 	    }
 	    table_head.append("</tr>");
-	    Vector sorted_properties_keys = new Vector(ac_default.getMsg().properties.keySet());
+	    Vector<String> sorted_properties_keys;
+	    Set properties_keyset = ac_default.getMsg().properties.keySet();
+	    sorted_properties_keys = new Vector<String>(properties_keyset);
 	    Collections.sort(sorted_properties_keys, new AlphaComparator());
             Iterator properties_iterator = sorted_properties_keys.iterator();
 	    translations_table.append("<tbody>");
@@ -124,7 +126,7 @@ public class TranslationTableGenerator {
 		translations_table.append("<p>").append(StringEscapeUtils.escapeHtml(ac_default.getMsg().getString(property_name)));
 		translations_table.append("</p></th>");
 		for (int i = 0; i < Messages.languages_name.size(); ++i) {
-		    HashMap language = languages[i];
+		    HashMap<String,String> language = languages.get(i);
 		    ApplContext translation = (ApplContext) translations.get(language.get("name"));
 		    String property_translated = translation.getMsg().getString(property_name);
 		    if (language.get("name").equals(default_lang)) {
@@ -152,11 +154,11 @@ public class TranslationTableGenerator {
             translations_table.append("</tbody></table>");
             for (int i = 0; i < Messages.languages_name.size(); i++) {
 		name = String.valueOf(Messages.languages_name.get(i));
-		HashMap l = (HashMap) languages[i];
+		HashMap<String,String> l = languages.get(i);
 		int completeness_percent = 100*Integer.parseInt(translation_completeness.get(l.get("name")).toString());
 		completeness_percent = completeness_percent /ac_default.getMsg().properties.size();
-		l.put("completeness", completeness_percent);
-		languages[i] = l;
+		l.put("completeness", Integer.toString(completeness_percent));
+		// FIXME not needed // languages[i] = l;
 	    }
 	    vc.put("languages", languages);
 	    vc.put("num_languages", Messages.languages_name.size());
