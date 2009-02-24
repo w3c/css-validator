@@ -128,7 +128,7 @@ public abstract class CssParser {
 
     private boolean reinited = false;
 
-    static StringBuffer SPACE = new StringBuffer(" ");
+    static StringBuilder SPACE = new StringBuilder(" ");
 
     // to be able to remove a ruleset if the selector is not valid
     protected boolean validSelector = true;
@@ -1258,7 +1258,10 @@ void ruleSet() :
 		}
 	    }  
 	  )*
-	    <LBRACE> ( <S> )*
+	    <LBRACE> {
+	    validSelector = (context_set.size() > 0);
+	}
+	( <S> )*
 	    value_set=declarations()
 	    <RBRACE> ( <S> )*
 	    {
@@ -1398,44 +1401,39 @@ CssSelectors selector() :
 	    { return current; }
     }
     catch (InvalidParamException ie) {    
-	skipStatement();
-	removeThisRule();
+	//	skipStatement();
+	//	removeThisRule();
 	ac.getFrame().addError(new CssError(ie));
-	
+	Token t = getToken(1);
+	StringBuilder s = new StringBuilder();
+	s.append(getToken(0).image);
+	// eat until , { or EOF
+	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+	    s.append(t.image);
+	    getNextToken();
+	    t = getToken(1);
+	}
 	return null;
     }
     catch (ParseException e) {
-        validSelector = false;
-	if (ac.getProfile() != null) {
-	    if(!(ac.getProfile().equals("mobile"))) {
-		Token t = getToken(1);
-		StringBuffer s = new StringBuffer();
-		s.append(getToken(0).image);
-		while ((t.kind != COMMA) && (t.kind != LBRACE) && 
-		       (t.kind != EOF)) {
-		    s.append(t.image);
-		    getNextToken();
-		    t = getToken(1);
-		}
-
-		addError(e, s.toString());
-     
-		return null;
-	    }
-	} else {
-	    Token t = getToken(1);
-	    StringBuffer s = new StringBuffer();
-	    s.append(getToken(0).image);
-	    while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-		s.append(t.image);
-		getNextToken();
-		t = getToken(1);
-	    }
-
-	    addError(e, s.toString());
-     
-	    return null;    	
+	//	validSelector = false;
+	Token t = getToken(1);
+	StringBuilder s = new StringBuilder("[");
+	s.append(getToken(0).image);
+	// eat until , { or EOF
+	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+	    s.append(t.image);
+	    getNextToken();
+	    t = getToken(1);
 	}
+	s.append(']');
+	//	if (validSelector) {
+	addError(e, s.toString());
+	    //	} else {
+	    //  addError(e,"");
+	    //	}
+	validSelector = true;
+	return null;    	
     }
 }
 
@@ -1490,8 +1488,9 @@ void _class(CssSelectors s) :
 	    //        s.addAttribute("class", convertIdent(n.image.substring(1)),
 	    //           CssSelectors.ATTRIBUTE_CLASS_SEL);
 	} catch (InvalidParamException e) {
-	    removeThisRule();
-	    ac.getFrame().addError(new CssError(e));
+	    //	    removeThisRule();
+	     ac.getFrame().addError(new CssError(e));
+	    throw new ParseException(e.getMessage());
 	}
     } 
     /* FIXME <DOT> n=deprecated_class() ... ?? (DONE-> to be tested) */ 
@@ -1500,22 +1499,22 @@ void _class(CssSelectors s) :
 	    n.image = n.image.substring(1);
           
 	    // the class with the first digit escaped
-	    String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
-	    cl += n.image.substring(1);
-          
+	    String cl = "."+hexEscapeFirst(n.image);
+
 	    String profile = ac.getProfile();
 	    if(profile == null || profile.equals("") || profile.equals("none")) {
 		profile = ac.getCssVersion(); 
 	    }     
           
 	    if(!profile.equals("css1")) {
-		addError(new ParseException(ac.getMsg().getString(
-								  "parser.old_class")),
-			 "To make \"." + n.image + "\" a valid class, CSS2" +
-			 " requires the first digit to be escaped " +
-			 "(\"." + cl + "\")");
-		s.addClass(new ClassSelector(n.image));                            
-		removeThisRule();              
+		StringBuilder sb = new StringBuilder();
+		Vector<String> param_err = new Vector<String>(2);
+		param_err.add(n.image);
+		param_err.add(cl);
+		sb.append(ac.getMsg().getString("parser.old_class", param_err));
+		throw new ParseException(sb.toString());
+		//		s.addClass(new ClassSelector(n.image));                            
+		// removeThisRule();              
 	    }
 	    else {
 		CssLength length = new CssLength();
@@ -1528,21 +1527,23 @@ void _class(CssSelectors s) :
 		    isLength = false;              
 		}
 		if(isLength) {
-		    addError(new ParseException(ac.getMsg().getString(
-								      "parser.class_dim")), n.image);
-		    s.addClass(new ClassSelector(n.image));                            
-		    removeThisRule();
+		    StringBuilder sb = new StringBuilder();
+		    sb.append(ac.getMsg().getString("parser.class_dim"));
+		    sb.append(n.image);
+		    throw new ParseException(sb.toString());
+		    //		    s.addClass(new ClassSelector(n.image));                            
+		    // removeThisRule();
 		}        
 		else {
 		    try {
 			// for css > 1, we add the rule to have a context, 
 			// and we then remove it
-			s.addClass(new ClassSelector(n.image));                      	          	  
-        	      
+			s.addClass(new ClassSelector(n.image));
 			ac.getFrame().addWarning("old_class");              
 		    } catch (InvalidParamException e) {
-			ac.getFrame().addError(new CssError(e));
-			removeThisRule();
+			throw new ParseException(e.getMessage());
+			//ac.getFrame().addError(new CssError(e));
+			//removeThisRule();
 		    }
 		}
 	    }
@@ -1761,9 +1762,10 @@ CssExpression param = null;
 						    ac.getCssVersion() ,ac);
 		}
 	    } catch(InvalidParamException e) {
-		//e.printStackTrace();	
-		removeThisRule();
-		ac.getFrame().addError(new CssError(e));
+		//	removeThisRule();
+		//		ac.getFrame().addError(new CssError(e));
+		validSelector = false;
+		throw new ParseException(e.getMessage());
 	    }
 	} ) )
 	|  
@@ -1772,7 +1774,6 @@ CssExpression param = null;
 		try {
 		    s.addPseudoClass(convertIdent(n.image).toLowerCase());
 		} catch(InvalidParamException e) {
-		    //e.printStackTrace();	
 		    removeThisRule();
 		    ac.getFrame().addError(new CssError(e));
 		}
@@ -1870,7 +1871,7 @@ void hash(CssSelectors s) :
       }
   }
   | n=<HASH> {
-      throw new ParseException("Unrecognized ");	 
+      throw new ParseException(ac.getMsg().getString("parser.invalid_id_selector"));	 
   }
 }
 
@@ -2135,7 +2136,7 @@ void hexcolor(CssExpression exp) :
 
 JAVACODE
 String skipStatement() {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     Token tok = getToken(0);
     boolean first = true;
 
@@ -2194,7 +2195,7 @@ String skipStatement() {
 
 JAVACODE
 String skip_to_matching_brace() {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     Token tok;
     int nesting = 1;
     /* FIXME
@@ -2235,7 +2236,7 @@ void rejectToken(Token t) {
  */
 JAVACODE
 void skipAfterExpression(Exception e) {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     s.append(getToken(0).image);
     while (true) {
 	try {
@@ -2392,6 +2393,19 @@ String convertString(String s) {
     return convertStringIndex(s, 0, s.length(), false);
 }
 
+JAVACODE 
+String hexEscapeFirst(String s) {
+    StringBuilder sb = new StringBuilder();
+    sb.append('\\').append(Integer.toString(s.charAt(0), 16));
+    char c = s.charAt(1);
+    if (((c >= '0') && (c <= '9')) || 
+	((c >= 'A') && (c <= 'F')) ||
+	((c >= 'a') && (c <= 'f'))) {
+	sb.append(' ');
+    }
+    sb.append(s.substring(1));
+    return sb.toString();
+}
 /*
  * compile-command: javacc CssParser.jj & jc CssParser.java
  */
