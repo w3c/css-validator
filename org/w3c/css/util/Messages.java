@@ -23,9 +23,9 @@ public class Messages {
     /**
      * Message properties
      */
-    public Utf8Properties properties;
+    public Utf8Properties<String,String> properties;
     
-    public static Hashtable<String, Utf8Properties> languages = new Hashtable<String, Utf8Properties>();
+    public static Hashtable<String, Utf8Properties<String,String>> languages = new Hashtable<String, Utf8Properties<String,String>>();
     public static ArrayList<String> languages_name = new ArrayList<String>();
 	
     /**
@@ -68,7 +68,7 @@ public class Messages {
 	    }
 	    for (int i = 0; i < maxTok; i++) {
 		String l = slang[i];
-		properties = (Utf8Properties) languages.get(l);
+		properties = languages.get(l);
 		if (properties != null) {
 		    break;
 		}
@@ -76,7 +76,7 @@ public class Messages {
 		if (minusIndex != -1) {
 		    // suppressed -cn in zh-cn (example)
 		    l = l.substring(0, minusIndex);
-		    properties = (Utf8Properties) languages.get(l);
+		    properties = languages.get(l);
 		}
 		if (properties != null) {
 		    break;
@@ -84,7 +84,7 @@ public class Messages {
 	    }
 	}
 	if (properties == null) {
-	    properties = (Utf8Properties) languages.get("en");
+	    properties = languages.get("en");
 	}
     }
 
@@ -179,11 +179,11 @@ public class Messages {
     }
 
     static {
-	Utf8Properties tmp;
+	Utf8Properties<String,String> tmp;
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.de");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("de");
 		languages.put("de", tmp);
@@ -203,7 +203,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.en");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("en");
 		languages.put("en", tmp);
@@ -220,7 +220,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.es");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("es");
 		languages.put("es", tmp);
@@ -238,7 +238,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.fr");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("fr");
 		languages.put("fr", tmp);
@@ -256,7 +256,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ko");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("ko");
 		languages.put("ko", tmp);
@@ -273,7 +273,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.it");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("it");
 		languages.put("it", tmp);
@@ -290,7 +290,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.nl");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("nl");
 		languages.put("nl", tmp);
@@ -307,7 +307,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ja");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("ja");
 		languages.put("ja", tmp);
@@ -324,7 +324,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.pl-PL");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("pl-PL");
 		languages.put("pl", tmp);
@@ -343,7 +343,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.pt-BR");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("pt-BR");
 		languages.put("pt-br", tmp);
@@ -361,7 +361,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.ru");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("ru");
 		languages.put("ru", tmp);
@@ -377,7 +377,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.sv");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("sv");
 		languages.put("sv", tmp);
@@ -394,7 +394,7 @@ public class Messages {
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.zh-cn");
 	    try {
-		tmp = new Utf8Properties();
+		tmp = new Utf8Properties<String,String>();
 		tmp.load(f);
 		languages_name.add("zh-cn");
 		languages.put("zh-cn", tmp);

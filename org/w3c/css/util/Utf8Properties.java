@@ -24,7 +24,7 @@ import java.util.Properties;
  *
  * @see java.util.Properties
  */
-public class Utf8Properties extends Properties {
+public class Utf8Properties<K,V> extends Properties {
 
     /**
      * use serialVersionUID from JDK 1.1.X for interoperability
