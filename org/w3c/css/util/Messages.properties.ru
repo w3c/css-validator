@@ -348,3 +348,5 @@ parser.unknown-dimension: Неизвестные размеры
 warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
 parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
 parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
+parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
+

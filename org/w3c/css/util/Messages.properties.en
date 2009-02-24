@@ -326,7 +326,7 @@ parser.unknown-dimension: Unknown dimension
 parser.old_class: In CSS1, a class name could start with a digit (".55ft"), \
 unless it was a dimension (".55in"). In CSS2, such classes are parsed as \
 unknown dimensions (to allow for future additions of new units) \
-To make ".%s" a valid class, CSS2 requires the first digit to be escaped ".\3%s"
+To make "%s" a valid class, CSS2 requires the first digit to be escaped "%s"
 
 parser.old_id: In CSS1, an id name could start with a digit ("#55ft"), \
 unless it was a dimension ("#55in"). In CSS2, such ids are parsed as \
@@ -367,3 +367,5 @@ warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width de
 
 parser.charsetcss1: @charset rules can not be used in CSS1
 parser.attrcss1: Attribute selectors are invalid in CSS1
+
+parser.invalid_id_selector: Invalid ID selector

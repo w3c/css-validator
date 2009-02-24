@@ -326,7 +326,8 @@ parser.unknown-dimension: Dimension inconnue
 parser.old_class: En CSS1, il était possible d'avoir un nom de classe \
 commençant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
 (".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
-inconnues, pour permettre l'ajout de nouvelles unités).
+inconnues, pour permettre l'ajout de nouvelles unités). Pour que "%s" soit \
+un nom de classe CSS2 valide, le premier chiffre doit être échappé "%s"
 
 parser.old_id: En CSS1, il était possible d'avoir un nom d'id \
 commençant par un chiffre ("#55xx") sauf s'il s'agissait d'une dimension \
@@ -393,3 +394,4 @@ error.nocomb: Le Combinateur de sélecteurs %s n'est pas admis dans ce profile o
 warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir leur largeur déclarée. Seul les éléments ayant une largeur intrinsève (html, img, input, textarea, select, or object) ne sont pas sujets a cette règle
 parser.charsetcss1: la règle @charset ne doit pas être utilisée en CSS1
 parser.attrcss1: les sélecteurs d'attribut ne doivent pas être utilisés en CSS1
+parser.invalid_id_selector: Sélécteur d'ID invalide
