@@ -195,7 +195,7 @@ public class SimpleCharStream
      char c = buffer[bufpos];
 
      UpdateLineColumn(c);
-     return c;
+     return (c);
   }
 
   /**

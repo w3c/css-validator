@@ -108,7 +108,7 @@ public abstract class CssParser implements CssParserConstants {
 
     private boolean reinited = false;
 
-    static StringBuffer SPACE = new StringBuffer(" ");
+    static StringBuilder SPACE = new StringBuilder(" ");
 
     // to be able to remove a ruleset if the selector is not valid
     protected boolean validSelector = true;
@@ -1801,6 +1801,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 }
       }
       jj_consume_token(LBRACE);
+            validSelector = (context_set.size() > 0);
       label_56:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2001,43 +2002,38 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       }
               {if (true) return current;}
     } catch (InvalidParamException ie) {
-        skipStatement();
-        removeThisRule();
+        //	skipStatement();
+        //	removeThisRule();
         ac.getFrame().addError(new CssError(ie));
-
+        Token t = getToken(1);
+        StringBuilder s = new StringBuilder();
+        s.append(getToken(0).image);
+        // eat until , { or EOF
+        while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+            s.append(t.image);
+            getNextToken();
+            t = getToken(1);
+        }
         {if (true) return null;}
     } catch (ParseException e) {
-        validSelector = false;
-        if (ac.getProfile() != null) {
-            if(!(ac.getProfile().equals("mobile"))) {
-                Token t = getToken(1);
-                StringBuffer s = new StringBuffer();
-                s.append(getToken(0).image);
-                while ((t.kind != COMMA) && (t.kind != LBRACE) &&
-                       (t.kind != EOF)) {
-                    s.append(t.image);
-                    getNextToken();
-                    t = getToken(1);
-                }
-
-                addError(e, s.toString());
-
-                {if (true) return null;}
-            }
-        } else {
-            Token t = getToken(1);
-            StringBuffer s = new StringBuffer();
-            s.append(getToken(0).image);
-            while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
-                s.append(t.image);
-                getNextToken();
-                t = getToken(1);
-            }
-
-            addError(e, s.toString());
-
-            {if (true) return null;}
+        //	validSelector = false;
+        Token t = getToken(1);
+        StringBuilder s = new StringBuilder("[");
+        s.append(getToken(0).image);
+        // eat until , { or EOF
+        while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+            s.append(t.image);
+            getNextToken();
+            t = getToken(1);
         }
+        s.append(']');
+        //	if (validSelector) {
+        addError(e, s.toString());
+            //	} else {
+            //  addError(e,"");
+            //	}
+        validSelector = true;
+        {if (true) return null;}
     }
     throw new Error("Missing return statement in function");
   }
@@ -2241,8 +2237,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             //        s.addAttribute("class", convertIdent(n.image.substring(1)),
             //           CssSelectors.ATTRIBUTE_CLASS_SEL);
         } catch (InvalidParamException e) {
-            removeThisRule();
-            ac.getFrame().addError(new CssError(e));
+            //	    removeThisRule();
+             ac.getFrame().addError(new CssError(e));
+            {if (true) throw new ParseException(e.getMessage());}
         }
       break;
     case LENGTH:
@@ -2258,8 +2255,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             n.image = n.image.substring(1);
 
             // the class with the first digit escaped
-            String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
-            cl += n.image.substring(1);
+            String cl = "."+hexEscapeFirst(n.image);
 
             String profile = ac.getProfile();
             if(profile == null || profile.equals("") || profile.equals("none")) {
@@ -2267,13 +2263,14 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             }
 
             if(!profile.equals("css1")) {
-                addError(new ParseException(ac.getMsg().getString(
-                                                                  "parser.old_class")),
-                         "To make \"." + n.image + "\" a valid class, CSS2" +
-                         " requires the first digit to be escaped " +
-                         "(\"." + cl + "\")");
-                s.addClass(new ClassSelector(n.image));
-                removeThisRule();
+                StringBuilder sb = new StringBuilder();
+                Vector<String> param_err = new Vector<String>(2);
+                param_err.add(n.image);
+                param_err.add(cl);
+                sb.append(ac.getMsg().getString("parser.old_class", param_err));
+                {if (true) throw new ParseException(sb.toString());}
+                //		s.addClass(new ClassSelector(n.image));                            
+                // removeThisRule();              
             }
             else {
                 CssLength length = new CssLength();
@@ -2286,21 +2283,23 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                     isLength = false;
                 }
                 if(isLength) {
-                    addError(new ParseException(ac.getMsg().getString(
-                                                                      "parser.class_dim")), n.image);
-                    s.addClass(new ClassSelector(n.image));
-                    removeThisRule();
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(ac.getMsg().getString("parser.class_dim"));
+                    sb.append(n.image);
+                    {if (true) throw new ParseException(sb.toString());}
+                    //		    s.addClass(new ClassSelector(n.image));                            
+                    // removeThisRule();
                 }
                 else {
                     try {
                         // for css > 1, we add the rule to have a context, 
                         // and we then remove it
                         s.addClass(new ClassSelector(n.image));
-
                         ac.getFrame().addWarning("old_class");
                     } catch (InvalidParamException e) {
-                        ac.getFrame().addError(new CssError(e));
-                        removeThisRule();
+                        {if (true) throw new ParseException(e.getMessage());}
+                        //ac.getFrame().addError(new CssError(e));
+                        //removeThisRule();
                     }
                 }
             }
@@ -2700,9 +2699,10 @@ CssExpression param = null;
                                                     ac.getCssVersion() ,ac);}
                 }
             } catch(InvalidParamException e) {
-                //e.printStackTrace();	
-                removeThisRule();
-                ac.getFrame().addError(new CssError(e));
+                //	removeThisRule();
+                //		ac.getFrame().addError(new CssError(e));
+                validSelector = false;
+                {if (true) throw new ParseException(e.getMessage());}
             }
       break;
     case COLON:
@@ -2713,7 +2713,6 @@ CssExpression param = null;
                 try {
                     s.addPseudoClass(convertIdent(n.image).toLowerCase());
                 } catch(InvalidParamException e) {
-                    //e.printStackTrace();	
                     removeThisRule();
                     ac.getFrame().addError(new CssError(e));
                 }
@@ -2885,7 +2884,7 @@ CssExpression param = null;
       break;
     case HASH:
       n = jj_consume_token(HASH);
-      {if (true) throw new ParseException("Unrecognized ");}
+      {if (true) throw new ParseException(ac.getMsg().getString("parser.invalid_id_selector"));}
       break;
     default:
       jj_la1[109] = jj_gen;
@@ -3415,7 +3414,7 @@ CssExpression param = null;
   }
 
   String skipStatement() throws ParseException {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     Token tok = getToken(0);
     boolean first = true;
 
@@ -3473,7 +3472,7 @@ CssExpression param = null;
   }
 
   String skip_to_matching_brace() throws ParseException {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     Token tok;
     int nesting = 1;
     /* FIXME
@@ -3505,7 +3504,7 @@ CssExpression param = null;
   }
 
   void skipAfterExpression(Exception e) throws ParseException {
-    StringBuffer s = new StringBuffer();
+    StringBuilder s = new StringBuilder();
     s.append(getToken(0).image);
     while (true) {
         try {
@@ -3656,6 +3655,19 @@ CssExpression param = null;
 
   String convertString(String s) throws ParseException {
     return convertStringIndex(s, 0, s.length(), false);
+  }
+
+  String hexEscapeFirst(String s) throws ParseException {
+    StringBuilder sb = new StringBuilder();
+    sb.append('\\').append(Integer.toString(s.charAt(0), 16));
+    char c = s.charAt(1);
+    if (((c >= '0') && (c <= '9')) ||
+        ((c >= 'A') && (c <= 'F')) ||
+        ((c >= 'a') && (c <= 'f'))) {
+        sb.append(' ');
+    }
+    sb.append(s.substring(1));
+    return sb.toString();
   }
 
   final private boolean jj_2_1(int xla) {
