@@ -247,7 +247,7 @@ error.rgb: %s は、3または6つの16進数の数字による正しい色の�
 error.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
 
 # used by org.w3c.css.parser.CssPropertyFactory 
-error.noexistence-at-all: プロパティ %s は %s に存在しません
+error.noexistence-at-all: プロパティ %s は存在しません
 error.noexistence-media: プロパティ %s はメディア %s には存在しません
 error.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
 warning.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
