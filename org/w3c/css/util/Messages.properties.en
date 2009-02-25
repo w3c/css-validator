@@ -369,3 +369,6 @@ parser.charsetcss1: @charset rules can not be used in CSS1
 parser.attrcss1: Attribute selectors are invalid in CSS1
 
 parser.invalid_id_selector: Invalid ID selector
+parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import.
+
+

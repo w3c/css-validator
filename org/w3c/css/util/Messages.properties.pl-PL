@@ -367,4 +367,5 @@ warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width de
 parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
 parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
 parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
+parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
 
