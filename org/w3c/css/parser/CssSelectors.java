@@ -32,6 +32,7 @@ import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warnings;
 
@@ -339,6 +340,12 @@ public final class CssSelectors extends SelectorsList
 	sbrep.append(super.toString());
 	cachedRepresentation = sbrep.toString();
 	return cachedRepresentation;
+    }
+    /**
+     * return XML escaped string
+     */
+    public String getEscaped() {
+	return Messages.escapeString(toString());
     }
 
     public boolean isToStringCached() {

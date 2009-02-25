@@ -144,6 +144,13 @@ public class Warning {
     }
 
     /**
+     * Get the source file
+     */
+    public String getSourceFileEscaped() {
+	return Messages.escapeString(sourceFile);
+    }
+
+    /**
      * Get the line number.
      */
     public int getLine() {
@@ -155,6 +162,13 @@ public class Warning {
      */
     public String getWarningMessage() {
 	return warningMessage;
+    }
+
+    /**
+     * Get the message.
+     */
+    public String getWarningMessageEscaped() {
+	return Messages.escapeString(warningMessage);
     }
 
     /**

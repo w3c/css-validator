@@ -8,6 +8,7 @@ package org.w3c.css.css;
 import java.util.Vector;
 
 import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.util.Messages;
 
 public class CssStyleRule {
 
@@ -25,7 +26,11 @@ public class CssStyleRule {
     public String getSelectors() {
 	return selectors;
     }
-	
+    
+    public String getSelectorsEscaped() {
+	return Messages.escapeString(selectors);
+    }
+
     /**
      * This function is only used inside the velocity template
      * @return the list of properties in a Vector
@@ -63,6 +68,10 @@ public class CssStyleRule {
 	    ret.append('\n');
 	}
 	return ret.toString();
+    }
+
+    public String toStringEscaped() {
+	return Messages.escapeString(toString());
     }
 
     /*

@@ -162,6 +162,30 @@ public class Messages {
 	return getString("servlet."+message);
     }
 
+    /**
+     * escape string
+     */
+    static public String escapeString(String orig) {
+	if (orig != null) {
+            int len = orig.length();
+            StringBuilder ret = new StringBuilder(len+16);
+            char c;
+	    
+            for (int i = 0; i < len; i++) {
+                switch (c = orig.charAt(i)) {
+                case '&'  : ret.append("&amp;"); break;
+                case '\'' : ret.append("&#39;"); break;
+                case '"'  : ret.append("&quot;"); break;
+                case '<'  : ret.append("&lt;"); break;
+                case '>'  : ret.append("&gt;"); break;
+                default   : ret.append(c);
+                }
+            }
+            return ret.toString();
+        }
+        return "[empty string]";
+    }
+
     public String getString(String message, Vector<String> params) {
 	if ((params == null) || params.size() == 0) {
 	    return getString(message);

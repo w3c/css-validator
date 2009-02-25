@@ -11,6 +11,7 @@ import org.w3c.css.selectors.attributes.AttributeBegin;
 import org.w3c.css.selectors.attributes.AttributeExact;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Messages;
 
 /**
  * SelectorsList<br />
@@ -264,6 +265,10 @@ public class SelectorsList {
     
     public boolean isToStringCached() {
 	return (stringrep != null);
+    }
+
+    public String toStringEscaped() {
+	return Messages.escapeString(toString());
     }
 
     /**

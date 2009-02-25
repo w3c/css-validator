@@ -8,6 +8,7 @@ package org.w3c.css.css;
 import java.util.Vector;
 
 import org.w3c.css.parser.AtRule;
+import org.w3c.css.util.Messages;
 
 public class CssRuleList {
 
@@ -39,6 +40,10 @@ public class CssRuleList {
 
     public String getAtRule() {
 	return atRuleString;
+    }
+    
+    public String getAtRuleEscaped() {
+	return Messages.escapeString(atRuleString);
     }
 	
     public boolean isEmpty() {
