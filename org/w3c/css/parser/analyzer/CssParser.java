@@ -601,6 +601,10 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 ParseException e =
                 new ParseException(ac.getMsg().getString("parser.charset"));
                 addError(e, ret);
+            } else if (!reinited && ret.startsWith("@import")) {
+                ParseException e =
+                new ParseException(ac.getMsg().getString("parser.import_not_allowed"));
+                addError(e, ret);
             } else if (!reinited) {
                 ParseException e =
              new ParseException(ac.getMsg().getString("generator.unrecognize"));
