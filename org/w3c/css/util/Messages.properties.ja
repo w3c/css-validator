@@ -355,5 +355,5 @@ warning.float-no-width: (X)HTML+CSSでは浮動要素には幅属性の宣言が
 
 parser.charsetcss1: @charset は CSS1 には存在しません。
 parser.attrcss1: 属性選択子 は CSS1 には存在しません。
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+parser.invalid_id_selector: 不正な ID 選択子です。
+parser.import_not_allowed: @charset と @import 以外の有効な文の後に @import は指定できません。
