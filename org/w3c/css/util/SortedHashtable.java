@@ -54,10 +54,7 @@ public class SortedHashtable extends Hashtable {
 	Object[] sortedArray = new Object[size()];
 	int i = 0;
 
-	for (Enumeration e = elements(); e.hasMoreElements(); i++) {
-	    sortedArray[i] = e.nextElement();
-	}
-
+	values().toArray(sortedArray);
 	sort.sort(sortedArray, 0, size()-1, new CompareString());
 
 	return sortedArray;
