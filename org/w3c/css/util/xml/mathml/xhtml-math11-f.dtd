@@ -226,32 +226,6 @@
          http://www.hytime.org/
 -->
 
-<?IS10744 ArcBase xhtml ?>
-
-<!NOTATION xhtml PUBLIC "-//W3C//NOTATION AFDR ARCBASE XHTML 1.1//EN" >
-
-<!-- Entity declaration for associated Architectural DTD
--->
-<!ENTITY xhtml-arch.dtd
-      PUBLIC "-//W3C//DTD XHTML Architecture 1.1//EN"
-             "xhtml11-arch.dtd" >
-
-<?IS10744:arch xhtml
-    public-id       =  "-//W3C//NOTATION AFDR ARCBASE XHTML 1.1//EN"
-    dtd-public-id   =  "-//W3C//DTD XHTML 1.1//EN"
-    dtd-system-id   =  "xhtml11.dtd"
-    doc-elem-form   =  "html"
-    form-att        =  "html"
-    renamer-att     =  "htnames"
-    suppressor-att  =  "htsupp"
-    data-ignore-att =  "htign"
-    auto            =  "ArcAuto"
-    options         =  "HtModReq HtModOpt"
-    HtModReq        =  "Framework Text Hypertext Lists Structure"
-    HtModOpt        =  "Standard"
-?>
-
-<!-- end of xhtml-arch-1.mod -->
 ]]>
 
 <!ENTITY % xhtml-notations.module "INCLUDE" >
