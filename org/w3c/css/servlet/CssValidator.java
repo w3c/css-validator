@@ -743,8 +743,9 @@ public final class CssValidator extends HttpServlet {
      * @param output
      * @throws MimeTypeFormatException
      */
-    private void buildHeader(ApplContext ac, HttpServletResponse res, String output) {
-
+    private void buildHeader(ApplContext ac, HttpServletResponse res, 
+			     String output)
+    {
 	// I don't want cache for the response (inhibits proxy)
 	res.setHeader("Pragma", "no-cache"); // @@deprecated
 	res.setHeader("Cache-Control", "no-cache");
@@ -807,6 +808,7 @@ public final class CssValidator extends HttpServlet {
 	    res.setHeader("Content-Language", "en");
 	    res.setHeader("charset", Utf8Properties.ENCODING);
 	}
+	res.setHeader("Vary", "Accept-Language");
     }
 
     private void handleError(HttpServletResponse res, ApplContext ac,
