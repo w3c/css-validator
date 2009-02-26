@@ -282,9 +282,9 @@
   </p>
   </div>
   <ul class="navbar" id="menu">
-    <li><a href="about.html" title="CSS Validator について">このサービスについて</a> <span class="hideme">|</span></li>
-    <li><a href="documentation.html" title="CSS Validator ドキュメント: 目次">ドキュメント</a> <span class="hideme">|</span></li>
-    <li><a href="DOWNLOAD.html" title="CSS Validator のダウンロードとインストール">ダウンロード</a> <span class="hideme">|</span></li>
+    <li><a href="about.html" title="CSS 検証サービスについて">このサービスについて</a> <span class="hideme">|</span></li>
+    <li><a href="documentation.html" title="CSS 検証サービスドキュメント: 目次">ドキュメント</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="CSS 検証サービスのダウンロードとインストール">ダウンロード</a> <span class="hideme">|</span></li>
     <li><a href="Email.html" title="フィードバック">お問い合わせ</a> <span class="hideme">|</span></li>
     <li><a href="thanks.html" title="謝辞">謝辞</a></li>
   </ul>

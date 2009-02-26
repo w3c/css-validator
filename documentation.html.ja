@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>W3C CSS Validator ドキュメント</title>
+  <title>W3C CSS 検証サービスドキュメント</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
@@ -27,7 +27,7 @@
 <!-- This DIV encapsulates everything in this page - necessary for the positioning -->
 
 <div class="doc">
-<h2>CSS Validator ドキュメント: 目次</h2>
+<h2>CSS 検証サービスドキュメント: 目次</h2>
 
 <p id="skip"></p>
 
@@ -35,11 +35,11 @@
 
 <dl>
     <dt><a href="./manual.html">ユーザー・マニュアル</a></dt>
-    <dd>CSS Validatorの使い方についての文書</dd>
+    <dd>CSS 検証サービスの使い方についての文書</dd>
     <dt><a href="about.html">このサービスについて</a></dt>
-    <dd>CSS Validator についての情報や、一般的な質問への回答など</dd>
+    <dd>CSS 検証サービスについての情報や、一般的な質問への回答など</dd>
     <dt><a href="http://www.websitedev.de/css/validator-faq">
-	CSS Validator FAQ
+	CSS 検証サービスFAQ
     </a></dt>
     <dd>よくある技術的な質問への回答</dd>
     
@@ -56,16 +56,16 @@
 
 <dl>
     <dt><a href="DOWNLOAD.html">ダウンロードとインストール</a></dt>
-    <dd>CSS Validator のソースを入手して、コマンドラインプログラムやサーブレットとして動作させるまでの手順について。</dd>
-    
+    <dd>CSS 検証サービスのソースを入手して、コマンドラインプログラムやサーブレットとして動作させるまでの手順について。</dd>
+
     <dt><a href="README">開発者向け README</a></dt>
-    <dd>CSS Validator のコードの概要</dd>
+    <dd>CSS 検証サービスのコードの概要</dd>
 
     <dt><a href="./api.html">ウェブサービスAPI</a></dt>
     <dd>SOAP 1.2 検査インターフェースについての文書</dd>
     
     <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">バグ</a></dt>
-    <dd>現バージョンの Validator に既知の問題と、新しいバグや問題を投稿するためのインターフェース。
+    <dd>現バージョンの CSS 検証サービスに既知の問題と、新しいバグや問題を投稿するためのインターフェース。
     <a href="Email.html">フィードバックの手引き</a>も参照してください。</dd>
 
 </dl>
@@ -79,7 +79,7 @@
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
 	<li><a href="about.html" title="このサービスについて">このサービスについて</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="CSS Validatorのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS 検証サービスのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
         <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
       </ul>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>W3C CSS 検査サービスについて</title>
+    <title>W3C CSS 検証サービスについて</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="ホーム" />
     <style type="text/css" media="all">
@@ -24,7 +24,7 @@
 
    <div class="doc">
 
-      <h2>CSS Validator について</h2>
+      <h2>CSS 検証サービスについて</h2>
 
 <h3 id="TableOfContents">目次</h3>
 <div id="toc">
@@ -42,9 +42,9 @@
   </li>
   <li>開発者向け
   <ol>
-    <li><a href="#code">CSS Validatorは何で書かれているの? ソースはどこかで手に入る?</a></li>
-    <li><a href="#install">自分でも CSS Validator をインストール・実行できる?</a></li>
-    <li><a href="#api">この Validator を使ってなにかアプリケーションを作れる? 何か API がある?</a></li>
+    <li><a href="#code">CSS 検証サービスは何で書かれているの? ソースはどこかで手に入る?</a></li>
+    <li><a href="#install">自分でも CSS 検証サービスをインストール・実行できる?</a></li>
+    <li><a href="#api">この CSS 検証サービスを使ってなにかアプリケーションを作れる? 何か API がある?</a></li>
   </ol>
   </li>
 </ol>
@@ -53,7 +53,7 @@
 
 <h4 id="what">これは何? 私には必要?</h4>
 
-<p>W3C CSS 検査サービスは、W3Cによって作られたフリーソフトウェアで、ウェブデザイナーやウェブ開発者が CSS (Cascading Style Sheets; カスケーディング・スタイルシート) をチェックするのに使うことができます。
+<p>W3C CSS 検証サービスは、W3Cによって作られたフリーソフトウェアで、ウェブデザイナーやウェブ開発者が CSS (Cascading Style Sheets; カスケーディング・スタイルシート) をチェックするのに使うことができます。
 このサービスは、ウェブ上の<a href="./">フリーサービス</a>を通じて使ったり、ダウンロードして Java プログラムとして実行したりウェブサーバー上で Java サーブレットとして使ったりできます。</p>
 
 <p><em>あなた</em>に必要かどうか?
@@ -88,34 +88,34 @@ W3C がツールを管理・ホスティングしています。
 
 <h4 id="participate">何か手伝えることは?</h4>
 <p>もちろん。
-Java プログラマなら、CSS Validator プロジェクトの<a href="#code">コード</a>をチェック・選別して<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグ</a>を修正したり、新機能の構築を手伝っていただければ助かります。</p>
-<p>しかし、このツールの構築・運営に必要とされているのはプログラマだけではありません。文書を改良したり、Validator をあなたの言語に翻訳するのを手伝ったり、<a href="http://lists.w3.org/Archives/Public/www-validator-css/">メーリングリスト</a>に参加して議論したり他の参加者を手助けするのも、また大きな支援となります。</p>
+Java プログラマなら、CSS 検証サービスプロジェクトの<a href="#code">コード</a>をチェック・選別して<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグ</a>を修正したり、新機能の構築を手伝っていただければ助かります。</p>
+<p>しかし、このツールの構築・運営に必要とされているのはプログラマだけではありません。文書を改良したり、CSS 検証サービスをあなたの言語に翻訳するのを手伝ったり、<a href="http://lists.w3.org/Archives/Public/www-validator-css/">メーリングリスト</a>に参加して議論したり他の参加者を手助けするのも、また大きな支援となります。</p>
 
 <h4 id="contact">作者にコンタクトをとるには? バグを報告するには?</h4>
-<p>CSS や CSS Validator についての質問があるなら、<a href="Email">メーリングリストやフォーラム</a>を見てください。でもその前に、あなたの質問やコメントがすでに <a href="http://www.websitedev.de/css/validator-faq">CSS Validator <acronym title="Frequently Asked Questions">FAQ</acronym></a> に登録されていないことを確認してください。</p>
+<p>CSS や CSS 検証サービスについての質問があるなら、<a href="Email">メーリングリストやフォーラム</a>を見てください。でもその前に、あなたの質問やコメントがすでに <a href="http://www.websitedev.de/css/validator-faq">CSS 検証サービス<acronym title="Frequently Asked Questions">FAQ</acronym></a> に登録されていないことを確認してください。</p>
 
 
 <h3 id="dev">開発者向け</h3>
-<h4 id="code">CSS Validator は何で書かれているの? ソースはどこかで手に入る? </h4>
-<p>W3C CSS Validator は、Java 言語を使って書かれています。
+<h4 id="code">CSS 検証サービスは何で書かれているの? ソースはどこかで手に入る? </h4>
+<p>W3C CSS 検証サービスは、Java 言語を使って書かれています。
 ええ、もちろんコードも CVS で公開されています。
 <a href="http://dev.w3.org/cvsweb/2002/css-validator/">コードをオンラインで閲覧</a>することもできますし、リンク先のページの指示に従ってソースツリー全体をダウンロードすることもできます。
-CSS Validator で使われているクラスなどの概要は、<a href="README.html">README</a> ファイルをご覧ください。</p>
+CSS 検証サービスで使われているクラスなどの概要は、<a href="README.html">README</a> ファイルをご覧ください。</p>
 
-<h4 id="install">自分でも CSS Validator をインストール・実行できる?</h4>
-<p>CSS Validator は、ダウンロードしてインストールして、コマンドラインから起動することもウェブサーバー上でサーブレットとして実行することも可能です。
+<h4 id="install">自分でも CSS 検証サービスをインストール・実行できる?</h4>
+<p>CSS 検証サービスは、ダウンロードしてインストールして、コマンドラインから起動することもウェブサーバー上でサーブレットとして実行することも可能です。
 インストールして利用するには、<a href="RUN.html">ガイド</a>をお読みください。</p>
 
-<h4 id="api">この Validator を使ってなにかアプリケーションを作れる? 何か API がある?</h4>
+<h4 id="api">この CSS 検証サービスを使ってなにかアプリケーションを作れる? 何か API がある?</h4>
 <p>はい。もう一つ、<a href="api.html">はい</a>。
-CSS Validator には、平和的 (RESTful) な <a href="api.html">SOAP インターフェース</a>があり、(ウェブかどうかに限らず) アプリケーションの構築が合理的で簡単にできるようになっています。
-もちろん良いマナーと共有資源利用への配慮をお願いします: Validator を呼ぶ間に sleep() するか、もしくはあなた自身の Validator インスタンスをインストールして実行するよう心がけてください。
+CSS 検証サービスには、平和的 (RESTful) な <a href="api.html">SOAP インターフェース</a>があり、(ウェブかどうかに限らず) アプリケーションの構築が合理的で簡単にできるようになっています。
+もちろん良いマナーと共有資源利用への配慮をお願いします: CSS 検証サービスを呼ぶ間に sleep() するか、もしくはあなた自身の CSS 検証サービスインスタンスをインストールして実行するよう心がけてください。
 </p>
 </div>
    <ul class="navbar"  id="menu">
         <li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="ドキュメント">ドキュメント</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="CSS Validator のダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS 検証サービスのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
         <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
       </ul>

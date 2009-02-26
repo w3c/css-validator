@@ -59,7 +59,7 @@ note: メモ
 note_xhtml_valid: CSSスタイルシートを意図した通りに機能させるには、正しい文書解析木が必要です。つまり、<a href="http://validator.w3.org/">正当なHTML</a>を用いるべきです。
 # End of variables added along with Index page template
 
-W3C_validator_results: CSS Validator 検証結果 
+W3C_validator_results: CSS 検証サービス検証結果
 # file_title: <!-- provided by the user -->
 CSS_validation_service: CSS 検証サービス
 jump_to: 表示
@@ -111,9 +111,9 @@ dl: ダウンロード
 feedback: お問い合わせ
 credits: 謝辞
 home_title: W3C CSS 検証サービスのホーム
-about_title: CSS Validator について
-doc_title: CSS Validator ドキュメント: 目次
-dl_title: CSS Validator のダウンロードとインストール
+about_title: CSS 検証サービスについて
+doc_title: CSS 検証サービスドキュメント: 目次
+dl_title: CSS 検証サービスのダウンロードとインストール
 feedback_title: フィードバック
 credits_title: 謝辞
 W3C_quality_msg: W3CのQuality Assurance Activityによって、フリーなウェブ品質ツールなどが提供されています。

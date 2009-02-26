@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>CSS Validator ユーザー・マニュアル</title>
+  <title>CSS 検証サービスユーザー・マニュアル</title>
   <link rev="made" href="mailto:www-validator-css@w3.org" />
   <link rev="start" href="./" title="Home Page" />
   <style type="text/css" media="all">
@@ -29,13 +29,13 @@
 <!-- This DIV encapsulates everything in this page - necessary for the positioning -->
 
 <div class="doc">
-<h2>CSS Validator ユーザー・マニュアル</h2>
+<h2>CSS 検証サービスユーザー・マニュアル</h2>
 
 <h3 id="TableOfContents">目次</h3>
 
 <div id="toc">
 <ul>
-  <li><a href="#use">CSS Validator の使い方</a>
+  <li><a href="#use">CSS 検証サービスの使い方</a>
     <ul>
       <li><a href="#url">URL を指定して検証</a></li>
       <li><a href="#fileupload">ファイルをアップロードして検証</a></li>
@@ -53,7 +53,7 @@
   <li><a href="#expert">エキスパート向け</a>
     <ul>
 	<li><a href="#requestformat">検査リクエストのフォーマット</a></li>
-	<li><a href="#api">CSS Validator ウェブサービス API</a></li>
+	<li><a href="#api">CSS 検証ウェブサービス API</a></li>
     </ul>
    </li>
 </ul>
@@ -61,7 +61,7 @@
 
 <p id="skip"></p>
 
-<h3 id="use">CSS Validator の使い方</h3>
+<h3 id="use">CSS 検証サービスの使い方</h3>
 
 <p>
 文書をチェックするには、基本インターフェースを使うのがもっとも簡単です。
@@ -108,6 +108,8 @@
 
 <p>    
     基本インターフェースを使うと、Validator は <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
+    基本インターフェースを使うと、CSS 検証サービスは <a href="http://www.w3.org/TR/CSS21">CSS 2.1</a> に対する準拠具合を調べます。CSS2 は、現行の CSS に関する技術勧告です。<br />
+
     この画面では、警告を出さずに(エラーのみ表示されます) XHTML で結果を表示します。<br />
     基本的な検証ではメディアは "all" に設定されますが、これはすべてのデバイスに適切なメディアです
     (メディアについてのちゃんとした説明は <a href="http://www.w3.org/TR/CSS2/media.html">http://www.w3.org/TR/CSS2/media.html</a> を参照してください)。
@@ -123,7 +125,7 @@
 
 <p>
     このパラメータは、CSS の冗長性 (verbosity) を設定するものです。
-    実際、Validator は、エラーと警告という2種類のメッセージを返します。
+    実際、CSS 検証サービスは、エラーと警告という2種類のメッセージを返します。
     エラーは、チェックを受けた CSS が CSS 勧告に従っていない場合に出力されます。
     警告は、エラーとは異なり仕様準拠に関する問題については言及しません。
     警告は、CSS 開発者に対し、ユーザーエージェントによっては危険で奇妙な動作に陥ってしまう場合を警告するものです。
@@ -135,7 +137,7 @@
 <h4 id="paramprofile">「プロファイル」パラメータ</h4>
 
 <p>
-    CSS Validator は、数種類の CSS プロファイルをチェックすることができます。
+    CSS 検証サービスは、数種類の CSS プロファイルをチェックすることができます。
     プロファイルとは、あるプラットフォームが実装していると想定している機能のリストです。
     プロファイルの定義は、
     <a href="http://www.w3.org/Style/2004/css-charter-long.html#modules-and-profiles0">CSS のサイト</a> にあります。
@@ -156,14 +158,14 @@
 <h3 id="expert">エキスパート向け</h3>
 
 <h4 id="requestformat">検査リクエストのフォーマット</h4>
-<p>下表は、W3C CSS Validator にクエリーを送る際に使えるパラメータの表です。</p>
+<p>下表は、W3C CSS 検証サービスにクエリーを送る際に使えるパラメータの表です。</p>
 
 <p>もし W3C の一般向け検査サーバーを使いたいのであれば、
 ベース URI: <kbd>http://jigsaw.w3.org/css-validator/validator</kbd> と併せて下表のパラメータを用いてください。<br />
-(独自の Validator インスタンスを呼び出したい場合は、あなたのサーバーのアドレスで読み替えてください)</p>
+(独自の CSS 検証サービスインスタンスを呼び出したい場合は、あなたのサーバーのアドレスで読み替えてください)</p>
 
 <p><strong>注意</strong>:
-複数の文書に対して Validator をプログラムから呼び出す際は、スクリプトがそれぞれのリクエストの間に <strong>少なくとも1秒以上</strong> <code>sleep</code> するように心がけてください。CSS 検査サービスはフリーで公のサービスです。ご理解ご協力をお願いします。</p>
+複数の文書に対して CSS 検証サービスをプログラムから呼び出す際は、スクリプトがそれぞれのリクエストの間に <strong>少なくとも1秒以上</strong> <code>sleep</code> するように心がけてください。CSS 検査サービスはフリーで公のサービスです。ご理解ご協力をお願いします。</p>
 
 <table class="refdoc">
   <tbody>
@@ -191,7 +193,7 @@
     </tr>
     <tr>
       <th>output</th>
-      <td>Validator の出力フォーマットを指定します。
+      <td>CSS 検証サービスの出力フォーマットを指定します。
 	対応するフォーマットは、
 	<code>text/html</code> と <code>html</code> (XHTML 文書。Content-Type: text/html)、
 	<code>application/xhtml+xml</code> と <code>xhtml</code> (XHTML 文書。Content-Type: application/xhtml+xml)、
@@ -232,6 +234,11 @@
 <p>    
     より技術的なヘルプについて、特に SOAP 1.2 の出力や Validator の呼び出し方法などについては、
     <a href="./api.html">CSS Validator Web Service API</a> をご覧下さい。
+
+<h4 id="api">CSS 検証ウェブサービス API: SOAP 1.2 検査インターフェースについての文書</h4>
+  <p>
+    より技術的なヘルプについて、特に SOAP 1.2 の出力や CSS 検証サービスの呼び出し方法などについては、
+    <a href="./api.html">CSS 検証ウェブサービス API</a> をご覧下さい。
 </p>
 
 </div>
@@ -242,7 +249,7 @@
         <li><strong><a href="./" title="W3C CSS 検証サービスのホーム">ホーム</a></strong> <span class="hideme">|</span></li>
 	<li><a href="about.html" title="このサービスについて">このサービスについて</a> <span class="hideme">|</span></li>
         <li><a href="documentation.html" title="ドキュメント">ドキュメント</a> <span class="hideme">|</span></li>
-        <li><a href="DOWNLOAD.html" title="CSS Validatorのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
+        <li><a href="DOWNLOAD.html" title="CSS 検証サービスのダウンロード">ダウンロード</a> <span class="hideme">|</span></li>
 
         <li><a href="Email.html" title="このサービスへのフィードバック">フィードバック</a> <span class="hideme">|</span></li>
         <li><a href="thanks.html" title="クレジットと謝辞">謝辞</a><span class="hideme">|</span></li>
