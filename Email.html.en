@@ -96,7 +96,31 @@
 
           </ul>
 
+       <ul id="lang_choice">
 
+
+     <li><a href="Email.html.en"
+         lang="en"
+         xml:lang="en"
+         hreflang="en"
+         rel="alternate">English</a>
+     </li>
+
+     <li><a href="Email.html.fr"
+         lang="fr"
+         xml:lang="fr"
+         hreflang="fr"
+         rel="alternate">Français</a>
+     </li>
+
+     <li><a href="Email.html.ja"
+         lang="ja"
+         xml:lang="ja"
+         hreflang="ja"
+         rel="alternate">日本語</a>
+     </li>
+
+</ul>
 
        <div id="footer">
    <p id="activity_logos">
