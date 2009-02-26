@@ -45,6 +45,12 @@
     
 </dl>
 
+<h3 id="translat">翻訳者のコーナー</h3>
+<dl>
+    <dt><a href="http://qa-dev.w3.org:8001/css-validator/translations.html" title="CSS 検証サービスの翻訳">CSS 検証サービスの翻訳</a></dt>
+    <dd>現在のすべての翻訳の状況、未完成で助けを必要とする翻訳の一覧、および新たな言語で検証サービスを利用可能にする方法。</dd>
+</dl>
+
 <h3 id="devel">開発者向けリソース</h3>
 
 
