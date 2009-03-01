@@ -111,7 +111,10 @@ test markup also accepts 3 properties: warning, profile and medium
       <file>testsuite/general/bugs/corrected-bug-764.css</file>
       <description>See&amp;nbsp;&lt;a href=&quot;http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&quot;&gt;
       http://www.w3.org/Bugs/Public/show_bug.cgi?id=764&lt;/a&gt;</description>
-      <result valid="true"/>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
   </type>
   <type title="loops">
@@ -176,13 +179,19 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/general/parse/valid1.css</file>
       <description>A valid&amp;nbsp;&apos;mono-property&apos;&amp;nbsp;CSS</description>
-      <result valid="true"/>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
     <test>
       <file>testsuite/general/parse/valid2.css</file>
       <description>A valid&amp;nbsp;&apos;mono-property&apos;&amp;nbsp;CSS without 
       ending&amp;nbsp;&apos;;&apos;</description>
-      <result valid="true"/>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
   </type>
   <type title="properties">
@@ -215,7 +224,10 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/general/comments/valid.css</file>
       <descriptiom>A valid CSS with lots of comments</descriptiom>
-      <result valid="true"/>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
     <test>
       <file>testsuite/general/comments/invalid.css</file>
@@ -248,7 +260,10 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/general/at-rule/valid.css</file>
       <description>A valid CSS containing at-rules</description>
-      <result valid="true"/>
+      <result valid="true">
+        <errors>0</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
   </type>
   <type title="Valid CSS with warnings">
@@ -265,14 +280,26 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <url>http://sdfsdf.org</url>
       <description>Inexistant URI</description>
+      <result valid="false">
+        <errors>1</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
     <test>
       <url>file://tmp/tmp.css</url>
       <description>Forbidden protocol</description>
+     <result valid="false">
+        <errors>1</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
     <test>
       <url>https://www.test.com</url>
       <description>Forbidden protocol</description>
+     <result valid="false">
+        <errors>1</errors>
+        <warnings>0</warnings>
+      </result>
     </test>
   </type>
   <type title="Attribute Selectors">
@@ -280,6 +307,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-001.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>0</warnings>
         </result>
     </test>
@@ -287,6 +315,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-002.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>1</warnings>
         </result>
     </test>
@@ -294,6 +323,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-003.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>0</warnings>
         </result>
     </test>
@@ -301,6 +331,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-004.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>0</warnings>
         </result>
     </test>
@@ -308,6 +339,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-005.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>1</warnings>
         </result>
     </test>
@@ -315,6 +347,7 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-006.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
+        <errors>0</errors>
             <warnings>1</warnings>
         </result>
     </test>
@@ -322,7 +355,8 @@ test markup also accepts 3 properties: warning, profile and medium
         <file>testsuite/general/selectors/multipleattributes-007.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
@@ -330,356 +364,407 @@ test markup also accepts 3 properties: warning, profile and medium
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
             <warnings>0</warnings>
-        </result>
+         <errors>0</errors>
+       </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-009.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-010.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-011.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-012.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-013.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-014.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-015.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-016.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-017.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-018.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-019.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-020.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-021.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-022.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-023.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-024.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-025.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-026.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-027.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-028.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-029.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-030.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-031.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-032.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-033.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-034.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-035.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-036.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-037.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-038.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-039.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-040.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-041.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-042.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-043.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-044.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-045.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-046.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-047.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-048.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-049.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-050.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-051.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-052.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-053.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-054.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-055.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-056.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-057.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>0</warnings>
+         <errors>0</errors>
+           <warnings>0</warnings>
         </result>
     </test>
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-058.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
         <result valid="true">
-            <warnings>1</warnings>
+         <errors>0</errors>
+           <warnings>1</warnings>
         </result>
     </test>
   </type>
