@@ -127,6 +127,7 @@ public abstract class CssParser {
     protected boolean markRule;
 
     private boolean reinited = false;
+    private boolean charsetdeclared = false;
 
     static StringBuilder SPACE = new StringBuilder(" ");
 
@@ -633,7 +634,7 @@ void parserUnit() :
 new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); 
 	}
 	    )*
-	( charset() )?
+	  ( charset() )* // * instead of ? to capture the reinit part
 	    ( <S> | <CDO> | <CDC> )*
 	    ( importDeclaration() ( ignoreStatement() ) )*
 	    ( namespaceDeclaration() ( ignoreStatement() ) )*
@@ -659,6 +660,10 @@ void charset() :
 	charsetToken=<CHARSET_SYM> ( space1Token=<S> { nb_S++;} )* 
 	    n=<STRING> ( space2Token=<S> )* semicolonToken=<SEMICOLON>
 	    {
+		if (charsetdeclared && !reinited) {
+		    throw new ParseException(
+				     ac.getMsg().getString("parser.charset"));
+		}
 		// the @charset must be at the beginning of the document
 		if(charsetToken.beginLine != 1 || 
 		   charsetToken.beginColumn != 1) {
@@ -690,7 +695,12 @@ void charset() :
 						     "parser.charsetspecial"));
 		    }
 		}
-		addCharSet(n.image.substring(1, n.image.length()-1));
+		if (!charsetdeclared) {
+		    addCharSet(n.image.substring(1, n.image.length()-1));
+		    charsetdeclared = true;
+		} else {
+		    reinited = false;
+		}
 	    }
     } catch (Exception e) {
 	String skip = charsetToken +
@@ -712,15 +722,15 @@ void afterImportDeclaration() :
 	    }
 	  // quite ugly but necessary to avoid probably a lot of changes in the
 	  // grammar, still having a beautiful error message
-	    else if (!reinited && ret.startsWith("@charset")) {
+	    else if (ret.startsWith("@charset")) {
 		ParseException e = 
 		new ParseException(ac.getMsg().getString("parser.charset"));
 		addError(e, ret);
-	    } else if (!reinited && ret.startsWith("@import")) {
+	    } else if (ret.startsWith("@import")) {
 		ParseException e = 
 		new ParseException(ac.getMsg().getString("parser.import_not_allowed"));
 		addError(e, ret);
-	    } else if (!reinited) {
+	    } else {
 		ParseException e = 
 	     new ParseException(ac.getMsg().getString("generator.unrecognize"));
 		addError(e, ret);
