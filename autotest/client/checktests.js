@@ -42,15 +42,15 @@ function checkURI(testrow, resultrow, encodedURI, cssprofile) {
     xmlhttp.open("GET", "/css-validator/validator?uri="+
 		 encodedURI+
 		 "&profile="+cssprofile+
-		 "&usermedium=all&output=json&warning=1",false);
+		 "&usermedium=all&output=json&warning=1",true);
     xmlhttp.setRequestHeader('Accept','application/json')
- //   xmlhttp.onreadystatechange=function() {
-//	if (xmlhttp.readyState==4) {
-//	    checkResults(testrow, resultrow, xmlhttp);
-//	}
-//    }
+    xmlhttp.onreadystatechange=function() {
+	if (xmlhttp.readyState==4) {
+	    checkResults(testrow, resultrow, xmlhttp);
+	}
+    }
     xmlhttp.send(null);
-    checkResults(testrow, resultrow, xmlhttp);
+//    checkResults(testrow, resultrow, xmlhttp);
 }    
 
 function checkTest(testrow, resultrow) {
