@@ -266,7 +266,7 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
   </type>
-  <type title="Valid CSS with warnings">
+  <type title="Valid_CSS_with_warnings">
     <test>
       <file>testsuite/general/warnings/font-family.css</file>
       <description>font-family without generic family</description>
@@ -276,7 +276,7 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
   </type>
-  <type title="URI errors">
+  <type title="URI_errors">
     <test>
       <url>http://sdfsdf.org</url>
       <description>Inexistant URI</description>
@@ -302,7 +302,7 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
   </type>
-  <type title="Attribute Selectors">
+  <type title="Attribute_Selectors">
     <test profile="css21">
         <file>testsuite/general/selectors/multipleattributes-001.css</file>
         <description>Conflict checks when multiple selectors attributes are defined</description>
