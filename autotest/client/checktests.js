@@ -88,8 +88,8 @@ function resetresults(tableid) {
 	    } else {
 		var allTds = allTests[i].getElementsByTagName("td")
 		for (var j=0; j< allTds.length; j++) {
-		    if (allTds[i].hasAttribute("class")) {
-			allTds[i].removeAttribute("class");
+		    if (allTds[j].hasAttribute("class")) {
+			allTds[j].removeAttribute("class");
 		    }
 		}
 	    }
