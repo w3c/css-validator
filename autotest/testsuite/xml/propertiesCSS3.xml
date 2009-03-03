@@ -3,7 +3,7 @@
 test markup also accepts 3 properties: warning, profile and medium
 -->
 <testsuite>
-  <type title="Valid tests of all properties and their values, except inherit">
+  <type title="Valid_tests_of_all_properties_and_their_values_except_inherit_CSS3">
     <test profile="css3">
       <file>testsuite/properties/css3/propertiesCSS3.css</file>
       <description>Font properties</description>

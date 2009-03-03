@@ -3,7 +3,7 @@
 test markup also accepts 3 properties: warning, profile and medium
 -->
 <testsuite>
-  <type title="Valid tests of all properties and their values, except inherit">
+  <type title="Valid_tests_of_all_properties_and_their_values_except_inherit_CSS1">
     <test profile="css1">
       <file>testsuite/properties/css1/ok/font.css</file>
       <description>Font testsuite/properties</description>
@@ -30,7 +30,7 @@ test markup also accepts 3 properties: warning, profile and medium
       <result valid="true"/>
     </test>
   </type>
-  <type title="Invalid CSS: too many values">
+  <type title="Invalid_CSS1_too_many_values">
     <test profile="css1">
       <file>testsuite/properties/css1/too-many-values/font.css</file>
       <description>Font testsuite/properties</description>
