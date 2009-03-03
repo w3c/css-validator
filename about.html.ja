@@ -34,6 +34,7 @@
 <li><a href="#what">これは何? 私には必要?</a></li>
 <li><a href="#help">言ってる意味がよくわかんない! 助けて!</a></li>
 <li><a href="#reference">つまり、これはCSSが正しいかどうかについて検査する「権威」なわけですね?</a></li>
+<li><a href="#validCSS">「正当な CSS」つてどういう意味？　どの CSS のバージョンを使ったの？</a></li>
 <li><a href="#free">使うのにいくらかかるの?</a></li>
 <li><a href="#who">誰が作ったの? 誰が管理しているの?</a></li>
 <li><a href="#contact">作者にコンタクトをとるには? バグを報告するには?</a></li>
@@ -72,6 +73,16 @@
 <p>違います。
 確かにこれは便利で信頼できるツールですが、他のどんなソフトウェアもそうであるように、ソフトウェアである以上は<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">バグと問題</a>があるかもしれません。
 カスケーディング・スタイルシートの絶対的な参考文献は、<a href="http://www.w3.org/Style/CSS/#specs">CSS の仕様書</a>です。</p>
+
+<h4 id="validCSS">「正当な CSS」つてどういう意味？　どの CSS のバージョンを使ったの？</h4>
+
+<p><a href="http://www.w3.org/TR/CSS21/conform.html#valid-style-sheet"
+title="CSS 2.1 Specification – Conformance: requirements and recommendations">CSS 2.1 仕様「3. 適合性」</a>によれば、<q cite="http://www.w3.org/TR/CSS21/conform.html">スタイルシートの正当性はスタイルシートに使用されるCSSのレベルに依存します。 … 正当な CSS 2.1 スタイルシートは CSS 2.1 の文法にしたがって書かなければなりません。また、この仕様で定義された、@規則、プロパティ名、およびその値だけを含まなければなりません。</q></p>
+
+<p>デフォルトでは、<a href="http://www.w3.org/TR/CSS21/"
+title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">CSS 2.1 仕様</a>に定義された、文法、プロパティ名、および値に対してスタイルシートを検証しますが、この検証ツールは、オプションを使用して、他のレベルの CSS をチェックできます。</p>
+
+<p>CSS は発展している言語です、そして、多くの人が「CSS」は(最新の仕様に基づき定義された)ただ一つの文法であり、多くのプロパティがあり、プロファイルごとに許容値が様々であると思っています。この検証ツールの将来のバージョンでは、デフォルトでその最新の「CSS文法」と数多の標準化されたCSSのプロパティ名と値に対してスタイルシートをチェックするようになるかもしれません。</p>
 
 <h4 id="free">使うのにいくらかかるの?</h4>
 <p>費用はかかりません。
