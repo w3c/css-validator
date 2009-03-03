@@ -73,3 +73,26 @@ function gogo(tableid) {
 	}
     }
 }
+
+function resetresults(tableid) {
+    var testTable = document.getElementById(tableid);
+    if (testTable) {
+	var allTests = testTable.getElementsByTagName('tr')
+	for (var i=0; i< allTests.length; i++) {
+	    var cname = allTests[i].className;
+	    if (cname == "expected") {
+		var allTds = allTests[i].getElementsByTagName("td");
+		if (allTds[0].hasAttribute("class")) {
+		    allTds[0].removeAttribute("class");
+		}
+	    } else {
+		var allTds = allTests[i].getElementsByTagName("td")
+		for (var j=0; j< allTest.length; j++) {
+		    if (allTds[i].hasAttribute("class")) {
+			allTds[i].removeAttribute("class");
+		    }
+		}
+	    }
+	}
+    }
+}
