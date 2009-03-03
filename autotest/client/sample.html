@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style type="text/css">
+      .valid { 
+	  background-color: #7f7;
+      }
+      .invalid { 
+	  background-color: #f77;
+      }
+      table {
+	  border-width: 2px; 
+	  border-color: black;
+	  border-style: solid;
+	  border-spacing: 0;
+	  border-collapse: collapse;
+      }
+      th, td {
+	  border-width: 2px 1px 2px 1px;
+	  border-color: black;
+	  border-style: solid;
+	  margin: 0px;
+	  text-align: center;
+	  vertical-align: center;
+      }
+    </style>
+    <script type="text/javascript" src="functions.js"></script>
+    <script type="text/javascript" src="checktests.js"></script>
+    <script type="text/javascript" src="buildtest.js"></script>
+  </head>
+  <body>
+    <div id="tableanchor">
+      <p onclick="getTestList('http://jigsaw.w3.org/css-validator/autotest/testsuite/xml/bugs.xml')">Create Test Table for Bugs</p>
+      <p onclick="getTestList('http://jigsaw.w3.org/css-validator/autotest/testsuite/xml/general.xml')">Create Test Table for General</p>
+      <p onclick="getTestList('http://jigsaw.w3.org/css-validator/autotest/testsuite/xml/propertiesCSS2.xml')">Create Test Table for CSS2</p>
+    </div>
+    </div>
+  </body>
+</html>
