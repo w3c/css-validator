@@ -1,8 +1,8 @@
-function getTestList(e) {
+function getTestList(uri) {
     var xmlhttp = new XMLHttpRequest();
 //    xmlhttp.open("GET", "/css-validator/autotest/testsuite/xml/"+
 //		 "bugs.xml",false);
-    xmlhttp.open("GET", e, false);
+    xmlhttp.open("GET", uri, false);
     //    xmlhttp.setRequestHeader('Accept','application/json')
     //   xmlhttp.onreadystatechange=function() {
     //	if (xmlhttp.readyState==4) {
@@ -89,13 +89,17 @@ function getTestTable(typetag) {
 
 function generateTestTable(req) {
     var testxml = req.responseXML;
+    var docuri = testxml.documentURI;
+    if (!docuri) {
+	docuri = testxml.URL; // damn Safari...
+    }
     var allTypes = testxml.getElementsByTagName("type");
     // for each <type title="foo"> get the table, find test
     // and add them
     for (var i=0; i<allTypes.length; i++) {
 	var testTable = getTestTable(allTypes[i]);
 	var allTests = allTypes[i].getElementsByTagName("test");
-	fillTableWithTests(testxml.documentURI, testTable, allTests);
+	fillTableWithTests(docuri, testTable, allTests);
     }
 }
 
