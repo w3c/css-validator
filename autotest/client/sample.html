@@ -26,13 +26,18 @@
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="checktests.js"></script>
     <script type="text/javascript" src="buildtest.js"></script>
+    <script type="text/javascript">
+      function initAllTests() {
+	  getTestList('../testsuite/xml/bugs.xml');
+	  getTestList('../testsuite/xml/general.xml');
+	  getTestList('../testsuite/xml/propertiesCSS1.xml');
+	  getTestList('../testsuite/xml/propertiesCSS2.xml');
+	  getTestList('../testsuite/xml/propertiesCSS3.xml');
+      }
+    </script>
   </head>
-  <body>
+  <body onload="initAllTests()">
     <div id="tableanchor">
-      <p onclick="getTestList('../testsuite/xml/bugs.xml')">Create Test Table for Bugs</p>
-      <p onclick="getTestList('../testsuite/xml/general.xml')">Create Test Table for General</p>
-      <p onclick="getTestList('../testsuite/xml/propertiesCSS2.xml')">Create Test Table for CSS2</p>
-    </div>
     </div>
   </body>
 </html>
