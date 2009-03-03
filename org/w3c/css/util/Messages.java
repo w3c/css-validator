@@ -399,6 +399,22 @@ public class Messages {
 
 	// -----------------------
 	try {
+	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.fa");
+	    try {
+		tmp = new Utf8Properties<String,String>();
+		tmp.load(f);
+		languages_name.add("fa");
+		languages.put("fa", tmp);
+	    } finally {
+		f.close();
+	    }
+	} catch (Exception e) {
+	    System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties fa");
+	    System.err.println("  " + e.toString());
+	}
+
+	// -----------------------
+	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.sv");
 	    try {
 		tmp = new Utf8Properties<String,String>();

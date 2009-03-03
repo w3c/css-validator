@@ -1,5 +1,6 @@
 # Spanish translation, last updated in sync with Messages.properties.en,v 1.31
 
+direction: ltr
 language_name: Español
 more_options: Más opciones
 title_more_options: Show/Hide extra validation options

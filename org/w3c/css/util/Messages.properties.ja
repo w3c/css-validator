@@ -1,5 +1,6 @@
 # Japanese translation, last updated in sync with Messages.properties.en,v 1.31
 
+direction: ltr
 language_name: 日本語
 more_options: オプション
 title_more_options: その他の検査オプションを表示する/隠す

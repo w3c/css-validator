@@ -1,5 +1,6 @@
 # Brazilian-Portuguese translation, last updated in sync with Messages.properties.en,v 1.31
 
+direction: ltr
 language_name: Português
 more_options: Mais opções
 title_more_options: Mostra/oculta opções extras de validação

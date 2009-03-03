@@ -1,4 +1,6 @@
 # Master localization string file: $Id$
+
+direction: ltr
 language_name: English
 more_options: More Options
 title_more_options: Show/Hide extra validation options

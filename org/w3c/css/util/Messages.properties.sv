@@ -1,5 +1,6 @@
 # Swedish translation, last updated in sync with Messages.properties.en,v 1.31
 
+direction: ltr
 language_name: Svenska
 more_options: Fler val
 title_more_options: Visa/Dölj andra valideringsval

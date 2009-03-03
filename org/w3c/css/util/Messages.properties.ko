@@ -1,4 +1,6 @@
 # Korean translation, last updated at 2008-11-11 based on Messages.properties.en,v 1.31
+
+direction: ltr
 language_name: 한국어
 more_options: 추가 설정
 title_more_options: 추가 설정 표시/숨김
