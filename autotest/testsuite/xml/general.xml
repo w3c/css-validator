@@ -278,7 +278,7 @@ test markup also accepts 3 properties: warning, profile and medium
   </type>
   <type title="URI_errors">
     <test>
-      <url>http://sdfsdf.org</url>
+      <url>http://domain.example.invalid</url>
       <description>Inexistant URI</description>
       <result valid="false">
         <errors>1</errors>
@@ -287,14 +287,6 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test>
       <url>file://tmp/tmp.css</url>
-      <description>Forbidden protocol</description>
-     <result valid="false">
-        <errors>1</errors>
-        <warnings>0</warnings>
-      </result>
-    </test>
-    <test>
-      <url>https://www.test.com</url>
       <description>Forbidden protocol</description>
      <result valid="false">
         <errors>1</errors>
