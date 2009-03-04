@@ -61,7 +61,7 @@ function checkTest(testrow, resultrow) {
     checkURI(testrow, resultrow, uri, cssprofile)
 }
 
-function gogo(tableid) {
+function checkTableTests(tableid) {
     var testTable = document.getElementById(tableid);
     if (testTable) {
 	var allTests = testTable.getElementsByTagName('tr')
@@ -69,6 +69,21 @@ function gogo(tableid) {
 	    var cname = allTests[i].className;
 	    if (cname == "expected") {
 		checkTest(allTests[i], allTests[i+1]);
+	    }
+	}
+    }
+}
+
+function checkAllTests() {
+    var controldiv = document.getElementById("controldiv");
+    if (controldiv) {
+	var allLis = controldiv.getElementsByTagName("li");
+	for (var i=0; i<allLis.length; i++) {
+	    var a = allLis[i].getElementsByTagName("a");
+	    if (a.length > 0) {
+		var thref = a[0].getAttribute("href");
+		var tableId = thref.substring(1);
+		checkTableTests(tableId);
 	    }
 	}
     }
