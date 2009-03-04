@@ -29,6 +29,8 @@ function createTableFromID(tableid) {
     table.setAttribute("id", tableid);
     table.setAttribute("border", "2");
     
+    var tbody =  document.createElement("tbody");
+    
     var tr = document.createElement("tr");
     // first row
     var cell =  document.createElement("th");
@@ -67,7 +69,8 @@ function createTableFromID(tableid) {
     tnode =  document.createTextNode("Warnings");
     cell.appendChild(tnode);
     tr.appendChild(cell);
-    table.appendChild(tr);
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
 
     return table;
 }
@@ -105,7 +108,11 @@ function getTestTable(typetag) {
 	generateLinkToTable(tableId);
     }
     // and attach the newly created table at the right place
-    return table;
+    var tbody = table.getElementsByTagName("tbody");
+    if (tbody) {
+	return tbody[0];
+    }
+    return null;
 }
 
 function generateTestTable(req) {
