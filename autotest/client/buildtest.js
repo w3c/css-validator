@@ -35,7 +35,7 @@ function createTableFromID(tableid) {
     var tnode =  document.createTextNode("Test Case: "+tableid+" ");
     cell.appendChild(tnode);
     var anc = document.createElement("a");
-    anc.setAttribute("href", "javascript:gogo('"+tableid+"')");
+    anc.setAttribute("href", "javascript:checkTableTests('"+tableid+"')");
     tnode =  document.createTextNode("[check]");
     anc.appendChild(tnode);
     cell.appendChild(anc);
