@@ -72,6 +72,26 @@ function createTableFromID(tableid) {
     return table;
 }
 
+function generateLinkToTable(tableId) {
+    var controldiv = document.getElementById("controldiv");
+    if (controldiv) {
+	var divul = controldiv.getElementsByTagName("ul");
+	if (divul.length > 0) {
+	    divul = divul[0];
+	} else {
+	    divul = document.createElement("ul");
+	    controldiv.appendChild(divul);
+	}
+	var li = document.createElement("li");
+	var anc = document.createElement("a");
+	anc.setAttribute("href", "#"+tableId);
+	var tnode = document.createTextNode(tableId);
+	anc.appendChild(tnode);
+	li.appendChild(anc);
+	divul.appendChild(li);
+    }
+}
+
 function getTestTable(typetag) {
     var tableId = "default";
     if (typetag) {
@@ -82,6 +102,7 @@ function getTestTable(typetag) {
 	table = createTableFromID(tableId);
 	var tableanchor = document.getElementById("tableanchor");
 	tableanchor.appendChild(table);
+	generateLinkToTable(tableId);
     }
     // and attach the newly created table at the right place
     return table;
