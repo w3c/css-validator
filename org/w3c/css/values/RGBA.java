@@ -15,10 +15,8 @@ package org.w3c.css.values;
 
 public class RGBA {
     String output = null;
-    Object r;
-    Object g;
-    Object b;
-    Object a;
+    int r,g,b;
+    float fr,fg,fb,a;
 
     boolean percent = false;
 
@@ -36,6 +34,52 @@ public class RGBA {
         this.percent = percent;
     }
 
+    public final void setRed(int r) {
+	this.r = r;
+    }
+    public final void setRed(float fr) {
+	this.fr = fr;
+    }
+
+    public final void setGreen(int g) {
+	this.g = g;
+    }
+    public final void setGreen(float gr) {
+	this.fg = fg;
+    }
+
+    public final void setBlue(int b) {
+	this.b = b;
+    }
+    public final void setBlue(float fb) {
+	this.fb = fb;
+    }
+
+    public final void setAlpha(float a) {
+	this.a = a;
+    }
+
+    public boolean equals(RGBA other) {
+	if (other != null) {
+	    if (percent) {
+		if (other.percent) {
+		    return ((fr == other.fr) &&
+			    (fg == other.fg) &&
+			    (fb == other.fb) &&
+			    (a == other.a));
+		}
+	    } else {
+		if (!other.percent) {
+		    return ((r == other.r) &&
+			    (g == other.g) &&
+			    (b == other.b) &&
+			    (a == other.a));	    
+		}
+	    }
+	}
+	return false;
+    }
+
     /**
      * Create a new RGBA
      */
@@ -45,23 +89,44 @@ public class RGBA {
     /**
      * Create a new RGBA with default values
      */
-    public RGBA(Object r, Object g, Object b, Object a) {
+    public RGBA(int r, int g, int b, float a) {
 	this.r = r;
 	this.g = g;
 	this.b = b;
 	this.a = a;
+	this.percent = false;
     }
 
+    /**
+     * Create a new RGBA with default values
+     */
+    public RGBA(float r, float g, float b, float a) {
+	this.fr = r;
+	this.fg = g;
+	this.fb = b;
+	this.a = a;
+	this.percent = true;
+    }
+    
+    
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
 	if (output == null) {
-	    String unit = (isPercent()) ? "%" : "";
-	    return "rgba(" + r + unit + ", " + g + unit + ", " + b + unit +
-	    ", " + a + unit + ")";
-	} else {
-	    return output;
-	}
+	    StringBuilder sb = new StringBuilder("rgba(");
+	    if (isPercent()) {
+		sb.append(fr).append("%, ");
+		sb.append(fg).append("%, ");
+		sb.append(fb).append("%, ");
+	    } else {
+		sb.append(r).append(", ");
+		sb.append(g).append(", ");
+		sb.append(b).append(", ");
+	    }
+	    sb.append(a).append(')');
+	    output = sb.toString();
+	} 
+	return output;
     }
 }
