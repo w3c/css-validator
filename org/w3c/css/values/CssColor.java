@@ -260,7 +260,8 @@ public class CssColor extends CssValue
      * format rgb(<num>%?, <num>%?, <num>%?)
      */
     public void setRGBColor(CssExpression exp, ApplContext ac)
-    throws InvalidParamException {
+	throws InvalidParamException
+    {
 	CssValue val = exp.getValue();
 	char op = exp.getOperator();
 	color = null;
@@ -277,8 +278,8 @@ public class CssColor extends CssValue
 	    rgb.setPercent(false);
 	    break;
 	case CssTypes.CSS_PERCENTAGE:
-	    rgb.setRed(clippedPercentValue(((Float) val.get()).floatValue(),
-					   ac));
+	    CssPercentage percent = (CssPercentage) val;
+	    rgb.setRed(clippedPercentValue(percent.getValue(),ac));
 	    rgb.setPercent(true);
 	    break;
 	default:
@@ -305,8 +306,8 @@ public class CssColor extends CssValue
 	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgb.setGreen(clippedPercentValue(((Float) val.get()).floatValue(),
-					     ac));
+	    CssPercentage percent = (CssPercentage) val;
+	    rgb.setGreen(clippedPercentValue(percent.getValue(),ac));
 	    break;
 	default:
 	    throw new InvalidParamException("rgb", val, ac);
@@ -332,8 +333,8 @@ public class CssColor extends CssValue
 	    if (!rgb.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgb.setBlue(clippedPercentValue(((Float) val.get()).floatValue(), 
-					    ac));
+	    CssPercentage percent = (CssPercentage) val;
+	    rgb.setBlue(clippedPercentValue(percent.getValue(),ac));
 	    break;
 	default:
 	    throw new InvalidParamException("rgb", val, ac);
@@ -467,64 +468,103 @@ public class CssColor extends CssValue
 	return false;
     }
 
-    public void setRGBAColor(Vector exp, ApplContext ac)
-    throws InvalidParamException {
+    public void setRGBAColor(CssExpression exp, ApplContext ac)
+	throws InvalidParamException 
+    {
+	CssValue rgbaValues[] = new CssValue[4];
+	
+	CssValue val;
+	char op;
 	color = null;
 	rgba = new RGBA();
 
-	CssValue val = (CssValue) exp.elementAt(0);
-	if (val instanceof CssNumber) {
+	val = exp.getValue();
+	op = exp.getOperator();
+	if (val == null || op != COMMA) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
 	    CssNumber number = (CssNumber) val;
-	    rgba.r = clippedIntValue(number.getInt(), ac);
+	    rgba.setRed(clippedIntValue(number.getInt(), ac));
 	    rgba.setPercent(false);
-	} else if (val instanceof CssPercentage) {
-	    rgba.r = clippedPercentValue(((Float) val.get()).floatValue(), ac);
+	    break;
+	case CssTypes.CSS_PERCENTAGE:
+	    CssPercentage percent = (CssPercentage) val;
+	    rgba.setRed(clippedPercentValue(percent.getValue(), ac));
 	    rgba.setPercent(true);
-	} else {
-	    throw new InvalidParamException("rgb", val, ac);
+	    break;
+	default:
+	    throw new InvalidParamException("rgb", val, ac); // FIXME rgba
 	}
-
-	val = (CssValue) exp.elementAt(1);
-
-	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;
+	exp.next();
+	val = exp.getValue();
+	op = exp.getOperator();
+	if (val == null || op != COMMA) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	// green
+	// and validate against the "percentageness"
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
 	    if (rgba.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgba.g = clippedIntValue(number.getInt(), ac);
-	} else if (val instanceof CssPercentage) {
+	    CssNumber number = (CssNumber) val;
+	    rgba.setGreen(clippedIntValue(number.getInt(), ac));
+	    break;
+	case CssTypes.CSS_PERCENTAGE:
 	    if (!rgba.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgba.g = clippedPercentValue(((Float) val.get()).floatValue(), ac);
-	} else {
-	    throw new InvalidParamException("rgb", val, ac);
+	    CssPercentage percent = (CssPercentage) val;
+	    rgba.setGreen(clippedPercentValue(percent.getValue(), ac));
+	    break;
+	default:
+	    throw new InvalidParamException("rgb", val, ac); // FIXME rgba
 	}
-
-	val = (CssValue) exp.elementAt(2);
-
-	if (val instanceof CssNumber) {
-	    CssNumber number = (CssNumber) val;
+	exp.next();
+	val = exp.getValue();
+	op = exp.getOperator();
+	if (val == null || op != COMMA) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	 // blue
+	// and validate against the "percentageness"
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
 	    if (rgba.isPercent()) {
 		throw new InvalidParamException("percent", val, ac);
 	    }
-	    rgba.b = clippedIntValue(number.getInt(), ac);
-	} else if (val instanceof CssPercentage) {
+	    CssNumber number = (CssNumber) val;
+	    rgba.setBlue(clippedIntValue(number.getInt(), ac));
+	    break;
+	case CssTypes.CSS_PERCENTAGE:
 	    if (!rgba.isPercent()) {
 		throw new InvalidParamException("integer", val, ac);
 	    }
-	    rgba.b = clippedPercentValue(((Float) val.get()).floatValue(), ac);
+	    CssPercentage percent = (CssPercentage) val;
+	    rgba.setBlue(clippedPercentValue(percent.getValue(), ac));
+	    break;
+	default:
+	    throw new InvalidParamException("rgb", val, ac); // FIXME rgba
+	}
+	exp.next();
+	val = exp.getValue();
+	if (val == null) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	if (val.getType() == CssTypes.CSS_NUMBER) {
+	    CssNumber number = (CssNumber) val;
+	    rgba.setAlpha(clippedAlphaValue(number.getValue(), ac));
 	} else {
-	    throw new InvalidParamException("rgb", val, ac);
-	}
-
-	val = (CssValue) exp.elementAt(3);
-	if(val instanceof CssNumber) {
-	    rgba.a = clippedAlphaValue(((Float) val.get()).floatValue(), ac);
-	}
-	else {
-	     throw new InvalidParamException("rgb", val, ac);
-	 }
+	    throw new InvalidParamException("rgb", val, ac); // FIXME rgba
+	} 
+	exp.next();
+	if (exp.getValue() != null) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}    
     }
 
     public void setHSLColor(Vector exp, ApplContext ac)
@@ -960,10 +1000,7 @@ public class CssColor extends CssValue
 	definedColors.put("slategrey",
 		new RGB(112, 128, 144));
 	definedColors.put("transparent",
-		new RGBA(new Integer(0),
-			new Integer(0),
-			new Integer(0),
-			new Float(0)));
+			  new RGBA(0, 0, 0, (float)0.0));
 
 	//CSS2 System colors deprecated
 	deprecatedColors.put("activeborder", "ActiveBorder");
