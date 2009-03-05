@@ -47,7 +47,6 @@ public class CssColorCSS21 extends CssColorCSS2 {
 							  (String) val.get()));
 	    break;
 	default:
-	    org.w3c.util.Trace.showTrace("foo: "+val.getType()+" - "+val);
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
