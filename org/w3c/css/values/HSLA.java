@@ -13,27 +13,47 @@
  */
 package org.w3c.css.values;
 
+import org.w3c.css.util.Util;
+
 public class HSLA {
     String output = null;
-    Object h;
-    Object s;
-    Object l;
-    Object a;
+    float fh;
+    float fs;
+    float fl;
+    float fa;
 
     /**
-     * Create a new HSLA
+     * Create a new HSL
      */
     public HSLA() {
     }
 
-    /**
-     * Create a new RGBA with default values
-     */
-    public HSLA(Object h, Object s, Object l, Object a) {
-	this.h = h;
-	this.s = s;
-	this.l = l;
-	this.a = a;
+    public void setHue(float hue) {
+	this.fh = (float)((((double)hue%360.0)+360.0)%360.0);
+    }
+    public void setHue(CssNumber hue) {
+	setHue(hue.getValue());
+    }
+
+    public void setSaturation(float sat) {
+	this.fs = sat;
+    }
+    public void setSaturation(CssNumber sat) {
+	setSaturation(sat.getValue());
+    }
+
+    public void setLightness(float light) {
+	this.fl = light;
+    }
+    public void setLightness(CssNumber light) {
+	setLightness(light.getValue());
+    }
+
+    public void setAlpha(float alpha) {
+	this.fa = alpha;
+    }
+    public void setAlpha(CssNumber alpha) {
+	setAlpha(alpha.getValue());
     }
 
     /**
@@ -41,9 +61,13 @@ public class HSLA {
      */
     public String toString() {
 	if (output == null) {
-	    return "hsla(" + h + ", " + s + ", " + l + ", " + a + ")";
-	} else {
-	    return output;
+	    StringBuilder sb = new StringBuilder("hsl(");
+	    sb.append(Util.displayFloat(fh)).append(", ");
+	    sb.append(Util.displayFloat(fs)).append("%, ");
+	    sb.append(Util.displayFloat(fl)).append("%, ");
+	    sb.append(Util.displayFloat(fa)).append(")");
+	    output = sb.toString();
 	}
+	return output;
     }
 }
