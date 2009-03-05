@@ -13,11 +13,13 @@
  */
 package org.w3c.css.values;
 
+import org.w3c.css.util.Util;
+
 public class HSL {
     String output = null;
-    Object h;
-    Object s;
-    Object l;
+    float fh;
+    float fs;
+    float fl;
 
     /**
      * Create a new HSL
@@ -25,13 +27,25 @@ public class HSL {
     public HSL() {
     }
 
-    /**
-     * Create a new HSL with default values
-     */
-    public HSL(Object h, Object s, Object l) {
-	this.h = h;
-	this.s = s;
-	this.l = l;
+    public void setHue(float hue) {
+	this.fh = (float)((((double)hue%360.0)+360.0)%360.0);
+    }
+    public void setHue(CssNumber hue) {
+	setHue(hue.getValue());
+    }
+
+    public void setSaturation(float sat) {
+	this.fs = sat;
+    }
+    public void setSaturation(CssNumber sat) {
+	setSaturation(sat.getValue());
+    }
+
+    public void setLightness(float light) {
+	this.fl = light;
+    }
+    public void setLightness(CssNumber light) {
+	setLightness(light.getValue());
     }
 
     /**
@@ -39,9 +53,12 @@ public class HSL {
      */
     public String toString() {
 	if (output == null) {
-	    return "hsl(" + h + ", " + s + ", " + l + ")";
-	} else {
-	    return output;
+	    StringBuilder sb = new StringBuilder("hsl(");
+	    sb.append(Util.displayFloat(fh)).append(", ");
+	    sb.append(Util.displayFloat(fs)).append("%, ");
+	    sb.append(Util.displayFloat(fl)).append("%)");
+	    output = sb.toString();
 	}
+	return output;
     }
 }
