@@ -100,42 +100,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		    expression.next();
 		}
 	    } else if (attr.getName().equals("rgba")) {
-
-		Vector rgbaValues = new Vector();
-
-		char op;
-
-		CssValue v1 = params.getValue();
-		op = params.getOperator();
-		if (v1 == null || op != COMMA) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		rgbaValues.addElement(v1);
-		params.next();
-
-		CssValue v2 = params.getValue();
-		op = params.getOperator();
-		if (v2 == null || op != COMMA) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		rgbaValues.addElement(v2);
-		params.next();
-
-		CssValue v3 = params.getValue();
-		op = params.getOperator();
-		if (v3 == null || op != COMMA) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		rgbaValues.addElement(v3);
-		params.next();
-
-		CssValue v4 = params.getValue();
-		if (v4 == null) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		rgbaValues.addElement(v4);
-
-		tempcolor.setRGBAColor(rgbaValues, ac);
+		tempcolor.setRGBAColor(params, ac);
 		color = tempcolor;
 		expression.next();
 	    } else if (attr.getName().equals("hsl")) {
