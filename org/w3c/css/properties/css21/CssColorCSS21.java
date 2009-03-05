@@ -10,6 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssTypes;
 
 /**
  * CssColorCSS21<br />
@@ -22,29 +23,35 @@ public class CssColorCSS21 extends CssColorCSS2 {
      * @param expression The expression for this property
      * @exception InvalidParamException Values are incorrect
      */
-    public CssColorCSS21(ApplContext ac, CssExpression expression, boolean check)
-	throws InvalidParamException {
-
+    public CssColorCSS21(ApplContext ac, CssExpression expression, 
+			 boolean check)
+	throws InvalidParamException 
+    {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
 
 	CssValue val = expression.getValue();
 	setByUser();
-	if (val.equals(inherit)) {
-	    setColor(inherit);
-	    expression.next();
-	} else if (val instanceof org.w3c.css.values.CssColor) {
+
+	switch (val.getType()) {
+	case CssTypes.CSS_COLOR:
 	    setColor(val);
-	    expression.next();
-	} else if (val instanceof CssIdent) {
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(val)) {
+		setColor(inherit);
+		break;
+	    }
 	    setColor(new org.w3c.css.values.CssColorCSS21(ac,
-							(String) val.get()));
-	    expression.next();
-	} else {
+							  (String) val.get()));
+	    break;
+	default:
+	    org.w3c.util.Trace.showTrace("foo: "+val.getType()+" - "+val);
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssColorCSS21(ApplContext ac, CssExpression expression)
