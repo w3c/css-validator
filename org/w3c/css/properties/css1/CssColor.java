@@ -104,38 +104,9 @@ public class CssColor extends CssProperty implements CssOperator {
 		color = tempcolor;
 		expression.next();
 	    } else if (attr.getName().equals("hsl")) {
-		Vector hslValues = new Vector();
-		char op;
-
-		CssValue v1 = params.getValue();
-		op = params.getOperator();
-		if (v1 == null || op != COMMA) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		hslValues.addElement(v1);
-		params.next();
-
-		CssValue v2 = params.getValue();
-		op = params.getOperator();
-		if (v2 == null || op != COMMA) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		hslValues.addElement(v2);
-		params.next();
-
-		CssValue v3 = params.getValue();
-		if (v3 == null) {
-		    throw new InvalidParamException("invalid-color", ac);
-		}
-		hslValues.addElement(v3);
-
-		params.starts(); // set position back to the first value
-
-		tempcolor.setHSLColor(hslValues, ac);
-		params.ends();
+		tempcolor.setHSLColor(params, ac);
 		color = tempcolor;
 		expression.next();
-
 	    } else if (attr.getName().equals("hsla")) {
 
 		Vector hslaValues = new Vector();
