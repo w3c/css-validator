@@ -161,6 +161,8 @@ import org.w3c.css.util.Util;
  */
 public class CssColorCSS2 extends CssColor {
 
+    static HashMap<String,Object> definedColorsCSS2;
+
     /**
      * Create a new CssColorCSS2.
      */
@@ -185,8 +187,8 @@ public class CssColorCSS2 extends CssColor {
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-	if (definedColors.get(lower_s) != null) {
-	    Object obj = definedColors.get(lower_s);
+	Object obj = definedColorsCSS2.get(lower_s);
+	if (obj != null) {
 	    if (obj instanceof RGB) {
 		color = lower_s;
 		rgb = (RGB) obj;
@@ -206,67 +208,67 @@ public class CssColorCSS2 extends CssColor {
     }
 
     static {
-	definedColors = new HashMap<String,Object>();
-	definedColors.put("black",
+	definedColorsCSS2 = new HashMap<String,Object>();
+	definedColorsCSS2.put("black",
 			  new RGB(0, 0, 0));
-	definedColors.put("silver",
+	definedColorsCSS2.put("silver",
 			  new RGB(192, 192, 192));
-	definedColors.put("gray",
+	definedColorsCSS2.put("gray",
 			  new RGB(128, 128, 128));
-	definedColors.put("white",
+	definedColorsCSS2.put("white",
 			  new RGB(255, 255, 255));
-	definedColors.put("maroon",
+	definedColorsCSS2.put("maroon",
 			  new RGB(128, 0, 0));
-	definedColors.put("red",
+	definedColorsCSS2.put("red",
 			  new RGB(255, 0, 0));
-	definedColors.put("purple",
+	definedColorsCSS2.put("purple",
 			  new RGB(128, 0, 128));
-	definedColors.put("fuchsia",
+	definedColorsCSS2.put("fuchsia",
 			  new RGB(255, 0, 255));
-	definedColors.put("green",
+	definedColorsCSS2.put("green",
 			  new RGB(0, 128, 0));
-	definedColors.put("lime",
+	definedColorsCSS2.put("lime",
 			  new RGB(0, 255, 0));
-	definedColors.put("olive",
+	definedColorsCSS2.put("olive",
 			  new RGB(128, 128, 0));
-	definedColors.put("yellow",
+	definedColorsCSS2.put("yellow",
 			  new RGB(255, 255, 0));
-	definedColors.put("navy",
+	definedColorsCSS2.put("navy",
 			  new RGB(0, 0, 128));
-	definedColors.put("blue",
+	definedColorsCSS2.put("blue",
 			  new RGB(0, 0, 255));
-	definedColors.put("teal",
+	definedColorsCSS2.put("teal",
 			  new RGB(0, 128, 128));
-	definedColors.put("aqua",
+	definedColorsCSS2.put("aqua",
 			  new RGB(0, 255, 255));
-        definedColors.put("activeborder", "ActiveBorder");
-        definedColors.put("activecaption", "ActiveCaption");
-        definedColors.put("appworkspace", "AppWorkspace");
-        definedColors.put("background", "Background");
-        definedColors.put("buttonface", "ButtonFace");
-        definedColors.put("buttonhighlight", "ButtonHighlight");
-        definedColors.put("buttonshadow", "ButtonShadow");
-        definedColors.put("buttontext", "ButtonText");
-        definedColors.put("captiontext", "CaptionText");
-        definedColors.put("graytext", "GrayText");
-        definedColors.put("highlight", "Highlight");
-        definedColors.put("highlighttext", "HighlightText");
-        definedColors.put("inactiveborder", "InactiveBorder");
-        definedColors.put("inactivecaption", "InactiveCaption");
-        definedColors.put("inactivecaptiontext", "InactiveCaptionText");
-        definedColors.put("infobackground", "InfoBackground");
-        definedColors.put("infotext", "InfoText");
-        definedColors.put("menu", "Menu");
-        definedColors.put("menutext", "MenuText");
-        definedColors.put("scrollbar", "Scrollbar");
-        definedColors.put("threeddarkshadow", "ThreeDDarkShadow");
-        definedColors.put("threedface", "ThreeDFace");
-        definedColors.put("threedhighlight", "ThreeDHighlight");
-        definedColors.put("threedlightshadow", "ThreeDLightShadow");
-        definedColors.put("threedshadow", "ThreeDShadow");
-        definedColors.put("window", "Window");
-        definedColors.put("windowframe", "WindowFrame");
-        definedColors.put("windowtext", "WindowText");
+        definedColorsCSS2.put("activeborder", "ActiveBorder");
+        definedColorsCSS2.put("activecaption", "ActiveCaption");
+        definedColorsCSS2.put("appworkspace", "AppWorkspace");
+        definedColorsCSS2.put("background", "Background");
+        definedColorsCSS2.put("buttonface", "ButtonFace");
+        definedColorsCSS2.put("buttonhighlight", "ButtonHighlight");
+        definedColorsCSS2.put("buttonshadow", "ButtonShadow");
+        definedColorsCSS2.put("buttontext", "ButtonText");
+        definedColorsCSS2.put("captiontext", "CaptionText");
+        definedColorsCSS2.put("graytext", "GrayText");
+        definedColorsCSS2.put("highlight", "Highlight");
+        definedColorsCSS2.put("highlighttext", "HighlightText");
+        definedColorsCSS2.put("inactiveborder", "InactiveBorder");
+        definedColorsCSS2.put("inactivecaption", "InactiveCaption");
+        definedColorsCSS2.put("inactivecaptiontext", "InactiveCaptionText");
+        definedColorsCSS2.put("infobackground", "InfoBackground");
+        definedColorsCSS2.put("infotext", "InfoText");
+        definedColorsCSS2.put("menu", "Menu");
+        definedColorsCSS2.put("menutext", "MenuText");
+        definedColorsCSS2.put("scrollbar", "Scrollbar");
+        definedColorsCSS2.put("threeddarkshadow", "ThreeDDarkShadow");
+        definedColorsCSS2.put("threedface", "ThreeDFace");
+        definedColorsCSS2.put("threedhighlight", "ThreeDHighlight");
+        definedColorsCSS2.put("threedlightshadow", "ThreeDLightShadow");
+        definedColorsCSS2.put("threedshadow", "ThreeDShadow");
+        definedColorsCSS2.put("window", "Window");
+        definedColorsCSS2.put("windowframe", "WindowFrame");
+        definedColorsCSS2.put("windowtext", "WindowText");
     }
 
 }
