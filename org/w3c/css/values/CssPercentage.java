@@ -99,6 +99,13 @@ public class CssPercentage extends CssValue {
     }
 
     /**
+     * Returns the value as a float
+     */
+    public float getValue() {
+	return value.floatValue();
+    }
+
+    /**
      * Returns a string representation of the object.
      */
     public String toString() {
