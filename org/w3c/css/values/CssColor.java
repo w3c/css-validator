@@ -589,7 +589,7 @@ public class CssColor extends CssValue
 	}
 	if (val.getType() == CssTypes.CSS_NUMBER) {
 	    CssNumber number = (CssNumber) val;
-	    hsl.setHue(angleValue(number.getInt(), ac));
+	    hsl.setHue(angleValue(number.getValue(), ac));
 	} else {
 	    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
 	}
@@ -634,55 +634,78 @@ public class CssColor extends CssValue
 	}
     }
 
-    public void setHSLAColor(Vector exp, ApplContext ac)
-	throws InvalidParamException {
 
+    public void setHSLAColor(CssExpression exp, ApplContext ac) 
+	throws InvalidParamException
+    {
 	color = null;
 	hsla = new HSLA();
-
-	//CssAngle h = new CssAngle();
-	CssNumber h = new CssNumber();
-	CssPercentage s = new CssPercentage();
-	CssPercentage l = new CssPercentage();
-	Float a;
-
-	// no correct InvalidParamException in CssAngle in case of an error, therefore this double catch
-	/*
-	  try {
-	  h.set((exp.elementAt(0)).toString(), ac);
-	  } catch (InvalidParamException e) {
-	  throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
-	  } catch (Exception e) {
-	  throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
-	  }
-	*/
-
-	h.set((exp.elementAt(0)).toString(), ac);
-
-	if (((Float)h.get()).intValue() > 360 || ((Float)h.get()).intValue() < 0) {
-	    throw new InvalidParamException("angle", (exp.elementAt(0)).toString(), ac);
+	
+	CssValue val = exp.getValue();
+	char op = exp.getOperator();
+	// H
+	if (val == null || op != COMMA) {
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	if (val.getType() == CssTypes.CSS_NUMBER) {
+	    CssNumber number = (CssNumber) val;
+	    hsla.setHue(angleValue(number.getValue(), ac));
+	} else {
+	    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
 	}
 
-	// here a correct InvalidParamException is thrown in case of an error
-	s.set((exp.elementAt(1)).toString(), ac);
-	l.set((exp.elementAt(2)).toString(), ac);
-
-	try {
-	    a = new Float(((CssValue) exp.elementAt(3)).toString());
-	} catch (Exception e) {
-	    throw new InvalidParamException("rgb", (exp.elementAt(3)).toString(), ac);
+	// S
+	exp.next();
+	val = exp.getValue();
+	op = exp.getOperator();
+	if (val == null || op != COMMA) {
+	    exp.starts();
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+	    CssPercentage percent = (CssPercentage) val;
+	    hsla.setSaturation(clippedPercentValue(percent.getValue(),ac));
+	} else {
+	    exp.starts();
+	    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+	}
+	
+	// L
+	exp.next();
+	val = exp.getValue();
+	op = exp.getOperator();
+	if (val == null || op != COMMA) {
+	    exp.starts();
+	    throw new InvalidParamException("invalid-color", ac);
+	}
+	if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+	    CssPercentage percent = (CssPercentage) val;
+	    hsla.setLightness(clippedPercentValue(percent.getValue(),ac));
+	} else {
+	    exp.starts();
+	    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
 	}
 
-	if (a.floatValue() < 0 || a.floatValue() > 1) {
-	    ac.getFrame().addWarning("out-of-range", Integer.toString(a.intValue()));
-	    a = clippedAlphaValue(a.floatValue(), ac);
+	// A
+	exp.next();
+	val = exp.getValue();
+	if (val == null) {
+	    exp.starts();
+	    throw new InvalidParamException("invalid-color", ac);
 	}
-
-	hsla.h = h;
-	hsla.s = s;
-	hsla.l = l;
-	hsla.a = a;
-
+	if (val.getType() == CssTypes.CSS_NUMBER) {
+	    CssNumber number = (CssNumber) val;
+	    hsla.setAlpha(clippedAlphaValue(number.getValue(), ac));
+	} else {
+	    exp.starts();
+	    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+	}
+	// extra values?
+	exp.next();
+	if (exp.getValue() != null) {
+	    exp.starts();
+	    throw new InvalidParamException("rgb", exp.getValue(), ac);
+	}
     }
 
     private int clippedIntValue(int rgb, ApplContext ac) {
