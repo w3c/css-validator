@@ -82,7 +82,7 @@ public class CssColor extends CssProperty implements CssOperator {
 		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
 	    } else {
 		color = new org.w3c.css.values.CssColorCSS2(ac, 
-					    (String) val.get()); // SVG profiles
+							    (String) val.get()); // SVG profiles
 	    }
 	    //	    color = new org.w3c.css.values.CssColor();
 	    break;
@@ -129,8 +129,8 @@ public class CssColor extends CssProperty implements CssOperator {
 	    }
 	    break;
 	default:
-	     throw new InvalidParamException("value", expression.getValue(),
-					     getPropertyName(), ac);
+	    throw new InvalidParamException("value", expression.getValue(),
+					    getPropertyName(), ac);
 	}
 	expression.next();
     }
@@ -216,13 +216,13 @@ public class CssColor extends CssProperty implements CssOperator {
     public boolean equals(CssProperty property) {
 	return (property instanceof CssColor &&
 		color.equals(((CssColor) property).color));
-}
-
+    }
+    
     /**
      * Returns the name of this property
      */
-public String getPropertyName() {
-    return "color";
-}
+    public String getPropertyName() {
+	return "color";
+    }
 
 }
