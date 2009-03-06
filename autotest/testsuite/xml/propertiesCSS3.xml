@@ -10,15 +10,15 @@ test markup also accepts 3 properties: warning, profile and medium
       <result valid="true"/>
     </test>
   </type>
-  <type title="CSS3Colors">
+  <type title="CSS3_Colors">
     <test profile="css3">
       <file>testsuite/properties/css3/hsl001.css</file>
-      <description>Valid HSL</description>
+      <description>color: Valid HSL</description>
       <result valid="true"/>
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl002.css</file>
-      <description>Valid HSL, Hue value over 360</description>
+      <description>color: Valid HSL, Hue value over 360</description>
       <result valid="true">
 	<errors>0</errors>
 	<warnings>1</warnings>
@@ -26,7 +26,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl003.css</file>
-      <description>Valid HSL, Saturation value over 100%</description>
+      <description>color: Valid HSL, Saturation value over 100%</description>
       <result valid="true">
 	<errors>0</errors>
 	<warnings>1</warnings>
@@ -34,7 +34,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl004.css</file>
-      <description>Valid HSL, Lightness value negative</description>
+      <description>color: Valid HSL, Lightness value negative</description>
       <result valid="true">
 	<errors>0</errors>
 	<warnings>1</warnings>
@@ -42,7 +42,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl005.css</file>
-      <description>Valid HSL, all values out of bounds</description>
+      <description>color: Valid HSL, all values out of bounds</description>
       <result valid="true">
 	<errors>0</errors>
 	<warnings>3</warnings>
@@ -50,7 +50,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl006.css</file>
-      <description>Invalid HSL, Hue as percentage</description>
+      <description>color: Invalid HSL, Hue as percentage</description>
       <result valid="false">
 	<errors>1</errors>
 	<warnings>0</warnings>
@@ -58,7 +58,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl007.css</file>
-      <description>Invalid HSL, Saturation as number</description>
+      <description>color: Invalid HSL, Saturation as number</description>
       <result valid="false">
 	<errors>1</errors>
 	<warnings>0</warnings>
@@ -66,7 +66,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl008.css</file>
-      <description>Invalid HSL, Lightness as number</description>
+      <description>color: Invalid HSL, Lightness as number</description>
       <result valid="false">
 	<errors>1</errors>
 	<warnings>0</warnings>
@@ -74,7 +74,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl009.css</file>
-      <description>Invalid HSL, too many values (HSLA definition)</description>
+      <description>color: Invalid HSL, too many values (HSLA definition)</description>
       <result valid="false">
 	<errors>1</errors>
 	<warnings>0</warnings>
@@ -82,7 +82,84 @@ test markup also accepts 3 properties: warning, profile and medium
     </test>
     <test profile="css3">
       <file>testsuite/properties/css3/hsl010.css</file>
-      <description>Invalid HSL, not enough values</description>
+      <description>color: Invalid HSL, not enough values</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl011.css</file>
+      <description>background-color: Valid HSL</description>
+      <result valid="true"/>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl012.css</file>
+      <description>background-color: Valid HSL, Hue value over 360</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl013.css</file>
+      <description>background-color: Valid HSL, Saturation value over 100%</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl014.css</file>
+      <description>background-color: Valid HSL, Lightness value negative</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl015.css</file>
+      <description>background-color: Valid HSL, all values out of bounds</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>3</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl016.css</file>
+      <description>background-color: Invalid HSL, Hue as percentage</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl017.css</file>
+      <description>background-color: Invalid HSL, Saturation as number</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl018.css</file>
+      <description>background-color: Invalid HSL, Lightness as number</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl019.css</file>
+      <description>background-color: Invalid HSL, too many values (HSLA definition)</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsl020.css</file>
+      <description>background-color: Invalid HSL, not enough values</description>
       <result valid="false">
 	<errors>1</errors>
 	<warnings>0</warnings>
