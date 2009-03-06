@@ -106,7 +106,7 @@ public abstract class CssProperty
     /**
      * Returns true if the property is inherited.
      */
-    public boolean Inherited() {
+    public boolean inherited() {
 	return CssProperties.getInheritance(this);
     }
 
@@ -150,7 +150,7 @@ public abstract class CssProperty
      * @see #getPropertyName()
      */
     public void print(CssPrinterStyle printer) {
-	if (byUser || Inherited() || important) {
+	if (byUser || inherited() || important) {
 	    // if (Inherited() || important) {
 	    printer.print(this);
 	}

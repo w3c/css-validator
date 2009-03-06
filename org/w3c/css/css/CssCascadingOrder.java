@@ -141,7 +141,7 @@ public final class CssCascadingOrder {
 
 	if (propertyCount == 0) {
 	    // if I found nothing
-	    if (selector.getNext() != null && property.Inherited()) {
+	    if (selector.getNext() != null && property.inherited()) {
 		// here, I can try to resolve
 		Util.verbose("Found nothing ... try the next "
 			     + selector.getNext());
