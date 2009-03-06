@@ -166,240 +166,240 @@ test markup also accepts 3 properties: warning, profile and medium
       </result>
     </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla001.css</file>
-    <description>valid HSLa construct</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla001.css</file>
+      <description>valid HSLa construct</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla002.css</file>
-    <description>valid HSLa construct but one value out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla002.css</file>
+      <description>valid HSLa construct but one value out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla003.css</file>
-    <description>valid HSLa construct but one value out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla003.css</file>
+      <description>valid HSLa construct but one value out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla004.css</file>
-    <description>valid HSLa construct but two values out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>2</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla004.css</file>
+      <description>valid HSLa construct but two values out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>2</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla005.css</file>
-    element { color: hsla(1000, -50%, 150%, -0.1) }
-    <description>valid HSLa construct but all values out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>4</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla005.css</file>
+      element { color: hsla(1000, -50%, 150%, -0.1) }
+      <description>valid HSLa construct but all values out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>4</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla006.css</file>
-    <description>invalid HSLa construct - first value should not be percentage</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla006.css</file>
+      <description>invalid HSLa construct - first value should not be percentage</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla007.css</file>
-    <description>invalid HSLa construct - second value should be percentage</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla007.css</file>
+      <description>invalid HSLa construct - second value should be percentage</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/hsla008.css</file>
-    <description>invalid HSLa construct - third value should be percentage</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/hsla008.css</file>
+      <description>invalid HSLa construct - third value should be percentage</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb001.css</file>
-    <description>valid RGB construct</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb001.css</file>
+      <description>valid RGB construct</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb002.css</file>
-    <description>valid RGB construct - but one value out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb002.css</file>
+      <description>valid RGB construct - but one value out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb003.css</file>
-    <description>valid RGB construct - but one value out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb003.css</file>
+      <description>valid RGB construct - but one value out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb004.css</file>
-    <description>valid RGB construct - but one value out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb004.css</file>
+      <description>valid RGB construct - but one value out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb005.css</file>
-    <description>valid RGB construct - but all values out of range</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>2</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb005.css</file>
+      <description>valid RGB construct - but all values out of range</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>2</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb006.css</file>
-    <description>invalid RGB construct - cannot mix numbers and percentages</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb006.css</file>
+      <description>invalid RGB construct - cannot mix numbers and percentages</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb007.css</file>
-    <description>invalid RGB construct - cannot mix numbers and percentages</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb007.css</file>
+      <description>invalid RGB construct - cannot mix numbers and percentages</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb008.css</file>
-    <description>invalid RGB construct - cannot mix numbers and percentages</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb008.css</file>
+      <description>invalid RGB construct - cannot mix numbers and percentages</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb009.css</file>
-    <description>invalid RGB construct - alpha channel is for RGBa</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb009.css</file>
+      <description>invalid RGB construct - alpha channel is for RGBa</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgb020.css</file>
-    <description>invalid RGB construct - missing one value</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgb020.css</file>
+      <description>invalid RGB construct - missing one value</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba001.css</file>
-    <description>invalid RGBa construct - n't mix percentages and numbers and 0 is not 0%, apparently </description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba001.css</file>
+      <description>invalid RGBa construct - n't mix percentages and numbers and 0 is not 0%, apparently </description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba002.css</file>
-    <description>valid RGBa construct - but one value out of range </description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba002.css</file>
+      <description>valid RGBa construct - but one value out of range </description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba003.css</file>
-    <description>valid RGBa construct - but one value out of range </description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba003.css</file>
+      <description>valid RGBa construct - but one value out of range </description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba004.css</file>
-    <description>valid RGBa construct - but one value out of range </description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>1</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba004.css</file>
+      <description>valid RGBa construct - but one value out of range </description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>1</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba005.css</file>
-    <description>valid RGBa construct - but all values out of range </description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>4</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba005.css</file>
+      <description>valid RGBa construct - but all values out of range </description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>4</warnings>
+      </result>
+    </test>
 
-    <test>
-<file>testsuite/properties/css3/rgba006.css</file>
-    <description>valid RGBa construct</description>
-    <result valid="true">
-      <errors>0</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba006.css</file>
+      <description>valid RGBa construct</description>
+      <result valid="true">
+	<errors>0</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-<test>
-    <file>testsuite/properties/css3/rgba007.css</file>
-    <description>invalid RGBa construct - mixing percentage and numbers</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba007.css</file>
+      <description>invalid RGBa construct - mixing percentage and numbers</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
-<test>
-    <file>testsuite/properties/css3/rgba008.css</file>
-    <description>invalid RGBa construct - mixing percentage and numbers</description>
-    <result valid="false">
-      <errors>1</errors>
-      <warnings>0</warnings>
-    </result>
-</test>
+    <test profile="css3">
+      <file>testsuite/properties/css3/rgba008.css</file>
+      <description>invalid RGBa construct - mixing percentage and numbers</description>
+      <result valid="false">
+	<errors>1</errors>
+	<warnings>0</warnings>
+      </result>
+    </test>
 
 
   </type>
