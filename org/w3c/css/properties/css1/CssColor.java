@@ -16,6 +16,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -65,28 +66,42 @@ public class CssColor extends CssProperty implements CssOperator {
 	CssValue val = expression.getValue();
 	setByUser();
 
-	if (val.equals(inherit)) {
-	    color = inherit;
-	    expression.next();
-	}
-	else if (val instanceof org.w3c.css.values.CssColor) {
+	switch(val.getType()) {
+	case CssTypes.CSS_IDENT:
+	    if (inherit.equals(val)) {
+		color = inherit;
+		break;
+	    }
+	    if ("css1".equals(ac.getCssVersion())) {
+		color = new org.w3c.css.values.CssColorCSS1(ac,
+							    (String) val.get());
+	    } else if ("css2".equals(ac.getCssVersion())) {
+		color = new org.w3c.css.values.CssColorCSS2(ac, 
+							    (String) val.get());
+	    } else if ("css3".equals(ac.getCssVersion())){
+		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+	    } else {
+		color = new org.w3c.css.values.CssColorCSS2(ac, 
+					    (String) val.get()); // SVG profiles
+	    }
+	    //	    color = new org.w3c.css.values.CssColor();
+	    break;
+	case CssTypes.CSS_COLOR:
 	    color = val;
-	    expression.next();
-	} else if (val instanceof CssFunction) {
+	    break;
+	case CssTypes.CSS_FUNCTION:
 	    CssFunction attr = (CssFunction) val;
 	    CssExpression params = attr.getParameters();
 
 	    if (attr.getName().equals("attr")) {
-
 		CssValue v1 = params.getValue();
 		params.next();
 		CssValue v2 = params.getValue();
-
 		if ((params.getCount() != 2)) {
 		    throw new InvalidParamException("value",
 						    params.getValue(),
 						    getPropertyName(), ac);
-		} else if (!(v1 instanceof CssIdent)) {
+		} else if (v1.getType() != CssTypes.CSS_IDENT) {
 		    throw new InvalidParamException("value",
 						    params.getValue(),
 						    getPropertyName(), ac);
@@ -97,41 +112,27 @@ public class CssColor extends CssProperty implements CssOperator {
 						    getPropertyName(), ac);
 		} else {
 		    attrvalue = "attr(" + v1 + ", " + v2 + ")";
-		    expression.next();
 		}
 	    } else if (attr.getName().equals("rgba")) {
 		tempcolor.setRGBAColor(params, ac);
 		color = tempcolor;
-		expression.next();
 	    } else if (attr.getName().equals("hsl")) {
 		tempcolor.setHSLColor(params, ac);
 		color = tempcolor;
-		expression.next();
 	    } else if (attr.getName().equals("hsla")) {
 		tempcolor.setHSLAColor(params, ac);
 		color = tempcolor;
-		expression.next();
 	    } else {
 		throw new InvalidParamException("value",
 						params.getValue(),
 						getPropertyName(), ac);
 	    }
-	} else if (val instanceof CssIdent) {
-	    if ("css1".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
-	    } else if ("css2".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
-	    } else if ("css3".equals(ac.getCssVersion())){
-		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
-	    } else {
-		color = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get()); // SVG profiles
-	    }
-	    //	    color = new org.w3c.css.values.CssColor();
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+	    break;
+	default:
+	     throw new InvalidParamException("value", expression.getValue(),
+					     getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssColor(ApplContext ac, CssExpression expression)
