@@ -163,7 +163,7 @@ public class ATSCColor extends CssValue
 
     Object color;
     RGBATSC rgb;
-    static HashMap<String,Object> definedColors;
+    static HashMap<String,Object> definedColorsATSC;
     static CssIdent inherit = new CssIdent("inherit");
 
     /**
@@ -413,8 +413,8 @@ public class ATSCColor extends CssValue
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-	if (definedColors.get(lower_s) != null) {
-	    Object obj = definedColors.get(lower_s);
+	Object obj = definedColorsATSC.get(lower_s);
+	if (obj != null) {
 	    if (obj instanceof RGBATSC) {
 		color = lower_s;
 		rgb = (RGBATSC) obj;
@@ -471,115 +471,115 @@ public class ATSCColor extends CssValue
     }
 
     static {
-	definedColors = new HashMap<String,Object>();
-	definedColors.put("black",
+	definedColorsATSC = new HashMap<String,Object>();
+	definedColorsATSC.put("black",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("silver",
+	definedColorsATSC.put("silver",
 			  new RGBATSC(new Integer(192),
 				      new Integer(192),
 				      new Integer(192),
 				      new Integer(255)));
-	definedColors.put("gray",
+	definedColorsATSC.put("gray",
 			  new RGBATSC(new Integer(128),
 				      new Integer(128),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("white",
+	definedColorsATSC.put("white",
 			  new RGBATSC(new Integer(255),
 				      new Integer(255),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("maroon",
+	definedColorsATSC.put("maroon",
 			  new RGBATSC(new Integer(128),
 				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("red",
+	definedColorsATSC.put("red",
 			  new RGBATSC(new Integer(255),
 				      new Integer(0),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("purple",
+	definedColorsATSC.put("purple",
 			  new RGBATSC(new Integer(128),
 				      new Integer(0),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("fuchsia",
+	definedColorsATSC.put("fuchsia",
 			  new RGBATSC(new Integer(255),
 				      new Integer(0),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("green",
+	definedColorsATSC.put("green",
 			  new RGBATSC(new Integer(0),
 				      new Integer(128),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("lime",
+	definedColorsATSC.put("lime",
 			  new RGBATSC(new Integer(0),
 				      new Integer(255),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("olive",
+	definedColorsATSC.put("olive",
 			  new RGBATSC(new Integer(128),
 				      new Integer(128),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("yellow",
+	definedColorsATSC.put("yellow",
 			  new RGBATSC(new Integer(255),
 				      new Integer(255),
 				      new Integer(0),
 				      new Integer(255)));
-	definedColors.put("navy",
+	definedColorsATSC.put("navy",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("blue",
+	definedColorsATSC.put("blue",
 			  new RGBATSC(new Integer(0),
 				      new Integer(0),
 				      new Integer(255),
 				      new Integer(255)));
-	definedColors.put("teal",
+	definedColorsATSC.put("teal",
 			  new RGBATSC(new Integer(0),
 				      new Integer(128),
 				      new Integer(128),
 				      new Integer(255)));
-	definedColors.put("aqua",
+	definedColorsATSC.put("aqua",
 			  new RGBATSC(new Integer(0),
 				      new Integer(255),
 				      new Integer(255),
 				      new Integer(255)));
-        definedColors.put("activeborder", "ActiveBorder");
-        definedColors.put("activecaption", "ActiveCaption");
-        definedColors.put("appworkspace", "AppWorkspace");
-        definedColors.put("background", "Background");
-        definedColors.put("buttonface", "ButtonFace");
-        definedColors.put("buttonhighlight", "ButtonHighlight");
-        definedColors.put("buttonshadow", "ButtonShadow");
-        definedColors.put("buttontext", "ButtonText");
-        definedColors.put("captiontext", "CaptionText");
-        definedColors.put("graytext", "GrayText");
-        definedColors.put("highlight", "Highlight");
-        definedColors.put("highlighttext", "HighlightText");
-        definedColors.put("inactiveborder", "InactiveBorder");
-        definedColors.put("inactivecaption", "InactiveCaption");
-        definedColors.put("inactivecaptiontext", "InactiveCaptionText");
-        definedColors.put("infobackground", "InfoBackground");
-        definedColors.put("infotext", "InfoText");
-        definedColors.put("menu", "Menu");
-        definedColors.put("menutext", "MenuText");
-        definedColors.put("scrollbar", "Scrollbar");
-        definedColors.put("threeddarkshadow", "ThreeDDarkShadow");
-        definedColors.put("threedface", "ThreeDFace");
-        definedColors.put("threedhighlight", "ThreeDHighlight");
-        definedColors.put("threedlightshadow", "ThreeDLightShadow");
-        definedColors.put("threedshadow", "ThreeDShadow");
-        definedColors.put("window", "Window");
-        definedColors.put("windowframe", "WindowFrame");
-        definedColors.put("windowtext", "WindowText");
+        definedColorsATSC.put("activeborder", "ActiveBorder");
+        definedColorsATSC.put("activecaption", "ActiveCaption");
+        definedColorsATSC.put("appworkspace", "AppWorkspace");
+        definedColorsATSC.put("background", "Background");
+        definedColorsATSC.put("buttonface", "ButtonFace");
+        definedColorsATSC.put("buttonhighlight", "ButtonHighlight");
+        definedColorsATSC.put("buttonshadow", "ButtonShadow");
+        definedColorsATSC.put("buttontext", "ButtonText");
+        definedColorsATSC.put("captiontext", "CaptionText");
+        definedColorsATSC.put("graytext", "GrayText");
+        definedColorsATSC.put("highlight", "Highlight");
+        definedColorsATSC.put("highlighttext", "HighlightText");
+        definedColorsATSC.put("inactiveborder", "InactiveBorder");
+        definedColorsATSC.put("inactivecaption", "InactiveCaption");
+        definedColorsATSC.put("inactivecaptiontext", "InactiveCaptionText");
+        definedColorsATSC.put("infobackground", "InfoBackground");
+        definedColorsATSC.put("infotext", "InfoText");
+        definedColorsATSC.put("menu", "Menu");
+        definedColorsATSC.put("menutext", "MenuText");
+        definedColorsATSC.put("scrollbar", "Scrollbar");
+        definedColorsATSC.put("threeddarkshadow", "ThreeDDarkShadow");
+        definedColorsATSC.put("threedface", "ThreeDFace");
+        definedColorsATSC.put("threedhighlight", "ThreeDHighlight");
+        definedColorsATSC.put("threedlightshadow", "ThreeDLightShadow");
+        definedColorsATSC.put("threedshadow", "ThreeDShadow");
+        definedColorsATSC.put("window", "Window");
+        definedColorsATSC.put("windowframe", "WindowFrame");
+        definedColorsATSC.put("windowtext", "WindowText");
     }
 
 }
