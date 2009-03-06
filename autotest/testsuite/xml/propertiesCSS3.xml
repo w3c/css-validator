@@ -280,7 +280,7 @@ test markup also accepts 3 properties: warning, profile and medium
       <description>valid RGB construct - but all values out of range</description>
       <result valid="true">
 	<errors>0</errors>
-	<warnings>2</warnings>
+	<warnings>3</warnings>
       </result>
     </test>
 
