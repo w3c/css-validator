@@ -22,6 +22,7 @@ public class CssTypes {
     public static final int CSS_FREQUENCY     =  9;
     public static final int CSS_RESOLUTION    = 10;
     public static final int CSS_DATE          = 11;
-    public static final int CSS_UNICODE_RANGE = 12;
+    public static final int CSS_FUNCTION      = 12;
+    public static final int CSS_UNICODE_RANGE = 13;
 
 }

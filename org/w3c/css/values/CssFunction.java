@@ -15,6 +15,12 @@ import org.w3c.css.util.ApplContext;
  */
 public class CssFunction extends CssValue {
 
+    public static final int type = CssTypes.CSS_FUNCTION;
+
+    public final int getType() {
+	return type;
+    }
+
     String name;
     CssExpression parameters;
 
