@@ -187,8 +187,8 @@ public class CssColorCSS1 extends CssColor {
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-	if (definedColors.get(lower_s) != null) {
-	    Object obj = definedColorsCSS1.get(lower_s);
+	Object obj = definedColorsCSS1.get(lower_s);
+	if (obj != null) {
 	    if (obj instanceof RGB) {
 		color = lower_s;
 		rgb = (RGB) obj;
