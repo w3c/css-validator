@@ -2,6 +2,7 @@ function getTestList(uri) {
     var xmlhttp = new XMLHttpRequest();
 //    xmlhttp.open("GET", "/css-validator/autotest/testsuite/xml/"+
 //		 "bugs.xml",false);
+    xmlhttp.setRequestHeader('Cache-Control','no-cache')
     xmlhttp.open("GET", uri, false);
     //    xmlhttp.setRequestHeader('Accept','application/json')
     //   xmlhttp.onreadystatechange=function() {
