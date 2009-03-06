@@ -161,6 +161,8 @@ import org.w3c.css.util.Util;
  */
 public class CssColorCSS1 extends CssColor {
 
+    static HashMap<String,Object> definedColorsCSS1;
+
     /**
      * Create a new CssColorCSS1
      */
@@ -206,38 +208,38 @@ public class CssColorCSS1 extends CssColor {
     }
 
     static {
-	definedColors = new HashMap<String,Object>();
-	definedColors.put("black",
+	definedColorsCSS1 = new HashMap<String,Object>();
+	definedColorsCSS1.put("black",
 			  new RGB(0, 0, 0));
-	definedColors.put("silver",
+	definedColorsCSS1.put("silver",
 			  new RGB(192, 192, 192));
-	definedColors.put("gray",
+	definedColorsCSS1.put("gray",
 			  new RGB(128, 128, 128));
-	definedColors.put("white",
+	definedColorsCSS1.put("white",
 			  new RGB(255, 255, 255));
-	definedColors.put("maroon",
+	definedColorsCSS1.put("maroon",
 			  new RGB(128, 0, 0));
-	definedColors.put("red",
+	definedColorsCSS1.put("red",
 			  new RGB(255, 0, 0));
-	definedColors.put("purple",
+	definedColorsCSS1.put("purple",
 			  new RGB(128, 0, 128));
-	definedColors.put("fuchsia",
+	definedColorsCSS1.put("fuchsia",
 			  new RGB(255, 0, 255));
-	definedColors.put("green",
+	definedColorsCSS1.put("green",
 			  new RGB(0, 128, 0));
-	definedColors.put("lime",
+	definedColorsCSS1.put("lime",
 			  new RGB(0, 255, 0));
-	definedColors.put("olive",
+	definedColorsCSS1.put("olive",
 			  new RGB(128, 128, 0));
-	definedColors.put("yellow",
+	definedColorsCSS1.put("yellow",
 			  new RGB(255, 255, 0));
-	definedColors.put("navy",
+	definedColorsCSS1.put("navy",
 			  new RGB(0, 0, 128));
-	definedColors.put("blue",
+	definedColorsCSS1.put("blue",
 			  new RGB(0, 0, 255));
-	definedColors.put("teal",
+	definedColorsCSS1.put("teal",
 			  new RGB(0, 128, 128));
-	definedColors.put("aqua",
+	definedColorsCSS1.put("aqua",
 			  new RGB(0, 255, 255));
     }
 
