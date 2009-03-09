@@ -2569,6 +2569,34 @@ public class Css1Style extends CssStyle {
 
     /**
      * Find conflicts in this Style
+     * For the float elements
+     *
+     * @param warnings For warnings reports.
+     * @param allSelectors All contexts is the entire style sheet.
+     */   
+    private void findConflictsFloatElements(ApplContext ac, Warnings warnings, 
+					    CssSelectors selector, 
+					    CssSelectors[] allSelectors) {
+	if(cssWidth == null ) {
+	    String selectorElement =  selector.getElement();
+	    // for null element, or element without intrinsic width
+	    if ( (selectorElement == null) ||
+		 ( !selectorElement.equals("html") &&
+		   !selectorElement.equals("img") && 
+		   !selectorElement.equals("input") &&
+		   !selectorElement.equals("object") && 
+		   !selectorElement.equals("textarea") && 
+		   !selectorElement.equals("select")
+		   ) ) {
+		// float needs a declared width
+		warnings.addWarning(new Warning(cssFloat, "float-no-width",
+						1, ac));                
+	    }
+	}
+    }
+
+    /**
+     * Find conflicts in this Style
      *
      * @param warnings For warnings reports.
      * @param allSelectors All contexts is the entire style sheet.
@@ -2582,33 +2610,20 @@ public class Css1Style extends CssStyle {
 	// check conflicts for 'font-family'
 	findConflictsFontFamily(ac, warnings, selector, allSelectors);
 
+	// warning for floats
 	if (cssFloat != null) {
-	    if(cssWidth == null ) {
-		String selectorElement =  selector.getElement();
-		// for null element, or element without intrinsic width
-		if ( (selectorElement == null) ||
-		     ( !selectorElement.equals("html") &&
-		       !selectorElement.equals("img") && 
-		       !selectorElement.equals("input") &&
-		       !selectorElement.equals("object") && 
-		       !selectorElement.equals("textarea") && 
-		       !selectorElement.equals("select")
-		       ) ) {
-		    // float needs a declared width
-		    warnings.addWarning(new Warning(cssFloat, "float-no-width",
-						    1, ac));                
-		}
-	    }
+	    findConflictsFloatElements(ac, warnings, selector, allSelectors);
 	}
 
 	if (cssBackground.getColor() != null) {
 	    CssColor colorCSS3 = cssColor;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    for (int i=0;(colorCSS3 == null) && (i<allSelectors.length); i++) {
+	    for (int i=0; i<allSelectors.length; i++) {
 		CssSelectors sel = allSelectors[i];	
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS3 = ((Css1Style) sel.getStyle()).cssColor;
+		    break;
 		}
 	    }
 	    if (colorCSS3 != null) {
@@ -2689,10 +2704,11 @@ public class Css1Style extends CssStyle {
 	    CssColorCSS1 colorCSS1 = cssColorCSS1;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    for (int i=0; (colorCSS1 == null) && i < allSelectors.length; i++) {
+	    for (int i=0; i < allSelectors.length; i++) {
 		CssSelectors sel = allSelectors[i];		
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS1 = ((Css1Style) sel.getStyle()).cssColorCSS1;
+		    break;
 		}
 	    }
 	    if (colorCSS1 != null) {
@@ -2761,10 +2777,11 @@ public class Css1Style extends CssStyle {
 	    CssColorCSS2 colorCSS2 = cssColorCSS2;
 	    // we need to look if there is the same selector elsewhere
 	    // containing a color definition
-	    for (int i=0; (colorCSS2 == null) && (i<allSelectors.length); i++) {
+	    for (int i=0; i<allSelectors.length; i++) {
 		CssSelectors sel = allSelectors[i];		
 		if(sel.toString().equals(selector.toString())) {
 		    colorCSS2 = ((Css1Style) sel.getStyle()).cssColorCSS2;
+		    break;
 		}
 	    }
 	    if (colorCSS2 != null) {
