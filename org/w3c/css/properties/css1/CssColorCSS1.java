@@ -11,6 +11,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -56,16 +57,18 @@ public class CssColorCSS1 extends CssProperty {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
 
-	if (val instanceof org.w3c.css.values.CssColor) {
+	switch (val.getType()) {
+	case CssTypes.CSS_COLOR:
 	    color = val;
-	    expression.next();
-	} else if (val instanceof CssIdent) {
+	    break;
+	case CssTypes.CSS_IDENT:
 	    color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
-	    expression.next();
-	} else {
+	    break;
+	default:
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssColorCSS1(ApplContext ac, CssExpression expression)
