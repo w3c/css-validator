@@ -45,26 +45,18 @@ public class CssColorCSS21 extends CssColorCSS2 {
 
 	int indexOfColor = searchColor(hash, tableColorHash);
 
-	if(indexOfColor != -1) {
-	    color = COLORNAME_CSS21[indexOfColor];
-	}
-	// the color has not been found, search it the system colors
-	else {
+	if (indexOfColor != -1) {
+	    computeIdentColor(definedColors, COLORNAME_CSS21[indexOfColor]);
+	} else {
+	    // the color has not been found, search it the system colors
 	    indexOfColor = searchColor(hash, tableSystemColorHash);
 	    if(indexOfColor != -1) {
-		color = SYSTEMCOLORS[indexOfColor];
-	    }
+		computeIdentColor(definedColors, SYSTEMCOLORS[indexOfColor]);
+	    } else {
 	    // the color does not exist in this profile, this is an error
-	    else {
 		throw new InvalidParamException("value", s, "color", ac);
 	    }
 	}
-// 2007-05 - this warning on color string capitalization is plain silly, 
-// commenting it out-- ot@w3.org
-//	if(!s.equals(color)) {
-//	    ac.getFrame().addWarning("color.mixed-capitalization", s);
-//	}
-
     }
 
     private int searchColor(int colorHash, int[] tableColorHash) {

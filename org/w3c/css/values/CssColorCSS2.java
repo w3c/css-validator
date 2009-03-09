@@ -187,24 +187,9 @@ public class CssColorCSS2 extends CssColor {
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-	Object obj = definedColorsCSS2.get(lower_s);
-	if (obj != null) {
-	    if (obj instanceof RGB) {
-		color = lower_s;
-		rgb = (RGB) obj;
-	    } else if (obj instanceof String) {
-		color = (String) obj;
-// 2007-05 - this warning on color string capitalization is plain silly, 
-// commenting it out-- ot@w3.org
-//		if (!obj.equals(s)) {
-//		    ac.getFrame().addWarning("color.mixed-capitalization",
-//					     s);
-//		}
-	    }
-	    return;
+	if (!computeIdentColor(definedColorsCSS2, lower_s)) {
+	    throw new InvalidParamException("value", s, "color", ac);
 	}
-
-	throw new InvalidParamException("value", s, "color", ac);
     }
 
     static {

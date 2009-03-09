@@ -411,6 +411,24 @@ public class CssColor extends CssValue
 	rgb.output = s;
     }
 
+    protected boolean computeIdentColor(HashMap<String,Object> definitions,
+				      String s) 
+    {
+	Object obj = definitions.get(s);
+	if (obj != null) {
+	    if (obj instanceof RGB) {
+		color = s;
+		rgb = (RGB) obj;
+	    } else if (obj instanceof RGBA) {
+		color = s;
+		rgba = (RGBA) obj;
+	    } else if (obj instanceof String) {
+		color = (String) obj;
+	    }
+	    return true;
+	}
+	return false;
+    }
     /**
      * Parse an ident color.
      */
@@ -418,23 +436,7 @@ public class CssColor extends CssValue
 	throws InvalidParamException
     {
 	String lower_s = s.toLowerCase();
-	Object obj = definedColors.get(lower_s);
-	if (obj != null) {
-	    if (obj instanceof RGB) {
-		color = lower_s;
-		rgb = (RGB) obj;
-	    } else if (obj instanceof RGBA) {
-		color = lower_s;
-		rgba = (RGBA) obj;
-	    } else if (obj instanceof String) {
-		color = (String) obj;
-// 2007-05 - this warning on color string capitalization is plain silly, 
-// commenting it out-- ot@w3.org
-//		if (!obj.equals(s)) {
-//		    ac.getFrame().addWarning("color.mixed-capitalization",
-//					     s);
-//		}
-	    }
+	if (computeIdentColor(definedColors, lower_s)) {
 	    return;
 	} else if (deprecatedColors.get(lower_s) != null) {
 	    color = lower_s;
@@ -454,16 +456,18 @@ public class CssColor extends CssValue
 	if (!(cssColor  instanceof CssColor)) {
 	    return false;
 	}
-	if (color != null) {
-	    return color.equals(((CssColor)cssColor).color);
-	} else if (rgb != null) {
-	    return rgb.equals(((CssColor)cssColor).rgb);
-	} else if (rgba != null) {
-	    return rgba.equals(((CssColor)cssColor).rgba);
-	} else if (hsl != null) {
-	    return hsl.equals(((CssColor)cssColor).hsl);
-	} else if (hsla != null) {
-	    return hsla.equals(((CssColor)cssColor).hsla);
+	CssColor otherColor = (CssColor) cssColor;
+	// FIXME we can have rgba(a,b,c,1) == rgb(a,b,c)
+	if ((color != null) && (otherColor.color != null)) {
+	    return color.equals(otherColor.color);
+	} else if ((rgb != null) && (otherColor.rgb != null)) {
+	    return rgb.equals(otherColor.rgb);
+	} else if ((rgba != null) && (otherColor.rgba != null)) {
+	    return rgba.equals(otherColor.rgba);
+	} else if ((hsl != null) && (otherColor.hsl != null)) {
+	    return hsl.equals(otherColor.hsl);
+	} else if ((hsla != null) && (otherColor.hsla != null)) {
+	    return hsla.equals(otherColor.hsla);
 	}
 	return false;
     }
