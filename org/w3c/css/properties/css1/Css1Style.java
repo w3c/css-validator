@@ -18,6 +18,7 @@ import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -2519,6 +2520,52 @@ public class Css1Style extends CssStyle {
     }
 
 
+    /**
+     * Find conflicts in this Style
+     * For the 'font-family' property
+     *
+     * @param warnings For warnings reports.
+     * @param allSelectors All contexts is the entire style sheet.
+     */   
+    private void findConflictsFontFamily(ApplContext ac, Warnings warnings, 
+					 CssSelectors selector,
+					 CssSelectors[] allSelectors) {
+	// first CSS2 (the default)
+	if (cssFontCSS2.fontFamily != null) {
+	    if (!cssFontCSS2.fontFamily.containsGenericFamily()) {
+		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
+						"no-generic-family", 2, ac));
+	    }
+	    if (cssFontCSS2.fontFamily.withSpace) {
+		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
+						"with-space", 1, ac));
+	    }
+	    return;
+	}
+	// CSS 3
+	if (cssFont.fontFamily != null) {
+	    if (!cssFont.fontFamily.containsGenericFamily()) {
+		warnings.addWarning(new Warning(cssFont.fontFamily,
+						"no-generic-family", 2, ac));
+	    }
+	    if (cssFont.fontFamily.withSpace) {
+		warnings.addWarning(new Warning(cssFont.fontFamily,
+						"with-space", 1, ac));
+	    }
+	    return;
+	}
+	// CSS1
+	if (cssFontCSS1.fontFamily != null) {
+	    if (!cssFontCSS1.fontFamily.containsGenericFamily()) {
+		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
+						"no-generic-family", 2, ac));
+	    }
+	    if (cssFontCSS1.fontFamily.withSpace) {
+		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
+						"with-space", 1, ac));
+	    }
+	}
+    }
 
     /**
      * Find conflicts in this Style
@@ -2532,55 +2579,27 @@ public class Css1Style extends CssStyle {
 	// @@ this is a horrible place to do this ...
 	cssBorder.check();
 
-	if (cssFont.fontFamily != null) {
-	    if (!cssFont.fontFamily.containsGenericFamily()) {
-		warnings.addWarning(new Warning(cssFont.fontFamily,
-			"no-generic-family", 2, ac));
-	    }
-	    if (cssFont.fontFamily.withSpace) {
-		warnings.addWarning(new Warning(cssFont.fontFamily,
-			"with-space", 1, ac));
-	    }
-	}
-	else if (cssFontCSS1.fontFamily != null) {
-	    if (!cssFontCSS1.fontFamily.containsGenericFamily()) {
-		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
-			"no-generic-family", 2, ac));
-	    }
-	    if (cssFontCSS1.fontFamily.withSpace) {
-		warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
-			"with-space", 1, ac));
-	    }
-	}
-	else if (cssFontCSS2.fontFamily != null) {
-	    if (!cssFontCSS2.fontFamily.containsGenericFamily()) {
-		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
-			"no-generic-family", 2, ac));
-	    }
-	    if (cssFontCSS2.fontFamily.withSpace) {
-		warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
-			"with-space", 1, ac));
-	    }
-	}
+	// check conflicts for 'font-family'
+	findConflictsFontFamily(ac, warnings, selector, allSelectors);
 
-    if (cssFloat != null) {
-        if(cssWidth == null ) {
-            String selectorElement =  selector.getElement();
-            if (selectorElement != null){
-                if ((selectorElement.equals("html")) || (selectorElement.equals("img")) || (selectorElement.equals("input")) 
-                || (selectorElement.equals("object")) || (selectorElement.equals("textarea")) || (selectorElement.equals("select"))) {
-                }
-                else {
-                    // for elements without intrinsic width, float needs a declared width
-        		    warnings.addWarning(new Warning(cssFloat, "float-no-width", 1, ac));                
-                }
-            }
-            else {
-                // for elements without intrinsic width, float needs a declared width
-    		    warnings.addWarning(new Warning(cssFloat, "float-no-width", 1, ac));                
-            }
-        }
-    }
+	if (cssFloat != null) {
+	    if(cssWidth == null ) {
+		String selectorElement =  selector.getElement();
+		// for null element, or element without intrinsic width
+		if ( (selectorElement == null) ||
+		     ( !selectorElement.equals("html") &&
+		       !selectorElement.equals("img") && 
+		       !selectorElement.equals("input") &&
+		       !selectorElement.equals("object") && 
+		       !selectorElement.equals("textarea") && 
+		       !selectorElement.equals("select")
+		       ) ) {
+		    // float needs a declared width
+		    warnings.addWarning(new Warning(cssFloat, "float-no-width",
+						    1, ac));                
+		}
+	    }
+	}
 
 	if (cssBackground.getColor() != null) {
 	    CssColor colorCSS3 = cssColor;
@@ -2889,6 +2908,7 @@ public class Css1Style extends CssStyle {
 		}
 	    }
 	    if(backgroundColor == null) {
+		// FIXME background image
 		// It's better to have a background color with a color
 		warnings.addWarning(new Warning(cssColorCSS2, 
 			"no-background-color", 2, ac));
@@ -2896,7 +2916,6 @@ public class Css1Style extends CssStyle {
 	}
 
 	// now testing for % and length in padding and marging
-	// @@FIXME I don't be carreful with the value zero ...
 
 	RelativeAndAbsolute checker = new RelativeAndAbsolute();
 	CssProperty info = null;
@@ -3018,25 +3037,44 @@ public class Css1Style extends CssStyle {
 class RelativeAndAbsolute {
     boolean relative = false;
     boolean absolute = false;
+
     final void reset() {
 	relative = false;
 	absolute = false;
     }
+
     final boolean isNotRobust() {
 	return relative && absolute;
     }
+    
     final void compute(CssValue value) {
-	if (value instanceof CssPercentage) {
-	    relative |= true;
-	} else if (value instanceof CssLength) {
-	    CssLength length = (CssLength) value;
-	    if (!length.getUnit().equals("ex")
-		    || !length.getUnit().equals("em")) {
-		absolute |= true;
-	    } else {
-		relative |= true;
+	switch (value.getType()) {
+	case CssTypes.CSS_PERCENTAGE:
+	    // FIXME, it depends on the unit of the parent in the cascade.
+	    CssPercentage percent = (CssPercentage) value;
+	    if (percent.getValue() != (float) 0.0) {
+		relative = true;
 	    }
+	    break;
+	case CssTypes.CSS_LENGTH:
+	    CssLength length = (CssLength) value;
+	    Float f = (Float) length.get();
+	    // 0 is always 0, no need to check
+	    if (f.floatValue() != (float) 0.0) {
+		String unit = length.getUnit();
+		// per CSS21, section 4.3.2
+		// 'px', 'em', 'ex' are relative values
+		if (unit.equals("px") || unit.equals("em") ||
+		    unit.equals("ex")) { 
+		    relative = true;
+		} else {
+		    // 'cm', 'mm', 'pt', 'pc', 'in' are absolute values
+		    absolute = true;
+		}
+	    }
+	    break;
+	default:
+	    /* should never happen */
 	}
     }
-
 }
