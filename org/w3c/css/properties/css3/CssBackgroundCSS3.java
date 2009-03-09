@@ -9,6 +9,7 @@ import org.w3c.css.properties.css1.CssBackgroundAttachmentCSS2;
 import org.w3c.css.properties.css21.CssBackgroundCSS21;
 import org.w3c.css.properties.css1.CssBackgroundImageCSS2;
 import org.w3c.css.properties.css1.CssBackgroundRepeatCSS2;
+import org.w3c.css.properties.css1.CssBackgroundColor;
 import org.w3c.css.properties.css21.CssBackgroundPositionCSS21;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -24,6 +25,15 @@ import org.w3c.css.values.CssURL;
  * Created: Aug 31, 2005 2:03:41 PM<br />
  */
 public class CssBackgroundCSS3 extends CssBackgroundCSS21 {
+    CssBackgroundColor color;
+
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssBackgroundColor color) {
+        this.color = color;
+    }
+
     /**
      * Create a new CssBackgroundCSS2
      */
@@ -82,7 +92,7 @@ public class CssBackgroundCSS3 extends CssBackgroundCSS21 {
 	    case CssTypes.CSS_COLOR:
 	    case CssTypes.CSS_FUNCTION:
 		if (getColor2() == null) {
-		    setColor(new CssBackgroundColorCSS3(ac, expression));
+		    setColor(new CssBackgroundColor(ac, expression));
 		    continue;
 		}
 		find = false;
@@ -135,7 +145,7 @@ public class CssBackgroundCSS3 extends CssBackgroundCSS21 {
 
 		if (getColor2() == null) {
 		    try {
-			setColor(new CssBackgroundColorCSS3(ac, expression));
+			setColor(new CssBackgroundColor(ac, expression));
 			find = true;
 			break;
 		    } catch (InvalidParamException e) {
