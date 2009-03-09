@@ -64,24 +64,8 @@ public class CssBackgroundColor extends CssProperty {
 	}
 
 	setByUser();
-	CssValue val = expression.getValue();
-
-	switch (val.getType()) {
-	case CssTypes.CSS_COLOR:
-	    color = val;
-	    break;
-	case CssTypes.CSS_IDENT:
-	    if (inherit.equals(val)) {
-		color = inherit;
-		break;
-	    }
-	    color = new org.w3c.css.values.CssColor(ac, (String) val.get());
-	    break;
-	default:
-	    throw new InvalidParamException("value", val.toString(),
-					    getPropertyName(), ac);
-	}
-	expression.next();
+	CssColor tempcolor = new CssColor(ac, expression, check);
+	color = (CssValue) tempcolor.get();
     }
 
     public CssBackgroundColor(ApplContext ac, CssExpression expression)
