@@ -255,8 +255,8 @@ error.zero: 오직 0만이 %s일 수 있습니다. 값 뒤에는 반드시 단�
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: 속성 %s는 존재하지 않는 속성입니다
 error.noexistence-media: 속성 %s는 매체 %s에 존재하지 않습니다
-error.noexistence: 속성 %s는 %s에 조재하지 않지만 %s에는 존재합니다
-warning.noexistence: 속성 %s는 %s에 조재하지 않지만 %s에는 존재합니다
+error.noexistence: 속성 %s는 %s에 존재하지 않지만 %s에는 존재합니다
+warning.noexistence: 속성 %s는 %s에 존재하지 않지만 %s에는 존재합니다
 warning.noexistence-media: 속성 %s는 매체 %s에 존재하지 않습니다
 warning.notforusermedium : 속성 %s는 이 usermedium에 대하여 존재하지 않습니다
 warning.noothermedium : 다른 매체를 위한 속성은 usermedium에서 동작하지 않을 수 있습니다
