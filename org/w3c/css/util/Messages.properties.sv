@@ -137,7 +137,7 @@ warning.style-inside-comment: Lägg inte stilregler inom HTML-kommentarer, efter
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Samma färg för %s och %s
 warning.no-color: Du har inte angett color (eller color anges som genomskinlig) men du har angett en background-color. Försäkra dig om att färgkaskader inte gör texten oläslig.
-warning.no-background-color: Du har inte angett background-color (eller background-color är angedd som genomskinlig) men du har angett color. Försäkra dig om att färgkaskader inte gör texten oläsbar.
+warning.no-background-color: Du har inte angett background-color (eller background-color är angiven som genomskinlig) men du har angett color. Försäkra dig om att färgkaskader inte gär texten oläsbar.
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
 warning.no-generic-family: %s: Du borde erbjuda en generisk familj som sista alternativ
@@ -367,7 +367,8 @@ warning.deprecated: detta värde är föråldrat
 parser.unknown-dimension: Okänd dimension
 generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-syntax.
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
+warning.float-no-width: Flytande element utan inneboende bredd (dvs allt förutom html, img, input, textarea, select, och object) bör ges en bredd.
+
 parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
 parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
 parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
