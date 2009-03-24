@@ -430,6 +430,22 @@ public class Messages {
 	}
 
 	// -----------------------
+	try {
+	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.bg");
+	    try {
+		tmp = new Utf8Properties<String,String>();
+		tmp.load(f);
+		languages_name.add("bg");
+		languages.put("bg", tmp);
+	    } finally {
+		f.close();
+	    }
+	} catch (Exception e) {
+	    System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties bg");
+	    System.err.println("  " + e.toString());
+	}
+
+	// -----------------------
 
 	try {
 	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.zh-cn");
