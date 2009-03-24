@@ -398,20 +398,22 @@ public class Messages {
 	}
 
 	// -----------------------
-	try {
-	    java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.fa");
-	    try {
-		tmp = new Utf8Properties<String,String>();
-		tmp.load(f);
-		languages_name.add("fa");
-		languages.put("fa", tmp);
-	    } finally {
-		f.close();
-	    }
-	} catch (Exception e) {
-	    System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties fa");
-	    System.err.println("  " + e.toString());
-	}
+    // disabled for the time being, the properties file has trouble with line breaks
+    // and the rtl text makes it difficult to fix with my editor. Ball is in the camp of translator 2009-03 -- olivier
+    // try {
+    //     java.io.InputStream f = Messages.class.getResourceAsStream("Messages.properties.fa");
+    //     try {
+    //  tmp = new Utf8Properties<String,String>();
+    //  tmp.load(f);
+    //  languages_name.add("fa");
+    //  languages.put("fa", tmp);
+    //     } finally {
+    //  f.close();
+    //     }
+    // } catch (Exception e) {
+    //     System.err.println("org.w3c.css.util.Messages: " + "couldn't load properties fa");
+    //     System.err.println("  " + e.toString());
+    // }
 
 	// -----------------------
 	try {
