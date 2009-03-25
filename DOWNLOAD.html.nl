@@ -164,7 +164,12 @@ Java ge&iuml;nstalleerd heeft. Build de css-validator.jar zoals hierboven beschr
 
       <ul id="lang_choice">
      
-     <li><a href="DOWNLOAD.html.de"
+     <li><a href="DOWNLOAD.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="DOWNLOAD.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"

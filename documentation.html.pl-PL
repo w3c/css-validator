@@ -78,7 +78,12 @@
 
        <ul id="lang_choice">
      
-     <li><a href="documentation.html.de"
+     <li><a href="documentation.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="documentation.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"

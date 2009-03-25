@@ -258,7 +258,12 @@ El servicio de validación de CSS es un servicio gratuito y público para todos,
 
       <ul id="lang_choice">
      
-     <li><a href="manual.html.de"
+     <li><a href="manual.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="manual.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"

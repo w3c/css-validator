@@ -131,7 +131,12 @@ o seguir las instrucciones para descargar el &aacute;rbol completo del código f
 </ul>
  <ul id="lang_choice">
      
-     <li><a href="about.html.de"
+     <li><a href="about.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="about.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"

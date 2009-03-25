@@ -122,7 +122,12 @@ CSS 검사 도구에서 사용하는 클래스에 대한 개괄적인 설명은 
 
    <ul id="lang_choice">
         
-        <li><a href="about.html.de"
+        <li><a href="about.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="about.html.de"
             lang="de"
             xml:lang="de"
             hreflang="de"

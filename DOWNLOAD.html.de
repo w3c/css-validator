@@ -116,7 +116,12 @@ das css-validator.jar wie oben beschrieben, und starten Sie es wie folgt:<br />
 
        <ul id="lang_choice">
      
-     <li><a href="DOWNLOAD.html.de"
+     <li><a href="DOWNLOAD.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="DOWNLOAD.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"

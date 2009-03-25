@@ -133,7 +133,12 @@ of installeer en draai je eigen instantie van de validator.</p>
  
        <ul id="lang_choice">
      
-     <li><a href="about.html.de"
+     <li><a href="about.html.bg"
+    lang="bg"
+    xml:lang="bg"
+    hreflang="bg"
+    rel="alternate">Български</a></li>
+  <li><a href="about.html.de"
          lang="de"
          xml:lang="de"
          hreflang="de"
