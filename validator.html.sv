@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sv" lang="sv">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sv" lang="sv" dir="ltr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
     <title>W3C:s CSS-valideringstjänst</title>
     <link rev="made" href="mailto:www-validator-css@w3.org" />
     <link rev="start" href="./" title="Hemsida för W3C:s CSS-valideringstjänst" />
@@ -373,6 +375,13 @@
             xml:lang="sv"
             hreflang="sv"
             rel="alternate">Svenska</a>
+        </li>
+        
+        <li><a href="validator.html.bg"
+            lang="bg"
+            xml:lang="bg"
+            hreflang="bg"
+            rel="alternate">Български</a>
         </li>
         
         <li><a href="validator.html.zh-cn"
