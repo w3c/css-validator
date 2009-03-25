@@ -365,8 +365,8 @@ error.nocomb: La combinación %s entre selectores no está permitida en este per
 warning.nocomb: No se permite el combinador %s entre selectores en este perfil (%s)
 error.unknown: Error desconocido
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+warning.float-no-width: En (x)HTML+CSS, los elementos flotados han de tener un ancho (width) declarado. Únicamente elementos con un ancho intrínseco (html, img, input, textarea, select u object) no se ven afectados
+parser.charsetcss1: En CSS1 no se pueden utilizar reglas @charset
+parser.attrcss1: Los selectores de atributo no son válidos en CSS1
+parser.invalid_id_selector: Selector ID no válido
+parser.import_not_allowed: Sólo se permite @import después de una declaración válida @charset y @import
