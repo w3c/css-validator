@@ -2612,7 +2612,9 @@ public class Css1Style extends CssStyle {
 
 	// warning for floats
 	if (cssFloat != null) {
-	    findConflictsFloatElements(ac, warnings, selector, allSelectors);
+	    //findConflictsFloatElements(ac, warnings, selector, allSelectors);
+	    // disabled per thread on www-validator-css 
+	    // and changes in CSS2.1 removing this constraint
 	}
 
 	if (cssBackground.getColor() != null) {
