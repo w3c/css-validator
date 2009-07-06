@@ -2104,8 +2104,8 @@ CssValue function() :
 {
     n=<FUNCTION> ( <S> )* exp=expr() 
     ")" { 
-
-	if (n.image.toLowerCase().equals("rgb(")) {
+	String funcname = n.image.toLowerCase();
+	if (funcname.equals("rgb(")) {
 	    if (!getAtRule().toString().equals("@media atsc-tv")) {
 	       color.setRGBColor(exp, ac);
 	       return color;
