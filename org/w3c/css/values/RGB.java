@@ -45,7 +45,7 @@ public class RGB {
     public final void setGreen(int g) {
 	this.g = g;
     }
-    public final void setGreen(float gr) {
+    public final void setGreen(float fg) {
 	this.fg = fg;
     }
 
