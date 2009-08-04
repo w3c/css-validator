@@ -48,7 +48,7 @@
 
 <h3 id="translat">Translator's Corner</h3>
 <dl>
-    <dt><a href="http://qa-dev.w3.org:8001/css-validator/translations.html" title="CSS Validation Service Translation">Translation of the CSS Validator</a></dt>
+    <dt><a href="./translations.html" title="CSS Validation Service Translation">Translation of the CSS Validator</a></dt>
     <dd>Table of the state of all current translations, translations needing help, and instructions on making the validator available in an additional language.</dd>
 </dl>
 
