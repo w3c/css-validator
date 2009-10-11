@@ -3384,7 +3384,8 @@ CssExpression param = null;
     }
     exp = expr();
     jj_consume_token(LPARAN);
-        if (n.image.toLowerCase().equals("rgb(")) {
+        String funcname = n.image.toLowerCase();
+        if (funcname.equals("rgb(")) {
             if (!getAtRule().toString().equals("@media atsc-tv")) {
                color.setRGBColor(exp, ac);
                {if (true) return color;}
