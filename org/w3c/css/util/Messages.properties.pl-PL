@@ -364,9 +364,8 @@ error.onlyATSC : %s ta funkcja jest jedynie dla medium atsc-tv
 warning.otherprofile : właciwoć %s nie istnieje dla tego profilu, ale wykazuje zgodnoć z innym profilem
 warning.deprecated : Wartoć jest przestarzała
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
-
+warning.float-no-width: W (x)HTML+CSS elementy pływające muszą mieć określoną szerokość. Nie dotyczy to tylko elementów z szerokością przypisaną domyślnie (html, img, input, textarea, select i object)
+parser.charsetcss1: Reguły @charset nie mogą być używane w CSS1
+parser.attrcss1: Selektory atrybutów są nieprawidłowe w CSS1
+parser.invalid_id_selector: Nieprawidłowy selektor ID
+parser.import_not_allowed: Wyrażenie @import nie może występować po żadnym z istniejących wyrażeń, z wyjątkiem @charset i @import.
