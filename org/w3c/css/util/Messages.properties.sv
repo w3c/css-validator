@@ -369,8 +369,8 @@ generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-synt
 
 warning.float-no-width: Flytande element utan inneboende bredd (dvs allt förutom html, img, input, textarea, select, och object) bör ges en bredd.
 
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+parser.charsetcss1: @charset-regler kan inte användas i CSS1 
+parser.attrcss1: Attributselektorer är inte giltiga i CSS1
+parser.invalid_id_selector: Ogiltig ID-selektor
+parser.import_not_allowed: @import kan bara föregås av satser av typ @charset och @import. 
 
