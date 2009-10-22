@@ -45,7 +45,7 @@ by_file_upload: 通过文件上传
 by_direct_input: 通过直接输入
 validate_by_URI: 验证指定URI的CSS内容
 enter_uri: 输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI
-page_address: Address of page to Validate
+page_address: 要验证的页面地址
 address: URI地址
 submit_uri: Submit URI for validation
 validate_by_file_upload: 验证上传文件
@@ -370,9 +370,9 @@ error.onlyATSC: %s 该函式只能在 atsc-tv 媒介中使用
 warning.otherprofile: 属性 %s 不存在于该配置中, 但在另一个配置中有效
 warning.deprecated: 该值已作废
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+warning.float-no-width: 在 (x)HTML+CSS 框架下，浮动元素需要声明宽度。具有固有宽度的元素 (html, img, input, textarea, select 或 object) 不受影响
+parser.charsetcss1: @charset 条件不能在 CSS1 中使用
+parser.attrcss1: 属性选择符在 CSS1 中无效
+parser.invalid_id_selector: 无效的 ID 选择符
+parser.import_not_allowed: @import 不可以出现在除 @charset 和 @import 以外的任何有效语句之后。
 
