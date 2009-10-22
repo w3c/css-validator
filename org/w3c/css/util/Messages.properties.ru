@@ -346,9 +346,9 @@ warning.deprecated: это значение является нежелател�
 generator.dontmixhtml: Ошибка парсера: в таблицах стилей не должно быть HTML разметки
 parser.unknown-dimension: Неизвестные размеры
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+warning.float-no-width: В (x)HTML+CSS, у плавающих элементов должна быть объявленна ширина. Только элементы с внутренней шириной (html, img, input, textarea, select или object) не затрагиваются.
+parser.charsetcss1: Правила @charset не могут быть использованы в CSS1
+parser.attrcss1: Селекторы атрибутов недействительны в CSS1
+parser.invalid_id_selector: Неправильный ID селектора
+parser.import_not_allowed: @import не разрешен после любых правильных объявлений кроме @charset и @import.
 
