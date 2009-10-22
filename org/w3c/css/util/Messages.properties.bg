@@ -6,6 +6,7 @@ all: Всички
 normal_report: Нормален доклад
 most_important: Най-важното
 no_warnings: Без прупреждения
+no_warnings: Без предупреждения
 profile: Профил
 no_special_profile: Без определен профил
 css1: CSS level 1
