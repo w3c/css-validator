@@ -370,6 +370,13 @@
             rel="alternate">Русский</a>
         </li>
         
+        <li><a href="validator.html.fa"
+            lang="fa"
+            xml:lang="fa"
+            hreflang="fa"
+            rel="alternate">انگلیسی</a>
+        </li>
+        
         <li><a href="validator.html.sv"
             lang="sv"
             xml:lang="sv"
