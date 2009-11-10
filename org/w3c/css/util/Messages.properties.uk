@@ -273,6 +273,7 @@ error.unrecognize: Забагато значень або нерозпізнан
 
 # used by org.w3c.css.parser.CssFouffa
 generator.unrecognize: Помилка розбору
+generator.dontmixhtml: Помилка аналiзу синтаксису. Таблицi стилiв не повиннi содержати синтаксис HTML.
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Невідома помилка
