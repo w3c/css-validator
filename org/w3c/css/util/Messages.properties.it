@@ -364,6 +364,6 @@ error.unknown: Errore sconosciuto
 
 warning.float-no-width: Nel (x)HTML+CSS, gli elementi con proprietà float hanno bisogno che la loro larghezza venga dichiarata. Soltanto gli elementi con una larghezza intrinseca (html, img, input, textarea, select, o object) non presentano questo problema
 parser.charsetcss1: La direttiva @charset non può essere usata nell'ambito del CSS1
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+parser.attrcss1: I selettori di attributo non sono validi nei css1
+parser.invalid_id_selector: Selettore ID non valido.
+parser.import_not_allowed: @import non è permesso dopo nessun altra dichiarazione valida che non sia @charset e @import.
