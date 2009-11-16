@@ -396,4 +396,4 @@ warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir l
 parser.charsetcss1: la règle @charset ne doit pas être utilisée en CSS1
 parser.attrcss1: les sélecteurs d'attribut ne doivent pas être utilisés en CSS1
 parser.invalid_id_selector: Sélécteur d'ID invalide
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+parser.import_not_allowed: @import n'est pas autorisé s'il apparaît après toute déclaration autre que @charset et @import.
