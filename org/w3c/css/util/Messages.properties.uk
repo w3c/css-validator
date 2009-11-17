@@ -339,8 +339,8 @@ error.onlyATSC: %s ця функція використовується лише
 warning.otherprofile: властивість %s не існує для даного профілю, але вона перевіряється у відповідності з іншим профілем
 warning.deprecated: це значення є небажаним
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Селектори атрибутiв не дiйснi в CSS1
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+warning.float-no-width: У (x)HTML+CSS рухомі елементи повинні мати оголошену ширину. Це не розповсюджується лише на елементи з вбудованою шириною (html, img, input, textarea, select, або object)
+parser.charsetcss1: @charset правила не можуть бути використані у CSS1
+parser.attrcss1: Селектори властивостей недійсні у CSS1
+parser.invalid_id_selector: Недійсний ID селектор
+parser.import_not_allowed: @import не дозволені після будь-якої валідної заяви, крім як @charset та @import.
