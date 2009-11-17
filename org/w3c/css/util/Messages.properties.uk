@@ -13,8 +13,8 @@ css2: CSS2
 css21: CSS2.1
 css3: CSS3
 SVG: SVG
-SVG_basic: SVG Basic
-SVG_tiny: SVG tiny
+svgbasic: SVG Basic
+svgtiny: SVG tiny
 mobile: Мобільний
 ATSC_TV_profile: телебачення ATSC
 TV_profile: телебачення
