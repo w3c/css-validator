@@ -359,7 +359,7 @@ error.function: Invalide Funktionsdefinition
 error.unknown: Unbekannter Fehler
 generator.dontmixhtml: Syntax Fehler. Style sheets dürfen keine HTML Syntax enthalten.
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS müssen umfließende Elemente mit einer festen Breite deklariert werden. Nur Elemente mit einer von Natur aus festen Breite (html, img, input, textarea oder object) sind davon nicht betroffen.
 
 parser.charsetcss1: @charset-Regeln können im CSS1-Profil nicht benutzt werden.
 parser.attrcss1: Attribut-Selektoren sind in CSS1 ungültig
