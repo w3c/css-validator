@@ -366,8 +366,9 @@ warning.notversion: %s kan niet gebruikt worden in deze CSS-versie: %s
 warning.pseudo: Onbekend pseudo-element of pseudo-class %s in het standaard profiel (%s)
 warning.xsl: waarde %s is alleen geldig voor XSL
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+warning.float-no-width: In (x)HTML+CSS moet de breedte van floated elementen gedeclareerd zijn. Alleen elementen met een intrinsieke breedte (html, img, input, textarea, select, of object) worden hierdoor niet beïnvloed
+parser.charsetcss1: De @charset regels zijn niet compatibel met CSS1
+parser.attrcss1: De Attribute selectors zijn niet compatibel met CSS1
+parser.invalid_id_selector: Niet valide ID selector
+parser.import_not_allowed: @import is niet toegestaan na een valide statement anders dan @charset en @import
+
