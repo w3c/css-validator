@@ -119,7 +119,7 @@ public class StyleSheetGenerator extends StyleReport {
 	if (ac.isInputFake()) {
 	    title = title.substring(title.lastIndexOf('/')+1);
 	}
-	context.put("file_title", title);
+	context.put("file_title", queryReplace(title));
 	        
         // W3C_validator_result
         warnings = style.getWarnings();
