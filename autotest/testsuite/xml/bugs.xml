@@ -464,5 +464,21 @@ test markup also accepts 3 properties: warning, profile and medium
         	<errors>1</errors>
         </result>
       </test>
+    <test profile="css21">
+	<file>testsuite/bugs/background-001.css</file>
+      <description>Background Position with 2 values, position being last</description>
+      <result valid="true">
+        <errors>0</errors>
+      </result>
+    </test>
+    <test profile="css21">
+        <file>testsuite/bugs/background-001.css</file>
+      <description>Background Position with 3 values, position being last</description>
+      <result valid="true">
+        <errors>0</errors>
+      </result>
+    </test>
+
+
   </type>  
 </testsuite>
