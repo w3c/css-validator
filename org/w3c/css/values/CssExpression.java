@@ -94,6 +94,13 @@ public class CssExpression implements CssOperator {
     }
 
     /**
+     * Returns the number of remaining elements
+     */
+    public int getRemainingCount() {
+	return count-index;
+    }
+
+    /**
      * Insert the current value at the current position.
      *
      * @param value The value to insert
