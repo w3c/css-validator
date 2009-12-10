@@ -42,6 +42,7 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 	CssValue val;
 	char op = SPACE;
 	boolean find = true;
+	CssExpression background_position_expression = null;
 
 	// too many values
 	if(check && expression.getCount() > 6) {
@@ -88,11 +89,12 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 	    case CssTypes.CSS_NUMBER:
 	    case CssTypes.CSS_PERCENTAGE:
 	    case CssTypes.CSS_LENGTH:
-		if (getPosition() == null) {
-		    setPosition(new CssBackgroundPositionCSS21(ac,expression));
-		    continue;
+		if (background_position_expression == null) {
+		    background_position_expression = new CssExpression();
 		}
-		find = false;
+		background_position_expression.addValue(val);
+		expression.next();
+		find = true;
 		break;
 	    case CssTypes.CSS_IDENT:
 		// the hard part, as ident can be from different subproperties
@@ -117,17 +119,20 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 		// check background-attachment ident
 		if (CssBackgroundAttachmentCSS2.checkMatchingIdent(identval)) {
 		    if (getAttachment() == null) {
-			setAttachment(new CssBackgroundAttachmentCSS2(ac, expression));
+			setAttachment(new CssBackgroundAttachmentCSS2(ac, 
+								   expression));
 			find = true;
 		    }
 		    break;
 		}		
 		// check backgorund-position ident
 		if (CssBackgroundPositionCSS21.checkMatchingIdent(identval)) {
-		    if (getPosition() == null) {
-			setPosition(new CssBackgroundPositionCSS21(ac, expression));
-			find = true;
+		    if (background_position_expression == null) {
+			background_position_expression = new CssExpression();
 		    }
+		    background_position_expression.addValue(val);
+		    expression.next();
+		    find = true;
 		    break;
 		}
 
@@ -155,6 +160,11 @@ public class CssBackgroundCSS21 extends CssBackgroundCSS2 {
 						Character.toString(op),
 						ac);
 	    }
+	}
+	if (background_position_expression != null) {
+	    setPosition(new CssBackgroundPositionCSS21(ac,
+					        background_position_expression, 
+						       check));
 	}
     }
 
