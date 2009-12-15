@@ -15,6 +15,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -154,7 +155,7 @@ public class CssColumnSpan extends CssProperty {
      */
     public boolean isDefault() {
 	// we only have 3 values
-	return ((value != all) && (value != inherit))
+	return ((value != all) && (value != inherit));
     }
 
 }
