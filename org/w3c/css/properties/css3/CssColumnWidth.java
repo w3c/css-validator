@@ -14,13 +14,14 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> &lt;integer&gt; || auto || inherit<BR>
+ *  <EM>Value:</EM> &lt;integer&gt; || auto <BR>
  *  <EM>Initial:</EM>auto<BR>
  *  <EM>Applies to:</EM>block-level elements<BR>
  *  <EM>Inherited:</EM>no<BR>
@@ -37,6 +38,7 @@ public class CssColumnWidth extends CssProperty {
     CssValue width;
 
     static CssIdent auto;
+
     static {
 	auto = new CssIdent("auto");
     }
@@ -59,16 +61,30 @@ public class CssColumnWidth extends CssProperty {
 
 	setByUser();
 	CssValue val = expression.getValue();
+	Float value;
 
 	switch (val.getType()) {
 	case CssTypes.CSS_NUMBER:
 	    val = ((CssNumber)val).getLength();
+	    // if we didn't fall in the first trap, there is another one :)
+	    throw new InvalidParamException("strictly-positive", 
+					    expression.getValue(),
+					    getPropertyName(), ac);
 	case CssTypes.CSS_LENGTH:
+	    value = (Float) ((CssLength)val).get();
+	    if (value == null || value.floatValue() <= 0.0) {
+		throw new InvalidParamException("strictly-positive", 
+						expression.getValue(),
+						getPropertyName(), ac);
+	    }
 	    width = val;
 	    break;
 	case CssTypes.CSS_IDENT:
-	    if (inherit.equals(val) || auto.equals(val)) {
-		width = val;
+	    if (inherit.equals(val)) {
+		width = inherit;
+		break;
+	    } else if ( auto.equals(val)) {
+		width = auto;
 		break;
 	    } 
 	default:
