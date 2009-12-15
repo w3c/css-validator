@@ -19,11 +19,11 @@ import org.w3c.css.values.CssValue;
 
 /**
  *  <P>
- *  <EM>Value:</EM> &lt;integer&gt; || none || all || inherit<BR>
- *  <EM>Initial:</EM>none<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
+ *  <EM>Value:</EM> 1 ||  all <BR>
+ *  <EM>Initial:</EM>1<BR>
+ *  <EM>Applies to:</EM>static, non-floating elements<BR>
  *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
+ *  <EM>Percentages:</EM>N/A<BR>
  *  <EM>Media:</EM>:visual
  */
 
@@ -32,8 +32,10 @@ public class CssColumnSpan extends CssProperty {
     CssValue value;
     ApplContext ac;
 
-    CssIdent none = new CssIdent("none");
-    CssIdent all = new CssIdent("all");
+    static CssIdent all;
+    static {
+	all = new CssIdent("all");
+    }
 
     /**
      * Create a new CssColumnSpan
@@ -54,32 +56,27 @@ public class CssColumnSpan extends CssProperty {
 	setByUser(); // tell this property is set by the user
 	CssValue val = expression.getValue();
 
-	if (val instanceof CssNumber) {
-	    if (((CssNumber) val).isInteger()) {
-		value = val;
-		expression.next();
-		return;
-	    } else {
-		throw new InvalidParamException("integer",
-			val.toString(),
-			getPropertyName(), ac);
+	switch (val.getType()) {
+	case CssTypes.CSS_NUMBER:
+	    int ival = ((CssNumber) val).getInt();
+	    if (ival != 1) {
+		throw new InvalidParamException("value", val.toString(),
+						getPropertyName(), ac);
 	    }
-	}
-	else if (val instanceof CssIdent) {
-	    if (val.equals(inherit)) {
-		value = inherit;
-		expression.next();
-	    } else if (val.equals(none)) {
-		value = none;
-		expression.next();
-	    } else if (val.equals(all)) {
+	    value = val;
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (all.equals(val)) {
 		value = all;
-		expression.next();
+		break;
 	    }
-	}
-	else {
+	    if (inherit.equals(val)) {
+		value = inherit;
+		break;
+	    }
+	default:
 	    throw new InvalidParamException("value", val.toString(),
-		    getPropertyName(), ac);
+					    getPropertyName(), ac);
 	}
     }
 
@@ -141,7 +138,7 @@ public class CssColumnSpan extends CssProperty {
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return value.equals(inherit);
+	return (value == inherit);
     }
 
     /**
@@ -156,7 +153,8 @@ public class CssColumnSpan extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return value == none;
+	// we only have 3 values
+	return ((value != all) && (value != inherit))
     }
 
 }
