@@ -13,129 +13,157 @@ import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
+ *  <P>
+ *  <EM>Value:</EM> &lt;length&gt; || normal <BR>
+ *  <EM>Initial:</EM>normal<BR>
+ *  <EM>Applies to:</EM>multicol elements<BR>
+ *  <EM>Inherited:</EM>no<BR>
+ *  <EM>Percentages:</EM>no<BR>
+ *  <EM>Media:</EM>:visual
+ *  <EM>Computed value: absolute length or 'normal'
+ *  <P>The ‘column-gap’ property sets the gap between columns. 
+ *  If there is a column rule between columns, it will appear in the 
+ *  middle of the gap.
+ *  The ‘normal’ value is UA-specific. A value of ‘1em’ is suggested.
+ *  Column gaps cannot be negative.
  *
  */
 
-    public class CssColumnGap extends CssProperty {
+public class CssColumnGap extends CssProperty {
 
-	CssValue columngap;
+    CssValue columngap;
 
+    static CssIdent normal;
+    static {
+	normal = new CssIdent("normal");
+    }
+    /**
+     * Create a new CssColumnGap
+     */
+    public CssColumnGap() {
+	columngap = normal;
+    }
 
-	/**
-	 * Create a new CssColumnGap
-	 */
-	public CssColumnGap() {
-	    columngap = new CssNumber(0);
-	}
+    /**
+     * Create a new CssColumnGap
+     */
+    public CssColumnGap(ApplContext ac, CssExpression expression,
+			boolean check) throws InvalidParamException {
+	setByUser();
+	CssValue val = expression.getValue();
+	Float value;
 
-	/**
-	 * Create a new CssColumnGap
-	 *
-	 *
-	 */
-	public CssColumnGap(ApplContext ac, CssExpression expression,
-		boolean check) throws InvalidParamException {
-	    setByUser();
-	    CssValue val = expression.getValue();
-	    if (val instanceof CssPercentage) {
-			columngap = val;
-			expression.next();
+	switch(val.getType()) {
+	case CssTypes.CSS_NUMBER:
+	    val = ((CssNumber)val).getLength();
+	case CssTypes.CSS_LENGTH:
+	    value = (Float) ((CssLength)val).get();
+	    if (value == null || value.floatValue() < 0.0) {
+		throw new InvalidParamException("negative-value", 
+						expression.getValue(),
+						getPropertyName(), ac);
 	    }
-	    else if (val instanceof CssLength) {
-			columngap = val;
-			expression.next();
+	    columngap = val;
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (normal.equals(val)) {
+		columngap = normal;
+		break;
 	    }
-	    else if (val.equals(inherit)) {
-			columngap = inherit;
-			expression.next();
+	    if (inherit.equals(val)) {
+		columngap = inherit;
+		break;
 	    }
-
-	    else {
-		throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-	    }
+	default:
+	    throw new InvalidParamException("value", expression.getValue(),
+					    getPropertyName(), ac);
 	}
+	expression.next();
+    }
 
-	public CssColumnGap(ApplContext ac, CssExpression expression)
-		throws InvalidParamException {
-	    this(ac, expression, false);
-	}
+    public CssColumnGap(ApplContext ac, CssExpression expression)
+	throws InvalidParamException {
+	this(ac, expression, false);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-	    if (((Css3Style) style).cssColumnGap != null)
-		style.addRedefinitionWarning(ac, this);
-	    ((Css3Style) style).cssColumnGap = this;
-
-	}
-
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-        public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	    if (resolve) {
-		return ((Css3Style) style).getColumnGap();
-	    } else {
-		return ((Css3Style) style).cssColumnGap;
-	    }
-	}
-
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param value The other property.
-	 */
-	public boolean equals(CssProperty property) {
-	    return (property instanceof CssColumnGap &&
-		    columngap.equals( ((CssColumnGap) property).columngap));
-	}
-
-	/**
-	 * Returns the name of this property
-	 */
-	public String getPropertyName() {
-	    return "column-gap";
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-	    return columngap;
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 */
-	public boolean isSoftlyInherited() {
-	    return columngap.equals(inherit);
-	}
-
-	/**
-	 * Returns a string representation of the object
-	 */
-	public String toString() {
-	    return columngap.toString();
-	}
-
-	/**
-	 * Is the value of this property a default value
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-	    return columngap == new CssNumber(0);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+	if (((Css3Style) style).cssColumnGap != null)
+	    style.addRedefinitionWarning(ac, this);
+	((Css3Style) style).cssColumnGap = this;
 
     }
+
+    /**
+     * Get this property in the style.
+     *
+     * @param style The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+	if (resolve) {
+	    return ((Css3Style) style).getColumnGap();
+	} else {
+	    return ((Css3Style) style).cssColumnGap;
+	}
+    }
+
+    /**
+     * Compares two properties for equality.
+     *
+     * @param value The other property.
+     */
+    public boolean equals(CssProperty property) {
+	return (property instanceof CssColumnGap &&
+		columngap.equals( ((CssColumnGap) property).columngap));
+    }
+
+    /**
+     * Returns the name of this property
+     */
+    public String getPropertyName() {
+	return "column-gap";
+    }
+
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+	return columngap;
+    }
+
+    /**
+     * Returns true if this property is "softly" inherited
+     */
+    public boolean isSoftlyInherited() {
+	return columngap.equals(inherit);
+    }
+
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+	return columngap.toString();
+    }
+
+    /**
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+	return (columngap == normal);
+    }
+
+}
