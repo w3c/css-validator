@@ -15,6 +15,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -54,20 +55,36 @@ public class CssColumnCount extends CssProperty {
 
 	setByUser();
 	CssValue val = expression.getValue();
+	CssNumber num;
 
-	if (val.equals(inherit)) {
+	switch(val.getType()) {
+	case CssTypes.CSS_NUMBER:
+	    num = (CssNumber) val;
+	    if (!num.isInteger()) {
+		throw new InvalidParamException("integer",expression.getValue(),
+						getPropertyName(), ac);
+	    }
+	    if (num.getInt() <= 0) {
+		throw new InvalidParamException("strictly-positive",
+						expression.getValue(),
+						getPropertyName(), ac);
+	    }
 	    count = val;
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    count = val;
-	    expression.next();
-	} else if (val instanceof CssNumber) {
-	    count = val;
-	    expression.next();
-	} else {
+	    break;
+	case CssTypes.CSS_IDENT:
+	    if (auto.equals(val)) {
+		count = auto;
+		break;
+	    }
+	    if (inherit.equals(val)) {
+		count = inherit;
+		break;
+	    }
+	default:
 	    throw new InvalidParamException("value", expression.getValue(),
 					    getPropertyName(), ac);
 	}
+	expression.next();
     }
 
     public CssColumnCount(ApplContext ac, CssExpression expression)
@@ -95,8 +112,7 @@ public class CssColumnCount extends CssProperty {
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
 	    return ((Css3Style) style).getColumnCount();
-	}
-	else {
+	} else {
 	    return ((Css3Style) style).cssColumnCount;
 	}
     }
@@ -129,7 +145,7 @@ public class CssColumnCount extends CssProperty {
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return count.equals(inherit);
+	return (count == inherit);
     }
 
     /**
@@ -146,5 +162,4 @@ public class CssColumnCount extends CssProperty {
     public boolean isDefault() {
 	return (count == auto);
     }
-
 }
