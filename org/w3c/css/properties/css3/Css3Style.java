@@ -97,7 +97,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssColumnWidthPol cssColumnWidthPol;
     CssColumnCount cssColumnCount;
     CssColumnWidth cssColumnWidth;
-    CssColumnPadding cssColumnPadding;
     CssColumnSpan cssColumnSpan;
     CssBackgroundClip cssBackgroundClip;
     CssBackgroundSize cssBackgroundSize;
@@ -954,15 +953,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 						      new CssColumnWidth(), style, selector);
 	}
 	return cssColumnWidth;
-    }
-
-    public CssColumnPadding getColumnPadding() {
-	if (cssColumnPadding == null) {
-	    cssColumnPadding =
-		(CssColumnPadding) style.CascadingOrder(
-							new CssColumnPadding(), style, selector);
-	}
-	return cssColumnPadding;
     }
 
     public CssBackgroundClip getCssBackgroundClip() {
@@ -2484,9 +2474,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 	}
 	if (cssColumnWidth != null) {
 	    cssColumnWidth.print(printer);
-	}
-	if (cssColumnPadding != null) {
-	    cssColumnPadding.print(printer);
 	}
 	if (cssColumnSpan != null) {
 	    cssColumnSpan.print(printer);
