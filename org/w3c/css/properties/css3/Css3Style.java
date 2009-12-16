@@ -95,7 +95,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssLineHeightPolicy cssLineHeightPolicy;
     CssLineBoxContain cssLineBoxContain;
     CssColumnWidthPol cssColumnWidthPol;
-    CssColumnSpaceDistribution cssColumnSpaceDistribution;
     CssColumnCount cssColumnCount;
     CssColumnWidth cssColumnWidth;
     CssColumnPadding cssColumnPadding;
@@ -937,15 +936,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 							  new CssColumnWidthPol(), style, selector);
 	}
 	return cssColumnWidthPol;
-    }
-
-    public CssColumnSpaceDistribution getColumnSpaceDistribution() {
-	if (cssColumnSpaceDistribution == null) {
-	    cssColumnSpaceDistribution =
-		(CssColumnSpaceDistribution) style.CascadingOrder(
-								  new CssColumnSpaceDistribution(), style, selector);
-	}
-	return cssColumnSpaceDistribution;
     }
 
     public CssColumnCount getColumnCount() {
@@ -2488,9 +2478,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 	}
 	if (cssColumnWidthPol != null) {
 	    cssColumnWidthPol.print(printer);
-	}
-	if (cssColumnSpaceDistribution != null) {
-	    cssColumnSpaceDistribution.print(printer);
 	}
 	if (cssColumnCount != null) {
 	    cssColumnCount.print(printer);
