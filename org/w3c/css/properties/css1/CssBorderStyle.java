@@ -100,6 +100,9 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 	acceptable_values.add(CssIdent.getIdent("dashed"));
 	acceptable_values.add(CssIdent.getIdent("solid"));
 	acceptable_values.add(CssIdent.getIdent("double"));
+	acceptable_values.add(CssIdent.getIdent("dot-dash"));
+	acceptable_values.add(CssIdent.getIdent("dot-dot-dash"));
+	acceptable_values.add(CssIdent.getIdent("wave"));
 	acceptable_values.add(CssIdent.getIdent("groove"));
 	acceptable_values.add(CssIdent.getIdent("ridge"));
 	acceptable_values.add(CssIdent.getIdent("inset"));

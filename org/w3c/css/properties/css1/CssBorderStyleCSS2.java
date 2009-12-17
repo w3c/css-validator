@@ -7,6 +7,8 @@
 
 package org.w3c.css.properties.css1;
 
+import java.util.HashSet;
+
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
@@ -14,6 +16,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssIdent;
 
 /**
  *   <H4>
@@ -87,6 +90,21 @@ import org.w3c.css.values.CssOperator;
  * @version $Revision$
  */
 public class CssBorderStyleCSS2 extends CssProperty implements CssOperator {
+
+    public static HashSet<CssIdent> acceptable_values;
+    static {
+	acceptable_values = new HashSet<CssIdent>();
+	acceptable_values.add(CssIdent.getIdent("none"));
+	acceptable_values.add(CssIdent.getIdent("hidden"));
+	acceptable_values.add(CssIdent.getIdent("dotted"));
+	acceptable_values.add(CssIdent.getIdent("dashed"));
+	acceptable_values.add(CssIdent.getIdent("solid"));
+	acceptable_values.add(CssIdent.getIdent("double"));
+	acceptable_values.add(CssIdent.getIdent("groove"));
+	acceptable_values.add(CssIdent.getIdent("ridge"));
+	acceptable_values.add(CssIdent.getIdent("inset"));
+	acceptable_values.add(CssIdent.getIdent("outset"));
+    }
 
     CssBorderTopStyleCSS2 top;
     CssBorderBottomStyleCSS2 bottom;

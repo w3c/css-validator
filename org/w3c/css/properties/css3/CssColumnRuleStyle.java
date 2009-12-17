@@ -11,7 +11,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssBorderStyle;
+import org.w3c.css.properties.css1.CssBorderStyleCSS2;
 import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -53,10 +53,15 @@ public class CssColumnRuleStyle extends CssProperty {
 
 	setByUser();
 	CssValue val = expression.getValue();
+	// too many values
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
 
 	// we only use Css Ident part of the CssBorderStyle acceptable values
 	if ((val.getType() != CssTypes.CSS_IDENT) ||
-	    !CssBorderStyle.acceptable_values.contains((CssIdent)val)) {
+	    !(((CssIdent)val).equals(inherit) || 
+	      CssBorderStyleCSS2.acceptable_values.contains((CssIdent)val))) {
 	    throw new InvalidParamException("value",
 					    expression.getValue(),
 					    getPropertyName(), ac);
