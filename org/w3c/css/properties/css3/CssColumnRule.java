@@ -9,51 +9,32 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssBorderBottomStyle;
-import org.w3c.css.properties.css1.CssBorderBottomWidth;
-import org.w3c.css.properties.css1.CssBorderLeftStyle;
-import org.w3c.css.properties.css1.CssBorderLeftWidth;
-import org.w3c.css.properties.css1.CssBorderRightStyle;
-import org.w3c.css.properties.css1.CssBorderRightWidth;
-import org.w3c.css.properties.css1.CssBorderTopStyle;
-import org.w3c.css.properties.css1.CssBorderTopWidth;
-import org.w3c.css.properties.css1.CssColor;
 import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
+ * multicol
  *  <P>
- *  <EM>Value:</EM> &lt;border-style&gt; || &lt;color&gt; || &lt;border-width&gt; ||
- *  inherit<BR>
- *  <EM>Initial:</EM>the value of the color property<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
+ *  <EM>Value:</EM> &lt;column-rule-width&gt; || &lt;border-style&gt; ||
+ *  &lt;color&gt; <BR>
+ *  <EM>Initial:</EM>See individual properties<BR>
+ *  <EM>Applies to:</EM>multicol elements<BR>
  *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
+ *  <EM>Percentages:</EM>N/A<BR>
  *  <EM>Media:</EM>:visual
  */
 
-public class CssColumnRule extends CssProperty
-implements CssOperator {
-
-    CssValue value;
-    /* I should use border-width and border-style here, but I don't
-     * see how to implement a
-     * shorthand property for shorthand properties ... So I splitted it up
-     */
-    CssBorderTopWidth btw;
-    CssBorderRightWidth brw;
-    CssBorderLeftWidth blw;
-    CssBorderBottomWidth bbw;
-    CssBorderTopStyle bts;
-    CssBorderRightStyle brs;
-    CssBorderLeftStyle bls;
-    CssBorderBottomStyle bbs;
-    CssColor color;
-
+public class CssColumnRule extends CssProperty implements CssOperator {
+    CssIdent value = null;
+    CssColumnRuleWidth rule_width = null;
+    CssColumnRuleStyle rule_style = null;
+    CssColumnRuleColor rule_color = null;
 
     /**
      * Create a new CssColumnRule
@@ -71,102 +52,71 @@ implements CssOperator {
 	    boolean check) throws InvalidParamException {
 
 	CssValue val = expression.getValue();
-	int maxvalues = 9;
-	boolean correct = true;
 	char op = SPACE;
-
-	if (val.equals(inherit)) {
-	    value = inherit;
-	    expression.next();
-	} else {
-
-	    while (correct && (val != null) && (maxvalues -- > 0)) {
-
-		correct = false;
-
-		if (btw == null) {
+	int nb_val = expression.getCount();
+	
+	if (check && nb_val > 3) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+	setByUser();
+	
+	while (!expression.end()) {
+	    boolean ok = true;
+	    val = expression.getValue();
+	    op = expression.getOperator();
+	    if (op != SPACE) {
+		throw new InvalidParamException("operator",
+					      ((new Character(op)).toString()),
+						ac);
+	    }
+	    switch (val.getType()) {
+	    case CssTypes.CSS_FUNCTION:
+	    case CssTypes.CSS_COLOR:
+		if (rule_color != null) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
+		rule_color = new CssColumnRuleColor(ac, expression);
+		break;
+	    case CssTypes.CSS_NUMBER:
+	    case CssTypes.CSS_LENGTH:
+		if (rule_width != null) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
+		rule_width = new CssColumnRuleWidth(ac, expression);
+		break;
+	    case CssTypes.CSS_IDENT:
+		if (inherit.equals(val)) {
+		    if (nb_val > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		    }
+		    value = inherit;
+		    break;
+		}
+		if (rule_color == null) {
 		    try {
-			btw = new CssBorderTopWidth(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
+			rule_color = new CssColumnRuleColor(ac, expression);
+			break;
+		    } catch (Exception ex) {
 		    }
 		}
-		if (!correct && bbw == null) {
+		if (rule_width == null) {
 		    try {
-			bbw = new CssBorderBottomWidth(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
+			rule_width = new CssColumnRuleWidth(ac, expression);
+			break;
+		    } catch (Exception ex) {
 		    }
 		}
-		if (!correct && blw == null) {
+		if (rule_style == null) {
 		    try {
-			blw = new CssBorderLeftWidth(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-		if (!correct && brw == null) {
-		    try {
-			brw = new CssBorderRightWidth(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
+			rule_style = new CssColumnRuleStyle(ac, expression);
+			break;
+		    } catch (Exception ex) {
 		    }
 		}
-		if (!correct && color == null) {
-		    try {
-			color = new CssColor(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-
-		if (!correct && bts == null) {
-		    try {
-			bts = new CssBorderTopStyle(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-		if (!correct && bbw == null) {
-		    try {
-			bbs = new CssBorderBottomStyle(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-		if (!correct && bls == null) {
-		    try {
-			bls = new CssBorderLeftStyle(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-		if (!correct && brs == null) {
-		    try {
-			brs = new CssBorderRightStyle(ac, expression);
-			correct = true;
-		    }
-		    catch (InvalidParamException e) {
-		    }
-		}
-
-		if (!correct) {
-		    throw new InvalidParamException("value",
-						    expression.getValue(),
-						    getPropertyName(), ac);
-		}
-
-		val = expression.getValue();
-		op = expression.getOperator();
-
+	    default:
+		throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
 	    }
 	}
     }
@@ -215,7 +165,7 @@ implements CssOperator {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "column-border";
+	return "column-rule";
     }
 
     /**
@@ -229,38 +179,27 @@ implements CssOperator {
      * Returns a string representation of the object
      */
     public String toString() {
-
-	String ret = "";
-
-	if (btw != null) {
-		ret += " " + btw.toString();
+	StringBuilder sb = new StringBuilder();
+	boolean first = true;
+	if (value != null) {
+	    return value.toString();
 	}
-	if (brw != null) {
-		ret += " " + brw.toString();
+	if (rule_color != null) {
+	    sb.append(rule_color);
+	    first = false;
 	}
-	if (blw != null) {
-		ret += " " + blw.toString();
-    }
-	if (bbw != null) {
-		ret += " " + bbw.toString();
-    }
-	if (bts != null) {
-		ret += " " + bts.toString();
-    }
-	if (brs != null) {
-		ret += " " + brs.toString();
-    }
-	if (bls != null) {
-		ret += " " + bls.toString();
-    }
-    if (bbs != null) {
-		ret += " " + bbs.toString();
-    }
-    if (color != null) {
-		ret += " " + color.toString();
-    }
-
-	return ret.substring(1);
-
+	if (rule_width != null) {
+	    if (!first) {
+		sb.append(' ');
+	    }
+	    sb.append(rule_width);
+	}
+	if (rule_style != null) {
+	    if (!first) {
+		sb.append(' ');
+	    }
+	    sb.append(rule_style);
+	}
+	return sb.toString();
     }
 }

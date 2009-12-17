@@ -57,7 +57,6 @@ public class CssColumnRuleStyle extends CssProperty {
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
-
 	// we only use Css Ident part of the CssBorderStyle acceptable values
 	if ((val.getType() != CssTypes.CSS_IDENT) ||
 	    !(((CssIdent)val).equals(inherit) || 
