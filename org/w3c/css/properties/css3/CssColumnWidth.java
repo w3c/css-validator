@@ -40,14 +40,14 @@ public class CssColumnWidth extends CssProperty {
     static CssIdent auto;
 
     static {
-	auto = new CssIdent("auto");
+	auto = CssIdent.getIdent("auto");
     }
 
     /**
      * Create a new CssColumnWidth
      */
     public CssColumnWidth() {
-	// nothing to do
+	width = auto;
     }
 
     /**
@@ -83,7 +83,7 @@ public class CssColumnWidth extends CssProperty {
 	    if (inherit.equals(val)) {
 		width = inherit;
 		break;
-	    } else if ( auto.equals(val)) {
+	    } else if (auto.equals(val)) {
 		width = auto;
 		break;
 	    } 

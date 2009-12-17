@@ -41,7 +41,7 @@ public class CssColumnCount extends CssProperty {
      * Create a new CssColumnCount
      */
     public CssColumnCount() {
-	// nothing to do
+	count = auto;
     }
 
     /**

@@ -21,41 +21,42 @@ import org.w3c.css.values.CssValue;
 /**
  * multicol
  *  <P>
- *  <EM>Value:</EM> &lt;column-rule-width&gt; || &lt;border-style&gt; ||
- *  &lt;color&gt; <BR>
+ *  <EM>Value:</EM> &lt;column-width&gt; || &lt;column-counte&gt; 
  *  <EM>Initial:</EM>See individual properties<BR>
- *  <EM>Applies to:</EM>multicol elements<BR>
+ *  <EM>Applies to:</EM>non-replaced block-level elements 
+ *                      (except table elements), table cells, 
+ *                      and inline-block elementsmulticol elements<BR>
  *  <EM>Inherited:</EM>no<BR>
  *  <EM>Percentages:</EM>N/A<BR>
  *  <EM>Media:</EM>:visual
  */
 
-public class CssColumnRule extends CssProperty implements CssOperator {
+public class CssColumns extends CssProperty implements CssOperator {
     CssIdent value = null;
-    CssColumnRuleWidth rule_width = null;
-    CssColumnRuleStyle rule_style = null;
-    CssColumnRuleColor rule_color = null;
+    CssColumnWidth width = null;
+    CssColumnCount count = null;
 
     /**
-     * Create a new CssColumnRule
+     * Create a new CssColumns
      */
-    public CssColumnRule() {
+    public CssColumns() {
     }
 
     /**
-     * Create a new CssColumnRule
+     * Create a new CssColumns
      *
      * @param expression The expression for this property
      * @exception InvalidParamException Incorrect values
      */
-    public CssColumnRule(ApplContext ac, CssExpression expression,
+    public CssColumns(ApplContext ac, CssExpression expression,
 	    boolean check) throws InvalidParamException {
 
 	CssValue val = expression.getValue();
 	char op = SPACE;
 	int nb_val = expression.getCount();
-	
-	if (check && nb_val > 3) {
+	int nb_auto = 0;
+
+	if (check && nb_val > 2) {
 	    throw new InvalidParamException("unrecognize", ac);
 	}
 	setByUser();
@@ -70,22 +71,20 @@ public class CssColumnRule extends CssProperty implements CssOperator {
 						ac);
 	    }
 	    switch (val.getType()) {
-	    case CssTypes.CSS_FUNCTION:
-	    case CssTypes.CSS_COLOR:
-		if (rule_color != null) {
-		    throw new InvalidParamException("unrecognize", ac);
-		}
-		rule_color = new CssColumnRuleColor(ac, expression);
-		break;
 	    case CssTypes.CSS_NUMBER:
-	    case CssTypes.CSS_LENGTH:
-		if (rule_width != null) {
+		if (count != null) {
 		    throw new InvalidParamException("unrecognize", ac);
 		}
-		rule_width = new CssColumnRuleWidth(ac, expression);
+		count = new CssColumnCount(ac, expression);
+		break;
+	    case CssTypes.CSS_LENGTH:
+		if (width != null) {
+		    throw new InvalidParamException("unrecognize", ac);
+		}
+		width = new CssColumnWidth(ac, expression);
 		break;
 	    case CssTypes.CSS_IDENT:
-		if (inherit.equals(val)) {
+		if (inherit.equals((CssIdent)val)) {
 		    if (nb_val > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		    }
@@ -93,26 +92,10 @@ public class CssColumnRule extends CssProperty implements CssOperator {
 		    expression.next();
 		    break;
 		}
-		if (rule_color == null) {
-		    try {
-			rule_color = new CssColumnRuleColor(ac, expression);
-			break;
-		    } catch (Exception ex) {
-		    }
-		}
-		if (rule_width == null) {
-		    try {
-			rule_width = new CssColumnRuleWidth(ac, expression);
-			break;
-		    } catch (Exception ex) {
-		    }
-		}
-		if (rule_style == null) {
-		    try {
-			rule_style = new CssColumnRuleStyle(ac, expression);
-			break;
-		    } catch (Exception ex) {
-		    }
+		if (CssColumnCount.auto.equals((CssIdent)val)) {
+		    nb_auto++;
+		    expression.next();
+		    break;
 		}
 	    default:
 		throw new InvalidParamException("value",
@@ -120,9 +103,25 @@ public class CssColumnRule extends CssProperty implements CssOperator {
 						getPropertyName(), ac);
 	    }
 	}
+	if (nb_val == 1) {
+	    if (nb_auto == 1) {
+		value = CssIdent.getIdent("auto");
+	    }
+	} else {
+	    if (nb_auto == 2) {
+		count = new CssColumnCount();
+		width = new CssColumnWidth();
+	    } else if (nb_auto == 1) {
+		if (count != null) {
+		    width = new CssColumnWidth();
+		} else {
+		    count = new CssColumnCount();
+		}
+	    }
+	}
     }
 
-    public CssColumnRule(ApplContext ac, CssExpression expression)
+    public CssColumns(ApplContext ac, CssExpression expression)
 	    throws InvalidParamException {
 	this(ac, expression, false);
     }
@@ -133,17 +132,14 @@ public class CssColumnRule extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssColumnRule != null)
+	if (((Css3Style) style).cssColumns != null)
 	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssColumnRule = this;
-	if (rule_style != null) {
-	    rule_style.addToStyle(ac, style);
+	((Css3Style) style).cssColumns = this;
+	if (count != null) {
+	    count.addToStyle(ac, style);
 	}
-	if (rule_color != null) {
-	    rule_color.addToStyle(ac, style);
-	}
-	if (rule_width != null) {
-	    rule_width.addToStyle(ac, style);
+	if (width != null) {
+	    width.addToStyle(ac, style);
 	}
     }
 
@@ -155,10 +151,10 @@ public class CssColumnRule extends CssProperty implements CssOperator {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((Css3Style) style).getColumnRule();
+	    return ((Css3Style) style).getColumns();
 	}
 	else {
-	    return ((Css3Style) style).cssColumnRule;
+	    return ((Css3Style) style).cssColumns;
 	}
     }
 
@@ -175,7 +171,7 @@ public class CssColumnRule extends CssProperty implements CssOperator {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "column-rule";
+	return "columns";
     }
 
     /**
@@ -194,21 +190,15 @@ public class CssColumnRule extends CssProperty implements CssOperator {
 	if (value != null) {
 	    return value.toString();
 	}
-	if (rule_color != null) {
-	    sb.append(rule_color);
+	if (count != null) {
+	    sb.append(count);
 	    first = false;
 	}
-	if (rule_width != null) {
+	if (width != null) {
 	    if (!first) {
 		sb.append(' ');
 	    }
-	    sb.append(rule_width);
-	}
-	if (rule_style != null) {
-	    if (!first) {
-		sb.append(' ');
-	    }
-	    sb.append(rule_style);
+	    sb.append(width);
 	}
 	return sb.toString();
     }
