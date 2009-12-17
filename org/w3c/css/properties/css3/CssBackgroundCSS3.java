@@ -6,7 +6,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.properties.css1.CssBackgroundAttachmentCSS2;
-import org.w3c.css.properties.css1.CssBackground;
+import org.w3c.css.properties.css21.CssBackgroundCSS21;
 import org.w3c.css.properties.css1.CssBackgroundImageCSS2;
 import org.w3c.css.properties.css1.CssBackgroundRepeatCSS2;
 import org.w3c.css.properties.css1.CssBackgroundColor;
@@ -24,7 +24,15 @@ import org.w3c.css.values.CssURL;
  * CssBackgroundCSS21<br />
  * Created: Aug 31, 2005 2:03:41 PM<br />
  */
-public class CssBackgroundCSS3 extends CssBackground {
+public class CssBackgroundCSS3 extends CssBackgroundCSS21 {
+    CssBackgroundColor color;
+
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssBackgroundColor color) {
+        this.color = color;
+    }
 
     /**
      * Create a new CssBackgroundCSS2
@@ -60,7 +68,6 @@ public class CssBackgroundCSS3 extends CssBackground {
 	    if (val == null) {
 		break;
 	    }
- System.err.println("*** Css background CSS3: "+val);
 	    op = expression.getOperator();
 	    
 	    // if there are many values, we can't have inherit as one of them
@@ -84,7 +91,7 @@ public class CssBackgroundCSS3 extends CssBackground {
 		break;
 	    case CssTypes.CSS_COLOR:
 	    case CssTypes.CSS_FUNCTION:
-		if (getColor() == null) {
+		if (getColor2() == null) {
 		    setColor(new CssBackgroundColor(ac, expression));
 		    continue;
 		}
