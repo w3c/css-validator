@@ -94,9 +94,6 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssClearCSS3 cssClearCSS3;
     CssLineHeightPolicy cssLineHeightPolicy;
     CssLineBoxContain cssLineBoxContain;
-    CssColumnCount cssColumnCount;
-    CssColumnWidth cssColumnWidth;
-    CssColumnSpan cssColumnSpan;
     CssBackgroundClip cssBackgroundClip;
     CssBackgroundSize cssBackgroundSize;
     CssBackgroundOrigin cssBackgroundOrigin;
@@ -117,11 +114,19 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssTextOverflowMode cssTextOverflowMode;
     CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
     CssWrapOption cssWrapOption;
+
     CssColumnGap cssColumnGap;
     CssColumnRuleColor cssColumnRuleColor;
     CssColumnRuleStyle cssColumnRuleStyle;
     CssColumnRuleWidth cssColumnRuleWidth;
     CssColumnRule cssColumnRule;
+    CssColumnCount cssColumnCount;
+    CssColumnWidth cssColumnWidth;
+    CssColumnSpan cssColumnSpan;
+    CssBreakBefore cssBreakBefore;
+    CssBreakAfter cssBreakAfter;
+    CssBreakInside cssBreakInside;
+
     CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
     CssDropInitialAfterAlign cssDropInitialAfterAlign;
     CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -1132,6 +1137,31 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 						    new CssColumnGap(), style, selector);
 	}
 	return cssColumnGap;
+    }
+
+   public CssBreakBefore getBreakBefore() {
+	if (cssBreakBefore == null) {
+	    cssBreakBefore =
+		(CssBreakBefore) style.CascadingOrder(
+						      new CssBreakBefore(), style, selector);
+	}
+	return cssBreakBefore;
+    }
+   public CssBreakAfter getBreakAfter() {
+	if (cssBreakAfter == null) {
+	    cssBreakAfter =
+		(CssBreakAfter) style.CascadingOrder(
+						      new CssBreakAfter(), style, selector);
+	}
+	return cssBreakAfter;
+    }
+   public CssBreakInside getBreakInside() {
+	if (cssBreakInside == null) {
+	    cssBreakInside =
+		(CssBreakInside) style.CascadingOrder(
+						      new CssBreakInside(), style, selector);
+	}
+	return cssBreakInside;
     }
 
     public CssColumnRuleColor getColumnRuleColor() {
