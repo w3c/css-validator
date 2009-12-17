@@ -57,10 +57,11 @@ public class CssExpression implements CssOperator {
      * don't change the position in the expression
      */
     public CssValue getValue() {
-	if (index == count)
+	if (index == count) {
 	    return null;
-	else
+	} else {
 	    return (items.elementAt(index)).value;
+	}
     }
 
     /**
@@ -68,10 +69,11 @@ public class CssExpression implements CssOperator {
      * don't change the position in the expression
      */
     public CssValue getNextValue() {
-	if (index+1 >= count)
+	if (index+1 >= count) {
 	    return null;
-	else
+	} else {
 	    return (items.elementAt(index+1)).value;
+	}
     }
 
     /* Modified by Sijtsche de Jong */
@@ -80,10 +82,11 @@ public class CssExpression implements CssOperator {
      * don't change the position in the expression
      */
     public char getOperator() {
-	if (index == count)
+	if (index == count) {
 	    return SPACE;
-	else
+	} else {
 	    return (items.elementAt(index)).operator;
+	}
     }
 
     /**
@@ -114,8 +117,9 @@ public class CssExpression implements CssOperator {
      * Removes the current value and his operator
      */
     public void remove() {
-	if (index != count)
+	if (index != count) {
 	    items.removeElementAt(index);
+	}
 	count--;
     }
 
@@ -144,8 +148,9 @@ public class CssExpression implements CssOperator {
      * Change the position to the next
      */
     public void next() {
-	if (index < count)
+	if (index < count) {
 	    index++;
+	}
     }
 
     /**
@@ -174,7 +179,8 @@ public class CssExpression implements CssOperator {
     }
 
     /**
-     * Returns a string representation of the object before the current position.
+     * Returns a string representation of the object before the current 
+     * position.
      */
     public String toStringFromStart() {
 	StringBuilder sb = new StringBuilder();
