@@ -19,7 +19,7 @@ public class CssIdent extends CssValue {
     static {
 	allowedvalues = new HashMap<String,CssIdent>();
 	allowedvalues.put("inherit", new CssIdent("inherit"));
-	allowedvalues.put("none", new CssIdent("inherit"));
+	allowedvalues.put("none", new CssIdent("none"));
     }
     /**
      * Get a cached CssIdent, useful for common values like "inherit"
