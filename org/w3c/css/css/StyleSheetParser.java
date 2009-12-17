@@ -304,7 +304,8 @@ public final class StyleSheetParser
 		cpe = new CssParseException(new Exception(e.getMessage()));
 	    }
 	    er.addError(new org.w3c.css.parser.CssError(url.toString(),
-							e.getErrorLine(),
+							//e.getErrorLine(),
+							-1,
 							cpe));
 	    notifyErrors(er);
 	} catch(RuntimeException e) {

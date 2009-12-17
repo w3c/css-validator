@@ -2,7 +2,9 @@
 // $Id$
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
+// (c) COPYRIGHT 1995-2009  World Wide Web Consortium 
+// (MIT, ERCIM, Keio University)
+//
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
@@ -14,21 +16,24 @@ import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
+ *  http://www.w3.org/TR/css3-multicol
  *  <P>
- *  <EM>Value:</EM> &lt;border-style&gt; || inherit<BR>
+ *  <EM>Value:</EM> &lt;border-style&gt;<BR>
  *  <EM>Initial:</EM>none<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
+ *  <EM>Applies to:</EM>multicol elements<BR>
  *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
+ *  <EM>Percentages:</EM>N/A<BR>
  *  <EM>Media:</EM>:visual
  */
 
 public class CssColumnRuleStyle extends CssProperty {
 
-    CssBorderStyle value;
+    CssIdent value;
 
     /**
      * Create a new CssColumnRuleStyle
@@ -49,22 +54,22 @@ public class CssColumnRuleStyle extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	try {
-	    value = new CssBorderStyle(ac, expression);
-	    expression.next();
-	}
-	catch (InvalidParamException e) {
+	// we only use Css Ident part of the CssBorderStyle acceptable values
+	if ((val.getType() != CssTypes.CSS_IDENT) ||
+	    !CssBorderStyle.acceptable_values.contains((CssIdent)val)) {
 	    throw new InvalidParamException("value",
 					    expression.getValue(),
 					    getPropertyName(), ac);
 	}
+	value = (CssIdent) val;
+	expression.next();
     }
-
+    
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
+	throws InvalidParamException {
 	this(ac, expression, false);
     }
-
+    
     /**
      * Add this property to the CssStyle
      *
@@ -75,7 +80,7 @@ public class CssColumnRuleStyle extends CssProperty {
 	    style.addRedefinitionWarning(ac, this);
 	((Css3Style) style).cssColumnRuleStyle = this;
     }
-
+    
     /**
      * Get this property in the style.
      *
@@ -105,7 +110,7 @@ public class CssColumnRuleStyle extends CssProperty {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "column-border-style";
+	return "column-rule-style";
     }
 
     /**
@@ -136,5 +141,4 @@ public class CssColumnRuleStyle extends CssProperty {
     public boolean isDefault() {
 	return false;
     }
-
 }

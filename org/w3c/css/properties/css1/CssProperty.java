@@ -92,9 +92,9 @@ public abstract class CssProperty
     public static final CssIdent initial;
 
     static {
-	inherit     = new CssIdent("inherit");
-	transparent = new CssIdent("transparent");
-	initial     = new CssIdent("initial");
+	inherit     = CssIdent.getIdent("inherit");
+	transparent = CssIdent.getIdent("transparent");
+	initial     = CssIdent.getIdent("initial");
     }
     /**
      * Create a new CssProperty.

@@ -11,10 +11,10 @@ options {
     IGNORE_CASE  = true;
     STATIC = false;
     UNICODE_INPUT = true;
-    /*
+   /*    
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
-    */
+   */ 
 }
 
 PARSER_BEGIN(CssParser)
@@ -904,6 +904,25 @@ void medium(AtRuleMedia media) : /* tv, projection, screen, ... */
 	    CssError error = new CssError(getSourceFile(), getLine(), e);
 	    ac.getFrame().addError(error);	
 	}
+    }
+}
+
+void unused_production_generic_syntax() :
+{
+  CssExpression values = new CssExpression();
+
+}
+{
+    "(" ( <S> )* term(values) ")" {
+    }
+}
+
+void definition() :
+{
+  CssExpression values = new CssExpression();
+}
+{
+    "[" ( <S> )* term(values) "]" {
     }
 }
 
