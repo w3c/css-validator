@@ -6,12 +6,35 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
+import java.util.HashMap;
+
 import org.w3c.css.util.ApplContext;
 
 /**
  * @version $Revision$
  */
 public class CssIdent extends CssValue {
+
+    public static HashMap<String,CssIdent> allowedvalues;
+    static {
+	allowedvalues = new HashMap<String,CssIdent>();
+	allowedvalues.put("inherit", new CssIdent("inherit"));
+	allowedvalues.put("none", new CssIdent("inherit"));
+    }
+    /**
+     * Get a cached CssIdent, useful for common values like "inherit"
+     * @param name, the ident name
+     * @return a CssIdent
+     */
+    public static CssIdent getIdent(String name) {
+	CssIdent val = allowedvalues.get(name);
+	if (val != null) {
+	    return val;
+	}
+	val = new CssIdent(name);
+	allowedvalues.put(name, val);
+	return val;
+    }
 
     public static final int type = CssTypes.CSS_IDENT;
     
