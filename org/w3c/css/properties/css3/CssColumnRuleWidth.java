@@ -9,7 +9,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssBorderWidth;
+import org.w3c.css.properties.css1.CssBorderFaceWidthCSS2;
 import org.w3c.css.properties.css1.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -17,18 +17,19 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
+ * http://www.w3.org/TR/css3-multicol/
  *  <P>
- *  <EM>Value:</EM> &lt;border-width&gt; || inherit<BR>
+ *  <EM>Value:</EM> &lt;border-width&gt;<BR>
  *  <EM>Initial:</EM>medium<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
+ *  <EM>Applies to:</EM>multicol elements<BR>
  *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
+ *  <EM>Percentages:</EM>N/A<BR>
  *  <EM>Media:</EM>:visual
  */
 
 public class CssColumnRuleWidth extends CssProperty {
 
-    CssBorderWidth value;
+    CssBorderFaceWidthCSS2 value;
 
     /**
      * Create a new CssColumnRuleWidth
@@ -49,11 +50,13 @@ public class CssColumnRuleWidth extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	try {
-	    value = new CssBorderWidth(ac, expression);
-	    expression.next();
+	if (check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
 	}
-	catch (InvalidParamException e) {
+
+	try {
+	    value = new CssBorderFaceWidthCSS2(ac, expression);
+	} catch (InvalidParamException e) {
 	    throw new InvalidParamException("value",
 					    expression.getValue(),
 					    getPropertyName(), ac);
@@ -105,21 +108,21 @@ public class CssColumnRuleWidth extends CssProperty {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "column-border-width";
+	return "column-rule-width";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return value;
+	return value.getValue();
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return value.equals(inherit);
+	return inherit.equals(value.getValue());
     }
 
     /**
