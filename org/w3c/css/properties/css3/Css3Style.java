@@ -115,16 +115,17 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
     CssWrapOption cssWrapOption;
 
+    CssColumnCount cssColumnCount;
+    CssColumnFill cssColumnFill;
     CssColumnGap cssColumnGap;
+    CssColumnRule cssColumnRule;
     CssColumnRuleColor cssColumnRuleColor;
     CssColumnRuleStyle cssColumnRuleStyle;
     CssColumnRuleWidth cssColumnRuleWidth;
-    CssColumnRule cssColumnRule;
-    CssColumnCount cssColumnCount;
-    CssColumnWidth cssColumnWidth;
     CssColumnSpan cssColumnSpan;
-    CssBreakBefore cssBreakBefore;
+    CssColumnWidth cssColumnWidth;
     CssBreakAfter cssBreakAfter;
+    CssBreakBefore cssBreakBefore;
     CssBreakInside cssBreakInside;
 
     CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
@@ -1162,6 +1163,15 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
 						      new CssBreakInside(), style, selector);
 	}
 	return cssBreakInside;
+    }
+
+    public CssColumnFill getColumnFill() {
+	if (cssColumnFill == null) {
+	    cssColumnFill =
+		(CssColumnFill) style.CascadingOrder(
+							  new CssColumnFill(), style, selector);
+	}
+	return cssColumnFill;
     }
 
     public CssColumnRuleColor getColumnRuleColor() {
