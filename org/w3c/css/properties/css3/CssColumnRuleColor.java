@@ -54,11 +54,13 @@ public class CssColumnRuleColor extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
+	if(check && expression.getCount() > 1) {
+	    throw new InvalidParamException("unrecognize", ac);
+	}
+
 	try {
 	    color = new CssColor(ac, expression);
-	    expression.next();
-	}
-	catch (InvalidParamException e) {
+	} catch (InvalidParamException e) {
 	    throw new InvalidParamException("value",
 					    expression.getValue(),
 					    getPropertyName(), ac);
@@ -110,7 +112,7 @@ public class CssColumnRuleColor extends CssProperty {
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "column-border-color";
+	return "column-rule-color";
     }
 
     /**
@@ -141,5 +143,4 @@ public class CssColumnRuleColor extends CssProperty {
     public boolean isDefault() {
 	return false;
     }
-
 }
