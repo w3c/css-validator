@@ -374,7 +374,7 @@
             lang="fa"
             xml:lang="fa"
             hreflang="fa"
-            rel="alternate">انگلیسی</a>
+	    rel="alternate">فارسی</a>
         </li>
         
         <li><a href="validator.html.sv"
