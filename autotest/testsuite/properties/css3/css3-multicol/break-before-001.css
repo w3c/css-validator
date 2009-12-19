@@ -1,0 +1,31 @@
+div {
+        break-before: inherit;
+}
+div {
+	break-before: auto;
+}
+div {
+        break-before: always;
+}
+div {
+        break-before: avoid;
+}
+div {
+        break-before: left;
+}
+div {
+        break-before: right;
+}
+div {
+        break-before: page;
+}
+div {
+        break-before: column;
+}
+div {
+        break-before: avoid-page;
+}
+div {
+        break-before: avoid-column;
+}
+
