@@ -1,0 +1,9 @@
+div {
+	column-span: inherit;
+}
+div {
+	column-span: 1;
+}
+div {
+	column-span: all;
+}
