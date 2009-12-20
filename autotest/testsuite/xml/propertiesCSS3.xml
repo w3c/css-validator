@@ -2011,8 +2011,8 @@ test markup also accepts 3 properties: warning, profile and medium
       <result valid="true"/>
     </test>
     <test profile="css3">
-      <file>testsuite/properties/css3/css3-multicol/color-span-001.css</file>
-      <description>css3-multicol: Valid 'color-span' values</description>
+      <file>testsuite/properties/css3/css3-multicol/column-span-001.css</file>
+      <description>css3-multicol: Valid 'column-span' values</description>
       <result valid="true"/>
     </test>
     <test profile="css3">
