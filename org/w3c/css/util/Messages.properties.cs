@@ -1,4 +1,5 @@
 # Master localization string file: $Id$
+direction: ltr
 language_name: Čeština
 more_options: Další možnosti
 title_more_options: Zobrazit/Skrýt další možnosti ověření

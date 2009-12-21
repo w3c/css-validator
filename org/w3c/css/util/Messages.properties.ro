@@ -1,4 +1,5 @@
 # Master localization string file: $Id$
+direction: ltr
 language_name: Romanian
 more_options: Mai multe optiuni de validare
 title_more_options: Arata/ascunde mai multe optiuni de validare
