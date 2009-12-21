@@ -398,6 +398,20 @@
             rel="alternate">Українська</a>
         </li>
         
+        <li><a href="validator.html.cs"
+            lang="cs"
+            xml:lang="cs"
+            hreflang="cs"
+            rel="alternate">Čeština</a>
+        </li>
+        
+        <li><a href="validator.html.ro"
+            lang="ro"
+            xml:lang="ro"
+            hreflang="ro"
+            rel="alternate">Romanian</a>
+        </li>
+        
         <li><a href="validator.html.zh-cn"
             lang="zh-cn"
             xml:lang="zh-cn"

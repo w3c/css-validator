@@ -374,7 +374,7 @@
             lang="fa"
             xml:lang="fa"
             hreflang="fa"
-	    rel="alternate">فارسی</a>
+            rel="alternate">فارسی</a>
         </li>
         
         <li><a href="validator.html.sv"
@@ -389,6 +389,27 @@
             xml:lang="bg"
             hreflang="bg"
             rel="alternate">Български</a>
+        </li>
+        
+        <li><a href="validator.html.uk"
+            lang="uk"
+            xml:lang="uk"
+            hreflang="uk"
+            rel="alternate">Українська</a>
+        </li>
+        
+        <li><a href="validator.html.cs"
+            lang="cs"
+            xml:lang="cs"
+            hreflang="cs"
+            rel="alternate">Čeština</a>
+        </li>
+        
+        <li><a href="validator.html.ro"
+            lang="ro"
+            xml:lang="ro"
+            hreflang="ro"
+            rel="alternate">Romanian</a>
         </li>
         
         <li><a href="validator.html.zh-cn"

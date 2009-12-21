@@ -36,7 +36,7 @@
           输入你想验证的文档(带CSS的HTML文档或者CSS文档)的URI :
         </p>
         <p>
-           <label title="Address of page to Validate" for="uri">URI地址 :
+           <label title="要验证的页面地址" for="uri">URI地址 :
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
@@ -374,7 +374,7 @@
             lang="fa"
             xml:lang="fa"
             hreflang="fa"
-	    rel="alternate">فارسی</a>
+            rel="alternate">فارسی</a>
         </li>
         
         <li><a href="validator.html.sv"
@@ -389,6 +389,27 @@
             xml:lang="bg"
             hreflang="bg"
             rel="alternate">Български</a>
+        </li>
+        
+        <li><a href="validator.html.uk"
+            lang="uk"
+            xml:lang="uk"
+            hreflang="uk"
+            rel="alternate">Українська</a>
+        </li>
+        
+        <li><a href="validator.html.cs"
+            lang="cs"
+            xml:lang="cs"
+            hreflang="cs"
+            rel="alternate">Čeština</a>
+        </li>
+        
+        <li><a href="validator.html.ro"
+            lang="ro"
+            xml:lang="ro"
+            hreflang="ro"
+            rel="alternate">Romanian</a>
         </li>
         
         <li><a href="validator.html.zh-cn"
