@@ -54,7 +54,7 @@ public class CssFrequency extends CssValue {
    * Set the value of this frequency.
    *
    * @param s     the string representation of the frequency.
-   * @param frame For errors and warnings reports.
+   * @param ac For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
    */
   public void set(String s, ApplContext ac) throws InvalidParamException {
@@ -64,10 +64,10 @@ public class CssFrequency extends CssValue {
     float v;
     if (s.charAt(length-3) == 'k') {
       unit = s.substring(length-3, length);
-      v = new Float(s.substring(0, length-3)).floatValue();
+      v = Float.parseFloat(s.substring(0, length - 3));
     } else {
       unit = s.substring(length-2, length);
-      v = new Float(s.substring(0, length-2)).floatValue();
+      v = Float.parseFloat(s.substring(0, length - 2));
     }
     int hash = unit.hashCode();
 

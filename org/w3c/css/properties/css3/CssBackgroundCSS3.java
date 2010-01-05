@@ -5,20 +5,18 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css1.CssBackgroundAttachmentCSS2;
+import org.w3c.css.properties.css.CssBackgroundColor;
+import org.w3c.css.properties.css2.CssBackgroundAttachmentCSS2;
+import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
 import org.w3c.css.properties.css21.CssBackgroundCSS21;
-import org.w3c.css.properties.css1.CssBackgroundImageCSS2;
-import org.w3c.css.properties.css1.CssBackgroundRepeatCSS2;
-import org.w3c.css.properties.css1.CssBackgroundColor;
+import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
 import org.w3c.css.properties.css21.CssBackgroundPositionCSS21;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssTypes;
-import org.w3c.css.values.CssURL;
 
 /**
  * CssBackgroundCSS21<br />

@@ -7,22 +7,6 @@
 
 package org.w3c.css.servlet;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.ProtocolException;
-import java.net.URL;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.w3c.css.css.CssParser;
 import org.w3c.css.css.DocumentParser;
 import org.w3c.css.css.StyleReport;
@@ -43,6 +27,21 @@ import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.ProtocolException;
+import java.net.URL;
 
 /**
  * This class is a servlet to use the validator.
@@ -195,7 +194,7 @@ public final class CssValidator extends HttpServlet {
      *
      * @param req
      *            encapsulates the request to the servlet.
-     * @param resp
+     * @param res
      *            encapsulates the response from the servlet.
      * @exception ServletException
      *                if the request could not be handled.
@@ -459,7 +458,7 @@ public final class CssValidator extends HttpServlet {
      *
      * @param req
      *            encapsulates the request to the servlet
-     * @param resp
+     * @param res
      *            encapsulates the response from the servlet
      * @exception ServletException
      *                if the request could not be handled

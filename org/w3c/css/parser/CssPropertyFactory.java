@@ -7,19 +7,19 @@
 
 package org.w3c.css.parser;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
-import java.util.Vector;
-
 import org.w3c.css.properties.PropertiesLoader;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.Vector;
 
 /**
  * @version $Revision$
@@ -139,7 +139,7 @@ public class CssPropertyFactory implements Cloneable {
 
 	try {
 	    // create an instance of your property class
-	    Class expressionclass = new CssExpression().getClass();
+	    Class expressionclass = CssExpression.class;
 	    if (expression != null) {
 		expressionclass = expression.getClass();
 	    }
@@ -230,7 +230,7 @@ public class CssPropertyFactory implements Cloneable {
 		// create an instance of your property class
 		Class[] parametersType = { ac.getClass(), expression.getClass(), boolean.class };
 		Constructor constructor = Class.forName(classname).getConstructor(parametersType);
-		Object[] parameters = { ac, expression, new Boolean(true) };
+		Object[] parameters = { ac, expression, Boolean.TRUE};
 		// invoke the constructor
 		return (CssProperty) constructor.newInstance(parameters);
 			

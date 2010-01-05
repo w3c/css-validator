@@ -7,11 +7,8 @@
 
 package org.w3c.css.properties.aural;
 
-import java.io.IOException;
-import java.net.URL;
-
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -19,6 +16,9 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssValue;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  *  &nbsp;&nbsp;'play-during'
@@ -115,13 +115,13 @@ public class ACssPlayDuring extends ACssProperty implements CssOperator {
 	    if (valuesNb == 3) {
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator",
-			    (new Character(expression.getOperator()).toString()),
+			    (Character.toString(expression.getOperator())),
 			    ac);
 		}
 		expression.next();
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator",
-			    (new Character(expression.getOperator()).toString()),
+			    (Character.toString(expression.getOperator())),
 			    ac);
 		}
 		val = expression.getValue();
@@ -149,7 +149,7 @@ public class ACssPlayDuring extends ACssProperty implements CssOperator {
 	    } else if (valuesNb == 2) {
 		if (expression.getOperator() != SPACE) {
 		    throw new InvalidParamException("operator",
-			    (new Character(expression.getOperator()).toString()),
+			    (Character.toString(expression.getOperator())),
 			    ac);
 		}
 		expression.next();

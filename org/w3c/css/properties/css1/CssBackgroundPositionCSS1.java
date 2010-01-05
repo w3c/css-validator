@@ -7,6 +7,8 @@
 package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBackgroundConstants;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -92,7 +94,7 @@ import org.w3c.css.values.CssValue;
  *   In the example above, the image is placed in the lower right corner of the
  *   canvas.
  * @version $Revision$
- * @see CssBackgroundAttachment
+ * @see org.w3c.css.properties.css.CssBackgroundAttachment
  */
 public class CssBackgroundPositionCSS1 extends CssProperty
 implements CssBackgroundConstants, CssOperator {

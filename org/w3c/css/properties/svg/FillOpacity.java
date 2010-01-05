@@ -9,7 +9,7 @@
 package org.w3c.css.properties.svg;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css3.CssOpacity;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;

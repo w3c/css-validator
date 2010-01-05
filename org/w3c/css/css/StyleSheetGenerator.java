@@ -1,5 +1,22 @@
 package org.w3c.css.css;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.w3c.css.error.ErrorReportHTML;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.CssErrorToken;
+import org.w3c.css.parser.CssParseException;
+import org.w3c.css.parser.Errors;
+import org.w3c.css.properties.PropertiesLoader;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Messages;
+import org.w3c.css.util.Utf8Properties;
+import org.w3c.css.util.Warnings;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,24 +30,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.TimeZone;
 import java.util.Vector;
-
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.Template;
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.apache.velocity.exception.ParseErrorException;
-import org.w3c.css.error.ErrorReportHTML;
-import org.w3c.css.parser.CssError;
-import org.w3c.css.parser.CssErrorToken;
-import org.w3c.css.parser.CssParseException;
-import org.w3c.css.parser.Errors;
-import org.w3c.css.properties.PropertiesLoader;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Messages;
-import org.w3c.css.util.Utf8Properties;
-import org.w3c.css.util.Warnings;
-import org.w3c.css.util.Warning;
 
 /**
  * @author Julien Grand-Mourcel
@@ -176,14 +175,14 @@ public class StyleSheetGenerator extends StyleReport {
 		               new Integer(warnings.getIgnoredWarningCount()));
         context.put("warning_level", new Integer(warningLevel));
         context.put("rules_count", new Integer(items.size()));
-        context.put("no_errors_report", new Boolean(false));
+        context.put("no_errors_report", Boolean.FALSE);
         context.put("charset", ac.getContentEncoding());
         context.put("cssversion", ac.getCssVersion());
         context.put("css_profile", ac.getProfile());
         context.put("css", ac.getMsg().getString(ac.getCssVersion()));
         context.put("css_link",getURLProperty("@url-base_"+ac.getCssVersion()));
         context.put("is_valid", (errors.getErrorCount() == 0)?"true":"false");
-	context.put("fake_input", new Boolean(ac.isInputFake()));
+	    context.put("fake_input", Boolean.valueOf(ac.isInputFake()));
         context.put("author", "www-validator-css");
         context.put("author-email", "Email.html");
         if (style.charset != null)
@@ -481,7 +480,7 @@ public class StyleSheetGenerator extends StyleReport {
      * is called
      */
     public void desactivateError() {
-        context.put("no_errors_report", new Boolean(true));
+        context.put("no_errors_report", Boolean.TRUE);
 	// activate the no errors report
     }
 

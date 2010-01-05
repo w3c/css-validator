@@ -9,6 +9,22 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.properties.css.CssBackgroundClip;
+import org.w3c.css.properties.css.CssBackgroundOrigin;
+import org.w3c.css.properties.css.CssBackgroundSize;
+import org.w3c.css.properties.css.CssBreakAfter;
+import org.w3c.css.properties.css.CssBreakBefore;
+import org.w3c.css.properties.css.CssBreakInside;
+import org.w3c.css.properties.css.CssColumnCount;
+import org.w3c.css.properties.css.CssColumnFill;
+import org.w3c.css.properties.css.CssColumnGap;
+import org.w3c.css.properties.css.CssColumnRule;
+import org.w3c.css.properties.css.CssColumnRuleColor;
+import org.w3c.css.properties.css.CssColumnRuleStyle;
+import org.w3c.css.properties.css.CssColumnRuleWidth;
+import org.w3c.css.properties.css.CssColumnSpan;
+import org.w3c.css.properties.css.CssColumnWidth;
+import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -94,9 +110,9 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssClearCSS3 cssClearCSS3;
     CssLineHeightPolicy cssLineHeightPolicy;
     CssLineBoxContain cssLineBoxContain;
-    CssBackgroundClip cssBackgroundClip;
-    CssBackgroundSize cssBackgroundSize;
-    CssBackgroundOrigin cssBackgroundOrigin;
+    public CssBackgroundClip cssBackgroundClip;
+    public CssBackgroundSize cssBackgroundSize;
+    public CssBackgroundOrigin cssBackgroundOrigin;
     CssBackgroundQuantity cssBackgroundQuantity;
     CssBackgroundSpacing cssBackgroundSpacing;
     CssTextDecorationCSS3 cssTextDecoration;
@@ -115,19 +131,19 @@ public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
     CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
     CssWrapOption cssWrapOption;
 
-    CssColumns         cssColumns;
-    CssColumnCount     cssColumnCount;
-    CssColumnFill      cssColumnFill;
-    CssColumnGap       cssColumnGap;
-    CssColumnRule      cssColumnRule;
-    CssColumnRuleColor cssColumnRuleColor;
-    CssColumnRuleStyle cssColumnRuleStyle;
-    CssColumnRuleWidth cssColumnRuleWidth;
-    CssColumnSpan      cssColumnSpan;
-    CssColumnWidth     cssColumnWidth;
-    CssBreakAfter      cssBreakAfter;
-    CssBreakBefore     cssBreakBefore;
-    CssBreakInside     cssBreakInside;
+    public CssColumns cssColumns;
+    public CssColumnCount     cssColumnCount;
+    public CssColumnFill      cssColumnFill;
+    public CssColumnGap cssColumnGap;
+    public CssColumnRule cssColumnRule;
+    public CssColumnRuleColor cssColumnRuleColor;
+    public CssColumnRuleStyle cssColumnRuleStyle;
+    public CssColumnRuleWidth cssColumnRuleWidth;
+    public CssColumnSpan cssColumnSpan;
+    public CssColumnWidth     cssColumnWidth;
+    public CssBreakAfter      cssBreakAfter;
+    public CssBreakBefore cssBreakBefore;
+    public CssBreakInside     cssBreakInside;
 
     CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
     CssDropInitialAfterAlign cssDropInitialAfterAlign;

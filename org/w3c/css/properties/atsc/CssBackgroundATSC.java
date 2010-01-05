@@ -10,13 +10,10 @@ package org.w3c.css.properties.atsc;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssBackgroundAttachment;
-import org.w3c.css.properties.css1.CssBackgroundColor;
-import org.w3c.css.properties.css1.CssBackgroundConstants;
-import org.w3c.css.properties.css1.CssBackgroundImage;
-import org.w3c.css.properties.css1.CssBackgroundPosition;
-import org.w3c.css.properties.css1.CssBackgroundRepeat;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssBackgroundConstants;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css.CssBackgroundImage;
+import org.w3c.css.properties.css.CssBackgroundPosition;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -54,10 +51,10 @@ import org.w3c.css.values.CssValue;
  *   have been specified.
  *
  * @version $Revision$
- * @see CssBackgroundColor
+ * @see org.w3c.css.properties.css.CssBackgroundColor
  * @see CssBackgroundImage
- * @see CssBackgroundRepeat
- * @see CssBackgroundAttachment
+ * @see org.w3c.css.properties.css.CssBackgroundRepeat
+ * @see org.w3c.css.properties.css.CssBackgroundAttachment
  * @see CssBackgroundPosition
  */
 public class CssBackgroundATSC extends CssProperty

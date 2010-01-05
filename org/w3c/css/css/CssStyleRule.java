@@ -7,7 +7,7 @@ package org.w3c.css.css;
 
 import java.util.Vector;
 
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.Messages;
 
 public class CssStyleRule {

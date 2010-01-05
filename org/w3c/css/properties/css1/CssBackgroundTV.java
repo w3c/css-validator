@@ -9,6 +9,12 @@ package org.w3c.css.properties.css1;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBackgroundConstants;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
+import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
+import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
+import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -46,10 +52,10 @@ import org.w3c.css.values.CssValue;
  *   have been specified.
  *
  * @version $Revision$
- * @see CssBackgroundColor
- * @see CssBackgroundImage
- * @see CssBackgroundRepeat
- * @see CssBackgroundPosition
+ * @see org.w3c.css.properties.css.CssBackgroundColor
+ * @see org.w3c.css.properties.css.CssBackgroundImage
+ * @see org.w3c.css.properties.css.CssBackgroundRepeat
+ * @see org.w3c.css.properties.css.CssBackgroundPosition
  */
 public class CssBackgroundTV extends CssProperty
         implements CssOperator, CssBackgroundConstants {
@@ -95,10 +101,9 @@ public class CssBackgroundTV extends CssProperty
 	    image = new CssBackgroundImageCSS2();
 	    image.url = inherit;
 	    repeat = new CssBackgroundRepeatCSS2();
-	    repeat.repeat = REPEAT.length - 1;
+//	    repeat.repeat = REPEAT.length - 1;
 	    position = new CssBackgroundPositionCSS2();
-	    position.first = inherit;
-	    position.second = inherit;
+	    position.value = inherit;
 	    same = true;
 	    expression.next();
 	    return;
@@ -340,7 +345,7 @@ public class CssBackgroundTV extends CssProperty
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
 	return false; // FIXME

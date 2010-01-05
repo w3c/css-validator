@@ -19,39 +19,39 @@ public abstract class CssValue {
     String cssversion;
 
     public int getType() {
-	return type;
+        return type;
     }
-    
-  /**
-   * Set the value of this value.
-   *
-   * @param s     the string representation of the value.
-   * @param frame For errors and warnings reports.
-   * @exception InvalidParamException The unit is incorrect
-   */
-  public abstract void set(String s, ApplContext ac)
-      throws InvalidParamException;
 
-  /**
-   * Returns the internal value
-   */
-  public abstract Object get();
+    /**
+     * Set the value of this value.
+     *
+     * @param s  the string representation of the value.
+     * @param ac For errors and warnings reports.
+     * @throws InvalidParamException The unit is incorrect
+     */
+    public abstract void set(String s, ApplContext ac)
+            throws InvalidParamException;
 
-  /**
-   * Compares two values for equality.
-   *
-   * @param value The other value.
-   */
-  public boolean equals(Object value) {
-    return super.equals(value);
-  }
+    /**
+     * @return the internal value
+     */
+    public abstract Object get();
+
+    /**
+     * Compares two values for equality.
+     *
+     * @param value The other value.
+     */
+    public boolean equals(Object value) {
+        return super.equals(value);
+    }
 
     public void setCssVersion(String cssversion) {
-	this.cssversion = cssversion;
+        this.cssversion = cssversion;
     }
 
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

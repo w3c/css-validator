@@ -8,9 +8,9 @@
 package org.w3c.css.properties.atsc;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssBackgroundAttachment;
-import org.w3c.css.properties.css1.CssBackgroundConstants;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css.CssBackgroundAttachment;
+import org.w3c.css.properties.css.CssBackgroundConstants;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;

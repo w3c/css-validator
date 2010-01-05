@@ -6,11 +6,10 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
-import java.util.HashMap;
-
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
+
+import java.util.HashMap;
 
 /**
  *   <H3>

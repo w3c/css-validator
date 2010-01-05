@@ -8,9 +8,8 @@
 package org.w3c.css.parser;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
 import org.w3c.css.selectors.ChildSelector;
@@ -23,13 +22,6 @@ import org.w3c.css.selectors.Selector;
 import org.w3c.css.selectors.SelectorsList;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.attributes.AttributeExact;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionContains;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionLang;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNot;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthChild;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
-import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;

@@ -19,10 +19,9 @@ import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.PropertiesLoader;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
-import org.w3c.css.util.Util;
 
 import org.w3c.www.mime.MimeType;
 

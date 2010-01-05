@@ -7,7 +7,7 @@
 package org.w3c.css.util;
 
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 
 /**
  * This class is use to manage all warning every where
@@ -109,7 +109,7 @@ public class Warning {
      * @param level the warning level
      *
      * @see org.w3c.css.util.Messages
-     * @see org.w3c.css.properties.css1.CssProperty#setInfo
+     * @see org.w3c.css.properties.css.CssProperty#setInfo
      */
     public Warning(CssProperty property, String warningMessage, int level,
 		   ApplContext ac) {	

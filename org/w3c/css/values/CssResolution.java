@@ -41,7 +41,7 @@ public class CssResolution extends CssValue {
    * Set the value of this Resolution.
    *
    * @param s     the string representation of the Resolution.
-   * @param frame For errors and warnings reports.
+   * @param ac For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
    */
   public void set(String s, ApplContext ac) throws InvalidParamException {
@@ -79,7 +79,7 @@ public class CssResolution extends CssValue {
   }
 
   /**
-   * Returns the current value
+   * @return the current value
    */
   public String getUnit() {
     return unit;
@@ -89,7 +89,7 @@ public class CssResolution extends CssValue {
    * Returns a string representation of the object.
    */
   public String toString() {
-      if (value.floatValue() != 0) {
+      if (value.floatValue() != 0.0) {
 	  return Util.displayFloat(value) + getUnit();
       } else {
 	  return Util.displayFloat(value);
@@ -104,7 +104,7 @@ public class CssResolution extends CssValue {
   public boolean equals(Object value) {
     return (value instanceof CssResolution &&
 	    this.value.equals(((CssResolution) value).value) &&
-	     unit == ((CssResolution) value).unit);
+            unit.equals(((CssResolution) value).unit));
   }
 
   private Float value;

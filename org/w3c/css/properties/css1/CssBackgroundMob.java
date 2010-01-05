@@ -9,6 +9,8 @@ package org.w3c.css.properties.css1;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBackgroundConstants;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -46,11 +48,11 @@ import org.w3c.css.values.CssValue;
  *   have been specified.
  *
  * @version $Revision$
- * @see CssBackgroundColor
- * @see CssBackgroundImage
- * @see CssBackgroundRepeat
- * @see CssBackgroundAttachment
- * @see CssBackgroundPosition
+ * @see org.w3c.css.properties.css.CssBackgroundColor
+ * @see org.w3c.css.properties.css.CssBackgroundImage
+ * @see org.w3c.css.properties.css.CssBackgroundRepeat
+ * @see org.w3c.css.properties.css.CssBackgroundAttachment
+ * @see org.w3c.css.properties.css.CssBackgroundPosition
  */
 public class CssBackgroundMob extends CssProperty
         implements CssOperator, CssBackgroundConstants {

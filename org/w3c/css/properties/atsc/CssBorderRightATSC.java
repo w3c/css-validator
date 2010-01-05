@@ -13,7 +13,7 @@ import org.w3c.css.parser.CssStyle;
 //import org.w3c.css.properties.CssBorderRightColorCSS2;
 //import org.w3c.css.properties.CssBorderRightStyleCSS2;
 //import org.w3c.css.properties.CssBorderRightWidthCSS2;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;

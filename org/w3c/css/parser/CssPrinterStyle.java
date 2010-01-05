@@ -7,7 +7,7 @@
 
 package org.w3c.css.parser;
 
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 
 /**
  * This class is invoke by all propperties when a print is required.
@@ -21,8 +21,8 @@ public interface CssPrinterStyle {
    * Print this property.
    *
    * @param property The property to print.
-   * @see org.w3c.css.properties.css1.CssProperty#toString
-   * @see org.w3c.css.properties.css1.CssProperty#getPropertyName
+   * @see org.w3c.css.properties.css.CssProperty#toString
+   * @see org.w3c.css.properties.css.CssProperty#getPropertyName
    */
   public void print(CssProperty property);
 }

@@ -7,7 +7,7 @@
 
 package org.w3c.css.properties.aural;
 
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 
 /**
  * @version $Revision$

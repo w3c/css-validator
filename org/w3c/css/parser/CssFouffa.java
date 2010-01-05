@@ -10,6 +10,19 @@
 
 package org.w3c.css.parser;
 
+import org.w3c.css.css.StyleSheetOrigin;
+import org.w3c.css.parser.analyzer.CssParser;
+import org.w3c.css.parser.analyzer.CssParserTokenManager;
+import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.analyzer.TokenMgrError;
+import org.w3c.css.properties.PropertiesLoader;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.values.CssExpression;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,67 +30,30 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.Vector;
 
-import java.nio.charset.Charset;
-
-import org.w3c.css.css.StyleSheetOrigin;
-import org.w3c.css.parser.analyzer.CssParser;
-import org.w3c.css.parser.analyzer.CssParserTokenManager;
-import org.w3c.css.parser.analyzer.ParseException;
-import org.w3c.css.parser.analyzer.TokenMgrError;
-import org.w3c.css.properties.PropertiesLoader;
-import org.w3c.css.properties.css1.CssProperty;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.HTTPURL;
-import org.w3c.css.util.InvalidParamException;
-// import org.w3c.css.util.Utf8Properties;
-import org.w3c.css.util.Util;
-import org.w3c.css.values.CssExpression;
-
 /**
  * This class is a front end of the CSS1 parser.
- * 
- * <p>
+ * <p/>
+ * <p/>
  * Example:<br>
  * <code>
  * CssFouffa parser =
- *   new CssFouffa(new URL("http://www.w3.org/drafts.css"));<BR>
+ * new CssFouffa(new URL("http://www.w3.org/drafts.css"));<BR>
  * CssValidatorListener myListener = new MyParserListener();<BR>
  * <BR>
  * parser.addListener(myListener);<BR>
  * parser.parseStyle();<BR>
  * </code>
- * 
+ *
  * @version $Revision$
  */
 public final class CssFouffa extends CssParser {
 
     // all properties
     CssPropertyFactory properties = null;
-
-    // static CssPropertyFactory __s_nullprop = null;
-    //
-    // static CssPropertyFactory __s_css1prop = null;
-    //
-    // static CssPropertyFactory __s_asc_tvprop = null;
-    //
-    // static CssPropertyFactory __s_css2prop = null;
-    //
-    // static CssPropertyFactory __s_css2mobileprop = null;
-    //
-    // static CssPropertyFactory __s_css2tvprop = null;
-    //
-    // static CssPropertyFactory __s_css3prop = null;
-    //
-    // static CssPropertyFactory __s_svgprop = null;
-    //
-    // static CssPropertyFactory __s_svgtinyprop = null;
-    //
-    // static CssPropertyFactory __s_svgbasicprop = null;
-    //
-    // static private Utf8Properties config = null;
 
     // all listeners
     Vector<CssValidatorListener> listeners;
@@ -92,101 +68,90 @@ public final class CssFouffa extends CssParser {
 
     /**
      * Create a new CssFouffa with a data input and a begin line number.
-     * 
-     * @param input
-     *            data input
-     * @param file
-     *            The source file (use for errors, warnings and import)
-     * @param beginLine
-     *            The begin line number in the file. (used for HTML for example)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param input     data input
+     * @param file      The source file (use for errors, warnings and import)
+     * @param beginLine The begin line number in the file. (used for HTML for example)
+     * @throws IOException if an I/O error occurs.
      */
-    public CssFouffa(ApplContext ac, InputStream input, String charset, 
-		     URL file, int beginLine) 
-	throws IOException
-    {
-	super(new InputStreamReader(input, (charset == null) ? 
-				    "iso-8859-1" : charset));
-	if (ac.getOrigin() == -1) {
-	    setOrigin(StyleSheetOrigin.AUTHOR); // default is user
-	} else {
-	    setOrigin(ac.getOrigin()); // default is user
-	}
-	ac.setFrame(new Frame(this, file.toString(), beginLine, 
-			      ac.getWarningLevel()));
-	setApplContext(ac);
-	// @@this is a default media ...
-	/*
-	 * AtRuleMedia media = new AtRuleMedia();
-	 * 
-	 * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
-	 * catch (InvalidParamException e) {} //ignore } else { try {
-	 * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
-	 * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
-	 * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
-	 */
-	setURL(file);
-	if (Util.onDebug) {
-	    System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + 
-			       " medium " + ac.getMedium() + " at-rule "
-			       + getAtRule() + " profile " + ac.getProfile());
-	}
+    public CssFouffa(ApplContext ac, InputStream input, String charset,
+                     URL file, int beginLine)
+            throws IOException {
+        super(new InputStreamReader(input, (charset == null) ?
+                "iso-8859-1" : charset));
+        if (ac.getOrigin() == -1) {
+            setOrigin(StyleSheetOrigin.AUTHOR); // default is user
+        } else {
+            setOrigin(ac.getOrigin()); // default is user
+        }
+        ac.setFrame(new Frame(this, file.toString(), beginLine,
+                ac.getWarningLevel()));
+        setApplContext(ac);
+        // @@this is a default media ...
+        /*
+       * AtRuleMedia media = new AtRuleMedia();
+       *
+       * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
+       * catch (InvalidParamException e) {} //ignore } else { try {
+       * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
+       * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
+       * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
+       */
+        setURL(file);
+        if (Util.onDebug) {
+            System.err.println("[DEBUG] CSS version " + ac.getCssVersion() +
+                    " medium " + ac.getMedium() + " at-rule "
+                    + getAtRule() + " profile " + ac.getProfile());
+        }
 
-	String profile = ac.getProfile();
-	if (profile == null || profile.equals("") || profile.equals("none")) {
-	    profile = ac.getCssVersion();
-	}
+        String profile = ac.getProfile();
+        if (profile == null || profile.equals("") || profile.equals("none")) {
+            profile = ac.getCssVersion();
+        }
 
-	// loadConfig(ac.getCssVersion(), ac.getProfile());
-	// load the CssStyle
-	String classStyle = PropertiesLoader.config.getProperty(profile);
-	if (classStyle == null) {
-	    classStyle = PropertiesLoader.config.getProperty("css2");
-	}
+        // loadConfig(ac.getCssVersion(), ac.getProfile());
+        // load the CssStyle
+        String classStyle = PropertiesLoader.config.getProperty(profile);
+        if (classStyle == null) {
+            classStyle = PropertiesLoader.config.getProperty("css2");
+        }
 
-	Class style;
-	try {
-	    style = Class.forName(classStyle);
-	    ac.setCssSelectorsStyle(style);
-	} catch (ClassNotFoundException e) {
-	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + 
-			       " load the style");
-	    e.printStackTrace();
-	}
+        Class style;
+        try {
+            style = Class.forName(classStyle);
+            ac.setCssSelectorsStyle(style);
+        } catch (ClassNotFoundException e) {
+            System.err.println("org.w3c.css.parser.CssFouffa: couldn't" +
+                    " load the style");
+            e.printStackTrace();
+        }
 
-	properties = new CssPropertyFactory(profile);
-	listeners = new Vector<CssValidatorListener>();
+        properties = new CssPropertyFactory(profile);
+        listeners = new Vector<CssValidatorListener>();
     }
 
     /**
      * Create a new CssFouffa with a data input.
-     * 
-     * @param input
-     *            data input
-     * @param file
-     *            The source file (use for errors, warnings and import)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param input data input
+     * @param file  The source file (use for errors, warnings and import)
+     * @throws IOException if an I/O error occurs.
      */
-    public CssFouffa(ApplContext ac, InputStream input, URL file) 
-	throws IOException 
-    {
-	this(ac, input, (ac.getCharsetForURL(file) != null) ?
-	     ac.getCharsetForURL(file):"iso-8859-1", file, 0);
+    public CssFouffa(ApplContext ac, InputStream input, URL file)
+            throws IOException {
+        this(ac, input, (ac.getCharsetForURL(file) != null) ?
+                ac.getCharsetForURL(file) : "iso-8859-1", file, 0);
     }
 
     /**
      * Create a new CssFouffa.
-     * 
-     * @param file
-     *            The source file (use for data input, errors, warnings and
-     *            import)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param file The source file (use for data input, errors, warnings and
+     *             import)
+     * @throws IOException if an I/O error occurs.
      */
     public CssFouffa(ApplContext ac, URL file) throws IOException {
-	this(ac, HTTPURL.getConnection(file, ac));
+        this(ac, HTTPURL.getConnection(file, ac));
 
     }
 
@@ -196,436 +161,413 @@ public final class CssFouffa extends CssParser {
      */
 
     private CssFouffa(ApplContext ac, URLConnection uco) throws IOException {
-	this(ac, HTTPURL.getInputStream(ac, uco), 
-	     HTTPURL.getCharacterEncoding(ac,uco), uco.getURL(), 0);
-	String httpCL = uco.getHeaderField("Content-Location");
-	if (httpCL != null) {
-	    setURL(HTTPURL.getURL(getURL(), httpCL));
-	}
+        this(ac, HTTPURL.getInputStream(ac, uco),
+                HTTPURL.getCharacterEncoding(ac, uco), uco.getURL(), 0);
+        String httpCL = uco.getHeaderField("Content-Location");
+        if (httpCL != null) {
+            setURL(HTTPURL.getURL(getURL(), httpCL));
+        }
     }
 
     /**
      * Create a new CssFouffa. Used by handleImport.
-     * 
-     * @param file
-     *            The source file (use for data input, errors, warnings and
-     *            import)
-     * @param listeners
-     *            Works with this listeners
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param in        The source input stream (use for data input, errors,
+     *       warnings and import)
+     * @param listeners Works with this listeners
+     * @throws IOException if an I/O error occurs.
      */
-    private CssFouffa(ApplContext ac, InputStream in, URL url, 
-		      Vector<CssValidatorListener> listeners, 
-		      Vector<String> urlvisited,
-		      CssPropertyFactory cssfactory, boolean mode) 
-	throws IOException 
-    {
-	this(ac, in, ac.getCharsetForURL(url), url, 0);
-	this.visited = urlvisited;
-	setURL(url);
-	ac.setFrame(new Frame(this, url.toString(), ac.getWarningLevel()));
-	setApplContext(ac);
-	this.listeners = listeners;
-	this.properties = cssfactory;
-	this.mode = mode;
+    private CssFouffa(ApplContext ac, InputStream in, URL url,
+                      Vector<CssValidatorListener> listeners,
+                      Vector<String> urlvisited,
+                      CssPropertyFactory cssfactory, boolean mode)
+            throws IOException {
+        this(ac, in, ac.getCharsetForURL(url), url, 0);
+        this.visited = urlvisited;
+        setURL(url);
+        ac.setFrame(new Frame(this, url.toString(), ac.getWarningLevel()));
+        setApplContext(ac);
+        this.listeners = listeners;
+        this.properties = cssfactory;
+        this.mode = mode;
     }
 
-    private void ReInit(ApplContext ac, InputStream input, 
-			URL file, Frame frame) {
-	// reinitialize the parser with a new data input
-	// and a new frame for errors and warnings
-	super.ReInitWithAc(input, ac, ac.getCharsetForURL(file));
-	// @@this is a default media ...
-	// AtRuleMedia media;
-	// if ("css1".equals(ac.getCssVersion())) {
-	// media = new AtRuleMediaCSS1();
-	// } else if ("css2".equals(ac.getCssVersion())) {
-	// media = new AtRuleMediaCSS2();
-	// } else {
-	// media = new AtRuleMediaCSS2();
-	// }
-	/*
-	 * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
-	 * catch (InvalidParamException e) {} //ignore } else { try {
-	 * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
-	 * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
-	 * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
-	 */
-	setURL(file);
-	if (Util.onDebug) {
-	    System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + " medium " + ac.getMedium() + " profile "
-			       + ac.getProfile());
-	}
+    private void ReInit(ApplContext ac, InputStream input,
+                        URL file, Frame frame) {
+        // reinitialize the parser with a new data input
+        // and a new frame for errors and warnings
+        super.ReInitWithAc(input, ac, ac.getCharsetForURL(file));
+        // @@this is a default media ...
+        // AtRuleMedia media;
+        // if ("css1".equals(ac.getCssVersion())) {
+        // media = new AtRuleMediaCSS1();
+        // } else if ("css2".equals(ac.getCssVersion())) {
+        // media = new AtRuleMediaCSS2();
+        // } else {
+        // media = new AtRuleMediaCSS2();
+        // }
+        /*
+       * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
+       * catch (InvalidParamException e) {} //ignore } else { try {
+       * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
+       * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
+       * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
+       */
+        setURL(file);
+        if (Util.onDebug) {
+            System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + " medium " + ac.getMedium() + " profile "
+                    + ac.getProfile());
+        }
 
-	String profile = ac.getProfile();
-	if (profile == null || profile.equals("") || profile.equals("none")) {
-	    profile = ac.getCssVersion();
-	}
+        String profile = ac.getProfile();
+        if (profile == null || profile.equals("") || profile.equals("none")) {
+            profile = ac.getCssVersion();
+        }
 
-	// load the CssStyle
-	String classStyle = PropertiesLoader.config.getProperty(profile);
-	if (classStyle == null) {
-	    classStyle = PropertiesLoader.config.getProperty("css2");
-	}
+        // load the CssStyle
+        String classStyle = PropertiesLoader.config.getProperty(profile);
+        if (classStyle == null) {
+            classStyle = PropertiesLoader.config.getProperty("css2");
+        }
 
-	Class style;
-	try {
-	    style = Class.forName(classStyle);
-	    ac.setCssSelectorsStyle(style);
-	} catch (ClassNotFoundException e) {
-	    System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the style");
-	    e.printStackTrace();
-	}
+        Class style;
+        try {
+            style = Class.forName(classStyle);
+            ac.setCssSelectorsStyle(style);
+        } catch (ClassNotFoundException e) {
+            System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the style");
+            e.printStackTrace();
+        }
 
-	properties = new CssPropertyFactory(profile);
-	// loadConfig(ac.getCssVersion(), ac.getProfile());
+        properties = new CssPropertyFactory(profile);
+        // loadConfig(ac.getCssVersion(), ac.getProfile());
     }
 
     /**
      * Reinitializes a new CssFouffa with a data input and a begin line number.
-     * 
-     * @param input
-     *            data input
-     * @param file
-     *            The source file (use for errors, warnings and import)
-     * @param beginLine
-     *            The begin line number in the file. (used for HTML for example)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param input     data input
+     * @param file      The source file (use for errors, warnings and import)
+     * @param beginLine The begin line number in the file. (used for HTML for example)
+     * @throws IOException if an I/O error occurs.
      */
-    public void ReInit(ApplContext ac, InputStream input, URL file, 
-		       int beginLine) 
-	throws IOException 
-    {
-	Frame f = new Frame(this, file.toString(), beginLine, 
-			    ac.getWarningLevel());
-	ac.setFrame(f);
-	ReInit(ac, input, file, f);
+    public void ReInit(ApplContext ac, InputStream input, URL file,
+                       int beginLine)
+            throws IOException {
+        Frame f = new Frame(this, file.toString(), beginLine,
+                ac.getWarningLevel());
+        ac.setFrame(f);
+        ReInit(ac, input, file, f);
     }
 
     /**
      * Reinitializes a new CssFouffa with a data input.
-     * 
-     * @param input
-     *            data input
-     * @param file
-     *            The source file (use for errors, warnings and import)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param input data input
+     * @param file  The source file (use for errors, warnings and import)
+     * @throws IOException if an I/O error occurs.
      */
-    public void ReInit(ApplContext ac, InputStream input, URL file) 
-	throws IOException 
-    {
-	Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
-	ac.setFrame(f);
-	ReInit(ac, input, file, f);
+    public void ReInit(ApplContext ac, InputStream input, URL file)
+            throws IOException {
+        Frame f = new Frame(this, file.toString(), ac.getWarningLevel());
+        ac.setFrame(f);
+        ReInit(ac, input, file, f);
     }
 
     /**
      * Reinitializes a new CssFouffa.
-     * 
-     * @param file
-     *            The source file (use for data input, errors, warnings and
-     *            import)
-     * @exception IOException
-     *                if an I/O error occurs.
+     *
+     * @param file The source file (use for data input, errors, warnings and
+     *             import)
+     * @throws IOException if an I/O error occurs.
      */
     public void ReInit(ApplContext ac, URL file) throws IOException {
-	InputStream is;
-	URL url;
-	Frame f;
-	
-	f = new Frame(this, file.toString(), ac.getWarningLevel());
-	ac.setFrame(f);
-	if (ac.isInputFake()) {
-	    is = ac.getFakeInputStream(file);
-	    url = file;
-	} else {
-	    URLConnection urlC = HTTPURL.getConnection(file, ac);
-	    is  = HTTPURL.getInputStream(ac, urlC);
-	    url = urlC.getURL();
-	}
-	ReInit(ac, is, url, f);
+        InputStream is;
+        URL url;
+        Frame f;
+
+        f = new Frame(this, file.toString(), ac.getWarningLevel());
+        ac.setFrame(f);
+        if (ac.isInputFake()) {
+            is = ac.getFakeInputStream(file);
+            url = file;
+        } else {
+            URLConnection urlC = HTTPURL.getConnection(file, ac);
+            is = HTTPURL.getInputStream(ac, urlC);
+            url = urlC.getURL();
+        }
+        ReInit(ac, is, url, f);
     }
 
     /**
      * Set the attribute origin
-     * 
-     * @param origin
-     *            the new value for the attribute
+     *
+     * @param origin the new value for the attribute
      */
     private final void setOrigin(int origin) {
-	this.origin = origin;
+        this.origin = origin;
     }
 
     /**
      * Returns the attribute origin
-     * 
+     *
      * @return the value of the attribute
      */
     public final int getOrigin() {
-	return origin;
+        return origin;
     }
 
     /**
      * Adds a listener to the parser.
-     * 
-     * @param listener
-     *            The listener
+     *
+     * @param listener The listener
      * @see org.w3c.css.parser.CssValidatorListener
      */
     public final void addListener(CssValidatorListener listener) {
-	listeners.addElement(listener);
+        listeners.addElement(listener);
     }
 
     /**
      * Removes a listener from the parser
-     * 
-     * @param listener
-     *            The listener
+     *
+     * @param listener The listener
      * @see org.w3c.css.parser.CssValidatorListener
      */
     public final void removeListener(CssValidatorListener listener) {
-	listeners.removeElement(listener);
+        listeners.removeElement(listener);
     }
 
     /**
      * Parse the style sheet. This is the main function of this parser.
-     * 
-     * <p>
+     * <p/>
+     * <p/>
      * Example:<br>
      * <code>
      * CssFouffa parser = new CssFouffa(new
-     *                                URL("http://www.w3.org/drafts.css"));<BR>
+     * URL("http://www.w3.org/drafts.css"));<BR>
      * CssValidatorListener myListener = new MyParserListener();<BR>
      * <BR>
      * parser.addListener(myListener);<BR>
      * parser.parseStyle();<BR>
      * </code>
-     * 
+     *
      * @see org.w3c.css.parser.CssFouffa#addListener
      */
     public void parseStyle() {
-	try {
-	    parserUnit();
-	} catch (TokenMgrError e) {
-	    throw e;
-	} catch (Throwable e) {
-	    if (Util.onDebug) {
-		e.printStackTrace();
-	    }
-	    RuntimeException ne = new RuntimeException(e.getMessage());
-	    ne.fillInStackTrace();
-	    throw (ne);
-	}
+        try {
+            parserUnit();
+        } catch (TokenMgrError e) {
+            throw e;
+        } catch (Throwable e) {
+            if (Util.onDebug) {
+                e.printStackTrace();
+            }
+            RuntimeException ne = new RuntimeException(e.getMessage());
+            ne.fillInStackTrace();
+            throw (ne);
+        }
 
-	// That's all folks, notify all errors and warnings
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
-	     e.hasMoreElements();) {
-	    CssValidatorListener listener;
-	    listener = e.nextElement();
-	    listener.notifyErrors(ac.getFrame().getErrors());
-	    listener.notifyWarnings(ac.getFrame().getWarnings());
-	}
+        // That's all folks, notify all errors and warnings
+        for (Enumeration<CssValidatorListener> e = listeners.elements();
+             e.hasMoreElements();) {
+            CssValidatorListener listener;
+            listener = e.nextElement();
+            listener.notifyErrors(ac.getFrame().getErrors());
+            listener.notifyWarnings(ac.getFrame().getWarnings());
+        }
     }
 
     /**
      * Call the namespace declaration statement
-     * @param url, the style sheet where this declaration statement appears.
+     *
+     * @param url,    the style sheet where this declaration statement appears.
      * @param prefix, the namespace prefix
      * @param nsname, the file/url name in the declaration statement
      * @param is_url, if the nsname is a file or an url
      */
     public void handleNamespaceDeclaration(URL url, String prefix,
-					   String nsname, 
-					   boolean is_url) {
-	AtRuleNamespace nsrule = new AtRuleNamespace(prefix, nsname, is_url);
-	newAtRule(nsrule);
-	endOfAtRule(); 
-	// add the NS in the global context definition
-	ac.setNamespace(url, prefix, nsname);
+                                           String nsname,
+                                           boolean is_url) {
+        AtRuleNamespace nsrule = new AtRuleNamespace(prefix, nsname, is_url);
+        newAtRule(nsrule);
+        endOfAtRule();
+        // add the NS in the global context definition
+        ac.setNamespace(url, prefix, nsname);
     }
+
     /**
      * Call by the import statement.
-     * 
-     * @param url
-     *            The style sheet where this import statement appears.
-     * @param file
-     *            the file name in the import statement
+     *
+     * @param url  The style sheet where this import statement appears.
+     * @param file the file name in the import statement
      */
     public void handleImport(URL url, String file, boolean is_url,
-			     AtRuleMedia media) {
-	// CssError cssError = null;
-	AtRuleImport importrule = new AtRuleImport(file, is_url, media);
-	newAtRule(importrule);
-	endOfAtRule();
+                             AtRuleMedia media) {
+        // CssError cssError = null;
+        AtRuleImport importrule = new AtRuleImport(file, is_url, media);
+        newAtRule(importrule);
+        endOfAtRule();
 
-	//if it's not permitted to import... (direct input)
-	if (url.getProtocol().equals("file")) {
-	    ac.getFrame().addWarning("unsupported-import");
-	    return;
-	}
+        //if it's not permitted to import... (direct input)
+        if (url.getProtocol().equals("file")) {
+            ac.getFrame().addWarning("unsupported-import");
+            return;
+        }
 
-	try {
-	    URL importedURL = HTTPURL.getURL(url, file);
-	    String surl = importedURL.toString();
+        try {
+            URL importedURL = HTTPURL.getURL(url, file);
+            String surl = importedURL.toString();
 
-	    if (visited == null) {
-		visited = new Vector<String>(2);
-	    } else {
-		// check that we didn't already got this URL, or that the
-		// number of imports is not exploding
-		if (visited.contains(surl)) {
-		    CssError cerr = new CssError(new Exception("Import loop" +
-							       " detected in "+
-							       surl));
-		    ac.getFrame().addError(cerr);
-		    return;
-		} else if (visited.size() > 42) {
-		    CssError cerr = new CssError(new Exception("Maximum number"+
-							       " of imports " +
-							       "reached"));
-		    ac.getFrame().addError(cerr);
-		    return;
-		}
-	    }
-	    Vector<String> newVisited = new Vector<String>(visited);
-	    newVisited.addElement(surl);
+            if (visited == null) {
+                visited = new Vector<String>(2);
+            } else {
+                // check that we didn't already got this URL, or that the
+                // number of imports is not exploding
+                if (visited.contains(surl)) {
+                    CssError cerr = new CssError(new Exception("Import loop" +
+                            " detected in " +
+                            surl));
+                    ac.getFrame().addError(cerr);
+                    return;
+                } else if (visited.size() > 42) {
+                    CssError cerr = new CssError(new Exception("Maximum number" +
+                            " of imports " +
+                            "reached"));
+                    ac.getFrame().addError(cerr);
+                    return;
+                }
+            }
+            Vector<String> newVisited = new Vector<String>(visited);
+            newVisited.addElement(surl);
 
-	    if (Util.importSecurity) {
-		throw new FileNotFoundException("[SECURITY] You can't " +
-						"import URL sorry.");
-	    }
+            if (Util.importSecurity) {
+                throw new FileNotFoundException("[SECURITY] You can't " +
+                        "import URL sorry.");
+            }
 
-	    URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
-	    String charset = HTTPURL.getCharacterEncoding(ac, importURL);
+            URLConnection importURL = HTTPURL.getConnection(importedURL, ac);
+            String charset = HTTPURL.getCharacterEncoding(ac, importURL);
 
-	    if (importURL instanceof HttpURLConnection) {
-		HttpURLConnection httpURL = (HttpURLConnection) importURL;
-		String httpCL = httpURL.getHeaderField("Content-Location");
-		if (httpCL != null) {
-		    importedURL = HTTPURL.getURL(importedURL, httpCL);
-		}
-		String mtype = httpURL.getContentType();
-		if (mtype == null) {
-		    throw new FileNotFoundException(importURL.getURL() + 
-						    "No Media Type defined");
-		} else {
-		    if (mtype.toLowerCase().indexOf("text/html") != -1) {
-			throw new FileNotFoundException(importURL.getURL() + 
-							": You can't import" + 
-							" an HTML document");
-		    }
-		}
-	    }
-	    Frame f = ac.getFrame();
-	    try {
-		CssFouffa cssFouffa = new CssFouffa(ac, 
-					  HTTPURL.getInputStream(ac, importURL),
-					  importedURL, listeners, newVisited,
-					  properties, mode);
-		cssFouffa.setOrigin(getOrigin());
-		if (!media.isEmpty()) {
-		    cssFouffa.setAtRule(media);
-		} else {
-		    cssFouffa.setAtRule(getAtRule());
-		}
-		cssFouffa.parseStyle();
-	    } finally {
-		ac.setFrame(f);
-	    }
-	} catch (Exception e) {
-	    if (!Util.noErrorTrace) {
-		ac.getFrame().addError(new CssError(e));
-	    }
-	}
+            if (importURL instanceof HttpURLConnection) {
+                HttpURLConnection httpURL = (HttpURLConnection) importURL;
+                String httpCL = httpURL.getHeaderField("Content-Location");
+                if (httpCL != null) {
+                    importedURL = HTTPURL.getURL(importedURL, httpCL);
+                }
+                String mtype = httpURL.getContentType();
+                if (mtype == null) {
+                    throw new FileNotFoundException(importURL.getURL() +
+                            "No Media Type defined");
+                } else {
+                    if (mtype.toLowerCase().indexOf("text/html") != -1) {
+                        throw new FileNotFoundException(importURL.getURL() +
+                                ": You can't import" +
+                                " an HTML document");
+                    }
+                }
+            }
+            Frame f = ac.getFrame();
+            try {
+                CssFouffa cssFouffa = new CssFouffa(ac,
+                        HTTPURL.getInputStream(ac, importURL),
+                        importedURL, listeners, newVisited,
+                        properties, mode);
+                cssFouffa.setOrigin(getOrigin());
+                if (!media.isEmpty()) {
+                    cssFouffa.setAtRule(media);
+                } else {
+                    cssFouffa.setAtRule(getAtRule());
+                }
+                cssFouffa.parseStyle();
+            } finally {
+                ac.setFrame(f);
+            }
+        } catch (Exception e) {
+            if (!Util.noErrorTrace) {
+                ac.getFrame().addError(new CssError(e));
+            }
+        }
     }
 
     /**
      * Call by the at-rule statement.
-     * 
-     * @param ident
-     *            The ident for this at-rule (for example: 'font-face')
-     * @param string
-     *            The string representation of this at-rule
+     *
+     * @param ident  The ident for this at-rule (for example: 'font-face')
+     * @param string The string representation of this at-rule
      */
     public void handleAtRule(String ident, String string) {
-	if (mode) {
-	    Enumeration<CssValidatorListener> e = listeners.elements();
-	    while (e.hasMoreElements()) {
-		CssValidatorListener listener = e.nextElement();
-		listener.handleAtRule(ac, ident, string);
-	    }
-	} else {
-	    if (!Util.noErrorTrace) {
-		// only @import <string>; or @import <url>; are valids in CSS1
-		ParseException error = new ParseException("at-rules are not implemented in CSS1");
-		ac.getFrame().addError(new CssError(error));
-	    }
-	}
+        if (mode) {
+            Enumeration<CssValidatorListener> e = listeners.elements();
+            while (e.hasMoreElements()) {
+                CssValidatorListener listener = e.nextElement();
+                listener.handleAtRule(ac, ident, string);
+            }
+        } else {
+            if (!Util.noErrorTrace) {
+                // only @import <string>; or @import <url>; are valids in CSS1
+                ParseException error = new ParseException("at-rules are not implemented in CSS1");
+                ac.getFrame().addError(new CssError(error));
+            }
+        }
     }
 
     /**
      * Assign an expression to a property. This function create a new property
      * with <code>property</code> and assign to it the expression with the
      * importance.
-     * 
-     * @param property
-     *            the name of the property
-     * @param expression
-     *            The expression representation of expression
-     * @param important
-     *            true if expression id important
-     * @param InvalidParamException
-     *            An error appears during the property creation.
+     *
+     * @param property   the name of the property
+     * @param expression The expression representation of expression
+     * @param important  true if expression id important
      * @return a CssProperty
+     * @throw InvalidParamException
+     * An error appears during the property creation.
      */
     public CssProperty handleDeclaration(String property, CssExpression expression, boolean important)
-	throws InvalidParamException {
-	CssProperty prop;
-	if (Util.onDebug) {
-	    System.err.println("Creating " + property + ": " + expression);
-	}
+            throws InvalidParamException {
+        CssProperty prop;
+        if (Util.onDebug) {
+            System.err.println("Creating " + property + ": " + expression);
+        }
 
-	try {
-	    if (getMediaDeclaration().equals("on") && (getAtRule() instanceof AtRuleMedia)) {
-		prop = properties.createMediaFeature(ac, getAtRule(), property, expression);
-	    } else {
-		prop = properties.createProperty(ac, getAtRule(), property, expression);
-	    }
+        try {
+            if (getMediaDeclaration().equals("on") && (getAtRule() instanceof AtRuleMedia)) {
+                prop = properties.createMediaFeature(ac, getAtRule(), property, expression);
+            } else {
+                prop = properties.createProperty(ac, getAtRule(), property, expression);
+            }
 
-	} catch (InvalidParamException e) {
-	    throw e;
-	} catch (Exception e) {
-	    if (Util.onDebug) {
-		e.printStackTrace();
-	    }
-	    throw new InvalidParamException(e.toString(), ac);
-	}
+        } catch (InvalidParamException e) {
+            throw e;
+        } catch (Exception e) {
+            if (Util.onDebug) {
+                e.printStackTrace();
+            }
+            throw new InvalidParamException(e.toString(), ac);
+        }
 
-	// set the importance
-	if (important) {
-	    prop.setImportant();
-	}
-	prop.setOrigin(origin);
-	// set informations for errors and warnings
-	prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
+        // set the importance
+        if (important) {
+            prop.setImportant();
+        }
+        prop.setOrigin(origin);
+        // set informations for errors and warnings
+        prop.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
 
-	// ok, return the new property
-	return prop;
+        // ok, return the new property
+        return prop;
 
     }
 
     /**
      * Parse only a list of declarations. This is useful to parse the
      * <code>STYLE</code> attribute in a HTML document.
-     * 
-     * <p>
+     * <p/>
+     * <p/>
      * Example:<br>
      * <code>
      * CssFouffa parser =
-     *    new CssFouffa(new URL("http://www.w3.org/drafts.css"));<BR>
+     * new CssFouffa(new URL("http://www.w3.org/drafts.css"));<BR>
      * CssValidatorListener myListener = new MyParserListener();<BR>
      * CssSelector selector = new CssSelector();
      * selector.setElement("H1");
@@ -633,139 +575,134 @@ public final class CssFouffa extends CssParser {
      * parser.addListener(myListener);<BR>
      * parser.parseDeclarations(selector);<BR>
      * </code>
-     * 
-     * @param context
-     *            The current context
+     *
+     * @param context The current context
      * @see org.w3c.css.parser.CssFouffa#addListener
      * @see org.w3c.css.parser.CssSelectors#setElement
      */
     public void parseDeclarations(CssSelectors context) {
-	// here we have an example for reusing the parser.
-	try {
-	    Vector properties = declarations();
+        // here we have an example for reusing the parser.
+        try {
+            Vector properties = declarations();
 
-	    if (properties != null && properties.size() != 0) {
-		handleRule(context, properties);
-	    }
-	} catch (ParseException e) {
-	    if (!Util.noErrorTrace) {
-		CssParseException ex = new CssParseException(e);
-		ex.skippedString = "";
-		ex.property = currentProperty;
-		ex.contexts = currentContext;
-		CssError error = new CssError(getSourceFile(), getLine(), ex);
-		ac.getFrame().addError(error);
-	    }
-	}
+            if (properties != null && properties.size() != 0) {
+                handleRule(context, properties);
+            }
+        } catch (ParseException e) {
+            if (!Util.noErrorTrace) {
+                CssParseException ex = new CssParseException(e);
+                ex.skippedString = "";
+                ex.property = currentProperty;
+                ex.contexts = currentContext;
+                CssError error = new CssError(getSourceFile(), getLine(), ex);
+                ac.getFrame().addError(error);
+            }
+        }
 
-	if (!Util.noErrorTrace) {
-	    for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-		CssValidatorListener listener = e.nextElement();
-		listener.notifyErrors(ac.getFrame().getErrors());
-		listener.notifyWarnings(ac.getFrame().getWarnings());
-	    }
-	}
+        if (!Util.noErrorTrace) {
+            for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+                CssValidatorListener listener = e.nextElement();
+                listener.notifyErrors(ac.getFrame().getErrors());
+                listener.notifyWarnings(ac.getFrame().getWarnings());
+            }
+        }
     }
 
     /**
      * used for the output of the stylesheet
-     * 
-     * @param atRule
-     *            the
+     *
+     * @param atRule the
      * @rule that just has been found by the parser in the stylesheet, it is
-     *       added to the storage for the output
+     * added to the storage for the output
      */
     public void newAtRule(AtRule atRule) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
-	     e.hasMoreElements();) {
-	    e.nextElement().newAtRule(atRule);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements();
+             e.hasMoreElements();) {
+            e.nextElement().newAtRule(atRule);
+        }
     }
 
     /**
      * used for the output of the stylesheet
-     * 
-     * @param charset
-     *            the
+     *
+     * @param charset the
      * @charset rule that has been found by the parser
      */
     public void addCharSet(String charset) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
-	     e.hasMoreElements();) {
-	    e.nextElement().addCharSet(charset);
-	}
-	Charset c = null;
-	try {
-	    c = Charset.forName(charset);
-	} catch (Exception ex) {
-	    return;
-	}
-	Charset originalCharset = ac.getCharsetObjForURL(getURL());
-	if (originalCharset == null) {
-	    ac.setCharsetForURL(getURL(), c);
-	    try {
-		ReInit(ac, getURL());
-	    } catch (IOException ioex) {}
-	} else if (c.compareTo(originalCharset) != 0) {
-	    Exception ex = new Exception("Conflicting charset definition "+
-					 "between network and @charset "+
-					 originalCharset+" and "+charset);
-	    CssError cerr = new CssError(ex);
-	    ac.getFrame().addError(cerr);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements();
+             e.hasMoreElements();) {
+            e.nextElement().addCharSet(charset);
+        }
+        Charset c = null;
+        try {
+            c = Charset.forName(charset);
+        } catch (Exception ex) {
+            return;
+        }
+        Charset originalCharset = ac.getCharsetObjForURL(getURL());
+        if (originalCharset == null) {
+            ac.setCharsetForURL(getURL(), c);
+            try {
+                ReInit(ac, getURL());
+            } catch (IOException ioex) {
+            }
+        } else if (c.compareTo(originalCharset) != 0) {
+            Exception ex = new Exception("Conflicting charset definition " +
+                    "between network and @charset " +
+                    originalCharset + " and " + charset);
+            CssError cerr = new CssError(ex);
+            ac.getFrame().addError(cerr);
+        }
     }
 
     /**
      * used for the output of the stylesheet the
-     * 
+     *
      * @rule that had been found before is closed here after the content that's
-     *       in it.
+     * in it.
      */
     public void endOfAtRule() {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
-	     e.hasMoreElements();) {
-	    e.nextElement().endOfAtRule();
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements();
+             e.hasMoreElements();) {
+            e.nextElement().endOfAtRule();
+        }
     }
 
     /**
      * used for the output of the stylesheet
-     * 
-     * @param important
-     *            true if the rule was declared important in the stylesheet
+     *
+     * @param important true if the rule was declared important in the stylesheet
      */
     public void setImportant(boolean important) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); 
-	     e.hasMoreElements();) {
-	    e.nextElement().setImportant(important);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements();
+             e.hasMoreElements();) {
+            e.nextElement().setImportant(important);
+        }
     }
 
     /**
      * used for the output of the stylesheet
-     * 
-     * @param selectors
-     *            a list of one or more selectors to be added to the output
-     *            stylesheet
+     *
+     * @param selectors a list of one or more selectors to be added to the output
+     *                  stylesheet
      */
     public void setSelectorList(Vector selectors) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().setSelectorList(selectors);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().setSelectorList(selectors);
+        }
     }
 
     /**
      * used for the output of the stylesheet
-     * 
-     * @param properties
-     *            A list of properties that are following eachother in the
-     *            stylesheet (for example: all properties in an
+     *
+     * @param properties A list of properties that are following eachother in the
+     *                   stylesheet (for example: all properties in an
      * @rule)
      */
     public void addProperty(Vector properties) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().setProperty(properties);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().setProperty(properties);
+        }
     }
 
     /**
@@ -773,9 +710,9 @@ public final class CssFouffa extends CssParser {
      * been read by the parser
      */
     public void endOfRule() {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().endOfRule();
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().endOfRule();
+        }
     }
 
     /**
@@ -784,61 +721,58 @@ public final class CssFouffa extends CssParser {
      * won't appear on the screen
      */
     public void removeThisRule() {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().removeThisRule();
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().removeThisRule();
+        }
     }
 
     /**
      * used for the output of the stylesheet if an error is found this function
      * is used to remove the whole
-     * 
+     *
      * @rule from the memorystructure so that it won't appear on the screen
      */
     public void removeThisAtRule() {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().removeThisAtRule();
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().removeThisAtRule();
+        }
     }
 
     /**
      * Adds a vector of properties to a selector.
-     * 
-     * @param selector
-     *            the selector
-     * @param declarations
-     *            Properties to associate with contexts
+     *
+     * @param selector     the selector
+     * @param declarations Properties to associate with contexts
      */
     public void handleRule(CssSelectors selector, Vector declarations) {
-	for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
-	    e.nextElement().handleRule(ac, selector, declarations);
-	}
+        for (Enumeration<CssValidatorListener> e = listeners.elements(); e.hasMoreElements();) {
+            e.nextElement().handleRule(ac, selector, declarations);
+        }
     }
 
     /**
      * Return the class name for a property
-     * 
-     * @param property
-     *            the property name ('font-size' for example)
+     *
+     * @param property the property name ('font-size' for example)
      * @return the class name ('org.w3c.css.properties.CssFontSize' for example)
      */
     public String getProperty(String property) {
-	return properties.getProperty(property);
+        return properties.getProperty(property);
     }
 
     /**
      * Set the style
      */
     public void setStyle(Class style) {
-	ac.setCssSelectorsStyle(style);
+        ac.setCssSelectorsStyle(style);
     }
 
     /**
      * Load the parser properties configuration.
-     * 
-     * <p>
+     * <p/>
+     * <p/>
      * By default, the parser is configure for cascading style sheet 1.
-     * 
+     * <p/>
      * <OL>
      * You have three parser properties :
      * <LI> style: the class name of your CssStyle.
@@ -951,23 +885,22 @@ public final class CssFouffa extends CssParser {
      * System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the
      * config"); e.printStackTrace(); } }
      */
-
     public CssFouffa(java.io.InputStream stream) {
-	super(stream);
-	properties = new CssPropertyFactory("css2");
-	// loadConfig("css2", null);
+        super(stream);
+        properties = new CssPropertyFactory("css2");
+        // loadConfig("css2", null);
     }
 
     public CssFouffa(java.io.Reader stream) {
-	super(stream);
-	properties = new CssPropertyFactory("css2");
-	// loadConfig("css2", null);
+        super(stream);
+        properties = new CssPropertyFactory("css2");
+        // loadConfig("css2", null);
     }
 
     public CssFouffa(CssParserTokenManager tm) {
-	super(tm);
-	properties = new CssPropertyFactory("css2");
-	// loadConfig("css2", null);
+        super(tm);
+        properties = new CssPropertyFactory("css2");
+        // loadConfig("css2", null);
     }
 
 }

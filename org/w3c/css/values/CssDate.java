@@ -38,7 +38,7 @@ public class CssDate extends CssValue {
    * Set the value of this date.
    *
    * @param s     the string representation of the time.
-   * @param frame For errors and warnings reports.
+   * @param ac For errors and warnings reports.
    * @exception InvalidParamException The date format is incorrect
    */
   public void set(String s, ApplContext ac) throws InvalidParamException {
@@ -69,7 +69,8 @@ public class CssDate extends CssValue {
 	      throw new InvalidParamException("value", s, ac);
 		}
 
-		if (d.intValue() > 31 || d.intValue() < 0 || m.intValue() > 12 || m.intValue() < 0 || y.intValue() < 0) {
+		if (d.intValue() > 31 || d.intValue() < 0 || m.intValue() > 12 ||
+           m.intValue() < 0 || y.intValue() < 0) {
 			throw new InvalidParamException("value", s, ac);
 		}
 	}

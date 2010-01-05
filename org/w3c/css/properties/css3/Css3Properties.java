@@ -8,7 +8,7 @@ package org.w3c.css.properties.css3;
 
 import java.net.URL;
 
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.Utf8Properties;
 
 public class Css3Properties {

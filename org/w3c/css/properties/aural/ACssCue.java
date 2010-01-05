@@ -9,7 +9,7 @@ package org.w3c.css.properties.aural;
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -74,7 +74,7 @@ public class ACssCue extends ACssProperty implements CssOperator {
 	case 2:
 	    if (expression.getOperator() != SPACE) {
 		throw new InvalidParamException("operator",
-			(new Character(expression.getOperator()).toString()),
+			(Character.toString(expression.getOperator())),
 			ac);
 	    }
 	    if(check && expression.getValue().equals(inherit)) {

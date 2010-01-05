@@ -7,15 +7,29 @@
 
 package org.w3c.css.properties.css1;
 
-import java.util.Enumeration;
-
 import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBackground;
+import org.w3c.css.properties.css.CssBackgroundAttachment;
+import org.w3c.css.properties.css.CssBackgroundColor;
+import org.w3c.css.properties.css.CssBackgroundImage;
+import org.w3c.css.properties.css.CssBackgroundPosition;
+import org.w3c.css.properties.css.CssBackgroundRepeat;
+import org.w3c.css.properties.css.CssDisplay;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css.CssZIndex;
+import org.w3c.css.properties.css2.CssBackgroundAttachmentCSS2;
+import org.w3c.css.properties.css2.CssBackgroundCSS2;
+import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
+import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
+import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
+import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
@@ -27,157 +41,155 @@ import org.w3c.css.values.CssValue;
 public class Css1Style extends CssStyle {
 
     /** Font properties */
-    protected CssFont cssFont = new CssFont();
-    protected CssFontCSS2 cssFontCSS2 = new CssFontCSS2();
-    protected CssFontCSS1 cssFontCSS1 = new CssFontCSS1();
-    protected CssFontStretch cssFontStretch;
-    protected CssFontStretchCSS2 cssFontStretchCSS2;
-    protected CssFontStretchCSS1 cssFontStretchCSS1;
-    protected CssFontSizeAdjust cssFontSizeAdjust;
-    protected CssFontSizeAdjustCSS2 cssFontSizeAdjustCSS2;
+    public CssFont cssFont = new CssFont();
+    public CssFontCSS2 cssFontCSS2 = new CssFontCSS2();
+    public CssFontCSS1 cssFontCSS1 = new CssFontCSS1();
+    public CssFontStretch cssFontStretch;
+    public CssFontStretchCSS2 cssFontStretchCSS2;
+    public CssFontStretchCSS1 cssFontStretchCSS1;
+    public CssFontSizeAdjust cssFontSizeAdjust;
+    public CssFontSizeAdjustCSS2 cssFontSizeAdjustCSS2;
 
     /* Color and Background properties */
     /** Color property */
-    protected CssColor cssColor;
-    protected CssColorCSS2 cssColorCSS2;
-    protected CssColorCSS1 cssColorCSS1;
+    public CssColor cssColor;
+    public CssColorCSS2 cssColorCSS2;
+    public CssColorCSS1 cssColorCSS1;
     /** background properties */
-    protected CssBackground cssBackground = new CssBackground();
-    protected CssBackgroundCSS2 cssBackgroundCSS2 = new CssBackgroundCSS2();
-    protected CssBackgroundCSS1 cssBackgroundCSS1 = new CssBackgroundCSS1();
-    protected CssBackgroundMob cssBackgroundMob = new CssBackgroundMob();
+    public CssBackground cssBackground = new CssBackground();
+    public CssBackgroundCSS2 cssBackgroundCSS2 = new CssBackgroundCSS2();
+    public CssBackgroundCSS1 cssBackgroundCSS1 = new CssBackgroundCSS1();
+    public CssBackgroundMob cssBackgroundMob = new CssBackgroundMob();
 
     /* Text properties */
     /** word-spacing property */
-    protected CssWordSpacing cssWordSpacing;
+    public CssWordSpacing cssWordSpacing;
     /** letter-spacing property */
-    protected CssLetterSpacing cssLetterSpacing;
+    public CssLetterSpacing cssLetterSpacing;
     /** text-decoration property */
-    protected CssTextDecoration cssTextDecoration;
-    protected CssTextDecorationMob cssTextDecorationMob;
+    public CssTextDecoration cssTextDecoration;
+    public CssTextDecorationMob cssTextDecorationMob;
     /** vertical-align property */
-    protected CssVerticalAlign cssVerticalAlign;
-    protected CssVerticalAlignCSS1 cssVerticalAlignCSS1;
-    protected CssVerticalAlignMob cssVerticalAlignMob;
+    public CssVerticalAlign cssVerticalAlign;
+    public CssVerticalAlignCSS1 cssVerticalAlignCSS1;
+    public CssVerticalAlignMob cssVerticalAlignMob;
     /** text-transform property */
-    protected CssTextTransform cssTextTransform;
+    public CssTextTransform cssTextTransform;
     /** text-align property */
-    protected CssTextAlign cssTextAlign;
-    protected CssTextAlignMob cssTextAlignMob;
+    public CssTextAlign cssTextAlign;
+    public CssTextAlignMob cssTextAlignMob;
     /** text-ident property */
-    protected CssTextIndent cssTextIndent;
-    protected CssTextIndentMob cssTextIndentMob;
+    public CssTextIndent cssTextIndent;
+    public CssTextIndentMob cssTextIndentMob;
     /** text-shadow property */
-    protected CssTextShadow cssTextShadow;
-    protected CssTextShadowATSC cssTextShadowATSC;
+    public CssTextShadow cssTextShadow;
+    public CssTextShadowATSC cssTextShadowATSC;
     // line-heigth : see cssFont
 
     /* Box properties */
     /** margin properties */
-    protected CssMargin cssMargin = new CssMargin();
+    public CssMargin cssMargin = new CssMargin();
     /** padding properties */
-    protected CssPadding cssPadding = new CssPadding();
+    public CssPadding cssPadding = new CssPadding();
     /** border properties */
-    protected CssBorder cssBorder = new CssBorder();
-    protected CssBorderCSS2 cssBorderCSS2 = new CssBorderCSS2();
-    protected CssBorderCSS1 cssBorderCSS1 = new CssBorderCSS1();
+    public CssBorder cssBorder = new CssBorder();
+    public CssBorderCSS2 cssBorderCSS2 = new CssBorderCSS2();
+    public CssBorderCSS1 cssBorderCSS1 = new CssBorderCSS1();
     /** width property */
-    protected CssWidth cssWidth;
-    protected CssWidthMob cssWidthMob;
+    public CssWidth cssWidth;
+    public CssWidthMob cssWidthMob;
 
     /** min-width property */
-    protected CssMinWidth cssMinWidth;
-    protected CssMinWidthATSC cssMinWidthATSC;
+    public CssMinWidth cssMinWidth;
+    public CssMinWidthATSC cssMinWidthATSC;
     /** max-width property */
-    protected CssMaxWidth cssMaxWidth;
-    protected CssMaxWidthATSC cssMaxWidthATSC;
+    public CssMaxWidth cssMaxWidth;
+    public CssMaxWidthATSC cssMaxWidthATSC;
 
     /** min-height property */
-    protected CssMinHeight cssMinHeight;
-    protected CssMinHeightATSC cssMinHeightATSC;
+    public CssMinHeight cssMinHeight;
+    public CssMinHeightATSC cssMinHeightATSC;
     /** max-height property */
-    protected CssMaxHeight cssMaxHeight;
-    protected CssMaxHeightATSC cssMaxHeightATSC;
+    public CssMaxHeight cssMaxHeight;
+    public CssMaxHeightATSC cssMaxHeightATSC;
 
     /** height property */
-    protected CssHeight cssHeight;
-    protected CssHeightMob cssHeightMob;
+    public CssHeight cssHeight;
+    public CssHeightMob cssHeightMob;
     /** float property */
-    protected CssFloat cssFloat;
+    public CssFloat cssFloat;
     /** clear property */
-    protected CssClear cssClear;
+    public CssClear cssClear;
 
 
     /* Classification properties */
     /** display property */
-    protected CssDisplay cssDisplay;
-    protected CssDisplayCSS2 cssDisplayCSS2;
-    protected CssDisplayCSS1 cssDisplayCSS1;
+    public CssDisplay cssDisplay;
     /** position property */
-    protected CssPosition cssPosition;
+    public CssPosition cssPosition;
 
     /** top property */
-    protected CssTop cssTop;
+    public CssTop cssTop;
     /** left property */
-    protected CssLeft cssLeft;
+    public CssLeft cssLeft;
     /** right property */
-    protected CssRight cssRight;
+    public CssRight cssRight;
     /** bottom property */
-    protected CssBottom cssBottom;
+    public CssBottom cssBottom;
 
     /** z-index property */
-    protected CssZIndex cssZIndex;
+    public CssZIndex cssZIndex;
 
     /** direction property */
-    protected CssDirection cssDirection;
-    protected CssDirectionATSC cssDirectionATSC;
+    public CssDirection cssDirection;
+    public CssDirectionATSC cssDirectionATSC;
 
     /** unicode-bidi property */
-    protected CssUnicodeBidi cssUnicodeBidi;
-    protected CssUnicodeBidiATSC cssUnicodeBidiATSC;
+    public CssUnicodeBidi cssUnicodeBidi;
+    public CssUnicodeBidiATSC cssUnicodeBidiATSC;
 
     /** white-space property */
-    protected CssWhiteSpace cssWhiteSpace;
+    public CssWhiteSpace cssWhiteSpace;
     /** list-style properties */
-    protected CssListStyle cssListStyle = new CssListStyle();
-    protected CssListStyleCSS2 cssListStyleCSS2 = new CssListStyleCSS2();
-    protected CssListStyleCSS1 cssListStyleCSS1 = new CssListStyleCSS1();
+    public CssListStyle cssListStyle = new CssListStyle();
+    public CssListStyleCSS2 cssListStyleCSS2 = new CssListStyleCSS2();
+    public CssListStyleCSS1 cssListStyleCSS1 = new CssListStyleCSS1();
 
     /** overflow property */
-    protected CssOverflow cssOverflow;
+    public CssOverflow cssOverflow;
 
     /** clip property */
-    protected CssClip cssClip;
+    public CssClip cssClip;
 
     /** visibility property */
-    protected CssVisibility cssVisibility;
+    public CssVisibility cssVisibility;
 
     /** content property */
-    protected CssContentCSS2 cssContentCSS2;
-    protected CssContent cssContent;
+    public CssContentCSS2 cssContentCSS2;
+    public CssContent cssContent;
     /** quotes property */
-    protected CssQuotes cssQuotes;
-    protected CssQuotesATSC cssQuotesATSC;
+    public CssQuotes cssQuotes;
+    public CssQuotesATSC cssQuotesATSC;
     /** counter-reset property */
-    protected CssCounterReset cssCounterReset;
+    public CssCounterReset cssCounterReset;
     /** counter-increment property */
-    protected CssCounterIncrement cssCounterIncrement;
+    public CssCounterIncrement cssCounterIncrement;
     /** marker-offset property */
-    protected CssMarkerOffset cssMarkerOffset;
-    protected CssMarkerOffsetATSC cssMarkerOffsetATSC;
+    public CssMarkerOffset cssMarkerOffset;
+    public CssMarkerOffsetATSC cssMarkerOffsetATSC;
 
     /**TV property */
-    protected CssListStyleTypeTV cssListStyleTypeTV;
+    public CssListStyleTypeTV cssListStyleTypeTV;
     /**TV property */
-    protected CssListStyleTV cssListStyleTV;
+    public CssListStyleTV cssListStyleTV;
     /**TV property */
-    protected CssPositionTV cssPositionTV;
+    public CssPositionTV cssPositionTV;
     /**TV property */
-    protected CssTextAlignTV cssTextAlignTV;
+    public CssTextAlignTV cssTextAlignTV;
     /**TV property */
-    protected CssTextDecorationTV cssTextDecorationTV;
+    public CssTextDecorationTV cssTextDecorationTV;
     /**TV property */
-    protected CssVerticalAlignTV cssVerticalAlignTV;
+    public CssVerticalAlignTV cssVerticalAlignTV;
 
     /*
      * Font Properties
@@ -1920,21 +1932,6 @@ public class Css1Style extends CssStyle {
 	return cssDisplay;
     }
 
-    public final CssDisplayCSS2 getDisplayCSS2() {
-	if (cssDisplayCSS2 == null) {
-	    cssDisplayCSS2 =
-		(CssDisplayCSS2) style.CascadingOrder(new CssDisplayCSS2(), style, selector);
-	}
-	return cssDisplayCSS2;
-    }
-
-    public final CssDisplayCSS1 getDisplayCSS1() {
-	if (cssDisplayCSS1 == null) {
-	    cssDisplayCSS1 =
-		(CssDisplayCSS1) style.CascadingOrder(new CssDisplayCSS1(), style, selector);
-	}
-	return cssDisplayCSS1;
-    }
 
 
     /**
@@ -2445,12 +2442,6 @@ public class Css1Style extends CssStyle {
 	    cssBottom.print(printer);
 	if (cssDisplay != null)
 	    cssDisplay.print(printer);
-	if (cssDisplayCSS2 != null) {
-	    cssDisplayCSS2.print(printer);
-	}
-	if (cssDisplayCSS1 != null) {
-	    cssDisplayCSS1.print(printer);
-	}
 	if (cssPosition != null)
 	    cssPosition.print(printer);
 	if (cssZIndex != null)
@@ -2801,7 +2792,7 @@ public class Css1Style extends CssStyle {
 	    } else {
 		CssValue color = cssBackgroundCSS2.getColor();
 
-		if (!color.equals(CssBackgroundColorCSS2.transparent)) {
+		if (!color.equals(CssBackgroundColor.transparent)) {
 		    // It's better to have a color when a background is defined.
 		    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
 			    "no-color", 2, ac));
@@ -3045,7 +3036,7 @@ public class Css1Style extends CssStyle {
 	if (cssMarkerOffset != null) {
 	    //@@ beurk you know what ? 5 is horrible.
 	    if ((cssDisplay == null)
-		    || (cssDisplay.value != 5)) {
+		    || (CssIdent.getIdent("marker").equals(cssDisplay.get()))) {
 		warnings.addWarning(new Warning(cssMarkerOffset,
 			"marker", 1, ac));
 	    }

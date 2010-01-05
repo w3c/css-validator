@@ -4,11 +4,10 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css21;
 
-import org.w3c.css.properties.css1.CssBackgroundColorCSS2;
+import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 

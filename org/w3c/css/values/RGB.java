@@ -64,6 +64,9 @@ public class RGB {
 
     /**
      * Create a new RGB with default values
+     * @param r the red channel, an <EM>int</EM>
+     * @param g the green channel, an <EM>int</EM>
+     * @param b the blue channel, an <EM>int</EM>
      */
     public RGB(int r, int g, int b) {
 	this.r = r;

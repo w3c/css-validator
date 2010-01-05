@@ -7,14 +7,12 @@
 
 package org.w3c.css.properties.css1;
 
-import java.util.Vector;
-
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;

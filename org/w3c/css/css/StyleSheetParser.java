@@ -27,7 +27,7 @@ import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssValidatorListener;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.analyzer.TokenMgrError;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -304,7 +304,8 @@ public final class StyleSheetParser
 		cpe = new CssParseException(new Exception(e.getMessage()));
 	    }
 	    er.addError(new org.w3c.css.parser.CssError(url.toString(),
-							e.getErrorLine(),
+                            -1,
+							//e.getErrorLine(),
 							cpe));
 	    notifyErrors(er);
 	} catch(RuntimeException e) {
