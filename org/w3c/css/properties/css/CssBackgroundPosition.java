@@ -60,8 +60,8 @@ public class CssBackgroundPosition extends CssProperty {
 
     private static final String propertyName = "background-position";
 
-    public static HashMap<String, CssIdent> allowed_values;
-    public static CssIdent center, top, bottom, left, right;
+    private static HashMap<String, CssIdent> allowed_values;
+    private static CssIdent center, top, bottom, left, right;
     private static CssPercentage defaultPercent0, defaultPercent50;
     private static CssPercentage defaultPercent100;
 
@@ -290,7 +290,7 @@ public class CssBackgroundPosition extends CssProperty {
                 switch (nb_values) {
                     case 1:
                         // If only one value is specified, the second value
-                        // is assumed to be ÔcenterÕ.
+                        // is assumed to be ï¿½centerï¿½.
                         v.horizontal = v.value.get(0);
                         if (v.horizontal.getType() == CssTypes.CSS_NUMBER) {
                             v.horizontal = defaultPercent0;

@@ -160,7 +160,7 @@ import java.util.HashMap;
  */
 public class CssColorCSS1 extends CssColor {
 
-    static HashMap<String,Object> definedColorsCSS1;
+    private static HashMap<String,Object> definedColorsCSS1;
 
     /**
      * Create a new CssColorCSS1

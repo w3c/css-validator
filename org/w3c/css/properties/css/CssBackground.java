@@ -1,8 +1,8 @@
-//
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// Rewritten 2010 Yves Lafon <ylafon@w3.org>
+
+// (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css;
 
@@ -10,52 +10,54 @@ import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css1.Css1Style;
-import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import static org.w3c.css.values.CssOperator.SLASH;
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * <H4>
- * <A NAME="background">5.3.7 &nbsp;&nbsp; 'background'</A>
- * </H4>
+ * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background
  * <p/>
- * <EM>Value:</EM> &lt;background-color&gt; || &lt;background-image&gt; ||
- * &lt;background-repeat&gt; || &lt;background-attachment&gt; ||
- * &lt;background-position&gt;<BR>
- * <EM>Initial:</EM> not defined for shorthand properties<BR>
- * <EM>Applies to:</EM> all elements<BR>
- * <EM>Inherited:</EM> no<BR>
- * <EM>Percentage values:</EM> allowed on &lt;background-position&gt;<BR>
+ * Name: 	background
+ * Value: 	[ &lt;bg-layer&gt; , ]* &lt;final-bg-layer&gt;
+ * Initial: 	see individual properties
+ * Applies to: 	all elements
+ * Inherited: 	no
+ * Percentages: 	see individual properties
+ * Media: 	visual
+ * Computed value: 	see individual properties
  * <p/>
- * The 'background' property is a shorthand property for setting the individual
- * background properties (i.e., 'background-color', 'background-image',
- * 'background-repeat', 'background-attachment' and 'background-position') at
- * the same place in the style sheet.
+ * Where
  * <p/>
- * Possible values on the 'background' properties are the set of all possible
- * values on the individual properties.
- * <PRE>
- * BODY { background: red }
- * P { background: url(chess.png) gray 50% repeat fixed }
- * </PRE>
- * <P> The 'background' property always sets all the individual background
- * properties.  In the first rule of the above example, only a value for
- * 'background-color' has been given and the other individual properties are
- * set to their initial value. In the second rule, all individual properties
- * have been specified.
+ * &lt;bg-layer&gt; = &lt;bg-image&gt; || &lt;bg-position&gt; ||
+ * / &lt;bg-size&gt; || &lt;repeat-style&gt; || &lt;attachment&gt; ||
+ * &lt;bg-origin&gt;
+ * <p/>
+ * where ‘&lt;bg-position&gt;’ must occur before ‘/ &lt;bg-size&gt;’ if both
+ * are present.
+ * <p/>
+ * &lt;final-bg-layer&gt; = &lt;bg-image&gt; || &lt;bg-position&gt; ||
+ * / &lt;bg-size&gt; || &lt;repeat-style&gt; || &lt;attachment&gt; ||
+ * &lt;bg-origin&gt; || &lt;'background-color'&gt;
+ * <p/>
+ * where ‘&lt;bg-position&gt;’ must not occur before ‘/ &lt;bg-size&gt;’ if
+ * both are present.
+ * <p/>
+ * Note that a color is permitted in &lt;final-bg-layer&gt;, but
+ * not in &lt;bg-layer&gt;.
  *
- * @version $Revision$
  * @see CssBackgroundColor
  * @see CssBackgroundImage
  * @see CssBackgroundRepeat
  * @see CssBackgroundAttachment
  * @see CssBackgroundPosition
+ * @see CssBackgroundSize
  */
-public class CssBackground extends CssProperty
-        implements CssOperator, CssBackgroundConstants {
+public class CssBackground extends CssProperty {
 
     public CssBackgroundColor color;
     public CssBackgroundImage image;
@@ -112,6 +114,7 @@ public class CssBackground extends CssProperty
             val = expression.getValue();
             op = expression.getOperator();
 
+            expression.next();
             if (val == null) {
                 break;
             }
@@ -427,4 +430,51 @@ public class CssBackground extends CssProperty
         }
     }
 
+    // placeholder for the different values
+
+    public class CssBackgroundValue extends CssValueList {
+
+        CssValue bg_image = null;
+        CssValue bg_position = null;
+        CssValue bg_size = null;
+        CssValue repeat_style = null;
+        CssValue attachment = null;
+        CssValue origin = null;
+        CssValue color = null;
+
+        public boolean equals(CssBackgroundValue v) {
+            return false;
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            if (bg_image != null) {
+                sb.append(bg_image).append(' ');
+            }
+            if (bg_position != null) {
+                sb.append(bg_position).append(' ');
+            }
+            if (bg_size != null) {
+                sb.append('/').append(bg_size).append(' ');
+            }
+            if (repeat_style != null) {
+                sb.append(repeat_style).append(' ');
+            }
+            if (attachment != null) {
+                sb.append(attachment).append(' ');
+            }
+            if (origin != null) {
+                sb.append(origin).append(' ');
+            }
+            if (color != null) {
+                sb.append(color);
+            } else {
+                int sb_length = sb.length();
+                if (sb_length > 0) {
+                    sb.setLength(sb_length - 1);
+                }
+            }
+            return sb.toString();
+        }
+    }
 }

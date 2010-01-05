@@ -19,10 +19,8 @@ import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
@@ -238,7 +236,7 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
                 switch (nb_values) {
                     case 1:
                         // If only one value is specified, the second value
-                        // is assumed to be ‘center’.
+                        // is assumed to be 'center'.
                         v.horizontal = v.value.get(0);
                         if (v.horizontal.getType() == CssTypes.CSS_NUMBER) {
                             v.horizontal = defaultPercent0;
@@ -395,4 +393,5 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
             return ((Css1Style) style).cssBackgroundCSS2.position;
         }
     }
+    
 }

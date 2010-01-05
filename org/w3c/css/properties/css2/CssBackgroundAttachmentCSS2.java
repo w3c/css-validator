@@ -48,7 +48,10 @@ public class CssBackgroundAttachmentCSS2 extends CssBackgroundAttachment {
     public static boolean checkMatchingIdent(CssIdent ident) {
         return allowed_values.containsValue(ident);
     }
-    
+
+    private static HashMap<String,CssIdent> allowed_values;
+    private static CssIdent scroll;
+
     static {
         allowed_values = new HashMap<String, CssIdent>();
         scroll = CssIdent.getIdent("scroll");

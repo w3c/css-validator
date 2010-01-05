@@ -209,7 +209,7 @@ public class CssColor extends CssProperty implements CssOperator {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
 	return (property instanceof CssColor &&

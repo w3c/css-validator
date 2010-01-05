@@ -32,8 +32,8 @@ import static org.w3c.css.values.CssOperator.COMMA;
  * Computed value: 	as specified
  *
  * If background images are specified, this property specifies whether they
- * are fixed with regard to the viewport (‘fixed’) or scroll along with the
- * element (‘scroll’) or its contents (‘local’). The property's value is given
+ * are fixed with regard to the viewport ('fixed') or scroll along with the
+ * element ('scroll') or its contents ('local'). The property's value is given
  *  as a comma-separated list of &lt;attachment&gt; keywords where
  *
  * &lt;attachment&gt; = scroll | fixed | local
@@ -42,7 +42,7 @@ public class CssBackgroundAttachment extends CssProperty {
 
     private static final String propertyName = "background-attachment";
 
-    public static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
     public static CssIdent scroll;
 
     static {

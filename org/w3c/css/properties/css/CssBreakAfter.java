@@ -48,7 +48,7 @@ public class CssBreakAfter extends CssProperty {
     private static final String propertyName = "break-after";
 
     static CssIdent auto;
-    static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
 
     CssIdent value;
 

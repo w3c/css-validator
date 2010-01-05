@@ -27,7 +27,7 @@ public class CssDisplay extends CssProperty {
 
     public CssIdent value;
     public static CssIdent inline;
-    public static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
 
     static {
         allowed_values = new HashMap<String, CssIdent>();

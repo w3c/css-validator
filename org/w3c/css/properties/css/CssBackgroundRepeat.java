@@ -44,8 +44,8 @@ public class CssBackgroundRepeat extends CssProperty {
 
     private static final String propertyName = "background-repeat";
     public static CssIdent repeat;
-    public static HashMap<String, CssIdent> allowed_simple_values;
-    public static HashMap<String, CssIdent> allowed_double_values;
+    private static HashMap<String, CssIdent> allowed_simple_values;
+    private static HashMap<String, CssIdent> allowed_double_values;
 
     static {
         allowed_simple_values = new HashMap<String, CssIdent>();

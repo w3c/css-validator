@@ -46,8 +46,8 @@ public class CssBackgroundSize extends CssProperty {
 
     private static final String propertyName = "background-size";
 
-    public static CssIdent auto;
-    public static HashMap<String, CssIdent> allowed_values;
+    private static CssIdent auto;
+    private static HashMap<String, CssIdent> allowed_values;
 
     static {
         auto = CssIdent.getIdent("auto");

@@ -18,17 +18,17 @@ import org.w3c.css.values.CssValue;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule-color
- *
+ * <p/>
  * Name:  	column-rule-color
  * Value: 	&lt;color&gt;
- * Initial: 	same as for ‘color’ property [CSS21]
+ * Initial: 	same as for 'color' property [CSS21]
  * Applies to: 	multicol elements
  * Inherited: 	no
  * Percentages: 	N/A
  * Media: 	visual
- * Computed value: 	the same as the computed value for the ‘color’
+ * Computed value: 	the same as the computed value for the 'color'
  * property [CSS21]
- *
+ * <p/>
  * This property sets the color of the column rule. The &lt;color&gt; values are
  * defined in [CSS21].
  */
@@ -37,7 +37,7 @@ public class CssColumnRuleColor extends CssProperty {
 
     private static final String propertyName = "column-rule-color";
 
-    CssColor color;
+    CssValue color;
 
     /**
      * Create a new CssColumnRuleColor
@@ -62,14 +62,19 @@ public class CssColumnRuleColor extends CssProperty {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        try {
-            // we use the latest version of CssColor, aka CSS3
-            // instead of using CSS21 colors + transparent per spec.
-            color = new CssColor(ac, expression);
-        } catch (InvalidParamException e) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
+        if (inherit.equals(val)) {
+            color = inherit;
+        } else {
+            try {
+                // we use the latest version of CssColor, aka CSS3
+                // instead of using CSS21 colors + transparent per spec.
+                CssColor tcolor = new CssColor(ac, expression, check);
+                color = tcolor.getColor();
+            } catch (InvalidParamException e) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
         }
     }
 

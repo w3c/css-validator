@@ -49,7 +49,7 @@ import java.util.HashMap;
  */
 public class CssBackgroundRepeatCSS1 extends CssBackgroundRepeat {
 
-    public static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
 
     static {
         allowed_values = new HashMap<String, CssIdent>();

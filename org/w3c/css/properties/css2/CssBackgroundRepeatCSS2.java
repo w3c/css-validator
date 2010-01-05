@@ -55,7 +55,7 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
         return allowed_values.containsValue(ident);
     }
     
-    public static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
 
     static {
         allowed_values = new HashMap<String, CssIdent>();

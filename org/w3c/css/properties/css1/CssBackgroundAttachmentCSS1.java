@@ -44,6 +44,9 @@ import java.util.HashMap;
  */
 public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
 
+    private static HashMap<String, CssIdent> allowed_values;
+    private static CssIdent scroll;
+
     static {
         allowed_values = new HashMap<String, CssIdent>();
         scroll = CssIdent.getIdent("scroll");

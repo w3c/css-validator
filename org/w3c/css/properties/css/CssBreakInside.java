@@ -47,7 +47,7 @@ public class CssBreakInside extends CssProperty {
     private static final String propertyName = "break-inside";
 
     static CssIdent auto;
-    static HashMap<String, CssIdent> allowed_values;
+    private static HashMap<String, CssIdent> allowed_values;
 
     CssIdent value;
 
