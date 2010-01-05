@@ -24,7 +24,7 @@ import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
-import org.w3c.css.properties.css1.CssProperty;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssError;
@@ -168,15 +168,14 @@ public abstract class CssParser implements CssParserConstants {
     public void ReInitWithAc(InputStream stream, ApplContext ac,
                              String charset)
     {
-        InputStream is = /*new  CommentSkipperInputStream(stream);*/stream;
         if (charset == null) {
             charset = "iso-8859-1";
         }
         InputStreamReader isr = null;
         try {
-            isr = new InputStreamReader(is, charset);
+            isr = new InputStreamReader(stream, charset);
         } catch (UnsupportedEncodingException uex) {
-            isr = new InputStreamReader(is);
+            isr = new InputStreamReader(stream);
         }
         // reinit, it can not happen...
         // ...in theory ;)
