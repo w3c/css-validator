@@ -2,7 +2,7 @@
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
@@ -18,7 +18,7 @@ public class CssFunction extends CssValue {
     public static final int type = CssTypes.CSS_FUNCTION;
 
     public final int getType() {
-	return type;
+        return type;
     }
 
     String name;
@@ -27,16 +27,16 @@ public class CssFunction extends CssValue {
     /**
      * Set the value of this function
      *
-     * @param s     the string representation of the frequency.
-     * @param frame For errors and warnings reports.
+     * @param s  the string representation of the frequency.
+     * @param ac For errors and warnings reports.
      */
     public void set(String s, ApplContext ac) {
-	// @@TODO
+        // @@TODO
     }
 
     public void set(String name, CssExpression parameters) {
-	this.name = name;
-	this.parameters = parameters;
+        this.name = name;
+        this.parameters = parameters;
 
     }
 
@@ -44,29 +44,31 @@ public class CssFunction extends CssValue {
      * Returns the value
      */
     public Object get() {
-	// @@TODO
-	return null;
+        // @@TODO
+        return null;
     }
 
     /**
      * Returns the name of the function
      */
     public String getName() {
-	return name;
+        return name;
     }
 
     /**
      * Returns the parameters expression
      */
     public CssExpression getParameters() {
-	return parameters;
+        return parameters;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return name + "(" + parameters + ")";
+        StringBuilder sb = new StringBuilder(name);
+        sb.append('(').append(parameters).append(')');
+        return sb.toString();
     }
 
     /**
@@ -75,8 +77,8 @@ public class CssFunction extends CssValue {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-	// @@FIXME
-	return (value instanceof CssFunction &&
-		this.name.equals(((CssFunction) value).name));
+        // @@FIXME
+        return (value instanceof CssFunction &&
+                this.name.equals(((CssFunction) value).name));
     }
 }

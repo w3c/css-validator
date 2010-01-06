@@ -187,13 +187,6 @@ public class CssBackgroundCSS1 extends CssBackground
     }
 
     /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-        return "background";
-    }
-
-    /**
      * Returns a string representation of the object.
      */
     public String toString() {

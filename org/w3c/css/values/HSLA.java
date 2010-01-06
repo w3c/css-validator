@@ -29,45 +29,49 @@ public class HSLA {
     }
 
     public void setHue(float hue) {
-	this.fh = (float)((((double)hue%360.0)+360.0)%360.0);
+        this.fh = (float) ((((double) hue % 360.0) + 360.0) % 360.0);
     }
+
     public void setHue(CssNumber hue) {
-	setHue(hue.getValue());
+        setHue(hue.getValue());
     }
 
     public void setSaturation(float sat) {
-	this.fs = sat;
+        this.fs = sat;
     }
+
     public void setSaturation(CssNumber sat) {
-	setSaturation(sat.getValue());
+        setSaturation(sat.getValue());
     }
 
     public void setLightness(float light) {
-	this.fl = light;
+        this.fl = light;
     }
+
     public void setLightness(CssNumber light) {
-	setLightness(light.getValue());
+        setLightness(light.getValue());
     }
 
     public void setAlpha(float alpha) {
-	this.fa = alpha;
+        this.fa = alpha;
     }
+
     public void setAlpha(CssNumber alpha) {
-	setAlpha(alpha.getValue());
+        setAlpha(alpha.getValue());
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (output == null) {
-	    StringBuilder sb = new StringBuilder("hsl(");
-	    sb.append(Util.displayFloat(fh)).append(", ");
-	    sb.append(Util.displayFloat(fs)).append("%, ");
-	    sb.append(Util.displayFloat(fl)).append("%, ");
-	    sb.append(Util.displayFloat(fa)).append(")");
-	    output = sb.toString();
-	}
-	return output;
+        if (output == null) {
+            StringBuilder sb = new StringBuilder("hsl(");
+            sb.append(Util.displayFloat(fh)).append(", ");
+            sb.append(Util.displayFloat(fs)).append("%, ");
+            sb.append(Util.displayFloat(fl)).append("%, ");
+            sb.append(Util.displayFloat(fa)).append(")");
+            output = sb.toString();
+        }
+        return output;
     }
 }

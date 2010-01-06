@@ -290,7 +290,7 @@ public class CssBackgroundPosition extends CssProperty {
                 switch (nb_values) {
                     case 1:
                         // If only one value is specified, the second value
-                        // is assumed to be �center�.
+                        // is assumed to be 'center'.
                         v.horizontal = v.value.get(0);
                         if (v.horizontal.getType() == CssTypes.CSS_NUMBER) {
                             v.horizontal = defaultPercent0;
@@ -535,7 +535,5 @@ public class CssBackgroundPosition extends CssProperty {
         }
 
     }
-
-
 
 }

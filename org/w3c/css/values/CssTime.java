@@ -54,7 +54,7 @@ public class CssTime extends CssValue {
    * Set the value of this time.
    *
    * @param s     the string representation of the time.
-   * @param frame For errors and warnings reports.
+   * @param ac For errors and warnings reports.
    * @exception InvalidParamException The unit is incorrect
    */
   public void set(String s, ApplContext ac) throws InvalidParamException {

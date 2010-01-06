@@ -17,8 +17,8 @@ import org.w3c.css.util.Util;
 
 public class RGBA {
     String output = null;
-    int r,g,b;
-    float fr,fg,fb,a;
+    int r, g, b;
+    float fr, fg, fb, a;
 
     boolean percent = false;
 
@@ -37,52 +37,55 @@ public class RGBA {
     }
 
     public final void setRed(int r) {
-	this.r = r;
-	this.fr = r;
+        this.r = r;
+        this.fr = r;
     }
+
     public final void setRed(float fr) {
-	this.fr = fr;
+        this.fr = fr;
     }
 
     public final void setGreen(int g) {
-	this.g = g;
-	this.fg = g;
+        this.g = g;
+        this.fg = g;
     }
+
     public final void setGreen(float fg) {
-	this.fg = fg;
+        this.fg = fg;
     }
 
     public final void setBlue(int b) {
-	this.b = b;
-	this.fb = b;
+        this.b = b;
+        this.fb = b;
     }
+
     public final void setBlue(float fb) {
-	this.fb = fb;
+        this.fb = fb;
     }
 
     public final void setAlpha(float a) {
-	this.a = a;
+        this.a = a;
     }
 
     public boolean equals(RGBA other) {
-	if (other != null) {
-	    if (percent) {
-		if (other.percent) {
-		    return ((fr == other.fr) &&
-			    (fg == other.fg) &&
-			    (fb == other.fb) &&
-			    (a == other.a));
-		}
-	    } else {
-		if (!other.percent) {
-		    return ((r == other.r) &&
-			    (g == other.g) &&
-			    (b == other.b) &&
-			    (a == other.a));	    
-		}
-	    }
-	}
-	return false;
+        if (other != null) {
+            if (percent) {
+                if (other.percent) {
+                    return ((fr == other.fr) &&
+                            (fg == other.fg) &&
+                            (fb == other.fb) &&
+                            (a == other.a));
+                }
+            } else {
+                if (!other.percent) {
+                    return ((r == other.r) &&
+                            (g == other.g) &&
+                            (b == other.b) &&
+                            (a == other.a));
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -93,45 +96,53 @@ public class RGBA {
 
     /**
      * Create a new RGBA with default values
+     * @param r the red channel
+     * @param g the green channel
+     * @param b the blue channel
+     * @param a the alpha channel
      */
     public RGBA(int r, int g, int b, float a) {
-	this.r = r;
-	this.g = g;
-	this.b = b;
-	this.a = a;
-	this.percent = false;
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.a = a;
+        this.percent = false;
     }
 
     /**
+     * @param r the red channel
+     * @param g the green channel
+     * @param b the blue channel
+     * @param a the alpha channel
      * Create a new RGBA with default values
      */
     public RGBA(float r, float g, float b, float a) {
-	this.fr = r;
-	this.fg = g;
-	this.fb = b;
-	this.a = a;
-	this.percent = true;
+        this.fr = r;
+        this.fg = g;
+        this.fb = b;
+        this.a = a;
+        this.percent = true;
     }
-    
-    
+
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (output == null) {
-	    StringBuilder sb = new StringBuilder("rgba(");
-	    if (isPercent()) {
-		sb.append(Util.displayFloat(fr)).append("%, ");
-		sb.append(Util.displayFloat(fg)).append("%, ");
-		sb.append(Util.displayFloat(fb)).append("%, ");
-	    } else {
-		sb.append(r).append(", ");
-		sb.append(g).append(", ");
-		sb.append(b).append(", ");
-	    }
-	    sb.append(Util.displayFloat(a)).append(')');
-	    output = sb.toString();
-	} 
-	return output;
+        if (output == null) {
+            StringBuilder sb = new StringBuilder("rgba(");
+            if (isPercent()) {
+                sb.append(Util.displayFloat(fr)).append("%, ");
+                sb.append(Util.displayFloat(fg)).append("%, ");
+                sb.append(Util.displayFloat(fb)).append("%, ");
+            } else {
+                sb.append(r).append(", ");
+                sb.append(g).append(", ");
+                sb.append(b).append(", ");
+            }
+            sb.append(Util.displayFloat(a)).append(')');
+            output = sb.toString();
+        }
+        return output;
     }
 }

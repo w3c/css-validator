@@ -2,13 +2,15 @@
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
+
+import java.util.HashMap;
 
 /**
  * <H3>Angle</H3>
@@ -37,10 +39,22 @@ public class CssAngle extends CssValue implements CssValueFloat {
     }
 
     Float value;
-    int unit;
-    static String[] units = {"deg", "grad", "rad"};
-    static int[] hash_units;
+    String unit;
+
+    static final String deg = "deg";
+    static final String rad = "rad";
+    static final String grad = "grad";
+
+    private static final HashMap<String, String> allowed_values;
+
     static Float defaultValue = new Float(0);
+
+    static {
+        allowed_values = new HashMap<String, String>();
+        allowed_values.put(deg, deg);
+        allowed_values.put(rad, rad);
+        allowed_values.put(grad, grad);
+    }
 
     /**
      * Create a new CssAngle.
@@ -77,38 +91,16 @@ public class CssAngle extends CssValue implements CssValueFloat {
         //float v;
         if (s.indexOf("grad") == -1) {
             unit = s.substring(length - 3, length);
+            unit = allowed_values.get(unit);
+            if (unit == null) {
+                throw new InvalidParamException("unit", unit, ac);
+            }
             value = new Float(s.substring(0, length - 3));
         } else {
-            unit = "grad";
+            unit = grad;
             value = new Float(s.substring(0, length - 4));
         }
-        int hash = unit.hashCode();
-
-
-        int i = 0;
-        while (i < units.length) {
-            if (hash == hash_units[i]) {
-                this.unit = i;
-                break;
-            }
-            i++;
-        }
-
-        if (i > 2) {
-            throw new InvalidParamException("unit", unit, ac);
-        }
-
-        this.unit = i; // there is no unit by default
-
-        /* clipping with degree */
-        /*
-        while (v < 0) {
-        v += 360;
-        }
-        while (v > 360) {
-        v -= 360;
-        }
-      */
+        this.unit = unit; // there is no unit by default
     }
 
     /**
@@ -126,7 +118,7 @@ public class CssAngle extends CssValue implements CssValueFloat {
      * Returns the current value
      */
     public String getUnit() {
-        return units[unit];
+        return unit;
     }
 
     /**
@@ -167,74 +159,31 @@ public class CssAngle extends CssValue implements CssValueFloat {
 
     public float getDegree() {
         float angle = value.floatValue();
-        switch (unit) {
-            case 0:
-                // angle % 360
-                return normalize(angle);
-            case 1:
-                return normalize(angle * (9.f / 10.f));
-            case 2:
-                return normalize(angle * (180.f / ((float) Math.PI)));
-            default:
-                System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
-                System.err.println("[ERROR] Please report (" + unit + ")");
-                return (float) 0;
+        if (unit == deg) {
+            return normalize(angle);
+        } else if (unit == rad) {
+            return normalize(angle * (180.f / ((float) Math.PI)));
+        } else if (unit == grad) {
+            return normalize(angle * (9.f / 10.f));
         }
-    }
-/*
- // These functions are not used, don't normalize angles, and are false
- // (int operations instead of float ones)
 
-    public float getGradian() {
-	float grad = value.floatValue();
-	switch (unit) {
-	case 0:
-	    return (grad * (((float) Math.PI) / 180));
-	case 1:
-	    return grad;
-	case 2:
-	    return (grad * (((float) Math.PI) / 100));
-	default:
-	    System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
-	    System.err.println("[ERROR] Please report (" + unit + ")");
-	    return (float) 0;
-	}
+        System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
+        System.err.println("[ERROR] Please report (" + unit + ")");
+        return (float) 0;
     }
-
-    public float getRadian() {
-	float rad = value.floatValue();
-	switch (unit) {
-	case 0:
-	    return (rad * (5 / 9));
-	case 1:
-	    return (rad * (100 / ((float) Math.PI)));
-	case 2:
-	    return rad;
-	default:
-	    System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
-	    System.err.println("[ERROR] Please report (" + unit + ")");
-	    return (float) 0;
-	}
-    }
-*/
 
     public boolean isDegree() {
-        return unit == 0;
+        return unit == deg;
     }
 
     public boolean isGradian() {
-        return unit == 1;
+        return unit == grad;
     }
 
     public boolean isRadian() {
-        return unit == 2;
+        return unit == rad;
     }
 
-    static {
-        hash_units = new int[units.length];
-        for (int i = 0; i < units.length; i++) {
-            hash_units[i] = units[i].hashCode();
-        }
-    }
+
 }
 

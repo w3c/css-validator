@@ -54,11 +54,9 @@ public class CssNumber extends CssValue implements CssValueFloat {
         try {
             new Integer(s);
             isInt = true;
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             isInt = false;
-        }
-        finally {
+        } finally {
             value = new Float(s);
         }
         this.ac = ac;

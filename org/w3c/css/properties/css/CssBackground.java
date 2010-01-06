@@ -12,11 +12,14 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
-import static org.w3c.css.values.CssOperator.SLASH;
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
@@ -59,7 +62,15 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssBackground extends CssProperty {
 
+    private static final String propertyName = "background";
+
+    Object value;
+
+    public CssColor _color;
+
+    // TODO get rid of those
     public CssBackgroundColor color;
+
     public CssBackgroundImage image;
     public CssBackgroundRepeat repeat;
     public CssBackgroundAttachment attachment;
@@ -97,92 +108,62 @@ public class CssBackground extends CssProperty {
     public CssBackground(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
 
+                setByUser();
         CssValue val;
+        ArrayList<CssBackgroundValue> values;
+        CssBackgroundValue b_val = null;
         char op;
-        boolean find = true;
-        setByUser();
 
-        // if there are too many values -> error
-        if (check && expression.getCount() > 6) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-
-        boolean manyValues = (expression.getCount() > 1);
-
-        while (find) {
-            find = false;
+        values = new ArrayList<CssBackgroundValue>();
+        // we just accumulate values and check at validation
+        while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
 
+            if (inherit.equals(val)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+                }
+                value = inherit;
+                expression.next();
+                return;
+            }
+            if (b_val == null) {
+                b_val = new CssBackgroundValue();
+            }
+            // we will check later
+            b_val.add(val);
             expression.next();
-            if (val == null) {
-                break;
-            }
 
-            // if there are many values, we can't have inherit as one of them
-            if (manyValues && val != null && val.equals(inherit)) {
-                throw new InvalidParamException("unrecognize", null, null, ac);
-            }
-
-            if (color == null) {
-                try {
-                    color = new CssBackgroundColor(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, image will test this value
-                }
-            }
-            if (!find && image == null) {
-                try {
-                    image = new CssBackgroundImage(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, repeat will test this value
-                }
-            }
-            if (!find && repeat == null) {
-                try {
-                    repeat = new CssBackgroundRepeat(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, attachment will test this value
-                }
-            }
-            if (!find && attachment == null) {
-                try {
-                    attachment = new CssBackgroundAttachment(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, position will test this value
-                }
-            }
-            if (!find && position == null) {
-                try {
-                    position = new CssBackgroundPosition(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do
-                }
-            }
-            if (op != SPACE) {
-                if (op != SLASH) {
+            if (!expression.end()) {
+                // incomplete value followed by a comma... it's complete!
+                if (op == COMMA) {
+                    check(b_val, ac);
+                    values.add(b_val);
+                    b_val = null;
+                } else if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()),
-                            ac);
-                } else {
-                    //try {
-                    size = new CssBackgroundSize(ac, expression);
-                    sizedefined = true;
-                    break;
-                    //} catch (InvalidParamException e) {
-                    // error!
-                    //}
+                            ((new Character(op)).toString()), ac);
                 }
-            }
-            if (check && !find && val != null) {
-                throw new InvalidParamException("unrecognize", ac);
             }
         }
+        // if we reach the end in a value that can come in pair
+        if (b_val != null) {
+            check(b_val, ac);
+            values.add(b_val);
+        }
+        if (values.size() == 1) {
+            value = values.get(0);
+        } else {
+            value = values;
+        }
+    }
+
+    public void check(CssBackgroundValue v, ApplContext ac)
+            throws InvalidParamException
+    {
+        // TODO have fun here...
     }
 
     /**
@@ -213,51 +194,25 @@ public class CssBackground extends CssProperty {
     /**
      * Returns the name of this property
      */
-    public String getPropertyName() {
-        return "background";
+    public final String getPropertyName() {
+        return propertyName;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        boolean addspace = false;
-        if (color != null) {
-            sb.append(color);
-            addspace = true;
-        }
-        if (image != null) {
-            if (addspace) {
-                sb.append(' ');
+        if (value instanceof ArrayList) {
+            ArrayList v_list;
+            v_list = (ArrayList) value;
+            StringBuilder sb = new StringBuilder();
+            for (Object val : v_list) {
+                sb.append(val.toString()).append(", ");
             }
-            sb.append(image);
-            addspace = true;
+            sb.setLength(sb.length() - 2);
+            return sb.toString();
         }
-        if (repeat != null) {
-            if (addspace) {
-                sb.append(' ');
-            }
-            sb.append(repeat);
-            addspace = true;
-        }
-        if (attachment != null) {
-            if (addspace) {
-                sb.append(' ');
-            }
-            sb.append(attachment);
-            addspace = true;
-        }
-        if (position != null) {
-            if (addspace) {
-                sb.append(' ');
-            }
-            sb.append(position);
-        }
-        if (sizedefined) {
-            sb.append('/').append(size);
-        }
-        return sb.toString();
+        return value.toString();
     }
 
     /**
@@ -265,6 +220,7 @@ public class CssBackground extends CssProperty {
      * Overrides this method for a macro
      */
     public void setImportant() {
+        super.setImportant();
         if (color != null) {
             color.important = true;
         }
@@ -280,18 +236,6 @@ public class CssBackground extends CssProperty {
         if (position != null) {
             position.important = true;
         }
-    }
-
-    /**
-     * Returns true if this property is important.
-     * Overrides this method for a macro
-     */
-    public boolean getImportant() {
-        return ((color == null || color.important) &&
-                (image == null || image.important) &&
-                (repeat == null || repeat.important) &&
-                (attachment == null || attachment.important) &&
-                (position == null || position.important));
     }
 
     /**

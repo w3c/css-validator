@@ -18,7 +18,7 @@ public class RGB {
     String output = null;
     int r, g, b;
     float fr, fg, fb;
-    
+
     boolean percent = false;
 
     /**
@@ -36,24 +36,27 @@ public class RGB {
     }
 
     public final void setRed(int r) {
-	this.r = r;
+        this.r = r;
     }
+
     public final void setRed(float fr) {
-	this.fr = fr;
+        this.fr = fr;
     }
 
     public final void setGreen(int g) {
-	this.g = g;
+        this.g = g;
     }
+
     public final void setGreen(float fg) {
-	this.fg = fg;
+        this.fg = fg;
     }
 
     public final void setBlue(int b) {
-	this.b = b;
+        this.b = b;
     }
+
     public final void setBlue(float fb) {
-	this.fb = fb;
+        this.fb = fb;
     }
 
     /**
@@ -64,58 +67,60 @@ public class RGB {
 
     /**
      * Create a new RGB with default values
+     *
      * @param r the red channel, an <EM>int</EM>
      * @param g the green channel, an <EM>int</EM>
      * @param b the blue channel, an <EM>int</EM>
      */
     public RGB(int r, int g, int b) {
-	this.r = r;
-	this.g = g;
-	this.b = b;
+        this.r = r;
+        this.g = g;
+        this.b = b;
     }
-    
+
     public RGB(float fr, float fg, float fb) {
-	this.fr = fr;
-	this.fg = fg;
-	this.fb = fb;
-	percent = true;
+        this.fr = fr;
+        this.fg = fg;
+        this.fb = fb;
+        percent = true;
     }
 
     public boolean equals(RGB other) {
-	if (other != null) {
-	    if (percent) {
-		if (other.percent) {
-		    return ((fr == other.fr) &&
-			    (fg == other.fg) &&
-			    (fb == other.fb));
-		}
-	    } else {
-		if (!other.percent) {
-		    return ((r == other.r) &&
-			    (g == other.g) &&
-			    (b == other.b));		    
-		}
-	    }
-	}
-	return false;
+        if (other != null) {
+            if (percent) {
+                if (other.percent) {
+                    return ((fr == other.fr) &&
+                            (fg == other.fg) &&
+                            (fb == other.fb));
+                }
+            } else {
+                if (!other.percent) {
+                    return ((r == other.r) &&
+                            (g == other.g) &&
+                            (b == other.b));
+                }
+            }
+        }
+        return false;
     }
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (output == null) {
-	    StringBuilder sb = new StringBuilder("rgb(");
-	    if (isPercent()) {
-		sb.append(fr).append("%, ");
-		sb.append(fg).append("%, ");
-		sb.append(fb).append("%)");
-	    } else {
-		sb.append(r).append(", ");
-		sb.append(g).append(", ");
-		sb.append(b).append(')');
-	    }
-	    output = sb.toString();
-	} 
-	return output;
+        if (output == null) {
+            StringBuilder sb = new StringBuilder("rgb(");
+            if (isPercent()) {
+                sb.append(fr).append("%, ");
+                sb.append(fg).append("%, ");
+                sb.append(fb).append("%)");
+            } else {
+                sb.append(r).append(", ");
+                sb.append(g).append(", ");
+                sb.append(b).append(')');
+            }
+            output = sb.toString();
+        }
+        return output;
     }
 }
