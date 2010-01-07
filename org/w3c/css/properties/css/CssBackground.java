@@ -14,12 +14,14 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.COMMA;
+import static org.w3c.css.values.CssOperator.SLASH;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
@@ -68,7 +70,7 @@ public class CssBackground extends CssProperty {
 
     public CssColor _color;
 
-    // TODO get rid of those
+    // TODO get rid of those or reformat them
     public CssBackgroundColor color;
 
     public CssBackgroundImage image;
@@ -76,7 +78,6 @@ public class CssBackground extends CssProperty {
     public CssBackgroundAttachment attachment;
     public CssBackgroundPosition position;
     public CssBackgroundSize size;
-    boolean sizedefined;
 
     boolean same;
 
@@ -108,9 +109,10 @@ public class CssBackground extends CssProperty {
     public CssBackground(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
 
-                setByUser();
+        setByUser();
         CssValue val;
         ArrayList<CssBackgroundValue> values;
+        CssExpression single_layer = null;
         CssBackgroundValue b_val = null;
         char op;
 
@@ -129,19 +131,20 @@ public class CssBackground extends CssProperty {
                 expression.next();
                 return;
             }
-            if (b_val == null) {
-                b_val = new CssBackgroundValue();
+            if (single_layer == null) {
+                single_layer = new CssExpression();
             }
             // we will check later
-            b_val.add(val);
+            single_layer.addValue(val);
+            single_layer.setOperator(op);
             expression.next();
 
             if (!expression.end()) {
                 // incomplete value followed by a comma... it's complete!
                 if (op == COMMA) {
-                    check(b_val, ac);
+                    b_val = check(ac, single_layer, check, false);
                     values.add(b_val);
-                    b_val = null;
+                    single_layer = null;
                 } else if (op != SPACE) {
                     throw new InvalidParamException("operator",
                             ((new Character(op)).toString()), ac);
@@ -149,8 +152,8 @@ public class CssBackground extends CssProperty {
             }
         }
         // if we reach the end in a value that can come in pair
-        if (b_val != null) {
-            check(b_val, ac);
+        if (single_layer != null) {
+            b_val = check(ac, single_layer, check, true);
             values.add(b_val);
         }
         if (values.size() == 1) {
@@ -160,15 +163,181 @@ public class CssBackground extends CssProperty {
         }
     }
 
-    public void check(CssBackgroundValue v, ApplContext ac)
-            throws InvalidParamException
-    {
+    public CssBackgroundValue check(ApplContext ac, CssExpression expression,
+                                    boolean check, boolean is_final)
+            throws InvalidParamException {
         // TODO have fun here...
+        // <bg-layer> = <bg-image> || <bg-position> || / <bg-size> || <repeat-style> ||
+        //              <attachment> || <bg-origin>
+        // bg_image is CSS_URL | IDENT
+        // bg-position is IDENT | NUMBER | LENGTH | PERCENTAGE
+        // bg-size is IDENT | NUMBER | LENGTH | PERCENTAGE
+        // repeat-style is IDENT
+        // attachment is IDENT
+        // bg-origin is IDENT
+
+        CssValue val;
+        char op;
+        CssExpression exp;
+        CssBackgroundValue v = new CssBackgroundValue();
+        boolean next_is_size;
+        Object res;
+
+        next_is_size = false;
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_COLOR:
+                    // we already got one, fail...
+                    if (v.color != null) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    exp = new CssExpression();
+                    exp.addValue(val);
+
+                    CssBackgroundColor bg_color;
+                    bg_color = new CssBackgroundColor(ac, exp, check);
+                    v.color = v.color_value = (CssValue) bg_color.get();
+                    break;
+
+                case CssTypes.CSS_URL:
+                    // we already got one, fail...
+                    if (v.bg_image != null) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    exp = new CssExpression();
+                    exp.addValue(val);
+
+                    CssBackgroundImage bg_image;
+                    bg_image = new CssBackgroundImage(ac, exp, check);
+                    res = bg_image.get();
+                    // we only have one vale so it should always be the case
+                    if (res instanceof CssValue) {
+                        v.bg_image = v.bg_image_value = (CssValue) res;
+                    } else {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    break;
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    // ok, so now we have a background position or size.
+                    // and...
+                    // in <bg_layer>: where '<bg-position>' must occur before
+                    //  '/ <bg-size>' if both are present.
+                    if (next_is_size) {
+                        // size, we have up to two values
+                        if (v.bg_size != null) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        exp = new CssExpression();
+                        exp.addValue(val);
+                        CssBackgroundSize bg_size;
+                        bg_size = new CssBackgroundSize(ac, exp, check);
+                        // now check if we can add a second value ;)
+                        // TODO really dirty.. must check the use of 'check'
+                        // here, and possibly adjust the parsing model in
+                        // other classes :(
+                        if ((op == SPACE) && !expression.end()) {
+                            expression.next();
+                            exp.addValue(expression.getValue());
+                            try {
+                                bg_size = new CssBackgroundSize(ac, exp, check);
+                            } catch (InvalidParamException ipe) {
+                                // roll back
+                                expression.precedent();
+                            }
+                        }
+                        res = bg_size.get();
+                        // we only have one vale so it should always be the case
+                        if (res instanceof CssValue) {
+                            v.bg_size = v.bg_size_value = (CssValue) res;
+                        } else {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                    } else {
+                        // position with it's up to 4 values...
+                        if ((v.bg_size != null) || (v.bg_position != null)) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        exp = new CssExpression();
+                        exp.addValue(val);
+                        CssBackgroundPosition bg_pos;
+                        bg_pos = new CssBackgroundPosition(ac, exp, check);
+                        // good we have a valid value, try something better..
+                        try {
+                            for (int i = 0; i < 3; i++) {
+                                if ((op == SPACE) && !expression.end()) {
+                                    expression.next();
+                                    exp.addValue(expression.getValue());
+                                    bg_pos = new CssBackgroundPosition(ac, exp, check);
+                                }
+                            }
+                        } catch (InvalidParamException ipe) {
+                            // roll back
+                            expression.precedent();
+                        }
+                        res = bg_pos.get();
+                        // we only have one vale so it should always be the case
+                        if (res instanceof CssValue) {
+                            v.bg_position = v.bg_position_value = (CssValue) res;
+                        } else {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+
+                    }
+                    break;
+                case CssTypes.CSS_IDENT:
+                    // TODO let's the fun begin :)
+                default:
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+            }
+
+            if (op == SLASH) {
+                next_is_size = true;
+            } else if (op != SPACE) {
+                throw new InvalidParamException("operator", val,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        return v;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public void transform_values
+            () {
+        ArrayList<CssBackgroundValue> v_array;
+        if (value instanceof CssBackgroundValue) {
+            v_array = new ArrayList<CssBackgroundValue>(1);
+            v_array.add((CssBackgroundValue) value);
+        } else if (value instanceof ArrayList) {
+            v_array = (ArrayList<CssBackgroundValue>) value;
+        } else {
+            return;
+        }
+        for (CssBackgroundValue v : v_array) {
+            // TODO transform v
+
+        }
+
     }
 
     /**
      * @return Returns the image.
      */
+
     public CssBackgroundImage getImage() {
         return image;
     }
@@ -374,7 +543,7 @@ public class CssBackground extends CssProperty {
         }
     }
 
-    // placeholder for the different values
+// placeholder for the different values
 
     public class CssBackgroundValue extends CssValueList {
 
@@ -386,8 +555,77 @@ public class CssBackground extends CssProperty {
         CssValue origin = null;
         CssValue color = null;
 
+        CssValue bg_image_value = null;
+        CssValue bg_position_value = null;
+        CssValue bg_size_value = null;
+        CssValue repeat_style_value = null;
+        CssValue attachment_value = null;
+        CssValue origin_value = null;
+        // If 'background-origin' is present and its value matches a possible
+        // value for 'background-clip' then it also sets 'background-clip' to
+        // that value.
+        CssValue clip_value = null;
+        CssValue color_value = null;
+
         public boolean equals(CssBackgroundValue v) {
-            return false;
+            if (bg_image_value == null) {
+                if (v.bg_image_value != null) {
+                    return false;
+                }
+            } else if (!bg_image_value.equals(v.bg_image_value)) {
+                return false;
+            }
+            if (bg_position_value == null) {
+                if (v.bg_position_value != null) {
+                    return false;
+                }
+            } else if (!bg_position_value.equals(v.bg_position_value)) {
+                return false;
+            }
+            if (bg_size_value == null) {
+                if (v.bg_size_value != null) {
+                    return false;
+                }
+            } else if (!bg_size_value.equals(v.bg_size_value)) {
+                return false;
+            }
+            if (repeat_style_value == null) {
+                if (v.repeat_style_value != null) {
+                    return false;
+                }
+            } else if (!repeat_style_value.equals(v.repeat_style_value)) {
+                return false;
+            }
+            if (attachment_value == null) {
+                if (v.attachment_value != null) {
+                    return false;
+                }
+            } else if (!attachment_value.equals(v.attachment_value)) {
+                return false;
+            }
+            if (origin_value == null) {
+                if (v.origin_value != null) {
+                    return false;
+                }
+            } else if (!origin_value.equals(v.origin_value)) {
+                return false;
+            }
+            if (clip_value == null) {
+                if (v.clip_value != null) {
+                    return false;
+                }
+            } else if (!clip_value.equals(v.clip_value)) {
+                return false;
+            }
+            if (color_value == null) {
+                if (v.color_value != null) {
+                    return false;
+                }
+            } else if (!color_value.equals(v.color_value)) {
+                return false;
+            }
+            // at last!
+            return true;
         }
 
         public String toString() {

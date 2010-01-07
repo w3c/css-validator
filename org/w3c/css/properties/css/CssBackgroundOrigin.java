@@ -35,7 +35,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
  *
  * For elements rendered as a single box, specifies the background positioning
  * area. For elements rendered as multiple boxes (e.g., inline boxes on several
- * lines, boxes on several pages) specifies which boxes �box-decoration-break�
+ * lines, boxes on several pages) specifies which boxes 'box-decoration-break'
  *  operates on to determine the background positioning area(s).
  *
  * &lt;bg-origin&gt; = border-box | padding-box | content-box
