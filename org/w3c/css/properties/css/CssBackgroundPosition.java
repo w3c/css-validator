@@ -27,7 +27,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-background-20091217/#background-position
- * 
+ * <p/>
  * Name: 	background-position
  * Value: 	&lt;bg-position&gt; [ , &lt;bg-position&gt; ]*
  * Initial: 	0% 0%
@@ -250,8 +250,7 @@ public class CssBackgroundPosition extends CssProperty {
     }
 
     public void check(CssBackgroundPositionValue v, ApplContext ac)
-            throws InvalidParamException
-    {
+            throws InvalidParamException {
         int nb_keyword = 0;
         int nb_percentage = 0;
         int nb_length = 0;
@@ -430,9 +429,9 @@ public class CssBackgroundPosition extends CssProperty {
                                         aValue, propertyName, ac);
                             }
                             if (id2 == null) {
-                                off2 = aValue;
-                            } else {
                                 off1 = aValue;
+                            } else {
+                                off2 = aValue;
                             }
                             got_ident = false;
                             break;
@@ -445,10 +444,10 @@ public class CssBackgroundPosition extends CssProperty {
                 // //keyword
                 if (isVertical(id1) || isHorizontal(id2)) {
                     // if an offset is present and value is 'center'
-                    if ( ((off1 != null) && !isVertical(id1)) ||
-                         ((off2 != null) && !isHorizontal(id2) )) {
-                        throw  new InvalidParamException("incompatible",
-                                            id1, id2, ac);
+                    if (((off1 != null) && !isVertical(id1)) ||
+                            ((off2 != null) && !isHorizontal(id2))) {
+                        throw new InvalidParamException("incompatible",
+                                id1, id2, ac);
                     }
                     v.horizontal = id2;
                     v.val_horizontal = identToPercent(id2);
@@ -457,10 +456,10 @@ public class CssBackgroundPosition extends CssProperty {
                     v.val_vertical = identToPercent(id1);
                     v.vertical_offset = off1;
                 } else {
-                    if ( ((off2 != null) && !isVertical(id2)) ||
-                         ((off1 != null) && !isHorizontal(id1) )) {
-                        throw  new InvalidParamException("incompatible",
-                                            id1, id2, ac);
+                    if (((off2 != null) && !isVertical(id2)) ||
+                            ((off1 != null) && !isHorizontal(id1))) {
+                        throw new InvalidParamException("incompatible",
+                                id1, id2, ac);
                     }
                     v.horizontal = id1;
                     v.val_horizontal = identToPercent(id1);
@@ -492,6 +491,7 @@ public class CssBackgroundPosition extends CssProperty {
     }
 
     // placeholder for the different values
+
     public class CssBackgroundPositionValue extends CssValueList {
         public CssValue vertical = null;
         public CssValue horizontal = null;
