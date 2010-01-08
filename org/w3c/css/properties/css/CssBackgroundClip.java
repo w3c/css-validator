@@ -37,14 +37,19 @@ import static org.w3c.css.values.CssOperator.COMMA;
 public class CssBackgroundClip extends CssProperty {
 
     private static final String propertyName = "background-clip";
-    public static CssIdent border_box;
-    public static CssIdent padding_box;
+    public final static CssIdent border_box;
+    public final static CssIdent padding_box;
 
     Object value;
 
     static {
         border_box = CssIdent.getIdent("border-box");
         padding_box = CssIdent.getIdent("padding-box");
+    }
+
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return (border_box.equals(ident) ||
+                padding_box.equals(ident));
     }
 
     /**
@@ -65,7 +70,7 @@ public class CssBackgroundClip extends CssProperty {
 
         ArrayList<CssValue> values = new ArrayList<CssValue>();
 
-        CssValue val = expression.getValue();
+        CssValue val;
         char op;
 
         while (!expression.end()) {
@@ -76,7 +81,7 @@ public class CssBackgroundClip extends CssProperty {
                     if (inherit.equals(val)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
-                        if ((values.size() > 0)||(expression.getCount() > 1)) {
+                        if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }

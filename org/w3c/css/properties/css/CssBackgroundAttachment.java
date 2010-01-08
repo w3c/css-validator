@@ -53,6 +53,10 @@ public class CssBackgroundAttachment extends CssProperty {
         allowed_values.put("local", CssIdent.getIdent("local"));
     }
 
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return allowed_values.containsKey(ident.toString());
+    }
+
     Object value;
 
     /**

@@ -25,7 +25,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-size
- *
+ * <p/>
  * <p/>
  * Name: 	background-size
  * Value: 	&lt;bg-size&gt; [ , &lt;bg-size&gt; ]*
@@ -55,6 +55,10 @@ public class CssBackgroundSize extends CssProperty {
         allowed_values.put("auto", auto);
         allowed_values.put("cover", CssIdent.getIdent("cover"));
         allowed_values.put("contain", CssIdent.getIdent("contain"));
+    }
+
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return allowed_values.containsKey(ident.toString());
     }
 
     Object value;

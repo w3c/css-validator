@@ -23,7 +23,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-origin
- *
+ * <p/>
  * Name: 	background-origin
  * Value: 	&lt;bg-origin&gt; [ , &lt;bg-origin&gt; ]*
  * Initial: 	padding-box
@@ -32,12 +32,12 @@ import static org.w3c.css.values.CssOperator.COMMA;
  * Percentages: 	N/A
  * Media: 	visual
  * Computed value: 	same as specified value
- *
+ * <p/>
  * For elements rendered as a single box, specifies the background positioning
  * area. For elements rendered as multiple boxes (e.g., inline boxes on several
  * lines, boxes on several pages) specifies which boxes 'box-decoration-break'
- *  operates on to determine the background positioning area(s).
- *
+ * operates on to determine the background positioning area(s).
+ * <p/>
  * &lt;bg-origin&gt; = border-box | padding-box | content-box
  */
 
@@ -51,9 +51,15 @@ public class CssBackgroundOrigin extends CssProperty {
     Object value;
 
     static {
-        border_box  = CssIdent.getIdent("border-box");
+        border_box = CssIdent.getIdent("border-box");
         padding_box = CssIdent.getIdent("padding-box");
         content_box = CssIdent.getIdent("content-box");
+    }
+
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return (border_box.equals(ident) ||
+                padding_box.equals(ident) ||
+                content_box.equals(ident));
     }
 
     /**
@@ -67,10 +73,11 @@ public class CssBackgroundOrigin extends CssProperty {
      * Create a new CssBackgroundClip
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect value
      */
     public CssBackgroundOrigin(ApplContext ac, CssExpression expression,
-                             boolean check) throws InvalidParamException {
+                               boolean check) throws InvalidParamException {
 
         ArrayList<CssValue> values = new ArrayList<CssValue>();
 
@@ -85,7 +92,7 @@ public class CssBackgroundOrigin extends CssProperty {
                     if (inherit.equals(val)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
-                        if ((values.size() > 0)||(expression.getCount() > 1)) {
+                        if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }

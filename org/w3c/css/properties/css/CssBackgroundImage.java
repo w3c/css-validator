@@ -11,6 +11,7 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -42,6 +43,9 @@ public class CssBackgroundImage extends CssProperty {
 
     Object url = null;
 
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return none.equals(ident);
+    }
     /**
      * Create a new CssBackgroundImage
      */

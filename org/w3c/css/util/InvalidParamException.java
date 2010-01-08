@@ -96,8 +96,11 @@ public class InvalidParamException extends ParseException {
             return "can't find the error message for " + error;
         } else {
             // replace all parameters
-            for (int i = 0; (i = str.indexOf("%s")) >= 0;) {
-                str = str.substring(0, i) + arg1 + str.substring(i + 2);
+            int i;
+            while ((i = str.indexOf("%s")) >= 0) {
+                StringBuilder sb = new StringBuilder(str.substring(0, i));
+                sb.append(arg1).append(str.substring(i + 2));
+                str = sb.toString();
                 arg1 = arg2;
             }
             return str;
