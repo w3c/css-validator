@@ -2063,6 +2063,11 @@ test markup also accepts 3 properties: warning, profile and medium
       <description>css3-background: Valid 'background-position' values</description>
       <result valid="true"/>
     </test>
-  </type>
+    <test profile="css3">
+      <file>testsuite/properties/css3/css3-background/background-001.css</file>
+      <description>css3-background: Valid 'background' values</description>
+      <result valid="true"/>
+    </test>
+ </type>
 
 </testsuite>
