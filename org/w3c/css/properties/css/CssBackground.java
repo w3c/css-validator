@@ -235,26 +235,36 @@ public class CssBackground extends CssProperty {
         CssExpression exp = new CssExpression();
         char op = expression.getOperator();
         exp.addValue(expression.getValue());
+        int last_val = -1;
 
         CssBackgroundPosition bg_pos;
         bg_pos = new CssBackgroundPosition(ac, exp, check);
         // good we have a valid value, try something better..
-        try {
-            for (int i = 0; i < 3; i++) {
-                if ((op == SPACE) && !expression.end()) {
-                    expression.next();
-                    if (expression.end()) {
-                        break;
-                    }
-                    exp.addValue(expression.getValue());
-                    exp.starts();
-                    bg_pos = new CssBackgroundPosition(ac, exp, check);
-
+        expression.mark();
+        // we MUST try all the cases, as we can have something
+        // invalid using 3 values (incompatible definitions)
+        // but valid using 4 values...
+        // example top 12% is invalid, top 12% center is valid...
+        for (int i = 0; i < 3; i++) {
+            if ((op == SPACE) && !expression.end()) {
+                expression.next();
+                if (expression.end()) {
+                    break;
                 }
+                exp.addValue(expression.getValue());
+                exp.starts();
+                try {
+                    bg_pos = new CssBackgroundPosition(ac, exp, check);
+                    last_val = i;
+                } catch (InvalidParamException ipe) {
+                }
+
             }
-        } catch (InvalidParamException ipe) {
-            // roll back
-            expression.precedent();
+        }
+        expression.reset();
+        while (last_val >= 0) {
+            expression.next();
+            last_val--;
         }
         return bg_pos.get();
     }
