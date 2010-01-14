@@ -215,7 +215,7 @@
       (<a href="http://www.csail.mit.edu/">
 <acronym title="Massachusetts Institute of Technology">MIT</acronym>
 </a>,
-      <a href="http://www.ercim.org/">
+      <a href="http://www.ercim.eu/">
 <acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym>
 </a>,
       <a href="http://www.keio.ac.jp/">Keio</a>),
