@@ -249,6 +249,9 @@ error.angle: %s nu este un unghi valid. Valorile trebuie sa fie intre 0 si 360
 # used by org.w3c.css.values.CssNumber
 error.zero: numai 0 poate fi un %s. Trebuie sa pui o unitate dupa numar
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s nu este valid, numai valori mai mari decat 0 sunt acceptate
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Proprietatea %s nu exista
 error.noexistence-media: Proprietatea %s nu exista pentru media %s
