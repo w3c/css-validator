@@ -255,6 +255,9 @@ error.angle: %s не является допустимым углом. Знач�
 # used by org.w3c.css.values.CssNumber
 error.zero: только 0 может быть %s. Вы должны указать после числа единицы измерения
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: Неверное значение %s. Допускаются только значения больше 0.
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Свойство %s не существует
 error.noexistence-media: Свойство %s не существует для среды %s
