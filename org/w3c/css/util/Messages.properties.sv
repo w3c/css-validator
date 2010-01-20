@@ -260,6 +260,9 @@ error.angle: %s är inte en giltig vinkel. Värdet måste vara mellan 0 och 360
 # used by org.w3c.css.values.CssNumber
 error.zero: endast 0 kan vara en %s. Du måste ange en enhet efter ditt tal
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s är inte giltigt, endast värden större än 0 tillåts
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Egenskap %s finns inte
 error.noexistence-media: Egenskap %s finns inte för medium %s
