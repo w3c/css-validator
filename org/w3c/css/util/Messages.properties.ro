@@ -358,3 +358,8 @@ warning.float-no-width: In (x)HTML+CSS, elemetele flotante trebuie sa ai o latim
 
 parser.charsetcss1: regulile @charset nu pot fi folosite in CSS1
 parser.attrcss1: Atributul selectorilor sunt invalide in CSS
+
+parser.invalid_id_selector: Selectorul ID este invalid
+parser.import_not_allowed: @import nu sunt permise dupa nici o comanda valida decat @charset si @import
+
+error.bg_order: In the CSS3 background definition, 'bg_position' must occur before / 'bg_size' if both are present
