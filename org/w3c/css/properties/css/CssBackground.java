@@ -757,6 +757,9 @@ public class CssBackground extends CssProperty {
         if (position != null) {
             position.important = true;
         }
+        if (size != null) {
+            size.important = true;
+        }
     }
 
     /**
@@ -769,28 +772,37 @@ public class CssBackground extends CssProperty {
     public void print(CssPrinterStyle printer) {
         if ((color != null && image != null &&
                 repeat != null && attachment != null &&
-                position != null) &&
+                position != null && size != null) &&
                 (getImportant() ||
                         (!image.important &&
                                 !color.important &&
                                 !repeat.important &&
                                 !attachment.important &&
+                                !size.important &&
                                 !position.important))) {
             if (color.byUser || image.byUser || repeat.byUser
-                    || attachment.byUser || position.byUser) {
+                    || attachment.byUser || size.byUser || position.byUser) {
                 printer.print(this);
             }
         } else {
-            if (color != null)
+            if (color != null) {
                 color.print(printer);
-            if (image != null)
+            }
+            if (image != null) {
                 image.print(printer);
-            if (repeat != null)
+            }
+            if (repeat != null) {
                 repeat.print(printer);
-            if (attachment != null)
+            }
+            if (attachment != null) {
                 attachment.print(printer);
-            if (position != null)
+            }
+            if (position != null) {
                 position.print(printer);
+            }
+            if (size != null) {
+                size.print(printer);
+            }
         }
     }
 
@@ -818,6 +830,9 @@ public class CssBackground extends CssProperty {
         if (position != null) {
             position.setSelectors(selector);
         }
+        if (size != null) {
+            size.setSelectors(selector);
+        }
     }
 
     /**
@@ -843,6 +858,9 @@ public class CssBackground extends CssProperty {
         }
         if (position != null) {
             position.addToStyle(ac, style);
+        }
+        if (size != null) {
+            size.addToStyle(ac, style);
         }
     }
 
@@ -892,6 +910,9 @@ public class CssBackground extends CssProperty {
         }
         if (position != null) {
             position.setInfo(line, source);
+        }
+        if (size != null) {
+            size.setInfo(line, source);
         }
     }
 
