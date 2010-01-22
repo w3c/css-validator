@@ -169,6 +169,10 @@ public class CssBackgroundPosition extends CssProperty {
         return value;
     }
 
+    public void set(Object val) {
+        value = val;
+    }
+    
     /**
      * Returns the name of this property
      */

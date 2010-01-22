@@ -88,6 +88,10 @@ public class CssBackgroundColor extends CssProperty {
         return color;
     }
 
+
+    public void set(CssValue col) {
+        color = col;
+    }
     /**
      * Returns the color
      */

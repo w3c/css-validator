@@ -226,6 +226,9 @@ public class CssBackgroundSize extends CssProperty {
         return value;
     }
 
+    public void set(Object val) {
+        value = val;
+    }
     /**
      * Returns true if this property is "softly" inherited
      */

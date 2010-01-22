@@ -163,6 +163,7 @@ public class CssBackground extends CssProperty {
         } else {
             value = values;
         }
+        transform_into_individual_values();
     }
 
     private Object getCssBackgroundRepeatValue(ApplContext ac,
@@ -603,6 +604,85 @@ public class CssBackground extends CssProperty {
             v.color_value = (new CssBackgroundColor()).getColor();
         } else {
             v.color_value = v.color;
+        }
+    }
+
+    /**
+     * Transform the compound value into the equivalent individual
+     * values (used for conflict check, like color and background-color
+     * Note that the value verification already took place, so no need
+     * for extra check
+     */
+    private void transform_into_individual_values() {
+        if (value instanceof CssBackgroundValue) {
+            CssBackgroundValue v = (CssBackgroundValue) value;
+            if (v.color != null) {
+                color = new CssBackgroundColor();
+                color.set(v.color_value);
+            }
+            if (v.bg_image != null) {
+                image = new CssBackgroundImage();
+                image.set(v.bg_image_value);
+            }
+            if (v.repeat_style != null) {
+                repeat = new CssBackgroundRepeat();
+                repeat.set(v.repeat_style_value);
+            }
+            if (v.attachment != null) {
+                attachment = new CssBackgroundAttachment();
+                attachment.set(v.attachment_value);
+            }
+            if (v.bg_position != null) {
+                position = new CssBackgroundPosition();
+                position.set(v.bg_position_value);
+            }
+            if (v.bg_size != null) {
+                size = new CssBackgroundSize();
+                size.set(v.bg_size_value);
+            }
+        } else if (value instanceof ArrayList) {
+            ArrayList vlist = (ArrayList) value;
+            int len = vlist.size();
+            ArrayList<CssValue> images = new ArrayList<CssValue>(len);
+            ArrayList<CssValue> repeats = new ArrayList<CssValue>(len);
+            ArrayList<CssValue> positions = new ArrayList<CssValue>(len);
+            ArrayList<CssValue> attachments = new ArrayList<CssValue>(len);
+            ArrayList<CssValue> sizes = new ArrayList<CssValue>(len);
+
+            for (int i = 0; i < len; i++) {
+                CssBackgroundValue v = (CssBackgroundValue) vlist.get(i);
+                images.add(v.bg_image_value);
+                repeats.add(v.repeat_style_value);
+                positions.add(v.bg_position_value);
+                attachments.add(v.attachment_value);
+                sizes.add(v.bg_size_value);
+                if (v.color != null) {
+                    color = new CssBackgroundColor();
+                    color.set(v.color_value);
+                }
+            }
+            image = new CssBackgroundImage();
+            image.set(images);
+
+            repeat = new CssBackgroundRepeat();
+            repeat.set(repeats);
+
+            attachment = new CssBackgroundAttachment();
+            attachment.set(attachments);
+
+            position = new CssBackgroundPosition();
+            position.set(sizes);
+
+            size = new CssBackgroundSize();
+            size.set(sizes);
+        } else {
+            // FIXME TODO use inherit?
+            image = null;
+            repeat = null;
+            attachment = null;
+            color = null;
+            size = null;
+            position = null;
         }
     }
 

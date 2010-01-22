@@ -66,6 +66,10 @@ public class CssBackgroundAttachment extends CssProperty {
         value = scroll;
     }
 
+    public void set(Object val) {
+        value = val;
+    }
+
     /**
      * Creates a new CssBackgroundAttachment
      *

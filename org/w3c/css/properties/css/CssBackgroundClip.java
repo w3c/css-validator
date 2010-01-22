@@ -116,6 +116,10 @@ public class CssBackgroundClip extends CssProperty {
         this(ac, expression, false);
     }
 
+    public void set(Object val) {
+        value = val;
+    }
+    
     /**
      * Add this property to the CssStyle
      *

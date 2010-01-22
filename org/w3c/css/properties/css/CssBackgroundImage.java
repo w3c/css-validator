@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-image
- *
+ * <p/>
  * Name: 	background-image
  * Value: 	&lt;bg-image&gt; [ , &lt;bg-image&gt; ]*
  * Initial: 	none
@@ -30,11 +30,11 @@ import static org.w3c.css.values.CssOperator.COMMA;
  * Percentages: 	N/A
  * Media: 	visual
  * Computed value: 	as specified, but with URIs made absolute
- *
+ * <p/>
  * This property sets the background image(s) of an element. Images are drawn
  * with the first specified one on top (closest to the user) and each
  * subsequent image behind the previous one. Where
- *
+ * <p/>
  * &lt;bg-image&gt; = &lt;image&gt; | none
  */
 public class CssBackgroundImage extends CssProperty {
@@ -46,6 +46,7 @@ public class CssBackgroundImage extends CssProperty {
     public static boolean isMatchingIdent(CssIdent ident) {
         return none.equals(ident);
     }
+
     /**
      * Create a new CssBackgroundImage
      */
@@ -56,15 +57,15 @@ public class CssBackgroundImage extends CssProperty {
     /**
      * Creates a new CssBackgroundImage
      *
-     * @param ac the context
+     * @param ac         the context
      * @param expression The expression for this property
-     * @param check boolean
+     * @param check      boolean
      * @throws InvalidParamException Values are incorrect
      */
     public CssBackgroundImage(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
 
-        ArrayList<CssValue> values = new ArrayList <CssValue>();
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
         setByUser();
 
         CssValue val;
@@ -81,7 +82,7 @@ public class CssBackgroundImage extends CssProperty {
                     if (inherit.equals(val)) {
                         // if we got inherit after other values, fail
                         // if we got more than one value... fail
-                        if ((values.size()>0) || (expression.getCount()>1 )) {
+                        if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
                         }
@@ -119,6 +120,10 @@ public class CssBackgroundImage extends CssProperty {
 
     public Object get() {
         return url;
+    }
+
+    public void set(Object val) {
+        url = val;
     }
 
     /**
