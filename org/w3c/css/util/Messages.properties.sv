@@ -377,3 +377,4 @@ parser.attrcss1: Attributselektorer är inte giltiga i CSS1
 parser.invalid_id_selector: Ogiltig ID-selektor
 parser.import_not_allowed: @import kan bara föregås av satser av typ @charset och @import. 
 
+error.bg_order: I definitionen av CSS3 background måste 'bg_position' komma före / 'bg_size', om båda är angivna.
