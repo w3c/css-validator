@@ -257,6 +257,9 @@ error.angle: %s е невалиден ъгъл. Стойността трябв�
 # used by org.w3c.css.values.CssNumber
 error.zero: само 0 може да бъде %s. Трябва да въведете мерна единица след числото
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s е невалидна, позволени са само стойности по-големи от 0.
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Свойство %s не съществува
 error.noexistence-media: Свойство %s не съществува за медия %s
