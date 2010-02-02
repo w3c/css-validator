@@ -30,7 +30,7 @@ projection: projection
 screen: screen
 tty: TTY
 tv: TV
-presentation: presentation
+presentation: présentation
 
 type: Type
 no_special_type: Automatique
@@ -49,7 +49,7 @@ page_address: Adresse du document à valider
 address: Adresse
 submit_uri: Vérifier le document sélectionné
 validate_by_file_upload: Valider par Chargement de Fichier
-choose_document: Choisissez la feulle de style à valider
+choose_document: Choisissez la feuille de style à valider
 choose_local_file: Choisir un fichier local à valider
 local_CSS_file: Fichier CSS local
 submit_file: Valider le fichier selectionné
@@ -63,7 +63,7 @@ note_valide_html: Les resultats de la validation de feuilles de styles incorpor�
 
 W3C_validator_results: Résultats de la validation W3C CSS de
 # file_title: <!-- provided by the user -->
-CSS_validation_service: CSS validation Service
+CSS_validation_service: Service de validation CSS
 jump_to: Aller à
 # errors_count: <!-- generated on the fly -->
 errors: Erreurs
@@ -93,7 +93,7 @@ afin de revalider facilement, ou de permettre à d'autres de vérifier \
 facilement la validité de votre document, l'URI de cette page est :
 no_errors_forHTML_only_msg: uniquement avec des documents HTML/XML
 no_errors_bookmark_msg: Vous pouvez aussi l'ajouter directement à vos signets.
-top: Top
+top: Haut
 # hook_html_validator <!-- generated on the fly -->
 not-css1-style: /* ATTENTION! Ce n'est pas une propriété CSS1! */
 errors_sorry_msg: Désolé ! Les erreurs suivantes ont été trouvées :
@@ -108,12 +108,12 @@ home: Accueil
 about: À propos
 doc: Documentation
 dl: Télécharger
-feedback: Contact
+feedback: Commentaires
 credits: Remerciements
 home_title: Page d'accueil du service de validation CSS de W3C
 about_title: À propos de ce service
 doc_title: Documentation du service de validation CSS du W3C
-dl_title: Télécharger et installer le CSS validator
+dl_title: Télécharger et installer le validateur CSS
 feedback_title: Donner un avis à propos de ce service
 credits_title: Mentions et remerciements
 W3C_quality_msg: L'activité Assurance Qualité du W3C vous offre des outils Web gratuits de qualité et plus encore
@@ -133,7 +133,7 @@ output-encoding-name: utf-8
 warning.redefinition: Redéfinition de la propriété %s
 
 # used by xml parser
-warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.style-inside-comment: Ne mettez pas de règles de style à l'intérieur de commentaires HTML car l'application cliente peut les supprimer
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: %s et %s sont de la même couleur
@@ -239,7 +239,7 @@ error.local: Définition de format non valide local(<string>|<ident>+)
 error.unit: %s n'est pas une unité valable.
 
 # used by org.w3c.css.aural.ACssAzimuth
-error.degree: La position doit être decrite en degrés
+error.degree: La position doit être décrite en degrés
 
 # used by org.w3c.css.aural.ACssElevation
 error.elevation.range: L'élévation doit être exprimée en tant qu'angle, \
@@ -270,7 +270,7 @@ error.rgb: %s n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres he
 error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
-error.zero: only 0 can be a %s. You must put an unit after your number
+error.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Erreur inconnue
@@ -290,8 +290,8 @@ generator.unrecognize: Erreur lors de l'analyse grammaticale.
 generator.dontmixhtml: Erreur de Syntaxe: une feuille de style ne peut inclure de fragments de HTML.
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Le pseudo-élément %s ne peut apparaitre dans le contexte %s
-error.pseudo-class: La pseudo-classe .%s ne peut apparaitre dans le contexte HTML %s
+error.pseudo-element: Le pseudo-élément %s ne peut apparaître dans le contexte %s
+error.pseudo-class: La pseudo-classe .%s ne peut apparaître dans le contexte HTML %s
 warning.pseudo-classes: La pseudo-class d'ancre %s n'a d'effet que sur l'element 'A'
 error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu(e)
 error.id: Le sélécteur d'identificateur n'est pas valide! \
@@ -343,7 +343,7 @@ parser.id_dim: En CSS1, il est possible d'avoir un nom d'id \
 commençant par un chiffre ("#55xx") sauf s'il s'agit d'une dimension \
 ("#55cm").
 
-parser.charset: La règle @charset doit apparaitre au début du fichier. \
+parser.charset: La règle @charset doit apparaître au début du fichier. \
 Vérifiez qu'il n'y a pas d'espace avant.
 
 parser.charsetspecial:Ce profil a une syntaxe très spécifique pour @charset : \
@@ -387,13 +387,15 @@ error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
 warning.otherprofile : propriété %s n'existe pas dans ce profile mais est validée conforme à un autre profile
-warning.deprecated : cette valeur est déconseillÃ©e
+warning.deprecated : cette valeur est déconseillée
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Le Combinateur de sélecteurs %s n'est pas admis dans ce profile ou cette version
 
-warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir leur largeur déclarée. Seul les éléments ayant une largeur intrinsève (html, img, input, textarea, select, or object) ne sont pas sujets a cette règle
+warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir leur largeur déclarée. Seul les éléments ayant une largeur intrinsèque (html, img, input, textarea, select, or object) ne sont pas sujets à cette règle
 parser.charsetcss1: la règle @charset ne doit pas être utilisée en CSS1
 parser.attrcss1: les sélecteurs d'attribut ne doivent pas être utilisés en CSS1
 parser.invalid_id_selector: Sélécteur d'ID invalide
 parser.import_not_allowed: @import n'est pas autorisé s'il apparaît après toute déclaration autre que @charset et @import.
+
+error.bg_order: Dans la définition de CSS3 background, 'bg_position' doit apparaître avant / 'bg_size' si les deux sont présent
