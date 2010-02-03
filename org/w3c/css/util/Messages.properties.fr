@@ -272,6 +272,9 @@ error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360
 # used by org.w3c.css.values.CssNumber
 error.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s n'est pas valide, seules les valeurs strictement supérieures à zéro sont autorisées.
+
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Erreur inconnue
 
