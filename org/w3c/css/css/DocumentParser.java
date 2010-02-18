@@ -7,22 +7,30 @@
 
 package org.w3c.css.css;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
-
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @version $Revision$
  */
 public final class DocumentParser {
+
+    public static MimeType wap;
+
+    static {
+        try {
+        wap = new MimeType("application/vnd.wap.xhtml+xml");
+        } catch (MimeTypeFormatException mex) {
+            wap = null;
+        }
+    }
 
     private StyleSheet style;
     private URL htmlURL;
@@ -112,7 +120,8 @@ public final class DocumentParser {
 		    parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
 		    style = parser.getStyleSheet();
 		} else if ((contentType.match(MimeType.TEXT_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
-			   || (contentType.match(MimeType.APPLICATION_XHTML_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
+			   || (contentType.match(MimeType.APPLICATION_XHTML_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
+                || (contentType.match(wap) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
 		    // TagSoup ?
 		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
 		    handler.parse(urlString, connection);
