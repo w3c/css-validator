@@ -412,6 +412,13 @@
             rel="alternate">Romanian</a>
         </li>
         
+        <li><a href="validator.html.hu"
+            lang="hu"
+            xml:lang="hu"
+            hreflang="hu"
+            rel="alternate">Magyar</a>
+        </li>
+        
         <li><a href="validator.html.zh-cn"
             lang="zh-cn"
             xml:lang="zh-cn"

@@ -78,7 +78,7 @@
         <option value="screen">screen</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
-        <option value="presentation">presentation</option>
+        <option value="presentation">présentation</option>
       </select>
     </td>
     </tr>
@@ -113,7 +113,7 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Valider par Chargement de Fichier</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Choisissez la feulle de style à valider :</p>
+        <p class="instructions">Choisissez la feuille de style à valider :</p>
         <p>
           <label title="Choisir un fichier local à valider" for="file">Fichier CSS local :
           <input type="file" id="file" name="file" size="30" /></label></p>
@@ -155,7 +155,7 @@
         <option value="screen">screen</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
-        <option value="presentation">presentation</option>
+        <option value="presentation">présentation</option>
       </select>
     </td>
     </tr>
@@ -232,7 +232,7 @@
         <option value="screen">screen</option>
         <option value="tty">TTY</option>
         <option value="tv">TV</option>
-        <option value="presentation">presentation</option>
+        <option value="presentation">présentation</option>
       </select>
     </td>
     </tr>
@@ -286,8 +286,8 @@
   <ul class="navbar" id="menu">
     <li><a href="about.html" title="À propos de ce service">À propos</a> <span class="hideme">|</span></li>
     <li><a href="documentation.html" title="Documentation du service de validation CSS du W3C">Documentation</a> <span class="hideme">|</span></li>
-    <li><a href="DOWNLOAD.html" title="Télécharger et installer le CSS validator">Télécharger</a> <span class="hideme">|</span></li>
-    <li><a href="Email.html" title="Donner un avis à propos de ce service">Contact</a> <span class="hideme">|</span></li>
+    <li><a href="DOWNLOAD.html" title="Télécharger et installer le validateur CSS">Télécharger</a> <span class="hideme">|</span></li>
+    <li><a href="Email.html" title="Donner un avis à propos de ce service">Commentaires</a> <span class="hideme">|</span></li>
     <li><a href="thanks.html" title="Mentions et remerciements">Remerciements</a></li>
   </ul>
 
@@ -410,6 +410,13 @@
             xml:lang="ro"
             hreflang="ro"
             rel="alternate">Romanian</a>
+        </li>
+        
+        <li><a href="validator.html.hu"
+            lang="hu"
+            xml:lang="hu"
+            hreflang="hu"
+            rel="alternate">Magyar</a>
         </li>
         
         <li><a href="validator.html.zh-cn"
