@@ -17,6 +17,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 /**
  * @version $Revision$
  */
@@ -76,6 +83,40 @@ public final class DocumentParser {
 	    }
 	} else {
 	    URLConnection connection = null;
+
+	    if ("https".equals(urlProtocol)) {
+		    // Step 1: trust manager
+		    // Create a trust manager that does not validate certificate chains
+		    TrustManager[] trustAllCerts = new TrustManager[] {
+			    new X509TrustManager() {
+				    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+					    return null;
+				    }
+				    public void checkClientTrusted(
+					    java.security.cert.X509Certificate[] certs, String authType) {
+				    }
+				    public void checkServerTrusted(
+						    java.security.cert.X509Certificate[] certs, String authType) {
+					    }
+			    }
+		    };
+
+		    // Install the all-trusting trust manager
+		    try {
+			    SSLContext sc = SSLContext.getInstance("SSL");
+			    sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		    } catch (Exception e) {
+		    }
+
+		    // Step 2: hostname verifier
+		    HostnameVerifier hv = new HostnameVerifier() {
+			    public boolean verify(String urlHostName, SSLSession session) {
+				    return true;
+			    }
+		    };
+		    HttpsURLConnection.setDefaultHostnameVerifier(hv);
+	    }
 
 	    try {
 		boolean isXML = false;
