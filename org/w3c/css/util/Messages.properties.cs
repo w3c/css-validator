@@ -114,7 +114,7 @@ supporter: podporovatelem W3C
 
 # Definuje vaši vlastní chybu a varovné hlášení
 content-type: text/html; charset=utf-8
-content-language: česky
+content-language: cs
 output-encoding-name: utf-8
 
 # Můžete změnit úroveň varování takto (příklad) :
