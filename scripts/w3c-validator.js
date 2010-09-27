@@ -53,7 +53,7 @@ var W3C = {
 			var html = legend.innerHTML;
 			var pid = W3C.Sections[i].id.replace(/-/g, '_');
 			var opt = '+with_options';
-			legend.setHTML('<a href="#'+ pid + opt + '">' + html + '</a>');
+			legend.set('html', '<a href="#'+ pid + opt + '">' + html + '</a>');
 			var option = W3C.Options[i];
 			var link = legend.getFirst();
 			link.addEvent('click', function(event){
