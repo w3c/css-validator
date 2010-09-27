@@ -51,10 +51,12 @@ var W3C = {
 		//creating links on legends, with event listeners
 
 		W3C.Legends.each(function(legend, i){
+			var html = legend.innerHTML; 
 			var pid = W3C.Sections[i].id.replace(/-/g, '_');
 			var opt = '+with_options';
+			legend.set('html', '<a href="#'+ pid + opt + '">' + html + '</a>'); 
 			var option = W3C.Options[i];
-			var link = legend;
+			var link = legend.getFirst();
 			link.addEvent('click', function(event){
 			  option.setStyle('display', 'block'); // before any slide effect, set display:block
 				var block = (option.getStyle('margin-top').toInt() == 0);
