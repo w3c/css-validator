@@ -54,7 +54,7 @@ var W3C = {
 			var pid = W3C.Sections[i].id.replace(/-/g, '_');
 			var opt = '+with_options';
 			var option = W3C.Options[i];
-			var link = legend.getFirst();
+			var link = legend;
 			link.addEvent('click', function(event){
 			  option.setStyle('display', 'block'); // before any slide effect, set display:block
 				var block = (option.getStyle('margin-top').toInt() == 0);
