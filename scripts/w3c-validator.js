@@ -5,7 +5,6 @@ var W3C = {
 		//select elements
 		
 		W3C.Legends = $$('legend.toggletext');
-		W3C.LegendImage = $$('.toggleicon');
 		W3C.Options = $$('div.options');
 		
 		W3C.TabSet = $('tabset_tabs');
@@ -21,7 +20,7 @@ var W3C = {
 			var value = submit.value;
 			submit.setStyle('display', 'none');
 			var link = new Element('a', {'class': 'submit', 'href': '#'});
-			var span = new Element('span').setHTML(value).inject(link);
+			var span = new Element('span').set('text', value).inject(link);
 			link.injectAfter(submit).addEvent('click', function(event){
 				new Event(event).stop();
 				W3C.Forms[i].submit();
@@ -89,7 +88,7 @@ var W3C = {
 		
 		W3C.Sections.each(function(section, i){
 			var fakeId = section.id.replace(/-/g, '_');
-			W3C.SectionFx[i] = new Fx.Style(section, 'opacity', {'wait': false, 'duration': 220});
+			W3C.SectionFx[i] = new Fx.Tween(section, {property:'opacity', link: 'cancel', duration: 220});
 			section.setStyle('display', 'none');
 			if (W3C.Location[0] && fakeId.contains(W3C.Location[0].replace(/-/g, '_'))){
 				W3C.displaySection(i, true);
@@ -112,31 +111,11 @@ var W3C = {
 	refreshOptionLinks: function(options, idx){
 		
 		if (!options){
-			W3C.LegendImage.each(function(legendimage, i){
-				legendimage.setProperties({
-					src: './images/arrow-closed.png',
-					alt: 'Show '
-				});
-				legendimage.removeClass('toggled');
-			});
 			if ($chk(idx)) W3C.OptionsFx[idx].slideOut();
 			W3C.Legends.removeClass('toggled');
-
 		} else {
-			W3C.LegendImage.each(function(legendimage, i){
-				legendimage.setProperties({
-					src: './images/arrow-open.png',
-					alt: 'Hide '
-				});
-				legendimage.addClass('toggled');
 			if ($chk(idx)) W3C.OptionsFx[idx].slideIn();
 			W3C.Legends.addClass('toggled');
-				W3C.Legends.each(function(legend, i){
-					var link = legend.getFirst();
-					var linkhref = link.getProperty("href").replace("+with_options", '');
-					link.setProperty("href", linkhref);
-				});
-			});
 		}
 		
 		W3C.TabLinks.each(function(link){
