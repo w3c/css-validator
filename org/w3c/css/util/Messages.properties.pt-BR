@@ -373,4 +373,5 @@ parser.attrcss1: Seletores de atributo não são válidos nas CSS1
 parser.invalid_id_selector: Seletor ID inválido
 parser.import_not_allowed: Não é permitido o uso da diretiva @import após uma declaração que não seja @charset ou outra @import.
 
+error.bg_order:  Na definição da propriedade background nas CSS3, 'bg_position' deve ocorrer antes de / 'bg_size' caso ambas estejam presentes.
 
