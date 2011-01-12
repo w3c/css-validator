@@ -86,14 +86,22 @@
         <th id="header_warning_uri">
       <label for="warning_uri">Warnings :</label>
     </th>
-    <td
-        colspan="3"
-         headers="header_warning_uri">
+    <td headers="header_warning_uri">
       <select id="warning_uri" name="warning"> 
         <option value="2">All</option>
         <option selected="selected" value="1">Normal report</option>
         <option value="0">Most important</option>
         <option value="no">No warnings</option>
+      </select>
+    </td>
+    <th id="header_vext_warning_uri">
+      <label for"vext_warning_uri">Vendor Extensions: </label>
+    </th>
+    <td headers="header_vext_warning_uri">
+      <select id="vext_warning_uri" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warning</option>
+        <option value="false">Error</option>
       </select>
     </td>
     </tr>
@@ -160,17 +168,25 @@
     </td>
     </tr>
     <tr>
-        <th id="header_warning_upload">
+    <th id="header_warning_upload">
       <label for="warning_upload">Warnings :</label>
     </th>
-    <td
-        colspan="3"
-         headers="header_warning_upload">
+    <td headers="header_warning_upload">
       <select id="warning_upload" name="warning"> 
         <option value="2">All</option>
         <option selected="selected" value="1">Normal report</option>
         <option value="0">Most important</option>
         <option value="no">No warnings</option>
+      </select>
+    </td>
+    <th id="header_vext_warning_upload">
+      <label for"vext_warning_upload">Vendor Extensions: </label>
+    </th>
+    <td headers="header_vext_warning_upload">
+      <select id="vext_warning_upload" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warning</option>
+        <option value="false">Error</option>
       </select>
     </td>
     </tr>
@@ -257,6 +273,16 @@
         <option selected="selected" value="1">Normal report</option>
         <option value="0">Most important</option>
         <option value="no">No warnings</option>
+      </select>
+    </td>
+    <th id="header_vext_warning_input">
+      <label for"vext_warning_input">Vendor Extensions: </label>
+    </th>
+    <td headers="header_vext_warning_input">
+      <select id="vext_warning_input" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warning</option>
+        <option value="false">Error</option>
       </select>
     </td>
     </tr>

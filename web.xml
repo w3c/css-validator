@@ -8,6 +8,10 @@
   <servlet>
     <servlet-name>validator</servlet-name>
     <servlet-class>org.w3c.css.servlet.CssValidator</servlet-class>
+    <init-param>
+      <param-name>vendorExtensionsAsWarnings</param-name>
+      <param-value>true</param-value>
+    </init-param>
   </servlet>
   
   <servlet-mapping>

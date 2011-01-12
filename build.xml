@@ -51,20 +51,20 @@
     <get dest="tmp/commons-collections-3.2.1-bin.tar.gz" src="http://www.apache.org/dist/commons/collections/binaries/commons-collections-3.2.1-bin.tar.gz" usetimestamp="true"/>
     <get dest="tmp/commons-lang-2.5-bin.tar.gz" src="http://www.apache.org/dist/commons/lang/binaries/commons-lang-2.5-bin.tar.gz" usetimestamp="true"/>
     <get dest="tmp/velocity-1.6.4.tar.gz" src="http://www.apache.org/dist/velocity/engine/1.6.4/velocity-1.6.4.tar.gz" usetimestamp="true"/>
-    <get dest="tmp/Xerces-J-bin.2.9.1.tar.gz" src="http://www.apache.org/dist/xerces/j/Xerces-J-bin.2.9.1.tar.gz" usetimestamp="true"/>
+    <get dest="tmp/Xerces-J-bin.2.10.0.tar.gz" src="http://www.apache.org/dist/xerces/j/Xerces-J-bin.2.10.0.tar.gz" usetimestamp="true"/>
 
     <untar compression="gzip" src="tmp/jigsaw_2.2.6.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/commons-collections-3.2.1-bin.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/commons-lang-2.5-bin.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-1.6.4.tar.gz" dest="tmp"/>
-    <untar compression="gzip" src="tmp/Xerces-J-bin.2.9.1.tar.gz" dest="tmp"/>
+    <untar compression="gzip" src="tmp/Xerces-J-bin.2.10.0.tar.gz" dest="tmp"/>
 
     <copy file="tmp/Jigsaw/classes/jigsaw.jar" tofile="lib/jigsaw.jar"/>
     <copy file="tmp/commons-collections-3.2.1/commons-collections-3.2.1.jar" tofile="lib/commons-collections-3.2.1.jar"/>
     <copy file="tmp/commons-lang-2.5/commons-lang-2.5.jar" tofile="lib/commons-lang-2.5.jar"/>
     <copy file="tmp/velocity-1.6.4/velocity-1.6.4.jar" tofile="lib/velocity-1.6.4.jar"/>
-    <copy file="tmp/xerces-2_9_1/xercesImpl.jar" tofile="lib/xercesImpl.jar"/>
-    <copy file="tmp/xerces-2_9_1/xml-apis.jar" tofile="lib/xml-apis.jar"/>
+    <copy file="tmp/xerces-2_10_0/xercesImpl.jar" tofile="lib/xercesImpl.jar"/>
+    <copy file="tmp/xerces-2_10_0/xml-apis.jar" tofile="lib/xml-apis.jar"/>
     <get dest="lib/tagsoup-1.2.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.jar"/>
   </target>
 

@@ -69,6 +69,7 @@ public class ApplContext {
     String medium;
     private String link;
     int warningLevel = 0;
+    boolean treatVendorExtensionsAsWarnings = false;
 
     FakeFile fakefile = null;
     String   faketext = null;
@@ -208,6 +209,15 @@ public class ApplContext {
 
     public void setLink(String queryString) {
 	this.link = queryString;
+    }
+
+    public boolean getTreatVendorExtensionsAsWarnings() {
+        return treatVendorExtensionsAsWarnings;
+    }
+
+    public void setTreatVendorExtensionsAsWarnings(
+        boolean treatVendorExtensionsAsWarnings) {
+        this.treatVendorExtensionsAsWarnings = treatVendorExtensionsAsWarnings;
     }
 
     /**

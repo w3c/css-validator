@@ -36,6 +36,7 @@ import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
 import org.w3c.css.properties.svg.AtRuleColorProfile;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
 import org.w3c.css.css.StyleSheetCom;

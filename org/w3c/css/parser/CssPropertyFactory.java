@@ -11,6 +11,7 @@ import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
@@ -187,6 +188,10 @@ public class CssPropertyFactory implements Cloneable {
 	// the property does not exist in this profile
 	// this is an error... or a warning if it exists in another profile
 	if (classname == null) {
+            if (ac.getTreatVendorExtensionsAsWarnings() &&
+                isVendorExtension(property)) {
+                throw new WarningParamException("vendor-extension", property);
+            }
 	    ArrayList<String> pfsOk = new ArrayList<String>();
 			
 	    for (int i=0; i<SORTEDPROFILES.length; ++i) {
@@ -262,5 +267,10 @@ public class CssPropertyFactory implements Cloneable {
 	    className = PropertiesLoader.getProfile(ac.getCssVersion()).getProperty("@" + atRule.keyword() + "." + property);
 	}
 	return className;
+    }
+
+    private boolean isVendorExtension(String property) {
+      return property.length() > 0 &&
+          (property.charAt(0) == '-' || property.charAt(0) == '_');
     }
 }

@@ -153,6 +153,18 @@ public final class CssValidator extends HttpServlet {
 	}
     }
 
+    private void processVendorExtensionParameter(HttpServletRequest request,
+                                                 ApplContext context) {
+        String vendorExtensionParameter = request.getParameter("vextwarning");
+        if (vendorExtensionParameter == null ||
+            vendorExtensionParameter.length() == 0) {
+          vendorExtensionParameter =
+              getServletConfig().getInitParameter("vendorExtensionsAsWarnings");
+        }
+        context.setTreatVendorExtensionsAsWarnings(
+            Boolean.valueOf(vendorExtensionParameter));
+    }
+
     /**
      * Performs the HTTP GET operation.
      * An HTTP BAD_REQUEST error is reported if
@@ -337,6 +349,9 @@ public final class CssValidator extends HttpServlet {
 	if (error != null && error.equals("no")) {
 	    errorReport = false;
 	}
+
+        // Allow vendor extensions to just show up as warnings.
+        processVendorExtensionParameter(req, ac);
 
 	// debug mode
 	Util.verbose("\nServlet request ");
@@ -614,6 +629,9 @@ public final class CssValidator extends HttpServlet {
 	if (error != null && error.equals("no")) {
 	    errorReport = false;
 	}
+
+        // Allow vendor extensions to just show up as warnings.
+        processVendorExtensionParameter(req, ac);
 
 	// CSS version
 	if (profile != null && (!"none".equals(profile) ||"".equals(profile))) {

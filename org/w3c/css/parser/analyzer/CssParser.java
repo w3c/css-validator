@@ -38,6 +38,7 @@ import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
 import org.w3c.css.properties.svg.AtRuleColorProfile;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
 import org.w3c.css.css.StyleSheetCom;
@@ -168,14 +169,15 @@ public abstract class CssParser implements CssParserConstants {
     public void ReInitWithAc(InputStream stream, ApplContext ac,
                              String charset)
     {
+        InputStream is = /*new  CommentSkipperInputStream(stream);*/stream;
         if (charset == null) {
             charset = "iso-8859-1";
         }
         InputStreamReader isr = null;
         try {
-            isr = new InputStreamReader(stream, charset);
+            isr = new InputStreamReader(is, charset);
         } catch (UnsupportedEncodingException uex) {
-            isr = new InputStreamReader(stream);
+            isr = new InputStreamReader(is);
         }
         // reinit, it can not happen...
         // ...in theory ;)
@@ -3074,9 +3076,16 @@ CssExpression param = null;
                 }
             }
         } catch (InvalidParamException e) {
-                incompatible_error = false;
+            incompatible_error = false;
+            if (e instanceof WarningParamException) {
+                WarningParamException warningException =
+                    (WarningParamException) e;
+                ac.getFrame().addWarning(warningException.getMessage(),
+                                         warningException.getMessageArgs());
+            } else {
                 values.starts();
                 addError(e, (CssExpression) values);
+            }
         }
         {if (true) return null;}
     } catch (NumberFormatException e) {
@@ -3735,6 +3744,14 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
+  private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_86()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
+    return false;
+  }
+
   private boolean jj_3R_86() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3742,14 +3759,6 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
-    return false;
-  }
-
-  private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_86()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
     return false;
   }
 
