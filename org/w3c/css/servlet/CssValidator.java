@@ -153,9 +153,8 @@ public final class CssValidator extends HttpServlet {
 	}
     }
 
-    private void processVendorExtensionParameter(HttpServletRequest request,
-                                                 ApplContext context) {
-        String vendorExtensionParameter = request.getParameter("vextwarning");
+    private void processVendorExtensionParameter(
+        String vendorExtensionParameter, ApplContext context) {
         if (vendorExtensionParameter == null ||
             vendorExtensionParameter.length() == 0) {
           vendorExtensionParameter =
@@ -351,7 +350,7 @@ public final class CssValidator extends HttpServlet {
 	}
 
         // Allow vendor extensions to just show up as warnings.
-        processVendorExtensionParameter(req, ac);
+        processVendorExtensionParameter(req.getParameter("vextwarning"), ac);
 
 	// debug mode
 	Util.verbose("\nServlet request ");
@@ -503,6 +502,7 @@ public final class CssValidator extends HttpServlet {
 	String error = null;
 	String profile = "none";
 	String usermedium = "all";
+        String vendorExtensionAsWarnings = null;
 
 	ServletInputStream in = req.getInputStream();
 
@@ -578,7 +578,9 @@ public final class CssValidator extends HttpServlet {
 		    if (usermedium == null || "".equals(usermedium)) {
 			usermedium = "all";
 		    }
-		}
+		} else if (tmp[i].getName().equals("vextwarning")) {
+                  vendorExtensionAsWarnings = (String) tmp[i].getValue();
+                }
 	    }
 	} catch (Exception e) {
 	    System.out.println("Oups! Error in Util/Codecs.java?!?");
@@ -631,7 +633,7 @@ public final class CssValidator extends HttpServlet {
 	}
 
         // Allow vendor extensions to just show up as warnings.
-        processVendorExtensionParameter(req, ac);
+        processVendorExtensionParameter(vendorExtensionAsWarnings, ac);
 
 	// CSS version
 	if (profile != null && (!"none".equals(profile) ||"".equals(profile))) {
