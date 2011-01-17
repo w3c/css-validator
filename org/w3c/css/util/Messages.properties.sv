@@ -271,6 +271,7 @@ warning.noexistence: Egenskap %s finns inte för %s men finns för %s
 warning.noexistence-media: Egenskap %s finns inte för medium %s
 warning.notforusermedium : Egenskap %s finns inte för detta usermedium
 warning.noothermedium : Egenskaper för andra media kanske inte fungerar för user-medium
+warning.vendor-extension : Egenskap %s är inte en känd leverantörsutvidgning
 # used by org.w3c.css.parser.AtRule*
 error.noatruleyet: Andra @-regler än @import stöds inte av CSS1 %s
 # used by org.w3c.css.parser.analyzer.CssParser
