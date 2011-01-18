@@ -33,10 +33,10 @@
         <legend class="tabset_label">Validate by URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
-          Enter the URI of a document (HTML with CSS or CSS only) you would like validated :
+          Enter the URI of a document (HTML with CSS or CSS only) you would like validated:
         </p>
         <p>
-           <label title="Address of page to Validate" for="uri">Address :
+           <label title="Address of page to Validate" for="uri">Address:
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
@@ -46,7 +46,7 @@
     <table>
     <tr>
     <th id="header_profile_uri">
-      <label for="profile_uri">Profile :</label>
+      <label for="profile_uri">Profile:</label>
     </th>
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
@@ -64,7 +64,7 @@
       </select>
     </td>
     <th id="header_medium_uri">
-      <label for="medium_uri">Medium :</label>
+      <label for="medium_uri">Medium:</label>
     </th>
     <td headers="header_medium_uri">
       <select id="medium_uri" name="usermedium">
@@ -84,7 +84,7 @@
     </tr>
     <tr>
         <th id="header_warning_uri">
-      <label for="warning_uri">Warnings :</label>
+      <label for="warning_uri">Warnings:</label>
     </th>
     <td headers="header_warning_uri">
       <select id="warning_uri" name="warning"> 
@@ -95,13 +95,13 @@
       </select>
     </td>
     <th id="header_vext_warning_uri">
-      <label for"vext_warning_uri">Vendor Extensions: </label>
+      <label for"vext_warning_uri">Vendor Extensions:</label>
     </th>
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warning</option>
-        <option value="false">Error</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
       </select>
     </td>
     </tr>
@@ -121,9 +121,9 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Validate by file upload</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Choose the document you would like validated :</p>
+        <p class="instructions">Choose the document you would like validated:</p>
         <p>
-          <label title="Choose a Local File to Upload and Validate" for="file">Local CSS file :
+          <label title="Choose a Local File to Upload and Validate" for="file">Local CSS file:
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
     <legend class="toggletext" title="Show/Hide extra validation options">More Options</legend>
@@ -131,7 +131,7 @@
     <table>
     <tr>
     <th id="header_profile_upload">
-      <label for="profile_upload">Profile :</label>
+      <label for="profile_upload">Profile:</label>
     </th>
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
@@ -149,7 +149,7 @@
       </select>
     </td>
     <th id="header_medium_upload">
-      <label for="medium_upload">Medium :</label>
+      <label for="medium_upload">Medium:</label>
     </th>
     <td headers="header_medium_upload">
       <select id="medium_upload" name="usermedium">
@@ -169,7 +169,7 @@
     </tr>
     <tr>
     <th id="header_warning_upload">
-      <label for="warning_upload">Warnings :</label>
+      <label for="warning_upload">Warnings:</label>
     </th>
     <td headers="header_warning_upload">
       <select id="warning_upload" name="warning"> 
@@ -180,13 +180,13 @@
       </select>
     </td>
     <th id="header_vext_warning_upload">
-      <label for"vext_warning_upload">Vendor Extensions: </label>
+      <label for"vext_warning_upload">Vendor Extensions:</label>
     </th>
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warning</option>
-        <option value="false">Error</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
       </select>
     </td>
     </tr>
@@ -206,7 +206,7 @@
       <fieldset id="validate-by-input"  class="tabset_content front">
         <legend class="tabset_label">Validate by direct input</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
-        <p class="instructions">Enter the CSS you would like validated :</p>
+        <p class="instructions">Enter the CSS you would like validated:</p>
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
@@ -216,7 +216,7 @@
     <table>
     <tr>
     <th id="header_profile_input">
-      <label for="profile_input">Profile :</label>
+      <label for="profile_input">Profile:</label>
     </th>
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
@@ -234,7 +234,7 @@
       </select>
     </td>
     <th id="header_medium_input">
-      <label for="medium_input">Medium :</label>
+      <label for="medium_input">Medium:</label>
     </th>
     <td headers="header_medium_input">
       <select id="medium_input" name="usermedium">
@@ -254,7 +254,7 @@
     </tr>
     <tr>
         <th id="header_type_input">
-      <label for="type_input">Type :</label>
+      <label for="type_input">Type:</label>
     </th>
     <td headers="header_type_input">
       <select id="type_input" name="type">
@@ -264,7 +264,7 @@
       </select>
     </td>
         <th id="header_warning_input">
-      <label for="warning_input">Warnings :</label>
+      <label for="warning_input">Warnings:</label>
     </th>
     <td
          headers="header_warning_input">
@@ -276,13 +276,13 @@
       </select>
     </td>
     <th id="header_vext_warning_input">
-      <label for"vext_warning_input">Vendor Extensions: </label>
+      <label for"vext_warning_input">Vendor Extensions:</label>
     </th>
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warning</option>
-        <option value="false">Error</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
       </select>
     </td>
     </tr>
