@@ -131,7 +131,7 @@ warning.redefinition: Redefinition of %s
 
 # used by xml parser 
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
-warning.style-type: You should add a 'type' attribute with a value of 'text/css' to the &lt;style&gt; element
+warning.style-type: You should add a 'type' attribute with a value of 'text/css' to the 'style' element
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Same color for %s and %s
