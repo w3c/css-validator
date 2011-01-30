@@ -154,35 +154,35 @@ div {
 /* background-size single values */
 
 div {
-  background: / 0;
+  background: top left / 0;
 }
 div {
-  background: / 12em;
+  background: top left / 12em;
 }
 div {
-  background: / 42px;
+  background: top left / 42px;
 }
 div {
-  background: / 12%;
+  background: top left / 12%;
 }
 div {
-  background: / auto;
+  background: top left / auto;
 }
 div {
-  background: / 12em auto;
+  background: top left / 12em auto;
 }
 div {
-  background: / auto 42%;
+  background: top left / auto 42%;
 }
 div {
-  background: / 12px 42%;
+  background: top left / 12px 42%;
 }
 div {
-  background: / cover;
+  background: top left / cover;
 }
 div {
-  background: / contain;
+  background: top left / contain;
 }
 div {
-  background: / auto, /auto auto, /12px 42%, /cover, /contain, /12em;
+  background: top left / auto, top left /auto auto, top left /12px 42%, top left /cover, top left /contain, top left/12em;
 }
