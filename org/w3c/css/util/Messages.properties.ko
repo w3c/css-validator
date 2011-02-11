@@ -252,6 +252,9 @@ error.angle: %s는 올바른 각도가 아닙니다. 0과 360사이의 값만 �
 # used by org.w3c.css.values.CssNumber
 error.zero: 오직 0만이 %s일 수 있습니다. 값 뒤에는 반드시 단위가 표현되어야 합니다
 
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s는 유효하지 않습니다. 0보다 큰 값만이 허용됩니다.
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: 속성 %s는 존재하지 않는 속성입니다
 error.noexistence-media: 속성 %s는 매체 %s에 존재하지 않습니다
@@ -260,6 +263,7 @@ warning.noexistence: 속성 %s는 %s에 존재하지 않지만 %s에는 존재�
 warning.noexistence-media: 속성 %s는 매체 %s에 존재하지 않습니다
 warning.notforusermedium : 속성 %s는 이 usermedium에 대하여 존재하지 않습니다
 warning.noothermedium : 다른 매체를 위한 속성은 usermedium에서 동작하지 않을 수 있습니다
+warning.vendor-extension: 속성 %s는 알 수 없는 벤더 확장입니다
 # used by org.w3c.css.parser.AtRule*
 error.noatruleyet: @import를 제외한 여타 @규칙은 CSS1 %s 에서 지원되지 않을 수 있습니다
 # used by org.w3c.css.parser.analyzer.CssParser
@@ -340,9 +344,11 @@ error.onlyATSC: %s는 atsc-tv 매체에서만 사용 가능합니다
 warning.otherprofile: 속성 %s는 이 프로파일에 존재하지 않습니다만, 다른 프로파일에 의하여 유효하다고 검증되었습니다
 warning.deprecated: 이 값은 더 이상 사용되지 않습니다
 
-warning.float-no-width: In (x)HTML+CSS, floated elements need to have a width declared. Only elements with an intrinsic width (html, img, input, textarea, select, or object) are not affected <!-- translation unavailable -->
+warning.float-no-width: (x)HTML+CSS에서는 플로팅된 요소에는 너비(width) 선언이 반드시 필요합니다. 고유의 너비를 갖는 요소(html, img, input, textarea, select, 또는 object)는 해당사항이 없습니다.
 
-parser.charsetcss1: @charset rules can not be used in CSS1 <!-- translation unavailable -->
-parser.attrcss1: Attribute selectors are invalid in CSS1 <!-- translation unavailable -->
-parser.invalid_id_selector: Invalid ID selector <!-- translation unavailable -->
-parser.import_not_allowed: @import are not allowed after any valid statement other than @charset and @import. <!-- translation unavailable -->
+parser.charsetcss1: @charset은 CSS1에는 존재하지 않습니다.
+parser.attrcss1: 속성선택자는 CSS1에는 존재하지 않습니다.
+parser.invalid_id_selector: 올바르지 않은 ID 선택자
+parser.import_not_allowed: @import는 @charset과 @import 이외의 유효한 절의 뒤에 올 수 없습니다.
+
+error.bg_order: CSS3 background 선언 시 'bg_position'과 'bg_size'가 동시에 존재하는 경우 'bg_position'이 / 'bg_size'보다 먼저 선언되어야 합니다.
