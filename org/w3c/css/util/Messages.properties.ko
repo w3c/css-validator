@@ -127,6 +127,7 @@ warning.redefinition: %s에 대한 재정의
 
 # used by xml parser 
 warning.style-inside-comment: HTML 문서의 주석에 스타일 규칙을 넣으면 유저 에이전트(브라우저 등)에 의하여 누락될 수 있으므로 권장되지 않습니다
+warning.style-type: style 요소에는 text/css라는 값을 갖는 type 속성을 추가해야 합니다.
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: %s와 %s는 같은 색상
