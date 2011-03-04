@@ -134,6 +134,8 @@ warning.redefinition: Redéfinition de la propriété %s
 
 # used by xml parser
 warning.style-inside-comment: Ne mettez pas de règles de style à l'intérieur de commentaires HTML car l'application cliente peut les supprimer
+warning.style-type: Vous devriez ajouter un attribut 'type' ayant pour valeur 'text/css' à l'élément 'style'
+warning.link-type: Vous devriez ajouter un attribut 'type' ayant pour valeur 'text/css' à l'élément 'link'
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: %s et %s sont de la même couleur
