@@ -134,6 +134,8 @@ warning.redefinition: Erneute Definition von %s
 
 # used by xml parser
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
+warning.link-type: Sie sollten dem 'link' Element  das Attribut 'type' mit einem Wert von 'text/css' hinzufügen.
+warning.style-type: Sie sollten dem 'style' Element  das Attribut 'type' mit einem Wert von 'text/css' hinzufügen.
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Gleiche Farbe für %s und %s
@@ -240,6 +242,9 @@ error.angle: %s ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 lieg
 
 # used by org.w3c.css.values.CssNumber
 error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
+
+#used by org.w3c.css.properties.CssColumnCount
+error.strictly-positive: %s ist ungültig, es sind nur Werte größer 0 zulässig.
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Die Eigenschaft %s existiert nicht
@@ -365,3 +370,5 @@ parser.charsetcss1: @charset-Regeln können im CSS1-Profil nicht benutzt werden.
 parser.attrcss1: Attribut-Selektoren sind in CSS1 ungültig
 parser.invalid_id_selector: Ungültiger ID-Selektor
 parser.import_not_allowed:  @import-Regeln sind nach jeglichen gültigen Ausdrücken außer @charset und weiteren @import-Regeln verboten
+
+error.bg_order: Gemäß der CSS3 Definition für Hintergründe  muss 'bg_position' vor 'bg_size' gesetzt werden sofern beide Eigenschaften verwendet werden.
