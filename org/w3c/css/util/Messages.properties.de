@@ -350,6 +350,7 @@ error.noatruleyet : Andere At-Regeln als @import werden von CSS1 nicht unterst&u
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
 warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
+warning.vendor-extension: Die Eigenschaft %s ist eine unbekannte Erweiterung des Herstellers.
 
 error.unrecognized.link: Nicht erkanntes Linkelement oder xml-stylesheet PI.
 
