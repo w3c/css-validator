@@ -419,6 +419,13 @@
             rel="alternate">Magyar</a>
         </li>
         
+        <li><a href="validator.html.el"
+            lang="el"
+            xml:lang="el"
+            hreflang="el"
+            rel="alternate">Ελληνικά</a>
+        </li>
+        
         <li><a href="validator.html.zh-cn"
             lang="zh-cn"
             xml:lang="zh-cn"
