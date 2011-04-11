@@ -60,7 +60,7 @@
     </th>
     <td
     #if ($tab_id != "input")
-    colspan="3"
+    colspan="1"
     #end
      headers="header_warning_$tab_id">
       <select id="warning_$tab_id" name="warning"> 
@@ -72,7 +72,7 @@
     </td>
 
     <th id="header_vext_warning_$tab_id">
-      <label for"vext_warning_input">$vendorext:</label>     
+      <label id="vext_warning_input">$vendorext:</label>     
     </th>
     <td headers="header_vext_warning_$tab_id">
       <select id="vext_warning_$tab_id" name="vextwarning">
