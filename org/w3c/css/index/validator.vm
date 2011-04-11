@@ -6,7 +6,7 @@
     <table>
     <tr>
     <th id="header_profile_$tab_id">
-      <label for="profile_$tab_id">$profile :</label>
+      <label for="profile_$tab_id">$profile:</label>
     </th>
     <td headers="header_profile_$tab_id">
       <select id="profile_$tab_id" name="profile">
@@ -24,7 +24,7 @@
       </select>
     </td>
     <th id="header_medium_$tab_id">
-      <label for="medium_$tab_id">$medium :</label>
+      <label for="medium_$tab_id">$medium:</label>
     </th>
     <td headers="header_medium_$tab_id">
       <select id="medium_$tab_id" name="usermedium">
@@ -45,7 +45,7 @@
     <tr>
     #if ($tab_id == "input")
     <th id="header_type_$tab_id">
-      <label for="type_$tab_id">$type :</label>
+      <label for="type_$tab_id">$type:</label>
     </th>
     <td headers="header_type_$tab_id">
       <select id="type_$tab_id" name="type">
@@ -56,7 +56,7 @@
     </td>
     #end
     <th id="header_warning_$tab_id">
-      <label for="warning_$tab_id">$warnings :</label>
+      <label for="warning_$tab_id">$warnings:</label>
     </th>
     <td
     #if ($tab_id != "input")
@@ -70,6 +70,18 @@
         <option value="no">$no_warnings</option>
       </select>
     </td>
+
+    <th id="header_vext_warning_$tab_id">
+      <label for"vext_warning_input">$vendorext:</label>     
+    </th>
+    <td headers="header_vext_warning_$tab_id">
+      <select id="vext_warning_$tab_id" name="vextwarning">
+        <option value="">$vext_default</option>
+        <option value="true">$vext_warnings</option>
+        <option value="false">$vext_errors</option>
+      </select>
+    </td>
+
     </tr>
     </table>
     </div><!-- item_contents -->
@@ -94,10 +106,10 @@
         <legend class="tabset_label">$validate_by_URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
-          $enter_uri :
+          $enter_uri:
         </p>
         <p>
-           <label title="$page_address" for="uri">$address :
+           <label title="$page_address" for="uri">$address:
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
@@ -109,9 +121,9 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">$validate_by_file_upload</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">$choose_document :</p>
+        <p class="instructions">$choose_document:</p>
         <p>
-          <label title="$choose_local_file" for="file">$local_CSS_file :
+          <label title="$choose_local_file" for="file">$local_CSS_file:
           <input type="file" id="file" name="file" size="30" /></label></p>
           #set($tab_id = "upload")
           #moreOptionMacro($submit_file $tab_id)
@@ -121,7 +133,7 @@
       <fieldset id="validate-by-input"  class="tabset_content front">
         <legend class="tabset_label">$validate_by_input</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
-        <p class="instructions">$enter_CSS :</p>
+        <p class="instructions">$enter_CSS:</p>
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
