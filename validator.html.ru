@@ -87,7 +87,7 @@
       <label for="warning_uri">Предупреждения:</label>
     </th>
     <td
-        colspan="3"
+        colspan="1"
          headers="header_warning_uri">
       <select id="warning_uri" name="warning"> 
         <option value="2">Все</option>
@@ -98,7 +98,7 @@
     </td>
 
     <th id="header_vext_warning_uri">
-      <label for"vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Vendor Extensions:</label>     
     </th>
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
@@ -176,7 +176,7 @@
       <label for="warning_upload">Предупреждения:</label>
     </th>
     <td
-        colspan="3"
+        colspan="1"
          headers="header_warning_upload">
       <select id="warning_upload" name="warning"> 
         <option value="2">Все</option>
@@ -187,7 +187,7 @@
     </td>
 
     <th id="header_vext_warning_upload">
-      <label for"vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Vendor Extensions:</label>     
     </th>
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
@@ -285,7 +285,7 @@
     </td>
 
     <th id="header_vext_warning_input">
-      <label for"vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Vendor Extensions:</label>     
     </th>
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">
