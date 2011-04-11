@@ -33,10 +33,10 @@
         <legend class="tabset_label">Valideer via een URI</legend>
         <form method="get" action="validator">
         <p class="instructions">
-          Geef de URI op van een document (HTML met CSS of alleen CSS) dat je wilt valideren :
+          Geef de URI op van een document (HTML met CSS of alleen CSS) dat je wilt valideren:
         </p>
         <p>
-           <label title="Adres van de pagina om de valideren" for="uri">Adres :
+           <label title="Adres van de pagina om de valideren" for="uri">Adres:
              <input type="text" name="uri" id="uri" size="45" />
            </label>
         </p>
@@ -46,7 +46,7 @@
     <table>
     <tr>
     <th id="header_profile_uri">
-      <label for="profile_uri">Profiel :</label>
+      <label for="profile_uri">Profiel:</label>
     </th>
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
@@ -64,7 +64,7 @@
       </select>
     </td>
     <th id="header_medium_uri">
-      <label for="medium_uri">Medium :</label>
+      <label for="medium_uri">Medium:</label>
     </th>
     <td headers="header_medium_uri">
       <select id="medium_uri" name="usermedium">
@@ -84,7 +84,7 @@
     </tr>
     <tr>
         <th id="header_warning_uri">
-      <label for="warning_uri">Waarschuwingen :</label>
+      <label for="warning_uri">Waarschuwingen:</label>
     </th>
     <td
         colspan="3"
@@ -96,6 +96,18 @@
         <option value="no">Geen</option>
       </select>
     </td>
+
+    <th id="header_vext_warning_uri">
+      <label for"vext_warning_input">Vendor Extensions:</label>     
+    </th>
+    <td headers="header_vext_warning_uri">
+      <select id="vext_warning_uri" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
+      </select>
+    </td>
+
     </tr>
     </table>
     </div><!-- item_contents -->
@@ -113,9 +125,9 @@
       <fieldset id="validate-by-upload"  class="tabset_content front">
         <legend class="tabset_label">Valideer via het uploaden van een bestand</legend>
       <form method="post" enctype="multipart/form-data" action="validator">
-        <p class="instructions">Kies het document dat je wilt valideren :</p>
+        <p class="instructions">Kies het document dat je wilt valideren:</p>
         <p>
-          <label title="Kies een lokaal bestand dat je wilt uploaden en valideren" for="file">Lokaal CSS bestand :
+          <label title="Kies een lokaal bestand dat je wilt uploaden en valideren" for="file">Lokaal CSS bestand:
           <input type="file" id="file" name="file" size="30" /></label></p>
                       <fieldset id="extra_opt_upload" class="moreoptions">
     <legend class="toggletext" title="Weergeven/Verbergen van extra validatie opties">Meer Opties</legend>
@@ -123,7 +135,7 @@
     <table>
     <tr>
     <th id="header_profile_upload">
-      <label for="profile_upload">Profiel :</label>
+      <label for="profile_upload">Profiel:</label>
     </th>
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
@@ -141,7 +153,7 @@
       </select>
     </td>
     <th id="header_medium_upload">
-      <label for="medium_upload">Medium :</label>
+      <label for="medium_upload">Medium:</label>
     </th>
     <td headers="header_medium_upload">
       <select id="medium_upload" name="usermedium">
@@ -161,7 +173,7 @@
     </tr>
     <tr>
         <th id="header_warning_upload">
-      <label for="warning_upload">Waarschuwingen :</label>
+      <label for="warning_upload">Waarschuwingen:</label>
     </th>
     <td
         colspan="3"
@@ -173,6 +185,18 @@
         <option value="no">Geen</option>
       </select>
     </td>
+
+    <th id="header_vext_warning_upload">
+      <label for"vext_warning_input">Vendor Extensions:</label>     
+    </th>
+    <td headers="header_vext_warning_upload">
+      <select id="vext_warning_upload" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
+      </select>
+    </td>
+
     </tr>
     </table>
     </div><!-- item_contents -->
@@ -190,7 +214,7 @@
       <fieldset id="validate-by-input"  class="tabset_content front">
         <legend class="tabset_label">Valideer via directe invoer</legend>
         <form action="validator" enctype="multipart/form-data" method="post">
-        <p class="instructions">Voer de CSS in die je wilt valideren :</p>
+        <p class="instructions">Voer de CSS in die je wilt valideren:</p>
         <p>
           <textarea name="text" rows="12" cols="70"></textarea>
         </p>      
@@ -200,7 +224,7 @@
     <table>
     <tr>
     <th id="header_profile_input">
-      <label for="profile_input">Profiel :</label>
+      <label for="profile_input">Profiel:</label>
     </th>
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
@@ -218,7 +242,7 @@
       </select>
     </td>
     <th id="header_medium_input">
-      <label for="medium_input">Medium :</label>
+      <label for="medium_input">Medium:</label>
     </th>
     <td headers="header_medium_input">
       <select id="medium_input" name="usermedium">
@@ -238,7 +262,7 @@
     </tr>
     <tr>
         <th id="header_type_input">
-      <label for="type_input">Type :</label>
+      <label for="type_input">Type:</label>
     </th>
     <td headers="header_type_input">
       <select id="type_input" name="type">
@@ -248,7 +272,7 @@
       </select>
     </td>
         <th id="header_warning_input">
-      <label for="warning_input">Waarschuwingen :</label>
+      <label for="warning_input">Waarschuwingen:</label>
     </th>
     <td
          headers="header_warning_input">
@@ -259,6 +283,18 @@
         <option value="no">Geen</option>
       </select>
     </td>
+
+    <th id="header_vext_warning_input">
+      <label for"vext_warning_input">Vendor Extensions:</label>     
+    </th>
+    <td headers="header_vext_warning_input">
+      <select id="vext_warning_input" name="vextwarning">
+        <option value="">Default</option>
+        <option value="true">Warnings</option>
+        <option value="false">Errors</option>
+      </select>
+    </td>
+
     </tr>
     </table>
     </div><!-- item_contents -->
