@@ -8,6 +8,16 @@
  */
 package org.w3c.css.util;
 
+import org.apache.velocity.io.UnicodeInputStream;
+import org.w3c.www.mime.MimeType;
+import org.w3c.www.mime.MimeTypeFormatException;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,13 +26,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
-
 import java.util.zip.GZIPInputStream;
-
-import org.w3c.www.mime.MimeType;
-import org.w3c.www.mime.MimeTypeFormatException;
-
-import org.apache.velocity.io.UnicodeInputStream;
 
 /**
  * @version $Revision$
@@ -154,6 +158,39 @@ public class HTTPURL {
 	return getConnection(url, count, null);
     }
 
+
+    private static void setSSLVerifier(HttpsURLConnection uConn) {
+	TrustManager[] trustAllCerts = new TrustManager[] {
+	    new X509TrustManager() {
+		public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+		    return null;
+		}
+		public void checkClientTrusted(
+					       java.security.cert.X509Certificate[] certs, String authType) {
+		}
+		public void checkServerTrusted(
+					       java.security.cert.X509Certificate[] certs, String authType) {
+		}
+	    }
+	};
+	
+	// Install the all-trusting trust manager
+	try {
+	    SSLContext sc = SSLContext.getInstance("SSL");
+	    sc.init(null, trustAllCerts, new java.security.SecureRandom());
+	    uConn.setSSLSocketFactory(sc.getSocketFactory());
+	} catch (Exception e) {
+	}
+	
+	// Step 2: hostname verifier
+	HostnameVerifier hv = new HostnameVerifier() {
+		public boolean verify(String urlHostName, SSLSession session) {
+		    return true;
+		}
+	    };
+	uConn.setHostnameVerifier(hv);
+    }
+
     private static URLConnection getConnection(URL url, int count,
 					       ApplContext ac)
 	throws IOException
@@ -165,16 +202,12 @@ public class HTTPURL {
 
 	if (Util.servlet) {
 	    String protocol = url.getProtocol();
-	if (! (
-		("https".equalsIgnoreCase(protocol)) || ("http".equalsIgnoreCase(protocol))
-	   )  ) {
+	    if (!(("https".equalsIgnoreCase(protocol)) || ("http".equalsIgnoreCase(protocol)))) {
  		System.err.println( "[WARNING] : someone is trying to get the file: "
  				    + url );
  		throw new FileNotFoundException("import " + url +
  						": Operation not permitted");
  	    }
-
-
 	}
 
 	URLConnection urlC = url.openConnection();
@@ -214,6 +247,11 @@ public class HTTPURL {
 	if (urlC instanceof HttpURLConnection) {
 	    HttpURLConnection httpURL = (HttpURLConnection) urlC;
 	    int status;
+
+	    httpURL.setInstanceFollowRedirects(false);
+	    if (urlC instanceof HttpsURLConnection) {
+		setSSLVerifier((HttpsURLConnection) urlC);
+	    }
 	    try {
 		status = httpURL.getResponseCode();
 	    } catch (FileNotFoundException e) {
@@ -228,6 +266,7 @@ public class HTTPURL {
 		break;
 	    case HttpURLConnection.HTTP_MOVED_PERM:
 	    case HttpURLConnection.HTTP_MOVED_TEMP:
+	    case 307:
 		try {
 		    URL u = getURL(httpURL.getHeaderField("Location"));
 		    return getConnection(u, count+1, ac);
