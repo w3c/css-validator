@@ -379,3 +379,6 @@ error.bg_order: В CSS3 дефиницията за фон, 'bg_position' тря
 
 warning.style-type: Трябва да добавите атрибут 'type' със стойност 'text/css' към 'style' елемента
 warning.link-type: Трябва да добавите атрибут  'type' със стойност 'text/css' към 'link' елемента
+
+# vendor extensions
+vext_errors: Грешки
