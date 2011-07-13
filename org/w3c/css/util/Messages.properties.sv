@@ -379,3 +379,9 @@ parser.invalid_id_selector: Ogiltig ID-selektor
 parser.import_not_allowed: @import kan bara föregås av satser av typ @charset och @import. 
 
 error.bg_order: I definitionen av CSS3 background måste 'bg_position' komma före / 'bg_size', om båda är angivna.
+
+# vendor extensions:
+vendorext: Leverantörsutvidgningar
+vext_default: Standardvärde
+vext_errors: Fel
+vext_warnings: Varningar
