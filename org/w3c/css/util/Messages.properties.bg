@@ -376,3 +376,5 @@ parser.invalid_id_selector: Невалиден ID селектор
 parser.import_not_allowed: @import правила не се допускат след какво да е валидно заявление различно от @charset и @import.
 
 error.bg_order: В CSS3 дефиницията за фон, 'bg_position' трябва да фигурира преди / 'bg_size' ако и двете са представени
+
+warning.style-type: Трябва да добавите атрибут 'type' със стойност 'text/css' към 'style' елемента
