@@ -385,3 +385,7 @@ vendorext: Leverantörsutvidgningar
 vext_default: Standardvärde
 vext_errors: Fel
 vext_warnings: Varningar
+
+warning.link-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'link'-elementet
+warning.style-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'style'-elementet
+
