@@ -372,3 +372,5 @@ parser.attrcss1: De Attribute selectors zijn niet compatibel met CSS1
 parser.invalid_id_selector: Niet valide ID selector
 parser.import_not_allowed: @import is niet toegestaan na een valide statement anders dan @charset en @import
 
+error.bg_order: In de CSS3 background definitie moet 'bg_position' voor 'bg_size' staan als beide aanwezig zijn
+
