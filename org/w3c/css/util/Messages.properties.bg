@@ -383,3 +383,4 @@ warning.link-type: Трябва да добавите атрибут  'type' с�
 # vendor extensions
 vext_errors: Грешки
 vext_warnings: Предупреждения
+vext_default: По подразбиране
