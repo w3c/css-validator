@@ -168,7 +168,7 @@ warning.block-level: Diese Eigenschaft gilt für Elemente auf Block-Level.
 warning.no-declaration: Keine Deklaration in der Regel
 
 # used by org.w3c.css.parser.CssFouffa 
-warning.unsupported-import: Importierte Style Sheets werden bei den Modi Direkteingabe und Datei-Upload nicht &uuml;berpr&uuml;ft
+warning.unsupported-import: Importierte Style Sheets werden bei den Modi Direkteingabe und Datei-Upload nicht überprüft
 
 # used by org.w3c.css.values.CssColor
 warning.out-of-range: %s ist außerhalb des Wertebereichs
@@ -315,8 +315,8 @@ parser.charsetspecial: In diesem Profil gilt eine sehr spezielle Syntax für die
 Auf @charset muss genau ein Leerzeichen folgen, gefolgt vom Namen der Enkodierung in Anführungszeichen, \
 direkt danach ein Semikolon.
 warning.charsetspecial: Dieses Profil nutzt eine sehr spezielle Syntax für @charset: \
-@charset gefolgt von genau einem Leerzeichen, gefolgt von der Bezeichnung der Encodingtechnik in Anf&uuml;hrungszeichen, \
-gefolgt ohne weitere Zwischenr&auml;ume von einem Semikolon.
+@charset gefolgt von genau einem Leerzeichen, gefolgt von der Bezeichnung der Encodingtechnik in Anführungszeichen, \
+gefolgt ohne weitere Zwischenräume von einem Semikolon.
 
 warning.old_id: In CSS1 konnte ein id Bezeichner, außer wenn es sich um eine Dimension handelte ("#55in"), \
 mit einer Ziffer beginnen ("#55ft"). In CSS2 werden solche ids als \
@@ -335,18 +335,18 @@ gültigen Wert.
 
 error.notforcss1 : Die Variable %s ist in CSS1 nicht vorhanden
 error.notforatsc: %s kann nicht mit dem ATSC Profil genutzt werden
-error.onlyATSC: %s diese Funktion ist nur für atsc-tv Medien verf&uuml;gbar
+error.onlyATSC: %s diese Funktion ist nur für atsc-tv Medien verfügbar
 error.notfortv: %s kann nicht mit dem TV Profil genutzt werden
 error.notversion: %s kann nicht mit dieser Version von CSS verwendet werden : %s
 warning.notversion: %s kann nicht mit dieser CSS Version verwendet werden: %s
 error.nogroup : Die Variable %s wurde durch toggle-group nicht gesetzt
 error.anglevalue : Der Wert muss durch 90 teilbar sein und zwischen -360 und 360 (Grad) liegen
 error.percentage : Es wurde ein Prozent-Wert erwartet
-error.noothermedium : Eigenschaften anderer Endger&auml;te k&ouml;nnten f&uuml;r das aktuelle Endger&auml; nicht funktionieren
-warning.noothermedium: Eigenschaften für andere Medien werden m&ouml;glicherweise mit dem gew&auml;hlten Medium nicht funktionieren
-error.notforusermedium : Die Eigenschaft %s existiert nicht f&uuml;r dieses Endger&auml;te-Profil
+error.noothermedium : Eigenschaften anderer Endgeräte könnten für das aktuelle Endgerä nicht funktionieren
+warning.noothermedium: Eigenschaften für andere Medien werden möglicherweise mit dem gewählten Medium nicht funktionieren
+error.notforusermedium : Die Eigenschaft %s existiert nicht für dieses Endgeräte-Profil
 warning.notforusermedium: die Eigenschaft %s existiert nicht für das gewählte Medium
-error.noatruleyet : Andere At-Regeln als @import werden von CSS1 nicht unterst&uuml;tzt.
+error.noatruleyet : Andere At-Regeln als @import werden von CSS1 nicht unterstützt.
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
 warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
