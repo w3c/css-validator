@@ -16,8 +16,9 @@ import org.w3c.css.properties.css.CssProperty;
  */
 public class Warning implements Comparable<Warning> {
     String sourceFile;
-    int hashSource;
-    int line;
+    int hashSource = 0;
+    int level = 0;
+    int line = 0;
     CssSelectors selector;
     String warningMessage;
 
@@ -36,8 +37,8 @@ public class Warning implements Comparable<Warning> {
         this.sourceFile = sourceFile;
         this.hashSource = sourceFile.hashCode() % 100;
         this.line = line;
-        this.warningMessage = warm(warningMessage, messages, ac);
-        this.line = getLevel(warningMessage, level, ac) + (line * 10);
+        this.warningMessage = warn(warningMessage, messages, ac);
+        this.level = getLevel(warningMessage, level, ac);
     }
 
     /**
@@ -51,7 +52,7 @@ public class Warning implements Comparable<Warning> {
      */
     public Warning(String sourceFile, int line,
                    String warningMessage, int level, ApplContext ac) {
-        this(sourceFile, line, warningMessage, level, new String[]{}, ac);
+        this(sourceFile, line, warningMessage, level, null, ac);
     }
 
     /**
@@ -70,10 +71,10 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
-        this.warningMessage = warm(warningMessage, new String[]{message1,
+        this.warningMessage = warn(warningMessage, new String[]{message1,
                 message2}, ac);
-        this.line = getLevel(warningMessage, level, ac)
-                + (property.getLine() * 10);
+        this.level = getLevel(warningMessage, level, ac);
+        this.line = property.getLine();
     }
 
     /**
@@ -91,9 +92,9 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
-        this.warningMessage = warm(warningMessage, messages, ac);
-        this.line = getLevel(warningMessage, level, ac)
-                + (property.getLine() * 10);
+        this.warningMessage = warn(warningMessage, messages, ac);
+        this.level = getLevel(warningMessage, level, ac);
+        this.line = property.getLine();
     }
 
     /**
@@ -168,7 +169,7 @@ public class Warning implements Comparable<Warning> {
      * Get the line number.
      */
     public int getLine() {
-        return line / 10;
+        return line;
     }
 
     /**
@@ -189,7 +190,7 @@ public class Warning implements Comparable<Warning> {
      * Get the warning level.
      */
     public int getLevel() {
-        return line % 10;
+        return level;
     }
 
     /**
@@ -200,7 +201,7 @@ public class Warning implements Comparable<Warning> {
     }
 
     public int getInternalOrder() {
-        return (hashSource * 100000) + line;
+        return (100000 * hashSource + 10 * line + level);
     }
 
     /**
@@ -213,15 +214,17 @@ public class Warning implements Comparable<Warning> {
         System.err.println(getLevel());
     }
 
-    private String warm(String warning, String[] args, ApplContext ac) {
+    private String warn(String warning, String[] args, ApplContext ac) {
         String str = ac.getMsg().getWarningString(warning);
         int j;
         if (str == null) {
             return "can't find the warning message for " + warning;
         } else {
             // replace all parameters.
-            for (j = 0; j < args.length; j++) {
-                str = str.replaceFirst("%s", args[j]);
+            if (args != null) {
+                for (j = 0; j < args.length; j++) {
+                    str = str.replaceFirst("%s", args[j]);
+                }
             }
             return str;
         }

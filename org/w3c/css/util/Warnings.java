@@ -6,7 +6,8 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.util;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Controls all warnings in the validator
@@ -15,8 +16,7 @@ import java.util.Arrays;
  * @see java.util.Vector
  */
 public final class Warnings {
-    private Warning[] warningData = new Warning[20];
-    private int warningCount = 0;
+    private ArrayList<Warning> warningData = new ArrayList<Warning>(16);
     private int ignoredWarningCount = 0;
     private int warningLevel = 0;
 
@@ -38,14 +38,13 @@ public final class Warnings {
     /**
      * Add a warning.
      *
-     * @param warm the warning
+     * @param warn the warning
      */
-    public final void addWarning(Warning warm) {
-        if (warm.getLevel() > warningLevel) {
+    public final void addWarning(Warning warn) {
+        if (warn.getLevel() > warningLevel) {
             ignoredWarningCount++;
         } else {
-            resize(1);
-            warningData[warningCount++] = warm;
+            warningData.add(warn);
         }
     }
 
@@ -56,21 +55,21 @@ public final class Warnings {
      */
     public final void addWarnings(Warnings warnings) {
         //resize(warnings.warningCount);
-        for (int i = 0; i < warnings.warningCount; i++) {
-            addWarning(warnings.warningData[i]);
-        }
+        warningData.addAll(warnings.warningData);
     }
 
     /**
      * Get the number of warnings
+     * @return the number of warnings
      */
     public final int getWarningCount() {
-        return warningCount;
+        return warningData.size();
     }
 
     /**
      * Get the number of ignored warnings 
      * (not corresponding to the warning level)
+     * @return the number of ignored warnings
      */
     public final int getIgnoredWarningCount() {
         return ignoredWarningCount;
@@ -80,22 +79,16 @@ public final class Warnings {
      * Get an array with all warnings.
      */
     public final Warning[] getWarnings() {
-        int oldCapacity = warningData.length;
-        if (warningCount < oldCapacity) {
-            Warning oldData[] = warningData;
-            warningData = new Warning[warningCount];
-            System.arraycopy(oldData, 0, warningData, 0, warningCount);
-        }
-        return warningData;
+        Warning out[] = new Warning[warningData.size()];
+        warningData.toArray(out);
+        return out;
     }
 
     /**
      * Sort all warnings by line and level
      */
     public final void sort() {
-        if (warningCount > 0) {
-            Arrays.sort(warningData, 0, warningCount);
-        }
+        Collections.sort(warningData);
     }
 
     /**
@@ -104,15 +97,6 @@ public final class Warnings {
      * @param index the warning index.
      */
     public final Warning getWarningAt(int index) {
-        return warningData[index];
-    }
-
-    private final void resize(int increment) {
-        int oldCapacity = warningData.length;
-        if (warningCount + increment + 1 > oldCapacity) {
-            Warning oldData[] = warningData;
-            warningData = new Warning[oldCapacity + increment + 1];
-            System.arraycopy(oldData, 0, warningData, 0, warningCount);
-        }
+        return warningData.get(index);
     }
 }
