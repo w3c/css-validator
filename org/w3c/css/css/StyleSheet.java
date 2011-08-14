@@ -18,7 +18,7 @@ import org.w3c.css.util.Warnings;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -29,7 +29,7 @@ import java.util.Vector;
 public class StyleSheet {
 
     private CssCascadingOrder cascading;
-    private Hashtable rules;
+    private HashMap<CssSelectors, CssSelectors> rules;
     private Errors errors;
     private Warnings warnings;
     private String type;
@@ -42,7 +42,7 @@ public class StyleSheet {
      * Create a new StyleSheet.
      */
     public StyleSheet() {
-        rules = new Hashtable();
+        rules = new HashMap<CssSelectors, CssSelectors>();
         errors = new Errors();
         warnings = new Warnings();
         cascading = new CssCascadingOrder();
@@ -62,7 +62,7 @@ public class StyleSheet {
      */
     public CssStyle getStyle(CssSelectors context) {
         if (debug) {
-            Util.verbose("StyleSheet.getStyle(" + context + ")");
+            Util.verbose("StyleSheet.getStyle(" + context + ')');
         }
         if (getContext(context) != null) {
             CssSelectors realContext = (CssSelectors) getContext(context);
@@ -148,7 +148,7 @@ public class StyleSheet {
     /**
      * Returns all rules
      */
-    public final Hashtable getRules() {
+    public final HashMap<CssSelectors, CssSelectors> getRules() {
         return rules;
     }
 
@@ -170,17 +170,16 @@ public class StyleSheet {
      * Find all conflicts for this style sheet.
      */
     public void findConflicts(ApplContext ac) {
-        Hashtable rules = getRules();
+        HashMap<CssSelectors, CssSelectors> rules = getRules();
         CssSelectors[] all = new CssSelectors[rules.size()];
-        all = (CssSelectors[]) rules.values().toArray(all);
+        all = rules.values().toArray(all);
         Arrays.sort(all);
 
-        for (int i = 0; i < all.length; i++) {
-            all[i].markAsFinal();
+        for (CssSelectors selector : all) {
+            selector.markAsFinal();
         }
-        for (int i = 0; i < all.length; i++) {
-            CssSelectors sel = all[i];
-            sel.findConflicts(ac, warnings, all);
+        for (CssSelectors selector : all) {
+            selector.findConflicts(ac, warnings, all);
         }
     }
 
@@ -191,7 +190,7 @@ public class StyleSheet {
      */
     protected CssSelectors getContext(CssSelectors selector) {
         if (getRules().containsKey(selector)) {
-            return (CssSelectors) getRules().get(selector);
+            return getRules().get(selector);
         } else {
             if (selector.getNext() != null) {
                 CssSelectors next = getContext(selector.getNext());

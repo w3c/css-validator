@@ -12,9 +12,9 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.Util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Enumeration;
 
 /**
  * <H3>
@@ -99,9 +99,8 @@ import java.util.Enumeration;
  */
 public final class CssCascadingOrder {
 
-    CssProperty[] propertyData;
+    ArrayList<CssProperty> propertyData;
     int propertyCount;
-    final int capacityIncrement = 10;
 
     /**
      * Order all properties and returns the winner.
@@ -113,17 +112,15 @@ public final class CssCascadingOrder {
      */
     public CssProperty order(CssProperty property,
                              StyleSheet style, CssSelectors selector) {
-        //int i = 0;
-        propertyData = new CssProperty[10];
-        propertyCount = 0;
+        propertyData = new ArrayList<CssProperty>();
+        CssProperty newProp = property;
+
         Util.verbose("CASCADING ORDER " + property.getPropertyName()
                 + " in " + selector);
 
         // looking for all declarations that apply to the element/property in
         // question. (step 1)
-        for (Enumeration e = style.getRules().elements(); e.hasMoreElements(); ) {
-            CssSelectors context = (CssSelectors) e.nextElement();
-
+        for (CssSelectors context : style.getRules().values()) {
             Util.verbose("######## test with " + context
                     + " and " + selector);
             //	    if (!selector.equals(context) && context.canApply(selector)) {
@@ -138,70 +135,74 @@ public final class CssCascadingOrder {
             }
         }
 
-        if (propertyCount == 0) {
+        if (propertyData.isEmpty()) {
             // if I found nothing
             if (selector.getNext() != null && property.inherited()) {
                 // here, I can try to resolve
                 Util.verbose("Found nothing ... try the next "
                         + selector.getNext());
                 CssStyle s = style.getStyle(selector.getNext());
-                property = property.getPropertyInStyle(s, true);
+                newProp = property.getPropertyInStyle(s, true);
             } // else use the default value
         } else {
             Util.verbose("@@@@@@@@@@@@@@ FOUND "
-                    + propertyCount + " properties");
+                    + propertyData.size() + " properties");
             // runs the cascading order
-            property = getProperty(selector);
+            newProp = getProperty(selector);
 
             if (property.isSoftlyInherited()
                     && selector.getNext() != null) {
                 // the value of the property is inherited,
                 // recompute again ....
                 CssStyle s = style.getStyle(selector.getNext());
-                property = property.getPropertyInStyle(s, true);
+                newProp = property.getPropertyInStyle(s, true);
             }
         }
         // duplicate the property because I change the context ...
-        property = property.duplicate();
-        property.setSelectors(selector);
+        newProp = newProp.duplicate();
+        newProp.setSelectors(selector);
 
-        return property;
+        return newProp;
     }
 
     // here you can find the algorithm for the cascading order
     private CssProperty getProperty(CssSelectors selector) {
+        CssProperty propertyArray[];
+        int propertyCount = propertyData.size();
+        // if we have only one, take the shortcut
+        if (propertyCount == 1) {
+            return propertyData.get(0);
+        }
+        // we need to build the array here as sort on collections can't sort
+        // on a subset, even on an ArrayList
+        propertyArray = new CssProperty[propertyCount];
+        propertyData.toArray(propertyArray);
 
         // sort by explicit weight and origin (step 2 and 3)
-        Arrays.sort(propertyData, 0, propertyCount, new CompareExplicitWeight());
-        int old = propertyData[0].getExplicitWeight();
+        Arrays.sort(propertyArray, 0, propertyCount, new CompareExplicitWeight());
+        int old = propertyArray[0].getExplicitWeight();
         int end = 0;
         while (end < propertyCount &&
-                propertyData[end].getExplicitWeight() == old) {
+                propertyArray[end].getExplicitWeight() == old) {
             end++;
         }
 
         // sort by specificity (step 4)
-        Arrays.sort(propertyData, 0, end, new CompareSpecificity());
-        old = propertyData[0].getSelectors().getSpecificity();
+        Arrays.sort(propertyArray, 0, end, new CompareSpecificity());
+        old = propertyArray[0].getSelectors().getSpecificity();
         end = 0;
         while (end < propertyCount &&
-                propertyData[end].getSelectors().getSpecificity() == old) {
+                propertyArray[end].getSelectors().getSpecificity() == old) {
             end++;
         }
 
         // sort by order specified (step 5)
-        Arrays.sort(propertyData, 0, end, new CompareOrderSpecified());
-        return propertyData[0];
+        Arrays.sort(propertyArray, 0, end, new CompareOrderSpecified());
+        return propertyArray[0];
     }
 
-    private final void addProperty(CssProperty property) {
-        int oldCapacity = propertyData.length;
-        if (propertyCount + 1 > oldCapacity) {
-            CssProperty oldData[] = propertyData;
-            propertyData = new CssProperty[oldCapacity + capacityIncrement];
-            System.arraycopy(oldData, 0, propertyData, 0, propertyCount);
-        }
-        propertyData[propertyCount++] = property;
+    private void addProperty(CssProperty property) {
+        propertyData.add(property);
     }
 
 }
@@ -209,7 +210,7 @@ public final class CssCascadingOrder {
 // all compare functions used in the cascading order
 
 class CompareExplicitWeight implements Comparator<CssProperty> {
-    public int compare(CssProperty property1, CssProperty property2) {
+    public final int compare(CssProperty property1, CssProperty property2) {
         int val1 = property1.getExplicitWeight();
         int val2 = property2.getExplicitWeight();
         return (val1 - val2);
@@ -217,7 +218,7 @@ class CompareExplicitWeight implements Comparator<CssProperty> {
 }
 
 class CompareSpecificity implements Comparator<CssProperty> {
-    public int compare(CssProperty property1, CssProperty property2) {
+    public final int compare(CssProperty property1, CssProperty property2) {
         int val1 = property1.getSelectors().getSpecificity();
         int val2 = property2.getSelectors().getSpecificity();
         return (val1 - val2);
@@ -225,7 +226,7 @@ class CompareSpecificity implements Comparator<CssProperty> {
 }
 
 class CompareOrderSpecified implements Comparator<CssProperty> {
-    public int compare(CssProperty property1, CssProperty property2) {
+    public final int compare(CssProperty property1, CssProperty property2) {
         long val1 = property1.getOrderSpecified();
         long val2 = property2.getOrderSpecified();
         return ((int) (val1 - val2));
