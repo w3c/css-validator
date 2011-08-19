@@ -117,8 +117,10 @@
 	<target name="war" depends="build" description="Creates the webapp module">
 		<delete file="${war.file}"/>
 		<war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html,css-validator.*">
-      <classes dir="build"/>
-      <lib dir="lib"/>
+                  <classes dir="build"/>
+                  <lib dir="lib">
+                    <exclude name="*servlet*.jar"/>
+                  </lib>
 		</war>
 	</target>
 
