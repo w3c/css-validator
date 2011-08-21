@@ -7,19 +7,15 @@
 
 package org.w3c.css.parser;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Controls all errors in the validator
  * @version $Revision$
- * @see Vector.java
  */
 public final class Errors {
 
-  private CssError[] errorData = new CssError[10];
-  private int      errorCount;
-
-  private final static int capacityIncrement = 10;
+  private ArrayList<CssError> errorData = new ArrayList<CssError>();
 
   /**
    * Add an error.
@@ -27,13 +23,7 @@ public final class Errors {
    * @param error The new error.
    */
   public final void addError(CssError error) {
-    int oldCapacity = errorData.length;
-    if (errorCount + 1 > oldCapacity) {
-      CssError oldData[] = errorData;
-      errorData = new CssError[oldCapacity + capacityIncrement];
-      System.arraycopy(oldData, 0, errorData, 0, errorCount);
-    }
-    errorData[errorCount++] = error;
+      errorData.add(error);
   }
 
   /**
@@ -42,36 +32,23 @@ public final class Errors {
    * @param errors All errors
    */
   public final void addErrors(Errors errors) {
-    int oldCapacity = errorData.length;
-    if (errorCount + errors.errorCount + 1 > oldCapacity) {
-      CssError oldData[] = errorData;
-      errorData =
-	new CssError[oldCapacity + errors.errorCount + capacityIncrement];
-      System.arraycopy(oldData, 0, errorData, 0, errorCount);
-    }
-    System.arraycopy(errors.errorData, 0, errorData,
-		     errorCount, errors.errorCount);
-    errorCount += errors.errorCount;
+      errorData.addAll(errors.errorData);
   }
 
   /**
    * Get the number of errors.
    */
   public final int getErrorCount() {
-    return errorCount;
+      return errorData.size();
   }
 
   /**
    * Get an array with all errors.
    */
   public final CssError[] getErrors() {
-    int oldCapacity = errorData.length;
-    if (errorCount < oldCapacity) {
-      CssError oldData[] = errorData;
-      errorData = new CssError[errorCount];
-      System.arraycopy(oldData, 0, errorData, 0, errorCount);
-    }
-    return errorData;
+      CssError out[] = new CssError[errorData.size()];
+      errorData.toArray(out);
+      return out;
   }
 
   /**
@@ -80,7 +57,7 @@ public final class Errors {
    * @param index the error index.
    */
   public final CssError getErrorAt(int index) {
-    return errorData[index];
+      return errorData.get(index);
   }
 
 }
