@@ -350,6 +350,7 @@ public final class CssSelectors extends SelectorsList
 
     /**
      * Comparison is done on the string representation
+     *
      * @param selectors
      * @return
      */
@@ -451,8 +452,9 @@ public final class CssSelectors extends SelectorsList
 
     public void addAttribute(String attName, String value)
             throws InvalidParamException {
-        if (ac.getProfile() != null && !"".equals(ac.getProfile())) {
-            if (ac.getProfile().equals("mobile")) {
+        String profile = ac.getProfile();
+        if (profile != null && profile.length() != 0) {
+            if (profile.equals("mobile")) {
                 throw new InvalidParamException("notformobile", "attributes",
                         ac);
             }
@@ -478,32 +480,21 @@ public final class CssSelectors extends SelectorsList
     }
 
     final boolean canApply(ArrayList<Selector> attrs, ArrayList<Selector> attrs2) {
-        if (attrs.size() > 0) {
-            for (int i = 0; i < attrs.size(); i++) {
-                Selector selector = attrs.get(i);
-
-                Selector other = null;
-                int j = 0;
-                for (; j < attrs2.size(); j++) {
-                    other = attrs2.get(j);
-                    if (!other.equals(selector)) {
-                        other = null;
-                    } else {
-                        break;
-                    }
+        if (attrs.size()>0) {
+            int other_idx;
+            Selector other;
+            for (Selector selector : attrs) {
+                other_idx = attrs2.indexOf(selector);
+                if (other_idx == -1) {
+                    return false;
                 }
-                if (other != null) {
-                    if (!selector.canApply(other)) {
-                        return false;
-                    }
-                } else {
+                other = attrs2.get(other_idx);
+                if (!selector.canApply(other)) {
                     return false;
                 }
             }
-            return true;
         }
         return true;
-
     }
 
     /**
