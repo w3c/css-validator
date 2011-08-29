@@ -89,7 +89,7 @@ public class CssAngle extends CssValue implements CssValueFloat {
         int length = s.length();
         String unit;
         //float v;
-        if (s.indexOf("grad") == -1) {
+        if (!s.contains("grad")) {
             unit = s.substring(length - 3, length);
             unit = allowed_values.get(unit);
             if (unit == null) {

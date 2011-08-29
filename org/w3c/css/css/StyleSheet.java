@@ -17,9 +17,9 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.Warnings;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Vector;
 
 /**
  * This class contains a style sheet with all rules, errors and warnings.
@@ -33,7 +33,7 @@ public class StyleSheet {
     private Errors errors;
     private Warnings warnings;
     private String type;
-    private Vector atRuleList;
+    private ArrayList<CssRuleList> atRuleList;
     private boolean doNotAddRule;
     private boolean doNotAddAtRule;
     private static final boolean debug = false;
@@ -46,7 +46,7 @@ public class StyleSheet {
         errors = new Errors();
         warnings = new Warnings();
         cascading = new CssCascadingOrder();
-        atRuleList = new Vector();
+        atRuleList = new ArrayList<CssRuleList>();
     }
 
     public void setWarningLevel(int warningLevel) {
@@ -219,14 +219,14 @@ public class StyleSheet {
     public void newAtRule(AtRule atRule) {
         CssRuleList rulelist = new CssRuleList();
         rulelist.addAtRule(atRule);
-        atRuleList.addElement(rulelist);
+        atRuleList.add(rulelist);
         indent = "   ";
     }
 
     public void endOfAtRule() {
         if (!doNotAddAtRule) {
             CssRuleList rulelist = new CssRuleList();
-            atRuleList.addElement(rulelist); //for the new set of rules
+            atRuleList.add(rulelist); //for the new set of rules
         }
         important = false;
         selectortext = "";
@@ -238,30 +238,33 @@ public class StyleSheet {
         this.important = important;
     }
 
-    public void setSelectorList(Vector selectors) {
-        String slave = selectors.toString();
-        selectortext = slave.substring(slave.indexOf("[") + 1,
-                slave.lastIndexOf("]"));
+    public void setSelectorList(ArrayList<CssSelectors> selectors) {
+        StringBuilder sb = new StringBuilder();
+        for (CssSelectors s : selectors) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(s.toString());
+        }
+        selectortext = sb.toString();
     }
 
-    public void setProperty(Vector properties) {
+    public void setProperty(ArrayList<CssProperty> properties) {
         this.properties = properties;
     }
 
     public void endOfRule() {
         CssRuleList rulelist;
-        boolean useless;
         if (!doNotAddRule) {
             CssStyleRule stylerule = new CssStyleRule(indent, selectortext,
                     properties, important);
             if (!atRuleList.isEmpty()) {
-                rulelist = (CssRuleList) atRuleList.lastElement();
-                useless = atRuleList.removeElement(rulelist);
+                rulelist = atRuleList.remove(atRuleList.size()-1);
             } else {
                 rulelist = new CssRuleList();
             }
             rulelist.addStyleRule(stylerule);
-            atRuleList.addElement(rulelist);
+            atRuleList.add(rulelist);
         }
         selectortext = "";
         doNotAddRule = false;
@@ -275,13 +278,13 @@ public class StyleSheet {
         doNotAddAtRule = true;
     }
 
-    public Vector newGetRules() {
+    public ArrayList<CssRuleList> newGetRules() {
         return atRuleList;
     }
 
     String selectortext;
     boolean important;
-    Vector properties;
+    ArrayList<CssProperty> properties;
     String indent = new String();
     public String charset;
 }

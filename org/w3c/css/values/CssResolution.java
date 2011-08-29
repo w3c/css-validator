@@ -12,104 +12,105 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
 /**
- *   <H3>
- *     &nbsp;&nbsp; Resolution units
- *   </H3>
- *   <P>
- *	 The dpi and dpcm units describe the resolution of an output device i.e. the density of
- *   the pixels. In dots per inch and dots per centimeter, respectively. These units are only used in the
- *   resolution media feature.
- *   </P>
+ * <H3>
+ * &nbsp;&nbsp; Resolution units
+ * </H3>
+ * <p/>
+ * The dpi and dpcm units describe the resolution of an output device i.e. the density of
+ * the pixels. In dots per inch and dots per centimeter, respectively. These units are only used in the
+ * resolution media feature.
+ * </P>
+ *
  * @version $Revision$
  */
 public class CssResolution extends CssValue {
 
     public static final int type = CssTypes.CSS_RESOLUTION;
-    
+
     public final int getType() {
-	return type;
+        return type;
     }
 
-  /**
-   * Create a new CssResolution
-   */
-  public CssResolution() {
-    value = defaultValue;
-  }
-
-  /**
-   * Set the value of this Resolution.
-   *
-   * @param s     the string representation of the Resolution.
-   * @param ac For errors and warnings reports.
-   * @exception InvalidParamException The unit is incorrect
-   */
-  public void set(String s, ApplContext ac) throws InvalidParamException {
-    s = s.toLowerCase();
-    int length = s.length();
-    String unit = "";
-    if (s.toUpperCase().indexOf("DPI") != -1) {
-		unit = s.substring(length-3, length);
-		this.value = new Float(s.substring(0, length-3));
-		if (unit.toUpperCase().equals("DPI")) {
-			this.unit = unit;
-		}
-		return;
-	} else if (s.toUpperCase().indexOf("DPCM") != -1) {
-		unit = s.substring(length-4, length);
-		this.value = new Float(s.substring(0, length-4));
-		if (unit.toUpperCase().equals("DPCM")) {
-			this.unit = unit;
-		}
-		return;
-	}
-
-    if (!ac.getCssVersion().equals("css3")) {
-		throw new InvalidParamException("unit", unit, ac);
+    /**
+     * Create a new CssResolution
+     */
+    public CssResolution() {
+        value = defaultValue;
     }
 
-    throw new InvalidParamException("unit", unit, ac);
-  }
+    /**
+     * Set the value of this Resolution.
+     *
+     * @param s  the string representation of the Resolution.
+     * @param ac For errors and warnings reports.
+     * @throws InvalidParamException The unit is incorrect
+     */
+    public void set(String s, ApplContext ac) throws InvalidParamException {
+        s = s.toLowerCase();
+        int length = s.length();
+        String unit = "";
+        if (s.contains("dpi")) {
+            unit = s.substring(length - 3, length);
+            this.value = new Float(s.substring(0, length - 3));
+            if (unit.equals("dpi")) {
+                this.unit = unit;
+            }
+            return;
+        } else if (s.contains("dpcm")) {
+            unit = s.substring(length - 4, length);
+            this.value = new Float(s.substring(0, length - 4));
+            if (unit.equals("dpcm")) {
+                this.unit = unit;
+            }
+            return;
+        }
 
-  /**
-   * Returns the current value
-   */
-  public Object get() {
-    return value;
-  }
+        if (!ac.getCssVersion().equals("css3")) {
+            throw new InvalidParamException("unit", unit, ac);
+        }
 
-  /**
-   * @return the current value
-   */
-  public String getUnit() {
-    return unit;
-  }
+        throw new InvalidParamException("unit", unit, ac);
+    }
 
-  /**
-   * Returns a string representation of the object.
-   */
-  public String toString() {
-      if (value.floatValue() != 0.0) {
-	  return Util.displayFloat(value) + getUnit();
-      } else {
-	  return Util.displayFloat(value);
-      }
-  }
+    /**
+     * Returns the current value
+     */
+    public Object get() {
+        return value;
+    }
 
-  /**
-   * Compares two values for equality.
-   *
-   * @param value The other value.
-   */
-  public boolean equals(Object value) {
-    return (value instanceof CssResolution &&
-	    this.value.equals(((CssResolution) value).value) &&
-            unit.equals(((CssResolution) value).unit));
-  }
+    /**
+     * @return the current value
+     */
+    public String getUnit() {
+        return unit;
+    }
 
-  private Float value;
-  private String unit;
-  private static Float defaultValue = new Float(0);
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        if (value.floatValue() != 0.0) {
+            return Util.displayFloat(value) + unit;
+        } else {
+            return Util.displayFloat(value);
+        }
+    }
+
+    /**
+     * Compares two values for equality.
+     *
+     * @param value The other value.
+     */
+    public boolean equals(Object value) {
+        return (value instanceof CssResolution &&
+                this.value.equals(((CssResolution) value).value) &&
+                unit.equals(((CssResolution) value).unit));
+    }
+
+    private Float value;
+    private String unit;
+    private static Float defaultValue = new Float(0);
 
 }
 

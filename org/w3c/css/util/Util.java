@@ -380,5 +380,8 @@ public final class Util {
      */
     public static boolean onDebug = Boolean.getBoolean("CSS.debug");
     //    public static boolean onDebug = false;
+
+    // default maximum size for checked entities
+    public static long maxEntitySize = 1048576L ;
 }
 

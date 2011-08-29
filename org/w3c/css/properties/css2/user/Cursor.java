@@ -8,35 +8,35 @@
 /*
  */
 package org.w3c.css.properties.css2.user;
-import java.util.Vector;
 
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+
+import java.util.ArrayList;
 
 /**
  * @version $Revision$
  */
 public class Cursor extends CssProperty
-    implements CssOperator {
+        implements CssOperator {
 
     int value;
-    Vector uris = new Vector();
+    ArrayList<CssValue> uris = new ArrayList<CssValue>();
     boolean inheritedValue;
 
     private static String CURSOR[] = {
-		"auto", "crosshair", "default", "pointer", "move", "e-resize",
-		"ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize",
-		"s-resize", "w-resize", "text", "wait", "help", "progress", "copy", "alias",
-		"context-menu", "cell", "all-scroll", "col-resize", "row-resize", "no-drop",
-		"not-allowed", "vertical-text"
-	};
+            "auto", "crosshair", "default", "pointer", "move", "e-resize",
+            "ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize",
+            "s-resize", "w-resize", "text", "wait", "help", "progress", "copy", "alias",
+            "context-menu", "cell", "all-scroll", "col-resize", "row-resize", "no-drop",
+            "not-allowed", "vertical-text"
+    };
 
     private static int[] hash_values;
 
@@ -45,83 +45,83 @@ public class Cursor extends CssProperty
      * Create a new CssCursor
      */
     public Cursor() {
-		value = 0;
+        value = 0;
     }
 
     /**
      * Create a new CssCursor
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public Cursor(ApplContext ac, CssExpression expression, boolean check)
-	throws InvalidParamException {
+            throws InvalidParamException {
 
-	CssValue val = expression.getValue();
-	char op = expression.getOperator();
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
 
-	setByUser();
+        setByUser();
 
-	if (val.equals(inherit)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    inheritedValue = true;
-	    expression.next();
-	    return;
-	}
+        if (val.equals(inherit)) {
+            if (expression.getCount() > 1) {
+                throw new InvalidParamException("unrecognize", ac);
+            }
+            inheritedValue = true;
+            expression.next();
+            return;
+        }
 
-	while ((op == COMMA)&& (val instanceof CssURL)) {
-	    if(val != null && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    uris.addElement(val);
-	    expression.next();
-	    val = expression.getValue();
-	    op = expression.getOperator();
-	}
-	if (val instanceof CssURL) {
-	    throw new InvalidParamException("comma",
-					    val.toString(),
-					    getPropertyName(), ac);
-	}
+        while ((op == COMMA) && (val.getType() == CssTypes.CSS_URL)) {
+            if (val != null && val.equals(inherit)) {
+                throw new InvalidParamException("unrecognize", ac);
+            }
+            uris.add(val);
+            expression.next();
+            val = expression.getValue();
+            op = expression.getOperator();
+        }
+        if (val.getType() == CssTypes.CSS_URL) {
+            throw new InvalidParamException("comma",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
 
-	if (val instanceof CssIdent) {
-	    int hash = val.hashCode();
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            int hash = val.hashCode();
 
-	    for (int i = 0; i < CURSOR.length; i++) {
-		if (hash_values[i] == hash) {
-		    value = i;
-		    expression.next();
-		    if(check && !expression.end()) {
-			throw new InvalidParamException("unrecognize", ac);
-		    }
-		    return;
-		}
-	    }
-	}
+            for (int i = 0; i < CURSOR.length; i++) {
+                if (hash_values[i] == hash) {
+                    value = i;
+                    expression.next();
+                    if (check && !expression.end()) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    return;
+                }
+            }
+        }
 
-	throw new InvalidParamException("value",
-					val.toString(), getPropertyName(), ac);
+        throw new InvalidParamException("value",
+                val.toString(), getPropertyName(), ac);
     }
 
     public Cursor(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return null;
+        return null;
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "cursor";
+        return "cursor";
     }
 
     /**
@@ -129,26 +129,23 @@ public class Cursor extends CssProperty
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return inheritedValue;
+        return inheritedValue;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (inheritedValue) {
-	    return inherit.toString();
-	} else {
-	    int i = 0;
-	    int l = uris.size();
-	    String ret = "";
-	    while (i != l) {
-		ret += uris.elementAt(i++) +
-		    (new Character(COMMA)).toString() + " ";
-	    }
-	    ret += " " + CURSOR[value];
-	    return ret;
-	}
+        if (inheritedValue) {
+            return inherit.toString();
+        } else {
+            StringBuilder ret = new StringBuilder();
+            for (CssValue val : uris) {
+                ret.append(val).append(COMMA).append(' ');
+            }
+            ret.append(' ').append(CURSOR[value]);
+            return ret.toString();
+        }
     }
 
     /**
@@ -157,34 +154,34 @@ public class Cursor extends CssProperty
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	Css2Style style0 = (Css2Style) style;
-	if (style0.cursor != null)
-	    style0.addRedefinitionWarning(ac, this);
-	style0.cursor = this;
+        Css2Style style0 = (Css2Style) style;
+        if (style0.cursor != null)
+            style0.addRedefinitionWarning(ac, this);
+        style0.cursor = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css2Style) style).getCursor();
-	} else {
-	    return ((Css2Style) style).cursor;
-	}
+        if (resolve) {
+            return ((Css2Style) style).getCursor();
+        } else {
+            return ((Css2Style) style).cursor;
+        }
     }
 
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof Cursor
-		&& value == ((Cursor) property).value);
+        return (property instanceof Cursor
+                && value == ((Cursor) property).value);
     }
 
     /**
@@ -192,12 +189,12 @@ public class Cursor extends CssProperty
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return value == 0;
+        return value == 0;
     }
 
     static {
-	hash_values = new int[CURSOR.length];
-	for (int i=0; i<CURSOR.length; i++)
-	    hash_values[i] = CURSOR[i].hashCode();
+        hash_values = new int[CURSOR.length];
+        for (int i = 0; i < CURSOR.length; i++)
+            hash_values[i] = CURSOR[i].hashCode();
     }
 }

@@ -22,25 +22,27 @@ public abstract class AttributeSelector implements Selector {
 
     /**
      * Creates a new attribute selector given its name
+     *
      * @param name the name of this attribute
      */
-    public AttributeSelector(String name) {        
-	this.name = name;
+    public AttributeSelector(String name) {
+        this.name = name;
     }
 
     /**
      * Sets the name of this attribute selector
+     *
      * @param name the name of this attribute
      */
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     /**
      * @see Selector#getName()
      */
     public String getName() {
-	return name;
+        return name;
     }
 
     public abstract void applyAttribute(ApplContext ac, AttributeSelector attr);
@@ -49,7 +51,8 @@ public abstract class AttributeSelector implements Selector {
      * @see Selector#toString()
      */
     public String toString() {
-	return "[" + name + "]";
+        StringBuilder sb = new StringBuilder();
+        return sb.append('[').append(name).append(']').toString();
     }
 
 }

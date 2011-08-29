@@ -7,10 +7,11 @@
 
 package org.w3c.css.parser;
 
-import java.util.Vector;
-
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warnings;
+
+import java.util.ArrayList;
 
 /**
  * Implements this interface if you want to use the CSS1 parser.
@@ -23,10 +24,10 @@ public interface CssValidatorListener {
    * Adds a vector of properties to a selector.
    *
    * @param selector     the selector
-   * @param declarations Properties to associate with contexts
+   * @param properties Properties to associate with contexts
    */
   public void handleRule(ApplContext ac, CssSelectors selector,
-			 Vector declarations);
+			 ArrayList<CssProperty> properties);
 
   /**
    * Handles an at-rule.
@@ -45,14 +46,13 @@ public interface CssValidatorListener {
    * @param value The string representation of this at-rule
    * @see         org.w3c.css.parser.analyzer.Couple
    */
-  public void handleAtRule(ApplContext ac, String ident, String string);
+  public void handleAtRule(ApplContext ac, String ident, String value);
 
   /**
    * Notify all errors
    *
    * @param errors All errors in the style sheet
    * @see CssError
-   * @see CssErrorDeclaration
    * @see CssErrorToken
    */
   public void notifyErrors(Errors errors);
@@ -73,9 +73,9 @@ public interface CssValidatorListener {
 
     public void setImportant(boolean important);
 
-    public void setSelectorList(Vector selectors);
+    public void setSelectorList(ArrayList<CssSelectors> selectors);
 
-    public void setProperty(Vector properties);
+    public void setProperty(ArrayList<CssProperty> properties);
 
     public void endOfRule();
 

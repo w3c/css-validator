@@ -4,8 +4,8 @@ package org.w3c.css.parser.analyzer;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.Vector;
-import java.util.Enumeration;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.net.URL;
 
 import org.w3c.css.values.CssValue;
@@ -88,7 +88,7 @@ public abstract class CssParser implements CssParserConstants {
     /**
      * The current context recognized by the parser (for errors).
      */
-    protected Vector currentContext;
+    protected ArrayList<CssSelectors> currentContext;
 
     /**
      * The current property recognized by the parser (for errors).
@@ -136,7 +136,7 @@ public abstract class CssParser implements CssParserConstants {
     /**
      * Set the attribute mediaDeclaration
      *
-     * @param mediaDeclaration indicator if in a media expression list or not
+     * @param mediadeclaration indicator if in a media expression list or not
      */
     public void setMediaDeclaration(String mediadeclaration) {
         this.mediaDeclaration = mediadeclaration;
@@ -222,8 +222,8 @@ public abstract class CssParser implements CssParserConstants {
     public abstract void newAtRule(AtRule atRule);
     public abstract void endOfAtRule();
     public abstract void setImportant(boolean important);
-    public abstract void setSelectorList(Vector selectors);
-    public abstract void addProperty(Vector properties);
+    public abstract void setSelectorList(ArrayList<CssSelectors> selectors);
+    public abstract void addProperty(ArrayList<CssProperty> properties);
     public abstract void endOfRule();
     public abstract void removeThisRule();
     public abstract void removeThisAtRule();
@@ -249,7 +249,7 @@ public abstract class CssParser implements CssParserConstants {
         throws InvalidParamException;
 
     /**
-     * Adds a vector of properties to a selector.
+     * Adds a ArrayList of properties to a selector.
      * <p>
      * A subclass must provide an implementation of this method. 
      *
@@ -257,7 +257,7 @@ public abstract class CssParser implements CssParserConstants {
      * @param declarations Properties to associate with contexts
      */
     public abstract void handleRule(CssSelectors selector,
-                                    Vector declarations);
+                                    ArrayList<CssProperty> declarations);
 
     /*Added by Sijtsche Smeman */
 
@@ -1157,9 +1157,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
  * @exception ParseException exception during the parse
  */
   final public void page() throws ParseException {
-    Vector       v                              ;
+    ArrayList<CssProperty> v                              ;
     Token        n        = null                ;
-    Vector       collectv = new Vector()        ;
+    ArrayList<CssProperty>       collectv = new ArrayList<CssProperty>()        ;
     CssSelectors s        = new CssSelectors(ac);
     AtRule       old      = getAtRule()         ;
     AtRulePage   newRule  = new AtRulePage()    ;
@@ -1266,9 +1266,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
   }
 
-  final public Vector pageContent() throws ParseException {
+  final public ArrayList<CssProperty> pageContent() throws ParseException {
   CssProperty prop;
-    Vector v = new Vector();
+    ArrayList<CssProperty> v = new ArrayList<CssProperty>();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ATTOP:
     case ATRIGHT:
@@ -1286,9 +1286,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     throw new Error("Missing return statement in function");
   }
 
-  final public Vector prefAtRule() throws ParseException {
+  final public ArrayList<CssProperty> prefAtRule() throws ParseException {
   Token n;
-    Vector v;
+    ArrayList<CssProperty> v;
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ATTOP:
@@ -1380,7 +1380,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
   }
 
   final public void fontFace() throws ParseException {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleFontFace());
     CssSelectors s = new CssSelectors(ac);
@@ -1454,7 +1454,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
   }
 
   final public void colorprofile() throws ParseException {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleColorProfile());
     CssSelectors s = new CssSelectors(ac);
@@ -1529,7 +1529,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
   }
 
   final public void preference() throws ParseException {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRulePreference());
     CssSelectors s = new CssSelectors(ac);
@@ -1604,7 +1604,6 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
   }
 
   final public void phoneticAlphabet() throws ParseException {
-    Vector v;
     AtRule old = getAtRule();
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
     setAtRule(alphabetrule);
@@ -1823,13 +1822,13 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
  */
   final public void ruleSet() throws ParseException {
   CssSelectors contextual;
-    Vector<CssSelectors> context_set = new Vector<CssSelectors>();
-    Vector<CssProperty> value_set = null;
+    ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+    ArrayList<CssProperty> value_set = null;
     currentContext = context_set;
     try {
       contextual = selector();
                 if (contextual != null) {
-                    context_set.addElement(contextual);
+                    context_set.add(contextual);
                 }
       label_57:
       while (true) {
@@ -1856,7 +1855,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         contextual = selector();
                 if (contextual != null) {
-                    context_set.addElement(contextual);
+                    context_set.add(contextual);
                 }
       }
       jj_consume_token(LBRACE);
@@ -1895,9 +1894,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 if (value_set != null) {
                     boolean first = true;
                     CssSelectors sel = null;
-                    Enumeration<CssSelectors> e = context_set.elements();
-                    while (e.hasMoreElements()) {
-                        sel = e.nextElement();
+                    Iterator<CssSelectors> e = context_set.iterator();
+                    while (e.hasNext()) {
+                        sel = e.next();
                         if (first) {
                             handleRule(sel, value_set);
                             first = false;
@@ -1906,9 +1905,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                             // as property holds reference to the selectors and it interact
                             // badly with conflict detection
                             int vsize = value_set.size();
-                            Vector<CssProperty> v = new Vector<CssProperty>(vsize);
+                            ArrayList<CssProperty> v = new ArrayList<CssProperty>(vsize);
                             for (int i=0; i<vsize; i++) {
-                                v.addElement(value_set.elementAt(i).duplicate());
+                                v.add(value_set.get(i).duplicate());
                             }
                             handleRule(sel, v);
                         }
@@ -1928,7 +1927,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
   }
 
-  final public Vector<CssProperty> declarations() throws ParseException {
+  final public ArrayList<CssProperty> declarations() throws ParseException {
     if(!validSelector) {
         validSelector = true;
         skip_to_matching_brace();
@@ -1936,13 +1935,13 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
 
     CssProperty values;
-    Vector<CssProperty> value_set   = new Vector<CssProperty>();
+    ArrayList<CssProperty> value_set   = new ArrayList<CssProperty>();
     boolean wrong_value = true;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENT:
       values = declaration();
           if (values != null) {
-                value_set.addElement(values);
+                value_set.add(values);
                 wrong_value = false;
             } /* else {
 		 wrong_value = true;
@@ -1980,7 +1979,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       case IDENT:
         values = declaration();
                 if (values != null) {
-                      value_set.addElement(values);
+                      value_set.add(values);
                       wrong_value = false;
                   }/* else {
 		      wrong_value = true;
@@ -2323,7 +2322,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
 
             if(!profile.equals("css1")) {
                 StringBuilder sb = new StringBuilder();
-                Vector<String> param_err = new Vector<String>(2);
+                ArrayList<String> param_err = new ArrayList<String>(2);
                 param_err.add(n.image);
                 param_err.add(cl);
                 sb.append(ac.getMsg().getString("parser.old_class", param_err));
@@ -3744,14 +3743,6 @@ CssExpression param = null;
     finally { jj_save(0, xla); }
   }
 
-  private boolean jj_3_1() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_86()) jj_scanpos = xsp;
-    if (jj_scan_token(98)) return true;
-    return false;
-  }
-
   private boolean jj_3R_86() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3759,6 +3750,14 @@ CssExpression param = null;
     jj_scanpos = xsp;
     if (jj_scan_token(47)) return true;
     }
+    return false;
+  }
+
+  private boolean jj_3_1() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_86()) jj_scanpos = xsp;
+    if (jj_scan_token(98)) return true;
     return false;
   }
 

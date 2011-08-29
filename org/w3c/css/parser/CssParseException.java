@@ -7,10 +7,10 @@
 
 package org.w3c.css.parser;
 
-import java.util.Vector;
-
 import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.values.CssExpression;
+
+import java.util.ArrayList;
 
 /**
  * @version $Revision$
@@ -20,7 +20,7 @@ public class CssParseException extends ParseException {
     /**
      * The list of context when the error appears
      */
-    Vector contexts;
+    ArrayList<CssSelectors> contexts;
 
     /**
      * the property name
@@ -48,32 +48,32 @@ public class CssParseException extends ParseException {
      * Create a new CssParseException
      */
     public CssParseException(Exception exc) {
-	parseException = exc;
-	if (parseException instanceof ParseException) {
-	    ParseException e = (ParseException) exc;
-	    error = (e.currentToken != null
-		     && e.expectedTokenSequences != null
-		     && e.tokenImage != null);
-	}
+        parseException = exc;
+        if (parseException instanceof ParseException) {
+            ParseException e = (ParseException) exc;
+            error = (e.currentToken != null
+                    && e.expectedTokenSequences != null
+                    && e.tokenImage != null);
+        }
     }
 
     public Exception getException() {
-	return parseException;
+        return parseException;
     }
 
     public boolean isParseException() {
-	return (parseException instanceof ParseException);
+        return (parseException instanceof ParseException);
     }
 
     /**
      * Get the exception message
      */
     public String getMessage() {
-	if (!error) {
-	    return parseException.getMessage();
-	} else {
-	    return null;
-	}
+        if (!error) {
+            return parseException.getMessage();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -81,7 +81,7 @@ public class CssParseException extends ParseException {
      *
      * @param contexts the new value for the attribute
      */
-    public void setContexts(Vector contexts) {
+    public void setContexts(ArrayList<CssSelectors> contexts) {
         this.contexts = contexts;
     }
 
@@ -90,7 +90,7 @@ public class CssParseException extends ParseException {
      *
      * @return the value of the attribute
      */
-    public Vector getContexts() {
+    public ArrayList<CssSelectors> getContexts() {
         return contexts;
     }
 

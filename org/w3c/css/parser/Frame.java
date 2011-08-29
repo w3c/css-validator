@@ -16,7 +16,7 @@ import org.w3c.css.util.Warnings;
  */
 public class Frame {
 
-    public  ApplContext ac;
+    public ApplContext ac;
     private Errors errors;
     private Warnings warnings;
     private CssFouffa cssFouffa;
@@ -31,10 +31,10 @@ public class Frame {
      * @param sourceFile The name of the source file.
      */
     public Frame(CssFouffa cssFouffa, String sourceFile, int warningLevel) {
-    	this.sourceFile = sourceFile;
-    	this.cssFouffa = cssFouffa;
-    	errors = new Errors();
-    	warnings = new Warnings(warningLevel);
+        this.sourceFile = sourceFile;
+        this.cssFouffa = cssFouffa;
+        errors = new Errors();
+        warnings = new Warnings(warningLevel);
     }
 
     /**
@@ -45,10 +45,9 @@ public class Frame {
      * @param beginLine  The begin line
      */
     public Frame(CssFouffa cssFouffa, String sourceFile, int beginLine,
-		 int warningLevel)
-    {
-    	this(cssFouffa, sourceFile, warningLevel);
-    	line = beginLine;
+                 int warningLevel) {
+        this(cssFouffa, sourceFile, warningLevel);
+        line = beginLine;
     }
 
     /**
@@ -57,16 +56,16 @@ public class Frame {
      * @param error The new error.
      */
     public void addError(CssError error) {
-	error.sourceFile = getSourceFile();
-	error.line = getLine();
-	errors.addError(error);
+        error.sourceFile = getSourceFile();
+        error.line = getLine();
+        errors.addError(error);
     }
 
     /**
      * Returns all errors.
      */
     public Errors getErrors() {
-	return errors;
+        return errors;
     }
 
     /**
@@ -74,11 +73,11 @@ public class Frame {
      *
      * @param warningMessage the warning message
      *                       (see org.w3c.css.util.Messages.properties).
-     * @see                  org.w3c.css.util.Warning
+     * @see org.w3c.css.util.Warning
      */
     public void addWarning(String warningMessage) {
-	warnings.addWarning(new Warning(getSourceFile(), getLine(),
-					warningMessage, 0, ac));
+        warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, 0, ac));
     }
 
     /**
@@ -87,12 +86,12 @@ public class Frame {
      * @param warningMessage the warning message
      *                       (see org.w3c.css.util.Messages.properties).
      * @param message        An add-on message.
-     * @see                  org.w3c.css.util.Warning
+     * @see org.w3c.css.util.Warning
      */
     public void addWarning(String warningMessage, String message) {
-	warnings.addWarning(new Warning(getSourceFile(), getLine(),
-					warningMessage, 0, 
-					new String[] { message }, ac));
+        warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, 0,
+                new String[]{message}, ac));
     }
 
     /**
@@ -101,40 +100,40 @@ public class Frame {
      * @param warningMessage the warning message
      *                       (see org.w3c.css.util.Messages.properties).
      * @param messages       Some add-on messages.
-     * @see                  org.w3c.css.util.Warning
+     * @see org.w3c.css.util.Warning
      */
     public void addWarning(String warningMessage, String[] messages) {
-	warnings.addWarning(new Warning(getSourceFile(), getLine(),
-					warningMessage, 0, messages, ac));
+        warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, 0, messages, ac));
     }
 
     /**
      * Get all warnings.
      */
     public Warnings getWarnings() {
-	return warnings;
+        return warnings;
     }
 
     /**
      * Get the name of the source file.
      */
     public String getSourceFile() {
-	return sourceFile;
+        return sourceFile;
     }
 
     /**
      * Get the begin line.
      */
     public int getBeginLine() {
-	return line;
+        return line;
     }
 
     /**
      * Get the current line.
      */
     public int getLine() {
-	//return line; //+ cssFouffa.token.beginLine;
-	return line + cssFouffa.token.beginLine;
+        //return line; //+ cssFouffa.token.beginLine;
+        return line + cssFouffa.token.beginLine;
     }
 
     /**
@@ -143,8 +142,8 @@ public class Frame {
      * @param frame The other frame for merging.
      */
     public void join(Frame frame) {
-	errors.addErrors(frame.errors);
-	warnings.addWarnings(frame.warnings);
+        errors.addErrors(frame.errors);
+        warnings.addWarnings(frame.warnings);
     }
 }
 

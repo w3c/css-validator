@@ -274,9 +274,8 @@ public class SelectorsList {
             return stringrep;
         }
         StringBuilder res = new StringBuilder();
-        int selsize = selectors.size();
-        for (int i = 0; i < selsize; i++) {
-            res.append(selectors.get(i));
+        for (Selector selector : selectors) {
+            res.append(selector);
         }
         stringrep = res.toString();
         return stringrep;

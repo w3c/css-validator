@@ -17,13 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 /**
  * @version $Revision$
  */
@@ -33,7 +26,7 @@ public final class DocumentParser {
 
     static {
         try {
-        wap = new MimeType("application/vnd.wap.xhtml+xml");
+            wap = new MimeType("application/vnd.wap.xhtml+xml");
         } catch (MimeTypeFormatException mex) {
             wap = null;
         }
@@ -46,116 +39,117 @@ public final class DocumentParser {
 
     /**
      * Create a new DocumentParser
-     * 
-     * @exception Exception
-     *                An error
+     *
+     * @throws Exception An error
      */
     public DocumentParser(ApplContext ac, String urlString) throws Exception {
-	this.htmlURL = HTTPURL.getURL(urlString);
-	this.ac = ac;
-	urlString = htmlURL.toString();
-	String urlLower = urlString.toLowerCase();
-	String media = ac.getMedium();
-	String urlProtocol = htmlURL.getProtocol();
+        this.htmlURL = HTTPURL.getURL(urlString);
+        this.ac = ac;
+        urlString = htmlURL.toString();
+        String urlLower = urlString.toLowerCase();
+        String media = ac.getMedium();
+        String urlProtocol = htmlURL.getProtocol();
 
-	if (!"http".equals(urlProtocol) && !"https".equals(urlProtocol)) {
-	    if (urlLower.endsWith(".css")) {
-		StyleSheetParser parser = new StyleSheetParser();
-		parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
-		style = parser.getStyleSheet();
-	    } else if (urlLower.endsWith(".html") || urlLower.endsWith(".shtml") || urlLower.endsWith("/")) {
-		TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(htmlURL, ac);
-		handler.parse(htmlURL);
-		style = handler.getStyleSheet();
-		if (style != null) {
-		    style.setType("text/html");
-		}
-	    } else if (urlLower.endsWith(".xhtml") || urlLower.endsWith(".xml")) {
-		// Seems like we need to use tagsout in this case as well
-		XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
-		handler.parse(htmlURL);
-		style = handler.getStyleSheet();
-		if (style != null) {
-		    style.setType("text/xml");
-		}
-	    } else {
-		throw new Exception("Unknown file");
-	    }
-	} else {
-	    URLConnection connection = null;
+        if (!"http".equals(urlProtocol) && !"https".equals(urlProtocol)) {
+            if (urlLower.endsWith(".css")) {
+                StyleSheetParser parser = new StyleSheetParser();
+                parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
+                style = parser.getStyleSheet();
+            } else if (urlLower.endsWith(".html") || urlLower.endsWith(".shtml") || urlLower.endsWith("/")) {
+                TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(htmlURL, ac);
+                handler.parse(htmlURL);
+                style = handler.getStyleSheet();
+                if (style != null) {
+                    style.setType("text/html");
+                }
+            } else if (urlLower.endsWith(".xhtml") || urlLower.endsWith(".xml")) {
+                // Seems like we need to use tagsout in this case as well
+                XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
+                handler.parse(htmlURL);
+                style = handler.getStyleSheet();
+                if (style != null) {
+                    style.setType("text/xml");
+                }
+            } else {
+                throw new Exception("Unknown file");
+            }
+        } else {
+            URLConnection connection = null;
 
-	    try {
-		boolean isXML = false;
-		String cType;
+            try {
+                boolean isXML = false;
+                String cType;
 
-		// @@ hum, maybe? (plh, yes probably :-) )
-		String credential = ac.getCredential();
+                // @@ hum, maybe? (plh, yes probably :-) )
+                String credential = ac.getCredential();
 
-		connection = HTTPURL.getConnection(htmlURL, ac);
-		htmlURL = connection.getURL();
+                connection = HTTPURL.getConnection(htmlURL, ac);
+                htmlURL = connection.getURL();
 
-		String httpCL = connection.getHeaderField("Content-Location");
-		if (httpCL != null) {
-		    htmlURL = HTTPURL.getURL(htmlURL, httpCL);
-		}
+                String httpCL = connection.getHeaderField("Content-Location");
+                if (httpCL != null) {
+                    htmlURL = HTTPURL.getURL(htmlURL, httpCL);
+                }
 
-		cType = connection.getContentType();
-		if (cType == null) {
-		    cType = "unknown/unknown";
-		}
-		MimeType contentType = null;
-		try {
-		    contentType = new MimeType(cType);
-		} catch (MimeTypeFormatException ex) {
-		}
+                cType = connection.getContentType();
+                if (cType == null) {
+                    cType = "unknown/unknown";
+                }
+                MimeType contentType = null;
+                try {
+                    contentType = new MimeType(cType);
+                } catch (MimeTypeFormatException ex) {
+                    // an error, let's try to parse it as HTML
+                    contentType = MimeType.TEXT_HTML;
+                }
 
-		if (Util.onDebug) {
-		    System.err.println("[DEBUG] content type is [" + contentType + ']');
-		}
+                if (Util.onDebug) {
+                    System.err.println("[DEBUG] content type is [" + contentType + ']');
+                }
 
-		if (contentType.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-		    TagSoupStyleSheetHandler handler;
-		    handler = new TagSoupStyleSheetHandler(htmlURL, ac);
-		    handler.parse(urlString, connection);
-		    style = handler.getStyleSheet();
+                if (contentType.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
+                    TagSoupStyleSheetHandler handler;
+                    handler = new TagSoupStyleSheetHandler(htmlURL, ac);
+                    handler.parse(urlString, connection);
+                    style = handler.getStyleSheet();
 
-		    if (style != null) {
-			style.setType("text/html");
-		    }
-		} else if (contentType.match(MimeType.TEXT_CSS) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-		    StyleSheetParser parser = new StyleSheetParser();
-		    parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
-		    style = parser.getStyleSheet();
-		} else if ((contentType.match(MimeType.TEXT_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
-			   || (contentType.match(MimeType.APPLICATION_XHTML_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
-                || (contentType.match(wap) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
-		    // TagSoup ?
-		    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
-		    handler.parse(urlString, connection);
-		    style = handler.getStyleSheet();
+                    if (style != null) {
+                        style.setType("text/html");
+                    }
+                } else if (contentType.match(MimeType.TEXT_CSS) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
+                    StyleSheetParser parser = new StyleSheetParser();
+                    parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
+                    style = parser.getStyleSheet();
+                } else if ((contentType.match(MimeType.TEXT_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
+                        || (contentType.match(MimeType.APPLICATION_XHTML_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)
+                        || (contentType.match(wap) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
+                    // TagSoup ?
+                    XMLStyleSheetHandler handler = new XMLStyleSheetHandler(htmlURL, ac);
+                    handler.parse(urlString, connection);
+                    style = handler.getStyleSheet();
 
-		    if (style != null) {
-			style.setType("text/xml");
-		    }
-		} else {
-		    throw new IOException("Unknown mime type : " + contentType);
-		}
-	    } finally {
-		try {
-		    connection.getInputStream().close();
-		} catch (Exception e) {
-		}
-	    }
-	}
+                    if (style != null) {
+                        style.setType("text/xml");
+                    }
+                } else {
+                    throw new IOException("Unknown mime type : " + contentType);
+                }
+            } finally {
+                try {
+                    connection.getInputStream().close();
+                } catch (Exception e) {
+                }
+            }
+        }
     }
 
     /**
      * Returns the recognized style sheet.
-     * 
+     *
      * @return A style sheet.
      */
     public StyleSheet getStyleSheet() {
-	return style;
+        return style;
     }
 
 } // HTMLStyleSheetParser

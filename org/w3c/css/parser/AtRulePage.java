@@ -17,13 +17,13 @@ import org.w3c.css.util.InvalidParamException;
 /**
  * This class manages all media defines by CSS2
  *
+ * @author Philippe Le H�garet
  * @version $Revision$
- * @author  Philippe Le H�garet
  */
 public class AtRulePage extends AtRule {
 
     static final String[] pseudo = {
-	":left", ":right", ":first"
+            ":left", ":right", ":first"
     };
 
     String name;
@@ -34,7 +34,7 @@ public class AtRulePage extends AtRule {
      * Returns the at rule keyword
      */
     public String keyword() {
-	return "page";
+        return "page";
     }
 
     /**
@@ -43,122 +43,131 @@ public class AtRulePage extends AtRule {
      * or a random name without semi-colon at the beginning
      */
     public AtRulePage setName(String name, ApplContext ac)
-	     throws InvalidParamException {
-	if (name.charAt(0) == ':') {
-	    for (int i = 0; i < pseudo.length; i++) {
-		if (name.equals(pseudo[i])) {
-		    this.name = pseudo[i];
-		    return this;
-		}
-	    }
-	    throw new InvalidParamException("page", name, ac);
-	} else {
-	    this.name = name;
-	}
+            throws InvalidParamException {
+        if (name.charAt(0) == ':') {
+            for (int i = 0; i < pseudo.length; i++) {
+                if (name.equals(pseudo[i])) {
+                    this.name = pseudo[i];
+                    return this;
+                }
+            }
+            throw new InvalidParamException("page", name, ac);
+        } else {
+            this.name = name;
+        }
 
-	return this;
+        return this;
     }
 
     public AtRulePage setIdent(String ident) {
-	this.ident = ident;
-	return this;
+        this.ident = ident;
+        return this;
     }
 
     public String getIdent() {
-	return ident;
+        return ident;
     }
 
     /**
      * Return true if atRule is exactly the same as current
      */
     public boolean equals(Object atRule) {
-	if (atRule instanceof AtRulePage) {
-	    AtRulePage other = (AtRulePage) atRule;
-	    boolean res = true;
-	    if ((name != null) && (other.name != null)) {
-		res = res &&  name.equals(other.name);
-	    } else {
-		if ((name != null) || (other.name != null)) {
-		    return false;
-		}
-	    }
-	    if ((ident != null) && (other.ident != null)) {
-		res = res &&  ident.equals(((AtRulePage) atRule).ident);
-	    } else {
-		if ((ident != null) || (other.ident != null)) {
-		    return false;
-		}
-	    }
-	    return res;
-	} else {
-	    return false;
-	}
+        AtRulePage other;
+        try {
+            other = (AtRulePage) atRule;
+        } catch (ClassCastException cce) {
+            // not an AtRulePage, fail
+            return false;
+        }
+        if ((name != null) && (other.name != null)) {
+            if (!name.equals(other.name)) {
+                return false;
+            }
+        } else {
+            if ((name != null) || (other.name != null)) {
+                return false;
+            }
+        }
+        if ((ident != null) && (other.ident != null)) {
+            return ident.equals(((AtRulePage) atRule).ident);
+        } else {
+            if ((ident != null) || (other.ident != null)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * The second must be exactly the same of this one
      */
     public boolean canApply(AtRule atRule) {
-	if (atRule instanceof AtRulePage) {
-	    AtRulePage other = (AtRulePage) atRule;
-	    boolean res = true;
-	    if ((name != null) && (other.name != null)) {
-		res = res &&  name.equals(other.name);
-	    } else {
-		if ((name != null) || (other.name != null)) {
-		    return false;
-		}
-	    }
-	    if ((ident != null) && (other.ident != null)) {
-		res = res &&  ident.equals(((AtRulePage) atRule).ident);
-	    } else {
-		if ((ident != null) || (other.ident != null)) {
-		    return false;
-		}
-	    }
-	    return res;
-	} else {
-	    return false;
-	}
+        AtRulePage other;
+        try {
+            other = (AtRulePage) atRule;
+        } catch (ClassCastException cce) {
+            // not an AtRulePage, fail
+            return false;
+        }
+        if ((name != null) && (other.name != null)) {
+            if (!name.equals(other.name)) {
+                return false;
+            }
+        } else {
+            if ((name != null) || (other.name != null)) {
+                return false;
+            }
+        }
+        if ((ident != null) && (other.ident != null)) {
+            return ident.equals(((AtRulePage) atRule).ident);
+        } else {
+            if ((ident != null) || (other.ident != null)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatched(AtRule atRule) {
-	if (atRule instanceof AtRulePage) {
-	    boolean res = true;
-	    if (name != null) {
-		res = res &&  name.equals(((AtRulePage) atRule).name);
-	    }
-	    if (ident != null) {
-		res = res &&  ident.equals(((AtRulePage) atRule).ident);
-	    }
-	    return res;
-	} else {
-	    return false;
-	}
+        AtRulePage atRulePage;
+        try {
+            atRulePage = (AtRulePage) atRule;
+        } catch (ClassCastException cce) {
+            // not an AtRulePage, fail
+            return false;
+        }
+        if ((name != null) && !name.equals(atRulePage.name)) {
+            return false;
+        }
+        if ((ident != null) && !ident.equals(atRulePage.ident)) {
+            return false;
+        }
+        return true;
     }
 
 
     public String getName() {
-	return name;
+        return name;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "@" + keyword() ;
-	if (ident!=null) {
-	    ret += " " + ident;
-	    if (name!=null) {
-		ret += name;
-	    }
-	} else if (name != null) {
-	    ret += " " + name;
-	}
-	return ret;
+        StringBuilder ret = new StringBuilder();
+        ret.append('@').append(keyword());
+        if (ident != null) {
+            ret.append(' ').append(ident);
+            if (name != null) {
+                ret.append(name);
+            }
+        } else if (name != null) {
+            ret.append(' ').append(name);
+        }
+        return ret.toString();
     }
 
 }

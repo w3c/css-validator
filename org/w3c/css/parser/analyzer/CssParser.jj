@@ -24,8 +24,8 @@ package org.w3c.css.parser.analyzer;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.Vector;
-import java.util.Enumeration;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.net.URL;
 
 import org.w3c.css.values.CssValue;
@@ -108,7 +108,7 @@ public abstract class CssParser {
     /**
      * The current context recognized by the parser (for errors).
      */  
-    protected Vector currentContext;
+    protected ArrayList<CssSelectors> currentContext;
     
     /**
      * The current property recognized by the parser (for errors).
@@ -242,8 +242,8 @@ public abstract class CssParser {
     public abstract void newAtRule(AtRule atRule);
     public abstract void endOfAtRule();
     public abstract void setImportant(boolean important);
-    public abstract void setSelectorList(Vector selectors);
-    public abstract void addProperty(Vector properties);
+    public abstract void setSelectorList(ArrayList<CssSelectors> selectors);
+    public abstract void addProperty(ArrayList<CssProperty> properties);
     public abstract void endOfRule();	
     public abstract void removeThisRule();
     public abstract void removeThisAtRule();
@@ -269,7 +269,7 @@ public abstract class CssParser {
 	throws InvalidParamException;
 
     /**
-     * Adds a vector of properties to a selector.
+     * Adds a ArrayList of properties to a selector.
      * <p>
      * A subclass must provide an implementation of this method. 
      *
@@ -277,7 +277,7 @@ public abstract class CssParser {
      * @param declarations Properties to associate with contexts
      */  
     public abstract void handleRule(CssSelectors selector, 
-				    Vector declarations);
+				    ArrayList<CssProperty> declarations);
 
     /*Added by Sijtsche Smeman */
 
@@ -932,9 +932,9 @@ void definition() :
  */
 void page() :
 {
-    Vector       v                              ;
+    ArrayList<CssProperty> v                              ;
     Token        n        = null                ;
-    Vector       collectv = new Vector()        ;
+    ArrayList<CssProperty>       collectv = new ArrayList<CssProperty>()        ;
     CssSelectors s        = new CssSelectors(ac);
     AtRule       old      = getAtRule()         ;
     AtRulePage   newRule  = new AtRulePage()    ;
@@ -985,9 +985,9 @@ void page() :
     }
 }
 
-Vector pageContent() :
+ArrayList<CssProperty> pageContent() :
 { CssProperty prop;
-    Vector v = new Vector();
+    ArrayList<CssProperty> v = new ArrayList<CssProperty>();
 }
 {
     // <CSS3> ?? FIXME
@@ -997,9 +997,9 @@ Vector pageContent() :
     v=declarations() { return v;} /* FIXME moved here as it can match empty string */
 }
 
-Vector prefAtRule() :
+ArrayList<CssProperty> prefAtRule() :
 { Token n; 
-    Vector v;
+    ArrayList<CssProperty> v;
 }
 {
     try {
@@ -1030,7 +1030,7 @@ void pseudo_page(AtRulePage page) :
 
 void fontFace() :
 {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleFontFace());
     CssSelectors s = new CssSelectors(ac);
@@ -1074,7 +1074,7 @@ void fontFace() :
 
 void colorprofile() :
 {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRuleColorProfile());
     CssSelectors s = new CssSelectors(ac);
@@ -1121,7 +1121,7 @@ void colorprofile() :
 
 void preference() :
 {
-    Vector v;
+    ArrayList<CssProperty> v;
     AtRule old = getAtRule();
     setAtRule(new AtRulePreference());
     CssSelectors s = new CssSelectors(ac);
@@ -1167,7 +1167,6 @@ void preference() :
 
 void phoneticAlphabet() :
 {
-    Vector v;
     AtRule old = getAtRule();
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
     setAtRule(alphabetrule);
@@ -1271,8 +1270,8 @@ String property() :
  */
 void ruleSet() :
 { CssSelectors contextual;
-    Vector<CssSelectors> context_set = new Vector<CssSelectors>();
-    Vector<CssProperty> value_set = null;
+    ArrayList<CssSelectors> context_set = new ArrayList<CssSelectors>();
+    ArrayList<CssProperty> value_set = null;
     currentContext = context_set;
 }
 {
@@ -1280,7 +1279,7 @@ void ruleSet() :
 	contextual=selector()
 	    { 
 		if (contextual != null) {
-		    context_set.addElement(contextual); 
+		    context_set.add(contextual); 
 		}
 	    }
 	
@@ -1288,7 +1287,7 @@ void ruleSet() :
 	  contextual=selector()
 	    { 
 		if (contextual != null) {
-		    context_set.addElement(contextual); 
+		    context_set.add(contextual); 
 		}
 	    }  
 	  )*
@@ -1307,9 +1306,9 @@ void ruleSet() :
 		if (value_set != null) {
 		    boolean first = true;
 		    CssSelectors sel = null;
-		    Enumeration<CssSelectors> e = context_set.elements();
-		    while (e.hasMoreElements()) {
-			sel = e.nextElement();
+                    Iterator<CssSelectors> e = context_set.iterator();
+		    while (e.hasNext()) {
+			sel = e.next();
 			if (first) {
 			    handleRule(sel, value_set);
 			    first = false;
@@ -1318,9 +1317,9 @@ void ruleSet() :
 			    // as property holds reference to the selectors and it interact
 			    // badly with conflict detection
 			    int vsize = value_set.size();
-			    Vector<CssProperty> v = new Vector<CssProperty>(vsize);
+			    ArrayList<CssProperty> v = new ArrayList<CssProperty>(vsize);
 			    for (int i=0; i<vsize; i++) {
-				v.addElement(value_set.elementAt(i).duplicate());
+				v.add(value_set.get(i).duplicate());
 			    }
 			    handleRule(sel, v);
 			}
@@ -1341,7 +1340,7 @@ void ruleSet() :
     }
 }
 
-Vector<CssProperty> declarations() :
+ArrayList<CssProperty> declarations() :
 {
     if(!validSelector) {        
         validSelector = true;
@@ -1350,13 +1349,13 @@ Vector<CssProperty> declarations() :
     }
 
     CssProperty values;
-    Vector<CssProperty> value_set   = new Vector<CssProperty>();
+    ArrayList<CssProperty> value_set   = new ArrayList<CssProperty>();
     boolean wrong_value = true;
 }
 {    
     ( values=declaration() 
 	{ if (values != null) {
-		value_set.addElement(values);
+		value_set.add(values);
 		wrong_value = false;
 	    } /* else {
 		 wrong_value = true;
@@ -1367,7 +1366,7 @@ Vector<CssProperty> declarations() :
 	( ";" ( <S> )*
 	  ( values=declaration() 
 	      { if (values != null) {
-		      value_set.addElement(values);
+		      value_set.add(values);
 		      wrong_value = false;
 		  }/* else {
 		      wrong_value = true;
@@ -1542,7 +1541,7 @@ void _class(CssSelectors s) :
           
 	    if(!profile.equals("css1")) {
 		StringBuilder sb = new StringBuilder();
-		Vector<String> param_err = new Vector<String>(2);
+		ArrayList<String> param_err = new ArrayList<String>(2);
 		param_err.add(n.image);
 		param_err.add(cl);
 		sb.append(ac.getMsg().getString("parser.old_class", param_err));

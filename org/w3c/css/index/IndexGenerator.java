@@ -6,6 +6,16 @@
  */
 package org.w3c.css.index;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.exception.MethodInvocationException;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.Messages;
+import org.w3c.css.util.Utf8Properties;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,16 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.exception.MethodInvocationException;
-import org.apache.velocity.exception.ParseErrorException;
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.Messages;
-import org.w3c.css.util.Utf8Properties;
 
 /**
  * @author julien
@@ -65,7 +65,7 @@ public class IndexGenerator {
         Iterator it;
 
         // Getting the differents languages informations (for the lang choice)
-        HashMap[] languages = new HashMap[Messages.languages_name.size()];
+        HashMap<String,String>[] languages = new HashMap[Messages.languages_name.size()];
         for (int i = 0; i < Messages.languages_name.size(); ++i) {
             name = String.valueOf(Messages.languages_name.get(i));
             HashMap<String,String> l = new HashMap<String,String>();
