@@ -222,9 +222,26 @@ public class Warning implements Comparable<Warning> {
         } else {
             // replace all parameters.
             if (args != null) {
-                for (j = 0; j < args.length; j++) {
-                    str = str.replaceFirst("%s", args[j]);
+                StringBuilder sb = new StringBuilder();
+                int idx = 0;
+                int start = 0;
+                for (String subst : args) {
+                    idx = str.indexOf("%s", idx);
+                    if (idx < 0) {
+                        // TODO report error
+                        System.err.println("*** WARNING ISSUE: "+warning);
+                        System.err.println("*** WARNING ISSUE: "+ac.getMsg().getWarningString(warning));
+                        System.err.println("*** WARNING ISSUE: got "+args.length+" args entries");
+                        break;
+                    }
+                    sb.append(str.substring(start, idx));
+                    sb.append(subst);
+                    idx+=2;
+                    start=idx;
                 }
+                // and add the last part
+                sb.append(str.substring(start));
+                return sb.toString();
             }
             return str;
         }
