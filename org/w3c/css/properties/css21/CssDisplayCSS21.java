@@ -15,14 +15,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 import java.util.HashMap;
-        /**
+/**
  *
- * http://www.w3.org/TR/2009/CR-CSS2-20090908/visuren.html#display-prop
+ * http://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#display-prop
  *
- * 9.2.4 The 'display' property
+9.2.4 The 'display' property
 
 'display'
-    Value:  	inline | block | list-item | run-in | inline-block | table |
+    Value:  	inline | block | list-item | inline-block | table |
                 inline-table | table-row-group | table-header-group |
                 table-footer-group | table-row | table-column-group |
                 table-column | table-cell | table-caption | none | inherit
@@ -32,63 +32,6 @@ import java.util.HashMap;
     Percentages:  	N/A
     Media:  	all
     Computed value:  	see text
-
-The values of this property have the following meanings:
-
-block
-    This value causes an element to generate a block box.
-inline-block
-    This value causes an element to generate a block box, which itself is
-    flowed as a single inline box, similar to a replaced element. The inside
-    of an inline-block is formatted as a block box, and the element itself is
-    formatted as an inline replaced element.
-inline
-    This value causes an element to generate one or more inline boxes.
-list-item
-    This value causes an element (e.g., LI in HTML) to generate a principal
-    block box and a list-item inline box. For information about lists and
-    examples of list formatting, please consult the section on lists.
-none
-    This value causes an element to not appear in the formatting structure
-    (i.e., in visual media the element generates no boxes and has no effect
-    on layout). Descendant elements do not generate any boxes either;
-    the element and its content are removed from the formatting structure
-    entirely. This behavior cannot be overridden by setting the 'display'
-    property on the descendants.
-
-    Please note that a display of 'none' does not create an invisible box;
-    it creates no box at all. CSS includes mechanisms that enable an element
-    to generate boxes in the formatting structure that affect formatting but
-    are not visible themselves. Please consult the section on visibility for
-    details.
-run-in
-    This value creates either block or inline boxes, depending on context.
-    Properties apply to run-in boxes based on their final status (inline-level
-    or block-level).
-table, inline-table, table-row-group, table-column, table-column-group,
-table-header-group, table-footer-group, table-row, table-cell,
-and table-caption
-    These values cause an element to behave like a table element
-    (subject to restrictions described in the chapter on tables).
-
-The computed value is the same as the specified value, except for positioned
-and floating elements (see Relationships between 'display', 'position', and '
-float') and for the root element. For the root element, the computed value is
-changed as described in the section on the relationships between 'display',
-'position', and 'float'.
-
-Note that although the initial value of 'display' is 'inline', rules in the
-user agent's default style sheet may override this value. See the sample
-style sheet for HTML 4 in the appendix.
-
-Example(s):
-
-Here are some examples of the 'display' property:
-
-p   { display: block }
-em  { display: inline }
-li  { display: list-item }
-img { display: none }
 
  * @version $Revision$
  */
@@ -101,7 +44,7 @@ public class CssDisplayCSS21 extends CssDisplay {
     static {
         allowed_values = new HashMap<String, CssIdent>();
         String[] DISPLAY = {
-                "inline", "block", "list-item", "run-in", "inline-block",
+                "inline", "block", "list-item", "inline-block",
                 "table", "inline-table", "table-row-group",
                 "table-header-group", "table-footer-group",
                 "table-row", "table-column-group", "table-column",
