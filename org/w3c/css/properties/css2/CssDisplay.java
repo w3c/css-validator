@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css2;
 
-import org.w3c.css.properties.css.CssDisplay;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -85,9 +84,8 @@ Conforming HTML user agents may ignore the 'display' property.
  * @version $Revision$
  */
 
-public class CssDisplayCSS2 extends CssDisplay {
+public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
-    public static CssIdent inline;
     public static HashMap<String, CssIdent> allowed_values;
     static {
         allowed_values = new HashMap<String, CssIdent>();
@@ -101,13 +99,12 @@ public class CssDisplayCSS2 extends CssDisplay {
         for (String aDISPLAY : DISPLAY) {
             allowed_values.put(aDISPLAY, CssIdent.getIdent(aDISPLAY));
         }
-        inline = CssIdent.getIdent("inline");
     }
 
     /**
      * Create a new CssDisplay
      */
-    public CssDisplayCSS2() {
+    public CssDisplay() {
         // nothing to do
     }
 
@@ -119,8 +116,8 @@ public class CssDisplayCSS2 extends CssDisplay {
      * @param check      boolean, if check has to be enforced
      * @throws org.w3c.css.util.InvalidParamException Values are incorect
      */
-    public CssDisplayCSS2(ApplContext ac, CssExpression expression,
-                          boolean check) throws InvalidParamException {
+    public CssDisplay(ApplContext ac, CssExpression expression,
+                      boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -149,7 +146,7 @@ public class CssDisplayCSS2 extends CssDisplay {
 
     }
 
-    public CssDisplayCSS2(ApplContext ac, CssExpression expression)
+    public CssDisplay(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

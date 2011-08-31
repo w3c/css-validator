@@ -9,6 +9,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssSelectors;
+import org.w3c.css.properties.atsc.ATSCStyle;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
@@ -32,7 +33,7 @@ import org.w3c.css.util.Warnings;
 
 import org.w3c.css.parser.CssPrinterStyle;
 
-public class Css3Style extends org.w3c.css.properties.atsc.ATSCStyle {
+public class Css3Style extends ATSCStyle {
 
     CssOpacity cssOpacity;
     CssColorProfile cssColorProfile;
