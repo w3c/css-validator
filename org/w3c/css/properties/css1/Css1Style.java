@@ -25,6 +25,7 @@ import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
 import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
 import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
 import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
+import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
