@@ -13,74 +13,43 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
  */
 public class CssZIndex extends CssProperty {
 
-    private static final String propertyName = "z-index";
+    public static final String propertyName = "z-index";
 
     CssValue value;
 
-    private static CssIdent auto = CssIdent.getIdent("auto");
+    public static CssIdent auto = CssIdent.getIdent("auto");
 
     /**
      * Create a new CssZIndex
      */
     public CssZIndex() {
-        value = auto;
     }
 
     /**
      * Create a new CssZIndex
      *
-     * @param ac    The context
+     * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
      * @throws InvalidParamException The expression is incorrect
      */
     public CssZIndex(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
+        throw new InvalidParamException("value", expression.getValue(),
+                getPropertyName(), ac);
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-
-        CssValue val = expression.getValue();
-
-        setByUser();
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                if (((CssNumber) val).isInteger()) {
-                    value = val;
-                    break;
-                }
-                throw new InvalidParamException("integer",
-                    val.toString(),
-                    getPropertyName(), ac);
-            case CssTypes.CSS_IDENT:
-                CssIdent ide = (CssIdent) val;
-                if (inherit.equals(ide)) {
-                    value = inherit;
-                    break;
-                } else if (auto.equals(ide)) {
-                    value = auto;
-                    break;
-                }
-            default:
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-        }
-        expression.next();
     }
 
     /**
      * Create a new CssZIndex
      *
-     * @param ac, the Context
+     * @param ac,        the Context
      * @param expression The expression for this property
      * @throws InvalidParamException The expression is incorrect
      */
@@ -161,7 +130,7 @@ public class CssZIndex extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (value == auto);
+        return false;
     }
 
 }
