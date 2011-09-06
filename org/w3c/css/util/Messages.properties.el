@@ -1,5 +1,6 @@
 # Master localization string file: $Id$
 language_name: Ελληνικά
+direction: ltr
 more_options: Περισσότερες επιλογές
 title_more_options: Show/Hide extra validation options
 all: Όλα
