@@ -60,6 +60,10 @@ note: Remarque
 note_xhtml_valid: Si vous souhaitez valider une feuille de style incorporée dans un document (X)HTML, vous devriez d'abord <a href="http://validator.w3.org/">vérifier la validité de votre document (X)HTML</a>
 note_valide_html: Les resultats de la validation de feuilles de styles incorporées dans un document (X)HTML ne sont fiables que si <a href="http://validator.w3.org/">le document HTML est valide</a>.
 # End of variables added along with Index page template
+vendorext: Extensions Propriétaires
+vext_default: Défaut
+vext_warnings: Avertissements
+vext_errors: Erreurs
 
 W3C_validator_results: Résultats de la validation W3C CSS de
 # file_title: <!-- provided by the user -->
