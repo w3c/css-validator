@@ -98,13 +98,13 @@
     </td>
 
     <th id="header_vext_warning_uri">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Разширения от разработчика:</label>     
     </th>
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">По подразбиране</option>
+        <option value="true">Предупреждения</option>
+        <option value="false">Грешки</option>
       </select>
     </td>
 
@@ -187,13 +187,13 @@
     </td>
 
     <th id="header_vext_warning_upload">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Разширения от разработчика:</label>     
     </th>
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">По подразбиране</option>
+        <option value="true">Предупреждения</option>
+        <option value="false">Грешки</option>
       </select>
     </td>
 
@@ -285,13 +285,13 @@
     </td>
 
     <th id="header_vext_warning_input">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Разширения от разработчика:</label>     
     </th>
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">По подразбиране</option>
+        <option value="true">Предупреждения</option>
+        <option value="false">Грешки</option>
       </select>
     </td>
 
@@ -460,6 +460,13 @@
             xml:lang="el"
             hreflang="el"
             rel="alternate">Ελληνικά</a>
+        </li>
+        
+        <li><a href="validator.html.hi"
+            lang="hi"
+            xml:lang="hi"
+            hreflang="hi"
+            rel="alternate">अंग्रेजी</a>
         </li>
         
         <li><a href="validator.html.zh-cn"

@@ -462,6 +462,13 @@
             rel="alternate">Ελληνικά</a>
         </li>
         
+        <li><a href="validator.html.hi"
+            lang="hi"
+            xml:lang="hi"
+            hreflang="hi"
+            rel="alternate">अंग्रेजी</a>
+        </li>
+        
         <li><a href="validator.html.zh-cn"
             lang="zh-cn"
             xml:lang="zh-cn"
