@@ -98,13 +98,13 @@
     </td>
 
     <th id="header_vext_warning_uri">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Extensions Propriétaires:</label>     
     </th>
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">Défaut</option>
+        <option value="true">Avertissements</option>
+        <option value="false">Erreurs</option>
       </select>
     </td>
 
@@ -187,13 +187,13 @@
     </td>
 
     <th id="header_vext_warning_upload">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Extensions Propriétaires:</label>     
     </th>
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">Défaut</option>
+        <option value="true">Avertissements</option>
+        <option value="false">Erreurs</option>
       </select>
     </td>
 
@@ -285,13 +285,13 @@
     </td>
 
     <th id="header_vext_warning_input">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Extensions Propriétaires:</label>     
     </th>
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">
-        <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="">Défaut</option>
+        <option value="true">Avertissements</option>
+        <option value="false">Erreurs</option>
       </select>
     </td>
 
