@@ -1,5 +1,5 @@
 ﻿# Master localization string file: $Id$
-language_name: अंग्रेजी
+language_name: हिन्दी
 direction: ltr
 more_options: अतिरिक्त विकल्प
 title_more_options: दिखाएँ / छुपाएँ अतिरिक्त विकल्पों का मान्यता
@@ -364,3 +364,15 @@ warning.float-no-width: (x)HTML + सीएसएस में जारी, त
 
 parser.charsetcss1: @चारसेट नियमों CSS1 में उपयोग नहीं किया जा सकता
 parser.attrcss1: विशेषता चयनकर्ता CSS1 में अवैध हैं
+
+error.bg_order: CSS3 पृष्ठभूमि परिभाषा में 'bg_position',  'bg_size' से पहले हो, अगर दोनों मौजूद हैं
+error.strictly-positive: %s मान्य नहीं है, केवल मान 0 से अधिक की अनुमति है
+parser.import_not_allowed: @charset और @import की तुलना में किसी भी अन्य बयान के बाद @import की अनुमति नहीं कर रहे हैं.
+parser.invalid_id_selector: अमान्य आईडी चयनकर्ता
+vendorext: विक्रेता एक्सटेंशन
+vext_default: डिफ़ॉल्ट
+vext_errors: त्रुटियाँ
+vext_warnings: चेतावनी
+warning.link-type: आप 'text/css' के एक मूल्य के साथ एक 'type' विशेषता 'link' तत्व जोड़ने चाहिए
+warning.style-type: आप 'text/css' के एक मूल्य के साथ 'style' तत्व के लिए एक 'type' विशेषता जोड़ने चाहिए
+warning.vendor-extension: संपत्ति %s एक अज्ञात विक्रेता एक्सटेंशन है
