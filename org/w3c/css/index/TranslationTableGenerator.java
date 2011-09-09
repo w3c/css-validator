@@ -109,7 +109,14 @@ public class TranslationTableGenerator {
                     if (hy > 0) {
                         String m = name.substring(0, hy);
                         String s = name.substring(hy + 1);
-                        locale = new Locale(m, s, "");
+                        hy = s.indexOf("-");
+                        if (hy > 0) {
+                            String v = s.substring(hy + 1);
+                            s = s.substring(0, hy);
+                            locale = new Locale(m, s, v);
+                        } else {
+                            locale = new Locale(m, s, "");
+                        }
                     } else {
                         locale = new Locale(name);
                     }
@@ -128,7 +135,7 @@ public class TranslationTableGenerator {
             Set properties_keyset = ac_default.getMsg().properties.keySet();
             sorted_properties_keys = new Vector<String>(properties_keyset);
             Collections.sort(sorted_properties_keys, new AlphaComparator());
-            Iterator properties_iterator = sorted_properties_keys.iterator();
+            Iterator<String> properties_iterator = sorted_properties_keys.iterator();
             translations_table.append("<tbody>");
             int num_properties = 0;
             while (properties_iterator.hasNext()) {

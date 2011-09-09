@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -130,17 +129,6 @@ public class CssBorderTopColor extends CssProperty {
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBorderTopColor &&
 		face.equals(((CssBorderTopColor) property).face));
-    }
-
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     *
-     * @see #print(CssPrinterStyle)
-     */
-    public void print(CssPrinterStyle printer) {
-	if (face != null && !face.isDefault())
-	    printer.print(this);
     }
 
 }

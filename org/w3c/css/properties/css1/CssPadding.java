@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -269,36 +268,6 @@ public class CssPadding extends CssProperty implements CssOperator {
 		(right == null || right.important) &&
 		(bottom == null || bottom.important) &&
 		(left == null || left.important));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if (inheritedValue) {
-	    printer.print(this);
-	} else if ((top != null && right != null &&
-		    bottom != null && left != null) &&
-		   (getImportant() ||
-		    (!top.important &&
-		     !right.important &&
-		     !bottom.important &&
-		     !left.important))) {
-	    printer.print(this);
-	} else {
-	    if (top != null)
-		top.print(printer);
-	    if (right != null)
-		right.print(printer);
-	    if (bottom != null)
-		bottom.print(printer);
-	    if (left != null)
-		left.print(printer);
-	}
-
     }
 
     /**

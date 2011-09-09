@@ -8,8 +8,6 @@
 
 package org.w3c.css.properties.svg;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 public class SVGStyle extends SVGBasicStyle {
 
     Marker marker;
@@ -93,37 +91,4 @@ public class SVGStyle extends SVGBasicStyle {
 	return cssRenderIntent;
     }
 
-    /**
-     * Print this style
-     *
-     * @param printer The printer interface
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
-
-	if (marker != null) {
-	    marker.print(printer);
-	}
-	if (markerStart != null) {
-	    markerStart.print(printer);
-	}
-	if (markerEnd != null) {
-	    markerEnd.print(printer);
-	}
-	if (markerMid != null) {
-	    markerMid.print(printer);
-	}
-	if (lightingColor != null) {
-	    lightingColor.print(printer);
-	}
-	if (cpSrc != null) {
-	    cpSrc.print(printer);
-	}
-	if (cpName != null) {
-	    cpName.print(printer);
-	}
-	if (cssRenderIntent != null) {
-	    cssRenderIntent.print(printer);
-	}
-    }
 }

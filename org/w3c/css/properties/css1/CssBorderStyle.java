@@ -9,7 +9,6 @@ package org.w3c.css.properties.css1;
 
 import java.util.HashSet;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -296,35 +295,6 @@ public class CssBorderStyle extends CssProperty implements CssOperator {
 		(right == null || right.important) &&
 		(left == null || left.important) &&
 		(bottom == null || bottom.important));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((top != null && right != null &&
-		left != null && bottom != null) &&
-		(getImportant() ||
-			(!top.important &&
-				!right.important &&
-				!left.important &&
-				!bottom.important))) {
-	    printer.print(this);
-	} else {
-	    if (top != null)
-		top.print(printer);
-	    if (right != null)
-		right.print(printer);
-	    if (left != null)
-		left.print(printer);
-	    if (bottom != null)
-		bottom.print(printer);
-	}
-
     }
 
     /**

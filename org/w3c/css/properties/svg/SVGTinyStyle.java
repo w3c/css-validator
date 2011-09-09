@@ -10,8 +10,6 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css3.Css3Style;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 public class SVGTinyStyle extends Css3Style {
 
     FillRule fillRule;
@@ -103,43 +101,6 @@ public class SVGTinyStyle extends Css3Style {
 		    new Fill(), style, selector);
 	}
 	return fill;
-    }
-
-    /**
-     * Print this style
-     *
-     * @param printer The printer interface
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
-
-	if (fillRule != null) {
-	    fillRule.print(printer);
-	}
-	if (strokeLinejoin != null) {
-	    strokeLinejoin.print(printer);
-	}
-	if (strokeLineCap != null) {
-	    strokeLineCap.print(printer);
-	}
-	if (strokeMiterLimit != null) {
-	    strokeMiterLimit.print(printer);
-	}
-	if (strokeWidth != null) {
-	    strokeWidth.print(printer);
-	}
-	if (strokeDashOffset != null) {
-	    strokeDashOffset.print(printer);
-	}
-	if (strokeDashArray != null) {
-	    strokeDashArray.print(printer);
-	}
-	if (stroke != null) {
-	    stroke.print(printer);
-	}
-	if (fill != null) {
-	    fill.print(printer);
-	}
     }
 
     /**

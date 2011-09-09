@@ -8,8 +8,6 @@
  */
 package org.w3c.css.properties.paged;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 
 /**
  * @version $Revision$
@@ -180,59 +178,6 @@ public class Css2Style extends org.w3c.css.properties.css2.user.Css2Style {
 						       style, selector);
 	}
 	return widowsATSC;
-    }
-
-    /**
-     * Print this style.
-     *
-     * @param printer The printer interface.
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
-
-	if (size != null) {
-	    size.print(printer);
-	}
-	if (marks != null) {
-	    marks.print(printer);
-	}
- 	if (pageBreakBefore != null) {
-	    pageBreakBefore.print(printer);
-	}
-	if (pageBreakBeforeATSC != null) {
-	    pageBreakBeforeATSC.print(printer);
-	}
-
- 	if (pageBreakAfter != null) {
-	    pageBreakAfter.print(printer);
-	}
-	if (pageBreakAfterATSC != null) {
-	    pageBreakAfterATSC.print(printer);
-	}
- 	if (pageBreakInside != null) {
-	    pageBreakInside.print(printer);
-	}
-	if (pageBreakInsideATSC != null) {
-	    pageBreakInsideATSC.print(printer);
-	}
-  	if (page != null) {
-	    page.print(printer);
-	}
-	if (pageATSC != null) {
-	    pageATSC.print(printer);
-	}
-  	if (orphans != null) {
-	    orphans.print(printer);
-	}
-	if (orphansATSC != null) {
-	    orphansATSC.print(printer);
-	}
-  	if (widows != null) {
-	    widows.print(printer);
-	}
-	if (widowsATSC != null) {
-	    widowsATSC.print(printer);
-	}
     }
 
 }

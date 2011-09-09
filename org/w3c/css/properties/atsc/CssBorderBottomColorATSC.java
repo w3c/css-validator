@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.atsc;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -128,15 +127,4 @@ public class CssBorderBottomColorATSC extends CssProperty {
 	return (property instanceof CssBorderBottomColorATSC && face.equals(((CssBorderBottomColorATSC) property).face));
     }
 
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if (!face.isDefault())
-	    printer.print(this);
-    }
 }

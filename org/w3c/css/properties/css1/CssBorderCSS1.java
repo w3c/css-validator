@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -187,87 +186,6 @@ public class CssBorderCSS1 extends CssProperty {
 		right.getImportant() &&
 		left.getImportant() &&
 		bottom.getImportant());
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	int printMacro = 0;
-
-	if ((top.width != null && bottom.width != null &&
-	     right.width != null && left.width != null) &&
-	    ((top.width.important && bottom.width.important &&
-	      right.width.important && left.width.important) ||
-	     (!top.width.important && !bottom.width.important &&
-	      !right.width.important && !left.width.important))) {
-	    CssBorderWidthCSS1 width = new CssBorderWidthCSS1(top.width, bottom.width,
-						      right.width, left.width);
-	    if (top.important) {
-		width.setImportant();
-	    }
-	    printMacro = 1;
-	    width.print(printer);
-	}
-	if ((top.style != null && bottom.style != null &&
-	     right.style != null && left.style != null) &&
-	    ((top.style.important && bottom.style.important &&
-	      right.style.important && left.style.important) ||
-	     (!top.style.important && !bottom.style.important &&
-	      !right.style.important && !left.style.important))) {
-	    CssBorderStyleCSS1 style = new CssBorderStyleCSS1(top.style, bottom.style,
-						      right.style, left.style);
-	    if (top.important) {
-		style.setImportant();
-	    }
-	    printMacro |= 2;
-	    style.print(printer);
-	}
-	if ((top.color != null && bottom.color != null &&
-	     right.color != null && left.color != null) &&
-	    ((top.color.important && bottom.color.important &&
-	      right.color.important && left.color.important) ||
-	     (!top.color.important && !bottom.color.important &&
-	      !right.color.important && !left.color.important))) {
-	    CssBorderColorCSS1 color = new CssBorderColorCSS1(top.color, bottom.color,
-						      right.color, left.color);
-	    if (top.important) {
-		color.setImportant();
-	    }
-	    printMacro |= 4;
-	    color.print(printer);
-	}
-
-	if (printMacro == 0) {
-	    top.print(printer);
-	    right.print(printer);
-	    bottom.print(printer);
-	    left.print(printer);
-	} else {
-	    if ((printMacro & 1) == 0) {
-		if (top.width != null) top.width.print(printer);
-		if (right.width != null) right.width.print(printer);
-		if (bottom.width != null) bottom.width.print(printer);
-		if (left.width != null) left.width.print(printer);
-	    }
-	    if ((printMacro & 2) == 0) {
-		if (top.style != null) top.style.print(printer);
-		if (right.style != null) right.style.print(printer);
-		if (bottom.style != null) bottom.style.print(printer);
-		if (left.style != null) left.style.print(printer);
-	    }
-	    if ((printMacro & 4) == 0) {
-		if (top.color != null) top.color.print(printer);
-		if (right.color != null) right.color.print(printer);
-		if (bottom.color != null) bottom.color.print(printer);
-		if (left.color != null) left.color.print(printer);
-	    }
-	}
-
     }
 
     /**

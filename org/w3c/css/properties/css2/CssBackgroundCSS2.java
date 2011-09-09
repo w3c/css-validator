@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css2;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssBackgroundConstants;
@@ -411,41 +410,6 @@ public class CssBackgroundCSS2 extends CssProperty
 		(repeat == null || repeat.important) &&
 		(attachment == null || attachment.important) &&
 		(position == null || position.important));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((color != null && image != null &&
-	     repeat != null && attachment !=null &&
-	     position != null) &&
-	    (getImportant() ||
-	     (!image.important &&
-	      !color.important &&
-	      !repeat.important &&
-	      !attachment.important &&
-	      !position.important))) {
-	    if (color.byUser || image.byUser || repeat.byUser
-		|| attachment.byUser || position.byUser) {
-		printer.print(this);
-	    }
-	} else {
-	    if (color != null)
-		color.print(printer);
-	    if (image != null)
-		image.print(printer);
-	    if (repeat != null)
-		repeat.print(printer);
-	    if (attachment != null)
-		attachment.print(printer);
-	    if (position != null)
-		position.print(printer);
-	}
     }
 
     /**

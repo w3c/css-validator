@@ -6,7 +6,6 @@
 package org.w3c.css.properties.css;
 
 import org.w3c.css.css.StyleSheetOrigin;
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
@@ -149,20 +148,6 @@ public abstract class CssProperty
     public abstract boolean equals(CssProperty property);
 
     /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-        if (byUser || inherited() || important) {
-            // if (Inherited() || important) {
-            printer.print(this);
-        }
-    }
-
-    /**
      * Returns a string representation of values.
      * <BR>
      * So if you want have something like this :
@@ -238,9 +223,6 @@ public abstract class CssProperty
 
     /**
      * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     *
-     * @see #print(CssPrinterStyle)
      */
     public boolean isDefault() {
         return false;

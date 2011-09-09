@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.atsc;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -224,32 +223,6 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
 		(color == null || color.getImportant()));
     }
 
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((width != null && style != null &&
-	     color != null) &&
-	    (getImportant() ||
-	     (!width.getImportant() &&
-	      !style.getImportant() &&
-	      !color.getImportant()))) {
-	    printer.print(this);
-	} else {
-	    if (width != null)
-		width.print(printer);
-	    if (style != null)
-		style.print(printer);
-	    if (color != null)
-		color.print(printer);
-	}
-
-    }
 
     /**
      * Set the context.

@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -147,13 +146,4 @@ public class CssBorderLeftColorCSS2 extends CssProperty {
 	return (property instanceof CssBorderLeftColorCSS2 && face.equals(((CssBorderLeftColorCSS2) property).face));
     }
 
-    /**
-     * Print this property
-     *
-     * @param printer The printer.
-     */
-    public void print(CssPrinterStyle printer) {
-	if (face != null && !face.isDefault())
-	    printer.print(this);
-    }
 }

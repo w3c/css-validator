@@ -7,16 +7,11 @@
 package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.aural.ACssStyle;
-import org.w3c.css.parser.CssPrinterStyle;
 
 /**
  * @version $Revision$
  */
 public class Css2Style extends ACssStyle {
-
-  public void print(CssPrinterStyle printer) {
-    super.print(printer);
-  }
 
 
 }

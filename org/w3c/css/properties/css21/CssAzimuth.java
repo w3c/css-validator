@@ -4,9 +4,9 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.aural;
+package org.w3c.css.properties.css21;
 
-import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.aural.ACssProperties;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -20,7 +20,7 @@ import org.w3c.css.values.CssValue;
  *
  * @version $Revision$
  */
-public class ACssAzimuth extends ACssProperty {
+public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
 
     CssValue value;
 
@@ -38,19 +38,19 @@ public class ACssAzimuth extends ACssProperty {
     private static CssIdent rightwards = new CssIdent("rightwards");
 
     /**
-     * Create a new ACssAzimuth
+     * Create a new CssAzimuth
      */
-    public ACssAzimuth() {
+    public CssAzimuth() {
 	value = defaultIdentValue;
     }
 
     /**
-     * Creates a new ACssAzimuth
+     * Creates a new CssAzimuth
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Expressions are incorrect
+     * @exception org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
-    public ACssAzimuth(ApplContext ac, CssExpression expression, boolean check)
+    public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
     	throws InvalidParamException {
 
 	this();
@@ -137,7 +137,7 @@ public class ACssAzimuth extends ACssProperty {
 					getPropertyName(), ac);
     }
 
-    public ACssAzimuth(ApplContext ac, CssExpression expression)
+    public CssAzimuth(ApplContext ac, CssExpression expression)
 	throws InvalidParamException {
 	this(ac, expression, false);
     }
@@ -149,13 +149,6 @@ public class ACssAzimuth extends ACssProperty {
 	return value;
     }
 
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "azimuth";
-    }
 
     /**
      * Returns true if this property is "softly" inherited
@@ -181,24 +174,13 @@ public class ACssAzimuth extends ACssProperty {
     }
 
     /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((ACssStyle) style).acssAzimuth != null)
-	    style.addRedefinitionWarning(ac, this);
-	((ACssStyle) style).acssAzimuth = this;
-    }
-
-    /**
      * Compares two properties for equality.
      *
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof ACssAzimuth &&
-		value.equals(((ACssAzimuth) property).value));
+	return (property instanceof CssAzimuth &&
+		value.equals(((CssAzimuth) property).value));
     }
 
     private CssIdent checkIdent(ApplContext ac, CssIdent ident)
@@ -236,20 +218,6 @@ public class ACssAzimuth extends ACssProperty {
 	throw new InvalidParamException("value",
 					ident.toString(),
 					getPropertyName(), ac);
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ACssStyle) style).getAzimuth();
-	} else {
-	    return ((ACssStyle) style).acssAzimuth;
-	}
     }
 
     static {

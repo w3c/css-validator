@@ -8,8 +8,6 @@
  */
 package org.w3c.css.properties.css2.font;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 /**
  * @version $Revision$
  */
@@ -210,84 +208,4 @@ public class Css2Style extends org.w3c.css.properties.paged.Css2Style {
     }
 
 
-    /**
-     * Print this style.
-     *
-     * @param printer The printer interface.
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
-	if (fontFamily != null) {
-	    fontFamily.print(printer);
-	}
-	if (fontStyle != null) {
-	    fontStyle.print(printer);
-	}
-	if (fontVariant != null) {
-	    fontVariant.print(printer);
-	}
-	if (fontWeight != null) {
-	    fontWeight.print(printer);
-	}
-	if (fontStretch != null) {
-	    fontStretch.print(printer);
-	}
-	if (fontSize != null) {
-	    fontSize.print(printer);
-	}
-	if (unitsPerEm != null) {
-	    unitsPerEm.print(printer);
-	}
-	if (src != null) {
-	    src.print(printer);
-	}
-	if (panose1 != null) {
-	    panose1.print(printer);
-	}
-	if (widths != null) {
-	    widths.print(printer);
-	}
-	if (bbox != null) {
-	    bbox.print(printer);
-	}
-	if (stemv != null) {
-	    stemv.print(printer);
-	}
-	if (stemv != null) {
-	    stemv.print(printer);
-	}
-	if (stemh != null) {
-	    stemh.print(printer);
-	}
-	if (slope != null) {
-	    slope.print(printer);
-	}
-	if (ascent != null) {
-	    ascent.print(printer);
-	}
-	if (descent != null) {
-	    descent.print(printer);
-	}
-	if (capHeight != null) {
-	    capHeight.print(printer);
-	}
-	if (xHeight != null) {
-	    xHeight.print(printer);
-	}
-	if (baseline != null) {
-	    baseline.print(printer);
-	}
-	if (centerline != null) {
-	    centerline.print(printer);
-	}
-	if (mathline != null) {
-	    mathline.print(printer);
-	}
-	if (topline != null) {
-	    topline.print(printer);
-	}
-	if (definitionSrc != null) {
-	    definitionSrc.print(printer);
-	}
-    }
 }

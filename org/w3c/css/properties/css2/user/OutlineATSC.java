@@ -8,7 +8,6 @@
  */
 package org.w3c.css.properties.css2.user;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -189,33 +188,6 @@ public class OutlineATSC extends UserProperty implements CssOperator {
 	return ((width == null || width.getImportant())
 		&& (color == null || color.getImportant())
 		&& (style == null || style.getImportant()));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((color != null && width != null && style != null) &&
-	    (getImportant() ||
-	     (!color.getImportant()
-	      && !style.getImportant()
-	      && !width.getImportant()))) {
-	    printer.print(this);
-	} else {
-	    if (color != null) {
-		color.print(printer);
-	    }
-	    if (width != null) {
-		width.print(printer);
-	    }
-	    if (style != null) {
-		style.print(printer);
-	    }
-	}
     }
 
     /**

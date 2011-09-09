@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.aural;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -161,29 +160,6 @@ public class ACssPause extends ACssProperty implements CssOperator {
     public boolean getImportant() {
 	return ((pauseAfter == null || pauseAfter.getImportant()) &&
 		(pauseBefore == null || pauseBefore.getImportant()));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((pauseBefore != null && pauseAfter != null) &&
-	    (getImportant() ||
-	     (!pauseBefore.getImportant() &&
-	      !pauseAfter.getImportant()))) {
-	    printer.print(this);
-	} else {
-	if (pauseBefore != null) {
-		pauseBefore.print(printer);
-	    }
-	    if (pauseAfter != null && !same) {
-		pauseAfter.print(printer);
-	    }
-	}
     }
 
     /**

@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.atsc;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssBackgroundConstants;
@@ -254,41 +253,6 @@ public class CssBackgroundATSC extends CssProperty
 		(repeat == null || repeat.getImportant()) &&
 		(attachment == null || attachment.getImportant()) &&
 		(position == null || position.getImportant()));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @param printer The printer.
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if ((color != null && image != null &&
-	     repeat != null && attachment !=null &&
-	     position != null) &&
-	    (getImportant() ||
-	     (!image.getImportant() &&
-	      !color.getImportant() &&
-	      !repeat.getImportant() &&
-	      !attachment.getImportant() &&
-	      !position.getImportant()))) {
-	    if (color.isByUser() || image.isByUser() || repeat.isByUser()
-		|| attachment.isByUser() || position.isByUser()) {
-		printer.print(this);
-	    }
-	} else {
-	    if (color != null)
-		color.print(printer);
-	    if (image != null)
-		image.print(printer);
-	    if (repeat != null)
-		repeat.print(printer);
-	    if (attachment != null)
-		attachment.print(printer);
-	    if (position != null)
-		position.print(printer);
-	}
     }
 
     /**

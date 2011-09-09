@@ -8,8 +8,6 @@
 
 package org.w3c.css.properties.svg;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 public class SVGBasicStyle extends SVGTinyStyle {
 
     AlignmentBaseline alignmentBaseline;
@@ -272,92 +270,5 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	}
 	return solidOpacity;
     }
-    
-    /**
-     * Print this style
-     *
-     * @param printer The printer interface
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
 
-	if (alignmentBaseline != null) {
-	    alignmentBaseline.print(printer);
-	}
-	if (dominantBaseLine != null) {
-	    dominantBaseLine.print(printer);
-	}
-	if (clipPath != null) {
-	    clipPath.print(printer);
-	}
-	if (clipRule != null) {
-	    clipRule.print(printer);
-	}
-	if (colorInterpolation != null) {
-	    colorInterpolation.print(printer);
-	}
-	if (colorInterpolationFilters != null) {
-	    colorInterpolationFilters.print(printer);
-	}
-	if (colorRendering != null) {
-	    colorRendering.print(printer);
-	}
-	if (enableBackground != null) {
-	    enableBackground.print(printer);
-	}
-	if (writingModeSVG != null) {
-	    writingModeSVG.print(printer);
-	}
-	if (floodOpacity != null) {
-	    floodOpacity.print(printer);
-	}
-	if (filter != null) {
-	    filter.print(printer);
-	}
-	if (fillOpacity != null) {
-	    fillOpacity.print(printer);
-	}
-	if (imageRendering != null) {
-	    imageRendering.print(printer);
-	}
-	if (mask != null) {
-	    mask.print(printer);
-	}
-	if (stopOpacity != null) {
-	    stopOpacity.print(printer);
-	}
-	if (kerning != null) {
-	    kerning.print(printer);
-	}
-	if (pointerEvents != null) {
-	    pointerEvents.print(printer);
-	}
-	if (shapeRendering != null) {
-	    shapeRendering.print(printer);
-	}
-	if (textRendering != null) {
-	    textRendering.print(printer);
-	}
-	if (textAnchor != null) {
-	    textAnchor.print(printer);
-	}
-	if (strokeOpacity != null) {
-	    strokeOpacity.print(printer);
-	}
-	if (stopColor != null) {
-	    stopColor.print(printer);
-	}
-	if (solidColor != null) {
-	    solidColor.print(printer);
-	}
-	if (floodColor != null) {
-	    floodColor.print(printer);
-	}
-	if (colorProfile != null) {
-	    colorProfile.print(printer);
-	}
-	if (solidOpacity != null) {
-	    solidOpacity.print(printer);
-	}
-    }
 }

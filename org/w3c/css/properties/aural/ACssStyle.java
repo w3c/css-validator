@@ -6,9 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.aural;
 
-import java.util.Enumeration;
-
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
@@ -24,7 +21,6 @@ public class ACssStyle extends Css1Style {
   ACssVolume acssVolume;
   ACssPause  acssPause = new ACssPause(); // it's a macro
   ACssCue  acssCue = new ACssCue(); // it's a macro
-  ACssAzimuth acssAzimuth;
   ACssElevation acssElevation;
   ACssSpeechRate acssSpeechRate;
   ACssVoiceFamily acssVoiceFamily;
@@ -93,18 +89,6 @@ public class ACssStyle extends Css1Style {
       acssPause.pauseBefore = getPauseBefore();
     }
     return acssPause;
-  }
-
-  /**
-   * Get the azimuth
-   */
-  public ACssAzimuth getAzimuth() {
-    if (acssAzimuth == null) {
-      acssAzimuth =
-	(ACssAzimuth) style.CascadingOrder(new ACssAzimuth(),
-					   style, selector);
-    }
-    return acssAzimuth;
   }
 
   /**
@@ -364,64 +348,7 @@ public class ACssStyle extends Css1Style {
     return acssPhonemes;
   }
 
-  public void print(CssPrinterStyle printer) {
-    super.print(printer);
-    if (acssVolume != null)
-      acssVolume.print(printer);
-    if (acssPlayDuring != null)
-      acssPlayDuring.print(printer);
-    acssPause.print(printer); // don't test null: it's a macro.
-    if (acssAzimuth != null)
-      acssAzimuth.print(printer);
-    if (acssElevation != null)
-      acssElevation.print(printer);
-    if (acssSpeechRate != null)
-      acssSpeechRate.print(printer);
-    if (acssVoiceFamily != null)
-      acssVoiceFamily.print(printer);
-    if (acssPitch != null)
-      acssPitch.print(printer);
-    if (acssPitchRange != null)
-      acssPitchRange.print(printer);
-    acssCue.print(printer); // don't test null: it's a macro.
-    if (acssStress != null)
-      acssStress.print(printer);
-    if (acssRichness != null)
-      acssRichness.print(printer);
-    if (acssSpeakPunctuation != null)
-      acssSpeakPunctuation.print(printer);
-    if (acssSpeakDate != null)
-      acssSpeakDate.print(printer);
-    if (acssSpeakNumeral != null)
-      acssSpeakNumeral.print(printer);
-    if (acssSpeakTime != null)
-      acssSpeakTime.print(printer);
-    if (acssSpeak != null)
-      acssSpeak.print(printer);
-    if (acssSpeakCSS3 != null)
-	  acssSpeakCSS3.print(printer);
-	if (acssVoiceVolume != null)
-	  acssVoiceVolume.print(printer);
-	if (acssVoiceBalance != null)
-	  acssVoiceBalance.print(printer);
-	if (acssVoiceFamilyCSS3 != null)
-	  acssVoiceFamilyCSS3.print(printer);
-	if (acssVoiceRate != null)
-	  acssVoiceRate.print(printer);
-	if (acssVoicePitchRange != null)
-	  acssVoicePitchRange.print(printer);
-	if (acssVoiceStress != null)
-	  acssVoiceStress.print(printer);
-	if (acssVoiceDuration != null)
-	  acssVoiceDuration.print(printer);
-	if (acssInterpretAs != null)
-	  acssInterpretAs.print(printer);
-	if (acssPhonemes != null)
-	  acssPhonemes.print(printer);
-
-  }
-
-  /**
+    /**
    * Find conflicts in this Style
    *
    * @param warnings For warnings reports.

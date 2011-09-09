@@ -6,7 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
@@ -240,36 +239,6 @@ public class CssListStyleCSS1 extends CssProperty implements CssOperator {
 	return ((listStyleType == null || listStyleType.important) &&
 		(listStyleImage == null || listStyleImage.important) &&
 		(listStylePosition == null || listStylePosition.important));
-    }
-
-    /**
-     * Print this property.
-     *
-     * @see #toString()
-     * @see #getPropertyName()
-     */
-    public void print(CssPrinterStyle printer) {
-	if (inheritedValue) {
-	    printer.print(this);
-	} else if ((listStyleType != null && listStyleImage != null &&
-		    listStylePosition != null) &&
-		   (getImportant() ||
-		    (!listStyleType.important &&
-		     !listStyleImage.important &&
-		     !listStylePosition.important))) {
-	    printer.print(this);
-	} else {
-	    if (listStyleType != null) {
-		listStyleType.print(printer);
-	    }
-	    if (listStyleImage != null) {
-		listStyleImage.print(printer);
-	    }
-	    if (listStylePosition != null) {
-		listStylePosition.print(printer);
-	    }
-	}
-
     }
 
     /**

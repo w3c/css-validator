@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.atsc;
 
-import org.w3c.css.parser.CssPrinterStyle;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -128,17 +127,6 @@ public class CssBorderTopColorATSC extends CssProperty {
     public boolean equals(CssProperty property) {
 	return (property instanceof CssBorderTopColorATSC &&
 		face.equals(((CssBorderTopColorATSC) property).face));
-    }
-
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     *
-     * @see #print(CssPrinterStyle)
-     */
-    public void print(CssPrinterStyle printer) {
-	if (!face.isDefault())
-	    printer.print(this);
     }
 
 }

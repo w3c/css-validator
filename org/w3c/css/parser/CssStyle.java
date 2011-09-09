@@ -20,83 +20,74 @@ import org.w3c.css.util.Warnings;
  */
 public class CssStyle {
 
-  /**
-   * For warnings report.
-   */
-  protected Warnings warnings;
+    /**
+     * For warnings report.
+     */
+    protected Warnings warnings;
 
-  /**
-   * The entire style sheet.
-   */
-  protected StyleSheet style;
+    /**
+     * The entire style sheet.
+     */
+    protected StyleSheet style;
 
-  /**
-   * The context of this style.
-   */
-  protected CssSelectors selector;
+    /**
+     * The context of this style.
+     */
+    protected CssSelectors selector;
 
-  /**
-   * Set the context of this style.
-   *
-   * @param selectors The context.
-   */
-  public final void setSelector(CssSelectors selectors) {
-      this.selector = selectors;
-  }
+    /**
+     * Set the context of this style.
+     *
+     * @param selectors The context.
+     */
+    public final void setSelector(CssSelectors selectors) {
+        this.selector = selectors;
+    }
 //public String toString() {
 //    String res = "";
 //    res += selector;
 //    res+=style;
 //    return res;
 //}
-  /**
-   * Set the style sheet of this style.
-   *
-   * @param style The style sheet.
-   */
-  public final void setStyleSheet(StyleSheet style) {
-    this.style = style;
-  }
 
-  /**
-   * Add a warning definition to this style.
-   *
-   * @param property The property.
-   */
-  public final void addRedefinitionWarning(ApplContext ac,
-					   CssProperty property) {
-    warnings.addWarning(new Warning(property, "redefinition", 2, ac));
-  }
+    /**
+     * Set the style sheet of this style.
+     *
+     * @param style The style sheet.
+     */
+    public final void setStyleSheet(StyleSheet style) {
+        this.style = style;
+    }
 
-  /**
-   * Add a property to this style
-   *
-   * @param property the property to add
-   * @param warnings where to add warnings if required
-   */
-  public final void setProperty(ApplContext ac, CssProperty property, Warnings warnings) {
-    this.warnings = warnings;
-    property.addToStyle(ac, this);
-  }
+    /**
+     * Add a warning definition to this style.
+     *
+     * @param property The property.
+     */
+    public final void addRedefinitionWarning(ApplContext ac,
+                                             CssProperty property) {
+        warnings.addWarning(new Warning(property, "redefinition", 2, ac));
+    }
 
-  /**
-   * Print this style.
-   * Overrides this method to create your own style.
-   *
-   * @param printer The printer interface.
-   */
-  public void print(CssPrinterStyle printer) {
-    // nothing to do
-  }
+    /**
+     * Add a property to this style
+     *
+     * @param property the property to add
+     * @param warnings where to add warnings if required
+     */
+    public final void setProperty(ApplContext ac, CssProperty property, Warnings warnings) {
+        this.warnings = warnings;
+        property.addToStyle(ac, this);
+    }
 
-  /**
-   * Find conflicts in this Style
-   *
-   * @param warnings For warnings reports.
-   * @param allSelectors All contexts is the entire style sheet.
-   */
+    /**
+     * Find conflicts in this Style
+     *
+     * @param warnings     For warnings reports.
+     * @param allSelectors All contexts is the entire style sheet.
+     */
     public void findConflicts(ApplContext ac, Warnings warnings,
-			      CssSelectors selector, CssSelectors[] allSelectors) {
-    // nothing to do
-  }
+                              CssSelectors selector, CssSelectors[] allSelectors) {
+        // nothing to do
+    }
 }

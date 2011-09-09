@@ -8,8 +8,6 @@
  */
 package org.w3c.css.properties.css2.user;
 
-import org.w3c.css.parser.CssPrinterStyle;
-
 /**
  * @version $Revision$
  */
@@ -141,27 +139,4 @@ public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
         return outlineATSC;
     }
 
-    /**
-     * Print this style.
-     *
-     * @param printer The printer interface.
-     */
-    public void print(CssPrinterStyle printer) {
-	super.print(printer);
-	if (cursor != null) {
-	    cursor.print(printer);
-	}
-	if (cursorATSC != null) {
-	    cursorATSC.print(printer);
-	}
-	if (cursorCSS2 != null) {
-	    cursorCSS2.print(printer);
-	}
-	if (outline != null) {
-	    outline.print(printer);
-	}
-	if (outlineATSC != null) {
-	    outlineATSC.print(printer);
-	}
-    }
 }

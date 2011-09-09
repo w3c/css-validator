@@ -41,7 +41,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Messages;
-import org.w3c.css.css.StyleSheetCom;
 
 import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
@@ -136,7 +135,7 @@ public abstract class CssParser implements CssParserConstants {
     /**
      * Set the attribute mediaDeclaration
      *
-     * @param mediadeclaration indicator if in a media expression list or not
+     * @param mediaDeclaration indicator if in a media expression list or not
      */
     public void setMediaDeclaration(String mediadeclaration) {
         this.mediaDeclaration = mediadeclaration;
