@@ -32,8 +32,8 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * Media: 	visual
  * Computed value: 	see individual properties
  * <p/>
- * This property is a shorthand for setting ‘column-rule-width’,
- * ‘column-rule-style’, and ‘column-rule-color’ at the same place in the
+ * This property is a shorthand for setting 'column-rule-width',
+ * 'column-rule-style', and 'column-rule-color' at the same place in the
  * style sheet. Omitted values are set to their initial values.
  */
 
