@@ -11,7 +11,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -93,17 +92,16 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
         setByUser();
 
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                // if the number is a valid number, let it flow
-                val = ((CssNumber) val).getAngle();
             case CssTypes.CSS_ANGLE:
                 if (check && expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 angleValue = (CssAngle) val;
-                if (!angleValue.isDegree()) {
-                    throw new InvalidParamException("degree", null, ac);
-                }
+                // FIXME is the following really true? not per spec...
+//                if (!angleValue.isDegree()) {
+//                    throw new InvalidParamException("degree", ac);
+//                }
+                // TODO check angle unit per CSS level
                 expression.next();
                 break;
             case CssTypes.CSS_IDENT:
@@ -135,7 +133,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
                 if (expression.getCount() > 1) {
                     val = expression.getValue();
                     if (val.getType() != CssTypes.CSS_IDENT) {
-                        throw new InvalidParamException("unrecognize", ac);
+                        throw new InvalidParamException("value", val, ac);
                     }
                     ident = (CssIdent) val;
 
@@ -164,7 +162,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
                 }
                 break;
             default:
-                throw new InvalidParamException("value", ac);
+                throw new InvalidParamException("value", val, ac);
         }
     }
 
