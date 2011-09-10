@@ -35,8 +35,6 @@ public class CssAzimuth extends CssProperty {
      */
     public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-
-
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
@@ -74,7 +72,7 @@ public class CssAzimuth extends CssProperty {
      * Returns a string representation of the object.
      */
     public String toString() {
-            return value.toString();
+        return value.toString();
     }
 
     /**
@@ -97,7 +95,6 @@ public class CssAzimuth extends CssProperty {
         return (property instanceof CssAzimuth &&
                 value.equals(((CssAzimuth) property).value));
     }
-
 
 
     /**

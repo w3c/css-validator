@@ -1,12 +1,10 @@
 //
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css2;
 
-import org.w3c.css.properties.aural.ACssProperties;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -14,139 +12,176 @@ import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
+ * http://www.w3.org/TR/2008/REC-CSS2-20080411/aural.html#propdef-azimuth
  *
  * @version $Revision$
  */
 public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
 
-    CssValue value;
-
+    CssIdent identValue;
+    CssAngle angleValue;
     boolean isBehind;
 
     private static int[] hash_values;
 
-    private static String[] AZIMUTH = { "left-side", "far-left", "left",
-					"center-left", "center", "center-right",
-					"right", "far-right", "right-side" };
+    private final static String[] azValues = {
+            "left-side", "far-left", "left",
+            "center-left", "center", "center-right",
+            "right", "far-right", "right-side"
+    };
 
-    private static CssIdent defaultIdentValue = new CssIdent(AZIMUTH[4]);
-    private static CssIdent behind = new CssIdent("behind");
-    private static CssIdent leftwards = new CssIdent("leftwards");
-    private static CssIdent rightwards = new CssIdent("rightwards");
+    private static CssIdent behind;
+    private static CssIdent leftwards;
+    private static CssIdent rightwards;
+
+    private static CssIdent singleValues[];
+
+    static {
+        hash_values = new int[azValues.length];
+        for (int i = 0; i < azValues.length; i++) {
+            hash_values[i] = azValues[i].hashCode();
+        }
+        behind = new CssIdent("behind");
+        leftwards = new CssIdent("leftwards");
+        rightwards = new CssIdent("rightwards");
+
+        singleValues = new CssIdent[3];
+        singleValues[0] = inherit;
+        singleValues[1] = leftwards;
+        singleValues[2] = rightwards;
+    }
 
     /**
      * Create a new CssAzimuth
      */
     public CssAzimuth() {
-	value = defaultIdentValue;
+    }
+
+    // check if the ident is in the allowed values
+    // return true is the ident was found.
+    private boolean checkIdent(CssIdent ident) {
+        int hash = ident.hashCode();
+        for (int azHash : hash_values) {
+            if (azHash == hash) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Creates a new CssAzimuth
      *
      * @param expression The expression for this property
-     * @exception org.w3c.css.util.InvalidParamException Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
      */
     public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
-    	throws InvalidParamException {
+            throws InvalidParamException {
 
-	this();
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	if(check && expression.getCount() > 2) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        CssValue val = expression.getValue();
 
-	CssValue val = expression.getValue();
-	int index;
+        setByUser();
 
-	setByUser();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // if the number is a valid number, let it flow
+                val = ((CssNumber) val).getAngle();
+            case CssTypes.CSS_ANGLE:
+                if (check && expression.getCount() > 1) {
+                    throw new InvalidParamException("unrecognize", ac);
+                }
+                angleValue = (CssAngle) val;
+                if (!angleValue.isDegree()) {
+                    throw new InvalidParamException("degree", null, ac);
+                }
+                expression.next();
+                break;
+            case CssTypes.CSS_IDENT:
+                int count = expression.getCount();
+                CssIdent ident = (CssIdent) val;
+                char op = expression.getOperator();
 
-	if (val.equals(leftwards)) {
-	    if(check && expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    value = leftwards;
-	    expression.next();
-	    return;
-	} if (val.equals(inherit)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    value = inherit;
-	    expression.next();
-	    return;
-	} else if (val.equals(rightwards)) {
-	    if(check && expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    value = rightwards;
-	    expression.next();
-	    return;
-	} else if (val.equals(behind)) {
-	    isBehind = true;
-	    expression.next();
-	    CssValue valnext = expression.getValue();
-	    if (valnext == null) {
-		// behind == behind center
-		value = null;
-		return;
-	    } else if (valnext instanceof CssIdent) {
-		value = checkIdent(ac, (CssIdent) valnext);
-		expression.next();
-		return;
-	    }
-	} else if (val instanceof CssIdent) {
-	    expression.next();
-	    CssValue valnext = expression.getValue();
-	    if (valnext == null) {
-		// left
-		value = checkIdent(ac, (CssIdent) val);
-		return;
-	    } else if (valnext.equals(behind)) {
-		// left behind
-		value = checkIdent(ac, (CssIdent) val);
-		isBehind = true;
-		expression.next();
-		return;
-	    }
-	} else if (val instanceof CssAngle) {
-	    if(check && expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    CssAngle angle = (CssAngle) val;
-	    if (!angle.isDegree()) {
-		throw new InvalidParamException("degree", null, ac);
-	    }
-	    value = val;
-	    expression.next();
-	    return;
-	} else if (val instanceof CssNumber) {
-	    if(check && expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    value = ((CssNumber) val).getAngle();
-	    expression.next();
-	    return;
-	}
+                // inherit, leftwards, rightwards
+                for (CssIdent singleId : singleValues) {
+                    if (singleId.equals(ident)) {
+                        if ((count > 1) && check) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        identValue = singleId;
+                        expression.next();
+                        return;
+                    }
+                }
+                // do it 1 or two times...
+                if (behind.equals(ident)) {
+                    isBehind = true;
+                } else if (checkIdent(ident)) {
+                    identValue = ident;
+                } else {
+                    throw new InvalidParamException("unrecognize", ac);
+                }
+                expression.next();
 
-	throw new InvalidParamException("value",
-					expression.getValue().toString(),
-					getPropertyName(), ac);
+                if (expression.getCount() > 1) {
+                    val = expression.getValue();
+                    if (val.getType() != CssTypes.CSS_IDENT) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    ident = (CssIdent) val;
+
+                    if (op != CssOperator.SPACE) {
+                        throw new InvalidParamException("operator", val,
+                                getPropertyName(), ac);
+                    }
+                    if (behind.equals(ident)) {
+                        if (isBehind) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        isBehind = true;
+                        expression.next();
+                    } else if (checkIdent(ident)) {
+                        // the first one was not behind, so we have an issue...
+                        if (!isBehind) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        identValue = ident;
+                    } else {
+                        // catches unknown values but also single values
+                        // inherit, leftwards, rightwards
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    expression.next();
+                }
+                break;
+            default:
+                throw new InvalidParamException("value", ac);
+        }
     }
 
     public CssAzimuth(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return value;
+        if (identValue != null) {
+            return identValue;
+        } else {
+            return angleValue;
+        }
     }
 
 
@@ -155,22 +190,25 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
      * e.g. his value is equals to inherit
      */
     public boolean isSoftlyInherited() {
-	return value.equals(inherit);
+        return inherit.equals(identValue);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if (isBehind) {
-	    if (value != null) {
-		return behind.toString() + " " + value.toString();
-	    } else {
-		return behind.toString();
-	    }
-	} else {
-	    return value.toString();
-	}
+        if (isBehind) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(behind);
+            if (identValue != null) {
+                sb.append(' ').append(identValue);
+            }
+            return sb.toString();
+        }
+        if (identValue != null) {
+            return identValue.toString();
+        }
+        return angleValue.toString();
     }
 
     /**
@@ -179,51 +217,18 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssAzimuth &&
-		value.equals(((CssAzimuth) property).value));
-    }
-
-    private CssIdent checkIdent(ApplContext ac, CssIdent ident)
-	throws InvalidParamException {
-
-	int hash = ident.hashCode();
-
-	for (int i = 0; i < AZIMUTH.length; i++) {
-	    if (hash_values[i] == hash) {
-		return ident;
-	    }
-	}
-	throw new InvalidParamException("value",
-					ident.toString(),
-					getPropertyName(), ac);
-    }
-
-    /** @deprecated */
-    private Float ValueOfIdent(ApplContext ac, CssIdent ident, boolean b)
-	throws InvalidParamException {
-
-	int hash = ident.hashCode();
-
-	for (int i = 0; i < AZIMUTH.length; i++) {
-	    if (hash_values[i] == hash) {
-		if (b) {
-		    return ACssProperties.getValue(this,
-						   behind.toString() + "." + AZIMUTH[i]);
-		} else {
-		    return ACssProperties.getValue(this, AZIMUTH[i]);
-		}
-	    }
-	}
-
-	throw new InvalidParamException("value",
-					ident.toString(),
-					getPropertyName(), ac);
-    }
-
-    static {
-	hash_values = new int[AZIMUTH.length];
-	for (int i = 0; i < AZIMUTH.length; i++)
-	    hash_values[i] = AZIMUTH[i].hashCode();
+        CssAzimuth other;
+        try {
+            other = (CssAzimuth) property;
+            // TODO compute a float value to do equality of angle and ident
+            return ((other.isBehind == isBehind) &&
+                    ((identValue != null && identValue.equals(other.identValue))
+                            || (identValue == null) && (other.identValue == null)) &&
+                    ((angleValue != null && angleValue.equals(other.angleValue))
+                            || (angleValue == null) && (other.angleValue == null)));
+        } catch (ClassCastException ex) {
+            return false;
+        }
     }
 }
 

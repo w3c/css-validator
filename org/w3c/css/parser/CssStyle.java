@@ -43,12 +43,6 @@ public class CssStyle {
     public final void setSelector(CssSelectors selectors) {
         this.selector = selectors;
     }
-//public String toString() {
-//    String res = "";
-//    res += selector;
-//    res+=style;
-//    return res;
-//}
 
     /**
      * Set the style sheet of this style.
