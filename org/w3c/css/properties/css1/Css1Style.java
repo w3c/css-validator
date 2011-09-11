@@ -18,6 +18,7 @@ import org.w3c.css.properties.css.CssBackgroundPosition;
 import org.w3c.css.properties.css.CssBackgroundRepeat;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssDisplay;
+import org.w3c.css.properties.css.CssElevation;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.properties.css2.CssBackgroundAttachmentCSS2;
@@ -40,11 +41,6 @@ import org.w3c.css.values.CssValue;
  * The Css1Style main class.
  */
 public class Css1Style extends CssStyle {
-
-    /**
-     * aural properties
-     */
-    public CssAzimuth cssAzimuth;
 
     /**
      * Font properties
@@ -293,21 +289,6 @@ public class Css1Style extends CssStyle {
 
     public String[] emptyArray = {};
 
-    /**
-     * aural properties
-     *
-     */
-
-    /**
-     * Get the azimuth
-     */
-    public CssAzimuth getAzimuth() {
-        if (cssAzimuth == null) {
-            cssAzimuth = (CssAzimuth) style.CascadingOrder(new CssAzimuth(),
-                    style, selector);
-        }
-        return cssAzimuth;
-    }
     /*
      * Font Properties
      */

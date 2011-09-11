@@ -8,12 +8,10 @@
  */
 package org.w3c.css.properties.css2.table;
 
-import org.w3c.css.properties.aural.ACssStyle;
-
 /**
  * @version $Revision$
  */
-public class Css2Style extends ACssStyle {
+public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
     RowSpan rowSpan;
     RowSpanATSC rowSpanATSC;

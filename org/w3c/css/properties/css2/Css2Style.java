@@ -13,5 +13,37 @@ import org.w3c.css.properties.aural.ACssStyle;
  */
 public class Css2Style extends ACssStyle {
 
+    /**
+     * aural properties
+     */
+    public org.w3c.css.properties.css.CssAzimuth cssAzimuth;
+    public org.w3c.css.properties.css.CssElevation cssElevation;
+
+    /**
+     * aural properties
+     *
+     */
+
+    /**
+     * Get the azimuth
+     */
+    public org.w3c.css.properties.css.CssAzimuth getAzimuth() {
+        if (cssAzimuth == null) {
+            cssAzimuth = (org.w3c.css.properties.css.CssAzimuth) style.CascadingOrder(new org.w3c.css.properties.css.CssAzimuth(),
+                    style, selector);
+        }
+        return cssAzimuth;
+    }
+
+    /**
+     * Get the elevation
+     */
+    public org.w3c.css.properties.css.CssElevation getElevation() {
+        if (cssElevation == null) {
+            cssElevation = (org.w3c.css.properties.css.CssElevation) style.CascadingOrder(new org.w3c.css.properties.css.CssElevation(),
+                    style, selector);
+        }
+        return cssElevation;
+    }
 
 }

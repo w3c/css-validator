@@ -21,7 +21,6 @@ public class ACssStyle extends Css1Style {
   ACssVolume acssVolume;
   ACssPause  acssPause = new ACssPause(); // it's a macro
   ACssCue  acssCue = new ACssCue(); // it's a macro
-  ACssElevation acssElevation;
   ACssSpeechRate acssSpeechRate;
   ACssVoiceFamily acssVoiceFamily;
   ACssPitch acssPitch;
@@ -89,18 +88,6 @@ public class ACssStyle extends Css1Style {
       acssPause.pauseBefore = getPauseBefore();
     }
     return acssPause;
-  }
-
-  /**
-   * Get the elevation
-   */
-  public ACssElevation getElevation() {
-    if (acssElevation == null) {
-      acssElevation =
-	(ACssElevation) style.CascadingOrder(new ACssElevation(),
-					     style, selector);
-    }
-    return acssElevation;
   }
 
   /**

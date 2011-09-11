@@ -13,34 +13,33 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
+
 /**
  * @version $Revision$
  */
-public class CssAzimuth extends CssProperty {
+public class CssElevation extends CssProperty {
 
     CssValue value;
 
     /**
-     * Create a new CssAzimuth
+     * Create a new CssElevation
      */
-    public CssAzimuth() {
+    public CssElevation() {
     }
 
     /**
-     * Creates a new CssAzimuth
+     * Creates a new ACssElevation
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     *          Values are incorrect
      */
-    public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
-        throw new InvalidParamException("value",
-                expression.getValue().toString(),
-                getPropertyName(), ac);
+    public CssElevation(ApplContext ac, CssExpression expression,
+                        boolean check) throws InvalidParamException {
+        throw new InvalidParamException("unrecognize", ac);
     }
 
-    public CssAzimuth(ApplContext ac, CssExpression expression)
+    public CssElevation(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -57,7 +56,7 @@ public class CssAzimuth extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "azimuth";
+        return "elevation";
     }
 
     /**
@@ -81,9 +80,9 @@ public class CssAzimuth extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css2Style) style).cssAzimuth != null)
+        if (((Css2Style) style).cssElevation != null)
             style.addRedefinitionWarning(ac, this);
-        ((Css2Style) style).cssAzimuth = this;
+        ((Css2Style) style).cssElevation = this;
     }
 
     /**
@@ -92,10 +91,9 @@ public class CssAzimuth extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssAzimuth &&
-                value.equals(((CssAzimuth) property).value));
+        return (property instanceof CssElevation &&
+                value.equals(((CssElevation) property).value));
     }
-
 
     /**
      * Get this property in the style.
@@ -105,9 +103,9 @@ public class CssAzimuth extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css2Style) style).getAzimuth();
+            return ((Css2Style) style).getElevation();
         } else {
-            return ((Css2Style) style).cssAzimuth;
+            return ((Css2Style) style).cssElevation;
         }
     }
 }

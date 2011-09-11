@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2008/REC-CSS2-20080411/aural.html#propdef-azimuth
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/aural.html#propdef-azimuth
  *
  * @version $Revision$
  */
