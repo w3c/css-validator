@@ -1,10 +1,10 @@
 //
 // $Id$
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University 2011
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.properties.css21;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
 
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-elevation
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/aural.html#propdef-elevation
  *
  * @version $Revision$
  */
