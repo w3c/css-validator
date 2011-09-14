@@ -7,10 +7,9 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
-
-import java.util.HashMap;
 
 /**
  * <H3>Angle</H3>
@@ -44,16 +43,17 @@ public class CssAngle extends CssValue implements CssValueFloat {
     static final String deg = "deg";
     static final String rad = "rad";
     static final String grad = "grad";
-
-    private static final HashMap<String, String> allowed_values;
+    static final String turn = "turn"; // CSS3
+    static final String allowed_values[];
 
     static Float defaultValue = new Float(0);
 
     static {
-        allowed_values = new HashMap<String, String>();
-        allowed_values.put(deg, deg);
-        allowed_values.put(rad, rad);
-        allowed_values.put(grad, grad);
+        allowed_values = new String[4];
+        allowed_values[0] = deg;
+        allowed_values[1] = rad;
+        allowed_values[2] = grad;
+        allowed_values[3] = turn;
     }
 
     /**
@@ -77,6 +77,19 @@ public class CssAngle extends CssValue implements CssValueFloat {
         value = angle;
     }
 
+    private String checkUnit(String unitString, ApplContext ac)
+            throws InvalidParamException {
+        for (String s : allowed_values) {
+            if (s.matches(unitString)) {
+                if ((s == turn) && (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0)) {
+                    throw new InvalidParamException("unit", s, ac);
+                }
+                return s;
+            }
+        }
+        throw new InvalidParamException("unit", unitString, ac);
+    }
+
     /**
      * Set the value of this angle.
      *
@@ -87,20 +100,23 @@ public class CssAngle extends CssValue implements CssValueFloat {
     public void set(String s, ApplContext ac) throws InvalidParamException {
         s = s.toLowerCase();
         int length = s.length();
-        String unit;
-        //float v;
-        if (!s.contains("grad")) {
-            unit = s.substring(length - 3, length);
-            unit = allowed_values.get(unit);
-            if (unit == null) {
-                throw new InvalidParamException("unit", unit, ac);
+        // by construction we should receive only valid strings with valid
+        // units however let's check things...
+        // a valid string should be at least [0-9]<3 letter units> so >= 4 chars
+        if (length >= 4) {
+            char c = s.charAt(length - 4);
+            if (c == 't' || c == 'g') {
+                // turn or grad
+                unit = checkUnit(s.substring(length - 4), ac);
+                value = Float.valueOf(s.substring(0, length - 4));
+            } else {
+                // others so deg, rad 3 letters long.
+                unit = checkUnit(s.substring(length - 3), ac);
+                value = Float.valueOf(s.substring(0, length - 3));
             }
-            value = new Float(s.substring(0, length - 3));
         } else {
-            unit = grad;
-            value = new Float(s.substring(0, length - 4));
+            throw new InvalidParamException("unit", s, ac);
         }
-        this.unit = unit; // there is no unit by default
     }
 
     /**
@@ -125,11 +141,11 @@ public class CssAngle extends CssValue implements CssValueFloat {
      * Returns a string representation of the object.
      */
     public String toString() {
-
         if (value.floatValue() != 0) {
             return Util.displayFloat(value) + getUnit();
         } else {
-            return Util.displayFloat(value);
+            // let's say that 0 is 0deg for sanity.
+            return Util.displayFloat(value) + deg;
         }
     }
 
@@ -144,13 +160,10 @@ public class CssAngle extends CssValue implements CssValueFloat {
                 unit == ((CssAngle) value).unit);
     }
 
-
     private float normalize(float degree) {
-        while (degree < 0) {
-            degree += 360;
-        }
-        while (degree > 360) {
-            degree -= 360;
+        degree %= 360.f;
+        if (degree < 0.f) {
+            degree += 360.f;
         }
         return degree;
     }
@@ -165,6 +178,8 @@ public class CssAngle extends CssValue implements CssValueFloat {
             return normalize(angle * (180.f / ((float) Math.PI)));
         } else if (unit == grad) {
             return normalize(angle * (9.f / 10.f));
+        } else if (unit == turn) {
+            return normalize(angle * 360.f);
         }
 
         System.err.println("[ERROR] in org.w3c.css.values.CssAngle");
@@ -182,6 +197,10 @@ public class CssAngle extends CssValue implements CssValueFloat {
 
     public boolean isRadian() {
         return unit == rad;
+    }
+
+    public boolean isTurn() {
+        return unit == turn;
     }
 
 

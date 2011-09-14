@@ -46,7 +46,6 @@ import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
@@ -57,6 +56,9 @@ import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
 import org.w3c.css.properties.svg.AtRuleColorProfile;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
@@ -322,7 +324,7 @@ public abstract class CssParser {
 			  char operator, Token n, int token) 
 	throws ParseException {
 	if (n != null) {
-	    if (ac.getCssVersion().equals("css1") && 
+	    if (ac.getCssVersion() == CssVersion.CSS1 &&
 		(n.image).equals("inherit")) {
 		incompatible_error = true;
 	    }	
@@ -506,7 +508,7 @@ TOKEN [IGNORE_CASE] :
 	           | <NUM> "px" >
   | < EMS        : <NUM> "em" >
   | < EXS        : <NUM> "ex" >
-  | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" ) >
+  | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" | "turn" ) >
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
   | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
@@ -654,6 +656,7 @@ void charset() :
     Token space2Token = null;
     Token semicolonToken = null;
     int nb_S = 0;
+    CssVersion version = ac.getCssVersion();
 }
 {  
     try {
@@ -670,12 +673,13 @@ void charset() :
 		    throw new ParseException(
 				  ac.getMsg().getString("parser.charset"));
 		}
-		if ("css1".equals(ac.getCssVersion())) {
+		if (version == CssVersion.CSS1) {
 		    throw new ParseException(ac.getMsg().getString(
 							 "parser.charsetcss1"));
 		}
 	        // stricter rule for CSS21 and soon for CSS3
-		if ("css21".equals(ac.getCssVersion())) {
+	     // if equal of above CSS21
+		if (version.compareTo(CssVersion.CSS21) >= 0) {
 		    // single space before
 		    // case sensitive
 		    // no space before ;
@@ -781,7 +785,8 @@ void namespaceDeclaration() :
       <SEMICOLON> 
       ( <S> )*
       ) {
-	if (!ac.getCssVersion().equals("css3")) {
+    // If less than CSS 3
+	if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
 	    addError(new InvalidParamException("at-rule", "@namespace", ac),
 		     (n==null)?"default":n.toString());
 	} else {
@@ -844,6 +849,7 @@ void media() :
     setAtRule(newRule);
     Token n;
     CssProperty p = null;
+    boolean isCss1 =  (ac.getCssVersion() == CssVersion.CSS1);
 }
 {
     try {
@@ -866,23 +872,22 @@ void media() :
 		    ac.getFrame().addWarning("noothermedium", 
 					     getAtRule().toString());
 		}
-		if (ac.getCssVersion().equals("css1")) {
+		if (isCss1) {
 		    skipStatement();
 		    addError(new InvalidParamException("noatruleyet", "", ac),
 			     getAtRule().toString());
-		}
-		if (!ac.getCssVersion().equals("css1")) {
-		    newAtRule(getAtRule());	
+		} else {
+		    newAtRule(getAtRule());
 		}
 	    }
 	<LBRACE> ( <S> )* ( ruleSet() )* <RBRACE> ( <S> )*
 	     {
-		 if (!ac.getCssVersion().equals("css1")) {
+		 if (!isCss1) {
 		     endOfAtRule();
 		 }
 	     }
     } catch (ParseException e) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (!isCss1) {
 	    addError(e, skipStatement()); 
 	}
     } finally {
@@ -939,6 +944,7 @@ void page() :
     AtRulePage   newRule  = new AtRulePage()    ;
     setAtRule(newRule);
     s.setAtRule(getAtRule());
+    boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
 }
 {
     try {
@@ -953,11 +959,8 @@ void page() :
 		}
 							  ) <RBRACE> ( <S> )*
 	    {
-		if (!ac.getCssVersion().equals("css1")) {
+		if (!isCss1) {
 		    newAtRule(getAtRule());
-		}
-
-		if (!ac.getCssVersion().equals("css1")) {
 		    addProperty(collectv);
 		    endOfRule();
 		    endOfAtRule();
@@ -969,13 +972,13 @@ void page() :
 		}
 	    }
     } catch (InvalidParamException ie) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (!isCss1) {
 	    skipStatement();
 	    removeThisAtRule();
 	    ac.getFrame().addError(new CssError(ie));
 	}
     } catch (ParseException e) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (!isCss1) {
 	    removeThisAtRule();
 	    addError(e, skipStatement()); 
 	}
@@ -1034,24 +1037,24 @@ void fontFace() :
     setAtRule(new AtRuleFontFace());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
 }
 {
     try {
 	<FONT_FACE_SYM> ( <S> )* 
 	    {
-		if (ac.getCssVersion().equals("css1")) {
+		if (isCss1) {
 		    skipStatement();
 		    addError(new InvalidParamException("noatruleyet", "", ac),
 			     getAtRule().toString());
-		}
-		if (!ac.getCssVersion().equals("css1")) {
-		    newAtRule(getAtRule());	
+		} else {
+		    newAtRule(getAtRule());
 		}
 
 	    }
 	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
 	     {
-		 if (!ac.getCssVersion().equals("css1")) {
+		 if (!isCss1) {
 		     addProperty(v);
 		     endOfRule();
 		     endOfAtRule();
@@ -1063,7 +1066,7 @@ void fontFace() :
 		 }
 	     }
     } catch (ParseException e) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (!isCss1) {
 	    addError(e, skipStatement()); 
         }
     } finally {
@@ -1078,24 +1081,27 @@ void colorprofile() :
     setAtRule(new AtRuleColorProfile());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    CssProfile profile = ac.getCssProfile();
+    boolean isSVG = ((profile == CssProfile.SVG) ||
+                     (profile == CssProfile.SVGBASIC) ||
+                     (profile == CssProfile.SVGTINY));
 }
 {
     try {
 	<COLOR_PROFILE> ( <S> )*
 	    {
-		if (!ac.getCssVersion().equals("svg")) {
+		if (!isSVG) {
 		    skipStatement();
 		    addError(new InvalidParamException("onlysvg", "", ac),
 			     getAtRule().toString());
-		}
-		if (ac.getCssVersion().equals("svg")) {
-		    newAtRule(getAtRule());	
+		} else {
+		    newAtRule(getAtRule());
 		}
 
 	    }
 	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
 	     {
-		 if (ac.getCssVersion().equals("svg")) {
+		 if (isSVG) {
 		     addProperty(v);
 		     endOfRule();
 		     endOfAtRule();
@@ -1109,7 +1115,7 @@ void colorprofile() :
 	     }
     }
     catch (ParseException e) {
-	if (ac.getCssVersion().equals("svg")) {
+	if (isSVG) {
             addError(e, skipStatement());
 	}
     } finally {
@@ -1125,24 +1131,24 @@ void preference() :
     setAtRule(new AtRulePreference());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    boolean isCSS1 = (ac.getCssVersion() == CssVersion.CSS1);
 }
 {
     try {
 	<PREF_SYM> ( <S> )*
 	    {
-		if (ac.getCssVersion().equals("css1")) {
+		if (isCSS1) {
 		    skipStatement();
 		    addError(new InvalidParamException("noatruleyet", "", ac),
 			     getAtRule().toString());
-		}
-		if (!ac.getCssVersion().equals("css1")) {
-		    newAtRule(getAtRule());	
+		} else {
+		    newAtRule(getAtRule());
 		}
 
 	    }
 	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
 	     {
-		 if (!ac.getCssVersion().equals("css1")) {
+		 if (!isCSS1) {
 		     addProperty(v);
 		     endOfRule();
 		     endOfAtRule();
@@ -1156,7 +1162,7 @@ void preference() :
 	     }
     }
     catch (ParseException e) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (!isCSS1) {
             addError(e, skipStatement());
 	}
     } finally {
@@ -1170,12 +1176,14 @@ void phoneticAlphabet() :
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
     setAtRule(alphabetrule);
     Token n;
+    CssVersion version = ac.getCssVersion();
 }
 {
     try {
 	<PHONETIC_ALPHABET_SYM> ( <S> )* n=<STRING> ( <S> )* ";"
 	    {
-		if (!ac.getCssVersion().equals("css3")) {
+	    // FIXME comparison > CSS3
+		if (version.compareTo(CssVersion.CSS3) < 0) {
 		    skipStatement();
 		    addError(new InvalidParamException("noatruleyet", "", ac),
 			     getAtRule().toString());
@@ -1183,13 +1191,13 @@ void phoneticAlphabet() :
 
 		alphabetrule.addAlphabet(convertIdent(n.image), ac);
 
-		if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
+		if ((version != CssVersion.CSS1) && (version != CssVersion.CSS2)) {
 		    newAtRule(getAtRule());	
 		}
         
 	    }
     } catch (ParseException e) {
-	if (!ac.getCssVersion().equals("css1")) {
+	if (version != CssVersion.CSS1) {
 	    addError(e, skipStatement()); 
         }
     } finally {
@@ -1329,10 +1337,8 @@ void ruleSet() :
 		currentContext = null;
 	    }
     } catch (ParseException e) {
-	if (ac.getProfile() != null) {
-	    if (!ac.getProfile().equals("mobile") && !context_set.isEmpty()) {
+    if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
 		addError(e, skipStatement()); 
-	    }
 	}
     } catch (TokenMgrError e) {
 	addError(new ParseException(e.getMessage()), skipStatement());
@@ -1393,24 +1399,25 @@ CssSelectors selector() :
     try {
 	current=simple_selector(null) 
 	    (  
-	      comb=combinator() { 
-		if (ac.getProfile() != null) {
-		    if (ac.getProfile().equals("mobile") || 
+	    comb=combinator() {
+		if ((ac.getCssProfile() == CssProfile.MOBILE) ||
 			getAtRule().toString().equals("@media atsc-tv") ||
-			ac.getCssVersion().equals("css1")) {
-			if (comb == '+')
+			(ac.getCssVersion() == CssVersion.CSS1)) {
+			if (comb == '+') {
 			    throw new InvalidParamException("nocomb", "+", ac);
-			if (comb == '>')
+			}
+			if (comb == '>') {
 			    throw new InvalidParamException("nocomb", ">", ac);
-		    } else if (ac.getProfile().equals("tv")) {
-			if (comb == '+')
+			}
+		} else if (ac.getCssProfile() == CssProfile.TV) {
+			if (comb == '+') {
 			    throw new InvalidParamException("nocomb", "+", ac);
-		   
 		    }
 		}
-		if (!ac.getCssVersion().equals("css3")) {
+		// FIXME should be >= css3
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
 		    if (comb == '~') {
-			throw new InvalidParamException("nocomb", "~", ac);
+			    throw new InvalidParamException("nocomb", "~", ac);
 		    }
 		}
 		switch(comb) {
@@ -1533,12 +1540,13 @@ void _class(CssSelectors s) :
 	    // the class with the first digit escaped
 	    String cl = "."+hexEscapeFirst(n.image);
 
-	    String profile = ac.getProfile();
-	    if(profile == null || profile.equals("") || profile.equals("none")) {
-		profile = ac.getCssVersion(); 
-	    }     
+        CssVersion version = ac.getCssVersion();
+//	    String profile = ac.getProfile();
+//	    if(profile == null || profile.equals("") || profile.equals("none")) {
+//		profile = ac.getCssVersionString();
+//	    }
           
-	    if(!profile.equals("css1")) {
+	    if(version != CssVersion.CSS1) {
 		StringBuilder sb = new StringBuilder();
 		ArrayList<String> param_err = new ArrayList<String>(2);
 		param_err.add(n.image);
@@ -1616,14 +1624,15 @@ void element_name(CssSelectors s) :
     ( LOOKAHEAD(2) (n=<IDENT> | n=<ANY>)? p="|" )? {
 	// FIXME namespace, check versions of CSS in a better way.
 	if (p != null) {
-	    if (!ac.getCssVersion().equals("css3")) {
+	    // FIXME should be > CSS3
+	    if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
 		StringBuilder sb = new StringBuilder("namespace \"");
 		if (n != null) sb.append(n.toString());
 		sb.append("\"");
 		ac.getFrame().addError(new CssError(new 
 					  InvalidParamException("notversion",
 								"namespace",
-							    ac.getCssVersion(),
+							    ac.getCssVersionString(),
 								ac)));
 		removeThisRule();
 	    } else if (n!=null) {
@@ -1645,12 +1654,12 @@ void element_name(CssSelectors s) :
 	s.addType(new TypeSelector(prefix, convertIdent(n.image)));
     }
     | <ANY> { 
-        if (!ac.getCssVersion().equals("css1")) {
+        if (ac.getCssVersion() != CssVersion.CSS1) {
 	    //          s.setElement(null);
             s.addUniversal(new UniversalSelector(prefix));
         } else {
 	    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-									  "*", ac.getCssVersion(), ac)));
+									  "*", ac.getCssVersionString(), ac)));
 	}
     }
 	)
@@ -1682,7 +1691,7 @@ void attrib(CssSelectors s) :
 	   ( <S> )* )?
   <RBRACKET>
       {
-	  if ("css1".equals(ac.getCssVersion())) {
+	  if (ac.getCssVersion() == CssVersion.CSS1) {
 	      StringBuilder reason;
 	      CssParseException cp;
 	      ParseException p;
@@ -1786,12 +1795,13 @@ CssExpression param = null;
     <PSEUDOELEMENT_SYM> ( ( n=<IDENT>
 	{ 
 	    try {
-		if (ac.getCssVersion().equals("css3")) {
+	    // should be >CSS3
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
 		    s.addPseudoElement(convertIdent(n.image).toLowerCase());
 		} else {
 		    throw new InvalidParamException("pseudo-element",
 						    "::" + convertIdent(n.image).toLowerCase() ,
-						    ac.getCssVersion() ,ac);
+						    ac.getCssVersionString() ,ac);
 		}
 	    } catch(InvalidParamException e) {
 		//	removeThisRule();
@@ -1844,13 +1854,11 @@ void hash(CssSelectors s) :
 {
   n=<HASHIDENT>  {
       n.image = n.image.substring(1);
-      if(Character.isDigit(n.image.charAt(0))) { 
-	  String profile = ac.getProfile();
-	  if(profile == null || profile.equals("") || profile.equals("none")) {
-	      profile = ac.getCssVersion(); 
-	  }     
-	  
-	  if(!profile.equals("css1")) {
+      if(Character.isDigit(n.image.charAt(0))) {
+
+      CssVersion version = ac.getCssVersion();
+
+      if (version != CssVersion.CSS1) {
 	      // the id with the first digit escaped
 	      String cl = "\\" + Integer.toString(n.image.charAt(0), 16);
 	      cl += n.image.substring(1);
@@ -2332,7 +2340,7 @@ String convertStringIndex(String s, int start, int len, boolean escapeFirst) {
 		    int numValue = Character.digit(c, 16);
 		    int count = 1;
 		    if (maxCount == 0) {
-			maxCount = (ac.getCssVersion().equals("css1") ? 
+			maxCount = ((ac.getCssVersion() == CssVersion.CSS1) ?
 				    4 : 6);
 		    }
 		    while (index + 1 < len) {

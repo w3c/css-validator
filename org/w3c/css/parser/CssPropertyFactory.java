@@ -10,6 +10,7 @@ package org.w3c.css.parser;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.WarningParamException;
@@ -193,7 +194,7 @@ public class CssPropertyFactory implements Cloneable {
 
             for (int i = 0; i < SORTEDPROFILES.length; ++i) {
                 String p = String.valueOf(SORTEDPROFILES[i]);
-                if (!p.equals(ac.getCssVersion()) && PropertiesLoader.getProfile(p).containsKey(property)) {
+                if (!p.equals(ac.getCssVersionString()) && PropertiesLoader.getProfile(p).containsKey(property)) {
                     pfsOk.add(p);
                 }
             }
@@ -201,10 +202,10 @@ public class CssPropertyFactory implements Cloneable {
             if (pfsOk.size() > 0) {
                 /*
             // This should be uncommented when no-profile in enabled
-            if (ac.getProfile().equals("none")) {
+            if (ac.getProfileString().equals("none")) {
             // the last one should be the best one to use
             String	pf = (String) pfsOk.get(pfsOk.size()-1),
-            old_pf = ac.getCssVersion();
+            old_pf = ac.getCssVersionString();
             ac.setCssVersion(pf);
             ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
             classname = setClassName(atRule, media, ac, property);
@@ -212,7 +213,7 @@ public class CssPropertyFactory implements Cloneable {
             }
             else
             */
-                throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getCssVersion()), pfsOk.toString()}, ac);
+                throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getCssVersionString()), pfsOk.toString()}, ac);
             } else {
                 throw new InvalidParamException("noexistence-at-all", property, ac);
             }
@@ -221,7 +222,7 @@ public class CssPropertyFactory implements Cloneable {
         CssIdent initial = new CssIdent("initial");
 
         try {
-            if (expression.getValue().equals(initial) && ac.getCssVersion().equals("css3")) {
+            if (expression.getValue().equals(initial) && (ac.getCssVersion() == CssVersion.CSS3)) {
                 // create an instance of your property class
                 Class[] parametersType = {};
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
@@ -248,7 +249,7 @@ public class CssPropertyFactory implements Cloneable {
         String className;
         Vector<String> list = new Vector<String>(getVector(media));
         if (atRule instanceof AtRuleMedia) {
-            className = PropertiesLoader.getProfile(ac.getCssVersion()).getProperty(property);
+            className = PropertiesLoader.getProfile(ac.getCssVersionString()).getProperty(property);
             // a list of media has been specified
             if (className != null && !media.equals("all")) {
                 String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
@@ -260,7 +261,7 @@ public class CssPropertyFactory implements Cloneable {
                 }
             }
         } else {
-            className = PropertiesLoader.getProfile(ac.getCssVersion()).getProperty("@" + atRule.keyword() + "." + property);
+            className = PropertiesLoader.getProfile(ac.getCssVersionString()).getProperty("@" + atRule.keyword() + "." + property);
         }
         return className;
     }

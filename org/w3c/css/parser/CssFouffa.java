@@ -18,10 +18,11 @@ import org.w3c.css.parser.analyzer.TokenMgrError;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
-import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 import org.w3c.css.values.CssExpression;
 
@@ -34,8 +35,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Vector;
 
 /**
  * This class is a front end of the CSS1 parser.
@@ -102,21 +101,26 @@ public final class CssFouffa extends CssParser {
        */
         setURL(file);
         if (Util.onDebug) {
-            System.err.println("[DEBUG] CSS version " + ac.getCssVersion() +
+            System.err.println("[DEBUG] CSS version " + ac.getCssVersionString() +
                     " medium " + ac.getMedium() + " at-rule "
-                    + getAtRule() + " profile " + ac.getProfile());
+                    + getAtRule() + " profile " + ac.getProfileString());
         }
 
-        String profile = ac.getProfile();
-        if (profile == null || profile.equals("") || profile.equals("none")) {
-            profile = ac.getCssVersion();
-        }
-
-        // loadConfig(ac.getCssVersion(), ac.getProfile());
         // load the CssStyle
-        String classStyle = PropertiesLoader.config.getProperty(profile);
+        CssProfile profile = ac.getCssProfile();
+        String classStyle;
+        String spec;
+        if (profile != CssProfile.NONE) {
+            spec = profile.toString();
+        } else {
+            CssVersion version = ac.getCssVersion();
+            spec = version.toString();
+        }
+
+        classStyle = PropertiesLoader.config.getProperty(spec);
         if (classStyle == null) {
-            classStyle = PropertiesLoader.config.getProperty("css2");
+            spec =  CssVersion.getDefault().toString();
+            classStyle = PropertiesLoader.config.getProperty(spec);
         }
 
         Class style;
@@ -129,7 +133,7 @@ public final class CssFouffa extends CssParser {
             e.printStackTrace();
         }
 
-        properties = new CssPropertyFactory(profile);
+        properties = new CssPropertyFactory(spec);
         listeners = new ArrayList<CssValidatorListener>();
     }
 
@@ -202,9 +206,9 @@ public final class CssFouffa extends CssParser {
         super.ReInitWithAc(input, ac, ac.getCharsetForURL(file));
         // @@this is a default media ...
         // AtRuleMedia media;
-        // if ("css1".equals(ac.getCssVersion())) {
+        // if ("css1".equals(ac.getCssVersionString())) {
         // media = new AtRuleMediaCSS1();
-        // } else if ("css2".equals(ac.getCssVersion())) {
+        // } else if ("css2".equals(ac.getCssVersionString())) {
         // media = new AtRuleMediaCSS2();
         // } else {
         // media = new AtRuleMediaCSS2();
@@ -218,19 +222,24 @@ public final class CssFouffa extends CssParser {
        */
         setURL(file);
         if (Util.onDebug) {
-            System.err.println("[DEBUG] CSS version " + ac.getCssVersion() + " medium " + ac.getMedium() + " profile "
-                    + ac.getProfile());
+            System.err.println("[DEBUG] CSS version " + ac.getCssVersionString() + " medium " + ac.getMedium() + " profile "
+                    + ac.getProfileString());
         }
 
-        String profile = ac.getProfile();
-        if (profile == null || profile.equals("") || profile.equals("none")) {
-            profile = ac.getCssVersion();
+        CssProfile profile = ac.getCssProfile();
+        String spec;
+        if (profile != CssProfile.NONE) {
+            spec = profile.toString();
+        } else {
+            CssVersion version = ac.getCssVersion();
+            spec = version.toString();
         }
 
         // load the CssStyle
-        String classStyle = PropertiesLoader.config.getProperty(profile);
+        String classStyle = PropertiesLoader.config.getProperty(spec);
         if (classStyle == null) {
-            classStyle = PropertiesLoader.config.getProperty("css2");
+            spec = CssVersion.getDefault().toString();
+            classStyle = PropertiesLoader.config.getProperty(spec);
         }
 
         Class style;
@@ -242,8 +251,8 @@ public final class CssFouffa extends CssParser {
             e.printStackTrace();
         }
 
-        properties = new CssPropertyFactory(profile);
-        // loadConfig(ac.getCssVersion(), ac.getProfile());
+        properties = new CssPropertyFactory(spec);
+        // loadConfig(ac.getCssVersionString(), ac.getProfileString());
     }
 
     /**
@@ -767,124 +776,7 @@ public final class CssFouffa extends CssParser {
         ac.setCssSelectorsStyle(style);
     }
 
-    /**
-     * Load the parser properties configuration.
-     * <p/>
-     * <p/>
-     * By default, the parser is configure for cascading style sheet 1.
-     * <p/>
-     * <OL>
-     * You have three parser properties :
-     * <LI> style: the class name of your CssStyle.
-     * <LI> properties: the file name where the parser can find all CSS
-     * properties names.
-     * <LI> extended-parser: <code>true</code> if you want to parse cascading
-     * style sheet 2 or 3.
-     * <OL>
-     */
-    /*
-     * public void loadConfig(String version, String profile) { try {
-     * 
-     * URL allprops = CssFouffa.class.getResource("allcss.properties"); URL url =
-     * null;
-     * 
-     * if (version == null) { // load the CssStyle String classStyle =
-     * config.getProperty("style2"); Class style = Class.forName(classStyle);
-     * ac.setCssSelectorsStyle(style);
-     * 
-     * properties = __s_nullprop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * (version.equals("css1")) { // load the CssStyle String classStyle =
-     * config.getProperty("style1"); Class style = Class.forName(classStyle);
-     * ac.setCssSelectorsStyle(style);
-     * 
-     * if (__s_css1prop == null) { // css1 url =
-     * style.getResource(config.getProperty("properties1")); __s_css1prop = new
-     * CssPropertyFactory(url, allprops); } // load properties properties =
-     * __s_css1prop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * ("atsc-tv".equals(profile)) { String classStyle =
-     * config.getProperty("styleatsc"); Class style = Class.forName(classStyle);
-     * ac.setCssSelectorsStyle(style); if (__s_asc_tvprop == null) { url =
-     * style.getResource(config.getProperty("atsc-tv")); __s_asc_tvprop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_asc_tvprop.getClone(); } else if (version.equals("css2")) { // load
-     * the CssStyle String classStyle = config.getProperty("style2"); Class
-     * style = Class.forName(classStyle); ac.setCssSelectorsStyle(style);
-     *  // load properties if (profile == null || "".equals(profile)) {
-     * properties = __s_css2prop.getClone(); } else if
-     * (profile.equals("mobile")) { if (__s_css2mobileprop == null) { url =
-     * style.getResource(config.getProperty("mobile")); __s_css2mobileprop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_css2mobileprop.getClone(); } else if (profile.equals("tv")) { if
-     * (__s_css2tvprop == null) { // css2-tv url =
-     * style.getResource(config.getProperty("tv")); __s_css2tvprop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_css2tvprop.getClone(); }
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * (version.equals("css3")) { // load the CssStyle String classStyle =
-     * config.getProperty("style3"); Class style = Class.forName(classStyle);
-     * ac.setCssSelectorsStyle(style);
-     *  // load properties if (__s_css3prop == null) { url =
-     * style.getResource(config.getProperty("properties3")); __s_css3prop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_css3prop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * (version.equals("svg")) { // load the CssStyle String classStyle =
-     * config.getProperty("svgstyle"); Class style = Class.forName(classStyle);
-     * ac.setCssSelectorsStyle(style);
-     * 
-     * if (__s_svgprop == null) { url =
-     * style.getResource(config.getProperty("svg")); __s_svgprop = new
-     * CssPropertyFactory(url, allprops); } properties = __s_svgprop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * (version.equals("svgtiny")) { // load the CssStyle String classStyle =
-     * config.getProperty("svgtinystyle"); Class style =
-     * Class.forName(classStyle); ac.setCssSelectorsStyle(style);
-     * 
-     * if (__s_svgtinyprop == null) { url =
-     * style.getResource(config.getProperty("svgtiny")); __s_svgtinyprop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_svgtinyprop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } } else if
-     * (version.equals("svgbasic")) { // load the CssStyle String classStyle =
-     * config.getProperty("svgbasicstyle"); Class style =
-     * Class.forName(classStyle); ac.setCssSelectorsStyle(style);
-     * 
-     * if (__s_svgbasicprop == null) { url =
-     * style.getResource(config.getProperty("svgbasic")); __s_svgbasicprop = new
-     * CssPropertyFactory(url, allprops); } properties =
-     * __s_svgbasicprop.getClone();
-     *  // aural mode String mode0 = config.getProperty("extended-parser"); if
-     * (mode0 != null) { mode = mode0.equals("true"); } }
-     *  } catch (Exception e) {
-     * System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the
-     * style"); e.printStackTrace(); } }
-     */
 
-    /* config by default! */
-    /*
-     * static { try { config = new Utf8Properties(); URL url =
-     * CssFouffa.class.getResource("Config.properties"); java.io.InputStream f =
-     * url.openStream(); config.load(f); f.close(); // null URL allprops =
-     * CssFouffa.class.getResource("allcss.properties"); String classStyle =
-     * config.getProperty("style2"); Class style = Class.forName(classStyle);
-     * url = style.getResource(config.getProperty("properties2")); __s_nullprop =
-     * new CssPropertyFactory(url, allprops);
-     *  // css2 // classStyle = config.getProperty("style2"); // style =
-     * Class.forName(classStyle); // url =
-     * style.getResource(config.getProperty("properties2")); // __s_css2prop =
-     * new CssPropertyFactory(url, allprops); __s_css2prop = __s_nullprop;
-     *  } catch (Exception e) {
-     * System.err.println("org.w3c.css.parser.CssFouffa: couldn't" + " load the
-     * config"); e.printStackTrace(); } }
-     */
     public CssFouffa(java.io.InputStream stream) {
         super(stream);
         properties = new CssPropertyFactory("css2");

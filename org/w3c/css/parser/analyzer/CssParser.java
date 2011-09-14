@@ -26,7 +26,6 @@ import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
-import org.w3c.css.util.ApplContext;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
@@ -37,6 +36,9 @@ import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
 import org.w3c.css.properties.svg.AtRuleColorProfile;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
@@ -302,7 +304,7 @@ public abstract class CssParser implements CssParserConstants {
                           char operator, Token n, int token)
         throws ParseException {
         if (n != null) {
-            if (ac.getCssVersion().equals("css1") &&
+            if (ac.getCssVersion() == CssVersion.CSS1 &&
                 (n.image).equals("inherit")) {
                 incompatible_error = true;
             }
@@ -479,6 +481,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     Token space2Token = null;
     Token semicolonToken = null;
     int nb_S = 0;
+    CssVersion version = ac.getCssVersion();
     try {
       charsetToken = jj_consume_token(CHARSET_SYM);
       label_6:
@@ -518,12 +521,13 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                     {if (true) throw new ParseException(
                                   ac.getMsg().getString("parser.charset"));}
                 }
-                if ("css1".equals(ac.getCssVersion())) {
+                if (version == CssVersion.CSS1) {
                     {if (true) throw new ParseException(ac.getMsg().getString(
                                                          "parser.charsetcss1"));}
                 }
                 // stricter rule for CSS21 and soon for CSS3
-                if ("css21".equals(ac.getCssVersion())) {
+             // if equal of above CSS21
+                if (version.compareTo(CssVersion.CSS21) >= 0) {
                     // single space before
                     // case sensitive
                     // no space before ;
@@ -760,7 +764,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       }
       jj_consume_token(S);
     }
-        if (!ac.getCssVersion().equals("css3")) {
+    // If less than CSS 3
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
             addError(new InvalidParamException("at-rule", "@namespace", ac),
                      (n==null)?"default":n.toString());
         } else {
@@ -890,6 +895,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     setAtRule(newRule);
     Token n;
     CssProperty p = null;
+    boolean isCss1 =  (ac.getCssVersion() == CssVersion.CSS1);
     try {
       jj_consume_token(MEDIA_SYM);
       label_20:
@@ -1011,12 +1017,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                     ac.getFrame().addWarning("noothermedium",
                                              getAtRule().toString());
                 }
-                if (ac.getCssVersion().equals("css1")) {
+                if (isCss1) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
                              getAtRule().toString());
-                }
-                if (!ac.getCssVersion().equals("css1")) {
+                } else {
                     newAtRule(getAtRule());
                 }
       jj_consume_token(LBRACE);
@@ -1074,11 +1079,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                 if (!ac.getCssVersion().equals("css1")) {
+                 if (!isCss1) {
                      endOfAtRule();
                  }
     } catch (ParseException e) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (!isCss1) {
             addError(e, skipStatement());
         }
     } finally {
@@ -1164,6 +1169,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     AtRulePage   newRule  = new AtRulePage()    ;
     setAtRule(newRule);
     s.setAtRule(getAtRule());
+    boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
     try {
       jj_consume_token(PAGE_SYM);
       label_34:
@@ -1235,11 +1241,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                if (!ac.getCssVersion().equals("css1")) {
+                if (!isCss1) {
                     newAtRule(getAtRule());
-                }
-
-                if (!ac.getCssVersion().equals("css1")) {
                     addProperty(collectv);
                     endOfRule();
                     endOfAtRule();
@@ -1250,13 +1253,13 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                     handleRule(s, collectv);
                 }
     } catch (InvalidParamException ie) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (!isCss1) {
             skipStatement();
             removeThisAtRule();
             ac.getFrame().addError(new CssError(ie));
         }
     } catch (ParseException e) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (!isCss1) {
             removeThisAtRule();
             addError(e, skipStatement());
         }
@@ -1384,6 +1387,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     setAtRule(new AtRuleFontFace());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
     try {
       jj_consume_token(FONT_FACE_SYM);
       label_42:
@@ -1398,12 +1402,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                if (ac.getCssVersion().equals("css1")) {
+                if (isCss1) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
                              getAtRule().toString());
-                }
-                if (!ac.getCssVersion().equals("css1")) {
+                } else {
                     newAtRule(getAtRule());
                 }
       jj_consume_token(LBRACE);
@@ -1433,7 +1436,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                 if (!ac.getCssVersion().equals("css1")) {
+                 if (!isCss1) {
                      addProperty(v);
                      endOfRule();
                      endOfAtRule();
@@ -1444,7 +1447,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                      handleRule(s, v);
                  }
     } catch (ParseException e) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (!isCss1) {
             addError(e, skipStatement());
         }
     } finally {
@@ -1458,6 +1461,10 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     setAtRule(new AtRuleColorProfile());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    CssProfile profile = ac.getCssProfile();
+    boolean isSVG = ((profile == CssProfile.SVG) ||
+                     (profile == CssProfile.SVGBASIC) ||
+                     (profile == CssProfile.SVGTINY));
     try {
       jj_consume_token(COLOR_PROFILE);
       label_45:
@@ -1472,12 +1479,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                if (!ac.getCssVersion().equals("svg")) {
+                if (!isSVG) {
                     skipStatement();
                     addError(new InvalidParamException("onlysvg", "", ac),
                              getAtRule().toString());
-                }
-                if (ac.getCssVersion().equals("svg")) {
+                } else {
                     newAtRule(getAtRule());
                 }
       jj_consume_token(LBRACE);
@@ -1507,7 +1513,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                 if (ac.getCssVersion().equals("svg")) {
+                 if (isSVG) {
                      addProperty(v);
                      endOfRule();
                      endOfAtRule();
@@ -1519,7 +1525,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                      handleRule(s, v);
                  }
     } catch (ParseException e) {
-        if (ac.getCssVersion().equals("svg")) {
+        if (isSVG) {
             addError(e, skipStatement());
         }
     } finally {
@@ -1533,6 +1539,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     setAtRule(new AtRulePreference());
     CssSelectors s = new CssSelectors(ac);
     s.setAtRule(getAtRule());
+    boolean isCSS1 = (ac.getCssVersion() == CssVersion.CSS1);
     try {
       jj_consume_token(PREF_SYM);
       label_48:
@@ -1547,12 +1554,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                if (ac.getCssVersion().equals("css1")) {
+                if (isCSS1) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
                              getAtRule().toString());
-                }
-                if (!ac.getCssVersion().equals("css1")) {
+                } else {
                     newAtRule(getAtRule());
                 }
       jj_consume_token(LBRACE);
@@ -1582,7 +1588,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         }
         jj_consume_token(S);
       }
-                 if (!ac.getCssVersion().equals("css1")) {
+                 if (!isCSS1) {
                      addProperty(v);
                      endOfRule();
                      endOfAtRule();
@@ -1594,7 +1600,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                      handleRule(s, v);
                  }
     } catch (ParseException e) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (!isCSS1) {
             addError(e, skipStatement());
         }
     } finally {
@@ -1607,6 +1613,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
     setAtRule(alphabetrule);
     Token n;
+    CssVersion version = ac.getCssVersion();
     try {
       jj_consume_token(PHONETIC_ALPHABET_SYM);
       label_51:
@@ -1635,7 +1642,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         jj_consume_token(S);
       }
       jj_consume_token(SEMICOLON);
-                if (!ac.getCssVersion().equals("css3")) {
+            // FIXME comparison > CSS3
+                if (version.compareTo(CssVersion.CSS3) < 0) {
                     skipStatement();
                     addError(new InvalidParamException("noatruleyet", "", ac),
                              getAtRule().toString());
@@ -1643,11 +1651,11 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
 
                 alphabetrule.addAlphabet(convertIdent(n.image), ac);
 
-                if (!ac.getCssVersion().equals("css1") && !ac.getCssVersion().equals("css2")) {
+                if ((version != CssVersion.CSS1) && (version != CssVersion.CSS2)) {
                     newAtRule(getAtRule());
                 }
     } catch (ParseException e) {
-        if (!ac.getCssVersion().equals("css1")) {
+        if (version != CssVersion.CSS1) {
             addError(e, skipStatement());
         }
     } finally {
@@ -1916,10 +1924,8 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
                 }
                 currentContext = null;
     } catch (ParseException e) {
-        if (ac.getProfile() != null) {
-            if (!ac.getProfile().equals("mobile") && !context_set.isEmpty()) {
+    if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
                 addError(e, skipStatement());
-            }
         }
     } catch (TokenMgrError e) {
         addError(new ParseException(e.getMessage()), skipStatement());
@@ -2021,23 +2027,24 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
           break label_63;
         }
         comb = combinator();
-                if (ac.getProfile() != null) {
-                    if (ac.getProfile().equals("mobile") ||
+                if ((ac.getCssProfile() == CssProfile.MOBILE) ||
                         getAtRule().toString().equals("@media atsc-tv") ||
-                        ac.getCssVersion().equals("css1")) {
-                        if (comb == '+')
+                        (ac.getCssVersion() == CssVersion.CSS1)) {
+                        if (comb == '+') {
                             {if (true) throw new InvalidParamException("nocomb", "+", ac);}
-                        if (comb == '>')
+                        }
+                        if (comb == '>') {
                             {if (true) throw new InvalidParamException("nocomb", ">", ac);}
-                    } else if (ac.getProfile().equals("tv")) {
-                        if (comb == '+')
+                        }
+                } else if (ac.getCssProfile() == CssProfile.TV) {
+                        if (comb == '+') {
                             {if (true) throw new InvalidParamException("nocomb", "+", ac);}
-
                     }
                 }
-                if (!ac.getCssVersion().equals("css3")) {
+                // FIXME should be >= css3
+                if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
                     if (comb == '~') {
-                        {if (true) throw new InvalidParamException("nocomb", "~", ac);}
+                            {if (true) throw new InvalidParamException("nocomb", "~", ac);}
                     }
                 }
                 switch(comb) {
@@ -2314,12 +2321,13 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             // the class with the first digit escaped
             String cl = "."+hexEscapeFirst(n.image);
 
-            String profile = ac.getProfile();
-            if(profile == null || profile.equals("") || profile.equals("none")) {
-                profile = ac.getCssVersion();
-            }
+        CssVersion version = ac.getCssVersion();
+//	    String profile = ac.getProfile();
+//	    if(profile == null || profile.equals("") || profile.equals("none")) {
+//		profile = ac.getCssVersionString();
+//	    }
 
-            if(!profile.equals("css1")) {
+            if(version != CssVersion.CSS1) {
                 StringBuilder sb = new StringBuilder();
                 ArrayList<String> param_err = new ArrayList<String>(2);
                 param_err.add(n.image);
@@ -2441,14 +2449,15 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
     }
         // FIXME namespace, check versions of CSS in a better way.
         if (p != null) {
-            if (!ac.getCssVersion().equals("css3")) {
+            // FIXME should be > CSS3
+            if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
                 StringBuilder sb = new StringBuilder("namespace \u005c"");
                 if (n != null) sb.append(n.toString());
                 sb.append("\u005c"");
                 ac.getFrame().addError(new CssError(new
                                           InvalidParamException("notversion",
                                                                 "namespace",
-                                                            ac.getCssVersion(),
+                                                            ac.getCssVersionString(),
                                                                 ac)));
                 removeThisRule();
             } else if (n!=null) {
@@ -2473,12 +2482,12 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       break;
     case ANY:
       jj_consume_token(ANY);
-        if (!ac.getCssVersion().equals("css1")) {
+        if (ac.getCssVersion() != CssVersion.CSS1) {
             //          s.setElement(null);
             s.addUniversal(new UniversalSelector(prefix));
         } else {
             ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-                                                                          "*", ac.getCssVersion(), ac)));
+                                                                          "*", ac.getCssVersionString(), ac)));
         }
       break;
     default:
@@ -2602,7 +2611,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       ;
     }
     jj_consume_token(RBRACKET);
-          if ("css1".equals(ac.getCssVersion())) {
+          if (ac.getCssVersion() == CssVersion.CSS1) {
               StringBuilder reason;
               CssParseException cp;
               ParseException p;
@@ -2748,12 +2757,13 @@ CssExpression param = null;
       jj_consume_token(PSEUDOELEMENT_SYM);
       n = jj_consume_token(IDENT);
             try {
-                if (ac.getCssVersion().equals("css3")) {
+            // should be >CSS3
+                if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
                     s.addPseudoElement(convertIdent(n.image).toLowerCase());
                 } else {
                     {if (true) throw new InvalidParamException("pseudo-element",
                                                     "::" + convertIdent(n.image).toLowerCase() ,
-                                                    ac.getCssVersion() ,ac);}
+                                                    ac.getCssVersionString() ,ac);}
                 }
             } catch(InvalidParamException e) {
                 //	removeThisRule();
@@ -2882,12 +2892,10 @@ CssExpression param = null;
       n = jj_consume_token(HASHIDENT);
       n.image = n.image.substring(1);
       if(Character.isDigit(n.image.charAt(0))) {
-          String profile = ac.getProfile();
-          if(profile == null || profile.equals("") || profile.equals("none")) {
-              profile = ac.getCssVersion();
-          }
 
-          if(!profile.equals("css1")) {
+      CssVersion version = ac.getCssVersion();
+
+      if (version != CssVersion.CSS1) {
               // the id with the first digit escaped
               String cl = "\u005c\u005c" + Integer.toString(n.image.charAt(0), 16);
               cl += n.image.substring(1);
@@ -3625,7 +3633,7 @@ CssExpression param = null;
                     int numValue = Character.digit(c, 16);
                     int count = 1;
                     if (maxCount == 0) {
-                        maxCount = (ac.getCssVersion().equals("css1") ?
+                        maxCount = ((ac.getCssVersion() == CssVersion.CSS1) ?
                                     4 : 6);
                     }
                     while (index + 1 < len) {

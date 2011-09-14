@@ -21,6 +21,8 @@ import org.w3c.css.selectors.SelectorsList;
 import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.attributes.AttributeExact;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
@@ -173,12 +175,17 @@ public final class CssSelectors extends SelectorsList
             return;
         }
 
-        String profile = ac.getProfile();
-        if (profile == null || profile.equals("") || profile.equals("none")) {
-            profile = ac.getCssVersion();
+        CssProfile profile = ac.getCssProfile();
+        String spec;
+        if (profile != CssProfile.NONE) {
+            spec = profile.toString();
+        } else {
+            CssVersion version = ac.getCssVersion();
+            spec = version.toString();
         }
+
         // is it a pseudo-class?
-        String[] ps = PseudoFactory.getPseudoClass(profile);
+        String[] ps = PseudoFactory.getPseudoClass(spec);
         if (ps != null) {
             for (int i = 0; i < ps.length; i++) {
                 if (pseudo.equals(ps[i])) {
@@ -188,7 +195,7 @@ public final class CssSelectors extends SelectorsList
             }
         }
         // it's not a pseudo-class, maybe one pseudo element exception
-        ps = PseudoFactory.getPseudoElementExceptions(profile);
+        ps = PseudoFactory.getPseudoElementExceptions(spec);
         if (ps != null) {
             for (int i = 0; i < ps.length; i++) {
                 if (pseudo.equals(ps[i])) {
@@ -204,14 +211,17 @@ public final class CssSelectors extends SelectorsList
         if (pseudo == null) {
             return;
         }
-
-        String profile = ac.getProfile();
-        if (profile == null || profile.equals("") || profile.equals("none")) {
-            profile = ac.getCssVersion();
+        CssProfile profile = ac.getCssProfile();
+        String spec;
+        if (profile != CssProfile.NONE) {
+            spec = profile.toString();
+        } else {
+            CssVersion version = ac.getCssVersion();
+            spec = version.toString();
         }
 
         // is it a pseudo-element?
-        String[] ps = PseudoFactory.getPseudoElement(profile);
+        String[] ps = PseudoFactory.getPseudoElement(spec);
         if (ps != null) {
             for (int i = 0; i < ps.length; i++) {
                 if (pseudo.equals(ps[i])) {
@@ -227,11 +237,16 @@ public final class CssSelectors extends SelectorsList
 
     public void setPseudoFun(String pseudo, String param)
             throws InvalidParamException {
-        String profile = ac.getProfile();
-        if (profile == null || profile.equals("") || profile.equals("none")) {
-            profile = ac.getCssVersion();
+        CssProfile profile = ac.getCssProfile();
+        String spec;
+        if (profile != CssProfile.NONE) {
+            spec = profile.toString();
+        } else {
+            CssVersion version = ac.getCssVersion();
+            spec = version.toString();
         }
-        String[] ps = PseudoFactory.getPseudoFunction(profile);
+
+        String[] ps = PseudoFactory.getPseudoFunction(spec);
         if (ps != null) {
             for (int i = 0; i < ps.length; i++) {
                 if (pseudo.equals(ps[i])) {
@@ -452,12 +467,10 @@ public final class CssSelectors extends SelectorsList
 
     public void addAttribute(String attName, String value)
             throws InvalidParamException {
-        String profile = ac.getProfile();
-        if (profile != null && profile.length() != 0) {
-            if (profile.equals("mobile")) {
-                throw new InvalidParamException("notformobile", "attributes",
-                        ac);
-            }
+        CssProfile profile = ac.getCssProfile();
+        if (profile == CssProfile.MOBILE) {
+            throw new InvalidParamException("notformobile", "attributes",
+                    ac);
         } else {
             addAttribute(new AttributeExact(attName, value));
             Invalidate();
@@ -480,7 +493,7 @@ public final class CssSelectors extends SelectorsList
     }
 
     final boolean canApply(ArrayList<Selector> attrs, ArrayList<Selector> attrs2) {
-        if (attrs.size()>0) {
+        if (attrs.size() > 0) {
             int other_idx;
             Selector other;
             for (Selector selector : attrs) {

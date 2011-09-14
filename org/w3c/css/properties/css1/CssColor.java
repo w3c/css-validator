@@ -70,18 +70,25 @@ public class CssColor extends CssProperty implements CssOperator {
 		color = inherit;
 		break;
 	    }
-	    if ("css1".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS1(ac,
+        switch (ac.getCssVersion()) {
+            case CSS1:
+               color = new org.w3c.css.values.CssColorCSS1(ac,
 							    (String) val.get());
-	    } else if ("css2".equals(ac.getCssVersion())) {
-		color = new org.w3c.css.values.CssColorCSS2(ac, 
+                break;
+            case CSS2:
+            case CSS21:
+                color = new org.w3c.css.values.CssColorCSS2(ac,
 							    (String) val.get());
-	    } else if ("css3".equals(ac.getCssVersion())){
-		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
-	    } else {
-		color = new org.w3c.css.values.CssColorCSS2(ac, 
-							    (String) val.get()); // SVG profiles
-	    }
+                break;
+            case CSS3:
+                color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+                break;
+            default:
+                // TODO FIXME this looks like a bad default.
+                color = new org.w3c.css.values.CssColorCSS2(ac,
+							    (String) val.get());
+
+        }
 	    //	    color = new org.w3c.css.values.CssColor();
 	    break;
 	case CssTypes.CSS_COLOR:

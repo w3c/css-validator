@@ -110,19 +110,7 @@ public class CssValidator {
 
         // CSS version to use
         String profile = (String) style.params.get("profile");
-        if (profile != null && !"none".equals(profile)) {
-            if ("css1".equals(profile) || "css2".equals(profile) || "css21".equals(profile)
-                    || "css3".equals(profile) || "svg".equals(profile)
-                    || "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-                style.ac.setCssVersion(profile);
-            } else {
-                style.ac.setProfile(profile);
-                style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
-            }
-        } else {
-            style.ac.setProfile(profile);
-            style.ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
-        }
+        style.ac.setCssVersionAndProfile(profile.toLowerCase());
 
         // medium to use
         style.ac.setMedium((String) style.params.get("medium"));

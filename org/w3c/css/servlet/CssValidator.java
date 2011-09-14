@@ -17,7 +17,6 @@ import org.w3c.css.css.TagSoupStyleSheetHandler;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
-import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
 import org.w3c.css.util.FakeFile;
@@ -304,22 +303,11 @@ public final class CssValidator extends HttpServlet {
         }
 
         // CSS version
-        if (profile != null && (!"none".equals(profile) || "".equals(profile))) {
-            if ("css1".equals(profile) || "css2".equals(profile)
-                    || "css21".equals(profile)
-                    || "css3".equals(profile) || "svg".equals(profile)
-                    || "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-                ac.setCssVersion(profile);
-            } else {
-                ac.setProfile(profile);
-                ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
-            }
-        } else {
-            ac.setProfile("none");
-            ac.setCssVersion(PropertiesLoader.config.getProperty("defaultProfile"));
-        }
+        ac.setCssVersionAndProfile(profile.toLowerCase());
+
         if (Util.onDebug) {
-            System.err.println("[DEBUG]  profile is : " + ac.getCssVersion()
+            System.err.println("[DEBUG] version is : " + ac.getCssVersionString()
+                    + " profile is " + ac.getProfileString()
                     + " medium is " + usermedium);
         }
 
@@ -634,23 +622,8 @@ public final class CssValidator extends HttpServlet {
         // Allow vendor extensions to just show up as warnings.
         processVendorExtensionParameter(vendorExtensionAsWarnings, ac);
 
+        ac.setCssVersionAndProfile(profile.toLowerCase());
         // CSS version
-        if (profile != null && (!"none".equals(profile) || "".equals(profile))) {
-            if ("css1".equals(profile) || "css2".equals(profile)
-                    || "css21".equals(profile)
-                    || "css3".equals(profile) || "svg".equals(profile)
-                    || "svgbasic".equals(profile) || "svgtiny".equals(profile)) {
-                ac.setCssVersion(profile);
-            } else {
-                ac.setProfile(profile);
-                ac.setCssVersion(PropertiesLoader.config.getProperty(
-                        "defaultProfile"));
-            }
-        } else {
-            ac.setProfile("none");
-            ac.setCssVersion(PropertiesLoader.config.getProperty(
-                    "defaultProfile"));
-        }
         String fileName = "";
         InputStream is = null;
         boolean isCSS = false;

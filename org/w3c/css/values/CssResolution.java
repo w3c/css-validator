@@ -8,6 +8,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
@@ -65,7 +66,7 @@ public class CssResolution extends CssValue {
             return;
         }
 
-        if (!ac.getCssVersion().equals("css3")) {
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
             throw new InvalidParamException("unit", unit, ac);
         }
 

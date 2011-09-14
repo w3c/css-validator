@@ -12,6 +12,7 @@ import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Utf8Properties;
@@ -175,10 +176,10 @@ public class StyleSheetGenerator extends StyleReport {
         context.put("rules_count", new Integer(items.size()));
         context.put("no_errors_report", Boolean.FALSE);
         context.put("charset", ac.getContentEncoding());
-        context.put("cssversion", ac.getCssVersion());
-        context.put("css_profile", ac.getProfile());
-        context.put("css", ac.getMsg().getString(ac.getCssVersion()));
-        context.put("css_link", getURLProperty("@url-base_" + ac.getCssVersion()));
+        context.put("cssversion", ac.getCssVersionString());
+        context.put("css_profile", ac.getProfileString());
+        context.put("css", ac.getMsg().getString(ac.getCssVersionString()));
+        context.put("css_link", getURLProperty("@url-base_" + ac.getCssVersionString()));
         context.put("is_valid", (errors.getErrorCount() == 0) ? "true" : "false");
         context.put("fake_input", Boolean.valueOf(ac.isInputFake()));
         context.put("author", "www-validator-css");
@@ -378,7 +379,7 @@ public class StyleSheetGenerator extends StyleReport {
         String name = error.getProperty();
         String ret;
         if ((name != null) && (getURLProperty(name) != null) &&
-                PropertiesLoader.getProfile(ac.getCssVersion()).containsKey(name)) {
+                PropertiesLoader.getProfile(ac.getCssVersionString()).containsKey(name)) {
             //we add a link information
             // we check if the property doesn't exist in this css version
             ht_error.put("link_before_parse_error",
@@ -391,9 +392,10 @@ public class StyleSheetGenerator extends StyleReport {
             // and CSS1 use the links
             // and the link is changed in urls.properties
             String lnk;
-            if (ac.getCssVersion().equals("css3")) {
+            CssVersion v = ac.getCssVersion();
+            if (v == CssVersion.CSS3) {
                 lnk = getURLProperty("@url-base_css2.1");
-            } else if (ac.getCssVersion().equals("css1")) {
+            } else if (v == CssVersion.CSS1) {
                 lnk = getURLProperty("@url-base_css2");
             } else {
                 lnk = context.get("css_link").toString();

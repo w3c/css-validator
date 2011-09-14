@@ -174,7 +174,7 @@ public class CssNumber extends CssValue implements CssValueFloat {
      */
     public String toString() {
         if (isInt) {
-            return value.intValue() + "";
+            return Integer.toString(value.intValue());
         }
         return value.toString();
     }
