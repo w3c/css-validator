@@ -224,23 +224,21 @@ public class Warning implements Comparable<Warning> {
             if (args != null) {
                 StringBuilder sb = new StringBuilder();
                 int idx = 0;
-                int start = 0;
-                for (String subst : args) {
-                    idx = str.indexOf("%s", idx);
-                    if (idx < 0) {
-                        // TODO report error
+                String[] msg_parts = str.split("%s", -1);
+
+                sb.append(msg_parts[0]);
+                for (int i = 1; i < msg_parts.length; i++) {
+                    if (idx < args.length) {
+                        sb.append(args[idx++]);
+                    } else {
+                         // TODO report error
                         System.err.println("*** WARNING ISSUE: "+warning);
                         System.err.println("*** WARNING ISSUE: "+ac.getMsg().getWarningString(warning));
                         System.err.println("*** WARNING ISSUE: got "+args.length+" args entries");
-                        break;
                     }
-                    sb.append(str.substring(start, idx));
-                    sb.append(subst);
-                    idx+=2;
-                    start=idx;
+                    sb.append(msg_parts[i]);
                 }
                 // and add the last part
-                sb.append(str.substring(start));
                 return sb.toString();
             }
             return str;

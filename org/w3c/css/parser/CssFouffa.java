@@ -107,15 +107,8 @@ public final class CssFouffa extends CssParser {
         }
 
         // load the CssStyle
-        CssProfile profile = ac.getCssProfile();
+        String spec = ac.getPropertyKey();
         String classStyle;
-        String spec;
-        if (profile != CssProfile.NONE) {
-            spec = profile.toString();
-        } else {
-            CssVersion version = ac.getCssVersion();
-            spec = version.toString();
-        }
 
         classStyle = PropertiesLoader.config.getProperty(spec);
         if (classStyle == null) {
@@ -226,14 +219,7 @@ public final class CssFouffa extends CssParser {
                     + ac.getProfileString());
         }
 
-        CssProfile profile = ac.getCssProfile();
-        String spec;
-        if (profile != CssProfile.NONE) {
-            spec = profile.toString();
-        } else {
-            CssVersion version = ac.getCssVersion();
-            spec = version.toString();
-        }
+        String spec = ac.getPropertyKey();
 
         // load the CssStyle
         String classStyle = PropertiesLoader.config.getProperty(spec);

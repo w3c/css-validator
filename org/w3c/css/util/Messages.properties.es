@@ -14,7 +14,7 @@ css1: CSS versión 1
 css2: CSS versión 2
 css21: CSS versión 2.1
 css3: CSS versión 3
-SVG: SVG
+svg: SVG
 svgbasic: SVG Básico
 svgtiny: SVG Reducido
 mobile: Móvil

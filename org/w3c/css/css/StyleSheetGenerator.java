@@ -379,7 +379,7 @@ public class StyleSheetGenerator extends StyleReport {
         String name = error.getProperty();
         String ret;
         if ((name != null) && (getURLProperty(name) != null) &&
-                PropertiesLoader.getProfile(ac.getCssVersionString()).containsKey(name)) {
+                PropertiesLoader.getProfile(ac.getPropertyKey()).containsKey(name)) {
             //we add a link information
             // we check if the property doesn't exist in this css version
             ht_error.put("link_before_parse_error",
@@ -422,7 +422,7 @@ public class StyleSheetGenerator extends StyleReport {
                 ht_error.put("span_value_parse_error",
                         queryReplace(error.getSkippedString()));
             } else if (error.getExp() != null) {
-                ret += " : " + queryReplace(error.getExp().toStringFromStart());
+                ret += " : ";// + queryReplace(error.getExp().toStringFromStart());
                 ht_error.put("span_class_parse_error", "exp");
                 ht_error.put("span_value_parse_error",
                         queryReplace(error.getExp().toString()));

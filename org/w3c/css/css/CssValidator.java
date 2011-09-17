@@ -10,8 +10,8 @@
 package org.w3c.css.css;
 
 import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
 import org.w3c.tools.resources.ProtocolException;
@@ -53,7 +53,7 @@ public class CssValidator {
      */
     public CssValidator() {
         params = new HashMap<String, String>();
-        params.put("profile", PropertiesLoader.config.getProperty("defaultProfile"));
+        params.put("profile", CssVersion.getDefault().toString());
         params.put("medium", "all");
         params.put("output", "text");
         params.put("lang", "en");

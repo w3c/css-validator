@@ -13,7 +13,7 @@ css1: CSS level 1
 css2: CSS level 2
 css21: CSS level 2.1
 css3: CSS level 3
-SVG: SVG
+svg: SVG
 svgbasic: SVG základní
 svgtiny: SVG malý
 mobile: Mobil

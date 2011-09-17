@@ -159,6 +159,10 @@ public class ApplContext {
         version = CssVersion.resolve(this, cssversion);
     }
 
+    public void setCssVersion(CssVersion version) {
+        this.version = version;
+    }
+
     public String getCssVersionString() {
         return version.toString();
     }
@@ -169,6 +173,16 @@ public class ApplContext {
 
     public void setProfile(String profile) {
         this.profile = CssProfile.resolve(this, profile);
+    }
+
+    /**
+     * get the String used to fetch the relevant property file
+     */
+    public String getPropertyKey() {
+        if (profile != CssProfile.EMPTY && profile != CssProfile.NONE) {
+            return profile.toString();
+        }
+        return version.toString();
     }
 
     public CssProfile getCssProfile() {

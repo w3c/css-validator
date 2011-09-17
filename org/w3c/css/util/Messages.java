@@ -192,7 +192,7 @@ public class Messages {
         if ((params == null) || params.size() == 0) {
             return getString(message);
         }
-        String[] msg_parts = getString(message).split("%s");
+        String[] msg_parts = getString(message).split("%s", -1);
         Iterator<String> param_it = params.iterator();
         StringBuilder sb = new StringBuilder(msg_parts[0]);
         for (int i = 1; i < msg_parts.length; i++) {

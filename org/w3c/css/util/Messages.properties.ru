@@ -14,9 +14,7 @@ css1: CSS1
 css2: CSS2
 css21: CSS2.1
 css3: CSS3
-SVG: SVG
-SVG_basic: SVG Basic
-SVG_tiny: SVG tiny
+svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG tiny
 mobile: Мобильный

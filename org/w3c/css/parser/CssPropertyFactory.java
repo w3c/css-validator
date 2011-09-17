@@ -10,6 +10,7 @@ package org.w3c.css.parser;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Utf8Properties;
@@ -21,7 +22,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 /**
  * @author Philippe Le Hegaret
@@ -52,18 +52,6 @@ public class CssPropertyFactory implements Cloneable {
     /**
      * Create a new CssPropertyFactory
      */
-    /*
-     * public CssPropertyFactory(URL url, URL allprop_url) { properties = new
-     * Utf8Properties(); InputStream f = null; try { f = url.openStream();
-     * properties.load(f); } catch (IOException e) { e.printStackTrace(); }
-     * finally { try { if (f != null) f.close(); } catch (Exception e) {
-     * e.printStackTrace(); } // ignore }
-     *  // list of all properties allprops = new Utf8Properties(); InputStream
-     * f_all = null; try { f_all = allprop_url.openStream();
-     * allprops.load(f_all); } catch (IOException e) { e.printStackTrace(); }
-     * finally { try { if (f_all != null) f_all.close(); } catch (Exception e) {
-     * e.printStackTrace(); } // ignore } }
-     */
     public CssPropertyFactory(String profile) {
         properties = PropertiesLoader.getProfile(profile);
         // It's not good to have null properties :-/
@@ -76,17 +64,16 @@ public class CssPropertyFactory implements Cloneable {
         return properties.getProperty(name);
     }
 
-    private Vector<String> getVector(String media) {
-        Vector<String> list = new Vector<String>(4);
-        String medium = new String();
+    private ArrayList<String> getMediaList(String media) {
+        ArrayList<String> list = new ArrayList<String>();
+        String medium;
         StringTokenizer tok = new StringTokenizer(media, ",");
 
         while (tok.hasMoreTokens()) {
             medium = tok.nextToken();
             medium = medium.trim();
-            list.addElement(medium);
+            list.add(medium);
         }
-
         return list;
     }
 
@@ -106,7 +93,7 @@ public class CssPropertyFactory implements Cloneable {
         String media = atRule.toString();
         String upmedia = media.toUpperCase();
         int pos = -1;
-        int pos2 = media.toUpperCase().indexOf("AND");
+        int pos2 = upmedia.indexOf("AND");
 
         if (pos2 == -1) {
             pos2 = media.length();
@@ -180,7 +167,6 @@ public class CssPropertyFactory implements Cloneable {
         }
 
         media = media.trim();
-
         classname = setClassName(atRule, media, ac, property);
 
         // the property does not exist in this profile
@@ -191,15 +177,26 @@ public class CssPropertyFactory implements Cloneable {
                 throw new WarningParamException("vendor-extension", property);
             }
             ArrayList<String> pfsOk = new ArrayList<String>();
+            String spec = ac.getPropertyKey();
 
             for (int i = 0; i < SORTEDPROFILES.length; ++i) {
                 String p = String.valueOf(SORTEDPROFILES[i]);
-                if (!p.equals(ac.getCssVersionString()) && PropertiesLoader.getProfile(p).containsKey(property)) {
+                if (!p.equals(spec) && PropertiesLoader.getProfile(p).containsKey(property)) {
                     pfsOk.add(p);
                 }
             }
-
             if (pfsOk.size() > 0) {
+                if (ac.getCssProfile() == CssProfile.NONE) {
+                    String latestVersion = pfsOk.get(pfsOk.size()-1);
+                    CssVersion v = CssVersion.resolve(ac, latestVersion);
+                    // should always be true... otherwise there is an issue...
+                    if (v.compareTo(ac.getCssVersion()) > 0) {
+                        ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString() });
+                        ac.setCssVersion(v);
+                    }
+                    classname = setClassName(atRule, media, ac, property);
+                } else {
+
                 /*
             // This should be uncommented when no-profile in enabled
             if (ac.getProfileString().equals("none")) {
@@ -213,7 +210,8 @@ public class CssPropertyFactory implements Cloneable {
             }
             else
             */
-                throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getCssVersionString()), pfsOk.toString()}, ac);
+                throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
+                }
             } else {
                 throw new InvalidParamException("noexistence-at-all", property, ac);
             }
@@ -247,21 +245,20 @@ public class CssPropertyFactory implements Cloneable {
 
     private String setClassName(AtRule atRule, String media, ApplContext ac, String property) {
         String className;
-        Vector<String> list = new Vector<String>(getVector(media));
         if (atRule instanceof AtRuleMedia) {
-            className = PropertiesLoader.getProfile(ac.getCssVersionString()).getProperty(property);
+            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
             // a list of media has been specified
             if (className != null && !media.equals("all")) {
                 String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
-                for (int i = 0; i < list.size(); i++) {
-                    String medium = list.elementAt(i);
+                ArrayList<String> list = getMediaList(media);
+                for (String medium : list) {
                     if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
                         ac.getFrame().addWarning("noexistence-media", new String[]{property, medium + " (" + propMedia + ")"});
                     }
                 }
             }
         } else {
-            className = PropertiesLoader.getProfile(ac.getCssVersionString()).getProperty("@" + atRule.keyword() + "." + property);
+            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty("@" + atRule.keyword() + "." + property);
         }
         return className;
     }

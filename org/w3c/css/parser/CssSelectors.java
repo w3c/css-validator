@@ -22,7 +22,6 @@ import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.attributes.AttributeExact;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
-import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
@@ -175,14 +174,7 @@ public final class CssSelectors extends SelectorsList
             return;
         }
 
-        CssProfile profile = ac.getCssProfile();
-        String spec;
-        if (profile != CssProfile.NONE) {
-            spec = profile.toString();
-        } else {
-            CssVersion version = ac.getCssVersion();
-            spec = version.toString();
-        }
+        String spec = ac.getPropertyKey();
 
         // is it a pseudo-class?
         String[] ps = PseudoFactory.getPseudoClass(spec);
@@ -211,49 +203,31 @@ public final class CssSelectors extends SelectorsList
         if (pseudo == null) {
             return;
         }
-        CssProfile profile = ac.getCssProfile();
-        String spec;
-        if (profile != CssProfile.NONE) {
-            spec = profile.toString();
-        } else {
-            CssVersion version = ac.getCssVersion();
-            spec = version.toString();
-        }
+        String spec = ac.getPropertyKey();
 
         // is it a pseudo-element?
         String[] ps = PseudoFactory.getPseudoElement(spec);
         if (ps != null) {
-            for (int i = 0; i < ps.length; i++) {
-                if (pseudo.equals(ps[i])) {
+            for (String s : ps) {
+                if (pseudo.equals(s)) {
                     addPseudoElement(new PseudoElementSelector(pseudo));
                     return;
                 }
             }
         }
-
         // the ident isn't a valid pseudo-something
         throw new InvalidParamException("pseudo", "::" + pseudo, ac);
     }
 
     public void setPseudoFun(String pseudo, String param)
             throws InvalidParamException {
-        CssProfile profile = ac.getCssProfile();
-        String spec;
-        if (profile != CssProfile.NONE) {
-            spec = profile.toString();
-        } else {
-            CssVersion version = ac.getCssVersion();
-            spec = version.toString();
-        }
+        String spec = ac.getPropertyKey();
 
         String[] ps = PseudoFactory.getPseudoFunction(spec);
         if (ps != null) {
-            for (int i = 0; i < ps.length; i++) {
-                if (pseudo.equals(ps[i])) {
-                    addPseudoFunction(
-                            PseudoFactory.newPseudoFunction(pseudo,
-                                    param,
-                                    ac));
+            for (String s : ps) {
+                if (pseudo.equals(s)) {
+                    addPseudoFunction(PseudoFactory.newPseudoFunction(pseudo, param, ac));
                     return;
                 }
             }

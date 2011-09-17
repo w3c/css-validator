@@ -13,7 +13,7 @@ css1: Επίπεδο 1 CSS
 css2: Επίπεδο 2 CSS
 css21: Επίπεδο 2.1 CSS
 css3: Επίπεδο 3 CSS
-SVG: SVG
+svg: SVG
 svgbasic: Βασικό SVG
 svgtiny: μικρό SVG
 mobile: Κινητό

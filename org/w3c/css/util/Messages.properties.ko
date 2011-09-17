@@ -14,7 +14,7 @@ css1: CSS 레벨 1
 css2: CSS 레벨 2
 css21: CSS 레벨 2.1
 css3: CSS 레벨 3
-SVG: SVG
+svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
 SVG_basic: <!-- SVG Basic , deprecated as per master language file -->

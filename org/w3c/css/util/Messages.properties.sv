@@ -14,11 +14,9 @@ css1: CSS nivå 1
 css2: CSS nivå 2
 css21: CSS nivå 2.1
 css3: CSS nivå 3
-SVG: SVG
+svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
-SVG_basic: SVG Basic
-SVG_tiny: SVG Tiny
 mobile: Mobil
 ATSC_TV_profile: ATSC TV-profil
 TV_profile: TV-profil

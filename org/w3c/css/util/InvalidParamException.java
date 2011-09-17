@@ -41,6 +41,16 @@ public class InvalidParamException extends ParseException {
     }
 
     /**
+     * Create a new InvalidParamException with an error message class.
+     *
+     * @param error the error message class.
+     * @param args  a string array of messages to add
+     */
+    public InvalidParamException(String error, String[] args, ApplContext ac) {
+        super(processError(error, args, ac));
+    }
+
+    /**
      * Create a new InvalidParamException.
      *
      * @param error    the error message class
@@ -55,38 +65,8 @@ public class InvalidParamException extends ParseException {
                 ac));
     }
 
-    private static String processError(String error, Object args, ApplContext ac) {
-        if (args instanceof String[]) {
-            String[] s_args = (String[]) args;
-            StringBuilder sb = new StringBuilder();
-            String str = null;
-
-            if (error != null) {
-                str = ac.getMsg().getErrorString(error);
-            }
-            if (str == null) {
-                return "can't find the error message for " + error;
-            } else {
-                // replace all parameters
-                String[] msg_parts = str.split("%s");
-                int j = 0;
-                sb.append(msg_parts[0]);
-                for (int i = 1; i < msg_parts.length; i++) {
-                    if (j < s_args.length) {
-                        sb.append(s_args[j++]);
-                    }
-                    sb.append(msg_parts[i]);
-                }
-                return sb.toString();
-            }
-        } else {
-            return processError(error, args.toString(), "", ac);
-        }
-    }
-
-
-    private static String processError(String error, String arg1,
-                                       String arg2, ApplContext ac) {
+    private static String processError(String error, String[] args, ApplContext ac) {
+        StringBuilder sb = new StringBuilder();
         String str = null;
 
         if (error != null) {
@@ -94,17 +74,29 @@ public class InvalidParamException extends ParseException {
         }
         if (str == null) {
             return "can't find the error message for " + error;
-        } else {
-            // replace all parameters
-            int i;
-            while ((i = str.indexOf("%s")) >= 0) {
-                StringBuilder sb = new StringBuilder(str.substring(0, i));
-                sb.append(arg1).append(str.substring(i + 2));
-                str = sb.toString();
-                arg1 = arg2;
-            }
-            return str;
         }
+        // replace all parameters
+        String[] msg_parts = str.split("%s", -1);
+        int j = 0;
+        sb.append(msg_parts[0]);
+        for (int i = 1; i < msg_parts.length; i++) {
+            if (j < args.length) {
+                sb.append(args[j++]);
+            }
+            sb.append(msg_parts[i]);
+        }
+        return sb.toString();
+    }
+
+    private static String processError(String error, Object args, ApplContext ac) {
+        String sa[] = {args.toString()};
+        return processError(error, sa, ac);
+    }
+
+    private static String processError(String error, String arg1,
+                                       String arg2, ApplContext ac) {
+        String sa[] = {arg1, arg2};
+        return processError(error, sa, ac);
     }
 
 } // InvalidParamException

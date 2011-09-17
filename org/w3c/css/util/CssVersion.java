@@ -17,7 +17,7 @@ public enum CssVersion {
         return version;
     }
 
-    static CssVersion resolve(ApplContext ac, String s)
+    public static CssVersion resolve(ApplContext ac, String s)
   //          throws InvalidParamException {
     {
         for (CssVersion v : CssVersion.values()) {
@@ -31,7 +31,7 @@ public enum CssVersion {
     }
 
     // get the default version of CSS
-    static public CssVersion getDefault() {
+    public static CssVersion getDefault() {
         return CSS21;
     }
 }
