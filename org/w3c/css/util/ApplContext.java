@@ -202,8 +202,14 @@ public class ApplContext {
 
         // TODO should we check profile first and if SVG or MOBILE
         // set specific version of CSS (like CSS2 and not CSS21 for MOBILE) ?
-        version = CssVersion.resolve(this, spec);
-        profile = CssProfile.resolve(this, spec);
+        if ((spec == null) || spec.isEmpty()) {
+            version = CssVersion.getDefault();
+            profile = CssProfile.EMPTY;
+        } else {
+            String low = spec.toLowerCase();
+            version = CssVersion.resolve(this, low);
+            profile = CssProfile.resolve(this, low);
+        }
     }
 
     public void setOrigin(int origin) {
@@ -445,7 +451,7 @@ public class ApplContext {
             namespaces = new HashMap<URL, HashMap<String, String>>();
         }
         // reformat the prefix if null.
-        if ((prefix == null) || prefix.length() == 0) {
+        if ((prefix == null) || prefix.isEmpty()) {
             prefix = defaultPrefix;
         }
 
@@ -469,7 +475,7 @@ public class ApplContext {
         if (prefix.equals("*")) { // any ns, always true
             return true;
         }
-        if (prefix.length() == 0) {
+        if (prefix.isEmpty()) {
             prefix = "*defaultprefix*";
         }
         HashMap<String, String> nsdefs = namespaces.get(url);

@@ -110,7 +110,7 @@ public class CssValidator {
 
         // CSS version to use
         String profile = (String) style.params.get("profile");
-        style.ac.setCssVersionAndProfile(profile.toLowerCase());
+        style.ac.setCssVersionAndProfile(profile);
 
         // medium to use
         style.ac.setMedium((String) style.params.get("medium"));

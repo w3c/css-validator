@@ -117,7 +117,7 @@ public final class CssValidator extends HttpServlet {
 
         pval = config.getInitParameter("debug");
 
-        if (pval != null && pval.length()!=0) {
+        if (pval != null && !pval.isEmpty()) {
             // servlet debug mode
             // define a boolean property CSS.StyleSheet.debug if you want more
             // debug.
@@ -130,12 +130,12 @@ public final class CssValidator extends HttpServlet {
         }
 
         pval = config.getInitParameter("import");
-        if (pval != null && pval.length()!=0 && pval.equals("false")) {
+        if (pval != null && !pval.isEmpty() && pval.equals("false")) {
             Util.importSecurity = true;
         }
 
         pval = config.getInitParameter("entitysize");
-        if (pval != null && pval.length()!=0) {
+        if (pval != null && !pval.isEmpty()) {
             try {
                Util.maxEntitySize = Long.parseLong(pval);
             } catch (NumberFormatException nfe) {
@@ -167,7 +167,7 @@ public final class CssValidator extends HttpServlet {
     private void processVendorExtensionParameter(
             String vendorExtensionParameter, ApplContext context) {
         if (vendorExtensionParameter == null ||
-                vendorExtensionParameter.length() == 0) {
+                vendorExtensionParameter.isEmpty()) {
             vendorExtensionParameter =
                     getServletConfig().getInitParameter("vendorExtensionsAsWarnings");
         }
@@ -235,7 +235,7 @@ public final class CssValidator extends HttpServlet {
             lang = null;
         }
 
-        if (lang == null || lang.length()==0) {
+        if (lang == null || lang.isEmpty()) {
             lang = req.getHeader("Accept-Language");
         } else {
             lang += ',' + req.getHeader("Accept-Language");
@@ -278,7 +278,7 @@ public final class CssValidator extends HttpServlet {
             ac.setCredential(credential);
         }
 
-        if (usermedium == null || usermedium.length()==0) {
+        if (usermedium == null || usermedium.isEmpty()) {
             usermedium = "all";
         }
 
@@ -303,7 +303,7 @@ public final class CssValidator extends HttpServlet {
         }
 
         // CSS version
-        ac.setCssVersionAndProfile(profile.toLowerCase());
+        ac.setCssVersionAndProfile(profile);
 
         if (Util.onDebug) {
             System.err.println("[DEBUG] version is : " + ac.getCssVersionString()
@@ -563,7 +563,7 @@ public final class CssValidator extends HttpServlet {
                     profile = (String) tmp[i].getValue();
                 } else if (tmp[i].getName().equals("usermedium")) {
                     usermedium = (String) tmp[i].getValue();
-                    if (usermedium == null || usermedium.length()==0) {
+                    if (usermedium == null || usermedium.isEmpty()) {
                         usermedium = "all";
                     }
                 } else if (tmp[i].getName().equals("vextwarning")) {
@@ -576,7 +576,7 @@ public final class CssValidator extends HttpServlet {
         }
 
 
-        if (lang == null || lang.length()==0) {
+        if (lang == null || lang.isEmpty()) {
             lang = req.getHeader("Accept-Language");
         } else {
             lang += ',' + req.getHeader("Accept-Language");
@@ -590,7 +590,7 @@ public final class CssValidator extends HttpServlet {
             output = texthtml;
         }
         if ((file == null || file.getSize() == 0) &&
-                (text == null || text.length() == 0)) {
+                (text == null || text.isEmpty())) {
             // res.sendError(res.SC_BAD_REQUEST,
             // "You have send an invalid request");
             handleError(res, ac, output, "No file",
@@ -622,7 +622,7 @@ public final class CssValidator extends HttpServlet {
         // Allow vendor extensions to just show up as warnings.
         processVendorExtensionParameter(vendorExtensionAsWarnings, ac);
 
-        ac.setCssVersionAndProfile(profile.toLowerCase());
+        ac.setCssVersionAndProfile(profile);
         // CSS version
         String fileName = "";
         InputStream is = null;

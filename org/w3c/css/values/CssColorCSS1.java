@@ -160,7 +160,7 @@ import java.util.HashMap;
  */
 public class CssColorCSS1 extends CssColor {
 
-    private static HashMap<String,Object> definedColorsCSS1;
+    private static HashMap<String,RGB> definedColorsCSS1;
 
     /**
      * Create a new CssColorCSS1
@@ -186,20 +186,15 @@ public class CssColorCSS1 extends CssColor {
     private void setIdentColor(String s, ApplContext ac)
 	    throws InvalidParamException {
 	String lower_s = s.toLowerCase();
-	Object obj = definedColorsCSS1.get(lower_s);
-	if (obj != null) {
-	    if (obj instanceof RGB) {
+	rgb = definedColorsCSS1.get(lower_s);
+	if (rgb != null) {
 		color = lower_s;
-		rgb = (RGB) obj;
-	    } else if (obj instanceof String) {
-		color = (String) obj;
-// 2007-05 - this warning on color string capitalization is plain silly, 
+// 2007-05 - this warning on color string capitalization is plain silly,
 // commenting it out-- ot@w3.org
 //		if (!obj.equals(s)) {
 //		    ac.getFrame().addWarning("color.mixed-capitalization",
 //					     s);
 //		}
-	    }
 	    return;
 	}
 
@@ -207,7 +202,7 @@ public class CssColorCSS1 extends CssColor {
     }
 
     static {
-	definedColorsCSS1 = new HashMap<String,Object>();
+	definedColorsCSS1 = new HashMap<String,RGB>();
 	definedColorsCSS1.put("black",
 			  new RGB(0, 0, 0));
 	definedColorsCSS1.put("silver",
