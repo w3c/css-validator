@@ -72,7 +72,7 @@ public class CssPadding extends CssProperty implements CssOperator {
      */
     public CssPadding(ApplContext ac, CssExpression expression, boolean check)
 	throws InvalidParamException {
-	//CssValue val = expression.getValue();
+	//CssValue val = expression.floatValue();
 	setByUser();
 
 	/*if (val.equals(inherit)) {

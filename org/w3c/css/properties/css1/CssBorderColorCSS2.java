@@ -85,7 +85,7 @@ public class CssBorderColorCSS2 extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    setTop(new CssBorderTopColorCSS2(ac, expression));
-	   /* val = expression.getValue();
+	   /* val = expression.floatValue();
 	    if (val.equals(transparent)) {
 		top = new CssBorderTopColorCSS2();
 		top.face.face = transparent;

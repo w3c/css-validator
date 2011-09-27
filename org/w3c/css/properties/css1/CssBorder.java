@@ -98,7 +98,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 		new CssBorderBottomColor((CssBorderFaceColor) c.get());
 	}
 	/*
-	CssValue val = expression.getValue();
+	CssValue val = expression.floatValue();
 	char op = SPACE;
 	boolean find = true;
 
@@ -108,7 +108,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 
 	while (find) {
 	    find = false;
-	    val = expression.getValue();
+	    val = expression.floatValue();
 	    op = expression.getOperator();
 
 	    if (val == null)

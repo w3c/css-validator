@@ -103,7 +103,7 @@ public class CssPercentage extends CssValue {
     /**
      * Returns the value as a float
      */
-    public float getValue() {
+    public float floatValue() {
         return value.floatValue();
     }
 

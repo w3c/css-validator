@@ -2,7 +2,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#width
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width
  */
 public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 
@@ -35,7 +35,7 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
      * Create a new CssWidth.
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -51,7 +51,9 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
                 CssIdent ident = (CssIdent) val;
-                if (auto.equals(val)) {
+                if (inherit.equals(val)) {
+                    identVal = inherit;
+                } else if (auto.equals(val)) {
                     identVal = auto;
                 } else {
                     throw new InvalidParamException("unrecognize", ac);

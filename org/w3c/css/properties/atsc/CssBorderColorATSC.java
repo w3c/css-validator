@@ -81,7 +81,7 @@ public class CssBorderColorATSC extends CssProperty implements CssOperator {
 	switch (expression.getCount()) {
 	case 1:
 	    /*
-	    CssValue val = expression.getValue();
+	    CssValue val = expression.floatValue();
 	    if (val.equals(transparent)) {
 		top = new CssBorderTopColorATSC();
 		top.face.face = transparent;

@@ -131,7 +131,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 	setByUser();
 	while (find) {
 	    find = false;
-	    val = expression.getValue();
+	    val = expression.floatValue();
 	    op = expression.getOperator();
 
 	    if (val == null)

@@ -185,8 +185,6 @@ public class Css3Style extends ATSCStyle {
     CssPaddingTopCSS3 cssPaddingTopCSS3;
     CssPaddingLeftCSS3 cssPaddingLeftCSS3;
     CssPaddingRightCSS3 cssPaddingRightCSS3;
-    CssHeightCSS3 cssHeightCSS3;
-    CssWidthCSS3 cssWidthCSS3;
     CssMarquee cssMarquee;
     CssMarqueeDirection cssMarqueeDirection;
     CssMarqueeRepetition cssMarqueeRepetition;
@@ -1602,24 +1600,6 @@ public class Css3Style extends ATSCStyle {
 							   new CssPaddingRightCSS3(), style, selector);
 	}
 	return cssPaddingRightCSS3;
-    }
-
-    public CssHeightCSS3 getHeightCSS3() {
-	if (cssHeightCSS3 == null) {
-	    cssHeightCSS3 =
-		(CssHeightCSS3) style.CascadingOrder(
-						     new CssHeightCSS3(), style, selector);
-	}
-	return cssHeightCSS3;
-    }
-
-    public CssWidthCSS3 getWidthCSS3() {
-	if (cssWidthCSS3 == null) {
-	    cssWidthCSS3 =
-		(CssWidthCSS3) style.CascadingOrder(
-						    new CssWidthCSS3(), style, selector);
-	}
-	return cssWidthCSS3;
     }
 
     public CssMarquee getMarquee() {

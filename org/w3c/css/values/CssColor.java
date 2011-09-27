@@ -279,7 +279,7 @@ public class CssColor extends CssValue {
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 CssPercentage percent = (CssPercentage) val;
-                rgb.setRed(clippedPercentValue(percent.getValue(), ac));
+                rgb.setRed(clippedPercentValue(percent.floatValue(), ac));
                 rgb.setPercent(true);
                 break;
             default:
@@ -307,7 +307,7 @@ public class CssColor extends CssValue {
                     throw new InvalidParamException("integer", val, ac);
                 }
                 CssPercentage percent = (CssPercentage) val;
-                rgb.setGreen(clippedPercentValue(percent.getValue(), ac));
+                rgb.setGreen(clippedPercentValue(percent.floatValue(), ac));
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -334,7 +334,7 @@ public class CssColor extends CssValue {
                     throw new InvalidParamException("integer", val, ac);
                 }
                 CssPercentage percent = (CssPercentage) val;
-                rgb.setBlue(clippedPercentValue(percent.getValue(), ac));
+                rgb.setBlue(clippedPercentValue(percent.floatValue(), ac));
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -492,7 +492,7 @@ public class CssColor extends CssValue {
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 CssPercentage percent = (CssPercentage) val;
-                rgba.setRed(clippedPercentValue(percent.getValue(), ac));
+                rgba.setRed(clippedPercentValue(percent.floatValue(), ac));
                 rgba.setPercent(true);
                 break;
             default:
@@ -521,7 +521,7 @@ public class CssColor extends CssValue {
                     throw new InvalidParamException("integer", val, ac);
                 }
                 CssPercentage percent = (CssPercentage) val;
-                rgba.setGreen(clippedPercentValue(percent.getValue(), ac));
+                rgba.setGreen(clippedPercentValue(percent.floatValue(), ac));
                 break;
             default:
                 exp.starts();
@@ -551,7 +551,7 @@ public class CssColor extends CssValue {
                     throw new InvalidParamException("integer", val, ac);
                 }
                 CssPercentage percent = (CssPercentage) val;
-                rgba.setBlue(clippedPercentValue(percent.getValue(), ac));
+                rgba.setBlue(clippedPercentValue(percent.floatValue(), ac));
                 break;
             default:
                 exp.starts();
@@ -605,7 +605,7 @@ public class CssColor extends CssValue {
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
             CssPercentage percent = (CssPercentage) val;
-            hsl.setSaturation(clippedPercentValue(percent.getValue(), ac));
+            hsl.setSaturation(clippedPercentValue(percent.floatValue(), ac));
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -622,7 +622,7 @@ public class CssColor extends CssValue {
 
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
             CssPercentage percent = (CssPercentage) val;
-            hsl.setLightness(clippedPercentValue(percent.getValue(), ac));
+            hsl.setLightness(clippedPercentValue(percent.floatValue(), ac));
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -664,7 +664,7 @@ public class CssColor extends CssValue {
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
             CssPercentage percent = (CssPercentage) val;
-            hsla.setSaturation(clippedPercentValue(percent.getValue(), ac));
+            hsla.setSaturation(clippedPercentValue(percent.floatValue(), ac));
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -680,7 +680,7 @@ public class CssColor extends CssValue {
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
             CssPercentage percent = (CssPercentage) val;
-            hsla.setLightness(clippedPercentValue(percent.getValue(), ac));
+            hsla.setLightness(clippedPercentValue(percent.floatValue(), ac));
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl

@@ -79,7 +79,7 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 
 	switch (expression.getCount()) {
 	case 1:
-	    //CssValue val = expression.getValue();
+	    //CssValue val = expression.floatValue();
 	    //if (val.equals(transparent)) { // obsolete, transparent is a color value now
 		//top = new CssBorderTopColor();
 		//top.face.face = transparent;

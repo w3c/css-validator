@@ -146,6 +146,13 @@ public class CssLength extends CssValue {
     }
 
     /**
+     * return the float value
+     */
+    public float floatValue() {
+        return value.floatValue();
+    }
+
+    /**
      * Returns the current value
      */
     public String getUnit() {

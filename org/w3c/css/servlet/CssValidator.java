@@ -558,7 +558,7 @@ public final class CssValidator extends HttpServlet {
                 } else if (tmp[i].getName().equals("error")) {
                     warning = (String) tmp[i].getValue();
                     //} else if (tmp[i].getName().equals("input")) {
-                    //    XMLinput = ((String) tmp[i].getValue()).equals("XML");
+                    //    XMLinput = ((String) tmp[i].floatValue()).equals("XML");
                 } else if (tmp[i].getName().equals("profile")) {
                     profile = (String) tmp[i].getValue();
                 } else if (tmp[i].getName().equals("usermedium")) {

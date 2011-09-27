@@ -2,7 +2,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -17,27 +17,27 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#width
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height
  */
-public class CssWidth extends org.w3c.css.properties.css.CssWidth {
+public class CssHeight extends org.w3c.css.properties.css.CssHeight {
 
     CssLength lenVal;
     CssPercentage perVal;
     CssIdent identVal;
 
     /**
-     * Create a new CssWidth
+     * Create a new CssHeight
      */
-    public CssWidth() {
+    public CssHeight() {
     }
 
     /**
-     * Create a new CssWidth.
+     * Create a new CssHeight.
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
-    public CssWidth(ApplContext ac, CssExpression expression, boolean check)
+    public CssHeight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
@@ -51,7 +51,9 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
                 CssIdent ident = (CssIdent) val;
-                if (auto.equals(val)) {
+                if (inherit.equals(val)) {
+                    identVal = inherit;
+                } else if (auto.equals(val)) {
                     identVal = auto;
                 } else {
                     throw new InvalidParamException("unrecognize", ac);
@@ -79,7 +81,7 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         expression.next();
     }
 
-    public CssWidth(ApplContext ac, CssExpression expression)
+    public CssHeight(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -129,12 +131,12 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
      */
     public boolean equals(CssProperty property) {
         try {
-            CssWidth w = (CssWidth) property;
-            return (identVal == w.identVal) &&
-                    ((perVal == null && w.perVal == null) ||
-                            (perVal != null && perVal.equals(w.perVal))) &&
-                    ((lenVal == null && w.lenVal == null) ||
-                            (lenVal != null && lenVal.equals(w.lenVal)));
+            CssHeight h = (CssHeight) property;
+            return (identVal == h.identVal) &&
+                    ((perVal == null && h.perVal == null) ||
+                            (perVal != null && perVal.equals(h.perVal))) &&
+                    ((lenVal == null && h.lenVal == null) ||
+                            (lenVal != null && lenVal.equals(h.lenVal)));
 
         } catch (ClassCastException ex) {
             return false;

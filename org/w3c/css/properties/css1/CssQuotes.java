@@ -107,25 +107,25 @@ public class CssQuotes extends CssProperty {
 		values.addElement(val);
 		expression.next();
 		counter++;
-		val = expression.getValue();
+		val = expression.floatValue();
 		op = expression.getOperator();
 		if ((op == CssOperator.SPACE)
 		    && (val instanceof CssString)) {
 		    // nothing
 		} else {
 		    throw new InvalidParamException("value",
-						    expression.getValue(),
+						    expression.floatValue(),
 						    getPropertyName(), ac);
 		}
 	    } else {
 		throw new InvalidParamException("value",
-						expression.getValue(),
+						expression.floatValue(),
 						getPropertyName(), ac);
 	    }
 	    values.addElement(val);
 	    expression.next();
 	    counter++;
-	    val = expression.getValue();
+	    val = expression.floatValue();
 	    op = expression.getOperator();
 	}
 	*/

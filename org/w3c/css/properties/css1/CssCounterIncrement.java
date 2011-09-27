@@ -103,7 +103,7 @@ public class CssCounterIncrement extends CssProperty {
 		counter++;
 		if (counter < expression.getCount()) {
 		    values.addElement(val);
-		    val = expression.getValue();
+		    val = expression.floatValue();
 		    op = expression.getOperator();
 		    if ((op == CssOperator.SPACE)
 			&& (val instanceof CssNumber)
@@ -111,19 +111,19 @@ public class CssCounterIncrement extends CssProperty {
 			// nothing
 		    } else {
 			throw new InvalidParamException("value",
-							expression.getValue(),
+							expression.floatValue(),
 							getPropertyName(), ac);
 		    }
 		}
 	    } else {
 		throw new InvalidParamException("value",
-						expression.getValue(),
+						expression.floatValue(),
 						getPropertyName(), ac);
 	    }
 	    values.addElement(val);
 	    expression.next();
 	    counter++;
-	    val = expression.getValue();
+	    val = expression.floatValue();
 	    op = expression.getOperator();
 	}*/
 

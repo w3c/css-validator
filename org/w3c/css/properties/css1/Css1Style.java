@@ -9,7 +9,6 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssAzimuth;
 import org.w3c.css.properties.css.CssBackground;
 import org.w3c.css.properties.css.CssBackgroundAttachment;
 import org.w3c.css.properties.css.CssBackgroundColor;
@@ -18,7 +17,6 @@ import org.w3c.css.properties.css.CssBackgroundPosition;
 import org.w3c.css.properties.css.CssBackgroundRepeat;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssDisplay;
-import org.w3c.css.properties.css.CssElevation;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.properties.css2.CssBackgroundAttachmentCSS2;
@@ -128,7 +126,7 @@ public class Css1Style extends CssStyle {
     /**
      * width property
      */
-    public CssWidth cssWidth;
+    public org.w3c.css.properties.css.CssWidth cssWidth;
     public CssWidthMob cssWidthMob;
 
     /**
@@ -156,7 +154,7 @@ public class Css1Style extends CssStyle {
     /**
      * height property
      */
-    public CssHeight cssHeight;
+    public org.w3c.css.properties.css.CssHeight cssHeight;
     public CssHeightMob cssHeightMob;
     /**
      * float property
@@ -1838,10 +1836,10 @@ public class Css1Style extends CssStyle {
     /**
      * Get the width property
      */
-    public final CssWidth getWidth() {
+    public final org.w3c.css.properties.css.CssWidth getWidth() {
         if (cssWidth == null) {
             cssWidth =
-                    (CssWidth) style.CascadingOrder(new CssWidth(), style, selector);
+                    (org.w3c.css.properties.css.CssWidth) style.CascadingOrder(new CssWidth(), style, selector);
         }
         return cssWidth;
     }
@@ -1933,10 +1931,10 @@ public class Css1Style extends CssStyle {
     /**
      * Get the height property
      */
-    public final CssHeight getHeight() {
+    public final org.w3c.css.properties.css.CssHeight getHeight() {
         if (cssHeight == null) {
             cssHeight =
-                    (CssHeight) style.CascadingOrder(new CssHeight(), style, selector);
+                    (org.w3c.css.properties.css.CssHeight) style.CascadingOrder(new org.w3c.css.properties.css.CssHeight(), style, selector);
         }
         return cssHeight;
     }
@@ -2959,7 +2957,7 @@ class RelativeAndAbsolute {
             case CssTypes.CSS_PERCENTAGE:
                 // FIXME, it depends on the unit of the parent in the cascade.
                 CssPercentage percent = (CssPercentage) value;
-                if (percent.getValue() != (float) 0.0) {
+                if (percent.floatValue() != (float) 0.0) {
                     relative = true;
                 }
                 break;
