@@ -8,9 +8,8 @@ import org.w3c.css.properties.css1.CssColorCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
 
 /**
  * CssColorCSS21<br />
@@ -43,7 +42,7 @@ public class CssColorCSS21 extends CssColorCSS2 {
 		setColor(inherit);
 		break;
 	    }
-	    setColor(new org.w3c.css.values.CssColorCSS21(ac,
+	    setColor(new org.w3c.css.values.CssColor(ac,
 							  (String) val.get()));
 	    break;
 	default:

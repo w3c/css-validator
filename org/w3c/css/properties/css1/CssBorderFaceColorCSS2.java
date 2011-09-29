@@ -24,7 +24,7 @@ public class CssBorderFaceColorCSS2 {
      * Create a new CssBorderFaceColor
      */
     public CssBorderFaceColorCSS2() {
-	face = new org.w3c.css.values.CssColorCSS2();
+	face = new org.w3c.css.values.CssColor();
     }
 
     /**
@@ -67,7 +67,7 @@ public class CssBorderFaceColorCSS2 {
 	} else if(val.equals(CssProperty.transparent)) {
 	    setFace(CssProperty.transparent);
 	} else if (val instanceof CssIdent) {
-	    face = new org.w3c.css.values.CssColorCSS2(ac, (String) val.get());
+	    face = new org.w3c.css.values.CssColor(ac, (String) val.get());
 	} else {
 	    throw new InvalidParamException("value", val.toString(),
 					    "border-color", ac);

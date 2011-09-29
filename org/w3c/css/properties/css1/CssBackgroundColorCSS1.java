@@ -74,7 +74,7 @@ public class CssBackgroundColorCSS1 extends CssBackgroundColor {
                     setColor(inherit);
                     break;
                 }
-                setColor(new org.w3c.css.values.CssColorCSS1(ac,
+                setColor(new org.w3c.css.values.CssColor(ac,
                         (String) val.get()));
                 break;
             default:

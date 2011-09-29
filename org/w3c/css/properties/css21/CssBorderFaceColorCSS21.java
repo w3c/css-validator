@@ -65,7 +65,7 @@ public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
 	} else if(val.equals(CssProperty.transparent)) {
 	    setFace(CssProperty.transparent);
 	} else if (val instanceof CssIdent) {
-	    setFace(new org.w3c.css.values.CssColorCSS21(ac, (String) val.get()));
+	    setFace(new org.w3c.css.values.CssColor(ac, (String) val.get()));
 	} else {
 	    throw new InvalidParamException("value", val.toString(),
 					    "border-color", ac);

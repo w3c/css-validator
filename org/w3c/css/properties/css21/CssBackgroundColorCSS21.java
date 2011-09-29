@@ -53,7 +53,7 @@ public class CssBackgroundColorCSS21 extends CssBackgroundColorCSS2 {
 		setColor(inherit);
 		break;
 	    } 
-	    setColor(new org.w3c.css.values.CssColorCSS21(ac,
+	    setColor(new org.w3c.css.values.CssColor(ac,
 							  (String) val.get()));
 	    break;
 	default:

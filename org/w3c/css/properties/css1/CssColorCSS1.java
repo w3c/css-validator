@@ -62,7 +62,7 @@ public class CssColorCSS1 extends CssProperty {
 	    color = val;
 	    break;
 	case CssTypes.CSS_IDENT:
-	    color = new org.w3c.css.values.CssColorCSS1(ac, (String) val.get());
+	    color = new org.w3c.css.values.CssColor(ac, (String) val.get());
 	    break;
 	default:
 	    throw new InvalidParamException("value", expression.getValue(),

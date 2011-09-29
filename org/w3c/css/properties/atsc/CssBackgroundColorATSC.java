@@ -61,8 +61,7 @@ public class CssBackgroundColorATSC extends CssProperty {
 	setByUser();
 	CssValue val = expression.getValue();
 
-	if (val instanceof org.w3c.css.values.ATSCColor ||
-		val instanceof org.w3c.css.values.CssColor) {
+	if (val instanceof org.w3c.css.values.CssColor) {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssIdent) {
@@ -73,7 +72,7 @@ public class CssBackgroundColorATSC extends CssProperty {
 		color = inherit;
 		expression.next();
 	    } else {
-		color = new org.w3c.css.values.ATSCColor(ac, (String) val.get());
+		color = new org.w3c.css.values.CssColor(ac, (String) val.get());
 		expression.next();
 	    }
 	} else {

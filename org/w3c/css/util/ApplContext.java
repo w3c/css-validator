@@ -209,6 +209,11 @@ public class ApplContext {
             String low = spec.toLowerCase();
             version = CssVersion.resolve(this, low);
             profile = CssProfile.resolve(this, low);
+            // some special cases...
+            // http://www.atsc.org/cms/index.php/standards/published-standards/71-atsc-a100-standard
+            if (profile.equals(CssProfile.ATSCTV)) {
+                version = CssVersion.CSS2;
+            }
         }
     }
 

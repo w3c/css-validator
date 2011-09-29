@@ -26,7 +26,7 @@ public class CssBorderFaceColorATSC {
      * Create a new CssBorderFaceColor
      */
     public CssBorderFaceColorATSC() {
-	face = new org.w3c.css.values.ATSCColor();
+	face = new org.w3c.css.values.CssColor();
     }
 
     /**
@@ -62,13 +62,12 @@ public class CssBorderFaceColorATSC {
 
 	CssValue val = expression.getValue();
 
-	if (val instanceof org.w3c.css.values.ATSCColor ||
-		val instanceof CssColor) {
+	if (val instanceof CssColor) {
 	    face = val;
 	} else if (val.equals(CssProperty.inherit)) {
 	    face = CssProperty.inherit;
 	} else if (val instanceof CssIdent) {
-	    face = new org.w3c.css.values.ATSCColor(ac, (String) val.get());
+	    face = new org.w3c.css.values.CssColor(ac, (String) val.get());
 	} else {
 	    throw new InvalidParamException("value", val.toString(),
 					    "border-color", ac);

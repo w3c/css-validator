@@ -72,7 +72,7 @@ public class CssColorCSS2 extends CssProperty {
 	    color = val;
 	    expression.next();
 	} else if (val instanceof CssIdent) {
-	    color = new org.w3c.css.values.CssColorCSS2(ac,
+	    color = new org.w3c.css.values.CssColor(ac,
 							(String) val.get());
 	    expression.next();
 	} else {

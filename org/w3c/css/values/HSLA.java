@@ -65,7 +65,7 @@ public class HSLA {
      */
     public String toString() {
         if (output == null) {
-            StringBuilder sb = new StringBuilder("hsl(");
+            StringBuilder sb = new StringBuilder("hsla(");
             sb.append(Util.displayFloat(fh)).append(", ");
             sb.append(Util.displayFloat(fs)).append("%, ");
             sb.append(Util.displayFloat(fl)).append("%, ");
