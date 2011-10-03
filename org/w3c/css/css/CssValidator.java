@@ -58,6 +58,7 @@ public class CssValidator {
         params.put("output", "text");
         params.put("lang", "en");
         params.put("warning", "2");
+        params.put("vextwarning", "false");
     }
 
     public static void main(String args[])
@@ -101,6 +102,10 @@ public class CssValidator {
             System.out.println("\t\tWarnings verbosity level");
             System.out.println("\t\tPossible values for WARN are -1 (no " +
                     "warning), 0, 1, 2 (default, all the warnings");
+            System.out.println("\t-vextwarning true, --vextwarning=true");
+            System.out.println("\t\tTreat Vendor Extensions as warnings");
+            System.out.println("\t\tPossible values for vextwarning are true or false " +
+                    "(default, is false");
             System.out.println();
             System.out.println("URL");
             System.out.println("\tURL can either represent a distant " +
@@ -114,6 +119,9 @@ public class CssValidator {
 
         // medium to use
         style.ac.setMedium((String) style.params.get("medium"));
+
+        String vextwarn = (String) style.params.get("vextwarning");
+        style.ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
 
         String encoding = style.ac.getMsg().getString("output-encoding-name");
         if (encoding != null) {
