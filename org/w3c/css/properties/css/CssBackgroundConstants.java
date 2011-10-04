@@ -10,6 +10,7 @@ package org.w3c.css.properties.css;
  * @version $Revision$
  */
 public interface CssBackgroundConstants {
+    // TODO REMOVE (and clear other background classes)
   static String[] REPEAT = { "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" };
     
   static String[] ATTACHMENT = { "scroll", "fixed", "inherit" };

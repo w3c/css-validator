@@ -13,11 +13,7 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-
-import java.util.HashMap;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-breaks
@@ -45,28 +41,14 @@ import java.util.HashMap;
 
 public class CssBreakBefore extends CssProperty {
 
-    private static final String propertyName = "break-before";
 
-    static CssIdent auto;
-    private static HashMap<String, CssIdent> allowed_values;
+    CssValue value;
 
-    CssIdent value;
-
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        auto = CssIdent.getIdent("auto");
-        String id_values[] = {"auto", "always", "avoid", "left", "right",
-                "page", "column", "avoid-page", "avoid-column"};
-        for (String s : id_values) {
-            allowed_values.put(s, CssIdent.getIdent(s));
-        }
-    }
 
     /**
      * Create a new CssColumnWidth
      */
     public CssBreakBefore() {
-        value = auto;
     }
 
     /**
@@ -79,31 +61,8 @@ public class CssBreakBefore extends CssProperty {
      */
     public CssBreakBefore(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
-        setByUser();
-        CssValue val = expression.getValue();
 
-        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
-        }
-
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = allowed_values.get(val.toString());
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = (CssIdent) val;
-        }
-        expression.next();
     }
 
     public CssBreakBefore(ApplContext ac, CssExpression expression)
@@ -150,7 +109,7 @@ public class CssBreakBefore extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return propertyName;
+        return "break-before";
     }
 
     /**
@@ -179,7 +138,7 @@ public class CssBreakBefore extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (auto == value);
+        return false;
     }
 
 }

@@ -13,59 +13,20 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
-
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-breaks
- * <p/>
- * When content is laid out in multiple columns, the user agent must determine
- * where column breaks are placed. The problem of breaking content into columns
- * is similar to breaking content into pages.
- * <p/>
- * Three new properties are introduced to allow column breaks to be described
- * in the same properties as page breaks: ‘break-before’, ‘break-after’, and
- * ‘break-inside’. These properties take the same values as
- * ‘page-break-before’, ‘page-break-after’, and ‘page-break-inside’ [CSS21].
- * In addition, some new keyword values are added.
- * <p/>
- * Name:  	break-inside
- * Value: 	auto | avoid | avoid-page | avoid-column
- * Initial: 	auto
- * Applies to: 	block-level elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	paged
- * Computed value: 	specified value
+* Introduced in CSS3
  */
 
 public class CssBreakInside extends CssProperty {
 
-    private static final String propertyName = "break-inside";
-
-    static CssIdent auto;
-    private static HashMap<String, CssIdent> allowed_values;
-
-    CssIdent value;
-
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        auto = CssIdent.getIdent("auto");
-        String id_values[] = {"auto", "always", "avoid", "left", "right",
-                "page", "column", "avoid-page", "avoid-column"};
-        for (String s : id_values) {
-            allowed_values.put(s, CssIdent.getIdent(s));
-        }
-    }
+    CssValue value;
 
     /**
      * Create a new CssColumnWidth
      */
     public CssBreakInside() {
-        value = auto;
     }
 
     /**
@@ -76,31 +37,7 @@ public class CssBreakInside extends CssProperty {
      */
     public CssBreakInside(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
-        setByUser();
-        CssValue val = expression.getValue();
-
-        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
-        }
-
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = allowed_values.get(val.toString());
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = (CssIdent)val;
-        }
-        expression.next();
     }
 
     public CssBreakInside(ApplContext ac, CssExpression expression)
@@ -147,7 +84,7 @@ public class CssBreakInside extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return propertyName;
+        return "break-inside";
     }
 
     /**
@@ -176,7 +113,7 @@ public class CssBreakInside extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (auto == value);
+        return false;
     }
 
 }
