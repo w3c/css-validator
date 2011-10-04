@@ -1614,7 +1614,7 @@ test markup also accepts 3 properties: warning, profile and medium
     <url>http://www.w3.org/Style/CSS/Test/CSS3/Selectors/current/html/tests/css3-modsel-159.html</url>
     <description>Syntax and parsing of new pseudo-elements (#159)</description>
     <result valid="false">
-      <errors>1</errors>
+      <errors>2</errors>
       <warnings>0</warnings>
     </result>
   </test>
