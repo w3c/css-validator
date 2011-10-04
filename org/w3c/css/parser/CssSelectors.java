@@ -22,6 +22,7 @@ import org.w3c.css.selectors.TypeSelector;
 import org.w3c.css.selectors.attributes.AttributeExact;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
@@ -179,18 +180,19 @@ public final class CssSelectors extends SelectorsList
         // is it a pseudo-class?
         String[] ps = PseudoFactory.getPseudoClass(spec);
         if (ps != null) {
-            for (int i = 0; i < ps.length; i++) {
-                if (pseudo.equals(ps[i])) {
+            for (String p : ps) {
+                if (pseudo.equals(p)) {
                     addPseudoClass(new PseudoClassSelector(pseudo));
                     return;
                 }
             }
         }
+        CssVersion version = ac.getCssVersion();
         // it's not a pseudo-class, maybe one pseudo element exception
-        ps = PseudoFactory.getPseudoElementExceptions(spec);
+        ps = PseudoFactory.getPseudoElementExceptions(version);
         if (ps != null) {
-            for (int i = 0; i < ps.length; i++) {
-                if (pseudo.equals(ps[i])) {
+            for (String p : ps) {
+                if (pseudo.equals(p)) {
                     addPseudoClass(new PseudoClassSelector(pseudo));
                     return;
                 }
@@ -203,10 +205,10 @@ public final class CssSelectors extends SelectorsList
         if (pseudo == null) {
             return;
         }
-        String spec = ac.getPropertyKey();
 
+        CssVersion version = ac.getCssVersion();
         // is it a pseudo-element?
-        String[] ps = PseudoFactory.getPseudoElement(spec);
+        String[] ps = PseudoFactory.getPseudoElement(version);
         if (ps != null) {
             for (String s : ps) {
                 if (pseudo.equals(s)) {
@@ -221,9 +223,9 @@ public final class CssSelectors extends SelectorsList
 
     public void setPseudoFun(String pseudo, String param)
             throws InvalidParamException {
-        String spec = ac.getPropertyKey();
 
-        String[] ps = PseudoFactory.getPseudoFunction(spec);
+        CssVersion version = ac.getCssVersion();
+        String[] ps = PseudoFactory.getPseudoFunction(version);
         if (ps != null) {
             for (String s : ps) {
                 if (pseudo.equals(s)) {
