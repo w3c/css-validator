@@ -50,7 +50,7 @@ import java.util.HashMap;
  */
 public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
     // FIXME TODO is that the best way ?
-    
+
     public static boolean checkMatchingIdent(CssIdent ident) {
         return allowed_values.containsValue(ident);
     }

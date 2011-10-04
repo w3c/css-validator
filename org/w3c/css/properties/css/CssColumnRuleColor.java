@@ -9,7 +9,6 @@
 package org.w3c.css.properties.css;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.CssColor;
 import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -61,14 +60,13 @@ public class CssColumnRuleColor extends CssProperty {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-
         if (inherit.equals(val)) {
             color = inherit;
         } else {
             try {
                 // we use the latest version of CssColor, aka CSS3
-                // instead of using CSS21 colors + transparent per spec.
-                CssColor tcolor = new CssColor(ac, expression, check);
+                // instead of using CSS21 colors + transparent per spec
+                org.w3c.css.properties.css3.CssColor tcolor = new org.w3c.css.properties.css3.CssColor(ac, expression, check);
                 color = tcolor.getColor();
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",

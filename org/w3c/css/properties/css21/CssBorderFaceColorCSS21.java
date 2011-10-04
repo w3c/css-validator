@@ -30,7 +30,7 @@ public class CssBorderFaceColorCSS21 extends CssBorderFaceColorCSS2 {
      *
      * @param color A color property
      */
-    public CssBorderFaceColorCSS21(org.w3c.css.properties.css1.CssColorCSS2 color) {
+    public CssBorderFaceColorCSS21(org.w3c.css.properties.css.CssColor color) {
 	super(color);
     }
 

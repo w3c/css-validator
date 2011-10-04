@@ -1,7 +1,7 @@
-// $Id$
-// @author Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio, 2010.
+// $Id$
+//
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
@@ -11,34 +11,37 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssValue;
 
 /**
+ * @version $Revision$
  */
-public class CssBackgroundImage extends CssProperty {
-    Object url = null;
+public class CssColor extends CssProperty {
+
+    CssValue color;
+    String attrvalue = null;
 
     /**
-     * Create a new CssBackgroundImage
+     * Create a new CssColor
      */
-    public CssBackgroundImage() {
+    public CssColor() {
     }
 
     /**
-     * Creates a new CssBackgroundImage
+     * Set the value of the property
      *
-     * @param ac         the context
      * @param expression The expression for this property
-     * @param check      boolean
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
-    public CssBackgroundImage(ApplContext ac, CssExpression expression,
-                              boolean check) throws InvalidParamException {
+    public CssColor(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
         throw new InvalidParamException("unrecognize", ac);
 
     }
 
-    public CssBackgroundImage(ApplContext ac, CssExpression expression)
+    public CssColor(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -46,13 +49,16 @@ public class CssBackgroundImage extends CssProperty {
     /**
      * Returns the value of this property
      */
-
     public Object get() {
-        return url;
+        return color;
     }
 
-    public void set(Object val) {
-        url = val;
+    /**
+     * Returns the color
+     */
+    public org.w3c.css.values.CssColor getColor() {
+        return null;
+
     }
 
     /**
@@ -60,21 +66,18 @@ public class CssBackgroundImage extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return (inherit == url);
+        return color.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        return url.toString();
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public final String getPropertyName() {
-        return "background-image";
+        if (attrvalue != null) {
+            return attrvalue;
+        } else {
+            return color.toString();
+        }
     }
 
     /**
@@ -83,10 +86,11 @@ public class CssBackgroundImage extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.image != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.image = this;
+        Css1Style style0 = (Css1Style) style;
+        if (style0.cssColor != null) {
+            style0.addRedefinitionWarning(ac, this);
+        }
+        style0.cssColor = this;
     }
 
     /**
@@ -97,9 +101,9 @@ public class CssBackgroundImage extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundImage();
+            return ((Css1Style) style).getColor();
         } else {
-            return ((Css1Style) style).cssBackground.image;
+            return ((Css1Style) style).cssColor;
         }
     }
 
@@ -109,16 +113,14 @@ public class CssBackgroundImage extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundImage && url != null &&
-                url.equals(((CssBackgroundImage) property).url));
+        return false;
     }
 
     /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
+     * Returns the name of this property
      */
-    public boolean isDefault() {
-        return false;
+    public final String getPropertyName() {
+        return "color";
     }
 
 }

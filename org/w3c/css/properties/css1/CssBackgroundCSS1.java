@@ -231,6 +231,7 @@ public class CssBackgroundCSS1 extends CssBackground
      * Overrides this method for a macro
      */
     public void setImportant() {
+        super.setImportant();
         if (color != null) {
             color.important = true;
         }
@@ -253,7 +254,7 @@ public class CssBackgroundCSS1 extends CssBackground
      * Overrides this method for a macro
      */
     public boolean getImportant() {
-        return ((color == null || color.important) &&
+        return important && ((color == null || color.important) &&
                 (image == null || image.important) &&
                 (repeat == null || repeat.important) &&
                 (attachment == null || attachment.important) &&
@@ -292,8 +293,8 @@ public class CssBackgroundCSS1 extends CssBackground
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        ((Css1Style) style).cssBackgroundCSS1.same = same;
-        ((Css1Style) style).cssBackgroundCSS1.byUser = byUser;
+        ((Css1Style) style).cssBackground.same = same;
+        ((Css1Style) style).cssBackground.byUser = byUser;
 
         if (color != null) {
             color.addToStyle(ac, style);
@@ -320,9 +321,9 @@ public class CssBackgroundCSS1 extends CssBackground
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundCSS1();
+            return ((Css1Style) style).getBackground();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS1;
+            return ((Css1Style) style).cssBackground;
         }
     }
 

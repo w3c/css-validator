@@ -37,7 +37,6 @@ public class ATSCStyle extends org.w3c.css.properties.css2.font.Css2Style {
     MathlineATSC mathlineATSC;
     ToplineATSC toplineATSC;
     DefinitionSrcATSC definitionSrcATSC;
-    ATSCColor ATSCcolor;
     CssBackgroundColorATSC cssBackgroundColorATSC;
     CssBackgroundImageATSC cssBackgroundImageATSC;
     CssBackgroundRepeatATSC cssBackgroundRepeatATSC;
@@ -156,10 +155,6 @@ public class ATSCStyle extends org.w3c.css.properties.css2.font.Css2Style {
 
     public final DefinitionSrcATSC getDefinitionSrcATSC() {
         return definitionSrcATSC;
-    }
-
-    public final ATSCColor getColorATSC() {
-	return ATSCcolor;
     }
 
     public final CssBackgroundColorATSC getBackgroundColorATSC() {

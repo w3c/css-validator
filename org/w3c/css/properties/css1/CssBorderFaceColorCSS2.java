@@ -32,8 +32,8 @@ public class CssBorderFaceColorCSS2 {
      *
      * @param color A color property
      */
-    public CssBorderFaceColorCSS2(org.w3c.css.properties.css1.CssColorCSS2 color) {
-	face = color.color;
+    public CssBorderFaceColorCSS2(org.w3c.css.properties.css.CssColor color) {
+	face = color.getColor();
     }
 
     /**

@@ -26,7 +26,7 @@ public class CssBorderFaceColorATSC {
      * Create a new CssBorderFaceColor
      */
     public CssBorderFaceColorATSC() {
-	face = new org.w3c.css.values.CssColor();
+        face = new org.w3c.css.values.CssColor();
     }
 
     /**
@@ -34,8 +34,8 @@ public class CssBorderFaceColorATSC {
      *
      * @param color A color property
      */
-    public CssBorderFaceColorATSC(ATSCColor color) {
-	face = color.color;
+    public CssBorderFaceColorATSC(org.w3c.css.properties.css2.CssColor color) {
+        face = color.getColor();
     }
 
     /**
@@ -44,47 +44,47 @@ public class CssBorderFaceColorATSC {
      * @param another An another face.
      */
     public CssBorderFaceColorATSC(CssBorderFaceColorATSC another) {
-	face = another.face;
+        face = another.face;
     }
 
     /**
      * Create a new CssBorderFaceColor with an expression
      *
      * @param expression The expression for this property.
-     * @exception InvalidParamException color is not a color
+     * @throws InvalidParamException color is not a color
      */
     public CssBorderFaceColorATSC(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                  boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-	if (val instanceof CssColor) {
-	    face = val;
-	} else if (val.equals(CssProperty.inherit)) {
-	    face = CssProperty.inherit;
-	} else if (val instanceof CssIdent) {
-	    face = new org.w3c.css.values.CssColor(ac, (String) val.get());
-	} else {
-	    throw new InvalidParamException("value", val.toString(),
-					    "border-color", ac);
-	}
-	expression.next();
+        if (val instanceof CssColor) {
+            face = val;
+        } else if (val.equals(CssProperty.inherit)) {
+            face = CssProperty.inherit;
+        } else if (val instanceof CssIdent) {
+            face = new org.w3c.css.values.CssColor(ac, (String) val.get());
+        } else {
+            throw new InvalidParamException("value", val.toString(),
+                    "border-color", ac);
+        }
+        expression.next();
     }
 
     public CssBorderFaceColorATSC(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the internal color
      */
     public CssValue getColor() {
-	return face;
+        return face;
     }
 
     /**
@@ -92,14 +92,14 @@ public class CssBorderFaceColorATSC {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false; // @@ FIXME face.isDefault();
+        return false; // @@ FIXME face.isDefault();
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return face.toString();
+        return face.toString();
     }
 
     /**
@@ -108,6 +108,6 @@ public class CssBorderFaceColorATSC {
      * @param value The another faces.
      */
     public boolean equals(CssBorderFaceColorATSC color) {
-	return this.face.equals(color.face);
+        return this.face.equals(color.face);
     }
 }

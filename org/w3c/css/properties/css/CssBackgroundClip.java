@@ -12,51 +12,20 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
-import org.w3c.css.values.CssValue;
-
-import java.util.ArrayList;
-
-import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-clip
- * Name: 	background-clip
- * Value: 	[border-box | padding-box ] [ , [border-box | padding-box ] ]*
- * Initial: 	border-box
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	same as specified value
- * <p/>
- * Determines the background painting area.
  */
 
 public class CssBackgroundClip extends CssProperty {
 
-    private static final String propertyName = "background-clip";
-    public final static CssIdent border_box;
-    public final static CssIdent padding_box;
 
     Object value;
 
-    static {
-        border_box = CssIdent.getIdent("border-box");
-        padding_box = CssIdent.getIdent("padding-box");
-    }
-
-    public static boolean isMatchingIdent(CssIdent ident) {
-        return (border_box.equals(ident) ||
-                padding_box.equals(ident));
-    }
 
     /**
      * Create a new CssBackgroundClip
      */
     public CssBackgroundClip() {
-        value = border_box;
     }
 
     /**
@@ -67,48 +36,8 @@ public class CssBackgroundClip extends CssProperty {
      */
     public CssBackgroundClip(ApplContext ac, CssExpression expression,
                              boolean check) throws InvalidParamException {
+                    throw new InvalidParamException("unrecognized", ac);
 
-        ArrayList<CssValue> values = new ArrayList<CssValue>();
-
-        CssValue val;
-        char op;
-
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
-            switch (val.getType()) {
-                case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        // if we got inherit after other values, fail
-                        // if we got more than one value... fail
-                        if ((values.size() > 0) || (expression.getCount() > 1)) {
-                            throw new InvalidParamException("value", val,
-                                    getPropertyName(), ac);
-                        }
-                        values.add(inherit);
-                        break;
-                    } else if (border_box.equals(val)) {
-                        values.add(border_box);
-                        break;
-                    } else if (padding_box.equals(val)) {
-                        values.add(padding_box);
-                        break;
-                    }
-                default:
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
-            }
-            expression.next();
-            if (!expression.end() && (op != COMMA)) {
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
-            }
-        }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = values;
-        }
     }
 
     public CssBackgroundClip(ApplContext ac, CssExpression expression)
@@ -116,9 +45,6 @@ public class CssBackgroundClip extends CssProperty {
         this(ac, expression, false);
     }
 
-    public void set(Object val) {
-        value = val;
-    }
     
     /**
      * Add this property to the CssStyle
@@ -160,7 +86,7 @@ public class CssBackgroundClip extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return propertyName;
+        return "background-clip";
     }
 
     /**
@@ -181,15 +107,6 @@ public class CssBackgroundClip extends CssProperty {
      * Returns a string representation of the object
      */
     public String toString() {
-        if (value instanceof ArrayList) {
-            ArrayList values = (ArrayList) value;
-            StringBuilder sb = new StringBuilder();
-            for (Object aValue : values) {
-                sb.append(aValue.toString()).append(", ");
-            }
-            sb.setLength(sb.length() - 2);
-            return sb.toString();
-        }
         return value.toString();
     }
 
@@ -198,7 +115,7 @@ public class CssBackgroundClip extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (border_box == value);
+        return false;
     }
 
 }

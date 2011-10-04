@@ -123,6 +123,7 @@ public class CssColumnRule extends CssProperty {
                         } catch (Exception ex) {
                         }
                     }
+
                 default:
                     throw new InvalidParamException("value",
                             expression.getValue(),

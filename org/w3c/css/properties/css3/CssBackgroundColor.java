@@ -5,10 +5,9 @@
 // (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.properties.css;
+package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.Css1Style;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -29,7 +28,7 @@ import org.w3c.css.values.CssValue;
  * This property sets the background color of an element. The color is drawn
  * behind any background images.
  */
-public class CssBackgroundColor extends CssProperty {
+public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackgroundColor {
 
     CssValue color;
 
@@ -43,11 +42,33 @@ public class CssBackgroundColor extends CssProperty {
      * Create a new CssBackgroundColor
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssBackgroundColor(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
+
+        setByUser();
+        CssValue val = expression.getValue();
+
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
+        }
+
+        if (inherit.equals(val)) {
+            color = inherit;
+            expression.next();
+        } else {
+            try {
+                // we use the latest version of CssColor, aka CSS3
+                // instead of using CSS21 colors + transparent per spec.
+                CssColor tcolor = new CssColor(ac, expression, check);
+                color = tcolor.getColor();
+            } catch (InvalidParamException e) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        }
     }
 
     public CssBackgroundColor(ApplContext ac, CssExpression expression)
@@ -90,32 +111,6 @@ public class CssBackgroundColor extends CssProperty {
 
 
     /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.color != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.color = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundColor();
-        } else {
-            return ((Css1Style) style).cssBackground.color;
-        }
-    }
-
-    /**
      * Compares two properties for equality.
      *
      * @param property The other property.
@@ -126,18 +121,11 @@ public class CssBackgroundColor extends CssProperty {
     }
 
     /**
-     * Returns the name of this property
-     */
-    public final String getPropertyName() {
-        return "background-color";
-    }
-
-    /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return false;
+        return (color == transparent);
     }
 
 }

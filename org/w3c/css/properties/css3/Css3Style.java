@@ -112,8 +112,6 @@ public class Css3Style extends ATSCStyle {
     public CssBackgroundClip cssBackgroundClip;
     public CssBackgroundSize cssBackgroundSize;
     public CssBackgroundOrigin cssBackgroundOrigin;
-    CssBackgroundQuantity cssBackgroundQuantity;
-    CssBackgroundSpacing cssBackgroundSpacing;
     CssTextDecorationCSS3 cssTextDecoration;
     CssWhiteSpaceCSS3 cssWhiteSpace;
     CssWordSpacingCSS3 cssWordSpacing;
@@ -999,24 +997,6 @@ public class Css3Style extends ATSCStyle {
 							   new CssBackgroundOrigin(), style, selector);
 	}
 	return cssBackgroundOrigin;
-    }
-
-    public CssBackgroundQuantity getCssBackgroundQuantity() {
-	if (cssBackgroundQuantity == null) {
-	    cssBackgroundQuantity =
-		(CssBackgroundQuantity) style.CascadingOrder(
-							     new CssBackgroundQuantity(), style, selector);
-	}
-	return cssBackgroundQuantity;
-    }
-
-    public CssBackgroundSpacing getCssBackgroundSpacing() {
-	if (cssBackgroundSpacing == null) {
-	    cssBackgroundSpacing =
-		(CssBackgroundSpacing) style.CascadingOrder(
-							    new CssBackgroundSpacing(), style, selector);
-	}
-	return cssBackgroundSpacing;
     }
 
     public CssTextDecorationCSS3 getCssTextDecoration() {

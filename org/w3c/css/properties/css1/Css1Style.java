@@ -26,6 +26,7 @@ import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
 import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
 import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
@@ -56,9 +57,8 @@ public class Css1Style extends CssStyle {
     /**
      * Color property
      */
-    public CssColor cssColor;
-    public CssColorCSS2 cssColorCSS2;
-    public CssColorCSS1 cssColorCSS1;
+    public org.w3c.css.properties.css.CssColor cssColor;
+
     /**
      * background properties
      */
@@ -582,28 +582,12 @@ public class Css1Style extends CssStyle {
     /**
      * Get the color property
      */
-    public final CssColor getColor() {
+    public final org.w3c.css.properties.css.CssColor getColor() {
         if (cssColor == null) {
-            cssColor = (CssColor)
+            cssColor = (org.w3c.css.properties.css.CssColor)
                     style.CascadingOrder(new CssColor(), style, selector);
         }
         return cssColor;
-    }
-
-    public final CssColorCSS2 getColorCSS2() {
-        if (cssColorCSS2 == null) {
-            cssColorCSS2 = (CssColorCSS2)
-                    style.CascadingOrder(new CssColorCSS2(), style, selector);
-        }
-        return cssColorCSS2;
-    }
-
-    public final CssColorCSS1 getColorCSS1() {
-        if (cssColorCSS1 == null) {
-            cssColorCSS1 = (CssColorCSS1)
-                    style.CascadingOrder(new CssColorCSS1(), style, selector);
-        }
-        return cssColorCSS1;
     }
 
     /**
@@ -2514,7 +2498,7 @@ public class Css1Style extends CssStyle {
         }
 
         if (cssBackground.getColor() != null) {
-            CssColor colorCSS3 = cssColor;
+            org.w3c.css.properties.css.CssColor colorCSS3 = cssColor;
             // we need to look if there is the same selector elsewhere
             // containing a color definition
             for (int i = 0; i < allSelectors.length; i++) {
@@ -2598,13 +2582,13 @@ public class Css1Style extends CssStyle {
              }
              */
         } else if (cssBackgroundCSS1.getColor() != null) {
-            CssColorCSS1 colorCSS1 = cssColorCSS1;
+            org.w3c.css.properties.css.CssColor colorCSS1 = cssColor;
             // we need to look if there is the same selector elsewhere
             // containing a color definition
             for (int i = 0; i < allSelectors.length; i++) {
                 CssSelectors sel = allSelectors[i];
                 if (sel.toString().equals(selector.toString())) {
-                    colorCSS1 = ((Css1Style) sel.getStyle()).cssColorCSS1;
+                    colorCSS1 = ((Css1Style) sel.getStyle()).cssColor;
                     break;
                 }
             }
@@ -2669,13 +2653,14 @@ public class Css1Style extends CssStyle {
                 }
             }
         } else if (cssBackgroundCSS2.getColor() != null) {
-            CssColorCSS2 colorCSS2 = cssColorCSS2;
+            // TODO FIXME FUGLY because of existing code
+            org.w3c.css.properties.css.CssColor colorCSS2 = cssColor;
             // we need to look if there is the same selector elsewhere
             // containing a color definition
             for (int i = 0; i < allSelectors.length; i++) {
                 CssSelectors sel = allSelectors[i];
                 if (sel.toString().equals(selector.toString())) {
-                    colorCSS2 = ((Css1Style) sel.getStyle()).cssColorCSS2;
+                    colorCSS2 = ((Css1Style) sel.getStyle()).cssColor;
                     break;
                 }
             }
@@ -2745,81 +2730,83 @@ public class Css1Style extends CssStyle {
             }
 
         } else if (cssColor != null) {
-            CssValue backgroundColor = null;
-            // we need to look if there is the same selector elsewhere
-            // containing a color definition
-            for (int i = 0; i < allSelectors.length; i++) {
-                CssSelectors sel = allSelectors[i];
-                Css1Style style =
-                        (Css1Style) sel.getStyle();
-                if (backgroundColor == null &&
-                        sel.toString().equals(selector.toString())) {
-                    backgroundColor = ((Css1Style) sel.getStyle()).
-                            cssBackground.getColor();
-                }
-                if (style.cssBackground.getColor() != null) {
-                    if (style.cssBackground.getColor().equals(cssColor.getColor())) {
-                        warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-                                new String[]{style.cssBackground.color.getSelectors().toString(),
-                                        cssColor.getSelectors().toString()}, ac));
+            if (ac.getCssVersion() == CssVersion.CSS3) {
+                CssValue backgroundColor = null;
+                // we need to look if there is the same selector elsewhere
+                // containing a color definition
+                for (int i = 0; i < allSelectors.length; i++) {
+                    CssSelectors sel = allSelectors[i];
+                    Css1Style style =
+                            (Css1Style) sel.getStyle();
+                    if (backgroundColor == null &&
+                            sel.toString().equals(selector.toString())) {
+                        backgroundColor = ((Css1Style) sel.getStyle()).
+                                cssBackground.getColor();
+                    }
+                    if (style.cssBackground.getColor() != null) {
+                        if (style.cssBackground.getColor().equals(cssColor.getColor())) {
+                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
+                                    new String[]{style.cssBackground.color.getSelectors().toString(),
+                                            cssColor.getSelectors().toString()}, ac));
+                        }
                     }
                 }
-            }
-            if (backgroundColor == null) {
-                // It's better to have a background color with a color
-                warnings.addWarning(new Warning(cssColor,
-                        "no-background-color", 2, emptyArray, ac));
-            }
-        } else if (cssColorCSS1 != null) {
-            CssValue backgroundColor = null;
-            // we need to look if there is the same selector elsewhere
-            // containing a color definition
-            for (int i = 0; i < allSelectors.length; i++) {
-                CssSelectors sel = allSelectors[i];
-                Css1Style style = (Css1Style) sel.getStyle();
-                if (backgroundColor == null &&
-                        sel.toString().equals(selector.toString())) {
-                    backgroundColor = ((Css1Style) sel.getStyle()).
-                            cssBackgroundCSS1.getColor();
+                if (backgroundColor == null) {
+                    // It's better to have a background color with a color
+                    warnings.addWarning(new Warning(cssColor,
+                            "no-background-color", 2, emptyArray, ac));
                 }
-                if (style.cssBackgroundCSS1.getColor() != null) {
-                    if (style.cssBackgroundCSS1.getColor().equals(cssColorCSS1.getColor())) {
-                        warnings.addWarning(new Warning(cssColorCSS1, "same-colors2", 1,
-                                new String[]{style.cssBackgroundCSS1.color.getSelectors().toString(),
-                                        cssColorCSS1.getSelectors().toString()}, ac));
+            } else if (ac.getCssVersion() == CssVersion.CSS1) {
+                CssValue backgroundColor = null;
+                // we need to look if there is the same selector elsewhere
+                // containing a color definition
+                for (int i = 0; i < allSelectors.length; i++) {
+                    CssSelectors sel = allSelectors[i];
+                    Css1Style style = (Css1Style) sel.getStyle();
+                    if (backgroundColor == null &&
+                            sel.toString().equals(selector.toString())) {
+                        backgroundColor = ((Css1Style) sel.getStyle()).
+                                cssBackgroundCSS1.getColor();
+                    }
+                    if (style.cssBackgroundCSS1.getColor() != null) {
+                        if (style.cssBackgroundCSS1.getColor().equals(cssColor.getColor())) {
+                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
+                                    new String[]{style.cssBackgroundCSS1.color.getSelectors().toString(),
+                                            cssColor.getSelectors().toString()}, ac));
+                        }
                     }
                 }
-            }
-            if (backgroundColor == null) {
-                // It's better to have a background color with a color
-                warnings.addWarning(new Warning(cssColorCSS1,
-                        "no-background-color", 2, emptyArray, ac));
-            }
-        } else if (cssColorCSS2 != null) {
-            CssValue backgroundColor = null;
-            // we need to look if there is the same selector elsewhere
-            // containing a color definition
-            for (int i = 0; i < allSelectors.length; i++) {
-                CssSelectors sel = allSelectors[i];
-                Css1Style style = (Css1Style) sel.getStyle();
-                if (backgroundColor == null &&
-                        sel.toString().equals(selector.toString())) {
-                    backgroundColor = ((Css1Style) sel.getStyle()).
-                            cssBackgroundCSS2.getColor();
+                if (backgroundColor == null) {
+                    // It's better to have a background color with a color
+                    warnings.addWarning(new Warning(cssColor,
+                            "no-background-color", 2, emptyArray, ac));
                 }
-                if (style.cssBackgroundCSS2.getColor() != null) {
-                    if (style.cssBackgroundCSS2.getColor().equals(cssColorCSS2.getColor())) {
-                        warnings.addWarning(new Warning(cssColorCSS2, "same-colors2", 1,
-                                new String[]{style.cssBackgroundCSS2.color.getSelectors().toString(),
-                                        cssColorCSS2.getSelectors().toString()}, ac));
+            } else if (ac.getCssVersion() == CssVersion.CSS2 || ac.getCssVersion() == CssVersion.CSS21) {
+                CssValue backgroundColor = null;
+                // we need to look if there is the same selector elsewhere
+                // containing a color definition
+                for (int i = 0; i < allSelectors.length; i++) {
+                    CssSelectors sel = allSelectors[i];
+                    Css1Style style = (Css1Style) sel.getStyle();
+                    if (backgroundColor == null &&
+                            sel.toString().equals(selector.toString())) {
+                        backgroundColor = ((Css1Style) sel.getStyle()).
+                                cssBackgroundCSS2.getColor();
+                    }
+                    if (style.cssBackgroundCSS2.getColor() != null) {
+                        if (style.cssBackgroundCSS2.getColor().equals(cssColor.getColor())) {
+                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
+                                    new String[]{style.cssBackgroundCSS2.color.getSelectors().toString(),
+                                            cssColor.getSelectors().toString()}, ac));
+                        }
                     }
                 }
-            }
-            if (backgroundColor == null) {
-                // FIXME background image
-                // It's better to have a background color with a color
-                warnings.addWarning(new Warning(cssColorCSS2,
-                        "no-background-color", 2, emptyArray, ac));
+                if (backgroundColor == null) {
+                    // FIXME background image
+                    // It's better to have a background color with a color
+                    warnings.addWarning(new Warning(cssColor,
+                            "no-background-color", 2, emptyArray, ac));
+                }
             }
         }
 

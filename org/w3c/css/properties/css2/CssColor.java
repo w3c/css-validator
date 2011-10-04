@@ -1,9 +1,11 @@
-// $Id$
 //
-// (c) COPYRIGHT MIT,ERCIM and Keio University, 2011
+// $Id$
+// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
+//
+// (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -14,7 +16,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @version $Revision$
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#color
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/colors.html#propdef-color
  */
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
@@ -45,17 +47,21 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         setByUser();
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:
-                color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+                if (inherit.equals(val)) {
+                    inherited = true;
+                } else {
+                    color = new org.w3c.css.values.CssColor(ac, (String) val.get());
+                }
                 break;
             // in the parser, rgb func and hexval func generate a CssColor directly
             // so, no need for a CSS_FUNCTION case
             case CssTypes.CSS_COLOR:
                 try {
-                    color = (org.w3c.css.values.CssColor) val;
+                   color = (org.w3c.css.values.CssColor) val;
                 } catch (ClassCastException ex) {
                     // as we checked the type, it can't happen
                     throw new InvalidParamException("value", expression.getValue(),
-                            getPropertyName(), ac);
+                        getPropertyName(), ac);
                 }
                 break;
             default:
@@ -74,14 +80,14 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Returns the value of this property
      */
     public Object get() {
-        return color;
+        return (inherited) ? inherit : color;
     }
 
     /**
      * Returns the color
      */
     public org.w3c.css.values.CssColor getColor() {
-        return color;
+        return (inherited) ? null : color;
     }
 
     /**
@@ -89,7 +95,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return false;
+        return inherited;
     }
 
     /**
@@ -99,7 +105,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         if (attrvalue != null) {
             return attrvalue;
         } else {
-            return color.toString();
+            return (inherited) ? inherit.toString() : color.toString();
         }
     }
 
@@ -112,7 +118,8 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         CssColor other;
         try {
             other = (CssColor) property;
-            return (color.equals(other.color));
+            return ((inherited && other.inherited) ||
+                    (!inherited && !other.inherited) && (color.equals(other.color)));
         } catch (ClassCastException ex) {
             return false;
         }
