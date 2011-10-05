@@ -15,7 +15,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule-color
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule-color
  * <p/>
  * Name:  	column-rule-color
  * Value: 	&lt;color&gt;

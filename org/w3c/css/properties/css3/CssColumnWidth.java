@@ -19,7 +19,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-width
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-width
+ *
  * <p/>
  * Name:  	column-width
  * Value: 	&lt;length&gt; | auto

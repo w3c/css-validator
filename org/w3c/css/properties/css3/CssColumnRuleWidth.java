@@ -16,7 +16,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/css3-multicol/
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#crw
+ *
  * <p/>
  * <EM>Value:</EM> &lt;border-width&gt;<BR>
  * <EM>Initial:</EM>medium<BR>

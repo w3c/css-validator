@@ -20,7 +20,7 @@ import org.w3c.css.values.CssValue;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule
  * <p/>
  * Name:  	column-rule
  * Value: &lt;column-rule-width&gt; || &lt;border-style&gt; ||

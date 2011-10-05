@@ -19,7 +19,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-span
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-span
  *
  * Name:  	column-span
  * Value: 	1 | all

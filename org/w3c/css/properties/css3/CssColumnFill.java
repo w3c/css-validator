@@ -19,7 +19,7 @@ import org.w3c.css.values.CssValue;
 import java.util.HashMap;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#filling-columns
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#filling-columns
  * <p/>
  * There are two strategies for filling columns: columns can either be
  * balanced, or not. If columns are balanced, UAs should minimize the variation

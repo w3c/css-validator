@@ -20,7 +20,8 @@ import org.w3c.css.values.CssValue;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#columns
+ * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#columns
+ *
  * <p/>
  * Name:  	columns
  * Value: 	&lt;‘column-width’&gt; || &lt;‘column-count’&gt;
