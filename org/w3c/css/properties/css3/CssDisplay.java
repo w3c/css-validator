@@ -94,6 +94,9 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
             } else {
                 value = allowed_values.get(id_value);
             }
+            if (value == null) {
+                // do templates...
+            }
             if (value != null) {
                 expression.next();
                 return;

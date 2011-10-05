@@ -18,35 +18,7 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#background-position
- * <p/>
- * Name: 	background-position
- * Value: 	&lt;bg-position&gt; [ , &lt;bg-position&gt; ]*
- * Initial: 	0% 0%
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	refer to size of background positioning area minus size of
- * background image; see text
- * Media: 	visual
- * Computed value: 	If one or two values are specified, for a &lt;length&gt;
- * the absolute value, otherwise a percentage. If three or
- * four values are specified, two pairs of a keyword plus a
- * length or percentage.
- * <p/>
- * <p/>
- * If background images have been specified, this property specifies their
- * initial position (after any resizing) within their corresponding
- * background positioning area.
- * <p/>
- * Where
- * <p/>
- * &lt;bg-position&gt; = [
- * [ [ &lt;percentage&gt; | &lt;length&gt; | left | center | right ] ]
- * [ [ &lt;percentage&gt; | &lt;length&gt; | top | center | bottom ] ]?
- * |
- * [ center | [ left | right ] [ &lt;percentage&gt; | &lt;length&gt; ]? ] ||
- * [ center | [ top | bottom ] [ &lt;percentage&gt; | &lt;length&gt; ]? ]
- * ]
+ * @since CSS1
  */
 public class CssBackgroundPosition extends CssProperty {
 

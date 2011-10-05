@@ -13,23 +13,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-size
- * <p/>
- * <p/>
- * Name: 	background-size
- * Value: 	&lt;bg-size&gt; [ , &lt;bg-size&gt; ]*
- * Initial: 	auto
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	see text
- * Media: 	visual
- * Computed value: 	for &lt;length&gt; the absolute value, otherwise as
- * specified
- * <p/>
- * Specifies the size of the background images. Where
- * <p/>
- * &lt;bg-size&gt; = [ &lt;length&gt; | &lt;percentage&gt; | auto ]{1,2} |
- * cover | contain
+ * @since CSS3
  */
 public class CssBackgroundSize extends CssProperty {
 

@@ -15,24 +15,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-origin
- * <p/>
- * Name: 	background-origin
- * Value: 	&lt;bg-origin&gt; [ , &lt;bg-origin&gt; ]*
- * Initial: 	padding-box
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	same as specified value
- * <p/>
- * For elements rendered as a single box, specifies the background positioning
- * area. For elements rendered as multiple boxes (e.g., inline boxes on several
- * lines, boxes on several pages) specifies which boxes 'box-decoration-break'
- * operates on to determine the background positioning area(s).
- * <p/>
- * &lt;bg-origin&gt; = border-box | padding-box | content-box
- */
+ * @since CSS3
+*/
 
 public class CssBackgroundOrigin extends CssProperty {
 

@@ -13,22 +13,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-repeat
- * <p/>
- * Name: 	background-repeat
- * Value: 	&lt;repeat-style&gt; [ , &lt;repeat-style&gt; ]*
- * Initial: 	repeat
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	as specified
- * <p/>
- * Specifies how background images are tiled after they have been sized and
- * positioned. Where
- * <p/>
- * &lt;repeat-style&gt; = repeat-x | repeat-y | [repeat | space |
- * round | no-repeat]{1,2}
+ * @since CSS1
  */
 public class CssBackgroundRepeat extends CssProperty {
     public final static CssIdent repeat;

@@ -14,6 +14,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
+ * @since CSS3
  */
 
 public class CssBackgroundClip extends CssProperty {

@@ -14,6 +14,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
+ * @since CSS2
  * @version $Revision$
  */
 public class CssAzimuth extends CssProperty {

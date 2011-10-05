@@ -14,7 +14,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- *
+ * @since CSS1
  */
 public class CssBackgroundAttachment extends CssProperty {
 
