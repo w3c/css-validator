@@ -2,7 +2,10 @@ div {
 	column-span: inherit;
 }
 div {
-	column-span: 1;
+        column-span: initial;
+}
+div {
+        column-span: none;
 }
 div {
 	column-span: all;

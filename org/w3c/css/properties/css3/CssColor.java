@@ -10,7 +10,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -19,7 +18,6 @@ import org.w3c.css.values.CssValue;
  * @version $Revision$
  */
 public class CssColor extends org.w3c.css.properties.css.CssColor {
-    private static CssIdent same = CssIdent.getIdent("currentColor");
 
     CssValue color;
     org.w3c.css.values.CssColor tempcolor = new org.w3c.css.values.CssColor();
@@ -53,8 +51,8 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     color = inherit;
-                } else if (same.equals(val)) {
-                    color = same;
+                } else if (currentColor.equals(val)) {
+                    color = currentColor;
                 } else {
                     color = new org.w3c.css.values.CssColor(ac, (String) val.get());
                 }
@@ -125,7 +123,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Returns the color
      */
     public org.w3c.css.values.CssColor getColor() {
-        if (inherit.equals(color) || same.equals(color)) {
+        if (inherit.equals(color) || currentColor.equals(color)) {
             /*
              System.err.println("[ERROR] org.w3c.css.properties.CssColor");
              System.err.println("[ERROR] value is inherited");
@@ -141,7 +139,7 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return inherit.equals(color) || same.equals(color);
+        return inherit.equals(color) || currentColor.equals(color);
     }
 
     /**

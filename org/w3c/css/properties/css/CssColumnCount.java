@@ -13,25 +13,10 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#cc
- * <p/>
- * Name:  	column-count
- * Value: 	&lt;integer&gt; | auto
- * Initial: 	auto
- * Applies to: 	non-replaced block-level elements (except table elements),
- * table cells, and inline-block elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	specified value
- * <p/>
- * This property describes the number of columns of a multicol element.
+ * @since CSS3
  */
 
 public class CssColumnCount extends CssProperty {
@@ -40,13 +25,10 @@ public class CssColumnCount extends CssProperty {
 
     CssValue count;
 
-    static CssIdent auto = CssIdent.getIdent("auto");
-
     /**
      * Create a new CssColumnCount
      */
     public CssColumnCount() {
-        count = auto;
     }
 
     /**
@@ -57,39 +39,7 @@ public class CssColumnCount extends CssProperty {
      */
     public CssColumnCount(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
-
-        setByUser();
-        CssValue val = expression.getValue();
-        CssNumber num;
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                num = (CssNumber) val;
-                if (!num.isInteger()) {
-                    throw new InvalidParamException("integer",
-                            expression.getValue(), getPropertyName(), ac);
-                }
-                if (num.getInt() <= 0) {
-                    throw new InvalidParamException("strictly-positive",
-                            expression.getValue(),
-                            getPropertyName(), ac);
-                }
-                count = val;
-                break;
-            case CssTypes.CSS_IDENT:
-                if (auto.equals(val)) {
-                    count = auto;
-                    break;
-                }
-                if (inherit.equals(val)) {
-                    count = inherit;
-                    break;
-                }
-            default:
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-        }
-        expression.next();
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssColumnCount(ApplContext ac, CssExpression expression)
@@ -165,6 +115,6 @@ public class CssColumnCount extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (count == auto);
+        return false;
     }
 }

@@ -13,38 +13,20 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import static org.w3c.css.values.CssOperator.SPACE;
-
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule
- * <p/>
- * Name:  	column-rule
- * Value: &lt;column-rule-width&gt; || &lt;border-style&gt; ||
- * [ &lt;color&gt; | transparent ]
- * Initial: 	see individual properties
- * Applies to: 	multicol elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	see individual properties
- * <p/>
- * This property is a shorthand for setting 'column-rule-width',
- * 'column-rule-style', and 'column-rule-color' at the same place in the
- * style sheet. Omitted values are set to their initial values.
+ * @since CSS3
  */
 
 public class CssColumnRule extends CssProperty {
 
     private static final String propertyName = "column-rule";
 
-    CssIdent value = null;
-    CssColumnRuleWidth rule_width = null;
-    CssColumnRuleStyle rule_style = null;
-    CssColumnRuleColor rule_color = null;
+    CssValue value;;
+    CssColumnRuleWidth rule_width;
+    CssColumnRuleStyle rule_style;
+    CssColumnRuleColor rule_color;
 
     /**
      * Create a new CssColumnRule
@@ -60,76 +42,7 @@ public class CssColumnRule extends CssProperty {
      */
     public CssColumnRule(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
-
-        CssValue val;
-        char op;
-        int nb_val = expression.getCount();
-
-        if (check && nb_val > 3) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-        setByUser();
-
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
-            if (op != SPACE) {
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
-            }
-            switch (val.getType()) {
-                case CssTypes.CSS_FUNCTION:
-                case CssTypes.CSS_COLOR:
-                    if (rule_color != null) {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
-                    rule_color = new CssColumnRuleColor(ac, expression);
-                    break;
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_LENGTH:
-                    if (rule_width != null) {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
-                    rule_width = new CssColumnRuleWidth(ac, expression);
-                    break;
-                case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        if (nb_val > 1) {
-                            throw new InvalidParamException("unrecognize", ac);
-                        }
-                        value = inherit;
-                        expression.next();
-                        break;
-                    }
-                    if (rule_color == null) {
-                        try {
-                            rule_color = new CssColumnRuleColor(ac, expression);
-                            break;
-                        } catch (Exception ex) {
-                        }
-                    }
-                    if (rule_width == null) {
-                        try {
-                            rule_width = new CssColumnRuleWidth(ac, expression);
-                            break;
-                        } catch (Exception ex) {
-                        }
-                    }
-                    if (rule_style == null) {
-                        try {
-                            rule_style = new CssColumnRuleStyle(ac, expression);
-                            break;
-                        } catch (Exception ex) {
-                        }
-                    }
-
-                default:
-                    throw new InvalidParamException("value",
-                            expression.getValue(),
-                            getPropertyName(), ac);
-            }
-        }
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssColumnRule(ApplContext ac, CssExpression expression)
@@ -198,27 +111,7 @@ public class CssColumnRule extends CssProperty {
      * Returns a string representation of the object
      */
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        if (value != null) {
-            return value.toString();
-        }
-        if (rule_color != null) {
-            sb.append(rule_color);
-            first = false;
-        }
-        if (rule_width != null) {
-            if (!first) {
-                sb.append(' ');
-            }
-            sb.append(rule_width);
-        }
-        if (rule_style != null) {
-            if (!first) {
-                sb.append(' ');
-            }
-            sb.append(rule_style);
-        }
-        return sb.toString();
+
+        return value.toString();
     }
 }

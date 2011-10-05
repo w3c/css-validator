@@ -6,22 +6,32 @@
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
-package org.w3c.css.properties.css;
+package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css3.Css3Style;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS3
+ * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule-color
+ * <p/>
+ * Name:  	column-rule-color
+ * Value: 	&lt;color&gt;
+ * Initial: 	same as for 'color' property [CSS21]
+ * Applies to: 	multicol elements
+ * Inherited: 	no
+ * Percentages: 	N/A
+ * Media: 	visual
+ * Computed value: 	the same as the computed value for the 'color'
+ * property [CSS21]
+ * <p/>
+ * This property sets the color of the column rule. The &lt;color&gt; values are
+ * defined in [CSS21].
  */
 
-public class CssColumnRuleColor extends CssProperty {
-
-    private static final String propertyName = "column-rule-color";
+public class CssColumnRuleColor extends org.w3c.css.properties.css.CssColumnRuleColor {
 
     CssValue color;
 
@@ -29,48 +39,45 @@ public class CssColumnRuleColor extends CssProperty {
      * Create a new CssColumnRuleColor
      */
     public CssColumnRuleColor() {
-        // nothing to do
+        color = initial;
     }
 
     /**
      * Create a new CssColumnRuleColor
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssColumnRuleColor(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
-        throw new InvalidParamException("unrecognize", ac);
+
+        setByUser();
+        CssValue val = expression.getValue();
+
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (inherit.equals(val)) {
+            color = inherit;
+        } else if (currentColor.equals(val)) {
+            color = currentColor;
+        } else {
+            try {
+                // we use the latest version of CssColor, aka CSS3
+                // instead of using CSS21 colors + transparent per spec
+                CssColor tcolor = new CssColor(ac, expression, check);
+                color = tcolor.getColor();
+            } catch (InvalidParamException e) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        }
     }
 
     public CssColumnRuleColor(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssColumnRuleColor != null)
-            style.addRedefinitionWarning(ac, this);
-        ((Css3Style) style).cssColumnRuleColor = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css3Style) style).getColumnRuleColor();
-        } else {
-            return ((Css3Style) style).cssColumnRuleColor;
-        }
     }
 
     /**
@@ -84,13 +91,6 @@ public class CssColumnRuleColor extends CssProperty {
     }
 
     /**
-     * Returns the name of this property
-     */
-    public final String getPropertyName() {
-        return propertyName;
-    }
-
-    /**
      * Returns the value of this property
      */
     public Object get() {
@@ -101,7 +101,7 @@ public class CssColumnRuleColor extends CssProperty {
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-        return inherit == color;
+        return (inherit.equals(color)||currentColor.equals(color));
     }
 
     /**
@@ -116,6 +116,6 @@ public class CssColumnRuleColor extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return false;
+        return (initial == color);
     }
 }

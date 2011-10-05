@@ -8,22 +8,34 @@
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
-package org.w3c.css.properties.css;
+package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css3.Css3Style;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css1.CssBorderStyleCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS3
+ * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-rule-style
+ * 
+ * Name:  	column-rule-style
+ * Value: 	&lt;‘border-style’&gt;
+ * Initial: 	none
+ * Applies to: 	multicol elements
+ * Inherited: 	no
+ * Percentages: 	N/A
+ * Media: 	visual
+ * Computed value: 	specified value
+ *
+ * The ‘column-rule-style’ property sets the style of the rule between columns
+ * of an element. The &lt;border-style&gt; values are defined in [CSS21].
  */
 
-public class CssColumnRuleStyle extends CssProperty {
-
-    private static final String propertyName = "column-rule-style";
+public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRuleStyle {
 
     CssIdent value;
 
@@ -31,6 +43,7 @@ public class CssColumnRuleStyle extends CssProperty {
      * Create a new CssColumnRuleStyle
      */
     public CssColumnRuleStyle() {
+        value = initial;
     }
 
     /**
@@ -39,41 +52,39 @@ public class CssColumnRuleStyle extends CssProperty {
      * @param ac the context
      * @param expression The expression for this property
      * @param check if check on length is required
-     * @throws InvalidParamException Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
+
+        setByUser();
+        CssValue val = expression.getValue();
+        // too many values
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
+        }
+        // we only use Css Ident part of the CssBorderStyle acceptable values
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        CssIdent ident = (CssIdent) val;
+        if (inherit.equals(ident)) {
+            value = inherit;
+        } else if (CssBorderStyleCSS2.acceptable_values.contains(ident)) {
+            value = ident;
+        } else {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
     }
 
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssColumnRuleStyle != null)
-            style.addRedefinitionWarning(ac, this);
-        ((Css3Style) style).cssColumnRuleStyle = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css3Style) style).getColumnRuleStyle();
-        } else {
-            return ((Css3Style) style).cssColumnRuleStyle;
-        }
     }
 
     /**
@@ -84,13 +95,6 @@ public class CssColumnRuleStyle extends CssProperty {
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnRuleStyle &&
                 value.equals(((CssColumnRuleStyle) property).value));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public final String getPropertyName() {
-        return propertyName;
     }
 
     /**
@@ -119,6 +123,6 @@ public class CssColumnRuleStyle extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return false;
+        return value == initial;
     }
 }

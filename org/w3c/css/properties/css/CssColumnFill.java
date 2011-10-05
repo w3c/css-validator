@@ -14,28 +14,9 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
-import org.w3c.css.values.CssValue;
-
-import java.util.HashMap;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#filling-columns
- * <p/>
- * There are two strategies for filling columns: columns can either be
- * balanced, or not. If columns are balanced, UAs should minimize the variation
- * in column length. Otherwise, columns are filled sequentially and will
- * therefore end up having different lengths. In any case, the user agent
- * should try to honor the �widows� and �orphans� properties.
- * <p/>
- * Name: 	column-fill
- * Value: 	auto | balance
- * Initial: 	balance
- * Applies to: 	multi-column elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	see below
- * Computed value: 	as specified
+ * @since CSS3
  */
 
 public class CssColumnFill extends CssProperty {
@@ -44,21 +25,10 @@ public class CssColumnFill extends CssProperty {
 
     CssIdent value;
 
-    static CssIdent balance;
-    private static HashMap<String, CssIdent> allowed_values;
-
-    static {
-        balance = CssIdent.getIdent("balance");
-        allowed_values = new HashMap<String, CssIdent>();
-        allowed_values.put("balance", balance);
-        allowed_values.put("auto", CssIdent.getIdent("auto"));
-    }
-
     /**
      * Create a new CssColumnWidth
      */
     public CssColumnFill() {
-        value = balance;
     }
 
     /**
@@ -71,32 +41,7 @@ public class CssColumnFill extends CssProperty {
      */
     public CssColumnFill(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
-
-        setByUser();
-        CssValue val = expression.getValue();
-
-        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
-        }
-
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = allowed_values.get(val.toString());
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = (CssIdent) val;
-        }
-        expression.next();
     }
 
     public CssColumnFill(ApplContext ac, CssExpression expression)
@@ -172,7 +117,7 @@ public class CssColumnFill extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (balance == value);
+        return false;
     }
 
 }

@@ -217,10 +217,11 @@ public class CssPropertyFactory implements Cloneable {
             }
         }
 
-        CssIdent initial = new CssIdent("initial");
+        CssIdent initial = CssIdent.getIdent("initial");
 
         try {
-            if (expression.getValue().equals(initial) && (ac.getCssVersion() == CssVersion.CSS3)) {
+            if ((ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) && (expression.getCount() == 1)
+                    && expression.getValue().equals(initial)) {
                 // create an instance of your property class
                 Class[] parametersType = {};
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
