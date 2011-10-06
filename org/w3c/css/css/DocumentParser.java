@@ -55,7 +55,8 @@ public final class DocumentParser {
                 StyleSheetParser parser = new StyleSheetParser();
                 parser.parseURL(ac, htmlURL, null, null, media, StyleSheetOrigin.AUTHOR);
                 style = parser.getStyleSheet();
-            } else if (urlLower.endsWith(".html") || urlLower.endsWith(".shtml") || urlLower.endsWith("/")) {
+            } else if (urlLower.endsWith(".html") || urlLower.endsWith(".htm") ||
+                    urlLower.endsWith(".shtml") || urlLower.endsWith("/")) {
                 TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(htmlURL, ac);
                 handler.parse(htmlURL);
                 style = handler.getStyleSheet();
