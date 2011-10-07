@@ -16,27 +16,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-breaks
- * <p/>
- * When content is laid out in multiple columns, the user agent must determine
- * where column breaks are placed. The problem of breaking content into columns
- * is similar to breaking content into pages.
- * <p/>
- * Three new properties are introduced to allow column breaks to be described
- * in the same properties as page breaks: ‘break-before’, ‘break-after’, and
- * ‘break-inside’. These properties take the same values as
- * ‘page-break-before’, ‘page-break-after’, and ‘page-break-inside’ [CSS21].
- * In addition, some new keyword values are added.
- * <p/>
- * Name:  	break-before
- * Value: 	auto | always | avoid | left | right | page | column |
- * avoid-page | avoid-column
- * Initial: 	auto
- * Applies to: 	block-level elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	paged
- * Computed value: 	specified value
+ * @since CSS3
  */
 
 public class CssBreakBefore extends CssProperty {

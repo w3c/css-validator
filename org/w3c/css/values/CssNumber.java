@@ -63,6 +63,24 @@ public class CssNumber extends CssValue implements CssValueFloat {
     }
 
     /**
+     * Set the value explicitly
+     *
+     */
+    public void setIntValue(int v) {
+        isInt = true;
+        value = new Float(v);
+    }
+
+     /**
+     * Set the value explicitly
+     *
+     */
+    public void setFloatValue(float v) {
+        isInt = false;
+        value = v;
+    }
+
+    /**
      * Returns the value
      */
     public Object get() {

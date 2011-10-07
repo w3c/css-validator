@@ -26,15 +26,14 @@ public class CssDirection extends CssProperty {
     public static final CssIdent rtl;
 
     static {
-        ltr = new CssIdent("ltr");
-        rtl = new CssIdent("rtl");
+        ltr = CssIdent.getIdent("ltr");
+        rtl = CssIdent.getIdent("rtl");
     }
 
     /**
      * Create a new CssDirection
      */
     public CssDirection() {
-        value = ltr;
     }
 
     /**
@@ -46,9 +45,7 @@ public class CssDirection extends CssProperty {
      */
     public CssDirection(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
-        throw new InvalidParamException("value", expression.getValue(),
-                getPropertyName(), ac);
-
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssDirection(ApplContext ac, CssExpression expression)
@@ -126,7 +123,7 @@ public class CssDirection extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return value == ltr;
+        return false;
     }
 
 }

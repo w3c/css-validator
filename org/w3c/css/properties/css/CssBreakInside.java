@@ -16,7 +16,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
-* Introduced in CSS3
+ * @since CSS3
  */
 
 public class CssBreakInside extends CssProperty {
@@ -37,7 +37,7 @@ public class CssBreakInside extends CssProperty {
      */
     public CssBreakInside(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
-            throw new InvalidParamException("unrecognize", ac);
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssBreakInside(ApplContext ac, CssExpression expression)

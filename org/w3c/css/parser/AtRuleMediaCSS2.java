@@ -95,7 +95,7 @@ public class AtRuleMediaCSS2 extends AtRuleMedia {
 
             for (int i = 0; i < media.length; i++) {
                 // strings are exactly the same so I don't have to use equals
-                if (media[i] == second.media[i]) {
+                if ((media[i] != null) && (media[i] == second.media[i])) {
                     return true;
                 }
             }

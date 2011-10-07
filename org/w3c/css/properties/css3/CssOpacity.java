@@ -1,4 +1,3 @@
-//
 // $Id$
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 //
@@ -8,176 +7,120 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * <P>
- * <EM>Value:</EM> &lt; alphavalue&gt; || inherit<BR>
- * <EM>Initial:</EM>1<BR>
- * <EM>Applies to:</EM>all elements<BR>
- * <EM>Inherited:</EM>no<BR>
- * <EM>Percentages:</EM>no<BR>
- * <EM>Media:</EM>:visual
- * <P>
- * This property sets the opacity of an element.
- * 
- * <PRE>
- * 
- * H1 { opacity: 0}
- * 
- * </PRE>
+ * @spec http://www.w3.org/TR/2011/REC-css3-color-20110607/#opacity
  */
 
-public class CssOpacity extends CssProperty implements CssOperator {
+public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
 
-	String opaclevel;
+    CssValue value;
 
-	ApplContext ac;
+    /**
+     * Create a new CssOpacity
+     */
+    public CssOpacity() {
+        value = initial;
+    }
 
-	/**
-	 * Create a new CssOpacity
-	 */
-	public CssOpacity() {
-		CssNumber cssnum = new CssNumber((float) 1.0);
-		opaclevel = cssnum.toString();
-	}
+    /**
+     * Create a new CssOpacity
+     *
+     * @param expression The expression for this property
+     * @throws InvalidParamException Values are incorrect
+     */
+    public CssOpacity(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser(); // tell this property is set by the user
+        CssValue val = expression.getValue();
 
-	/**
-	 * Create a new CssOpacity
-	 * 
-	 * @param expression
-	 *            The expression for this property
-	 * @exception InvalidParamException
-	 *                Values are incorrect
-	 */
-	public CssOpacity(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		this.ac = ac;
-		setByUser(); // tell this property is set by the user
-		CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                CssNumber number = (CssNumber) val;
+                // this will generate a warning if necessary
+                number.setFloatValue(clampedValue(ac, number.getValue()));
+                value = number;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                // let it flow through the exception
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-		if (val instanceof CssNumber) {
+    public CssOpacity(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-			CssNumber cssnum = new CssNumber(clampedValue(ac, ((CssNumber) val)
-					.getValue()));
-			opaclevel = cssnum.toString();
-			expression.next();
-		} else if (val instanceof CssIdent) {
-			if (val.equals(inherit)) {
-				opaclevel = "inherit";
-				expression.next();
-			} else {
-				throw new InvalidParamException("value", val.toString(),
-						getPropertyName(), ac);
-			}
-		} else {
-			throw new InvalidParamException("value", val.toString(),
-					getPropertyName(), ac);
-		}
-	}
+    /**
+     * Brings all values back between 0 and 1
+     *
+     * @param opacity The value to be modified if necessary
+     */
+    private float clampedValue(ApplContext ac, float opacity) {
+        if (opacity < 0.f || opacity > 1.f) {
+            ac.getFrame().addWarning("out-of-range", Util.displayFloat(opacity));
+            return ((opacity < 0.f) ? 0.f : 1.f);
+        }
+        return opacity;
+    }
 
-	public CssOpacity(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
 
-	/**
-	 * Brings all values back between 0 and 1
-	 * 
-	 * @param opac
-	 *            The value to be modified if necessary
-	 */
-	private float clampedValue(ApplContext ac, float opac) {
-		if (opac < 0 || opac > 1) {
-			ac.getFrame().addWarning("out-of-range", Util.displayFloat(opac));
-			return ((opac < 0) ? 0 : 1);
-		} else
-			return (opac);
-	}
+    /**
+     * Compares two properties for equality.
+     *
+     * @param property The other property.
+     */
+    public boolean equals(CssProperty property) {
+        return (property instanceof CssOpacity && value
+                .equals(((CssOpacity) property).value));
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 * 
-	 * @param style
-	 *            The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		if (((Css3Style) style).cssOpacity != null)
-			style.addRedefinitionWarning(ac, this);
-		((Css3Style) style).cssOpacity = this;
-	}
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return value;
+    }
 
-	/**
-	 * Get this property in the style.
-	 * 
-	 * @param style
-	 *            The style where the property is
-	 * @param resolve
-	 *            if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css3Style) style).getOpacity();
-		} else {
-			return ((Css3Style) style).cssOpacity;
-		}
-	}
+    /**
+     * Returns true if this property is "softly" inherited
+     */
+    public boolean isSoftlyInherited() {
+        return inherit == value;
+    }
 
-	/**
-	 * Compares two properties for equality.
-	 * 
-	 * @param value
-	 *            The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssOpacity && opaclevel
-				.equals(((CssOpacity) property).opaclevel));
-	}
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+        return value.toString();
+    }
 
-	/**
-	 * Returns the name of this property
-	 */
-	public String getPropertyName() {
-		return "opacity";
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return opaclevel;
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 */
-	public boolean isSoftlyInherited() {
-		return opaclevel.equals("inherit");
-	}
-
-	/**
-	 * Returns a string representation of the object
-	 */
-	public String toString() {
-		return opaclevel;
-	}
-
-	/**
-	 * Is the value of this property a default value It is used by all macro for
-	 * the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-		return opaclevel == cssnum.toString();
-	}
+    /**
+     * Is the value of this property a default value It is used by all macro for
+     * the function <code>print</code>
+     */
+    public boolean isDefault() {
+        if (value.getType() == CssTypes.CSS_NUMBER) {
+            return (((CssNumber) value).getValue() == 1.f);
+        }
+        return (value == initial);
+    }
 
 }

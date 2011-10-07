@@ -14,7 +14,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @version $Revision$
+ * @since CSS1
  */
 public class CssColor extends CssProperty {
 
