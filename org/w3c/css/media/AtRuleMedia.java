@@ -26,6 +26,14 @@ public abstract class AtRuleMedia extends AtRule {
                                          ApplContext ac) throws InvalidParamException;
 
     /**
+     * Adds a media
+     */
+    public AtRuleMedia addMedia(Media m) {
+        allMedia.add(m);
+        return this;
+    }
+
+    /**
      * Add a media feature to the current media, like (color:1)
      *
      * @param feature, the CssProperty

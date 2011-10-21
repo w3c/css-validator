@@ -264,7 +264,8 @@ public abstract class CssParser implements CssParserConstants {
      *
      * @see              org.w3c.css.css.CssProperty
      */
-    public abstract MediaFeature handleMediaFeature(String mediaFeature,
+    public abstract MediaFeature handleMediaFeature(AtRuleMedia rule,
+                                                    String mediaFeature,
                                                                             CssExpression expr)
                throws InvalidParamException;
 
@@ -315,9 +316,17 @@ public abstract class CssParser implements CssParserConstants {
      * Return the next selector from the inputstream
      */
     public CssSelectors parseSelector() throws ParseException {
-        return externalSelector();
+            return externalSelector();
     }
 
+    /**
+     * Return the next @media rule from the inputstream
+     */
+    public AtRuleMedia parseMediaDeclaration()  throws ParseException {
+        AtRuleMedia newRule = AtRuleMedia.getInstance(ac.getCssVersion());
+            mediaquerylist(newRule);
+            return newRule;
+    }
     /*
      * Add a value to an expression
      */
@@ -887,7 +896,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
 /**
  * @exception ParseException exception during the parse
  */
-  final public void media() throws ParseException {
+  final public AtRuleMedia media() throws ParseException {
     AtRule old = getAtRule();
     AtRuleMedia newRule = AtRuleMedia.getInstance(ac.getCssVersion());
     setAtRule(newRule);
@@ -985,9 +994,12 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
             if (!isCss1) {
                 addError(e, skipStatement());
             }
+            newRule = null;
     } finally {
             setAtRule(old);
+            {if (true) return newRule;}
     }
+    throw new Error("Missing return statement in function");
   }
 
   final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {
@@ -1197,7 +1209,7 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       }
       jj_consume_token(S);
     }
-        MediaFeature mf = handleMediaFeature(mediaFeatureName, val);
+        MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         mediaRule.addMediaFeature(mf, ac);
   }
 

@@ -119,7 +119,6 @@ public class CssPropertyFactory implements Cloneable {
         }
 
         classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
-
         if (classname == null) {
             try {
                 AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;

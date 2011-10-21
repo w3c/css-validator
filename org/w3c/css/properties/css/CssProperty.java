@@ -156,7 +156,7 @@ public abstract class CssProperty
      * <SAMP> property-name : property-value1 properpty-value2 ...</SAMP>
      * <BR>
      * You should write something like this :
-     * <code>property.getFeatureName() + " : " + property.toString()</code>
+     * <code>property.getPropertyName() + " : " + property.toString()</code>
      */
     public abstract String toString();
 
