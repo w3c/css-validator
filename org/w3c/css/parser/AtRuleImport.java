@@ -9,7 +9,7 @@
  */
 package org.w3c.css.parser;
 
-import java.net.URL;
+import org.w3c.css.media.AtRuleMedia;
 
 /**
  * This class manages all imports
@@ -41,7 +41,7 @@ public class AtRuleImport extends AtRule {
     /**
      * The second must only match this one
      */
-    public boolean canMatched(AtRule atRule) {
+    public boolean canMatch(AtRule atRule) {
 	return false;
     }
 

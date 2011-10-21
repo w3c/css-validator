@@ -73,47 +73,47 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int AND = 31;
   /** RegularExpression Id. */
-  int STRING = 32;
+  int MEDIARESTRICTOR = 32;
   /** RegularExpression Id. */
-  int INVALID = 33;
+  int STRING = 33;
   /** RegularExpression Id. */
-  int IDENT = 34;
+  int INVALID = 34;
   /** RegularExpression Id. */
-  int HASHIDENT = 35;
+  int IDENT = 35;
   /** RegularExpression Id. */
-  int HASH = 36;
+  int HASHIDENT = 36;
   /** RegularExpression Id. */
-  int RBRACE = 37;
+  int HASH = 37;
   /** RegularExpression Id. */
-  int PREFIXMATCH = 38;
+  int RBRACE = 38;
   /** RegularExpression Id. */
-  int SUFFIXMATCH = 39;
+  int PREFIXMATCH = 39;
   /** RegularExpression Id. */
-  int SUBSTRINGMATCH = 40;
+  int SUFFIXMATCH = 40;
   /** RegularExpression Id. */
-  int EQ = 41;
+  int SUBSTRINGMATCH = 41;
   /** RegularExpression Id. */
-  int MINUS = 42;
+  int EQ = 42;
   /** RegularExpression Id. */
-  int SEMICOLON = 43;
+  int MINUS = 43;
   /** RegularExpression Id. */
-  int DIV = 44;
+  int SEMICOLON = 44;
   /** RegularExpression Id. */
-  int LBRACKET = 45;
+  int DIV = 45;
   /** RegularExpression Id. */
-  int RBRACKET = 46;
+  int LBRACKET = 46;
   /** RegularExpression Id. */
-  int ANY = 47;
+  int RBRACKET = 47;
   /** RegularExpression Id. */
-  int DOT = 48;
+  int ANY = 48;
   /** RegularExpression Id. */
-  int LPARAN = 49;
+  int DOT = 49;
   /** RegularExpression Id. */
-  int RPARAN = 50;
+  int LPARAN = 50;
   /** RegularExpression Id. */
-  int COLON = 51;
+  int RPARAN = 51;
   /** RegularExpression Id. */
-  int MEDIARESTRICTOR = 52;
+  int COLON = 52;
   /** RegularExpression Id. */
   int URL = 53;
   /** RegularExpression Id. */
@@ -242,6 +242,7 @@ public interface CssParserConstants {
     "<COMMA>",
     "<TILDE>",
     "\"and\"",
+    "<MEDIARESTRICTOR>",
     "<STRING>",
     "<INVALID>",
     "<IDENT>",
@@ -262,7 +263,6 @@ public interface CssParserConstants {
     "\")\"",
     "\"(\"",
     "\":\"",
-    "<MEDIARESTRICTOR>",
     "<URL>",
     "<LENGTH>",
     "<EMS>",

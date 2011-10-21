@@ -555,11 +555,11 @@ public final class CssSelectors extends SelectorsList
     private boolean canMatch(CssSelectors selector) {
         boolean result = canApply(getSelectors(), selector.getSelectors());
         // current work
-        Util.verbose("canMatched this " + this + " selector: " + selector);
+        Util.verbose("canMatch this " + this + " selector: " + selector);
         Util.verbose("connector " + connector);
         Util.verbose(getSelectors().toString());
         Util.verbose(selector.getSelectors().toString());
-        Util.verbose("canMatched for attributes :" + result);
+        Util.verbose("canMatch for attributes :" + result);
 
         if ((hashElement != selector.hashElement) && hashElement != 0) {
             if ((connector == DESCENDANT) && (selector.next != null)) {
@@ -571,7 +571,7 @@ public final class CssSelectors extends SelectorsList
                 // here we are in this case :
                 // H1 and HTML
                 // H1 can't matched HTML and HTML don't have next
-                Util.verbose("canMatched RETURN FALSE");
+                Util.verbose("canMatch RETURN FALSE");
                 return false;
             }
         }
@@ -581,7 +581,7 @@ public final class CssSelectors extends SelectorsList
             // H1 and BODY HTML H1
             // or :
             // HTML BODY and BODY (this case won't appear in principle)
-            Util.verbose("canMatched RETURN " + result);
+            Util.verbose("canMatch RETURN " + result);
             return canApply(getSelectors(), selector.getSelectors());
         } else {
             // here we are in this case :

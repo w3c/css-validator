@@ -270,7 +270,7 @@ error.strictly-positive: %s is not valid, only values greater than 0 allowed.
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Property %s doesn't exist
-error.noexistence-media: Property %s doesn't exist for media %s
+error.noexistence-media: Feature %s doesn't exist for media %s
 error.noexistence: Property %s doesn't exist in %s but exists in %s
 warning.noexistence: Property %s doesn't exist in %s but exists in %s
 warning.noexistence-media: Property %s doesn't exist for media %s
@@ -386,3 +386,9 @@ parser.import_not_allowed: @import are not allowed after any valid statement oth
 
 error.bg_order: In the CSS3 background definition, 'bg_position' must occur before / 'bg_size' if both are present
 
+error.deprecatedmedia: The media "%s" has been deprecated
+error.nomediarestrictor: Mediarestrictor not defined in this CSS level
+error.nomediarestrictor: MediarestrictorMedia features are not defined in this CSS level
+error.nomodifiershortmedia: No prefixes are allowed for media features with no value
+error.nomodifiermedia: The media feature %s does not support prefixes
+error.grid: Only 0 and 1 are acceptable values for grid

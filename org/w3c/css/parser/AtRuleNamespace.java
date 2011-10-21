@@ -40,7 +40,7 @@ public class AtRuleNamespace extends AtRule {
     /**
      * The second must only match this one
      */
-    public boolean canMatched(AtRule atRule) {
+    public boolean canMatch(AtRule atRule) {
 	return false;
     }
 

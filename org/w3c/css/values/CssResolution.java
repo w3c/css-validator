@@ -32,11 +32,25 @@ public class CssResolution extends CssValue {
         return type;
     }
 
+    private Float value;
+    private String unit;
+    boolean isInt;
+
     /**
      * Create a new CssResolution
      */
     public CssResolution() {
-        value = defaultValue;
+    }
+
+    private void setValue(String s) {
+        try {
+            new Integer(s);
+            isInt = true;
+        } catch (NumberFormatException e) {
+            isInt = false;
+        } finally {
+            value = new Float(s);
+        }
     }
 
     /**
@@ -47,19 +61,20 @@ public class CssResolution extends CssValue {
      * @throws InvalidParamException The unit is incorrect
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
+
         s = s.toLowerCase();
         int length = s.length();
         String unit = "";
         if (s.contains("dpi")) {
             unit = s.substring(length - 3, length);
-            this.value = new Float(s.substring(0, length - 3));
+            setValue(s.substring(0, length - 3));
             if (unit.equals("dpi")) {
                 this.unit = unit;
             }
             return;
         } else if (s.contains("dpcm")) {
             unit = s.substring(length - 4, length);
-            this.value = new Float(s.substring(0, length - 4));
+            setValue(s.substring(0, length - 4));
             if (unit.equals("dpcm")) {
                 this.unit = unit;
             }
@@ -77,7 +92,18 @@ public class CssResolution extends CssValue {
      * Returns the current value
      */
     public Object get() {
+        if (isInt) {
+            return new Integer(value.intValue());
+        }
         return value;
+    }
+
+    /**
+     * @return a float
+     *
+     */
+    public float getFloatValue() {
+        return value.floatValue();
     }
 
     /**
@@ -91,11 +117,14 @@ public class CssResolution extends CssValue {
      * Returns a string representation of the object.
      */
     public String toString() {
-        if (value.floatValue() != 0.0) {
-            return Util.displayFloat(value) + unit;
+        StringBuilder sb = new StringBuilder();
+        if (isInt) {
+           sb.append(Integer.toString(value.intValue()));
         } else {
-            return Util.displayFloat(value);
+            sb.append(Util.displayFloat(value));
         }
+        sb.append(unit);
+        return sb.toString();
     }
 
     /**
@@ -108,10 +137,5 @@ public class CssResolution extends CssValue {
                 this.value.equals(((CssResolution) value).value) &&
                 unit.equals(((CssResolution) value).unit));
     }
-
-    private Float value;
-    private String unit;
-    private static Float defaultValue = new Float(0);
-
 }
 

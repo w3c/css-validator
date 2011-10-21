@@ -7,6 +7,9 @@
 
 package org.w3c.css.parser;
 
+import org.w3c.css.media.AtRuleMedia;
+import org.w3c.css.media.Media;
+import org.w3c.css.media.MediaFeature;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -77,50 +80,56 @@ public class CssPropertyFactory implements Cloneable {
         return list;
     }
 
-    // public void setUserMedium(String usermedium) {
-    // this.usermedium = usermedium;
-    // }
-
     // bug: FIXME
     // @media screen and (min-width: 400px) and (max-width: 700px), print {
     // a {
     // border: 0;
     // }
     // }
-    public synchronized CssProperty createMediaFeature(ApplContext ac, AtRule atRule, String property,
-                                                       CssExpression expression) throws Exception {
-        // String result = "ok";
-        String media = atRule.toString();
-        String upmedia = media.toUpperCase();
-        int pos = -1;
-        int pos2 = upmedia.indexOf("AND");
+    public synchronized MediaFeature createMediaFeature(ApplContext ac, AtRule atRule, String feature,
+                                                        CssExpression expression) throws Exception {
+        String modifier = null;
+        String classname;
+        int dashpos = feature.indexOf('-');
+        feature = feature.toLowerCase();
 
-        if (pos2 == -1) {
-            pos2 = media.length();
+        if (dashpos != -1) {
+            if (dashpos == 0) {
+                // vendor media?
+                try {
+                    AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
+                    // I don't know this property
+                    // TODO get the latest media it applies to
+                    throw new InvalidParamException("noexistence-media", feature,
+                            atRuleMedia.getCurrentMedia(), ac);
+                } catch (ClassCastException cce) {
+                    // I don't know this property
+                    throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
+                }
+            }
+            modifier = feature.substring(0, dashpos);
+            // clash between feature name and modifier...
+            // link min-width and color-index, so we check we have min- or max-
+            if (modifier.equals("min") || modifier.equals("max")) {
+                feature = feature.substring(dashpos + 1);
+            } else {
+                // back to normal
+                modifier = null;
+            }
         }
-        pos = upmedia.indexOf("NOT");
-        if (pos != -1) {
-            media = media.substring(pos + 4, pos2);
-        } else if ((pos = upmedia.indexOf("ONLY")) != -1) {
-            media = media.substring(pos + 4, pos2);
-        } else {
-            pos = media.indexOf(" ");
-            media = media.substring(pos + 1, pos2);
-        }
 
-        media = media.trim();
-
-        String classname = properties.getProperty("mediafeature" + "." + property);
+        classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
 
         if (classname == null) {
-            if (atRule instanceof AtRuleMedia && (!media.equals("all"))) {
+            try {
+                AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
                 // I don't know this property
-                throw new InvalidParamException("noexistence-media", property, media, ac);
-                // ac.getFrame().addWarning("noexistence-media", property);
-                // classname = allprops.getProperty(property);
-            } else {
+                // TODO get the latest media it applies to
+                throw new InvalidParamException("noexistence-media", feature,
+                        atRuleMedia.getCurrentMedia(), ac);
+            } catch (ClassCastException cce) {
                 // I don't know this property
-                throw new InvalidParamException("noexistence", property, media, ac);
+                throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
             }
         }
 
@@ -132,41 +141,37 @@ public class CssPropertyFactory implements Cloneable {
             }
             // Maybe it will be necessary to add the check parameter as for
             // create property, so... FIXME
-            Class[] parametersType = {ac.getClass(), expressionclass};
+            Class[] parametersType = {ac.getClass(), String.class, expressionclass};
             Constructor constructor = Class.forName(classname).getConstructor(parametersType);
-            Object[] parameters = {ac, expression};
+            Object[] parameters = {ac, modifier, expression};
             // invoke the constructor
-            return (CssProperty) constructor.newInstance(parameters);
+            return (MediaFeature) constructor.newInstance(parameters);
         } catch (InvocationTargetException e) {
             // catch InvalidParamException
             Exception ex = (Exception) e.getTargetException();
             throw ex;
         }
-
     }
 
     public synchronized CssProperty createProperty(ApplContext ac, AtRule atRule, String property,
                                                    CssExpression expression) throws Exception {
         String classname = null;
-        String media = atRule.toString();
-        int pos = -1;
-        String upperMedia = media.toUpperCase();
-        int pos2 = upperMedia.indexOf("AND ");
+        AtRuleMedia atRuleMedia;
+        String media = null;
 
-        if (pos2 == -1) {
-            pos2 = media.length();
+        try {
+            atRuleMedia = (AtRuleMedia) atRule;
+            // TODO FIXME in fact, it should use a vector of media instead of extracting
+            // only one media, so let's use kludges
+            for (Media m : atRuleMedia.getMediaList()) {
+                if (!m.getNot()) {
+                    media = m.getMedia();
+                    break;
+                }
+            }
+        } catch (ClassCastException cce) {
+            media = "all";
         }
-
-        if ((pos = upperMedia.indexOf("NOT")) != -1) {
-            media = media.substring(pos + 4, pos2);
-        } else if ((pos = upperMedia.indexOf("ONLY")) != -1) {
-            media = media.substring(pos + 4, pos2);
-        } else {
-            pos = media.indexOf(' ');
-            media = media.substring(pos + 1, pos2);
-        }
-
-        media = media.trim();
         classname = setClassName(atRule, media, ac, property);
 
         // the property does not exist in this profile
@@ -187,30 +192,30 @@ public class CssPropertyFactory implements Cloneable {
             }
             if (pfsOk.size() > 0) {
                 if (ac.getCssProfile() == CssProfile.NONE) {
-                    String latestVersion = pfsOk.get(pfsOk.size()-1);
+                    String latestVersion = pfsOk.get(pfsOk.size() - 1);
                     CssVersion v = CssVersion.resolve(ac, latestVersion);
                     // should always be true... otherwise there is an issue...
                     if (v.compareTo(ac.getCssVersion()) > 0) {
-                        ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString() });
+                        ac.getFrame().addWarning("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()});
                         ac.setCssVersion(v);
                     }
                     classname = setClassName(atRule, media, ac, property);
                 } else {
 
-                /*
-            // This should be uncommented when no-profile in enabled
-            if (ac.getProfileString().equals("none")) {
-            // the last one should be the best one to use
-            String	pf = (String) pfsOk.get(pfsOk.size()-1),
-            old_pf = ac.getCssVersionString();
-            ac.setCssVersion(pf);
-            ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
-            classname = setClassName(atRule, media, ac, property);
-            ac.setCssVersion(old_pf);
-            }
-            else
-            */
-                throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
+                    /*
+                    // This should be uncommented when no-profile in enabled
+                    if (ac.getProfileString().equals("none")) {
+                    // the last one should be the best one to use
+                    String	pf = (String) pfsOk.get(pfsOk.size()-1),
+                    old_pf = ac.getCssVersionString();
+                    ac.setCssVersion(pf);
+                    ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
+                    classname = setClassName(atRule, media, ac, property);
+                    ac.setCssVersion(old_pf);
+                    }
+                    else
+                    */
+                    throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
                 }
             } else {
                 throw new InvalidParamException("noexistence-at-all", property, ac);

@@ -195,7 +195,8 @@ public class CssExpression implements CssOperator {
         }
         // remove the last one
         if (sb.length() > 0) {
-            return sb.deleteCharAt(sb.length() - 1).toString();
+//            sb.setLength(sb.length() - 1);
+            return sb.toString();
         } else {
             return "**invalid state**";
         }

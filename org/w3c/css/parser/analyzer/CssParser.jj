@@ -11,10 +11,10 @@ options {
     IGNORE_CASE  = true;
     STATIC = false;
     UNICODE_INPUT = true;
-   /*    
+    /*
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
-   */ 
+    */
 }
 
 PARSER_BEGIN(CssParser)
@@ -50,7 +50,8 @@ import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleMedia;
+import org.w3c.css.media.AtRuleMedia;
+import org.w3c.css.media.MediaFeature;
 import org.w3c.css.parser.AtRuleFontFace;
 import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
@@ -95,7 +96,7 @@ public abstract class CssParser {
 					'c', 'd', 'e', 'f' };
     // the current atRule
     protected AtRule atRule;
-    protected String mediaDeclaration = "off";
+    protected boolean mediaDeclaration = false;
 
     /**
      * The URL of the document
@@ -159,7 +160,7 @@ public abstract class CssParser {
      *
      * @param mediaDeclaration indicator if in a media expression list or not
      */
-    public void setMediaDeclaration(String mediadeclaration) {
+    public void setMediaDeclaration(boolean mediadeclaration) {
         this.mediaDeclaration = mediadeclaration;
     }
 
@@ -168,7 +169,7 @@ public abstract class CssParser {
      *
      * @return the value of the attribute
      */
-    public String getMediaDeclaration() {
+    public boolean hasMediaDeclaration() {
     	return mediaDeclaration;
     }
 
@@ -268,6 +269,26 @@ public abstract class CssParser {
 						  CssExpression values, 
 						  boolean important) 
 	throws InvalidParamException;
+
+    /**
+     * Assign an expression to a mediafeature.
+     * This function create a new mediafeature
+     * with <code>featureName</code> and assign to it the expression.
+     * <p>
+     * A subclass must provide an implementation of this method.
+     *
+     * @param  featureName  the name of the media feature
+     * @param  expr    the expression representation of values
+     *
+     * @return           <code>null</code>or a property
+     *
+     * @see              org.w3c.css.css.CssProperty
+     */
+    public abstract MediaFeature handleMediaFeature(String mediaFeature,
+						                            CssExpression expr)
+	       throws InvalidParamException;
+
+
 
     /**
      * Adds a ArrayList of properties to a selector.
@@ -449,6 +470,11 @@ TOKEN [IGNORE_CASE] :
     < AND : "and" > 
 }  
 
+TOKEN [IGNORE_CASE] :
+{
+    < MEDIARESTRICTOR : "only" | "not" >
+}
+
 <DEFAULT>
 TOKEN :
 {
@@ -482,12 +508,6 @@ TOKEN :
     TOKEN :
 {
     < COLON     : ":" >
-}
-
-<DEFAULT>
-TOKEN [IGNORE_CASE] :
-{
-    < MEDIARESTRICTOR : "only" | "not" >
 }
 
 <DEFAULT>
@@ -547,7 +567,7 @@ TOKEN [IGNORE_CASE] :
   | < FONT_FACE_SYM         : "@font-face" >
   | < PREF_SYM              : "@preference" >
   | < COLOR_PROFILE         : "@color-profile" >
-  | < ATTOP	            : "@top" >
+  | < ATTOP	                : "@top" >
   | < ATRIGHT               : "@right" >
   | < ATBOTTOM              : "@bottom" >
   | < ATLEFT                : "@left" >
@@ -803,7 +823,7 @@ void namespaceDeclaration() :
  */
 void importDeclaration() :
 {Token n;
-    AtRuleMedia media = new AtRuleMedia();
+    AtRuleMedia media = AtRuleMedia.getInstance(ac.getCssVersion());
     CssValue val; 
     String importFile;
     boolean is_url = false;
@@ -827,9 +847,7 @@ void importDeclaration() :
 	    } 
 	    )
 	    ( <S> )*
-	    ( medium(media) 
-	      ( <COMMA> ( <S> )* medium(media) 
-		)* )? <SEMICOLON> 
+	    ( mediaquerylist(media) )? <SEMICOLON>
 	    ( <S> )*
 	    { 
 		handleImport(getURL(), importFile, is_url, media);
@@ -845,7 +863,7 @@ void importDeclaration() :
 void media() :
 {
     AtRule old = getAtRule();
-    AtRuleMedia newRule = new AtRuleMedia();
+    AtRuleMedia newRule = AtRuleMedia.getInstance(ac.getCssVersion());
     setAtRule(newRule);
     Token n;
     CssProperty p = null;
@@ -853,62 +871,88 @@ void media() :
 }
 {
     try {
-	<MEDIA_SYM> ( <S> )*
-            // <CSS3>
-	    (n=<MEDIARESTRICTOR> { newRule.addMediaRestrictor(convertIdent(n.image), ac); } ( <S> )+)? 
-	    medium(newRule) 
-            // </CSS3>
-	    ( <COMMA> ( <S> )* medium(newRule) )* 
-            // <CSS3>
-	    (<AND> ( <S> )* <RPARAN> ( <S> )* p=mediadeclaration() { newRule.addMediaFeature(p); } <LPARAN> ( <S> )* )*
-            // </CSS3>
-   
+	n=<MEDIA_SYM> ( <S> )*
+        mediaquerylist(newRule)
 	    {
-		String media = getAtRule().toString();
-		if (ac.getMedium() != null && 
-		    !(media.equals(ac.getMedium())) &&
-		    !(ac.getMedium().equals("all"))) {
+		    String media = getAtRule().toString();
+		    if (ac.getMedium() != null &&
+		        !(media.equals(ac.getMedium())) &&
+		        !(ac.getMedium().equals("all"))) {
 		 
-		    ac.getFrame().addWarning("noothermedium", 
-					     getAtRule().toString());
-		}
-		if (isCss1) {
-		    skipStatement();
-		    addError(new InvalidParamException("noatruleyet", "", ac),
-			     getAtRule().toString());
-		} else {
-		    newAtRule(getAtRule());
-		}
+		        ac.getFrame().addWarning("noothermedium", getAtRule().toString());
+		    }
+		    if (isCss1) {
+		        skipStatement();
+		        addError(new InvalidParamException("noatruleyet", "", ac),
+			         getAtRule().toString());
+		    } else {
+		        newAtRule(getAtRule());
+		    }
 	    }
 	<LBRACE> ( <S> )* ( ruleSet() )* <RBRACE> ( <S> )*
 	     {
-		 if (!isCss1) {
-		     endOfAtRule();
-		 }
+		     if (!isCss1) {
+		         endOfAtRule();
+		     }
 	     }
     } catch (ParseException e) {
-	if (!isCss1) {
-	    addError(e, skipStatement()); 
-	}
-    } finally {
-	setAtRule(old);
+	    if (!isCss1) {
+	        addError(e, skipStatement());
+	    }
+	} finally {
+	    setAtRule(old);
     }
 }
 
-/**
- * @exception ParseException exception during the parse
- */
-void medium(AtRuleMedia media) : /* tv, projection, screen, ... */
-{Token n;}
+
+void mediaquerylist(AtRuleMedia mediaRule) :
 {
-    n=<IDENT> ( <S> )*
-    {
-	try {
-	    media.addMedia(convertIdent(n.image), ac); 
-	} catch (InvalidParamException e) {
-	    CssError error = new CssError(getSourceFile(), getLine(), e);
-	    ac.getFrame().addError(error);	
-	}
+  CssVersion v = ac.getCssVersion();
+  boolean isCss1 =  (v == CssVersion.CSS1);
+}
+{
+   mediaquery(mediaRule)
+   ( <COMMA> ( <S> )* mediaquery(mediaRule) )*
+}
+
+void mediaquery(AtRuleMedia mediaRule) :
+{
+  CssVersion v = ac.getCssVersion();
+  boolean isCss1 =  (v == CssVersion.CSS1);
+  Token n;
+  String mediarestrictor = null;
+}
+{
+   ( ( (n=<MEDIARESTRICTOR> {
+            mediarestrictor = convertIdent(n.image);
+       } ( <S> )+ )?
+   n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+   (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
+   (mediaexpression(mediaRule, true) (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+
+   }
+}
+
+void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+  CssVersion v = ac.getCssVersion();
+  boolean isCss1 =  (v == CssVersion.CSS1);
+  CssExpression val = null;
+  String mediaFeatureName = null;
+  Token n;
+}
+{
+    <RPARAN> ( <S> )* n=<IDENT> {
+    // here we add the default media if not present
+       if (defaultMedia) {
+           mediaRule.addMedia(null, null, ac);
+       }
+       mediaFeatureName = convertIdent(n.image); }
+    ( <S> )*
+    ( <COLON> ( <S> )* val=expr() )?
+    <LPARAN>  ( <S> )*  {
+        MediaFeature mf = handleMediaFeature(mediaFeatureName, val);
+        mediaRule.addMediaFeature(mf, ac);
     }
 }
 
@@ -1414,7 +1458,7 @@ CssSelectors selector() :
 			    throw new InvalidParamException("nocomb", "+", ac);
 		    }
 		}
-		// FIXME should be >= css3
+		// if version < CSS3, ~ is undefined
 		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
 		    if (comb == '~') {
 			    throw new InvalidParamException("nocomb", "~", ac);
@@ -1922,7 +1966,7 @@ CssProperty mediadeclaration() :
 { String string_property;
   CssExpression values = null;
   boolean important = false;
-  setMediaDeclaration("on");
+  setMediaDeclaration(true);
 }
 {
 try {
@@ -1958,7 +2002,7 @@ try {
      skipAfterExpression(e);
      return null;
  } finally {
-     setMediaDeclaration("off");
+     setMediaDeclaration(false);
  }
 }
 

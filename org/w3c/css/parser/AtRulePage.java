@@ -131,7 +131,7 @@ public class AtRulePage extends AtRule {
     /**
      * The second must only match this one
      */
-    public boolean canMatched(AtRule atRule) {
+    public boolean canMatch(AtRule atRule) {
         AtRulePage atRulePage;
         try {
             atRulePage = (AtRulePage) atRule;

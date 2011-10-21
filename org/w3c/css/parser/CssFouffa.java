@@ -11,6 +11,8 @@
 package org.w3c.css.parser;
 
 import org.w3c.css.css.StyleSheetOrigin;
+import org.w3c.css.media.AtRuleMedia;
+import org.w3c.css.media.MediaFeature;
 import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.CssParserTokenManager;
 import org.w3c.css.parser.analyzer.ParseException;
@@ -18,7 +20,6 @@ import org.w3c.css.parser.analyzer.TokenMgrError;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
@@ -112,7 +113,7 @@ public final class CssFouffa extends CssParser {
 
         classStyle = PropertiesLoader.config.getProperty(spec);
         if (classStyle == null) {
-            spec =  CssVersion.getDefault().toString();
+            spec = CssVersion.getDefault().toString();
             classStyle = PropertiesLoader.config.getProperty(spec);
         }
 
@@ -202,9 +203,9 @@ public final class CssFouffa extends CssParser {
         // if ("css1".equals(ac.getCssVersionString())) {
         // media = new AtRuleMediaCSS1();
         // } else if ("css2".equals(ac.getCssVersionString())) {
-        // media = new AtRuleMediaCSS2();
+        // media = new AtRuleMedia();
         // } else {
-        // media = new AtRuleMediaCSS2();
+        // media = new AtRuleMedia();
         // }
         /*
        * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
@@ -527,12 +528,7 @@ public final class CssFouffa extends CssParser {
         }
 
         try {
-            if (getMediaDeclaration().equals("on") && (getAtRule() instanceof AtRuleMedia)) {
-                prop = properties.createMediaFeature(ac, getAtRule(), property, expression);
-            } else {
-                prop = properties.createProperty(ac, getAtRule(), property, expression);
-            }
-
+            prop = properties.createProperty(ac, getAtRule(), property, expression);
         } catch (InvalidParamException e) {
             throw e;
         } catch (Exception e) {
@@ -553,6 +549,42 @@ public final class CssFouffa extends CssParser {
         // ok, return the new property
         return prop;
 
+    }
+
+    /**
+     * Assign an expression to a MediaFeature. This function create a new
+     * media feature with <code>feature</code> and assign to it the expression
+     *
+     * @param feature    the name of the media feature
+     * @param expression The expression representation of expression
+     * @return a CssProperty
+     * @throw InvalidParamException
+     * An error appears during the property creation.
+     */
+    public MediaFeature handleMediaFeature(String feature, CssExpression expression)
+            throws InvalidParamException {
+        MediaFeature mf;
+        if (Util.onDebug) {
+            System.err.println("Creating MediaFeature" + feature + ": " + expression);
+        }
+
+        try {
+            mf = properties.createMediaFeature(ac, getAtRule(), feature, expression);
+        } catch (InvalidParamException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (Util.onDebug) {
+                e.printStackTrace();
+            }
+            throw new InvalidParamException(e.toString(), ac);
+        }
+
+        mf.setOrigin(origin);
+        // set informations for errors and warnings
+        mf.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());
+        // ok, return the new property
+        return mf;
     }
 
     /**

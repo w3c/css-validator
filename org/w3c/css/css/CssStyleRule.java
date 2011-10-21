@@ -82,7 +82,7 @@ public class CssStyleRule {
      * 
      * for (int i = 0; i < properties.size() ; i++) { CssProperty property =
      * (CssProperty)properties.elementAt(i); ret.append("<li>");
-     * ret.append(property.getPropertyName()); ret.append(" : <span
+     * ret.append(property.getFeatureName()); ret.append(" : <span
      * class='vPropertyValue'>"); ret.append(property.toString());
      * ret.append("</span>");
      * if (property.getImportant()) { ret.append(" !important"); } 

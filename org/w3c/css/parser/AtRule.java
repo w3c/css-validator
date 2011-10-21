@@ -29,7 +29,7 @@ public abstract class AtRule {
     /**
      * The second must only match this one
      */
-    public abstract boolean canMatched(AtRule atRule);
+    public abstract boolean canMatch(AtRule atRule);
 
     public boolean isEmpty() {
 	return false;

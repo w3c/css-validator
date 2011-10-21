@@ -7,8 +7,8 @@
 
 package org.w3c.css.css;
 
+import org.w3c.css.media.AtRuleMedia;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleMedia;
 import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssFouffa;
@@ -205,7 +205,7 @@ public final class StyleSheetParser
                     media = ac.getMedium();
                 }
             }
-            AtRuleMedia m = new AtRuleMedia();
+            AtRuleMedia m = AtRuleMedia.getInstance(ac.getCssVersion());
             try {
                 addMedias(m, media, ac);
                 cssFouffa.setAtRule(m);
@@ -225,10 +225,12 @@ public final class StyleSheetParser
         }
     }
 
+    // TODO this is not OK for CSS3...
+    // big FIXME here, we should reuse the parser...
     private void addMedias(AtRuleMedia m, String medias, ApplContext ac) throws InvalidParamException {
         StringTokenizer tokens = new StringTokenizer(medias, ",");
         while (tokens.hasMoreTokens()) {
-            m.addMedia(tokens.nextToken().trim(), ac);
+            m.addMedia(null, tokens.nextToken().trim(), ac);
         }
     }
 
@@ -266,7 +268,7 @@ public final class StyleSheetParser
                 media = "all";
             }
 
-            AtRuleMedia m = new AtRuleMedia();
+            AtRuleMedia m = AtRuleMedia.getInstance(ac.getCssVersion());
             try {
                 addMedias(m, media, ac);
                 cssFouffa.setAtRule(m);
@@ -352,8 +354,8 @@ public final class StyleSheetParser
             CssSelectors selector = new CssSelectors(ac);
 
             try {
-                AtRuleMedia media = new AtRuleMedia();
-                media.addMedia("all", ac);
+                AtRuleMedia media = AtRuleMedia.getInstance(ac.getCssVersion());
+                media.addMedia(null, "all", ac);
                 cssFouffa.setAtRule(media);
             } catch (InvalidParamException e) {
             } //ignore

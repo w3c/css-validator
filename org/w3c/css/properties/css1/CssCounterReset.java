@@ -113,13 +113,13 @@ public class CssCounterReset extends CssProperty {
 		    } else {
 			throw new InvalidParamException("value",
 							expression.floatValue(),
-							getPropertyName(), ac);
+							getFeatureName(), ac);
 		    }
 		}
 	    } else {
 		throw new InvalidParamException("value",
 						expression.floatValue(),
-						getPropertyName(), ac);
+						getFeatureName(), ac);
 	    }
 	    values.addElement(val);
 	    expression.next();

@@ -46,7 +46,7 @@ public class AtRuleColorProfile extends AtRule {
     /**
      * The second must only match this one
      */
-    public boolean canMatched(AtRule atRule) {
+    public boolean canMatch(AtRule atRule) {
 	return (atRule instanceof AtRuleColorProfile);
     }
 
