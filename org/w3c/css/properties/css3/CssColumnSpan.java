@@ -20,17 +20,6 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-span
- *
- * Name:  	column-span
- * Value: 	1 | all
- * Initial: 	1
- * Applies to: 	static, non-floating elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	as specified
- *
- * This property describes how many columns an element spans across.
  */
 
 public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
@@ -63,6 +52,10 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
         this.ac = ac;
         setByUser(); // tell this property is set by the user
         CssValue val = expression.getValue();
+
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
         switch (val.getType()) {
             case CssTypes.CSS_IDENT:

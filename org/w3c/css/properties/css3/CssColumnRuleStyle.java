@@ -21,18 +21,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule-style
- * 
- * Name:  	column-rule-style
- * Value: 	&lt;‘border-style’&gt;
- * Initial: 	none
- * Applies to: 	multicol elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	specified value
  *
- * The ‘column-rule-style’ property sets the style of the rule between columns
- * of an element. The &lt;border-style&gt; values are defined in [CSS21].
  */
 
 public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRuleStyle {
@@ -60,7 +49,7 @@ public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRule
         setByUser();
         CssValue val = expression.getValue();
         // too many values
-        if (check && expression.getCount() > 1) {
+        if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
         // we only use Css Ident part of the CssBorderStyle acceptable values

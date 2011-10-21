@@ -21,20 +21,6 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule
- * <p/>
- * Name:  	column-rule
- * Value: &lt;column-rule-width&gt; || &lt;border-style&gt; ||
- * [ &lt;color&gt; | transparent ]
- * Initial: 	see individual properties
- * Applies to: 	multicol elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	see individual properties
- * <p/>
- * This property is a shorthand for setting 'column-rule-width',
- * 'column-rule-style', and 'column-rule-color' at the same place in the
- * style sheet. Omitted values are set to their initial values.
  */
 
 public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
@@ -63,7 +49,7 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
         char op;
         int nb_val = expression.getCount();
 
-        if (check && nb_val > 3) {
+        if (nb_val > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();

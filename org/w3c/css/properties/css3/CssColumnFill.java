@@ -20,21 +20,6 @@ import java.util.HashMap;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#filling-columns
- * <p/>
- * There are two strategies for filling columns: columns can either be
- * balanced, or not. If columns are balanced, UAs should minimize the variation
- * in column length. Otherwise, columns are filled sequentially and will
- * therefore end up having different lengths. In any case, the user agent
- * should try to honor the �widows� and �orphans� properties.
- * <p/>
- * Name: 	column-fill
- * Value: 	auto | balance
- * Initial: 	balance
- * Applies to: 	multi-column elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	see below
- * Computed value: 	as specified
  */
 
 public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
@@ -72,7 +57,7 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
         setByUser();
         CssValue val = expression.getValue();
 
-        if (check && expression.getCount() > 1) {
+        if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 

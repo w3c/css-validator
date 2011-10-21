@@ -16,19 +16,6 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule-color
- * <p/>
- * Name:  	column-rule-color
- * Value: 	&lt;color&gt;
- * Initial: 	same as for 'color' property [CSS21]
- * Applies to: 	multicol elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	the same as the computed value for the 'color'
- * property [CSS21]
- * <p/>
- * This property sets the color of the column rule. The &lt;color&gt; values are
- * defined in [CSS21].
  */
 
 public class CssColumnRuleColor extends org.w3c.css.properties.css.CssColumnRuleColor {
@@ -54,7 +41,7 @@ public class CssColumnRuleColor extends org.w3c.css.properties.css.CssColumnRule
         setByUser();
         CssValue val = expression.getValue();
 
-        if (check && expression.getCount() > 1) {
+        if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
         if (inherit.equals(val)) {

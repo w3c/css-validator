@@ -21,23 +21,9 @@ import org.w3c.css.values.CssValue;
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-width
  *
- * <p/>
- * Name:  	column-width
- * Value: 	&lt;length&gt; | auto
- * Initial: 	auto
- * Applies to: 	non-replaced block-level elements (except table elements),
- * table cells, and inline-block elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	the absolute length
- * <p/>
- * This property describes the width of columns in multicol elements.
  */
 
 public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
-
-    private static final String propertyName = "column-width";
 
     CssValue width;
 
@@ -66,6 +52,10 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
         setByUser();
         CssValue val = expression.getValue();
         Float value;
+
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:

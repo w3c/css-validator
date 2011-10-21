@@ -17,14 +17,6 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#crw
- *
- * <p/>
- * <EM>Value:</EM> &lt;border-width&gt;<BR>
- * <EM>Initial:</EM>medium<BR>
- * <EM>Applies to:</EM>multicol elements<BR>
- * <EM>Inherited:</EM>no<BR>
- * <EM>Percentages:</EM>N/A<BR>
- * <EM>Media:</EM>:visual
  */
 
 public class CssColumnRuleWidth extends org.w3c.css.properties.css.CssColumnRuleWidth {
@@ -52,7 +44,7 @@ public class CssColumnRuleWidth extends org.w3c.css.properties.css.CssColumnRule
         setByUser();
         CssValue val = expression.getValue();
 
-        if (check && expression.getCount() > 1) {
+        if (expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
