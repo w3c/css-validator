@@ -253,7 +253,7 @@ public class CssPropertyFactory implements Cloneable {
         if (atRule instanceof AtRuleMedia) {
             className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
             // a list of media has been specified
-            if (className != null && !media.equals("all")) {
+            if (className != null && media != null && !media.equals("all")) {
                 String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
                 ArrayList<String> list = getMediaList(media);
                 for (String medium : list) {

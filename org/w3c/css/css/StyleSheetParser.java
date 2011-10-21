@@ -285,7 +285,9 @@ public final class StyleSheetParser
 
             AtRuleMedia m = AtRuleMedia.getInstance(ac.getCssVersion());
             try {
-                addMedias(m, media, ac);
+                if (ac.getCssVersion().compareTo(CssVersion.CSS1) > 0) {
+                    addMedias(m, media, ac);
+                }
                 cssFouffa.setAtRule(m);
             } catch (org.w3c.css.util.InvalidParamException e) {
                 Errors er = new Errors();
