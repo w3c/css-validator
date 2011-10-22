@@ -13,16 +13,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
 /**
- * <H3>
- * &nbsp;&nbsp; Resolution units
- * </H3>
- * <p/>
- * The dpi and dpcm units describe the resolution of an output device i.e. the density of
- * the pixels. In dots per inch and dots per centimeter, respectively. These units are only used in the
- * resolution media feature.
- * </P>
- *
- * @version $Revision$
+ * @since CSS3
+ * @spec http://www.w3.org/TR/2010/CR-css3-mediaqueries-20100727/#values
  */
 public class CssResolution extends CssValue {
 

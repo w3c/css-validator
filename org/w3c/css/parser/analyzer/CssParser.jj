@@ -44,6 +44,7 @@ import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
+import org.w3c.css.values.CssRatio;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
 import org.w3c.css.parser.CssError;
@@ -529,7 +530,7 @@ TOKEN [IGNORE_CASE] :
 TOKEN [IGNORE_CASE] :
 {
   < LENGTH     : <NUM> "pt" 
-                   | <NUM> "mm" 
+               | <NUM> "mm"
 	           | <NUM> "cm" 
 	           | <NUM> "pc" 
 	           | <NUM> "in"
@@ -541,6 +542,7 @@ TOKEN [IGNORE_CASE] :
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
   | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
+  | < RATIO      : <NUM> ( <_S> )* "/" ( <_S> )* <NUM> >
   | < DATE       : <NUM> "/" <NUM> "/" <NUM> >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
@@ -2139,6 +2141,7 @@ void term(CssExpression exp) :
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+    | n=<RATIO> { setValue(new CssRatio(), exp, operator, n, RATIO); }
     | n=<DATE> { setValue(new CssDate(), exp, operator, n, DATE); }
     | n=<DIMEN> {  
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
