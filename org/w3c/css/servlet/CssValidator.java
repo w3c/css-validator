@@ -19,6 +19,7 @@ import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.NVPair;
@@ -137,9 +138,9 @@ public final class CssValidator extends HttpServlet {
         pval = config.getInitParameter("entitysize");
         if (pval != null && !pval.isEmpty()) {
             try {
-               Util.maxEntitySize = Long.parseLong(pval);
+                Util.maxEntitySize = Long.parseLong(pval);
             } catch (NumberFormatException nfe) {
-               // the definition was wrong
+                // the definition was wrong
                 nfe.printStackTrace();
             }
         }
@@ -270,6 +271,9 @@ public final class CssValidator extends HttpServlet {
         String profile = req.getParameter("profile");
         String usermedium = req.getParameter("usermedium");
         String type = req.getParameter("type");
+
+        InputStream in = req.getInputStream();
+
         if (type == null)
             type = "none";
 
@@ -278,13 +282,16 @@ public final class CssValidator extends HttpServlet {
             ac.setCredential(credential);
         }
 
-        if (usermedium == null || usermedium.isEmpty()) {
-            usermedium = "all";
+        // CSS version
+        ac.setCssVersionAndProfile(profile);
+
+        // media, only if we are not using CSS1
+        if (ac.getCssVersion() != CssVersion.CSS1) {
+            if (usermedium == null || usermedium.isEmpty()) {
+                usermedium = "all";
+            }
+            ac.setMedium(usermedium);
         }
-
-        InputStream in = req.getInputStream();
-
-        ac.setMedium(usermedium);
 
         if (req.getParameter("debug") != null) {
             Util.onDebug = req.getParameter("debug").equals("true");
@@ -301,9 +308,6 @@ public final class CssValidator extends HttpServlet {
         if (output == null) {
             output = texthtml;
         }
-
-        // CSS version
-        ac.setCssVersionAndProfile(profile);
 
         if (Util.onDebug) {
             System.err.println("[DEBUG] version is : " + ac.getCssVersionString()
