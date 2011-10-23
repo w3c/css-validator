@@ -49,7 +49,7 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
         char op;
         int nb_val = expression.getCount();
 
-        if (nb_val > 3) {
+        if (check && nb_val > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();

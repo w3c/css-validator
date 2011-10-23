@@ -22,7 +22,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#columns
  *
- * @see CssColumnWidth
+ * @see org.w3c.css.properties.css3.CssColumnWidth
  * @see org.w3c.css.properties.css3.CssColumnCount
  */
 
@@ -56,7 +56,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
         int nb_val = expression.getCount();
         int nb_auto = 0;
 
-        if (nb_val > 2) {
+        if (check && nb_val > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();

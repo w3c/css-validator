@@ -48,7 +48,7 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
         CssValue val = expression.getValue();
         Float value;
 
-        if (expression.getCount() > 1) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 

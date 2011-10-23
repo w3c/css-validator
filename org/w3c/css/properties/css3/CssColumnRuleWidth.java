@@ -44,7 +44,7 @@ public class CssColumnRuleWidth extends org.w3c.css.properties.css.CssColumnRule
         setByUser();
         CssValue val = expression.getValue();
 
-        if (expression.getCount() > 1) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 

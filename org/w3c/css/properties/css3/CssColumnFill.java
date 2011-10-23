@@ -57,7 +57,7 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
         setByUser();
         CssValue val = expression.getValue();
 
-        if (expression.getCount() > 1) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 

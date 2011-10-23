@@ -30,7 +30,7 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
     static CssIdent all;
 
     static {
-        all = new CssIdent("all");
+        all = CssIdent.getIdent("all");
     }
 
     /**
@@ -45,7 +45,8 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
      * Create a new CssColumnSpan
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
     public CssColumnSpan(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -53,7 +54,7 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
         setByUser(); // tell this property is set by the user
         CssValue val = expression.getValue();
 
-        if (expression.getCount() > 1) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 

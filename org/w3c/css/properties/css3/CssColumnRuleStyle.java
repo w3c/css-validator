@@ -21,7 +21,6 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-rule-style
- *
  */
 
 public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRuleStyle {
@@ -49,7 +48,7 @@ public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRule
         setByUser();
         CssValue val = expression.getValue();
         // too many values
-        if (expression.getCount() > 1) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
         // we only use Css Ident part of the CssBorderStyle acceptable values
