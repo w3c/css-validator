@@ -383,6 +383,10 @@ public final class StyleSheetParser
             } //ignore
 
             try {
+                if (id == null || id.length() == 0) {
+                    id = "nullId-" + Long.toHexString(System.currentTimeMillis());
+                    // TODO add an error/warning ?
+                }
                 selector.addId(new IdSelector(id.substring(1)));
             } catch (InvalidParamException e) {
                 style.removeThisRule();
