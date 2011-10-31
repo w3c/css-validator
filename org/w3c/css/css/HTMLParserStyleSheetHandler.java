@@ -177,9 +177,8 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
             if (type != null) {
                 MimeType mt = null;
                 try {
-                    new MimeType(type);
+                    mt = new MimeType(type);
                 } catch (Exception ex) { /* at worst, null */ }
-                ;
                 if (mt != null && (MimeType.TEXT_CSS.match(mt) ==
                         MimeType.MATCH_SPECIFIC_SUBTYPE)) {
                     // we're dealing with a stylesheet...
