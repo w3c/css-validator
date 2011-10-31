@@ -91,7 +91,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBackground(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -103,7 +104,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBackground(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -515,6 +517,19 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                     }
                     // unrecognized or unwanted ident
                     // let it fail now
+                case CssTypes.CSS_FUNCTION:
+                    // function can only be a color here
+                    // we already got one, fail...
+                    if (v.color != null || next_is_size || !is_final) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    exp = new CssExpression();
+                    exp.addValue(val);
+
+                    bg_color = new CssBackgroundColor(ac, exp, check);
+                    v.color = (CssValue) bg_color.get();
+                    break;
                 default:
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
