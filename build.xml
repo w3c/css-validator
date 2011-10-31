@@ -39,6 +39,7 @@
         <available file="lib/xml-apis.jar"/>
         <available file="lib/tagsoup-1.2.jar"/>
         <available file="lib/servlet-api-2.5-6.0.0.jar"/>
+        <available file="lib/htmlparser-1.3.1.jar"/>
       </and>
     </condition>
   </target>
@@ -54,6 +55,7 @@
     <get dest="tmp/velocity-1.7.tar.gz" src="http://www.apache.org/dist/velocity/engine/1.7/velocity-1.7.tar.gz" usetimestamp="true"/>
     <get dest="tmp/Xerces-J-bin.2.11.0.tar.gz" src="http://www.apache.org/dist/xerces/j/binaries/Xerces-J-bin.2.11.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/servlet-api-2.5-6.0.0.jar" src="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.0/servlet-api-2.5-6.0.0.jar" usetimestamp="true"/>
+    <get dest="tmp/htmlparser-1.3.1.zip" src="http://about.validator.nu/htmlparser/htmlparser-1.3.1.zip" usetimestamp="true"/>
 
     <untar compression="gzip" src="tmp/jigsaw_2.2.6.tar.gz" dest="tmp"/>
     <unzip src="tmp/commons-collections-3.2.1-bin.zip" dest="tmp"/>
@@ -61,6 +63,7 @@
     <untar compression="gzip" src="tmp/velocity-1.7.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/Xerces-J-bin.2.11.0.tar.gz" dest="tmp"/>
     <copy file="tmp/servlet-api-2.5-6.0.0.jar" tofile="lib/servlet-api-2.5-6.0.0.jar"/>
+    <unzip src="tmp/htmlparser-1.3.1.zip" dest="tmp"/>
 
     <copy file="tmp/Jigsaw/classes/jigsaw.jar" tofile="lib/jigsaw.jar"/>
     <copy file="tmp/commons-collections-3.2.1/commons-collections-3.2.1.jar" tofile="lib/commons-collections-3.2.1.jar"/>
@@ -69,6 +72,7 @@
     <copy file="tmp/xerces-2_11_0/xercesImpl.jar" tofile="lib/xercesImpl.jar"/>
     <copy file="tmp/xerces-2_11_0/xml-apis.jar" tofile="lib/xml-apis.jar"/>
     <get dest="lib/tagsoup-1.2.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.jar"/>
+    <copy file="tmp/htmlparser-1.3.1/htmlparser-1.3.1.jar" tofile="lib/htmlparser-1.3.1.jar"/>
   </target>
 
 	<target name="build" description="Builds the validator" depends="prepare">
