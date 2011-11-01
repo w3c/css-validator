@@ -60,10 +60,10 @@
     <untar compression="gzip" src="tmp/jigsaw_2.2.6.tar.gz" dest="tmp"/>
     <unzip src="tmp/commons-collections-3.2.1-bin.zip" dest="tmp"/>
     <unzip src="tmp/commons-lang-2.6-bin.zip" dest="tmp"/>
+    <unzip src="tmp/htmlparser-1.3.1.zip" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-1.7.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/Xerces-J-bin.2.11.0.tar.gz" dest="tmp"/>
     <copy file="tmp/servlet-api-2.5-6.0.0.jar" tofile="lib/servlet-api-2.5-6.0.0.jar"/>
-    <unzip src="tmp/htmlparser-1.3.1.zip" dest="tmp"/>
 
     <copy file="tmp/Jigsaw/classes/jigsaw.jar" tofile="lib/jigsaw.jar"/>
     <copy file="tmp/commons-collections-3.2.1/commons-collections-3.2.1.jar" tofile="lib/commons-collections-3.2.1.jar"/>
@@ -78,7 +78,7 @@
 	<target name="build" description="Builds the validator" depends="prepare">
 		<mkdir dir="./build"/>
 		<javac classpathref="build.class.path" destdir="./build" encoding="UTF-8"
-           debug="yes" includes="org/w3c/**" srcdir="." source="1.5" target="1.5"/>
+           debug="yes" includes="org/w3c/**" srcdir="." source="1.6" target="1.6"/>
 		<copy todir="./build">
       <fileset dir="./">
         <include name="org/**"/>
@@ -91,7 +91,7 @@
 	<target name="jigsaw" description="Builds the validator for Jigsaw" depends="prepare">
 		<mkdir dir="./build"/>
 		<javac classpathref="build.class.path" destdir="." encoding="UTF-8"
-           debug="yes" source="1.5" target="1.5">
+           debug="yes" source="1.6" target="1.6">
 			<src path="./org/w3c"/>
 		</javac>
 	</target>
@@ -113,7 +113,7 @@
 			<include name="org/**"/>
 			<manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
-        <attribute name="Class-path" value=". lib/commons-collections-3.2.1.jar lib/commons-lang-2.6.jar lib/jigsaw.jar lib/tagsoup-1.2.jar lib/velocity-1.7.jar lib/xercesImpl.jar lib/xml-apis.jar"/>
+        <attribute name="Class-path" value=". lib/commons-collections-3.2.1.jar lib/commons-lang-2.6.jar lib/jigsaw.jar lib/tagsoup-1.2.jar lib/velocity-1.7.jar lib/xercesImpl.jar lib/xml-apis.jar lib/htmlparser-1.3.1.jar"/>
 			</manifest>
 		</jar>
 	</target>
