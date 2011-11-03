@@ -71,7 +71,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
     String type = null;
     String title = null;
     String charset = null;
-    StringBuilder text = new StringBuilder(255);
+    StringBuilder text = new StringBuilder();
 
     Locator locator;
 
@@ -534,9 +534,12 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         baseURI = new URL(fileName);
         documentURI = new URL(fileName);
         source.setSystemId(fileName);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(source);
         } finally {
+            ac.setReferrer(ref);
             in.close();
         }
     }
@@ -588,9 +591,12 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         //   }
         //}
         source.setByteStream(in);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(url.toString());
         } finally {
+            ac.setReferrer(ref);
             in.close();
         }
     }
@@ -642,9 +648,12 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         //   }
         //}
         source.setSystemId(urlString);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(source);
         } finally {
+            ac.setReferrer(ref);
             cis.close();
         }
     }

@@ -542,9 +542,12 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         baseURI = new URL(fileName);
         documentURI = new URL(fileName);
         source.setSystemId(fileName);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(source);
         } finally {
+            ac.setReferrer(ref);
             in.close();
         }
     }
@@ -596,9 +599,12 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         //   }
         //}
         source.setByteStream(in);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(url.toString());
         } finally {
+            ac.setReferrer(ref);
             in.close();
         }
     }
@@ -650,9 +656,12 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         //   }
         //}
         source.setSystemId(urlString);
+        URL ref = ac.getReferrer();
         try {
+            ac.setReferrer(documentURI);
             xmlParser.parse(source);
         } finally {
+            ac.setReferrer(ref);
             cis.close();
         }
     }

@@ -73,6 +73,8 @@ public class ApplContext {
     String faketext = null;
     URL fakeurl = null;
 
+    URL referrer = null;
+
     /**
      * Creates a new ApplContext
      */
@@ -488,5 +490,21 @@ public class ApplContext {
             return false;
         }
         return nsdefs.containsKey(prefix);
+    }
+
+    /**
+     * Set the current referrer for possible linked style sheets
+     * @param referrer the referring URL
+     */
+    public void setReferrer(URL referrer) {
+        this.referrer = referrer;
+    }
+
+    /**
+     * get the referrer URL (or null if not relevant)
+     * @return an URL
+     */
+    public URL getReferrer() {
+        return referrer;
     }
 }

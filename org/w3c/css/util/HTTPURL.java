@@ -153,7 +153,7 @@ public class HTTPURL {
 
     private static URLConnection getConnection(URL url, int count)
             throws IOException {
-        return getConnection(url, count, null);
+        return getConnection(url, null, count, null);
     }
 
 
@@ -191,13 +191,15 @@ public class HTTPURL {
         uConn.setHostnameVerifier(hv);
     }
 
-    private static URLConnection getConnection(URL url, int count,
+    private static URLConnection getConnection(URL url, URL referrer, int count,
                                                ApplContext ac)
             throws IOException {
         if (count > 5) {
             throw new ProtocolException("Server redirected too many " +
                     "times (5)");
         }
+        // add the referrer, if not the same as the target URL
+        URL ref = (url.equals(referrer) ? null : referrer);
 
         if (Util.servlet) {
             String protocol = url.getProtocol();
@@ -223,6 +225,10 @@ public class HTTPURL {
         // for the fun
         urlC.setRequestProperty("User-Agent",
                 "Jigsaw/2.2.5 W3C_CSS_Validator_JFouffa/2.0");
+        // referrer
+        if (ref != null) {
+            urlC.setRequestProperty("Referer", ref.toExternalForm());
+        }
         // relay authorization information
         if (ac.getCredential() != null) {
             urlC.setRequestProperty("Authorization", ac.getCredential());
@@ -268,7 +274,7 @@ public class HTTPURL {
                 case 307:
                     try {
                         URL u = getURL(httpURL.getHeaderField("Location"));
-                        return getConnection(u, count + 1, ac);
+                        return getConnection(u, ref, count + 1, ac);
                     } finally {
                         httpURL.disconnect();
                     }
@@ -304,7 +310,7 @@ public class HTTPURL {
 
     public static URLConnection getConnection(URL url, ApplContext ac)
             throws IOException {
-        return getConnection(url, 0, ac);
+        return getConnection(url, ac.getReferrer(), 0, ac);
     }
 
     /* more madness */
