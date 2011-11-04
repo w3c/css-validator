@@ -226,6 +226,7 @@ public class HTTPURL {
         urlC.setRequestProperty("User-Agent",
                 "Jigsaw/2.2.5 W3C_CSS_Validator_JFouffa/2.0");
         // referrer
+        setReferrer(urlC, ref);
         if (ref != null) {
             urlC.setRequestProperty("Referer", ref.toExternalForm());
         }
@@ -362,6 +363,30 @@ public class HTTPURL {
             ac.setCharsetForURL(uco.getURL(), charset);
         }
         return charset;
+    }
+
+    // used to set referrer
+    private static void setReferrer(URLConnection connection, URL referrer) {
+        if (referrer == null) {
+            return;
+        }
+        URL current = connection.getURL();
+        String curProtocol = current.getProtocol();
+        String refProtocol = referrer.getProtocol();
+        if ("https".equalsIgnoreCase(refProtocol)) {
+            if (!"https".equalsIgnoreCase(curProtocol)) {
+                // exit, we won't disclose information on non-https
+                // connections  (ref using https, req using http)
+                return;
+            }
+            // ok so we have https for both, avoid leaking information
+            // so check that hosts are the same
+            if (!current.getHost().equalsIgnoreCase(referrer.getHost())) {
+                return;
+            }
+        }
+        // ok good, let's do it
+        connection.setRequestProperty("Referer", referrer.toExternalForm());
     }
 
     /**
