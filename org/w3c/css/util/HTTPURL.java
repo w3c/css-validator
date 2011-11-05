@@ -227,9 +227,6 @@ public class HTTPURL {
                 "Jigsaw/2.2.5 W3C_CSS_Validator_JFouffa/2.0");
         // referrer
         setReferrer(urlC, ref);
-        if (ref != null) {
-            urlC.setRequestProperty("Referer", ref.toExternalForm());
-        }
         // relay authorization information
         if (ac.getCredential() != null) {
             urlC.setRequestProperty("Authorization", ac.getCredential());
