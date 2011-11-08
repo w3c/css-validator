@@ -386,7 +386,7 @@ parser.import_not_allowed: @import are not allowed after any valid statement oth
 
 error.bg_order: In the CSS3 background definition, 'bg_position' must occur before / 'bg_size' if both are present
 
-error.deprecatedmedia: The media "%s" has been deprecated
+warning.deprecatedmedia: The media "%s" has been deprecated
 error.nomediarestrictor: Mediarestrictor not defined in this CSS level
 error.nomediarestrictor: MediarestrictorMedia features are not defined in this CSS level
 error.nomodifiershortmedia: No prefixes are allowed for media features with no value

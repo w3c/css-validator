@@ -8,7 +8,6 @@ package org.w3c.css.media.css3;
 import org.w3c.css.media.Media;
 import org.w3c.css.media.MediaFeature;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.CssError;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -57,10 +56,9 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
         }
         for (String s : deprecatedMedia) {
             if (medium.equals(s)) {
-                InvalidParamException ipe = new InvalidParamException("deprecatedmedia", medium, ac);
-                ac.getFrame().addError(new CssError(ipe));
-                media.setMedia(s);
-                allMedia.add(media);
+                // we add a warning as it has been deprecated
+                ac.getFrame().addWarning("deprecatedmedia", medium);
+                allMedia.add(new Media(s));
                 return this;
             }
         }
@@ -69,14 +67,13 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
     }
 
     /**
-     *
      * @param feature
      * @param ac
      * @throws InvalidParamException
      */
     public void addMediaFeature(MediaFeature feature, ApplContext ac)
             throws InvalidParamException {
-        Media latest = allMedia.get(allMedia.size()-1);
+        Media latest = allMedia.get(allMedia.size() - 1);
         latest.addFeature(feature);
     }
 
