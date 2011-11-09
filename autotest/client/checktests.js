@@ -37,12 +37,12 @@ function checkResults(testrow, resultrow, req) {
     allTestTds[0].setAttribute("class", (gotRegression ? "invalid" : "valid"));
 }
 
-function checkURI(testrow, resultrow, encodedURI, cssprofile) {
+function checkURI(testrow, resultrow, encodedURI, context) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/css-validator/validator?uri="+
 		 encodedURI+
-		 "&profile="+cssprofile+
-		 "&usermedium=all&output=json&warning=1",true);
+		 "&profile="+context.cssprofile+
+		 "&usermedium="+context.medium+"&output=json&warning="+context.warninglevel,true);
     xmlhttp.setRequestHeader('Accept','application/json')
     xmlhttp.onreadystatechange=function() {
 	if (xmlhttp.readyState==4) {
@@ -57,8 +57,17 @@ function checkTest(testrow, resultrow) {
     var allTds = testrow.getElementsByTagName("td");
     var anchor = allTds[0].getElementsByTagName("a");
     var uri    = urlencode(anchor[0].getAttribute("href"));
-    var cssprofile = allTds[1].firstChild.data;
-    checkURI(testrow, resultrow, uri, cssprofile)
+    var context = { 'cssprofile': "css21",
+        'warninglevel': "1",
+	'medium' : "all" };
+    context.cssprofile = allTds[1].firstChild.data;
+    if (anchor[0].hasAttribute("warning")) {
+	context.warninglevel = anchor[0].getAttribute("warning");
+    }
+    if (anchor[0].hasAttribute("medium")) {
+	context.medium = anchor[0].getAttribute("medium");
+    }
+    checkURI(testrow, resultrow, uri, context)
 }
 
 function checkTableTests(tableid) {

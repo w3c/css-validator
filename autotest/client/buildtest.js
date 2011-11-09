@@ -203,6 +203,8 @@ function fillTableWithTests(baseuri, table, allTests) {
 	cell.setAttribute("rowspan","2");
 	var anc =  document.createElement("a");
 	anc.setAttribute("href",testfile);
+        anc.setAttribute("medium", medium);
+	anc.setAttribute("warning", warningLevel);
 	var text = document.createTextNode("[Testcase]");
 	anc.appendChild(text);
 	cell.appendChild(anc);
