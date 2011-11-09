@@ -1844,7 +1844,7 @@ test markup also accepts 3 properties: warning, profile and medium
     </result>
   </test>
 
-  <test profile="css3" warning="0">
+  <test profile="css3" warning="0" medium="all">
     <url>http://www.w3.org/Style/CSS/Test/CSS3/Selectors/current/html/tests/css3-modsel-181.html</url>
     <description>Case sensitivity (#181)</description>
     <result valid="true">
