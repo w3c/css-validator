@@ -142,6 +142,16 @@ function fillTableWithTests(baseuri, table, allTests) {
 	if (indivTest.hasAttribute("profile")) {
 	    cssprofile = indivTest.getAttribute("profile");
 	}
+        // check the warning level
+        var warningLevel = 1;
+        if (indivTest.hasAttribute("warning")) {
+            warningLevel = indivTest.getAttribute("warning");
+        }
+        // check medium
+        var medium = "all";
+        if (indivTest.hasAttribute("medium")) {
+            medium = indivTest.getAttribute("medium");
+        }
 	// and the test case local file... or URI.
 	var testfile = indivTest.getElementsByTagName("file");
 	if (testfile.length != 0) {
@@ -203,7 +213,7 @@ function fillTableWithTests(baseuri, table, allTests) {
 	anc =  document.createElement("a");
 	var checkuri = validator_uri+"validator?uri="+
 	    urlencode(testfile)+"&profile="+
-	    cssprofile+"&usermedium=all&warning=1"; 
+	    cssprofile+"&usermedium="+medium+"&warning="+warningLevel; 
 	// FIXME medium, warning level
 	anc.setAttribute("href",checkuri);
 	text = document.createTextNode("[Result]");
