@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+like <test profile="css2" medium="all" warning="0">
+where warning means warninglevel in use (0 => none).
+-->
+<testsuite>
+  <type title="Valid_tests_for_z-index">
+    <test profile="css2" warning="0">
+      <file>testsuite/properties/positive/z-index/css2/001.css</file>
+      <description>Valid z-index level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+like <test profile="css2" medium="all" warning="0">
+where warning means warninglevel in use (0 => none).
+-->
+</testsuite>

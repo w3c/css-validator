@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+like <test profile="css2" medium="all" warning="0">
+where warning means warninglevel in use (0 => none).
+-->
+<testsuite>
+<!--
+test markup also accepts 3 properties: warning, profile and medium
+like <test profile="css2" medium="all" warning="0">
+where warning means warninglevel in use (0 => none).
+-->
+</testsuite>
