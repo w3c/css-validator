@@ -1,0 +1,15 @@
+a { letter-spacing: normal }
+b { letter-spacing: 1em  }
+b1 { letter-spacing: -1em  }
+c { letter-spacing: 50%  }
+c1 { letter-spacing: -50%  }
+d { letter-spacing: normal 10%  }
+e { letter-spacing: normal 10% 10% }
+f { letter-spacing: normal 1em }
+g { letter-spacing: normal 1em 1px }
+h { letter-spacing: normal normal normal }
+i { letter-spacing: 1em normal normal }
+j { letter-spacing: 10% normal normal }
+k { letter-spacing: 0em -1em 1em }
+k1 { letter-spacing: 0 -1em 1em }
+z { letter-spacing: inherit }
