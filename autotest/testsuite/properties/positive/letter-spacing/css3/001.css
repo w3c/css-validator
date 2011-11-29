@@ -12,4 +12,5 @@ i { letter-spacing: 1em normal normal }
 j { letter-spacing: 10% normal normal }
 k { letter-spacing: 0em -1em 1em }
 k1 { letter-spacing: 0 -1em 1em }
+y { letter-spacing: initial }
 z { letter-spacing: inherit }

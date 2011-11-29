@@ -12,4 +12,5 @@ i { word-spacing: 1em normal normal }
 j { word-spacing: 10% normal normal }
 k { word-spacing: 0em -1em 1em }
 k1 { word-spacing: 0 -1em 1em }
+y { word-spacing: initial }
 z { word-spacing: inherit }
