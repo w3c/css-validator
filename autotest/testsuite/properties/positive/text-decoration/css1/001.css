@@ -1,0 +1,42 @@
+a { text-decoration: none }
+b { text-decoration: underline }
+c { text-decoration: overline }
+cb { text-decoration: overline underline }
+d { text-decoration: line-through }
+db { text-decoration: line-through underline }
+e { text-decoration:  blink }
+eb { text-decoration:  blink underline }
+bc { text-decoration: underline overline }
+dc { text-decoration: line-through overline }
+dcb { text-decoration: line-through overline underline }
+ec { text-decoration:  blink overline }
+ecb { text-decoration:  blink overline underline }
+bd { text-decoration: underline line-through }
+cd { text-decoration: overline line-through }
+cdb { text-decoration: overline line-through underline }
+ed { text-decoration:  blink line-through }
+edb { text-decoration:  blink line-through underline }
+be { text-decoration: underline  blink }
+ce { text-decoration: overline  blink }
+ceb { text-decoration: overline  blink underline }
+de { text-decoration: line-through  blink }
+deb { text-decoration: line-through  blink underline }
+dbc { text-decoration: line-through underline overline }
+ebc { text-decoration:  blink underline overline }
+bdc { text-decoration: underline line-through overline }
+edc { text-decoration:  blink line-through overline }
+bec { text-decoration: underline  blink overline }
+dec { text-decoration: line-through  blink overline }
+cbd { text-decoration: overline underline line-through }
+ebd { text-decoration:  blink underline line-through }
+bcd { text-decoration: underline overline line-through }
+ecd { text-decoration:  blink overline line-through }
+bed { text-decoration: underline  blink line-through }
+ced { text-decoration: overline  blink line-through }
+cbe { text-decoration: overline underline  blink }
+dbe { text-decoration: line-through underline  blink }
+bce { text-decoration: underline overline  blink }
+dce { text-decoration: line-through overline  blink }
+bde { text-decoration: underline line-through  blink }
+cde { text-decoration: overline line-through  blink }
+bcde { text-decoration: underline overline line-through blink }
