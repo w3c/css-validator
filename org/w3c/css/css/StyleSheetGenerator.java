@@ -113,6 +113,8 @@ public class StyleSheetGenerator extends StyleReport {
         this.template_file = availableFormat.getProperty(document);
 
         context = new VelocityContext();
+        // add a static ref for templates that needs to do some escaping
+        context.put("Messages", Messages.class);
         // adjust the source name if needed
         if (ac.isInputFake()) {
             title = title.substring(title.lastIndexOf('/') + 1);
