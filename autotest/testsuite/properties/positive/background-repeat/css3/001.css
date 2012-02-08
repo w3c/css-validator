@@ -84,8 +84,8 @@ m59 { background-repeat: no-repeat space, repeat-y, repeat-x }
 m60 { background-repeat: no-repeat space, repeat-y, repeat-y }
 m61 { background-repeat: repeat, repeat }
 m62 { background-repeat: repeat, repeat repeat }
-m63 { background-repeat: repeat, repeat repeat-x }
-m64 { background-repeat: repeat, repeat repeat-y }
+m63 { background-repeat: repeat, repeat, repeat-x }
+m64 { background-repeat: repeat, repeat, repeat-y }
 m65 { background-repeat: repeat, repeat-x }
 m66 { background-repeat: repeat, repeat-x, repeat }
 m67 { background-repeat: repeat, repeat-x, repeat-x }
