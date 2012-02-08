@@ -11,7 +11,7 @@ for level in css1 css21 css2 css3 ; do
 <!--
 test markup also accepts 3 properties: warning, profile and medium
 like <test profile="css2" medium="all" warning="0">
-where warning means warninglevel in use (0 => none).
+where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
 EOF
@@ -27,12 +27,12 @@ for kind in positive ; do
 	echo "Working on $property"
 	for level in `ls $kind/$property | grep -v CVS` ; do
 	    echo "Level for $property is $level"
-	    echo "  <type title=\"Valid_tests_for_$property\">" >> ../xml/prop-$level.xml
+	    echo "  <type title=\"Valid_$property\">" >> ../xml/prop-$level.xml
 	    for tst in `ls $kind/$property/$level | grep -v CVS` ; do
 # FIXME check form the test (comment?) what is the intent and expected
 # result.
 		cat >> ../xml/prop-$level.xml <<EOF
-    <test profile="$level" warning="0">
+    <test profile="$level" warning="no">
       <file>testsuite/properties/$kind/$property/$level/$tst</file>
       <description>Valid $property level $level</description>
       <result valid="true" />
