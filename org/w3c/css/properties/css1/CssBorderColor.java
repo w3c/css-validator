@@ -91,7 +91,7 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 		expression.next();
 	    } else*/
 	    top = new CssBorderTopColor(ac, expression);
-	    /*bottom = new CssBorderBottomColor((CssBorderFaceColor) top.get());
+	    /*bottom = new CssBorderBottomColorCSS21((CssBorderFaceColor) top.get());
 	    right = new CssBorderRightColor((CssBorderFaceColor) top.get());
 	    left = new CssBorderLeftColor((CssBorderFaceColor) top.get());*/
 	    break;
@@ -108,7 +108,7 @@ public class CssBorderColor extends CssProperty implements CssOperator {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
 	    right = new CssBorderRightColor(ac, expression);
-	    /*bottom = new CssBorderBottomColor((CssBorderFaceColor) top.get());
+	    /*bottom = new CssBorderBottomColorCSS21((CssBorderFaceColor) top.get());
 	    left = new CssBorderLeftColor((CssBorderFaceColor) right.get());*/
 	    break;
 	case 3:

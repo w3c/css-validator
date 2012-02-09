@@ -1,13 +1,10 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// Author: Jean-Guilhem Rouel
+// (c) COPYRIGHT MIT, ERCIM and Keio, 2005.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css2;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundPosition;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
@@ -24,84 +21,11 @@ import java.util.HashMap;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * <H4>
- * &nbsp;&nbsp; 'background-position'
- * </H4>
- * <p/>
- * <EM>Value:</EM> [&lt;percentage&gt; | &lt;length&gt;]{1,2} | [top | center
- * | bottom] || [left | center | right]<BR>
- * <EM>Initial:</EM> 0% 0%<BR>
- * <EM>Applies to:</EM> block-level and replaced elements<BR>
- * <EM>Inherited:</EM> no<BR>
- * <EM>Percentage values:</EM> refer to the size of the element itself<BR>
- * <P> If a background image has been specified, the value of
- * 'background-position' specifies its initial position.
- * <P> With a value pair of '0% 0%', the upper left corner of the image is
- * placed in the upper left corner of the box that surrounds the content of
- * the element (i.e., not the box that surrounds the padding, border or
- * margin). A value pair of '100% 100%' places the lower right corner of the
- * image in the lower right corner of the element. With a value pair of '14%
- * 84%', the point 14% across and 84% down the image is to be placed at the
- * point 14% across and 84% down the element.
- * <P> With a value pair of '2cm 2cm', the upper left corner of the image is
- * placed 2cm to the right and 2cm below the upper left corner of the element.
- * <P> If only one percentage or length value is given, it sets the horizontal
- * position only, the vertical position will be 50%. If two values are given,
- * the horizontal position comes first. Combinations of length and percentage
- * values are allowed, e.g. '50% 2cm'. Negative positions are allowed.
- * <P> One can also use keyword values to indicate the position of the
- * background image. Keywords cannot be combined with percentage values, or
- * length values.  The possible combinations of keywords and their
- * interpretations are as follows:
- * <p/>
- * <UL>
- * <LI>
- * 'top left' and 'left top' both mean the same as '0% 0%'.
- * <LI>
- * 'top', 'top center' and 'center top' mean the same as '50% 0%'.
- * <LI>
- * 'right top' and 'top right' mean the same as '100% 0%'.
- * <LI>
- * 'left', 'left center' and 'center left' mean the same as '0% 50%'.
- * <LI>
- * 'center' and 'center center' mean the same as '50% 50%'.
- * <LI>
- * 'right', 'right center' and 'center right' mean the same as '100% 50%'.
- * <LI>
- * 'bottom left' and 'left bottom' mean the same as '0% 100%'.
- * <LI>
- * 'bottom', 'bottom center' and 'center bottom' mean the same as
- * '50% 100%'.
- * <LI>
- * 'bottom right' and 'right bottom' mean the same as '100% 100%'.
- * </UL>
- * <p/>
- * examples:
- * <PRE>
- * BODY { background: url(banner.jpeg) right top }    / * 100%   0% * /
- * BODY { background: url(banner.jpeg) top center }   / *  50%   0% * /
- * BODY { background: url(banner.jpeg) center }       / *  50%  50% * /
- * BODY { background: url(banner.jpeg) bottom }       / *  50% 100% * /
- * </PRE>
- * <p/>
- * If the background image is fixed with regard to the canvas (see the
- * 'background-attachment' property above), the image is placed relative to
- * the canvas instead of the element. E.g.:
- * <PRE>
- * BODY {
- * background-image: url(logo.png);
- * background-attachment: fixed;
- * background-position: 100% 100%;
- * }
- * </PRE>
- * <p/>
- * In the example above, the image is placed in the lower right corner of the
- * canvas.
- *
- * @version $Revision$
- * @see org.w3c.css.properties.css.CssBackgroundAttachment
+ * CssBackgroundPosition<br />
+ * Created: Aug 31, 2005 5:45:30 PM<br />
  */
-public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
+public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
+
 
     public static boolean checkMatchingIdent(CssIdent ident) {
         return allowed_values.containsValue(ident);
@@ -135,20 +59,20 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
     public CssValue value;
 
     /**
-     * Create a new CssBackgroundPositionCSS2
+     * Create a new CssBackgroundPosition
      */
-    public CssBackgroundPositionCSS2() {
+    public CssBackgroundPosition() {
         super();
     }
 
     /**
-     * Creates a new CssBackgroundPositionCSS2
+     * Creates a new CssBackgroundPosition
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Values are incorrect
      */
-    public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression,
-                                     boolean check) throws InvalidParamException {
+    public CssBackgroundPosition(ApplContext ac, CssExpression expression,
+                                 boolean check) throws InvalidParamException {
 
         int nb_val = expression.getCount();
 
@@ -359,7 +283,7 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
         }
     }
 
-    public CssBackgroundPositionCSS2(ApplContext ac, CssExpression expression)
+    public CssBackgroundPosition(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -374,7 +298,7 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS2 cssBackground = ((Css1Style) style).cssBackgroundCSS2;
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
         if (cssBackground.position != null)
             style.addRedefinitionWarning(ac, this);
         cssBackground.position = this;
@@ -388,10 +312,10 @@ public class CssBackgroundPositionCSS2 extends CssBackgroundPosition {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundPositionCSS2();
+            return ((Css1Style) style).getBackgroundPosition();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS2.position;
+            return ((Css1Style) style).cssBackground.position;
         }
     }
-    
+
 }

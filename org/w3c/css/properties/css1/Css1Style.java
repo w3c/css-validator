@@ -9,24 +9,11 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackground;
-import org.w3c.css.properties.css.CssBackgroundAttachment;
-import org.w3c.css.properties.css.CssBackgroundColor;
-import org.w3c.css.properties.css.CssBackgroundImage;
-import org.w3c.css.properties.css.CssBackgroundPosition;
-import org.w3c.css.properties.css.CssBackgroundRepeat;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssDisplay;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css.CssZIndex;
-import org.w3c.css.properties.css2.CssBackgroundAttachmentCSS2;
-import org.w3c.css.properties.css2.CssBackgroundCSS2;
-import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
-import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
-import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
-import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
@@ -62,20 +49,18 @@ public class Css1Style extends CssStyle {
     /**
      * background properties
      */
-    public CssBackground cssBackground = new CssBackground();
-    public CssBackgroundCSS2 cssBackgroundCSS2 = new CssBackgroundCSS2();
-    public CssBackgroundCSS1 cssBackgroundCSS1 = new CssBackgroundCSS1();
+    public org.w3c.css.properties.css.CssBackground cssBackground = new org.w3c.css.properties.css.CssBackground();
     public CssBackgroundMob cssBackgroundMob = new CssBackgroundMob();
 
     /* Text properties */
     /**
      * word-spacing property
      */
-    public CssWordSpacing cssWordSpacing;
+    public org.w3c.css.properties.css.CssWordSpacing cssWordSpacing;
     /**
      * letter-spacing property
      */
-    public CssLetterSpacing cssLetterSpacing;
+    public org.w3c.css.properties.css.CssLetterSpacing cssLetterSpacing;
     /**
      * text-decoration property
      */
@@ -213,7 +198,7 @@ public class Css1Style extends CssStyle {
     /**
      * white-space property
      */
-    public CssWhiteSpace cssWhiteSpace;
+    public org.w3c.css.properties.css.CssWhiteSpace cssWhiteSpace;
     /**
      * list-style properties
      */
@@ -593,33 +578,13 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background-color property
      */
-    public final CssBackgroundColor getBackgroundColor() {
+    public final org.w3c.css.properties.css.CssBackgroundColor getBackgroundColor() {
         if (cssBackground.color == null) {
             cssBackground.color =
-                    (CssBackgroundColor) style.CascadingOrder(new CssBackgroundColor(),
+                    (org.w3c.css.properties.css.CssBackgroundColor) style.CascadingOrder(new org.w3c.css.properties.css.CssBackgroundColor(),
                             style, selector);
         }
         return cssBackground.color;
-    }
-
-    public final CssBackgroundColorCSS2 getBackgroundColorCSS2() {
-        if (cssBackgroundCSS2.color == null) {
-            cssBackgroundCSS2.color =
-                    (CssBackgroundColorCSS2) style.CascadingOrder(
-                            new CssBackgroundColorCSS2(),
-                            style, selector);
-        }
-        return cssBackgroundCSS2.color;
-    }
-
-    public final CssBackgroundColorCSS1 getBackgroundColorCSS1() {
-        if (cssBackgroundCSS1.color == null) {
-            cssBackgroundCSS1.color =
-                    (CssBackgroundColorCSS1) style.CascadingOrder(
-                            new CssBackgroundColorCSS1(),
-                            style, selector);
-        }
-        return cssBackgroundCSS1.color;
     }
 
     public final CssBackgroundColorMob getBackgroundColorMob() {
@@ -635,31 +600,13 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background-image property
      */
-    public final CssBackgroundImage getBackgroundImage() {
+    public final org.w3c.css.properties.css.CssBackgroundImage getBackgroundImage() {
         if (cssBackground.image == null) {
             cssBackground.image =
-                    (CssBackgroundImage) style.CascadingOrder(new CssBackgroundImage(),
+                    (org.w3c.css.properties.css.CssBackgroundImage) style.CascadingOrder(new org.w3c.css.properties.css.CssBackgroundImage(),
                             style, selector);
         }
         return cssBackground.image;
-    }
-
-    public final CssBackgroundImageCSS2 getBackgroundImageCSS2() {
-        if (cssBackgroundCSS2.image == null) {
-            cssBackgroundCSS2.image =
-                    (CssBackgroundImageCSS2) style.CascadingOrder(new CssBackgroundImageCSS2(),
-                            style, selector);
-        }
-        return cssBackgroundCSS2.image;
-    }
-
-    public final CssBackgroundImageCSS1 getBackgroundImageCSS1() {
-        if (cssBackgroundCSS1.image == null) {
-            cssBackgroundCSS1.image =
-                    (CssBackgroundImageCSS1) style.CascadingOrder(new CssBackgroundImageCSS1(),
-                            style, selector);
-        }
-        return cssBackgroundCSS1.image;
     }
 
     public final CssBackgroundImageMob getBackgroundImageMob() {
@@ -674,32 +621,16 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background-repeat property
      */
-    public final CssBackgroundRepeat getBackgroundRepeat() {
+    public final org.w3c.css.properties.css.CssBackgroundRepeat getBackgroundRepeat() {
         if (cssBackground.repeat == null) {
             cssBackground.repeat =
-                    (CssBackgroundRepeat) style.CascadingOrder(new CssBackgroundRepeat(),
+                    (org.w3c.css.properties.css.CssBackgroundRepeat) style.CascadingOrder(new org.w3c.css.properties.css.CssBackgroundRepeat(),
                             style, selector);
         }
         return cssBackground.repeat;
     }
 
-    public final CssBackgroundRepeatCSS2 getBackgroundRepeatCSS2() {
-        if (cssBackgroundCSS2.repeat == null) {
-            cssBackgroundCSS2.repeat =
-                    (CssBackgroundRepeatCSS2) style.CascadingOrder(new CssBackgroundRepeatCSS2(),
-                            style, selector);
-        }
-        return cssBackgroundCSS2.repeat;
-    }
-
-    public final CssBackgroundRepeatCSS1 getBackgroundRepeatCSS1() {
-        if (cssBackgroundCSS1.repeat == null) {
-            cssBackgroundCSS1.repeat =
-                    (CssBackgroundRepeatCSS1) style.CascadingOrder(new CssBackgroundRepeatCSS1(),
-                            style, selector);
-        }
-        return cssBackgroundCSS1.repeat;
-    }
+    // TODO this one has to go as well
 
     public final CssBackgroundRepeatMob getBackgroundRepeatMob() {
         if (cssBackgroundMob.repeat == null) {
@@ -713,31 +644,13 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background-attachment property
      */
-    public final CssBackgroundAttachment getBackgroundAttachment() {
+    public final org.w3c.css.properties.css.CssBackgroundAttachment getBackgroundAttachment() {
         if (cssBackground.attachment == null) {
             cssBackground.attachment =
-                    (CssBackgroundAttachment) style.CascadingOrder(new CssBackgroundAttachment(),
+                    (org.w3c.css.properties.css.CssBackgroundAttachment) style.CascadingOrder(new org.w3c.css.properties.css.CssBackgroundAttachment(),
                             style, selector);
         }
         return cssBackground.attachment;
-    }
-
-    public final CssBackgroundAttachmentCSS2 getBackgroundAttachmentCSS2() {
-        if (cssBackgroundCSS2.attachment == null) {
-            cssBackgroundCSS2.attachment =
-                    (CssBackgroundAttachmentCSS2) style.CascadingOrder(new CssBackgroundAttachmentCSS2(),
-                            style, selector);
-        }
-        return cssBackgroundCSS2.attachment;
-    }
-
-    public final CssBackgroundAttachmentCSS1 getBackgroundAttachmentCSS1() {
-        if (cssBackgroundCSS1.attachment == null) {
-            cssBackgroundCSS1.attachment =
-                    (CssBackgroundAttachmentCSS1) style.CascadingOrder(new CssBackgroundAttachmentCSS1(),
-                            style, selector);
-        }
-        return cssBackgroundCSS1.attachment;
     }
 
     public final CssBackgroundAttachmentMob getBackgroundAttachmentMob() {
@@ -752,31 +665,13 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background-position property
      */
-    public final CssBackgroundPosition getBackgroundPosition() {
+    public final org.w3c.css.properties.css.CssBackgroundPosition getBackgroundPosition() {
         if (cssBackground.position == null) {
             cssBackground.position =
-                    (CssBackgroundPosition) style.CascadingOrder(new CssBackgroundPosition(),
+                    (org.w3c.css.properties.css.CssBackgroundPosition) style.CascadingOrder(new org.w3c.css.properties.css.CssBackgroundPosition(),
                             style, selector);
         }
         return cssBackground.position;
-    }
-
-    public final CssBackgroundPositionCSS2 getBackgroundPositionCSS2() {
-        if (cssBackgroundCSS2.position == null) {
-            cssBackgroundCSS2.position =
-                    (CssBackgroundPositionCSS2) style.CascadingOrder(new CssBackgroundPositionCSS2(),
-                            style, selector);
-        }
-        return cssBackgroundCSS2.position;
-    }
-
-    public final CssBackgroundPositionCSS1 getBackgroundPositionCSS1() {
-        if (cssBackgroundCSS1.position == null) {
-            cssBackgroundCSS1.position =
-                    (CssBackgroundPositionCSS1) style.CascadingOrder(new CssBackgroundPositionCSS1(),
-                            style, selector);
-        }
-        return cssBackgroundCSS1.position;
     }
 
     public final CssBackgroundPositionMob getBackgroundPositionMob() {
@@ -791,7 +686,7 @@ public class Css1Style extends CssStyle {
     /**
      * Get the background property
      */
-    public final CssBackground getBackground() {
+    public final org.w3c.css.properties.css.CssBackground getBackground() {
         if (cssBackground.getColor() == null) {
             cssBackground.color = getBackgroundColor();
         }
@@ -808,44 +703,6 @@ public class Css1Style extends CssStyle {
             cssBackground.position = getBackgroundPosition();
         }
         return cssBackground;
-    }
-
-    public final CssBackgroundCSS2 getBackgroundCSS2() {
-        if (cssBackgroundCSS2.getColor() == null) {
-            cssBackgroundCSS2.color = getBackgroundColorCSS2();
-        }
-        if (cssBackgroundCSS2.image == null) {
-            cssBackgroundCSS2.image = getBackgroundImageCSS2();
-        }
-        if (cssBackgroundCSS2.repeat == null) {
-            cssBackgroundCSS2.repeat = getBackgroundRepeatCSS2();
-        }
-        if (cssBackgroundCSS2.attachment == null) {
-            cssBackgroundCSS2.attachment = getBackgroundAttachmentCSS2();
-        }
-        if (cssBackgroundCSS2.position == null) {
-            cssBackgroundCSS2.position = getBackgroundPositionCSS2();
-        }
-        return cssBackgroundCSS2;
-    }
-
-    public final CssBackgroundCSS1 getBackgroundCSS1() {
-        if (cssBackgroundCSS1.getColor() == null) {
-            cssBackgroundCSS1.color = getBackgroundColorCSS1();
-        }
-        if (cssBackgroundCSS1.image == null) {
-            cssBackgroundCSS1.image = getBackgroundImageCSS1();
-        }
-        if (cssBackgroundCSS1.repeat == null) {
-            cssBackgroundCSS1.repeat = getBackgroundRepeatCSS1();
-        }
-        if (cssBackgroundCSS1.attachment == null) {
-            cssBackgroundCSS1.attachment = getBackgroundAttachmentCSS1();
-        }
-        if (cssBackgroundCSS1.position == null) {
-            cssBackgroundCSS1.position = getBackgroundPositionCSS1();
-        }
-        return cssBackgroundCSS1;
     }
 
     public final CssBackgroundMob getBackgroundMob() {
@@ -874,10 +731,10 @@ public class Css1Style extends CssStyle {
     /**
      * Get the word-spacing property
      */
-    public final CssWordSpacing getWordSpacing() {
+    public final org.w3c.css.properties.css.CssWordSpacing getWordSpacing() {
         if (cssWordSpacing == null) {
             cssWordSpacing =
-                    (CssWordSpacing) style.CascadingOrder(new CssWordSpacing(),
+                    (org.w3c.css.properties.css.CssWordSpacing) style.CascadingOrder(new org.w3c.css.properties.css.CssWordSpacing(),
                             style, selector);
         }
         return cssWordSpacing;
@@ -886,10 +743,10 @@ public class Css1Style extends CssStyle {
     /**
      * Get the letter-spacing property
      */
-    public final CssLetterSpacing getLetterSpacing() {
+    public final org.w3c.css.properties.css.CssLetterSpacing getLetterSpacing() {
         if (cssLetterSpacing == null) {
             cssLetterSpacing =
-                    (CssLetterSpacing) style.CascadingOrder(new CssLetterSpacing(),
+                    (org.w3c.css.properties.css.CssLetterSpacing) style.CascadingOrder(new org.w3c.css.properties.css.CssLetterSpacing(),
                             style, selector);
         }
         return cssLetterSpacing;
@@ -2117,10 +1974,10 @@ public class Css1Style extends CssStyle {
     /**
      * Get the white-space property
      */
-    public final CssWhiteSpace getWhiteSpace() {
+    public final org.w3c.css.properties.css.CssWhiteSpace getWhiteSpace() {
         if (cssWhiteSpace == null) {
             cssWhiteSpace =
-                    (CssWhiteSpace) style.CascadingOrder(new CssWhiteSpace(),
+                    (org.w3c.css.properties.css.CssWhiteSpace) style.CascadingOrder(new org.w3c.css.properties.css.CssWhiteSpace(),
                             style, selector);
         }
         return cssWhiteSpace;
@@ -2522,7 +2379,7 @@ public class Css1Style extends CssStyle {
             } else {
                 CssValue color = cssBackground.getColor();
 
-                if (!color.equals(CssBackgroundColor.transparent)) {
+                if (!color.equals(org.w3c.css.properties.css.CssBackgroundColor.transparent)) {
                     // It's better to have a color when a background is defined.
                     warnings.addWarning(new Warning(cssBackground.color,
                             "no-color", 2, emptyArray, ac));
@@ -2581,233 +2438,33 @@ public class Css1Style extends CssStyle {
              warnings.addWarning(new Warning(cssBackground.color, "no-padding", 2));
              }
              */
-        } else if (cssBackgroundCSS1.getColor() != null) {
-            org.w3c.css.properties.css.CssColor colorCSS1 = cssColor;
-            // we need to look if there is the same selector elsewhere
-            // containing a color definition
-            for (int i = 0; i < allSelectors.length; i++) {
-                CssSelectors sel = allSelectors[i];
-                if (sel.toString().equals(selector.toString())) {
-                    colorCSS1 = ((Css1Style) sel.getStyle()).cssColor;
-                    break;
-                }
-            }
-            if (colorCSS1 != null) {
-                if (cssBackgroundCSS1.getColor().equals(colorCSS1.getColor())) {
-                    // background and color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "same-colors", 1, colorCSS1, ac));
-                } else if (cssBackgroundCSS1.getColor().equals(
-                        CssProperty.transparent)) {
-//		  It's better to have a background color with a color
-                    warnings.addWarning(new Warning(
-                            colorCSS1, "no-background-color", 2, emptyArray, ac));
-                }
-            } else {
-                CssValue color = cssBackgroundCSS1.getColor();
-
-                if (!color.equals(CssBackgroundColorCSS1.transparent)) {
-                    // It's better to have a color when a background is defined.
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "no-color", 2, emptyArray, ac));
-                }
-            }
-
-            // Note : For borders, I don't look for inherited value.
-            //        So I can't find same colors in two differents contexts.
-
-            if (cssBorderCSS1.getTop().getColor() != null) {
-                CssValue color = cssBorderCSS1.getTop().getColor();
-                if (cssBackgroundCSS1.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "same-colors", 1,
-                            cssBorderCSS1.getTop().color, ac));
-                }
-            }
-            if (cssBorderCSS1.getRight().getColor() != null) {
-                CssValue color = cssBorderCSS1.getRight().getColor();
-                if (cssBackgroundCSS1.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "same-colors", 1,
-                            cssBorderCSS1.getRight().color, ac));
-                }
-            }
-            if (cssBorderCSS1.getBottom().getColor() != null) {
-                CssValue color = cssBorderCSS1.getBottom().getColor();
-                if (cssBackgroundCSS1.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "same-colors", 1,
-                            cssBorderCSS1.getBottom().color, ac));
-                }
-            }
-            if (cssBorderCSS1.getLeft().getColor() != null) {
-                CssValue color = cssBorderCSS1.getLeft().getColor();
-                if (cssBackgroundCSS1.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS1.color,
-                            "same-colors", 1,
-                            cssBorderCSS1.getLeft().color, ac));
-                }
-            }
-        } else if (cssBackgroundCSS2.getColor() != null) {
-            // TODO FIXME FUGLY because of existing code
-            org.w3c.css.properties.css.CssColor colorCSS2 = cssColor;
-            // we need to look if there is the same selector elsewhere
-            // containing a color definition
-            for (int i = 0; i < allSelectors.length; i++) {
-                CssSelectors sel = allSelectors[i];
-                if (sel.toString().equals(selector.toString())) {
-                    colorCSS2 = ((Css1Style) sel.getStyle()).cssColor;
-                    break;
-                }
-            }
-            if (colorCSS2 != null) {
-                if (cssBackgroundCSS2.getColor().equals(colorCSS2.getColor())) {
-                    // background and color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "same-colors", 1, colorCSS2, ac));
-                } else if (cssBackgroundCSS2.getColor().equals(
-                        CssProperty.transparent)) {
-                    // It's better to have a background color with a color
-                    warnings.addWarning(new Warning(
-                            colorCSS2, "no-background-color", 2, ac));
-                }
-            } else {
-                CssValue color = cssBackgroundCSS2.getColor();
-
-                if (!color.equals(CssBackgroundColor.transparent)) {
-                    // It's better to have a color when a background is defined.
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "no-color", 2, emptyArray, ac));
-                }
-            }
-
-            // Note : For borders, I don't look for inherited value.
-            //        So I can't find same colors in two differents contexts.
-
-            if (cssBorderCSS2.getTop().getColor() != null) {
-                CssValue color = cssBorderCSS2.getTop().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackgroundCSS2.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "same-colors", 1,
-                            cssBorderCSS2.getTop().color, ac));
-                }
-            }
-            if (cssBorderCSS2.getRight().getColor() != null) {
-                CssValue color = cssBorderCSS2.getRight().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackgroundCSS2.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "same-colors", 1,
-                            cssBorderCSS2.getRight().color, ac));
-                }
-            }
-            if (cssBorderCSS2.getBottom().getColor() != null) {
-                CssValue color = cssBorder.getBottom().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackgroundCSS2.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "same-colors", 1,
-                            cssBorderCSS2.getBottom().color, ac));
-                }
-            }
-            if (cssBorderCSS2.getLeft().getColor() != null) {
-                CssValue color = cssBorderCSS2.getLeft().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackgroundCSS2.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackgroundCSS2.color,
-                            "same-colors", 1,
-                            cssBorderCSS2.getLeft().color, ac));
-                }
-            }
-
         } else if (cssColor != null) {
-            if (ac.getCssVersion() == CssVersion.CSS3) {
-                CssValue backgroundColor = null;
-                // we need to look if there is the same selector elsewhere
-                // containing a color definition
-                for (int i = 0; i < allSelectors.length; i++) {
-                    CssSelectors sel = allSelectors[i];
-                    Css1Style style =
-                            (Css1Style) sel.getStyle();
-                    if (backgroundColor == null &&
-                            sel.toString().equals(selector.toString())) {
-                        backgroundColor = ((Css1Style) sel.getStyle()).
-                                cssBackground.getColor();
-                    }
-                    if (style.cssBackground.getColor() != null) {
-                        if (style.cssBackground.getColor().equals(cssColor.getColor())) {
-                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-                                    new String[]{style.cssBackground.color.getSelectors().toString(),
-                                            cssColor.getSelectors().toString()}, ac));
-                        }
-                    }
+            CssValue backgroundColor = null;
+            // we need to look if there is the same selector elsewhere
+            // containing a color definition
+            for (int i = 0; i < allSelectors.length; i++) {
+                CssSelectors sel = allSelectors[i];
+                Css1Style style =
+                        (Css1Style) sel.getStyle();
+                if (backgroundColor == null &&
+                        sel.toString().equals(selector.toString())) {
+                    backgroundColor = ((Css1Style) sel.getStyle()).
+                            cssBackground.getColor();
                 }
-                if (backgroundColor == null) {
-                    // It's better to have a background color with a color
-                    warnings.addWarning(new Warning(cssColor,
-                            "no-background-color", 2, emptyArray, ac));
-                }
-            } else if (ac.getCssVersion() == CssVersion.CSS1) {
-                CssValue backgroundColor = null;
-                // we need to look if there is the same selector elsewhere
-                // containing a color definition
-                for (int i = 0; i < allSelectors.length; i++) {
-                    CssSelectors sel = allSelectors[i];
-                    Css1Style style = (Css1Style) sel.getStyle();
-                    if (backgroundColor == null &&
-                            sel.toString().equals(selector.toString())) {
-                        backgroundColor = ((Css1Style) sel.getStyle()).
-                                cssBackgroundCSS1.getColor();
+                if (style.cssBackground.getColor() != null) {
+                    if (style.cssBackground.getColor().equals(cssColor.getColor())) {
+                        warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
+                                new String[]{style.cssBackground.color.getSelectors().toString(),
+                                        cssColor.getSelectors().toString()}, ac));
                     }
-                    if (style.cssBackgroundCSS1.getColor() != null) {
-                        if (style.cssBackgroundCSS1.getColor().equals(cssColor.getColor())) {
-                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-                                    new String[]{style.cssBackgroundCSS1.color.getSelectors().toString(),
-                                            cssColor.getSelectors().toString()}, ac));
-                        }
-                    }
-                }
-                if (backgroundColor == null) {
-                    // It's better to have a background color with a color
-                    warnings.addWarning(new Warning(cssColor,
-                            "no-background-color", 2, emptyArray, ac));
-                }
-            } else if (ac.getCssVersion() == CssVersion.CSS2 || ac.getCssVersion() == CssVersion.CSS21) {
-                CssValue backgroundColor = null;
-                // we need to look if there is the same selector elsewhere
-                // containing a color definition
-                for (int i = 0; i < allSelectors.length; i++) {
-                    CssSelectors sel = allSelectors[i];
-                    Css1Style style = (Css1Style) sel.getStyle();
-                    if (backgroundColor == null &&
-                            sel.toString().equals(selector.toString())) {
-                        backgroundColor = ((Css1Style) sel.getStyle()).
-                                cssBackgroundCSS2.getColor();
-                    }
-                    if (style.cssBackgroundCSS2.getColor() != null) {
-                        if (style.cssBackgroundCSS2.getColor().equals(cssColor.getColor())) {
-                            warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-                                    new String[]{style.cssBackgroundCSS2.color.getSelectors().toString(),
-                                            cssColor.getSelectors().toString()}, ac));
-                        }
-                    }
-                }
-                if (backgroundColor == null) {
-                    // FIXME background image
-                    // It's better to have a background color with a color
-                    warnings.addWarning(new Warning(cssColor,
-                            "no-background-color", 2, emptyArray, ac));
                 }
             }
+            if (backgroundColor == null) {
+                // It's better to have a background color with a color
+                warnings.addWarning(new Warning(cssColor,
+                        "no-background-color", 2, emptyArray, ac));
+            }
+
         }
 
         // now testing for % and length in padding and marging
@@ -2950,9 +2607,8 @@ class RelativeAndAbsolute {
                 break;
             case CssTypes.CSS_LENGTH:
                 CssLength length = (CssLength) value;
-                Float f = (Float) length.get();
                 // 0 is always 0, no need to check
-                if (f.floatValue() != (float) 0.0) {
+                if (!length.isZero()) {
                     String unit = length.getUnit();
                     // per CSS21, section 4.3.2
                     // 'px', 'em', 'ex' are relative values

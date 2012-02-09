@@ -4,104 +4,109 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
+
 package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundAttachment;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
-
 /**
  * <H4>
- * &nbsp;&nbsp; 'background-attachment'
+ * &nbsp;&nbsp; 'background-color'
  * </H4>
  * <p/>
- * <EM>Value:</EM> scroll | fixed<BR>
- * <EM>Initial:</EM> scroll<BR>
+ * <EM>Value:</EM> &lt;color&gt; | transparent<BR>
+ * <EM>Initial:</EM> transparent<BR>
  * <EM>Applies to:</EM> all elements<BR>
  * <EM>Inherited:</EM> no<BR>
  * <EM>Percentage values:</EM> N/A<BR>
  * <p/>
- * If a background image is specified, the value of 'background-attachment'
- * determines if it is fixed with regard to the canvas or if it scrolls along
- * with the content.
+ * This property sets the background color of an element.
  * <PRE>
- * BODY {
- * background: red url(pendant.gif);
- * background-repeat: repeat-y;
- * background-attachment: fixed;
- * }
+ * H1 { background-color: #F00 }
  * </PRE>
  *
  * @version $Revision$
  */
-public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
+public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackgroundColor {
 
-    private static HashMap<String, CssIdent> allowed_values;
-    private static CssIdent scroll;
-
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        scroll = CssIdent.getIdent("scroll");
-        allowed_values.put("scroll", scroll);
-        allowed_values.put("fixed", CssIdent.getIdent("fixed"));
-    }
-
-    CssIdent value;
+    CssValue color;
 
     /**
-     * Create a new CssBackgroundAttachmentCSS1
+     * Create a new CssBackgroundColor
      */
-    public CssBackgroundAttachmentCSS1() {
-        value = scroll;
+    public CssBackgroundColor() {
+        color = transparent;
     }
 
     /**
-     * Creates a new CssBackgroundAttachmentCSS1
+     * Create a new CssBackgroundColor
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Values are incorrect
      */
-    public CssBackgroundAttachmentCSS1(ApplContext ac, CssExpression expression,
-                                       boolean check) throws InvalidParamException {
+    public CssBackgroundColor(ApplContext ac, CssExpression expression,
+                              boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
         setByUser();
-
         CssValue val = expression.getValue();
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent new_val = allowed_values.get(val.toString());
-            if (new_val != null) {
-                value = new_val;
-                expression.next();
-                return;
-            }
+        switch (val.getType()) {
+            case CssTypes.CSS_COLOR:
+                setColor(val);
+                break;
+            case CssTypes.CSS_IDENT:
+                if (transparent.equals(val)) {
+                    setColor(transparent);
+                    break;
+                }
+                if (inherit.equals(val)) {
+                    setColor(inherit);
+                    break;
+                }
+                setColor(new org.w3c.css.values.CssColor(ac,
+                        (String) val.get()));
+                break;
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
         }
-        throw new InvalidParamException("value", expression.getValue(),
-                getPropertyName(), ac);
+        expression.next();
     }
 
-    public CssBackgroundAttachmentCSS1(ApplContext ac, CssExpression expression)
+    public CssBackgroundColor(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
+    }
+
+    /**
+     * @param color The color to set.
+     */
+    public void setColor(CssValue color) {
+        this.color = color;
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-        return value;
+        return color;
+    }
+
+    /**
+     * Returns the color
+     */
+    public CssValue getColor() {
+        return color;
     }
 
     /**
@@ -109,15 +114,16 @@ public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return false;
+        return color.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        return value.toString();
+        return color.toString();
     }
+
 
     /**
      * Add this property to the CssStyle.
@@ -125,10 +131,10 @@ public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS1 cssBackground = ((Css1Style) style).cssBackgroundCSS1;
-        if (cssBackground.attachment != null)
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
+        if (cssBackground.color != null)
             style.addRedefinitionWarning(ac, this);
-        cssBackground.attachment = this;
+        cssBackground.color = this;
     }
 
     /**
@@ -139,9 +145,9 @@ public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundAttachmentCSS1();
+            return ((Css1Style) style).getBackgroundColor();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS1.attachment;
+            return ((Css1Style) style).cssBackground.color;
         }
     }
 
@@ -151,8 +157,8 @@ public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundAttachmentCSS1 &&
-                value == ((CssBackgroundAttachmentCSS1) property).value);
+        return (property instanceof CssBackgroundColor &&
+                color.equals(((CssBackgroundColor) property).color));
     }
 
     /**
@@ -160,6 +166,7 @@ public class CssBackgroundAttachmentCSS1 extends CssBackgroundAttachment {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (scroll == value);
+        return color == transparent;
     }
+
 }

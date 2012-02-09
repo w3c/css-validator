@@ -10,10 +10,10 @@ import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssBackgroundConstants;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
-import org.w3c.css.properties.css2.CssBackgroundImageCSS2;
-import org.w3c.css.properties.css2.CssBackgroundPositionCSS2;
-import org.w3c.css.properties.css2.CssBackgroundRepeatCSS2;
+import org.w3c.css.properties.css2.CssBackgroundColor;
+import org.w3c.css.properties.css2.CssBackgroundImage;
+import org.w3c.css.properties.css2.CssBackgroundPosition;
+import org.w3c.css.properties.css2.CssBackgroundRepeat;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -59,15 +59,15 @@ import org.w3c.css.values.CssValue;
 public class CssBackgroundTV extends CssProperty
         implements CssOperator, CssBackgroundConstants {
 
-    CssBackgroundColorCSS2 color;
-    CssBackgroundImageCSS2 image;
-    CssBackgroundRepeatCSS2 repeat;
-    CssBackgroundPositionCSS2 position;
+    CssBackgroundColor color;
+    CssBackgroundImage image;
+    CssBackgroundRepeat repeat;
+    CssBackgroundPosition position;
 
     boolean same;
 
     /**
-     * Create a new CssBackgroundCSS2
+     * Create a new CssBackground
      */
     public CssBackgroundTV() {
     }
@@ -95,13 +95,13 @@ public class CssBackgroundTV extends CssProperty
 	    if(expression.getCount() > 1) {
 		throw new InvalidParamException("unrecognize", ac);
 	    }
-	    color = new CssBackgroundColorCSS2();
+	    color = new CssBackgroundColor();
 	    color.color = inherit;
-	    image = new CssBackgroundImageCSS2();
+	    image = new CssBackgroundImage();
 	    image.url = inherit;
-	    repeat = new CssBackgroundRepeatCSS2();
+	    repeat = new CssBackgroundRepeat();
 //	    repeat.repeat = REPEAT.length - 1;
-	    position = new CssBackgroundPositionCSS2();
+	    position = new CssBackgroundPosition();
 	    position.value = inherit;
 	    same = true;
 	    expression.next();
@@ -119,27 +119,27 @@ public class CssBackgroundTV extends CssProperty
 
 	    if (color == null) {
 		try {
-		    color = new CssBackgroundColorCSS2(ac, expression);
+		    color = new CssBackgroundColor(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
 	    }
 	    if (!find && image == null) {
 		try {
-		    image = new CssBackgroundImageCSS2(ac, expression);
+		    image = new CssBackgroundImage(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
 	    }
 	    if (!find && repeat == null) {
 		try {
-		    repeat = new CssBackgroundRepeatCSS2(ac, expression);
+		    repeat = new CssBackgroundRepeat(ac, expression);
 		    find = true;
 		} catch (InvalidParamException e) {
 		}
 	    }
 	    if (!find && position == null) {
-		position = new CssBackgroundPositionCSS2(ac, expression);
+		position = new CssBackgroundPosition(ac, expression);
 		find = true;
 	    }
 	    if (op != SPACE) {
@@ -150,13 +150,13 @@ public class CssBackgroundTV extends CssProperty
 	}
 	/*
 	if (color == null)
-	    color = new CssBackgroundColorCSS2();
+	    color = new CssBackgroundColor();
 	if (image == null)
-	    image = new CssBackgroundImageCSS2();
+	    image = new CssBackgroundImage();
 	if (repeat == null)
-	    repeat = new CssBackgroundRepeatCSS2();
+	    repeat = new CssBackgroundRepeat();
 	if (position == null)
-	    position = new CssBackgroundPositionCSS2();
+	    position = new CssBackgroundPosition();
 	*/
     }
 
@@ -278,8 +278,8 @@ public class CssBackgroundTV extends CssProperty
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	((Css1Style) style).cssBackgroundCSS2.same = same;
-	((Css1Style) style).cssBackgroundCSS2.byUser = byUser;
+	((Css1Style) style).cssBackground.same = same;
+	((Css1Style) style).cssBackground.byUser = byUser;
 
 	if(color != null) {
 	    color.addToStyle(ac, style);
@@ -303,9 +303,9 @@ public class CssBackgroundTV extends CssProperty
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 	if (resolve) {
-	    return ((Css1Style) style).getBackgroundCSS2();
+	    return ((Css1Style) style).getBackground();
 	} else {
-	    return ((Css1Style) style).cssBackgroundCSS2;
+	    return ((Css1Style) style).cssBackground;
 	}
     }
 

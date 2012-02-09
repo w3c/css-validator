@@ -55,11 +55,12 @@ public class CssBorderFaceWidthATSC {
 	CssValue val = expression.getValue();
 
 	if (val instanceof CssLength) {
-	    float f = ((Float) val.get()).floatValue();
-	    if (f >= 0)
+        CssLength l = (CssLength) val;
+        if (l.isPositive()) {
 		this.value = val;
-	    else
+        } else {
 		throw new InvalidParamException("negative-value", val.toString(), ac);
+        }
 	} else if (val instanceof CssNumber) {
 	    value = ((CssNumber) val).getLength();
 	} else if (val.equals(thin)) {

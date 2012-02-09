@@ -36,6 +36,9 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
                                                   ApplContext ac) throws InvalidParamException {
         Media media = new Media();
         if (restrictor != null) {
+            // the grammar construct will build a restrictor as 'not' or 'only'
+            // otherwise it will fail at a parse error, that is why we don't
+            // have another else with error reporting
             if ("not".equalsIgnoreCase(restrictor)) {
                 media.setNot(true);
             } else if ("only".equalsIgnoreCase(restrictor)) {

@@ -13,6 +13,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -23,20 +24,21 @@ import org.w3c.css.values.CssValue;
 public class CssBorderFaceWidthCSS2 {
 
     public static HashSet<CssIdent> acceptable_values;
+
     static {
-	acceptable_values = new HashSet<CssIdent>();
-	acceptable_values.add(CssIdent.getIdent("thin"));
-	acceptable_values.add(CssIdent.getIdent("medium"));
-	acceptable_values.add(CssIdent.getIdent("thick"));
+        acceptable_values = new HashSet<CssIdent>();
+        acceptable_values.add(CssIdent.getIdent("thin"));
+        acceptable_values.add(CssIdent.getIdent("medium"));
+        acceptable_values.add(CssIdent.getIdent("thick"));
     }
 
     CssValue value;
-    
+
     /**
      * Create a new CssBorderFaceWidthCSS2
      */
     public CssBorderFaceWidthCSS2() {
-	value = CssIdent.getIdent("medium");
+        value = CssIdent.getIdent("medium");
     }
 
     /**
@@ -45,72 +47,72 @@ public class CssBorderFaceWidthCSS2 {
      * @param another The another side.
      */
     public CssBorderFaceWidthCSS2(CssBorderFaceWidthCSS2 another) {
-	value = another.value;
+        value = another.value;
     }
 
     /**
      * Create a new CssBorderFaceWidth
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBorderFaceWidthCSS2(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                  boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-	switch (val.getType()) {
-	case CssTypes.CSS_NUMBER:
-	    val = ((CssNumber) val).getLength();
-	case CssTypes.CSS_LENGTH:
-	    float f = ((Float) val.get()).floatValue();
-	    if (f >= 0) {
-		this.value = val;
-	    } else {
-		throw new InvalidParamException("negative-value", val.toString(), ac);
-	    }
-	    break;
-	case CssTypes.CSS_IDENT:
-	    CssIdent ci = (CssIdent) val;
-	    if (CssProperty.inherit.equals(ci)) {
-		value = CssProperty.inherit;
-		break;
-	    } 
-	    if (acceptable_values.contains(ci)) {
-		// use the cached version
-		value = CssIdent.getIdent(ci.toString());
-		break;
-	    }
-	default:
-	    throw new InvalidParamException("value", val.toString(), "width", ac);
-	}
-	expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val = ((CssNumber) val).getLength();
+            case CssTypes.CSS_LENGTH:
+                CssLength l = (CssLength) val;
+                if (l.isPositive()) {
+                    this.value = val;
+                } else {
+                    throw new InvalidParamException("negative-value", val.toString(), ac);
+                }
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent ci = (CssIdent) val;
+                if (CssProperty.inherit.equals(ci)) {
+                    value = CssProperty.inherit;
+                    break;
+                }
+                if (acceptable_values.contains(ci)) {
+                    // use the cached version
+                    value = CssIdent.getIdent(ci.toString());
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", val.toString(), "width", ac);
+        }
+        expression.next();
     }
 
     public CssBorderFaceWidthCSS2(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the internal value
      */
     public CssValue getValue() {
-	return value;
+        return value;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if(value != null) {
-	    return value.toString();
-	}
-	return "";
+        if (value != null) {
+            return value.toString();
+        }
+        return "";
     }
 
     /**
@@ -119,9 +121,8 @@ public class CssBorderFaceWidthCSS2 {
      * @param value The another side.
      */
     public boolean equals(CssBorderFaceWidthCSS2 another) {
-	return value.equals(another.value); // FIXME
+        return value.equals(another.value); // FIXME
     }
-
 
 
 }

@@ -22,14 +22,14 @@ public class CssBorderBottomColor extends CssProperty {
   CssBorderFaceColor face;
 
   /**
-   * Create a new CssBorderBottomColor
+   * Create a new CssBorderBottomColorCSS21
    */
   public CssBorderBottomColor() {
     face = new CssBorderFaceColor();
   }
 
   /**
-   * Create a new CssBorderBottomColor with an another CssBorderFaceColor
+   * Create a new CssBorderBottomColorCSS21 with an another CssBorderFaceColor
    *
    * @param another An another face.
    */
@@ -41,7 +41,7 @@ public class CssBorderBottomColor extends CssProperty {
   }
 
   /**
-   * Create a new CssBorderBottomColor
+   * Create a new CssBorderBottomColorCSS21
    *
    * @param expression The expression for this property.
    * @exception InvalidParamException Values are incorrect

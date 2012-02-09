@@ -145,7 +145,7 @@ public class CssBorderBottom extends CssProperty implements CssOperator {
 	if (style == null)
 	    style = new CssBorderBottomStyle();
 	if (color == null)
-	    color = new CssBorderBottomColor();
+	    color = new CssBorderBottomColorCSS21();
 	*/
     }
 

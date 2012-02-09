@@ -70,10 +70,15 @@ public class CssValueList extends CssValue {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        boolean first = true;
         for (CssValue aCssValue: value) {
-            sb.append(aCssValue.toString()).append(" ");
+            if (!first) {
+                sb.append(' ');
+            } else {
+                first = false;
+            }
+            sb.append(aCssValue.toString());
         }
-        sb.setLength(sb.length()-1);
         return sb.toString();
     }
 

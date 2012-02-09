@@ -9,7 +9,7 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css2.CssBackgroundColorCSS2;
+import org.w3c.css.properties.css2.CssBackgroundColor;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -155,8 +155,8 @@ public class CssBackgroundColorMob extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBackgroundColorCSS2 && color != null &&
-		color.equals( ((CssBackgroundColorCSS2) property).color));
+	return (property instanceof CssBackgroundColor && color != null &&
+		color.equals( ((CssBackgroundColor) property).color));
     }
 
     /**

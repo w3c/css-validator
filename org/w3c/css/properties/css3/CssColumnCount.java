@@ -59,7 +59,7 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
                     throw new InvalidParamException("integer",
                             expression.getValue(), getPropertyName(), ac);
                 }
-                if (num.getInt() <= 0) {
+                if (!num.isStrictlyPositive()) {
                     throw new InvalidParamException("strictly-positive",
                             expression.getValue(),
                             getPropertyName(), ac);

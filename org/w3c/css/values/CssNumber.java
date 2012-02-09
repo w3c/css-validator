@@ -1,16 +1,17 @@
-//
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
+import java.math.BigDecimal;
+
 /**
- * A CSS float number.
+ * A CSS number.
  *
  * @version $Revision$
  */
@@ -23,7 +24,7 @@ public class CssNumber extends CssValue implements CssValueFloat {
     }
 
     ApplContext ac;
-    Float value;
+    BigDecimal value;
     boolean isInt = false;
 
     /**
@@ -37,11 +38,11 @@ public class CssNumber extends CssValue implements CssValueFloat {
      */
     public CssNumber(ApplContext ac, float value) {
         this.ac = ac;
-        this.value = new Float(value);
+        this.value = new BigDecimal(value);
     }
 
     public CssNumber(float value) {
-        this.value = new Float(value);
+        this.value = new BigDecimal(value);
     }
 
     /**
@@ -51,42 +52,37 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @param ac For errors and warnings reports.
      */
     public void set(String s, ApplContext ac) {
+        value = new BigDecimal(s);
         try {
-            new Integer(s);
+            value.toBigIntegerExact();
             isInt = true;
-        } catch (NumberFormatException e) {
+        } catch (ArithmeticException e) {
             isInt = false;
-        } finally {
-            value = new Float(s);
         }
         this.ac = ac;
     }
 
     /**
      * Set the value explicitly
-     *
      */
     public void setIntValue(int v) {
         isInt = true;
-        value = new Float(v);
+        value = new BigDecimal(v);
+
     }
 
-     /**
+    /**
      * Set the value explicitly
-     *
      */
     public void setFloatValue(float v) {
         isInt = false;
-        value = v;
+        value = new BigDecimal(v);
     }
 
     /**
      * Returns the value
      */
     public Object get() {
-        if (isInt) {
-            return new Integer(value.intValue());
-        }
         return value;
     }
 
@@ -99,14 +95,45 @@ public class CssNumber extends CssValue implements CssValueFloat {
 
     public int getInt() throws InvalidParamException {
         if (isInt) {
-            return value.intValue();
-        } else {
-            throw new InvalidParamException("invalid-color", ac);
+            try {
+                return value.intValueExact();
+            } catch (ArithmeticException aex) {
+                throw new InvalidParamException("out-of-range", ac);
+            }
         }
+        // FIXME ???
+        throw new InvalidParamException("invalid-color", ac);
     }
 
     public boolean isInteger() {
         return isInt;
+    }
+
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isPositive() {
+        return (value.signum() >= 0);
+    }
+
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isStrictlyPositive() {
+        return (value.signum() == 1);
+    }
+
+    /**
+     * Returns true is the value is zero
+     *
+     * @return a boolean
+     */
+    public boolean isZero() {
+        return BigDecimal.ZERO.equals(value);
     }
 
     /**
@@ -116,12 +143,10 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @throws InvalidParamException The value is not zero
      */
     public CssLength getLength() throws InvalidParamException {
-        float num = value.floatValue();
-        if (num == 0) {
+        if (value.equals(BigDecimal.ZERO)) {
             return new CssLength();
-        } else {
-            throw new InvalidParamException("zero", "length", ac);
         }
+        throw new InvalidParamException("zero", "length", ac);
     }
 
     /**
@@ -131,14 +156,12 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @throws InvalidParamException The value is not zero
      */
     public CssPercentage getPercentage() throws InvalidParamException {
-        float num = value.floatValue();
-        if (num == 0)
+        if (value.equals(BigDecimal.ZERO)) {
             return new CssPercentage();
-        else {
-            throw new InvalidParamException("zero",
-                    value.toString(),
-                    "percentage", ac);
         }
+        throw new InvalidParamException("zero",
+                value.toString(),
+                "percentage", ac);
     }
 
     /**
@@ -148,12 +171,11 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @throws InvalidParamException The value is not zero
      */
     public CssTime getTime() throws InvalidParamException {
-        float num = value.floatValue();
-        if (num == 0)
+        if (value.equals(BigDecimal.ZERO)) {
             return new CssTime();
-        else
-            throw new InvalidParamException("zero", value.toString(),
-                    "time", ac);
+        }
+        throw new InvalidParamException("zero", value.toString(),
+                "time", ac);
     }
 
     /**
@@ -163,12 +185,11 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @throws InvalidParamException The value is not zero
      */
     public CssAngle getAngle() throws InvalidParamException {
-        float num = value.floatValue();
-        if (num == 0)
+        if (value.equals(BigDecimal.ZERO)) {
             return new CssAngle();
-        else
-            throw new InvalidParamException("zero", value.toString(),
-                    "angle", ac);
+        }
+        throw new InvalidParamException("zero", value.toString(),
+                "angle", ac);
     }
 
     /**
@@ -178,23 +199,18 @@ public class CssNumber extends CssValue implements CssValueFloat {
      * @throws InvalidParamException The value is not zero
      */
     public CssFrequency getFrequency() throws InvalidParamException {
-        float num = value.floatValue();
-        if (num == 0) {
+        if (value.equals(BigDecimal.ZERO)) {
             return new CssFrequency();
-        } else {
-            throw new InvalidParamException("zero",
-                    value.toString(), "frequency", ac);
         }
+        throw new InvalidParamException("zero",
+                value.toString(), "frequency", ac);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        if (isInt) {
-            return Integer.toString(value.intValue());
-        }
-        return value.toString();
+        return value.toPlainString();
     }
 
     /**

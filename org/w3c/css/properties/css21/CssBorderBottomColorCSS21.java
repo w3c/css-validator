@@ -26,13 +26,13 @@ public class CssBorderBottomColorCSS21 extends CssBorderBottomColorCSS2 {
     }
 
     /**
-     * Create a new CssBorderBottomColor
+     * Create a new CssBorderBottomColorCSS21
      *
      * @param expression The expression for this property.
      * @exception InvalidParamException Values are incorrect
      */
     public CssBorderBottomColorCSS21(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                     boolean check) throws InvalidParamException {
 
 	if(check && expression.getCount() > 1) {
 	    throw new InvalidParamException("unrecognize", ac);

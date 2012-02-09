@@ -47,7 +47,7 @@ public class MediaColorIndex extends MediaFeature {
                     throw new InvalidParamException("integer",
                             val.toString(), ac);
                 }
-                if (valnum.getInt() < 0) {
+                if (!valnum.isPositive()) {
                     throw new InvalidParamException("negative-value",
                                 val.toString(), ac);
                 }

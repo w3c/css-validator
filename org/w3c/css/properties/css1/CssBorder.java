@@ -182,7 +182,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 //	top = new CssBorderTop(ac, expression);
 /*
 	right = new CssBorderRight();
-	bottom = new CssBorderBottom();
+	bottom = new CssBorderBottomCSS21();
 	left = new CssBorderLeft();*/
 /*
 	right.width  =  new CssBorderRightWidth((CssBorderFaceWidth) top.width.get());
@@ -195,7 +195,7 @@ public class CssBorder extends CssProperty implements CssOperator {
 
 	right.color  = 	new CssBorderRightColor((CssBorderFaceColor) top.color.get());
 	left.color   =  new CssBorderLeftColor((CssBorderFaceColor) top.color.get());
-	bottom.color =  new CssBorderBottomColor((CssBorderFaceColor) top.color.get());
+	bottom.color =  new CssBorderBottomColorCSS21((CssBorderFaceColor) top.color.get());
 */
     }
 

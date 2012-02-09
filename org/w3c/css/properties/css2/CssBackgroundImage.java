@@ -13,104 +13,89 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
  * <H4>
- * &nbsp;&nbsp; 'background-color'
+ * &nbsp;&nbsp; 'background-image'
  * </H4>
  * <p/>
- * <EM>Value:</EM> &lt;color&gt; | transparent<BR>
- * <EM>Initial:</EM> transparent<BR>
+ * <EM>Value:</EM> &lt;url&gt; | none<BR>
+ * <EM>Initial:</EM> none<BR>
  * <EM>Applies to:</EM> all elements<BR>
  * <EM>Inherited:</EM> no<BR>
  * <EM>Percentage values:</EM> N/A<BR>
- * <p/>
- * This property sets the background color of an element.
+ * <P> This property sets the background image of an element. When setting a
+ * background image, one should also set a background color that will be used
+ * when the image is unavailable. When the image is available, it is overlaid
+ * on top of the background color.
  * <PRE>
- * H1 { background-color: #F00 }
+ * BODY { background-image: url(marble.gif) }
+ * P { background-image: none }
  * </PRE>
  *
  * @version $Revision$
  */
-public class CssBackgroundColorCSS2 extends CssProperty {
+public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackgroundImage {
 
-    public CssValue color;
-
-    public static CssIdent transparent = CssIdent.getIdent("transparent");
+    public CssValue url = null;
 
     /**
-     * Create a new CssBackgroundColorCSS2
+     * Create a new CssBackgroundImage
      */
-    public CssBackgroundColorCSS2() {
-        color = transparent;
+    public CssBackgroundImage() {
+        url = none;
     }
 
     /**
-     * Create a new CssBackgroundColorCSS2
+     * Creates a new CssBackgroundImage
      *
+     * @param ac  The context
      * @param expression The expression for this property
+     * @param check if count check must be performed
      * @throws InvalidParamException Values are incorrect
      */
-    public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression,
-                                  boolean check) throws InvalidParamException {
+    public CssBackgroundImage(ApplContext ac, CssExpression expression,
+                              boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
         setByUser();
-        CssValue val = expression.getValue();
 
+        CssValue val = expression.getValue();
         switch (val.getType()) {
-            case CssTypes.CSS_COLOR:
-                setColor(val);
+            case CssTypes.CSS_URL:
+                url = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (transparent.equals(val)) {
-                    setColor(transparent);
-                    break;
-                }
                 if (inherit.equals(val)) {
-                    setColor(inherit);
+                    url = inherit;
                     break;
                 }
-                setColor(new org.w3c.css.values.CssColor(ac,
-                        (String) val.get()));
-                break;
+                if (none.equals(val)) {
+                    url = none;
+                    break;
+                }
             default:
-                throw new InvalidParamException("value", val.toString(),
+                throw new InvalidParamException("value", val,
                         getPropertyName(), ac);
         }
         expression.next();
     }
 
-    public CssBackgroundColorCSS2(ApplContext ac, CssExpression expression)
+    public CssBackgroundImage(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * @param color The color to set.
-     */
-    public void setColor(CssValue color) {
-        this.color = color;
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-        return color;
-    }
-
-    /**
-     * Returns the color
-     */
-    public final CssValue getColor() {
-        return color;
+        return url;
     }
 
     /**
@@ -118,17 +103,14 @@ public class CssBackgroundColorCSS2 extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return color.equals(inherit);
+        return (url == inherit);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        if (color != null) {
-            return color.toString();
-        }
-        return "";
+        return url.toString();
     }
 
 
@@ -138,10 +120,11 @@ public class CssBackgroundColorCSS2 extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS2 cssBackground = ((Css1Style) style).cssBackgroundCSS2;
-        if (cssBackground.color != null)
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
+        if (cssBackground.image != null) {
             style.addRedefinitionWarning(ac, this);
-        cssBackground.color = this;
+        }
+        cssBackground.image = this;
     }
 
     /**
@@ -152,27 +135,22 @@ public class CssBackgroundColorCSS2 extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundColorCSS2();
+            return ((Css1Style) style).getBackgroundImage();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS2.color;
+            return ((Css1Style) style).cssBackground.image;
         }
     }
 
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundColorCSS2 &&
-                color.equals(((CssBackgroundColorCSS2) property).color));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-        return "background-color";
+        return ((property == null && url == null)
+                || (property instanceof CssBackgroundImage &&
+                url != null &&
+                url.equals(((CssBackgroundImage) property).url)));
     }
 
     /**
@@ -180,7 +158,7 @@ public class CssBackgroundColorCSS2 extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return color == transparent;
+        return (url == none);
     }
 
 }

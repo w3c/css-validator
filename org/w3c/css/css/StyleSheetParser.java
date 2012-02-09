@@ -30,7 +30,10 @@ import org.w3c.css.util.Warnings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.util.ArrayList;
@@ -263,11 +266,11 @@ public final class StyleSheetParser
     /**
      * Parse a style element. The Style element always comes from the user
      *
-     * @param input the inputStream containing the style data
-     * @param url   the name of the file the style element was read in.
+     * @param reader the reader containing the style data
+     * @param url    the name of the file the style element was read in.
      * @throws IOException an IO error
      */
-    public void parseStyleElement(ApplContext ac, InputStream input,
+    public void parseStyleElement(ApplContext ac, Reader reader,
                                   String title, String media,
                                   URL url, int lineno) {
         boolean doneref = false;
@@ -282,7 +285,7 @@ public final class StyleSheetParser
 
 //	    if (cssFouffa == null) {
             String charset = ac.getCharsetForURL(url);
-            cssFouffa = new CssFouffa(ac, input, charset, url, lineno);
+            cssFouffa = new CssFouffa(ac, reader, url, lineno);
             cssFouffa.addListener(this);
 //	    } else {
 //		cssFouffa.ReInit(ac, input, url, lineno);
@@ -358,8 +361,33 @@ public final class StyleSheetParser
      * @deprecated Replaced by parseStyleElement
      */
     public void parseStyleElement(ApplContext ac, String input, URL url, int lineno) {
-        parseStyleElement(ac, new ByteArrayInputStream(input.getBytes()),
-                null, null, url, lineno);
+        parseStyleElement(ac, new StringReader(input), null, null, url, lineno);
+    }
+
+    /**
+     * Parse a style element. The Style element always comes from the user
+     *
+     * @param input the input stream containing the style data
+     * @param url   the name of the file the style element was read in.
+     * @throws IOException an IO error
+     */
+    public void parseStyleElement(ApplContext ac, InputStream input,
+                                  String title, String media,
+                                  URL url, int lineno) {
+        InputStreamReader reader = null;
+        String charset = ac.getCharsetForURL(url);
+        try {
+            reader = new InputStreamReader(input, (charset == null) ?
+                    "iso-8859-1" : charset);
+        } catch (UnsupportedEncodingException uex) {
+            Errors er = new Errors();
+            er.addError(new org.w3c.css.parser.CssError(url.toString(),
+                    -1, uex));
+            notifyErrors(er);
+        }
+        if (reader != null) {
+            parseStyleElement(ac, reader, title, media, url, lineno);
+        }
     }
 
     /**

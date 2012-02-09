@@ -22,6 +22,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -55,6 +56,8 @@ public class ApplContext {
     public static String defaultPrefix = "*defaultprefix*";
     public static String noPrefix = "*noprefix*";
 
+    private ArrayList<URL> linkedmedia = new ArrayList<URL>();
+
     String credential = null;
     String lang;
     Messages msgs;
@@ -68,6 +71,16 @@ public class ApplContext {
     private String link;
     int warningLevel = 0;
     boolean treatVendorExtensionsAsWarnings = false;
+
+    public boolean followlinks() {
+        return followlinks;
+    }
+
+    public void setFollowlinks(boolean followlinks) {
+        this.followlinks = followlinks;
+    }
+
+    boolean followlinks = true;
 
     FakeFile fakefile = null;
     String faketext = null;
@@ -89,6 +102,16 @@ public class ApplContext {
 
     public void setWarningLevel(int warningLevel) {
         this.warningLevel = warningLevel;
+    }
+
+    public ArrayList<URL> getLinkedURIs() {
+        return linkedmedia;
+    }
+
+    public void addLinkedURI(URL url) {
+        if (url != null) {
+            linkedmedia.add(url);
+        }
     }
 
     // as ugly as everything else
@@ -494,6 +517,7 @@ public class ApplContext {
 
     /**
      * Set the current referrer for possible linked style sheets
+     *
      * @param referrer the referring URL
      */
     public void setReferrer(URL referrer) {
@@ -502,6 +526,7 @@ public class ApplContext {
 
     /**
      * get the referrer URL (or null if not relevant)
+     *
      * @return an URL
      */
     public URL getReferrer() {

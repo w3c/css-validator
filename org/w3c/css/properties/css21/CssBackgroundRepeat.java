@@ -4,10 +4,9 @@
 //
 // (c) COPYRIGHT MIT and INRIA, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css2;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundRepeat;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
@@ -48,7 +47,7 @@ import java.util.HashMap;
  *
  * @version $Revision$
  */
-public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
+public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
     // FIXME TODO is that the best way ?
 
     public static boolean checkMatchingIdent(CssIdent ident) {
@@ -69,9 +68,9 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
     public CssValue value;
 
     /**
-     * Create a new CssBackgroundRepeatCSS2
+     * Create a new CssBackgroundRepeat
      */
-    public CssBackgroundRepeatCSS2() {
+    public CssBackgroundRepeat() {
         value = repeat;
     }
 
@@ -79,10 +78,10 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
      * Set the value of the property
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
-    public CssBackgroundRepeatCSS2(ApplContext ac, CssExpression expression,
-                                   boolean check) throws InvalidParamException {
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+                               boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -107,7 +106,7 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
         expression.next();
     }
 
-    public CssBackgroundRepeatCSS2(ApplContext ac, CssExpression expression)
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -133,7 +132,7 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS2 cssBackground = ((Css1Style) style).cssBackgroundCSS2;
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
         if (cssBackground.repeat != null)
             style.addRedefinitionWarning(ac, this);
         cssBackground.repeat = this;
@@ -147,9 +146,9 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundRepeatCSS2();
+            return ((Css1Style) style).getBackgroundRepeat();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS2.repeat;
+            return ((Css1Style) style).cssBackground.repeat;
         }
     }
 
@@ -159,8 +158,8 @@ public class CssBackgroundRepeatCSS2 extends CssBackgroundRepeat {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundRepeatCSS2 &&
-                value == ((CssBackgroundRepeatCSS2) property).value);
+        return (property instanceof CssBackgroundRepeat &&
+                value == ((CssBackgroundRepeat) property).value);
     }
 
     /**

@@ -15,7 +15,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-color
- *
+ * <p/>
  * Name: 	background-color
  * Value: 	&lt;color&gt;
  * Initial: 	transparent
@@ -24,7 +24,7 @@ import org.w3c.css.values.CssValue;
  * Percentages: 	N/A
  * Media: 	visual
  * Computed value: 	the computed color(s)
- *
+ * <p/>
  * This property sets the background color of an element. The color is drawn
  * behind any background images.
  */
@@ -36,13 +36,15 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
      * Create a new CssBackgroundColor
      */
     public CssBackgroundColor() {
+        color = initial;
     }
 
     /**
      * Create a new CssBackgroundColor
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
     public CssBackgroundColor(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
@@ -62,7 +64,9 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
                 // we use the latest version of CssColor, aka CSS3
                 // instead of using CSS21 colors + transparent per spec.
                 CssColor tcolor = new CssColor(ac, expression, check);
-                color = tcolor.getColor();
+                // instead of using getColor, we get the value directly
+                // as we can have idents
+                color = tcolor.color;
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
@@ -87,6 +91,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
     public void set(CssValue col) {
         color = col;
     }
+
     /**
      * Returns the color
      */

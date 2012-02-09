@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
@@ -70,19 +71,19 @@ public final class CssFouffa extends CssParser {
 
     ArrayList<String> visited = null;
 
+
     /**
      * Create a new CssFouffa with a data input and a begin line number.
      *
-     * @param input     data input
+     * @param ac        The validation context
+     * @param reader    The data stream reader
      * @param file      The source file (use for errors, warnings and import)
      * @param beginLine The begin line number in the file. (used for HTML for example)
      * @throws IOException if an I/O error occurs.
      */
-    public CssFouffa(ApplContext ac, InputStream input, String charset,
-                     URL file, int beginLine)
+    public CssFouffa(ApplContext ac, Reader reader, URL file, int beginLine)
             throws IOException {
-        super(new InputStreamReader(input, (charset == null) ?
-                "iso-8859-1" : charset));
+        super(reader);
         if (ac.getOrigin() == -1) {
             setOrigin(StyleSheetOrigin.AUTHOR); // default is user
         } else {
@@ -130,6 +131,21 @@ public final class CssFouffa extends CssParser {
 
         properties = new CssPropertyFactory(spec);
         listeners = new ArrayList<CssValidatorListener>();
+    }
+
+    /**
+     * Create a new CssFouffa with a data input and a begin line number.
+     *
+     * @param input     data input
+     * @param file      The source file (use for errors, warnings and import)
+     * @param beginLine The begin line number in the file. (used for HTML for example)
+     * @throws IOException if an I/O error occurs.
+     */
+    public CssFouffa(ApplContext ac, InputStream input, String charset,
+                     URL file, int beginLine)
+            throws IOException {
+        this(ac, new InputStreamReader(input, (charset == null) ?
+                "iso-8859-1" : charset), file, beginLine);
     }
 
     /**
@@ -407,6 +423,24 @@ public final class CssFouffa extends CssParser {
         newAtRule(importrule);
         endOfAtRule();
 
+        URL importedURL;
+        try {
+        importedURL = HTTPURL.getURL(url, file);
+        } catch (MalformedURLException mue) {
+            if (!Util.noErrorTrace) {
+                ac.getFrame().addError(new CssError(mue));
+            } 
+            return;
+        }
+        
+        // add it to the list of linked URIs
+        ac.addLinkedURI(importedURL);
+        // check if we need to follow it
+        if (!ac.followlinks()) {
+            // TODO add a warning ?
+            return;
+        }
+
         //if it's not permitted to import... (direct input)
         if (url.getProtocol().equals("file")) {
             ac.getFrame().addWarning("unsupported-import");
@@ -414,7 +448,6 @@ public final class CssFouffa extends CssParser {
         }
 
         try {
-            URL importedURL = HTTPURL.getURL(url, file);
             String surl = importedURL.toString();
 
             if (visited == null) {
@@ -815,8 +848,8 @@ public final class CssFouffa extends CssParser {
         // loadConfig("css2", null);
     }
 
-    public CssFouffa(ApplContext ac, Reader stream) {
-        super(stream);
+    public CssFouffa(ApplContext ac, Reader reader) {
+        super(reader);
         this.ac = ac;
         properties = new CssPropertyFactory(ac.getPropertyKey());
     }

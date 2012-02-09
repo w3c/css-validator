@@ -7,7 +7,6 @@
 package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundPosition;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -99,7 +98,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @version $Revision$
  * @see org.w3c.css.properties.css.CssBackgroundAttachment
  */
-public class CssBackgroundPositionCSS1 extends CssBackgroundPosition {
+public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
 
     public static boolean checkMatchingIdent(CssIdent ident) {
         return allowed_values.containsValue(ident);
@@ -133,20 +132,20 @@ public class CssBackgroundPositionCSS1 extends CssBackgroundPosition {
     public CssValue value;
 
     /**
-     * Create a new CssBackgroundPositionCSS1
+     * Create a new CssBackgroundPosition
      */
-    public CssBackgroundPositionCSS1() {
+    public CssBackgroundPosition() {
 
     }
 
     /**
-     * Creates a new CssBackgroundPositionCSS1
+     * Creates a new CssBackgroundPosition
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Values are incorrect
      */
-    public CssBackgroundPositionCSS1(ApplContext ac, CssExpression expression,
-                                     boolean check) throws InvalidParamException {
+    public CssBackgroundPosition(ApplContext ac, CssExpression expression,
+                                 boolean check) throws InvalidParamException {
         int nb_val = expression.getCount();
 
         if (check && nb_val > 2) {
@@ -356,7 +355,7 @@ public class CssBackgroundPositionCSS1 extends CssBackgroundPosition {
         }
     }
 
-    public CssBackgroundPositionCSS1(ApplContext ac, CssExpression expression)
+    public CssBackgroundPosition(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -390,7 +389,7 @@ public class CssBackgroundPositionCSS1 extends CssBackgroundPosition {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS1 cssBackground = ((Css1Style) style).cssBackgroundCSS1;
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
         if (cssBackground.position != null)
             style.addRedefinitionWarning(ac, this);
         cssBackground.position = this;
@@ -404,9 +403,9 @@ public class CssBackgroundPositionCSS1 extends CssBackgroundPosition {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundPositionCSS1();
+            return ((Css1Style) style).getBackgroundPosition();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS1.position;
+            return ((Css1Style) style).cssBackground.position;
         }
     }
 }

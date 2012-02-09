@@ -39,7 +39,7 @@ import org.xml.sax.ext.LexicalHandler;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringBufferInputStream;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -412,7 +412,7 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
                         }
                         styleSheetParser
                                 .parseStyleElement(ac,
-                                        new StringBufferInputStream(text.toString()),
+                                        new StringReader(text.toString()),
                                         title, media,
                                         documentURI, line);
                     }

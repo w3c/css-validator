@@ -32,7 +32,7 @@ public class CssBorderBottomCSS21 extends CssBorderBottomCSS2 {
      * @exception InvalidParamException The expression is incorrect
      */
     public CssBorderBottomCSS21(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                boolean check) throws InvalidParamException {
 	CssValue val = null;
 	char op = SPACE;
 	boolean find = true;

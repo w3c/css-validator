@@ -8,20 +8,21 @@ package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
+
+import java.math.BigDecimal;
 
 /**
  * <H3> Frequencies</H3>
- *
+ * <p/>
  * <P>Frequency units are used with aural cascading style sheets.
- *
+ * <p/>
  * <p>There are two legal frequency units:
- *
+ * <p/>
  * <ul>
  * <li>Hz: Hertz
  * <li>kHz: kilo Hertz
  * </ul>
- *
+ * <p/>
  * <P> For example, 200Hz is a bass sound, and 6kHz is a treble sound.
  *
  * @version $Revision$
@@ -29,115 +30,117 @@ import org.w3c.css.util.Util;
 public class CssFrequency extends CssValue {
 
     public static final int type = CssTypes.CSS_FREQUENCY;
-    
+
     public final int getType() {
-	return type;
+        return type;
     }
 
-  /**
-   * Create a new CssFrequency
-   */
-  public CssFrequency() {
-    value = defaultValue;
-  }
+    private BigDecimal value;
+    private int unit;
+    private static String[] units = {"Hz", "kHz"};
+    private static int[] hash_units;
+    private static BigDecimal defaultValue = BigDecimal.ZERO;
 
-  /**
-   * Create a new CssFrequency with a float number.
-   *
-   * @param value the float number.
-   */
-  public CssFrequency(Float value) {
-    this.value = value;
-  }
-
-  /**
-   * Set the value of this frequency.
-   *
-   * @param s     the string representation of the frequency.
-   * @param ac For errors and warnings reports.
-   * @exception InvalidParamException The unit is incorrect
-   */
-  public void set(String s, ApplContext ac) throws InvalidParamException {
-    s = s.toLowerCase();
-    int length = s.length();
-    String unit;
-    float v;
-    if (s.charAt(length-3) == 'k') {
-      unit = s.substring(length-3, length);
-      v = Float.parseFloat(s.substring(0, length - 3));
-    } else {
-      unit = s.substring(length-2, length);
-      v = Float.parseFloat(s.substring(0, length - 2));
-    }
-    int hash = unit.hashCode();
-
-
-    int i = 0;
-    while (i<units.length) {
-      if (hash == hash_units[i]) {
-	this.unit = i;
-	break;
-      }
-      i++;
+    static {
+        hash_units = new int[units.length];
+        for (int i = 0; i < units.length; i++)
+            hash_units[i] = units[i].toLowerCase().hashCode();
     }
 
-    if (i == units.length) {
-      throw new InvalidParamException("unit", unit, ac);
+    /**
+     * Create a new CssFrequency
+     */
+    public CssFrequency() {
+        value = defaultValue;
     }
 
-    this.value = new Float(v);
-
-  }
-
-  /**
-   * Returns the current value
-   */
-  public Object get() {
-    if (unit == 1) {
-      return new Float(value.floatValue() * 1000);
+    /**
+     * Create a new CssFrequency with a float number.
+     *
+     * @param value the float number.
+     */
+    public CssFrequency(BigDecimal value) {
+        this.value = value;
     }
-    return value;
-  }
 
-  /**
-   * Returns the current value
-   */
-  public String getUnit() {
-    return units[unit];
-  }
+    /**
+     * Set the value of this frequency.
+     *
+     * @param s  the string representation of the frequency.
+     * @param ac For errors and warnings reports.
+     * @throws InvalidParamException The unit is incorrect
+     */
+    public void set(String s, ApplContext ac) throws InvalidParamException {
+        s = s.toLowerCase();
+        int length = s.length();
+        String unit;
+        BigDecimal v;
+        if (s.charAt(length - 3) == 'k') {
+            unit = s.substring(length - 3, length);
+            v = new BigDecimal(s.substring(0, length - 3));
+        } else {
+            unit = s.substring(length - 2, length);
+            v = new BigDecimal(s.substring(0, length - 2));
+        }
+        int hash = unit.hashCode();
 
-  /**
-   * Returns a string representation of the object.
-   */
-  public String toString() {
-      if (value.floatValue() != 0) {
-	  return Util.displayFloat(value) + getUnit();
-      } else {
-	  return Util.displayFloat(value);
-      }
-  }
 
-  /**
-   * Compares two values for equality.
-   *
-   * @param value The other value.
-   */
-  public boolean equals(Object value) {
-    return (value instanceof CssFrequency
-	        && this.value.equals(((CssFrequency) value).value)
-	        && unit == ((CssFrequency) value).unit);
-  }
+        int i = 0;
+        while (i < units.length) {
+            if (hash == hash_units[i]) {
+                this.unit = i;
+                break;
+            }
+            i++;
+        }
 
-  private Float value;
-  private int unit;
-  private static String[] units = { "Hz", "kHz" };
-  private static int[] hash_units;
-  private static Float defaultValue = new Float(0);
+        if (i == units.length) {
+            throw new InvalidParamException("unit", unit, ac);
+        }
 
-  static {
-    hash_units = new int[units.length];
-    for (int i=0; i<units.length; i++)
-      hash_units[i] = units[i].toLowerCase().hashCode();
-  }
+        this.value = v;
+
+    }
+
+    /**
+     * Returns the current value
+     */
+    public Object get() {
+        // TODO FIXME should not be a Float...
+        if (unit == 1) {
+            return new Float(value.floatValue() * 1000);
+        }
+        return value.floatValue();
+    }
+
+    /**
+     * Returns the current value
+     */
+    public String getUnit() {
+        return units[unit];
+    }
+
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        if (BigDecimal.ZERO.equals(value)) {
+            return value.toPlainString();
+        }
+        return value.toPlainString() + getUnit();
+    }
+
+    /**
+     * Compares two values for equality.
+     *
+     * @param value The other value.
+     */
+    public boolean equals(Object value) {
+        return (value instanceof CssFrequency
+                && this.value.equals(((CssFrequency) value).value)
+                && unit == ((CssFrequency) value).unit);
+    }
+
+
 }
 

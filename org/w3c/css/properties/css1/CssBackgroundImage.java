@@ -8,7 +8,6 @@
 package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundImage;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -37,25 +36,25 @@ import org.w3c.css.values.CssValue;
  *
  * @version $Revision$
  */
-public class CssBackgroundImageCSS1 extends CssBackgroundImage {
+public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackgroundImage {
 
     CssValue url = null;
 
     /**
-     * Create a new CssBackgroundImageCSS1
+     * Create a new CssBackgroundImage
      */
-    public CssBackgroundImageCSS1() {
+    public CssBackgroundImage() {
         url = none;
     }
 
     /**
-     * Creates a new CssBackgroundImageCSS1
+     * Creates a new CssBackgroundImage
      *
      * @param expression The expression for this property
      * @throws InvalidParamException Values are incorrect
      */
-    public CssBackgroundImageCSS1(ApplContext ac, CssExpression expression,
-                                  boolean check) throws InvalidParamException {
+    public CssBackgroundImage(ApplContext ac, CssExpression expression,
+                              boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -81,7 +80,7 @@ public class CssBackgroundImageCSS1 extends CssBackgroundImage {
         expression.next();
     }
 
-    public CssBackgroundImageCSS1(ApplContext ac, CssExpression expression)
+    public CssBackgroundImage(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -99,7 +98,7 @@ public class CssBackgroundImageCSS1 extends CssBackgroundImage {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackgroundCSS1 cssBackground = ((Css1Style) style).cssBackgroundCSS1;
+        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
         if (cssBackground.image != null) {
             style.addRedefinitionWarning(ac, this);
         }
@@ -114,9 +113,9 @@ public class CssBackgroundImageCSS1 extends CssBackgroundImage {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getBackgroundImageCSS1();
+            return ((Css1Style) style).getBackgroundImage();
         } else {
-            return ((Css1Style) style).cssBackgroundCSS1.image;
+            return ((Css1Style) style).cssBackground.image;
         }
     }
 
@@ -127,8 +126,8 @@ public class CssBackgroundImageCSS1 extends CssBackgroundImage {
      */
     public boolean equals(CssProperty property) {
         return ((url == null && property == null) ||
-                (property instanceof CssBackgroundImageCSS1 &&
+                (property instanceof CssBackgroundImage &&
                         url != null &&
-                        url.equals(((CssBackgroundImageCSS1) property).url)));
+                        url.equals(((CssBackgroundImage) property).url)));
     }
 }

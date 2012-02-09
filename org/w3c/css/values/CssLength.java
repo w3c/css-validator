@@ -9,7 +9,8 @@ package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
+
+import java.math.BigDecimal;
 
 /**
  * <H3>
@@ -96,11 +97,24 @@ public class CssLength extends CssValue {
         return type;
     }
 
+
+    private BigDecimal value;
+    private int unit;
+    private static String[] units = {"mm", "cm", "pt", "pc", "em",
+            "ex", "px", "in", "gd"};
+    private static int[] hash_units;
+
+    static {
+        hash_units = new int[units.length];
+        for (int i = 0; i < units.length; i++)
+            hash_units[i] = units[i].hashCode();
+    }
+
     /**
      * Create a new CssLength
      */
     public CssLength() {
-        value = defaultValue;
+        value = BigDecimal.ZERO;
     }
 
     /**
@@ -113,7 +127,7 @@ public class CssLength extends CssValue {
         s = s.toLowerCase();
         int length = s.length();
         String unit = s.substring(length - 2, length);
-        this.value = new Float(s.substring(0, length - 2));
+        this.value = new BigDecimal(s.substring(0, length - 2));
 
         this.unit = 2; // there is no unit by default
 
@@ -142,7 +156,9 @@ public class CssLength extends CssValue {
      * Returns the current value
      */
     public Object get() {
-        return value;
+        // TODO this is old ugly crap, needed for not breaking everything
+        // remove as soon as reference to get is removed...
+        return new Float(value.floatValue());
     }
 
     /**
@@ -150,6 +166,33 @@ public class CssLength extends CssValue {
      */
     public float floatValue() {
         return value.floatValue();
+    }
+
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isPositive() {
+        return (value.signum() >= 0);
+    }
+
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isStrictlyPositive() {
+        return (value.signum() == 1);
+    }
+
+    /**
+     * Returns true is the value is zero
+     *
+     * @return a boolean
+     */
+    public boolean isZero() {
+        return BigDecimal.ZERO.equals(value);
     }
 
     /**
@@ -163,11 +206,10 @@ public class CssLength extends CssValue {
      * Returns a string representation of the object.
      */
     public String toString() {
-        if (value.floatValue() != 0) {
-            return Util.displayFloat(value) + getUnit();
-        } else {
-            return Util.displayFloat(value);
+        if (BigDecimal.ZERO.equals(value)) {
+            return value.toPlainString();
         }
+        return value.toPlainString() + getUnit();
     }
 
     /**
@@ -181,17 +223,5 @@ public class CssLength extends CssValue {
                 unit == ((CssLength) value).unit);
     }
 
-    private Float value;
-    private int unit;
-    private static String[] units = {"mm", "cm", "pt", "pc", "em",
-            "ex", "px", "in", "gd"};
-    private static int[] hash_units;
-    private static Float defaultValue = new Float(0);
-
-    static {
-        hash_units = new int[units.length];
-        for (int i = 0; i < units.length; i++)
-            hash_units[i] = units[i].hashCode();
-    }
 }
 

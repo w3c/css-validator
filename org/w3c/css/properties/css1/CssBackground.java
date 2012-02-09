@@ -8,7 +8,6 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackground;
 import org.w3c.css.properties.css.CssBackgroundConstants;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -54,21 +53,21 @@ import org.w3c.css.values.CssValue;
  * @see org.w3c.css.properties.css.CssBackgroundAttachment
  * @see org.w3c.css.properties.css.CssBackgroundPosition
  */
-public class CssBackgroundCSS1 extends CssBackground
+public class CssBackground extends org.w3c.css.properties.css.CssBackground
         implements CssOperator, CssBackgroundConstants {
 
-    CssBackgroundColorCSS1 color;
-    CssBackgroundImageCSS1 image;
-    CssBackgroundRepeatCSS1 repeat;
-    CssBackgroundAttachmentCSS1 attachment;
-    CssBackgroundPositionCSS1 position;
+    CssBackgroundColor color;
+    CssBackgroundImage image;
+    CssBackgroundRepeat repeat;
+    CssBackgroundAttachment attachment;
+    CssBackgroundPosition position;
 
     boolean same;
 
     /**
-     * Create a new CssBackgroundCSS1
+     * Create a new CssBackground
      */
-    public CssBackgroundCSS1() {
+    public CssBackground() {
     }
 
     /**
@@ -77,8 +76,8 @@ public class CssBackgroundCSS1 extends CssBackground
      * @param expression The expression for this property
      * @throws InvalidParamException The expression is incorrect
      */
-    public CssBackgroundCSS1(ApplContext ac, CssExpression expression,
-                             boolean check) throws InvalidParamException {
+    public CssBackground(ApplContext ac, CssExpression expression,
+                         boolean check) throws InvalidParamException {
 
         CssValue val;
         char op;
@@ -102,14 +101,14 @@ public class CssBackgroundCSS1 extends CssBackground
 
             if (color == null) {
                 try {
-                    color = new CssBackgroundColorCSS1(ac, expression);
+                    color = new CssBackgroundColor(ac, expression);
                     find = true;
                 } catch (InvalidParamException e) {
                 }
             }
             if (!find && image == null) {
                 try {
-                    image = new CssBackgroundImageCSS1(ac, expression);
+                    image = new CssBackgroundImage(ac, expression);
                     find = true;
                 } catch (InvalidParamException e) {
                     // nothing to do, repeat will test this value
@@ -117,7 +116,7 @@ public class CssBackgroundCSS1 extends CssBackground
             }
             if (!find && repeat == null) {
                 try {
-                    repeat = new CssBackgroundRepeatCSS1(ac, expression);
+                    repeat = new CssBackgroundRepeat(ac, expression);
                     find = true;
                 } catch (InvalidParamException e) {
                     // nothing to do, attachment will test this value
@@ -125,7 +124,7 @@ public class CssBackgroundCSS1 extends CssBackground
             }
             if (!find && attachment == null) {
                 try {
-                    attachment = new CssBackgroundAttachmentCSS1(ac, expression);
+                    attachment = new CssBackgroundAttachment(ac, expression);
                     find = true;
                 } catch (InvalidParamException e) {
                     // nothing to do, position will test this value
@@ -133,7 +132,7 @@ public class CssBackgroundCSS1 extends CssBackground
             }
             if (!find && position == null) {
                 try {
-                    position = new CssBackgroundPositionCSS1(ac, expression);
+                    position = new CssBackgroundPosition(ac, expression);
                     find = true;
                 } catch (InvalidParamException e) {
                     // nothing to do
@@ -150,19 +149,19 @@ public class CssBackgroundCSS1 extends CssBackground
         }
         /*
       if (color == null)
-          color = new CssBackgroundColorCSS1();
+          color = new CssBackgroundColor();
       if (image == null)
-          image = new CssBackgroundImageCSS1();
+          image = new CssBackgroundImage();
       if (repeat == null)
-          repeat = new CssBackgroundRepeatCSS1();
+          repeat = new CssBackgroundRepeat();
       if (attachment == null)
-          attachment = new CssBackgroundAttachmentCSS1();
+          attachment = new CssBackgroundAttachment();
       if (position == null)
-          position = new CssBackgroundPositionCSS1();
+          position = new CssBackgroundPosition();
       */
     }
 
-    public CssBackgroundCSS1(ApplContext ac, CssExpression expression)
+    public CssBackground(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

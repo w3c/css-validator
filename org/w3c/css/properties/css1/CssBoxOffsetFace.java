@@ -25,70 +25,70 @@ public abstract class CssBoxOffsetFace extends CssProperty {
 
     CssValue value;
 
-    private static CssIdent auto = new CssIdent("auto");
+    private static CssIdent auto = CssIdent.getIdent("auto");
 
     /**
      * Create a new CssBoxOffsetFace
      */
     public CssBoxOffsetFace() {
-	value = auto;
+        value = auto;
     }
 
     /**
      * Create a new CssBoxOffsetFace
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBoxOffsetFace(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                            boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-	setByUser();
+        setByUser();
 
-	if (val.equals(inherit)) {
-	    value = inherit;
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    value = auto;
-	    expression.next();
-	} else if (val instanceof CssLength || val instanceof CssPercentage) {
-	    value = val;
-	    expression.next();
-	} else if (val instanceof CssNumber) {
-	    value = ((CssNumber) val).getLength();
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    value = auto;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", val.toString(),
-					    getPropertyName(), ac);
-	}
+        if (val.equals(inherit)) {
+            value = inherit;
+            expression.next();
+        } else if (val.equals(auto)) {
+            value = auto;
+            expression.next();
+        } else if (val instanceof CssLength || val instanceof CssPercentage) {
+            value = val;
+            expression.next();
+        } else if (val instanceof CssNumber) {
+            value = ((CssNumber) val).getLength();
+            expression.next();
+        } else if (val.equals(auto)) {
+            value = auto;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssBoxOffsetFace(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return value;
+        return value;
     }
 
     /**
      * Returns the internal CssValue value.
      */
     public CssValue getValue() {
-	return value;
+        return value;
     }
 
     /**
@@ -96,17 +96,17 @@ public abstract class CssBoxOffsetFace extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return value == inherit;
+        return value == inherit;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if(value != null) {
-	    return value.toString();
-	}
-	return "";
+        if (value != null) {
+            return value.toString();
+        }
+        return "";
     }
 
     /**
@@ -115,20 +115,20 @@ public abstract class CssBoxOffsetFace extends CssProperty {
      * @param side The other side.
      */
     public boolean equals(CssBoxOffsetFace side) {
-	if(value != null) {
-	    return value.equals(side.value);
-	}
-	return side == null;
+        if (value != null) {
+            return value.equals(side.value);
+        }
+        return side == null;
     }
 
     /**
      * Is this property contains a default value.
      */
     public boolean isDefault() {
-	if (value != null && value != auto)
-	    return ((Float) value.get()).floatValue() == 0;
-	else
-	    return false;
+        if (value != null && value != auto)
+            return ((Float) value.get()).floatValue() == 0;
+        else
+            return false;
     }
 
 }

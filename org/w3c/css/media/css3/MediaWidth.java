@@ -48,7 +48,7 @@ public class MediaWidth extends MediaFeature {
                     val = ((CssNumber) val).getLength();
                 case CssTypes.CSS_LENGTH:
                     CssLength l = (CssLength) val;
-                    if (l.floatValue() < 0.f) {
+                    if (!l.isPositive()) {
                         throw new InvalidParamException("negative-value",
                                 val.toString(), ac);
                     }

@@ -63,7 +63,7 @@ public class CssHeight extends org.w3c.css.properties.css.CssHeight {
                 val = ((CssNumber) val).getLength();
             case CssTypes.CSS_LENGTH:
                 lenVal = (CssLength) val;
-                if (lenVal.floatValue() < 0.) {
+                if (!lenVal.isPositive()) {
                     throw new InvalidParamException("negative-value",
                             val.toString(), ac);
                 }
