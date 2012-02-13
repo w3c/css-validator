@@ -156,7 +156,6 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         }
 
         setByUser();
-        setByUser();
         CssValue val;
         CssBackgroundPositionValue b_val = null;
         char op;
