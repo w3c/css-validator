@@ -17,6 +17,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
 
@@ -37,18 +38,20 @@ import static org.w3c.css.values.CssOperator.COMMA;
 public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundClip {
 
     public final static CssIdent border_box;
-    public final static CssIdent padding_box;
-
+    public static HashMap<String, CssIdent> allowed_values;
+    public final static String val[] = {"border-box", "padding-box", "content-box"};
     Object value;
 
     static {
         border_box = CssIdent.getIdent("border-box");
-        padding_box = CssIdent.getIdent("padding-box");
+        for (String s : val) {
+            allowed_values.put(s, CssIdent.getIdent(s));
+        }
     }
 
     public static boolean isMatchingIdent(CssIdent ident) {
-        return (border_box.equals(ident) ||
-                padding_box.equals(ident));
+        return allowed_values.containsValue(ident);
+ 
     }
 
     /**
@@ -69,6 +72,7 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
         ArrayList<CssValue> values = new ArrayList<CssValue>();
 
         CssValue val;
+        CssIdent matchingIdent;
         char op;
 
         while (!expression.end()) {
@@ -85,11 +89,10 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
                         }
                         values.add(inherit);
                         break;
-                    } else if (border_box.equals(val)) {
-                        values.add(border_box);
-                        break;
-                    } else if (padding_box.equals(val)) {
-                        values.add(padding_box);
+                    }
+                    matchingIdent = allowed_values.get(val.toString());
+                    if (matchingIdent != null) {
+                        values.add(matchingIdent);
                         break;
                     }
                 default:
