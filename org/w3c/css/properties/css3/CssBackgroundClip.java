@@ -22,17 +22,7 @@ import java.util.HashMap;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-clip
- * Name: 	background-clip
- * Value: 	[border-box | padding-box ] [ , [border-box | padding-box ] ]*
- * Initial: 	border-box
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	same as specified value
- * <p/>
- * Determines the background painting area.
+ * @spec http://www.w3.org/TR/2011/CR-css3-background-20110215/#the-background-clip
  */
 
 public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundClip {
@@ -44,6 +34,7 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
 
     static {
         border_box = CssIdent.getIdent("border-box");
+        allowed_values = new HashMap<String, CssIdent>();
         for (String s : val) {
             allowed_values.put(s, CssIdent.getIdent(s));
         }
@@ -51,20 +42,22 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
 
     public static boolean isMatchingIdent(CssIdent ident) {
         return allowed_values.containsValue(ident);
- 
+
     }
 
     /**
      * Create a new CssBackgroundClip
      */
     public CssBackgroundClip() {
+        value = initial;
     }
 
     /**
      * Create a new CssBackgroundClip
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect value
      */
     public CssBackgroundClip(ApplContext ac, CssExpression expression,
                              boolean check) throws InvalidParamException {
@@ -120,7 +113,7 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
     public void set(Object val) {
         value = val;
     }
-    
+
     /**
      * Add this property to the CssStyle
      *
