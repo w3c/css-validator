@@ -198,11 +198,6 @@ public class CssBackgroundPosition extends CssProperty {
             // yeah!
             return true;
         }
-
-        public String toString() {
-            return value.toString();
-        }
-
     }
 
 }
