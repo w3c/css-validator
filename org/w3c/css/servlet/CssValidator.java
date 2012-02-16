@@ -7,13 +7,7 @@
 
 package org.w3c.css.servlet;
 
-import org.w3c.css.css.CssParser;
-import org.w3c.css.css.DocumentParser;
-import org.w3c.css.css.HTMLParserStyleSheetHandler;
-import org.w3c.css.css.StyleReport;
-import org.w3c.css.css.StyleReportFactory;
-import org.w3c.css.css.StyleSheet;
-import org.w3c.css.css.StyleSheetParser;
+import org.w3c.css.css.*;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
@@ -399,7 +393,8 @@ public final class CssValidator extends HttpServlet {
                             .getStyleSheet(), output, warningLevel, errorReport);
                 } else {
                     // else, trying HTML
-                    HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(null, ac);
+//                    HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(null, ac);
+                    TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
                     handler.parse(is, fileName);
 
                     handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
@@ -664,7 +659,8 @@ public final class CssValidator extends HttpServlet {
                         output, warningLevel, errorReport);
             } else {
                 // else, trying HTML
-                HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(null, ac);
+//                HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(null, ac);
+                TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
                 handler.parse(is, fileName);
 
                 handleRequest(ac, res, fileName, handler.getStyleSheet(),

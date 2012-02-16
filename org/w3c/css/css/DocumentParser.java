@@ -57,8 +57,8 @@ public final class DocumentParser {
                 style = parser.getStyleSheet();
             } else if (urlLower.endsWith(".html") || urlLower.endsWith(".htm") ||
                     urlLower.endsWith(".shtml") || urlLower.endsWith("/")) {
-                //TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(htmlURL, ac);
-                HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(htmlURL, ac);
+                TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(htmlURL, ac);
+                //HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(htmlURL, ac);
                 handler.parse(htmlURL);
                 style = handler.getStyleSheet();
                 if (style != null) {
@@ -110,10 +110,10 @@ public final class DocumentParser {
                 }
 
                 if (contentType.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
-                    HTMLParserStyleSheetHandler handler;
-                    handler = new HTMLParserStyleSheetHandler(htmlURL, ac);
-//                    TagSoupStyleSheetHandler handler;
-//                    handler = new TagSoupStyleSheetHandler(htmlURL, ac);
+//                    HTMLParserStyleSheetHandler handler;
+//                    handler = new HTMLParserStyleSheetHandler(htmlURL, ac);
+                    TagSoupStyleSheetHandler handler;
+                    handler = new TagSoupStyleSheetHandler(htmlURL, ac);
                     handler.parse(urlString, connection);
                     style = handler.getStyleSheet();
 
