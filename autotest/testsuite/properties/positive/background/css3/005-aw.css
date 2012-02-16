@@ -9963,38 +9963,38 @@ bg229962 { background: url(test.jpg) border-box scroll no-repeat left 100px , ur
 bg229963 { background: url(test.jpg) border-box scroll repeat-x left 100px , url(test.jpg) border-box scroll repeat-y left 100px blue }
 bg229964 { background: url(test.jpg) border-box scroll left 100px , url(test.jpg) border-box scroll left 100px no-repeat blue }
 bg229965 { background: url(test.jpg) border-box scroll left 100px repeat , url(test.jpg) border-box scroll left 100px repeat-x blue }
-bg229966 { background: url(test.jpg) border-box scroll left 100px repeat-y , padding-box border-box fixed no-repeat none 100px left blue }
-bg229967 { background: padding-box border-box fixed no-repeat 100px left , padding-box border-box fixed no-repeat 100px left none blue }
-bg229968 { background: padding-box border-box fixed no-repeat 100px left url(test.jpg) , padding-box border-box fixed no-repeat url(test.jpg) 100px left blue }
-bg229969 { background: padding-box border-box fixed none no-repeat 100px left , padding-box border-box fixed none repeat 100px left blue }
-bg229970 { background: padding-box border-box fixed none repeat-x 100px left , padding-box border-box fixed none repeat-y 100px left blue }
-bg229971 { background: padding-box border-box fixed none 100px left , padding-box border-box fixed none 100px left no-repeat blue }
-bg229972 { background: padding-box border-box fixed none 100px left repeat , padding-box border-box fixed none 100px left repeat-x blue }
-bg229973 { background: padding-box border-box fixed none 100px left repeat-y , padding-box border-box fixed repeat none 100px left blue }
-bg229974 { background: padding-box border-box fixed repeat 100px left , padding-box border-box fixed repeat 100px left none blue }
-bg229975 { background: padding-box border-box fixed repeat 100px left url(test.jpg) , padding-box border-box fixed repeat url(test.jpg) 100px left blue }
-bg229976 { background: padding-box border-box fixed repeat-x none 100px left , padding-box border-box fixed repeat-x 100px left blue }
-bg229977 { background: padding-box border-box fixed repeat-x 100px left none , padding-box border-box fixed repeat-x 100px left url(test.jpg) blue }
-bg229978 { background: padding-box border-box fixed repeat-x url(test.jpg) 100px left , padding-box border-box fixed repeat-y none 100px left blue }
-bg229979 { background: padding-box border-box fixed repeat-y 100px left , padding-box border-box fixed repeat-y 100px left none blue }
-bg229980 { background: padding-box border-box fixed repeat-y 100px left url(test.jpg) , padding-box border-box fixed repeat-y url(test.jpg) 100px left blue }
-bg229981 { background: padding-box border-box fixed 100px left , padding-box border-box fixed 100px left no-repeat blue }
-bg229982 { background: padding-box border-box fixed 100px left no-repeat none , padding-box border-box fixed 100px left no-repeat url(test.jpg) blue }
-bg229983 { background: padding-box border-box fixed 100px left none , padding-box border-box fixed 100px left none no-repeat blue }
-bg229984 { background: padding-box border-box fixed 100px left none repeat , padding-box border-box fixed 100px left none repeat-x blue }
-bg229985 { background: padding-box border-box fixed 100px left none repeat-y , padding-box border-box fixed 100px left repeat blue }
-bg229986 { background: padding-box border-box fixed 100px left repeat none , padding-box border-box fixed 100px left repeat url(test.jpg) blue }
-bg229987 { background: padding-box border-box fixed 100px left repeat-x , padding-box border-box fixed 100px left repeat-x none blue }
-bg229988 { background: padding-box border-box fixed 100px left repeat-x url(test.jpg) , padding-box border-box fixed 100px left repeat-y blue }
-bg229989 { background: padding-box border-box fixed 100px left repeat-y none , padding-box border-box fixed 100px left repeat-y url(test.jpg) blue }
-bg229990 { background: padding-box border-box fixed 100px left url(test.jpg) , padding-box border-box fixed 100px left url(test.jpg) no-repeat blue }
-bg229991 { background: padding-box border-box fixed 100px left url(test.jpg) repeat , padding-box border-box fixed 100px left url(test.jpg) repeat-x blue }
-bg229992 { background: padding-box border-box fixed 100px left url(test.jpg) repeat-y , padding-box border-box fixed url(test.jpg) no-repeat 100px left blue }
-bg229993 { background: padding-box border-box fixed url(test.jpg) repeat 100px left , padding-box border-box fixed url(test.jpg) repeat-x 100px left blue }
-bg229994 { background: padding-box border-box fixed url(test.jpg) repeat-y 100px left , padding-box border-box fixed url(test.jpg) 100px left blue }
-bg229995 { background: padding-box border-box fixed url(test.jpg) 100px left no-repeat , padding-box border-box fixed url(test.jpg) 100px left repeat blue }
-bg229996 { background: padding-box border-box fixed url(test.jpg) 100px left repeat-x , padding-box border-box fixed url(test.jpg) 100px left repeat-y blue }
-bg229997 { background: padding-box border-box no-repeat fixed none 100px left , padding-box border-box no-repeat fixed 100px left blue }
-bg229998 { background: padding-box border-box no-repeat fixed 100px left none , padding-box border-box no-repeat fixed 100px left url(test.jpg) blue }
-bg229999 { background: padding-box border-box no-repeat fixed url(test.jpg) 100px left , padding-box border-box no-repeat none fixed 100px left blue }
-bg230000 { background: padding-box border-box no-repeat none 100px left , padding-box border-box no-repeat none 100px left fixed blue }
+bg229966 { background: url(test.jpg) border-box scroll left 100px repeat-y , padding-box border-box fixed no-repeat none 100px bottom blue }
+bg229967 { background: padding-box border-box fixed no-repeat 100px bottom , padding-box border-box fixed no-repeat 50px top none blue }
+bg229968 { background: padding-box border-box fixed no-repeat 100px bottom url(test.jpg) , padding-box border-box fixed no-repeat url(test.jpg) 50px top blue }
+bg229969 { background: padding-box border-box fixed none no-repeat 100px bottom , padding-box border-box fixed none repeat 50px top blue }
+bg229970 { background: padding-box border-box fixed none repeat-x 100px bottom , padding-box border-box fixed none repeat-y 50px top blue }
+bg229971 { background: padding-box border-box fixed none 100px bottom , padding-box border-box fixed none 50px top no-repeat blue }
+bg229972 { background: padding-box border-box fixed none 100px bottom repeat , padding-box border-box fixed none 50px top repeat-x blue }
+bg229973 { background: padding-box border-box fixed none 100px bottom repeat-y , padding-box border-box fixed repeat none 50px top blue }
+bg229974 { background: padding-box border-box fixed repeat 100px bottom , padding-box border-box fixed repeat 50px top none blue }
+bg229975 { background: padding-box border-box fixed repeat 100px bottom url(test.jpg) , padding-box border-box fixed repeat url(test.jpg) 50px top blue }
+bg229976 { background: padding-box border-box fixed repeat-x none 100px bottom , padding-box border-box fixed repeat-x 50px top blue }
+bg229977 { background: padding-box border-box fixed repeat-x 100px bottom none , padding-box border-box fixed repeat-x 50px top url(test.jpg) blue }
+bg229978 { background: padding-box border-box fixed repeat-x url(test.jpg) 100px bottom , padding-box border-box fixed repeat-y none 50px top blue }
+bg229979 { background: padding-box border-box fixed repeat-y 100px bottom , padding-box border-box fixed repeat-y 50px top none blue }
+bg229980 { background: padding-box border-box fixed repeat-y 100px bottom url(test.jpg) , padding-box border-box fixed repeat-y url(test.jpg) 50px top blue }
+bg229981 { background: padding-box border-box fixed 100px bottom , padding-box border-box fixed 50px top no-repeat blue }
+bg229982 { background: padding-box border-box fixed 100px bottom no-repeat none , padding-box border-box fixed 50px top no-repeat url(test.jpg) blue }
+bg229983 { background: padding-box border-box fixed 100px bottom none , padding-box border-box fixed 50px top none no-repeat blue }
+bg229984 { background: padding-box border-box fixed 100px bottom none repeat , padding-box border-box fixed 50px top none repeat-x blue }
+bg229985 { background: padding-box border-box fixed 100px bottom none repeat-y , padding-box border-box fixed 50px top repeat blue }
+bg229986 { background: padding-box border-box fixed 100px bottom repeat none , padding-box border-box fixed 50px top repeat url(test.jpg) blue }
+bg229987 { background: padding-box border-box fixed 100px bottom repeat-x , padding-box border-box fixed 50px top repeat-x none blue }
+bg229988 { background: padding-box border-box fixed 100px bottom repeat-x url(test.jpg) , padding-box border-box fixed 50px top repeat-y blue }
+bg229989 { background: padding-box border-box fixed 100px bottom repeat-y none , padding-box border-box fixed 50px top repeat-y url(test.jpg) blue }
+bg229990 { background: padding-box border-box fixed 100px bottom url(test.jpg) , padding-box border-box fixed 50px top url(test.jpg) no-repeat blue }
+bg229991 { background: padding-box border-box fixed 100px bottom url(test.jpg) repeat , padding-box border-box fixed 50px top url(test.jpg) repeat-x blue }
+bg229992 { background: padding-box border-box fixed 100px bottom url(test.jpg) repeat-y , padding-box border-box fixed url(test.jpg) no-repeat 50px top blue }
+bg229993 { background: padding-box border-box fixed url(test.jpg) repeat 100px bottom , padding-box border-box fixed url(test.jpg) repeat-x 50px top blue }
+bg229994 { background: padding-box border-box fixed url(test.jpg) repeat-y 100px bottom , padding-box border-box fixed url(test.jpg) 50px top blue }
+bg229995 { background: padding-box border-box fixed url(test.jpg) 100px bottom no-repeat , padding-box border-box fixed url(test.jpg) 50px top repeat blue }
+bg229996 { background: padding-box border-box fixed url(test.jpg) 100px bottom repeat-x , padding-box border-box fixed url(test.jpg) 50px top repeat-y blue }
+bg229997 { background: padding-box border-box no-repeat fixed none 100px bottom , padding-box border-box no-repeat fixed 50px top blue }
+bg229998 { background: padding-box border-box no-repeat fixed 100px bottom none , padding-box border-box no-repeat fixed 50px top url(test.jpg) blue }
+bg229999 { background: padding-box border-box no-repeat fixed url(test.jpg) 100px bottom , padding-box border-box no-repeat none fixed 50px top blue }
+bg230000 { background: padding-box border-box no-repeat none 100px bottom , padding-box border-box no-repeat none 50px top fixed blue }

@@ -10,8 +10,8 @@ bg190009 { background: repeat space #f00 none center }
 bg190010 { background: repeat space #f00 none fixed  }
 bg190011 { background: repeat space #f00 none fixed 100px  }
 bg190012 { background: repeat space #f00 none fixed 100px 50%  }
-bg190013 { background: repeat space #f00 none fixed 100px left }
-bg190014 { background: repeat space #f00 none fixed 25% left }
+bg190013 { background: repeat space #f00 none fixed 100px bottom }
+bg190014 { background: repeat space #f00 none fixed 25% top }
 bg190015 { background: repeat space #f00 none fixed 50%  }
 bg190016 { background: repeat space #f00 none fixed 50% 100px  }
 bg190017 { background: repeat space #f00 none fixed bottom center }
@@ -71,8 +71,8 @@ bg190070 { background: repeat space #f00 none right }
 bg190071 { background: repeat space #f00 none scroll  }
 bg190072 { background: repeat space #f00 none scroll 100px  }
 bg190073 { background: repeat space #f00 none scroll 100px 50%  }
-bg190074 { background: repeat space #f00 none scroll 100px left }
-bg190075 { background: repeat space #f00 none scroll 25% left }
+bg190074 { background: repeat space #f00 none scroll 100px bottom }
+bg190075 { background: repeat space #f00 none scroll 25% top }
 bg190076 { background: repeat space #f00 none scroll 50%  }
 bg190077 { background: repeat space #f00 none scroll 50% 100px  }
 bg190078 { background: repeat space #f00 none scroll bottom center }
@@ -168,14 +168,14 @@ bg190167 { background: repeat space #f00 scroll 100px  }
 bg190168 { background: repeat space #f00 scroll 100px 50%  }
 bg190169 { background: repeat space #f00 scroll 100px 50% none  }
 bg190170 { background: repeat space #f00 scroll 100px 50% url(test.jpg)  }
-bg190171 { background: repeat space #f00 scroll 100px left none }
-bg190172 { background: repeat space #f00 scroll 100px left url(test.jpg) }
-bg190173 { background: repeat space #f00 scroll 100px left }
+bg190171 { background: repeat space #f00 scroll 100px bottom none }
+bg190172 { background: repeat space #f00 scroll 100px bottom url(test.jpg) }
+bg190173 { background: repeat space #f00 scroll 100px bottom }
 bg190174 { background: repeat space #f00 scroll 100px none  }
 bg190175 { background: repeat space #f00 scroll 100px url(test.jpg)  }
-bg190176 { background: repeat space #f00 scroll 25% left none }
-bg190177 { background: repeat space #f00 scroll 25% left url(test.jpg) }
-bg190178 { background: repeat space #f00 scroll 25% left }
+bg190176 { background: repeat space #f00 scroll 25% top none }
+bg190177 { background: repeat space #f00 scroll 25% top url(test.jpg) }
+bg190178 { background: repeat space #f00 scroll 25% top }
 bg190179 { background: repeat space #f00 scroll 50%  }
 bg190180 { background: repeat space #f00 scroll 50% 100px  }
 bg190181 { background: repeat space #f00 scroll 50% 100px none  }
@@ -233,8 +233,8 @@ bg190232 { background: repeat space #f00 scroll left }
 bg190233 { background: repeat space #f00 scroll none  }
 bg190234 { background: repeat space #f00 scroll none 100px  }
 bg190235 { background: repeat space #f00 scroll none 100px 50%  }
-bg190236 { background: repeat space #f00 scroll none 100px left }
-bg190237 { background: repeat space #f00 scroll none 25% left }
+bg190236 { background: repeat space #f00 scroll none 100px bottom }
+bg190237 { background: repeat space #f00 scroll none 25% top }
 bg190238 { background: repeat space #f00 scroll none 50%  }
 bg190239 { background: repeat space #f00 scroll none 50% 100px  }
 bg190240 { background: repeat space #f00 scroll none bottom center }
@@ -288,8 +288,8 @@ bg190287 { background: repeat space #f00 scroll top }
 bg190288 { background: repeat space #f00 scroll url(test.jpg)  }
 bg190289 { background: repeat space #f00 scroll url(test.jpg) 100px  }
 bg190290 { background: repeat space #f00 scroll url(test.jpg) 100px 50%  }
-bg190291 { background: repeat space #f00 scroll url(test.jpg) 100px left }
-bg190292 { background: repeat space #f00 scroll url(test.jpg) 25% left }
+bg190291 { background: repeat space #f00 scroll url(test.jpg) 100px bottom }
+bg190292 { background: repeat space #f00 scroll url(test.jpg) 25% top }
 bg190293 { background: repeat space #f00 scroll url(test.jpg) 50%  }
 bg190294 { background: repeat space #f00 scroll url(test.jpg) 50% 100px  }
 bg190295 { background: repeat space #f00 scroll url(test.jpg) bottom center }
@@ -374,13 +374,13 @@ bg190373 { background: repeat space #f00 url(test.jpg) 100px 50%  }
 bg190374 { background: repeat space #f00 url(test.jpg) 100px 50% fixed  }
 bg190375 { background: repeat space #f00 url(test.jpg) 100px 50% scroll  }
 bg190376 { background: repeat space #f00 url(test.jpg) 100px fixed  }
-bg190377 { background: repeat space #f00 url(test.jpg) 100px left fixed }
-bg190378 { background: repeat space #f00 url(test.jpg) 100px left scroll }
-bg190379 { background: repeat space #f00 url(test.jpg) 100px left }
+bg190377 { background: repeat space #f00 url(test.jpg) 100px bottom fixed }
+bg190378 { background: repeat space #f00 url(test.jpg) 100px bottom scroll }
+bg190379 { background: repeat space #f00 url(test.jpg) 100px bottom }
 bg190380 { background: repeat space #f00 url(test.jpg) 100px scroll  }
-bg190381 { background: repeat space #f00 url(test.jpg) 25% left fixed }
-bg190382 { background: repeat space #f00 url(test.jpg) 25% left scroll }
-bg190383 { background: repeat space #f00 url(test.jpg) 25% left }
+bg190381 { background: repeat space #f00 url(test.jpg) 25% top fixed }
+bg190382 { background: repeat space #f00 url(test.jpg) 25% top scroll }
+bg190383 { background: repeat space #f00 url(test.jpg) 25% top }
 bg190384 { background: repeat space #f00 url(test.jpg) 50%  }
 bg190385 { background: repeat space #f00 url(test.jpg) 50% 100px  }
 bg190386 { background: repeat space #f00 url(test.jpg) 50% 100px fixed  }
@@ -420,8 +420,8 @@ bg190419 { background: repeat space #f00 url(test.jpg) center }
 bg190420 { background: repeat space #f00 url(test.jpg) fixed  }
 bg190421 { background: repeat space #f00 url(test.jpg) fixed 100px  }
 bg190422 { background: repeat space #f00 url(test.jpg) fixed 100px 50%  }
-bg190423 { background: repeat space #f00 url(test.jpg) fixed 100px left }
-bg190424 { background: repeat space #f00 url(test.jpg) fixed 25% left }
+bg190423 { background: repeat space #f00 url(test.jpg) fixed 100px bottom }
+bg190424 { background: repeat space #f00 url(test.jpg) fixed 25% top }
 bg190425 { background: repeat space #f00 url(test.jpg) fixed 50%  }
 bg190426 { background: repeat space #f00 url(test.jpg) fixed 50% 100px  }
 bg190427 { background: repeat space #f00 url(test.jpg) fixed bottom center }
@@ -481,8 +481,8 @@ bg190480 { background: repeat space #f00 url(test.jpg) right }
 bg190481 { background: repeat space #f00 url(test.jpg) scroll  }
 bg190482 { background: repeat space #f00 url(test.jpg) scroll 100px  }
 bg190483 { background: repeat space #f00 url(test.jpg) scroll 100px 50%  }
-bg190484 { background: repeat space #f00 url(test.jpg) scroll 100px left }
-bg190485 { background: repeat space #f00 url(test.jpg) scroll 25% left }
+bg190484 { background: repeat space #f00 url(test.jpg) scroll 100px bottom }
+bg190485 { background: repeat space #f00 url(test.jpg) scroll 25% top }
 bg190486 { background: repeat space #f00 url(test.jpg) scroll 50%  }
 bg190487 { background: repeat space #f00 url(test.jpg) scroll 50% 100px  }
 bg190488 { background: repeat space #f00 url(test.jpg) scroll bottom center }
@@ -678,118 +678,118 @@ bg190677 { background: repeat space 100px fixed url(test.jpg)  }
 bg190678 { background: repeat space 100px fixed url(test.jpg) #f00  }
 bg190679 { background: repeat space 100px fixed url(test.jpg) blue  }
 bg190680 { background: repeat space 100px fixed url(test.jpg) transparent  }
-bg190681 { background: repeat space 100px left #f00 fixed none }
-bg190682 { background: repeat space 100px left #f00 fixed url(test.jpg) }
-bg190683 { background: repeat space 100px left #f00 fixed }
-bg190684 { background: repeat space 100px left #f00 none fixed }
-bg190685 { background: repeat space 100px left #f00 none scroll }
-bg190686 { background: repeat space 100px left #f00 none }
-bg190687 { background: repeat space 100px left #f00 scroll none }
-bg190688 { background: repeat space 100px left #f00 scroll url(test.jpg) }
-bg190689 { background: repeat space 100px left #f00 scroll }
-bg190690 { background: repeat space 100px left #f00 url(test.jpg) fixed }
-bg190691 { background: repeat space 100px left #f00 url(test.jpg) scroll }
-bg190692 { background: repeat space 100px left #f00 url(test.jpg) }
-bg190693 { background: repeat space 100px left #f00 }
-bg190694 { background: repeat space 100px left blue fixed none }
-bg190695 { background: repeat space 100px left blue fixed url(test.jpg) }
-bg190696 { background: repeat space 100px left blue fixed }
-bg190697 { background: repeat space 100px left blue none fixed }
-bg190698 { background: repeat space 100px left blue none scroll }
-bg190699 { background: repeat space 100px left blue none }
-bg190700 { background: repeat space 100px left blue scroll none }
-bg190701 { background: repeat space 100px left blue scroll url(test.jpg) }
-bg190702 { background: repeat space 100px left blue scroll }
-bg190703 { background: repeat space 100px left blue url(test.jpg) fixed }
-bg190704 { background: repeat space 100px left blue url(test.jpg) scroll }
-bg190705 { background: repeat space 100px left blue url(test.jpg) }
-bg190706 { background: repeat space 100px left blue }
-bg190707 { background: repeat space 100px left fixed #f00 none }
-bg190708 { background: repeat space 100px left fixed #f00 url(test.jpg) }
-bg190709 { background: repeat space 100px left fixed #f00 }
-bg190710 { background: repeat space 100px left fixed blue none }
-bg190711 { background: repeat space 100px left fixed blue url(test.jpg) }
-bg190712 { background: repeat space 100px left fixed blue }
-bg190713 { background: repeat space 100px left fixed none #f00 }
-bg190714 { background: repeat space 100px left fixed none blue }
-bg190715 { background: repeat space 100px left fixed none transparent }
-bg190716 { background: repeat space 100px left fixed none }
-bg190717 { background: repeat space 100px left fixed transparent none }
-bg190718 { background: repeat space 100px left fixed transparent url(test.jpg) }
-bg190719 { background: repeat space 100px left fixed transparent }
-bg190720 { background: repeat space 100px left fixed url(test.jpg) #f00 }
-bg190721 { background: repeat space 100px left fixed url(test.jpg) blue }
-bg190722 { background: repeat space 100px left fixed url(test.jpg) transparent }
-bg190723 { background: repeat space 100px left fixed url(test.jpg) }
-bg190724 { background: repeat space 100px left fixed }
-bg190725 { background: repeat space 100px left none #f00 fixed }
-bg190726 { background: repeat space 100px left none #f00 scroll }
-bg190727 { background: repeat space 100px left none #f00 }
-bg190728 { background: repeat space 100px left none blue fixed }
-bg190729 { background: repeat space 100px left none blue scroll }
-bg190730 { background: repeat space 100px left none blue }
-bg190731 { background: repeat space 100px left none fixed #f00 }
-bg190732 { background: repeat space 100px left none fixed blue }
-bg190733 { background: repeat space 100px left none fixed transparent }
-bg190734 { background: repeat space 100px left none fixed }
-bg190735 { background: repeat space 100px left none scroll #f00 }
-bg190736 { background: repeat space 100px left none scroll blue }
-bg190737 { background: repeat space 100px left none scroll transparent }
-bg190738 { background: repeat space 100px left none scroll }
-bg190739 { background: repeat space 100px left none transparent fixed }
-bg190740 { background: repeat space 100px left none transparent scroll }
-bg190741 { background: repeat space 100px left none transparent }
-bg190742 { background: repeat space 100px left none }
-bg190743 { background: repeat space 100px left scroll #f00 none }
-bg190744 { background: repeat space 100px left scroll #f00 url(test.jpg) }
-bg190745 { background: repeat space 100px left scroll #f00 }
-bg190746 { background: repeat space 100px left scroll blue none }
-bg190747 { background: repeat space 100px left scroll blue url(test.jpg) }
-bg190748 { background: repeat space 100px left scroll blue }
-bg190749 { background: repeat space 100px left scroll none #f00 }
-bg190750 { background: repeat space 100px left scroll none blue }
-bg190751 { background: repeat space 100px left scroll none transparent }
-bg190752 { background: repeat space 100px left scroll none }
-bg190753 { background: repeat space 100px left scroll transparent none }
-bg190754 { background: repeat space 100px left scroll transparent url(test.jpg) }
-bg190755 { background: repeat space 100px left scroll transparent }
-bg190756 { background: repeat space 100px left scroll url(test.jpg) #f00 }
-bg190757 { background: repeat space 100px left scroll url(test.jpg) blue }
-bg190758 { background: repeat space 100px left scroll url(test.jpg) transparent }
-bg190759 { background: repeat space 100px left scroll url(test.jpg) }
-bg190760 { background: repeat space 100px left scroll }
-bg190761 { background: repeat space 100px left transparent fixed none }
-bg190762 { background: repeat space 100px left transparent fixed url(test.jpg) }
-bg190763 { background: repeat space 100px left transparent fixed }
-bg190764 { background: repeat space 100px left transparent none fixed }
-bg190765 { background: repeat space 100px left transparent none scroll }
-bg190766 { background: repeat space 100px left transparent none }
-bg190767 { background: repeat space 100px left transparent scroll none }
-bg190768 { background: repeat space 100px left transparent scroll url(test.jpg) }
-bg190769 { background: repeat space 100px left transparent scroll }
-bg190770 { background: repeat space 100px left transparent url(test.jpg) fixed }
-bg190771 { background: repeat space 100px left transparent url(test.jpg) scroll }
-bg190772 { background: repeat space 100px left transparent url(test.jpg) }
-bg190773 { background: repeat space 100px left transparent }
-bg190774 { background: repeat space 100px left url(test.jpg) #f00 fixed }
-bg190775 { background: repeat space 100px left url(test.jpg) #f00 scroll }
-bg190776 { background: repeat space 100px left url(test.jpg) #f00 }
-bg190777 { background: repeat space 100px left url(test.jpg) blue fixed }
-bg190778 { background: repeat space 100px left url(test.jpg) blue scroll }
-bg190779 { background: repeat space 100px left url(test.jpg) blue }
-bg190780 { background: repeat space 100px left url(test.jpg) fixed #f00 }
-bg190781 { background: repeat space 100px left url(test.jpg) fixed blue }
-bg190782 { background: repeat space 100px left url(test.jpg) fixed transparent }
-bg190783 { background: repeat space 100px left url(test.jpg) fixed }
-bg190784 { background: repeat space 100px left url(test.jpg) scroll #f00 }
-bg190785 { background: repeat space 100px left url(test.jpg) scroll blue }
-bg190786 { background: repeat space 100px left url(test.jpg) scroll transparent }
-bg190787 { background: repeat space 100px left url(test.jpg) scroll }
-bg190788 { background: repeat space 100px left url(test.jpg) transparent fixed }
-bg190789 { background: repeat space 100px left url(test.jpg) transparent scroll }
-bg190790 { background: repeat space 100px left url(test.jpg) transparent }
-bg190791 { background: repeat space 100px left url(test.jpg) }
-bg190792 { background: repeat space 100px left }
+bg190681 { background: repeat space 100px bottom #f00 fixed none }
+bg190682 { background: repeat space 100px bottom #f00 fixed url(test.jpg) }
+bg190683 { background: repeat space 100px bottom #f00 fixed }
+bg190684 { background: repeat space 100px bottom #f00 none fixed }
+bg190685 { background: repeat space 100px bottom #f00 none scroll }
+bg190686 { background: repeat space 100px bottom #f00 none }
+bg190687 { background: repeat space 100px bottom #f00 scroll none }
+bg190688 { background: repeat space 100px bottom #f00 scroll url(test.jpg) }
+bg190689 { background: repeat space 100px bottom #f00 scroll }
+bg190690 { background: repeat space 100px bottom #f00 url(test.jpg) fixed }
+bg190691 { background: repeat space 100px bottom #f00 url(test.jpg) scroll }
+bg190692 { background: repeat space 100px bottom #f00 url(test.jpg) }
+bg190693 { background: repeat space 100px bottom #f00 }
+bg190694 { background: repeat space 100px bottom blue fixed none }
+bg190695 { background: repeat space 100px bottom blue fixed url(test.jpg) }
+bg190696 { background: repeat space 100px bottom blue fixed }
+bg190697 { background: repeat space 100px bottom blue none fixed }
+bg190698 { background: repeat space 100px bottom blue none scroll }
+bg190699 { background: repeat space 100px bottom blue none }
+bg190700 { background: repeat space 100px bottom blue scroll none }
+bg190701 { background: repeat space 100px bottom blue scroll url(test.jpg) }
+bg190702 { background: repeat space 100px bottom blue scroll }
+bg190703 { background: repeat space 100px bottom blue url(test.jpg) fixed }
+bg190704 { background: repeat space 100px bottom blue url(test.jpg) scroll }
+bg190705 { background: repeat space 100px bottom blue url(test.jpg) }
+bg190706 { background: repeat space 100px bottom blue }
+bg190707 { background: repeat space 100px bottom fixed #f00 none }
+bg190708 { background: repeat space 100px bottom fixed #f00 url(test.jpg) }
+bg190709 { background: repeat space 100px bottom fixed #f00 }
+bg190710 { background: repeat space 100px bottom fixed blue none }
+bg190711 { background: repeat space 100px bottom fixed blue url(test.jpg) }
+bg190712 { background: repeat space 100px bottom fixed blue }
+bg190713 { background: repeat space 100px bottom fixed none #f00 }
+bg190714 { background: repeat space 100px bottom fixed none blue }
+bg190715 { background: repeat space 100px bottom fixed none transparent }
+bg190716 { background: repeat space 100px bottom fixed none }
+bg190717 { background: repeat space 100px bottom fixed transparent none }
+bg190718 { background: repeat space 100px bottom fixed transparent url(test.jpg) }
+bg190719 { background: repeat space 100px bottom fixed transparent }
+bg190720 { background: repeat space 100px bottom fixed url(test.jpg) #f00 }
+bg190721 { background: repeat space 100px bottom fixed url(test.jpg) blue }
+bg190722 { background: repeat space 100px bottom fixed url(test.jpg) transparent }
+bg190723 { background: repeat space 100px bottom fixed url(test.jpg) }
+bg190724 { background: repeat space 100px bottom fixed }
+bg190725 { background: repeat space 100px bottom none #f00 fixed }
+bg190726 { background: repeat space 100px bottom none #f00 scroll }
+bg190727 { background: repeat space 100px bottom none #f00 }
+bg190728 { background: repeat space 100px bottom none blue fixed }
+bg190729 { background: repeat space 100px bottom none blue scroll }
+bg190730 { background: repeat space 100px bottom none blue }
+bg190731 { background: repeat space 100px bottom none fixed #f00 }
+bg190732 { background: repeat space 100px bottom none fixed blue }
+bg190733 { background: repeat space 100px bottom none fixed transparent }
+bg190734 { background: repeat space 100px bottom none fixed }
+bg190735 { background: repeat space 100px bottom none scroll #f00 }
+bg190736 { background: repeat space 100px bottom none scroll blue }
+bg190737 { background: repeat space 100px bottom none scroll transparent }
+bg190738 { background: repeat space 100px bottom none scroll }
+bg190739 { background: repeat space 100px bottom none transparent fixed }
+bg190740 { background: repeat space 100px bottom none transparent scroll }
+bg190741 { background: repeat space 100px bottom none transparent }
+bg190742 { background: repeat space 100px bottom none }
+bg190743 { background: repeat space 100px bottom scroll #f00 none }
+bg190744 { background: repeat space 100px bottom scroll #f00 url(test.jpg) }
+bg190745 { background: repeat space 100px bottom scroll #f00 }
+bg190746 { background: repeat space 100px bottom scroll blue none }
+bg190747 { background: repeat space 100px bottom scroll blue url(test.jpg) }
+bg190748 { background: repeat space 100px bottom scroll blue }
+bg190749 { background: repeat space 100px bottom scroll none #f00 }
+bg190750 { background: repeat space 100px bottom scroll none blue }
+bg190751 { background: repeat space 100px bottom scroll none transparent }
+bg190752 { background: repeat space 100px bottom scroll none }
+bg190753 { background: repeat space 100px bottom scroll transparent none }
+bg190754 { background: repeat space 100px bottom scroll transparent url(test.jpg) }
+bg190755 { background: repeat space 100px bottom scroll transparent }
+bg190756 { background: repeat space 100px bottom scroll url(test.jpg) #f00 }
+bg190757 { background: repeat space 100px bottom scroll url(test.jpg) blue }
+bg190758 { background: repeat space 100px bottom scroll url(test.jpg) transparent }
+bg190759 { background: repeat space 100px bottom scroll url(test.jpg) }
+bg190760 { background: repeat space 100px bottom scroll }
+bg190761 { background: repeat space 100px bottom transparent fixed none }
+bg190762 { background: repeat space 100px bottom transparent fixed url(test.jpg) }
+bg190763 { background: repeat space 100px bottom transparent fixed }
+bg190764 { background: repeat space 100px bottom transparent none fixed }
+bg190765 { background: repeat space 100px bottom transparent none scroll }
+bg190766 { background: repeat space 100px bottom transparent none }
+bg190767 { background: repeat space 100px bottom transparent scroll none }
+bg190768 { background: repeat space 100px bottom transparent scroll url(test.jpg) }
+bg190769 { background: repeat space 100px bottom transparent scroll }
+bg190770 { background: repeat space 100px bottom transparent url(test.jpg) fixed }
+bg190771 { background: repeat space 100px bottom transparent url(test.jpg) scroll }
+bg190772 { background: repeat space 100px bottom transparent url(test.jpg) }
+bg190773 { background: repeat space 100px bottom transparent }
+bg190774 { background: repeat space 100px bottom url(test.jpg) #f00 fixed }
+bg190775 { background: repeat space 100px bottom url(test.jpg) #f00 scroll }
+bg190776 { background: repeat space 100px bottom url(test.jpg) #f00 }
+bg190777 { background: repeat space 100px bottom url(test.jpg) blue fixed }
+bg190778 { background: repeat space 100px bottom url(test.jpg) blue scroll }
+bg190779 { background: repeat space 100px bottom url(test.jpg) blue }
+bg190780 { background: repeat space 100px bottom url(test.jpg) fixed #f00 }
+bg190781 { background: repeat space 100px bottom url(test.jpg) fixed blue }
+bg190782 { background: repeat space 100px bottom url(test.jpg) fixed transparent }
+bg190783 { background: repeat space 100px bottom url(test.jpg) fixed }
+bg190784 { background: repeat space 100px bottom url(test.jpg) scroll #f00 }
+bg190785 { background: repeat space 100px bottom url(test.jpg) scroll blue }
+bg190786 { background: repeat space 100px bottom url(test.jpg) scroll transparent }
+bg190787 { background: repeat space 100px bottom url(test.jpg) scroll }
+bg190788 { background: repeat space 100px bottom url(test.jpg) transparent fixed }
+bg190789 { background: repeat space 100px bottom url(test.jpg) transparent scroll }
+bg190790 { background: repeat space 100px bottom url(test.jpg) transparent }
+bg190791 { background: repeat space 100px bottom url(test.jpg) }
+bg190792 { background: repeat space 100px bottom }
 bg190793 { background: repeat space 100px none  }
 bg190794 { background: repeat space 100px none #f00  }
 bg190795 { background: repeat space 100px none #f00 fixed  }
@@ -857,118 +857,118 @@ bg190856 { background: repeat space 100px url(test.jpg) scroll transparent  }
 bg190857 { background: repeat space 100px url(test.jpg) transparent  }
 bg190858 { background: repeat space 100px url(test.jpg) transparent fixed  }
 bg190859 { background: repeat space 100px url(test.jpg) transparent scroll  }
-bg190860 { background: repeat space 25% left #f00 fixed none }
-bg190861 { background: repeat space 25% left #f00 fixed url(test.jpg) }
-bg190862 { background: repeat space 25% left #f00 fixed }
-bg190863 { background: repeat space 25% left #f00 none fixed }
-bg190864 { background: repeat space 25% left #f00 none scroll }
-bg190865 { background: repeat space 25% left #f00 none }
-bg190866 { background: repeat space 25% left #f00 scroll none }
-bg190867 { background: repeat space 25% left #f00 scroll url(test.jpg) }
-bg190868 { background: repeat space 25% left #f00 scroll }
-bg190869 { background: repeat space 25% left #f00 url(test.jpg) fixed }
-bg190870 { background: repeat space 25% left #f00 url(test.jpg) scroll }
-bg190871 { background: repeat space 25% left #f00 url(test.jpg) }
-bg190872 { background: repeat space 25% left #f00 }
-bg190873 { background: repeat space 25% left blue fixed none }
-bg190874 { background: repeat space 25% left blue fixed url(test.jpg) }
-bg190875 { background: repeat space 25% left blue fixed }
-bg190876 { background: repeat space 25% left blue none fixed }
-bg190877 { background: repeat space 25% left blue none scroll }
-bg190878 { background: repeat space 25% left blue none }
-bg190879 { background: repeat space 25% left blue scroll none }
-bg190880 { background: repeat space 25% left blue scroll url(test.jpg) }
-bg190881 { background: repeat space 25% left blue scroll }
-bg190882 { background: repeat space 25% left blue url(test.jpg) fixed }
-bg190883 { background: repeat space 25% left blue url(test.jpg) scroll }
-bg190884 { background: repeat space 25% left blue url(test.jpg) }
-bg190885 { background: repeat space 25% left blue }
-bg190886 { background: repeat space 25% left fixed #f00 none }
-bg190887 { background: repeat space 25% left fixed #f00 url(test.jpg) }
-bg190888 { background: repeat space 25% left fixed #f00 }
-bg190889 { background: repeat space 25% left fixed blue none }
-bg190890 { background: repeat space 25% left fixed blue url(test.jpg) }
-bg190891 { background: repeat space 25% left fixed blue }
-bg190892 { background: repeat space 25% left fixed none #f00 }
-bg190893 { background: repeat space 25% left fixed none blue }
-bg190894 { background: repeat space 25% left fixed none transparent }
-bg190895 { background: repeat space 25% left fixed none }
-bg190896 { background: repeat space 25% left fixed transparent none }
-bg190897 { background: repeat space 25% left fixed transparent url(test.jpg) }
-bg190898 { background: repeat space 25% left fixed transparent }
-bg190899 { background: repeat space 25% left fixed url(test.jpg) #f00 }
-bg190900 { background: repeat space 25% left fixed url(test.jpg) blue }
-bg190901 { background: repeat space 25% left fixed url(test.jpg) transparent }
-bg190902 { background: repeat space 25% left fixed url(test.jpg) }
-bg190903 { background: repeat space 25% left fixed }
-bg190904 { background: repeat space 25% left none #f00 fixed }
-bg190905 { background: repeat space 25% left none #f00 scroll }
-bg190906 { background: repeat space 25% left none #f00 }
-bg190907 { background: repeat space 25% left none blue fixed }
-bg190908 { background: repeat space 25% left none blue scroll }
-bg190909 { background: repeat space 25% left none blue }
-bg190910 { background: repeat space 25% left none fixed #f00 }
-bg190911 { background: repeat space 25% left none fixed blue }
-bg190912 { background: repeat space 25% left none fixed transparent }
-bg190913 { background: repeat space 25% left none fixed }
-bg190914 { background: repeat space 25% left none scroll #f00 }
-bg190915 { background: repeat space 25% left none scroll blue }
-bg190916 { background: repeat space 25% left none scroll transparent }
-bg190917 { background: repeat space 25% left none scroll }
-bg190918 { background: repeat space 25% left none transparent fixed }
-bg190919 { background: repeat space 25% left none transparent scroll }
-bg190920 { background: repeat space 25% left none transparent }
-bg190921 { background: repeat space 25% left none }
-bg190922 { background: repeat space 25% left scroll #f00 none }
-bg190923 { background: repeat space 25% left scroll #f00 url(test.jpg) }
-bg190924 { background: repeat space 25% left scroll #f00 }
-bg190925 { background: repeat space 25% left scroll blue none }
-bg190926 { background: repeat space 25% left scroll blue url(test.jpg) }
-bg190927 { background: repeat space 25% left scroll blue }
-bg190928 { background: repeat space 25% left scroll none #f00 }
-bg190929 { background: repeat space 25% left scroll none blue }
-bg190930 { background: repeat space 25% left scroll none transparent }
-bg190931 { background: repeat space 25% left scroll none }
-bg190932 { background: repeat space 25% left scroll transparent none }
-bg190933 { background: repeat space 25% left scroll transparent url(test.jpg) }
-bg190934 { background: repeat space 25% left scroll transparent }
-bg190935 { background: repeat space 25% left scroll url(test.jpg) #f00 }
-bg190936 { background: repeat space 25% left scroll url(test.jpg) blue }
-bg190937 { background: repeat space 25% left scroll url(test.jpg) transparent }
-bg190938 { background: repeat space 25% left scroll url(test.jpg) }
-bg190939 { background: repeat space 25% left scroll }
-bg190940 { background: repeat space 25% left transparent fixed none }
-bg190941 { background: repeat space 25% left transparent fixed url(test.jpg) }
-bg190942 { background: repeat space 25% left transparent fixed }
-bg190943 { background: repeat space 25% left transparent none fixed }
-bg190944 { background: repeat space 25% left transparent none scroll }
-bg190945 { background: repeat space 25% left transparent none }
-bg190946 { background: repeat space 25% left transparent scroll none }
-bg190947 { background: repeat space 25% left transparent scroll url(test.jpg) }
-bg190948 { background: repeat space 25% left transparent scroll }
-bg190949 { background: repeat space 25% left transparent url(test.jpg) fixed }
-bg190950 { background: repeat space 25% left transparent url(test.jpg) scroll }
-bg190951 { background: repeat space 25% left transparent url(test.jpg) }
-bg190952 { background: repeat space 25% left transparent }
-bg190953 { background: repeat space 25% left url(test.jpg) #f00 fixed }
-bg190954 { background: repeat space 25% left url(test.jpg) #f00 scroll }
-bg190955 { background: repeat space 25% left url(test.jpg) #f00 }
-bg190956 { background: repeat space 25% left url(test.jpg) blue fixed }
-bg190957 { background: repeat space 25% left url(test.jpg) blue scroll }
-bg190958 { background: repeat space 25% left url(test.jpg) blue }
-bg190959 { background: repeat space 25% left url(test.jpg) fixed #f00 }
-bg190960 { background: repeat space 25% left url(test.jpg) fixed blue }
-bg190961 { background: repeat space 25% left url(test.jpg) fixed transparent }
-bg190962 { background: repeat space 25% left url(test.jpg) fixed }
-bg190963 { background: repeat space 25% left url(test.jpg) scroll #f00 }
-bg190964 { background: repeat space 25% left url(test.jpg) scroll blue }
-bg190965 { background: repeat space 25% left url(test.jpg) scroll transparent }
-bg190966 { background: repeat space 25% left url(test.jpg) scroll }
-bg190967 { background: repeat space 25% left url(test.jpg) transparent fixed }
-bg190968 { background: repeat space 25% left url(test.jpg) transparent scroll }
-bg190969 { background: repeat space 25% left url(test.jpg) transparent }
-bg190970 { background: repeat space 25% left url(test.jpg) }
-bg190971 { background: repeat space 25% left }
+bg190860 { background: repeat space 25% top #f00 fixed none }
+bg190861 { background: repeat space 25% top #f00 fixed url(test.jpg) }
+bg190862 { background: repeat space 25% top #f00 fixed }
+bg190863 { background: repeat space 25% top #f00 none fixed }
+bg190864 { background: repeat space 25% top #f00 none scroll }
+bg190865 { background: repeat space 25% top #f00 none }
+bg190866 { background: repeat space 25% top #f00 scroll none }
+bg190867 { background: repeat space 25% top #f00 scroll url(test.jpg) }
+bg190868 { background: repeat space 25% top #f00 scroll }
+bg190869 { background: repeat space 25% top #f00 url(test.jpg) fixed }
+bg190870 { background: repeat space 25% top #f00 url(test.jpg) scroll }
+bg190871 { background: repeat space 25% top #f00 url(test.jpg) }
+bg190872 { background: repeat space 25% top #f00 }
+bg190873 { background: repeat space 25% top blue fixed none }
+bg190874 { background: repeat space 25% top blue fixed url(test.jpg) }
+bg190875 { background: repeat space 25% top blue fixed }
+bg190876 { background: repeat space 25% top blue none fixed }
+bg190877 { background: repeat space 25% top blue none scroll }
+bg190878 { background: repeat space 25% top blue none }
+bg190879 { background: repeat space 25% top blue scroll none }
+bg190880 { background: repeat space 25% top blue scroll url(test.jpg) }
+bg190881 { background: repeat space 25% top blue scroll }
+bg190882 { background: repeat space 25% top blue url(test.jpg) fixed }
+bg190883 { background: repeat space 25% top blue url(test.jpg) scroll }
+bg190884 { background: repeat space 25% top blue url(test.jpg) }
+bg190885 { background: repeat space 25% top blue }
+bg190886 { background: repeat space 25% top fixed #f00 none }
+bg190887 { background: repeat space 25% top fixed #f00 url(test.jpg) }
+bg190888 { background: repeat space 25% top fixed #f00 }
+bg190889 { background: repeat space 25% top fixed blue none }
+bg190890 { background: repeat space 25% top fixed blue url(test.jpg) }
+bg190891 { background: repeat space 25% top fixed blue }
+bg190892 { background: repeat space 25% top fixed none #f00 }
+bg190893 { background: repeat space 25% top fixed none blue }
+bg190894 { background: repeat space 25% top fixed none transparent }
+bg190895 { background: repeat space 25% top fixed none }
+bg190896 { background: repeat space 25% top fixed transparent none }
+bg190897 { background: repeat space 25% top fixed transparent url(test.jpg) }
+bg190898 { background: repeat space 25% top fixed transparent }
+bg190899 { background: repeat space 25% top fixed url(test.jpg) #f00 }
+bg190900 { background: repeat space 25% top fixed url(test.jpg) blue }
+bg190901 { background: repeat space 25% top fixed url(test.jpg) transparent }
+bg190902 { background: repeat space 25% top fixed url(test.jpg) }
+bg190903 { background: repeat space 25% top fixed }
+bg190904 { background: repeat space 25% top none #f00 fixed }
+bg190905 { background: repeat space 25% top none #f00 scroll }
+bg190906 { background: repeat space 25% top none #f00 }
+bg190907 { background: repeat space 25% top none blue fixed }
+bg190908 { background: repeat space 25% top none blue scroll }
+bg190909 { background: repeat space 25% top none blue }
+bg190910 { background: repeat space 25% top none fixed #f00 }
+bg190911 { background: repeat space 25% top none fixed blue }
+bg190912 { background: repeat space 25% top none fixed transparent }
+bg190913 { background: repeat space 25% top none fixed }
+bg190914 { background: repeat space 25% top none scroll #f00 }
+bg190915 { background: repeat space 25% top none scroll blue }
+bg190916 { background: repeat space 25% top none scroll transparent }
+bg190917 { background: repeat space 25% top none scroll }
+bg190918 { background: repeat space 25% top none transparent fixed }
+bg190919 { background: repeat space 25% top none transparent scroll }
+bg190920 { background: repeat space 25% top none transparent }
+bg190921 { background: repeat space 25% top none }
+bg190922 { background: repeat space 25% top scroll #f00 none }
+bg190923 { background: repeat space 25% top scroll #f00 url(test.jpg) }
+bg190924 { background: repeat space 25% top scroll #f00 }
+bg190925 { background: repeat space 25% top scroll blue none }
+bg190926 { background: repeat space 25% top scroll blue url(test.jpg) }
+bg190927 { background: repeat space 25% top scroll blue }
+bg190928 { background: repeat space 25% top scroll none #f00 }
+bg190929 { background: repeat space 25% top scroll none blue }
+bg190930 { background: repeat space 25% top scroll none transparent }
+bg190931 { background: repeat space 25% top scroll none }
+bg190932 { background: repeat space 25% top scroll transparent none }
+bg190933 { background: repeat space 25% top scroll transparent url(test.jpg) }
+bg190934 { background: repeat space 25% top scroll transparent }
+bg190935 { background: repeat space 25% top scroll url(test.jpg) #f00 }
+bg190936 { background: repeat space 25% top scroll url(test.jpg) blue }
+bg190937 { background: repeat space 25% top scroll url(test.jpg) transparent }
+bg190938 { background: repeat space 25% top scroll url(test.jpg) }
+bg190939 { background: repeat space 25% top scroll }
+bg190940 { background: repeat space 25% top transparent fixed none }
+bg190941 { background: repeat space 25% top transparent fixed url(test.jpg) }
+bg190942 { background: repeat space 25% top transparent fixed }
+bg190943 { background: repeat space 25% top transparent none fixed }
+bg190944 { background: repeat space 25% top transparent none scroll }
+bg190945 { background: repeat space 25% top transparent none }
+bg190946 { background: repeat space 25% top transparent scroll none }
+bg190947 { background: repeat space 25% top transparent scroll url(test.jpg) }
+bg190948 { background: repeat space 25% top transparent scroll }
+bg190949 { background: repeat space 25% top transparent url(test.jpg) fixed }
+bg190950 { background: repeat space 25% top transparent url(test.jpg) scroll }
+bg190951 { background: repeat space 25% top transparent url(test.jpg) }
+bg190952 { background: repeat space 25% top transparent }
+bg190953 { background: repeat space 25% top url(test.jpg) #f00 fixed }
+bg190954 { background: repeat space 25% top url(test.jpg) #f00 scroll }
+bg190955 { background: repeat space 25% top url(test.jpg) #f00 }
+bg190956 { background: repeat space 25% top url(test.jpg) blue fixed }
+bg190957 { background: repeat space 25% top url(test.jpg) blue scroll }
+bg190958 { background: repeat space 25% top url(test.jpg) blue }
+bg190959 { background: repeat space 25% top url(test.jpg) fixed #f00 }
+bg190960 { background: repeat space 25% top url(test.jpg) fixed blue }
+bg190961 { background: repeat space 25% top url(test.jpg) fixed transparent }
+bg190962 { background: repeat space 25% top url(test.jpg) fixed }
+bg190963 { background: repeat space 25% top url(test.jpg) scroll #f00 }
+bg190964 { background: repeat space 25% top url(test.jpg) scroll blue }
+bg190965 { background: repeat space 25% top url(test.jpg) scroll transparent }
+bg190966 { background: repeat space 25% top url(test.jpg) scroll }
+bg190967 { background: repeat space 25% top url(test.jpg) transparent fixed }
+bg190968 { background: repeat space 25% top url(test.jpg) transparent scroll }
+bg190969 { background: repeat space 25% top url(test.jpg) transparent }
+bg190970 { background: repeat space 25% top url(test.jpg) }
+bg190971 { background: repeat space 25% top }
 bg190972 { background: repeat space 50%  }
 bg190973 { background: repeat space 50% #f00  }
 bg190974 { background: repeat space 50% #f00 fixed  }
@@ -1211,19 +1211,19 @@ bg191210 { background: repeat space blue 100px 50% url(test.jpg) scroll  }
 bg191211 { background: repeat space blue 100px fixed  }
 bg191212 { background: repeat space blue 100px fixed none  }
 bg191213 { background: repeat space blue 100px fixed url(test.jpg)  }
-bg191214 { background: repeat space blue 100px left fixed none }
-bg191215 { background: repeat space blue 100px left fixed url(test.jpg) }
-bg191216 { background: repeat space blue 100px left fixed }
-bg191217 { background: repeat space blue 100px left none fixed }
-bg191218 { background: repeat space blue 100px left none scroll }
-bg191219 { background: repeat space blue 100px left none }
-bg191220 { background: repeat space blue 100px left scroll none }
-bg191221 { background: repeat space blue 100px left scroll url(test.jpg) }
-bg191222 { background: repeat space blue 100px left scroll }
-bg191223 { background: repeat space blue 100px left url(test.jpg) fixed }
-bg191224 { background: repeat space blue 100px left url(test.jpg) scroll }
-bg191225 { background: repeat space blue 100px left url(test.jpg) }
-bg191226 { background: repeat space blue 100px left }
+bg191214 { background: repeat space blue 100px bottom fixed none }
+bg191215 { background: repeat space blue 100px bottom fixed url(test.jpg) }
+bg191216 { background: repeat space blue 100px bottom fixed }
+bg191217 { background: repeat space blue 100px bottom none fixed }
+bg191218 { background: repeat space blue 100px bottom none scroll }
+bg191219 { background: repeat space blue 100px bottom none }
+bg191220 { background: repeat space blue 100px bottom scroll none }
+bg191221 { background: repeat space blue 100px bottom scroll url(test.jpg) }
+bg191222 { background: repeat space blue 100px bottom scroll }
+bg191223 { background: repeat space blue 100px bottom url(test.jpg) fixed }
+bg191224 { background: repeat space blue 100px bottom url(test.jpg) scroll }
+bg191225 { background: repeat space blue 100px bottom url(test.jpg) }
+bg191226 { background: repeat space blue 100px bottom }
 bg191227 { background: repeat space blue 100px none  }
 bg191228 { background: repeat space blue 100px none fixed  }
 bg191229 { background: repeat space blue 100px none scroll  }
@@ -1233,19 +1233,19 @@ bg191232 { background: repeat space blue 100px scroll url(test.jpg)  }
 bg191233 { background: repeat space blue 100px url(test.jpg)  }
 bg191234 { background: repeat space blue 100px url(test.jpg) fixed  }
 bg191235 { background: repeat space blue 100px url(test.jpg) scroll  }
-bg191236 { background: repeat space blue 25% left fixed none }
-bg191237 { background: repeat space blue 25% left fixed url(test.jpg) }
-bg191238 { background: repeat space blue 25% left fixed }
-bg191239 { background: repeat space blue 25% left none fixed }
-bg191240 { background: repeat space blue 25% left none scroll }
-bg191241 { background: repeat space blue 25% left none }
-bg191242 { background: repeat space blue 25% left scroll none }
-bg191243 { background: repeat space blue 25% left scroll url(test.jpg) }
-bg191244 { background: repeat space blue 25% left scroll }
-bg191245 { background: repeat space blue 25% left url(test.jpg) fixed }
-bg191246 { background: repeat space blue 25% left url(test.jpg) scroll }
-bg191247 { background: repeat space blue 25% left url(test.jpg) }
-bg191248 { background: repeat space blue 25% left }
+bg191236 { background: repeat space blue 25% top fixed none }
+bg191237 { background: repeat space blue 25% top fixed url(test.jpg) }
+bg191238 { background: repeat space blue 25% top fixed }
+bg191239 { background: repeat space blue 25% top none fixed }
+bg191240 { background: repeat space blue 25% top none scroll }
+bg191241 { background: repeat space blue 25% top none }
+bg191242 { background: repeat space blue 25% top scroll none }
+bg191243 { background: repeat space blue 25% top scroll url(test.jpg) }
+bg191244 { background: repeat space blue 25% top scroll }
+bg191245 { background: repeat space blue 25% top url(test.jpg) fixed }
+bg191246 { background: repeat space blue 25% top url(test.jpg) scroll }
+bg191247 { background: repeat space blue 25% top url(test.jpg) }
+bg191248 { background: repeat space blue 25% top }
 bg191249 { background: repeat space blue 50%  }
 bg191250 { background: repeat space blue 50% 100px  }
 bg191251 { background: repeat space blue 50% 100px fixed  }
@@ -1407,14 +1407,14 @@ bg191406 { background: repeat space blue fixed 100px  }
 bg191407 { background: repeat space blue fixed 100px 50%  }
 bg191408 { background: repeat space blue fixed 100px 50% none  }
 bg191409 { background: repeat space blue fixed 100px 50% url(test.jpg)  }
-bg191410 { background: repeat space blue fixed 100px left none }
-bg191411 { background: repeat space blue fixed 100px left url(test.jpg) }
-bg191412 { background: repeat space blue fixed 100px left }
+bg191410 { background: repeat space blue fixed 100px bottom none }
+bg191411 { background: repeat space blue fixed 100px bottom url(test.jpg) }
+bg191412 { background: repeat space blue fixed 100px bottom }
 bg191413 { background: repeat space blue fixed 100px none  }
 bg191414 { background: repeat space blue fixed 100px url(test.jpg)  }
-bg191415 { background: repeat space blue fixed 25% left none }
-bg191416 { background: repeat space blue fixed 25% left url(test.jpg) }
-bg191417 { background: repeat space blue fixed 25% left }
+bg191415 { background: repeat space blue fixed 25% top none }
+bg191416 { background: repeat space blue fixed 25% top url(test.jpg) }
+bg191417 { background: repeat space blue fixed 25% top }
 bg191418 { background: repeat space blue fixed 50%  }
 bg191419 { background: repeat space blue fixed 50% 100px  }
 bg191420 { background: repeat space blue fixed 50% 100px none  }
@@ -1472,8 +1472,8 @@ bg191471 { background: repeat space blue fixed left }
 bg191472 { background: repeat space blue fixed none  }
 bg191473 { background: repeat space blue fixed none 100px  }
 bg191474 { background: repeat space blue fixed none 100px 50%  }
-bg191475 { background: repeat space blue fixed none 100px left }
-bg191476 { background: repeat space blue fixed none 25% left }
+bg191475 { background: repeat space blue fixed none 100px bottom }
+bg191476 { background: repeat space blue fixed none 25% top }
 bg191477 { background: repeat space blue fixed none 50%  }
 bg191478 { background: repeat space blue fixed none 50% 100px  }
 bg191479 { background: repeat space blue fixed none bottom center }
@@ -1527,8 +1527,8 @@ bg191526 { background: repeat space blue fixed top }
 bg191527 { background: repeat space blue fixed url(test.jpg)  }
 bg191528 { background: repeat space blue fixed url(test.jpg) 100px  }
 bg191529 { background: repeat space blue fixed url(test.jpg) 100px 50%  }
-bg191530 { background: repeat space blue fixed url(test.jpg) 100px left }
-bg191531 { background: repeat space blue fixed url(test.jpg) 25% left }
+bg191530 { background: repeat space blue fixed url(test.jpg) 100px bottom }
+bg191531 { background: repeat space blue fixed url(test.jpg) 25% top }
 bg191532 { background: repeat space blue fixed url(test.jpg) 50%  }
 bg191533 { background: repeat space blue fixed url(test.jpg) 50% 100px  }
 bg191534 { background: repeat space blue fixed url(test.jpg) bottom center }
@@ -1639,13 +1639,13 @@ bg191638 { background: repeat space blue none 100px 50%  }
 bg191639 { background: repeat space blue none 100px 50% fixed  }
 bg191640 { background: repeat space blue none 100px 50% scroll  }
 bg191641 { background: repeat space blue none 100px fixed  }
-bg191642 { background: repeat space blue none 100px left fixed }
-bg191643 { background: repeat space blue none 100px left scroll }
-bg191644 { background: repeat space blue none 100px left }
+bg191642 { background: repeat space blue none 100px bottom fixed }
+bg191643 { background: repeat space blue none 100px bottom scroll }
+bg191644 { background: repeat space blue none 100px bottom }
 bg191645 { background: repeat space blue none 100px scroll  }
-bg191646 { background: repeat space blue none 25% left fixed }
-bg191647 { background: repeat space blue none 25% left scroll }
-bg191648 { background: repeat space blue none 25% left }
+bg191646 { background: repeat space blue none 25% top fixed }
+bg191647 { background: repeat space blue none 25% top scroll }
+bg191648 { background: repeat space blue none 25% top }
 bg191649 { background: repeat space blue none 50%  }
 bg191650 { background: repeat space blue none 50% 100px  }
 bg191651 { background: repeat space blue none 50% 100px fixed  }
@@ -1685,8 +1685,8 @@ bg191684 { background: repeat space blue none center }
 bg191685 { background: repeat space blue none fixed  }
 bg191686 { background: repeat space blue none fixed 100px  }
 bg191687 { background: repeat space blue none fixed 100px 50%  }
-bg191688 { background: repeat space blue none fixed 100px left }
-bg191689 { background: repeat space blue none fixed 25% left }
+bg191688 { background: repeat space blue none fixed 100px bottom }
+bg191689 { background: repeat space blue none fixed 25% top }
 bg191690 { background: repeat space blue none fixed 50%  }
 bg191691 { background: repeat space blue none fixed 50% 100px  }
 bg191692 { background: repeat space blue none fixed bottom center }
@@ -1746,8 +1746,8 @@ bg191745 { background: repeat space blue none right }
 bg191746 { background: repeat space blue none scroll  }
 bg191747 { background: repeat space blue none scroll 100px  }
 bg191748 { background: repeat space blue none scroll 100px 50%  }
-bg191749 { background: repeat space blue none scroll 100px left }
-bg191750 { background: repeat space blue none scroll 25% left }
+bg191749 { background: repeat space blue none scroll 100px bottom }
+bg191750 { background: repeat space blue none scroll 25% top }
 bg191751 { background: repeat space blue none scroll 50%  }
 bg191752 { background: repeat space blue none scroll 50% 100px  }
 bg191753 { background: repeat space blue none scroll bottom center }
@@ -1843,14 +1843,14 @@ bg191842 { background: repeat space blue scroll 100px  }
 bg191843 { background: repeat space blue scroll 100px 50%  }
 bg191844 { background: repeat space blue scroll 100px 50% none  }
 bg191845 { background: repeat space blue scroll 100px 50% url(test.jpg)  }
-bg191846 { background: repeat space blue scroll 100px left none }
-bg191847 { background: repeat space blue scroll 100px left url(test.jpg) }
-bg191848 { background: repeat space blue scroll 100px left }
+bg191846 { background: repeat space blue scroll 100px bottom none }
+bg191847 { background: repeat space blue scroll 100px bottom url(test.jpg) }
+bg191848 { background: repeat space blue scroll 100px bottom }
 bg191849 { background: repeat space blue scroll 100px none  }
 bg191850 { background: repeat space blue scroll 100px url(test.jpg)  }
-bg191851 { background: repeat space blue scroll 25% left none }
-bg191852 { background: repeat space blue scroll 25% left url(test.jpg) }
-bg191853 { background: repeat space blue scroll 25% left }
+bg191851 { background: repeat space blue scroll 25% top none }
+bg191852 { background: repeat space blue scroll 25% top url(test.jpg) }
+bg191853 { background: repeat space blue scroll 25% top }
 bg191854 { background: repeat space blue scroll 50%  }
 bg191855 { background: repeat space blue scroll 50% 100px  }
 bg191856 { background: repeat space blue scroll 50% 100px none  }
@@ -1908,8 +1908,8 @@ bg191907 { background: repeat space blue scroll left }
 bg191908 { background: repeat space blue scroll none  }
 bg191909 { background: repeat space blue scroll none 100px  }
 bg191910 { background: repeat space blue scroll none 100px 50%  }
-bg191911 { background: repeat space blue scroll none 100px left }
-bg191912 { background: repeat space blue scroll none 25% left }
+bg191911 { background: repeat space blue scroll none 100px bottom }
+bg191912 { background: repeat space blue scroll none 25% top }
 bg191913 { background: repeat space blue scroll none 50%  }
 bg191914 { background: repeat space blue scroll none 50% 100px  }
 bg191915 { background: repeat space blue scroll none bottom center }
@@ -1963,8 +1963,8 @@ bg191962 { background: repeat space blue scroll top }
 bg191963 { background: repeat space blue scroll url(test.jpg)  }
 bg191964 { background: repeat space blue scroll url(test.jpg) 100px  }
 bg191965 { background: repeat space blue scroll url(test.jpg) 100px 50%  }
-bg191966 { background: repeat space blue scroll url(test.jpg) 100px left }
-bg191967 { background: repeat space blue scroll url(test.jpg) 25% left }
+bg191966 { background: repeat space blue scroll url(test.jpg) 100px bottom }
+bg191967 { background: repeat space blue scroll url(test.jpg) 25% top }
 bg191968 { background: repeat space blue scroll url(test.jpg) 50%  }
 bg191969 { background: repeat space blue scroll url(test.jpg) 50% 100px  }
 bg191970 { background: repeat space blue scroll url(test.jpg) bottom center }
@@ -2049,13 +2049,13 @@ bg192048 { background: repeat space blue url(test.jpg) 100px 50%  }
 bg192049 { background: repeat space blue url(test.jpg) 100px 50% fixed  }
 bg192050 { background: repeat space blue url(test.jpg) 100px 50% scroll  }
 bg192051 { background: repeat space blue url(test.jpg) 100px fixed  }
-bg192052 { background: repeat space blue url(test.jpg) 100px left fixed }
-bg192053 { background: repeat space blue url(test.jpg) 100px left scroll }
-bg192054 { background: repeat space blue url(test.jpg) 100px left }
+bg192052 { background: repeat space blue url(test.jpg) 100px bottom fixed }
+bg192053 { background: repeat space blue url(test.jpg) 100px bottom scroll }
+bg192054 { background: repeat space blue url(test.jpg) 100px bottom }
 bg192055 { background: repeat space blue url(test.jpg) 100px scroll  }
-bg192056 { background: repeat space blue url(test.jpg) 25% left fixed }
-bg192057 { background: repeat space blue url(test.jpg) 25% left scroll }
-bg192058 { background: repeat space blue url(test.jpg) 25% left }
+bg192056 { background: repeat space blue url(test.jpg) 25% top fixed }
+bg192057 { background: repeat space blue url(test.jpg) 25% top scroll }
+bg192058 { background: repeat space blue url(test.jpg) 25% top }
 bg192059 { background: repeat space blue url(test.jpg) 50%  }
 bg192060 { background: repeat space blue url(test.jpg) 50% 100px  }
 bg192061 { background: repeat space blue url(test.jpg) 50% 100px fixed  }
@@ -2095,8 +2095,8 @@ bg192094 { background: repeat space blue url(test.jpg) center }
 bg192095 { background: repeat space blue url(test.jpg) fixed  }
 bg192096 { background: repeat space blue url(test.jpg) fixed 100px  }
 bg192097 { background: repeat space blue url(test.jpg) fixed 100px 50%  }
-bg192098 { background: repeat space blue url(test.jpg) fixed 100px left }
-bg192099 { background: repeat space blue url(test.jpg) fixed 25% left }
+bg192098 { background: repeat space blue url(test.jpg) fixed 100px bottom }
+bg192099 { background: repeat space blue url(test.jpg) fixed 25% top }
 bg192100 { background: repeat space blue url(test.jpg) fixed 50%  }
 bg192101 { background: repeat space blue url(test.jpg) fixed 50% 100px  }
 bg192102 { background: repeat space blue url(test.jpg) fixed bottom center }
@@ -2156,8 +2156,8 @@ bg192155 { background: repeat space blue url(test.jpg) right }
 bg192156 { background: repeat space blue url(test.jpg) scroll  }
 bg192157 { background: repeat space blue url(test.jpg) scroll 100px  }
 bg192158 { background: repeat space blue url(test.jpg) scroll 100px 50%  }
-bg192159 { background: repeat space blue url(test.jpg) scroll 100px left }
-bg192160 { background: repeat space blue url(test.jpg) scroll 25% left }
+bg192159 { background: repeat space blue url(test.jpg) scroll 100px bottom }
+bg192160 { background: repeat space blue url(test.jpg) scroll 25% top }
 bg192161 { background: repeat space blue url(test.jpg) scroll 50%  }
 bg192162 { background: repeat space blue url(test.jpg) scroll 50% 100px  }
 bg192163 { background: repeat space blue url(test.jpg) scroll bottom center }
@@ -3322,14 +3322,14 @@ bg193321 { background: repeat space fixed #f00 100px  }
 bg193322 { background: repeat space fixed #f00 100px 50%  }
 bg193323 { background: repeat space fixed #f00 100px 50% none  }
 bg193324 { background: repeat space fixed #f00 100px 50% url(test.jpg)  }
-bg193325 { background: repeat space fixed #f00 100px left none }
-bg193326 { background: repeat space fixed #f00 100px left url(test.jpg) }
-bg193327 { background: repeat space fixed #f00 100px left }
+bg193325 { background: repeat space fixed #f00 100px bottom none }
+bg193326 { background: repeat space fixed #f00 100px bottom url(test.jpg) }
+bg193327 { background: repeat space fixed #f00 100px bottom }
 bg193328 { background: repeat space fixed #f00 100px none  }
 bg193329 { background: repeat space fixed #f00 100px url(test.jpg)  }
-bg193330 { background: repeat space fixed #f00 25% left none }
-bg193331 { background: repeat space fixed #f00 25% left url(test.jpg) }
-bg193332 { background: repeat space fixed #f00 25% left }
+bg193330 { background: repeat space fixed #f00 25% top none }
+bg193331 { background: repeat space fixed #f00 25% top url(test.jpg) }
+bg193332 { background: repeat space fixed #f00 25% top }
 bg193333 { background: repeat space fixed #f00 50%  }
 bg193334 { background: repeat space fixed #f00 50% 100px  }
 bg193335 { background: repeat space fixed #f00 50% 100px none  }
@@ -3387,8 +3387,8 @@ bg193386 { background: repeat space fixed #f00 left }
 bg193387 { background: repeat space fixed #f00 none  }
 bg193388 { background: repeat space fixed #f00 none 100px  }
 bg193389 { background: repeat space fixed #f00 none 100px 50%  }
-bg193390 { background: repeat space fixed #f00 none 100px left }
-bg193391 { background: repeat space fixed #f00 none 25% left }
+bg193390 { background: repeat space fixed #f00 none 100px bottom }
+bg193391 { background: repeat space fixed #f00 none 25% top }
 bg193392 { background: repeat space fixed #f00 none 50%  }
 bg193393 { background: repeat space fixed #f00 none 50% 100px  }
 bg193394 { background: repeat space fixed #f00 none bottom center }
@@ -3442,8 +3442,8 @@ bg193441 { background: repeat space fixed #f00 top }
 bg193442 { background: repeat space fixed #f00 url(test.jpg)  }
 bg193443 { background: repeat space fixed #f00 url(test.jpg) 100px  }
 bg193444 { background: repeat space fixed #f00 url(test.jpg) 100px 50%  }
-bg193445 { background: repeat space fixed #f00 url(test.jpg) 100px left }
-bg193446 { background: repeat space fixed #f00 url(test.jpg) 25% left }
+bg193445 { background: repeat space fixed #f00 url(test.jpg) 100px bottom }
+bg193446 { background: repeat space fixed #f00 url(test.jpg) 25% top }
 bg193447 { background: repeat space fixed #f00 url(test.jpg) 50%  }
 bg193448 { background: repeat space fixed #f00 url(test.jpg) 50% 100px  }
 bg193449 { background: repeat space fixed #f00 url(test.jpg) bottom center }
@@ -3495,24 +3495,24 @@ bg193494 { background: repeat space fixed 100px 50% url(test.jpg) transparent  }
 bg193495 { background: repeat space fixed 100px blue  }
 bg193496 { background: repeat space fixed 100px blue none  }
 bg193497 { background: repeat space fixed 100px blue url(test.jpg)  }
-bg193498 { background: repeat space fixed 100px left #f00 none }
-bg193499 { background: repeat space fixed 100px left #f00 url(test.jpg) }
-bg193500 { background: repeat space fixed 100px left #f00 }
-bg193501 { background: repeat space fixed 100px left blue none }
-bg193502 { background: repeat space fixed 100px left blue url(test.jpg) }
-bg193503 { background: repeat space fixed 100px left blue }
-bg193504 { background: repeat space fixed 100px left none #f00 }
-bg193505 { background: repeat space fixed 100px left none blue }
-bg193506 { background: repeat space fixed 100px left none transparent }
-bg193507 { background: repeat space fixed 100px left none }
-bg193508 { background: repeat space fixed 100px left transparent none }
-bg193509 { background: repeat space fixed 100px left transparent url(test.jpg) }
-bg193510 { background: repeat space fixed 100px left transparent }
-bg193511 { background: repeat space fixed 100px left url(test.jpg) #f00 }
-bg193512 { background: repeat space fixed 100px left url(test.jpg) blue }
-bg193513 { background: repeat space fixed 100px left url(test.jpg) transparent }
-bg193514 { background: repeat space fixed 100px left url(test.jpg) }
-bg193515 { background: repeat space fixed 100px left }
+bg193498 { background: repeat space fixed 100px bottom #f00 none }
+bg193499 { background: repeat space fixed 100px bottom #f00 url(test.jpg) }
+bg193500 { background: repeat space fixed 100px bottom #f00 }
+bg193501 { background: repeat space fixed 100px bottom blue none }
+bg193502 { background: repeat space fixed 100px bottom blue url(test.jpg) }
+bg193503 { background: repeat space fixed 100px bottom blue }
+bg193504 { background: repeat space fixed 100px bottom none #f00 }
+bg193505 { background: repeat space fixed 100px bottom none blue }
+bg193506 { background: repeat space fixed 100px bottom none transparent }
+bg193507 { background: repeat space fixed 100px bottom none }
+bg193508 { background: repeat space fixed 100px bottom transparent none }
+bg193509 { background: repeat space fixed 100px bottom transparent url(test.jpg) }
+bg193510 { background: repeat space fixed 100px bottom transparent }
+bg193511 { background: repeat space fixed 100px bottom url(test.jpg) #f00 }
+bg193512 { background: repeat space fixed 100px bottom url(test.jpg) blue }
+bg193513 { background: repeat space fixed 100px bottom url(test.jpg) transparent }
+bg193514 { background: repeat space fixed 100px bottom url(test.jpg) }
+bg193515 { background: repeat space fixed 100px bottom }
 bg193516 { background: repeat space fixed 100px none  }
 bg193517 { background: repeat space fixed 100px none #f00  }
 bg193518 { background: repeat space fixed 100px none blue  }
@@ -3524,24 +3524,24 @@ bg193523 { background: repeat space fixed 100px url(test.jpg)  }
 bg193524 { background: repeat space fixed 100px url(test.jpg) #f00  }
 bg193525 { background: repeat space fixed 100px url(test.jpg) blue  }
 bg193526 { background: repeat space fixed 100px url(test.jpg) transparent  }
-bg193527 { background: repeat space fixed 25% left #f00 none }
-bg193528 { background: repeat space fixed 25% left #f00 url(test.jpg) }
-bg193529 { background: repeat space fixed 25% left #f00 }
-bg193530 { background: repeat space fixed 25% left blue none }
-bg193531 { background: repeat space fixed 25% left blue url(test.jpg) }
-bg193532 { background: repeat space fixed 25% left blue }
-bg193533 { background: repeat space fixed 25% left none #f00 }
-bg193534 { background: repeat space fixed 25% left none blue }
-bg193535 { background: repeat space fixed 25% left none transparent }
-bg193536 { background: repeat space fixed 25% left none }
-bg193537 { background: repeat space fixed 25% left transparent none }
-bg193538 { background: repeat space fixed 25% left transparent url(test.jpg) }
-bg193539 { background: repeat space fixed 25% left transparent }
-bg193540 { background: repeat space fixed 25% left url(test.jpg) #f00 }
-bg193541 { background: repeat space fixed 25% left url(test.jpg) blue }
-bg193542 { background: repeat space fixed 25% left url(test.jpg) transparent }
-bg193543 { background: repeat space fixed 25% left url(test.jpg) }
-bg193544 { background: repeat space fixed 25% left }
+bg193527 { background: repeat space fixed 25% top #f00 none }
+bg193528 { background: repeat space fixed 25% top #f00 url(test.jpg) }
+bg193529 { background: repeat space fixed 25% top #f00 }
+bg193530 { background: repeat space fixed 25% top blue none }
+bg193531 { background: repeat space fixed 25% top blue url(test.jpg) }
+bg193532 { background: repeat space fixed 25% top blue }
+bg193533 { background: repeat space fixed 25% top none #f00 }
+bg193534 { background: repeat space fixed 25% top none blue }
+bg193535 { background: repeat space fixed 25% top none transparent }
+bg193536 { background: repeat space fixed 25% top none }
+bg193537 { background: repeat space fixed 25% top transparent none }
+bg193538 { background: repeat space fixed 25% top transparent url(test.jpg) }
+bg193539 { background: repeat space fixed 25% top transparent }
+bg193540 { background: repeat space fixed 25% top url(test.jpg) #f00 }
+bg193541 { background: repeat space fixed 25% top url(test.jpg) blue }
+bg193542 { background: repeat space fixed 25% top url(test.jpg) transparent }
+bg193543 { background: repeat space fixed 25% top url(test.jpg) }
+bg193544 { background: repeat space fixed 25% top }
 bg193545 { background: repeat space fixed 50%  }
 bg193546 { background: repeat space fixed 50% #f00  }
 bg193547 { background: repeat space fixed 50% #f00 none  }
@@ -3583,14 +3583,14 @@ bg193582 { background: repeat space fixed blue 100px  }
 bg193583 { background: repeat space fixed blue 100px 50%  }
 bg193584 { background: repeat space fixed blue 100px 50% none  }
 bg193585 { background: repeat space fixed blue 100px 50% url(test.jpg)  }
-bg193586 { background: repeat space fixed blue 100px left none }
-bg193587 { background: repeat space fixed blue 100px left url(test.jpg) }
-bg193588 { background: repeat space fixed blue 100px left }
+bg193586 { background: repeat space fixed blue 100px bottom none }
+bg193587 { background: repeat space fixed blue 100px bottom url(test.jpg) }
+bg193588 { background: repeat space fixed blue 100px bottom }
 bg193589 { background: repeat space fixed blue 100px none  }
 bg193590 { background: repeat space fixed blue 100px url(test.jpg)  }
-bg193591 { background: repeat space fixed blue 25% left none }
-bg193592 { background: repeat space fixed blue 25% left url(test.jpg) }
-bg193593 { background: repeat space fixed blue 25% left }
+bg193591 { background: repeat space fixed blue 25% top none }
+bg193592 { background: repeat space fixed blue 25% top url(test.jpg) }
+bg193593 { background: repeat space fixed blue 25% top }
 bg193594 { background: repeat space fixed blue 50%  }
 bg193595 { background: repeat space fixed blue 50% 100px  }
 bg193596 { background: repeat space fixed blue 50% 100px none  }
@@ -3648,8 +3648,8 @@ bg193647 { background: repeat space fixed blue left }
 bg193648 { background: repeat space fixed blue none  }
 bg193649 { background: repeat space fixed blue none 100px  }
 bg193650 { background: repeat space fixed blue none 100px 50%  }
-bg193651 { background: repeat space fixed blue none 100px left }
-bg193652 { background: repeat space fixed blue none 25% left }
+bg193651 { background: repeat space fixed blue none 100px bottom }
+bg193652 { background: repeat space fixed blue none 25% top }
 bg193653 { background: repeat space fixed blue none 50%  }
 bg193654 { background: repeat space fixed blue none 50% 100px  }
 bg193655 { background: repeat space fixed blue none bottom center }
@@ -3703,8 +3703,8 @@ bg193702 { background: repeat space fixed blue top }
 bg193703 { background: repeat space fixed blue url(test.jpg)  }
 bg193704 { background: repeat space fixed blue url(test.jpg) 100px  }
 bg193705 { background: repeat space fixed blue url(test.jpg) 100px 50%  }
-bg193706 { background: repeat space fixed blue url(test.jpg) 100px left }
-bg193707 { background: repeat space fixed blue url(test.jpg) 25% left }
+bg193706 { background: repeat space fixed blue url(test.jpg) 100px bottom }
+bg193707 { background: repeat space fixed blue url(test.jpg) 25% top }
 bg193708 { background: repeat space fixed blue url(test.jpg) 50%  }
 bg193709 { background: repeat space fixed blue url(test.jpg) 50% 100px  }
 bg193710 { background: repeat space fixed blue url(test.jpg) bottom center }
@@ -4023,8 +4023,8 @@ bg194022 { background: repeat space fixed none  }
 bg194023 { background: repeat space fixed none #f00  }
 bg194024 { background: repeat space fixed none #f00 100px  }
 bg194025 { background: repeat space fixed none #f00 100px 50%  }
-bg194026 { background: repeat space fixed none #f00 100px left }
-bg194027 { background: repeat space fixed none #f00 25% left }
+bg194026 { background: repeat space fixed none #f00 100px bottom }
+bg194027 { background: repeat space fixed none #f00 25% top }
 bg194028 { background: repeat space fixed none #f00 50%  }
 bg194029 { background: repeat space fixed none #f00 50% 100px  }
 bg194030 { background: repeat space fixed none #f00 bottom center }
@@ -4058,15 +4058,15 @@ bg194057 { background: repeat space fixed none 100px 50% #f00  }
 bg194058 { background: repeat space fixed none 100px 50% blue  }
 bg194059 { background: repeat space fixed none 100px 50% transparent  }
 bg194060 { background: repeat space fixed none 100px blue  }
-bg194061 { background: repeat space fixed none 100px left #f00 }
-bg194062 { background: repeat space fixed none 100px left blue }
-bg194063 { background: repeat space fixed none 100px left transparent }
-bg194064 { background: repeat space fixed none 100px left }
+bg194061 { background: repeat space fixed none 100px bottom #f00 }
+bg194062 { background: repeat space fixed none 100px bottom blue }
+bg194063 { background: repeat space fixed none 100px bottom transparent }
+bg194064 { background: repeat space fixed none 100px bottom }
 bg194065 { background: repeat space fixed none 100px transparent  }
-bg194066 { background: repeat space fixed none 25% left #f00 }
-bg194067 { background: repeat space fixed none 25% left blue }
-bg194068 { background: repeat space fixed none 25% left transparent }
-bg194069 { background: repeat space fixed none 25% left }
+bg194066 { background: repeat space fixed none 25% top #f00 }
+bg194067 { background: repeat space fixed none 25% top blue }
+bg194068 { background: repeat space fixed none 25% top transparent }
+bg194069 { background: repeat space fixed none 25% top }
 bg194070 { background: repeat space fixed none 50%  }
 bg194071 { background: repeat space fixed none 50% #f00  }
 bg194072 { background: repeat space fixed none 50% 100px  }
@@ -4078,8 +4078,8 @@ bg194077 { background: repeat space fixed none 50% transparent  }
 bg194078 { background: repeat space fixed none blue  }
 bg194079 { background: repeat space fixed none blue 100px  }
 bg194080 { background: repeat space fixed none blue 100px 50%  }
-bg194081 { background: repeat space fixed none blue 100px left }
-bg194082 { background: repeat space fixed none blue 25% left }
+bg194081 { background: repeat space fixed none blue 100px bottom }
+bg194082 { background: repeat space fixed none blue 25% top }
 bg194083 { background: repeat space fixed none blue 50%  }
 bg194084 { background: repeat space fixed none blue 50% 100px  }
 bg194085 { background: repeat space fixed none blue bottom center }
@@ -4205,8 +4205,8 @@ bg194204 { background: repeat space fixed none top }
 bg194205 { background: repeat space fixed none transparent  }
 bg194206 { background: repeat space fixed none transparent 100px  }
 bg194207 { background: repeat space fixed none transparent 100px 50%  }
-bg194208 { background: repeat space fixed none transparent 100px left }
-bg194209 { background: repeat space fixed none transparent 25% left }
+bg194208 { background: repeat space fixed none transparent 100px bottom }
+bg194209 { background: repeat space fixed none transparent 25% top }
 bg194210 { background: repeat space fixed none transparent 50%  }
 bg194211 { background: repeat space fixed none transparent 50% 100px  }
 bg194212 { background: repeat space fixed none transparent bottom center }
@@ -4382,14 +4382,14 @@ bg194381 { background: repeat space fixed transparent 100px  }
 bg194382 { background: repeat space fixed transparent 100px 50%  }
 bg194383 { background: repeat space fixed transparent 100px 50% none  }
 bg194384 { background: repeat space fixed transparent 100px 50% url(test.jpg)  }
-bg194385 { background: repeat space fixed transparent 100px left none }
-bg194386 { background: repeat space fixed transparent 100px left url(test.jpg) }
-bg194387 { background: repeat space fixed transparent 100px left }
+bg194385 { background: repeat space fixed transparent 100px bottom none }
+bg194386 { background: repeat space fixed transparent 100px bottom url(test.jpg) }
+bg194387 { background: repeat space fixed transparent 100px bottom }
 bg194388 { background: repeat space fixed transparent 100px none  }
 bg194389 { background: repeat space fixed transparent 100px url(test.jpg)  }
-bg194390 { background: repeat space fixed transparent 25% left none }
-bg194391 { background: repeat space fixed transparent 25% left url(test.jpg) }
-bg194392 { background: repeat space fixed transparent 25% left }
+bg194390 { background: repeat space fixed transparent 25% top none }
+bg194391 { background: repeat space fixed transparent 25% top url(test.jpg) }
+bg194392 { background: repeat space fixed transparent 25% top }
 bg194393 { background: repeat space fixed transparent 50%  }
 bg194394 { background: repeat space fixed transparent 50% 100px  }
 bg194395 { background: repeat space fixed transparent 50% 100px none  }
@@ -4447,8 +4447,8 @@ bg194446 { background: repeat space fixed transparent left }
 bg194447 { background: repeat space fixed transparent none  }
 bg194448 { background: repeat space fixed transparent none 100px  }
 bg194449 { background: repeat space fixed transparent none 100px 50%  }
-bg194450 { background: repeat space fixed transparent none 100px left }
-bg194451 { background: repeat space fixed transparent none 25% left }
+bg194450 { background: repeat space fixed transparent none 100px bottom }
+bg194451 { background: repeat space fixed transparent none 25% top }
 bg194452 { background: repeat space fixed transparent none 50%  }
 bg194453 { background: repeat space fixed transparent none 50% 100px  }
 bg194454 { background: repeat space fixed transparent none bottom center }
@@ -4502,8 +4502,8 @@ bg194501 { background: repeat space fixed transparent top }
 bg194502 { background: repeat space fixed transparent url(test.jpg)  }
 bg194503 { background: repeat space fixed transparent url(test.jpg) 100px  }
 bg194504 { background: repeat space fixed transparent url(test.jpg) 100px 50%  }
-bg194505 { background: repeat space fixed transparent url(test.jpg) 100px left }
-bg194506 { background: repeat space fixed transparent url(test.jpg) 25% left }
+bg194505 { background: repeat space fixed transparent url(test.jpg) 100px bottom }
+bg194506 { background: repeat space fixed transparent url(test.jpg) 25% top }
 bg194507 { background: repeat space fixed transparent url(test.jpg) 50%  }
 bg194508 { background: repeat space fixed transparent url(test.jpg) 50% 100px  }
 bg194509 { background: repeat space fixed transparent url(test.jpg) bottom center }
@@ -4534,8 +4534,8 @@ bg194533 { background: repeat space fixed url(test.jpg)  }
 bg194534 { background: repeat space fixed url(test.jpg) #f00  }
 bg194535 { background: repeat space fixed url(test.jpg) #f00 100px  }
 bg194536 { background: repeat space fixed url(test.jpg) #f00 100px 50%  }
-bg194537 { background: repeat space fixed url(test.jpg) #f00 100px left }
-bg194538 { background: repeat space fixed url(test.jpg) #f00 25% left }
+bg194537 { background: repeat space fixed url(test.jpg) #f00 100px bottom }
+bg194538 { background: repeat space fixed url(test.jpg) #f00 25% top }
 bg194539 { background: repeat space fixed url(test.jpg) #f00 50%  }
 bg194540 { background: repeat space fixed url(test.jpg) #f00 50% 100px  }
 bg194541 { background: repeat space fixed url(test.jpg) #f00 bottom center }
@@ -4569,15 +4569,15 @@ bg194568 { background: repeat space fixed url(test.jpg) 100px 50% #f00  }
 bg194569 { background: repeat space fixed url(test.jpg) 100px 50% blue  }
 bg194570 { background: repeat space fixed url(test.jpg) 100px 50% transparent  }
 bg194571 { background: repeat space fixed url(test.jpg) 100px blue  }
-bg194572 { background: repeat space fixed url(test.jpg) 100px left #f00 }
-bg194573 { background: repeat space fixed url(test.jpg) 100px left blue }
-bg194574 { background: repeat space fixed url(test.jpg) 100px left transparent }
-bg194575 { background: repeat space fixed url(test.jpg) 100px left }
+bg194572 { background: repeat space fixed url(test.jpg) 100px bottom #f00 }
+bg194573 { background: repeat space fixed url(test.jpg) 100px bottom blue }
+bg194574 { background: repeat space fixed url(test.jpg) 100px bottom transparent }
+bg194575 { background: repeat space fixed url(test.jpg) 100px bottom }
 bg194576 { background: repeat space fixed url(test.jpg) 100px transparent  }
-bg194577 { background: repeat space fixed url(test.jpg) 25% left #f00 }
-bg194578 { background: repeat space fixed url(test.jpg) 25% left blue }
-bg194579 { background: repeat space fixed url(test.jpg) 25% left transparent }
-bg194580 { background: repeat space fixed url(test.jpg) 25% left }
+bg194577 { background: repeat space fixed url(test.jpg) 25% top #f00 }
+bg194578 { background: repeat space fixed url(test.jpg) 25% top blue }
+bg194579 { background: repeat space fixed url(test.jpg) 25% top transparent }
+bg194580 { background: repeat space fixed url(test.jpg) 25% top }
 bg194581 { background: repeat space fixed url(test.jpg) 50%  }
 bg194582 { background: repeat space fixed url(test.jpg) 50% #f00  }
 bg194583 { background: repeat space fixed url(test.jpg) 50% 100px  }
@@ -4589,8 +4589,8 @@ bg194588 { background: repeat space fixed url(test.jpg) 50% transparent  }
 bg194589 { background: repeat space fixed url(test.jpg) blue  }
 bg194590 { background: repeat space fixed url(test.jpg) blue 100px  }
 bg194591 { background: repeat space fixed url(test.jpg) blue 100px 50%  }
-bg194592 { background: repeat space fixed url(test.jpg) blue 100px left }
-bg194593 { background: repeat space fixed url(test.jpg) blue 25% left }
+bg194592 { background: repeat space fixed url(test.jpg) blue 100px bottom }
+bg194593 { background: repeat space fixed url(test.jpg) blue 25% top }
 bg194594 { background: repeat space fixed url(test.jpg) blue 50%  }
 bg194595 { background: repeat space fixed url(test.jpg) blue 50% 100px  }
 bg194596 { background: repeat space fixed url(test.jpg) blue bottom center }
@@ -4716,8 +4716,8 @@ bg194715 { background: repeat space fixed url(test.jpg) top }
 bg194716 { background: repeat space fixed url(test.jpg) transparent  }
 bg194717 { background: repeat space fixed url(test.jpg) transparent 100px  }
 bg194718 { background: repeat space fixed url(test.jpg) transparent 100px 50%  }
-bg194719 { background: repeat space fixed url(test.jpg) transparent 100px left }
-bg194720 { background: repeat space fixed url(test.jpg) transparent 25% left }
+bg194719 { background: repeat space fixed url(test.jpg) transparent 100px bottom }
+bg194720 { background: repeat space fixed url(test.jpg) transparent 25% top }
 bg194721 { background: repeat space fixed url(test.jpg) transparent 50%  }
 bg194722 { background: repeat space fixed url(test.jpg) transparent 50% 100px  }
 bg194723 { background: repeat space fixed url(test.jpg) transparent bottom center }
@@ -5423,13 +5423,13 @@ bg195422 { background: repeat space none #f00 100px 50%  }
 bg195423 { background: repeat space none #f00 100px 50% fixed  }
 bg195424 { background: repeat space none #f00 100px 50% scroll  }
 bg195425 { background: repeat space none #f00 100px fixed  }
-bg195426 { background: repeat space none #f00 100px left fixed }
-bg195427 { background: repeat space none #f00 100px left scroll }
-bg195428 { background: repeat space none #f00 100px left }
+bg195426 { background: repeat space none #f00 100px bottom fixed }
+bg195427 { background: repeat space none #f00 100px bottom scroll }
+bg195428 { background: repeat space none #f00 100px bottom }
 bg195429 { background: repeat space none #f00 100px scroll  }
-bg195430 { background: repeat space none #f00 25% left fixed }
-bg195431 { background: repeat space none #f00 25% left scroll }
-bg195432 { background: repeat space none #f00 25% left }
+bg195430 { background: repeat space none #f00 25% top fixed }
+bg195431 { background: repeat space none #f00 25% top scroll }
+bg195432 { background: repeat space none #f00 25% top }
 bg195433 { background: repeat space none #f00 50%  }
 bg195434 { background: repeat space none #f00 50% 100px  }
 bg195435 { background: repeat space none #f00 50% 100px fixed  }
@@ -5469,8 +5469,8 @@ bg195468 { background: repeat space none #f00 center }
 bg195469 { background: repeat space none #f00 fixed  }
 bg195470 { background: repeat space none #f00 fixed 100px  }
 bg195471 { background: repeat space none #f00 fixed 100px 50%  }
-bg195472 { background: repeat space none #f00 fixed 100px left }
-bg195473 { background: repeat space none #f00 fixed 25% left }
+bg195472 { background: repeat space none #f00 fixed 100px bottom }
+bg195473 { background: repeat space none #f00 fixed 25% top }
 bg195474 { background: repeat space none #f00 fixed 50%  }
 bg195475 { background: repeat space none #f00 fixed 50% 100px  }
 bg195476 { background: repeat space none #f00 fixed bottom center }
@@ -5530,8 +5530,8 @@ bg195529 { background: repeat space none #f00 right }
 bg195530 { background: repeat space none #f00 scroll  }
 bg195531 { background: repeat space none #f00 scroll 100px  }
 bg195532 { background: repeat space none #f00 scroll 100px 50%  }
-bg195533 { background: repeat space none #f00 scroll 100px left }
-bg195534 { background: repeat space none #f00 scroll 25% left }
+bg195533 { background: repeat space none #f00 scroll 100px bottom }
+bg195534 { background: repeat space none #f00 scroll 25% top }
 bg195535 { background: repeat space none #f00 scroll 50%  }
 bg195536 { background: repeat space none #f00 scroll 50% 100px  }
 bg195537 { background: repeat space none #f00 scroll bottom center }
@@ -5599,24 +5599,24 @@ bg195598 { background: repeat space none 100px fixed  }
 bg195599 { background: repeat space none 100px fixed #f00  }
 bg195600 { background: repeat space none 100px fixed blue  }
 bg195601 { background: repeat space none 100px fixed transparent  }
-bg195602 { background: repeat space none 100px left #f00 fixed }
-bg195603 { background: repeat space none 100px left #f00 scroll }
-bg195604 { background: repeat space none 100px left #f00 }
-bg195605 { background: repeat space none 100px left blue fixed }
-bg195606 { background: repeat space none 100px left blue scroll }
-bg195607 { background: repeat space none 100px left blue }
-bg195608 { background: repeat space none 100px left fixed #f00 }
-bg195609 { background: repeat space none 100px left fixed blue }
-bg195610 { background: repeat space none 100px left fixed transparent }
-bg195611 { background: repeat space none 100px left fixed }
-bg195612 { background: repeat space none 100px left scroll #f00 }
-bg195613 { background: repeat space none 100px left scroll blue }
-bg195614 { background: repeat space none 100px left scroll transparent }
-bg195615 { background: repeat space none 100px left scroll }
-bg195616 { background: repeat space none 100px left transparent fixed }
-bg195617 { background: repeat space none 100px left transparent scroll }
-bg195618 { background: repeat space none 100px left transparent }
-bg195619 { background: repeat space none 100px left }
+bg195602 { background: repeat space none 100px bottom #f00 fixed }
+bg195603 { background: repeat space none 100px bottom #f00 scroll }
+bg195604 { background: repeat space none 100px bottom #f00 }
+bg195605 { background: repeat space none 100px bottom blue fixed }
+bg195606 { background: repeat space none 100px bottom blue scroll }
+bg195607 { background: repeat space none 100px bottom blue }
+bg195608 { background: repeat space none 100px bottom fixed #f00 }
+bg195609 { background: repeat space none 100px bottom fixed blue }
+bg195610 { background: repeat space none 100px bottom fixed transparent }
+bg195611 { background: repeat space none 100px bottom fixed }
+bg195612 { background: repeat space none 100px bottom scroll #f00 }
+bg195613 { background: repeat space none 100px bottom scroll blue }
+bg195614 { background: repeat space none 100px bottom scroll transparent }
+bg195615 { background: repeat space none 100px bottom scroll }
+bg195616 { background: repeat space none 100px bottom transparent fixed }
+bg195617 { background: repeat space none 100px bottom transparent scroll }
+bg195618 { background: repeat space none 100px bottom transparent }
+bg195619 { background: repeat space none 100px bottom }
 bg195620 { background: repeat space none 100px scroll  }
 bg195621 { background: repeat space none 100px scroll #f00  }
 bg195622 { background: repeat space none 100px scroll blue  }
@@ -5624,24 +5624,24 @@ bg195623 { background: repeat space none 100px scroll transparent  }
 bg195624 { background: repeat space none 100px transparent  }
 bg195625 { background: repeat space none 100px transparent fixed  }
 bg195626 { background: repeat space none 100px transparent scroll  }
-bg195627 { background: repeat space none 25% left #f00 fixed }
-bg195628 { background: repeat space none 25% left #f00 scroll }
-bg195629 { background: repeat space none 25% left #f00 }
-bg195630 { background: repeat space none 25% left blue fixed }
-bg195631 { background: repeat space none 25% left blue scroll }
-bg195632 { background: repeat space none 25% left blue }
-bg195633 { background: repeat space none 25% left fixed #f00 }
-bg195634 { background: repeat space none 25% left fixed blue }
-bg195635 { background: repeat space none 25% left fixed transparent }
-bg195636 { background: repeat space none 25% left fixed }
-bg195637 { background: repeat space none 25% left scroll #f00 }
-bg195638 { background: repeat space none 25% left scroll blue }
-bg195639 { background: repeat space none 25% left scroll transparent }
-bg195640 { background: repeat space none 25% left scroll }
-bg195641 { background: repeat space none 25% left transparent fixed }
-bg195642 { background: repeat space none 25% left transparent scroll }
-bg195643 { background: repeat space none 25% left transparent }
-bg195644 { background: repeat space none 25% left }
+bg195627 { background: repeat space none 25% top #f00 fixed }
+bg195628 { background: repeat space none 25% top #f00 scroll }
+bg195629 { background: repeat space none 25% top #f00 }
+bg195630 { background: repeat space none 25% top blue fixed }
+bg195631 { background: repeat space none 25% top blue scroll }
+bg195632 { background: repeat space none 25% top blue }
+bg195633 { background: repeat space none 25% top fixed #f00 }
+bg195634 { background: repeat space none 25% top fixed blue }
+bg195635 { background: repeat space none 25% top fixed transparent }
+bg195636 { background: repeat space none 25% top fixed }
+bg195637 { background: repeat space none 25% top scroll #f00 }
+bg195638 { background: repeat space none 25% top scroll blue }
+bg195639 { background: repeat space none 25% top scroll transparent }
+bg195640 { background: repeat space none 25% top scroll }
+bg195641 { background: repeat space none 25% top transparent fixed }
+bg195642 { background: repeat space none 25% top transparent scroll }
+bg195643 { background: repeat space none 25% top transparent }
+bg195644 { background: repeat space none 25% top }
 bg195645 { background: repeat space none 50%  }
 bg195646 { background: repeat space none 50% #f00  }
 bg195647 { background: repeat space none 50% #f00 fixed  }
@@ -5684,13 +5684,13 @@ bg195683 { background: repeat space none blue 100px 50%  }
 bg195684 { background: repeat space none blue 100px 50% fixed  }
 bg195685 { background: repeat space none blue 100px 50% scroll  }
 bg195686 { background: repeat space none blue 100px fixed  }
-bg195687 { background: repeat space none blue 100px left fixed }
-bg195688 { background: repeat space none blue 100px left scroll }
-bg195689 { background: repeat space none blue 100px left }
+bg195687 { background: repeat space none blue 100px bottom fixed }
+bg195688 { background: repeat space none blue 100px bottom scroll }
+bg195689 { background: repeat space none blue 100px bottom }
 bg195690 { background: repeat space none blue 100px scroll  }
-bg195691 { background: repeat space none blue 25% left fixed }
-bg195692 { background: repeat space none blue 25% left scroll }
-bg195693 { background: repeat space none blue 25% left }
+bg195691 { background: repeat space none blue 25% top fixed }
+bg195692 { background: repeat space none blue 25% top scroll }
+bg195693 { background: repeat space none blue 25% top }
 bg195694 { background: repeat space none blue 50%  }
 bg195695 { background: repeat space none blue 50% 100px  }
 bg195696 { background: repeat space none blue 50% 100px fixed  }
@@ -5730,8 +5730,8 @@ bg195729 { background: repeat space none blue center }
 bg195730 { background: repeat space none blue fixed  }
 bg195731 { background: repeat space none blue fixed 100px  }
 bg195732 { background: repeat space none blue fixed 100px 50%  }
-bg195733 { background: repeat space none blue fixed 100px left }
-bg195734 { background: repeat space none blue fixed 25% left }
+bg195733 { background: repeat space none blue fixed 100px bottom }
+bg195734 { background: repeat space none blue fixed 25% top }
 bg195735 { background: repeat space none blue fixed 50%  }
 bg195736 { background: repeat space none blue fixed 50% 100px  }
 bg195737 { background: repeat space none blue fixed bottom center }
@@ -5791,8 +5791,8 @@ bg195790 { background: repeat space none blue right }
 bg195791 { background: repeat space none blue scroll  }
 bg195792 { background: repeat space none blue scroll 100px  }
 bg195793 { background: repeat space none blue scroll 100px 50%  }
-bg195794 { background: repeat space none blue scroll 100px left }
-bg195795 { background: repeat space none blue scroll 25% left }
+bg195794 { background: repeat space none blue scroll 100px bottom }
+bg195795 { background: repeat space none blue scroll 25% top }
 bg195796 { background: repeat space none blue scroll 50%  }
 bg195797 { background: repeat space none blue scroll 50% 100px  }
 bg195798 { background: repeat space none blue scroll bottom center }
@@ -6015,8 +6015,8 @@ bg196014 { background: repeat space none fixed  }
 bg196015 { background: repeat space none fixed #f00  }
 bg196016 { background: repeat space none fixed #f00 100px  }
 bg196017 { background: repeat space none fixed #f00 100px 50%  }
-bg196018 { background: repeat space none fixed #f00 100px left }
-bg196019 { background: repeat space none fixed #f00 25% left }
+bg196018 { background: repeat space none fixed #f00 100px bottom }
+bg196019 { background: repeat space none fixed #f00 25% top }
 bg196020 { background: repeat space none fixed #f00 50%  }
 bg196021 { background: repeat space none fixed #f00 50% 100px  }
 bg196022 { background: repeat space none fixed #f00 bottom center }
@@ -6050,15 +6050,15 @@ bg196049 { background: repeat space none fixed 100px 50% #f00  }
 bg196050 { background: repeat space none fixed 100px 50% blue  }
 bg196051 { background: repeat space none fixed 100px 50% transparent  }
 bg196052 { background: repeat space none fixed 100px blue  }
-bg196053 { background: repeat space none fixed 100px left #f00 }
-bg196054 { background: repeat space none fixed 100px left blue }
-bg196055 { background: repeat space none fixed 100px left transparent }
-bg196056 { background: repeat space none fixed 100px left }
+bg196053 { background: repeat space none fixed 100px bottom #f00 }
+bg196054 { background: repeat space none fixed 100px bottom blue }
+bg196055 { background: repeat space none fixed 100px bottom transparent }
+bg196056 { background: repeat space none fixed 100px bottom }
 bg196057 { background: repeat space none fixed 100px transparent  }
-bg196058 { background: repeat space none fixed 25% left #f00 }
-bg196059 { background: repeat space none fixed 25% left blue }
-bg196060 { background: repeat space none fixed 25% left transparent }
-bg196061 { background: repeat space none fixed 25% left }
+bg196058 { background: repeat space none fixed 25% top #f00 }
+bg196059 { background: repeat space none fixed 25% top blue }
+bg196060 { background: repeat space none fixed 25% top transparent }
+bg196061 { background: repeat space none fixed 25% top }
 bg196062 { background: repeat space none fixed 50%  }
 bg196063 { background: repeat space none fixed 50% #f00  }
 bg196064 { background: repeat space none fixed 50% 100px  }
@@ -6070,8 +6070,8 @@ bg196069 { background: repeat space none fixed 50% transparent  }
 bg196070 { background: repeat space none fixed blue  }
 bg196071 { background: repeat space none fixed blue 100px  }
 bg196072 { background: repeat space none fixed blue 100px 50%  }
-bg196073 { background: repeat space none fixed blue 100px left }
-bg196074 { background: repeat space none fixed blue 25% left }
+bg196073 { background: repeat space none fixed blue 100px bottom }
+bg196074 { background: repeat space none fixed blue 25% top }
 bg196075 { background: repeat space none fixed blue 50%  }
 bg196076 { background: repeat space none fixed blue 50% 100px  }
 bg196077 { background: repeat space none fixed blue bottom center }
@@ -6197,8 +6197,8 @@ bg196196 { background: repeat space none fixed top }
 bg196197 { background: repeat space none fixed transparent  }
 bg196198 { background: repeat space none fixed transparent 100px  }
 bg196199 { background: repeat space none fixed transparent 100px 50%  }
-bg196200 { background: repeat space none fixed transparent 100px left }
-bg196201 { background: repeat space none fixed transparent 25% left }
+bg196200 { background: repeat space none fixed transparent 100px bottom }
+bg196201 { background: repeat space none fixed transparent 25% top }
 bg196202 { background: repeat space none fixed transparent 50%  }
 bg196203 { background: repeat space none fixed transparent 50% 100px  }
 bg196204 { background: repeat space none fixed transparent bottom center }
@@ -6409,8 +6409,8 @@ bg196408 { background: repeat space none scroll  }
 bg196409 { background: repeat space none scroll #f00  }
 bg196410 { background: repeat space none scroll #f00 100px  }
 bg196411 { background: repeat space none scroll #f00 100px 50%  }
-bg196412 { background: repeat space none scroll #f00 100px left }
-bg196413 { background: repeat space none scroll #f00 25% left }
+bg196412 { background: repeat space none scroll #f00 100px bottom }
+bg196413 { background: repeat space none scroll #f00 25% top }
 bg196414 { background: repeat space none scroll #f00 50%  }
 bg196415 { background: repeat space none scroll #f00 50% 100px  }
 bg196416 { background: repeat space none scroll #f00 bottom center }
@@ -6444,15 +6444,15 @@ bg196443 { background: repeat space none scroll 100px 50% #f00  }
 bg196444 { background: repeat space none scroll 100px 50% blue  }
 bg196445 { background: repeat space none scroll 100px 50% transparent  }
 bg196446 { background: repeat space none scroll 100px blue  }
-bg196447 { background: repeat space none scroll 100px left #f00 }
-bg196448 { background: repeat space none scroll 100px left blue }
-bg196449 { background: repeat space none scroll 100px left transparent }
-bg196450 { background: repeat space none scroll 100px left }
+bg196447 { background: repeat space none scroll 100px bottom #f00 }
+bg196448 { background: repeat space none scroll 100px bottom blue }
+bg196449 { background: repeat space none scroll 100px bottom transparent }
+bg196450 { background: repeat space none scroll 100px bottom }
 bg196451 { background: repeat space none scroll 100px transparent  }
-bg196452 { background: repeat space none scroll 25% left #f00 }
-bg196453 { background: repeat space none scroll 25% left blue }
-bg196454 { background: repeat space none scroll 25% left transparent }
-bg196455 { background: repeat space none scroll 25% left }
+bg196452 { background: repeat space none scroll 25% top #f00 }
+bg196453 { background: repeat space none scroll 25% top blue }
+bg196454 { background: repeat space none scroll 25% top transparent }
+bg196455 { background: repeat space none scroll 25% top }
 bg196456 { background: repeat space none scroll 50%  }
 bg196457 { background: repeat space none scroll 50% #f00  }
 bg196458 { background: repeat space none scroll 50% 100px  }
@@ -6464,8 +6464,8 @@ bg196463 { background: repeat space none scroll 50% transparent  }
 bg196464 { background: repeat space none scroll blue  }
 bg196465 { background: repeat space none scroll blue 100px  }
 bg196466 { background: repeat space none scroll blue 100px 50%  }
-bg196467 { background: repeat space none scroll blue 100px left }
-bg196468 { background: repeat space none scroll blue 25% left }
+bg196467 { background: repeat space none scroll blue 100px bottom }
+bg196468 { background: repeat space none scroll blue 25% top }
 bg196469 { background: repeat space none scroll blue 50%  }
 bg196470 { background: repeat space none scroll blue 50% 100px  }
 bg196471 { background: repeat space none scroll blue bottom center }
@@ -6591,8 +6591,8 @@ bg196590 { background: repeat space none scroll top }
 bg196591 { background: repeat space none scroll transparent  }
 bg196592 { background: repeat space none scroll transparent 100px  }
 bg196593 { background: repeat space none scroll transparent 100px 50%  }
-bg196594 { background: repeat space none scroll transparent 100px left }
-bg196595 { background: repeat space none scroll transparent 25% left }
+bg196594 { background: repeat space none scroll transparent 100px bottom }
+bg196595 { background: repeat space none scroll transparent 25% top }
 bg196596 { background: repeat space none scroll transparent 50%  }
 bg196597 { background: repeat space none scroll transparent 50% 100px  }
 bg196598 { background: repeat space none scroll transparent bottom center }
@@ -6697,13 +6697,13 @@ bg196696 { background: repeat space none transparent 100px 50%  }
 bg196697 { background: repeat space none transparent 100px 50% fixed  }
 bg196698 { background: repeat space none transparent 100px 50% scroll  }
 bg196699 { background: repeat space none transparent 100px fixed  }
-bg196700 { background: repeat space none transparent 100px left fixed }
-bg196701 { background: repeat space none transparent 100px left scroll }
-bg196702 { background: repeat space none transparent 100px left }
+bg196700 { background: repeat space none transparent 100px bottom fixed }
+bg196701 { background: repeat space none transparent 100px bottom scroll }
+bg196702 { background: repeat space none transparent 100px bottom }
 bg196703 { background: repeat space none transparent 100px scroll  }
-bg196704 { background: repeat space none transparent 25% left fixed }
-bg196705 { background: repeat space none transparent 25% left scroll }
-bg196706 { background: repeat space none transparent 25% left }
+bg196704 { background: repeat space none transparent 25% top fixed }
+bg196705 { background: repeat space none transparent 25% top scroll }
+bg196706 { background: repeat space none transparent 25% top }
 bg196707 { background: repeat space none transparent 50%  }
 bg196708 { background: repeat space none transparent 50% 100px  }
 bg196709 { background: repeat space none transparent 50% 100px fixed  }
@@ -6743,8 +6743,8 @@ bg196742 { background: repeat space none transparent center }
 bg196743 { background: repeat space none transparent fixed  }
 bg196744 { background: repeat space none transparent fixed 100px  }
 bg196745 { background: repeat space none transparent fixed 100px 50%  }
-bg196746 { background: repeat space none transparent fixed 100px left }
-bg196747 { background: repeat space none transparent fixed 25% left }
+bg196746 { background: repeat space none transparent fixed 100px bottom }
+bg196747 { background: repeat space none transparent fixed 25% top }
 bg196748 { background: repeat space none transparent fixed 50%  }
 bg196749 { background: repeat space none transparent fixed 50% 100px  }
 bg196750 { background: repeat space none transparent fixed bottom center }
@@ -6804,8 +6804,8 @@ bg196803 { background: repeat space none transparent right }
 bg196804 { background: repeat space none transparent scroll  }
 bg196805 { background: repeat space none transparent scroll 100px  }
 bg196806 { background: repeat space none transparent scroll 100px 50%  }
-bg196807 { background: repeat space none transparent scroll 100px left }
-bg196808 { background: repeat space none transparent scroll 25% left }
+bg196807 { background: repeat space none transparent scroll 100px bottom }
+bg196808 { background: repeat space none transparent scroll 25% top }
 bg196809 { background: repeat space none transparent scroll 50%  }
 bg196810 { background: repeat space none transparent scroll 50% 100px  }
 bg196811 { background: repeat space none transparent scroll bottom center }
@@ -7298,14 +7298,14 @@ bg197297 { background: repeat space scroll #f00 100px  }
 bg197298 { background: repeat space scroll #f00 100px 50%  }
 bg197299 { background: repeat space scroll #f00 100px 50% none  }
 bg197300 { background: repeat space scroll #f00 100px 50% url(test.jpg)  }
-bg197301 { background: repeat space scroll #f00 100px left none }
-bg197302 { background: repeat space scroll #f00 100px left url(test.jpg) }
-bg197303 { background: repeat space scroll #f00 100px left }
+bg197301 { background: repeat space scroll #f00 100px bottom none }
+bg197302 { background: repeat space scroll #f00 100px bottom url(test.jpg) }
+bg197303 { background: repeat space scroll #f00 100px bottom }
 bg197304 { background: repeat space scroll #f00 100px none  }
 bg197305 { background: repeat space scroll #f00 100px url(test.jpg)  }
-bg197306 { background: repeat space scroll #f00 25% left none }
-bg197307 { background: repeat space scroll #f00 25% left url(test.jpg) }
-bg197308 { background: repeat space scroll #f00 25% left }
+bg197306 { background: repeat space scroll #f00 25% top none }
+bg197307 { background: repeat space scroll #f00 25% top url(test.jpg) }
+bg197308 { background: repeat space scroll #f00 25% top }
 bg197309 { background: repeat space scroll #f00 50%  }
 bg197310 { background: repeat space scroll #f00 50% 100px  }
 bg197311 { background: repeat space scroll #f00 50% 100px none  }
@@ -7363,8 +7363,8 @@ bg197362 { background: repeat space scroll #f00 left }
 bg197363 { background: repeat space scroll #f00 none  }
 bg197364 { background: repeat space scroll #f00 none 100px  }
 bg197365 { background: repeat space scroll #f00 none 100px 50%  }
-bg197366 { background: repeat space scroll #f00 none 100px left }
-bg197367 { background: repeat space scroll #f00 none 25% left }
+bg197366 { background: repeat space scroll #f00 none 100px bottom }
+bg197367 { background: repeat space scroll #f00 none 25% top }
 bg197368 { background: repeat space scroll #f00 none 50%  }
 bg197369 { background: repeat space scroll #f00 none 50% 100px  }
 bg197370 { background: repeat space scroll #f00 none bottom center }
@@ -7418,8 +7418,8 @@ bg197417 { background: repeat space scroll #f00 top }
 bg197418 { background: repeat space scroll #f00 url(test.jpg)  }
 bg197419 { background: repeat space scroll #f00 url(test.jpg) 100px  }
 bg197420 { background: repeat space scroll #f00 url(test.jpg) 100px 50%  }
-bg197421 { background: repeat space scroll #f00 url(test.jpg) 100px left }
-bg197422 { background: repeat space scroll #f00 url(test.jpg) 25% left }
+bg197421 { background: repeat space scroll #f00 url(test.jpg) 100px bottom }
+bg197422 { background: repeat space scroll #f00 url(test.jpg) 25% top }
 bg197423 { background: repeat space scroll #f00 url(test.jpg) 50%  }
 bg197424 { background: repeat space scroll #f00 url(test.jpg) 50% 100px  }
 bg197425 { background: repeat space scroll #f00 url(test.jpg) bottom center }
@@ -7471,24 +7471,24 @@ bg197470 { background: repeat space scroll 100px 50% url(test.jpg) transparent  
 bg197471 { background: repeat space scroll 100px blue  }
 bg197472 { background: repeat space scroll 100px blue none  }
 bg197473 { background: repeat space scroll 100px blue url(test.jpg)  }
-bg197474 { background: repeat space scroll 100px left #f00 none }
-bg197475 { background: repeat space scroll 100px left #f00 url(test.jpg) }
-bg197476 { background: repeat space scroll 100px left #f00 }
-bg197477 { background: repeat space scroll 100px left blue none }
-bg197478 { background: repeat space scroll 100px left blue url(test.jpg) }
-bg197479 { background: repeat space scroll 100px left blue }
-bg197480 { background: repeat space scroll 100px left none #f00 }
-bg197481 { background: repeat space scroll 100px left none blue }
-bg197482 { background: repeat space scroll 100px left none transparent }
-bg197483 { background: repeat space scroll 100px left none }
-bg197484 { background: repeat space scroll 100px left transparent none }
-bg197485 { background: repeat space scroll 100px left transparent url(test.jpg) }
-bg197486 { background: repeat space scroll 100px left transparent }
-bg197487 { background: repeat space scroll 100px left url(test.jpg) #f00 }
-bg197488 { background: repeat space scroll 100px left url(test.jpg) blue }
-bg197489 { background: repeat space scroll 100px left url(test.jpg) transparent }
-bg197490 { background: repeat space scroll 100px left url(test.jpg) }
-bg197491 { background: repeat space scroll 100px left }
+bg197474 { background: repeat space scroll 100px bottom #f00 none }
+bg197475 { background: repeat space scroll 100px bottom #f00 url(test.jpg) }
+bg197476 { background: repeat space scroll 100px bottom #f00 }
+bg197477 { background: repeat space scroll 100px bottom blue none }
+bg197478 { background: repeat space scroll 100px bottom blue url(test.jpg) }
+bg197479 { background: repeat space scroll 100px bottom blue }
+bg197480 { background: repeat space scroll 100px bottom none #f00 }
+bg197481 { background: repeat space scroll 100px bottom none blue }
+bg197482 { background: repeat space scroll 100px bottom none transparent }
+bg197483 { background: repeat space scroll 100px bottom none }
+bg197484 { background: repeat space scroll 100px bottom transparent none }
+bg197485 { background: repeat space scroll 100px bottom transparent url(test.jpg) }
+bg197486 { background: repeat space scroll 100px bottom transparent }
+bg197487 { background: repeat space scroll 100px bottom url(test.jpg) #f00 }
+bg197488 { background: repeat space scroll 100px bottom url(test.jpg) blue }
+bg197489 { background: repeat space scroll 100px bottom url(test.jpg) transparent }
+bg197490 { background: repeat space scroll 100px bottom url(test.jpg) }
+bg197491 { background: repeat space scroll 100px bottom }
 bg197492 { background: repeat space scroll 100px none  }
 bg197493 { background: repeat space scroll 100px none #f00  }
 bg197494 { background: repeat space scroll 100px none blue  }
@@ -7500,24 +7500,24 @@ bg197499 { background: repeat space scroll 100px url(test.jpg)  }
 bg197500 { background: repeat space scroll 100px url(test.jpg) #f00  }
 bg197501 { background: repeat space scroll 100px url(test.jpg) blue  }
 bg197502 { background: repeat space scroll 100px url(test.jpg) transparent  }
-bg197503 { background: repeat space scroll 25% left #f00 none }
-bg197504 { background: repeat space scroll 25% left #f00 url(test.jpg) }
-bg197505 { background: repeat space scroll 25% left #f00 }
-bg197506 { background: repeat space scroll 25% left blue none }
-bg197507 { background: repeat space scroll 25% left blue url(test.jpg) }
-bg197508 { background: repeat space scroll 25% left blue }
-bg197509 { background: repeat space scroll 25% left none #f00 }
-bg197510 { background: repeat space scroll 25% left none blue }
-bg197511 { background: repeat space scroll 25% left none transparent }
-bg197512 { background: repeat space scroll 25% left none }
-bg197513 { background: repeat space scroll 25% left transparent none }
-bg197514 { background: repeat space scroll 25% left transparent url(test.jpg) }
-bg197515 { background: repeat space scroll 25% left transparent }
-bg197516 { background: repeat space scroll 25% left url(test.jpg) #f00 }
-bg197517 { background: repeat space scroll 25% left url(test.jpg) blue }
-bg197518 { background: repeat space scroll 25% left url(test.jpg) transparent }
-bg197519 { background: repeat space scroll 25% left url(test.jpg) }
-bg197520 { background: repeat space scroll 25% left }
+bg197503 { background: repeat space scroll 25% top #f00 none }
+bg197504 { background: repeat space scroll 25% top #f00 url(test.jpg) }
+bg197505 { background: repeat space scroll 25% top #f00 }
+bg197506 { background: repeat space scroll 25% top blue none }
+bg197507 { background: repeat space scroll 25% top blue url(test.jpg) }
+bg197508 { background: repeat space scroll 25% top blue }
+bg197509 { background: repeat space scroll 25% top none #f00 }
+bg197510 { background: repeat space scroll 25% top none blue }
+bg197511 { background: repeat space scroll 25% top none transparent }
+bg197512 { background: repeat space scroll 25% top none }
+bg197513 { background: repeat space scroll 25% top transparent none }
+bg197514 { background: repeat space scroll 25% top transparent url(test.jpg) }
+bg197515 { background: repeat space scroll 25% top transparent }
+bg197516 { background: repeat space scroll 25% top url(test.jpg) #f00 }
+bg197517 { background: repeat space scroll 25% top url(test.jpg) blue }
+bg197518 { background: repeat space scroll 25% top url(test.jpg) transparent }
+bg197519 { background: repeat space scroll 25% top url(test.jpg) }
+bg197520 { background: repeat space scroll 25% top }
 bg197521 { background: repeat space scroll 50%  }
 bg197522 { background: repeat space scroll 50% #f00  }
 bg197523 { background: repeat space scroll 50% #f00 none  }
@@ -7559,14 +7559,14 @@ bg197558 { background: repeat space scroll blue 100px  }
 bg197559 { background: repeat space scroll blue 100px 50%  }
 bg197560 { background: repeat space scroll blue 100px 50% none  }
 bg197561 { background: repeat space scroll blue 100px 50% url(test.jpg)  }
-bg197562 { background: repeat space scroll blue 100px left none }
-bg197563 { background: repeat space scroll blue 100px left url(test.jpg) }
-bg197564 { background: repeat space scroll blue 100px left }
+bg197562 { background: repeat space scroll blue 100px bottom none }
+bg197563 { background: repeat space scroll blue 100px bottom url(test.jpg) }
+bg197564 { background: repeat space scroll blue 100px bottom }
 bg197565 { background: repeat space scroll blue 100px none  }
 bg197566 { background: repeat space scroll blue 100px url(test.jpg)  }
-bg197567 { background: repeat space scroll blue 25% left none }
-bg197568 { background: repeat space scroll blue 25% left url(test.jpg) }
-bg197569 { background: repeat space scroll blue 25% left }
+bg197567 { background: repeat space scroll blue 25% top none }
+bg197568 { background: repeat space scroll blue 25% top url(test.jpg) }
+bg197569 { background: repeat space scroll blue 25% top }
 bg197570 { background: repeat space scroll blue 50%  }
 bg197571 { background: repeat space scroll blue 50% 100px  }
 bg197572 { background: repeat space scroll blue 50% 100px none  }
@@ -7624,8 +7624,8 @@ bg197623 { background: repeat space scroll blue left }
 bg197624 { background: repeat space scroll blue none  }
 bg197625 { background: repeat space scroll blue none 100px  }
 bg197626 { background: repeat space scroll blue none 100px 50%  }
-bg197627 { background: repeat space scroll blue none 100px left }
-bg197628 { background: repeat space scroll blue none 25% left }
+bg197627 { background: repeat space scroll blue none 100px bottom }
+bg197628 { background: repeat space scroll blue none 25% top }
 bg197629 { background: repeat space scroll blue none 50%  }
 bg197630 { background: repeat space scroll blue none 50% 100px  }
 bg197631 { background: repeat space scroll blue none bottom center }
@@ -7679,8 +7679,8 @@ bg197678 { background: repeat space scroll blue top }
 bg197679 { background: repeat space scroll blue url(test.jpg)  }
 bg197680 { background: repeat space scroll blue url(test.jpg) 100px  }
 bg197681 { background: repeat space scroll blue url(test.jpg) 100px 50%  }
-bg197682 { background: repeat space scroll blue url(test.jpg) 100px left }
-bg197683 { background: repeat space scroll blue url(test.jpg) 25% left }
+bg197682 { background: repeat space scroll blue url(test.jpg) 100px bottom }
+bg197683 { background: repeat space scroll blue url(test.jpg) 25% top }
 bg197684 { background: repeat space scroll blue url(test.jpg) 50%  }
 bg197685 { background: repeat space scroll blue url(test.jpg) 50% 100px  }
 bg197686 { background: repeat space scroll blue url(test.jpg) bottom center }
@@ -7999,8 +7999,8 @@ bg197998 { background: repeat space scroll none  }
 bg197999 { background: repeat space scroll none #f00  }
 bg198000 { background: repeat space scroll none #f00 100px  }
 bg198001 { background: repeat space scroll none #f00 100px 50%  }
-bg198002 { background: repeat space scroll none #f00 100px left }
-bg198003 { background: repeat space scroll none #f00 25% left }
+bg198002 { background: repeat space scroll none #f00 100px bottom }
+bg198003 { background: repeat space scroll none #f00 25% top }
 bg198004 { background: repeat space scroll none #f00 50%  }
 bg198005 { background: repeat space scroll none #f00 50% 100px  }
 bg198006 { background: repeat space scroll none #f00 bottom center }
@@ -8034,15 +8034,15 @@ bg198033 { background: repeat space scroll none 100px 50% #f00  }
 bg198034 { background: repeat space scroll none 100px 50% blue  }
 bg198035 { background: repeat space scroll none 100px 50% transparent  }
 bg198036 { background: repeat space scroll none 100px blue  }
-bg198037 { background: repeat space scroll none 100px left #f00 }
-bg198038 { background: repeat space scroll none 100px left blue }
-bg198039 { background: repeat space scroll none 100px left transparent }
-bg198040 { background: repeat space scroll none 100px left }
+bg198037 { background: repeat space scroll none 100px bottom #f00 }
+bg198038 { background: repeat space scroll none 100px bottom blue }
+bg198039 { background: repeat space scroll none 100px bottom transparent }
+bg198040 { background: repeat space scroll none 100px bottom }
 bg198041 { background: repeat space scroll none 100px transparent  }
-bg198042 { background: repeat space scroll none 25% left #f00 }
-bg198043 { background: repeat space scroll none 25% left blue }
-bg198044 { background: repeat space scroll none 25% left transparent }
-bg198045 { background: repeat space scroll none 25% left }
+bg198042 { background: repeat space scroll none 25% top #f00 }
+bg198043 { background: repeat space scroll none 25% top blue }
+bg198044 { background: repeat space scroll none 25% top transparent }
+bg198045 { background: repeat space scroll none 25% top }
 bg198046 { background: repeat space scroll none 50%  }
 bg198047 { background: repeat space scroll none 50% #f00  }
 bg198048 { background: repeat space scroll none 50% 100px  }
@@ -8054,8 +8054,8 @@ bg198053 { background: repeat space scroll none 50% transparent  }
 bg198054 { background: repeat space scroll none blue  }
 bg198055 { background: repeat space scroll none blue 100px  }
 bg198056 { background: repeat space scroll none blue 100px 50%  }
-bg198057 { background: repeat space scroll none blue 100px left }
-bg198058 { background: repeat space scroll none blue 25% left }
+bg198057 { background: repeat space scroll none blue 100px bottom }
+bg198058 { background: repeat space scroll none blue 25% top }
 bg198059 { background: repeat space scroll none blue 50%  }
 bg198060 { background: repeat space scroll none blue 50% 100px  }
 bg198061 { background: repeat space scroll none blue bottom center }
@@ -8181,8 +8181,8 @@ bg198180 { background: repeat space scroll none top }
 bg198181 { background: repeat space scroll none transparent  }
 bg198182 { background: repeat space scroll none transparent 100px  }
 bg198183 { background: repeat space scroll none transparent 100px 50%  }
-bg198184 { background: repeat space scroll none transparent 100px left }
-bg198185 { background: repeat space scroll none transparent 25% left }
+bg198184 { background: repeat space scroll none transparent 100px bottom }
+bg198185 { background: repeat space scroll none transparent 25% top }
 bg198186 { background: repeat space scroll none transparent 50%  }
 bg198187 { background: repeat space scroll none transparent 50% 100px  }
 bg198188 { background: repeat space scroll none transparent bottom center }
@@ -8358,14 +8358,14 @@ bg198357 { background: repeat space scroll transparent 100px  }
 bg198358 { background: repeat space scroll transparent 100px 50%  }
 bg198359 { background: repeat space scroll transparent 100px 50% none  }
 bg198360 { background: repeat space scroll transparent 100px 50% url(test.jpg)  }
-bg198361 { background: repeat space scroll transparent 100px left none }
-bg198362 { background: repeat space scroll transparent 100px left url(test.jpg) }
-bg198363 { background: repeat space scroll transparent 100px left }
+bg198361 { background: repeat space scroll transparent 100px bottom none }
+bg198362 { background: repeat space scroll transparent 100px bottom url(test.jpg) }
+bg198363 { background: repeat space scroll transparent 100px bottom }
 bg198364 { background: repeat space scroll transparent 100px none  }
 bg198365 { background: repeat space scroll transparent 100px url(test.jpg)  }
-bg198366 { background: repeat space scroll transparent 25% left none }
-bg198367 { background: repeat space scroll transparent 25% left url(test.jpg) }
-bg198368 { background: repeat space scroll transparent 25% left }
+bg198366 { background: repeat space scroll transparent 25% top none }
+bg198367 { background: repeat space scroll transparent 25% top url(test.jpg) }
+bg198368 { background: repeat space scroll transparent 25% top }
 bg198369 { background: repeat space scroll transparent 50%  }
 bg198370 { background: repeat space scroll transparent 50% 100px  }
 bg198371 { background: repeat space scroll transparent 50% 100px none  }
@@ -8423,8 +8423,8 @@ bg198422 { background: repeat space scroll transparent left }
 bg198423 { background: repeat space scroll transparent none  }
 bg198424 { background: repeat space scroll transparent none 100px  }
 bg198425 { background: repeat space scroll transparent none 100px 50%  }
-bg198426 { background: repeat space scroll transparent none 100px left }
-bg198427 { background: repeat space scroll transparent none 25% left }
+bg198426 { background: repeat space scroll transparent none 100px bottom }
+bg198427 { background: repeat space scroll transparent none 25% top }
 bg198428 { background: repeat space scroll transparent none 50%  }
 bg198429 { background: repeat space scroll transparent none 50% 100px  }
 bg198430 { background: repeat space scroll transparent none bottom center }
@@ -8478,8 +8478,8 @@ bg198477 { background: repeat space scroll transparent top }
 bg198478 { background: repeat space scroll transparent url(test.jpg)  }
 bg198479 { background: repeat space scroll transparent url(test.jpg) 100px  }
 bg198480 { background: repeat space scroll transparent url(test.jpg) 100px 50%  }
-bg198481 { background: repeat space scroll transparent url(test.jpg) 100px left }
-bg198482 { background: repeat space scroll transparent url(test.jpg) 25% left }
+bg198481 { background: repeat space scroll transparent url(test.jpg) 100px bottom }
+bg198482 { background: repeat space scroll transparent url(test.jpg) 25% top }
 bg198483 { background: repeat space scroll transparent url(test.jpg) 50%  }
 bg198484 { background: repeat space scroll transparent url(test.jpg) 50% 100px  }
 bg198485 { background: repeat space scroll transparent url(test.jpg) bottom center }
@@ -8510,8 +8510,8 @@ bg198509 { background: repeat space scroll url(test.jpg)  }
 bg198510 { background: repeat space scroll url(test.jpg) #f00  }
 bg198511 { background: repeat space scroll url(test.jpg) #f00 100px  }
 bg198512 { background: repeat space scroll url(test.jpg) #f00 100px 50%  }
-bg198513 { background: repeat space scroll url(test.jpg) #f00 100px left }
-bg198514 { background: repeat space scroll url(test.jpg) #f00 25% left }
+bg198513 { background: repeat space scroll url(test.jpg) #f00 100px bottom }
+bg198514 { background: repeat space scroll url(test.jpg) #f00 25% top }
 bg198515 { background: repeat space scroll url(test.jpg) #f00 50%  }
 bg198516 { background: repeat space scroll url(test.jpg) #f00 50% 100px  }
 bg198517 { background: repeat space scroll url(test.jpg) #f00 bottom center }
@@ -8545,15 +8545,15 @@ bg198544 { background: repeat space scroll url(test.jpg) 100px 50% #f00  }
 bg198545 { background: repeat space scroll url(test.jpg) 100px 50% blue  }
 bg198546 { background: repeat space scroll url(test.jpg) 100px 50% transparent  }
 bg198547 { background: repeat space scroll url(test.jpg) 100px blue  }
-bg198548 { background: repeat space scroll url(test.jpg) 100px left #f00 }
-bg198549 { background: repeat space scroll url(test.jpg) 100px left blue }
-bg198550 { background: repeat space scroll url(test.jpg) 100px left transparent }
-bg198551 { background: repeat space scroll url(test.jpg) 100px left }
+bg198548 { background: repeat space scroll url(test.jpg) 100px bottom #f00 }
+bg198549 { background: repeat space scroll url(test.jpg) 100px bottom blue }
+bg198550 { background: repeat space scroll url(test.jpg) 100px bottom transparent }
+bg198551 { background: repeat space scroll url(test.jpg) 100px bottom }
 bg198552 { background: repeat space scroll url(test.jpg) 100px transparent  }
-bg198553 { background: repeat space scroll url(test.jpg) 25% left #f00 }
-bg198554 { background: repeat space scroll url(test.jpg) 25% left blue }
-bg198555 { background: repeat space scroll url(test.jpg) 25% left transparent }
-bg198556 { background: repeat space scroll url(test.jpg) 25% left }
+bg198553 { background: repeat space scroll url(test.jpg) 25% top #f00 }
+bg198554 { background: repeat space scroll url(test.jpg) 25% top blue }
+bg198555 { background: repeat space scroll url(test.jpg) 25% top transparent }
+bg198556 { background: repeat space scroll url(test.jpg) 25% top }
 bg198557 { background: repeat space scroll url(test.jpg) 50%  }
 bg198558 { background: repeat space scroll url(test.jpg) 50% #f00  }
 bg198559 { background: repeat space scroll url(test.jpg) 50% 100px  }
@@ -8565,8 +8565,8 @@ bg198564 { background: repeat space scroll url(test.jpg) 50% transparent  }
 bg198565 { background: repeat space scroll url(test.jpg) blue  }
 bg198566 { background: repeat space scroll url(test.jpg) blue 100px  }
 bg198567 { background: repeat space scroll url(test.jpg) blue 100px 50%  }
-bg198568 { background: repeat space scroll url(test.jpg) blue 100px left }
-bg198569 { background: repeat space scroll url(test.jpg) blue 25% left }
+bg198568 { background: repeat space scroll url(test.jpg) blue 100px bottom }
+bg198569 { background: repeat space scroll url(test.jpg) blue 25% top }
 bg198570 { background: repeat space scroll url(test.jpg) blue 50%  }
 bg198571 { background: repeat space scroll url(test.jpg) blue 50% 100px  }
 bg198572 { background: repeat space scroll url(test.jpg) blue bottom center }
@@ -8692,8 +8692,8 @@ bg198691 { background: repeat space scroll url(test.jpg) top }
 bg198692 { background: repeat space scroll url(test.jpg) transparent  }
 bg198693 { background: repeat space scroll url(test.jpg) transparent 100px  }
 bg198694 { background: repeat space scroll url(test.jpg) transparent 100px 50%  }
-bg198695 { background: repeat space scroll url(test.jpg) transparent 100px left }
-bg198696 { background: repeat space scroll url(test.jpg) transparent 25% left }
+bg198695 { background: repeat space scroll url(test.jpg) transparent 100px bottom }
+bg198696 { background: repeat space scroll url(test.jpg) transparent 25% top }
 bg198697 { background: repeat space scroll url(test.jpg) transparent 50%  }
 bg198698 { background: repeat space scroll url(test.jpg) transparent 50% 100px  }
 bg198699 { background: repeat space scroll url(test.jpg) transparent bottom center }
@@ -9186,19 +9186,19 @@ bg199185 { background: repeat space transparent 100px 50% url(test.jpg) scroll  
 bg199186 { background: repeat space transparent 100px fixed  }
 bg199187 { background: repeat space transparent 100px fixed none  }
 bg199188 { background: repeat space transparent 100px fixed url(test.jpg)  }
-bg199189 { background: repeat space transparent 100px left fixed none }
-bg199190 { background: repeat space transparent 100px left fixed url(test.jpg) }
-bg199191 { background: repeat space transparent 100px left fixed }
-bg199192 { background: repeat space transparent 100px left none fixed }
-bg199193 { background: repeat space transparent 100px left none scroll }
-bg199194 { background: repeat space transparent 100px left none }
-bg199195 { background: repeat space transparent 100px left scroll none }
-bg199196 { background: repeat space transparent 100px left scroll url(test.jpg) }
-bg199197 { background: repeat space transparent 100px left scroll }
-bg199198 { background: repeat space transparent 100px left url(test.jpg) fixed }
-bg199199 { background: repeat space transparent 100px left url(test.jpg) scroll }
-bg199200 { background: repeat space transparent 100px left url(test.jpg) }
-bg199201 { background: repeat space transparent 100px left }
+bg199189 { background: repeat space transparent 100px bottom fixed none }
+bg199190 { background: repeat space transparent 100px bottom fixed url(test.jpg) }
+bg199191 { background: repeat space transparent 100px bottom fixed }
+bg199192 { background: repeat space transparent 100px bottom none fixed }
+bg199193 { background: repeat space transparent 100px bottom none scroll }
+bg199194 { background: repeat space transparent 100px bottom none }
+bg199195 { background: repeat space transparent 100px bottom scroll none }
+bg199196 { background: repeat space transparent 100px bottom scroll url(test.jpg) }
+bg199197 { background: repeat space transparent 100px bottom scroll }
+bg199198 { background: repeat space transparent 100px bottom url(test.jpg) fixed }
+bg199199 { background: repeat space transparent 100px bottom url(test.jpg) scroll }
+bg199200 { background: repeat space transparent 100px bottom url(test.jpg) }
+bg199201 { background: repeat space transparent 100px bottom }
 bg199202 { background: repeat space transparent 100px none  }
 bg199203 { background: repeat space transparent 100px none fixed  }
 bg199204 { background: repeat space transparent 100px none scroll  }
@@ -9208,19 +9208,19 @@ bg199207 { background: repeat space transparent 100px scroll url(test.jpg)  }
 bg199208 { background: repeat space transparent 100px url(test.jpg)  }
 bg199209 { background: repeat space transparent 100px url(test.jpg) fixed  }
 bg199210 { background: repeat space transparent 100px url(test.jpg) scroll  }
-bg199211 { background: repeat space transparent 25% left fixed none }
-bg199212 { background: repeat space transparent 25% left fixed url(test.jpg) }
-bg199213 { background: repeat space transparent 25% left fixed }
-bg199214 { background: repeat space transparent 25% left none fixed }
-bg199215 { background: repeat space transparent 25% left none scroll }
-bg199216 { background: repeat space transparent 25% left none }
-bg199217 { background: repeat space transparent 25% left scroll none }
-bg199218 { background: repeat space transparent 25% left scroll url(test.jpg) }
-bg199219 { background: repeat space transparent 25% left scroll }
-bg199220 { background: repeat space transparent 25% left url(test.jpg) fixed }
-bg199221 { background: repeat space transparent 25% left url(test.jpg) scroll }
-bg199222 { background: repeat space transparent 25% left url(test.jpg) }
-bg199223 { background: repeat space transparent 25% left }
+bg199211 { background: repeat space transparent 25% top fixed none }
+bg199212 { background: repeat space transparent 25% top fixed url(test.jpg) }
+bg199213 { background: repeat space transparent 25% top fixed }
+bg199214 { background: repeat space transparent 25% top none fixed }
+bg199215 { background: repeat space transparent 25% top none scroll }
+bg199216 { background: repeat space transparent 25% top none }
+bg199217 { background: repeat space transparent 25% top scroll none }
+bg199218 { background: repeat space transparent 25% top scroll url(test.jpg) }
+bg199219 { background: repeat space transparent 25% top scroll }
+bg199220 { background: repeat space transparent 25% top url(test.jpg) fixed }
+bg199221 { background: repeat space transparent 25% top url(test.jpg) scroll }
+bg199222 { background: repeat space transparent 25% top url(test.jpg) }
+bg199223 { background: repeat space transparent 25% top }
 bg199224 { background: repeat space transparent 50%  }
 bg199225 { background: repeat space transparent 50% 100px  }
 bg199226 { background: repeat space transparent 50% 100px fixed  }
@@ -9382,14 +9382,14 @@ bg199381 { background: repeat space transparent fixed 100px  }
 bg199382 { background: repeat space transparent fixed 100px 50%  }
 bg199383 { background: repeat space transparent fixed 100px 50% none  }
 bg199384 { background: repeat space transparent fixed 100px 50% url(test.jpg)  }
-bg199385 { background: repeat space transparent fixed 100px left none }
-bg199386 { background: repeat space transparent fixed 100px left url(test.jpg) }
-bg199387 { background: repeat space transparent fixed 100px left }
+bg199385 { background: repeat space transparent fixed 100px bottom none }
+bg199386 { background: repeat space transparent fixed 100px bottom url(test.jpg) }
+bg199387 { background: repeat space transparent fixed 100px bottom }
 bg199388 { background: repeat space transparent fixed 100px none  }
 bg199389 { background: repeat space transparent fixed 100px url(test.jpg)  }
-bg199390 { background: repeat space transparent fixed 25% left none }
-bg199391 { background: repeat space transparent fixed 25% left url(test.jpg) }
-bg199392 { background: repeat space transparent fixed 25% left }
+bg199390 { background: repeat space transparent fixed 25% top none }
+bg199391 { background: repeat space transparent fixed 25% top url(test.jpg) }
+bg199392 { background: repeat space transparent fixed 25% top }
 bg199393 { background: repeat space transparent fixed 50%  }
 bg199394 { background: repeat space transparent fixed 50% 100px  }
 bg199395 { background: repeat space transparent fixed 50% 100px none  }
@@ -9447,8 +9447,8 @@ bg199446 { background: repeat space transparent fixed left }
 bg199447 { background: repeat space transparent fixed none  }
 bg199448 { background: repeat space transparent fixed none 100px  }
 bg199449 { background: repeat space transparent fixed none 100px 50%  }
-bg199450 { background: repeat space transparent fixed none 100px left }
-bg199451 { background: repeat space transparent fixed none 25% left }
+bg199450 { background: repeat space transparent fixed none 100px bottom }
+bg199451 { background: repeat space transparent fixed none 25% top }
 bg199452 { background: repeat space transparent fixed none 50%  }
 bg199453 { background: repeat space transparent fixed none 50% 100px  }
 bg199454 { background: repeat space transparent fixed none bottom center }
@@ -9502,8 +9502,8 @@ bg199501 { background: repeat space transparent fixed top }
 bg199502 { background: repeat space transparent fixed url(test.jpg)  }
 bg199503 { background: repeat space transparent fixed url(test.jpg) 100px  }
 bg199504 { background: repeat space transparent fixed url(test.jpg) 100px 50%  }
-bg199505 { background: repeat space transparent fixed url(test.jpg) 100px left }
-bg199506 { background: repeat space transparent fixed url(test.jpg) 25% left }
+bg199505 { background: repeat space transparent fixed url(test.jpg) 100px bottom }
+bg199506 { background: repeat space transparent fixed url(test.jpg) 25% top }
 bg199507 { background: repeat space transparent fixed url(test.jpg) 50%  }
 bg199508 { background: repeat space transparent fixed url(test.jpg) 50% 100px  }
 bg199509 { background: repeat space transparent fixed url(test.jpg) bottom center }
@@ -9614,13 +9614,13 @@ bg199613 { background: repeat space transparent none 100px 50%  }
 bg199614 { background: repeat space transparent none 100px 50% fixed  }
 bg199615 { background: repeat space transparent none 100px 50% scroll  }
 bg199616 { background: repeat space transparent none 100px fixed  }
-bg199617 { background: repeat space transparent none 100px left fixed }
-bg199618 { background: repeat space transparent none 100px left scroll }
-bg199619 { background: repeat space transparent none 100px left }
+bg199617 { background: repeat space transparent none 100px bottom fixed }
+bg199618 { background: repeat space transparent none 100px bottom scroll }
+bg199619 { background: repeat space transparent none 100px bottom }
 bg199620 { background: repeat space transparent none 100px scroll  }
-bg199621 { background: repeat space transparent none 25% left fixed }
-bg199622 { background: repeat space transparent none 25% left scroll }
-bg199623 { background: repeat space transparent none 25% left }
+bg199621 { background: repeat space transparent none 25% top fixed }
+bg199622 { background: repeat space transparent none 25% top scroll }
+bg199623 { background: repeat space transparent none 25% top }
 bg199624 { background: repeat space transparent none 50%  }
 bg199625 { background: repeat space transparent none 50% 100px  }
 bg199626 { background: repeat space transparent none 50% 100px fixed  }
@@ -9660,8 +9660,8 @@ bg199659 { background: repeat space transparent none center }
 bg199660 { background: repeat space transparent none fixed  }
 bg199661 { background: repeat space transparent none fixed 100px  }
 bg199662 { background: repeat space transparent none fixed 100px 50%  }
-bg199663 { background: repeat space transparent none fixed 100px left }
-bg199664 { background: repeat space transparent none fixed 25% left }
+bg199663 { background: repeat space transparent none fixed 100px bottom }
+bg199664 { background: repeat space transparent none fixed 25% top }
 bg199665 { background: repeat space transparent none fixed 50%  }
 bg199666 { background: repeat space transparent none fixed 50% 100px  }
 bg199667 { background: repeat space transparent none fixed bottom center }
@@ -9721,8 +9721,8 @@ bg199720 { background: repeat space transparent none right }
 bg199721 { background: repeat space transparent none scroll  }
 bg199722 { background: repeat space transparent none scroll 100px  }
 bg199723 { background: repeat space transparent none scroll 100px 50%  }
-bg199724 { background: repeat space transparent none scroll 100px left }
-bg199725 { background: repeat space transparent none scroll 25% left }
+bg199724 { background: repeat space transparent none scroll 100px bottom }
+bg199725 { background: repeat space transparent none scroll 25% top }
 bg199726 { background: repeat space transparent none scroll 50%  }
 bg199727 { background: repeat space transparent none scroll 50% 100px  }
 bg199728 { background: repeat space transparent none scroll bottom center }
@@ -9818,14 +9818,14 @@ bg199817 { background: repeat space transparent scroll 100px  }
 bg199818 { background: repeat space transparent scroll 100px 50%  }
 bg199819 { background: repeat space transparent scroll 100px 50% none  }
 bg199820 { background: repeat space transparent scroll 100px 50% url(test.jpg)  }
-bg199821 { background: repeat space transparent scroll 100px left none }
-bg199822 { background: repeat space transparent scroll 100px left url(test.jpg) }
-bg199823 { background: repeat space transparent scroll 100px left }
+bg199821 { background: repeat space transparent scroll 100px bottom none }
+bg199822 { background: repeat space transparent scroll 100px bottom url(test.jpg) }
+bg199823 { background: repeat space transparent scroll 100px bottom }
 bg199824 { background: repeat space transparent scroll 100px none  }
 bg199825 { background: repeat space transparent scroll 100px url(test.jpg)  }
-bg199826 { background: repeat space transparent scroll 25% left none }
-bg199827 { background: repeat space transparent scroll 25% left url(test.jpg) }
-bg199828 { background: repeat space transparent scroll 25% left }
+bg199826 { background: repeat space transparent scroll 25% top none }
+bg199827 { background: repeat space transparent scroll 25% top url(test.jpg) }
+bg199828 { background: repeat space transparent scroll 25% top }
 bg199829 { background: repeat space transparent scroll 50%  }
 bg199830 { background: repeat space transparent scroll 50% 100px  }
 bg199831 { background: repeat space transparent scroll 50% 100px none  }
@@ -9883,8 +9883,8 @@ bg199882 { background: repeat space transparent scroll left }
 bg199883 { background: repeat space transparent scroll none  }
 bg199884 { background: repeat space transparent scroll none 100px  }
 bg199885 { background: repeat space transparent scroll none 100px 50%  }
-bg199886 { background: repeat space transparent scroll none 100px left }
-bg199887 { background: repeat space transparent scroll none 25% left }
+bg199886 { background: repeat space transparent scroll none 100px bottom }
+bg199887 { background: repeat space transparent scroll none 25% top }
 bg199888 { background: repeat space transparent scroll none 50%  }
 bg199889 { background: repeat space transparent scroll none 50% 100px  }
 bg199890 { background: repeat space transparent scroll none bottom center }
@@ -9938,8 +9938,8 @@ bg199937 { background: repeat space transparent scroll top }
 bg199938 { background: repeat space transparent scroll url(test.jpg)  }
 bg199939 { background: repeat space transparent scroll url(test.jpg) 100px  }
 bg199940 { background: repeat space transparent scroll url(test.jpg) 100px 50%  }
-bg199941 { background: repeat space transparent scroll url(test.jpg) 100px left }
-bg199942 { background: repeat space transparent scroll url(test.jpg) 25% left }
+bg199941 { background: repeat space transparent scroll url(test.jpg) 100px bottom }
+bg199942 { background: repeat space transparent scroll url(test.jpg) 25% top }
 bg199943 { background: repeat space transparent scroll url(test.jpg) 50%  }
 bg199944 { background: repeat space transparent scroll url(test.jpg) 50% 100px  }
 bg199945 { background: repeat space transparent scroll url(test.jpg) bottom center }

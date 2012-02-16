@@ -65,19 +65,19 @@ bg10064 { background: #f00 repeat 100px 50% url(test.jpg) scroll  }
 bg10065 { background: #f00 repeat 100px fixed  }
 bg10066 { background: #f00 repeat 100px fixed none  }
 bg10067 { background: #f00 repeat 100px fixed url(test.jpg)  }
-bg10068 { background: #f00 repeat 100px left fixed none }
-bg10069 { background: #f00 repeat 100px left fixed url(test.jpg) }
-bg10070 { background: #f00 repeat 100px left fixed }
-bg10071 { background: #f00 repeat 100px left none fixed }
-bg10072 { background: #f00 repeat 100px left none scroll }
-bg10073 { background: #f00 repeat 100px left none }
-bg10074 { background: #f00 repeat 100px left scroll none }
-bg10075 { background: #f00 repeat 100px left scroll url(test.jpg) }
-bg10076 { background: #f00 repeat 100px left scroll }
-bg10077 { background: #f00 repeat 100px left url(test.jpg) fixed }
-bg10078 { background: #f00 repeat 100px left url(test.jpg) scroll }
-bg10079 { background: #f00 repeat 100px left url(test.jpg) }
-bg10080 { background: #f00 repeat 100px left }
+bg10068 { background: #f00 repeat 100px bottom fixed none }
+bg10069 { background: #f00 repeat 100px bottom fixed url(test.jpg) }
+bg10070 { background: #f00 repeat 100px bottom fixed }
+bg10071 { background: #f00 repeat 100px bottom none fixed }
+bg10072 { background: #f00 repeat 100px bottom none scroll }
+bg10073 { background: #f00 repeat 100px bottom none }
+bg10074 { background: #f00 repeat 100px bottom scroll none }
+bg10075 { background: #f00 repeat 100px bottom scroll url(test.jpg) }
+bg10076 { background: #f00 repeat 100px bottom scroll }
+bg10077 { background: #f00 repeat 100px bottom url(test.jpg) fixed }
+bg10078 { background: #f00 repeat 100px bottom url(test.jpg) scroll }
+bg10079 { background: #f00 repeat 100px bottom url(test.jpg) }
+bg10080 { background: #f00 repeat 100px bottom }
 bg10081 { background: #f00 repeat 100px none  }
 bg10082 { background: #f00 repeat 100px none fixed  }
 bg10083 { background: #f00 repeat 100px none scroll  }
@@ -87,19 +87,19 @@ bg10086 { background: #f00 repeat 100px scroll url(test.jpg)  }
 bg10087 { background: #f00 repeat 100px url(test.jpg)  }
 bg10088 { background: #f00 repeat 100px url(test.jpg) fixed  }
 bg10089 { background: #f00 repeat 100px url(test.jpg) scroll  }
-bg10090 { background: #f00 repeat 25% left fixed none }
-bg10091 { background: #f00 repeat 25% left fixed url(test.jpg) }
-bg10092 { background: #f00 repeat 25% left fixed }
-bg10093 { background: #f00 repeat 25% left none fixed }
-bg10094 { background: #f00 repeat 25% left none scroll }
-bg10095 { background: #f00 repeat 25% left none }
-bg10096 { background: #f00 repeat 25% left scroll none }
-bg10097 { background: #f00 repeat 25% left scroll url(test.jpg) }
-bg10098 { background: #f00 repeat 25% left scroll }
-bg10099 { background: #f00 repeat 25% left url(test.jpg) fixed }
-bg10100 { background: #f00 repeat 25% left url(test.jpg) scroll }
-bg10101 { background: #f00 repeat 25% left url(test.jpg) }
-bg10102 { background: #f00 repeat 25% left }
+bg10090 { background: #f00 repeat 25% top fixed none }
+bg10091 { background: #f00 repeat 25% top fixed url(test.jpg) }
+bg10092 { background: #f00 repeat 25% top fixed }
+bg10093 { background: #f00 repeat 25% top none fixed }
+bg10094 { background: #f00 repeat 25% top none scroll }
+bg10095 { background: #f00 repeat 25% top none }
+bg10096 { background: #f00 repeat 25% top scroll none }
+bg10097 { background: #f00 repeat 25% top scroll url(test.jpg) }
+bg10098 { background: #f00 repeat 25% top scroll }
+bg10099 { background: #f00 repeat 25% top url(test.jpg) fixed }
+bg10100 { background: #f00 repeat 25% top url(test.jpg) scroll }
+bg10101 { background: #f00 repeat 25% top url(test.jpg) }
+bg10102 { background: #f00 repeat 25% top }
 bg10103 { background: #f00 repeat 50%  }
 bg10104 { background: #f00 repeat 50% 100px  }
 bg10105 { background: #f00 repeat 50% 100px fixed  }
@@ -261,14 +261,14 @@ bg10260 { background: #f00 repeat fixed 100px  }
 bg10261 { background: #f00 repeat fixed 100px 50%  }
 bg10262 { background: #f00 repeat fixed 100px 50% none  }
 bg10263 { background: #f00 repeat fixed 100px 50% url(test.jpg)  }
-bg10264 { background: #f00 repeat fixed 100px left none }
-bg10265 { background: #f00 repeat fixed 100px left url(test.jpg) }
-bg10266 { background: #f00 repeat fixed 100px left }
+bg10264 { background: #f00 repeat fixed 100px bottom none }
+bg10265 { background: #f00 repeat fixed 100px bottom url(test.jpg) }
+bg10266 { background: #f00 repeat fixed 100px bottom }
 bg10267 { background: #f00 repeat fixed 100px none  }
 bg10268 { background: #f00 repeat fixed 100px url(test.jpg)  }
-bg10269 { background: #f00 repeat fixed 25% left none }
-bg10270 { background: #f00 repeat fixed 25% left url(test.jpg) }
-bg10271 { background: #f00 repeat fixed 25% left }
+bg10269 { background: #f00 repeat fixed 25% top none }
+bg10270 { background: #f00 repeat fixed 25% top url(test.jpg) }
+bg10271 { background: #f00 repeat fixed 25% top }
 bg10272 { background: #f00 repeat fixed 50%  }
 bg10273 { background: #f00 repeat fixed 50% 100px  }
 bg10274 { background: #f00 repeat fixed 50% 100px none  }
@@ -326,8 +326,8 @@ bg10325 { background: #f00 repeat fixed left }
 bg10326 { background: #f00 repeat fixed none  }
 bg10327 { background: #f00 repeat fixed none 100px  }
 bg10328 { background: #f00 repeat fixed none 100px 50%  }
-bg10329 { background: #f00 repeat fixed none 100px left }
-bg10330 { background: #f00 repeat fixed none 25% left }
+bg10329 { background: #f00 repeat fixed none 100px bottom }
+bg10330 { background: #f00 repeat fixed none 25% top }
 bg10331 { background: #f00 repeat fixed none 50%  }
 bg10332 { background: #f00 repeat fixed none 50% 100px  }
 bg10333 { background: #f00 repeat fixed none bottom center }
@@ -381,8 +381,8 @@ bg10380 { background: #f00 repeat fixed top }
 bg10381 { background: #f00 repeat fixed url(test.jpg)  }
 bg10382 { background: #f00 repeat fixed url(test.jpg) 100px  }
 bg10383 { background: #f00 repeat fixed url(test.jpg) 100px 50%  }
-bg10384 { background: #f00 repeat fixed url(test.jpg) 100px left }
-bg10385 { background: #f00 repeat fixed url(test.jpg) 25% left }
+bg10384 { background: #f00 repeat fixed url(test.jpg) 100px bottom }
+bg10385 { background: #f00 repeat fixed url(test.jpg) 25% top }
 bg10386 { background: #f00 repeat fixed url(test.jpg) 50%  }
 bg10387 { background: #f00 repeat fixed url(test.jpg) 50% 100px  }
 bg10388 { background: #f00 repeat fixed url(test.jpg) bottom center }
@@ -505,19 +505,19 @@ bg10504 { background: #f00 repeat no-repeat 100px 50% url(test.jpg) scroll  }
 bg10505 { background: #f00 repeat no-repeat 100px fixed  }
 bg10506 { background: #f00 repeat no-repeat 100px fixed none  }
 bg10507 { background: #f00 repeat no-repeat 100px fixed url(test.jpg)  }
-bg10508 { background: #f00 repeat no-repeat 100px left fixed none }
-bg10509 { background: #f00 repeat no-repeat 100px left fixed url(test.jpg) }
-bg10510 { background: #f00 repeat no-repeat 100px left fixed }
-bg10511 { background: #f00 repeat no-repeat 100px left none fixed }
-bg10512 { background: #f00 repeat no-repeat 100px left none scroll }
-bg10513 { background: #f00 repeat no-repeat 100px left none }
-bg10514 { background: #f00 repeat no-repeat 100px left scroll none }
-bg10515 { background: #f00 repeat no-repeat 100px left scroll url(test.jpg) }
-bg10516 { background: #f00 repeat no-repeat 100px left scroll }
-bg10517 { background: #f00 repeat no-repeat 100px left url(test.jpg) fixed }
-bg10518 { background: #f00 repeat no-repeat 100px left url(test.jpg) scroll }
-bg10519 { background: #f00 repeat no-repeat 100px left url(test.jpg) }
-bg10520 { background: #f00 repeat no-repeat 100px left }
+bg10508 { background: #f00 repeat no-repeat 100px bottom fixed none }
+bg10509 { background: #f00 repeat no-repeat 100px bottom fixed url(test.jpg) }
+bg10510 { background: #f00 repeat no-repeat 100px bottom fixed }
+bg10511 { background: #f00 repeat no-repeat 100px bottom none fixed }
+bg10512 { background: #f00 repeat no-repeat 100px bottom none scroll }
+bg10513 { background: #f00 repeat no-repeat 100px bottom none }
+bg10514 { background: #f00 repeat no-repeat 100px bottom scroll none }
+bg10515 { background: #f00 repeat no-repeat 100px bottom scroll url(test.jpg) }
+bg10516 { background: #f00 repeat no-repeat 100px bottom scroll }
+bg10517 { background: #f00 repeat no-repeat 100px bottom url(test.jpg) fixed }
+bg10518 { background: #f00 repeat no-repeat 100px bottom url(test.jpg) scroll }
+bg10519 { background: #f00 repeat no-repeat 100px bottom url(test.jpg) }
+bg10520 { background: #f00 repeat no-repeat 100px bottom }
 bg10521 { background: #f00 repeat no-repeat 100px none  }
 bg10522 { background: #f00 repeat no-repeat 100px none fixed  }
 bg10523 { background: #f00 repeat no-repeat 100px none scroll  }
@@ -527,19 +527,19 @@ bg10526 { background: #f00 repeat no-repeat 100px scroll url(test.jpg)  }
 bg10527 { background: #f00 repeat no-repeat 100px url(test.jpg)  }
 bg10528 { background: #f00 repeat no-repeat 100px url(test.jpg) fixed  }
 bg10529 { background: #f00 repeat no-repeat 100px url(test.jpg) scroll  }
-bg10530 { background: #f00 repeat no-repeat 25% left fixed none }
-bg10531 { background: #f00 repeat no-repeat 25% left fixed url(test.jpg) }
-bg10532 { background: #f00 repeat no-repeat 25% left fixed }
-bg10533 { background: #f00 repeat no-repeat 25% left none fixed }
-bg10534 { background: #f00 repeat no-repeat 25% left none scroll }
-bg10535 { background: #f00 repeat no-repeat 25% left none }
-bg10536 { background: #f00 repeat no-repeat 25% left scroll none }
-bg10537 { background: #f00 repeat no-repeat 25% left scroll url(test.jpg) }
-bg10538 { background: #f00 repeat no-repeat 25% left scroll }
-bg10539 { background: #f00 repeat no-repeat 25% left url(test.jpg) fixed }
-bg10540 { background: #f00 repeat no-repeat 25% left url(test.jpg) scroll }
-bg10541 { background: #f00 repeat no-repeat 25% left url(test.jpg) }
-bg10542 { background: #f00 repeat no-repeat 25% left }
+bg10530 { background: #f00 repeat no-repeat 25% top fixed none }
+bg10531 { background: #f00 repeat no-repeat 25% top fixed url(test.jpg) }
+bg10532 { background: #f00 repeat no-repeat 25% top fixed }
+bg10533 { background: #f00 repeat no-repeat 25% top none fixed }
+bg10534 { background: #f00 repeat no-repeat 25% top none scroll }
+bg10535 { background: #f00 repeat no-repeat 25% top none }
+bg10536 { background: #f00 repeat no-repeat 25% top scroll none }
+bg10537 { background: #f00 repeat no-repeat 25% top scroll url(test.jpg) }
+bg10538 { background: #f00 repeat no-repeat 25% top scroll }
+bg10539 { background: #f00 repeat no-repeat 25% top url(test.jpg) fixed }
+bg10540 { background: #f00 repeat no-repeat 25% top url(test.jpg) scroll }
+bg10541 { background: #f00 repeat no-repeat 25% top url(test.jpg) }
+bg10542 { background: #f00 repeat no-repeat 25% top }
 bg10543 { background: #f00 repeat no-repeat 50%  }
 bg10544 { background: #f00 repeat no-repeat 50% 100px  }
 bg10545 { background: #f00 repeat no-repeat 50% 100px fixed  }
@@ -701,14 +701,14 @@ bg10700 { background: #f00 repeat no-repeat fixed 100px  }
 bg10701 { background: #f00 repeat no-repeat fixed 100px 50%  }
 bg10702 { background: #f00 repeat no-repeat fixed 100px 50% none  }
 bg10703 { background: #f00 repeat no-repeat fixed 100px 50% url(test.jpg)  }
-bg10704 { background: #f00 repeat no-repeat fixed 100px left none }
-bg10705 { background: #f00 repeat no-repeat fixed 100px left url(test.jpg) }
-bg10706 { background: #f00 repeat no-repeat fixed 100px left }
+bg10704 { background: #f00 repeat no-repeat fixed 100px bottom none }
+bg10705 { background: #f00 repeat no-repeat fixed 100px bottom url(test.jpg) }
+bg10706 { background: #f00 repeat no-repeat fixed 100px bottom }
 bg10707 { background: #f00 repeat no-repeat fixed 100px none  }
 bg10708 { background: #f00 repeat no-repeat fixed 100px url(test.jpg)  }
-bg10709 { background: #f00 repeat no-repeat fixed 25% left none }
-bg10710 { background: #f00 repeat no-repeat fixed 25% left url(test.jpg) }
-bg10711 { background: #f00 repeat no-repeat fixed 25% left }
+bg10709 { background: #f00 repeat no-repeat fixed 25% top none }
+bg10710 { background: #f00 repeat no-repeat fixed 25% top url(test.jpg) }
+bg10711 { background: #f00 repeat no-repeat fixed 25% top }
 bg10712 { background: #f00 repeat no-repeat fixed 50%  }
 bg10713 { background: #f00 repeat no-repeat fixed 50% 100px  }
 bg10714 { background: #f00 repeat no-repeat fixed 50% 100px none  }
@@ -766,8 +766,8 @@ bg10765 { background: #f00 repeat no-repeat fixed left }
 bg10766 { background: #f00 repeat no-repeat fixed none  }
 bg10767 { background: #f00 repeat no-repeat fixed none 100px  }
 bg10768 { background: #f00 repeat no-repeat fixed none 100px 50%  }
-bg10769 { background: #f00 repeat no-repeat fixed none 100px left }
-bg10770 { background: #f00 repeat no-repeat fixed none 25% left }
+bg10769 { background: #f00 repeat no-repeat fixed none 100px bottom }
+bg10770 { background: #f00 repeat no-repeat fixed none 25% top }
 bg10771 { background: #f00 repeat no-repeat fixed none 50%  }
 bg10772 { background: #f00 repeat no-repeat fixed none 50% 100px  }
 bg10773 { background: #f00 repeat no-repeat fixed none bottom center }
@@ -821,8 +821,8 @@ bg10820 { background: #f00 repeat no-repeat fixed top }
 bg10821 { background: #f00 repeat no-repeat fixed url(test.jpg)  }
 bg10822 { background: #f00 repeat no-repeat fixed url(test.jpg) 100px  }
 bg10823 { background: #f00 repeat no-repeat fixed url(test.jpg) 100px 50%  }
-bg10824 { background: #f00 repeat no-repeat fixed url(test.jpg) 100px left }
-bg10825 { background: #f00 repeat no-repeat fixed url(test.jpg) 25% left }
+bg10824 { background: #f00 repeat no-repeat fixed url(test.jpg) 100px bottom }
+bg10825 { background: #f00 repeat no-repeat fixed url(test.jpg) 25% top }
 bg10826 { background: #f00 repeat no-repeat fixed url(test.jpg) 50%  }
 bg10827 { background: #f00 repeat no-repeat fixed url(test.jpg) 50% 100px  }
 bg10828 { background: #f00 repeat no-repeat fixed url(test.jpg) bottom center }
@@ -933,13 +933,13 @@ bg10932 { background: #f00 repeat no-repeat none 100px 50%  }
 bg10933 { background: #f00 repeat no-repeat none 100px 50% fixed  }
 bg10934 { background: #f00 repeat no-repeat none 100px 50% scroll  }
 bg10935 { background: #f00 repeat no-repeat none 100px fixed  }
-bg10936 { background: #f00 repeat no-repeat none 100px left fixed }
-bg10937 { background: #f00 repeat no-repeat none 100px left scroll }
-bg10938 { background: #f00 repeat no-repeat none 100px left }
+bg10936 { background: #f00 repeat no-repeat none 100px bottom fixed }
+bg10937 { background: #f00 repeat no-repeat none 100px bottom scroll }
+bg10938 { background: #f00 repeat no-repeat none 100px bottom }
 bg10939 { background: #f00 repeat no-repeat none 100px scroll  }
-bg10940 { background: #f00 repeat no-repeat none 25% left fixed }
-bg10941 { background: #f00 repeat no-repeat none 25% left scroll }
-bg10942 { background: #f00 repeat no-repeat none 25% left }
+bg10940 { background: #f00 repeat no-repeat none 25% top fixed }
+bg10941 { background: #f00 repeat no-repeat none 25% top scroll }
+bg10942 { background: #f00 repeat no-repeat none 25% top }
 bg10943 { background: #f00 repeat no-repeat none 50%  }
 bg10944 { background: #f00 repeat no-repeat none 50% 100px  }
 bg10945 { background: #f00 repeat no-repeat none 50% 100px fixed  }
@@ -979,8 +979,8 @@ bg10978 { background: #f00 repeat no-repeat none center }
 bg10979 { background: #f00 repeat no-repeat none fixed  }
 bg10980 { background: #f00 repeat no-repeat none fixed 100px  }
 bg10981 { background: #f00 repeat no-repeat none fixed 100px 50%  }
-bg10982 { background: #f00 repeat no-repeat none fixed 100px left }
-bg10983 { background: #f00 repeat no-repeat none fixed 25% left }
+bg10982 { background: #f00 repeat no-repeat none fixed 100px bottom }
+bg10983 { background: #f00 repeat no-repeat none fixed 25% top }
 bg10984 { background: #f00 repeat no-repeat none fixed 50%  }
 bg10985 { background: #f00 repeat no-repeat none fixed 50% 100px  }
 bg10986 { background: #f00 repeat no-repeat none fixed bottom center }
@@ -1040,8 +1040,8 @@ bg11039 { background: #f00 repeat no-repeat none right }
 bg11040 { background: #f00 repeat no-repeat none scroll  }
 bg11041 { background: #f00 repeat no-repeat none scroll 100px  }
 bg11042 { background: #f00 repeat no-repeat none scroll 100px 50%  }
-bg11043 { background: #f00 repeat no-repeat none scroll 100px left }
-bg11044 { background: #f00 repeat no-repeat none scroll 25% left }
+bg11043 { background: #f00 repeat no-repeat none scroll 100px bottom }
+bg11044 { background: #f00 repeat no-repeat none scroll 25% top }
 bg11045 { background: #f00 repeat no-repeat none scroll 50%  }
 bg11046 { background: #f00 repeat no-repeat none scroll 50% 100px  }
 bg11047 { background: #f00 repeat no-repeat none scroll bottom center }
@@ -1137,14 +1137,14 @@ bg11136 { background: #f00 repeat no-repeat scroll 100px  }
 bg11137 { background: #f00 repeat no-repeat scroll 100px 50%  }
 bg11138 { background: #f00 repeat no-repeat scroll 100px 50% none  }
 bg11139 { background: #f00 repeat no-repeat scroll 100px 50% url(test.jpg)  }
-bg11140 { background: #f00 repeat no-repeat scroll 100px left none }
-bg11141 { background: #f00 repeat no-repeat scroll 100px left url(test.jpg) }
-bg11142 { background: #f00 repeat no-repeat scroll 100px left }
+bg11140 { background: #f00 repeat no-repeat scroll 100px bottom none }
+bg11141 { background: #f00 repeat no-repeat scroll 100px bottom url(test.jpg) }
+bg11142 { background: #f00 repeat no-repeat scroll 100px bottom }
 bg11143 { background: #f00 repeat no-repeat scroll 100px none  }
 bg11144 { background: #f00 repeat no-repeat scroll 100px url(test.jpg)  }
-bg11145 { background: #f00 repeat no-repeat scroll 25% left none }
-bg11146 { background: #f00 repeat no-repeat scroll 25% left url(test.jpg) }
-bg11147 { background: #f00 repeat no-repeat scroll 25% left }
+bg11145 { background: #f00 repeat no-repeat scroll 25% top none }
+bg11146 { background: #f00 repeat no-repeat scroll 25% top url(test.jpg) }
+bg11147 { background: #f00 repeat no-repeat scroll 25% top }
 bg11148 { background: #f00 repeat no-repeat scroll 50%  }
 bg11149 { background: #f00 repeat no-repeat scroll 50% 100px  }
 bg11150 { background: #f00 repeat no-repeat scroll 50% 100px none  }
@@ -1202,8 +1202,8 @@ bg11201 { background: #f00 repeat no-repeat scroll left }
 bg11202 { background: #f00 repeat no-repeat scroll none  }
 bg11203 { background: #f00 repeat no-repeat scroll none 100px  }
 bg11204 { background: #f00 repeat no-repeat scroll none 100px 50%  }
-bg11205 { background: #f00 repeat no-repeat scroll none 100px left }
-bg11206 { background: #f00 repeat no-repeat scroll none 25% left }
+bg11205 { background: #f00 repeat no-repeat scroll none 100px bottom }
+bg11206 { background: #f00 repeat no-repeat scroll none 25% top }
 bg11207 { background: #f00 repeat no-repeat scroll none 50%  }
 bg11208 { background: #f00 repeat no-repeat scroll none 50% 100px  }
 bg11209 { background: #f00 repeat no-repeat scroll none bottom center }
@@ -1257,8 +1257,8 @@ bg11256 { background: #f00 repeat no-repeat scroll top }
 bg11257 { background: #f00 repeat no-repeat scroll url(test.jpg)  }
 bg11258 { background: #f00 repeat no-repeat scroll url(test.jpg) 100px  }
 bg11259 { background: #f00 repeat no-repeat scroll url(test.jpg) 100px 50%  }
-bg11260 { background: #f00 repeat no-repeat scroll url(test.jpg) 100px left }
-bg11261 { background: #f00 repeat no-repeat scroll url(test.jpg) 25% left }
+bg11260 { background: #f00 repeat no-repeat scroll url(test.jpg) 100px bottom }
+bg11261 { background: #f00 repeat no-repeat scroll url(test.jpg) 25% top }
 bg11262 { background: #f00 repeat no-repeat scroll url(test.jpg) 50%  }
 bg11263 { background: #f00 repeat no-repeat scroll url(test.jpg) 50% 100px  }
 bg11264 { background: #f00 repeat no-repeat scroll url(test.jpg) bottom center }
@@ -1343,13 +1343,13 @@ bg11342 { background: #f00 repeat no-repeat url(test.jpg) 100px 50%  }
 bg11343 { background: #f00 repeat no-repeat url(test.jpg) 100px 50% fixed  }
 bg11344 { background: #f00 repeat no-repeat url(test.jpg) 100px 50% scroll  }
 bg11345 { background: #f00 repeat no-repeat url(test.jpg) 100px fixed  }
-bg11346 { background: #f00 repeat no-repeat url(test.jpg) 100px left fixed }
-bg11347 { background: #f00 repeat no-repeat url(test.jpg) 100px left scroll }
-bg11348 { background: #f00 repeat no-repeat url(test.jpg) 100px left }
+bg11346 { background: #f00 repeat no-repeat url(test.jpg) 100px bottom fixed }
+bg11347 { background: #f00 repeat no-repeat url(test.jpg) 100px bottom scroll }
+bg11348 { background: #f00 repeat no-repeat url(test.jpg) 100px bottom }
 bg11349 { background: #f00 repeat no-repeat url(test.jpg) 100px scroll  }
-bg11350 { background: #f00 repeat no-repeat url(test.jpg) 25% left fixed }
-bg11351 { background: #f00 repeat no-repeat url(test.jpg) 25% left scroll }
-bg11352 { background: #f00 repeat no-repeat url(test.jpg) 25% left }
+bg11350 { background: #f00 repeat no-repeat url(test.jpg) 25% top fixed }
+bg11351 { background: #f00 repeat no-repeat url(test.jpg) 25% top scroll }
+bg11352 { background: #f00 repeat no-repeat url(test.jpg) 25% top }
 bg11353 { background: #f00 repeat no-repeat url(test.jpg) 50%  }
 bg11354 { background: #f00 repeat no-repeat url(test.jpg) 50% 100px  }
 bg11355 { background: #f00 repeat no-repeat url(test.jpg) 50% 100px fixed  }
@@ -1389,8 +1389,8 @@ bg11388 { background: #f00 repeat no-repeat url(test.jpg) center }
 bg11389 { background: #f00 repeat no-repeat url(test.jpg) fixed  }
 bg11390 { background: #f00 repeat no-repeat url(test.jpg) fixed 100px  }
 bg11391 { background: #f00 repeat no-repeat url(test.jpg) fixed 100px 50%  }
-bg11392 { background: #f00 repeat no-repeat url(test.jpg) fixed 100px left }
-bg11393 { background: #f00 repeat no-repeat url(test.jpg) fixed 25% left }
+bg11392 { background: #f00 repeat no-repeat url(test.jpg) fixed 100px bottom }
+bg11393 { background: #f00 repeat no-repeat url(test.jpg) fixed 25% top }
 bg11394 { background: #f00 repeat no-repeat url(test.jpg) fixed 50%  }
 bg11395 { background: #f00 repeat no-repeat url(test.jpg) fixed 50% 100px  }
 bg11396 { background: #f00 repeat no-repeat url(test.jpg) fixed bottom center }
@@ -1450,8 +1450,8 @@ bg11449 { background: #f00 repeat no-repeat url(test.jpg) right }
 bg11450 { background: #f00 repeat no-repeat url(test.jpg) scroll  }
 bg11451 { background: #f00 repeat no-repeat url(test.jpg) scroll 100px  }
 bg11452 { background: #f00 repeat no-repeat url(test.jpg) scroll 100px 50%  }
-bg11453 { background: #f00 repeat no-repeat url(test.jpg) scroll 100px left }
-bg11454 { background: #f00 repeat no-repeat url(test.jpg) scroll 25% left }
+bg11453 { background: #f00 repeat no-repeat url(test.jpg) scroll 100px bottom }
+bg11454 { background: #f00 repeat no-repeat url(test.jpg) scroll 25% top }
 bg11455 { background: #f00 repeat no-repeat url(test.jpg) scroll 50%  }
 bg11456 { background: #f00 repeat no-repeat url(test.jpg) scroll 50% 100px  }
 bg11457 { background: #f00 repeat no-repeat url(test.jpg) scroll bottom center }
@@ -1496,13 +1496,13 @@ bg11495 { background: #f00 repeat none 100px 50%  }
 bg11496 { background: #f00 repeat none 100px 50% fixed  }
 bg11497 { background: #f00 repeat none 100px 50% scroll  }
 bg11498 { background: #f00 repeat none 100px fixed  }
-bg11499 { background: #f00 repeat none 100px left fixed }
-bg11500 { background: #f00 repeat none 100px left scroll }
-bg11501 { background: #f00 repeat none 100px left }
+bg11499 { background: #f00 repeat none 100px bottom fixed }
+bg11500 { background: #f00 repeat none 100px bottom scroll }
+bg11501 { background: #f00 repeat none 100px bottom }
 bg11502 { background: #f00 repeat none 100px scroll  }
-bg11503 { background: #f00 repeat none 25% left fixed }
-bg11504 { background: #f00 repeat none 25% left scroll }
-bg11505 { background: #f00 repeat none 25% left }
+bg11503 { background: #f00 repeat none 25% top fixed }
+bg11504 { background: #f00 repeat none 25% top scroll }
+bg11505 { background: #f00 repeat none 25% top }
 bg11506 { background: #f00 repeat none 50%  }
 bg11507 { background: #f00 repeat none 50% 100px  }
 bg11508 { background: #f00 repeat none 50% 100px fixed  }
@@ -1542,8 +1542,8 @@ bg11541 { background: #f00 repeat none center }
 bg11542 { background: #f00 repeat none fixed  }
 bg11543 { background: #f00 repeat none fixed 100px  }
 bg11544 { background: #f00 repeat none fixed 100px 50%  }
-bg11545 { background: #f00 repeat none fixed 100px left }
-bg11546 { background: #f00 repeat none fixed 25% left }
+bg11545 { background: #f00 repeat none fixed 100px bottom }
+bg11546 { background: #f00 repeat none fixed 25% top }
 bg11547 { background: #f00 repeat none fixed 50%  }
 bg11548 { background: #f00 repeat none fixed 50% 100px  }
 bg11549 { background: #f00 repeat none fixed bottom center }
@@ -1603,8 +1603,8 @@ bg11602 { background: #f00 repeat none right }
 bg11603 { background: #f00 repeat none scroll  }
 bg11604 { background: #f00 repeat none scroll 100px  }
 bg11605 { background: #f00 repeat none scroll 100px 50%  }
-bg11606 { background: #f00 repeat none scroll 100px left }
-bg11607 { background: #f00 repeat none scroll 25% left }
+bg11606 { background: #f00 repeat none scroll 100px bottom }
+bg11607 { background: #f00 repeat none scroll 25% top }
 bg11608 { background: #f00 repeat none scroll 50%  }
 bg11609 { background: #f00 repeat none scroll 50% 100px  }
 bg11610 { background: #f00 repeat none scroll bottom center }
@@ -1700,14 +1700,14 @@ bg11699 { background: #f00 repeat scroll 100px  }
 bg11700 { background: #f00 repeat scroll 100px 50%  }
 bg11701 { background: #f00 repeat scroll 100px 50% none  }
 bg11702 { background: #f00 repeat scroll 100px 50% url(test.jpg)  }
-bg11703 { background: #f00 repeat scroll 100px left none }
-bg11704 { background: #f00 repeat scroll 100px left url(test.jpg) }
-bg11705 { background: #f00 repeat scroll 100px left }
+bg11703 { background: #f00 repeat scroll 100px bottom none }
+bg11704 { background: #f00 repeat scroll 100px bottom url(test.jpg) }
+bg11705 { background: #f00 repeat scroll 100px bottom }
 bg11706 { background: #f00 repeat scroll 100px none  }
 bg11707 { background: #f00 repeat scroll 100px url(test.jpg)  }
-bg11708 { background: #f00 repeat scroll 25% left none }
-bg11709 { background: #f00 repeat scroll 25% left url(test.jpg) }
-bg11710 { background: #f00 repeat scroll 25% left }
+bg11708 { background: #f00 repeat scroll 25% top none }
+bg11709 { background: #f00 repeat scroll 25% top url(test.jpg) }
+bg11710 { background: #f00 repeat scroll 25% top }
 bg11711 { background: #f00 repeat scroll 50%  }
 bg11712 { background: #f00 repeat scroll 50% 100px  }
 bg11713 { background: #f00 repeat scroll 50% 100px none  }
@@ -1765,8 +1765,8 @@ bg11764 { background: #f00 repeat scroll left }
 bg11765 { background: #f00 repeat scroll none  }
 bg11766 { background: #f00 repeat scroll none 100px  }
 bg11767 { background: #f00 repeat scroll none 100px 50%  }
-bg11768 { background: #f00 repeat scroll none 100px left }
-bg11769 { background: #f00 repeat scroll none 25% left }
+bg11768 { background: #f00 repeat scroll none 100px bottom }
+bg11769 { background: #f00 repeat scroll none 25% top }
 bg11770 { background: #f00 repeat scroll none 50%  }
 bg11771 { background: #f00 repeat scroll none 50% 100px  }
 bg11772 { background: #f00 repeat scroll none bottom center }
@@ -1820,8 +1820,8 @@ bg11819 { background: #f00 repeat scroll top }
 bg11820 { background: #f00 repeat scroll url(test.jpg)  }
 bg11821 { background: #f00 repeat scroll url(test.jpg) 100px  }
 bg11822 { background: #f00 repeat scroll url(test.jpg) 100px 50%  }
-bg11823 { background: #f00 repeat scroll url(test.jpg) 100px left }
-bg11824 { background: #f00 repeat scroll url(test.jpg) 25% left }
+bg11823 { background: #f00 repeat scroll url(test.jpg) 100px bottom }
+bg11824 { background: #f00 repeat scroll url(test.jpg) 25% top }
 bg11825 { background: #f00 repeat scroll url(test.jpg) 50%  }
 bg11826 { background: #f00 repeat scroll url(test.jpg) 50% 100px  }
 bg11827 { background: #f00 repeat scroll url(test.jpg) bottom center }
@@ -1866,19 +1866,19 @@ bg11865 { background: #f00 repeat space 100px 50% url(test.jpg) scroll  }
 bg11866 { background: #f00 repeat space 100px fixed  }
 bg11867 { background: #f00 repeat space 100px fixed none  }
 bg11868 { background: #f00 repeat space 100px fixed url(test.jpg)  }
-bg11869 { background: #f00 repeat space 100px left fixed none }
-bg11870 { background: #f00 repeat space 100px left fixed url(test.jpg) }
-bg11871 { background: #f00 repeat space 100px left fixed }
-bg11872 { background: #f00 repeat space 100px left none fixed }
-bg11873 { background: #f00 repeat space 100px left none scroll }
-bg11874 { background: #f00 repeat space 100px left none }
-bg11875 { background: #f00 repeat space 100px left scroll none }
-bg11876 { background: #f00 repeat space 100px left scroll url(test.jpg) }
-bg11877 { background: #f00 repeat space 100px left scroll }
-bg11878 { background: #f00 repeat space 100px left url(test.jpg) fixed }
-bg11879 { background: #f00 repeat space 100px left url(test.jpg) scroll }
-bg11880 { background: #f00 repeat space 100px left url(test.jpg) }
-bg11881 { background: #f00 repeat space 100px left }
+bg11869 { background: #f00 repeat space 100px bottom fixed none }
+bg11870 { background: #f00 repeat space 100px bottom fixed url(test.jpg) }
+bg11871 { background: #f00 repeat space 100px bottom fixed }
+bg11872 { background: #f00 repeat space 100px bottom none fixed }
+bg11873 { background: #f00 repeat space 100px bottom none scroll }
+bg11874 { background: #f00 repeat space 100px bottom none }
+bg11875 { background: #f00 repeat space 100px bottom scroll none }
+bg11876 { background: #f00 repeat space 100px bottom scroll url(test.jpg) }
+bg11877 { background: #f00 repeat space 100px bottom scroll }
+bg11878 { background: #f00 repeat space 100px bottom url(test.jpg) fixed }
+bg11879 { background: #f00 repeat space 100px bottom url(test.jpg) scroll }
+bg11880 { background: #f00 repeat space 100px bottom url(test.jpg) }
+bg11881 { background: #f00 repeat space 100px bottom }
 bg11882 { background: #f00 repeat space 100px none  }
 bg11883 { background: #f00 repeat space 100px none fixed  }
 bg11884 { background: #f00 repeat space 100px none scroll  }
@@ -1888,19 +1888,19 @@ bg11887 { background: #f00 repeat space 100px scroll url(test.jpg)  }
 bg11888 { background: #f00 repeat space 100px url(test.jpg)  }
 bg11889 { background: #f00 repeat space 100px url(test.jpg) fixed  }
 bg11890 { background: #f00 repeat space 100px url(test.jpg) scroll  }
-bg11891 { background: #f00 repeat space 25% left fixed none }
-bg11892 { background: #f00 repeat space 25% left fixed url(test.jpg) }
-bg11893 { background: #f00 repeat space 25% left fixed }
-bg11894 { background: #f00 repeat space 25% left none fixed }
-bg11895 { background: #f00 repeat space 25% left none scroll }
-bg11896 { background: #f00 repeat space 25% left none }
-bg11897 { background: #f00 repeat space 25% left scroll none }
-bg11898 { background: #f00 repeat space 25% left scroll url(test.jpg) }
-bg11899 { background: #f00 repeat space 25% left scroll }
-bg11900 { background: #f00 repeat space 25% left url(test.jpg) fixed }
-bg11901 { background: #f00 repeat space 25% left url(test.jpg) scroll }
-bg11902 { background: #f00 repeat space 25% left url(test.jpg) }
-bg11903 { background: #f00 repeat space 25% left }
+bg11891 { background: #f00 repeat space 25% top fixed none }
+bg11892 { background: #f00 repeat space 25% top fixed url(test.jpg) }
+bg11893 { background: #f00 repeat space 25% top fixed }
+bg11894 { background: #f00 repeat space 25% top none fixed }
+bg11895 { background: #f00 repeat space 25% top none scroll }
+bg11896 { background: #f00 repeat space 25% top none }
+bg11897 { background: #f00 repeat space 25% top scroll none }
+bg11898 { background: #f00 repeat space 25% top scroll url(test.jpg) }
+bg11899 { background: #f00 repeat space 25% top scroll }
+bg11900 { background: #f00 repeat space 25% top url(test.jpg) fixed }
+bg11901 { background: #f00 repeat space 25% top url(test.jpg) scroll }
+bg11902 { background: #f00 repeat space 25% top url(test.jpg) }
+bg11903 { background: #f00 repeat space 25% top }
 bg11904 { background: #f00 repeat space 50%  }
 bg11905 { background: #f00 repeat space 50% 100px  }
 bg11906 { background: #f00 repeat space 50% 100px fixed  }
@@ -2062,14 +2062,14 @@ bg12061 { background: #f00 repeat space fixed 100px  }
 bg12062 { background: #f00 repeat space fixed 100px 50%  }
 bg12063 { background: #f00 repeat space fixed 100px 50% none  }
 bg12064 { background: #f00 repeat space fixed 100px 50% url(test.jpg)  }
-bg12065 { background: #f00 repeat space fixed 100px left none }
-bg12066 { background: #f00 repeat space fixed 100px left url(test.jpg) }
-bg12067 { background: #f00 repeat space fixed 100px left }
+bg12065 { background: #f00 repeat space fixed 100px bottom none }
+bg12066 { background: #f00 repeat space fixed 100px bottom url(test.jpg) }
+bg12067 { background: #f00 repeat space fixed 100px bottom }
 bg12068 { background: #f00 repeat space fixed 100px none  }
 bg12069 { background: #f00 repeat space fixed 100px url(test.jpg)  }
-bg12070 { background: #f00 repeat space fixed 25% left none }
-bg12071 { background: #f00 repeat space fixed 25% left url(test.jpg) }
-bg12072 { background: #f00 repeat space fixed 25% left }
+bg12070 { background: #f00 repeat space fixed 25% top none }
+bg12071 { background: #f00 repeat space fixed 25% top url(test.jpg) }
+bg12072 { background: #f00 repeat space fixed 25% top }
 bg12073 { background: #f00 repeat space fixed 50%  }
 bg12074 { background: #f00 repeat space fixed 50% 100px  }
 bg12075 { background: #f00 repeat space fixed 50% 100px none  }
@@ -2127,8 +2127,8 @@ bg12126 { background: #f00 repeat space fixed left }
 bg12127 { background: #f00 repeat space fixed none  }
 bg12128 { background: #f00 repeat space fixed none 100px  }
 bg12129 { background: #f00 repeat space fixed none 100px 50%  }
-bg12130 { background: #f00 repeat space fixed none 100px left }
-bg12131 { background: #f00 repeat space fixed none 25% left }
+bg12130 { background: #f00 repeat space fixed none 100px bottom }
+bg12131 { background: #f00 repeat space fixed none 25% top }
 bg12132 { background: #f00 repeat space fixed none 50%  }
 bg12133 { background: #f00 repeat space fixed none 50% 100px  }
 bg12134 { background: #f00 repeat space fixed none bottom center }
@@ -2182,8 +2182,8 @@ bg12181 { background: #f00 repeat space fixed top }
 bg12182 { background: #f00 repeat space fixed url(test.jpg)  }
 bg12183 { background: #f00 repeat space fixed url(test.jpg) 100px  }
 bg12184 { background: #f00 repeat space fixed url(test.jpg) 100px 50%  }
-bg12185 { background: #f00 repeat space fixed url(test.jpg) 100px left }
-bg12186 { background: #f00 repeat space fixed url(test.jpg) 25% left }
+bg12185 { background: #f00 repeat space fixed url(test.jpg) 100px bottom }
+bg12186 { background: #f00 repeat space fixed url(test.jpg) 25% top }
 bg12187 { background: #f00 repeat space fixed url(test.jpg) 50%  }
 bg12188 { background: #f00 repeat space fixed url(test.jpg) 50% 100px  }
 bg12189 { background: #f00 repeat space fixed url(test.jpg) bottom center }
@@ -2294,13 +2294,13 @@ bg12293 { background: #f00 repeat space none 100px 50%  }
 bg12294 { background: #f00 repeat space none 100px 50% fixed  }
 bg12295 { background: #f00 repeat space none 100px 50% scroll  }
 bg12296 { background: #f00 repeat space none 100px fixed  }
-bg12297 { background: #f00 repeat space none 100px left fixed }
-bg12298 { background: #f00 repeat space none 100px left scroll }
-bg12299 { background: #f00 repeat space none 100px left }
+bg12297 { background: #f00 repeat space none 100px bottom fixed }
+bg12298 { background: #f00 repeat space none 100px bottom scroll }
+bg12299 { background: #f00 repeat space none 100px bottom }
 bg12300 { background: #f00 repeat space none 100px scroll  }
-bg12301 { background: #f00 repeat space none 25% left fixed }
-bg12302 { background: #f00 repeat space none 25% left scroll }
-bg12303 { background: #f00 repeat space none 25% left }
+bg12301 { background: #f00 repeat space none 25% top fixed }
+bg12302 { background: #f00 repeat space none 25% top scroll }
+bg12303 { background: #f00 repeat space none 25% top }
 bg12304 { background: #f00 repeat space none 50%  }
 bg12305 { background: #f00 repeat space none 50% 100px  }
 bg12306 { background: #f00 repeat space none 50% 100px fixed  }
@@ -2340,8 +2340,8 @@ bg12339 { background: #f00 repeat space none center }
 bg12340 { background: #f00 repeat space none fixed  }
 bg12341 { background: #f00 repeat space none fixed 100px  }
 bg12342 { background: #f00 repeat space none fixed 100px 50%  }
-bg12343 { background: #f00 repeat space none fixed 100px left }
-bg12344 { background: #f00 repeat space none fixed 25% left }
+bg12343 { background: #f00 repeat space none fixed 100px bottom }
+bg12344 { background: #f00 repeat space none fixed 25% top }
 bg12345 { background: #f00 repeat space none fixed 50%  }
 bg12346 { background: #f00 repeat space none fixed 50% 100px  }
 bg12347 { background: #f00 repeat space none fixed bottom center }
@@ -2401,8 +2401,8 @@ bg12400 { background: #f00 repeat space none right }
 bg12401 { background: #f00 repeat space none scroll  }
 bg12402 { background: #f00 repeat space none scroll 100px  }
 bg12403 { background: #f00 repeat space none scroll 100px 50%  }
-bg12404 { background: #f00 repeat space none scroll 100px left }
-bg12405 { background: #f00 repeat space none scroll 25% left }
+bg12404 { background: #f00 repeat space none scroll 100px bottom }
+bg12405 { background: #f00 repeat space none scroll 25% top }
 bg12406 { background: #f00 repeat space none scroll 50%  }
 bg12407 { background: #f00 repeat space none scroll 50% 100px  }
 bg12408 { background: #f00 repeat space none scroll bottom center }
@@ -2498,14 +2498,14 @@ bg12497 { background: #f00 repeat space scroll 100px  }
 bg12498 { background: #f00 repeat space scroll 100px 50%  }
 bg12499 { background: #f00 repeat space scroll 100px 50% none  }
 bg12500 { background: #f00 repeat space scroll 100px 50% url(test.jpg)  }
-bg12501 { background: #f00 repeat space scroll 100px left none }
-bg12502 { background: #f00 repeat space scroll 100px left url(test.jpg) }
-bg12503 { background: #f00 repeat space scroll 100px left }
+bg12501 { background: #f00 repeat space scroll 100px bottom none }
+bg12502 { background: #f00 repeat space scroll 100px bottom url(test.jpg) }
+bg12503 { background: #f00 repeat space scroll 100px bottom }
 bg12504 { background: #f00 repeat space scroll 100px none  }
 bg12505 { background: #f00 repeat space scroll 100px url(test.jpg)  }
-bg12506 { background: #f00 repeat space scroll 25% left none }
-bg12507 { background: #f00 repeat space scroll 25% left url(test.jpg) }
-bg12508 { background: #f00 repeat space scroll 25% left }
+bg12506 { background: #f00 repeat space scroll 25% top none }
+bg12507 { background: #f00 repeat space scroll 25% top url(test.jpg) }
+bg12508 { background: #f00 repeat space scroll 25% top }
 bg12509 { background: #f00 repeat space scroll 50%  }
 bg12510 { background: #f00 repeat space scroll 50% 100px  }
 bg12511 { background: #f00 repeat space scroll 50% 100px none  }
@@ -2563,8 +2563,8 @@ bg12562 { background: #f00 repeat space scroll left }
 bg12563 { background: #f00 repeat space scroll none  }
 bg12564 { background: #f00 repeat space scroll none 100px  }
 bg12565 { background: #f00 repeat space scroll none 100px 50%  }
-bg12566 { background: #f00 repeat space scroll none 100px left }
-bg12567 { background: #f00 repeat space scroll none 25% left }
+bg12566 { background: #f00 repeat space scroll none 100px bottom }
+bg12567 { background: #f00 repeat space scroll none 25% top }
 bg12568 { background: #f00 repeat space scroll none 50%  }
 bg12569 { background: #f00 repeat space scroll none 50% 100px  }
 bg12570 { background: #f00 repeat space scroll none bottom center }
@@ -2618,8 +2618,8 @@ bg12617 { background: #f00 repeat space scroll top }
 bg12618 { background: #f00 repeat space scroll url(test.jpg)  }
 bg12619 { background: #f00 repeat space scroll url(test.jpg) 100px  }
 bg12620 { background: #f00 repeat space scroll url(test.jpg) 100px 50%  }
-bg12621 { background: #f00 repeat space scroll url(test.jpg) 100px left }
-bg12622 { background: #f00 repeat space scroll url(test.jpg) 25% left }
+bg12621 { background: #f00 repeat space scroll url(test.jpg) 100px bottom }
+bg12622 { background: #f00 repeat space scroll url(test.jpg) 25% top }
 bg12623 { background: #f00 repeat space scroll url(test.jpg) 50%  }
 bg12624 { background: #f00 repeat space scroll url(test.jpg) 50% 100px  }
 bg12625 { background: #f00 repeat space scroll url(test.jpg) bottom center }
@@ -2704,13 +2704,13 @@ bg12703 { background: #f00 repeat space url(test.jpg) 100px 50%  }
 bg12704 { background: #f00 repeat space url(test.jpg) 100px 50% fixed  }
 bg12705 { background: #f00 repeat space url(test.jpg) 100px 50% scroll  }
 bg12706 { background: #f00 repeat space url(test.jpg) 100px fixed  }
-bg12707 { background: #f00 repeat space url(test.jpg) 100px left fixed }
-bg12708 { background: #f00 repeat space url(test.jpg) 100px left scroll }
-bg12709 { background: #f00 repeat space url(test.jpg) 100px left }
+bg12707 { background: #f00 repeat space url(test.jpg) 100px bottom fixed }
+bg12708 { background: #f00 repeat space url(test.jpg) 100px bottom scroll }
+bg12709 { background: #f00 repeat space url(test.jpg) 100px bottom }
 bg12710 { background: #f00 repeat space url(test.jpg) 100px scroll  }
-bg12711 { background: #f00 repeat space url(test.jpg) 25% left fixed }
-bg12712 { background: #f00 repeat space url(test.jpg) 25% left scroll }
-bg12713 { background: #f00 repeat space url(test.jpg) 25% left }
+bg12711 { background: #f00 repeat space url(test.jpg) 25% top fixed }
+bg12712 { background: #f00 repeat space url(test.jpg) 25% top scroll }
+bg12713 { background: #f00 repeat space url(test.jpg) 25% top }
 bg12714 { background: #f00 repeat space url(test.jpg) 50%  }
 bg12715 { background: #f00 repeat space url(test.jpg) 50% 100px  }
 bg12716 { background: #f00 repeat space url(test.jpg) 50% 100px fixed  }
@@ -2750,8 +2750,8 @@ bg12749 { background: #f00 repeat space url(test.jpg) center }
 bg12750 { background: #f00 repeat space url(test.jpg) fixed  }
 bg12751 { background: #f00 repeat space url(test.jpg) fixed 100px  }
 bg12752 { background: #f00 repeat space url(test.jpg) fixed 100px 50%  }
-bg12753 { background: #f00 repeat space url(test.jpg) fixed 100px left }
-bg12754 { background: #f00 repeat space url(test.jpg) fixed 25% left }
+bg12753 { background: #f00 repeat space url(test.jpg) fixed 100px bottom }
+bg12754 { background: #f00 repeat space url(test.jpg) fixed 25% top }
 bg12755 { background: #f00 repeat space url(test.jpg) fixed 50%  }
 bg12756 { background: #f00 repeat space url(test.jpg) fixed 50% 100px  }
 bg12757 { background: #f00 repeat space url(test.jpg) fixed bottom center }
@@ -2811,8 +2811,8 @@ bg12810 { background: #f00 repeat space url(test.jpg) right }
 bg12811 { background: #f00 repeat space url(test.jpg) scroll  }
 bg12812 { background: #f00 repeat space url(test.jpg) scroll 100px  }
 bg12813 { background: #f00 repeat space url(test.jpg) scroll 100px 50%  }
-bg12814 { background: #f00 repeat space url(test.jpg) scroll 100px left }
-bg12815 { background: #f00 repeat space url(test.jpg) scroll 25% left }
+bg12814 { background: #f00 repeat space url(test.jpg) scroll 100px bottom }
+bg12815 { background: #f00 repeat space url(test.jpg) scroll 25% top }
 bg12816 { background: #f00 repeat space url(test.jpg) scroll 50%  }
 bg12817 { background: #f00 repeat space url(test.jpg) scroll 50% 100px  }
 bg12818 { background: #f00 repeat space url(test.jpg) scroll bottom center }
@@ -2909,13 +2909,13 @@ bg12908 { background: #f00 repeat url(test.jpg) 100px 50%  }
 bg12909 { background: #f00 repeat url(test.jpg) 100px 50% fixed  }
 bg12910 { background: #f00 repeat url(test.jpg) 100px 50% scroll  }
 bg12911 { background: #f00 repeat url(test.jpg) 100px fixed  }
-bg12912 { background: #f00 repeat url(test.jpg) 100px left fixed }
-bg12913 { background: #f00 repeat url(test.jpg) 100px left scroll }
-bg12914 { background: #f00 repeat url(test.jpg) 100px left }
+bg12912 { background: #f00 repeat url(test.jpg) 100px bottom fixed }
+bg12913 { background: #f00 repeat url(test.jpg) 100px bottom scroll }
+bg12914 { background: #f00 repeat url(test.jpg) 100px bottom }
 bg12915 { background: #f00 repeat url(test.jpg) 100px scroll  }
-bg12916 { background: #f00 repeat url(test.jpg) 25% left fixed }
-bg12917 { background: #f00 repeat url(test.jpg) 25% left scroll }
-bg12918 { background: #f00 repeat url(test.jpg) 25% left }
+bg12916 { background: #f00 repeat url(test.jpg) 25% top fixed }
+bg12917 { background: #f00 repeat url(test.jpg) 25% top scroll }
+bg12918 { background: #f00 repeat url(test.jpg) 25% top }
 bg12919 { background: #f00 repeat url(test.jpg) 50%  }
 bg12920 { background: #f00 repeat url(test.jpg) 50% 100px  }
 bg12921 { background: #f00 repeat url(test.jpg) 50% 100px fixed  }
@@ -2955,8 +2955,8 @@ bg12954 { background: #f00 repeat url(test.jpg) center }
 bg12955 { background: #f00 repeat url(test.jpg) fixed  }
 bg12956 { background: #f00 repeat url(test.jpg) fixed 100px  }
 bg12957 { background: #f00 repeat url(test.jpg) fixed 100px 50%  }
-bg12958 { background: #f00 repeat url(test.jpg) fixed 100px left }
-bg12959 { background: #f00 repeat url(test.jpg) fixed 25% left }
+bg12958 { background: #f00 repeat url(test.jpg) fixed 100px bottom }
+bg12959 { background: #f00 repeat url(test.jpg) fixed 25% top }
 bg12960 { background: #f00 repeat url(test.jpg) fixed 50%  }
 bg12961 { background: #f00 repeat url(test.jpg) fixed 50% 100px  }
 bg12962 { background: #f00 repeat url(test.jpg) fixed bottom center }
@@ -3016,8 +3016,8 @@ bg13015 { background: #f00 repeat url(test.jpg) right }
 bg13016 { background: #f00 repeat url(test.jpg) scroll  }
 bg13017 { background: #f00 repeat url(test.jpg) scroll 100px  }
 bg13018 { background: #f00 repeat url(test.jpg) scroll 100px 50%  }
-bg13019 { background: #f00 repeat url(test.jpg) scroll 100px left }
-bg13020 { background: #f00 repeat url(test.jpg) scroll 25% left }
+bg13019 { background: #f00 repeat url(test.jpg) scroll 100px bottom }
+bg13020 { background: #f00 repeat url(test.jpg) scroll 25% top }
 bg13021 { background: #f00 repeat url(test.jpg) scroll 50%  }
 bg13022 { background: #f00 repeat url(test.jpg) scroll 50% 100px  }
 bg13023 { background: #f00 repeat url(test.jpg) scroll bottom center }
@@ -3074,19 +3074,19 @@ bg13073 { background: #f00 repeat-x 100px 50% url(test.jpg) scroll  }
 bg13074 { background: #f00 repeat-x 100px fixed  }
 bg13075 { background: #f00 repeat-x 100px fixed none  }
 bg13076 { background: #f00 repeat-x 100px fixed url(test.jpg)  }
-bg13077 { background: #f00 repeat-x 100px left fixed none }
-bg13078 { background: #f00 repeat-x 100px left fixed url(test.jpg) }
-bg13079 { background: #f00 repeat-x 100px left fixed }
-bg13080 { background: #f00 repeat-x 100px left none fixed }
-bg13081 { background: #f00 repeat-x 100px left none scroll }
-bg13082 { background: #f00 repeat-x 100px left none }
-bg13083 { background: #f00 repeat-x 100px left scroll none }
-bg13084 { background: #f00 repeat-x 100px left scroll url(test.jpg) }
-bg13085 { background: #f00 repeat-x 100px left scroll }
-bg13086 { background: #f00 repeat-x 100px left url(test.jpg) fixed }
-bg13087 { background: #f00 repeat-x 100px left url(test.jpg) scroll }
-bg13088 { background: #f00 repeat-x 100px left url(test.jpg) }
-bg13089 { background: #f00 repeat-x 100px left }
+bg13077 { background: #f00 repeat-x 100px bottom fixed none }
+bg13078 { background: #f00 repeat-x 100px bottom fixed url(test.jpg) }
+bg13079 { background: #f00 repeat-x 100px bottom fixed }
+bg13080 { background: #f00 repeat-x 100px bottom none fixed }
+bg13081 { background: #f00 repeat-x 100px bottom none scroll }
+bg13082 { background: #f00 repeat-x 100px bottom none }
+bg13083 { background: #f00 repeat-x 100px bottom scroll none }
+bg13084 { background: #f00 repeat-x 100px bottom scroll url(test.jpg) }
+bg13085 { background: #f00 repeat-x 100px bottom scroll }
+bg13086 { background: #f00 repeat-x 100px bottom url(test.jpg) fixed }
+bg13087 { background: #f00 repeat-x 100px bottom url(test.jpg) scroll }
+bg13088 { background: #f00 repeat-x 100px bottom url(test.jpg) }
+bg13089 { background: #f00 repeat-x 100px bottom }
 bg13090 { background: #f00 repeat-x 100px none  }
 bg13091 { background: #f00 repeat-x 100px none fixed  }
 bg13092 { background: #f00 repeat-x 100px none scroll  }
@@ -3096,19 +3096,19 @@ bg13095 { background: #f00 repeat-x 100px scroll url(test.jpg)  }
 bg13096 { background: #f00 repeat-x 100px url(test.jpg)  }
 bg13097 { background: #f00 repeat-x 100px url(test.jpg) fixed  }
 bg13098 { background: #f00 repeat-x 100px url(test.jpg) scroll  }
-bg13099 { background: #f00 repeat-x 25% left fixed none }
-bg13100 { background: #f00 repeat-x 25% left fixed url(test.jpg) }
-bg13101 { background: #f00 repeat-x 25% left fixed }
-bg13102 { background: #f00 repeat-x 25% left none fixed }
-bg13103 { background: #f00 repeat-x 25% left none scroll }
-bg13104 { background: #f00 repeat-x 25% left none }
-bg13105 { background: #f00 repeat-x 25% left scroll none }
-bg13106 { background: #f00 repeat-x 25% left scroll url(test.jpg) }
-bg13107 { background: #f00 repeat-x 25% left scroll }
-bg13108 { background: #f00 repeat-x 25% left url(test.jpg) fixed }
-bg13109 { background: #f00 repeat-x 25% left url(test.jpg) scroll }
-bg13110 { background: #f00 repeat-x 25% left url(test.jpg) }
-bg13111 { background: #f00 repeat-x 25% left }
+bg13099 { background: #f00 repeat-x 25% top fixed none }
+bg13100 { background: #f00 repeat-x 25% top fixed url(test.jpg) }
+bg13101 { background: #f00 repeat-x 25% top fixed }
+bg13102 { background: #f00 repeat-x 25% top none fixed }
+bg13103 { background: #f00 repeat-x 25% top none scroll }
+bg13104 { background: #f00 repeat-x 25% top none }
+bg13105 { background: #f00 repeat-x 25% top scroll none }
+bg13106 { background: #f00 repeat-x 25% top scroll url(test.jpg) }
+bg13107 { background: #f00 repeat-x 25% top scroll }
+bg13108 { background: #f00 repeat-x 25% top url(test.jpg) fixed }
+bg13109 { background: #f00 repeat-x 25% top url(test.jpg) scroll }
+bg13110 { background: #f00 repeat-x 25% top url(test.jpg) }
+bg13111 { background: #f00 repeat-x 25% top }
 bg13112 { background: #f00 repeat-x 50%  }
 bg13113 { background: #f00 repeat-x 50% 100px  }
 bg13114 { background: #f00 repeat-x 50% 100px fixed  }
@@ -3270,14 +3270,14 @@ bg13269 { background: #f00 repeat-x fixed 100px  }
 bg13270 { background: #f00 repeat-x fixed 100px 50%  }
 bg13271 { background: #f00 repeat-x fixed 100px 50% none  }
 bg13272 { background: #f00 repeat-x fixed 100px 50% url(test.jpg)  }
-bg13273 { background: #f00 repeat-x fixed 100px left none }
-bg13274 { background: #f00 repeat-x fixed 100px left url(test.jpg) }
-bg13275 { background: #f00 repeat-x fixed 100px left }
+bg13273 { background: #f00 repeat-x fixed 100px bottom none }
+bg13274 { background: #f00 repeat-x fixed 100px bottom url(test.jpg) }
+bg13275 { background: #f00 repeat-x fixed 100px bottom }
 bg13276 { background: #f00 repeat-x fixed 100px none  }
 bg13277 { background: #f00 repeat-x fixed 100px url(test.jpg)  }
-bg13278 { background: #f00 repeat-x fixed 25% left none }
-bg13279 { background: #f00 repeat-x fixed 25% left url(test.jpg) }
-bg13280 { background: #f00 repeat-x fixed 25% left }
+bg13278 { background: #f00 repeat-x fixed 25% top none }
+bg13279 { background: #f00 repeat-x fixed 25% top url(test.jpg) }
+bg13280 { background: #f00 repeat-x fixed 25% top }
 bg13281 { background: #f00 repeat-x fixed 50%  }
 bg13282 { background: #f00 repeat-x fixed 50% 100px  }
 bg13283 { background: #f00 repeat-x fixed 50% 100px none  }
@@ -3335,8 +3335,8 @@ bg13334 { background: #f00 repeat-x fixed left }
 bg13335 { background: #f00 repeat-x fixed none  }
 bg13336 { background: #f00 repeat-x fixed none 100px  }
 bg13337 { background: #f00 repeat-x fixed none 100px 50%  }
-bg13338 { background: #f00 repeat-x fixed none 100px left }
-bg13339 { background: #f00 repeat-x fixed none 25% left }
+bg13338 { background: #f00 repeat-x fixed none 100px bottom }
+bg13339 { background: #f00 repeat-x fixed none 25% top }
 bg13340 { background: #f00 repeat-x fixed none 50%  }
 bg13341 { background: #f00 repeat-x fixed none 50% 100px  }
 bg13342 { background: #f00 repeat-x fixed none bottom center }
@@ -3390,8 +3390,8 @@ bg13389 { background: #f00 repeat-x fixed top }
 bg13390 { background: #f00 repeat-x fixed url(test.jpg)  }
 bg13391 { background: #f00 repeat-x fixed url(test.jpg) 100px  }
 bg13392 { background: #f00 repeat-x fixed url(test.jpg) 100px 50%  }
-bg13393 { background: #f00 repeat-x fixed url(test.jpg) 100px left }
-bg13394 { background: #f00 repeat-x fixed url(test.jpg) 25% left }
+bg13393 { background: #f00 repeat-x fixed url(test.jpg) 100px bottom }
+bg13394 { background: #f00 repeat-x fixed url(test.jpg) 25% top }
 bg13395 { background: #f00 repeat-x fixed url(test.jpg) 50%  }
 bg13396 { background: #f00 repeat-x fixed url(test.jpg) 50% 100px  }
 bg13397 { background: #f00 repeat-x fixed url(test.jpg) bottom center }
@@ -3502,13 +3502,13 @@ bg13501 { background: #f00 repeat-x none 100px 50%  }
 bg13502 { background: #f00 repeat-x none 100px 50% fixed  }
 bg13503 { background: #f00 repeat-x none 100px 50% scroll  }
 bg13504 { background: #f00 repeat-x none 100px fixed  }
-bg13505 { background: #f00 repeat-x none 100px left fixed }
-bg13506 { background: #f00 repeat-x none 100px left scroll }
-bg13507 { background: #f00 repeat-x none 100px left }
+bg13505 { background: #f00 repeat-x none 100px bottom fixed }
+bg13506 { background: #f00 repeat-x none 100px bottom scroll }
+bg13507 { background: #f00 repeat-x none 100px bottom }
 bg13508 { background: #f00 repeat-x none 100px scroll  }
-bg13509 { background: #f00 repeat-x none 25% left fixed }
-bg13510 { background: #f00 repeat-x none 25% left scroll }
-bg13511 { background: #f00 repeat-x none 25% left }
+bg13509 { background: #f00 repeat-x none 25% top fixed }
+bg13510 { background: #f00 repeat-x none 25% top scroll }
+bg13511 { background: #f00 repeat-x none 25% top }
 bg13512 { background: #f00 repeat-x none 50%  }
 bg13513 { background: #f00 repeat-x none 50% 100px  }
 bg13514 { background: #f00 repeat-x none 50% 100px fixed  }
@@ -3548,8 +3548,8 @@ bg13547 { background: #f00 repeat-x none center }
 bg13548 { background: #f00 repeat-x none fixed  }
 bg13549 { background: #f00 repeat-x none fixed 100px  }
 bg13550 { background: #f00 repeat-x none fixed 100px 50%  }
-bg13551 { background: #f00 repeat-x none fixed 100px left }
-bg13552 { background: #f00 repeat-x none fixed 25% left }
+bg13551 { background: #f00 repeat-x none fixed 100px bottom }
+bg13552 { background: #f00 repeat-x none fixed 25% top }
 bg13553 { background: #f00 repeat-x none fixed 50%  }
 bg13554 { background: #f00 repeat-x none fixed 50% 100px  }
 bg13555 { background: #f00 repeat-x none fixed bottom center }
@@ -3609,8 +3609,8 @@ bg13608 { background: #f00 repeat-x none right }
 bg13609 { background: #f00 repeat-x none scroll  }
 bg13610 { background: #f00 repeat-x none scroll 100px  }
 bg13611 { background: #f00 repeat-x none scroll 100px 50%  }
-bg13612 { background: #f00 repeat-x none scroll 100px left }
-bg13613 { background: #f00 repeat-x none scroll 25% left }
+bg13612 { background: #f00 repeat-x none scroll 100px bottom }
+bg13613 { background: #f00 repeat-x none scroll 25% top }
 bg13614 { background: #f00 repeat-x none scroll 50%  }
 bg13615 { background: #f00 repeat-x none scroll 50% 100px  }
 bg13616 { background: #f00 repeat-x none scroll bottom center }
@@ -3706,14 +3706,14 @@ bg13705 { background: #f00 repeat-x scroll 100px  }
 bg13706 { background: #f00 repeat-x scroll 100px 50%  }
 bg13707 { background: #f00 repeat-x scroll 100px 50% none  }
 bg13708 { background: #f00 repeat-x scroll 100px 50% url(test.jpg)  }
-bg13709 { background: #f00 repeat-x scroll 100px left none }
-bg13710 { background: #f00 repeat-x scroll 100px left url(test.jpg) }
-bg13711 { background: #f00 repeat-x scroll 100px left }
+bg13709 { background: #f00 repeat-x scroll 100px bottom none }
+bg13710 { background: #f00 repeat-x scroll 100px bottom url(test.jpg) }
+bg13711 { background: #f00 repeat-x scroll 100px bottom }
 bg13712 { background: #f00 repeat-x scroll 100px none  }
 bg13713 { background: #f00 repeat-x scroll 100px url(test.jpg)  }
-bg13714 { background: #f00 repeat-x scroll 25% left none }
-bg13715 { background: #f00 repeat-x scroll 25% left url(test.jpg) }
-bg13716 { background: #f00 repeat-x scroll 25% left }
+bg13714 { background: #f00 repeat-x scroll 25% top none }
+bg13715 { background: #f00 repeat-x scroll 25% top url(test.jpg) }
+bg13716 { background: #f00 repeat-x scroll 25% top }
 bg13717 { background: #f00 repeat-x scroll 50%  }
 bg13718 { background: #f00 repeat-x scroll 50% 100px  }
 bg13719 { background: #f00 repeat-x scroll 50% 100px none  }
@@ -3771,8 +3771,8 @@ bg13770 { background: #f00 repeat-x scroll left }
 bg13771 { background: #f00 repeat-x scroll none  }
 bg13772 { background: #f00 repeat-x scroll none 100px  }
 bg13773 { background: #f00 repeat-x scroll none 100px 50%  }
-bg13774 { background: #f00 repeat-x scroll none 100px left }
-bg13775 { background: #f00 repeat-x scroll none 25% left }
+bg13774 { background: #f00 repeat-x scroll none 100px bottom }
+bg13775 { background: #f00 repeat-x scroll none 25% top }
 bg13776 { background: #f00 repeat-x scroll none 50%  }
 bg13777 { background: #f00 repeat-x scroll none 50% 100px  }
 bg13778 { background: #f00 repeat-x scroll none bottom center }
@@ -3826,8 +3826,8 @@ bg13825 { background: #f00 repeat-x scroll top }
 bg13826 { background: #f00 repeat-x scroll url(test.jpg)  }
 bg13827 { background: #f00 repeat-x scroll url(test.jpg) 100px  }
 bg13828 { background: #f00 repeat-x scroll url(test.jpg) 100px 50%  }
-bg13829 { background: #f00 repeat-x scroll url(test.jpg) 100px left }
-bg13830 { background: #f00 repeat-x scroll url(test.jpg) 25% left }
+bg13829 { background: #f00 repeat-x scroll url(test.jpg) 100px bottom }
+bg13830 { background: #f00 repeat-x scroll url(test.jpg) 25% top }
 bg13831 { background: #f00 repeat-x scroll url(test.jpg) 50%  }
 bg13832 { background: #f00 repeat-x scroll url(test.jpg) 50% 100px  }
 bg13833 { background: #f00 repeat-x scroll url(test.jpg) bottom center }
@@ -3912,13 +3912,13 @@ bg13911 { background: #f00 repeat-x url(test.jpg) 100px 50%  }
 bg13912 { background: #f00 repeat-x url(test.jpg) 100px 50% fixed  }
 bg13913 { background: #f00 repeat-x url(test.jpg) 100px 50% scroll  }
 bg13914 { background: #f00 repeat-x url(test.jpg) 100px fixed  }
-bg13915 { background: #f00 repeat-x url(test.jpg) 100px left fixed }
-bg13916 { background: #f00 repeat-x url(test.jpg) 100px left scroll }
-bg13917 { background: #f00 repeat-x url(test.jpg) 100px left }
+bg13915 { background: #f00 repeat-x url(test.jpg) 100px bottom fixed }
+bg13916 { background: #f00 repeat-x url(test.jpg) 100px bottom scroll }
+bg13917 { background: #f00 repeat-x url(test.jpg) 100px bottom }
 bg13918 { background: #f00 repeat-x url(test.jpg) 100px scroll  }
-bg13919 { background: #f00 repeat-x url(test.jpg) 25% left fixed }
-bg13920 { background: #f00 repeat-x url(test.jpg) 25% left scroll }
-bg13921 { background: #f00 repeat-x url(test.jpg) 25% left }
+bg13919 { background: #f00 repeat-x url(test.jpg) 25% top fixed }
+bg13920 { background: #f00 repeat-x url(test.jpg) 25% top scroll }
+bg13921 { background: #f00 repeat-x url(test.jpg) 25% top }
 bg13922 { background: #f00 repeat-x url(test.jpg) 50%  }
 bg13923 { background: #f00 repeat-x url(test.jpg) 50% 100px  }
 bg13924 { background: #f00 repeat-x url(test.jpg) 50% 100px fixed  }
@@ -3958,8 +3958,8 @@ bg13957 { background: #f00 repeat-x url(test.jpg) center }
 bg13958 { background: #f00 repeat-x url(test.jpg) fixed  }
 bg13959 { background: #f00 repeat-x url(test.jpg) fixed 100px  }
 bg13960 { background: #f00 repeat-x url(test.jpg) fixed 100px 50%  }
-bg13961 { background: #f00 repeat-x url(test.jpg) fixed 100px left }
-bg13962 { background: #f00 repeat-x url(test.jpg) fixed 25% left }
+bg13961 { background: #f00 repeat-x url(test.jpg) fixed 100px bottom }
+bg13962 { background: #f00 repeat-x url(test.jpg) fixed 25% top }
 bg13963 { background: #f00 repeat-x url(test.jpg) fixed 50%  }
 bg13964 { background: #f00 repeat-x url(test.jpg) fixed 50% 100px  }
 bg13965 { background: #f00 repeat-x url(test.jpg) fixed bottom center }
@@ -4019,8 +4019,8 @@ bg14018 { background: #f00 repeat-x url(test.jpg) right }
 bg14019 { background: #f00 repeat-x url(test.jpg) scroll  }
 bg14020 { background: #f00 repeat-x url(test.jpg) scroll 100px  }
 bg14021 { background: #f00 repeat-x url(test.jpg) scroll 100px 50%  }
-bg14022 { background: #f00 repeat-x url(test.jpg) scroll 100px left }
-bg14023 { background: #f00 repeat-x url(test.jpg) scroll 25% left }
+bg14022 { background: #f00 repeat-x url(test.jpg) scroll 100px bottom }
+bg14023 { background: #f00 repeat-x url(test.jpg) scroll 25% top }
 bg14024 { background: #f00 repeat-x url(test.jpg) scroll 50%  }
 bg14025 { background: #f00 repeat-x url(test.jpg) scroll 50% 100px  }
 bg14026 { background: #f00 repeat-x url(test.jpg) scroll bottom center }
@@ -4077,19 +4077,19 @@ bg14076 { background: #f00 repeat-y 100px 50% url(test.jpg) scroll  }
 bg14077 { background: #f00 repeat-y 100px fixed  }
 bg14078 { background: #f00 repeat-y 100px fixed none  }
 bg14079 { background: #f00 repeat-y 100px fixed url(test.jpg)  }
-bg14080 { background: #f00 repeat-y 100px left fixed none }
-bg14081 { background: #f00 repeat-y 100px left fixed url(test.jpg) }
-bg14082 { background: #f00 repeat-y 100px left fixed }
-bg14083 { background: #f00 repeat-y 100px left none fixed }
-bg14084 { background: #f00 repeat-y 100px left none scroll }
-bg14085 { background: #f00 repeat-y 100px left none }
-bg14086 { background: #f00 repeat-y 100px left scroll none }
-bg14087 { background: #f00 repeat-y 100px left scroll url(test.jpg) }
-bg14088 { background: #f00 repeat-y 100px left scroll }
-bg14089 { background: #f00 repeat-y 100px left url(test.jpg) fixed }
-bg14090 { background: #f00 repeat-y 100px left url(test.jpg) scroll }
-bg14091 { background: #f00 repeat-y 100px left url(test.jpg) }
-bg14092 { background: #f00 repeat-y 100px left }
+bg14080 { background: #f00 repeat-y 100px bottom fixed none }
+bg14081 { background: #f00 repeat-y 100px bottom fixed url(test.jpg) }
+bg14082 { background: #f00 repeat-y 100px bottom fixed }
+bg14083 { background: #f00 repeat-y 100px bottom none fixed }
+bg14084 { background: #f00 repeat-y 100px bottom none scroll }
+bg14085 { background: #f00 repeat-y 100px bottom none }
+bg14086 { background: #f00 repeat-y 100px bottom scroll none }
+bg14087 { background: #f00 repeat-y 100px bottom scroll url(test.jpg) }
+bg14088 { background: #f00 repeat-y 100px bottom scroll }
+bg14089 { background: #f00 repeat-y 100px bottom url(test.jpg) fixed }
+bg14090 { background: #f00 repeat-y 100px bottom url(test.jpg) scroll }
+bg14091 { background: #f00 repeat-y 100px bottom url(test.jpg) }
+bg14092 { background: #f00 repeat-y 100px bottom }
 bg14093 { background: #f00 repeat-y 100px none  }
 bg14094 { background: #f00 repeat-y 100px none fixed  }
 bg14095 { background: #f00 repeat-y 100px none scroll  }
@@ -4099,19 +4099,19 @@ bg14098 { background: #f00 repeat-y 100px scroll url(test.jpg)  }
 bg14099 { background: #f00 repeat-y 100px url(test.jpg)  }
 bg14100 { background: #f00 repeat-y 100px url(test.jpg) fixed  }
 bg14101 { background: #f00 repeat-y 100px url(test.jpg) scroll  }
-bg14102 { background: #f00 repeat-y 25% left fixed none }
-bg14103 { background: #f00 repeat-y 25% left fixed url(test.jpg) }
-bg14104 { background: #f00 repeat-y 25% left fixed }
-bg14105 { background: #f00 repeat-y 25% left none fixed }
-bg14106 { background: #f00 repeat-y 25% left none scroll }
-bg14107 { background: #f00 repeat-y 25% left none }
-bg14108 { background: #f00 repeat-y 25% left scroll none }
-bg14109 { background: #f00 repeat-y 25% left scroll url(test.jpg) }
-bg14110 { background: #f00 repeat-y 25% left scroll }
-bg14111 { background: #f00 repeat-y 25% left url(test.jpg) fixed }
-bg14112 { background: #f00 repeat-y 25% left url(test.jpg) scroll }
-bg14113 { background: #f00 repeat-y 25% left url(test.jpg) }
-bg14114 { background: #f00 repeat-y 25% left }
+bg14102 { background: #f00 repeat-y 25% top fixed none }
+bg14103 { background: #f00 repeat-y 25% top fixed url(test.jpg) }
+bg14104 { background: #f00 repeat-y 25% top fixed }
+bg14105 { background: #f00 repeat-y 25% top none fixed }
+bg14106 { background: #f00 repeat-y 25% top none scroll }
+bg14107 { background: #f00 repeat-y 25% top none }
+bg14108 { background: #f00 repeat-y 25% top scroll none }
+bg14109 { background: #f00 repeat-y 25% top scroll url(test.jpg) }
+bg14110 { background: #f00 repeat-y 25% top scroll }
+bg14111 { background: #f00 repeat-y 25% top url(test.jpg) fixed }
+bg14112 { background: #f00 repeat-y 25% top url(test.jpg) scroll }
+bg14113 { background: #f00 repeat-y 25% top url(test.jpg) }
+bg14114 { background: #f00 repeat-y 25% top }
 bg14115 { background: #f00 repeat-y 50%  }
 bg14116 { background: #f00 repeat-y 50% 100px  }
 bg14117 { background: #f00 repeat-y 50% 100px fixed  }
@@ -4273,14 +4273,14 @@ bg14272 { background: #f00 repeat-y fixed 100px  }
 bg14273 { background: #f00 repeat-y fixed 100px 50%  }
 bg14274 { background: #f00 repeat-y fixed 100px 50% none  }
 bg14275 { background: #f00 repeat-y fixed 100px 50% url(test.jpg)  }
-bg14276 { background: #f00 repeat-y fixed 100px left none }
-bg14277 { background: #f00 repeat-y fixed 100px left url(test.jpg) }
-bg14278 { background: #f00 repeat-y fixed 100px left }
+bg14276 { background: #f00 repeat-y fixed 100px bottom none }
+bg14277 { background: #f00 repeat-y fixed 100px bottom url(test.jpg) }
+bg14278 { background: #f00 repeat-y fixed 100px bottom }
 bg14279 { background: #f00 repeat-y fixed 100px none  }
 bg14280 { background: #f00 repeat-y fixed 100px url(test.jpg)  }
-bg14281 { background: #f00 repeat-y fixed 25% left none }
-bg14282 { background: #f00 repeat-y fixed 25% left url(test.jpg) }
-bg14283 { background: #f00 repeat-y fixed 25% left }
+bg14281 { background: #f00 repeat-y fixed 25% top none }
+bg14282 { background: #f00 repeat-y fixed 25% top url(test.jpg) }
+bg14283 { background: #f00 repeat-y fixed 25% top }
 bg14284 { background: #f00 repeat-y fixed 50%  }
 bg14285 { background: #f00 repeat-y fixed 50% 100px  }
 bg14286 { background: #f00 repeat-y fixed 50% 100px none  }
@@ -4338,8 +4338,8 @@ bg14337 { background: #f00 repeat-y fixed left }
 bg14338 { background: #f00 repeat-y fixed none  }
 bg14339 { background: #f00 repeat-y fixed none 100px  }
 bg14340 { background: #f00 repeat-y fixed none 100px 50%  }
-bg14341 { background: #f00 repeat-y fixed none 100px left }
-bg14342 { background: #f00 repeat-y fixed none 25% left }
+bg14341 { background: #f00 repeat-y fixed none 100px bottom }
+bg14342 { background: #f00 repeat-y fixed none 25% top }
 bg14343 { background: #f00 repeat-y fixed none 50%  }
 bg14344 { background: #f00 repeat-y fixed none 50% 100px  }
 bg14345 { background: #f00 repeat-y fixed none bottom center }
@@ -4393,8 +4393,8 @@ bg14392 { background: #f00 repeat-y fixed top }
 bg14393 { background: #f00 repeat-y fixed url(test.jpg)  }
 bg14394 { background: #f00 repeat-y fixed url(test.jpg) 100px  }
 bg14395 { background: #f00 repeat-y fixed url(test.jpg) 100px 50%  }
-bg14396 { background: #f00 repeat-y fixed url(test.jpg) 100px left }
-bg14397 { background: #f00 repeat-y fixed url(test.jpg) 25% left }
+bg14396 { background: #f00 repeat-y fixed url(test.jpg) 100px bottom }
+bg14397 { background: #f00 repeat-y fixed url(test.jpg) 25% top }
 bg14398 { background: #f00 repeat-y fixed url(test.jpg) 50%  }
 bg14399 { background: #f00 repeat-y fixed url(test.jpg) 50% 100px  }
 bg14400 { background: #f00 repeat-y fixed url(test.jpg) bottom center }
@@ -4505,13 +4505,13 @@ bg14504 { background: #f00 repeat-y none 100px 50%  }
 bg14505 { background: #f00 repeat-y none 100px 50% fixed  }
 bg14506 { background: #f00 repeat-y none 100px 50% scroll  }
 bg14507 { background: #f00 repeat-y none 100px fixed  }
-bg14508 { background: #f00 repeat-y none 100px left fixed }
-bg14509 { background: #f00 repeat-y none 100px left scroll }
-bg14510 { background: #f00 repeat-y none 100px left }
+bg14508 { background: #f00 repeat-y none 100px bottom fixed }
+bg14509 { background: #f00 repeat-y none 100px bottom scroll }
+bg14510 { background: #f00 repeat-y none 100px bottom }
 bg14511 { background: #f00 repeat-y none 100px scroll  }
-bg14512 { background: #f00 repeat-y none 25% left fixed }
-bg14513 { background: #f00 repeat-y none 25% left scroll }
-bg14514 { background: #f00 repeat-y none 25% left }
+bg14512 { background: #f00 repeat-y none 25% top fixed }
+bg14513 { background: #f00 repeat-y none 25% top scroll }
+bg14514 { background: #f00 repeat-y none 25% top }
 bg14515 { background: #f00 repeat-y none 50%  }
 bg14516 { background: #f00 repeat-y none 50% 100px  }
 bg14517 { background: #f00 repeat-y none 50% 100px fixed  }
@@ -4551,8 +4551,8 @@ bg14550 { background: #f00 repeat-y none center }
 bg14551 { background: #f00 repeat-y none fixed  }
 bg14552 { background: #f00 repeat-y none fixed 100px  }
 bg14553 { background: #f00 repeat-y none fixed 100px 50%  }
-bg14554 { background: #f00 repeat-y none fixed 100px left }
-bg14555 { background: #f00 repeat-y none fixed 25% left }
+bg14554 { background: #f00 repeat-y none fixed 100px bottom }
+bg14555 { background: #f00 repeat-y none fixed 25% top }
 bg14556 { background: #f00 repeat-y none fixed 50%  }
 bg14557 { background: #f00 repeat-y none fixed 50% 100px  }
 bg14558 { background: #f00 repeat-y none fixed bottom center }
@@ -4612,8 +4612,8 @@ bg14611 { background: #f00 repeat-y none right }
 bg14612 { background: #f00 repeat-y none scroll  }
 bg14613 { background: #f00 repeat-y none scroll 100px  }
 bg14614 { background: #f00 repeat-y none scroll 100px 50%  }
-bg14615 { background: #f00 repeat-y none scroll 100px left }
-bg14616 { background: #f00 repeat-y none scroll 25% left }
+bg14615 { background: #f00 repeat-y none scroll 100px bottom }
+bg14616 { background: #f00 repeat-y none scroll 25% top }
 bg14617 { background: #f00 repeat-y none scroll 50%  }
 bg14618 { background: #f00 repeat-y none scroll 50% 100px  }
 bg14619 { background: #f00 repeat-y none scroll bottom center }
@@ -4709,14 +4709,14 @@ bg14708 { background: #f00 repeat-y scroll 100px  }
 bg14709 { background: #f00 repeat-y scroll 100px 50%  }
 bg14710 { background: #f00 repeat-y scroll 100px 50% none  }
 bg14711 { background: #f00 repeat-y scroll 100px 50% url(test.jpg)  }
-bg14712 { background: #f00 repeat-y scroll 100px left none }
-bg14713 { background: #f00 repeat-y scroll 100px left url(test.jpg) }
-bg14714 { background: #f00 repeat-y scroll 100px left }
+bg14712 { background: #f00 repeat-y scroll 100px bottom none }
+bg14713 { background: #f00 repeat-y scroll 100px bottom url(test.jpg) }
+bg14714 { background: #f00 repeat-y scroll 100px bottom }
 bg14715 { background: #f00 repeat-y scroll 100px none  }
 bg14716 { background: #f00 repeat-y scroll 100px url(test.jpg)  }
-bg14717 { background: #f00 repeat-y scroll 25% left none }
-bg14718 { background: #f00 repeat-y scroll 25% left url(test.jpg) }
-bg14719 { background: #f00 repeat-y scroll 25% left }
+bg14717 { background: #f00 repeat-y scroll 25% top none }
+bg14718 { background: #f00 repeat-y scroll 25% top url(test.jpg) }
+bg14719 { background: #f00 repeat-y scroll 25% top }
 bg14720 { background: #f00 repeat-y scroll 50%  }
 bg14721 { background: #f00 repeat-y scroll 50% 100px  }
 bg14722 { background: #f00 repeat-y scroll 50% 100px none  }
@@ -4774,8 +4774,8 @@ bg14773 { background: #f00 repeat-y scroll left }
 bg14774 { background: #f00 repeat-y scroll none  }
 bg14775 { background: #f00 repeat-y scroll none 100px  }
 bg14776 { background: #f00 repeat-y scroll none 100px 50%  }
-bg14777 { background: #f00 repeat-y scroll none 100px left }
-bg14778 { background: #f00 repeat-y scroll none 25% left }
+bg14777 { background: #f00 repeat-y scroll none 100px bottom }
+bg14778 { background: #f00 repeat-y scroll none 25% top }
 bg14779 { background: #f00 repeat-y scroll none 50%  }
 bg14780 { background: #f00 repeat-y scroll none 50% 100px  }
 bg14781 { background: #f00 repeat-y scroll none bottom center }
@@ -4829,8 +4829,8 @@ bg14828 { background: #f00 repeat-y scroll top }
 bg14829 { background: #f00 repeat-y scroll url(test.jpg)  }
 bg14830 { background: #f00 repeat-y scroll url(test.jpg) 100px  }
 bg14831 { background: #f00 repeat-y scroll url(test.jpg) 100px 50%  }
-bg14832 { background: #f00 repeat-y scroll url(test.jpg) 100px left }
-bg14833 { background: #f00 repeat-y scroll url(test.jpg) 25% left }
+bg14832 { background: #f00 repeat-y scroll url(test.jpg) 100px bottom }
+bg14833 { background: #f00 repeat-y scroll url(test.jpg) 25% top }
 bg14834 { background: #f00 repeat-y scroll url(test.jpg) 50%  }
 bg14835 { background: #f00 repeat-y scroll url(test.jpg) 50% 100px  }
 bg14836 { background: #f00 repeat-y scroll url(test.jpg) bottom center }
@@ -4915,13 +4915,13 @@ bg14914 { background: #f00 repeat-y url(test.jpg) 100px 50%  }
 bg14915 { background: #f00 repeat-y url(test.jpg) 100px 50% fixed  }
 bg14916 { background: #f00 repeat-y url(test.jpg) 100px 50% scroll  }
 bg14917 { background: #f00 repeat-y url(test.jpg) 100px fixed  }
-bg14918 { background: #f00 repeat-y url(test.jpg) 100px left fixed }
-bg14919 { background: #f00 repeat-y url(test.jpg) 100px left scroll }
-bg14920 { background: #f00 repeat-y url(test.jpg) 100px left }
+bg14918 { background: #f00 repeat-y url(test.jpg) 100px bottom fixed }
+bg14919 { background: #f00 repeat-y url(test.jpg) 100px bottom scroll }
+bg14920 { background: #f00 repeat-y url(test.jpg) 100px bottom }
 bg14921 { background: #f00 repeat-y url(test.jpg) 100px scroll  }
-bg14922 { background: #f00 repeat-y url(test.jpg) 25% left fixed }
-bg14923 { background: #f00 repeat-y url(test.jpg) 25% left scroll }
-bg14924 { background: #f00 repeat-y url(test.jpg) 25% left }
+bg14922 { background: #f00 repeat-y url(test.jpg) 25% top fixed }
+bg14923 { background: #f00 repeat-y url(test.jpg) 25% top scroll }
+bg14924 { background: #f00 repeat-y url(test.jpg) 25% top }
 bg14925 { background: #f00 repeat-y url(test.jpg) 50%  }
 bg14926 { background: #f00 repeat-y url(test.jpg) 50% 100px  }
 bg14927 { background: #f00 repeat-y url(test.jpg) 50% 100px fixed  }
@@ -4961,8 +4961,8 @@ bg14960 { background: #f00 repeat-y url(test.jpg) center }
 bg14961 { background: #f00 repeat-y url(test.jpg) fixed  }
 bg14962 { background: #f00 repeat-y url(test.jpg) fixed 100px  }
 bg14963 { background: #f00 repeat-y url(test.jpg) fixed 100px 50%  }
-bg14964 { background: #f00 repeat-y url(test.jpg) fixed 100px left }
-bg14965 { background: #f00 repeat-y url(test.jpg) fixed 25% left }
+bg14964 { background: #f00 repeat-y url(test.jpg) fixed 100px bottom }
+bg14965 { background: #f00 repeat-y url(test.jpg) fixed 25% top }
 bg14966 { background: #f00 repeat-y url(test.jpg) fixed 50%  }
 bg14967 { background: #f00 repeat-y url(test.jpg) fixed 50% 100px  }
 bg14968 { background: #f00 repeat-y url(test.jpg) fixed bottom center }
@@ -5022,8 +5022,8 @@ bg15021 { background: #f00 repeat-y url(test.jpg) right }
 bg15022 { background: #f00 repeat-y url(test.jpg) scroll  }
 bg15023 { background: #f00 repeat-y url(test.jpg) scroll 100px  }
 bg15024 { background: #f00 repeat-y url(test.jpg) scroll 100px 50%  }
-bg15025 { background: #f00 repeat-y url(test.jpg) scroll 100px left }
-bg15026 { background: #f00 repeat-y url(test.jpg) scroll 25% left }
+bg15025 { background: #f00 repeat-y url(test.jpg) scroll 100px bottom }
+bg15026 { background: #f00 repeat-y url(test.jpg) scroll 25% top }
 bg15027 { background: #f00 repeat-y url(test.jpg) scroll 50%  }
 bg15028 { background: #f00 repeat-y url(test.jpg) scroll 50% 100px  }
 bg15029 { background: #f00 repeat-y url(test.jpg) scroll bottom center }
@@ -5924,19 +5924,19 @@ bg15923 { background: #f00 round repeat 100px 50% url(test.jpg) scroll  }
 bg15924 { background: #f00 round repeat 100px fixed  }
 bg15925 { background: #f00 round repeat 100px fixed none  }
 bg15926 { background: #f00 round repeat 100px fixed url(test.jpg)  }
-bg15927 { background: #f00 round repeat 100px left fixed none }
-bg15928 { background: #f00 round repeat 100px left fixed url(test.jpg) }
-bg15929 { background: #f00 round repeat 100px left fixed }
-bg15930 { background: #f00 round repeat 100px left none fixed }
-bg15931 { background: #f00 round repeat 100px left none scroll }
-bg15932 { background: #f00 round repeat 100px left none }
-bg15933 { background: #f00 round repeat 100px left scroll none }
-bg15934 { background: #f00 round repeat 100px left scroll url(test.jpg) }
-bg15935 { background: #f00 round repeat 100px left scroll }
-bg15936 { background: #f00 round repeat 100px left url(test.jpg) fixed }
-bg15937 { background: #f00 round repeat 100px left url(test.jpg) scroll }
-bg15938 { background: #f00 round repeat 100px left url(test.jpg) }
-bg15939 { background: #f00 round repeat 100px left }
+bg15927 { background: #f00 round repeat 100px bottom fixed none }
+bg15928 { background: #f00 round repeat 100px bottom fixed url(test.jpg) }
+bg15929 { background: #f00 round repeat 100px bottom fixed }
+bg15930 { background: #f00 round repeat 100px bottom none fixed }
+bg15931 { background: #f00 round repeat 100px bottom none scroll }
+bg15932 { background: #f00 round repeat 100px bottom none }
+bg15933 { background: #f00 round repeat 100px bottom scroll none }
+bg15934 { background: #f00 round repeat 100px bottom scroll url(test.jpg) }
+bg15935 { background: #f00 round repeat 100px bottom scroll }
+bg15936 { background: #f00 round repeat 100px bottom url(test.jpg) fixed }
+bg15937 { background: #f00 round repeat 100px bottom url(test.jpg) scroll }
+bg15938 { background: #f00 round repeat 100px bottom url(test.jpg) }
+bg15939 { background: #f00 round repeat 100px bottom }
 bg15940 { background: #f00 round repeat 100px none  }
 bg15941 { background: #f00 round repeat 100px none fixed  }
 bg15942 { background: #f00 round repeat 100px none scroll  }
@@ -5946,19 +5946,19 @@ bg15945 { background: #f00 round repeat 100px scroll url(test.jpg)  }
 bg15946 { background: #f00 round repeat 100px url(test.jpg)  }
 bg15947 { background: #f00 round repeat 100px url(test.jpg) fixed  }
 bg15948 { background: #f00 round repeat 100px url(test.jpg) scroll  }
-bg15949 { background: #f00 round repeat 25% left fixed none }
-bg15950 { background: #f00 round repeat 25% left fixed url(test.jpg) }
-bg15951 { background: #f00 round repeat 25% left fixed }
-bg15952 { background: #f00 round repeat 25% left none fixed }
-bg15953 { background: #f00 round repeat 25% left none scroll }
-bg15954 { background: #f00 round repeat 25% left none }
-bg15955 { background: #f00 round repeat 25% left scroll none }
-bg15956 { background: #f00 round repeat 25% left scroll url(test.jpg) }
-bg15957 { background: #f00 round repeat 25% left scroll }
-bg15958 { background: #f00 round repeat 25% left url(test.jpg) fixed }
-bg15959 { background: #f00 round repeat 25% left url(test.jpg) scroll }
-bg15960 { background: #f00 round repeat 25% left url(test.jpg) }
-bg15961 { background: #f00 round repeat 25% left }
+bg15949 { background: #f00 round repeat 25% top fixed none }
+bg15950 { background: #f00 round repeat 25% top fixed url(test.jpg) }
+bg15951 { background: #f00 round repeat 25% top fixed }
+bg15952 { background: #f00 round repeat 25% top none fixed }
+bg15953 { background: #f00 round repeat 25% top none scroll }
+bg15954 { background: #f00 round repeat 25% top none }
+bg15955 { background: #f00 round repeat 25% top scroll none }
+bg15956 { background: #f00 round repeat 25% top scroll url(test.jpg) }
+bg15957 { background: #f00 round repeat 25% top scroll }
+bg15958 { background: #f00 round repeat 25% top url(test.jpg) fixed }
+bg15959 { background: #f00 round repeat 25% top url(test.jpg) scroll }
+bg15960 { background: #f00 round repeat 25% top url(test.jpg) }
+bg15961 { background: #f00 round repeat 25% top }
 bg15962 { background: #f00 round repeat 50%  }
 bg15963 { background: #f00 round repeat 50% 100px  }
 bg15964 { background: #f00 round repeat 50% 100px fixed  }
@@ -6120,14 +6120,14 @@ bg16119 { background: #f00 round repeat fixed 100px  }
 bg16120 { background: #f00 round repeat fixed 100px 50%  }
 bg16121 { background: #f00 round repeat fixed 100px 50% none  }
 bg16122 { background: #f00 round repeat fixed 100px 50% url(test.jpg)  }
-bg16123 { background: #f00 round repeat fixed 100px left none }
-bg16124 { background: #f00 round repeat fixed 100px left url(test.jpg) }
-bg16125 { background: #f00 round repeat fixed 100px left }
+bg16123 { background: #f00 round repeat fixed 100px bottom none }
+bg16124 { background: #f00 round repeat fixed 100px bottom url(test.jpg) }
+bg16125 { background: #f00 round repeat fixed 100px bottom }
 bg16126 { background: #f00 round repeat fixed 100px none  }
 bg16127 { background: #f00 round repeat fixed 100px url(test.jpg)  }
-bg16128 { background: #f00 round repeat fixed 25% left none }
-bg16129 { background: #f00 round repeat fixed 25% left url(test.jpg) }
-bg16130 { background: #f00 round repeat fixed 25% left }
+bg16128 { background: #f00 round repeat fixed 25% top none }
+bg16129 { background: #f00 round repeat fixed 25% top url(test.jpg) }
+bg16130 { background: #f00 round repeat fixed 25% top }
 bg16131 { background: #f00 round repeat fixed 50%  }
 bg16132 { background: #f00 round repeat fixed 50% 100px  }
 bg16133 { background: #f00 round repeat fixed 50% 100px none  }
@@ -6185,8 +6185,8 @@ bg16184 { background: #f00 round repeat fixed left }
 bg16185 { background: #f00 round repeat fixed none  }
 bg16186 { background: #f00 round repeat fixed none 100px  }
 bg16187 { background: #f00 round repeat fixed none 100px 50%  }
-bg16188 { background: #f00 round repeat fixed none 100px left }
-bg16189 { background: #f00 round repeat fixed none 25% left }
+bg16188 { background: #f00 round repeat fixed none 100px bottom }
+bg16189 { background: #f00 round repeat fixed none 25% top }
 bg16190 { background: #f00 round repeat fixed none 50%  }
 bg16191 { background: #f00 round repeat fixed none 50% 100px  }
 bg16192 { background: #f00 round repeat fixed none bottom center }
@@ -6240,8 +6240,8 @@ bg16239 { background: #f00 round repeat fixed top }
 bg16240 { background: #f00 round repeat fixed url(test.jpg)  }
 bg16241 { background: #f00 round repeat fixed url(test.jpg) 100px  }
 bg16242 { background: #f00 round repeat fixed url(test.jpg) 100px 50%  }
-bg16243 { background: #f00 round repeat fixed url(test.jpg) 100px left }
-bg16244 { background: #f00 round repeat fixed url(test.jpg) 25% left }
+bg16243 { background: #f00 round repeat fixed url(test.jpg) 100px bottom }
+bg16244 { background: #f00 round repeat fixed url(test.jpg) 25% top }
 bg16245 { background: #f00 round repeat fixed url(test.jpg) 50%  }
 bg16246 { background: #f00 round repeat fixed url(test.jpg) 50% 100px  }
 bg16247 { background: #f00 round repeat fixed url(test.jpg) bottom center }
@@ -6352,13 +6352,13 @@ bg16351 { background: #f00 round repeat none 100px 50%  }
 bg16352 { background: #f00 round repeat none 100px 50% fixed  }
 bg16353 { background: #f00 round repeat none 100px 50% scroll  }
 bg16354 { background: #f00 round repeat none 100px fixed  }
-bg16355 { background: #f00 round repeat none 100px left fixed }
-bg16356 { background: #f00 round repeat none 100px left scroll }
-bg16357 { background: #f00 round repeat none 100px left }
+bg16355 { background: #f00 round repeat none 100px bottom fixed }
+bg16356 { background: #f00 round repeat none 100px bottom scroll }
+bg16357 { background: #f00 round repeat none 100px bottom }
 bg16358 { background: #f00 round repeat none 100px scroll  }
-bg16359 { background: #f00 round repeat none 25% left fixed }
-bg16360 { background: #f00 round repeat none 25% left scroll }
-bg16361 { background: #f00 round repeat none 25% left }
+bg16359 { background: #f00 round repeat none 25% top fixed }
+bg16360 { background: #f00 round repeat none 25% top scroll }
+bg16361 { background: #f00 round repeat none 25% top }
 bg16362 { background: #f00 round repeat none 50%  }
 bg16363 { background: #f00 round repeat none 50% 100px  }
 bg16364 { background: #f00 round repeat none 50% 100px fixed  }
@@ -6398,8 +6398,8 @@ bg16397 { background: #f00 round repeat none center }
 bg16398 { background: #f00 round repeat none fixed  }
 bg16399 { background: #f00 round repeat none fixed 100px  }
 bg16400 { background: #f00 round repeat none fixed 100px 50%  }
-bg16401 { background: #f00 round repeat none fixed 100px left }
-bg16402 { background: #f00 round repeat none fixed 25% left }
+bg16401 { background: #f00 round repeat none fixed 100px bottom }
+bg16402 { background: #f00 round repeat none fixed 25% top }
 bg16403 { background: #f00 round repeat none fixed 50%  }
 bg16404 { background: #f00 round repeat none fixed 50% 100px  }
 bg16405 { background: #f00 round repeat none fixed bottom center }
@@ -6459,8 +6459,8 @@ bg16458 { background: #f00 round repeat none right }
 bg16459 { background: #f00 round repeat none scroll  }
 bg16460 { background: #f00 round repeat none scroll 100px  }
 bg16461 { background: #f00 round repeat none scroll 100px 50%  }
-bg16462 { background: #f00 round repeat none scroll 100px left }
-bg16463 { background: #f00 round repeat none scroll 25% left }
+bg16462 { background: #f00 round repeat none scroll 100px bottom }
+bg16463 { background: #f00 round repeat none scroll 25% top }
 bg16464 { background: #f00 round repeat none scroll 50%  }
 bg16465 { background: #f00 round repeat none scroll 50% 100px  }
 bg16466 { background: #f00 round repeat none scroll bottom center }
@@ -6556,14 +6556,14 @@ bg16555 { background: #f00 round repeat scroll 100px  }
 bg16556 { background: #f00 round repeat scroll 100px 50%  }
 bg16557 { background: #f00 round repeat scroll 100px 50% none  }
 bg16558 { background: #f00 round repeat scroll 100px 50% url(test.jpg)  }
-bg16559 { background: #f00 round repeat scroll 100px left none }
-bg16560 { background: #f00 round repeat scroll 100px left url(test.jpg) }
-bg16561 { background: #f00 round repeat scroll 100px left }
+bg16559 { background: #f00 round repeat scroll 100px bottom none }
+bg16560 { background: #f00 round repeat scroll 100px bottom url(test.jpg) }
+bg16561 { background: #f00 round repeat scroll 100px bottom }
 bg16562 { background: #f00 round repeat scroll 100px none  }
 bg16563 { background: #f00 round repeat scroll 100px url(test.jpg)  }
-bg16564 { background: #f00 round repeat scroll 25% left none }
-bg16565 { background: #f00 round repeat scroll 25% left url(test.jpg) }
-bg16566 { background: #f00 round repeat scroll 25% left }
+bg16564 { background: #f00 round repeat scroll 25% top none }
+bg16565 { background: #f00 round repeat scroll 25% top url(test.jpg) }
+bg16566 { background: #f00 round repeat scroll 25% top }
 bg16567 { background: #f00 round repeat scroll 50%  }
 bg16568 { background: #f00 round repeat scroll 50% 100px  }
 bg16569 { background: #f00 round repeat scroll 50% 100px none  }
@@ -6621,8 +6621,8 @@ bg16620 { background: #f00 round repeat scroll left }
 bg16621 { background: #f00 round repeat scroll none  }
 bg16622 { background: #f00 round repeat scroll none 100px  }
 bg16623 { background: #f00 round repeat scroll none 100px 50%  }
-bg16624 { background: #f00 round repeat scroll none 100px left }
-bg16625 { background: #f00 round repeat scroll none 25% left }
+bg16624 { background: #f00 round repeat scroll none 100px bottom }
+bg16625 { background: #f00 round repeat scroll none 25% top }
 bg16626 { background: #f00 round repeat scroll none 50%  }
 bg16627 { background: #f00 round repeat scroll none 50% 100px  }
 bg16628 { background: #f00 round repeat scroll none bottom center }
@@ -6676,8 +6676,8 @@ bg16675 { background: #f00 round repeat scroll top }
 bg16676 { background: #f00 round repeat scroll url(test.jpg)  }
 bg16677 { background: #f00 round repeat scroll url(test.jpg) 100px  }
 bg16678 { background: #f00 round repeat scroll url(test.jpg) 100px 50%  }
-bg16679 { background: #f00 round repeat scroll url(test.jpg) 100px left }
-bg16680 { background: #f00 round repeat scroll url(test.jpg) 25% left }
+bg16679 { background: #f00 round repeat scroll url(test.jpg) 100px bottom }
+bg16680 { background: #f00 round repeat scroll url(test.jpg) 25% top }
 bg16681 { background: #f00 round repeat scroll url(test.jpg) 50%  }
 bg16682 { background: #f00 round repeat scroll url(test.jpg) 50% 100px  }
 bg16683 { background: #f00 round repeat scroll url(test.jpg) bottom center }
@@ -6762,13 +6762,13 @@ bg16761 { background: #f00 round repeat url(test.jpg) 100px 50%  }
 bg16762 { background: #f00 round repeat url(test.jpg) 100px 50% fixed  }
 bg16763 { background: #f00 round repeat url(test.jpg) 100px 50% scroll  }
 bg16764 { background: #f00 round repeat url(test.jpg) 100px fixed  }
-bg16765 { background: #f00 round repeat url(test.jpg) 100px left fixed }
-bg16766 { background: #f00 round repeat url(test.jpg) 100px left scroll }
-bg16767 { background: #f00 round repeat url(test.jpg) 100px left }
+bg16765 { background: #f00 round repeat url(test.jpg) 100px bottom fixed }
+bg16766 { background: #f00 round repeat url(test.jpg) 100px bottom scroll }
+bg16767 { background: #f00 round repeat url(test.jpg) 100px bottom }
 bg16768 { background: #f00 round repeat url(test.jpg) 100px scroll  }
-bg16769 { background: #f00 round repeat url(test.jpg) 25% left fixed }
-bg16770 { background: #f00 round repeat url(test.jpg) 25% left scroll }
-bg16771 { background: #f00 round repeat url(test.jpg) 25% left }
+bg16769 { background: #f00 round repeat url(test.jpg) 25% top fixed }
+bg16770 { background: #f00 round repeat url(test.jpg) 25% top scroll }
+bg16771 { background: #f00 round repeat url(test.jpg) 25% top }
 bg16772 { background: #f00 round repeat url(test.jpg) 50%  }
 bg16773 { background: #f00 round repeat url(test.jpg) 50% 100px  }
 bg16774 { background: #f00 round repeat url(test.jpg) 50% 100px fixed  }
@@ -6808,8 +6808,8 @@ bg16807 { background: #f00 round repeat url(test.jpg) center }
 bg16808 { background: #f00 round repeat url(test.jpg) fixed  }
 bg16809 { background: #f00 round repeat url(test.jpg) fixed 100px  }
 bg16810 { background: #f00 round repeat url(test.jpg) fixed 100px 50%  }
-bg16811 { background: #f00 round repeat url(test.jpg) fixed 100px left }
-bg16812 { background: #f00 round repeat url(test.jpg) fixed 25% left }
+bg16811 { background: #f00 round repeat url(test.jpg) fixed 100px bottom }
+bg16812 { background: #f00 round repeat url(test.jpg) fixed 25% top }
 bg16813 { background: #f00 round repeat url(test.jpg) fixed 50%  }
 bg16814 { background: #f00 round repeat url(test.jpg) fixed 50% 100px  }
 bg16815 { background: #f00 round repeat url(test.jpg) fixed bottom center }
@@ -6869,8 +6869,8 @@ bg16868 { background: #f00 round repeat url(test.jpg) right }
 bg16869 { background: #f00 round repeat url(test.jpg) scroll  }
 bg16870 { background: #f00 round repeat url(test.jpg) scroll 100px  }
 bg16871 { background: #f00 round repeat url(test.jpg) scroll 100px 50%  }
-bg16872 { background: #f00 round repeat url(test.jpg) scroll 100px left }
-bg16873 { background: #f00 round repeat url(test.jpg) scroll 25% left }
+bg16872 { background: #f00 round repeat url(test.jpg) scroll 100px bottom }
+bg16873 { background: #f00 round repeat url(test.jpg) scroll 25% top }
 bg16874 { background: #f00 round repeat url(test.jpg) scroll 50%  }
 bg16875 { background: #f00 round repeat url(test.jpg) scroll 50% 100px  }
 bg16876 { background: #f00 round repeat url(test.jpg) scroll bottom center }
@@ -6944,39 +6944,39 @@ bg16943 { background: #f00 scroll 100px 50% url(test.jpg) repeat space  }
 bg16944 { background: #f00 scroll 100px 50% url(test.jpg) repeat-x  }
 bg16945 { background: #f00 scroll 100px 50% url(test.jpg) repeat-y  }
 bg16946 { background: #f00 scroll 100px 50% url(test.jpg) round repeat  }
-bg16947 { background: #f00 scroll 100px left none repeat no-repeat }
-bg16948 { background: #f00 scroll 100px left none repeat space }
-bg16949 { background: #f00 scroll 100px left none repeat }
-bg16950 { background: #f00 scroll 100px left none repeat-x }
-bg16951 { background: #f00 scroll 100px left none repeat-y }
-bg16952 { background: #f00 scroll 100px left none round repeat }
-bg16953 { background: #f00 scroll 100px left none }
-bg16954 { background: #f00 scroll 100px left repeat no-repeat none }
-bg16955 { background: #f00 scroll 100px left repeat no-repeat url(test.jpg) }
-bg16956 { background: #f00 scroll 100px left repeat no-repeat }
-bg16957 { background: #f00 scroll 100px left repeat none }
-bg16958 { background: #f00 scroll 100px left repeat space none }
-bg16959 { background: #f00 scroll 100px left repeat space url(test.jpg) }
-bg16960 { background: #f00 scroll 100px left repeat space }
-bg16961 { background: #f00 scroll 100px left repeat url(test.jpg) }
-bg16962 { background: #f00 scroll 100px left repeat }
-bg16963 { background: #f00 scroll 100px left repeat-x none }
-bg16964 { background: #f00 scroll 100px left repeat-x url(test.jpg) }
-bg16965 { background: #f00 scroll 100px left repeat-x }
-bg16966 { background: #f00 scroll 100px left repeat-y none }
-bg16967 { background: #f00 scroll 100px left repeat-y url(test.jpg) }
-bg16968 { background: #f00 scroll 100px left repeat-y }
-bg16969 { background: #f00 scroll 100px left round repeat none }
-bg16970 { background: #f00 scroll 100px left round repeat url(test.jpg) }
-bg16971 { background: #f00 scroll 100px left round repeat }
-bg16972 { background: #f00 scroll 100px left url(test.jpg) repeat no-repeat }
-bg16973 { background: #f00 scroll 100px left url(test.jpg) repeat space }
-bg16974 { background: #f00 scroll 100px left url(test.jpg) repeat }
-bg16975 { background: #f00 scroll 100px left url(test.jpg) repeat-x }
-bg16976 { background: #f00 scroll 100px left url(test.jpg) repeat-y }
-bg16977 { background: #f00 scroll 100px left url(test.jpg) round repeat }
-bg16978 { background: #f00 scroll 100px left url(test.jpg) }
-bg16979 { background: #f00 scroll 100px left }
+bg16947 { background: #f00 scroll 100px bottom none repeat no-repeat }
+bg16948 { background: #f00 scroll 100px bottom none repeat space }
+bg16949 { background: #f00 scroll 100px bottom none repeat }
+bg16950 { background: #f00 scroll 100px bottom none repeat-x }
+bg16951 { background: #f00 scroll 100px bottom none repeat-y }
+bg16952 { background: #f00 scroll 100px bottom none round repeat }
+bg16953 { background: #f00 scroll 100px bottom none }
+bg16954 { background: #f00 scroll 100px bottom repeat no-repeat none }
+bg16955 { background: #f00 scroll 100px bottom repeat no-repeat url(test.jpg) }
+bg16956 { background: #f00 scroll 100px bottom repeat no-repeat }
+bg16957 { background: #f00 scroll 100px bottom repeat none }
+bg16958 { background: #f00 scroll 100px bottom repeat space none }
+bg16959 { background: #f00 scroll 100px bottom repeat space url(test.jpg) }
+bg16960 { background: #f00 scroll 100px bottom repeat space }
+bg16961 { background: #f00 scroll 100px bottom repeat url(test.jpg) }
+bg16962 { background: #f00 scroll 100px bottom repeat }
+bg16963 { background: #f00 scroll 100px bottom repeat-x none }
+bg16964 { background: #f00 scroll 100px bottom repeat-x url(test.jpg) }
+bg16965 { background: #f00 scroll 100px bottom repeat-x }
+bg16966 { background: #f00 scroll 100px bottom repeat-y none }
+bg16967 { background: #f00 scroll 100px bottom repeat-y url(test.jpg) }
+bg16968 { background: #f00 scroll 100px bottom repeat-y }
+bg16969 { background: #f00 scroll 100px bottom round repeat none }
+bg16970 { background: #f00 scroll 100px bottom round repeat url(test.jpg) }
+bg16971 { background: #f00 scroll 100px bottom round repeat }
+bg16972 { background: #f00 scroll 100px bottom url(test.jpg) repeat no-repeat }
+bg16973 { background: #f00 scroll 100px bottom url(test.jpg) repeat space }
+bg16974 { background: #f00 scroll 100px bottom url(test.jpg) repeat }
+bg16975 { background: #f00 scroll 100px bottom url(test.jpg) repeat-x }
+bg16976 { background: #f00 scroll 100px bottom url(test.jpg) repeat-y }
+bg16977 { background: #f00 scroll 100px bottom url(test.jpg) round repeat }
+bg16978 { background: #f00 scroll 100px bottom url(test.jpg) }
+bg16979 { background: #f00 scroll 100px bottom }
 bg16980 { background: #f00 scroll 100px none  }
 bg16981 { background: #f00 scroll 100px none repeat  }
 bg16982 { background: #f00 scroll 100px none repeat no-repeat  }
@@ -7009,39 +7009,39 @@ bg17008 { background: #f00 scroll 100px url(test.jpg) repeat space  }
 bg17009 { background: #f00 scroll 100px url(test.jpg) repeat-x  }
 bg17010 { background: #f00 scroll 100px url(test.jpg) repeat-y  }
 bg17011 { background: #f00 scroll 100px url(test.jpg) round repeat  }
-bg17012 { background: #f00 scroll 25% left none repeat no-repeat }
-bg17013 { background: #f00 scroll 25% left none repeat space }
-bg17014 { background: #f00 scroll 25% left none repeat }
-bg17015 { background: #f00 scroll 25% left none repeat-x }
-bg17016 { background: #f00 scroll 25% left none repeat-y }
-bg17017 { background: #f00 scroll 25% left none round repeat }
-bg17018 { background: #f00 scroll 25% left none }
-bg17019 { background: #f00 scroll 25% left repeat no-repeat none }
-bg17020 { background: #f00 scroll 25% left repeat no-repeat url(test.jpg) }
-bg17021 { background: #f00 scroll 25% left repeat no-repeat }
-bg17022 { background: #f00 scroll 25% left repeat none }
-bg17023 { background: #f00 scroll 25% left repeat space none }
-bg17024 { background: #f00 scroll 25% left repeat space url(test.jpg) }
-bg17025 { background: #f00 scroll 25% left repeat space }
-bg17026 { background: #f00 scroll 25% left repeat url(test.jpg) }
-bg17027 { background: #f00 scroll 25% left repeat }
-bg17028 { background: #f00 scroll 25% left repeat-x none }
-bg17029 { background: #f00 scroll 25% left repeat-x url(test.jpg) }
-bg17030 { background: #f00 scroll 25% left repeat-x }
-bg17031 { background: #f00 scroll 25% left repeat-y none }
-bg17032 { background: #f00 scroll 25% left repeat-y url(test.jpg) }
-bg17033 { background: #f00 scroll 25% left repeat-y }
-bg17034 { background: #f00 scroll 25% left round repeat none }
-bg17035 { background: #f00 scroll 25% left round repeat url(test.jpg) }
-bg17036 { background: #f00 scroll 25% left round repeat }
-bg17037 { background: #f00 scroll 25% left url(test.jpg) repeat no-repeat }
-bg17038 { background: #f00 scroll 25% left url(test.jpg) repeat space }
-bg17039 { background: #f00 scroll 25% left url(test.jpg) repeat }
-bg17040 { background: #f00 scroll 25% left url(test.jpg) repeat-x }
-bg17041 { background: #f00 scroll 25% left url(test.jpg) repeat-y }
-bg17042 { background: #f00 scroll 25% left url(test.jpg) round repeat }
-bg17043 { background: #f00 scroll 25% left url(test.jpg) }
-bg17044 { background: #f00 scroll 25% left }
+bg17012 { background: #f00 scroll 25% top none repeat no-repeat }
+bg17013 { background: #f00 scroll 25% top none repeat space }
+bg17014 { background: #f00 scroll 25% top none repeat }
+bg17015 { background: #f00 scroll 25% top none repeat-x }
+bg17016 { background: #f00 scroll 25% top none repeat-y }
+bg17017 { background: #f00 scroll 25% top none round repeat }
+bg17018 { background: #f00 scroll 25% top none }
+bg17019 { background: #f00 scroll 25% top repeat no-repeat none }
+bg17020 { background: #f00 scroll 25% top repeat no-repeat url(test.jpg) }
+bg17021 { background: #f00 scroll 25% top repeat no-repeat }
+bg17022 { background: #f00 scroll 25% top repeat none }
+bg17023 { background: #f00 scroll 25% top repeat space none }
+bg17024 { background: #f00 scroll 25% top repeat space url(test.jpg) }
+bg17025 { background: #f00 scroll 25% top repeat space }
+bg17026 { background: #f00 scroll 25% top repeat url(test.jpg) }
+bg17027 { background: #f00 scroll 25% top repeat }
+bg17028 { background: #f00 scroll 25% top repeat-x none }
+bg17029 { background: #f00 scroll 25% top repeat-x url(test.jpg) }
+bg17030 { background: #f00 scroll 25% top repeat-x }
+bg17031 { background: #f00 scroll 25% top repeat-y none }
+bg17032 { background: #f00 scroll 25% top repeat-y url(test.jpg) }
+bg17033 { background: #f00 scroll 25% top repeat-y }
+bg17034 { background: #f00 scroll 25% top round repeat none }
+bg17035 { background: #f00 scroll 25% top round repeat url(test.jpg) }
+bg17036 { background: #f00 scroll 25% top round repeat }
+bg17037 { background: #f00 scroll 25% top url(test.jpg) repeat no-repeat }
+bg17038 { background: #f00 scroll 25% top url(test.jpg) repeat space }
+bg17039 { background: #f00 scroll 25% top url(test.jpg) repeat }
+bg17040 { background: #f00 scroll 25% top url(test.jpg) repeat-x }
+bg17041 { background: #f00 scroll 25% top url(test.jpg) repeat-y }
+bg17042 { background: #f00 scroll 25% top url(test.jpg) round repeat }
+bg17043 { background: #f00 scroll 25% top url(test.jpg) }
+bg17044 { background: #f00 scroll 25% top }
 bg17045 { background: #f00 scroll 50%  }
 bg17046 { background: #f00 scroll 50% 100px  }
 bg17047 { background: #f00 scroll 50% 100px none  }
@@ -7645,26 +7645,26 @@ bg17644 { background: #f00 scroll none 100px 50% repeat space  }
 bg17645 { background: #f00 scroll none 100px 50% repeat-x  }
 bg17646 { background: #f00 scroll none 100px 50% repeat-y  }
 bg17647 { background: #f00 scroll none 100px 50% round repeat  }
-bg17648 { background: #f00 scroll none 100px left repeat no-repeat }
-bg17649 { background: #f00 scroll none 100px left repeat space }
-bg17650 { background: #f00 scroll none 100px left repeat }
-bg17651 { background: #f00 scroll none 100px left repeat-x }
-bg17652 { background: #f00 scroll none 100px left repeat-y }
-bg17653 { background: #f00 scroll none 100px left round repeat }
-bg17654 { background: #f00 scroll none 100px left }
+bg17648 { background: #f00 scroll none 100px bottom repeat no-repeat }
+bg17649 { background: #f00 scroll none 100px bottom repeat space }
+bg17650 { background: #f00 scroll none 100px bottom repeat }
+bg17651 { background: #f00 scroll none 100px bottom repeat-x }
+bg17652 { background: #f00 scroll none 100px bottom repeat-y }
+bg17653 { background: #f00 scroll none 100px bottom round repeat }
+bg17654 { background: #f00 scroll none 100px bottom }
 bg17655 { background: #f00 scroll none 100px repeat  }
 bg17656 { background: #f00 scroll none 100px repeat no-repeat  }
 bg17657 { background: #f00 scroll none 100px repeat space  }
 bg17658 { background: #f00 scroll none 100px repeat-x  }
 bg17659 { background: #f00 scroll none 100px repeat-y  }
 bg17660 { background: #f00 scroll none 100px round repeat  }
-bg17661 { background: #f00 scroll none 25% left repeat no-repeat }
-bg17662 { background: #f00 scroll none 25% left repeat space }
-bg17663 { background: #f00 scroll none 25% left repeat }
-bg17664 { background: #f00 scroll none 25% left repeat-x }
-bg17665 { background: #f00 scroll none 25% left repeat-y }
-bg17666 { background: #f00 scroll none 25% left round repeat }
-bg17667 { background: #f00 scroll none 25% left }
+bg17661 { background: #f00 scroll none 25% top repeat no-repeat }
+bg17662 { background: #f00 scroll none 25% top repeat space }
+bg17663 { background: #f00 scroll none 25% top repeat }
+bg17664 { background: #f00 scroll none 25% top repeat-x }
+bg17665 { background: #f00 scroll none 25% top repeat-y }
+bg17666 { background: #f00 scroll none 25% top round repeat }
+bg17667 { background: #f00 scroll none 25% top }
 bg17668 { background: #f00 scroll none 50%  }
 bg17669 { background: #f00 scroll none 50% 100px  }
 bg17670 { background: #f00 scroll none 50% 100px repeat  }
@@ -7794,8 +7794,8 @@ bg17793 { background: #f00 scroll none left }
 bg17794 { background: #f00 scroll none repeat  }
 bg17795 { background: #f00 scroll none repeat 100px  }
 bg17796 { background: #f00 scroll none repeat 100px 50%  }
-bg17797 { background: #f00 scroll none repeat 100px left }
-bg17798 { background: #f00 scroll none repeat 25% left }
+bg17797 { background: #f00 scroll none repeat 100px bottom }
+bg17798 { background: #f00 scroll none repeat 25% top }
 bg17799 { background: #f00 scroll none repeat 50%  }
 bg17800 { background: #f00 scroll none repeat 50% 100px  }
 bg17801 { background: #f00 scroll none repeat bottom center }
@@ -7817,8 +7817,8 @@ bg17816 { background: #f00 scroll none repeat left }
 bg17817 { background: #f00 scroll none repeat no-repeat  }
 bg17818 { background: #f00 scroll none repeat no-repeat 100px  }
 bg17819 { background: #f00 scroll none repeat no-repeat 100px 50%  }
-bg17820 { background: #f00 scroll none repeat no-repeat 100px left }
-bg17821 { background: #f00 scroll none repeat no-repeat 25% left }
+bg17820 { background: #f00 scroll none repeat no-repeat 100px bottom }
+bg17821 { background: #f00 scroll none repeat no-repeat 25% top }
 bg17822 { background: #f00 scroll none repeat no-repeat 50%  }
 bg17823 { background: #f00 scroll none repeat no-repeat 50% 100px  }
 bg17824 { background: #f00 scroll none repeat no-repeat bottom center }
@@ -7852,8 +7852,8 @@ bg17851 { background: #f00 scroll none repeat right }
 bg17852 { background: #f00 scroll none repeat space  }
 bg17853 { background: #f00 scroll none repeat space 100px  }
 bg17854 { background: #f00 scroll none repeat space 100px 50%  }
-bg17855 { background: #f00 scroll none repeat space 100px left }
-bg17856 { background: #f00 scroll none repeat space 25% left }
+bg17855 { background: #f00 scroll none repeat space 100px bottom }
+bg17856 { background: #f00 scroll none repeat space 25% top }
 bg17857 { background: #f00 scroll none repeat space 50%  }
 bg17858 { background: #f00 scroll none repeat space 50% 100px  }
 bg17859 { background: #f00 scroll none repeat space bottom center }
@@ -7887,8 +7887,8 @@ bg17886 { background: #f00 scroll none repeat top }
 bg17887 { background: #f00 scroll none repeat-x  }
 bg17888 { background: #f00 scroll none repeat-x 100px  }
 bg17889 { background: #f00 scroll none repeat-x 100px 50%  }
-bg17890 { background: #f00 scroll none repeat-x 100px left }
-bg17891 { background: #f00 scroll none repeat-x 25% left }
+bg17890 { background: #f00 scroll none repeat-x 100px bottom }
+bg17891 { background: #f00 scroll none repeat-x 25% top }
 bg17892 { background: #f00 scroll none repeat-x 50%  }
 bg17893 { background: #f00 scroll none repeat-x 50% 100px  }
 bg17894 { background: #f00 scroll none repeat-x bottom center }
@@ -7918,8 +7918,8 @@ bg17917 { background: #f00 scroll none repeat-x top }
 bg17918 { background: #f00 scroll none repeat-y  }
 bg17919 { background: #f00 scroll none repeat-y 100px  }
 bg17920 { background: #f00 scroll none repeat-y 100px 50%  }
-bg17921 { background: #f00 scroll none repeat-y 100px left }
-bg17922 { background: #f00 scroll none repeat-y 25% left }
+bg17921 { background: #f00 scroll none repeat-y 100px bottom }
+bg17922 { background: #f00 scroll none repeat-y 25% top }
 bg17923 { background: #f00 scroll none repeat-y 50%  }
 bg17924 { background: #f00 scroll none repeat-y 50% 100px  }
 bg17925 { background: #f00 scroll none repeat-y bottom center }
@@ -7977,8 +7977,8 @@ bg17976 { background: #f00 scroll none right }
 bg17977 { background: #f00 scroll none round repeat  }
 bg17978 { background: #f00 scroll none round repeat 100px  }
 bg17979 { background: #f00 scroll none round repeat 100px 50%  }
-bg17980 { background: #f00 scroll none round repeat 100px left }
-bg17981 { background: #f00 scroll none round repeat 25% left }
+bg17980 { background: #f00 scroll none round repeat 100px bottom }
+bg17981 { background: #f00 scroll none round repeat 25% top }
 bg17982 { background: #f00 scroll none round repeat 50%  }
 bg17983 { background: #f00 scroll none round repeat 50% 100px  }
 bg17984 { background: #f00 scroll none round repeat bottom center }
@@ -8038,14 +8038,14 @@ bg18037 { background: #f00 scroll repeat 100px  }
 bg18038 { background: #f00 scroll repeat 100px 50%  }
 bg18039 { background: #f00 scroll repeat 100px 50% none  }
 bg18040 { background: #f00 scroll repeat 100px 50% url(test.jpg)  }
-bg18041 { background: #f00 scroll repeat 100px left none }
-bg18042 { background: #f00 scroll repeat 100px left url(test.jpg) }
-bg18043 { background: #f00 scroll repeat 100px left }
+bg18041 { background: #f00 scroll repeat 100px bottom none }
+bg18042 { background: #f00 scroll repeat 100px bottom url(test.jpg) }
+bg18043 { background: #f00 scroll repeat 100px bottom }
 bg18044 { background: #f00 scroll repeat 100px none  }
 bg18045 { background: #f00 scroll repeat 100px url(test.jpg)  }
-bg18046 { background: #f00 scroll repeat 25% left none }
-bg18047 { background: #f00 scroll repeat 25% left url(test.jpg) }
-bg18048 { background: #f00 scroll repeat 25% left }
+bg18046 { background: #f00 scroll repeat 25% top none }
+bg18047 { background: #f00 scroll repeat 25% top url(test.jpg) }
+bg18048 { background: #f00 scroll repeat 25% top }
 bg18049 { background: #f00 scroll repeat 50%  }
 bg18050 { background: #f00 scroll repeat 50% 100px  }
 bg18051 { background: #f00 scroll repeat 50% 100px none  }
@@ -8105,14 +8105,14 @@ bg18104 { background: #f00 scroll repeat no-repeat 100px  }
 bg18105 { background: #f00 scroll repeat no-repeat 100px 50%  }
 bg18106 { background: #f00 scroll repeat no-repeat 100px 50% none  }
 bg18107 { background: #f00 scroll repeat no-repeat 100px 50% url(test.jpg)  }
-bg18108 { background: #f00 scroll repeat no-repeat 100px left none }
-bg18109 { background: #f00 scroll repeat no-repeat 100px left url(test.jpg) }
-bg18110 { background: #f00 scroll repeat no-repeat 100px left }
+bg18108 { background: #f00 scroll repeat no-repeat 100px bottom none }
+bg18109 { background: #f00 scroll repeat no-repeat 100px bottom url(test.jpg) }
+bg18110 { background: #f00 scroll repeat no-repeat 100px bottom }
 bg18111 { background: #f00 scroll repeat no-repeat 100px none  }
 bg18112 { background: #f00 scroll repeat no-repeat 100px url(test.jpg)  }
-bg18113 { background: #f00 scroll repeat no-repeat 25% left none }
-bg18114 { background: #f00 scroll repeat no-repeat 25% left url(test.jpg) }
-bg18115 { background: #f00 scroll repeat no-repeat 25% left }
+bg18113 { background: #f00 scroll repeat no-repeat 25% top none }
+bg18114 { background: #f00 scroll repeat no-repeat 25% top url(test.jpg) }
+bg18115 { background: #f00 scroll repeat no-repeat 25% top }
 bg18116 { background: #f00 scroll repeat no-repeat 50%  }
 bg18117 { background: #f00 scroll repeat no-repeat 50% 100px  }
 bg18118 { background: #f00 scroll repeat no-repeat 50% 100px none  }
@@ -8170,8 +8170,8 @@ bg18169 { background: #f00 scroll repeat no-repeat left }
 bg18170 { background: #f00 scroll repeat no-repeat none  }
 bg18171 { background: #f00 scroll repeat no-repeat none 100px  }
 bg18172 { background: #f00 scroll repeat no-repeat none 100px 50%  }
-bg18173 { background: #f00 scroll repeat no-repeat none 100px left }
-bg18174 { background: #f00 scroll repeat no-repeat none 25% left }
+bg18173 { background: #f00 scroll repeat no-repeat none 100px bottom }
+bg18174 { background: #f00 scroll repeat no-repeat none 25% top }
 bg18175 { background: #f00 scroll repeat no-repeat none 50%  }
 bg18176 { background: #f00 scroll repeat no-repeat none 50% 100px  }
 bg18177 { background: #f00 scroll repeat no-repeat none bottom center }
@@ -8225,8 +8225,8 @@ bg18224 { background: #f00 scroll repeat no-repeat top }
 bg18225 { background: #f00 scroll repeat no-repeat url(test.jpg)  }
 bg18226 { background: #f00 scroll repeat no-repeat url(test.jpg) 100px  }
 bg18227 { background: #f00 scroll repeat no-repeat url(test.jpg) 100px 50%  }
-bg18228 { background: #f00 scroll repeat no-repeat url(test.jpg) 100px left }
-bg18229 { background: #f00 scroll repeat no-repeat url(test.jpg) 25% left }
+bg18228 { background: #f00 scroll repeat no-repeat url(test.jpg) 100px bottom }
+bg18229 { background: #f00 scroll repeat no-repeat url(test.jpg) 25% top }
 bg18230 { background: #f00 scroll repeat no-repeat url(test.jpg) 50%  }
 bg18231 { background: #f00 scroll repeat no-repeat url(test.jpg) 50% 100px  }
 bg18232 { background: #f00 scroll repeat no-repeat url(test.jpg) bottom center }
@@ -8256,8 +8256,8 @@ bg18255 { background: #f00 scroll repeat no-repeat url(test.jpg) top }
 bg18256 { background: #f00 scroll repeat none  }
 bg18257 { background: #f00 scroll repeat none 100px  }
 bg18258 { background: #f00 scroll repeat none 100px 50%  }
-bg18259 { background: #f00 scroll repeat none 100px left }
-bg18260 { background: #f00 scroll repeat none 25% left }
+bg18259 { background: #f00 scroll repeat none 100px bottom }
+bg18260 { background: #f00 scroll repeat none 25% top }
 bg18261 { background: #f00 scroll repeat none 50%  }
 bg18262 { background: #f00 scroll repeat none 50% 100px  }
 bg18263 { background: #f00 scroll repeat none bottom center }
@@ -8301,14 +8301,14 @@ bg18300 { background: #f00 scroll repeat space 100px  }
 bg18301 { background: #f00 scroll repeat space 100px 50%  }
 bg18302 { background: #f00 scroll repeat space 100px 50% none  }
 bg18303 { background: #f00 scroll repeat space 100px 50% url(test.jpg)  }
-bg18304 { background: #f00 scroll repeat space 100px left none }
-bg18305 { background: #f00 scroll repeat space 100px left url(test.jpg) }
-bg18306 { background: #f00 scroll repeat space 100px left }
+bg18304 { background: #f00 scroll repeat space 100px bottom none }
+bg18305 { background: #f00 scroll repeat space 100px bottom url(test.jpg) }
+bg18306 { background: #f00 scroll repeat space 100px bottom }
 bg18307 { background: #f00 scroll repeat space 100px none  }
 bg18308 { background: #f00 scroll repeat space 100px url(test.jpg)  }
-bg18309 { background: #f00 scroll repeat space 25% left none }
-bg18310 { background: #f00 scroll repeat space 25% left url(test.jpg) }
-bg18311 { background: #f00 scroll repeat space 25% left }
+bg18309 { background: #f00 scroll repeat space 25% top none }
+bg18310 { background: #f00 scroll repeat space 25% top url(test.jpg) }
+bg18311 { background: #f00 scroll repeat space 25% top }
 bg18312 { background: #f00 scroll repeat space 50%  }
 bg18313 { background: #f00 scroll repeat space 50% 100px  }
 bg18314 { background: #f00 scroll repeat space 50% 100px none  }
@@ -8366,8 +8366,8 @@ bg18365 { background: #f00 scroll repeat space left }
 bg18366 { background: #f00 scroll repeat space none  }
 bg18367 { background: #f00 scroll repeat space none 100px  }
 bg18368 { background: #f00 scroll repeat space none 100px 50%  }
-bg18369 { background: #f00 scroll repeat space none 100px left }
-bg18370 { background: #f00 scroll repeat space none 25% left }
+bg18369 { background: #f00 scroll repeat space none 100px bottom }
+bg18370 { background: #f00 scroll repeat space none 25% top }
 bg18371 { background: #f00 scroll repeat space none 50%  }
 bg18372 { background: #f00 scroll repeat space none 50% 100px  }
 bg18373 { background: #f00 scroll repeat space none bottom center }
@@ -8421,8 +8421,8 @@ bg18420 { background: #f00 scroll repeat space top }
 bg18421 { background: #f00 scroll repeat space url(test.jpg)  }
 bg18422 { background: #f00 scroll repeat space url(test.jpg) 100px  }
 bg18423 { background: #f00 scroll repeat space url(test.jpg) 100px 50%  }
-bg18424 { background: #f00 scroll repeat space url(test.jpg) 100px left }
-bg18425 { background: #f00 scroll repeat space url(test.jpg) 25% left }
+bg18424 { background: #f00 scroll repeat space url(test.jpg) 100px bottom }
+bg18425 { background: #f00 scroll repeat space url(test.jpg) 25% top }
 bg18426 { background: #f00 scroll repeat space url(test.jpg) 50%  }
 bg18427 { background: #f00 scroll repeat space url(test.jpg) 50% 100px  }
 bg18428 { background: #f00 scroll repeat space url(test.jpg) bottom center }
@@ -8464,8 +8464,8 @@ bg18463 { background: #f00 scroll repeat top }
 bg18464 { background: #f00 scroll repeat url(test.jpg)  }
 bg18465 { background: #f00 scroll repeat url(test.jpg) 100px  }
 bg18466 { background: #f00 scroll repeat url(test.jpg) 100px 50%  }
-bg18467 { background: #f00 scroll repeat url(test.jpg) 100px left }
-bg18468 { background: #f00 scroll repeat url(test.jpg) 25% left }
+bg18467 { background: #f00 scroll repeat url(test.jpg) 100px bottom }
+bg18468 { background: #f00 scroll repeat url(test.jpg) 25% top }
 bg18469 { background: #f00 scroll repeat url(test.jpg) 50%  }
 bg18470 { background: #f00 scroll repeat url(test.jpg) 50% 100px  }
 bg18471 { background: #f00 scroll repeat url(test.jpg) bottom center }
@@ -8497,14 +8497,14 @@ bg18496 { background: #f00 scroll repeat-x 100px  }
 bg18497 { background: #f00 scroll repeat-x 100px 50%  }
 bg18498 { background: #f00 scroll repeat-x 100px 50% none  }
 bg18499 { background: #f00 scroll repeat-x 100px 50% url(test.jpg)  }
-bg18500 { background: #f00 scroll repeat-x 100px left none }
-bg18501 { background: #f00 scroll repeat-x 100px left url(test.jpg) }
-bg18502 { background: #f00 scroll repeat-x 100px left }
+bg18500 { background: #f00 scroll repeat-x 100px bottom none }
+bg18501 { background: #f00 scroll repeat-x 100px bottom url(test.jpg) }
+bg18502 { background: #f00 scroll repeat-x 100px bottom }
 bg18503 { background: #f00 scroll repeat-x 100px none  }
 bg18504 { background: #f00 scroll repeat-x 100px url(test.jpg)  }
-bg18505 { background: #f00 scroll repeat-x 25% left none }
-bg18506 { background: #f00 scroll repeat-x 25% left url(test.jpg) }
-bg18507 { background: #f00 scroll repeat-x 25% left }
+bg18505 { background: #f00 scroll repeat-x 25% top none }
+bg18506 { background: #f00 scroll repeat-x 25% top url(test.jpg) }
+bg18507 { background: #f00 scroll repeat-x 25% top }
 bg18508 { background: #f00 scroll repeat-x 50%  }
 bg18509 { background: #f00 scroll repeat-x 50% 100px  }
 bg18510 { background: #f00 scroll repeat-x 50% 100px none  }
@@ -8562,8 +8562,8 @@ bg18561 { background: #f00 scroll repeat-x left }
 bg18562 { background: #f00 scroll repeat-x none  }
 bg18563 { background: #f00 scroll repeat-x none 100px  }
 bg18564 { background: #f00 scroll repeat-x none 100px 50%  }
-bg18565 { background: #f00 scroll repeat-x none 100px left }
-bg18566 { background: #f00 scroll repeat-x none 25% left }
+bg18565 { background: #f00 scroll repeat-x none 100px bottom }
+bg18566 { background: #f00 scroll repeat-x none 25% top }
 bg18567 { background: #f00 scroll repeat-x none 50%  }
 bg18568 { background: #f00 scroll repeat-x none 50% 100px  }
 bg18569 { background: #f00 scroll repeat-x none bottom center }
@@ -8617,8 +8617,8 @@ bg18616 { background: #f00 scroll repeat-x top }
 bg18617 { background: #f00 scroll repeat-x url(test.jpg)  }
 bg18618 { background: #f00 scroll repeat-x url(test.jpg) 100px  }
 bg18619 { background: #f00 scroll repeat-x url(test.jpg) 100px 50%  }
-bg18620 { background: #f00 scroll repeat-x url(test.jpg) 100px left }
-bg18621 { background: #f00 scroll repeat-x url(test.jpg) 25% left }
+bg18620 { background: #f00 scroll repeat-x url(test.jpg) 100px bottom }
+bg18621 { background: #f00 scroll repeat-x url(test.jpg) 25% top }
 bg18622 { background: #f00 scroll repeat-x url(test.jpg) 50%  }
 bg18623 { background: #f00 scroll repeat-x url(test.jpg) 50% 100px  }
 bg18624 { background: #f00 scroll repeat-x url(test.jpg) bottom center }
@@ -8650,14 +8650,14 @@ bg18649 { background: #f00 scroll repeat-y 100px  }
 bg18650 { background: #f00 scroll repeat-y 100px 50%  }
 bg18651 { background: #f00 scroll repeat-y 100px 50% none  }
 bg18652 { background: #f00 scroll repeat-y 100px 50% url(test.jpg)  }
-bg18653 { background: #f00 scroll repeat-y 100px left none }
-bg18654 { background: #f00 scroll repeat-y 100px left url(test.jpg) }
-bg18655 { background: #f00 scroll repeat-y 100px left }
+bg18653 { background: #f00 scroll repeat-y 100px bottom none }
+bg18654 { background: #f00 scroll repeat-y 100px bottom url(test.jpg) }
+bg18655 { background: #f00 scroll repeat-y 100px bottom }
 bg18656 { background: #f00 scroll repeat-y 100px none  }
 bg18657 { background: #f00 scroll repeat-y 100px url(test.jpg)  }
-bg18658 { background: #f00 scroll repeat-y 25% left none }
-bg18659 { background: #f00 scroll repeat-y 25% left url(test.jpg) }
-bg18660 { background: #f00 scroll repeat-y 25% left }
+bg18658 { background: #f00 scroll repeat-y 25% top none }
+bg18659 { background: #f00 scroll repeat-y 25% top url(test.jpg) }
+bg18660 { background: #f00 scroll repeat-y 25% top }
 bg18661 { background: #f00 scroll repeat-y 50%  }
 bg18662 { background: #f00 scroll repeat-y 50% 100px  }
 bg18663 { background: #f00 scroll repeat-y 50% 100px none  }
@@ -8715,8 +8715,8 @@ bg18714 { background: #f00 scroll repeat-y left }
 bg18715 { background: #f00 scroll repeat-y none  }
 bg18716 { background: #f00 scroll repeat-y none 100px  }
 bg18717 { background: #f00 scroll repeat-y none 100px 50%  }
-bg18718 { background: #f00 scroll repeat-y none 100px left }
-bg18719 { background: #f00 scroll repeat-y none 25% left }
+bg18718 { background: #f00 scroll repeat-y none 100px bottom }
+bg18719 { background: #f00 scroll repeat-y none 25% top }
 bg18720 { background: #f00 scroll repeat-y none 50%  }
 bg18721 { background: #f00 scroll repeat-y none 50% 100px  }
 bg18722 { background: #f00 scroll repeat-y none bottom center }
@@ -8770,8 +8770,8 @@ bg18769 { background: #f00 scroll repeat-y top }
 bg18770 { background: #f00 scroll repeat-y url(test.jpg)  }
 bg18771 { background: #f00 scroll repeat-y url(test.jpg) 100px  }
 bg18772 { background: #f00 scroll repeat-y url(test.jpg) 100px 50%  }
-bg18773 { background: #f00 scroll repeat-y url(test.jpg) 100px left }
-bg18774 { background: #f00 scroll repeat-y url(test.jpg) 25% left }
+bg18773 { background: #f00 scroll repeat-y url(test.jpg) 100px bottom }
+bg18774 { background: #f00 scroll repeat-y url(test.jpg) 25% top }
 bg18775 { background: #f00 scroll repeat-y url(test.jpg) 50%  }
 bg18776 { background: #f00 scroll repeat-y url(test.jpg) 50% 100px  }
 bg18777 { background: #f00 scroll repeat-y url(test.jpg) bottom center }
@@ -8935,14 +8935,14 @@ bg18934 { background: #f00 scroll round repeat 100px  }
 bg18935 { background: #f00 scroll round repeat 100px 50%  }
 bg18936 { background: #f00 scroll round repeat 100px 50% none  }
 bg18937 { background: #f00 scroll round repeat 100px 50% url(test.jpg)  }
-bg18938 { background: #f00 scroll round repeat 100px left none }
-bg18939 { background: #f00 scroll round repeat 100px left url(test.jpg) }
-bg18940 { background: #f00 scroll round repeat 100px left }
+bg18938 { background: #f00 scroll round repeat 100px bottom none }
+bg18939 { background: #f00 scroll round repeat 100px bottom url(test.jpg) }
+bg18940 { background: #f00 scroll round repeat 100px bottom }
 bg18941 { background: #f00 scroll round repeat 100px none  }
 bg18942 { background: #f00 scroll round repeat 100px url(test.jpg)  }
-bg18943 { background: #f00 scroll round repeat 25% left none }
-bg18944 { background: #f00 scroll round repeat 25% left url(test.jpg) }
-bg18945 { background: #f00 scroll round repeat 25% left }
+bg18943 { background: #f00 scroll round repeat 25% top none }
+bg18944 { background: #f00 scroll round repeat 25% top url(test.jpg) }
+bg18945 { background: #f00 scroll round repeat 25% top }
 bg18946 { background: #f00 scroll round repeat 50%  }
 bg18947 { background: #f00 scroll round repeat 50% 100px  }
 bg18948 { background: #f00 scroll round repeat 50% 100px none  }
@@ -9000,8 +9000,8 @@ bg18999 { background: #f00 scroll round repeat left }
 bg19000 { background: #f00 scroll round repeat none  }
 bg19001 { background: #f00 scroll round repeat none 100px  }
 bg19002 { background: #f00 scroll round repeat none 100px 50%  }
-bg19003 { background: #f00 scroll round repeat none 100px left }
-bg19004 { background: #f00 scroll round repeat none 25% left }
+bg19003 { background: #f00 scroll round repeat none 100px bottom }
+bg19004 { background: #f00 scroll round repeat none 25% top }
 bg19005 { background: #f00 scroll round repeat none 50%  }
 bg19006 { background: #f00 scroll round repeat none 50% 100px  }
 bg19007 { background: #f00 scroll round repeat none bottom center }
@@ -9055,8 +9055,8 @@ bg19054 { background: #f00 scroll round repeat top }
 bg19055 { background: #f00 scroll round repeat url(test.jpg)  }
 bg19056 { background: #f00 scroll round repeat url(test.jpg) 100px  }
 bg19057 { background: #f00 scroll round repeat url(test.jpg) 100px 50%  }
-bg19058 { background: #f00 scroll round repeat url(test.jpg) 100px left }
-bg19059 { background: #f00 scroll round repeat url(test.jpg) 25% left }
+bg19058 { background: #f00 scroll round repeat url(test.jpg) 100px bottom }
+bg19059 { background: #f00 scroll round repeat url(test.jpg) 25% top }
 bg19060 { background: #f00 scroll round repeat url(test.jpg) 50%  }
 bg19061 { background: #f00 scroll round repeat url(test.jpg) 50% 100px  }
 bg19062 { background: #f00 scroll round repeat url(test.jpg) bottom center }
@@ -9224,26 +9224,26 @@ bg19223 { background: #f00 scroll url(test.jpg) 100px 50% repeat space  }
 bg19224 { background: #f00 scroll url(test.jpg) 100px 50% repeat-x  }
 bg19225 { background: #f00 scroll url(test.jpg) 100px 50% repeat-y  }
 bg19226 { background: #f00 scroll url(test.jpg) 100px 50% round repeat  }
-bg19227 { background: #f00 scroll url(test.jpg) 100px left repeat no-repeat }
-bg19228 { background: #f00 scroll url(test.jpg) 100px left repeat space }
-bg19229 { background: #f00 scroll url(test.jpg) 100px left repeat }
-bg19230 { background: #f00 scroll url(test.jpg) 100px left repeat-x }
-bg19231 { background: #f00 scroll url(test.jpg) 100px left repeat-y }
-bg19232 { background: #f00 scroll url(test.jpg) 100px left round repeat }
-bg19233 { background: #f00 scroll url(test.jpg) 100px left }
+bg19227 { background: #f00 scroll url(test.jpg) 100px bottom repeat no-repeat }
+bg19228 { background: #f00 scroll url(test.jpg) 100px bottom repeat space }
+bg19229 { background: #f00 scroll url(test.jpg) 100px bottom repeat }
+bg19230 { background: #f00 scroll url(test.jpg) 100px bottom repeat-x }
+bg19231 { background: #f00 scroll url(test.jpg) 100px bottom repeat-y }
+bg19232 { background: #f00 scroll url(test.jpg) 100px bottom round repeat }
+bg19233 { background: #f00 scroll url(test.jpg) 100px bottom }
 bg19234 { background: #f00 scroll url(test.jpg) 100px repeat  }
 bg19235 { background: #f00 scroll url(test.jpg) 100px repeat no-repeat  }
 bg19236 { background: #f00 scroll url(test.jpg) 100px repeat space  }
 bg19237 { background: #f00 scroll url(test.jpg) 100px repeat-x  }
 bg19238 { background: #f00 scroll url(test.jpg) 100px repeat-y  }
 bg19239 { background: #f00 scroll url(test.jpg) 100px round repeat  }
-bg19240 { background: #f00 scroll url(test.jpg) 25% left repeat no-repeat }
-bg19241 { background: #f00 scroll url(test.jpg) 25% left repeat space }
-bg19242 { background: #f00 scroll url(test.jpg) 25% left repeat }
-bg19243 { background: #f00 scroll url(test.jpg) 25% left repeat-x }
-bg19244 { background: #f00 scroll url(test.jpg) 25% left repeat-y }
-bg19245 { background: #f00 scroll url(test.jpg) 25% left round repeat }
-bg19246 { background: #f00 scroll url(test.jpg) 25% left }
+bg19240 { background: #f00 scroll url(test.jpg) 25% top repeat no-repeat }
+bg19241 { background: #f00 scroll url(test.jpg) 25% top repeat space }
+bg19242 { background: #f00 scroll url(test.jpg) 25% top repeat }
+bg19243 { background: #f00 scroll url(test.jpg) 25% top repeat-x }
+bg19244 { background: #f00 scroll url(test.jpg) 25% top repeat-y }
+bg19245 { background: #f00 scroll url(test.jpg) 25% top round repeat }
+bg19246 { background: #f00 scroll url(test.jpg) 25% top }
 bg19247 { background: #f00 scroll url(test.jpg) 50%  }
 bg19248 { background: #f00 scroll url(test.jpg) 50% 100px  }
 bg19249 { background: #f00 scroll url(test.jpg) 50% 100px repeat  }
@@ -9373,8 +9373,8 @@ bg19372 { background: #f00 scroll url(test.jpg) left }
 bg19373 { background: #f00 scroll url(test.jpg) repeat  }
 bg19374 { background: #f00 scroll url(test.jpg) repeat 100px  }
 bg19375 { background: #f00 scroll url(test.jpg) repeat 100px 50%  }
-bg19376 { background: #f00 scroll url(test.jpg) repeat 100px left }
-bg19377 { background: #f00 scroll url(test.jpg) repeat 25% left }
+bg19376 { background: #f00 scroll url(test.jpg) repeat 100px bottom }
+bg19377 { background: #f00 scroll url(test.jpg) repeat 25% top }
 bg19378 { background: #f00 scroll url(test.jpg) repeat 50%  }
 bg19379 { background: #f00 scroll url(test.jpg) repeat 50% 100px  }
 bg19380 { background: #f00 scroll url(test.jpg) repeat bottom center }
@@ -9396,8 +9396,8 @@ bg19395 { background: #f00 scroll url(test.jpg) repeat left }
 bg19396 { background: #f00 scroll url(test.jpg) repeat no-repeat  }
 bg19397 { background: #f00 scroll url(test.jpg) repeat no-repeat 100px  }
 bg19398 { background: #f00 scroll url(test.jpg) repeat no-repeat 100px 50%  }
-bg19399 { background: #f00 scroll url(test.jpg) repeat no-repeat 100px left }
-bg19400 { background: #f00 scroll url(test.jpg) repeat no-repeat 25% left }
+bg19399 { background: #f00 scroll url(test.jpg) repeat no-repeat 100px bottom }
+bg19400 { background: #f00 scroll url(test.jpg) repeat no-repeat 25% top }
 bg19401 { background: #f00 scroll url(test.jpg) repeat no-repeat 50%  }
 bg19402 { background: #f00 scroll url(test.jpg) repeat no-repeat 50% 100px  }
 bg19403 { background: #f00 scroll url(test.jpg) repeat no-repeat bottom center }
@@ -9431,8 +9431,8 @@ bg19430 { background: #f00 scroll url(test.jpg) repeat right }
 bg19431 { background: #f00 scroll url(test.jpg) repeat space  }
 bg19432 { background: #f00 scroll url(test.jpg) repeat space 100px  }
 bg19433 { background: #f00 scroll url(test.jpg) repeat space 100px 50%  }
-bg19434 { background: #f00 scroll url(test.jpg) repeat space 100px left }
-bg19435 { background: #f00 scroll url(test.jpg) repeat space 25% left }
+bg19434 { background: #f00 scroll url(test.jpg) repeat space 100px bottom }
+bg19435 { background: #f00 scroll url(test.jpg) repeat space 25% top }
 bg19436 { background: #f00 scroll url(test.jpg) repeat space 50%  }
 bg19437 { background: #f00 scroll url(test.jpg) repeat space 50% 100px  }
 bg19438 { background: #f00 scroll url(test.jpg) repeat space bottom center }
@@ -9466,8 +9466,8 @@ bg19465 { background: #f00 scroll url(test.jpg) repeat top }
 bg19466 { background: #f00 scroll url(test.jpg) repeat-x  }
 bg19467 { background: #f00 scroll url(test.jpg) repeat-x 100px  }
 bg19468 { background: #f00 scroll url(test.jpg) repeat-x 100px 50%  }
-bg19469 { background: #f00 scroll url(test.jpg) repeat-x 100px left }
-bg19470 { background: #f00 scroll url(test.jpg) repeat-x 25% left }
+bg19469 { background: #f00 scroll url(test.jpg) repeat-x 100px bottom }
+bg19470 { background: #f00 scroll url(test.jpg) repeat-x 25% top }
 bg19471 { background: #f00 scroll url(test.jpg) repeat-x 50%  }
 bg19472 { background: #f00 scroll url(test.jpg) repeat-x 50% 100px  }
 bg19473 { background: #f00 scroll url(test.jpg) repeat-x bottom center }
@@ -9497,8 +9497,8 @@ bg19496 { background: #f00 scroll url(test.jpg) repeat-x top }
 bg19497 { background: #f00 scroll url(test.jpg) repeat-y  }
 bg19498 { background: #f00 scroll url(test.jpg) repeat-y 100px  }
 bg19499 { background: #f00 scroll url(test.jpg) repeat-y 100px 50%  }
-bg19500 { background: #f00 scroll url(test.jpg) repeat-y 100px left }
-bg19501 { background: #f00 scroll url(test.jpg) repeat-y 25% left }
+bg19500 { background: #f00 scroll url(test.jpg) repeat-y 100px bottom }
+bg19501 { background: #f00 scroll url(test.jpg) repeat-y 25% top }
 bg19502 { background: #f00 scroll url(test.jpg) repeat-y 50%  }
 bg19503 { background: #f00 scroll url(test.jpg) repeat-y 50% 100px  }
 bg19504 { background: #f00 scroll url(test.jpg) repeat-y bottom center }
@@ -9556,8 +9556,8 @@ bg19555 { background: #f00 scroll url(test.jpg) right }
 bg19556 { background: #f00 scroll url(test.jpg) round repeat  }
 bg19557 { background: #f00 scroll url(test.jpg) round repeat 100px  }
 bg19558 { background: #f00 scroll url(test.jpg) round repeat 100px 50%  }
-bg19559 { background: #f00 scroll url(test.jpg) round repeat 100px left }
-bg19560 { background: #f00 scroll url(test.jpg) round repeat 25% left }
+bg19559 { background: #f00 scroll url(test.jpg) round repeat 100px bottom }
+bg19560 { background: #f00 scroll url(test.jpg) round repeat 25% top }
 bg19561 { background: #f00 scroll url(test.jpg) round repeat 50%  }
 bg19562 { background: #f00 scroll url(test.jpg) round repeat 50% 100px  }
 bg19563 { background: #f00 scroll url(test.jpg) round repeat bottom center }

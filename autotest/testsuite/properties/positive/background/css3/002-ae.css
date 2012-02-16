@@ -1607,39 +1607,39 @@ bg41606 { background: blue fixed 100px 50% url(test.jpg) repeat space  }
 bg41607 { background: blue fixed 100px 50% url(test.jpg) repeat-x  }
 bg41608 { background: blue fixed 100px 50% url(test.jpg) repeat-y  }
 bg41609 { background: blue fixed 100px 50% url(test.jpg) round repeat  }
-bg41610 { background: blue fixed 100px left none repeat no-repeat }
-bg41611 { background: blue fixed 100px left none repeat space }
-bg41612 { background: blue fixed 100px left none repeat }
-bg41613 { background: blue fixed 100px left none repeat-x }
-bg41614 { background: blue fixed 100px left none repeat-y }
-bg41615 { background: blue fixed 100px left none round repeat }
-bg41616 { background: blue fixed 100px left none }
-bg41617 { background: blue fixed 100px left repeat no-repeat none }
-bg41618 { background: blue fixed 100px left repeat no-repeat url(test.jpg) }
-bg41619 { background: blue fixed 100px left repeat no-repeat }
-bg41620 { background: blue fixed 100px left repeat none }
-bg41621 { background: blue fixed 100px left repeat space none }
-bg41622 { background: blue fixed 100px left repeat space url(test.jpg) }
-bg41623 { background: blue fixed 100px left repeat space }
-bg41624 { background: blue fixed 100px left repeat url(test.jpg) }
-bg41625 { background: blue fixed 100px left repeat }
-bg41626 { background: blue fixed 100px left repeat-x none }
-bg41627 { background: blue fixed 100px left repeat-x url(test.jpg) }
-bg41628 { background: blue fixed 100px left repeat-x }
-bg41629 { background: blue fixed 100px left repeat-y none }
-bg41630 { background: blue fixed 100px left repeat-y url(test.jpg) }
-bg41631 { background: blue fixed 100px left repeat-y }
-bg41632 { background: blue fixed 100px left round repeat none }
-bg41633 { background: blue fixed 100px left round repeat url(test.jpg) }
-bg41634 { background: blue fixed 100px left round repeat }
-bg41635 { background: blue fixed 100px left url(test.jpg) repeat no-repeat }
-bg41636 { background: blue fixed 100px left url(test.jpg) repeat space }
-bg41637 { background: blue fixed 100px left url(test.jpg) repeat }
-bg41638 { background: blue fixed 100px left url(test.jpg) repeat-x }
-bg41639 { background: blue fixed 100px left url(test.jpg) repeat-y }
-bg41640 { background: blue fixed 100px left url(test.jpg) round repeat }
-bg41641 { background: blue fixed 100px left url(test.jpg) }
-bg41642 { background: blue fixed 100px left }
+bg41610 { background: blue fixed 100px bottom none repeat no-repeat }
+bg41611 { background: blue fixed 100px bottom none repeat space }
+bg41612 { background: blue fixed 100px bottom none repeat }
+bg41613 { background: blue fixed 100px bottom none repeat-x }
+bg41614 { background: blue fixed 100px bottom none repeat-y }
+bg41615 { background: blue fixed 100px bottom none round repeat }
+bg41616 { background: blue fixed 100px bottom none }
+bg41617 { background: blue fixed 100px bottom repeat no-repeat none }
+bg41618 { background: blue fixed 100px bottom repeat no-repeat url(test.jpg) }
+bg41619 { background: blue fixed 100px bottom repeat no-repeat }
+bg41620 { background: blue fixed 100px bottom repeat none }
+bg41621 { background: blue fixed 100px bottom repeat space none }
+bg41622 { background: blue fixed 100px bottom repeat space url(test.jpg) }
+bg41623 { background: blue fixed 100px bottom repeat space }
+bg41624 { background: blue fixed 100px bottom repeat url(test.jpg) }
+bg41625 { background: blue fixed 100px bottom repeat }
+bg41626 { background: blue fixed 100px bottom repeat-x none }
+bg41627 { background: blue fixed 100px bottom repeat-x url(test.jpg) }
+bg41628 { background: blue fixed 100px bottom repeat-x }
+bg41629 { background: blue fixed 100px bottom repeat-y none }
+bg41630 { background: blue fixed 100px bottom repeat-y url(test.jpg) }
+bg41631 { background: blue fixed 100px bottom repeat-y }
+bg41632 { background: blue fixed 100px bottom round repeat none }
+bg41633 { background: blue fixed 100px bottom round repeat url(test.jpg) }
+bg41634 { background: blue fixed 100px bottom round repeat }
+bg41635 { background: blue fixed 100px bottom url(test.jpg) repeat no-repeat }
+bg41636 { background: blue fixed 100px bottom url(test.jpg) repeat space }
+bg41637 { background: blue fixed 100px bottom url(test.jpg) repeat }
+bg41638 { background: blue fixed 100px bottom url(test.jpg) repeat-x }
+bg41639 { background: blue fixed 100px bottom url(test.jpg) repeat-y }
+bg41640 { background: blue fixed 100px bottom url(test.jpg) round repeat }
+bg41641 { background: blue fixed 100px bottom url(test.jpg) }
+bg41642 { background: blue fixed 100px bottom }
 bg41643 { background: blue fixed 100px none  }
 bg41644 { background: blue fixed 100px none repeat  }
 bg41645 { background: blue fixed 100px none repeat no-repeat  }
@@ -1672,39 +1672,39 @@ bg41671 { background: blue fixed 100px url(test.jpg) repeat space  }
 bg41672 { background: blue fixed 100px url(test.jpg) repeat-x  }
 bg41673 { background: blue fixed 100px url(test.jpg) repeat-y  }
 bg41674 { background: blue fixed 100px url(test.jpg) round repeat  }
-bg41675 { background: blue fixed 25% left none repeat no-repeat }
-bg41676 { background: blue fixed 25% left none repeat space }
-bg41677 { background: blue fixed 25% left none repeat }
-bg41678 { background: blue fixed 25% left none repeat-x }
-bg41679 { background: blue fixed 25% left none repeat-y }
-bg41680 { background: blue fixed 25% left none round repeat }
-bg41681 { background: blue fixed 25% left none }
-bg41682 { background: blue fixed 25% left repeat no-repeat none }
-bg41683 { background: blue fixed 25% left repeat no-repeat url(test.jpg) }
-bg41684 { background: blue fixed 25% left repeat no-repeat }
-bg41685 { background: blue fixed 25% left repeat none }
-bg41686 { background: blue fixed 25% left repeat space none }
-bg41687 { background: blue fixed 25% left repeat space url(test.jpg) }
-bg41688 { background: blue fixed 25% left repeat space }
-bg41689 { background: blue fixed 25% left repeat url(test.jpg) }
-bg41690 { background: blue fixed 25% left repeat }
-bg41691 { background: blue fixed 25% left repeat-x none }
-bg41692 { background: blue fixed 25% left repeat-x url(test.jpg) }
-bg41693 { background: blue fixed 25% left repeat-x }
-bg41694 { background: blue fixed 25% left repeat-y none }
-bg41695 { background: blue fixed 25% left repeat-y url(test.jpg) }
-bg41696 { background: blue fixed 25% left repeat-y }
-bg41697 { background: blue fixed 25% left round repeat none }
-bg41698 { background: blue fixed 25% left round repeat url(test.jpg) }
-bg41699 { background: blue fixed 25% left round repeat }
-bg41700 { background: blue fixed 25% left url(test.jpg) repeat no-repeat }
-bg41701 { background: blue fixed 25% left url(test.jpg) repeat space }
-bg41702 { background: blue fixed 25% left url(test.jpg) repeat }
-bg41703 { background: blue fixed 25% left url(test.jpg) repeat-x }
-bg41704 { background: blue fixed 25% left url(test.jpg) repeat-y }
-bg41705 { background: blue fixed 25% left url(test.jpg) round repeat }
-bg41706 { background: blue fixed 25% left url(test.jpg) }
-bg41707 { background: blue fixed 25% left }
+bg41675 { background: blue fixed 25% top none repeat no-repeat }
+bg41676 { background: blue fixed 25% top none repeat space }
+bg41677 { background: blue fixed 25% top none repeat }
+bg41678 { background: blue fixed 25% top none repeat-x }
+bg41679 { background: blue fixed 25% top none repeat-y }
+bg41680 { background: blue fixed 25% top none round repeat }
+bg41681 { background: blue fixed 25% top none }
+bg41682 { background: blue fixed 25% top repeat no-repeat none }
+bg41683 { background: blue fixed 25% top repeat no-repeat url(test.jpg) }
+bg41684 { background: blue fixed 25% top repeat no-repeat }
+bg41685 { background: blue fixed 25% top repeat none }
+bg41686 { background: blue fixed 25% top repeat space none }
+bg41687 { background: blue fixed 25% top repeat space url(test.jpg) }
+bg41688 { background: blue fixed 25% top repeat space }
+bg41689 { background: blue fixed 25% top repeat url(test.jpg) }
+bg41690 { background: blue fixed 25% top repeat }
+bg41691 { background: blue fixed 25% top repeat-x none }
+bg41692 { background: blue fixed 25% top repeat-x url(test.jpg) }
+bg41693 { background: blue fixed 25% top repeat-x }
+bg41694 { background: blue fixed 25% top repeat-y none }
+bg41695 { background: blue fixed 25% top repeat-y url(test.jpg) }
+bg41696 { background: blue fixed 25% top repeat-y }
+bg41697 { background: blue fixed 25% top round repeat none }
+bg41698 { background: blue fixed 25% top round repeat url(test.jpg) }
+bg41699 { background: blue fixed 25% top round repeat }
+bg41700 { background: blue fixed 25% top url(test.jpg) repeat no-repeat }
+bg41701 { background: blue fixed 25% top url(test.jpg) repeat space }
+bg41702 { background: blue fixed 25% top url(test.jpg) repeat }
+bg41703 { background: blue fixed 25% top url(test.jpg) repeat-x }
+bg41704 { background: blue fixed 25% top url(test.jpg) repeat-y }
+bg41705 { background: blue fixed 25% top url(test.jpg) round repeat }
+bg41706 { background: blue fixed 25% top url(test.jpg) }
+bg41707 { background: blue fixed 25% top }
 bg41708 { background: blue fixed 50%  }
 bg41709 { background: blue fixed 50% 100px  }
 bg41710 { background: blue fixed 50% 100px none  }
@@ -2308,26 +2308,26 @@ bg42307 { background: blue fixed none 100px 50% repeat space  }
 bg42308 { background: blue fixed none 100px 50% repeat-x  }
 bg42309 { background: blue fixed none 100px 50% repeat-y  }
 bg42310 { background: blue fixed none 100px 50% round repeat  }
-bg42311 { background: blue fixed none 100px left repeat no-repeat }
-bg42312 { background: blue fixed none 100px left repeat space }
-bg42313 { background: blue fixed none 100px left repeat }
-bg42314 { background: blue fixed none 100px left repeat-x }
-bg42315 { background: blue fixed none 100px left repeat-y }
-bg42316 { background: blue fixed none 100px left round repeat }
-bg42317 { background: blue fixed none 100px left }
+bg42311 { background: blue fixed none 100px bottom repeat no-repeat }
+bg42312 { background: blue fixed none 100px bottom repeat space }
+bg42313 { background: blue fixed none 100px bottom repeat }
+bg42314 { background: blue fixed none 100px bottom repeat-x }
+bg42315 { background: blue fixed none 100px bottom repeat-y }
+bg42316 { background: blue fixed none 100px bottom round repeat }
+bg42317 { background: blue fixed none 100px bottom }
 bg42318 { background: blue fixed none 100px repeat  }
 bg42319 { background: blue fixed none 100px repeat no-repeat  }
 bg42320 { background: blue fixed none 100px repeat space  }
 bg42321 { background: blue fixed none 100px repeat-x  }
 bg42322 { background: blue fixed none 100px repeat-y  }
 bg42323 { background: blue fixed none 100px round repeat  }
-bg42324 { background: blue fixed none 25% left repeat no-repeat }
-bg42325 { background: blue fixed none 25% left repeat space }
-bg42326 { background: blue fixed none 25% left repeat }
-bg42327 { background: blue fixed none 25% left repeat-x }
-bg42328 { background: blue fixed none 25% left repeat-y }
-bg42329 { background: blue fixed none 25% left round repeat }
-bg42330 { background: blue fixed none 25% left }
+bg42324 { background: blue fixed none 25% top repeat no-repeat }
+bg42325 { background: blue fixed none 25% top repeat space }
+bg42326 { background: blue fixed none 25% top repeat }
+bg42327 { background: blue fixed none 25% top repeat-x }
+bg42328 { background: blue fixed none 25% top repeat-y }
+bg42329 { background: blue fixed none 25% top round repeat }
+bg42330 { background: blue fixed none 25% top }
 bg42331 { background: blue fixed none 50%  }
 bg42332 { background: blue fixed none 50% 100px  }
 bg42333 { background: blue fixed none 50% 100px repeat  }
@@ -2457,8 +2457,8 @@ bg42456 { background: blue fixed none left }
 bg42457 { background: blue fixed none repeat  }
 bg42458 { background: blue fixed none repeat 100px  }
 bg42459 { background: blue fixed none repeat 100px 50%  }
-bg42460 { background: blue fixed none repeat 100px left }
-bg42461 { background: blue fixed none repeat 25% left }
+bg42460 { background: blue fixed none repeat 100px bottom }
+bg42461 { background: blue fixed none repeat 25% top }
 bg42462 { background: blue fixed none repeat 50%  }
 bg42463 { background: blue fixed none repeat 50% 100px  }
 bg42464 { background: blue fixed none repeat bottom center }
@@ -2480,8 +2480,8 @@ bg42479 { background: blue fixed none repeat left }
 bg42480 { background: blue fixed none repeat no-repeat  }
 bg42481 { background: blue fixed none repeat no-repeat 100px  }
 bg42482 { background: blue fixed none repeat no-repeat 100px 50%  }
-bg42483 { background: blue fixed none repeat no-repeat 100px left }
-bg42484 { background: blue fixed none repeat no-repeat 25% left }
+bg42483 { background: blue fixed none repeat no-repeat 100px bottom }
+bg42484 { background: blue fixed none repeat no-repeat 25% top }
 bg42485 { background: blue fixed none repeat no-repeat 50%  }
 bg42486 { background: blue fixed none repeat no-repeat 50% 100px  }
 bg42487 { background: blue fixed none repeat no-repeat bottom center }
@@ -2515,8 +2515,8 @@ bg42514 { background: blue fixed none repeat right }
 bg42515 { background: blue fixed none repeat space  }
 bg42516 { background: blue fixed none repeat space 100px  }
 bg42517 { background: blue fixed none repeat space 100px 50%  }
-bg42518 { background: blue fixed none repeat space 100px left }
-bg42519 { background: blue fixed none repeat space 25% left }
+bg42518 { background: blue fixed none repeat space 100px bottom }
+bg42519 { background: blue fixed none repeat space 25% top }
 bg42520 { background: blue fixed none repeat space 50%  }
 bg42521 { background: blue fixed none repeat space 50% 100px  }
 bg42522 { background: blue fixed none repeat space bottom center }
@@ -2550,8 +2550,8 @@ bg42549 { background: blue fixed none repeat top }
 bg42550 { background: blue fixed none repeat-x  }
 bg42551 { background: blue fixed none repeat-x 100px  }
 bg42552 { background: blue fixed none repeat-x 100px 50%  }
-bg42553 { background: blue fixed none repeat-x 100px left }
-bg42554 { background: blue fixed none repeat-x 25% left }
+bg42553 { background: blue fixed none repeat-x 100px bottom }
+bg42554 { background: blue fixed none repeat-x 25% top }
 bg42555 { background: blue fixed none repeat-x 50%  }
 bg42556 { background: blue fixed none repeat-x 50% 100px  }
 bg42557 { background: blue fixed none repeat-x bottom center }
@@ -2581,8 +2581,8 @@ bg42580 { background: blue fixed none repeat-x top }
 bg42581 { background: blue fixed none repeat-y  }
 bg42582 { background: blue fixed none repeat-y 100px  }
 bg42583 { background: blue fixed none repeat-y 100px 50%  }
-bg42584 { background: blue fixed none repeat-y 100px left }
-bg42585 { background: blue fixed none repeat-y 25% left }
+bg42584 { background: blue fixed none repeat-y 100px bottom }
+bg42585 { background: blue fixed none repeat-y 25% top }
 bg42586 { background: blue fixed none repeat-y 50%  }
 bg42587 { background: blue fixed none repeat-y 50% 100px  }
 bg42588 { background: blue fixed none repeat-y bottom center }
@@ -2640,8 +2640,8 @@ bg42639 { background: blue fixed none right }
 bg42640 { background: blue fixed none round repeat  }
 bg42641 { background: blue fixed none round repeat 100px  }
 bg42642 { background: blue fixed none round repeat 100px 50%  }
-bg42643 { background: blue fixed none round repeat 100px left }
-bg42644 { background: blue fixed none round repeat 25% left }
+bg42643 { background: blue fixed none round repeat 100px bottom }
+bg42644 { background: blue fixed none round repeat 25% top }
 bg42645 { background: blue fixed none round repeat 50%  }
 bg42646 { background: blue fixed none round repeat 50% 100px  }
 bg42647 { background: blue fixed none round repeat bottom center }
@@ -2701,14 +2701,14 @@ bg42700 { background: blue fixed repeat 100px  }
 bg42701 { background: blue fixed repeat 100px 50%  }
 bg42702 { background: blue fixed repeat 100px 50% none  }
 bg42703 { background: blue fixed repeat 100px 50% url(test.jpg)  }
-bg42704 { background: blue fixed repeat 100px left none }
-bg42705 { background: blue fixed repeat 100px left url(test.jpg) }
-bg42706 { background: blue fixed repeat 100px left }
+bg42704 { background: blue fixed repeat 100px bottom none }
+bg42705 { background: blue fixed repeat 100px bottom url(test.jpg) }
+bg42706 { background: blue fixed repeat 100px bottom }
 bg42707 { background: blue fixed repeat 100px none  }
 bg42708 { background: blue fixed repeat 100px url(test.jpg)  }
-bg42709 { background: blue fixed repeat 25% left none }
-bg42710 { background: blue fixed repeat 25% left url(test.jpg) }
-bg42711 { background: blue fixed repeat 25% left }
+bg42709 { background: blue fixed repeat 25% top none }
+bg42710 { background: blue fixed repeat 25% top url(test.jpg) }
+bg42711 { background: blue fixed repeat 25% top }
 bg42712 { background: blue fixed repeat 50%  }
 bg42713 { background: blue fixed repeat 50% 100px  }
 bg42714 { background: blue fixed repeat 50% 100px none  }
@@ -2768,14 +2768,14 @@ bg42767 { background: blue fixed repeat no-repeat 100px  }
 bg42768 { background: blue fixed repeat no-repeat 100px 50%  }
 bg42769 { background: blue fixed repeat no-repeat 100px 50% none  }
 bg42770 { background: blue fixed repeat no-repeat 100px 50% url(test.jpg)  }
-bg42771 { background: blue fixed repeat no-repeat 100px left none }
-bg42772 { background: blue fixed repeat no-repeat 100px left url(test.jpg) }
-bg42773 { background: blue fixed repeat no-repeat 100px left }
+bg42771 { background: blue fixed repeat no-repeat 100px bottom none }
+bg42772 { background: blue fixed repeat no-repeat 100px bottom url(test.jpg) }
+bg42773 { background: blue fixed repeat no-repeat 100px bottom }
 bg42774 { background: blue fixed repeat no-repeat 100px none  }
 bg42775 { background: blue fixed repeat no-repeat 100px url(test.jpg)  }
-bg42776 { background: blue fixed repeat no-repeat 25% left none }
-bg42777 { background: blue fixed repeat no-repeat 25% left url(test.jpg) }
-bg42778 { background: blue fixed repeat no-repeat 25% left }
+bg42776 { background: blue fixed repeat no-repeat 25% top none }
+bg42777 { background: blue fixed repeat no-repeat 25% top url(test.jpg) }
+bg42778 { background: blue fixed repeat no-repeat 25% top }
 bg42779 { background: blue fixed repeat no-repeat 50%  }
 bg42780 { background: blue fixed repeat no-repeat 50% 100px  }
 bg42781 { background: blue fixed repeat no-repeat 50% 100px none  }
@@ -2833,8 +2833,8 @@ bg42832 { background: blue fixed repeat no-repeat left }
 bg42833 { background: blue fixed repeat no-repeat none  }
 bg42834 { background: blue fixed repeat no-repeat none 100px  }
 bg42835 { background: blue fixed repeat no-repeat none 100px 50%  }
-bg42836 { background: blue fixed repeat no-repeat none 100px left }
-bg42837 { background: blue fixed repeat no-repeat none 25% left }
+bg42836 { background: blue fixed repeat no-repeat none 100px bottom }
+bg42837 { background: blue fixed repeat no-repeat none 25% top }
 bg42838 { background: blue fixed repeat no-repeat none 50%  }
 bg42839 { background: blue fixed repeat no-repeat none 50% 100px  }
 bg42840 { background: blue fixed repeat no-repeat none bottom center }
@@ -2888,8 +2888,8 @@ bg42887 { background: blue fixed repeat no-repeat top }
 bg42888 { background: blue fixed repeat no-repeat url(test.jpg)  }
 bg42889 { background: blue fixed repeat no-repeat url(test.jpg) 100px  }
 bg42890 { background: blue fixed repeat no-repeat url(test.jpg) 100px 50%  }
-bg42891 { background: blue fixed repeat no-repeat url(test.jpg) 100px left }
-bg42892 { background: blue fixed repeat no-repeat url(test.jpg) 25% left }
+bg42891 { background: blue fixed repeat no-repeat url(test.jpg) 100px bottom }
+bg42892 { background: blue fixed repeat no-repeat url(test.jpg) 25% top }
 bg42893 { background: blue fixed repeat no-repeat url(test.jpg) 50%  }
 bg42894 { background: blue fixed repeat no-repeat url(test.jpg) 50% 100px  }
 bg42895 { background: blue fixed repeat no-repeat url(test.jpg) bottom center }
@@ -2919,8 +2919,8 @@ bg42918 { background: blue fixed repeat no-repeat url(test.jpg) top }
 bg42919 { background: blue fixed repeat none  }
 bg42920 { background: blue fixed repeat none 100px  }
 bg42921 { background: blue fixed repeat none 100px 50%  }
-bg42922 { background: blue fixed repeat none 100px left }
-bg42923 { background: blue fixed repeat none 25% left }
+bg42922 { background: blue fixed repeat none 100px bottom }
+bg42923 { background: blue fixed repeat none 25% top }
 bg42924 { background: blue fixed repeat none 50%  }
 bg42925 { background: blue fixed repeat none 50% 100px  }
 bg42926 { background: blue fixed repeat none bottom center }
@@ -2964,14 +2964,14 @@ bg42963 { background: blue fixed repeat space 100px  }
 bg42964 { background: blue fixed repeat space 100px 50%  }
 bg42965 { background: blue fixed repeat space 100px 50% none  }
 bg42966 { background: blue fixed repeat space 100px 50% url(test.jpg)  }
-bg42967 { background: blue fixed repeat space 100px left none }
-bg42968 { background: blue fixed repeat space 100px left url(test.jpg) }
-bg42969 { background: blue fixed repeat space 100px left }
+bg42967 { background: blue fixed repeat space 100px bottom none }
+bg42968 { background: blue fixed repeat space 100px bottom url(test.jpg) }
+bg42969 { background: blue fixed repeat space 100px bottom }
 bg42970 { background: blue fixed repeat space 100px none  }
 bg42971 { background: blue fixed repeat space 100px url(test.jpg)  }
-bg42972 { background: blue fixed repeat space 25% left none }
-bg42973 { background: blue fixed repeat space 25% left url(test.jpg) }
-bg42974 { background: blue fixed repeat space 25% left }
+bg42972 { background: blue fixed repeat space 25% top none }
+bg42973 { background: blue fixed repeat space 25% top url(test.jpg) }
+bg42974 { background: blue fixed repeat space 25% top }
 bg42975 { background: blue fixed repeat space 50%  }
 bg42976 { background: blue fixed repeat space 50% 100px  }
 bg42977 { background: blue fixed repeat space 50% 100px none  }
@@ -3029,8 +3029,8 @@ bg43028 { background: blue fixed repeat space left }
 bg43029 { background: blue fixed repeat space none  }
 bg43030 { background: blue fixed repeat space none 100px  }
 bg43031 { background: blue fixed repeat space none 100px 50%  }
-bg43032 { background: blue fixed repeat space none 100px left }
-bg43033 { background: blue fixed repeat space none 25% left }
+bg43032 { background: blue fixed repeat space none 100px bottom }
+bg43033 { background: blue fixed repeat space none 25% top }
 bg43034 { background: blue fixed repeat space none 50%  }
 bg43035 { background: blue fixed repeat space none 50% 100px  }
 bg43036 { background: blue fixed repeat space none bottom center }
@@ -3084,8 +3084,8 @@ bg43083 { background: blue fixed repeat space top }
 bg43084 { background: blue fixed repeat space url(test.jpg)  }
 bg43085 { background: blue fixed repeat space url(test.jpg) 100px  }
 bg43086 { background: blue fixed repeat space url(test.jpg) 100px 50%  }
-bg43087 { background: blue fixed repeat space url(test.jpg) 100px left }
-bg43088 { background: blue fixed repeat space url(test.jpg) 25% left }
+bg43087 { background: blue fixed repeat space url(test.jpg) 100px bottom }
+bg43088 { background: blue fixed repeat space url(test.jpg) 25% top }
 bg43089 { background: blue fixed repeat space url(test.jpg) 50%  }
 bg43090 { background: blue fixed repeat space url(test.jpg) 50% 100px  }
 bg43091 { background: blue fixed repeat space url(test.jpg) bottom center }
@@ -3127,8 +3127,8 @@ bg43126 { background: blue fixed repeat top }
 bg43127 { background: blue fixed repeat url(test.jpg)  }
 bg43128 { background: blue fixed repeat url(test.jpg) 100px  }
 bg43129 { background: blue fixed repeat url(test.jpg) 100px 50%  }
-bg43130 { background: blue fixed repeat url(test.jpg) 100px left }
-bg43131 { background: blue fixed repeat url(test.jpg) 25% left }
+bg43130 { background: blue fixed repeat url(test.jpg) 100px bottom }
+bg43131 { background: blue fixed repeat url(test.jpg) 25% top }
 bg43132 { background: blue fixed repeat url(test.jpg) 50%  }
 bg43133 { background: blue fixed repeat url(test.jpg) 50% 100px  }
 bg43134 { background: blue fixed repeat url(test.jpg) bottom center }
@@ -3160,14 +3160,14 @@ bg43159 { background: blue fixed repeat-x 100px  }
 bg43160 { background: blue fixed repeat-x 100px 50%  }
 bg43161 { background: blue fixed repeat-x 100px 50% none  }
 bg43162 { background: blue fixed repeat-x 100px 50% url(test.jpg)  }
-bg43163 { background: blue fixed repeat-x 100px left none }
-bg43164 { background: blue fixed repeat-x 100px left url(test.jpg) }
-bg43165 { background: blue fixed repeat-x 100px left }
+bg43163 { background: blue fixed repeat-x 100px bottom none }
+bg43164 { background: blue fixed repeat-x 100px bottom url(test.jpg) }
+bg43165 { background: blue fixed repeat-x 100px bottom }
 bg43166 { background: blue fixed repeat-x 100px none  }
 bg43167 { background: blue fixed repeat-x 100px url(test.jpg)  }
-bg43168 { background: blue fixed repeat-x 25% left none }
-bg43169 { background: blue fixed repeat-x 25% left url(test.jpg) }
-bg43170 { background: blue fixed repeat-x 25% left }
+bg43168 { background: blue fixed repeat-x 25% top none }
+bg43169 { background: blue fixed repeat-x 25% top url(test.jpg) }
+bg43170 { background: blue fixed repeat-x 25% top }
 bg43171 { background: blue fixed repeat-x 50%  }
 bg43172 { background: blue fixed repeat-x 50% 100px  }
 bg43173 { background: blue fixed repeat-x 50% 100px none  }
@@ -3225,8 +3225,8 @@ bg43224 { background: blue fixed repeat-x left }
 bg43225 { background: blue fixed repeat-x none  }
 bg43226 { background: blue fixed repeat-x none 100px  }
 bg43227 { background: blue fixed repeat-x none 100px 50%  }
-bg43228 { background: blue fixed repeat-x none 100px left }
-bg43229 { background: blue fixed repeat-x none 25% left }
+bg43228 { background: blue fixed repeat-x none 100px bottom }
+bg43229 { background: blue fixed repeat-x none 25% top }
 bg43230 { background: blue fixed repeat-x none 50%  }
 bg43231 { background: blue fixed repeat-x none 50% 100px  }
 bg43232 { background: blue fixed repeat-x none bottom center }
@@ -3280,8 +3280,8 @@ bg43279 { background: blue fixed repeat-x top }
 bg43280 { background: blue fixed repeat-x url(test.jpg)  }
 bg43281 { background: blue fixed repeat-x url(test.jpg) 100px  }
 bg43282 { background: blue fixed repeat-x url(test.jpg) 100px 50%  }
-bg43283 { background: blue fixed repeat-x url(test.jpg) 100px left }
-bg43284 { background: blue fixed repeat-x url(test.jpg) 25% left }
+bg43283 { background: blue fixed repeat-x url(test.jpg) 100px bottom }
+bg43284 { background: blue fixed repeat-x url(test.jpg) 25% top }
 bg43285 { background: blue fixed repeat-x url(test.jpg) 50%  }
 bg43286 { background: blue fixed repeat-x url(test.jpg) 50% 100px  }
 bg43287 { background: blue fixed repeat-x url(test.jpg) bottom center }
@@ -3313,14 +3313,14 @@ bg43312 { background: blue fixed repeat-y 100px  }
 bg43313 { background: blue fixed repeat-y 100px 50%  }
 bg43314 { background: blue fixed repeat-y 100px 50% none  }
 bg43315 { background: blue fixed repeat-y 100px 50% url(test.jpg)  }
-bg43316 { background: blue fixed repeat-y 100px left none }
-bg43317 { background: blue fixed repeat-y 100px left url(test.jpg) }
-bg43318 { background: blue fixed repeat-y 100px left }
+bg43316 { background: blue fixed repeat-y 100px bottom none }
+bg43317 { background: blue fixed repeat-y 100px bottom url(test.jpg) }
+bg43318 { background: blue fixed repeat-y 100px bottom }
 bg43319 { background: blue fixed repeat-y 100px none  }
 bg43320 { background: blue fixed repeat-y 100px url(test.jpg)  }
-bg43321 { background: blue fixed repeat-y 25% left none }
-bg43322 { background: blue fixed repeat-y 25% left url(test.jpg) }
-bg43323 { background: blue fixed repeat-y 25% left }
+bg43321 { background: blue fixed repeat-y 25% top none }
+bg43322 { background: blue fixed repeat-y 25% top url(test.jpg) }
+bg43323 { background: blue fixed repeat-y 25% top }
 bg43324 { background: blue fixed repeat-y 50%  }
 bg43325 { background: blue fixed repeat-y 50% 100px  }
 bg43326 { background: blue fixed repeat-y 50% 100px none  }
@@ -3378,8 +3378,8 @@ bg43377 { background: blue fixed repeat-y left }
 bg43378 { background: blue fixed repeat-y none  }
 bg43379 { background: blue fixed repeat-y none 100px  }
 bg43380 { background: blue fixed repeat-y none 100px 50%  }
-bg43381 { background: blue fixed repeat-y none 100px left }
-bg43382 { background: blue fixed repeat-y none 25% left }
+bg43381 { background: blue fixed repeat-y none 100px bottom }
+bg43382 { background: blue fixed repeat-y none 25% top }
 bg43383 { background: blue fixed repeat-y none 50%  }
 bg43384 { background: blue fixed repeat-y none 50% 100px  }
 bg43385 { background: blue fixed repeat-y none bottom center }
@@ -3433,8 +3433,8 @@ bg43432 { background: blue fixed repeat-y top }
 bg43433 { background: blue fixed repeat-y url(test.jpg)  }
 bg43434 { background: blue fixed repeat-y url(test.jpg) 100px  }
 bg43435 { background: blue fixed repeat-y url(test.jpg) 100px 50%  }
-bg43436 { background: blue fixed repeat-y url(test.jpg) 100px left }
-bg43437 { background: blue fixed repeat-y url(test.jpg) 25% left }
+bg43436 { background: blue fixed repeat-y url(test.jpg) 100px bottom }
+bg43437 { background: blue fixed repeat-y url(test.jpg) 25% top }
 bg43438 { background: blue fixed repeat-y url(test.jpg) 50%  }
 bg43439 { background: blue fixed repeat-y url(test.jpg) 50% 100px  }
 bg43440 { background: blue fixed repeat-y url(test.jpg) bottom center }
@@ -3598,14 +3598,14 @@ bg43597 { background: blue fixed round repeat 100px  }
 bg43598 { background: blue fixed round repeat 100px 50%  }
 bg43599 { background: blue fixed round repeat 100px 50% none  }
 bg43600 { background: blue fixed round repeat 100px 50% url(test.jpg)  }
-bg43601 { background: blue fixed round repeat 100px left none }
-bg43602 { background: blue fixed round repeat 100px left url(test.jpg) }
-bg43603 { background: blue fixed round repeat 100px left }
+bg43601 { background: blue fixed round repeat 100px bottom none }
+bg43602 { background: blue fixed round repeat 100px bottom url(test.jpg) }
+bg43603 { background: blue fixed round repeat 100px bottom }
 bg43604 { background: blue fixed round repeat 100px none  }
 bg43605 { background: blue fixed round repeat 100px url(test.jpg)  }
-bg43606 { background: blue fixed round repeat 25% left none }
-bg43607 { background: blue fixed round repeat 25% left url(test.jpg) }
-bg43608 { background: blue fixed round repeat 25% left }
+bg43606 { background: blue fixed round repeat 25% top none }
+bg43607 { background: blue fixed round repeat 25% top url(test.jpg) }
+bg43608 { background: blue fixed round repeat 25% top }
 bg43609 { background: blue fixed round repeat 50%  }
 bg43610 { background: blue fixed round repeat 50% 100px  }
 bg43611 { background: blue fixed round repeat 50% 100px none  }
@@ -3663,8 +3663,8 @@ bg43662 { background: blue fixed round repeat left }
 bg43663 { background: blue fixed round repeat none  }
 bg43664 { background: blue fixed round repeat none 100px  }
 bg43665 { background: blue fixed round repeat none 100px 50%  }
-bg43666 { background: blue fixed round repeat none 100px left }
-bg43667 { background: blue fixed round repeat none 25% left }
+bg43666 { background: blue fixed round repeat none 100px bottom }
+bg43667 { background: blue fixed round repeat none 25% top }
 bg43668 { background: blue fixed round repeat none 50%  }
 bg43669 { background: blue fixed round repeat none 50% 100px  }
 bg43670 { background: blue fixed round repeat none bottom center }
@@ -3718,8 +3718,8 @@ bg43717 { background: blue fixed round repeat top }
 bg43718 { background: blue fixed round repeat url(test.jpg)  }
 bg43719 { background: blue fixed round repeat url(test.jpg) 100px  }
 bg43720 { background: blue fixed round repeat url(test.jpg) 100px 50%  }
-bg43721 { background: blue fixed round repeat url(test.jpg) 100px left }
-bg43722 { background: blue fixed round repeat url(test.jpg) 25% left }
+bg43721 { background: blue fixed round repeat url(test.jpg) 100px bottom }
+bg43722 { background: blue fixed round repeat url(test.jpg) 25% top }
 bg43723 { background: blue fixed round repeat url(test.jpg) 50%  }
 bg43724 { background: blue fixed round repeat url(test.jpg) 50% 100px  }
 bg43725 { background: blue fixed round repeat url(test.jpg) bottom center }
@@ -3887,26 +3887,26 @@ bg43886 { background: blue fixed url(test.jpg) 100px 50% repeat space  }
 bg43887 { background: blue fixed url(test.jpg) 100px 50% repeat-x  }
 bg43888 { background: blue fixed url(test.jpg) 100px 50% repeat-y  }
 bg43889 { background: blue fixed url(test.jpg) 100px 50% round repeat  }
-bg43890 { background: blue fixed url(test.jpg) 100px left repeat no-repeat }
-bg43891 { background: blue fixed url(test.jpg) 100px left repeat space }
-bg43892 { background: blue fixed url(test.jpg) 100px left repeat }
-bg43893 { background: blue fixed url(test.jpg) 100px left repeat-x }
-bg43894 { background: blue fixed url(test.jpg) 100px left repeat-y }
-bg43895 { background: blue fixed url(test.jpg) 100px left round repeat }
-bg43896 { background: blue fixed url(test.jpg) 100px left }
+bg43890 { background: blue fixed url(test.jpg) 100px bottom repeat no-repeat }
+bg43891 { background: blue fixed url(test.jpg) 100px bottom repeat space }
+bg43892 { background: blue fixed url(test.jpg) 100px bottom repeat }
+bg43893 { background: blue fixed url(test.jpg) 100px bottom repeat-x }
+bg43894 { background: blue fixed url(test.jpg) 100px bottom repeat-y }
+bg43895 { background: blue fixed url(test.jpg) 100px bottom round repeat }
+bg43896 { background: blue fixed url(test.jpg) 100px bottom }
 bg43897 { background: blue fixed url(test.jpg) 100px repeat  }
 bg43898 { background: blue fixed url(test.jpg) 100px repeat no-repeat  }
 bg43899 { background: blue fixed url(test.jpg) 100px repeat space  }
 bg43900 { background: blue fixed url(test.jpg) 100px repeat-x  }
 bg43901 { background: blue fixed url(test.jpg) 100px repeat-y  }
 bg43902 { background: blue fixed url(test.jpg) 100px round repeat  }
-bg43903 { background: blue fixed url(test.jpg) 25% left repeat no-repeat }
-bg43904 { background: blue fixed url(test.jpg) 25% left repeat space }
-bg43905 { background: blue fixed url(test.jpg) 25% left repeat }
-bg43906 { background: blue fixed url(test.jpg) 25% left repeat-x }
-bg43907 { background: blue fixed url(test.jpg) 25% left repeat-y }
-bg43908 { background: blue fixed url(test.jpg) 25% left round repeat }
-bg43909 { background: blue fixed url(test.jpg) 25% left }
+bg43903 { background: blue fixed url(test.jpg) 25% top repeat no-repeat }
+bg43904 { background: blue fixed url(test.jpg) 25% top repeat space }
+bg43905 { background: blue fixed url(test.jpg) 25% top repeat }
+bg43906 { background: blue fixed url(test.jpg) 25% top repeat-x }
+bg43907 { background: blue fixed url(test.jpg) 25% top repeat-y }
+bg43908 { background: blue fixed url(test.jpg) 25% top round repeat }
+bg43909 { background: blue fixed url(test.jpg) 25% top }
 bg43910 { background: blue fixed url(test.jpg) 50%  }
 bg43911 { background: blue fixed url(test.jpg) 50% 100px  }
 bg43912 { background: blue fixed url(test.jpg) 50% 100px repeat  }
@@ -4036,8 +4036,8 @@ bg44035 { background: blue fixed url(test.jpg) left }
 bg44036 { background: blue fixed url(test.jpg) repeat  }
 bg44037 { background: blue fixed url(test.jpg) repeat 100px  }
 bg44038 { background: blue fixed url(test.jpg) repeat 100px 50%  }
-bg44039 { background: blue fixed url(test.jpg) repeat 100px left }
-bg44040 { background: blue fixed url(test.jpg) repeat 25% left }
+bg44039 { background: blue fixed url(test.jpg) repeat 100px bottom }
+bg44040 { background: blue fixed url(test.jpg) repeat 25% top }
 bg44041 { background: blue fixed url(test.jpg) repeat 50%  }
 bg44042 { background: blue fixed url(test.jpg) repeat 50% 100px  }
 bg44043 { background: blue fixed url(test.jpg) repeat bottom center }
@@ -4059,8 +4059,8 @@ bg44058 { background: blue fixed url(test.jpg) repeat left }
 bg44059 { background: blue fixed url(test.jpg) repeat no-repeat  }
 bg44060 { background: blue fixed url(test.jpg) repeat no-repeat 100px  }
 bg44061 { background: blue fixed url(test.jpg) repeat no-repeat 100px 50%  }
-bg44062 { background: blue fixed url(test.jpg) repeat no-repeat 100px left }
-bg44063 { background: blue fixed url(test.jpg) repeat no-repeat 25% left }
+bg44062 { background: blue fixed url(test.jpg) repeat no-repeat 100px bottom }
+bg44063 { background: blue fixed url(test.jpg) repeat no-repeat 25% top }
 bg44064 { background: blue fixed url(test.jpg) repeat no-repeat 50%  }
 bg44065 { background: blue fixed url(test.jpg) repeat no-repeat 50% 100px  }
 bg44066 { background: blue fixed url(test.jpg) repeat no-repeat bottom center }
@@ -4094,8 +4094,8 @@ bg44093 { background: blue fixed url(test.jpg) repeat right }
 bg44094 { background: blue fixed url(test.jpg) repeat space  }
 bg44095 { background: blue fixed url(test.jpg) repeat space 100px  }
 bg44096 { background: blue fixed url(test.jpg) repeat space 100px 50%  }
-bg44097 { background: blue fixed url(test.jpg) repeat space 100px left }
-bg44098 { background: blue fixed url(test.jpg) repeat space 25% left }
+bg44097 { background: blue fixed url(test.jpg) repeat space 100px bottom }
+bg44098 { background: blue fixed url(test.jpg) repeat space 25% top }
 bg44099 { background: blue fixed url(test.jpg) repeat space 50%  }
 bg44100 { background: blue fixed url(test.jpg) repeat space 50% 100px  }
 bg44101 { background: blue fixed url(test.jpg) repeat space bottom center }
@@ -4129,8 +4129,8 @@ bg44128 { background: blue fixed url(test.jpg) repeat top }
 bg44129 { background: blue fixed url(test.jpg) repeat-x  }
 bg44130 { background: blue fixed url(test.jpg) repeat-x 100px  }
 bg44131 { background: blue fixed url(test.jpg) repeat-x 100px 50%  }
-bg44132 { background: blue fixed url(test.jpg) repeat-x 100px left }
-bg44133 { background: blue fixed url(test.jpg) repeat-x 25% left }
+bg44132 { background: blue fixed url(test.jpg) repeat-x 100px bottom }
+bg44133 { background: blue fixed url(test.jpg) repeat-x 25% top }
 bg44134 { background: blue fixed url(test.jpg) repeat-x 50%  }
 bg44135 { background: blue fixed url(test.jpg) repeat-x 50% 100px  }
 bg44136 { background: blue fixed url(test.jpg) repeat-x bottom center }
@@ -4160,8 +4160,8 @@ bg44159 { background: blue fixed url(test.jpg) repeat-x top }
 bg44160 { background: blue fixed url(test.jpg) repeat-y  }
 bg44161 { background: blue fixed url(test.jpg) repeat-y 100px  }
 bg44162 { background: blue fixed url(test.jpg) repeat-y 100px 50%  }
-bg44163 { background: blue fixed url(test.jpg) repeat-y 100px left }
-bg44164 { background: blue fixed url(test.jpg) repeat-y 25% left }
+bg44163 { background: blue fixed url(test.jpg) repeat-y 100px bottom }
+bg44164 { background: blue fixed url(test.jpg) repeat-y 25% top }
 bg44165 { background: blue fixed url(test.jpg) repeat-y 50%  }
 bg44166 { background: blue fixed url(test.jpg) repeat-y 50% 100px  }
 bg44167 { background: blue fixed url(test.jpg) repeat-y bottom center }
@@ -4219,8 +4219,8 @@ bg44218 { background: blue fixed url(test.jpg) right }
 bg44219 { background: blue fixed url(test.jpg) round repeat  }
 bg44220 { background: blue fixed url(test.jpg) round repeat 100px  }
 bg44221 { background: blue fixed url(test.jpg) round repeat 100px 50%  }
-bg44222 { background: blue fixed url(test.jpg) round repeat 100px left }
-bg44223 { background: blue fixed url(test.jpg) round repeat 25% left }
+bg44222 { background: blue fixed url(test.jpg) round repeat 100px bottom }
+bg44223 { background: blue fixed url(test.jpg) round repeat 25% top }
 bg44224 { background: blue fixed url(test.jpg) round repeat 50%  }
 bg44225 { background: blue fixed url(test.jpg) round repeat 50% 100px  }
 bg44226 { background: blue fixed url(test.jpg) round repeat bottom center }
@@ -5583,39 +5583,39 @@ bg45582 { background: blue none 100px fixed repeat space  }
 bg45583 { background: blue none 100px fixed repeat-x  }
 bg45584 { background: blue none 100px fixed repeat-y  }
 bg45585 { background: blue none 100px fixed round repeat  }
-bg45586 { background: blue none 100px left fixed repeat no-repeat }
-bg45587 { background: blue none 100px left fixed repeat space }
-bg45588 { background: blue none 100px left fixed repeat }
-bg45589 { background: blue none 100px left fixed repeat-x }
-bg45590 { background: blue none 100px left fixed repeat-y }
-bg45591 { background: blue none 100px left fixed round repeat }
-bg45592 { background: blue none 100px left fixed }
-bg45593 { background: blue none 100px left repeat fixed }
-bg45594 { background: blue none 100px left repeat no-repeat fixed }
-bg45595 { background: blue none 100px left repeat no-repeat scroll }
-bg45596 { background: blue none 100px left repeat no-repeat }
-bg45597 { background: blue none 100px left repeat scroll }
-bg45598 { background: blue none 100px left repeat space fixed }
-bg45599 { background: blue none 100px left repeat space scroll }
-bg45600 { background: blue none 100px left repeat space }
-bg45601 { background: blue none 100px left repeat }
-bg45602 { background: blue none 100px left repeat-x fixed }
-bg45603 { background: blue none 100px left repeat-x scroll }
-bg45604 { background: blue none 100px left repeat-x }
-bg45605 { background: blue none 100px left repeat-y fixed }
-bg45606 { background: blue none 100px left repeat-y scroll }
-bg45607 { background: blue none 100px left repeat-y }
-bg45608 { background: blue none 100px left round repeat fixed }
-bg45609 { background: blue none 100px left round repeat scroll }
-bg45610 { background: blue none 100px left round repeat }
-bg45611 { background: blue none 100px left scroll repeat no-repeat }
-bg45612 { background: blue none 100px left scroll repeat space }
-bg45613 { background: blue none 100px left scroll repeat }
-bg45614 { background: blue none 100px left scroll repeat-x }
-bg45615 { background: blue none 100px left scroll repeat-y }
-bg45616 { background: blue none 100px left scroll round repeat }
-bg45617 { background: blue none 100px left scroll }
-bg45618 { background: blue none 100px left }
+bg45586 { background: blue none 100px bottom fixed repeat no-repeat }
+bg45587 { background: blue none 100px bottom fixed repeat space }
+bg45588 { background: blue none 100px bottom fixed repeat }
+bg45589 { background: blue none 100px bottom fixed repeat-x }
+bg45590 { background: blue none 100px bottom fixed repeat-y }
+bg45591 { background: blue none 100px bottom fixed round repeat }
+bg45592 { background: blue none 100px bottom fixed }
+bg45593 { background: blue none 100px bottom repeat fixed }
+bg45594 { background: blue none 100px bottom repeat no-repeat fixed }
+bg45595 { background: blue none 100px bottom repeat no-repeat scroll }
+bg45596 { background: blue none 100px bottom repeat no-repeat }
+bg45597 { background: blue none 100px bottom repeat scroll }
+bg45598 { background: blue none 100px bottom repeat space fixed }
+bg45599 { background: blue none 100px bottom repeat space scroll }
+bg45600 { background: blue none 100px bottom repeat space }
+bg45601 { background: blue none 100px bottom repeat }
+bg45602 { background: blue none 100px bottom repeat-x fixed }
+bg45603 { background: blue none 100px bottom repeat-x scroll }
+bg45604 { background: blue none 100px bottom repeat-x }
+bg45605 { background: blue none 100px bottom repeat-y fixed }
+bg45606 { background: blue none 100px bottom repeat-y scroll }
+bg45607 { background: blue none 100px bottom repeat-y }
+bg45608 { background: blue none 100px bottom round repeat fixed }
+bg45609 { background: blue none 100px bottom round repeat scroll }
+bg45610 { background: blue none 100px bottom round repeat }
+bg45611 { background: blue none 100px bottom scroll repeat no-repeat }
+bg45612 { background: blue none 100px bottom scroll repeat space }
+bg45613 { background: blue none 100px bottom scroll repeat }
+bg45614 { background: blue none 100px bottom scroll repeat-x }
+bg45615 { background: blue none 100px bottom scroll repeat-y }
+bg45616 { background: blue none 100px bottom scroll round repeat }
+bg45617 { background: blue none 100px bottom scroll }
+bg45618 { background: blue none 100px bottom }
 bg45619 { background: blue none 100px repeat  }
 bg45620 { background: blue none 100px repeat fixed  }
 bg45621 { background: blue none 100px repeat no-repeat  }
@@ -5641,39 +5641,39 @@ bg45640 { background: blue none 100px scroll repeat space  }
 bg45641 { background: blue none 100px scroll repeat-x  }
 bg45642 { background: blue none 100px scroll repeat-y  }
 bg45643 { background: blue none 100px scroll round repeat  }
-bg45644 { background: blue none 25% left fixed repeat no-repeat }
-bg45645 { background: blue none 25% left fixed repeat space }
-bg45646 { background: blue none 25% left fixed repeat }
-bg45647 { background: blue none 25% left fixed repeat-x }
-bg45648 { background: blue none 25% left fixed repeat-y }
-bg45649 { background: blue none 25% left fixed round repeat }
-bg45650 { background: blue none 25% left fixed }
-bg45651 { background: blue none 25% left repeat fixed }
-bg45652 { background: blue none 25% left repeat no-repeat fixed }
-bg45653 { background: blue none 25% left repeat no-repeat scroll }
-bg45654 { background: blue none 25% left repeat no-repeat }
-bg45655 { background: blue none 25% left repeat scroll }
-bg45656 { background: blue none 25% left repeat space fixed }
-bg45657 { background: blue none 25% left repeat space scroll }
-bg45658 { background: blue none 25% left repeat space }
-bg45659 { background: blue none 25% left repeat }
-bg45660 { background: blue none 25% left repeat-x fixed }
-bg45661 { background: blue none 25% left repeat-x scroll }
-bg45662 { background: blue none 25% left repeat-x }
-bg45663 { background: blue none 25% left repeat-y fixed }
-bg45664 { background: blue none 25% left repeat-y scroll }
-bg45665 { background: blue none 25% left repeat-y }
-bg45666 { background: blue none 25% left round repeat fixed }
-bg45667 { background: blue none 25% left round repeat scroll }
-bg45668 { background: blue none 25% left round repeat }
-bg45669 { background: blue none 25% left scroll repeat no-repeat }
-bg45670 { background: blue none 25% left scroll repeat space }
-bg45671 { background: blue none 25% left scroll repeat }
-bg45672 { background: blue none 25% left scroll repeat-x }
-bg45673 { background: blue none 25% left scroll repeat-y }
-bg45674 { background: blue none 25% left scroll round repeat }
-bg45675 { background: blue none 25% left scroll }
-bg45676 { background: blue none 25% left }
+bg45644 { background: blue none 25% top fixed repeat no-repeat }
+bg45645 { background: blue none 25% top fixed repeat space }
+bg45646 { background: blue none 25% top fixed repeat }
+bg45647 { background: blue none 25% top fixed repeat-x }
+bg45648 { background: blue none 25% top fixed repeat-y }
+bg45649 { background: blue none 25% top fixed round repeat }
+bg45650 { background: blue none 25% top fixed }
+bg45651 { background: blue none 25% top repeat fixed }
+bg45652 { background: blue none 25% top repeat no-repeat fixed }
+bg45653 { background: blue none 25% top repeat no-repeat scroll }
+bg45654 { background: blue none 25% top repeat no-repeat }
+bg45655 { background: blue none 25% top repeat scroll }
+bg45656 { background: blue none 25% top repeat space fixed }
+bg45657 { background: blue none 25% top repeat space scroll }
+bg45658 { background: blue none 25% top repeat space }
+bg45659 { background: blue none 25% top repeat }
+bg45660 { background: blue none 25% top repeat-x fixed }
+bg45661 { background: blue none 25% top repeat-x scroll }
+bg45662 { background: blue none 25% top repeat-x }
+bg45663 { background: blue none 25% top repeat-y fixed }
+bg45664 { background: blue none 25% top repeat-y scroll }
+bg45665 { background: blue none 25% top repeat-y }
+bg45666 { background: blue none 25% top round repeat fixed }
+bg45667 { background: blue none 25% top round repeat scroll }
+bg45668 { background: blue none 25% top round repeat }
+bg45669 { background: blue none 25% top scroll repeat no-repeat }
+bg45670 { background: blue none 25% top scroll repeat space }
+bg45671 { background: blue none 25% top scroll repeat }
+bg45672 { background: blue none 25% top scroll repeat-x }
+bg45673 { background: blue none 25% top scroll repeat-y }
+bg45674 { background: blue none 25% top scroll round repeat }
+bg45675 { background: blue none 25% top scroll }
+bg45676 { background: blue none 25% top }
 bg45677 { background: blue none 50%  }
 bg45678 { background: blue none 50% 100px  }
 bg45679 { background: blue none 50% 100px fixed  }
@@ -6079,26 +6079,26 @@ bg46078 { background: blue none fixed 100px 50% repeat space  }
 bg46079 { background: blue none fixed 100px 50% repeat-x  }
 bg46080 { background: blue none fixed 100px 50% repeat-y  }
 bg46081 { background: blue none fixed 100px 50% round repeat  }
-bg46082 { background: blue none fixed 100px left repeat no-repeat }
-bg46083 { background: blue none fixed 100px left repeat space }
-bg46084 { background: blue none fixed 100px left repeat }
-bg46085 { background: blue none fixed 100px left repeat-x }
-bg46086 { background: blue none fixed 100px left repeat-y }
-bg46087 { background: blue none fixed 100px left round repeat }
-bg46088 { background: blue none fixed 100px left }
+bg46082 { background: blue none fixed 100px bottom repeat no-repeat }
+bg46083 { background: blue none fixed 100px bottom repeat space }
+bg46084 { background: blue none fixed 100px bottom repeat }
+bg46085 { background: blue none fixed 100px bottom repeat-x }
+bg46086 { background: blue none fixed 100px bottom repeat-y }
+bg46087 { background: blue none fixed 100px bottom round repeat }
+bg46088 { background: blue none fixed 100px bottom }
 bg46089 { background: blue none fixed 100px repeat  }
 bg46090 { background: blue none fixed 100px repeat no-repeat  }
 bg46091 { background: blue none fixed 100px repeat space  }
 bg46092 { background: blue none fixed 100px repeat-x  }
 bg46093 { background: blue none fixed 100px repeat-y  }
 bg46094 { background: blue none fixed 100px round repeat  }
-bg46095 { background: blue none fixed 25% left repeat no-repeat }
-bg46096 { background: blue none fixed 25% left repeat space }
-bg46097 { background: blue none fixed 25% left repeat }
-bg46098 { background: blue none fixed 25% left repeat-x }
-bg46099 { background: blue none fixed 25% left repeat-y }
-bg46100 { background: blue none fixed 25% left round repeat }
-bg46101 { background: blue none fixed 25% left }
+bg46095 { background: blue none fixed 25% top repeat no-repeat }
+bg46096 { background: blue none fixed 25% top repeat space }
+bg46097 { background: blue none fixed 25% top repeat }
+bg46098 { background: blue none fixed 25% top repeat-x }
+bg46099 { background: blue none fixed 25% top repeat-y }
+bg46100 { background: blue none fixed 25% top round repeat }
+bg46101 { background: blue none fixed 25% top }
 bg46102 { background: blue none fixed 50%  }
 bg46103 { background: blue none fixed 50% 100px  }
 bg46104 { background: blue none fixed 50% 100px repeat  }
@@ -6228,8 +6228,8 @@ bg46227 { background: blue none fixed left }
 bg46228 { background: blue none fixed repeat  }
 bg46229 { background: blue none fixed repeat 100px  }
 bg46230 { background: blue none fixed repeat 100px 50%  }
-bg46231 { background: blue none fixed repeat 100px left }
-bg46232 { background: blue none fixed repeat 25% left }
+bg46231 { background: blue none fixed repeat 100px bottom }
+bg46232 { background: blue none fixed repeat 25% top }
 bg46233 { background: blue none fixed repeat 50%  }
 bg46234 { background: blue none fixed repeat 50% 100px  }
 bg46235 { background: blue none fixed repeat bottom center }
@@ -6251,8 +6251,8 @@ bg46250 { background: blue none fixed repeat left }
 bg46251 { background: blue none fixed repeat no-repeat  }
 bg46252 { background: blue none fixed repeat no-repeat 100px  }
 bg46253 { background: blue none fixed repeat no-repeat 100px 50%  }
-bg46254 { background: blue none fixed repeat no-repeat 100px left }
-bg46255 { background: blue none fixed repeat no-repeat 25% left }
+bg46254 { background: blue none fixed repeat no-repeat 100px bottom }
+bg46255 { background: blue none fixed repeat no-repeat 25% top }
 bg46256 { background: blue none fixed repeat no-repeat 50%  }
 bg46257 { background: blue none fixed repeat no-repeat 50% 100px  }
 bg46258 { background: blue none fixed repeat no-repeat bottom center }
@@ -6286,8 +6286,8 @@ bg46285 { background: blue none fixed repeat right }
 bg46286 { background: blue none fixed repeat space  }
 bg46287 { background: blue none fixed repeat space 100px  }
 bg46288 { background: blue none fixed repeat space 100px 50%  }
-bg46289 { background: blue none fixed repeat space 100px left }
-bg46290 { background: blue none fixed repeat space 25% left }
+bg46289 { background: blue none fixed repeat space 100px bottom }
+bg46290 { background: blue none fixed repeat space 25% top }
 bg46291 { background: blue none fixed repeat space 50%  }
 bg46292 { background: blue none fixed repeat space 50% 100px  }
 bg46293 { background: blue none fixed repeat space bottom center }
@@ -6321,8 +6321,8 @@ bg46320 { background: blue none fixed repeat top }
 bg46321 { background: blue none fixed repeat-x  }
 bg46322 { background: blue none fixed repeat-x 100px  }
 bg46323 { background: blue none fixed repeat-x 100px 50%  }
-bg46324 { background: blue none fixed repeat-x 100px left }
-bg46325 { background: blue none fixed repeat-x 25% left }
+bg46324 { background: blue none fixed repeat-x 100px bottom }
+bg46325 { background: blue none fixed repeat-x 25% top }
 bg46326 { background: blue none fixed repeat-x 50%  }
 bg46327 { background: blue none fixed repeat-x 50% 100px  }
 bg46328 { background: blue none fixed repeat-x bottom center }
@@ -6352,8 +6352,8 @@ bg46351 { background: blue none fixed repeat-x top }
 bg46352 { background: blue none fixed repeat-y  }
 bg46353 { background: blue none fixed repeat-y 100px  }
 bg46354 { background: blue none fixed repeat-y 100px 50%  }
-bg46355 { background: blue none fixed repeat-y 100px left }
-bg46356 { background: blue none fixed repeat-y 25% left }
+bg46355 { background: blue none fixed repeat-y 100px bottom }
+bg46356 { background: blue none fixed repeat-y 25% top }
 bg46357 { background: blue none fixed repeat-y 50%  }
 bg46358 { background: blue none fixed repeat-y 50% 100px  }
 bg46359 { background: blue none fixed repeat-y bottom center }
@@ -6411,8 +6411,8 @@ bg46410 { background: blue none fixed right }
 bg46411 { background: blue none fixed round repeat  }
 bg46412 { background: blue none fixed round repeat 100px  }
 bg46413 { background: blue none fixed round repeat 100px 50%  }
-bg46414 { background: blue none fixed round repeat 100px left }
-bg46415 { background: blue none fixed round repeat 25% left }
+bg46414 { background: blue none fixed round repeat 100px bottom }
+bg46415 { background: blue none fixed round repeat 25% top }
 bg46416 { background: blue none fixed round repeat 50%  }
 bg46417 { background: blue none fixed round repeat 50% 100px  }
 bg46418 { background: blue none fixed round repeat bottom center }
@@ -6671,13 +6671,13 @@ bg46670 { background: blue none repeat 100px 50%  }
 bg46671 { background: blue none repeat 100px 50% fixed  }
 bg46672 { background: blue none repeat 100px 50% scroll  }
 bg46673 { background: blue none repeat 100px fixed  }
-bg46674 { background: blue none repeat 100px left fixed }
-bg46675 { background: blue none repeat 100px left scroll }
-bg46676 { background: blue none repeat 100px left }
+bg46674 { background: blue none repeat 100px bottom fixed }
+bg46675 { background: blue none repeat 100px bottom scroll }
+bg46676 { background: blue none repeat 100px bottom }
 bg46677 { background: blue none repeat 100px scroll  }
-bg46678 { background: blue none repeat 25% left fixed }
-bg46679 { background: blue none repeat 25% left scroll }
-bg46680 { background: blue none repeat 25% left }
+bg46678 { background: blue none repeat 25% top fixed }
+bg46679 { background: blue none repeat 25% top scroll }
+bg46680 { background: blue none repeat 25% top }
 bg46681 { background: blue none repeat 50%  }
 bg46682 { background: blue none repeat 50% 100px  }
 bg46683 { background: blue none repeat 50% 100px fixed  }
@@ -6717,8 +6717,8 @@ bg46716 { background: blue none repeat center }
 bg46717 { background: blue none repeat fixed  }
 bg46718 { background: blue none repeat fixed 100px  }
 bg46719 { background: blue none repeat fixed 100px 50%  }
-bg46720 { background: blue none repeat fixed 100px left }
-bg46721 { background: blue none repeat fixed 25% left }
+bg46720 { background: blue none repeat fixed 100px bottom }
+bg46721 { background: blue none repeat fixed 25% top }
 bg46722 { background: blue none repeat fixed 50%  }
 bg46723 { background: blue none repeat fixed 50% 100px  }
 bg46724 { background: blue none repeat fixed bottom center }
@@ -6769,13 +6769,13 @@ bg46768 { background: blue none repeat no-repeat 100px 50%  }
 bg46769 { background: blue none repeat no-repeat 100px 50% fixed  }
 bg46770 { background: blue none repeat no-repeat 100px 50% scroll  }
 bg46771 { background: blue none repeat no-repeat 100px fixed  }
-bg46772 { background: blue none repeat no-repeat 100px left fixed }
-bg46773 { background: blue none repeat no-repeat 100px left scroll }
-bg46774 { background: blue none repeat no-repeat 100px left }
+bg46772 { background: blue none repeat no-repeat 100px bottom fixed }
+bg46773 { background: blue none repeat no-repeat 100px bottom scroll }
+bg46774 { background: blue none repeat no-repeat 100px bottom }
 bg46775 { background: blue none repeat no-repeat 100px scroll  }
-bg46776 { background: blue none repeat no-repeat 25% left fixed }
-bg46777 { background: blue none repeat no-repeat 25% left scroll }
-bg46778 { background: blue none repeat no-repeat 25% left }
+bg46776 { background: blue none repeat no-repeat 25% top fixed }
+bg46777 { background: blue none repeat no-repeat 25% top scroll }
+bg46778 { background: blue none repeat no-repeat 25% top }
 bg46779 { background: blue none repeat no-repeat 50%  }
 bg46780 { background: blue none repeat no-repeat 50% 100px  }
 bg46781 { background: blue none repeat no-repeat 50% 100px fixed  }
@@ -6815,8 +6815,8 @@ bg46814 { background: blue none repeat no-repeat center }
 bg46815 { background: blue none repeat no-repeat fixed  }
 bg46816 { background: blue none repeat no-repeat fixed 100px  }
 bg46817 { background: blue none repeat no-repeat fixed 100px 50%  }
-bg46818 { background: blue none repeat no-repeat fixed 100px left }
-bg46819 { background: blue none repeat no-repeat fixed 25% left }
+bg46818 { background: blue none repeat no-repeat fixed 100px bottom }
+bg46819 { background: blue none repeat no-repeat fixed 25% top }
 bg46820 { background: blue none repeat no-repeat fixed 50%  }
 bg46821 { background: blue none repeat no-repeat fixed 50% 100px  }
 bg46822 { background: blue none repeat no-repeat fixed bottom center }
@@ -6876,8 +6876,8 @@ bg46875 { background: blue none repeat no-repeat right }
 bg46876 { background: blue none repeat no-repeat scroll  }
 bg46877 { background: blue none repeat no-repeat scroll 100px  }
 bg46878 { background: blue none repeat no-repeat scroll 100px 50%  }
-bg46879 { background: blue none repeat no-repeat scroll 100px left }
-bg46880 { background: blue none repeat no-repeat scroll 25% left }
+bg46879 { background: blue none repeat no-repeat scroll 100px bottom }
+bg46880 { background: blue none repeat no-repeat scroll 25% top }
 bg46881 { background: blue none repeat no-repeat scroll 50%  }
 bg46882 { background: blue none repeat no-repeat scroll 50% 100px  }
 bg46883 { background: blue none repeat no-repeat scroll bottom center }
@@ -6931,8 +6931,8 @@ bg46930 { background: blue none repeat right }
 bg46931 { background: blue none repeat scroll  }
 bg46932 { background: blue none repeat scroll 100px  }
 bg46933 { background: blue none repeat scroll 100px 50%  }
-bg46934 { background: blue none repeat scroll 100px left }
-bg46935 { background: blue none repeat scroll 25% left }
+bg46934 { background: blue none repeat scroll 100px bottom }
+bg46935 { background: blue none repeat scroll 25% top }
 bg46936 { background: blue none repeat scroll 50%  }
 bg46937 { background: blue none repeat scroll 50% 100px  }
 bg46938 { background: blue none repeat scroll bottom center }
@@ -6965,13 +6965,13 @@ bg46964 { background: blue none repeat space 100px 50%  }
 bg46965 { background: blue none repeat space 100px 50% fixed  }
 bg46966 { background: blue none repeat space 100px 50% scroll  }
 bg46967 { background: blue none repeat space 100px fixed  }
-bg46968 { background: blue none repeat space 100px left fixed }
-bg46969 { background: blue none repeat space 100px left scroll }
-bg46970 { background: blue none repeat space 100px left }
+bg46968 { background: blue none repeat space 100px bottom fixed }
+bg46969 { background: blue none repeat space 100px bottom scroll }
+bg46970 { background: blue none repeat space 100px bottom }
 bg46971 { background: blue none repeat space 100px scroll  }
-bg46972 { background: blue none repeat space 25% left fixed }
-bg46973 { background: blue none repeat space 25% left scroll }
-bg46974 { background: blue none repeat space 25% left }
+bg46972 { background: blue none repeat space 25% top fixed }
+bg46973 { background: blue none repeat space 25% top scroll }
+bg46974 { background: blue none repeat space 25% top }
 bg46975 { background: blue none repeat space 50%  }
 bg46976 { background: blue none repeat space 50% 100px  }
 bg46977 { background: blue none repeat space 50% 100px fixed  }
@@ -7011,8 +7011,8 @@ bg47010 { background: blue none repeat space center }
 bg47011 { background: blue none repeat space fixed  }
 bg47012 { background: blue none repeat space fixed 100px  }
 bg47013 { background: blue none repeat space fixed 100px 50%  }
-bg47014 { background: blue none repeat space fixed 100px left }
-bg47015 { background: blue none repeat space fixed 25% left }
+bg47014 { background: blue none repeat space fixed 100px bottom }
+bg47015 { background: blue none repeat space fixed 25% top }
 bg47016 { background: blue none repeat space fixed 50%  }
 bg47017 { background: blue none repeat space fixed 50% 100px  }
 bg47018 { background: blue none repeat space fixed bottom center }
@@ -7072,8 +7072,8 @@ bg47071 { background: blue none repeat space right }
 bg47072 { background: blue none repeat space scroll  }
 bg47073 { background: blue none repeat space scroll 100px  }
 bg47074 { background: blue none repeat space scroll 100px 50%  }
-bg47075 { background: blue none repeat space scroll 100px left }
-bg47076 { background: blue none repeat space scroll 25% left }
+bg47075 { background: blue none repeat space scroll 100px bottom }
+bg47076 { background: blue none repeat space scroll 25% top }
 bg47077 { background: blue none repeat space scroll 50%  }
 bg47078 { background: blue none repeat space scroll 50% 100px  }
 bg47079 { background: blue none repeat space scroll bottom center }
@@ -7130,13 +7130,13 @@ bg47129 { background: blue none repeat-x 100px 50%  }
 bg47130 { background: blue none repeat-x 100px 50% fixed  }
 bg47131 { background: blue none repeat-x 100px 50% scroll  }
 bg47132 { background: blue none repeat-x 100px fixed  }
-bg47133 { background: blue none repeat-x 100px left fixed }
-bg47134 { background: blue none repeat-x 100px left scroll }
-bg47135 { background: blue none repeat-x 100px left }
+bg47133 { background: blue none repeat-x 100px bottom fixed }
+bg47134 { background: blue none repeat-x 100px bottom scroll }
+bg47135 { background: blue none repeat-x 100px bottom }
 bg47136 { background: blue none repeat-x 100px scroll  }
-bg47137 { background: blue none repeat-x 25% left fixed }
-bg47138 { background: blue none repeat-x 25% left scroll }
-bg47139 { background: blue none repeat-x 25% left }
+bg47137 { background: blue none repeat-x 25% top fixed }
+bg47138 { background: blue none repeat-x 25% top scroll }
+bg47139 { background: blue none repeat-x 25% top }
 bg47140 { background: blue none repeat-x 50%  }
 bg47141 { background: blue none repeat-x 50% 100px  }
 bg47142 { background: blue none repeat-x 50% 100px fixed  }
@@ -7176,8 +7176,8 @@ bg47175 { background: blue none repeat-x center }
 bg47176 { background: blue none repeat-x fixed  }
 bg47177 { background: blue none repeat-x fixed 100px  }
 bg47178 { background: blue none repeat-x fixed 100px 50%  }
-bg47179 { background: blue none repeat-x fixed 100px left }
-bg47180 { background: blue none repeat-x fixed 25% left }
+bg47179 { background: blue none repeat-x fixed 100px bottom }
+bg47180 { background: blue none repeat-x fixed 25% top }
 bg47181 { background: blue none repeat-x fixed 50%  }
 bg47182 { background: blue none repeat-x fixed 50% 100px  }
 bg47183 { background: blue none repeat-x fixed bottom center }
@@ -7237,8 +7237,8 @@ bg47236 { background: blue none repeat-x right }
 bg47237 { background: blue none repeat-x scroll  }
 bg47238 { background: blue none repeat-x scroll 100px  }
 bg47239 { background: blue none repeat-x scroll 100px 50%  }
-bg47240 { background: blue none repeat-x scroll 100px left }
-bg47241 { background: blue none repeat-x scroll 25% left }
+bg47240 { background: blue none repeat-x scroll 100px bottom }
+bg47241 { background: blue none repeat-x scroll 25% top }
 bg47242 { background: blue none repeat-x scroll 50%  }
 bg47243 { background: blue none repeat-x scroll 50% 100px  }
 bg47244 { background: blue none repeat-x scroll bottom center }
@@ -7283,13 +7283,13 @@ bg47282 { background: blue none repeat-y 100px 50%  }
 bg47283 { background: blue none repeat-y 100px 50% fixed  }
 bg47284 { background: blue none repeat-y 100px 50% scroll  }
 bg47285 { background: blue none repeat-y 100px fixed  }
-bg47286 { background: blue none repeat-y 100px left fixed }
-bg47287 { background: blue none repeat-y 100px left scroll }
-bg47288 { background: blue none repeat-y 100px left }
+bg47286 { background: blue none repeat-y 100px bottom fixed }
+bg47287 { background: blue none repeat-y 100px bottom scroll }
+bg47288 { background: blue none repeat-y 100px bottom }
 bg47289 { background: blue none repeat-y 100px scroll  }
-bg47290 { background: blue none repeat-y 25% left fixed }
-bg47291 { background: blue none repeat-y 25% left scroll }
-bg47292 { background: blue none repeat-y 25% left }
+bg47290 { background: blue none repeat-y 25% top fixed }
+bg47291 { background: blue none repeat-y 25% top scroll }
+bg47292 { background: blue none repeat-y 25% top }
 bg47293 { background: blue none repeat-y 50%  }
 bg47294 { background: blue none repeat-y 50% 100px  }
 bg47295 { background: blue none repeat-y 50% 100px fixed  }
@@ -7329,8 +7329,8 @@ bg47328 { background: blue none repeat-y center }
 bg47329 { background: blue none repeat-y fixed  }
 bg47330 { background: blue none repeat-y fixed 100px  }
 bg47331 { background: blue none repeat-y fixed 100px 50%  }
-bg47332 { background: blue none repeat-y fixed 100px left }
-bg47333 { background: blue none repeat-y fixed 25% left }
+bg47332 { background: blue none repeat-y fixed 100px bottom }
+bg47333 { background: blue none repeat-y fixed 25% top }
 bg47334 { background: blue none repeat-y fixed 50%  }
 bg47335 { background: blue none repeat-y fixed 50% 100px  }
 bg47336 { background: blue none repeat-y fixed bottom center }
@@ -7390,8 +7390,8 @@ bg47389 { background: blue none repeat-y right }
 bg47390 { background: blue none repeat-y scroll  }
 bg47391 { background: blue none repeat-y scroll 100px  }
 bg47392 { background: blue none repeat-y scroll 100px 50%  }
-bg47393 { background: blue none repeat-y scroll 100px left }
-bg47394 { background: blue none repeat-y scroll 25% left }
+bg47393 { background: blue none repeat-y scroll 100px bottom }
+bg47394 { background: blue none repeat-y scroll 25% top }
 bg47395 { background: blue none repeat-y scroll 50%  }
 bg47396 { background: blue none repeat-y scroll 50% 100px  }
 bg47397 { background: blue none repeat-y scroll bottom center }
@@ -7568,13 +7568,13 @@ bg47567 { background: blue none round repeat 100px 50%  }
 bg47568 { background: blue none round repeat 100px 50% fixed  }
 bg47569 { background: blue none round repeat 100px 50% scroll  }
 bg47570 { background: blue none round repeat 100px fixed  }
-bg47571 { background: blue none round repeat 100px left fixed }
-bg47572 { background: blue none round repeat 100px left scroll }
-bg47573 { background: blue none round repeat 100px left }
+bg47571 { background: blue none round repeat 100px bottom fixed }
+bg47572 { background: blue none round repeat 100px bottom scroll }
+bg47573 { background: blue none round repeat 100px bottom }
 bg47574 { background: blue none round repeat 100px scroll  }
-bg47575 { background: blue none round repeat 25% left fixed }
-bg47576 { background: blue none round repeat 25% left scroll }
-bg47577 { background: blue none round repeat 25% left }
+bg47575 { background: blue none round repeat 25% top fixed }
+bg47576 { background: blue none round repeat 25% top scroll }
+bg47577 { background: blue none round repeat 25% top }
 bg47578 { background: blue none round repeat 50%  }
 bg47579 { background: blue none round repeat 50% 100px  }
 bg47580 { background: blue none round repeat 50% 100px fixed  }
@@ -7614,8 +7614,8 @@ bg47613 { background: blue none round repeat center }
 bg47614 { background: blue none round repeat fixed  }
 bg47615 { background: blue none round repeat fixed 100px  }
 bg47616 { background: blue none round repeat fixed 100px 50%  }
-bg47617 { background: blue none round repeat fixed 100px left }
-bg47618 { background: blue none round repeat fixed 25% left }
+bg47617 { background: blue none round repeat fixed 100px bottom }
+bg47618 { background: blue none round repeat fixed 25% top }
 bg47619 { background: blue none round repeat fixed 50%  }
 bg47620 { background: blue none round repeat fixed 50% 100px  }
 bg47621 { background: blue none round repeat fixed bottom center }
@@ -7675,8 +7675,8 @@ bg47674 { background: blue none round repeat right }
 bg47675 { background: blue none round repeat scroll  }
 bg47676 { background: blue none round repeat scroll 100px  }
 bg47677 { background: blue none round repeat scroll 100px 50%  }
-bg47678 { background: blue none round repeat scroll 100px left }
-bg47679 { background: blue none round repeat scroll 25% left }
+bg47678 { background: blue none round repeat scroll 100px bottom }
+bg47679 { background: blue none round repeat scroll 25% top }
 bg47680 { background: blue none round repeat scroll 50%  }
 bg47681 { background: blue none round repeat scroll 50% 100px  }
 bg47682 { background: blue none round repeat scroll bottom center }
@@ -7724,26 +7724,26 @@ bg47723 { background: blue none scroll 100px 50% repeat space  }
 bg47724 { background: blue none scroll 100px 50% repeat-x  }
 bg47725 { background: blue none scroll 100px 50% repeat-y  }
 bg47726 { background: blue none scroll 100px 50% round repeat  }
-bg47727 { background: blue none scroll 100px left repeat no-repeat }
-bg47728 { background: blue none scroll 100px left repeat space }
-bg47729 { background: blue none scroll 100px left repeat }
-bg47730 { background: blue none scroll 100px left repeat-x }
-bg47731 { background: blue none scroll 100px left repeat-y }
-bg47732 { background: blue none scroll 100px left round repeat }
-bg47733 { background: blue none scroll 100px left }
+bg47727 { background: blue none scroll 100px bottom repeat no-repeat }
+bg47728 { background: blue none scroll 100px bottom repeat space }
+bg47729 { background: blue none scroll 100px bottom repeat }
+bg47730 { background: blue none scroll 100px bottom repeat-x }
+bg47731 { background: blue none scroll 100px bottom repeat-y }
+bg47732 { background: blue none scroll 100px bottom round repeat }
+bg47733 { background: blue none scroll 100px bottom }
 bg47734 { background: blue none scroll 100px repeat  }
 bg47735 { background: blue none scroll 100px repeat no-repeat  }
 bg47736 { background: blue none scroll 100px repeat space  }
 bg47737 { background: blue none scroll 100px repeat-x  }
 bg47738 { background: blue none scroll 100px repeat-y  }
 bg47739 { background: blue none scroll 100px round repeat  }
-bg47740 { background: blue none scroll 25% left repeat no-repeat }
-bg47741 { background: blue none scroll 25% left repeat space }
-bg47742 { background: blue none scroll 25% left repeat }
-bg47743 { background: blue none scroll 25% left repeat-x }
-bg47744 { background: blue none scroll 25% left repeat-y }
-bg47745 { background: blue none scroll 25% left round repeat }
-bg47746 { background: blue none scroll 25% left }
+bg47740 { background: blue none scroll 25% top repeat no-repeat }
+bg47741 { background: blue none scroll 25% top repeat space }
+bg47742 { background: blue none scroll 25% top repeat }
+bg47743 { background: blue none scroll 25% top repeat-x }
+bg47744 { background: blue none scroll 25% top repeat-y }
+bg47745 { background: blue none scroll 25% top round repeat }
+bg47746 { background: blue none scroll 25% top }
 bg47747 { background: blue none scroll 50%  }
 bg47748 { background: blue none scroll 50% 100px  }
 bg47749 { background: blue none scroll 50% 100px repeat  }
@@ -7873,8 +7873,8 @@ bg47872 { background: blue none scroll left }
 bg47873 { background: blue none scroll repeat  }
 bg47874 { background: blue none scroll repeat 100px  }
 bg47875 { background: blue none scroll repeat 100px 50%  }
-bg47876 { background: blue none scroll repeat 100px left }
-bg47877 { background: blue none scroll repeat 25% left }
+bg47876 { background: blue none scroll repeat 100px bottom }
+bg47877 { background: blue none scroll repeat 25% top }
 bg47878 { background: blue none scroll repeat 50%  }
 bg47879 { background: blue none scroll repeat 50% 100px  }
 bg47880 { background: blue none scroll repeat bottom center }
@@ -7896,8 +7896,8 @@ bg47895 { background: blue none scroll repeat left }
 bg47896 { background: blue none scroll repeat no-repeat  }
 bg47897 { background: blue none scroll repeat no-repeat 100px  }
 bg47898 { background: blue none scroll repeat no-repeat 100px 50%  }
-bg47899 { background: blue none scroll repeat no-repeat 100px left }
-bg47900 { background: blue none scroll repeat no-repeat 25% left }
+bg47899 { background: blue none scroll repeat no-repeat 100px bottom }
+bg47900 { background: blue none scroll repeat no-repeat 25% top }
 bg47901 { background: blue none scroll repeat no-repeat 50%  }
 bg47902 { background: blue none scroll repeat no-repeat 50% 100px  }
 bg47903 { background: blue none scroll repeat no-repeat bottom center }
@@ -7931,8 +7931,8 @@ bg47930 { background: blue none scroll repeat right }
 bg47931 { background: blue none scroll repeat space  }
 bg47932 { background: blue none scroll repeat space 100px  }
 bg47933 { background: blue none scroll repeat space 100px 50%  }
-bg47934 { background: blue none scroll repeat space 100px left }
-bg47935 { background: blue none scroll repeat space 25% left }
+bg47934 { background: blue none scroll repeat space 100px bottom }
+bg47935 { background: blue none scroll repeat space 25% top }
 bg47936 { background: blue none scroll repeat space 50%  }
 bg47937 { background: blue none scroll repeat space 50% 100px  }
 bg47938 { background: blue none scroll repeat space bottom center }
@@ -7966,8 +7966,8 @@ bg47965 { background: blue none scroll repeat top }
 bg47966 { background: blue none scroll repeat-x  }
 bg47967 { background: blue none scroll repeat-x 100px  }
 bg47968 { background: blue none scroll repeat-x 100px 50%  }
-bg47969 { background: blue none scroll repeat-x 100px left }
-bg47970 { background: blue none scroll repeat-x 25% left }
+bg47969 { background: blue none scroll repeat-x 100px bottom }
+bg47970 { background: blue none scroll repeat-x 25% top }
 bg47971 { background: blue none scroll repeat-x 50%  }
 bg47972 { background: blue none scroll repeat-x 50% 100px  }
 bg47973 { background: blue none scroll repeat-x bottom center }
@@ -7997,8 +7997,8 @@ bg47996 { background: blue none scroll repeat-x top }
 bg47997 { background: blue none scroll repeat-y  }
 bg47998 { background: blue none scroll repeat-y 100px  }
 bg47999 { background: blue none scroll repeat-y 100px 50%  }
-bg48000 { background: blue none scroll repeat-y 100px left }
-bg48001 { background: blue none scroll repeat-y 25% left }
+bg48000 { background: blue none scroll repeat-y 100px bottom }
+bg48001 { background: blue none scroll repeat-y 25% top }
 bg48002 { background: blue none scroll repeat-y 50%  }
 bg48003 { background: blue none scroll repeat-y 50% 100px  }
 bg48004 { background: blue none scroll repeat-y bottom center }
@@ -8056,8 +8056,8 @@ bg48055 { background: blue none scroll right }
 bg48056 { background: blue none scroll round repeat  }
 bg48057 { background: blue none scroll round repeat 100px  }
 bg48058 { background: blue none scroll round repeat 100px 50%  }
-bg48059 { background: blue none scroll round repeat 100px left }
-bg48060 { background: blue none scroll round repeat 25% left }
+bg48059 { background: blue none scroll round repeat 100px bottom }
+bg48060 { background: blue none scroll round repeat 25% top }
 bg48061 { background: blue none scroll round repeat 50%  }
 bg48062 { background: blue none scroll round repeat 50% 100px  }
 bg48063 { background: blue none scroll round repeat bottom center }
@@ -8262,19 +8262,19 @@ bg48261 { background: blue repeat 100px 50% url(test.jpg) scroll  }
 bg48262 { background: blue repeat 100px fixed  }
 bg48263 { background: blue repeat 100px fixed none  }
 bg48264 { background: blue repeat 100px fixed url(test.jpg)  }
-bg48265 { background: blue repeat 100px left fixed none }
-bg48266 { background: blue repeat 100px left fixed url(test.jpg) }
-bg48267 { background: blue repeat 100px left fixed }
-bg48268 { background: blue repeat 100px left none fixed }
-bg48269 { background: blue repeat 100px left none scroll }
-bg48270 { background: blue repeat 100px left none }
-bg48271 { background: blue repeat 100px left scroll none }
-bg48272 { background: blue repeat 100px left scroll url(test.jpg) }
-bg48273 { background: blue repeat 100px left scroll }
-bg48274 { background: blue repeat 100px left url(test.jpg) fixed }
-bg48275 { background: blue repeat 100px left url(test.jpg) scroll }
-bg48276 { background: blue repeat 100px left url(test.jpg) }
-bg48277 { background: blue repeat 100px left }
+bg48265 { background: blue repeat 100px bottom fixed none }
+bg48266 { background: blue repeat 100px bottom fixed url(test.jpg) }
+bg48267 { background: blue repeat 100px bottom fixed }
+bg48268 { background: blue repeat 100px bottom none fixed }
+bg48269 { background: blue repeat 100px bottom none scroll }
+bg48270 { background: blue repeat 100px bottom none }
+bg48271 { background: blue repeat 100px bottom scroll none }
+bg48272 { background: blue repeat 100px bottom scroll url(test.jpg) }
+bg48273 { background: blue repeat 100px bottom scroll }
+bg48274 { background: blue repeat 100px bottom url(test.jpg) fixed }
+bg48275 { background: blue repeat 100px bottom url(test.jpg) scroll }
+bg48276 { background: blue repeat 100px bottom url(test.jpg) }
+bg48277 { background: blue repeat 100px bottom }
 bg48278 { background: blue repeat 100px none  }
 bg48279 { background: blue repeat 100px none fixed  }
 bg48280 { background: blue repeat 100px none scroll  }
@@ -8284,19 +8284,19 @@ bg48283 { background: blue repeat 100px scroll url(test.jpg)  }
 bg48284 { background: blue repeat 100px url(test.jpg)  }
 bg48285 { background: blue repeat 100px url(test.jpg) fixed  }
 bg48286 { background: blue repeat 100px url(test.jpg) scroll  }
-bg48287 { background: blue repeat 25% left fixed none }
-bg48288 { background: blue repeat 25% left fixed url(test.jpg) }
-bg48289 { background: blue repeat 25% left fixed }
-bg48290 { background: blue repeat 25% left none fixed }
-bg48291 { background: blue repeat 25% left none scroll }
-bg48292 { background: blue repeat 25% left none }
-bg48293 { background: blue repeat 25% left scroll none }
-bg48294 { background: blue repeat 25% left scroll url(test.jpg) }
-bg48295 { background: blue repeat 25% left scroll }
-bg48296 { background: blue repeat 25% left url(test.jpg) fixed }
-bg48297 { background: blue repeat 25% left url(test.jpg) scroll }
-bg48298 { background: blue repeat 25% left url(test.jpg) }
-bg48299 { background: blue repeat 25% left }
+bg48287 { background: blue repeat 25% top fixed none }
+bg48288 { background: blue repeat 25% top fixed url(test.jpg) }
+bg48289 { background: blue repeat 25% top fixed }
+bg48290 { background: blue repeat 25% top none fixed }
+bg48291 { background: blue repeat 25% top none scroll }
+bg48292 { background: blue repeat 25% top none }
+bg48293 { background: blue repeat 25% top scroll none }
+bg48294 { background: blue repeat 25% top scroll url(test.jpg) }
+bg48295 { background: blue repeat 25% top scroll }
+bg48296 { background: blue repeat 25% top url(test.jpg) fixed }
+bg48297 { background: blue repeat 25% top url(test.jpg) scroll }
+bg48298 { background: blue repeat 25% top url(test.jpg) }
+bg48299 { background: blue repeat 25% top }
 bg48300 { background: blue repeat 50%  }
 bg48301 { background: blue repeat 50% 100px  }
 bg48302 { background: blue repeat 50% 100px fixed  }
@@ -8458,14 +8458,14 @@ bg48457 { background: blue repeat fixed 100px  }
 bg48458 { background: blue repeat fixed 100px 50%  }
 bg48459 { background: blue repeat fixed 100px 50% none  }
 bg48460 { background: blue repeat fixed 100px 50% url(test.jpg)  }
-bg48461 { background: blue repeat fixed 100px left none }
-bg48462 { background: blue repeat fixed 100px left url(test.jpg) }
-bg48463 { background: blue repeat fixed 100px left }
+bg48461 { background: blue repeat fixed 100px bottom none }
+bg48462 { background: blue repeat fixed 100px bottom url(test.jpg) }
+bg48463 { background: blue repeat fixed 100px bottom }
 bg48464 { background: blue repeat fixed 100px none  }
 bg48465 { background: blue repeat fixed 100px url(test.jpg)  }
-bg48466 { background: blue repeat fixed 25% left none }
-bg48467 { background: blue repeat fixed 25% left url(test.jpg) }
-bg48468 { background: blue repeat fixed 25% left }
+bg48466 { background: blue repeat fixed 25% top none }
+bg48467 { background: blue repeat fixed 25% top url(test.jpg) }
+bg48468 { background: blue repeat fixed 25% top }
 bg48469 { background: blue repeat fixed 50%  }
 bg48470 { background: blue repeat fixed 50% 100px  }
 bg48471 { background: blue repeat fixed 50% 100px none  }
@@ -8523,8 +8523,8 @@ bg48522 { background: blue repeat fixed left }
 bg48523 { background: blue repeat fixed none  }
 bg48524 { background: blue repeat fixed none 100px  }
 bg48525 { background: blue repeat fixed none 100px 50%  }
-bg48526 { background: blue repeat fixed none 100px left }
-bg48527 { background: blue repeat fixed none 25% left }
+bg48526 { background: blue repeat fixed none 100px bottom }
+bg48527 { background: blue repeat fixed none 25% top }
 bg48528 { background: blue repeat fixed none 50%  }
 bg48529 { background: blue repeat fixed none 50% 100px  }
 bg48530 { background: blue repeat fixed none bottom center }
@@ -8578,8 +8578,8 @@ bg48577 { background: blue repeat fixed top }
 bg48578 { background: blue repeat fixed url(test.jpg)  }
 bg48579 { background: blue repeat fixed url(test.jpg) 100px  }
 bg48580 { background: blue repeat fixed url(test.jpg) 100px 50%  }
-bg48581 { background: blue repeat fixed url(test.jpg) 100px left }
-bg48582 { background: blue repeat fixed url(test.jpg) 25% left }
+bg48581 { background: blue repeat fixed url(test.jpg) 100px bottom }
+bg48582 { background: blue repeat fixed url(test.jpg) 25% top }
 bg48583 { background: blue repeat fixed url(test.jpg) 50%  }
 bg48584 { background: blue repeat fixed url(test.jpg) 50% 100px  }
 bg48585 { background: blue repeat fixed url(test.jpg) bottom center }
@@ -8702,19 +8702,19 @@ bg48701 { background: blue repeat no-repeat 100px 50% url(test.jpg) scroll  }
 bg48702 { background: blue repeat no-repeat 100px fixed  }
 bg48703 { background: blue repeat no-repeat 100px fixed none  }
 bg48704 { background: blue repeat no-repeat 100px fixed url(test.jpg)  }
-bg48705 { background: blue repeat no-repeat 100px left fixed none }
-bg48706 { background: blue repeat no-repeat 100px left fixed url(test.jpg) }
-bg48707 { background: blue repeat no-repeat 100px left fixed }
-bg48708 { background: blue repeat no-repeat 100px left none fixed }
-bg48709 { background: blue repeat no-repeat 100px left none scroll }
-bg48710 { background: blue repeat no-repeat 100px left none }
-bg48711 { background: blue repeat no-repeat 100px left scroll none }
-bg48712 { background: blue repeat no-repeat 100px left scroll url(test.jpg) }
-bg48713 { background: blue repeat no-repeat 100px left scroll }
-bg48714 { background: blue repeat no-repeat 100px left url(test.jpg) fixed }
-bg48715 { background: blue repeat no-repeat 100px left url(test.jpg) scroll }
-bg48716 { background: blue repeat no-repeat 100px left url(test.jpg) }
-bg48717 { background: blue repeat no-repeat 100px left }
+bg48705 { background: blue repeat no-repeat 100px bottom fixed none }
+bg48706 { background: blue repeat no-repeat 100px bottom fixed url(test.jpg) }
+bg48707 { background: blue repeat no-repeat 100px bottom fixed }
+bg48708 { background: blue repeat no-repeat 100px bottom none fixed }
+bg48709 { background: blue repeat no-repeat 100px bottom none scroll }
+bg48710 { background: blue repeat no-repeat 100px bottom none }
+bg48711 { background: blue repeat no-repeat 100px bottom scroll none }
+bg48712 { background: blue repeat no-repeat 100px bottom scroll url(test.jpg) }
+bg48713 { background: blue repeat no-repeat 100px bottom scroll }
+bg48714 { background: blue repeat no-repeat 100px bottom url(test.jpg) fixed }
+bg48715 { background: blue repeat no-repeat 100px bottom url(test.jpg) scroll }
+bg48716 { background: blue repeat no-repeat 100px bottom url(test.jpg) }
+bg48717 { background: blue repeat no-repeat 100px bottom }
 bg48718 { background: blue repeat no-repeat 100px none  }
 bg48719 { background: blue repeat no-repeat 100px none fixed  }
 bg48720 { background: blue repeat no-repeat 100px none scroll  }
@@ -8724,19 +8724,19 @@ bg48723 { background: blue repeat no-repeat 100px scroll url(test.jpg)  }
 bg48724 { background: blue repeat no-repeat 100px url(test.jpg)  }
 bg48725 { background: blue repeat no-repeat 100px url(test.jpg) fixed  }
 bg48726 { background: blue repeat no-repeat 100px url(test.jpg) scroll  }
-bg48727 { background: blue repeat no-repeat 25% left fixed none }
-bg48728 { background: blue repeat no-repeat 25% left fixed url(test.jpg) }
-bg48729 { background: blue repeat no-repeat 25% left fixed }
-bg48730 { background: blue repeat no-repeat 25% left none fixed }
-bg48731 { background: blue repeat no-repeat 25% left none scroll }
-bg48732 { background: blue repeat no-repeat 25% left none }
-bg48733 { background: blue repeat no-repeat 25% left scroll none }
-bg48734 { background: blue repeat no-repeat 25% left scroll url(test.jpg) }
-bg48735 { background: blue repeat no-repeat 25% left scroll }
-bg48736 { background: blue repeat no-repeat 25% left url(test.jpg) fixed }
-bg48737 { background: blue repeat no-repeat 25% left url(test.jpg) scroll }
-bg48738 { background: blue repeat no-repeat 25% left url(test.jpg) }
-bg48739 { background: blue repeat no-repeat 25% left }
+bg48727 { background: blue repeat no-repeat 25% top fixed none }
+bg48728 { background: blue repeat no-repeat 25% top fixed url(test.jpg) }
+bg48729 { background: blue repeat no-repeat 25% top fixed }
+bg48730 { background: blue repeat no-repeat 25% top none fixed }
+bg48731 { background: blue repeat no-repeat 25% top none scroll }
+bg48732 { background: blue repeat no-repeat 25% top none }
+bg48733 { background: blue repeat no-repeat 25% top scroll none }
+bg48734 { background: blue repeat no-repeat 25% top scroll url(test.jpg) }
+bg48735 { background: blue repeat no-repeat 25% top scroll }
+bg48736 { background: blue repeat no-repeat 25% top url(test.jpg) fixed }
+bg48737 { background: blue repeat no-repeat 25% top url(test.jpg) scroll }
+bg48738 { background: blue repeat no-repeat 25% top url(test.jpg) }
+bg48739 { background: blue repeat no-repeat 25% top }
 bg48740 { background: blue repeat no-repeat 50%  }
 bg48741 { background: blue repeat no-repeat 50% 100px  }
 bg48742 { background: blue repeat no-repeat 50% 100px fixed  }
@@ -8898,14 +8898,14 @@ bg48897 { background: blue repeat no-repeat fixed 100px  }
 bg48898 { background: blue repeat no-repeat fixed 100px 50%  }
 bg48899 { background: blue repeat no-repeat fixed 100px 50% none  }
 bg48900 { background: blue repeat no-repeat fixed 100px 50% url(test.jpg)  }
-bg48901 { background: blue repeat no-repeat fixed 100px left none }
-bg48902 { background: blue repeat no-repeat fixed 100px left url(test.jpg) }
-bg48903 { background: blue repeat no-repeat fixed 100px left }
+bg48901 { background: blue repeat no-repeat fixed 100px bottom none }
+bg48902 { background: blue repeat no-repeat fixed 100px bottom url(test.jpg) }
+bg48903 { background: blue repeat no-repeat fixed 100px bottom }
 bg48904 { background: blue repeat no-repeat fixed 100px none  }
 bg48905 { background: blue repeat no-repeat fixed 100px url(test.jpg)  }
-bg48906 { background: blue repeat no-repeat fixed 25% left none }
-bg48907 { background: blue repeat no-repeat fixed 25% left url(test.jpg) }
-bg48908 { background: blue repeat no-repeat fixed 25% left }
+bg48906 { background: blue repeat no-repeat fixed 25% top none }
+bg48907 { background: blue repeat no-repeat fixed 25% top url(test.jpg) }
+bg48908 { background: blue repeat no-repeat fixed 25% top }
 bg48909 { background: blue repeat no-repeat fixed 50%  }
 bg48910 { background: blue repeat no-repeat fixed 50% 100px  }
 bg48911 { background: blue repeat no-repeat fixed 50% 100px none  }
@@ -8963,8 +8963,8 @@ bg48962 { background: blue repeat no-repeat fixed left }
 bg48963 { background: blue repeat no-repeat fixed none  }
 bg48964 { background: blue repeat no-repeat fixed none 100px  }
 bg48965 { background: blue repeat no-repeat fixed none 100px 50%  }
-bg48966 { background: blue repeat no-repeat fixed none 100px left }
-bg48967 { background: blue repeat no-repeat fixed none 25% left }
+bg48966 { background: blue repeat no-repeat fixed none 100px bottom }
+bg48967 { background: blue repeat no-repeat fixed none 25% top }
 bg48968 { background: blue repeat no-repeat fixed none 50%  }
 bg48969 { background: blue repeat no-repeat fixed none 50% 100px  }
 bg48970 { background: blue repeat no-repeat fixed none bottom center }
@@ -9018,8 +9018,8 @@ bg49017 { background: blue repeat no-repeat fixed top }
 bg49018 { background: blue repeat no-repeat fixed url(test.jpg)  }
 bg49019 { background: blue repeat no-repeat fixed url(test.jpg) 100px  }
 bg49020 { background: blue repeat no-repeat fixed url(test.jpg) 100px 50%  }
-bg49021 { background: blue repeat no-repeat fixed url(test.jpg) 100px left }
-bg49022 { background: blue repeat no-repeat fixed url(test.jpg) 25% left }
+bg49021 { background: blue repeat no-repeat fixed url(test.jpg) 100px bottom }
+bg49022 { background: blue repeat no-repeat fixed url(test.jpg) 25% top }
 bg49023 { background: blue repeat no-repeat fixed url(test.jpg) 50%  }
 bg49024 { background: blue repeat no-repeat fixed url(test.jpg) 50% 100px  }
 bg49025 { background: blue repeat no-repeat fixed url(test.jpg) bottom center }
@@ -9130,13 +9130,13 @@ bg49129 { background: blue repeat no-repeat none 100px 50%  }
 bg49130 { background: blue repeat no-repeat none 100px 50% fixed  }
 bg49131 { background: blue repeat no-repeat none 100px 50% scroll  }
 bg49132 { background: blue repeat no-repeat none 100px fixed  }
-bg49133 { background: blue repeat no-repeat none 100px left fixed }
-bg49134 { background: blue repeat no-repeat none 100px left scroll }
-bg49135 { background: blue repeat no-repeat none 100px left }
+bg49133 { background: blue repeat no-repeat none 100px bottom fixed }
+bg49134 { background: blue repeat no-repeat none 100px bottom scroll }
+bg49135 { background: blue repeat no-repeat none 100px bottom }
 bg49136 { background: blue repeat no-repeat none 100px scroll  }
-bg49137 { background: blue repeat no-repeat none 25% left fixed }
-bg49138 { background: blue repeat no-repeat none 25% left scroll }
-bg49139 { background: blue repeat no-repeat none 25% left }
+bg49137 { background: blue repeat no-repeat none 25% top fixed }
+bg49138 { background: blue repeat no-repeat none 25% top scroll }
+bg49139 { background: blue repeat no-repeat none 25% top }
 bg49140 { background: blue repeat no-repeat none 50%  }
 bg49141 { background: blue repeat no-repeat none 50% 100px  }
 bg49142 { background: blue repeat no-repeat none 50% 100px fixed  }
@@ -9176,8 +9176,8 @@ bg49175 { background: blue repeat no-repeat none center }
 bg49176 { background: blue repeat no-repeat none fixed  }
 bg49177 { background: blue repeat no-repeat none fixed 100px  }
 bg49178 { background: blue repeat no-repeat none fixed 100px 50%  }
-bg49179 { background: blue repeat no-repeat none fixed 100px left }
-bg49180 { background: blue repeat no-repeat none fixed 25% left }
+bg49179 { background: blue repeat no-repeat none fixed 100px bottom }
+bg49180 { background: blue repeat no-repeat none fixed 25% top }
 bg49181 { background: blue repeat no-repeat none fixed 50%  }
 bg49182 { background: blue repeat no-repeat none fixed 50% 100px  }
 bg49183 { background: blue repeat no-repeat none fixed bottom center }
@@ -9237,8 +9237,8 @@ bg49236 { background: blue repeat no-repeat none right }
 bg49237 { background: blue repeat no-repeat none scroll  }
 bg49238 { background: blue repeat no-repeat none scroll 100px  }
 bg49239 { background: blue repeat no-repeat none scroll 100px 50%  }
-bg49240 { background: blue repeat no-repeat none scroll 100px left }
-bg49241 { background: blue repeat no-repeat none scroll 25% left }
+bg49240 { background: blue repeat no-repeat none scroll 100px bottom }
+bg49241 { background: blue repeat no-repeat none scroll 25% top }
 bg49242 { background: blue repeat no-repeat none scroll 50%  }
 bg49243 { background: blue repeat no-repeat none scroll 50% 100px  }
 bg49244 { background: blue repeat no-repeat none scroll bottom center }
@@ -9334,14 +9334,14 @@ bg49333 { background: blue repeat no-repeat scroll 100px  }
 bg49334 { background: blue repeat no-repeat scroll 100px 50%  }
 bg49335 { background: blue repeat no-repeat scroll 100px 50% none  }
 bg49336 { background: blue repeat no-repeat scroll 100px 50% url(test.jpg)  }
-bg49337 { background: blue repeat no-repeat scroll 100px left none }
-bg49338 { background: blue repeat no-repeat scroll 100px left url(test.jpg) }
-bg49339 { background: blue repeat no-repeat scroll 100px left }
+bg49337 { background: blue repeat no-repeat scroll 100px bottom none }
+bg49338 { background: blue repeat no-repeat scroll 100px bottom url(test.jpg) }
+bg49339 { background: blue repeat no-repeat scroll 100px bottom }
 bg49340 { background: blue repeat no-repeat scroll 100px none  }
 bg49341 { background: blue repeat no-repeat scroll 100px url(test.jpg)  }
-bg49342 { background: blue repeat no-repeat scroll 25% left none }
-bg49343 { background: blue repeat no-repeat scroll 25% left url(test.jpg) }
-bg49344 { background: blue repeat no-repeat scroll 25% left }
+bg49342 { background: blue repeat no-repeat scroll 25% top none }
+bg49343 { background: blue repeat no-repeat scroll 25% top url(test.jpg) }
+bg49344 { background: blue repeat no-repeat scroll 25% top }
 bg49345 { background: blue repeat no-repeat scroll 50%  }
 bg49346 { background: blue repeat no-repeat scroll 50% 100px  }
 bg49347 { background: blue repeat no-repeat scroll 50% 100px none  }
@@ -9399,8 +9399,8 @@ bg49398 { background: blue repeat no-repeat scroll left }
 bg49399 { background: blue repeat no-repeat scroll none  }
 bg49400 { background: blue repeat no-repeat scroll none 100px  }
 bg49401 { background: blue repeat no-repeat scroll none 100px 50%  }
-bg49402 { background: blue repeat no-repeat scroll none 100px left }
-bg49403 { background: blue repeat no-repeat scroll none 25% left }
+bg49402 { background: blue repeat no-repeat scroll none 100px bottom }
+bg49403 { background: blue repeat no-repeat scroll none 25% top }
 bg49404 { background: blue repeat no-repeat scroll none 50%  }
 bg49405 { background: blue repeat no-repeat scroll none 50% 100px  }
 bg49406 { background: blue repeat no-repeat scroll none bottom center }
@@ -9454,8 +9454,8 @@ bg49453 { background: blue repeat no-repeat scroll top }
 bg49454 { background: blue repeat no-repeat scroll url(test.jpg)  }
 bg49455 { background: blue repeat no-repeat scroll url(test.jpg) 100px  }
 bg49456 { background: blue repeat no-repeat scroll url(test.jpg) 100px 50%  }
-bg49457 { background: blue repeat no-repeat scroll url(test.jpg) 100px left }
-bg49458 { background: blue repeat no-repeat scroll url(test.jpg) 25% left }
+bg49457 { background: blue repeat no-repeat scroll url(test.jpg) 100px bottom }
+bg49458 { background: blue repeat no-repeat scroll url(test.jpg) 25% top }
 bg49459 { background: blue repeat no-repeat scroll url(test.jpg) 50%  }
 bg49460 { background: blue repeat no-repeat scroll url(test.jpg) 50% 100px  }
 bg49461 { background: blue repeat no-repeat scroll url(test.jpg) bottom center }
@@ -9540,13 +9540,13 @@ bg49539 { background: blue repeat no-repeat url(test.jpg) 100px 50%  }
 bg49540 { background: blue repeat no-repeat url(test.jpg) 100px 50% fixed  }
 bg49541 { background: blue repeat no-repeat url(test.jpg) 100px 50% scroll  }
 bg49542 { background: blue repeat no-repeat url(test.jpg) 100px fixed  }
-bg49543 { background: blue repeat no-repeat url(test.jpg) 100px left fixed }
-bg49544 { background: blue repeat no-repeat url(test.jpg) 100px left scroll }
-bg49545 { background: blue repeat no-repeat url(test.jpg) 100px left }
+bg49543 { background: blue repeat no-repeat url(test.jpg) 100px bottom fixed }
+bg49544 { background: blue repeat no-repeat url(test.jpg) 100px bottom scroll }
+bg49545 { background: blue repeat no-repeat url(test.jpg) 100px bottom }
 bg49546 { background: blue repeat no-repeat url(test.jpg) 100px scroll  }
-bg49547 { background: blue repeat no-repeat url(test.jpg) 25% left fixed }
-bg49548 { background: blue repeat no-repeat url(test.jpg) 25% left scroll }
-bg49549 { background: blue repeat no-repeat url(test.jpg) 25% left }
+bg49547 { background: blue repeat no-repeat url(test.jpg) 25% top fixed }
+bg49548 { background: blue repeat no-repeat url(test.jpg) 25% top scroll }
+bg49549 { background: blue repeat no-repeat url(test.jpg) 25% top }
 bg49550 { background: blue repeat no-repeat url(test.jpg) 50%  }
 bg49551 { background: blue repeat no-repeat url(test.jpg) 50% 100px  }
 bg49552 { background: blue repeat no-repeat url(test.jpg) 50% 100px fixed  }
@@ -9586,8 +9586,8 @@ bg49585 { background: blue repeat no-repeat url(test.jpg) center }
 bg49586 { background: blue repeat no-repeat url(test.jpg) fixed  }
 bg49587 { background: blue repeat no-repeat url(test.jpg) fixed 100px  }
 bg49588 { background: blue repeat no-repeat url(test.jpg) fixed 100px 50%  }
-bg49589 { background: blue repeat no-repeat url(test.jpg) fixed 100px left }
-bg49590 { background: blue repeat no-repeat url(test.jpg) fixed 25% left }
+bg49589 { background: blue repeat no-repeat url(test.jpg) fixed 100px bottom }
+bg49590 { background: blue repeat no-repeat url(test.jpg) fixed 25% top }
 bg49591 { background: blue repeat no-repeat url(test.jpg) fixed 50%  }
 bg49592 { background: blue repeat no-repeat url(test.jpg) fixed 50% 100px  }
 bg49593 { background: blue repeat no-repeat url(test.jpg) fixed bottom center }
@@ -9647,8 +9647,8 @@ bg49646 { background: blue repeat no-repeat url(test.jpg) right }
 bg49647 { background: blue repeat no-repeat url(test.jpg) scroll  }
 bg49648 { background: blue repeat no-repeat url(test.jpg) scroll 100px  }
 bg49649 { background: blue repeat no-repeat url(test.jpg) scroll 100px 50%  }
-bg49650 { background: blue repeat no-repeat url(test.jpg) scroll 100px left }
-bg49651 { background: blue repeat no-repeat url(test.jpg) scroll 25% left }
+bg49650 { background: blue repeat no-repeat url(test.jpg) scroll 100px bottom }
+bg49651 { background: blue repeat no-repeat url(test.jpg) scroll 25% top }
 bg49652 { background: blue repeat no-repeat url(test.jpg) scroll 50%  }
 bg49653 { background: blue repeat no-repeat url(test.jpg) scroll 50% 100px  }
 bg49654 { background: blue repeat no-repeat url(test.jpg) scroll bottom center }
@@ -9693,13 +9693,13 @@ bg49692 { background: blue repeat none 100px 50%  }
 bg49693 { background: blue repeat none 100px 50% fixed  }
 bg49694 { background: blue repeat none 100px 50% scroll  }
 bg49695 { background: blue repeat none 100px fixed  }
-bg49696 { background: blue repeat none 100px left fixed }
-bg49697 { background: blue repeat none 100px left scroll }
-bg49698 { background: blue repeat none 100px left }
+bg49696 { background: blue repeat none 100px bottom fixed }
+bg49697 { background: blue repeat none 100px bottom scroll }
+bg49698 { background: blue repeat none 100px bottom }
 bg49699 { background: blue repeat none 100px scroll  }
-bg49700 { background: blue repeat none 25% left fixed }
-bg49701 { background: blue repeat none 25% left scroll }
-bg49702 { background: blue repeat none 25% left }
+bg49700 { background: blue repeat none 25% top fixed }
+bg49701 { background: blue repeat none 25% top scroll }
+bg49702 { background: blue repeat none 25% top }
 bg49703 { background: blue repeat none 50%  }
 bg49704 { background: blue repeat none 50% 100px  }
 bg49705 { background: blue repeat none 50% 100px fixed  }
@@ -9739,8 +9739,8 @@ bg49738 { background: blue repeat none center }
 bg49739 { background: blue repeat none fixed  }
 bg49740 { background: blue repeat none fixed 100px  }
 bg49741 { background: blue repeat none fixed 100px 50%  }
-bg49742 { background: blue repeat none fixed 100px left }
-bg49743 { background: blue repeat none fixed 25% left }
+bg49742 { background: blue repeat none fixed 100px bottom }
+bg49743 { background: blue repeat none fixed 25% top }
 bg49744 { background: blue repeat none fixed 50%  }
 bg49745 { background: blue repeat none fixed 50% 100px  }
 bg49746 { background: blue repeat none fixed bottom center }
@@ -9800,8 +9800,8 @@ bg49799 { background: blue repeat none right }
 bg49800 { background: blue repeat none scroll  }
 bg49801 { background: blue repeat none scroll 100px  }
 bg49802 { background: blue repeat none scroll 100px 50%  }
-bg49803 { background: blue repeat none scroll 100px left }
-bg49804 { background: blue repeat none scroll 25% left }
+bg49803 { background: blue repeat none scroll 100px bottom }
+bg49804 { background: blue repeat none scroll 25% top }
 bg49805 { background: blue repeat none scroll 50%  }
 bg49806 { background: blue repeat none scroll 50% 100px  }
 bg49807 { background: blue repeat none scroll bottom center }
@@ -9897,14 +9897,14 @@ bg49896 { background: blue repeat scroll 100px  }
 bg49897 { background: blue repeat scroll 100px 50%  }
 bg49898 { background: blue repeat scroll 100px 50% none  }
 bg49899 { background: blue repeat scroll 100px 50% url(test.jpg)  }
-bg49900 { background: blue repeat scroll 100px left none }
-bg49901 { background: blue repeat scroll 100px left url(test.jpg) }
-bg49902 { background: blue repeat scroll 100px left }
+bg49900 { background: blue repeat scroll 100px bottom none }
+bg49901 { background: blue repeat scroll 100px bottom url(test.jpg) }
+bg49902 { background: blue repeat scroll 100px bottom }
 bg49903 { background: blue repeat scroll 100px none  }
 bg49904 { background: blue repeat scroll 100px url(test.jpg)  }
-bg49905 { background: blue repeat scroll 25% left none }
-bg49906 { background: blue repeat scroll 25% left url(test.jpg) }
-bg49907 { background: blue repeat scroll 25% left }
+bg49905 { background: blue repeat scroll 25% top none }
+bg49906 { background: blue repeat scroll 25% top url(test.jpg) }
+bg49907 { background: blue repeat scroll 25% top }
 bg49908 { background: blue repeat scroll 50%  }
 bg49909 { background: blue repeat scroll 50% 100px  }
 bg49910 { background: blue repeat scroll 50% 100px none  }
@@ -9962,8 +9962,8 @@ bg49961 { background: blue repeat scroll left }
 bg49962 { background: blue repeat scroll none  }
 bg49963 { background: blue repeat scroll none 100px  }
 bg49964 { background: blue repeat scroll none 100px 50%  }
-bg49965 { background: blue repeat scroll none 100px left }
-bg49966 { background: blue repeat scroll none 25% left }
+bg49965 { background: blue repeat scroll none 100px bottom }
+bg49966 { background: blue repeat scroll none 25% top }
 bg49967 { background: blue repeat scroll none 50%  }
 bg49968 { background: blue repeat scroll none 50% 100px  }
 bg49969 { background: blue repeat scroll none bottom center }

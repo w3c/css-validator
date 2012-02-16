@@ -37,13 +37,13 @@ bg350036 { background: url(test.jpg) transparent round repeat 100px 50%  }
 bg350037 { background: url(test.jpg) transparent round repeat 100px 50% fixed  }
 bg350038 { background: url(test.jpg) transparent round repeat 100px 50% scroll  }
 bg350039 { background: url(test.jpg) transparent round repeat 100px fixed  }
-bg350040 { background: url(test.jpg) transparent round repeat 100px left fixed }
-bg350041 { background: url(test.jpg) transparent round repeat 100px left scroll }
-bg350042 { background: url(test.jpg) transparent round repeat 100px left }
+bg350040 { background: url(test.jpg) transparent round repeat 100px bottom fixed }
+bg350041 { background: url(test.jpg) transparent round repeat 100px bottom scroll }
+bg350042 { background: url(test.jpg) transparent round repeat 100px bottom }
 bg350043 { background: url(test.jpg) transparent round repeat 100px scroll  }
-bg350044 { background: url(test.jpg) transparent round repeat 25% left fixed }
-bg350045 { background: url(test.jpg) transparent round repeat 25% left scroll }
-bg350046 { background: url(test.jpg) transparent round repeat 25% left }
+bg350044 { background: url(test.jpg) transparent round repeat 25% top fixed }
+bg350045 { background: url(test.jpg) transparent round repeat 25% top scroll }
+bg350046 { background: url(test.jpg) transparent round repeat 25% top }
 bg350047 { background: url(test.jpg) transparent round repeat 50%  }
 bg350048 { background: url(test.jpg) transparent round repeat 50% 100px  }
 bg350049 { background: url(test.jpg) transparent round repeat 50% 100px fixed  }
@@ -83,8 +83,8 @@ bg350082 { background: url(test.jpg) transparent round repeat center }
 bg350083 { background: url(test.jpg) transparent round repeat fixed  }
 bg350084 { background: url(test.jpg) transparent round repeat fixed 100px  }
 bg350085 { background: url(test.jpg) transparent round repeat fixed 100px 50%  }
-bg350086 { background: url(test.jpg) transparent round repeat fixed 100px left }
-bg350087 { background: url(test.jpg) transparent round repeat fixed 25% left }
+bg350086 { background: url(test.jpg) transparent round repeat fixed 100px bottom }
+bg350087 { background: url(test.jpg) transparent round repeat fixed 25% top }
 bg350088 { background: url(test.jpg) transparent round repeat fixed 50%  }
 bg350089 { background: url(test.jpg) transparent round repeat fixed 50% 100px  }
 bg350090 { background: url(test.jpg) transparent round repeat fixed bottom center }
@@ -144,8 +144,8 @@ bg350143 { background: url(test.jpg) transparent round repeat right }
 bg350144 { background: url(test.jpg) transparent round repeat scroll  }
 bg350145 { background: url(test.jpg) transparent round repeat scroll 100px  }
 bg350146 { background: url(test.jpg) transparent round repeat scroll 100px 50%  }
-bg350147 { background: url(test.jpg) transparent round repeat scroll 100px left }
-bg350148 { background: url(test.jpg) transparent round repeat scroll 25% left }
+bg350147 { background: url(test.jpg) transparent round repeat scroll 100px bottom }
+bg350148 { background: url(test.jpg) transparent round repeat scroll 25% top }
 bg350149 { background: url(test.jpg) transparent round repeat scroll 50%  }
 bg350150 { background: url(test.jpg) transparent round repeat scroll 50% 100px  }
 bg350151 { background: url(test.jpg) transparent round repeat scroll bottom center }
@@ -193,26 +193,26 @@ bg350192 { background: url(test.jpg) transparent scroll 100px 50% repeat space  
 bg350193 { background: url(test.jpg) transparent scroll 100px 50% repeat-x  }
 bg350194 { background: url(test.jpg) transparent scroll 100px 50% repeat-y  }
 bg350195 { background: url(test.jpg) transparent scroll 100px 50% round repeat  }
-bg350196 { background: url(test.jpg) transparent scroll 100px left repeat no-repeat }
-bg350197 { background: url(test.jpg) transparent scroll 100px left repeat space }
-bg350198 { background: url(test.jpg) transparent scroll 100px left repeat }
-bg350199 { background: url(test.jpg) transparent scroll 100px left repeat-x }
-bg350200 { background: url(test.jpg) transparent scroll 100px left repeat-y }
-bg350201 { background: url(test.jpg) transparent scroll 100px left round repeat }
-bg350202 { background: url(test.jpg) transparent scroll 100px left }
+bg350196 { background: url(test.jpg) transparent scroll 100px bottom repeat no-repeat }
+bg350197 { background: url(test.jpg) transparent scroll 100px bottom repeat space }
+bg350198 { background: url(test.jpg) transparent scroll 100px bottom repeat }
+bg350199 { background: url(test.jpg) transparent scroll 100px bottom repeat-x }
+bg350200 { background: url(test.jpg) transparent scroll 100px bottom repeat-y }
+bg350201 { background: url(test.jpg) transparent scroll 100px bottom round repeat }
+bg350202 { background: url(test.jpg) transparent scroll 100px bottom }
 bg350203 { background: url(test.jpg) transparent scroll 100px repeat  }
 bg350204 { background: url(test.jpg) transparent scroll 100px repeat no-repeat  }
 bg350205 { background: url(test.jpg) transparent scroll 100px repeat space  }
 bg350206 { background: url(test.jpg) transparent scroll 100px repeat-x  }
 bg350207 { background: url(test.jpg) transparent scroll 100px repeat-y  }
 bg350208 { background: url(test.jpg) transparent scroll 100px round repeat  }
-bg350209 { background: url(test.jpg) transparent scroll 25% left repeat no-repeat }
-bg350210 { background: url(test.jpg) transparent scroll 25% left repeat space }
-bg350211 { background: url(test.jpg) transparent scroll 25% left repeat }
-bg350212 { background: url(test.jpg) transparent scroll 25% left repeat-x }
-bg350213 { background: url(test.jpg) transparent scroll 25% left repeat-y }
-bg350214 { background: url(test.jpg) transparent scroll 25% left round repeat }
-bg350215 { background: url(test.jpg) transparent scroll 25% left }
+bg350209 { background: url(test.jpg) transparent scroll 25% top repeat no-repeat }
+bg350210 { background: url(test.jpg) transparent scroll 25% top repeat space }
+bg350211 { background: url(test.jpg) transparent scroll 25% top repeat }
+bg350212 { background: url(test.jpg) transparent scroll 25% top repeat-x }
+bg350213 { background: url(test.jpg) transparent scroll 25% top repeat-y }
+bg350214 { background: url(test.jpg) transparent scroll 25% top round repeat }
+bg350215 { background: url(test.jpg) transparent scroll 25% top }
 bg350216 { background: url(test.jpg) transparent scroll 50%  }
 bg350217 { background: url(test.jpg) transparent scroll 50% 100px  }
 bg350218 { background: url(test.jpg) transparent scroll 50% 100px repeat  }
@@ -342,8 +342,8 @@ bg350341 { background: url(test.jpg) transparent scroll left }
 bg350342 { background: url(test.jpg) transparent scroll repeat  }
 bg350343 { background: url(test.jpg) transparent scroll repeat 100px  }
 bg350344 { background: url(test.jpg) transparent scroll repeat 100px 50%  }
-bg350345 { background: url(test.jpg) transparent scroll repeat 100px left }
-bg350346 { background: url(test.jpg) transparent scroll repeat 25% left }
+bg350345 { background: url(test.jpg) transparent scroll repeat 100px bottom }
+bg350346 { background: url(test.jpg) transparent scroll repeat 25% top }
 bg350347 { background: url(test.jpg) transparent scroll repeat 50%  }
 bg350348 { background: url(test.jpg) transparent scroll repeat 50% 100px  }
 bg350349 { background: url(test.jpg) transparent scroll repeat bottom center }
@@ -365,8 +365,8 @@ bg350364 { background: url(test.jpg) transparent scroll repeat left }
 bg350365 { background: url(test.jpg) transparent scroll repeat no-repeat  }
 bg350366 { background: url(test.jpg) transparent scroll repeat no-repeat 100px  }
 bg350367 { background: url(test.jpg) transparent scroll repeat no-repeat 100px 50%  }
-bg350368 { background: url(test.jpg) transparent scroll repeat no-repeat 100px left }
-bg350369 { background: url(test.jpg) transparent scroll repeat no-repeat 25% left }
+bg350368 { background: url(test.jpg) transparent scroll repeat no-repeat 100px bottom }
+bg350369 { background: url(test.jpg) transparent scroll repeat no-repeat 25% top }
 bg350370 { background: url(test.jpg) transparent scroll repeat no-repeat 50%  }
 bg350371 { background: url(test.jpg) transparent scroll repeat no-repeat 50% 100px  }
 bg350372 { background: url(test.jpg) transparent scroll repeat no-repeat bottom center }
@@ -400,8 +400,8 @@ bg350399 { background: url(test.jpg) transparent scroll repeat right }
 bg350400 { background: url(test.jpg) transparent scroll repeat space  }
 bg350401 { background: url(test.jpg) transparent scroll repeat space 100px  }
 bg350402 { background: url(test.jpg) transparent scroll repeat space 100px 50%  }
-bg350403 { background: url(test.jpg) transparent scroll repeat space 100px left }
-bg350404 { background: url(test.jpg) transparent scroll repeat space 25% left }
+bg350403 { background: url(test.jpg) transparent scroll repeat space 100px bottom }
+bg350404 { background: url(test.jpg) transparent scroll repeat space 25% top }
 bg350405 { background: url(test.jpg) transparent scroll repeat space 50%  }
 bg350406 { background: url(test.jpg) transparent scroll repeat space 50% 100px  }
 bg350407 { background: url(test.jpg) transparent scroll repeat space bottom center }
@@ -435,8 +435,8 @@ bg350434 { background: url(test.jpg) transparent scroll repeat top }
 bg350435 { background: url(test.jpg) transparent scroll repeat-x  }
 bg350436 { background: url(test.jpg) transparent scroll repeat-x 100px  }
 bg350437 { background: url(test.jpg) transparent scroll repeat-x 100px 50%  }
-bg350438 { background: url(test.jpg) transparent scroll repeat-x 100px left }
-bg350439 { background: url(test.jpg) transparent scroll repeat-x 25% left }
+bg350438 { background: url(test.jpg) transparent scroll repeat-x 100px bottom }
+bg350439 { background: url(test.jpg) transparent scroll repeat-x 25% top }
 bg350440 { background: url(test.jpg) transparent scroll repeat-x 50%  }
 bg350441 { background: url(test.jpg) transparent scroll repeat-x 50% 100px  }
 bg350442 { background: url(test.jpg) transparent scroll repeat-x bottom center }
@@ -466,8 +466,8 @@ bg350465 { background: url(test.jpg) transparent scroll repeat-x top }
 bg350466 { background: url(test.jpg) transparent scroll repeat-y  }
 bg350467 { background: url(test.jpg) transparent scroll repeat-y 100px  }
 bg350468 { background: url(test.jpg) transparent scroll repeat-y 100px 50%  }
-bg350469 { background: url(test.jpg) transparent scroll repeat-y 100px left }
-bg350470 { background: url(test.jpg) transparent scroll repeat-y 25% left }
+bg350469 { background: url(test.jpg) transparent scroll repeat-y 100px bottom }
+bg350470 { background: url(test.jpg) transparent scroll repeat-y 25% top }
 bg350471 { background: url(test.jpg) transparent scroll repeat-y 50%  }
 bg350472 { background: url(test.jpg) transparent scroll repeat-y 50% 100px  }
 bg350473 { background: url(test.jpg) transparent scroll repeat-y bottom center }
@@ -525,8 +525,8 @@ bg350524 { background: url(test.jpg) transparent scroll right }
 bg350525 { background: url(test.jpg) transparent scroll round repeat  }
 bg350526 { background: url(test.jpg) transparent scroll round repeat 100px  }
 bg350527 { background: url(test.jpg) transparent scroll round repeat 100px 50%  }
-bg350528 { background: url(test.jpg) transparent scroll round repeat 100px left }
-bg350529 { background: url(test.jpg) transparent scroll round repeat 25% left }
+bg350528 { background: url(test.jpg) transparent scroll round repeat 100px bottom }
+bg350529 { background: url(test.jpg) transparent scroll round repeat 25% top }
 bg350530 { background: url(test.jpg) transparent scroll round repeat 50%  }
 bg350531 { background: url(test.jpg) transparent scroll round repeat 50% 100px  }
 bg350532 { background: url(test.jpg) transparent scroll round repeat bottom center }
