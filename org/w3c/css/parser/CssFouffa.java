@@ -425,16 +425,20 @@ public final class CssFouffa extends CssParser {
 
         URL importedURL;
         try {
-        importedURL = HTTPURL.getURL(url, file);
+            importedURL = HTTPURL.getURL(url, file);
         } catch (MalformedURLException mue) {
             if (!Util.noErrorTrace) {
                 ac.getFrame().addError(new CssError(mue));
-            } 
+            }
             return;
         }
-        
+
         // add it to the list of linked URIs
-        ac.addLinkedURI(importedURL);
+        // only if it was a string (otherwise the URI is already there
+        // as CssURL contains code to add it directly
+        if (!is_url) {
+            ac.addLinkedURI(importedURL);
+        }
         // check if we need to follow it
         if (!ac.followlinks()) {
             // TODO add a warning ?

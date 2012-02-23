@@ -59,6 +59,7 @@ public class CssURL extends CssValue {
     String full = null;
 
     URL base;
+    URL urlValue = null;
 
     /**
      * Set the value of this URL.
@@ -97,6 +98,13 @@ public class CssURL extends CssValue {
 //	}
         if (!urlHeading.startsWith("url"))
             throw new InvalidParamException("url", s, ac);
+        // now add the URL to the list of seen URLs in the context
+        try {
+            ac.addLinkedURI(getURL());
+        } catch (MalformedURLException mex) {
+            // error? throw an exception
+            throw new InvalidParamException("url", s, ac);
+        }
     }
 
     /**
@@ -113,7 +121,10 @@ public class CssURL extends CssValue {
      * @throws java.net.MalformedURLException (self explanatory)
      */
     public URL getURL() throws MalformedURLException {
-        return HTTPURL.getURL(base, value);
+        if (urlValue == null) {
+            urlValue = HTTPURL.getURL(base, value);
+        }
+        return urlValue;
     }
 
     /**
