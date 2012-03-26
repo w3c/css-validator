@@ -184,7 +184,6 @@ public class CssFontWeight extends CssProperty implements CssFontConstant {
                     int vali = num.getInt();
                     if (isCorrectWeight(vali)) { // verify the entire part number
                         this.value = vali;
-                        expr.next();
                         break;
                     }
                 }
