@@ -95,7 +95,7 @@ mások érvényesíthessék oldalát, az URI a következő:
 no_errors_forHTML_only_msg: csak HTML/XML documenumhoz
 no_errors_bookmark_msg: De hozzá is adhatja ezt az oldalt a könyvjelzők vagy kedvencek közé.
 
-note_valide_html: Hogy az elvárásoknak megfelelően működjön, a CSS stíluslaphoz helyes dokumentum fa-struktúra szükséges. Ez azt jelenti, hogy <a href="http://validator.w3,org/">érvényes HTML-t</a> kell használnia.
+note_valide_html: Hogy az elvárásoknak megfelelően működjön, a CSS stíluslaphoz helyes dokumentum fa-struktúra szükséges. Ez azt jelenti, hogy <a href="http://validator.w3.org/">érvényes HTML-t</a> kell használnia.
 
 top: Tetejére
 # hook_html_validator <!-- generated on the fly -->
