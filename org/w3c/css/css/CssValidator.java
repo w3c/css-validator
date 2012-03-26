@@ -9,17 +9,19 @@
 
 package org.w3c.css.css;
 
-import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
 import org.w3c.tools.resources.ProtocolException;
+import org.w3c.www.mime.MimeType;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,12 +40,11 @@ public class CssValidator {
     // @@ HACK
     static boolean showCSS = false;
 
-    private Exception exception;
 
     /**
      * Creates a new instance of CssValidator with the following default values:
      * <ul>
-     * <li>profile = css21</li>
+     * <li>profile = &gt;default&lt;</li>
      * <li>medium = all</li>
      * <li>output = text</li>
      * <li>lang = en</li>
@@ -61,10 +62,29 @@ public class CssValidator {
         params.put("vextwarning", "false");
     }
 
+    public CssValidator(String profile, String medium, String lang, int warninglevel, boolean vextwarning, boolean followlinks) {
+        ac = new ApplContext(lang);
+        ac.setCssVersionAndProfile(profile);
+        ac.setMedium(medium);
+        ac.setTreatVendorExtensionsAsWarnings(vextwarning);
+        ac.setWarningLevel(warninglevel);
+        ac.setFollowlinks(followlinks);
+    }
+
+    public void setOptionsFromParams() {
+        // CSS version to use
+        String profile = params.get("profile");
+        ac.setCssVersionAndProfile(profile);
+
+        // medium to use
+        ac.setMedium(params.get("medium"));
+
+        String vextwarn = params.get("vextwarning");
+        ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
+    }
+
     public static void main(String args[])
             throws IOException, MalformedURLException {
-
-        CssSelectors selector = null;
 
         CssValidator style = new CssValidator();
 
@@ -113,15 +133,7 @@ public class CssValidator {
             System.exit(1);
         }
 
-        // CSS version to use
-        String profile = (String) style.params.get("profile");
-        style.ac.setCssVersionAndProfile(profile);
-
-        // medium to use
-        style.ac.setMedium((String) style.params.get("medium"));
-
-        String vextwarn = (String) style.params.get("vextwarning");
-        style.ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
+        style.setOptionsFromParams();
 
         String encoding = style.ac.getMsg().getString("output-encoding-name");
         if (encoding != null) {
@@ -180,6 +192,42 @@ public class CssValidator {
 
         style.print(out);
 
+    }
+
+    public void handleCSSStyleSheet(ApplContext ac, Reader reader, URL docref) {
+        StyleSheet sheet;
+        DocumentParser parser = null;
+        try {
+            parser = new DocumentParser(ac, reader, docref.toString(), MimeType.TEXT_CSS);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        sheet = parser.getStyleSheet();
+        sheet.findConflicts(ac);
+    }
+
+    public void handleHTMLStyleSheet(ApplContext ac, Reader reader, URL docref) {
+        StyleSheet sheet;
+        DocumentParser parser = null;
+        try {
+            parser = new DocumentParser(ac, reader, docref.toString(), MimeType.TEXT_HTML);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        sheet = parser.getStyleSheet();
+        sheet.findConflicts(ac);
+    }
+
+    public void handleXMLStyleSheet(ApplContext ac, Reader reader, URL docref) {
+        StyleSheet sheet;
+        DocumentParser parser = null;
+        try {
+            parser = new DocumentParser(ac, reader, docref.toString(), MimeType.APPLICATION_XML);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        sheet = parser.getStyleSheet();
+        sheet.findConflicts(ac);
     }
 
     /**

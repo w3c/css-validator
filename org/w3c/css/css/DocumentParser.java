@@ -14,6 +14,7 @@ import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -36,6 +37,41 @@ public final class DocumentParser {
     private URL htmlURL;
     private Exception exception;
     private ApplContext ac;
+
+    public DocumentParser(ApplContext ac, Reader reader) throws Exception {
+        this(ac, reader, "urn:unknown", null);
+    }
+
+    public DocumentParser(ApplContext ac, Reader reader, String urlString, MimeType mediatype) throws Exception {
+        this.htmlURL = HTTPURL.getURL(urlString);
+        this.ac = ac;
+        String media = ac.getMedium();
+
+        if (mediatype == null) {
+            mediatype = MimeType.TEXT_CSS;
+        }
+        if (mediatype.match(MimeType.TEXT_CSS) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
+            StyleSheetParser csshandler = new StyleSheetParser();
+            csshandler.parseStyleSheet(ac, reader, htmlURL);
+            style = csshandler.getStyleSheet();
+        } else if (mediatype.match(MimeType.TEXT_HTML) == MimeType.MATCH_SPECIFIC_SUBTYPE) {
+            TagSoupStyleSheetHandler htmlhandler = new TagSoupStyleSheetHandler(htmlURL, ac);
+            //HTMLParserStyleSheetHandler htmlhandler = new HTMLParserStyleSheetHandler(htmlURL, ac);
+            htmlhandler.parse(reader);
+            style = htmlhandler.getStyleSheet();
+            if (style != null) {
+                style.setType("text/html");
+            }
+        } else if (mediatype.toString().endsWith("+xml") ||
+                (mediatype.match(MimeType.APPLICATION_XML) ==  MimeType.MATCH_SPECIFIC_SUBTYPE)) {
+            XMLStyleSheetHandler xmlhandler = new XMLStyleSheetHandler(htmlURL, ac);
+            xmlhandler.parse(reader);
+            style = xmlhandler.getStyleSheet();
+            if (style != null) {
+                style.setType("text/xml");
+            }
+        }
+    }
 
     /**
      * Create a new DocumentParser

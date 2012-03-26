@@ -175,7 +175,7 @@ public class TranslationTableGenerator {
                 name = String.valueOf(Messages.languages_name.get(i));
                 HashMap<String, String> l = languages.get(i);
                 int completeness_percent = 100 * Integer.parseInt(translation_completeness.get(l.get("name")).toString());
-                completeness_percent = completeness_percent / ac_default.getMsg().properties.size();
+                completeness_percent /= ac_default.getMsg().properties.size();
                 l.put("completeness", Integer.toString(completeness_percent));
                 // FIXME not needed // languages[i] = l;
             }

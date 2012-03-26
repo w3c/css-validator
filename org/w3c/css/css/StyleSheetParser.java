@@ -391,6 +391,16 @@ public final class StyleSheetParser
     }
 
     /**
+     * Unify call to the parser for css doc as a reader.
+     * @param ac
+     * @param reader
+     * @param docref
+     */
+    public void parseStyleSheet(ApplContext ac, Reader reader, URL docref) {
+        parseStyleElement(ac, reader, null, null, (docref == null) ? ac.getFakeURL() : docref, 0);
+    }
+
+    /**
      * Parse some declarations. All declarations always comes from the user
      *
      * @param input the inputStream containing the style data

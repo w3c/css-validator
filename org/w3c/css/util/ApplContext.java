@@ -321,7 +321,7 @@ public class ApplContext {
                     // should be dependant on the language)
                     if ((biasedcharset != null) &&
                             !biasedcharset.equalsIgnoreCase(currentCharset)) {
-                        currentQuality = currentQuality * 0.5;
+                        currentQuality *= 0.5;
                     }
                     if (currentQuality > quality) {
                         quality = currentQuality;

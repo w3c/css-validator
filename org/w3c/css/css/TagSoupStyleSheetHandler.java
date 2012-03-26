@@ -16,30 +16,14 @@ package org.w3c.css.css;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.analyzer.TokenMgrError;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.CssVersion;
-import org.w3c.css.util.HTTPURL;
-import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
-import org.w3c.css.util.Warning;
-import org.w3c.css.util.Warnings;
+import org.w3c.css.util.*;
 import org.w3c.css.util.xml.XMLCatalog;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
-import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.Locator;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
+import org.xml.sax.*;
 import org.xml.sax.ext.LexicalHandler;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -519,8 +503,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         }
     }
 
-    public void parse(InputStream in, String fileName) throws IOException, SAXException {
-        InputSource source = new InputSource(in);
+    public void parse(InputSource source, String fileName) throws IOException, SAXException {
         org.xml.sax.XMLReader xmlParser = new org.ccil.cowan.tagsoup.Parser();
         try {
             xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
@@ -531,16 +514,50 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
             ex.printStackTrace();
         }
         xmlParser.setContentHandler(this);
-        baseURI = new URL(fileName);
-        documentURI = new URL(fileName);
-        source.setSystemId(fileName);
+        if (fileName != null) {
+            baseURI = new URL(fileName);
+            documentURI = new URL(fileName);
+            source.setSystemId(fileName);
+        }
         URL ref = ac.getReferrer();
         try {
             ac.setReferrer(documentURI);
             xmlParser.parse(source);
         } finally {
             ac.setReferrer(ref);
-            in.close();
+        }
+    }
+
+    /**
+     * Parse an HTML document, given as an InputStream
+     *
+     * @param is     the inputstream of the document
+     * @param docref the String version of the URI of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(InputStream is, String docref) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(is);
+        try {
+            parse(inputSource, docref);
+        } finally {
+            is.close();
+        }
+    }
+
+    /**
+     * Parse an HTML document, given as a Reader
+     *
+     * @param reader the Reader of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(Reader reader) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(reader);
+        try {
+            parse(inputSource, null);
+        } finally {
+            reader.close();
         }
     }
 

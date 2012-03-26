@@ -36,10 +36,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -527,8 +524,7 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         }
     }
 
-    public void parse(InputStream in, String fileName) throws IOException, SAXException {
-        InputSource source = new InputSource(in);
+    public void parse(InputSource source, String fileName) throws IOException, SAXException {
         org.xml.sax.XMLReader xmlParser = new nu.validator.htmlparser.sax.HtmlParser(ALLOW);
         try {
             xmlParser.setProperty("http://xml.org/sax/properties/lexical-handler",
@@ -548,7 +544,38 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
             xmlParser.parse(source);
         } finally {
             ac.setReferrer(ref);
-            in.close();
+        }
+    }
+
+    /**
+     * Parse an HTML document, given as an InputStream
+     * @param is the inputstream of the document
+     * @param docref the String version of the URI of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(InputStream is, String docref) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(is);
+        try {
+            parse(inputSource, docref);
+        } finally {
+            is.close();
+        }
+    }
+
+    /**
+     * Parse an HTML document, given as a Reader
+     * @param reader the Reader of the document
+     * @param docref the String version of the URI of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(Reader reader, String docref) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(reader);
+        try {
+            parse(inputSource, docref);
+        } finally {
+            reader.close();
         }
     }
 
