@@ -39,8 +39,8 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;
-import org.w3c.css.values.CssDate;
 import org.w3c.css.values.CssAngle;
+import org.w3c.css.values.CssSwitch;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
@@ -543,7 +543,6 @@ TOKEN [IGNORE_CASE] :
   | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
   | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
   | < RATIO      : <NUM> ( <_S> )* "/" ( <_S> )* <NUM> >
-  | < DATE       : <NUM> "/" <NUM> "/" <NUM> >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
@@ -1284,8 +1283,7 @@ void atRuleDeclaration() :
 void operator(CssExpression expr) :
 {}
 {
-  ( ( <DIV> { if (expr.getCount() > 0) expr.setOperator('/'); }
-    | <COMMA> { if (expr.getCount() > 0) expr.setOperator(','); }
+  ( (  <COMMA> { if (expr.getCount() > 0) expr.setOperator(','); }
     ) ( <S> )* )?
 }
 
@@ -2142,12 +2140,12 @@ void term(CssExpression exp) :
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
     | n=<RATIO> { setValue(new CssRatio(), exp, operator, n, RATIO); }
-    | n=<DATE> { setValue(new CssDate(), exp, operator, n, DATE); }
-    | n=<DIMEN> {  
+    | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
+  | ( n=<DIV> ) { setValue(new CssSwitch(), exp, operator, n, DIV); }
     | n=<IDENT> 
     {
 	/*

@@ -115,6 +115,13 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
     }
 
     /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return value;
+    }
+
+    /**
      * Add this property to the CssStyle
      *
      * @param style The CssStyle

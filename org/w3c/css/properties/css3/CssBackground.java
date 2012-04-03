@@ -13,48 +13,15 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssColor;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
-import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
+import org.w3c.css.values.*;
 
 import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.COMMA;
-import static org.w3c.css.values.CssOperator.SLASH;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background
- * <p/>
- * Name: 	background
- * Value: 	[ &lt;bg-layer&gt; , ]* &lt;final-bg-layer&gt;
- * Initial: 	see individual properties
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	see individual properties
- * Media: 	visual
- * Computed value: 	see individual properties
- * <p/>
- * Where
- * <p/>
- * &lt;bg-layer&gt; = &lt;bg-image&gt; || &lt;bg-position&gt; ||
- * / &lt;bg-size&gt; || &lt;repeat-style&gt; || &lt;attachment&gt; ||
- * &lt;bg-origin&gt;
- * <p/>
- * where ‘&lt;bg-position&gt;’ must occur before ‘/ &lt;bg-size&gt;’ if both
- * are present.
- * <p/>
- * &lt;final-bg-layer&gt; = &lt;bg-image&gt; || &lt;bg-position&gt; ||
- * / &lt;bg-size&gt; || &lt;repeat-style&gt; || &lt;attachment&gt; ||
- * &lt;bg-origin&gt; || &lt;'background-color'&gt;
- * <p/>
- * where ‘&lt;bg-position&gt;’ must not occur before ‘/ &lt;bg-size&gt;’ if
- * both are present.
- * <p/>
- * Note that a color is permitted in &lt;final-bg-layer&gt;, but
- * not in &lt;bg-layer&gt;.
+ * http://www.w3.org/TR/2012/WD-css3-background-20120214/
  *
  * @see org.w3c.css.properties.css.CssBackgroundColor
  * @see org.w3c.css.properties.css.CssBackgroundImage
@@ -147,7 +114,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                     b_val = check(ac, single_layer, check, false);
                     values.add(b_val);
                     single_layer = null;
-                } else if ((op != SPACE) && (op != SLASH)) {
+                } else if ((op != SPACE)) {
                     throw new InvalidParamException("operator",
                             ((new Character(op)).toString()), ac);
                 }
@@ -422,10 +389,33 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                         }
                         break;
                     }
+                    // Kludge ahead, we are testing for <box> here, and it
+                    // matches both origin and clip.
                     if (CssBackgroundOrigin.isMatchingIdent(ident_val)) {
-                        if (v.origin != null || next_is_size) {
+                        if (next_is_size) {
                             throw new InvalidParamException("value", val,
                                     getPropertyName(), ac);
+                        }
+                        if (v.origin != null) {
+                          // ok, we have an origin, so we are looking for a clip
+                            if (v.clip != null) {
+                                throw new InvalidParamException("value", val,
+                                        getPropertyName(), ac);
+                            }
+                            exp = new CssExpression();
+                            exp.addValue(val);
+
+                            CssBackgroundClip clip;
+                            clip = new CssBackgroundClip(ac, exp, check);
+                            res = clip.get();
+                            // we only have one vale so it should always be the case
+                            if (res instanceof CssValue) {
+                                v.clip = (CssValue) res;
+                            } else {
+                                throw new InvalidParamException("value", val,
+                                        getPropertyName(), ac);
+                            }
+                            break;
                         }
                         exp = new CssExpression();
                         exp.addValue(val);
@@ -530,14 +520,17 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                     bg_color = new CssBackgroundColor(ac, exp, check);
                     v.color = (CssValue) bg_color.get();
                     break;
+                // the infamous switch...
+                // note that we should check that we got something first.
+                case CssTypes.CSS_SWITCH:
+                    next_is_size = true;
+                    break;
                 default:
                     throw new InvalidParamException("value", val,
                             getPropertyName(), ac);
             }
 
-            if (op == SLASH) {
-                next_is_size = true;
-            } else if (op != SPACE) {
+            if (op != SPACE) {
                 throw new InvalidParamException("operator", val,
                         getPropertyName(), ac);
             }
@@ -604,7 +597,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
                 // If 'background-origin' is present and its value matches a
                 // possible value for 'background-clip' then it also sets
                 //  'background-clip' to that value.
-                if ((css_val.getType() == CssTypes.CSS_IDENT) &&
+                if (v.clip == null && (css_val.getType() == CssTypes.CSS_IDENT) &&
                         CssBackgroundClip.isMatchingIdent((CssIdent) css_val)) {
                     v.clip_value = v.origin_value;
                 }
@@ -612,6 +605,11 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
         } else {
             v.origin_value = v.origin;
         }
+
+        if (v.clip != null) {
+            v.clip_value = v.clip;
+        }
+
 
         if (v.color == null) {
             v.color_value = (new CssBackgroundColor()).getColor();
@@ -888,6 +886,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
         CssValue repeat_style = null;
         CssValue attachment = null;
         CssValue origin = null;
+        CssValue clip = null;
         CssValue color = null;
 
         CssValue bg_image_value = null;
@@ -982,6 +981,9 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
             }
             if (origin != null) {
                 sb.append(origin).append(' ');
+            }
+            if (clip != null) {
+                sb.append(clip).append(' ');
             }
             if (color != null) {
                 sb.append(color);

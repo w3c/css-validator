@@ -15,6 +15,5 @@ public interface CssOperator {
   public static final char COMMA = ',';
   public static final char MINUS = '-';
   public static final char PLUS = '+';
-  public static final char SLASH = '/';
   public static final char SPACE = ' ';
 }

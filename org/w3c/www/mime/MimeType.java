@@ -174,7 +174,7 @@ public class MimeType implements Serializable, Cloneable {
 
     public String toString () {
 	if ( external == null ) {
-	    StringBuffer sb = new StringBuffer (type) ;
+	    StringBuilder sb = new StringBuilder(type) ;
 	    sb.append((char) '/') ;
 	    sb.append (subtype) ;
 	    if ( pnames != null ) {
@@ -202,10 +202,10 @@ public class MimeType implements Serializable, Cloneable {
 	if (name != null) {
 	    if ( pnames != null ) {
 		String lname = name.toLowerCase();
-		for (int i = 0 ; i < pnames.length ; i++) {
-		    if ( pnames[i].equals(name) )
-			return true ;
-		}
+            for (String pname : pnames) {
+                if (pname.equals(name))
+                    return true;
+            }
 	    }
 	}
 	return false ;

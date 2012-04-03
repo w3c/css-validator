@@ -11,12 +11,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssValue;
+import org.w3c.css.values.*;
 
 /**
  *   <H4>
@@ -190,8 +185,10 @@ public class CssFontCSS1 extends CssProperty
 
 	fontSize = new CssFontSizeCSS1(ac, expression);
 
-	if (op == SLASH) {
-	    op = expression.getOperator();
+    if (val.getType() == CssTypes.CSS_SWITCH) {
+        expression.next();
+        val = expression.getValue();
+        op = expression.getOperator();
 	    lineHeight = new CssLineHeightCSS1(ac, expression);
 	}
 
@@ -337,7 +334,7 @@ public class CssFontCSS1 extends CssProperty
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
 	return false;
