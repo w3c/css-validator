@@ -5969,7 +5969,6 @@ bg235968 { background: repeat-y url(test.jpg) scroll  content-box , repeat-y url
 bg235969 { background: repeat-y url(test.jpg) scroll border-box  , repeat-y url(test.jpg) border-box fixed 25% top blue }
 bg235970 { background: repeat-y url(test.jpg) border-box  , repeat-y url(test.jpg) border-box 25% top fixed blue }
 bg235971 { background: repeat-y url(test.jpg) border-box  scroll , repeat-y url(test.jpg) border-box scroll 25% top blue }
-bg235972 { background:  , 25% top padding-box border-box blue }
 bg235973 { background:  padding-box border-box fixed , 25% top padding-box border-box fixed no-repeat blue }
 bg235974 { background:  padding-box border-box fixed no-repeat none , 25% top padding-box border-box fixed no-repeat url(test.jpg) blue }
 bg235975 { background:  padding-box border-box fixed none , 25% top padding-box border-box fixed none no-repeat blue }
