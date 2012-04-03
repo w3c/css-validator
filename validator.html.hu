@@ -316,7 +316,7 @@
   
   
   <div class="intro">
-  <p><strong>Megjegyzés</strong>: Ha CSS stíluslapját (X)HTML dokumentumba ágyazva szeretné érvényesíttetni, először <a href="http://validator.w3,org/">ellenőrizze, hogy a használt (X)HTML érvényes-e</a>.
+  <p><strong>Megjegyzés</strong>: Ha CSS stíluslapját (X)HTML dokumentumba ágyazva szeretné érvényesíttetni, először <a href="http://validator.w3.org/">ellenőrizze, hogy a használt (X)HTML érvényes-e</a>.
   </p>
   </div>
   <ul class="navbar" id="menu">
@@ -466,7 +466,7 @@
             lang="hi"
             xml:lang="hi"
             hreflang="hi"
-            rel="alternate">अंग्रेजी</a>
+            rel="alternate">हिन्दी</a>
         </li>
         
         <li><a href="validator.html.zh-cn"

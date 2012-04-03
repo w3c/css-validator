@@ -466,7 +466,7 @@
             lang="hi"
             xml:lang="hi"
             hreflang="hi"
-            rel="alternate">अंग्रेजी</a>
+            rel="alternate">हिन्दी</a>
         </li>
         
         <li><a href="validator.html.zh-cn"
