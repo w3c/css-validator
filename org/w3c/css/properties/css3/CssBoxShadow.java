@@ -177,6 +177,12 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     }
                     if (inset.equals(ident)) {
                         value.shadow_mod = inset;
+                        // inset can be first or last
+                        if ((value.color != null || got_length != 0) &&
+                                expression.getRemainingCount() != 1) {
+                            // so we got a color, but no length, that's not valid
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
                         break;
                     }
                     // if not a known ident, it must be a color
@@ -188,6 +194,9 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     break;
                 case CssTypes.CSS_COLOR:
                 case CssTypes.CSS_FUNCTION:
+                    if (got_length != 0) {
+                        length_ok = false;
+                    }
                     // this one is a pain... need to remove function for colors.
                     CssExpression fexp = new CssExpression();
                     fexp.addValue(val);
