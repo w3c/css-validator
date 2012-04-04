@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
+/**
+ * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/#box-shadow
+ */
 
 public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 
@@ -180,7 +183,6 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                         // inset can be first or last
                         if ((value.color != null || got_length != 0) &&
                                 expression.getRemainingCount() != 1) {
-                            // so we got a color, but no length, that's not valid
                             throw new InvalidParamException("unrecognize", ac);
                         }
                         break;
@@ -253,7 +255,21 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
      * Returns a string representation of the object
      */
     public String toString() {
-        // FIXME TODO
+        if (value instanceof ArrayList) {
+            ArrayList v_list;
+            v_list = (ArrayList) value;
+            StringBuilder sb = new StringBuilder();
+            boolean isFirst = true;
+            for (Object val : v_list) {
+                if (isFirst) {
+                    isFirst = false;
+                } else {
+                    sb.append(", ");
+                }
+                sb.append(val.toString());
+            }
+            return sb.toString();
+        }
         return value.toString();
     }
 

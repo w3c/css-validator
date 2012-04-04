@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2012/WD-css3-background-20120214/
+ * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/
  *
  * @see org.w3c.css.properties.css.CssBackgroundColor
  * @see org.w3c.css.properties.css.CssBackgroundImage
@@ -731,10 +731,15 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
             ArrayList v_list;
             v_list = (ArrayList) value;
             StringBuilder sb = new StringBuilder();
+            boolean isFirst = true;
             for (Object val : v_list) {
-                sb.append(val.toString()).append(", ");
+                if (isFirst) {
+                    isFirst = false;
+                } else {
+                    sb.append(", ");
+                }
+                sb.append(val.toString());
             }
-            sb.setLength(sb.length() - 2);
             return sb.toString();
         }
         return value.toString();
