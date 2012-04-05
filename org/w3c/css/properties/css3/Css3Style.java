@@ -28,6 +28,7 @@ import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssBoxShadow;
+import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -144,6 +145,7 @@ public class Css3Style extends ATSCStyle {
     public CssBreakBefore cssBreakBefore;
     public CssBreakInside cssBreakInside;
     public CssBoxShadow cssBoxShadow;
+    public CssBoxDecorationBreak cssBoxDecorationBreak;
 
     CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
     CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1921,6 +1923,15 @@ public class Css3Style extends ATSCStyle {
                             new CssBoxShadow(), style, selector);
         }
         return cssBoxShadow;
+    }
+
+    public CssBoxDecorationBreak getBoxDecorationBreak() {
+        if (cssBoxDecorationBreak == null) {
+            cssBoxDecorationBreak =
+                    (CssBoxDecorationBreak) style.CascadingOrder(
+                            new CssBoxDecorationBreak(), style, selector);
+        }
+        return cssBoxDecorationBreak;
     }
 
     public CssTextIndentCSS3 getTextIndentCSS3() {

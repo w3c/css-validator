@@ -58,7 +58,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 
         setByUser();
         CssValue val = expression.getValue();
-        char op = expression.getOperator();
+        char op;
 
         if (expression.getCount() == 1) {
             // it can be only 'none' or 'inherit'

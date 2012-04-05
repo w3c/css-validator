@@ -17,32 +17,32 @@ import org.w3c.css.values.CssIdent;
  * @since CSS3
  */
 
-public class CssBoxShadow extends CssProperty {
+public class CssBoxDecorationBreak extends CssProperty {
 
-    private static final String propertyName = "box-shadow";
+    private static final String propertyName = "box-decoration-break";
 
     CssIdent value;
 
     /**
-     * Create a new CssBoxShadow
+     * Create a new CssBoxDecorationBreak
      */
-    public CssBoxShadow() {
+    public CssBoxDecorationBreak() {
     }
 
     /**
-     * Create a new CssBoxShadow
+     * Create a new CssBoxDecorationBreak
      *
      * @param ac the context
      * @param expression The expression for this property
      * @param check if length check is needed
      * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
-    public CssBoxShadow(ApplContext ac, CssExpression expression,
-                        boolean check) throws InvalidParamException {
+    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
+                                 boolean check) throws InvalidParamException {
             throw new InvalidParamException("unrecognize", ac);
     }
 
-    public CssBoxShadow(ApplContext ac, CssExpression expression)
+    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -53,9 +53,9 @@ public class CssBoxShadow extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssBoxShadow != null)
+        if (((Css3Style) style).cssBoxDecorationBreak != null)
             style.addRedefinitionWarning(ac, this);
-        ((Css3Style) style).cssBoxShadow = this;
+        ((Css3Style) style).cssBoxDecorationBreak = this;
     }
 
     /**
@@ -66,9 +66,9 @@ public class CssBoxShadow extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css3Style) style).getBoxShadow();
+            return ((Css3Style) style).getBoxDecorationBreak();
         } else {
-            return ((Css3Style) style).cssBoxShadow;
+            return ((Css3Style) style).cssBoxDecorationBreak;
         }
     }
 
@@ -78,8 +78,8 @@ public class CssBoxShadow extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBoxShadow &&
-                value.equals(((CssBoxShadow) property).value));
+        return (property instanceof CssBoxDecorationBreak &&
+                value.equals(((CssBoxDecorationBreak) property).value));
     }
 
     /**

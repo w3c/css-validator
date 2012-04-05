@@ -26,7 +26,7 @@ public class CssColumnFill extends CssProperty {
     CssIdent value;
 
     /**
-     * Create a new CssColumnWidth
+     * Create a new CssColumnFill
      */
     public CssColumnFill() {
     }
