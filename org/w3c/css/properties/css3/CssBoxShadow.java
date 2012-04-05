@@ -168,7 +168,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     }
                     break;
                 case CssTypes.CSS_IDENT:
-                    // if we got 2 or 4 length tokens we must not have others
+                    // if we got 2 to 4 length tokens we must not have others
                     if (got_length != 0) {
                         length_ok = false;
                     }
@@ -215,8 +215,8 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
             }
             expression.next();
         }
-        // we need 2 or 4 lengthed
-        if (got_length != 2 && got_length != 4) {
+        // we need 2 to 4 length. > 4 is taken care of in the first switch
+        if (got_length < 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
         return value;
