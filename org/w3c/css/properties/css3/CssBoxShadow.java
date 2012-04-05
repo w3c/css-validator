@@ -331,7 +331,10 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
             StringBuilder sb = new StringBuilder();
             sb.append(horizontal_offset).append(' ').append(vertical_offset);
             if (blur_radius != null) {
-                sb.append(' ').append(blur_radius).append(' ').append(spread_distance);
+                sb.append(' ').append(blur_radius);
+            }
+            if (spread_distance != null) {
+                sb.append(' ').append(spread_distance);
             }
             if (color != null) {
                 sb.append(' ').append(color);
