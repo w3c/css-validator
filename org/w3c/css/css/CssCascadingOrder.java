@@ -205,30 +205,29 @@ public final class CssCascadingOrder {
         propertyData.add(property);
     }
 
-}
-
 // all compare functions used in the cascading order
 
-class CompareExplicitWeight implements Comparator<CssProperty> {
-    public final int compare(CssProperty property1, CssProperty property2) {
-        int val1 = property1.getExplicitWeight();
-        int val2 = property2.getExplicitWeight();
-        return (val1 - val2);
+    class CompareExplicitWeight implements Comparator<CssProperty> {
+        public final int compare(CssProperty property1, CssProperty property2) {
+            int val1 = property1.getExplicitWeight();
+            int val2 = property2.getExplicitWeight();
+            return (val1 - val2);
+        }
     }
-}
 
-class CompareSpecificity implements Comparator<CssProperty> {
-    public final int compare(CssProperty property1, CssProperty property2) {
-        int val1 = property1.getSelectors().getSpecificity();
-        int val2 = property2.getSelectors().getSpecificity();
-        return (val1 - val2);
+    class CompareSpecificity implements Comparator<CssProperty> {
+        public final int compare(CssProperty property1, CssProperty property2) {
+            int val1 = property1.getSelectors().getSpecificity();
+            int val2 = property2.getSelectors().getSpecificity();
+            return (val1 - val2);
+        }
     }
-}
 
-class CompareOrderSpecified implements Comparator<CssProperty> {
-    public final int compare(CssProperty property1, CssProperty property2) {
-        long val1 = property1.getOrderSpecified();
-        long val2 = property2.getOrderSpecified();
-        return ((int) (val1 - val2));
+    class CompareOrderSpecified implements Comparator<CssProperty> {
+        public final int compare(CssProperty property1, CssProperty property2) {
+            long val1 = property1.getOrderSpecified();
+            long val2 = property2.getOrderSpecified();
+            return ((int) (val1 - val2));
+        }
     }
 }

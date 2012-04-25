@@ -105,9 +105,8 @@ public class Css1Style extends CssStyle {
     /**
      * border properties
      */
-    public CssBorder cssBorder = new CssBorder();
-    public CssBorderCSS2 cssBorderCSS2 = new CssBorderCSS2();
-    public CssBorderCSS1 cssBorderCSS1 = new CssBorderCSS1();
+    public org.w3c.css.properties.css.CssBorder cssBorder = new org.w3c.css.properties.css.CssBorder(true);
+
     /**
      * width property
      */
@@ -609,6 +608,7 @@ public class Css1Style extends CssStyle {
         return cssBackground.image;
     }
 
+    // TODO this one has to go as well
     public final CssBackgroundImageMob getBackgroundImageMob() {
         if (cssBackgroundMob.image == null) {
             cssBackgroundMob.image =
@@ -653,6 +653,7 @@ public class Css1Style extends CssStyle {
         return cssBackground.attachment;
     }
 
+    // TODO this one has to go as well
     public final CssBackgroundAttachmentMob getBackgroundAttachmentMob() {
         if (cssBackgroundMob.attachment == null) {
             cssBackgroundMob.attachment =
@@ -674,6 +675,7 @@ public class Css1Style extends CssStyle {
         return cssBackground.position;
     }
 
+    // TODO this one has to go as well
     public final CssBackgroundPositionMob getBackgroundPositionMob() {
         if (cssBackgroundMob.position == null) {
             cssBackgroundMob.position =
@@ -1041,638 +1043,59 @@ public class Css1Style extends CssStyle {
     /**
      * Get the border-top-width property
      */
-    public final CssBorderTopWidth getBorderTopWidth() {
-        if (cssBorder.getTop().getWidth() == null) {
-            cssBorder.getTop().width =
-                    (CssBorderTopWidth) style.CascadingOrder(new CssBorderTopWidth(),
+    public final org.w3c.css.properties.css.CssBorderTopWidth getBorderTopWidth() {
+        if (cssBorder.borderWidth.top == null) {
+            cssBorder.borderWidth.top =
+                    (org.w3c.css.properties.css.CssBorderTopWidth) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderTopWidth(),
                             style, selector);
         }
-        return cssBorder.getTop().width;
-    }
-
-    public final CssBorderTopWidthCSS2 getBorderTopWidthCSS2() {
-        if (cssBorderCSS2.getTop().getWidth() == null) {
-            cssBorderCSS2.getTop().width =
-                    (CssBorderTopWidthCSS2) style.CascadingOrder(new CssBorderTopWidthCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getTop().width;
-    }
-
-    public final CssBorderTopWidthCSS1 getBorderTopWidthCSS1() {
-        if (cssBorderCSS1.getTop().getWidth() == null) {
-            cssBorderCSS1.getTop().width =
-                    (CssBorderTopWidthCSS1) style.CascadingOrder(new CssBorderTopWidthCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getTop().width;
-    }
-
-    /**
-     * Get the border-top-style property
-     */
-    public final CssBorderTopStyle getBorderTopStyle() {
-        if (cssBorder.getTop().getStyle() == null) {
-            cssBorder.getTop().style =
-                    (CssBorderTopStyle) style.CascadingOrder(new CssBorderTopStyle(),
-                            style, selector);
-        }
-        return cssBorder.getTop().style;
-    }
-
-    public final CssBorderTopStyleCSS2 getBorderTopStyleCSS2() {
-        if (cssBorderCSS2.getTop().getStyle() == null) {
-            cssBorderCSS2.getTop().style =
-                    (CssBorderTopStyleCSS2) style.CascadingOrder(new CssBorderTopStyleCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getTop().style;
-    }
-
-    public final CssBorderTopStyleCSS1 getBorderTopStyleCSS1() {
-        if (cssBorderCSS1.getTop().getStyle() == null) {
-            cssBorderCSS1.getTop().style =
-                    (CssBorderTopStyleCSS1) style.CascadingOrder(new CssBorderTopStyleCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getTop().style;
-    }
-
-    /**
-     * Get the border-top-color property
-     */
-    public final CssBorderTopColorCSS2 getBorderTopColorCSS2() {
-        if (cssBorderCSS2.getTop().getColor() == null) {
-            cssBorderCSS2.getTop().color =
-                    (CssBorderTopColorCSS2) style.CascadingOrder(new CssBorderTopColorCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getTop().color;
-    }
-
-    public final CssBorderTopColor getBorderTopColor() {
-        if (cssBorder.getTop().getColor() == null) {
-            cssBorder.getTop().color =
-                    (CssBorderTopColor) style.CascadingOrder(new CssBorderTopColor(),
-                            style, selector);
-        }
-        return cssBorder.getTop().color;
-    }
-
-    public final CssBorderTopColorCSS1 getBorderTopColorCSS1() {
-        if (cssBorderCSS1.getTop().getColor() == null) {
-            cssBorderCSS1.getTop().color =
-                    (CssBorderTopColorCSS1) style.CascadingOrder(new CssBorderTopColorCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getTop().color;
+        return cssBorder.borderWidth.top;
     }
 
     /**
      * Get the border-right-width property
      */
-    public final CssBorderRightWidth getBorderRightWidth() {
-        if (cssBorder.getRight().getWidth() == null) {
-            cssBorder.getRight().width =
-                    (CssBorderRightWidth) style.CascadingOrder(new CssBorderRightWidth(),
+    public final org.w3c.css.properties.css.CssBorderRightWidth getBorderRightWidth() {
+        if (cssBorder.borderWidth.right == null) {
+            cssBorder.borderWidth.right =
+                    (org.w3c.css.properties.css.CssBorderRightWidth) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderRightWidth(),
                             style, selector);
         }
-        return cssBorder.getRight().width;
-    }
-
-    public final CssBorderRightWidthCSS2 getBorderRightWidthCSS2() {
-        if (cssBorderCSS2.getRight().getWidth() == null) {
-            cssBorderCSS2.getRight().width =
-                    (CssBorderRightWidthCSS2) style.CascadingOrder(new CssBorderRightWidthCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getRight().width;
-    }
-
-    public final CssBorderRightWidthCSS1 getBorderRightWidthCSS1() {
-        if (cssBorderCSS1.getRight().getWidth() == null) {
-            cssBorderCSS1.getRight().width =
-                    (CssBorderRightWidthCSS1) style.CascadingOrder(new CssBorderRightWidthCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getRight().width;
-    }
-
-    /**
-     * Get the border-right-style property
-     */
-    public final CssBorderRightStyle getBorderRightStyle() {
-        if (cssBorder.getRight().getStyle() == null) {
-            cssBorder.getRight().style =
-                    (CssBorderRightStyle) style.CascadingOrder(new CssBorderRightStyle(),
-                            style, selector);
-        }
-        return cssBorder.getRight().style;
-    }
-
-    public final CssBorderRightStyleCSS2 getBorderRightStyleCSS2() {
-        if (cssBorderCSS2.getRight().getStyle() == null) {
-            cssBorderCSS2.getRight().style =
-                    (CssBorderRightStyleCSS2) style.CascadingOrder(new CssBorderRightStyleCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getRight().style;
-    }
-
-    public final CssBorderRightStyleCSS1 getBorderRightStyleCSS1() {
-        if (cssBorderCSS1.getRight().getStyle() == null) {
-            cssBorderCSS1.getRight().style =
-                    (CssBorderRightStyleCSS1) style.CascadingOrder(new CssBorderRightStyleCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getRight().style;
-    }
-
-    /**
-     * Get the border-right-color property
-     */
-    public final CssBorderRightColor getBorderRightColor() {
-        if (cssBorder.getRight().getColor() == null) {
-            cssBorder.getRight().color =
-                    (CssBorderRightColor) style.CascadingOrder(new CssBorderRightColor(),
-                            style, selector);
-        }
-        return cssBorder.getRight().color;
-    }
-
-    public final CssBorderRightColorCSS2 getBorderRightColorCSS2() {
-        if (cssBorderCSS2.getRight().getColor() == null) {
-            cssBorderCSS2.getRight().color =
-                    (CssBorderRightColorCSS2) style.CascadingOrder(new CssBorderRightColorCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getRight().color;
-    }
-
-    public final CssBorderRightColorCSS1 getBorderRightColorCSS1() {
-        if (cssBorderCSS1.getRight().getColor() == null) {
-            cssBorderCSS1.getRight().color =
-                    (CssBorderRightColorCSS1) style.CascadingOrder(new CssBorderRightColorCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getRight().color;
+        return cssBorder.borderWidth.right;
     }
 
     /**
      * Get the border-bottom-width property
      */
-    public final CssBorderBottomWidth getBorderBottomWidth() {
-        if (cssBorder.getBottom().getWidth() == null) {
-            cssBorder.getBottom().width =
-                    (CssBorderBottomWidth) style.CascadingOrder(new CssBorderBottomWidth(),
+    public final org.w3c.css.properties.css.CssBorderBottomWidth getBorderBottomWidth() {
+        if (cssBorder.borderWidth.bottom == null) {
+            cssBorder.borderWidth.bottom =
+                    (org.w3c.css.properties.css.CssBorderBottomWidth) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderBottomWidth(),
                             style, selector);
         }
-        return cssBorder.getBottom().width;
-    }
-
-    public final CssBorderBottomWidthCSS2 getBorderBottomWidthCSS2() {
-        if (cssBorderCSS2.getBottom().getWidth() == null) {
-            cssBorderCSS2.getBottom().width =
-                    (CssBorderBottomWidthCSS2) style.CascadingOrder(new CssBorderBottomWidthCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getBottom().width;
-    }
-
-    public final CssBorderBottomWidthCSS1 getBorderBottomWidthCSS1() {
-        if (cssBorderCSS1.getBottom().getWidth() == null) {
-            cssBorderCSS1.getBottom().width =
-                    (CssBorderBottomWidthCSS1) style.CascadingOrder(new CssBorderBottomWidthCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getBottom().width;
-    }
-
-    /**
-     * Get the border-bottom-style property
-     */
-    public final CssBorderBottomStyle getBorderBottomStyle() {
-        if (cssBorder.getBottom().getStyle() == null) {
-            cssBorder.getBottom().style =
-                    (CssBorderBottomStyle) style.CascadingOrder(new CssBorderBottomStyle(),
-                            style, selector);
-        }
-        return cssBorder.getBottom().style;
-    }
-
-    public final CssBorderBottomStyleCSS2 getBorderBottomStyleCSS2() {
-        if (cssBorderCSS2.getBottom().getStyle() == null) {
-            cssBorderCSS2.getBottom().style =
-                    (CssBorderBottomStyleCSS2) style.CascadingOrder(new CssBorderBottomStyleCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getBottom().style;
-    }
-
-    public final CssBorderBottomStyleCSS1 getBorderBottomStyleCSS1() {
-        if (cssBorderCSS1.getBottom().getStyle() == null) {
-            cssBorderCSS1.getBottom().style =
-                    (CssBorderBottomStyleCSS1) style.CascadingOrder(new CssBorderBottomStyleCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getBottom().style;
-    }
-
-    /**
-     * Get the border-bottom-color property
-     */
-    public final CssBorderBottomColor getBorderBottomColor() {
-        if (cssBorder.getBottom().getColor() == null) {
-            cssBorder.getBottom().color =
-                    (CssBorderBottomColor) style.CascadingOrder(new CssBorderBottomColor(),
-                            style, selector);
-        }
-        return cssBorder.getBottom().color;
-    }
-
-    public final CssBorderBottomColorCSS2 getBorderBottomColorCSS2() {
-        if (cssBorderCSS2.getBottom().getColor() == null) {
-            cssBorderCSS2.getBottom().color =
-                    (CssBorderBottomColorCSS2) style.CascadingOrder(new CssBorderBottomColorCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getBottom().color;
-    }
-
-    public final CssBorderBottomColorCSS1 getBorderBottomColorCSS1() {
-        if (cssBorderCSS1.getBottom().getColor() == null) {
-            cssBorderCSS1.getBottom().color =
-                    (CssBorderBottomColorCSS1) style.CascadingOrder(new CssBorderBottomColorCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getBottom().color;
+        return cssBorder.borderWidth.bottom;
     }
 
     /**
      * Get the border-left-width property
      */
-    public final CssBorderLeftWidth getBorderLeftWidth() {
-        if (cssBorder.getLeft().getWidth() == null) {
-            cssBorder.getLeft().width =
-                    (CssBorderLeftWidth) style.CascadingOrder(new CssBorderLeftWidth(),
+    public final org.w3c.css.properties.css.CssBorderLeftWidth getBorderLeftWidth() {
+        if (cssBorder.borderWidth.left == null) {
+            cssBorder.borderWidth.left =
+                    (org.w3c.css.properties.css.CssBorderLeftWidth) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderLeftWidth(),
                             style, selector);
         }
-        return cssBorder.getLeft().width;
+        return cssBorder.borderWidth.left;
     }
 
-    public final CssBorderLeftWidthCSS2 getBorderLeftWidthCSS2() {
-        if (cssBorderCSS2.getLeft().getWidth() == null) {
-            cssBorderCSS2.getLeft().width =
-                    (CssBorderLeftWidthCSS2) style.CascadingOrder(new CssBorderLeftWidthCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getLeft().width;
-    }
-
-    public final CssBorderLeftWidthCSS1 getBorderLeftWidthCSS1() {
-        if (cssBorderCSS1.getLeft().getWidth() == null) {
-            cssBorderCSS1.getLeft().width =
-                    (CssBorderLeftWidthCSS1) style.CascadingOrder(new CssBorderLeftWidthCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getLeft().width;
-    }
-
-    /**
-     * Get the border-left-style property
-     */
-    public final CssBorderLeftStyle getBorderLeftStyle() {
-        if (cssBorder.getLeft().getStyle() == null) {
-            cssBorder.getLeft().style =
-                    (CssBorderLeftStyle) style.CascadingOrder(new CssBorderLeftStyle(),
-                            style, selector);
-        }
-        return cssBorder.getLeft().style;
-    }
-
-    public final CssBorderLeftStyleCSS2 getBorderLeftStyleCSS2() {
-        if (cssBorderCSS2.getLeft().getStyle() == null) {
-            cssBorderCSS2.getLeft().style =
-                    (CssBorderLeftStyleCSS2) style.CascadingOrder(new CssBorderLeftStyleCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getLeft().style;
-    }
-
-    public final CssBorderLeftStyleCSS1 getBorderLeftStyleCSS1() {
-        if (cssBorderCSS1.getLeft().getStyle() == null) {
-            cssBorderCSS1.getLeft().style =
-                    (CssBorderLeftStyleCSS1) style.CascadingOrder(new CssBorderLeftStyleCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getLeft().style;
-    }
-
-    /**
-     * Get the border-left-color property
-     */
-    public final CssBorderLeftColor getBorderLeftColor() {
-        if (cssBorder.getLeft().getColor() == null) {
-            cssBorder.getLeft().color =
-                    (CssBorderLeftColor) style.CascadingOrder(new CssBorderLeftColor(),
-                            style, selector);
-        }
-        return cssBorder.getLeft().color;
-    }
-
-    public final CssBorderLeftColorCSS2 getBorderLeftColorCSS2() {
-        if (cssBorderCSS2.getLeft().getColor() == null) {
-            cssBorderCSS2.getLeft().color =
-                    (CssBorderLeftColorCSS2) style.CascadingOrder(new CssBorderLeftColorCSS2(),
-                            style, selector);
-        }
-        return cssBorderCSS2.getLeft().color;
-    }
-
-    public final CssBorderLeftColorCSS1 getBorderLeftColorCSS1() {
-        if (cssBorderCSS1.getLeft().getColor() == null) {
-            cssBorderCSS1.getLeft().color =
-                    (CssBorderLeftColorCSS1) style.CascadingOrder(new CssBorderLeftColorCSS1(),
-                            style, selector);
-        }
-        return cssBorderCSS1.getLeft().color;
-    }
-
-    /**
-     * Get the border-top property
-     */
-    public final CssBorderTop getBorderTop() {
-        if (cssBorder.getTop().getWidth() == null) {
-            cssBorder.getTop().width = getBorderTopWidth();
-        }
-        if (cssBorder.getTop().getStyle() == null) {
-            cssBorder.getTop().style = getBorderTopStyle();
-        }
-        if (cssBorder.getTop().getColor() == null) {
-            cssBorder.getTop().color = getBorderTopColor();
-        }
-        return cssBorder.getTop();
-    }
-
-    public final CssBorderTopCSS2 getBorderTopCSS2() {
-        if (cssBorderCSS2.getTop().getWidth() == null) {
-            cssBorderCSS2.getTop().width = getBorderTopWidthCSS2();
-        }
-        if (cssBorderCSS2.getTop().getStyle() == null) {
-            cssBorderCSS2.getTop().style = getBorderTopStyleCSS2();
-        }
-        if (cssBorderCSS2.getTop().getColor() == null) {
-            cssBorderCSS2.getTop().color = getBorderTopColorCSS2();
-        }
-        return cssBorderCSS2.getTop();
-    }
-
-    public final CssBorderTopCSS1 getBorderTopCSS1() {
-        if (cssBorderCSS1.getTop().getWidth() == null) {
-            cssBorderCSS1.getTop().width = getBorderTopWidthCSS1();
-        }
-        if (cssBorderCSS1.getTop().getStyle() == null) {
-            cssBorderCSS1.getTop().style = getBorderTopStyleCSS1();
-        }
-        if (cssBorderCSS1.getTop().getColor() == null) {
-            cssBorderCSS1.getTop().color = getBorderTopColorCSS1();
-        }
-        return cssBorderCSS1.getTop();
-    }
-
-    /**
-     * Get the border-right property
-     */
-    public final CssBorderRight getBorderRight() {
-        if (cssBorder.getRight().getWidth() == null) {
-            cssBorder.getRight().width = getBorderRightWidth();
-        }
-        if (cssBorder.getRight().getStyle() == null) {
-            cssBorder.getRight().style = getBorderRightStyle();
-        }
-        if (cssBorder.getRight().getColor() == null) {
-            cssBorder.getRight().color = getBorderRightColor();
-        }
-        return cssBorder.getRight();
-    }
-
-    public final CssBorderRightCSS2 getBorderRightCSS2() {
-        if (cssBorderCSS2.getRight().getWidth() == null) {
-            cssBorderCSS2.getRight().width = getBorderRightWidthCSS2();
-        }
-        if (cssBorderCSS2.getRight().getStyle() == null) {
-            cssBorderCSS2.getRight().style = getBorderRightStyleCSS2();
-        }
-        if (cssBorderCSS2.getRight().getColor() == null) {
-            cssBorderCSS2.getRight().color = getBorderRightColorCSS2();
-        }
-        return cssBorderCSS2.getRight();
-    }
-
-    public final CssBorderRightCSS1 getBorderRightCSS1() {
-        if (cssBorderCSS1.getRight().getWidth() == null) {
-            cssBorderCSS1.getRight().width = getBorderRightWidthCSS1();
-        }
-        if (cssBorderCSS1.getRight().getStyle() == null) {
-            cssBorderCSS1.getRight().style = getBorderRightStyleCSS1();
-        }
-        if (cssBorderCSS1.getRight().getColor() == null) {
-            cssBorderCSS1.getRight().color = getBorderRightColorCSS1();
-        }
-        return cssBorderCSS1.getRight();
-    }
-
-    /**
-     * Get the border-bottom property
-     */
-    public final CssBorderBottom getBorderBottom() {
-        if (cssBorder.getBottom().getWidth() == null) {
-            cssBorder.getBottom().width = getBorderBottomWidth();
-        }
-        if (cssBorder.getBottom().getStyle() == null) {
-            cssBorder.getBottom().style = getBorderBottomStyle();
-        }
-        if (cssBorder.getBottom().getColor() == null) {
-            cssBorder.getBottom().color = getBorderBottomColor();
-        }
-        return cssBorder.getBottom();
-    }
-
-    public final CssBorderBottomCSS2 getBorderBottomCSS2() {
-        if (cssBorderCSS2.getBottom().getWidth() == null) {
-            cssBorderCSS2.getBottom().width = getBorderBottomWidthCSS2();
-        }
-        if (cssBorderCSS2.getBottom().getStyle() == null) {
-            cssBorderCSS2.getBottom().style = getBorderBottomStyleCSS2();
-        }
-        if (cssBorderCSS2.getBottom().getColor() == null) {
-            cssBorderCSS2.getBottom().color = getBorderBottomColorCSS2();
-        }
-        return cssBorderCSS2.getBottom();
-    }
-
-    public final CssBorderBottomCSS1 getBorderBottomCSS1() {
-        if (cssBorderCSS1.getBottom().getWidth() == null) {
-            cssBorderCSS1.getBottom().width = getBorderBottomWidthCSS1();
-        }
-        if (cssBorderCSS1.getBottom().getStyle() == null) {
-            cssBorderCSS1.getBottom().style = getBorderBottomStyleCSS1();
-        }
-        if (cssBorderCSS1.getBottom().getColor() == null) {
-            cssBorderCSS1.getBottom().color = getBorderBottomColorCSS1();
-        }
-        return cssBorderCSS1.getBottom();
-    }
-
-    /**
-     * Get the border-left property
-     */
-    public final CssBorderLeft getBorderLeft() {
-        if (cssBorder.getLeft().getWidth() == null) {
-            cssBorder.getLeft().width = getBorderLeftWidth();
-        }
-        if (cssBorder.getLeft().getStyle() == null) {
-            cssBorder.getLeft().style = getBorderLeftStyle();
-        }
-        if (cssBorder.getLeft().getColor() == null) {
-            cssBorder.getLeft().color = getBorderLeftColor();
-        }
-        return cssBorder.getLeft();
-    }
-
-    public final CssBorderLeftCSS2 getBorderLeftCSS2() {
-        if (cssBorderCSS2.getLeft().getWidth() == null) {
-            cssBorderCSS2.getLeft().width = getBorderLeftWidthCSS2();
-        }
-        if (cssBorderCSS2.getLeft().getStyle() == null) {
-            cssBorderCSS2.getLeft().style = getBorderLeftStyleCSS2();
-        }
-        if (cssBorderCSS2.getLeft().getColor() == null) {
-            cssBorderCSS2.getLeft().color = getBorderLeftColorCSS2();
-        }
-        return cssBorderCSS2.getLeft();
-    }
-
-    public final CssBorderLeftCSS1 getBorderLeftCSS1() {
-        if (cssBorderCSS1.getLeft().getWidth() == null) {
-            cssBorderCSS1.getLeft().width = getBorderLeftWidthCSS1();
-        }
-        if (cssBorderCSS1.getLeft().getStyle() == null) {
-            cssBorderCSS1.getLeft().style = getBorderLeftStyleCSS1();
-        }
-        if (cssBorderCSS1.getLeft().getColor() == null) {
-            cssBorderCSS1.getLeft().color = getBorderLeftColorCSS1();
-        }
-        return cssBorderCSS1.getLeft();
-    }
 
     /**
      * Get the border property
      */
-    public final CssBorder getBorder() {
-        getBorderTop();
-        getBorderRight();
-        getBorderBottom();
-        getBorderLeft();
+    public final org.w3c.css.properties.css.CssBorder getBorder() {
         return cssBorder;
     }
 
-    public final CssBorderCSS2 getBorderCSS2() {
-        getBorderTopCSS2();
-        getBorderRightCSS2();
-        getBorderBottomCSS2();
-        getBorderLeftCSS2();
-        return cssBorderCSS2;
-    }
-
-    public final CssBorderCSS1 getBorderCSS1() {
-        getBorderTopCSS1();
-        getBorderRightCSS1();
-        getBorderBottomCSS1();
-        getBorderLeftCSS1();
-        return cssBorderCSS1;
-    }
-
-    /**
-     * Get the border-width property
-     */
-    public final CssBorderWidth getBorderWidth() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderWidth(getBorderTopWidth(),
-                getBorderBottomWidth(),
-                getBorderRightWidth(),
-                getBorderLeftWidth());
-    }
-
-    public final CssBorderWidthCSS2 getBorderWidthCSS2() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderWidthCSS2(getBorderTopWidthCSS2(),
-                getBorderBottomWidthCSS2(),
-                getBorderRightWidthCSS2(),
-                getBorderLeftWidthCSS2());
-    }
-
-    public final CssBorderWidthCSS1 getBorderWidthCSS1() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderWidthCSS1(getBorderTopWidthCSS1(),
-                getBorderBottomWidthCSS1(),
-                getBorderRightWidthCSS1(),
-                getBorderLeftWidthCSS1());
-    }
-
-    /**
-     * Get the border-style property
-     */
-    public final CssBorderStyle getBorderStyle() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderStyle(getBorderTopStyle(),
-                getBorderBottomStyle(),
-                getBorderRightStyle(),
-                getBorderLeftStyle());
-    }
-
-    public final CssBorderStyleCSS2 getBorderStyleCSS2() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderStyleCSS2(getBorderTopStyleCSS2(),
-                getBorderBottomStyleCSS2(),
-                getBorderRightStyleCSS2(),
-                getBorderLeftStyleCSS2());
-    }
-
-    public final CssBorderStyleCSS1 getBorderStyleCSS1() {
-        // WARNING invalid fields in this property ....
-        return new CssBorderStyleCSS1(getBorderTopStyleCSS1(),
-                getBorderBottomStyleCSS1(),
-                getBorderRightStyleCSS1(),
-                getBorderLeftStyleCSS1());
-    }
-
-    /**
-     * Get the border-color property
-     */
-    public final CssBorderColor getBorderColor() {
-        // WARNING invalid fields in this porperty ....
-        return new CssBorderColor(getBorderTopColor(),
-                getBorderBottomColor(),
-                getBorderRightColor(),
-                getBorderLeftColor());
-    }
-
-    public final CssBorderColorCSS2 getBorderColorCSS2() {
-        // WARNING invalid fields in this porperty ....
-        return new CssBorderColorCSS2(getBorderTopColorCSS2(),
-                getBorderBottomColorCSS2(),
-                getBorderRightColorCSS2(),
-                getBorderLeftColorCSS2());
-    }
-
-    public final CssBorderColorCSS1 getBorderColorCSS1() {
-        // WARNING invalid fields in this porperty ....
-        return new CssBorderColorCSS1(getBorderTopColorCSS1(),
-                getBorderBottomColorCSS1(),
-                getBorderRightColorCSS1(),
-                getBorderLeftColorCSS1());
-    }
 
     /**
      * Get the width property
@@ -2340,9 +1763,6 @@ public class Css1Style extends CssStyle {
      */
     public void findConflicts(ApplContext ac, Warnings warnings,
                               CssSelectors selector, CssSelectors[] allSelectors) {
-        // if border-style == none, border-width should be 0
-        // @@ this is a horrible place to do this ...
-        cssBorder.check();
 
         // check conflicts for 'font-family'
         findConflictsFontFamily(ac, warnings, selector, allSelectors);
@@ -2355,26 +1775,26 @@ public class Css1Style extends CssStyle {
         }
 
         if (cssBackground.getColor() != null) {
-            org.w3c.css.properties.css.CssColor colorCSS3 = cssColor;
+            org.w3c.css.properties.css.CssColor fgColor = cssColor;
             // we need to look if there is the same selector elsewhere
             // containing a color definition
             for (int i = 0; i < allSelectors.length; i++) {
                 CssSelectors sel = allSelectors[i];
                 if (sel.toString().equals(selector.toString())) {
-                    colorCSS3 = ((Css1Style) sel.getStyle()).cssColor;
+                    fgColor = ((Css1Style) sel.getStyle()).cssColor;
                     break;
                 }
             }
-            if (colorCSS3 != null) {
-                if (cssBackground.getColor().equals(colorCSS3.getColor())) {
+            if (fgColor != null) {
+                if (cssBackground.getColor().equals(fgColor.getColor())) {
                     // background and color can't have the same color
                     warnings.addWarning(new Warning(cssBackground.color,
-                            "same-colors", 1, colorCSS3, ac));
+                            "same-colors", 1, fgColor, ac));
                 } else if (cssBackground.getColor().equals(
                         CssProperty.transparent)) {
 //		  It's better to have a background color with a color
                     warnings.addWarning(new Warning(
-                            colorCSS3, "no-background-color", 2, emptyArray, ac));
+                            fgColor, "no-background-color", 2, emptyArray, ac));
                 }
             } else {
                 CssValue color = cssBackground.getColor();
@@ -2388,45 +1808,55 @@ public class Css1Style extends CssStyle {
 
             // Note : For borders, I don't look for inherited value.
             //        So I can't find same colors in two differents contexts.
-
-            if (cssBorder.getTop().getColor() != null) {
-                CssValue color = cssBorder.getTop().getColor();
+            if (cssBorder.borderColor.shorthand) {
+                CssValue color = (CssValue) cssBorder.borderColor.top.get();
                 if (color != CssProperty.inherit
                         && cssBackground.getColor().equals(color)) {
                     // background and border-color can't have the same color
                     warnings.addWarning(new Warning(cssBackground.color,
                             "same-colors", 1,
-                            cssBorder.getTop().color, ac));
+                            cssBorder.borderColor, ac));
                 }
-            }
-            if (cssBorder.getRight().getColor() != null) {
-                CssValue color = cssBorder.getRight().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackground.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackground.color,
-                            "same-colors", 1,
-                            cssBorder.getRight().color, ac));
+            } else {
+                if (cssBorder.borderColor.top != null) {
+                    CssValue color = (CssValue) cssBorder.borderColor.top.get();
+                    if (color != CssProperty.inherit
+                            && cssBackground.getColor().equals(color)) {
+                        // background and border-color can't have the same color
+                        warnings.addWarning(new Warning(cssBackground.color,
+                                "same-colors", 1,
+                                cssBorder.borderColor.top, ac));
+                    }
                 }
-            }
-            if (cssBorder.getBottom().getColor() != null) {
-                CssValue color = cssBorder.getBottom().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackground.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackground.color,
-                            "same-colors", 1,
-                            cssBorder.getBottom().color, ac));
+                if (cssBorder.borderColor.right != null) {
+                    CssValue color = (CssValue) cssBorder.borderColor.right.get();
+                    if (color != CssProperty.inherit
+                            && cssBackground.getColor().equals(color)) {
+                        // background and border-color can't have the same color
+                        warnings.addWarning(new Warning(cssBackground.color,
+                                "same-colors", 1,
+                                cssBorder.borderColor.right, ac));
+                    }
                 }
-            }
-            if (cssBorder.getLeft().getColor() != null) {
-                CssValue color = cssBorder.getLeft().getColor();
-                if (color != CssProperty.inherit
-                        && cssBackground.getColor().equals(color)) {
-                    // background and border-color can't have the same color
-                    warnings.addWarning(new Warning(cssBackground.color,
-                            "same-colors", 1,
-                            cssBorder.getLeft().color, ac));
+                if (cssBorder.borderColor.bottom != null) {
+                    CssValue color = (CssValue) cssBorder.borderColor.bottom.get();
+                    if (color != CssProperty.inherit
+                            && cssBackground.getColor().equals(color)) {
+                        // background and border-color can't have the same color
+                        warnings.addWarning(new Warning(cssBackground.color,
+                                "same-colors", 1,
+                                cssBorder.borderColor.bottom, ac));
+                    }
+                }
+                if (cssBorder.borderColor.left != null) {
+                    CssValue color = (CssValue) cssBorder.borderColor.left.get();
+                    if (color != CssProperty.inherit
+                            && cssBackground.getColor().equals(color)) {
+                        // background and border-color can't have the same color
+                        warnings.addWarning(new Warning(cssBackground.color,
+                                "same-colors", 1,
+                                cssBorder.borderColor.left, ac));
+                    }
                 }
             }
             /* suppressed 03-09-98

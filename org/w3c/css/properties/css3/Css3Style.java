@@ -13,6 +13,8 @@ import org.w3c.css.properties.atsc.ATSCStyle;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
+import org.w3c.css.properties.css.CssBoxDecorationBreak;
+import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
@@ -27,8 +29,6 @@ import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssOpacity;
-import org.w3c.css.properties.css.CssBoxShadow;
-import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -193,46 +193,19 @@ public class Css3Style extends ATSCStyle {
     CssMarqueeRepetition cssMarqueeRepetition;
     CssMarqueeSpeed cssMarqueeSpeed;
     CssMarqueeStyle cssMarqueeStyle;
-    CssBorderTopRightRadius cssBorderTopRightRadius;
-    CssBorderBottomRightRadius cssBorderBottomRightRadius;
-    CssBorderBottomLeftRadius cssBorderBottomLeftRadius;
-    CssBorderTopLeftRadius cssBorderTopLeftRadius;
-    CssBorderRadius cssBorderRadius;
-    CssBorderTopImage cssBorderTopImage;
-    CssBorderBottomImage cssBorderBottomImage;
-    CssBorderLeftImage cssBorderLeftImage;
-    CssBorderRightImage cssBorderRightImage;
-    CssBorderImage cssBorderImage;
-    CssBorderTopLeftImage cssBorderTopLeftImage;
-    CssBorderTopRightImage cssBorderTopRightImage;
-    CssBorderBottomLeftImage cssBorderBottomLeftImage;
-    CssBorderBottomRightImage cssBorderBottomRightImage;
-    CssBorderCornerImage cssBorderCornerImage;
-    CssBorderTopFitLength cssBorderTopFitLength;
-    CssBorderBottomFitLength cssBorderBottomFitLength;
-    CssBorderLeftFitLength cssBorderLeftFitLength;
-    CssBorderRightFitLength cssBorderRightFitLength;
-    CssBorderTopFitWidth cssBorderTopFitWidth;
-    CssBorderBottomFitWidth cssBorderBottomFitWidth;
-    CssBorderLeftFitWidth cssBorderLeftFitWidth;
-    CssBorderRightFitWidth cssBorderRightFitWidth;
-    CssBorderTopLeftFitLength cssBorderTopLeftFitLength;
-    CssBorderTopRightFitLength cssBorderTopRightFitLength;
-    CssBorderBottomRightFitLength cssBorderBottomRightFitLength;
-    CssBorderBottomLeftFitLength cssBorderBottomLeftFitLength;
-    CssBorderTopLeftFitWidth cssBorderTopLeftFitWidth;
-    CssBorderTopRightFitWidth cssBorderTopRightFitWidth;
-    CssBorderBottomLeftFitWidth cssBorderBottomLeftFitWidth;
-    CssBorderBottomRightFitWidth cssBorderBottomRightFitWidth;
-    CssBorderFitLength cssBorderFitLength;
-    CssBorderFitWidth cssBorderFitWidth;
-    CssBorderFit cssBorderFit;
-    CssBorderCornerFit cssBorderCornerFit;
-    CssBorderImageTransform cssBorderImageTransform;
-    CssBorderBreak cssBorderBreak;
+
+
     CssTextIndentCSS3 cssTextIndentCSS3;
     CssBlockProgression cssBlockProgression;
 
+
+    public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
+        if (cssBorder.borderImage.source == null) {
+            cssBorder.borderImage.source = (org.w3c.css.properties.css.CssBorderImageSource) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderImageSource(), style, selector);
+        }
+        return cssBorder.borderImage.source;
+
+    }
     public CssOpacity getOpacity() {
         if (cssOpacity == null) {
             cssOpacity =
@@ -1583,337 +1556,49 @@ public class Css3Style extends ATSCStyle {
         return cssMarqueeStyle;
     }
 
-    public CssBorderTopRightRadius getBorderTopRightRadius() {
-        if (cssBorderTopRightRadius == null) {
-            cssBorderTopRightRadius =
-                    (CssBorderTopRightRadius) style.CascadingOrder(
+    public org.w3c.css.properties.css.CssBorderTopRightRadius getBorderTopRightRadius() {
+        if (cssBorder.borderRadius.topRight == null) {
+            cssBorder.borderRadius.topRight =
+                    (org.w3c.css.properties.css.CssBorderTopRightRadius) style.CascadingOrder(
                             new CssBorderTopRightRadius(), style, selector);
         }
-        return cssBorderTopRightRadius;
+        return cssBorder.borderRadius.topRight;
     }
 
-    public CssBorderBottomRightRadius getBorderBottomRightRadius() {
-        if (cssBorderBottomRightRadius == null) {
-            cssBorderBottomRightRadius =
-                    (CssBorderBottomRightRadius) style.CascadingOrder(
+    public org.w3c.css.properties.css.CssBorderBottomRightRadius getBorderBottomRightRadius() {
+        if (cssBorder.borderRadius.bottomRight == null) {
+            cssBorder.borderRadius.bottomRight =
+                    (org.w3c.css.properties.css.CssBorderBottomRightRadius) style.CascadingOrder(
                             new CssBorderBottomRightRadius(), style, selector);
         }
-        return cssBorderBottomRightRadius;
+        return cssBorder.borderRadius.bottomRight;
     }
 
-    public CssBorderBottomLeftRadius getBorderBottomLeftRadius() {
-        if (cssBorderBottomLeftRadius == null) {
-            cssBorderBottomLeftRadius =
-                    (CssBorderBottomLeftRadius) style.CascadingOrder(
-                            new CssBorderBottomLeftRadius(), style, selector);
+    public org.w3c.css.properties.css.CssBorderBottomLeftRadius getBorderBottomLeftRadius() {
+        if (cssBorder.borderRadius.bottomLeft == null) {
+            cssBorder.borderRadius.bottomLeft =
+                    (org.w3c.css.properties.css.CssBorderBottomLeftRadius) style.CascadingOrder(
+                            new org.w3c.css.properties.css.CssBorderBottomLeftRadius(), style, selector);
         }
-        return cssBorderBottomLeftRadius;
+        return cssBorder.borderRadius.bottomLeft;
     }
 
-    public CssBorderTopLeftRadius getBorderTopLeftRadius() {
-        if (cssBorderTopLeftRadius == null) {
-            cssBorderTopLeftRadius =
-                    (CssBorderTopLeftRadius) style.CascadingOrder(
-                            new CssBorderTopLeftRadius(), style, selector);
+    public org.w3c.css.properties.css.CssBorderTopLeftRadius getBorderTopLeftRadius() {
+        if (cssBorder.borderRadius.topLeft == null) {
+            cssBorder.borderRadius.topLeft =
+                    (org.w3c.css.properties.css.CssBorderTopLeftRadius) style.CascadingOrder(
+                            new org.w3c.css.properties.css.CssBorderTopLeftRadius(), style, selector);
         }
-        return cssBorderTopLeftRadius;
+        return cssBorder.borderRadius.topLeft;
     }
 
-    public CssBorderRadius getBorderRadius() {
-        if (cssBorderRadius == null) {
-            cssBorderRadius =
-                    (CssBorderRadius) style.CascadingOrder(
-                            new CssBorderRadius(), style, selector);
+    public org.w3c.css.properties.css.CssBorderRadius getBorderRadius() {
+        if (cssBorder.borderRadius == null) {
+            cssBorder.borderRadius =
+                    (org.w3c.css.properties.css.CssBorderRadius) style.CascadingOrder(
+                            new org.w3c.css.properties.css.CssBorderRadius(), style, selector);
         }
-        return cssBorderRadius;
-    }
-
-    public CssBorderTopImage getBorderTopImage() {
-        if (cssBorderTopImage == null) {
-            cssBorderTopImage =
-                    (CssBorderTopImage) style.CascadingOrder(
-                            new CssBorderTopImage(), style, selector);
-        }
-        return cssBorderTopImage;
-    }
-
-    public CssBorderBottomImage getBorderBottomImage() {
-        if (cssBorderBottomImage == null) {
-            cssBorderBottomImage =
-                    (CssBorderBottomImage) style.CascadingOrder(
-                            new CssBorderBottomImage(), style, selector);
-        }
-        return cssBorderBottomImage;
-    }
-
-    public CssBorderLeftImage getBorderLeftImage() {
-        if (cssBorderLeftImage == null) {
-            cssBorderLeftImage =
-                    (CssBorderLeftImage) style.CascadingOrder(
-                            new CssBorderLeftImage(), style, selector);
-        }
-        return cssBorderLeftImage;
-    }
-
-    public CssBorderRightImage getBorderRightImage() {
-        if (cssBorderRightImage == null) {
-            cssBorderRightImage =
-                    (CssBorderRightImage) style.CascadingOrder(
-                            new CssBorderRightImage(), style, selector);
-        }
-        return cssBorderRightImage;
-    }
-
-    public CssBorderImage getBorderImage() {
-        if (cssBorderImage == null) {
-            cssBorderImage =
-                    (CssBorderImage) style.CascadingOrder(
-                            new CssBorderImage(), style, selector);
-        }
-        return cssBorderImage;
-    }
-
-    public CssBorderTopLeftImage getBorderTopLeftImage() {
-        if (cssBorderTopLeftImage == null) {
-            cssBorderTopLeftImage =
-                    (CssBorderTopLeftImage) style.CascadingOrder(
-                            new CssBorderTopLeftImage(), style, selector);
-        }
-        return cssBorderTopLeftImage;
-    }
-
-    public CssBorderTopRightImage getBorderTopRightImage() {
-        if (cssBorderTopRightImage == null) {
-            cssBorderTopRightImage =
-                    (CssBorderTopRightImage) style.CascadingOrder(
-                            new CssBorderTopRightImage(), style, selector);
-        }
-        return cssBorderTopRightImage;
-    }
-
-    public CssBorderBottomLeftImage getBorderBottomLeftImage() {
-        if (cssBorderBottomLeftImage == null) {
-            cssBorderBottomLeftImage =
-                    (CssBorderBottomLeftImage) style.CascadingOrder(
-                            new CssBorderBottomLeftImage(), style, selector);
-        }
-        return cssBorderBottomLeftImage;
-    }
-
-    public CssBorderBottomRightImage getBorderBottomRightImage() {
-        if (cssBorderBottomRightImage == null) {
-            cssBorderBottomRightImage =
-                    (CssBorderBottomRightImage) style.CascadingOrder(
-                            new CssBorderBottomRightImage(), style, selector);
-        }
-        return cssBorderBottomRightImage;
-    }
-
-    public CssBorderCornerImage getBorderCornerImage() {
-        if (cssBorderCornerImage == null) {
-            cssBorderCornerImage =
-                    (CssBorderCornerImage) style.CascadingOrder(
-                            new CssBorderCornerImage(), style, selector);
-        }
-        return cssBorderCornerImage;
-    }
-
-    public CssBorderTopFitLength getBorderTopFitLength() {
-        if (cssBorderTopFitLength == null) {
-            cssBorderTopFitLength =
-                    (CssBorderTopFitLength) style.CascadingOrder(
-                            new CssBorderTopFitLength(), style, selector);
-        }
-        return cssBorderTopFitLength;
-    }
-
-    public CssBorderBottomFitLength getBorderBottomFitLength() {
-        if (cssBorderBottomFitLength == null) {
-            cssBorderBottomFitLength =
-                    (CssBorderBottomFitLength) style.CascadingOrder(
-                            new CssBorderBottomFitLength(), style, selector);
-        }
-        return cssBorderBottomFitLength;
-    }
-
-    public CssBorderLeftFitLength getBorderLeftFitLength() {
-        if (cssBorderLeftFitLength == null) {
-            cssBorderLeftFitLength =
-                    (CssBorderLeftFitLength) style.CascadingOrder(
-                            new CssBorderLeftFitLength(), style, selector);
-        }
-        return cssBorderLeftFitLength;
-    }
-
-    public CssBorderRightFitLength getBorderRightFitLength() {
-        if (cssBorderRightFitLength == null) {
-            cssBorderRightFitLength =
-                    (CssBorderRightFitLength) style.CascadingOrder(
-                            new CssBorderRightFitLength(), style, selector);
-        }
-        return cssBorderRightFitLength;
-    }
-
-    public CssBorderTopFitWidth getBorderTopFitWidth() {
-        if (cssBorderTopFitWidth == null) {
-            cssBorderTopFitWidth =
-                    (CssBorderTopFitWidth) style.CascadingOrder(
-                            new CssBorderTopFitWidth(), style, selector);
-        }
-        return cssBorderTopFitWidth;
-    }
-
-    public CssBorderBottomFitWidth getBorderBottomFitWidth() {
-        if (cssBorderBottomFitWidth == null) {
-            cssBorderBottomFitWidth =
-                    (CssBorderBottomFitWidth) style.CascadingOrder(
-                            new CssBorderBottomFitWidth(), style, selector);
-        }
-        return cssBorderBottomFitWidth;
-    }
-
-    public CssBorderLeftFitWidth getBorderLeftFitWidth() {
-        if (cssBorderLeftFitWidth == null) {
-            cssBorderLeftFitWidth =
-                    (CssBorderLeftFitWidth) style.CascadingOrder(
-                            new CssBorderLeftFitWidth(), style, selector);
-        }
-        return cssBorderLeftFitWidth;
-    }
-
-    public CssBorderRightFitWidth getBorderRightFitWidth() {
-        if (cssBorderRightFitWidth == null) {
-            cssBorderRightFitWidth =
-                    (CssBorderRightFitWidth) style.CascadingOrder(
-                            new CssBorderRightFitWidth(), style, selector);
-        }
-        return cssBorderRightFitWidth;
-    }
-
-    public CssBorderTopLeftFitLength getBorderTopLeftFitLength() {
-        if (cssBorderTopLeftFitLength == null) {
-            cssBorderTopLeftFitLength =
-                    (CssBorderTopLeftFitLength) style.CascadingOrder(
-                            new CssBorderTopLeftFitLength(), style, selector);
-        }
-        return cssBorderTopLeftFitLength;
-    }
-
-    public CssBorderTopRightFitLength getBorderTopRightFitLength() {
-        if (cssBorderTopRightFitLength == null) {
-            cssBorderTopRightFitLength =
-                    (CssBorderTopRightFitLength) style.CascadingOrder(
-                            new CssBorderTopRightFitLength(), style, selector);
-        }
-        return cssBorderTopRightFitLength;
-    }
-
-    public CssBorderBottomLeftFitLength getBorderBottomLeftFitLength() {
-        if (cssBorderBottomLeftFitLength == null) {
-            cssBorderBottomLeftFitLength =
-                    (CssBorderBottomLeftFitLength) style.CascadingOrder(
-                            new CssBorderBottomLeftFitLength(), style, selector);
-        }
-        return cssBorderBottomLeftFitLength;
-    }
-
-    public CssBorderBottomRightFitLength getBorderBottomRightFitLength() {
-        if (cssBorderBottomRightFitLength == null) {
-            cssBorderBottomRightFitLength =
-                    (CssBorderBottomRightFitLength) style.CascadingOrder(
-                            new CssBorderBottomRightFitLength(), style, selector);
-        }
-        return cssBorderBottomRightFitLength;
-    }
-
-    public CssBorderTopLeftFitWidth getBorderTopLeftFitWidth() {
-        if (cssBorderTopLeftFitWidth == null) {
-            cssBorderTopLeftFitWidth =
-                    (CssBorderTopLeftFitWidth) style.CascadingOrder(
-                            new CssBorderTopLeftFitWidth(), style, selector);
-        }
-        return cssBorderTopLeftFitWidth;
-    }
-
-    public CssBorderTopRightFitWidth getBorderTopRightFitWidth() {
-        if (cssBorderTopRightFitWidth == null) {
-            cssBorderTopRightFitWidth =
-                    (CssBorderTopRightFitWidth) style.CascadingOrder(
-                            new CssBorderTopRightFitWidth(), style, selector);
-        }
-        return cssBorderTopRightFitWidth;
-    }
-
-    public CssBorderBottomLeftFitWidth getBorderBottomLeftFitWidth() {
-        if (cssBorderBottomLeftFitWidth == null) {
-            cssBorderBottomLeftFitWidth =
-                    (CssBorderBottomLeftFitWidth) style.CascadingOrder(
-                            new CssBorderBottomLeftFitWidth(), style, selector);
-        }
-        return cssBorderBottomLeftFitWidth;
-    }
-
-    public CssBorderBottomRightFitWidth getBorderBottomRightFitWidth() {
-        if (cssBorderBottomRightFitWidth == null) {
-            cssBorderBottomRightFitWidth =
-                    (CssBorderBottomRightFitWidth) style.CascadingOrder(
-                            new CssBorderBottomRightFitWidth(), style, selector);
-        }
-        return cssBorderBottomRightFitWidth;
-    }
-
-    public CssBorderFitLength getBorderFitLength() {
-        if (cssBorderFitLength == null) {
-            cssBorderFitLength =
-                    (CssBorderFitLength) style.CascadingOrder(
-                            new CssBorderFitLength(), style, selector);
-        }
-        return cssBorderFitLength;
-    }
-
-    public CssBorderFitWidth getBorderFitWidth() {
-        if (cssBorderFitWidth == null) {
-            cssBorderFitWidth =
-                    (CssBorderFitWidth) style.CascadingOrder(
-                            new CssBorderFitWidth(), style, selector);
-        }
-        return cssBorderFitWidth;
-    }
-
-    public CssBorderFit getBorderFit() {
-        if (cssBorderFit == null) {
-            cssBorderFit =
-                    (CssBorderFit) style.CascadingOrder(
-                            new CssBorderFit(), style, selector);
-        }
-        return cssBorderFit;
-    }
-
-    public CssBorderCornerFit getBorderCornerFit() {
-        if (cssBorderCornerFit == null) {
-            cssBorderCornerFit =
-                    (CssBorderCornerFit) style.CascadingOrder(
-                            new CssBorderCornerFit(), style, selector);
-        }
-        return cssBorderCornerFit;
-    }
-
-    public CssBorderImageTransform getBorderImageTransform() {
-        if (cssBorderImageTransform == null) {
-            cssBorderImageTransform =
-                    (CssBorderImageTransform) style.CascadingOrder(
-                            new CssBorderImageTransform(), style, selector);
-        }
-        return cssBorderImageTransform;
-    }
-
-    public CssBorderBreak getBorderBreak() {
-        if (cssBorderBreak == null) {
-            cssBorderBreak =
-                    (CssBorderBreak) style.CascadingOrder(
-                            new CssBorderBreak(), style, selector);
-        }
-        return cssBorderBreak;
+        return cssBorder.borderRadius;
     }
 
     public CssBoxShadow getBoxShadow() {

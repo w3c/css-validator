@@ -529,24 +529,22 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 
         public String toString() {
             StringBuilder sb = new StringBuilder();
-            if (horizontal != null) {
-                sb.append(horizontal);
-                if (horizontal_offset != null) {
-                    sb.append(' ').append(horizontal_offset);
-                }
-                if (vertical != null) {
-                    sb.append(' ');
-                }
-            }
             if (vertical != null) {
                 sb.append(vertical);
                 if (vertical_offset != null) {
                     sb.append(' ').append(vertical_offset);
                 }
+                if (horizontal != null) {
+                    sb.append(' ');
+                }
+            }
+            if (horizontal != null) {
+                sb.append(horizontal);
+                if (horizontal_offset != null) {
+                    sb.append(' ').append(horizontal_offset);
+                }
             }
             return sb.toString();
         }
-
     }
-
 }

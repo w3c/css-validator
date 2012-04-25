@@ -1,354 +1,96 @@
-//
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// Rewritten 2010 Yves Lafon <ylafon@w3.org>
+
+// (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css2.CssBorderRightColor;
+import org.w3c.css.properties.css2.CssBorderRightStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssValue;
 
 /**
- *   <H4>
- *     &nbsp;&nbsp; 'border-right'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> &lt;border-right-width&gt; || &lt;border-style&gt; ||
- *   &lt;color&gt;<BR>
- *   <EM>Initial:</EM> not defined for shorthand properties<BR>
- *   <EM>Applies to:</EM> all elements<BR>
- *   <EM>Inherited:</EM> no<BR>
- *   <EM>Percentage values:</EM> N/A<BR>
- *   <P>
- *   This is a shorthand property for setting the width, style and color of an
- *   element's right border.
- *   <PRE>
- *   H1 { border-bottom: thick solid red }
- * </PRE>
- *   <P>
- *   The above rule will set the width, style and color of the border below the
- *   H1 element. Omitted values will be set to their initial values:
- *   <PRE>
- *   H1 { border-bottom: thick solid }
- * </PRE>
- *   <P>
- *   Since the color value is omitted in the example above, the border color will
- *   be the same as the 'color' value of the element itself.
- *   <P>
- *   Note that while the 'border-style' property accepts up to four values, this
- *   property only accepts one style value.
- *
- * @version $Revision$
+ * @since CSS1
  */
-public class CssBorderRight extends CssProperty implements CssOperator {
-
-    CssBorderRightWidth width;
-    CssBorderRightStyle style;
-    CssBorderRightColor color;
-    CssValue uri = null;
+public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
 
     /**
-     * Create a new CssBorderFace
+     * Create a new CssBorderRight
      */
     public CssBorderRight() {
     }
 
     /**
-     * Create a new CssBorderFace
+     * Set the value of the property<br/>
+     * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     */
+    public CssBorderRight(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
      */
     public CssBorderRight(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-	CssValue val = null;
-	char op = SPACE;
-	boolean find = true;
-
-	if(check && expression.getCount() > 4) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
-
-	setByUser();
-
-	boolean manyValues = (expression.getCount() > 1);
-
-	while (find) {
-	    find = false;
-	    val = expression.getValue();
-	    op = expression.getOperator();
-
-	    if (val == null)
-		break;
-
-	    // if there are many values, we can't have inherit as one of them
-	    if(manyValues && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", null, null, ac);
-	    }
-
-	    if (op != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(op)).toString()),
-						ac);
-
-	    if (width == null) {
-		try {
-		    width = new CssBorderRightWidth(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		    // nothing to do, style will test this value
-		}
-	    }
-
-	    if (!find && style == null) {
-		try {
-		    style = new CssBorderRightStyle(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		    // nothing to do, color will test this value
-		}
-	    }
-
-	    if (!find && color == null) {
-		try {
-		    color = new CssBorderRightColor(ac, expression);
-		    find = true;
-		}
-		catch(InvalidParamException e) {
-		    // nothing to do, uri will test this value
-		}
-	    }
-
-	    if (!find && uri == null) {
-		if (val instanceof CssURL) {
-		    uri = val;
-		    find = true;
-		}
-		else {
-		    throw new InvalidParamException("unrecognize", ac);
-		}
-	    }
-	}
-	/*
-	if (width == null)
-	    width = new CssBorderRightWidth();
-	if (style == null)
-	    style = new CssBorderRightStyle();
-	if (color == null)
-	    color = new CssBorderRightColor();
-	*/
-    }
-
-    public CssBorderRight(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression,false);
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return width;
-    }
-
-    /**
-     * Returns the color property
-     */
-    public CssValue getColor() {
-	if (color != null) {
-	    return color.getColor();
-	} else {
-	    return null;
-	}
-    }
-
-    /**
-     * Returns the width property
-     */
-    public CssValue getWidth() {
-	if (width != null) {
-	    return width.getValue();
-	} else {
-	    return null;
-	}
-    }
-
-    /**
-     * Returns the style property
-     */
-    public String getStyle() {
-	if (style != null) {
-	    return style.getStyle();
-	} else {
-	    return null;
-	}
+                          boolean check) throws InvalidParamException {
+        CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
+        if (values.width != null) {
+            _width = new CssBorderRightWidth();
+            _width.setByUser();
+            _width.value = values.width;
+        }
+        if (values.style != null) {
+            _style = new CssBorderRightStyle();
+            _style.setByUser();
+            _style.value = values.style;
+        }
+        if (values.color != null) {
+            _color = new CssBorderRightColor();
+            _color.setByUser();
+            _color.value = values.color;
+        }
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "";
-	if(width != null) {
-	    ret += width;
-	}
-	if(style != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += style;
-	}
-	if(color != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += color;
-	}
-	if (uri != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += " " + uri.toString();
-	}
-	return ret;
+        if (_width != null && inherit == _width.value) {
+            return inherit.toString();
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        if (_width != null) {
+            sb.append(_width);
+            first = false;
+        }
+        if (_style != null) {
+            if (first) {
+                sb.append(_style);
+            } else {
+                sb.append(' ').append(_style);
+            }
+            first = false;
+        }
+        if (_color != null) {
+            if (first) {
+                sb.append(_color);
+            } else {
+                sb.append(' ').append(_color);
+            }
+        }
+        return sb.toString();
     }
 
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "border-right";
-    }
-
-    /**
-     * Set this property to be important.
-     * Overrides this method for a macro
-     */
-    public void setImportant() {
-	if(width != null) {
-	    width.important = true;
-	}
-	if(style != null) {
-	    style.important = true;
-	}
-	if(color != null) {
-	    color.important = true;
-	}
-    }
-
-    /**
-     * Returns true if this property is important.
-     * Overrides this method for a macro
-     */
-    public boolean getImportant() {
-	return ((width == null || width.important) &&
-		(style == null || style.important) &&
-		(color == null || color.important));
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if(width != null) {
-	    width.addToStyle(ac, style);
-	}
-	if(this.style != null) {
-	    this.style.addToStyle(ac, style);
-	}
-	if(color != null) {
-	    color.addToStyle(ac, style);
-	}
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css1Style) style).getBorderRight();
-	} else {
-	    return ((Css1Style) style).cssBorder.getRight();
-	}
-    }
-
-    /**
-     * Update the source file and the line.
-     * Overrides this method for a macro
-     *
-     * @param line The line number where this property is defined
-     * @param source The source file where this property is defined
-     */
-    public void setInfo(int line, String source) {
-	super.setInfo(line, source);
-	if(width != null) {
-	    width.setInfo(line, source);
-	}
-	if(style != null) {
-	    style.setInfo(line, source);
-	}
-	if(color != null) {
-	    color.setInfo(line, source);
-	}
-    }
-
-    /**
-     * Set the context.
-     * Overrides this method for a macro
-     *
-     * @see org.w3c.css.css.CssCascadingOrder#order
-     * @see org.w3c.css.css.StyleSheetParser#handleRule
-     */
-    public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (width != null) {
-	    width.setSelectors(selector);
-	}
-	if (style != null) {
-	    style.setSelectors(selector);
-	}
-	if (color != null) {
-	    color.setSelectors(selector);
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	if (property instanceof CssBorderRight) {
-	    CssBorderRight right = (CssBorderRight) property;
-	    return (width != null && width.equals(right.width) &&
-		    style != null && style.equals(right.style) &&
-		    color != null && color.equals(right.color));
-	} else {
-	    return false;
-	}
-    }
-
-    void check() {
-	if ((style != null)
-	    && (style.face.value == 0)) {
-	    if (width != null) {
-		width.face.value = new CssLength();
-	    }
-	}
-    }
 }

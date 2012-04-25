@@ -1,4 +1,5 @@
 /* -*-java-extended-*-
+/* -*-java-extended-*-
  *
  * (c) COPYRIGHT MIT and INRIA, 1997.
  * Please first read the full copyright statement in file COPYRIGHT.html
@@ -542,7 +543,6 @@ TOKEN [IGNORE_CASE] :
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
   | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
-  | < RATIO      : <NUM> ( <_S> )* "/" ( <_S> )* <NUM> >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
@@ -916,6 +916,19 @@ AtRuleMedia media() :
     }
 }
 
+void ratio(CssExpression exp, char operator) :
+{
+Token w,h,n;
+}
+{
+
+   ( w=<NUMBER> ( <S> )* <DIV> ( <S> )* h=<NUMBER> ) {
+     StringBuilder sb = new StringBuilder();
+     sb.append(w.image).append('/').append(h.image);
+     n = Token.newToken(w.kind, sb.toString());
+     setValue(new CssRatio(), exp, operator, n, NUMBER);
+   }
+}
 
 void mediaquerylist(AtRuleMedia mediaRule) :
 {
@@ -961,7 +974,7 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
        }
        mediaFeatureName = convertIdent(n.image); }
     ( <S> )*
-    ( <COLON> ( <S> )* val=expr() )?
+    ( <COLON> ( <S> )* val=mediaexpr() )?
     <LPARAN>  ( <S> )*  {
         MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         mediaRule.addMediaFeature(mf, ac);
@@ -2122,6 +2135,18 @@ CssExpression expr() :
 /**
  * @exception ParseException exception during the parse
  */
+CssExpression mediaexpr() :
+{
+  CssExpression values = new CssExpression();
+}
+{
+  mediaterm(values) ( operator(values) mediaterm(values) )*
+  { return values; }
+}
+
+/**
+ * @exception ParseException exception during the parse
+ */
 void term(CssExpression exp) :
 { Token n;
   char operator = ' ';
@@ -2139,7 +2164,6 @@ void term(CssExpression exp) :
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
-    | n=<RATIO> { setValue(new CssRatio(), exp, operator, n, RATIO); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
@@ -2181,6 +2205,67 @@ void term(CssExpression exp) :
     ) ( <S> )* )
 }
 
+/**
+ * @exception ParseException exception during the parse
+ */
+void mediaterm(CssExpression exp) :
+{ Token n;
+  char operator = ' ';
+  CssValue func;
+}
+{
+  ( ( operator=unaryOperator() )?
+    (  ( LOOKAHEAD( <NUMBER> ( <S> )* "/" ) ratio(exp, operator)
+      | n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+      )
+    | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n,
+				PERCENTAGE); }
+    | n=<LENGTH> { setValue(new CssLength(), exp, operator, n, LENGTH); }
+    | n=<EMS> { setValue(new CssLength(), exp, operator, n, EMS); }
+    | n=<EXS> { setValue(new CssLength(), exp, operator, n, EXS); }
+    | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
+    | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
+    | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
+    | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+    | n=<DIMEN> {
+	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+    | func=function() { setValue(func, exp, operator, null, FUNCTION); }
+      ) ( <S> )* )
+  | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
+    | n=<IDENT>
+    {
+	/*
+	 * Common error :
+	 * H1 {
+	 *   color : black
+	 *   background : white
+	 * }
+	 */
+	Token t = getToken(1);
+	Token semicolon = new Token();
+	semicolon.kind = SEMICOLON;
+	semicolon.image = ";";
+	if (t.kind == COLON) {
+	    /* @@SEEME. (generate a warning?) */
+	    /* @@SEEME if expression is a single ident,
+	       generate an error ? */
+	    addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
+		     (CssExpression) null);
+	    rejectToken(semicolon);
+	} else {
+	    setValue(new CssIdent(), exp, operator, n, IDENT);
+	}
+    }
+    | hexcolor(exp)
+    | n=<URL> {
+	CssURL _u = new CssURL();
+	_u.set(n.image, ac, url);
+	exp.addValue(_u);
+      }
+    | n=<UNICODERANGE> { setValue(new CssUnicodeRange(), exp, operator, n,
+				UNICODERANGE); }
+    ) ( <S> )* )
+}
 /**
  * @exception ParseException exception during the parse
  */

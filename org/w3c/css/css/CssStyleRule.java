@@ -45,9 +45,7 @@ public class CssStyleRule {
         StringBuilder ret = new StringBuilder();
         if (selectors != null) {
             ret.append(selectors);
-            ret.append(' ');
-            ret.append('{');
-            ret.append('\n');
+            ret.append(" {\n");
         }
 
         for (CssProperty property : properties) {
@@ -59,14 +57,11 @@ public class CssStyleRule {
             if (property.getImportant()) {
                 ret.append(" important");
             }
-            ret.append(';');
-            ret.append('\n');
+            ret.append(";\n");
         }
         if (selectors != null) {
             ret.append(indent);
-            ret.append('}');
-            ret.append('\n');
-            ret.append('\n');
+            ret.append("}\n\n");
         }
         return ret.toString();
     }

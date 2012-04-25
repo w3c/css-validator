@@ -1,0 +1,74 @@
+// $Id$
+// Author: Yves Lafon <ylafon@w3.org>
+//
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
+package org.w3c.css.properties.css3;
+
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
+
+/**
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#the-border-image-source
+ * @version $Revision$
+ */
+public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderImageSource {
+
+
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return none.equals(ident);
+    }
+
+    /**
+     * Create a new CssBorderImageSource
+     */
+    public CssBorderImageSource() {
+        value = initial;
+    }
+
+    /**
+     * Creates a new CssBorderImageSource
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssBorderImageSource(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+
+        }
+        CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                } else if (none.equals(val)) {
+                    value = none;
+                    break;
+                }
+                // unrecognized ident... let it fail
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+
+    }
+
+    public CssBorderImageSource(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+}
+

@@ -78,7 +78,7 @@ public interface CssParser {
      * @param url    the URL where the input stream comes from.
      * @param lineno The number line in the source document.
      *               It is used for error message
-     * @see #parseStyleElement(InputStream, URL, int)
+     * @see #parseStyleElement(ApplContext, InputStream, String, String, URL, int)
      * @deprecated Replaced by parseStyleElement
      */
     public abstract void parseStyleElement(ApplContext ac, String input,

@@ -27,6 +27,7 @@ public class CssSwitch extends CssValue {
      * Create a new CssSwitch.
      */
     public CssSwitch() {
+        switch_char = SLASH;
     }
 
     /**

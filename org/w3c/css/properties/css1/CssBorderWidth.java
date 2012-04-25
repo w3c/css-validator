@@ -1,318 +1,200 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// @author Yves Lafon <ylafon@w3.org>
+
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- *   <H4>
- *     &nbsp;&nbsp; 'border-width'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> [thin | medium | thick | &lt;length&gt;]{1,4}<BR>
- *   <EM>Initial:</EM> not defined for shorthand properties<BR>
- *   <EM>Applies to:</EM> all elements<BR>
- *   <EM>Inherited:</EM> no<BR>
- *   <EM>Percentage values:</EM> N/A<BR>
- *   <P>
- *   This property is a shorthand property for setting 'border-width-top',
- *   'border-width-right', 'border-width-bottom' and 'border-width-left' at the
- *   same place in the style sheet.
- *   <P>
- *   There can be from one to four values, with the following interpretation:
- *   <UL>
- *     <LI>
- *       one value: all four border widths are set to that value
- *     <LI>
- *       two values: top and bottom border widths are set to the first value, right
- *       and left are set to the second
- *     <LI>
- *       three values: top is set to the first, right and left are set to the second,
- *       bottom is set to the third
- *     <LI>
- *       four values: top, right, bottom and left, respectively
- *   </UL>
- *   <P>
- *   In the examples below, the comments indicate the resulting widths of the
- *   top, right, bottom and left borders:
- *   <PRE>
- *   H1 { border-width: thin }                   / * thin thin thin thin * /
- *   H1 { border-width: thin thick }             / * thin thick thin thick * /
- *   H1 { border-width: thin thick medium }      / * thin thick medium thin * /
- *   H1 { border-width: thin thick medium 12cm } / * thin thick medium 12cm * /
- * </PRE>
- *   <P>
- *   Border widths cannot be negative.
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#value-def-border-width
  */
-public class CssBorderWidth extends CssProperty implements CssOperator {
+public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 
-    CssBorderTopWidth top;
-    CssBorderBottomWidth bottom;
-    CssBorderRightWidth right;
-    CssBorderLeftWidth left;
+    public static CssIdent allowed_values[];
+
+    static {
+        allowed_values = new CssIdent[3];
+        allowed_values[0] = CssIdent.getIdent("thin");
+        allowed_values[1] = CssIdent.getIdent("medium");
+        allowed_values[2] = CssIdent.getIdent("thick");
+    }
+
+    /*
+     * Get the cached ident if it matches null otherwise
+     */
+    static CssIdent getMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssBorderWidth
      */
-    public CssBorderWidth(CssBorderTopWidth top,
-			  CssBorderBottomWidth bottom,
-			  CssBorderRightWidth right,
-			  CssBorderLeftWidth left) {
-	this.top = top;
-	this.bottom = bottom;
-	this.left = left;
-	this.right = right;
+    public CssBorderWidth() {
     }
 
     /**
-     * Create a new CssBorder
+     * Set the value of the property<br/>
+     * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @param check true will test the number of values
-     * @exception InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
-    public CssBorderWidth(ApplContext ac, CssExpression expression, boolean check)
-    	throws InvalidParamException {
-
-	setByUser();
-	switch (expression.getCount()) {
-	case 1:
-	    top = new CssBorderTopWidth(ac, expression);
-	    bottom = new CssBorderBottomWidth((CssBorderFaceWidth) top.get());
-	    right = new CssBorderRightWidth((CssBorderFaceWidth) top.get());
-	    left = new CssBorderLeftWidth((CssBorderFaceWidth) top.get());
-	    break;
-	case 2:
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopWidth(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightWidth(ac, expression);
-	    bottom = new CssBorderBottomWidth((CssBorderFaceWidth) top.get());
-	    left = new CssBorderLeftWidth((CssBorderFaceWidth) right.get());
-	    break;
-	case 3:
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopWidth(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightWidth(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    bottom = new CssBorderBottomWidth(ac, expression);
-	    left = new CssBorderLeftWidth((CssBorderFaceWidth) right.get());
-	    break;
-	default:
-	    // checks the number of parameters
-	    if(check && expression.getCount() > 4) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopWidth(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightWidth(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(expression.getOperator())).toString()),
-			ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    bottom = new CssBorderBottomWidth(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    left = new CssBorderLeftWidth(ac, expression);
-	    break;
-	}
-    }
-
     public CssBorderWidth(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return top;
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "border-width";
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-	if (right.face.equals(left.face)) {
-	    if (top.face.equals(bottom.face)) {
-		if (top.face.equals(right.face)) {
-		    return top.toString();
-		} else {
-		    return top + " " + right;
-		}
-	    } else {
-		return top + " " + right + " " + bottom;
-	    }
-	} else {
-	    return top + " " + right + " " + bottom + " " + left;
-	}
-    }
-
-    /**
-     * Set this property to be important.
-     * Overrides this method for a macro
-     */
-    public void setImportant() {
-	top.important = true;
-	right.important = true;
-	left.important = true;
-	bottom.important = true;
-    }
-
-    /**
-     * Returns true if this property is important.
-     * Overrides this method for a macro
-     */
-    public boolean getImportant() {
-	return ((top == null || top.important) &&
-		(right == null || right.important) &&
-		(left == null || left.important) &&
-		(bottom == null || bottom.important));
-    }
-
-    /**
-     * Set the context.
-     * Overrides this method for a macro
+     * Set the value of the property
      *
-     * @see org.w3c.css.css.CssCascadingOrder#order
-     * @see org.w3c.css.css.StyleSheetParser#handleRule
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
-    public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (top != null) {
-	    top.setSelectors(selector);
-	}
-	if (right != null) {
-	    right.setSelectors(selector);
-	}
-	if (bottom != null) {
-	    bottom.setSelectors(selector);
-	}
-	if (left != null) {
-	    left.setSelectors(selector);
-	}
+    public CssBorderWidth(ApplContext ac, CssExpression expression,
+                          boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 4) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
+        CssValue val;
+        char op;
+
+        ArrayList<CssValue> res = new ArrayList<CssValue>();
+        while (res.size() < 4 && !expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val = ((CssNumber) val).getLength();
+                case CssTypes.CSS_LENGTH:
+                    CssLength length = (CssLength) val;
+                    if (!length.isPositive()) {
+                        throw new InvalidParamException("negative-value", expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    res.add(length);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        res.add(inherit);
+                        break;
+                    }
+                    CssIdent match = getMatchingIdent((CssIdent) val);
+                    if (match == null) {
+                        throw new InvalidParamException("value", expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    res.add(match);
+                    break;
+                default:
+                    throw new InvalidParamException("unrecognize", ac);
+            }
+            expression.next();
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op),
+                        ac);
+            }
+        }
+        // check that inherit is alone
+        if (res.size() > 1 && res.contains(inherit)) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
+
+        // now assign the computed values...
+        top = new CssBorderTopWidth();
+        right = new CssBorderRightWidth();
+        bottom = new CssBorderBottomWidth();
+        left = new CssBorderLeftWidth();
+
+        switch (res.size()) {
+            case 1:
+                top.value = left.value = right.value = bottom.value = res.get(0);
+                break;
+            case 2:
+                top.value = bottom.value = res.get(0);
+                right.value = left.value = res.get(1);
+                break;
+            case 3:
+                top.value = res.get(0);
+                right.value = left.value = res.get(1);
+                bottom.value = res.get(2);
+                break;
+            case 4:
+                top.value = res.get(0);
+                right.value = res.get(1);
+                bottom.value = res.get(2);
+                left.value = res.get(3);
+                break;
+            default:
+                // can't happen
+                throw new InvalidParamException("unrecognize", ac);
+        }
     }
+
 
     /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
+     * Check the border-*-width and returns a value.
+     * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if(top != null) {
-	    top.addToStyle(ac, style);
-	}
-	if(right != null) {
-	    right.addToStyle(ac, style);
-	}
-	if(left != null) {
-	    left.addToStyle(ac, style);
-	}
-	if(bottom != null) {
-	    bottom.addToStyle(ac, style);
-	}
+    protected static CssValue checkBorderSideWidth(ApplContext ac, CssProperty caller, CssExpression expression,
+                                                   boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue retval = null;
+        CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val = ((CssNumber) val).getLength();
+            case CssTypes.CSS_LENGTH:
+                CssLength length = (CssLength) val;
+                if (!length.isPositive()) {
+                    throw new InvalidParamException("negative-value", expression.getValue(),
+                            caller.getPropertyName(), ac);
+                }
+                retval = length;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    retval = inherit;
+                } else {
+                    retval = getMatchingIdent((CssIdent) val);
+                }
+                if (retval == null) {
+                    throw new InvalidParamException("value", expression.getValue(),
+                            caller.getPropertyName(), ac);
+                }
+                break;
+            default:
+                throw new InvalidParamException("unrecognize", ac);
+        }
+        expression.next();
+        return retval;
     }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	throw new IllegalStateException("Can't invoke this method on the property " +
-					getPropertyName());
-    }
-
-    /**
-     * Update the source file and the line.
-     * Overrides this method for a macro
-     *
-     * @param line The line number where this property is defined
-     * @param source The source file where this property is defined
-     */
-    public void setInfo(int line, String source) {
-	super.setInfo(line, source);
-	if(top != null) {
-	    top.setInfo(line, source);
-	}
-	if(right != null) {
-	    right.setInfo(line, source);
-	}
-	if(left != null) {
-	    left.setInfo(line, source);
-	}
-	if(bottom != null) {
-	    bottom.setInfo(line, source);
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return false; //FIXME
-    }
-
 }

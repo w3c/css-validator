@@ -1,154 +1,452 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
+// (c) COPYRIGHT 1995-2012  World Wide Web Consortium (MIT, ERCIM, Keio University)
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import static org.w3c.css.values.CssOperator.SPACE;
 
 
-public class CssBorderImage extends CssProperty {
+public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
 
-    String value = "";
-    ApplContext ac;
-    CssIdent none = new CssIdent("none");
 
     /**
      * Create new CssBorderImage
      */
     public CssBorderImage() {
-	value = "none";
+        value = initial;
     }
 
     /**
      * Create new CssBorderImage
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBorderImage(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-	setByUser();
-	CssValue val = null;
+                          boolean check) throws InvalidParamException {
+        int state = 0;
+        // <?border-image-source?> || <?border-image-slice?> [ / <?border-image-width?> | / <?border-image-width?>? / <?border-image-outset?> ]? || <?border-image-repeat?>
 
-	if (!(expression.getCount() <= 4)) {
-	    throw new InvalidParamException("value", expression.getValue(),
-		    getPropertyName(), ac);
-	}
+        // state 0, we check for <?border-image-source?> || <?border-image-slice?> || <?border-image-repeat?>
+        // state 1, we check only <?border-image-width?> ( first / after <?border-image-slice?>)
+        // state 2, we check only for  <?border-image-outset?>
+        CssExpression newexp;
+        CssValue val, tval;
+        char op;
 
-	for (int i=0; i < expression.getCount(); i++) {
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-	    val = expression.getValue();
-
-	    if (val != null) {
-
-		if (val.equals(none)) {
-		    value += "none" + " ";
-		} else if (val instanceof CssURL) {
-		    value += val.toString() + " ";
-		} else {
-		    throw new InvalidParamException("value", expression.getValue(),
-			    getPropertyName(), ac);
-		}
-
-	    } else {
-		break;
-	    }
-
-	    expression.next();
-	}
-
-	value = value.trim();
+            switch (val.getType()) {
+                case CssTypes.CSS_URL:
+                    if (source != null) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    // newexp = new CssExpression();
+                    // newexp.addValue(val);
+                    // work on this expression as it consumes only one token
+                    source = new CssBorderImageSource(ac, expression, false);
+                    // we must reset the operator
+                    state = 0;
+                    op = expression.getOperator();
+                    break;
+                case CssTypes.CSS_SWITCH:
+                    state++;
+                    if (state > 2) {
+                        throw new InvalidParamException("value", val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    expression.next();
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        value = inherit;
+                        // TODO force individual values as inherit
+                        expression.next();
+                        break;
+                    }
+                    switch (state) {
+                        case 0:
+                            // state 0, we can only have slice or repeat
+                            // slice
+                            tval = CssBorderImageSlice.getMatchingIdent((CssIdent) val);
+                            if (tval != null) {
+                                if (slice != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                newexp = getSliceExpression(ac, expression);
+                                if (newexp != null) {
+                                    slice = new CssBorderImageSlice(ac, newexp, check);
+                                    break;
+                                }
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            // repeat
+                            newexp = getRepeatExpression(ac, expression);
+                            if (newexp != null) {
+                                if (repeat != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                repeat = new CssBorderImageRepeat(ac, newexp, check);
+                                break;
+                            }
+                            // TODO check for border-image! (none)
+                            if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
+                                if (source != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                source = new CssBorderImageSource(ac, expression, false);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 1:
+                            // it can be only width or repeat.
+                            // width
+                            tval = CssBorderImageWidth.getMatchingIdent((CssIdent) val);
+                            if (tval != null) {
+                                if (width != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                newexp = getWidthExpression(ac, expression);
+                                if (newexp != null) {
+                                    width = new CssBorderImageWidth(ac, newexp, check);
+                                    break;
+                                }
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                        case 2:
+                            // outset has no ident so let 1 and 2 check repeat
+                            newexp = getRepeatExpression(ac, expression);
+                            if (newexp != null) {
+                                if (repeat != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                repeat = new CssBorderImageRepeat(ac, newexp, check);
+                                state = 0;
+                                break;
+                            }
+                            // TODO check for border-image! (none)
+                            if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
+                                if (source != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                source = new CssBorderImageSource(ac, expression, false);
+                                state = 0;
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                    }
+                    break;
+                case CssTypes.CSS_PERCENTAGE:
+                    // can appear only in slice and width (so 0 and 1)
+                    switch (state) {
+                        case 0:
+                            if (slice != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getSliceExpression(ac, expression);
+                            if (newexp != null) {
+                                slice = new CssBorderImageSlice(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 1:
+                            if (width != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getWidthExpression(ac, expression);
+                            if (newexp != null) {
+                                width = new CssBorderImageWidth(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 2:
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                    }
+                    break;
+                case CssTypes.CSS_LENGTH:
+                    // can appear only in width and outset (so 1 and 2)
+                    switch (state) {
+                        case 0:
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 1:
+                            if (width != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getWidthExpression(ac, expression);
+                            if (newexp != null) {
+                                width = new CssBorderImageWidth(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 2:
+                            if (outset != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getOutsetExpression(ac, expression);
+                            if (newexp != null) {
+                                outset = new CssBorderImageOutset(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                    }
+                    break;
+                case CssTypes.CSS_NUMBER:
+                    switch (state) {
+                        case 0:
+                            if (slice != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getSliceExpression(ac, expression);
+                            if (newexp != null) {
+                                slice = new CssBorderImageSlice(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 1:
+                            if (width != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getWidthExpression(ac, expression);
+                            if (newexp != null) {
+                                width = new CssBorderImageWidth(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        case 2:
+                            if (outset != null) {
+                                throw new InvalidParamException("value", val.toString(),
+                                        getPropertyName(), ac);
+                            }
+                            newexp = getOutsetExpression(ac, expression);
+                            if (newexp != null) {
+                                outset = new CssBorderImageOutset(ac, newexp, check);
+                                break;
+                            }
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                    }
+                    break;
+                default:
+                    throw new InvalidParamException("value", val.toString(),
+                            getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op),
+                        ac);
+            }
+        }
+        shorthand = true;
     }
 
     public CssBorderImage(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssBorderImage != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssBorderImage = this;
+    private CssExpression getRepeatExpression(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        CssExpression exp = null;
+        CssValue val, tval;
+        char op;
+
+        val = expression.getValue();
+        op = expression.getOperator();
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            tval = CssBorderImageRepeat.getMatchingIdent((CssIdent) val);
+            if (tval == null) {
+                return null;
+            }
+            exp = new CssExpression();
+            exp.addValue(val);
+            expression.next();
+            if (!expression.end()) {
+                // now get the potential second value
+                // first check the operator
+                if (op != SPACE) {
+                    return exp;
+                }
+                val = expression.getValue();
+                op = expression.getOperator();
+                if (val.getType() == CssTypes.CSS_IDENT) {
+                    tval = CssBorderImageRepeat.getMatchingIdent((CssIdent) val);
+                    if (tval != null) {
+                        exp.addValue(tval);
+                        expression.next();
+                        if (op != SPACE) {
+                            return exp;
+                        }
+                    }
+                }
+            }
+        }
+        return exp;
     }
 
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getBorderImage();
-	} else {
-	    return ((Css3Style) style).cssBorderImage;
-	}
+    private CssExpression getSliceExpression(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        CssExpression exp = new CssExpression();
+        CssValue val, tval;
+        char op;
+
+        while (exp.getCount() < 5 && !expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    exp.addValue(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    tval = CssBorderImageSlice.getMatchingIdent((CssIdent) val);
+                    if (tval == null) {
+                        return exp;
+                    }
+                    exp.addValue(val);
+                    break;
+                default:
+                    return exp;
+
+            }
+            expression.next();
+            if (op != SPACE) {
+                return exp;
+            }
+        }
+        return exp;
     }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderImage &&
-		value.equals( ((CssBorderImage) property).value));
+    private CssExpression getWidthExpression(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        CssExpression exp = new CssExpression();
+        CssValue val, tval;
+        char op;
+
+        while (exp.getCount() < 4 && !expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    exp.addValue(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    tval = CssBorderImageWidth.getMatchingIdent((CssIdent) val);
+                    if (tval == null) {
+                        return exp;
+                    }
+                    exp.addValue(val);
+                    break;
+                default:
+                    return exp;
+
+            }
+            expression.next();
+            if (op != SPACE) {
+                return exp;
+            }
+        }
+        return exp;
     }
 
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "border-image";
+    private CssExpression getOutsetExpression(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        CssExpression exp = new CssExpression();
+        CssValue val, tval;
+        char op;
+
+        while (exp.getCount() < 4 && !expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_NUMBER:
+                    exp.addValue(val);
+                    break;
+                default:
+                    return exp;
+
+            }
+            expression.next();
+            if (op != SPACE) {
+                return exp;
+            }
+        }
+        return exp;
     }
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return value;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return value.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
     public String toString() {
-	return value;
+        if (value != null) {
+            return value.toString();
+        }
+        boolean first = true;
+        StringBuilder sb = new StringBuilder();
+        if (source != null) {
+            first = false;
+            sb.append(source);
+        }
+        if (slice != null) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(' ');
+            }
+            sb.append(slice);
+            if (width != null) {
+                sb.append(" / ").append(width);
+                if (outset != null) {
+                    sb.append(" / ").append(outset);
+                }
+            } else if (outset != null) {
+                sb.append(" / / ").append(outset);
+            }
+        }
+        if (repeat != null) {
+            if (!first) {
+                sb.append(' ');
+            }
+            sb.append(repeat);
+        }
+        return sb.toString();
     }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	CssNumber cssnum = new CssNumber(ac, (float) 1.0);
-	return value == cssnum.toString();
-    }
-
 }

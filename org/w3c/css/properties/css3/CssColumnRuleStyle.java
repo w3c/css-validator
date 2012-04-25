@@ -11,12 +11,9 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css1.CssBorderStyleCSS2;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
@@ -25,7 +22,7 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRuleStyle {
 
-    CssIdent value;
+    CssValue value;
 
     /**
      * Create a new CssColumnRuleStyle
@@ -46,28 +43,7 @@ public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRule
                               boolean check) throws InvalidParamException {
 
         setByUser();
-        CssValue val = expression.getValue();
-        // too many values
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-        // we only use Css Ident part of the CssBorderStyle acceptable values
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        CssIdent ident = (CssIdent) val;
-        if (inherit.equals(ident)) {
-            value = inherit;
-        } else if (CssBorderStyleCSS2.acceptable_values.contains(ident)) {
-            value = ident;
-        } else {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        expression.next();
+        value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
     }
 
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression)

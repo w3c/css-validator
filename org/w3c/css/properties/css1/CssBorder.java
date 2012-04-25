@@ -1,371 +1,196 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// @author Yves Lafon <ylafon@w3.org>
+
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBorderBottomColor;
+import org.w3c.css.properties.css.CssBorderBottomStyle;
+import org.w3c.css.properties.css.CssBorderLeftColor;
+import org.w3c.css.properties.css.CssBorderLeftStyle;
+import org.w3c.css.properties.css.CssBorderRightColor;
+import org.w3c.css.properties.css.CssBorderRightStyle;
+import org.w3c.css.properties.css.CssBorderTopColor;
+import org.w3c.css.properties.css.CssBorderTopStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-shorthand-properties
  */
-public class CssBorder extends CssProperty implements CssOperator {
-
-//    CssBorderTopWidth width;
-//    CssBorderTopStyle style;
-//    CssBorderTopColor color;
-//    CssValue uri = null;
-//    CssBorderImageTransform imagetransform = null;
-
-    CssBorderTop top = new CssBorderTop();
-    CssBorderRight right = new CssBorderRight();
-    CssBorderBottom bottom = new CssBorderBottom();
-    CssBorderLeft left = new CssBorderLeft();
+public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
     /**
-     * Create a new CssBorder
+     * Create a new CssBackground
      */
     public CssBorder() {
-	top = new CssBorderTop();
-	right = new CssBorderRight();
-	bottom = new CssBorderBottom();
-	left = new CssBorderLeft();
     }
 
     /**
-     * Create a new CssBorder
+     * Set the value of the property<br/>
+     * Does not check the number of values
      *
-     * @param value The value for this property
-     * @exception InvalidParamException The value is incorrect
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssBorder(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorder(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-	CssValue val = expression.getValue();
+                     boolean check) throws InvalidParamException {
+        // great, it's the same thing as one side!
+        SideValues values = checkBorderSide(ac, this, expression, check);
+        CssValueList valueList = new CssValueList();
 
-	if(check && expression.getCount() > 4) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
-
-	setByUser();
-
-
-	top = new CssBorderTop(ac, expression);
-
-	if (val == expression.getValue()) {
-	    throw new InvalidParamException("value",
-					    expression.getValue(),
-					    getPropertyName(), ac);
-	}
-	right = new CssBorderRight();
-	bottom = new CssBorderBottom();
-	left = new CssBorderLeft();
-
-	CssBorderTopWidth w = top.width;
-	CssBorderTopStyle s = top.style;
-	CssBorderTopColor c = top.color;
-
-	if(w != null) {
-	    right.width  =
-		new CssBorderRightWidth((CssBorderFaceWidth) w.get());
-	    left.width =
-		new CssBorderLeftWidth((CssBorderFaceWidth) w.get());
-	    bottom.width =
-		new CssBorderBottomWidth((CssBorderFaceWidth) w.get());
-	}
-	if(s != null) {
-	    right.style =
-		new CssBorderRightStyle((CssBorderFaceStyle) s.get());
-	    left.style =
-		new CssBorderLeftStyle((CssBorderFaceStyle) s.get());
-	    bottom.style =
-		new CssBorderBottomStyle((CssBorderFaceStyle) s.get());
-	}
-	if(c != null) {
-	    right.color =
-		new CssBorderRightColor((CssBorderFaceColor) c.get());
-	    left.color =
-		new CssBorderLeftColor((CssBorderFaceColor) c.get());
-	    bottom.color =
-		new CssBorderBottomColor((CssBorderFaceColor) c.get());
-	}
-	/*
-	CssValue val = expression.floatValue();
-	char op = SPACE;
-	boolean find = true;
-
-	setByUser();
-
-	boolean manyValues = (expression.getCount() > 1);
-
-	while (find) {
-	    find = false;
-	    val = expression.floatValue();
-	    op = expression.getOperator();
-
-	    if (val == null)
-		break;
-
-	    // if there are many values, we can't have inherit as one of them
-	    if(manyValues && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", null, null, ac);
-	    }
-
-	    if (op != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(op)).toString()), ac);
-
-	    if (width == null) {
-		try {
-		    width = new CssBorderTopWidth(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		    // nothing to do, style will test the value
-		}
-	    }
-
-	    if (!find && style == null) {
-		try {
-		    style = new CssBorderTopStyle(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		    // nothing to do, color will test the value
-		}
-	    }
-
-	    if (!find && color == null) {
-		try {
-		    color = new CssBorderTopColor(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		    // nothing to do, uri will test the value
-		}
-	    }
-
-	    if (!find && uri == null) {
-		if (val instanceof CssURL) {
-		    uri = val;
-		    find = true;
-		}
-	    }
-
-	    if (!find && imagetransform == null) {
-		imagetransform = new CssBorderImageTransform(ac, expression);
-		find = true;
-	    }
-	}*/
-	/*
-	if (width == null) {
-	    width = new CssBorderTopWidth();
-	}
-	if (style == null) {
-	    style = new CssBorderTopStyle();
-	}
-
-	if (color == null) {
-	    color = new CssBorderTopColor();
-	}
-	*/
-	//
-
-
-//	top = new CssBorderTop(ac, expression);
-/*
-	right = new CssBorderRight();
-	bottom = new CssBorderBottomCSS21();
-	left = new CssBorderLeft();*/
-/*
-	right.width  =  new CssBorderRightWidth((CssBorderFaceWidth) top.width.get());
-	left.width   =  new CssBorderLeftWidth((CssBorderFaceWidth) top.width.get());
-	bottom.width =  new CssBorderBottomWidth((CssBorderFaceWidth) top.width.get());
-
-	right.style  =  new CssBorderRightStyle((CssBorderFaceStyle) top.style.get());
-	left.style   =  new CssBorderLeftStyle((CssBorderFaceStyle) top.style.get());
-	bottom.style =  new CssBorderBottomStyle((CssBorderFaceStyle) top.style.get());
-
-	right.color  = 	new CssBorderRightColor((CssBorderFaceColor) top.color.get());
-	left.color   =  new CssBorderLeftColor((CssBorderFaceColor) top.color.get());
-	bottom.color =  new CssBorderBottomColorCSS21((CssBorderFaceColor) top.color.get());
-*/
-    }
-
-    public CssBorder(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+        if (values.color != null) {
+            valueList.add(values.color);
+            borderColor = new CssBorderColor();
+            borderColor.bottom = new CssBorderBottomColor();
+            borderColor.bottom.value = values.color;
+            borderColor.top = new CssBorderTopColor();
+            borderColor.top.value = values.color;
+            borderColor.left = new CssBorderLeftColor();
+            borderColor.left.value = values.color;
+            borderColor.right = new CssBorderRightColor();
+            borderColor.right.value = values.color;
+        }
+        if (values.style != null) {
+            valueList.add(values.style);
+            borderStyle = new CssBorderStyle();
+            borderStyle.bottom = new CssBorderBottomStyle();
+            borderStyle.bottom.value = values.style;
+            borderStyle.top = new CssBorderTopStyle();
+            borderStyle.top.value = values.style;
+            borderStyle.left = new CssBorderLeftStyle();
+            borderStyle.left.value = values.style;
+            borderStyle.right = new CssBorderRightStyle();
+            borderStyle.right.value = values.style;
+        }
+        if (values.width != null) {
+            valueList.add(values.width);
+            borderWidth = new CssBorderWidth();
+            borderWidth.bottom = new CssBorderBottomWidth();
+            borderWidth.bottom.value = values.width;
+            borderWidth.top = new CssBorderTopWidth();
+            borderWidth.top.value = values.width;
+            borderWidth.left = new CssBorderLeftWidth();
+            borderWidth.left.value = values.width;
+            borderWidth.right = new CssBorderRightWidth();
+            borderWidth.right.value = values.width;
+        }
+        value = valueList;
     }
 
     /**
-     * Returns the value of this property
+     * Check the border-* and returns a value.
+     * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    public Object get() {
-	return top.get();
+    protected static SideValues checkBorderSide(ApplContext ac, CssProperty caller, CssExpression expression,
+                                                boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue _width = null;
+        CssValue _style = null;
+        CssValue _color = null;
+
+        CssValue val;
+        char op;
+
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val = ((CssNumber) val).getLength();
+                case CssTypes.CSS_LENGTH:
+                    CssLength length = (CssLength) val;
+                    if (!length.isPositive()) {
+                        throw new InvalidParamException("negative-value", expression.getValue(),
+                                caller.getPropertyName(), ac);
+                    }
+                    _width = val;
+                    break;
+                case CssTypes.CSS_COLOR:
+                    _color = val;
+                    break;
+                case CssTypes.CSS_IDENT:
+                    CssIdent id = (CssIdent) val;
+                    if (transparent.equals(id)) {
+                        _color = transparent;
+                        break;
+                    }
+                    if (inherit.equals(id)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        _width = inherit;
+                        _style = inherit;
+                        _color = inherit;
+                        break;
+                    }
+                    CssIdent match = CssBorderWidth.getMatchingIdent(id);
+                    if (match != null) {
+                        _width = match;
+                    } else {
+                        match = CssBorderStyle.getMatchingIdent(id);
+                        if (match != null) {
+                            _style = match;
+                        } else {
+                            // if not a width or a style, fail if it's not a proper color
+                            _color = new org.w3c.css.values.CssColor(ac, id.toString());
+                        }
+                    }
+                    break;
+                default:
+                    throw new InvalidParamException("value", val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op),
+                        ac);
+            }
+        }
+        return new SideValues(_width, _style, _color);
     }
 
-    /**
-     * Returns the top property
-     */
-    public CssBorderTop getTop() {
-	return top;
+// small wrapper to return values...
+protected static class SideValues {
+    CssValue width;
+    CssValue style;
+    CssValue color;
+
+    SideValues(CssValue width, CssValue style, CssValue color) {
+        this.width = width;
+        this.style = style;
+        this.color = color;
+
     }
 
-    /**
-     * Returns the right property
-     */
-    public CssBorderRight getRight() {
-	return right;
-    }
-
-    /**
-     * Returns the bottom property
-     */
-    public CssBorderBottom getBottom() {
-	return bottom;
-    }
-
-    /**
-     * Returns the left property
-     */
-    public CssBorderLeft getLeft() {
-	return left;
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-	if(top != null) {
-	    return top.toString();
-	}
-	return "";
-    }
-
-    public boolean equals(CssProperty property) {
-	return false; // FIXME
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "border";
-    }
-
-    /**
-     * Set this property to be important.
-     * Overrides this method for a macro
-     */
-    public void setImportant() {
-	if(top != null) {
-	    top.setImportant();
-	}
-	if(right != null) {
-	    right.setImportant();
-	}
-	if(left != null) {
-	    left.setImportant();
-	}
-	if(bottom != null) {
-	    bottom.setImportant();
-	}
-    }
-
-    /**
-     * Returns true if this property is important.
-     * Overrides this method for a macro
-     */
-    public boolean getImportant() {
-	return (top.getImportant() &&
-		right.getImportant() &&
-		left.getImportant() &&
-		bottom.getImportant());
-    }
-
-    /**
-     * Set the context.
-     * Overrides this method for a macro
-     *
-     * @see org.w3c.css.css.CssCascadingOrder#order
-     * @see org.w3c.css.css.StyleSheetParser#handleRule
-     */
-    public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (top != null) {
-	    top.setSelectors(selector);
-	}
-	if (right != null) {
-	    right.setSelectors(selector);
-	}
-	if (bottom != null) {
-	    bottom.setSelectors(selector);
-	}
-	if (left != null) {
-	    left.setSelectors(selector);
-	}
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if(top != null) {
-	    top.addToStyle(ac, style);
-	}
-	if(right != null) {
-	    right.addToStyle(ac, style);
-	}
-	if(left != null) {
-	    left.addToStyle(ac, style);
-	}
-	if(bottom != null) {
-	    bottom.addToStyle(ac, style);
-	}
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css1Style) style).getBorder();
-	} else {
-	    return ((Css1Style) style).cssBorder;
-	}
-    }
-
-    /**
-     * Update the source file and the line.
-     * Overrides this method for a macro
-     *
-     * @param line The line number where this property is defined
-     * @param source The source file where this property is defined
-     */
-    public void setInfo(int line, String source) {
-	//super.setInfo(line, source);
-	//top.setInfo(line, source);
-	//right.setInfo(line, source);
-	//left.setInfo(line, source);
-	//bottom.setInfo(line, source);
-    }
-
-    void check() {
-	//top.check();
-	//bottom.check();
-	//right.check();
-	//left.check();
-    }
+}
 }

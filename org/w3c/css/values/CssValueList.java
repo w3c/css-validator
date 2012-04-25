@@ -25,6 +25,10 @@ public class CssValueList extends CssValue {
         return type;
     }
 
+    public int size() {
+        return value.size();
+    }
+
     /**
      * Create a new CssValueList
      */
@@ -63,6 +67,13 @@ public class CssValueList extends CssValue {
      */
     public Object get() {
         return value;
+    }
+
+    /**
+     * return a stored value
+     */
+    public CssValue get(int idx) {
+        return value.get(idx);
     }
 
     /**

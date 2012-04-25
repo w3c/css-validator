@@ -1,336 +1,171 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
-//
-// (c) COPYRIGHT MIT and INRIA, 1997.
-// Please first read the full copyright statement in file COPYRIGHT.html
+// @author Yves Lafon <ylafon@w3.org>
 
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.parser.CssSelectors;
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css2.CssBorderBottomColor;
+import org.w3c.css.properties.css2.CssBorderLeftColor;
+import org.w3c.css.properties.css2.CssBorderRightColor;
+import org.w3c.css.properties.css2.CssBorderTopColor;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- *   <H4>
- *      &nbsp;&nbsp; 'border-color'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> &lt;color&gt;{1,4}<BR>
- *   <EM>Initial:</EM> the value of the 'color' property<BR>
- *   <EM>Applies to:</EM> all elements<BR>
- *   <EM>Inherited:</EM> no<BR>
- *   <EM>Percentage values:</EM> N/A<BR>
- *   <P>
- *   The 'border-color' property sets the color of the four borders. 'border-color'
- *   can have from one to four values, and the values are set on the different
- *   sides as for 'border-width' above.
- *   <P>
- *   If no color value is specified, the value of the 'color' property of the
- *   element itself will take its place:
- *   <PRE>
- *   P {
- *     color: black;
- *     background: white;
- *     border: solid;
- *   }
- * </PRE>
- *   <P>
- *   In the above example, the border will be a solid black line.
- *
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-color-properties
  */
-public class CssBorderColor extends CssProperty implements CssOperator {
-
-    CssBorderTopColor top;
-    CssBorderBottomColor bottom;
-    CssBorderRightColor right;
-    CssBorderLeftColor left;
-
-    //private static CssIdent transparent = new CssIdent("transparent"); // obsolete, not in CSS3 anymore
+public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
 
     /**
-     * Create a new CssBorderColor with all four sides
+     * Create a new CssBorderColor
      */
-    public CssBorderColor(CssBorderTopColor top,
-			  CssBorderBottomColor bottom,
-			  CssBorderRightColor right,
-			  CssBorderLeftColor left) {
-	this.top = top;
-	this.bottom = bottom;
-	this.left = left;
-	this.right = right;
+    public CssBorderColor() {
     }
 
     /**
-     * Create a new CssBorder
+     * Set the value of the property<br/>
+     * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssBorderColor(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorderColor(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                          boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 4) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
+        CssValue val;
+        char op;
 
-	setByUser();
+        ArrayList<CssValue> res = new ArrayList<CssValue>();
+        while (res.size() < 4 && !expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-	switch (expression.getCount()) {
-	case 1:
-	    //CssValue val = expression.floatValue();
-	    //if (val.equals(transparent)) { // obsolete, transparent is a color value now
-		//top = new CssBorderTopColor();
-		//top.face.face = transparent;
-		//expression.next();
-	    //} else
-	    /*if (val.equals(inherit)) {
-		top = new CssBorderTopColor();
-		top.face.face = inherit;
-		expression.next();
-	    } else*/
-	    top = new CssBorderTopColor(ac, expression);
-	    /*bottom = new CssBorderBottomColorCSS21((CssBorderFaceColor) top.get());
-	    right = new CssBorderRightColor((CssBorderFaceColor) top.get());
-	    left = new CssBorderLeftColor((CssBorderFaceColor) top.get());*/
-	    break;
-	case 2:
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()),
-						ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopColor(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightColor(ac, expression);
-	    /*bottom = new CssBorderBottomColorCSS21((CssBorderFaceColor) top.get());
-	    left = new CssBorderLeftColor((CssBorderFaceColor) right.get());*/
-	    break;
-	case 3:
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()),
-						ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopColor(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()), ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightColor(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    bottom = new CssBorderBottomColor(ac, expression);
-	    //left = new CssBorderLeftColor((CssBorderFaceColor) right.get());
-	    break;
-	case 4:
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()),
-						ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    top = new CssBorderTopColor(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()),
-						ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    right = new CssBorderRightColor(ac, expression);
-	    if (expression.getOperator() != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(expression.getOperator())).toString()),
-						ac);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    bottom = new CssBorderBottomColor(ac, expression);
-	    if(expression.getValue().equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    left = new CssBorderLeftColor(ac, expression);
-	    break;
-	default:
-	    if(check) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    break;
-	}
-    }
+            switch (val.getType()) {
+                case CssTypes.CSS_COLOR:
+                    res.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        res.add(inherit);
+                        break;
+                    }
+                    if (transparent.equals(val)) {
+                        res.add(transparent);
+                        break;
+                    }
+                    res.add(new org.w3c.css.values.CssColor(ac, (String)val.get()));
+                    break;
+                default:
+                    throw new InvalidParamException("unrecognize", ac);
+            }
+            expression.next();
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        Character.toString(op),
+                        ac);
+            }
+        }
+        // check that inherit is alone
+        if (res.size() > 1 && res.contains(inherit)) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
 
-    public CssBorderColor(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
-    }
+        // now assign the computed values...
+        top = new CssBorderTopColor();
+        right = new CssBorderRightColor();
+        bottom = new CssBorderBottomColor();
+        left = new CssBorderLeftColor();
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return top;
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "border-color";
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        String result = "";
-        // top should never be null
-        if(top != null) result += top;
-        if(right != null) result += " " + right;
-        if(bottom != null) result += " " + bottom;
-        if(left != null) result += " " + left;
-        return result;
-	/*if (right.face.equals(left.face)) {
-	    if (top.face.equals(bottom.face)) {
-		if (top.face.equals(right.face)) {
-		    return top.toString();
-		} else {
-		    return top + " " + right;
-		}
-	    } else {
-		return top + " " + right + " " + bottom;
-	    }
-	} else {
-	    return top + " " + right + " " + bottom + " " + left;
-	}*/
+        switch (res.size()) {
+            case 1:
+                top.value = left.value = right.value = bottom.value = res.get(0);
+                break;
+            case 2:
+                top.value = bottom.value = res.get(0);
+                right.value = left.value = res.get(1);
+                break;
+            case 3:
+                top.value = res.get(0);
+                right.value = left.value = res.get(1);
+                bottom.value = res.get(2);
+                break;
+            case 4:
+                top.value = res.get(0);
+                right.value = res.get(1);
+                bottom.value = res.get(2);
+                left.value = res.get(3);
+                break;
+            default:
+                // can't happen
+                throw new InvalidParamException("unrecognize", ac);
+        }
+        throw new InvalidParamException("unrecognize", ac);
 
     }
 
     /**
-     * Set this property to be important.
-     * Overrides this method for a macro
+     * Check the border-*-color and returns a value.
+     * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    public void setImportant() {
-	if(top != null) {
-	    top.important = true;
-	}
-	if(right != null) {
-	    right.important = true;
-	}
-	if(left != null) {
-	    left.important = true;
-	}
-	if(bottom != null) {
-	    bottom.important = true;
-	}
-    }
+    protected static CssValue checkBorderSideColor(ApplContext ac, CssProperty caller, CssExpression expression,
+                                                   boolean check) throws InvalidParamException {
 
-    /**
-     * Returns true if this property is important.
-     * Overrides this method for a macro
-     */
-    public boolean getImportant() {
-	return ((top == null || top.important) &&
-		(right == null || right.important) &&
-		(left == null || left.important) &&
-		(bottom == null || bottom.important));
-    }
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-    /**
-     * Set the context.
-     * Overrides this method for a macro
-     *
-     * @see org.w3c.css.css.CssCascadingOrder#order
-     * @see org.w3c.css.css.StyleSheetParser#handleRule
-     */
-    public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (top != null) {
-	    top.setSelectors(selector);
-	}
-	if (right != null) {
-	    right.setSelectors(selector);
-	}
-	if (bottom != null) {
-	    bottom.setSelectors(selector);
-	}
-	if (left != null) {
-	    left.setSelectors(selector);
-	}
-    }
+        CssValue retval = null;
+        CssValue val = expression.getValue();
 
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if(top != null) {
-	    top.addToStyle(ac, style);
-	}
-	if(right != null) {
-	    right.addToStyle(ac, style);
-	}
-	if(left != null) {
-	    left.addToStyle(ac, style);
-	}
-	if(bottom != null) {
-	    bottom.addToStyle(ac, style);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_COLOR:
+                retval = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (transparent.equals(val)) {
+                    retval = transparent;
+                    break;
+                }
+                if (inherit.equals(val)) {
+                    retval = inherit;
+                    break;
+                }
+                retval = new org.w3c.css.values.CssColor(ac,
+                        (String) val.get());
+                break;
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        caller.getPropertyName(), ac);
+        }
+        expression.next();
+        return retval;
     }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	throw new IllegalStateException("Can't invoke this method on the property " +
-					getPropertyName());
-    }
-
-    /**
-     * Update the source file and the line.
-     * Overrides this method for a macro
-     *
-     * @param line The line number where this property is defined
-     * @param source The source file where this property is defined
-     */
-    public void setInfo(int line, String source) {
-	super.setInfo(line, source);
-	if(top != null) {
-	    top.setInfo(line, source);
-	}
-	if(right != null) {
-	    right.setInfo(line, source);
-	}
-	if(left != null) {
-	    left.setInfo(line, source);
-	}
-	if(bottom != null) {
-	    bottom.setInfo(line, source);
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return false; // FIXME
-    }
-
 }

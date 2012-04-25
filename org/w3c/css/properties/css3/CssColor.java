@@ -20,7 +20,6 @@ import org.w3c.css.values.CssValue;
 public class CssColor extends org.w3c.css.properties.css.CssColor {
 
     CssValue color;
-    org.w3c.css.values.CssColor tempcolor = new org.w3c.css.values.CssColor();
     String attrvalue = null;
 
     /**
@@ -43,6 +42,8 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
+
+        org.w3c.css.values.CssColor tempcolor = new org.w3c.css.values.CssColor();
 
         CssValue val = expression.getValue();
         setByUser();

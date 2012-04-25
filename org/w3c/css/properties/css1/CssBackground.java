@@ -8,13 +8,13 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackgroundConstants;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * <H4>
@@ -53,8 +53,7 @@ import org.w3c.css.values.CssValue;
  * @see org.w3c.css.properties.css.CssBackgroundAttachment
  * @see org.w3c.css.properties.css.CssBackgroundPosition
  */
-public class CssBackground extends org.w3c.css.properties.css.CssBackground
-        implements CssOperator, CssBackgroundConstants {
+public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
     CssBackgroundColor color;
     CssBackgroundImage image;
@@ -147,18 +146,6 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground
                 throw new InvalidParamException("unrecognize", ac);
             }
         }
-        /*
-      if (color == null)
-          color = new CssBackgroundColor();
-      if (image == null)
-          image = new CssBackgroundImage();
-      if (repeat == null)
-          repeat = new CssBackgroundRepeat();
-      if (attachment == null)
-          attachment = new CssBackgroundAttachment();
-      if (position == null)
-          position = new CssBackgroundPosition();
-      */
     }
 
     public CssBackground(ApplContext ac, CssExpression expression)
@@ -219,7 +206,6 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground
             if (!first) {
                 sb.append(' ');
             }
-            first = false;
             sb.append(position);
         }
         return sb.toString();
