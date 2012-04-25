@@ -1,7 +1,7 @@
-z { border-image: inherit }}
-y { border-image: initial }}
+z { border-image: inherit }
+y { border-image: initial }
 bimg1 { border-image: 10 5% 20 2% }
-bimg2 { border-image: 10 5% 20 2% /  }
+bimg2 { border-image: 10 5% 20 2% / 50 }
 bimg3 { border-image: 10 5% 20 2% /  /10px 20 30 40px }
 bimg4 { border-image: 10 5% 20 2% /  /10px 20 30 40px url(foo.png) }
 bimg5 { border-image: 10 5% 20 2% /  /10px 20 30 40px url(foo.png) stretch space }
@@ -137,7 +137,7 @@ bimg134 { border-image: 10 5% 20 2% stretch space }
 bimg135 { border-image: 10 5% 20 2% stretch space url(foo.png) }
 bimg136 { border-image: 10 5% 20 2% stretch space none }
 bimg137 { border-image: 10% }
-bimg138 { border-image: 10% /  }
+bimg138 { border-image: 10% / 50 }
 bimg139 { border-image: 10% /  /10px 20 30 40px }
 bimg140 { border-image: 10% /  /10px 20 30 40px url(foo.png) }
 bimg141 { border-image: 10% /  /10px 20 30 40px url(foo.png) stretch space }
@@ -273,7 +273,7 @@ bimg270 { border-image: 10% stretch space }
 bimg271 { border-image: 10% stretch space url(foo.png) }
 bimg272 { border-image: 10% stretch space none }
 bimg273 { border-image: 20 }
-bimg274 { border-image: 20 /  }
+bimg274 { border-image: 20 / 50 }
 bimg275 { border-image: 20 /  /10px 20 30 40px }
 bimg276 { border-image: 20 /  /10px 20 30 40px url(foo.png) }
 bimg277 { border-image: 20 /  /10px 20 30 40px url(foo.png) stretch space }
@@ -410,7 +410,7 @@ bimg407 { border-image: 20 stretch space url(foo.png) }
 bimg408 { border-image: 20 stretch space none }
 bimg409 { border-image: url(foo.png) }
 bimg410 { border-image: url(foo.png) 10 5% 20 2% }
-bimg411 { border-image: url(foo.png) 10 5% 20 2% /  }
+bimg411 { border-image: url(foo.png) 10 5% 20 2% / 50 }
 bimg412 { border-image: url(foo.png) 10 5% 20 2% /  /10px 20 30 40px }
 bimg413 { border-image: url(foo.png) 10 5% 20 2% /  /10px 20 30 40px stretch space }
 bimg414 { border-image: url(foo.png) 10 5% 20 2% /  /10px 20px }
@@ -444,7 +444,7 @@ bimg441 { border-image: url(foo.png) 10 5% 20 2% / 5% /50 stretch space }
 bimg442 { border-image: url(foo.png) 10 5% 20 2% / 5% stretch space }
 bimg443 { border-image: url(foo.png) 10 5% 20 2% stretch space }
 bimg444 { border-image: url(foo.png) 10% }
-bimg445 { border-image: url(foo.png) 10% /  }
+bimg445 { border-image: url(foo.png) 10% / 50 }
 bimg446 { border-image: url(foo.png) 10% /  /10px 20 30 40px }
 bimg447 { border-image: url(foo.png) 10% /  /10px 20 30 40px stretch space }
 bimg448 { border-image: url(foo.png) 10% /  /10px 20px }
@@ -478,7 +478,7 @@ bimg475 { border-image: url(foo.png) 10% / 5% /50 stretch space }
 bimg476 { border-image: url(foo.png) 10% / 5% stretch space }
 bimg477 { border-image: url(foo.png) 10% stretch space }
 bimg478 { border-image: url(foo.png) 20 }
-bimg479 { border-image: url(foo.png) 20 /  }
+bimg479 { border-image: url(foo.png) 20 / 50 }
 bimg480 { border-image: url(foo.png) 20 /  /10px 20 30 40px }
 bimg481 { border-image: url(foo.png) 20 /  /10px 20 30 40px stretch space }
 bimg482 { border-image: url(foo.png) 20 /  /10px 20px }
@@ -513,7 +513,7 @@ bimg510 { border-image: url(foo.png) 20 / 5% stretch space }
 bimg511 { border-image: url(foo.png) 20 stretch space }
 bimg512 { border-image: url(foo.png) stretch space }
 bimg513 { border-image: url(foo.png) stretch space 10 5% 20 2% }
-bimg514 { border-image: url(foo.png) stretch space 10 5% 20 2% /  }
+bimg514 { border-image: url(foo.png) stretch space 10 5% 20 2% / 50 }
 bimg515 { border-image: url(foo.png) stretch space 10 5% 20 2% /  /10px 20 30 40px }
 bimg516 { border-image: url(foo.png) stretch space 10 5% 20 2% /  /10px 20px }
 bimg517 { border-image: url(foo.png) stretch space 10 5% 20 2% /  /50 }
@@ -530,7 +530,7 @@ bimg527 { border-image: url(foo.png) stretch space 10 5% 20 2% / 5% /10px 20 30 
 bimg528 { border-image: url(foo.png) stretch space 10 5% 20 2% / 5% /10px 20px }
 bimg529 { border-image: url(foo.png) stretch space 10 5% 20 2% / 5% /50 }
 bimg530 { border-image: url(foo.png) stretch space 10% }
-bimg531 { border-image: url(foo.png) stretch space 10% /  }
+bimg531 { border-image: url(foo.png) stretch space 10% / 50 }
 bimg532 { border-image: url(foo.png) stretch space 10% /  /10px 20 30 40px }
 bimg533 { border-image: url(foo.png) stretch space 10% /  /10px 20px }
 bimg534 { border-image: url(foo.png) stretch space 10% /  /50 }
@@ -547,7 +547,7 @@ bimg544 { border-image: url(foo.png) stretch space 10% / 5% /10px 20 30 40px }
 bimg545 { border-image: url(foo.png) stretch space 10% / 5% /10px 20px }
 bimg546 { border-image: url(foo.png) stretch space 10% / 5% /50 }
 bimg547 { border-image: url(foo.png) stretch space 20 }
-bimg548 { border-image: url(foo.png) stretch space 20 /  }
+bimg548 { border-image: url(foo.png) stretch space 20 / 50 }
 bimg549 { border-image: url(foo.png) stretch space 20 /  /10px 20 30 40px }
 bimg550 { border-image: url(foo.png) stretch space 20 /  /10px 20px }
 bimg551 { border-image: url(foo.png) stretch space 20 /  /50 }
@@ -565,7 +565,7 @@ bimg562 { border-image: url(foo.png) stretch space 20 / 5% /10px 20px }
 bimg563 { border-image: url(foo.png) stretch space 20 / 5% /50 }
 bimg564 { border-image: none }
 bimg565 { border-image: none 10 5% 20 2% }
-bimg566 { border-image: none 10 5% 20 2% /  }
+bimg566 { border-image: none 10 5% 20 2% / 50 }
 bimg567 { border-image: none 10 5% 20 2% /  /10px 20 30 40px }
 bimg568 { border-image: none 10 5% 20 2% /  /10px 20 30 40px stretch space }
 bimg569 { border-image: none 10 5% 20 2% /  /10px 20px }
@@ -599,7 +599,7 @@ bimg596 { border-image: none 10 5% 20 2% / 5% /50 stretch space }
 bimg597 { border-image: none 10 5% 20 2% / 5% stretch space }
 bimg598 { border-image: none 10 5% 20 2% stretch space }
 bimg599 { border-image: none 10% }
-bimg600 { border-image: none 10% /  }
+bimg600 { border-image: none 10% / 50 }
 bimg601 { border-image: none 10% /  /10px 20 30 40px }
 bimg602 { border-image: none 10% /  /10px 20 30 40px stretch space }
 bimg603 { border-image: none 10% /  /10px 20px }
@@ -633,7 +633,7 @@ bimg630 { border-image: none 10% / 5% /50 stretch space }
 bimg631 { border-image: none 10% / 5% stretch space }
 bimg632 { border-image: none 10% stretch space }
 bimg633 { border-image: none 20 }
-bimg634 { border-image: none 20 /  }
+bimg634 { border-image: none 20 / 50 }
 bimg635 { border-image: none 20 /  /10px 20 30 40px }
 bimg636 { border-image: none 20 /  /10px 20 30 40px stretch space }
 bimg637 { border-image: none 20 /  /10px 20px }
@@ -668,7 +668,7 @@ bimg665 { border-image: none 20 / 5% stretch space }
 bimg666 { border-image: none 20 stretch space }
 bimg667 { border-image: none stretch space }
 bimg668 { border-image: none stretch space 10 5% 20 2% }
-bimg669 { border-image: none stretch space 10 5% 20 2% /  }
+bimg669 { border-image: none stretch space 10 5% 20 2% / 50 }
 bimg670 { border-image: none stretch space 10 5% 20 2% /  /10px 20 30 40px }
 bimg671 { border-image: none stretch space 10 5% 20 2% /  /10px 20px }
 bimg672 { border-image: none stretch space 10 5% 20 2% /  /50 }
@@ -685,7 +685,7 @@ bimg682 { border-image: none stretch space 10 5% 20 2% / 5% /10px 20 30 40px }
 bimg683 { border-image: none stretch space 10 5% 20 2% / 5% /10px 20px }
 bimg684 { border-image: none stretch space 10 5% 20 2% / 5% /50 }
 bimg685 { border-image: none stretch space 10% }
-bimg686 { border-image: none stretch space 10% /  }
+bimg686 { border-image: none stretch space 10% / 50 }
 bimg687 { border-image: none stretch space 10% /  /10px 20 30 40px }
 bimg688 { border-image: none stretch space 10% /  /10px 20px }
 bimg689 { border-image: none stretch space 10% /  /50 }
@@ -702,7 +702,7 @@ bimg699 { border-image: none stretch space 10% / 5% /10px 20 30 40px }
 bimg700 { border-image: none stretch space 10% / 5% /10px 20px }
 bimg701 { border-image: none stretch space 10% / 5% /50 }
 bimg702 { border-image: none stretch space 20 }
-bimg703 { border-image: none stretch space 20 /  }
+bimg703 { border-image: none stretch space 20 / 50 }
 bimg704 { border-image: none stretch space 20 /  /10px 20 30 40px }
 bimg705 { border-image: none stretch space 20 /  /10px 20px }
 bimg706 { border-image: none stretch space 20 /  /50 }
@@ -720,7 +720,7 @@ bimg717 { border-image: none stretch space 20 / 5% /10px 20px }
 bimg718 { border-image: none stretch space 20 / 5% /50 }
 bimg719 { border-image: stretch space }
 bimg720 { border-image: stretch space  10 5% 20 2% }
-bimg721 { border-image: stretch space  10 5% 20 2% /  }
+bimg721 { border-image: stretch space  10 5% 20 2% / 50 }
 bimg722 { border-image: stretch space  10 5% 20 2% /  /10px 20 30 40px }
 bimg723 { border-image: stretch space  10 5% 20 2% /  /10px 20 30 40px none }
 bimg724 { border-image: stretch space  10 5% 20 2% /  /10px 20px }
@@ -754,7 +754,7 @@ bimg751 { border-image: stretch space  10 5% 20 2% / 5% /50 none }
 bimg752 { border-image: stretch space  10 5% 20 2% / 5% none }
 bimg753 { border-image: stretch space  10 5% 20 2% none }
 bimg754 { border-image: stretch space  10% }
-bimg755 { border-image: stretch space  10% /  }
+bimg755 { border-image: stretch space  10% / 50 }
 bimg756 { border-image: stretch space  10% /  /10px 20 30 40px }
 bimg757 { border-image: stretch space  10% /  /10px 20 30 40px none }
 bimg758 { border-image: stretch space  10% /  /10px 20px }
@@ -788,7 +788,7 @@ bimg785 { border-image: stretch space  10% / 5% /50 none }
 bimg786 { border-image: stretch space  10% / 5% none }
 bimg787 { border-image: stretch space  10% none }
 bimg788 { border-image: stretch space  20 }
-bimg789 { border-image: stretch space  20 /  }
+bimg789 { border-image: stretch space  20 / 50 }
 bimg790 { border-image: stretch space  20 /  /10px 20 30 40px }
 bimg791 { border-image: stretch space  20 /  /10px 20 30 40px none }
 bimg792 { border-image: stretch space  20 /  /10px 20px }
@@ -823,7 +823,7 @@ bimg820 { border-image: stretch space  20 / 5% none }
 bimg821 { border-image: stretch space  20 none }
 bimg822 { border-image: stretch space  url(foo.png) }
 bimg823 { border-image: stretch space  url(foo.png) 10 5% 20 2% }
-bimg824 { border-image: stretch space  url(foo.png) 10 5% 20 2% /  }
+bimg824 { border-image: stretch space  url(foo.png) 10 5% 20 2% / 50 }
 bimg825 { border-image: stretch space  url(foo.png) 10 5% 20 2% /  /10px 20 30 40px }
 bimg826 { border-image: stretch space  url(foo.png) 10 5% 20 2% /  /10px 20px }
 bimg827 { border-image: stretch space  url(foo.png) 10 5% 20 2% /  /50 }
@@ -840,7 +840,7 @@ bimg837 { border-image: stretch space  url(foo.png) 10 5% 20 2% / 5% /10px 20 30
 bimg838 { border-image: stretch space  url(foo.png) 10 5% 20 2% / 5% /10px 20px }
 bimg839 { border-image: stretch space  url(foo.png) 10 5% 20 2% / 5% /50 }
 bimg840 { border-image: stretch space  url(foo.png) 10% }
-bimg841 { border-image: stretch space  url(foo.png) 10% /  }
+bimg841 { border-image: stretch space  url(foo.png) 10% / 50 }
 bimg842 { border-image: stretch space  url(foo.png) 10% /  /10px 20 30 40px }
 bimg843 { border-image: stretch space  url(foo.png) 10% /  /10px 20px }
 bimg844 { border-image: stretch space  url(foo.png) 10% /  /50 }
@@ -857,7 +857,7 @@ bimg854 { border-image: stretch space  url(foo.png) 10% / 5% /10px 20 30 40px }
 bimg855 { border-image: stretch space  url(foo.png) 10% / 5% /10px 20px }
 bimg856 { border-image: stretch space  url(foo.png) 10% / 5% /50 }
 bimg857 { border-image: stretch space  url(foo.png) 20 }
-bimg858 { border-image: stretch space  url(foo.png) 20 /  }
+bimg858 { border-image: stretch space  url(foo.png) 20 / 50 }
 bimg859 { border-image: stretch space  url(foo.png) 20 /  /10px 20 30 40px }
 bimg860 { border-image: stretch space  url(foo.png) 20 /  /10px 20px }
 bimg861 { border-image: stretch space  url(foo.png) 20 /  /50 }
@@ -875,7 +875,7 @@ bimg872 { border-image: stretch space  url(foo.png) 20 / 5% /10px 20px }
 bimg873 { border-image: stretch space  url(foo.png) 20 / 5% /50 }
 bimg874 { border-image: stretch space  none }
 bimg875 { border-image: stretch space  none 10 5% 20 2% }
-bimg876 { border-image: stretch space  none 10 5% 20 2% /  }
+bimg876 { border-image: stretch space  none 10 5% 20 2% / 50 }
 bimg877 { border-image: stretch space  none 10 5% 20 2% /  /10px 20 30 40px }
 bimg878 { border-image: stretch space  none 10 5% 20 2% /  /10px 20px }
 bimg879 { border-image: stretch space  none 10 5% 20 2% /  /50 }
@@ -892,7 +892,7 @@ bimg889 { border-image: stretch space  none 10 5% 20 2% / 5% /10px 20 30 40px }
 bimg890 { border-image: stretch space  none 10 5% 20 2% / 5% /10px 20px }
 bimg891 { border-image: stretch space  none 10 5% 20 2% / 5% /50 }
 bimg892 { border-image: stretch space  none 10% }
-bimg893 { border-image: stretch space  none 10% /  }
+bimg893 { border-image: stretch space  none 10% / 50 }
 bimg894 { border-image: stretch space  none 10% /  /10px 20 30 40px }
 bimg895 { border-image: stretch space  none 10% /  /10px 20px }
 bimg896 { border-image: stretch space  none 10% /  /50 }
@@ -909,7 +909,7 @@ bimg906 { border-image: stretch space  none 10% / 5% /10px 20 30 40px }
 bimg907 { border-image: stretch space  none 10% / 5% /10px 20px }
 bimg908 { border-image: stretch space  none 10% / 5% /50 }
 bimg909 { border-image: stretch space  none 20 }
-bimg910 { border-image: stretch space  none 20 /  }
+bimg910 { border-image: stretch space  none 20 / 50 }
 bimg911 { border-image: stretch space  none 20 /  /10px 20 30 40px }
 bimg912 { border-image: stretch space  none 20 /  /10px 20px }
 bimg913 { border-image: stretch space  none 20 /  /50 }
@@ -926,7 +926,7 @@ bimg923 { border-image: stretch space  none 20 / 5% /10px 20 30 40px }
 bimg924 { border-image: stretch space  none 20 / 5% /10px 20px }
 bimg925 { border-image: stretch space  none 20 / 5% /50 }
 bimg926 { border-image: stretch space 10 5% 20 2% }
-bimg927 { border-image: stretch space 10 5% 20 2% /  }
+bimg927 { border-image: stretch space 10 5% 20 2% / 50 }
 bimg928 { border-image: stretch space 10 5% 20 2% /  /10px 20 30 40px }
 bimg929 { border-image: stretch space 10 5% 20 2% /  /10px 20 30 40px url(foo.png) }
 bimg930 { border-image: stretch space 10 5% 20 2% /  /10px 20px }
@@ -960,7 +960,7 @@ bimg957 { border-image: stretch space 10 5% 20 2% / 5% /50 url(foo.png) }
 bimg958 { border-image: stretch space 10 5% 20 2% / 5% url(foo.png) }
 bimg959 { border-image: stretch space 10 5% 20 2% url(foo.png) }
 bimg960 { border-image: stretch space 10% }
-bimg961 { border-image: stretch space 10% /  }
+bimg961 { border-image: stretch space 10% / 50 }
 bimg962 { border-image: stretch space 10% /  /10px 20 30 40px }
 bimg963 { border-image: stretch space 10% /  /10px 20 30 40px url(foo.png) }
 bimg964 { border-image: stretch space 10% /  /10px 20px }
@@ -994,7 +994,7 @@ bimg991 { border-image: stretch space 10% / 5% /50 url(foo.png) }
 bimg992 { border-image: stretch space 10% / 5% url(foo.png) }
 bimg993 { border-image: stretch space 10% url(foo.png) }
 bimg994 { border-image: stretch space 20 }
-bimg995 { border-image: stretch space 20 /  }
+bimg995 { border-image: stretch space 20 / 50 }
 bimg996 { border-image: stretch space 20 /  /10px 20 30 40px }
 bimg997 { border-image: stretch space 20 /  /10px 20 30 40px url(foo.png) }
 bimg998 { border-image: stretch space 20 /  /10px 20px }
