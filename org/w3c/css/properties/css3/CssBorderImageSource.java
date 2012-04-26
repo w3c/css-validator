@@ -13,8 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#the-border-image-source
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-source
  */
 public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderImageSource {
 

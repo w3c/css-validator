@@ -11,7 +11,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @since CSS1
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-left
+ * @see CssBorder
  */
 public class CssBorderLeft extends org.w3c.css.properties.css.CssBorderLeft {
 

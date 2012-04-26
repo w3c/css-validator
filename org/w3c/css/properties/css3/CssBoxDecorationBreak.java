@@ -17,7 +17,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/#the-box-decoration-break
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#box-decoration-break
  */
 
 public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDecorationBreak {

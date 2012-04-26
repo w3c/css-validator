@@ -19,7 +19,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-shorthand-properties
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border
  */
 public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 

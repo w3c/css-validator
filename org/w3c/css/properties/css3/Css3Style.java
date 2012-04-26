@@ -101,8 +101,6 @@ public class Css3Style extends ATSCStyle {
     CssDisplayRole cssDisplayRole;
     CssMarginOutside cssMarginOutside;
     CssMarginInside cssMarginInside;
-    CssBoxWidth cssBoxWidth;
-    CssBoxHeight cssBoxHeight;
     CssFit cssFit;
     CssLink cssLink;
     CssLinkBehavior cssLinkBehavior;
@@ -798,24 +796,6 @@ public class Css3Style extends ATSCStyle {
                             new CssMarginInside(), style, selector);
         }
         return cssMarginInside;
-    }
-
-    public CssBoxWidth getBoxWidth() {
-        if (cssBoxWidth == null) {
-            cssBoxWidth =
-                    (CssBoxWidth) style.CascadingOrder(
-                            new CssBoxWidth(), style, selector);
-        }
-        return cssBoxWidth;
-    }
-
-    public CssBoxHeight getBoxHeight() {
-        if (cssBoxHeight == null) {
-            cssBoxHeight =
-                    (CssBoxHeight) style.CascadingOrder(
-                            new CssBoxHeight(), style, selector);
-        }
-        return cssBoxHeight;
     }
 
     public CssFit getFit() {

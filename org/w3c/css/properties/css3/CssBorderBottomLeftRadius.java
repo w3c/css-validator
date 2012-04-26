@@ -12,6 +12,10 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValueList;
 
+/**
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-bottom-left-radius
+ * @see CssBorderRadius
+ */
 public class CssBorderBottomLeftRadius extends org.w3c.css.properties.css.CssBorderBottomLeftRadius {
 
     /**

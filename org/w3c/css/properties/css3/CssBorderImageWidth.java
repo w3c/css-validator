@@ -19,8 +19,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @version $Revision$
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#the-border-image-width
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-width
  */
 public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderImageWidth {
 

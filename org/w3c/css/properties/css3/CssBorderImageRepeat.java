@@ -16,8 +16,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @version $Revision$
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#the-border-image-repeat
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-repeat
  */
 public class CssBorderImageRepeat extends org.w3c.css.properties.css.CssBorderImageRepeat {
 

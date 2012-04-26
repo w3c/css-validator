@@ -10,8 +10,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @since CSS2
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-bottom-style
+ * @see CssBorderStyle
  */
 public class CssBorderBottomStyle extends org.w3c.css.properties.css.CssBorderBottomStyle {
 

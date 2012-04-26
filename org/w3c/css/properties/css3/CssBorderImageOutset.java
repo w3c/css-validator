@@ -17,8 +17,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @version $Revision$
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#the-border-image-outset
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#border-image-outset
  */
 public class CssBorderImageOutset extends org.w3c.css.properties.css.CssBorderImageOutset {
 
