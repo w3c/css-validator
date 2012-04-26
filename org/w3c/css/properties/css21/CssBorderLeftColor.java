@@ -10,7 +10,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @see
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#propdef-border-left-color
+ * @see CssBorderColor
  */
 public class CssBorderLeftColor extends org.w3c.css.properties.css.CssBorderLeftColor {
 

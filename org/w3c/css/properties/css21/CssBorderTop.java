@@ -11,7 +11,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @since CSS1
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#propdef-border-top
+ * @see CssBorder
  */
 public class CssBorderTop extends org.w3c.css.properties.css.CssBorderTop {
 

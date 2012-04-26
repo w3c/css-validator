@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-color-properties
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#propdef-border-color
  */
 public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
 
