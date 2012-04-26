@@ -41,7 +41,8 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
         // state 1, we check only <?border-image-width?> ( first / after <?border-image-slice?>)
         // state 2, we check only for  <?border-image-outset?>
         CssExpression newexp;
-        CssValue val, tval;
+        CssValue val = null;
+        CssValue tval;
         char op;
 
         while (!expression.end()) {
@@ -53,8 +54,14 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     if (source != null) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
-                    // newexp = new CssExpression();
-                    // newexp.addValue(val);
+                    // right after the / in step 2 we must have a slice and outset or width
+                    if (state > 0) {
+                        if ((slice == null) ||
+                                ((state == 1 && width == null) || (state == 2 && outset == null))) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                    }
                     // work on this expression as it consumes only one token
                     source = new CssBorderImageSource(ac, expression, false);
                     // we must reset the operator
@@ -63,7 +70,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     break;
                 case CssTypes.CSS_SWITCH:
                     state++;
-                    if (state > 2) {
+                    if (slice == null || state > 2) {
                         throw new InvalidParamException("value", val.toString(),
                                 getPropertyName(), ac);
                     }
@@ -81,7 +88,7 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                     }
                     switch (state) {
                         case 0:
-                            // state 0, we can only have slice or repeat
+                            // state 0, we can only have slice or repeat or image
                             // slice
                             tval = CssBorderImageSlice.getMatchingIdent((CssIdent) val);
                             if (tval != null) {
@@ -143,13 +150,24 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                                     throw new InvalidParamException("value", val.toString(),
                                             getPropertyName(), ac);
                                 }
+                                // right after the / in step 2 we must have a slice or outset
+                                if ((state == 1 && width == null) || (state == 2 && outset == null)) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
                                 repeat = new CssBorderImageRepeat(ac, newexp, check);
                                 state = 0;
                                 break;
                             }
                             // TODO check for border-image! (none)
                             if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
+                                System.err.println("*** matching image slice=" + slice);
                                 if (source != null) {
+                                    throw new InvalidParamException("value", val.toString(),
+                                            getPropertyName(), ac);
+                                }
+                                // right after the / in step 2 we must have a slice or outset
+                                if ((state == 1 && width == null) || (state == 2 && outset == null)) {
                                     throw new InvalidParamException("value", val.toString(),
                                             getPropertyName(), ac);
                                 }
@@ -274,6 +292,11 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                         Character.toString(op),
                         ac);
             }
+        }
+        if (val.getType() == CssTypes.CSS_SWITCH) {
+            // we can't end by a /
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
         }
         shorthand = true;
     }
