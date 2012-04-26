@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-color-properties
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/box.html#border-color-properties
  */
 public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
 
@@ -145,10 +145,8 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                 retval = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (transparent.equals(val)) {
-                    retval = transparent;
-                    break;
-                }
+                // strangely enough border-color can be transparent but not border-*-color
+                // CSS21 is not that way.
                 if (inherit.equals(val)) {
                     retval = inherit;
                     break;

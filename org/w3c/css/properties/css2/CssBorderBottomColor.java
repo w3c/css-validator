@@ -10,8 +10,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @since CSS2
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/box.html#propdef-border-bottom-color
+ * @see CssBorderColor
  */
 public class CssBorderBottomColor extends org.w3c.css.properties.css.CssBorderBottomColor {
 
