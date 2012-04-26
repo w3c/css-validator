@@ -10,8 +10,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-top-width
  * @see CssBorderWidth
- * @version $Revision$
  */
 public class CssBorderTopWidth extends org.w3c.css.properties.css.CssBorderTopWidth {
 

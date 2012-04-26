@@ -12,7 +12,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @since CSS1
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-left
+ * @see CssBorder
  */
 public class CssBorderLeft extends org.w3c.css.properties.css.CssBorderLeft {
 

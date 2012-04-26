@@ -27,7 +27,7 @@ import org.w3c.css.values.CssValueList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-shorthand-properties
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border
  */
 public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
@@ -139,10 +139,6 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                     break;
                 case CssTypes.CSS_IDENT:
                     CssIdent id = (CssIdent) val;
-                    if (transparent.equals(id)) {
-                        _color = transparent;
-                        break;
-                    }
                     if (inherit.equals(id)) {
                         if (expression.getCount() > 1) {
                             throw new InvalidParamException("unrecognize", ac);
@@ -179,18 +175,18 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
         return new SideValues(_width, _style, _color);
     }
 
-// small wrapper to return values...
-protected static class SideValues {
-    CssValue width;
-    CssValue style;
-    CssValue color;
+    // small wrapper to return values...
+    protected static class SideValues {
+        CssValue width;
+        CssValue style;
+        CssValue color;
 
-    SideValues(CssValue width, CssValue style, CssValue color) {
-        this.width = width;
-        this.style = style;
-        this.color = color;
+        SideValues(CssValue width, CssValue style, CssValue color) {
+            this.width = width;
+            this.style = style;
+            this.color = color;
+
+        }
 
     }
-
-}
 }

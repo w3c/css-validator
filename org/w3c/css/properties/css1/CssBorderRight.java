@@ -13,7 +13,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @since CSS1
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-right
+ * @see CssBorder
  */
 public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
 

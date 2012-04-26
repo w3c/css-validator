@@ -10,8 +10,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#value-def-border-width
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-right-width
+ * @see CssBorderWidth
  */
 public class CssBorderRightWidth extends org.w3c.css.properties.css.CssBorderRightWidth {
 

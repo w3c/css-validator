@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#value-def-border-width
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-width
  */
 public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 

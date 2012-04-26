@@ -23,14 +23,14 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#value-def-border-style
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-style
  */
 public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
 
     public static CssIdent allowed_values[];
 
     static {
-        String _val[] = {"none", "hidden", "dotted", "dashed", "solid",
+        String _val[] = {"none", "dotted", "dashed", "solid",
                 "double", "groove", "ridge", "inset", "outset"};
         int i = 0;
         allowed_values = new CssIdent[_val.length];

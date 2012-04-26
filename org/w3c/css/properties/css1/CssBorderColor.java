@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#border-color-properties
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#border-color
  */
 public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
 
@@ -74,10 +74,6 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                 case CssTypes.CSS_IDENT:
                     if (inherit.equals(val)) {
                         res.add(inherit);
-                        break;
-                    }
-                    if (transparent.equals(val)) {
-                        res.add(transparent);
                         break;
                     }
                     res.add(new org.w3c.css.values.CssColor(ac, (String)val.get()));
@@ -150,10 +146,6 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                 retval = val;
                 break;
             case CssTypes.CSS_IDENT:
-                if (transparent.equals(val)) {
-                    retval = transparent;
-                    break;
-                }
                 if (inherit.equals(val)) {
                     retval = inherit;
                     break;
