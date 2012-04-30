@@ -32,6 +32,6 @@ public enum CssVersion {
 
     // get the default version of CSS
     public static CssVersion getDefault() {
-        return CSS21;
+        return CSS3;
     }
 }

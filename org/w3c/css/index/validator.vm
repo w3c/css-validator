@@ -13,8 +13,8 @@
         <option value="none">$no_special_profile</option>
         <option value="css1">$css1</option>
         <option value="css2">$css2</option>
-        <option selected="selected" value="css21">$css21</option>
-        <option value="css3">$css3</option>
+        <option value="css21">$css21</option>
+        <option selected="selected" value="css3">$css3</option>
         <option value="svg">$svg</option>
         <option value="svgbasic">$svgbasic</option>
         <option value="svgtiny">$svgtiny</option>  
