@@ -53,8 +53,8 @@
         <option value="none">프로파일 없음</option>
         <option value="css1">CSS 레벨 1</option>
         <option value="css2">CSS 레벨 2</option>
-        <option selected="selected" value="css21">CSS 레벨 2.1</option>
-        <option value="css3">CSS 레벨 3</option>
+        <option value="css21">CSS 레벨 2.1</option>
+        <option selected="selected" value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -142,8 +142,8 @@
         <option value="none">프로파일 없음</option>
         <option value="css1">CSS 레벨 1</option>
         <option value="css2">CSS 레벨 2</option>
-        <option selected="selected" value="css21">CSS 레벨 2.1</option>
-        <option value="css3">CSS 레벨 3</option>
+        <option value="css21">CSS 레벨 2.1</option>
+        <option selected="selected" value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -231,8 +231,8 @@
         <option value="none">프로파일 없음</option>
         <option value="css1">CSS 레벨 1</option>
         <option value="css2">CSS 레벨 2</option>
-        <option selected="selected" value="css21">CSS 레벨 2.1</option>
-        <option value="css3">CSS 레벨 3</option>
+        <option value="css21">CSS 레벨 2.1</option>
+        <option selected="selected" value="css3">CSS 레벨 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  

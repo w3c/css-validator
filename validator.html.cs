@@ -53,8 +53,8 @@
         <option value="none">Žádný zvláštní profil</option>
         <option value="css1">CSS level 1</option>
         <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="css21">CSS level 2.1</option>
+        <option selected="selected" value="css3">CSS level 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  
@@ -142,8 +142,8 @@
         <option value="none">Žádný zvláštní profil</option>
         <option value="css1">CSS level 1</option>
         <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="css21">CSS level 2.1</option>
+        <option selected="selected" value="css3">CSS level 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  
@@ -231,8 +231,8 @@
         <option value="none">Žádný zvláštní profil</option>
         <option value="css1">CSS level 1</option>
         <option value="css2">CSS level 2</option>
-        <option selected="selected" value="css21">CSS level 2.1</option>
-        <option value="css3">CSS level 3</option>
+        <option value="css21">CSS level 2.1</option>
+        <option selected="selected" value="css3">CSS level 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  

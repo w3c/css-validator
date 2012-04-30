@@ -53,8 +53,8 @@
         <option value="none">بدون پروفایل خاص</option>
         <option value="css1">سطح 1 CSS</option>
         <option value="css2">سطح 2 CSS</option>
-        <option selected="selected" value="css21">سطح 2.1 CSS</option>
-        <option value="css3">سطح 3 CSS</option>
+        <option value="css21">سطح 2.1 CSS</option>
+        <option selected="selected" value="css3">سطح 3 CSS</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -142,8 +142,8 @@
         <option value="none">بدون پروفایل خاص</option>
         <option value="css1">سطح 1 CSS</option>
         <option value="css2">سطح 2 CSS</option>
-        <option selected="selected" value="css21">سطح 2.1 CSS</option>
-        <option value="css3">سطح 3 CSS</option>
+        <option value="css21">سطح 2.1 CSS</option>
+        <option selected="selected" value="css3">سطح 3 CSS</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -231,8 +231,8 @@
         <option value="none">بدون پروفایل خاص</option>
         <option value="css1">سطح 1 CSS</option>
         <option value="css2">سطح 2 CSS</option>
-        <option selected="selected" value="css21">سطح 2.1 CSS</option>
-        <option value="css3">سطح 3 CSS</option>
+        <option value="css21">سطح 2.1 CSS</option>
+        <option selected="selected" value="css3">سطح 3 CSS</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  

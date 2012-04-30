@@ -53,8 +53,8 @@
         <option value="none">不指定配置文件</option>
         <option value="css1">CSS 版本 1</option>
         <option value="css2">CSS 版本 2</option>
-        <option selected="selected" value="css21">CSS 版本 2.1</option>
-        <option value="css3">CSS 版本 3</option>
+        <option value="css21">CSS 版本 2.1</option>
+        <option selected="selected" value="css3">CSS 版本 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -142,8 +142,8 @@
         <option value="none">不指定配置文件</option>
         <option value="css1">CSS 版本 1</option>
         <option value="css2">CSS 版本 2</option>
-        <option selected="selected" value="css21">CSS 版本 2.1</option>
-        <option value="css3">CSS 版本 3</option>
+        <option value="css21">CSS 版本 2.1</option>
+        <option selected="selected" value="css3">CSS 版本 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -231,8 +231,8 @@
         <option value="none">不指定配置文件</option>
         <option value="css1">CSS 版本 1</option>
         <option value="css2">CSS 版本 2</option>
-        <option selected="selected" value="css21">CSS 版本 2.1</option>
-        <option value="css3">CSS 版本 3</option>
+        <option value="css21">CSS 版本 2.1</option>
+        <option selected="selected" value="css3">CSS 版本 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  

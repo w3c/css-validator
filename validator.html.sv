@@ -53,8 +53,8 @@
         <option value="none">Ingen speciell profil</option>
         <option value="css1">CSS nivå 1</option>
         <option value="css2">CSS nivå 2</option>
-        <option selected="selected" value="css21">CSS nivå 2.1</option>
-        <option value="css3">CSS nivå 3</option>
+        <option value="css21">CSS nivå 2.1</option>
+        <option selected="selected" value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -142,8 +142,8 @@
         <option value="none">Ingen speciell profil</option>
         <option value="css1">CSS nivå 1</option>
         <option value="css2">CSS nivå 2</option>
-        <option selected="selected" value="css21">CSS nivå 2.1</option>
-        <option value="css3">CSS nivå 3</option>
+        <option value="css21">CSS nivå 2.1</option>
+        <option selected="selected" value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -231,8 +231,8 @@
         <option value="none">Ingen speciell profil</option>
         <option value="css1">CSS nivå 1</option>
         <option value="css2">CSS nivå 2</option>
-        <option selected="selected" value="css21">CSS nivå 2.1</option>
-        <option value="css3">CSS nivå 3</option>
+        <option value="css21">CSS nivå 2.1</option>
+        <option selected="selected" value="css3">CSS nivå 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  

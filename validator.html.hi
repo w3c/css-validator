@@ -53,8 +53,8 @@
         <option value="none">कोई विशेष प्रोफ़ाइल नहीं</option>
         <option value="css1">CSS स्तर 1</option>
         <option value="css2">CSS स्तर 2</option>
-        <option selected="selected" value="css21">CSS स्तर 2.1</option>
-        <option value="css3">CSS स्तर 3</option>
+        <option value="css21">CSS स्तर 2.1</option>
+        <option selected="selected" value="css3">CSS स्तर 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG बुनियादी</option>
         <option value="svgtiny">SVG छोटे</option>  
@@ -142,8 +142,8 @@
         <option value="none">कोई विशेष प्रोफ़ाइल नहीं</option>
         <option value="css1">CSS स्तर 1</option>
         <option value="css2">CSS स्तर 2</option>
-        <option selected="selected" value="css21">CSS स्तर 2.1</option>
-        <option value="css3">CSS स्तर 3</option>
+        <option value="css21">CSS स्तर 2.1</option>
+        <option selected="selected" value="css3">CSS स्तर 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG बुनियादी</option>
         <option value="svgtiny">SVG छोटे</option>  
@@ -231,8 +231,8 @@
         <option value="none">कोई विशेष प्रोफ़ाइल नहीं</option>
         <option value="css1">CSS स्तर 1</option>
         <option value="css2">CSS स्तर 2</option>
-        <option selected="selected" value="css21">CSS स्तर 2.1</option>
-        <option value="css3">CSS स्तर 3</option>
+        <option value="css21">CSS स्तर 2.1</option>
+        <option selected="selected" value="css3">CSS स्तर 3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG बुनियादी</option>
         <option value="svgtiny">SVG छोटे</option>  

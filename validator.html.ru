@@ -53,8 +53,8 @@
         <option value="none">Без специальных настроек</option>
         <option value="css1">CSS1</option>
         <option value="css2">CSS2</option>
-        <option selected="selected" value="css21">CSS2.1</option>
-        <option value="css3">CSS3</option>
+        <option value="css21">CSS2.1</option>
+        <option selected="selected" value="css3">CSS3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -142,8 +142,8 @@
         <option value="none">Без специальных настроек</option>
         <option value="css1">CSS1</option>
         <option value="css2">CSS2</option>
-        <option selected="selected" value="css21">CSS2.1</option>
-        <option value="css3">CSS3</option>
+        <option value="css21">CSS2.1</option>
+        <option selected="selected" value="css3">CSS3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -231,8 +231,8 @@
         <option value="none">Без специальных настроек</option>
         <option value="css1">CSS1</option>
         <option value="css2">CSS2</option>
-        <option selected="selected" value="css21">CSS2.1</option>
-        <option value="css3">CSS3</option>
+        <option value="css21">CSS2.1</option>
+        <option selected="selected" value="css3">CSS3</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG tiny</option>  
