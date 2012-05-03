@@ -40,7 +40,9 @@ private String value;
     }
 
     public String toString() {
-	return "[" + getName() + "^=\"" + value + "\"]";
+		StringBuilder sb = new StringBuilder();
+		sb.append('[').append(getName()).append("^=\"").append(value).append("\"]");
+		return sb.toString();
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
