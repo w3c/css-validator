@@ -123,8 +123,6 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                 // can't happen
                 throw new InvalidParamException("unrecognize", ac);
         }
-        throw new InvalidParamException("unrecognize", ac);
-
     }
 
     /**
