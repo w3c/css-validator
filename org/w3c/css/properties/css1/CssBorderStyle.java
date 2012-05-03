@@ -5,11 +5,11 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css2.CssBorderBottomStyle;
-import org.w3c.css.properties.css2.CssBorderLeftStyle;
-import org.w3c.css.properties.css2.CssBorderRightStyle;
-import org.w3c.css.properties.css2.CssBorderTopStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBorderBottomStyle;
+import org.w3c.css.properties.css.CssBorderLeftStyle;
+import org.w3c.css.properties.css.CssBorderRightStyle;
+import org.w3c.css.properties.css.CssBorderTopStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -150,34 +150,23 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
         }
     }
 
-    /**
-     * Check the border-*-style and returns a value.
-     * It makes sense to do it only once for all the sides, so by having the code here.
-     */
-    protected static CssValue checkBorderSideStyle(ApplContext ac, CssProperty caller, CssExpression expression,
-                                                   boolean check) throws InvalidParamException {
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-        CssValue retval = null;
-        CssValue val = expression.getValue();
-        switch (val.getType()) {
-            case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    retval = inherit;
-                } else {
-                    retval = getMatchingIdent((CssIdent) val);
-                }
-                if (retval == null) {
-                    throw new InvalidParamException("value", expression.getValue(),
-                            caller.getPropertyName(), ac);
-                }
-                break;
-            default:
-                throw new InvalidParamException("unrecognize", ac);
-        }
-        expression.next();
-        return retval;
-    }
+	/**
+	 * Add this property to the CssStyle
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
+		cssBorder.borderStyle.byUser = byUser;
+		if (cssBorder.borderStyle.shorthand) {
+			style.addRedefinitionWarning(ac, this);
+		}
+		cssBorder.borderStyle.value = value;
+		cssBorder.borderStyle.top = top;
+		cssBorder.borderStyle.left = left;
+		cssBorder.borderStyle.right = right;
+		cssBorder.borderStyle.bottom = bottom;
+		cssBorder.borderStyle.shorthand = shorthand;
+	}
 
 }

@@ -105,7 +105,7 @@ public class CssBorderColor extends CssProperty {
             bottom.addToStyle(ac, style);
             left.addToStyle(ac, style);
         }
-        cssBorder.borderWidth.shorthand = shorthand;
+        cssBorder.borderColor.shorthand = shorthand;
     }
 
     /**

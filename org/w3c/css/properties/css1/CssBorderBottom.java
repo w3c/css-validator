@@ -6,8 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.properties.css2.CssBorderBottomColor;
-import org.w3c.css.properties.css2.CssBorderBottomStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBorderBottomColor;
+import org.w3c.css.properties.css.CssBorderBottomStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -65,6 +66,30 @@ public class CssBorderBottom extends org.w3c.css.properties.css.CssBorderBottom 
         }
     }
 
+	/**
+	 * Add this property to the CssStyle
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		Css1Style css1Style = (Css1Style) style;
+		css1Style.cssBorder.byUser = byUser;
+		if (css1Style.cssBorder.borderBottom != null) {
+			style.addRedefinitionWarning(ac, this);
+		}
+		css1Style.cssBorder.borderBottom = this;
+		if (_width != null) {
+			_width.addToStyle(ac, style);
+		}
+		if (css1Style.cssBorder.borderColor.bottom != null) {
+			style.addRedefinitionWarning(ac, _color);
+		}
+		css1Style.cssBorder.borderColor.bottom = _color;
+		if (css1Style.cssBorder.borderStyle.bottom != null) {
+			style.addRedefinitionWarning(ac, _style);
+		}
+		css1Style.cssBorder.borderStyle.bottom = _style;
+	}
     /**
      * Returns a string representation of the object.
      */

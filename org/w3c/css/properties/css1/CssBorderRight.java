@@ -6,8 +6,9 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.properties.css2.CssBorderRightColor;
-import org.w3c.css.properties.css2.CssBorderRightStyle;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBorderRightColor;
+import org.w3c.css.properties.css.CssBorderRightStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -63,7 +64,32 @@ public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
         }
     }
 
-    /**
+	/**
+	 * Add this property to the CssStyle
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		Css1Style css1Style = (Css1Style) style;
+		css1Style.cssBorder.byUser = byUser;
+		if (css1Style.cssBorder.borderRight != null) {
+			style.addRedefinitionWarning(ac, this);
+		}
+		css1Style.cssBorder.borderRight = this;
+		if (_width != null) {
+			_width.addToStyle(ac, style);
+		}
+		if (css1Style.cssBorder.borderColor.right != null) {
+			style.addRedefinitionWarning(ac, _color);
+		}
+		css1Style.cssBorder.borderColor.right = _color;
+		if (css1Style.cssBorder.borderStyle.right != null) {
+			style.addRedefinitionWarning(ac, _style);
+		}
+		css1Style.cssBorder.borderStyle.right = _style;
+	}
+
+	/**
      * Returns a string representation of the object.
      */
     public String toString() {

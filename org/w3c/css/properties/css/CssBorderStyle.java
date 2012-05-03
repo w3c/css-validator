@@ -96,7 +96,7 @@ public class CssBorderStyle extends CssProperty {
             bottom.addToStyle(ac, style);
             left.addToStyle(ac, style);
         }
-        cssBorder.borderWidth.shorthand = shorthand;
+        cssBorder.borderStyle.shorthand = shorthand;
     }
 
     /**

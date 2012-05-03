@@ -5,11 +5,11 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css1;
 
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css2.CssBorderBottomColor;
-import org.w3c.css.properties.css2.CssBorderLeftColor;
-import org.w3c.css.properties.css2.CssBorderRightColor;
-import org.w3c.css.properties.css2.CssBorderTopColor;
+import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssBorderBottomColor;
+import org.w3c.css.properties.css.CssBorderLeftColor;
+import org.w3c.css.properties.css.CssBorderRightColor;
+import org.w3c.css.properties.css.CssBorderTopColor;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -95,6 +95,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
 
         // now assign the computed values...
+		// as the property des not exist, we use the defined superclass
         top = new CssBorderTopColor();
         right = new CssBorderRightColor();
         bottom = new CssBorderBottomColor();
@@ -125,37 +126,22 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         }
     }
 
-    /**
-     * Check the border-*-color and returns a value.
-     * It makes sense to do it only once for all the sides, so by having the code here.
-     */
-    protected static CssValue checkBorderSideColor(ApplContext ac, CssProperty caller, CssExpression expression,
-                                                   boolean check) throws InvalidParamException {
-
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-
-        CssValue retval = null;
-        CssValue val = expression.getValue();
-
-        switch (val.getType()) {
-            case CssTypes.CSS_COLOR:
-                retval = val;
-                break;
-            case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    retval = inherit;
-                    break;
-                }
-                retval = new org.w3c.css.values.CssColor(ac,
-                        (String) val.get());
-                break;
-            default:
-                throw new InvalidParamException("value", val.toString(),
-                        caller.getPropertyName(), ac);
-        }
-        expression.next();
-        return retval;
-    }
+	/**
+	 * Add this property to the CssStyle
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
+		cssBorder.borderColor.byUser = byUser;
+		if (cssBorder.borderColor.shorthand) {
+			style.addRedefinitionWarning(ac, this);
+		}
+		cssBorder.borderColor.value = value;
+		cssBorder.borderColor.top = top;
+		cssBorder.borderColor.left = left;
+		cssBorder.borderColor.right = right;
+		cssBorder.borderColor.bottom = bottom;
+		cssBorder.borderColor.shorthand = shorthand;
+	}
 }
