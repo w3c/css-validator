@@ -12,6 +12,8 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 import static org.w3c.css.values.CssOperator.SPACE;
@@ -78,74 +80,138 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
     public CssBackground(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
 
-        CssValue val;
-        char op;
-        boolean find = true;
+		CssValue val;
+		char op = SPACE;
+		boolean find = true;
+		CssExpression background_position_expression = null;
 
-        // too many values
-        if (check && expression.getCount() > 6) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+		// too many values
+		if (check && expression.getCount() > 6) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-        setByUser();
+		setByUser();
 
-        while (find) {
-            find = false;
-            val = expression.getValue();
-            op = expression.getOperator();
+		boolean manyValues = (expression.getCount() > 1);
 
-            if (val == null) {
-                break;
-            }
+		while (find) {
+			val = expression.getValue();
+			if (val == null) {
+				break;
+			}
+			op = expression.getOperator();
 
-            if (color == null) {
-                try {
-                    color = new CssBackgroundColor(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                }
-            }
-            if (!find && image == null) {
-                try {
-                    image = new CssBackgroundImage(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, repeat will test this value
-                }
-            }
-            if (!find && repeat == null) {
-                try {
-                    repeat = new CssBackgroundRepeat(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, attachment will test this value
-                }
-            }
-            if (!find && attachment == null) {
-                try {
-                    attachment = new CssBackgroundAttachment(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do, position will test this value
-                }
-            }
-            if (!find && position == null) {
-                try {
-                    position = new CssBackgroundPosition(ac, expression);
-                    find = true;
-                } catch (InvalidParamException e) {
-                    // nothing to do
-                }
-            }
-            if (op != SPACE) {
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
-            }
-            if (check && !find && val != null) {
-                throw new InvalidParamException("unrecognize", ac);
-            }
-        }
+			// if there are many values, we can't have inherit as one of them
+			if (manyValues && val.equals(inherit)) {
+				throw new InvalidParamException("unrecognize", null, null, ac);
+			}
+
+			switch (val.getType()) {
+				case CssTypes.CSS_STRING:
+					if (check) {
+						throw new InvalidParamException("unrecognize", ac);
+					}
+					find = false;
+					break;
+				case CssTypes.CSS_URL:
+					if (image == null) {
+						image = new CssBackgroundImage(ac, expression);
+						continue;
+					}
+					find = false;
+					break;
+				case CssTypes.CSS_COLOR:
+					if (color == null) {
+						color = new CssBackgroundColor(ac, expression);
+						continue;
+					}
+					find = false;
+					break;
+				case CssTypes.CSS_NUMBER:
+				case CssTypes.CSS_PERCENTAGE:
+				case CssTypes.CSS_LENGTH:
+					if (background_position_expression == null) {
+						background_position_expression = new CssExpression();
+					}
+					background_position_expression.addValue(val);
+					expression.next();
+					find = true;
+					break;
+				case CssTypes.CSS_IDENT:
+					// the hard part, as ident can be from different subproperties
+					find = false;
+					CssIdent identval = (CssIdent) val;
+					if (inherit.equals(identval) && !manyValues) {
+						find = true;
+						same = true;
+						expression.next();
+						break;
+					}
+					// check background-image ident
+					if (CssBackgroundImage.checkMatchingIdent(identval)) {
+						if (image == null) {
+							image = new CssBackgroundImage(ac, expression);
+							find = true;
+						}
+						break;
+					}
+					// check background-repeat ident
+					if (CssBackgroundRepeat.checkMatchingIdent(identval)) {
+						if (repeat == null) {
+							repeat = new CssBackgroundRepeat(ac, expression);
+							find = true;
+						}
+						break;
+					}
+					// check background-attachment ident
+					if (CssBackgroundAttachment.checkMatchingIdent(identval)) {
+						if (attachment == null) {
+							attachment = new CssBackgroundAttachment(ac, expression);
+							find = true;
+						}
+						break;
+					}
+					// check background-position ident
+					if (CssBackgroundPosition.checkMatchingIdent(identval)) {
+						if (background_position_expression == null) {
+							background_position_expression = new CssExpression();
+						}
+						background_position_expression.addValue(val);
+						expression.next();
+						find = true;
+						break;
+					}
+
+					if (color == null) {
+						try {
+							color = new CssBackgroundColor(ac, expression);
+							find = true;
+							break;
+						} catch (InvalidParamException e) {
+							// nothing to do, image will test this value
+						}
+					}
+
+				default:
+					if (check) {
+						throw new InvalidParamException("unrecognize", ac);
+					}
+					find = false;
+			}
+			if (check && !find) {
+				throw new InvalidParamException("unrecognize", ac);
+			}
+			if (op != SPACE) {
+				throw new InvalidParamException("operator",
+						Character.toString(op),
+						ac);
+			}
+		}
+		if (background_position_expression != null) {
+			position = new CssBackgroundPosition(ac,
+					background_position_expression,
+					check);
+		}
     }
 
     public CssBackground(ApplContext ac, CssExpression expression)

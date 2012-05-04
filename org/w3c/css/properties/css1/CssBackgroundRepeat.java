@@ -59,6 +59,15 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
         }
     }
 
+	protected static boolean checkMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values.values()) {
+			if (id.equals(ident)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
     public CssValue value;
 
 

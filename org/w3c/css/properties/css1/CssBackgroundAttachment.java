@@ -15,7 +15,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * <H4>
@@ -43,122 +43,135 @@ import java.util.HashMap;
  */
 public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackgroundAttachment {
 
-    private static HashMap<String, CssIdent> allowed_values;
-    private static CssIdent scroll;
+	private static ArrayList<CssIdent> allowed_values;
+	private static CssIdent scroll;
 
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        scroll = CssIdent.getIdent("scroll");
-        allowed_values.put("scroll", scroll);
-        allowed_values.put("fixed", CssIdent.getIdent("fixed"));
-    }
+	static {
+		allowed_values = new ArrayList<CssIdent>();
+		scroll = CssIdent.getIdent("scroll");
+		allowed_values.add(scroll);
+		allowed_values.add(CssIdent.getIdent("fixed"));
+	}
 
-    CssIdent value;
+	protected static boolean checkMatchingIdent(CssIdent ident) {
+		return (null != getMatchingIdent(ident));
+	}
 
-    /**
-     * Create a new CssBackgroundAttachment
-     */
-    public CssBackgroundAttachment() {
-        value = scroll;
-    }
+	protected static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Creates a new CssBackgroundAttachment
-     *
-     * @param expression The expression for this property
-     * @throws InvalidParamException Values are incorrect
-     */
-    public CssBackgroundAttachment(ApplContext ac, CssExpression expression,
-                                   boolean check) throws InvalidParamException {
+	CssIdent value;
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+	/**
+	 * Create a new CssBackgroundAttachment
+	 */
+	public CssBackgroundAttachment() {
+		value = scroll;
+	}
 
-        setByUser();
+	/**
+	 * Creates a new CssBackgroundAttachment
+	 *
+	 * @param expression The expression for this property
+	 * @throws InvalidParamException Values are incorrect
+	 */
+	public CssBackgroundAttachment(ApplContext ac, CssExpression expression,
+								   boolean check) throws InvalidParamException {
 
-        CssValue val = expression.getValue();
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-        if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent new_val = allowed_values.get(val.toString());
-            if (new_val != null) {
-                value = new_val;
-                expression.next();
-                return;
-            }
-        }
-        throw new InvalidParamException("value", expression.getValue(),
-                getPropertyName(), ac);
-    }
+		setByUser();
 
-    public CssBackgroundAttachment(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+		CssValue val = expression.getValue();
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
+		if (val.getType() == CssTypes.CSS_IDENT) {
+			CssIdent new_val = getMatchingIdent((CssIdent)val);
+			if (new_val != null) {
+				value = new_val;
+				expression.next();
+				return;
+			}
+		}
+		throw new InvalidParamException("value", expression.getValue(),
+				getPropertyName(), ac);
+	}
 
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return false;
-    }
+	public CssBackgroundAttachment(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
+	/**
+	 * Returns the value of this property
+	 */
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.attachment != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.attachment = this;
-    }
+	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value equals inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return false;
+	}
 
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundAttachment();
-        } else {
-            return ((Css1Style) style).cssBackground.attachment;
-        }
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		return value.toString();
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundAttachment &&
-                value == ((CssBackgroundAttachment) property).value);
-    }
+	/**
+	 * Add this property to the CssStyle.
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
+		if (cssBackground.attachment != null)
+			style.addRedefinitionWarning(ac, this);
+		cssBackground.attachment = this;
+	}
 
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (scroll == value);
-    }
+	/**
+	 * Get this property in the style.
+	 *
+	 * @param style   The style where the property is
+	 * @param resolve if true, resolve the style to find this property
+	 */
+	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+		if (resolve) {
+			return ((Css1Style) style).getBackgroundAttachment();
+		} else {
+			return ((Css1Style) style).cssBackground.attachment;
+		}
+	}
+
+	/**
+	 * Compares two properties for equality.
+	 *
+	 * @param property The other property.
+	 */
+	public boolean equals(CssProperty property) {
+		return (property instanceof CssBackgroundAttachment &&
+				value == ((CssBackgroundAttachment) property).value);
+	}
+
+	/**
+	 * Is the value of this property is a default value.
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (scroll == value);
+	}
 }
