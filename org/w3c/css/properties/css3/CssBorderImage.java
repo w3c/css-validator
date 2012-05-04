@@ -164,7 +164,6 @@ public class CssBorderImage extends org.w3c.css.properties.css.CssBorderImage {
                             }
                             // TODO check for border-image! (none)
                             if (CssBorderImageSource.isMatchingIdent((CssIdent) val)) {
-                                System.err.println("*** matching image slice=" + slice);
                                 if (source != null) {
                                     throw new InvalidParamException("value", val.toString(),
                                             getPropertyName(), ac);
