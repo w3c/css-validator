@@ -21,8 +21,8 @@ public class MediaOrientation extends MediaFeature {
     static CssIdent portrait, landscape;
 
     static {
-        portrait = CssIdent.getIdent("progressive");
-        landscape = CssIdent.getIdent("interlace");
+        portrait = CssIdent.getIdent("portrait");
+        landscape = CssIdent.getIdent("landscape");
     }
 
     /**
