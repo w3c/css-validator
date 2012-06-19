@@ -14,7 +14,7 @@ import org.w3c.css.util.InvalidParamException;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2010/CR-css3-mediaqueries-20100727/
+ * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/
  */
 
 public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {

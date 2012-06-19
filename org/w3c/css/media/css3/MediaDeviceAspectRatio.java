@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2010/CR-css3-mediaqueries-20100727/#device-aspect-ratio
+ * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#device-aspect-ratio
  */
 public class MediaDeviceAspectRatio extends MediaFeature {
 
