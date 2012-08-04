@@ -27,6 +27,7 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
      * Create a new CssLineHeight
      */
     public CssLineHeight() {
+		value = initial;
     }
 
     /**
