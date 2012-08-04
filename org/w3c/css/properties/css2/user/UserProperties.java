@@ -6,10 +6,10 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css2.user;
 
-import java.net.URL;
-
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.Utf8Properties;
+
+import java.net.URL;
 
 /**
  * @version $Revision$
@@ -18,7 +18,7 @@ public class UserProperties {
     public static Utf8Properties properties;
 
     public static String getString(CssProperty property, String prop) {
-	return properties.getProperty(property.getPropertyName() + "." + prop);
+	return properties.getProperty(property.getPropertyName() + '.' + prop);
     }
 
     public static boolean getInheritance(CssProperty property) {

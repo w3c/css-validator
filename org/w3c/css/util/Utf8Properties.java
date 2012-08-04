@@ -100,8 +100,8 @@ public class Utf8Properties<K, V> extends Properties {
                 if (!property.equals("")) {
                     int endOfKey = 0;
                     // calculates the ending index of the key
-                    while (endOfKey < property.length() &&
-                            (keyValueSeparators.indexOf(property.charAt(endOfKey)) == -1)) {
+					int l = property.length();
+                    while (endOfKey < l && (keyValueSeparators.indexOf(property.charAt(endOfKey)) == -1)) {
                         endOfKey++;
                     }
                     String key = property.substring(0, endOfKey);
@@ -291,10 +291,10 @@ public class Utf8Properties<K, V> extends Properties {
         BufferedWriter output;
         output = new BufferedWriter(new OutputStreamWriter(out, ENCODING));
         if (header != null) {
-            output.write("#" + header);
+            output.write('#' + header);
             output.newLine();
         }
-        output.write("#" + new Date());
+        output.write('#' + (new Date()).toString());
         output.newLine();
         // we do not want that a Thread could modify this Utf8Properties
         // while storing it
@@ -304,7 +304,7 @@ public class Utf8Properties<K, V> extends Properties {
                 String key = storeConversion((String) e.nextElement());
                 String val = storeConversion((String) get(key));
 
-                output.write(key + "=" + val);
+                output.write(key + '=' + val);
                 output.newLine();
             }
         }

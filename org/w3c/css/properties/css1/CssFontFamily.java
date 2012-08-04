@@ -1,372 +1,204 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-
 package org.w3c.css.properties.css1;
 
-import java.util.Enumeration;
-import java.util.Vector;
-
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.COMMA;
+import static org.w3c.css.values.CssOperator.SPACE;
+
 /**
- *   <H4>
- *     &nbsp;&nbsp; 'font-family'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> [[&lt;family-name&gt; | &lt;generic-family&gt;],]*
- *   [&lt;family-name&gt; | &lt;generic-family&gt;]<BR>
- *   <EM>Initial:</EM> UA specific<BR>
- *   <EM>Applies to:</EM> all elements<BR>
- *   <EM>Inherited:</EM> yes<BR>
- *   <EM>Percentage values:</EM> N/A<BR>
- *   <P>
- *   The value is a prioritized list of font family names and/or generic family
- *   names. Unlike most other CSS1 properties, values are separated by a comma
- *   to indicate that they are alternatives:
- *   <PRE>
- *   BODY { font-family: gill, helvetica, sans-serif }
- * </PRE>
- *   <P>
- *   There are two types of list values:
- *   <DL>
- *     <DT>
- *       <STRONG>&lt;family-name&gt;</STRONG>
- *     <DD> The name of a font family of choice. In the last example, "gill" and
- *     "helvetica" are font families.
- *     <DT>
- *       <STRONG>&lt;generic-family&gt;</STRONG>
- *     <DD> In the example above, the last value is a generic family name. The
- *     following generic families are defined:
- *       <UL>
- * 	<LI>
- * 	  'serif' (e.g. Times)
- * 	<LI>
- * 	  'sans-serif' (e.g. Helvetica)
- * 	<LI>
- * 	  'cursive' (e.g. Zapf-Chancery)
- * 	<LI>
- * 	  'fantasy' (e.g. Western)
- * 	<LI>
- * 	  'monospace' (e.g. Courier)
- *       </UL>
- *       <P> Style sheet designers are encouraged to offer a generic font family
- *       as a last alternative.
- *   </DL>
- *   <P>
- *   Font names containing whitespace should be quoted:
- *   <PRE>
- *   BODY { font-family: "new century schoolbook", serif }
- *
- *   &lt;BODY STYLE="font-family: 'My own font', fantasy"&gt;
- *  </PRE>
- *   <P>
- *   If quoting is omitted, any whitespace characters before and after the font
- *   name are ignored and any sequence of whitespace characters inside the font
- *   name is converted to a single space.
- *
- * @see CssFont
- * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#font-family
  */
-public class CssFontFamily extends CssProperty implements CssOperator {
+public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 
-    Vector family_name = new Vector();
+	public static final ArrayList<CssIdent> genericNames;
+	public static final ArrayList<CssIdent> reservedNames;
 
-    boolean inheritedValue;
+	public static final String[] _genericNames = {
+			"serif",
+			"sans-serif",
+			"cursive",
+			"fantasy",
+			"monospace"};
 
-	CssIdent none = new CssIdent("none");
-	CssValue fontfamily = null;
+	public static final String[] _reservedNames = {"inherit",
+			"initial", "default"
+	};
 
-    static String[] genericFamily = { "serif", "sans-serif", "cursive",
-				      "fantasy", "monospace" };
-
-    static int[] genericFamilyHash;
-
-    boolean withSpace = false;
-
-    /**
-     * Create a new CssFontFamily
-     */
-    public CssFontFamily() {
-    }
-
-    /**
-     * Create a new CssFontFamily
-     *
-     * @param expression the font name
-     * @exception InvalidParamException The expression is incorrect
-     */
-    public CssFontFamily(ApplContext ac, CssExpression expression,
-	    boolean check)
-	    throws InvalidParamException {
-
-	boolean manyValues = expression.getCount() > 1;
-
-	boolean family = true;
-	CssValue val = expression.getValue();
-	char op;
-
-	setByUser();
-	//@@ and if name is already in the vector ?
-
-
-	if (val.equals(inherit)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    inheritedValue = true;
-	    expression.next();
-	    return;
-	} else if (val.equals(none)) {
-	    if(expression.getCount() > 1) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-	    fontfamily = none;
-	    expression.next();
-	    return;
+	static {
+		genericNames = new ArrayList<CssIdent>();
+		for (String s : _genericNames) {
+			genericNames.add(CssIdent.getIdent(s));
+		}
+		reservedNames = new ArrayList<CssIdent>();
+		for (String s : _reservedNames) {
+			reservedNames.add(CssIdent.getIdent(s));
+		}
 	}
 
-	while (family) {
-	    val = expression.getValue();
-	    op = expression.getOperator();
-
-	    if(manyValues && val != null && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-
-	    if ((op != COMMA) && (op != SPACE)) {
-		throw new InvalidParamException("operator",
-			((new Character(op)).toString()),
-			ac);
-	    }
-
-	    if(val != null && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
-
-	    if (val instanceof CssString) {
-		String familyName = null;
-		if (op == COMMA) { // "helvetica", "roman"
-		    familyName = trimToOneSpace(val.toString());
-		    expression.next();
-		} else { // "helvetica" CssValue
-		    familyName = trimToOneSpace(val.toString());
-		    family = false;
-		    expression.next();
+	static CssIdent getGenericFontName(CssIdent ident) {
+		int pos = genericNames.indexOf(ident);
+		if (pos >= 0) {
+			return genericNames.get(pos);
 		}
-		if (familyName.length() > 2) {
-		    String tmp = familyName.substring(1, familyName.length()-1);
-		    for (int i = 0; i < genericFamily.length; i++) {
-			if (genericFamily[i].equals(tmp)) {
-			    throw new InvalidParamException("generic-family.quote",
-				    genericFamily[i],
-				    getPropertyName(),
-				    ac);
-			}
-		    }
-		}
-		family_name.addElement(familyName);
-	    } else if (val instanceof CssIdent) {
-		if (op == COMMA) {
-		    family_name.addElement(convertString(val.toString()));
-		    expression.next();
-		} else {
-		    CssValue next = expression.getNextValue();
-
-		    if (next != null) {
-			CssIdent New = new CssIdent(val.get() + " "
-						    + next.get());
-			withSpace = true;
-			expression.remove();
-			op = expression.getOperator();
-			expression.remove();
-			expression.insert(New);
-			expression.setCurrentOperator(op);
-		    } else {
-			family_name.addElement(convertString(val.toString()));
-			expression.next();
-			family = false;
-		    }
-		}
-	    } else
-		throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-	}
-	if(check && !expression.end()) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
-	// This looks like obsolete code: (no context, no level, and duplicate 
-	// of a warning handled already in CSS1Style.java
-	// olivier 2006-12-13
-	//if (!containsGenericFamily()) {
-	//    ac.getFrame().addWarning("no-generic-family", "font-family");
-	//}
-    }
-
-    public CssFontFamily(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Returns all fonts name
-     */
-    public Enumeration elements() {
-	return family_name.elements();
-    }
-
-    /**
-     * Returns the size
-     */
-    public int size() {
-	return family_name.size();
-    }
-
-    /**
-     * Returns the font (null if no font)
-     */
-    public Object get() {
-
-		if (fontfamily != null) {
-			return fontfamily;
-		} else if (family_name.size() == 0) {
-		    return null;
-		}
-
-		return family_name.firstElement();
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-	return inheritedValue;
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-	if (inheritedValue) {
-	    return inherit.toString();
-	} else {
-	    String r = "";
-	    for (Enumeration e = elements(); e.hasMoreElements();)
-		//		r += ", " + convertString(e.nextElement().toString());
-		r += ", " + e.nextElement().toString();
-	    if (r.length() < 3) {
 		return null;
-	    }
-	    return r.substring(2);
 	}
-    }
 
-    String convertString (String value) {
-	if (value.indexOf('"') != -1) {
-	    return '\'' + value + '\'';
-	} else if (value.indexOf('\'') != -1) {
-	    return '"' + value + '"';
-	} else {
-	    return value;
-	}
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "font-family";
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	CssFont cssFont = ((Css1Style) style).cssFont;
-
-	if (cssFont.fontFamily != null)
-	    style.addRedefinitionWarning(ac, this);
-	cssFont.fontFamily = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css1Style) style).getFontFamily();
-	} else {
-	    return ((Css1Style) style).cssFont.fontFamily;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return false; //@@ FIXME
-    }
-
-    private static String trimToOneSpace(String name) {
-	int count = name.length();
-	char[] dst = new char[count];
-	char[] src = new char[count];
-	int index = -1;
-
-	name.getChars(0, count, src, 0);
-	for(int i=0; i < count; i++)
-	    if ( i == 0 || ! Util.isWhiteSpace(src[i]) ||
-		 ( Util.isWhiteSpace(src[i]) &&
-		   !Util.isWhiteSpace(dst[index]) ) )
-		dst[++index] = src[i];
-
-	return new String(dst, 0, index+1);
-    }
-
-    /**
-     * Returns true if this property contains a generic family name
-     */
-    public boolean containsGenericFamily() {
-	if (family_name.size() == 0) {
-	    return true;
-	} else {
-	    for (Enumeration e = family_name.elements();
-		 e.hasMoreElements();) {
-		int hash = ((String) e.nextElement()).toLowerCase().hashCode();
-		for (int i = 0; i < genericFamilyHash.length; i++) {
-		    if (hash == genericFamilyHash[i])
-			return true;
+	static CssIdent getReservedFontName(CssIdent ident) {
+		int pos = reservedNames.indexOf(ident);
+		if (pos >= 0) {
+			return reservedNames.get(pos);
 		}
-	    }
-	    return false;
+		return null;
 	}
-    }
+
+	private void checkExpression(ApplContext ac, ArrayList<CssValue> curval,
+								 ArrayList<CssIdent> values, boolean check) {
+		CssIdent val;
+		if (values.size() > 1) {
+			// create a value out of that. We could even create
+			// a CssString for the output (TODO ?)
+			StringBuilder sb = new StringBuilder();
+			boolean addSpace = false;
+			for (CssIdent id : values) {
+				if (addSpace) {
+					sb.append(' ');
+				} else {
+					addSpace = true;
+				}
+				sb.append(id);
+			}
+			ac.getFrame().addWarning("with-space", 1);
+			val = new CssIdent(sb.toString());
+		} else {
+			val = values.get(0);
+			// could be done in the consistency check, but...
+			if (null != getGenericFontName(val)) {
+				hasGenericFontFamily = true;
+			}
+			if (inherit.equals(val)) {
+				val = inherit;
+			}
+		}
+		curval.add(val);
+	}
+
+	// final consistency check
+	private void checkValues(ApplContext ac, ArrayList<CssValue> values)
+			throws InvalidParamException {
+		// we need to check that we don't have 'inherit' in multiple values
+		if (values.size() > 1) {
+			for (CssValue val : values) {
+				if (inherit.equals(val)) {
+					throw new InvalidParamException("unrecognize", ac);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Creates a new CssFontFamily
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssFontFamily(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 
 
-    static {
-	genericFamilyHash = new int[genericFamily.length];
-	for (int i = 0; i < genericFamily.length; i++) {
-	    genericFamilyHash[i] = genericFamily[i].hashCode();
+		ArrayList<CssValue> values = new ArrayList<CssValue>();
+
+		while (!expression.end()) {
+			char op = expression.getOperator();
+			CssValue val = expression.getValue();
+			switch (val.getType()) {
+				case CssTypes.CSS_STRING:
+					// check it's not a quoted reserved keyword
+					String s = val.toString();
+					if (s.length() > 2) {
+						// we remove quotes and check it's not reserved.
+						CssIdent id = new CssIdent(s.substring(1, s.length() - 1));
+						if (getGenericFontName(id) != null) {
+							ac.getFrame().addWarning("generic-family.quote", 2);
+						}
+					}
+					values.add(val);
+					break;
+				case CssTypes.CSS_IDENT:
+					ArrayList<CssIdent> idval = new ArrayList<CssIdent>();
+					idval.add((CssIdent) val);
+					// we add idents if separated by spaces...
+					expression.next();
+					while (op == SPACE && !expression.end()) {
+						op = expression.getOperator();
+						val = expression.getValue();
+						if (val.getType() == CssTypes.CSS_IDENT) {
+							idval.add((CssIdent) val);
+						} else {
+							throw new InvalidParamException("value", val,
+									getPropertyName(), ac);
+						}
+						expression.next();
+					}
+					checkExpression(ac, values, idval, check);
+					break;
+				default:
+					throw new InvalidParamException("value", val,
+							getPropertyName(), ac);
+			}
+			expression.next();
+			if (!expression.end() && (op != COMMA)) {
+				throw new InvalidParamException("operator",
+						((new Character(op)).toString()), ac);
+			}
+		}
+		checkValues(ac, values);
+		value = (values.size() > 1) ? values : values.get(0);
 	}
-    }
+
+	public CssFontFamily(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
+
+	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value is equals to inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return inherit.equals(value);
+	}
+
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		return value.toString();
+	}
+
+	/**
+	 * Compares two properties for equality.
+	 *
+	 * @param property The other property.
+	 */
+	public boolean equals(CssProperty property) {
+		return (property instanceof CssFontFamily &&
+				value.equals(((CssFontFamily) property).value));
+	}
+
+
 }
+

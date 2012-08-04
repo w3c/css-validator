@@ -183,12 +183,12 @@ public class CssPropertyFactory implements Cloneable {
             ArrayList<String> pfsOk = new ArrayList<String>();
             String spec = ac.getPropertyKey();
 
-            for (int i = 0; i < SORTEDPROFILES.length; ++i) {
-                String p = String.valueOf(SORTEDPROFILES[i]);
-                if (!p.equals(spec) && PropertiesLoader.getProfile(p).containsKey(property)) {
-                    pfsOk.add(p);
-                }
-            }
+			for (String p : SORTEDPROFILES) {
+				if (!p.equals(spec) && PropertiesLoader.getProfile(p).containsKey(property)) {
+					pfsOk.add(p);
+				}
+			}
+
             if (pfsOk.size() > 0) {
                 if (ac.getCssProfile() == CssProfile.NONE) {
                     String latestVersion = pfsOk.get(pfsOk.size() - 1);
@@ -263,7 +263,10 @@ public class CssPropertyFactory implements Cloneable {
                 }
             }
         } else {
-            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty("@" + atRule.keyword() + "." + property);
+			StringBuilder sb = new StringBuilder();
+			// construct the property key
+			sb.append('@').append(atRule.keyword()).append('.').append(property);
+            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(sb.toString());
         }
         return className;
     }

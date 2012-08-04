@@ -1,5 +1,4 @@
 /* -*-java-extended-*-
-/* -*-java-extended-*-
  *
  * (c) COPYRIGHT MIT and INRIA, 1997.
  * Please first read the full copyright statement in file COPYRIGHT.html
@@ -133,8 +132,6 @@ public abstract class CssParser {
 
     private boolean reinited = false;
     private boolean charsetdeclared = false;
-
-    static StringBuilder SPACE = new StringBuilder(" ");
 
     // to be able to remove a ruleset if the selector is not valid
     protected boolean validSelector = true;

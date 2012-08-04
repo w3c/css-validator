@@ -8,9 +8,9 @@
 package org.w3c.css.util;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @version $Revision$
@@ -22,7 +22,7 @@ public class Messages {
      */
     public Utf8Properties<String, String> properties = null;
 
-    public static final Hashtable<String, Utf8Properties<String, String>> languages;
+    public static final ConcurrentHashMap<String, Utf8Properties<String, String>> languages;
     public static final ArrayList<String> languages_name;
 
     /**
@@ -205,7 +205,7 @@ public class Messages {
     }
 
     static {
-        languages = new Hashtable<String, Utf8Properties<String, String>>();
+        languages = new ConcurrentHashMap<String, Utf8Properties<String, String>>();
         languages_name = new ArrayList<String>();
 
         Utf8Properties<String, String> tmp;

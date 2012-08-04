@@ -38,11 +38,6 @@ public class Css3Style extends ATSCStyle {
 
     CssColorProfile cssColorProfile;
     CssRenderIntent cssRenderIntent;
-    CssFontEffect cssFontEffect;
-    CssFontSmooth cssFontSmooth;
-    CssFontEmphasizeStyle cssFontEmphasizeStyle;
-    CssFontEmphasizePos cssFontEmphasizePos;
-    CssFontEmphasize cssFontEmphasize;
     CssRubyPosition cssRubyPosition;
     CssRubyAlign cssRubyAlign;
     CssRubyOverhang cssRubyOverhang;
@@ -229,51 +224,6 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssRenderIntent;
-    }
-
-    public CssFontEffect getFontEffect() {
-        if (cssFontEffect == null) {
-            cssFontEffect =
-                    (CssFontEffect) style.CascadingOrder(new CssFontEffect(),
-                            style, selector);
-        }
-        return cssFontEffect;
-    }
-
-    public CssFontSmooth getFontSmooth() {
-        if (cssFontSmooth == null) {
-            cssFontSmooth =
-                    (CssFontSmooth) style.CascadingOrder(new CssFontSmooth(),
-                            style, selector);
-        }
-        return cssFontSmooth;
-    }
-
-    public CssFontEmphasizeStyle getFontEmphasizeStyle() {
-        if (cssFontEmphasizeStyle == null) {
-            cssFontEmphasizeStyle =
-                    (CssFontEmphasizeStyle) style.CascadingOrder(
-                            new CssFontEmphasizeStyle(), style, selector);
-        }
-        return cssFontEmphasizeStyle;
-    }
-
-    public CssFontEmphasizePos getFontEmphasizePos() {
-        if (cssFontEmphasizePos == null) {
-            cssFontEmphasizePos =
-                    (CssFontEmphasizePos) style.CascadingOrder(
-                            new CssFontEmphasizePos(), style, selector);
-        }
-        return cssFontEmphasizePos;
-    }
-
-    public CssFontEmphasize getFontEmphasize() {
-        if (cssFontEmphasize == null) {
-            cssFontEmphasize =
-                    (CssFontEmphasize) style.CascadingOrder(
-                            new CssFontEmphasizePos(), style, selector);
-        }
-        return cssFontEmphasize;
     }
 
     public CssRubyPosition getRubyPosition() {

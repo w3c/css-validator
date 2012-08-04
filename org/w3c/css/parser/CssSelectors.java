@@ -270,8 +270,9 @@ public final class CssSelectors extends SelectorsList
     public void addAttribute(AttributeSelector attribute)
             throws InvalidParamException {
         int _s = size();
+		Selector s;
         for (int i = 0; i < _s; i++) {
-            Selector s = (Selector) getSelector(i);
+            s = getSelector(i);
             // add warnings if some selectors are incompatible
             // e.g. [lang=en][lang=fr]
             if (s instanceof AttributeSelector) {

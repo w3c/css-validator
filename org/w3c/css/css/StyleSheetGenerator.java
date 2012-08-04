@@ -128,22 +128,18 @@ public class StyleSheetGenerator extends StyleReport {
 
         // Setting all the variables of the velocity context
         ApplContext ac_default = new ApplContext(default_lang);
-        String k;
+        String k, v;
         if (ac.getLang() == null || ac.getLang().equals(default_lang)) {
-            Iterator it = ac_default.getMsg().properties.keySet().iterator();
-            while (it.hasNext()) {
-                k = String.valueOf(it.next());
-                context.put(k, ac.getMsg().getString(k));
-            }
+			for (Object s: ac_default.getMsg().properties.keySet()) {
+				k = String.valueOf(s);
+				context.put(k, ac.getMsg().getString(k));
+			}
         } else {
-            Iterator it = ac_default.getMsg().properties.keySet().iterator();
-            while (it.hasNext()) {
-                k = String.valueOf(it.next());
-                if (ac.getMsg().getString(k) == null)
-                    context.put(k, ac_default.getMsg().getString(k));
-                else
-                    context.put(k, ac.getMsg().getString(k));
-            }
+			for (Object s: ac_default.getMsg().properties.keySet()) {
+				k = String.valueOf(s);
+				v = ac.getMsg().getString(k);
+				context.put(k, (v == null) ? ac_default.getMsg().getString(k) : v);
+			}
         }
 
         if (ac.getLink() != null) {

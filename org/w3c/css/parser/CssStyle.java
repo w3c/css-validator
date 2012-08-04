@@ -54,7 +54,7 @@ public class CssStyle {
     }
 
     /**
-     * Add a warning definition to this style.
+     * Add a warning about redefinition of a property to this style.
      *
      * @param property The property.
      */
@@ -62,6 +62,15 @@ public class CssStyle {
                                              CssProperty property) {
         warnings.addWarning(new Warning(property, "redefinition", 2, ac));
     }
+
+	/**
+	 * Add a warning to this style.
+	 *
+	 * @param warn The Warning.
+	 */
+	public final void addWarning(ApplContext ac, Warning warn) {
+		warnings.addWarning(warn);
+	}
 
     /**
      * Add a property to this style

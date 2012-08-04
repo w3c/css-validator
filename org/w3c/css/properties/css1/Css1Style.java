@@ -31,14 +31,8 @@ public class Css1Style extends CssStyle {
     /**
      * Font properties
      */
-    public CssFont cssFont = new CssFont();
-    public CssFontCSS2 cssFontCSS2 = new CssFontCSS2();
-    public CssFontCSS1 cssFontCSS1 = new CssFontCSS1();
-    public CssFontStretch cssFontStretch;
-    public CssFontStretchCSS2 cssFontStretchCSS2;
-    public CssFontStretchCSS1 cssFontStretchCSS1;
-    public CssFontSizeAdjust cssFontSizeAdjust;
-    public CssFontSizeAdjustCSS2 cssFontSizeAdjustCSS2;
+    public org.w3c.css.properties.css.CssFont cssFont = new org.w3c.css.properties.css.CssFont();
+
 
     /* Color and Background properties */
     /**
@@ -278,210 +272,71 @@ public class Css1Style extends CssStyle {
     /**
      * Get the font-style property
      */
-    public final CssFontStyle getFontStyle() {
+    public final org.w3c.css.properties.css.CssFontStyle getFontStyle() {
         if (cssFont.fontStyle == null) {
             cssFont.fontStyle =
-                    (CssFontStyle) style.CascadingOrder(new CssFontStyle(),
+                    (org.w3c.css.properties.css.CssFontStyle) style.CascadingOrder(new org.w3c.css.properties.css.CssFontStyle(),
                             style, selector);
         }
         return cssFont.fontStyle;
     }
 
-    public final CssFontStyleCSS2 getFontStyleCSS2() {
-        if (cssFontCSS2.fontStyle == null) {
-            cssFontCSS2.fontStyle =
-                    (CssFontStyleCSS2) style.CascadingOrder(new CssFontStyleCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.fontStyle;
-    }
-
-    public final CssFontStyleCSS1 getFontStyleCSS1() {
-        if (cssFontCSS1.fontStyle == null) {
-            cssFontCSS1.fontStyle =
-                    (CssFontStyleCSS1) style.CascadingOrder(new CssFontStyleCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.fontStyle;
-    }
-
     /**
      * Get the font-variant property
      */
-    public final CssFontVariant getFontVariant() {
+    public final org.w3c.css.properties.css.CssFontVariant getFontVariant() {
         if (cssFont.fontVariant == null) {
             cssFont.fontVariant =
-                    (CssFontVariant) style.CascadingOrder(new CssFontVariant(),
+                    (org.w3c.css.properties.css.CssFontVariant) style.CascadingOrder(new org.w3c.css.properties.css.CssFontVariant(),
                             style, selector);
         }
         return cssFont.fontVariant;
     }
 
-    public final CssFontVariantCSS2 getFontVariantCSS2() {
-        if (cssFontCSS2.fontVariant == null) {
-            cssFontCSS2.fontVariant =
-                    (CssFontVariantCSS2) style.CascadingOrder(new CssFontVariantCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.fontVariant;
-    }
 
-    public final CssFontVariantCSS1 getFontVariantCSS1() {
-        if (cssFontCSS1.fontVariant == null) {
-            cssFontCSS1.fontVariant =
-                    (CssFontVariantCSS1) style.CascadingOrder(new CssFontVariantCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.fontVariant;
-    }
 
     /**
      * Get the font-weight property
      */
-    public final CssFontWeightCSS2 getFontWeightCSS2() {
-        if (cssFontCSS2.fontWeight == null) {
-            cssFontCSS2.fontWeight =
-                    (CssFontWeightCSS2) style.CascadingOrder(new CssFontWeightCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.fontWeight;
-    }
-
-    public final CssFontWeight getFontWeight() {
+    public final org.w3c.css.properties.css.CssFontWeight getFontWeight() {
         if (cssFont.fontWeight == null) {
             cssFont.fontWeight =
-                    (CssFontWeight) style.CascadingOrder(new CssFontWeight(),
+                    (org.w3c.css.properties.css.CssFontWeight) style.CascadingOrder(new org.w3c.css.properties.css.CssFontWeight(),
                             style, selector);
         }
         return cssFont.fontWeight;
     }
 
-    public final CssFontWeightCSS1 getFontWeightCSS1() {
-        if (cssFontCSS1.fontWeight == null) {
-            cssFontCSS1.fontWeight =
-                    (CssFontWeightCSS1) style.CascadingOrder(new CssFontWeightCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.fontWeight;
-    }
-
-    /**
-     * Get the font-stretch property
-     */
-    public final CssFontStretch getFontStretch() {
-        if (cssFontStretch == null) {
-            cssFontStretch =
-                    (CssFontStretch) style.CascadingOrder(new CssFontStretch(),
-                            style, selector);
-        }
-        return cssFontStretch;
-    }
-
-    public final CssFontStretchCSS2 getFontStretchCSS2() {
-        if (cssFontStretchCSS2 == null) {
-            cssFontStretchCSS2 =
-                    (CssFontStretchCSS2) style.CascadingOrder(new CssFontStretchCSS2(),
-                            style, selector);
-        }
-        return cssFontStretchCSS2;
-    }
-
-    public final CssFontStretchCSS1 getFontStretchCSS1() {
-        if (cssFontStretchCSS1 == null) {
-            cssFontStretchCSS1 =
-                    (CssFontStretchCSS1) style.CascadingOrder(new CssFontStretchCSS1(),
-                            style, selector);
-        }
-        return cssFontStretchCSS1;
-    }
 
     /**
      * Get the font-size property
      */
-    public final CssFontSizeCSS2 getFontSizeCSS2() {
-        if (cssFontCSS2.fontSize == null) {
-            cssFontCSS2.fontSize =
-                    (CssFontSizeCSS2) style.CascadingOrder(new CssFontSizeCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.fontSize;
-    }
 
-    public final CssFontSize getFontSize() {
+    public final org.w3c.css.properties.css.CssFontSize getFontSize() {
         if (cssFont.fontSize == null) {
             cssFont.fontSize =
-                    (CssFontSize) style.CascadingOrder(new CssFontSize(),
+                    (org.w3c.css.properties.css.CssFontSize) style.CascadingOrder(new org.w3c.css.properties.css.CssFontSize(),
                             style, selector);
         }
         return cssFont.fontSize;
     }
 
-    public final CssFontSizeCSS1 getFontSizeCSS1() {
-        if (cssFontCSS1.fontSize == null) {
-            cssFontCSS1.fontSize =
-                    (CssFontSizeCSS1) style.CascadingOrder(new CssFontSizeCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.fontSize;
-    }
-
-    /**
-     * Get the font-size-adjust property
-     */
-    public final CssFontSizeAdjustCSS2 getFontSizeAdjustCSS2() {
-        if (cssFontSizeAdjustCSS2 == null) {
-            cssFontSizeAdjustCSS2 =
-                    (CssFontSizeAdjustCSS2) style.CascadingOrder(
-                            new CssFontSizeAdjustCSS2(),
-                            style, selector);
-        }
-        return cssFontSizeAdjustCSS2;
-    }
-
-    public final CssFontSizeAdjust getFontSizeAdjust() {
-        if (cssFontSizeAdjust == null) {
-            cssFontSizeAdjust =
-                    (CssFontSizeAdjust) style.CascadingOrder(
-                            new CssFontSizeAdjust(),
-                            style, selector);
-        }
-        return cssFontSizeAdjust;
-    }
-
     /**
      * Get the font-family property
      */
-    public final CssFontFamily getFontFamily() {
+    public final org.w3c.css.properties.css.CssFontFamily getFontFamily() {
         if (cssFont.fontFamily == null) {
             cssFont.fontFamily =
-                    (CssFontFamily) style.CascadingOrder(new CssFontFamily(),
+                    (org.w3c.css.properties.css.CssFontFamily) style.CascadingOrder(new org.w3c.css.properties.css.CssFontFamily(),
                             style, selector);
         }
         return cssFont.fontFamily;
     }
 
-    public final CssFontFamilyCSS2 getFontFamilyCSS2() {
-        if (cssFontCSS2.fontFamily == null) {
-            cssFontCSS2.fontFamily =
-                    (CssFontFamilyCSS2) style.CascadingOrder(new CssFontFamilyCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.fontFamily;
-    }
-
-    public final CssFontFamilyCSS1 getFontFamilyCSS1() {
-        if (cssFontCSS1.fontFamily == null) {
-            cssFontCSS1.fontFamily =
-                    (CssFontFamilyCSS1) style.CascadingOrder(new CssFontFamilyCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.fontFamily;
-    }
-
     /**
      * Get the font property
      */
-    public final CssFont getFont() {
+    public final org.w3c.css.properties.css.CssFont getFont() {
         if (cssFont.value != null) {
             // nothing
         } else {
@@ -507,57 +362,6 @@ public class Css1Style extends CssStyle {
         return cssFont;
     }
 
-    public final CssFontCSS2 getFontCSS2() {
-        if (cssFontCSS2.value != null) {
-            // nothing
-        } else {
-            if (cssFontCSS2.fontStyle == null) {
-                cssFontCSS2.fontStyle = getFontStyleCSS2();
-            }
-            if (cssFontCSS2.fontVariant == null) {
-                cssFontCSS2.fontVariant = getFontVariantCSS2();
-            }
-            if (cssFontCSS2.fontWeight == null) {
-                cssFontCSS2.fontWeight = getFontWeightCSS2();
-            }
-            if (cssFontCSS2.fontSize == null) {
-                cssFontCSS2.fontSize = getFontSizeCSS2();
-            }
-            if (cssFontCSS2.lineHeight == null) {
-                cssFontCSS2.lineHeight = getLineHeightCSS2();
-            }
-            if (cssFontCSS2.fontFamily == null) {
-                cssFontCSS2.fontFamily = getFontFamilyCSS2();
-            }
-        }
-        return cssFontCSS2;
-    }
-
-    public final CssFontCSS1 getFontCSS1() {
-        if (cssFontCSS1.value != null) {
-            // nothing
-        } else {
-            if (cssFontCSS1.fontStyle == null) {
-                cssFontCSS1.fontStyle = getFontStyleCSS1();
-            }
-            if (cssFontCSS1.fontVariant == null) {
-                cssFontCSS1.fontVariant = getFontVariantCSS1();
-            }
-            if (cssFontCSS1.fontWeight == null) {
-                cssFontCSS1.fontWeight = getFontWeightCSS1();
-            }
-            if (cssFontCSS1.fontSize == null) {
-                cssFontCSS1.fontSize = getFontSizeCSS1();
-            }
-            if (cssFontCSS1.lineHeight == null) {
-                cssFontCSS1.lineHeight = getLineHeightCSS1();
-            }
-            if (cssFontCSS1.fontFamily == null) {
-                cssFontCSS1.fontFamily = getFontFamilyCSS1();
-            }
-        }
-        return cssFontCSS1;
-    }
 
     /*
      * Color and Background properties
@@ -883,31 +687,13 @@ public class Css1Style extends CssStyle {
     /**
      * Get the line-height property
      */
-    public final CssLineHeight getLineHeight() {
+    public final org.w3c.css.properties.css.CssLineHeight getLineHeight() {
         if (cssFont.lineHeight == null) {
             cssFont.lineHeight =
-                    (CssLineHeight) style.CascadingOrder(new CssLineHeight(),
+                    (org.w3c.css.properties.css.CssLineHeight) style.CascadingOrder(new CssLineHeight(),
                             style, selector);
         }
         return cssFont.lineHeight;
-    }
-
-    public final CssLineHeightCSS2 getLineHeightCSS2() {
-        if (cssFontCSS2.lineHeight == null) {
-            cssFontCSS2.lineHeight =
-                    (CssLineHeightCSS2) style.CascadingOrder(new CssLineHeightCSS2(),
-                            style, selector);
-        }
-        return cssFontCSS2.lineHeight;
-    }
-
-    public final CssLineHeightCSS1 getLineHeightCSS1() {
-        if (cssFontCSS1.lineHeight == null) {
-            cssFontCSS1.lineHeight =
-                    (CssLineHeightCSS1) style.CascadingOrder(new CssLineHeightCSS1(),
-                            style, selector);
-        }
-        return cssFontCSS1.lineHeight;
     }
 
     /*
@@ -1690,39 +1476,10 @@ public class Css1Style extends CssStyle {
     private void findConflictsFontFamily(ApplContext ac, Warnings warnings,
                                          CssSelectors selector,
                                          CssSelectors[] allSelectors) {
-        // first CSS2 (the default)
-        if (cssFontCSS2.fontFamily != null) {
-            if (!cssFontCSS2.fontFamily.containsGenericFamily()) {
-                warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
-                        "no-generic-family", 2, ac));
-            }
-            if (cssFontCSS2.fontFamily.withSpace) {
-                warnings.addWarning(new Warning(cssFontCSS2.fontFamily,
-                        "with-space", 1, ac));
-            }
-            return;
-        }
-        // CSS 3
         if (cssFont.fontFamily != null) {
-            if (!cssFont.fontFamily.containsGenericFamily()) {
+            if (!cssFont.fontFamily.hasGenericFamily()) {
                 warnings.addWarning(new Warning(cssFont.fontFamily,
                         "no-generic-family", 2, ac));
-            }
-            if (cssFont.fontFamily.withSpace) {
-                warnings.addWarning(new Warning(cssFont.fontFamily,
-                        "with-space", 1, ac));
-            }
-            return;
-        }
-        // CSS1
-        if (cssFontCSS1.fontFamily != null) {
-            if (!cssFontCSS1.fontFamily.containsGenericFamily()) {
-                warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
-                        "no-generic-family", 2, ac));
-            }
-            if (cssFontCSS1.fontFamily.withSpace) {
-                warnings.addWarning(new Warning(cssFontCSS1.fontFamily,
-                        "with-space", 1, ac));
             }
         }
     }

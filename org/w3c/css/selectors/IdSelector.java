@@ -39,7 +39,7 @@ public class IdSelector implements Selector {
      * @see Selector#toString()
      */
     public String toString() {
-	return "#" + name;
+	return '#' + name;
     }
 
     /**

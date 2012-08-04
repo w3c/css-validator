@@ -69,7 +69,7 @@ public class HSLA {
             sb.append(Util.displayFloat(fh)).append(", ");
             sb.append(Util.displayFloat(fs)).append("%, ");
             sb.append(Util.displayFloat(fl)).append("%, ");
-            sb.append(Util.displayFloat(fa)).append(")");
+            sb.append(Util.displayFloat(fa)).append(')');
             output = sb.toString();
         }
         return output;

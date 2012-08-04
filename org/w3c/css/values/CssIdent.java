@@ -15,13 +15,13 @@ import java.util.HashMap;
  */
 public class CssIdent extends CssValue {
 
-    public static HashMap<String, CssIdent> allowedvalues;
+    public static HashMap<String, CssIdent> cachedValues;
 
     static {
-        allowedvalues = new HashMap<String, CssIdent>();
-        allowedvalues.put("inherit", new CssIdent("inherit"));
-        allowedvalues.put("initial", new CssIdent("initial"));
-        allowedvalues.put("none", new CssIdent("none"));
+        cachedValues = new HashMap<String, CssIdent>();
+        cachedValues.put("inherit", new CssIdent("inherit"));
+        cachedValues.put("initial", new CssIdent("initial"));
+        cachedValues.put("none", new CssIdent("none"));
     }
 
     /**
@@ -31,12 +31,12 @@ public class CssIdent extends CssValue {
      * @return a CssIdent
      */
     public static CssIdent getIdent(String name) {
-        CssIdent val = allowedvalues.get(name);
+        CssIdent val = cachedValues.get(name);
         if (val != null) {
             return val;
         }
         val = new CssIdent(name);
-        allowedvalues.put(name, val);
+        cachedValues.put(name, val);
         return val;
     }
 

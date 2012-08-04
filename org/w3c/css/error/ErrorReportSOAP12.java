@@ -4,12 +4,12 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.error;
 
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.Utf8Properties;
+
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.UnknownHostException;
-
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.Utf8Properties;
 
 /**
  * ErrorReportSOAP12<br />
@@ -59,7 +59,7 @@ public class ErrorReportSOAP12 extends ErrorReport {
 	else {
 	    report = messages.getProperty("sender");
 	}
-	processError(report, errorMessage , title + " " + exception);
+	processError(report, errorMessage , title + ' ' + exception);
     }
 
     /**
