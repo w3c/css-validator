@@ -21,6 +21,16 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
 	public static final CssIdent normal = CssIdent.getIdent("normal");
 	public static final CssIdent smallCaps = CssIdent.getIdent("small-caps");
 
+	public static final CssIdent getAllowedFontVariant(CssIdent ident) {
+		if (smallCaps.equals(ident)) {
+			return smallCaps;
+		}
+		if (normal.equals(ident)) {
+			return normal;
+		}
+		return null;
+	}
+
 	/**
 	 * Creates a new CssFontVariant
 	 *

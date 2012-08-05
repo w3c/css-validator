@@ -200,6 +200,12 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 					throw new InvalidParamException("value",
 							val.toString(),
 							getPropertyName(), ac);
+				case CssTypes.CSS_STRING:
+					fontFamily = new CssFontFamily(ac, expression, check);
+					state = 2;
+					// expression.next is called, so continue instead
+					// of next
+					continue;
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),

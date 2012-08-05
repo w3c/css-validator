@@ -5,12 +5,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css21.CssFontFamily;
-import org.w3c.css.properties.css21.CssFontSize;
-import org.w3c.css.properties.css21.CssFontStyle;
-import org.w3c.css.properties.css21.CssFontVariant;
-import org.w3c.css.properties.css21.CssFontWeight;
-import org.w3c.css.properties.css21.CssLineHeight;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -207,6 +201,12 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 					throw new InvalidParamException("value",
 							val.toString(),
 							getPropertyName(), ac);
+				case CssTypes.CSS_STRING:
+					fontFamily = new CssFontFamily(ac, expression, check);
+					state = 2;
+					// expression.next is called, so continue instead
+					// of next
+					continue;
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),
