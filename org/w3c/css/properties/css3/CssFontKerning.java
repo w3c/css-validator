@@ -33,7 +33,7 @@ public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
     }
 
     /**
-     * Creates a new CssFontSize
+     * Creates a new CssFontKerning
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
