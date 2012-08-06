@@ -2,11 +2,1348 @@
 <!--
 test markup also accepts 3 properties: warning, profile and medium
 like <test profile="css2" medium="all" warning="0">
-where warning means warninglevel in use (0 => none).
+where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
-  <type title="Valid_tests_for_z-index">
-    <test profile="css3" warning="0">
+  <type title="Valid_background">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ah.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ai.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-aj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ak.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-al.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-am.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-an.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ao.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ap.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-aq.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ar.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-as.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-at.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-au.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-av.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-aw.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/000-ax.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/001-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ah.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ai.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-aj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ak.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-al.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-am.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-an.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ao.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ap.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-aq.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ar.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-as.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-at.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-au.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-av.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-aw.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ax.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ay.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-az.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-ba.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bb.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bc.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bd.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-be.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bf.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bg.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bh.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bi.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/002-bj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ah.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ai.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-aj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ak.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-al.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-am.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-an.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ao.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ap.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-aq.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-ar.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-as.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-at.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-au.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-av.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/003-aw.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ah.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ai.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-aj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/004-ak.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-aa.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ab.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ac.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ad.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ae.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-af.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ag.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ah.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ai.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-aj.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ak.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-al.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-am.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-an.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ao.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ap.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-aq.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ar.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-as.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-at.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-au.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-av.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-aw.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background/css3/005-ax.css</file>
+      <description>Valid background level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-attachment">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-attachment/css3/001.css</file>
+      <description>Valid background-attachment level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-clip">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-clip/css3/001.css</file>
+      <description>Valid background-clip level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-color/css3/001.css</file>
+      <description>Valid background-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-image">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-image/css3/001.css</file>
+      <description>Valid background-image level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-origin">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-origin/css3/001.css</file>
+      <description>Valid background-origin level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-position">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-aa.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ab.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ac.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ad.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ae.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-af.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ag.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ah.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ai.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-aj.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ak.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-al.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-am.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-an.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ao.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ap.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-aq.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ar.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-as.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-at.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-au.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-av.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-aw.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ax.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ay.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-az.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-ba.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bb.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bc.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bd.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-be.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bf.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bg.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bh.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bi.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bj.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bk.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bl.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bm.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bn.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bo.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bp.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bq.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-br.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bs.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bt.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bu.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bv.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bw.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bx.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-by.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-position/css3/001-bz.css</file>
+      <description>Valid background-position level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-repeat">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-repeat/css3/001.css</file>
+      <description>Valid background-repeat level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-size">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/background-size/css3/001.css</file>
+      <description>Valid background-size level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border/css3/001.css</file>
+      <description>Valid border level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom/css3/001.css</file>
+      <description>Valid border-bottom level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom-color/css3/001.css</file>
+      <description>Valid border-bottom-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-left-radius">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom-left-radius/css3/001.css</file>
+      <description>Valid border-bottom-left-radius level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-right-radius">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom-right-radius/css3/001.css</file>
+      <description>Valid border-bottom-right-radius level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom-style/css3/001.css</file>
+      <description>Valid border-bottom-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-bottom-width/css3/001.css</file>
+      <description>Valid border-bottom-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-aa.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ab.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ac.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ad.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ae.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-af.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ag.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-color/css3/001-ah.css</file>
+      <description>Valid border-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image/css3/001.css</file>
+      <description>Valid border-image level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image-outset">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image-outset/css3/001.css</file>
+      <description>Valid border-image-outset level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image-repeat">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image-repeat/css3/001.css</file>
+      <description>Valid border-image-repeat level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image-slice">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image-slice/css3/001.css</file>
+      <description>Valid border-image-slice level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image-source">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image-source/css3/001.css</file>
+      <description>Valid border-image-source level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-image-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-image-width/css3/001.css</file>
+      <description>Valid border-image-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-left/css3/001.css</file>
+      <description>Valid border-left level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-left-color/css3/001.css</file>
+      <description>Valid border-left-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-left-style/css3/001.css</file>
+      <description>Valid border-left-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-left-width/css3/001.css</file>
+      <description>Valid border-left-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-radius">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-radius/css3/001.css</file>
+      <description>Valid border-radius level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-right/css3/001.css</file>
+      <description>Valid border-right level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-right-color/css3/001.css</file>
+      <description>Valid border-right-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-right-style/css3/001.css</file>
+      <description>Valid border-right-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-right-width/css3/001.css</file>
+      <description>Valid border-right-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-style/css3/001.css</file>
+      <description>Valid border-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top/css3/001.css</file>
+      <description>Valid border-top level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top-color/css3/001.css</file>
+      <description>Valid border-top-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-left-radius">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top-left-radius/css3/001.css</file>
+      <description>Valid border-top-left-radius level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-right-radius">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top-right-radius/css3/001.css</file>
+      <description>Valid border-top-right-radius level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top-style/css3/001.css</file>
+      <description>Valid border-top-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-top-width/css3/001.css</file>
+      <description>Valid border-top-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/border-width/css3/001.css</file>
+      <description>Valid border-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_box-decoration-break">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/box-decoration-break/css3/001.css</file>
+      <description>Valid box-decoration-break level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_box-shadow">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/box-shadow/css3/001.css</file>
+      <description>Valid box-shadow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font/css3/001.css</file>
+      <description>Valid font level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-family">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-family/css3/001.css</file>
+      <description>Valid font-family level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-size">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-size/css3/001.css</file>
+      <description>Valid font-size level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-size-adjust">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-size-adjust/css3/001.css</file>
+      <description>Valid font-size-adjust level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-stretch">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-stretch/css3/001.css</file>
+      <description>Valid font-stretch level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-style/css3/001.css</file>
+      <description>Valid font-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-weight">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-weight/css3/001.css</file>
+      <description>Valid font-weight level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_height">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/height/css3/001.css</file>
+      <description>Valid height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_letter-spacing">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/letter-spacing/css3/001.css</file>
+      <description>Valid letter-spacing level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_line-height">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/line-height/css3/001.css</file>
+      <description>Valid line-height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_orphans">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/orphans/css3/001.css</file>
+      <description>Valid orphans level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-decoration">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-decoration/css3/001.css</file>
+      <description>Valid text-decoration level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_vertical-align">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/vertical-align/css3/001.css</file>
+      <description>Valid vertical-align level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_visibility">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/visibility/css3/001.css</file>
+      <description>Valid visibility level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_white-space">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/white-space/css3/001.css</file>
+      <description>Valid white-space level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_widows">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/widows/css3/001.css</file>
+      <description>Valid widows level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/width/css3/001.css</file>
+      <description>Valid width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_word-break">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/word-break/css3/001.css</file>
+      <description>Valid word-break level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_word-spacing">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/word-spacing/css3/001.css</file>
+      <description>Valid word-spacing level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_z-index">
+    <test profile="css3" warning="no">
       <file>testsuite/properties/positive/z-index/css3/001.css</file>
       <description>Valid z-index level css3</description>
       <result valid="true" />

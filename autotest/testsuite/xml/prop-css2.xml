@@ -2,11 +2,516 @@
 <!--
 test markup also accepts 3 properties: warning, profile and medium
 like <test profile="css2" medium="all" warning="0">
-where warning means warninglevel in use (0 => none).
+where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
-  <type title="Valid_tests_for_z-index">
-    <test profile="css2" warning="0">
+  <type title="Valid_background">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/001.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-aa.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ab.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ac.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ad.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ae.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-af.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ag.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ah.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ai.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-aj.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ak.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-al.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-am.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-an.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ao.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ap.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-aq.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background/css2/002-ar.css</file>
+      <description>Valid background level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-attachment">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background-attachment/css2/001.css</file>
+      <description>Valid background-attachment level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background-color/css2/001.css</file>
+      <description>Valid background-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-image">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background-image/css2/001.css</file>
+      <description>Valid background-image level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-position">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background-position/css2/001.css</file>
+      <description>Valid background-position level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_background-repeat">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/background-repeat/css2/001.css</file>
+      <description>Valid background-repeat level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border/css2/001.css</file>
+      <description>Valid border level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-bottom/css2/001.css</file>
+      <description>Valid border-bottom level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-bottom-color/css2/001.css</file>
+      <description>Valid border-bottom-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-bottom-style/css2/001.css</file>
+      <description>Valid border-bottom-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-bottom-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-bottom-width/css2/001.css</file>
+      <description>Valid border-bottom-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-aa.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ab.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ac.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ad.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ae.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-af.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ag.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ah.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ai.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-aj.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ak.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-al.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-am.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-an.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ao.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ap.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-aq.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-ar.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-as.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-at.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-color/css2/001-au.css</file>
+      <description>Valid border-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-left/css2/001.css</file>
+      <description>Valid border-left level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-left-color/css2/001.css</file>
+      <description>Valid border-left-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-left-style/css2/001.css</file>
+      <description>Valid border-left-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-left-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-left-width/css2/001.css</file>
+      <description>Valid border-left-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-right/css2/001.css</file>
+      <description>Valid border-right level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-right-color/css2/001.css</file>
+      <description>Valid border-right-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-right-style/css2/001.css</file>
+      <description>Valid border-right-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-right-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-right-width/css2/001.css</file>
+      <description>Valid border-right-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-style/css2/001.css</file>
+      <description>Valid border-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-top/css2/001.css</file>
+      <description>Valid border-top level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-color">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-top-color/css2/001.css</file>
+      <description>Valid border-top-color level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-top-style/css2/001.css</file>
+      <description>Valid border-top-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-top-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-top-width/css2/001.css</file>
+      <description>Valid border-top-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_border-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-width/css2/001.css</file>
+      <description>Valid border-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font/css2/001.css</file>
+      <description>Valid font level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-family">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-family/css2/001.css</file>
+      <description>Valid font-family level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-size">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-size/css2/001.css</file>
+      <description>Valid font-size level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-size-adjust">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-size-adjust/css2/001.css</file>
+      <description>Valid font-size-adjust level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-style">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-style/css2/001.css</file>
+      <description>Valid font-style level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-variant">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-variant/css2/001.css</file>
+      <description>Valid font-variant level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-weight">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/font-weight/css2/001.css</file>
+      <description>Valid font-weight level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_height">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/height/css2/001.css</file>
+      <description>Valid height level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_letter-spacing">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/letter-spacing/css2/001.css</file>
+      <description>Valid letter-spacing level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_line-height">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/line-height/css2/001.css</file>
+      <description>Valid line-height level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_orphans">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/orphans/css2/001.css</file>
+      <description>Valid orphans level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-decoration">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/text-decoration/css2/001.css</file>
+      <description>Valid text-decoration level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_vertical-align">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/vertical-align/css2/001.css</file>
+      <description>Valid vertical-align level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_visibility">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/visibility/css2/001.css</file>
+      <description>Valid visibility level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_volume">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/volume/css2/001.css</file>
+      <description>Valid volume level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_white-space">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/white-space/css2/001.css</file>
+      <description>Valid white-space level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_widows">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/widows/css2/001.css</file>
+      <description>Valid widows level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/width/css2/001.css</file>
+      <description>Valid width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_word-spacing">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/word-spacing/css2/001.css</file>
+      <description>Valid word-spacing level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_z-index">
+    <test profile="css2" warning="no">
       <file>testsuite/properties/positive/z-index/css2/001.css</file>
       <description>Valid z-index level css2</description>
       <result valid="true" />
