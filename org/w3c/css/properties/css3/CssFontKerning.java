@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec
+ * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-kerning
  */
 public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
 
