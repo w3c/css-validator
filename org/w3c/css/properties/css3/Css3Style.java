@@ -28,6 +28,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -139,6 +140,8 @@ public class Css3Style extends ATSCStyle {
     public CssBreakInside cssBreakInside;
     public CssBoxShadow cssBoxShadow;
     public CssBoxDecorationBreak cssBoxDecorationBreak;
+	public CssFontKerning cssFontKerning;
+
 
     CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
     CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1548,6 +1551,15 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBoxDecorationBreak;
     }
+
+	public CssFontKerning getFontKerning() {
+		if (cssFontKerning == null) {
+			cssFontKerning =
+					(CssFontKerning) style.CascadingOrder(
+							new CssFontKerning(), style, selector);
+		}
+		return cssFontKerning;
+	}
 
     public CssTextIndentCSS3 getTextIndentCSS3() {
         if (cssTextIndentCSS3 == null) {
