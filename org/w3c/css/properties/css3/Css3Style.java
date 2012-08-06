@@ -29,6 +29,7 @@ import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssFontKerning;
+import org.w3c.css.properties.css.CssFontLanguageOverride;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -141,9 +142,10 @@ public class Css3Style extends ATSCStyle {
     public CssBoxShadow cssBoxShadow;
     public CssBoxDecorationBreak cssBoxDecorationBreak;
 	public CssFontKerning cssFontKerning;
+	public CssFontLanguageOverride cssFontLanguageOverride;
 
 
-    CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
+	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
     CssDropInitialAfterAlign cssDropInitialAfterAlign;
     CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
     CssDropInitialBeforeAlign cssDropInitialBeforeAlign;
@@ -1559,6 +1561,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontKerning(), style, selector);
 		}
 		return cssFontKerning;
+	}
+
+	public CssFontLanguageOverride getFontLanguageOverride() {
+		if (cssFontLanguageOverride == null) {
+			cssFontLanguageOverride =
+					(CssFontLanguageOverride) style.CascadingOrder(
+							new CssFontLanguageOverride(), style, selector);
+		}
+		return cssFontLanguageOverride;
 	}
 
     public CssTextIndentCSS3 getTextIndentCSS3() {
