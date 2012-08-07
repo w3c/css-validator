@@ -60,6 +60,8 @@ public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
 				value = normal;
 			} else if (auto.equals(ident)) {
 				value = auto;
+			} else if (none.equals(ident)) {
+				value = none;
 			} else {
 				throw new InvalidParamException("value",
 						val.toString(),
