@@ -1,0 +1,5 @@
+a { font-kerning: inherit; }
+b { font-kerning: initial; }
+c { font-kerning: auto; }
+d { font-kerning: normal; }
+e { font-kerning: none; }
