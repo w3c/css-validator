@@ -12,6 +12,9 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.external.OpenTypeLanguageSystemTag;
+
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-language-override
@@ -56,6 +59,16 @@ public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontL
 				CssString s = (CssString) val;
 				// limit of 3 characters + two surrounding quotes
 				if (s.toString().length() != 5) {
+					throw new InvalidParamException("value",
+							expression.getValue().toString(),
+							getPropertyName(), ac);
+				}
+				// we extract the 3 letters from the quotes...
+				String tag = s.toString().substring(1,4).toUpperCase();
+				// valid values are specified here.
+				int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
+				if (idx < 0) {
+					// TODO specific error code
 					throw new InvalidParamException("value",
 							expression.getValue().toString(),
 							getPropertyName(), ac);
