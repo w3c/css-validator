@@ -31,6 +31,7 @@ import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
 import org.w3c.css.properties.css.CssFontVariantCaps;
+import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -145,6 +146,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFontKerning cssFontKerning;
 	public CssFontLanguageOverride cssFontLanguageOverride;
 	public CssFontVariantCaps cssFontVariantCaps;
+	public CssFontVariantPosition cssFontVariantPosition;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1581,6 +1583,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontVariantCaps(), style, selector);
 		}
 		return cssFontVariantCaps;
+	}
+
+	public CssFontVariantPosition getFontVariantPosition() {
+		if (cssFontVariantCaps == null) {
+			cssFontVariantCaps =
+					(CssFontVariantCaps) style.CascadingOrder(
+							new CssFontVariantCaps(), style, selector);
+		}
+		return cssFontVariantPosition;
 	}
 
 	public CssTextIndentCSS3 getTextIndentCSS3() {
