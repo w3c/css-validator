@@ -30,6 +30,7 @@ import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
+import org.w3c.css.properties.css.CssFontSynthesis;
 import org.w3c.css.properties.css.CssFontVariantCaps;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssOpacity;
@@ -147,6 +148,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFontLanguageOverride cssFontLanguageOverride;
 	public CssFontVariantCaps cssFontVariantCaps;
 	public CssFontVariantPosition cssFontVariantPosition;
+	public CssFontSynthesis cssFontSynthesis;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1592,6 +1594,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontVariantCaps(), style, selector);
 		}
 		return cssFontVariantPosition;
+	}
+
+	public CssFontSynthesis getFontSynthesis() {
+		if (cssFontSynthesis == null) {
+			cssFontSynthesis =
+					(CssFontSynthesis) style.CascadingOrder(
+							new CssFontSynthesis(), style, selector);
+		}
+		return cssFontSynthesis;
 	}
 
 	public CssTextIndentCSS3 getTextIndentCSS3() {
