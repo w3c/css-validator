@@ -1223,6 +1223,25 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_font-kerning">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-kerning/css3/001.css</file>
+      <description>Valid font-kerning level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-language-override">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-language-override/css3/001.css</file>
+      <description>Valid font-language-override level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-language-override/css3/002.css</file>
+      <description>Valid font-language-override level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font-size">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-size/css3/001.css</file>
@@ -1248,6 +1267,20 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-style/css3/001.css</file>
       <description>Valid font-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-variant-caps">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-variant-caps/css3/001.css</file>
+      <description>Valid font-variant-caps level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-variant-position">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-variant-position/css3/001.css</file>
+      <description>Valid font-variant-position level css3</description>
       <result valid="true" />
     </test>
   </type>
