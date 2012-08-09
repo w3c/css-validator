@@ -1,0 +1,81 @@
+t1 { font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures; }
+t2 { font-variant-ligatures: common-ligatures historical-ligatures discretionary-ligatures; }
+t3 { font-variant-ligatures: discretionary-ligatures common-ligatures historical-ligatures; }
+t4 { font-variant-ligatures: discretionary-ligatures historical-ligatures common-ligatures; }
+t5 { font-variant-ligatures: historical-ligatures common-ligatures discretionary-ligatures; }
+t6 { font-variant-ligatures: historical-ligatures discretionary-ligatures common-ligatures; }
+t7 { font-variant-ligatures: common-ligatures discretionary-ligatures no-historical-ligatures; }
+t8 { font-variant-ligatures: common-ligatures no-historical-ligatures discretionary-ligatures; }
+t9 { font-variant-ligatures: discretionary-ligatures common-ligatures no-historical-ligatures; }
+t10 { font-variant-ligatures: discretionary-ligatures no-historical-ligatures common-ligatures; }
+t11 { font-variant-ligatures: no-historical-ligatures common-ligatures discretionary-ligatures; }
+t12 { font-variant-ligatures: no-historical-ligatures discretionary-ligatures common-ligatures; }
+t13 { font-variant-ligatures: common-ligatures no-discretionary-ligatures historical-ligatures; }
+t14 { font-variant-ligatures: common-ligatures historical-ligatures no-discretionary-ligatures; }
+t15 { font-variant-ligatures: no-discretionary-ligatures common-ligatures historical-ligatures; }
+t16 { font-variant-ligatures: no-discretionary-ligatures historical-ligatures common-ligatures; }
+t17 { font-variant-ligatures: historical-ligatures common-ligatures no-discretionary-ligatures; }
+t18 { font-variant-ligatures: historical-ligatures no-discretionary-ligatures common-ligatures; }
+t19 { font-variant-ligatures: common-ligatures no-discretionary-ligatures no-historical-ligatures; }
+t20 { font-variant-ligatures: common-ligatures no-historical-ligatures no-discretionary-ligatures; }
+t21 { font-variant-ligatures: no-discretionary-ligatures common-ligatures no-historical-ligatures; }
+t22 { font-variant-ligatures: no-discretionary-ligatures no-historical-ligatures common-ligatures; }
+t23 { font-variant-ligatures: no-historical-ligatures common-ligatures no-discretionary-ligatures; }
+t24 { font-variant-ligatures: no-historical-ligatures no-discretionary-ligatures common-ligatures; }
+t25 { font-variant-ligatures: no-common-ligatures discretionary-ligatures historical-ligatures; }
+t26 { font-variant-ligatures: no-common-ligatures historical-ligatures discretionary-ligatures; }
+t27 { font-variant-ligatures: discretionary-ligatures no-common-ligatures historical-ligatures; }
+t28 { font-variant-ligatures: discretionary-ligatures historical-ligatures no-common-ligatures; }
+t29 { font-variant-ligatures: historical-ligatures no-common-ligatures discretionary-ligatures; }
+t30 { font-variant-ligatures: historical-ligatures discretionary-ligatures no-common-ligatures; }
+t31 { font-variant-ligatures: no-common-ligatures discretionary-ligatures no-historical-ligatures; }
+t32 { font-variant-ligatures: no-common-ligatures no-historical-ligatures discretionary-ligatures; }
+t33 { font-variant-ligatures: discretionary-ligatures no-common-ligatures no-historical-ligatures; }
+t34 { font-variant-ligatures: discretionary-ligatures no-historical-ligatures no-common-ligatures; }
+t35 { font-variant-ligatures: no-historical-ligatures no-common-ligatures discretionary-ligatures; }
+t36 { font-variant-ligatures: no-historical-ligatures discretionary-ligatures no-common-ligatures; }
+t37 { font-variant-ligatures: no-common-ligatures no-discretionary-ligatures historical-ligatures; }
+t38 { font-variant-ligatures: no-common-ligatures historical-ligatures no-discretionary-ligatures; }
+t39 { font-variant-ligatures: no-discretionary-ligatures no-common-ligatures historical-ligatures; }
+t40 { font-variant-ligatures: no-discretionary-ligatures historical-ligatures no-common-ligatures; }
+t41 { font-variant-ligatures: historical-ligatures no-common-ligatures no-discretionary-ligatures; }
+t42 { font-variant-ligatures: historical-ligatures no-discretionary-ligatures no-common-ligatures; }
+t43 { font-variant-ligatures: no-common-ligatures no-discretionary-ligatures no-historical-ligatures; }
+t44 { font-variant-ligatures: no-common-ligatures no-historical-ligatures no-discretionary-ligatures; }
+t45 { font-variant-ligatures: no-discretionary-ligatures no-common-ligatures no-historical-ligatures; }
+t46 { font-variant-ligatures: no-discretionary-ligatures no-historical-ligatures no-common-ligatures; }
+t47 { font-variant-ligatures: no-historical-ligatures no-common-ligatures no-discretionary-ligatures; }
+t48 { font-variant-ligatures: no-historical-ligatures no-discretionary-ligatures no-common-ligatures; }
+t49 { font-variant-ligatures: common-ligatures discretionary-ligatures; }
+t50 { font-variant-ligatures: discretionary-ligatures common-ligatures; }
+t51 { font-variant-ligatures: common-ligatures no-discretionary-ligatures; }
+t52 { font-variant-ligatures: no-discretionary-ligatures common-ligatures; }
+t53 { font-variant-ligatures: no-common-ligatures discretionary-ligatures; }
+t54 { font-variant-ligatures: discretionary-ligatures no-common-ligatures; }
+t55 { font-variant-ligatures: no-common-ligatures no-discretionary-ligatures; }
+t56 { font-variant-ligatures: no-discretionary-ligatures no-common-ligatures; }
+t57 { font-variant-ligatures: common-ligatures historical-ligatures; }
+t58 { font-variant-ligatures: historical-ligatures common-ligatures; }
+t59 { font-variant-ligatures: common-ligatures no-historical-ligatures; }
+t60 { font-variant-ligatures: no-historical-ligatures common-ligatures; }
+t61 { font-variant-ligatures: no-common-ligatures historical-ligatures; }
+t62 { font-variant-ligatures: historical-ligatures no-common-ligatures; }
+t63 { font-variant-ligatures: no-common-ligatures no-historical-ligatures; }
+t64 { font-variant-ligatures: no-historical-ligatures no-common-ligatures; }
+t65 { font-variant-ligatures: discretionary-ligatures historical-ligatures; }
+t66 { font-variant-ligatures: historical-ligatures discretionary-ligatures; }
+t67 { font-variant-ligatures: discretionary-ligatures no-historical-ligatures; }
+t68 { font-variant-ligatures: no-historical-ligatures discretionary-ligatures; }
+t69 { font-variant-ligatures: no-discretionary-ligatures historical-ligatures; }
+t70 { font-variant-ligatures: historical-ligatures no-discretionary-ligatures; }
+t71 { font-variant-ligatures: no-discretionary-ligatures no-historical-ligatures; }
+t72 { font-variant-ligatures: no-historical-ligatures no-discretionary-ligatures; }
+t73 { font-variant-ligatures: common-ligatures; }
+t74 { font-variant-ligatures: no-common-ligatures; }
+t75 { font-variant-ligatures: discretionary-ligatures; }
+t76 { font-variant-ligatures: no-discretionary-ligatures; }
+t77 { font-variant-ligatures: historical-ligatures; }
+t78 { font-variant-ligatures: no-historical-ligatures; }
+t79 { font-variant-ligatures: normal; }
+t80 { font-variant-ligatures: inherit; }
+t81 { font-variant-ligatures: initial; }
