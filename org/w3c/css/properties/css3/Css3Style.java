@@ -34,6 +34,7 @@ import org.w3c.css.properties.css.CssFontSynthesis;
 import org.w3c.css.properties.css.CssFontVariantCaps;
 import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
+import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.util.ApplContext;
@@ -153,6 +154,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFontSynthesis cssFontSynthesis;
 	public CssFontVariantEastAsian cssFontVariantEastAsian;
 	public CssFontVariantLigatures cssFontVariantLigatures;
+	public CssFontVariantNumeric cssFontVariantNumeric;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1625,6 +1627,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontVariantLigatures(), style, selector);
 		}
 		return cssFontVariantLigatures;
+	}
+
+	public CssFontVariantNumeric getFontVariantNumeric() {
+		if (cssFontVariantNumeric == null) {
+			cssFontVariantNumeric =
+					(CssFontVariantNumeric) style.CascadingOrder(
+							new CssFontVariantNumeric(), style, selector);
+		}
+		return cssFontVariantNumeric;
 	}
 
 	///
