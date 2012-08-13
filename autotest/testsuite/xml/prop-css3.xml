@@ -1223,6 +1223,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_font-feature-settings">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-feature-settings/css3/001.css</file>
+      <description>Valid font-feature-settings level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font-kerning">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-kerning/css3/001.css</file>
