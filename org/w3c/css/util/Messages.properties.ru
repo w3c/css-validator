@@ -356,3 +356,17 @@ parser.invalid_id_selector: Неправильный ID селектора
 parser.import_not_allowed: @import не разрешен после любых правильных объявлений кроме @charset и @import.
 error.bg_order: В спецификации CSS3 свойство bg_position должно идти до bg_size, если указаны оба свойства.
 
+error.grid: Только 0 и 1 являются допустимыми значениями для сетки
+error.nomediarestrictor: Особенности MediarestrictorMedia не определены в этом стандарте/уровне CSS  
+error.nomodifiermedia: Особенность среды %s не поддерживает префиксы
+error.nomodifiershortmedia: Для особенностей данной среды отображения  без значений недопустимо использование префиксов
+
+vendorext: Расширения поставщика
+vext_default: По-умолчанию
+vext_errors: Ошибки
+vext_warnings: Предупреждения
+
+warning.deprecatedmedia: Среда "%s" устарела.
+warning.link-type: Вы должны добавить атрибут 'type' со значением 'text/css' к элементу 'link'
+warning.style-type: Вы должны добавить атрибут 'type' со значением 'text/css' к элементу 'style'
+warning.vendor-extension: Свойство %s - неизвестное расширение поставщика
