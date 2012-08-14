@@ -126,7 +126,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextOverflow cssTextOverflow;
 	CssTextOverflowEllipsis cssTextOverflowEllipsis;
 	CssTextOverflowMode cssTextOverflowMode;
-	CssWhiteSpaceTreatment cssWhiteSpaceTreatment;
 	CssWrapOption cssWrapOption;
 
 	public CssOpacity cssOpacity;
@@ -990,15 +989,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextOverflowMode(), style, selector);
 		}
 		return cssTextOverflowMode;
-	}
-
-	public CssWhiteSpaceTreatment getWhiteSpaceTreatment() {
-		if (cssWhiteSpaceTreatment == null) {
-			cssWhiteSpaceTreatment =
-					(CssWhiteSpaceTreatment) style.CascadingOrder(
-							new CssWhiteSpaceTreatment(), style, selector);
-		}
-		return cssWhiteSpaceTreatment;
 	}
 
 	public CssWrapOption getWrapOption() {
