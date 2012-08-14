@@ -409,3 +409,10 @@ parser.invalid_id_selector: Sélécteur d'ID invalide
 parser.import_not_allowed: @import n'est pas autorisé s'il apparaît après toute déclaration autre que @charset et @import.
 
 error.bg_order: Dans la définition de CSS3 background, 'bg_position' doit apparaître avant / 'bg_size' si les deux sont présent
+
+warning.deprecatedmedia: L'utilisation du media "%s" est déconseillée
+error.nomediarestrictor: Les limitations de media ne sont pas définies dans ce niveau de CSS
+error.nomediafeature: Les propriétés de media ne sont pas définies dans ce niveau de CSS
+error.nomodifiershortmedia: Les préfixes sont interdits pour les propriétés de media n'ayant pas de valeur
+error.nomodifiermedia: La propriété de media %s n'autorise pas l'utilisation de préfixes
+error.grid: Seuls 0 et 1 sont des valeurs possibles pour 'grid'
