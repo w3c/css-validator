@@ -388,7 +388,7 @@ error.bg_order: In the CSS3 background definition, 'bg_position' must occur befo
 
 warning.deprecatedmedia: The media "%s" has been deprecated
 error.nomediarestrictor: Mediarestrictor not defined in this CSS level
-error.nomediarestrictor: MediarestrictorMedia features are not defined in this CSS level
+error.nomediafeature: Media features are not defined in this CSS level
 error.nomodifiershortmedia: No prefixes are allowed for media features with no value
 error.nomodifiermedia: The media feature %s does not support prefixes
 error.grid: Only 0 and 1 are acceptable values for grid
