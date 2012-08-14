@@ -387,3 +387,7 @@ vext_warnings: Varningar
 warning.link-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'link'-elementet
 warning.style-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'style'-elementet
 
+warning.deprecatedmedia: Media "%s" har nedgraderats
+error.nomodifiershortmedia: Prefix kan inte användas för mediafunktionaliteter utan värden
+error.nomodifiermedia: Mediafunktionalitet %s stöder inte prefix
+error.grid: Enbart 0 och 1 är giltiga värden för grid
