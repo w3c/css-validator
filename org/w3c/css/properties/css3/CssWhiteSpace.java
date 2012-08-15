@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 /**
  * @version $Revision$
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#white-space-prop
+ * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#white-space0
  */
 public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
 
@@ -38,7 +38,6 @@ public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
     * Create a new CssWhiteSpace
     */
     public CssWhiteSpace() {
-        // TODO raise an error ?
         value = initial;
     }
 
