@@ -126,7 +126,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextOverflow cssTextOverflow;
 	CssTextOverflowEllipsis cssTextOverflowEllipsis;
 	CssTextOverflowMode cssTextOverflowMode;
-	CssWrapOption cssWrapOption;
 
 	public CssOpacity cssOpacity;
 	public CssBackgroundClip cssBackgroundClip;
@@ -989,15 +988,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextOverflowMode(), style, selector);
 		}
 		return cssTextOverflowMode;
-	}
-
-	public CssWrapOption getWrapOption() {
-		if (cssWrapOption == null) {
-			cssWrapOption =
-					(CssWrapOption) style.CascadingOrder(
-							new CssWrapOption(), style, selector);
-		}
-		return cssWrapOption;
 	}
 
 	public CssColumnGap getColumnGap() {
