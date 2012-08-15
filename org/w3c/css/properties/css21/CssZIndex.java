@@ -16,10 +16,9 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#propdef-z-index
  */
 public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
-
-    CssValue value;
 
     /**
      * Create a new CssZIndex
@@ -81,13 +80,6 @@ public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
     public CssZIndex(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
     }
 
     public boolean isDefault() {

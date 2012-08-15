@@ -16,12 +16,13 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
 
 /**
+ * @since CSS2
  */
 public class CssZIndex extends CssProperty {
 
     public static final String propertyName = "z-index";
 
-    CssValue value;
+    public CssValue value;
 
     public static CssIdent auto = CssIdent.getIdent("auto");
 
