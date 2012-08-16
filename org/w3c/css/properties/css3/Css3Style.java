@@ -77,8 +77,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextAfterOverflow cssTextAfterOverflow;
 	CssPunctuationTrim cssPunctuationTrim;
 	CssTextAutoSpace cssTextAutoSpace;
-	CssKerningMode cssKerningMode;
-	CssKerningPairTreshold cssKerningPairTreshold;
 	CssTextUlStyle cssTextUlStyle;
 	CssTextUlColor cssTextUlColor;
 	CssTextUlMode cssTextUlMode;
@@ -505,24 +503,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextAutoSpace(), style, selector);
 		}
 		return cssTextAutoSpace;
-	}
-
-	public CssKerningMode getKerningMode() {
-		if (cssKerningMode == null) {
-			cssKerningMode =
-					(CssKerningMode) style.CascadingOrder(
-							new CssKerningMode(), style, selector);
-		}
-		return cssKerningMode;
-	}
-
-	public CssKerningPairTreshold getKerningPairTreshold() {
-		if (cssKerningPairTreshold == null) {
-			cssKerningPairTreshold =
-					(CssKerningPairTreshold) style.CascadingOrder(
-							new CssKerningPairTreshold(), style, selector);
-		}
-		return cssKerningPairTreshold;
 	}
 
 	public CssTextUlStyle getTextUlStyle() {
