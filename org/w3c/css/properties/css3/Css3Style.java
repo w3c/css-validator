@@ -53,12 +53,6 @@ public class Css3Style extends ATSCStyle {
 	CssBoxSizing cssBoxSizing;
 	CssResizer cssResizer;
 	CssTabIndex cssTabIndex;
-	CssUserInput cssUserInput;
-	CssUserModify cssUserModify;
-	CssUserSelect cssUserSelect;
-	CssUserFocus cssUserFocus;
-	CssUserFocusKey cssUserFocusKey;
-	CssUserFocusPointer cssUserFocusPointer;
 	CssToggleGroup cssToggleGroup;
 	CssGroupReset cssGroupReset;
 	CssWritingMode cssWritingMode;
@@ -295,60 +289,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTabIndex(), style, selector);
 		}
 		return cssTabIndex;
-	}
-
-	public CssUserInput getUserInput() {
-		if (cssUserInput == null) {
-			cssUserInput =
-					(CssUserInput) style.CascadingOrder(
-							new CssUserInput(), style, selector);
-		}
-		return cssUserInput;
-	}
-
-	public CssUserModify getUserModify() {
-		if (cssUserModify == null) {
-			cssUserModify =
-					(CssUserModify) style.CascadingOrder(
-							new CssUserModify(), style, selector);
-		}
-		return cssUserModify;
-	}
-
-	public CssUserSelect getUserSelect() {
-		if (cssUserSelect == null) {
-			cssUserSelect =
-					(CssUserSelect) style.CascadingOrder(
-							new CssUserSelect(), style, selector);
-		}
-		return cssUserSelect;
-	}
-
-	public CssUserFocus getUserFocus() {
-		if (cssUserFocus == null) {
-			cssUserFocus =
-					(CssUserFocus) style.CascadingOrder(
-							new CssUserFocus(), style, selector);
-		}
-		return cssUserFocus;
-	}
-
-	public CssUserFocusKey getUserFocusKey() {
-		if (cssUserFocusKey == null) {
-			cssUserFocusKey =
-					(CssUserFocusKey) style.CascadingOrder(
-							new CssUserFocusKey(), style, selector);
-		}
-		return cssUserFocusKey;
-	}
-
-	public CssUserFocusPointer getUserFocusPointer() {
-		if (cssUserFocusPointer == null) {
-			cssUserFocusPointer =
-					(CssUserFocusPointer) style.CascadingOrder(
-							new CssUserFocusPointer(), style, selector);
-		}
-		return cssUserFocusPointer;
 	}
 
 	public CssToggleGroup getToggleGroup() {
