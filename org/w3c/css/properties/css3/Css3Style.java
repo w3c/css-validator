@@ -52,7 +52,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubyOverhang cssRubyOverhang;
 	CssBoxSizing cssBoxSizing;
 	CssResizer cssResizer;
-	CssKeyEq cssKeyEq;
 	CssTabIndex cssTabIndex;
 	CssUserInput cssUserInput;
 	CssUserModify cssUserModify;
@@ -288,14 +287,6 @@ public class Css3Style extends ATSCStyle {
 		return cssResizer;
 	}
 
-	public CssKeyEq getKeyEq() {
-		if (cssKeyEq == null) {
-			cssKeyEq =
-					(CssKeyEq) style.CascadingOrder(
-							new CssKeyEq(), style, selector);
-		}
-		return cssKeyEq;
-	}
 
 	public CssTabIndex getTabIndex() {
 		if (cssTabIndex == null) {
