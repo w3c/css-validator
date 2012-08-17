@@ -170,7 +170,6 @@ public class Css3Style extends ATSCStyle {
 	CssClearAfter cssClearAfter;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
-	CssFloatDisplace cssFloatDisplace;
 	CssVisibilityCSS3 cssVisibilityCSS3;
 	CssOverflowCSS3 cssOverflowCSS3;
 	CssOverflowClip cssOverflowClip;
@@ -1182,15 +1181,6 @@ public class Css3Style extends ATSCStyle {
 							new CssFitPosition(), style, selector);
 		}
 		return cssFitPosition;
-	}
-
-	public CssFloatDisplace getFloatDisplace() {
-		if (cssFloatDisplace == null) {
-			cssFloatDisplace =
-					(CssFloatDisplace) style.CascadingOrder(
-							new CssFloatDisplace(), style, selector);
-		}
-		return cssFloatDisplace;
 	}
 
 	public CssVisibilityCSS3 getVisibilityCSS3() {
