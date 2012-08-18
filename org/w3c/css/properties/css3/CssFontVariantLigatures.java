@@ -170,7 +170,6 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 			}
 			value = new CssValueList(v);
 		}
-
 	}
 
 	public CssFontVariantLigatures(ApplContext ac, CssExpression expression)

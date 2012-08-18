@@ -32,6 +32,7 @@ import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
 import org.w3c.css.properties.css.CssFontSynthesis;
+import org.w3c.css.properties.css.CssFontVariantAlternates;
 import org.w3c.css.properties.css.CssFontVariantCaps;
 import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
@@ -45,7 +46,6 @@ import org.w3c.css.util.Warnings;
 
 public class Css3Style extends ATSCStyle {
 
-	CssColorProfile cssColorProfile;
 	CssRenderIntent cssRenderIntent;
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
@@ -138,6 +138,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFontVariantLigatures cssFontVariantLigatures;
 	public CssFontVariantNumeric cssFontVariantNumeric;
 	public CssFontFeatureSettings cssFontFeatureSettings;
+	public CssFontVariantAlternates cssFontVariantAlternates;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -204,15 +205,6 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssOpacity;
-	}
-
-	public CssColorProfile getColorProfile() {
-		if (cssColorProfile == null) {
-			cssColorProfile =
-					(CssColorProfile) style.CascadingOrder(new CssOpacity(),
-							style, selector);
-		}
-		return cssColorProfile;
 	}
 
 	public CssRenderIntent getRenderIntent() {
@@ -1438,6 +1430,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontFeatureSettings(), style, selector);
 		}
 		return cssFontFeatureSettings;
+	}
+
+	public CssFontVariantAlternates getFontVariantAlternates() {
+		if (cssFontVariantAlternates == null) {
+			cssFontVariantAlternates =
+					(CssFontVariantAlternates) style.CascadingOrder(
+							new CssFontVariantAlternates(), style, selector);
+		}
+		return cssFontVariantAlternates;
 	}
 
 	///

@@ -67,7 +67,7 @@ public class CssFunction extends CssValue {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder(name);
-        sb.append('(').append(parameters).append(')');
+        sb.append('(').append(parameters.toStringFromStart()).append(')');
         return sb.toString();
     }
 

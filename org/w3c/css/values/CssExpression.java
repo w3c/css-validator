@@ -193,9 +193,9 @@ public class CssExpression implements CssOperator {
             ValueOperator vo = items.get(i);
             sb.append(vo.value.toString()).append(vo.operator);
         }
-        // remove the last one
-        if (sb.length() > 0) {
-//            sb.setLength(sb.length() - 1);
+        // remove the last extra operator
+        if (sb.length() > 1) {
+            sb.setLength(sb.length() - 1);
             return sb.toString();
         } else {
             return "**invalid state**";
@@ -211,6 +211,8 @@ public class CssExpression implements CssOperator {
         for (ValueOperator anItem : items) {
             sb.append(anItem.value.toString()).append(anItem.operator);
         }
+		// care for the last extra operator
+		sb.setLength(sb.length() - 1);
         return sb.toString();
     }
 
