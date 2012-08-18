@@ -82,10 +82,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextUlMode cssTextUlMode;
 	CssTextUlPos cssTextUlPos;
 	CssTextUnderLine cssTextUnderLine;
-	CssTextLTStyle cssTextLTStyle;
-	CssTextLTColor cssTextLTColor;
-	CssTextLTMode cssTextLTMode;
-	CssTextLineThrough cssTextLineThrough;
 	CssTextCombine cssTextCombine;
 	CssMedia cssMedia;
 	CssDisplayModel cssDisplayModel;
@@ -542,42 +538,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextUnderLine(), style, selector);
 		}
 		return cssTextUnderLine;
-	}
-
-	public CssTextLTStyle getTextLTStyle() {
-		if (cssTextLTStyle == null) {
-			cssTextLTStyle =
-					(CssTextLTStyle) style.CascadingOrder(
-							new CssTextLTStyle(), style, selector);
-		}
-		return cssTextLTStyle;
-	}
-
-	public CssTextLTColor getTextLTColor() {
-		if (cssTextLTColor == null) {
-			cssTextLTColor =
-					(CssTextLTColor) style.CascadingOrder(
-							new CssTextLTColor(), style, selector);
-		}
-		return cssTextLTColor;
-	}
-
-	public CssTextLTMode getTextLTMode() {
-		if (cssTextLTMode == null) {
-			cssTextLTMode =
-					(CssTextLTMode) style.CascadingOrder(
-							new CssTextLTMode(), style, selector);
-		}
-		return cssTextLTMode;
-	}
-
-	public CssTextLineThrough getTextLineThrough() {
-		if (cssTextLineThrough == null) {
-			cssTextLineThrough =
-					(CssTextLineThrough) style.CascadingOrder(
-							new CssTextLineThrough(), style, selector);
-		}
-		return cssTextLineThrough;
 	}
 
 	public CssTextCombine getTextCombine() {
