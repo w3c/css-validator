@@ -60,8 +60,6 @@ public class Css3Style extends ATSCStyle {
 	CssGlyphHor cssGlyphHor;
 	CssTextJustify cssTextJustify;
 	CssTextAlignLast cssTextAlignLast;
-	CssMinFontSize cssMinFontSize;
-	CssMaxFontSize cssMaxFontSize;
 	CssDominantBaseLine cssDominantBaseLine;
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
@@ -330,24 +328,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextAlignLast(), style, selector);
 		}
 		return cssTextAlignLast;
-	}
-
-	public CssMinFontSize getMinFontSize() {
-		if (cssMinFontSize == null) {
-			cssMinFontSize =
-					(CssMinFontSize) style.CascadingOrder(
-							new CssMinFontSize(), style, selector);
-		}
-		return cssMinFontSize;
-	}
-
-	public CssMaxFontSize getMaxFontSize() {
-		if (cssMaxFontSize == null) {
-			cssMaxFontSize =
-					(CssMaxFontSize) style.CascadingOrder(
-							new CssMaxFontSize(), style, selector);
-		}
-		return cssMaxFontSize;
 	}
 
 	public CssDominantBaseLine getDominantBaseLine() {
