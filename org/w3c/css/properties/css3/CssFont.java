@@ -96,19 +96,19 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 							gotNormal = true;
 							break;
 						}
-						int pos = org.w3c.css.properties.css21.CssFontStyle.allowed_values.indexOf(ident);
+						int pos = CssFontStyle.allowed_values.indexOf(ident);
 						if (pos >= 0) {
 							if (fontStyle != null) {
 								throw new InvalidParamException("value",
 										val.toString(),
 										getPropertyName(), ac);
 							}
-							fontStyle = new org.w3c.css.properties.css21.CssFontStyle();
+							fontStyle = new CssFontStyle();
 							fontStyle.value = CssFontStyle.allowed_values.get(pos);
 							break;
 						}
 						// font-variant
-						CssIdent v = CssFontVariant.getAllowedFontVariant(ident);
+						CssIdent v = org.w3c.css.properties.css21.CssFontVariant.getAllowedFontVariant(ident);
 						if (v != null) {
 							if (fontVariant != null) {
 								throw new InvalidParamException("value",
