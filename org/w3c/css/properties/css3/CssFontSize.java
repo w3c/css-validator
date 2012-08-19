@@ -87,7 +87,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 					value = inherit;
 					break;
 				}
-				value = allowed_values.get(val.toString());
+				value = allowed_values.get(val.toString().toLowerCase());
 				if (value == null) {
 					throw new InvalidParamException("value",
 							expression.getValue().toString(),

@@ -23,7 +23,7 @@ public class CssFontStyle extends org.w3c.css.properties.css.CssFontStyle {
 	static final ArrayList<CssIdent> allowed_values;
 
 	static {
-		allowed_values = new ArrayList<CssIdent>(3);
+		allowed_values = new ArrayList<CssIdent>(_allowed_values.length);
 		for (String s : _allowed_values) {
 			allowed_values.add(CssIdent.getIdent(s));
 		}

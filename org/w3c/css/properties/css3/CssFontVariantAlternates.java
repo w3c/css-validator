@@ -35,7 +35,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 	}
 
 	public static final CssIdent getContextualAltValues(CssIdent ident) {
-		String s_id = ident.toString();
+		String s_id = ident.toString().toLowerCase();
 		for (String s : contextualAltValues) {
 			if (s_id.equals(s)) {
 				return ident;

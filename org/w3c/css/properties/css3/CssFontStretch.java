@@ -25,7 +25,7 @@ public class CssFontStretch extends org.w3c.css.properties.css.CssFontStretch {
 	static final HashMap<String, CssIdent> allowed_values;
 
 	static {
-		allowed_values = new HashMap<String, CssIdent>();
+		allowed_values = new HashMap<String, CssIdent>(_allowed_values.length);
 		for (String s : _allowed_values) {
 			allowed_values.put(s, CssIdent.getIdent(s));
 		}
@@ -63,7 +63,7 @@ public class CssFontStretch extends org.w3c.css.properties.css.CssFontStretch {
 			if (inherit.equals(ident)) {
 				value = inherit;
 			} else {
-				value = allowed_values.get(val.toString());
+				value = allowed_values.get(val.toString().toLowerCase());
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),

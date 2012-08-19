@@ -63,7 +63,7 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
 			if (inherit.equals(ident)) {
 				value = inherit;
 			} else {
-				value = allowedValues.get(ident.toString());
+				value = allowedValues.get(ident.toString().toLowerCase());
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),

@@ -33,7 +33,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 	}
 
 	public static final CssIdent getNumericFigValues(CssIdent ident) {
-		String s_id = ident.toString();
+		String s_id = ident.toString().toLowerCase();
 		for (String s : numericFigValues) {
 			if (s_id.equals(s)) {
 				return ident;
@@ -43,7 +43,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 	}
 
 	public static final CssIdent getNumericSpaValues(CssIdent ident) {
-		String s_id = ident.toString();
+		String s_id = ident.toString().toLowerCase();
 		for (String s : numericSpaValues) {
 			if (s_id.equals(s)) {
 				return ident;
@@ -53,7 +53,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 	}
 
 	public static final CssIdent getNumericFraValues(CssIdent ident) {
-		String s_id = ident.toString();
+		String s_id = ident.toString().toLowerCase();
 		for (String s : numericFraValues) {
 			if (s_id.equals(s)) {
 				return ident;

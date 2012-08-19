@@ -65,7 +65,7 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
 			} else if (normal.equals(ident)) {
 				value = normal;
 			} else {
-				value = capsValues.get(ident.toString());
+				value = capsValues.get(ident.toString().toLowerCase());
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),
