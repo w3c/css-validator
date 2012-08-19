@@ -62,7 +62,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextAlignLast cssTextAlignLast;
 	CssMinFontSize cssMinFontSize;
 	CssMaxFontSize cssMaxFontSize;
-	CssTextJustifyTrim cssTextJustifyTrim;
 	CssDominantBaseLine cssDominantBaseLine;
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
@@ -349,15 +348,6 @@ public class Css3Style extends ATSCStyle {
 							new CssMaxFontSize(), style, selector);
 		}
 		return cssMaxFontSize;
-	}
-
-	public CssTextJustifyTrim getTextJustifyTrim() {
-		if (cssTextJustifyTrim == null) {
-			cssTextJustifyTrim =
-					(CssTextJustifyTrim) style.CascadingOrder(
-							new CssTextJustifyTrim(), style, selector);
-		}
-		return cssTextJustifyTrim;
 	}
 
 	public CssDominantBaseLine getDominantBaseLine() {
