@@ -16,7 +16,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#filling-columns
@@ -24,105 +24,113 @@ import java.util.HashMap;
 
 public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
 
-    CssIdent value;
+	CssIdent value;
 
-    static CssIdent balance;
-    private static HashMap<String, CssIdent> allowed_values;
+	private static ArrayList<CssIdent> allowed_values;
 
-    static {
-        balance = CssIdent.getIdent("balance");
-        allowed_values = new HashMap<String, CssIdent>();
-        allowed_values.put("balance", balance);
-        allowed_values.put("auto", CssIdent.getIdent("auto"));
-    }
+	static {
+		allowed_values = new ArrayList<CssIdent>(2);
+		allowed_values.add(CssIdent.getIdent("balance"));
+		allowed_values.add(CssIdent.getIdent("auto"));
+	}
 
-    /**
-     * Create a new CssColumnWidth
-     */
-    public CssColumnFill() {
-        value = initial;
-    }
+	static public CssIdent getAllowedValue(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Create a new CssColumnFill
-     *
-     * @param ac the context
-     * @param expression The expression for this property
-     * @param check if length check is needed
-     * @throws org.w3c.css.util.InvalidParamException Incorrect value
-     */
-    public CssColumnFill(ApplContext ac, CssExpression expression,
-                         boolean check) throws InvalidParamException {
+	/**
+	 * Create a new CssColumnWidth
+	 */
+	public CssColumnFill() {
+		value = initial;
+	}
 
-        setByUser();
-        CssValue val = expression.getValue();
+	/**
+	 * Create a new CssColumnFill
+	 *
+	 * @param ac         the context
+	 * @param expression The expression for this property
+	 * @param check      if length check is needed
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Incorrect value
+	 */
+	public CssColumnFill(ApplContext ac, CssExpression expression,
+						 boolean check) throws InvalidParamException {
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+		setByUser();
+		CssValue val = expression.getValue();
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = allowed_values.get(val.toString());
-            if (val == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            }
-            value = (CssIdent) val;
-        }
-        expression.next();
-    }
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-    public CssColumnFill(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getAllowedValue((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = (CssIdent) val;
+		}
+		expression.next();
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssColumnFill &&
-                value.equals(((CssColumnFill) property).value));
-    }
+	public CssColumnFill(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
+	/**
+	 * Compares two properties for equality.
+	 *
+	 * @param property The other property.
+	 */
+	public boolean equals(CssProperty property) {
+		return (property instanceof CssColumnFill &&
+				value.equals(((CssColumnFill) property).value));
+	}
 
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
+	/**
+	 * Returns the value of this property
+	 */
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return value.toString();
-    }
+	/**
+	 * Returns true if this property is "softly" inherited
+	 */
+	public boolean isSoftlyInherited() {
+		return (inherit == value);
+	}
 
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (initial == value);
-    }
+	/**
+	 * Returns a string representation of the object
+	 */
+	public String toString() {
+		return value.toString();
+	}
+
+	/**
+	 * Is the value of this property a default value
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (initial == value);
+	}
 
 }
