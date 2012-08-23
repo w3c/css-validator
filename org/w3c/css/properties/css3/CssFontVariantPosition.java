@@ -12,7 +12,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-position
@@ -22,13 +22,23 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
 	public static final String[] _allowedValues = {"normal", "sub",
 			"super", "ordinal"};
 
-	public static final HashMap<String, CssIdent> allowedValues;
+	public static final CssIdent[] allowedValues;
 
 	static {
-		allowedValues = new HashMap<String, CssIdent>(_allowedValues.length);
-		for (String s : _allowedValues) {
-			allowedValues.put(s, CssIdent.getIdent(s));
+		allowedValues = new CssIdent[_allowedValues.length];
+		for (int i = 0; i < allowedValues.length; i++) {
+			allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
 		}
+		Arrays.sort(allowedValues);
+	}
+
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		for (CssIdent id : allowedValues) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -63,7 +73,7 @@ public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVa
 			if (inherit.equals(ident)) {
 				value = inherit;
 			} else {
-				value = allowedValues.get(ident.toString().toLowerCase());
+				value = getAllowedValue(ident);
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),

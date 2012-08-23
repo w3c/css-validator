@@ -15,50 +15,78 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-east-asian
  */
 public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontVariantEastAsian {
 
-	public static final String[] _eastAsianVariantValues = { "jis78", "jis83", "jis90", "jis04",
+	public static final String[] _eastAsianVariantValues = {"jis78", "jis83", "jis90", "jis04",
 			"simplified", "traditional"};
-	public static final String[] _eastAsianWidthValues = { "full-width", "proportional-width"};
+	public static final String[] _eastAsianWidthValues = {"full-width", "proportional-width"};
 
-	public static final HashMap<String,CssIdent> eastAsianVariantValues;
-	public static final HashMap<String,CssIdent> eastAsianWidthValues;
+	public static final CssIdent[] eastAsianVariantValues;
+	public static final CssIdent[] eastAsianWidthValues;
 
 	public static final CssIdent normal;
 
 	static {
 		normal = CssIdent.getIdent("normal");
 
-		eastAsianVariantValues = new HashMap<String, CssIdent>(_eastAsianVariantValues.length);
-		for (String s: _eastAsianVariantValues) {
-			eastAsianVariantValues.put(s, CssIdent.getIdent(s));
+		eastAsianVariantValues = new CssIdent[_eastAsianVariantValues.length];
+		for (int i = 0; i < eastAsianVariantValues.length; i++) {
+			eastAsianVariantValues[i] = CssIdent.getIdent(_eastAsianVariantValues[i]);
 		}
-		eastAsianWidthValues = new HashMap<String, CssIdent>(_eastAsianWidthValues.length);
-		for (String s: _eastAsianWidthValues) {
-			eastAsianWidthValues.put(s, CssIdent.getIdent(s));
+		Arrays.sort(eastAsianVariantValues);
+		eastAsianWidthValues = new CssIdent[_eastAsianWidthValues.length];
+		for (int i = 0; i < eastAsianWidthValues.length; i++) {
+			eastAsianWidthValues[i] = CssIdent.getIdent(_eastAsianWidthValues[i]);
 		}
+		Arrays.sort(eastAsianWidthValues);
 	}
-    /**
-     * Create a new CssFontVariantEastAsian
-     */
-    public CssFontVariantEastAsian() {
-		value = initial;
-    }
 
-    /**
-     * Creates a new CssFontVariantEastAsian
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
-     */
-    public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
+	public static final CssIdent getEastAsianVariantValue(CssIdent ident) {
+		int idx = Arrays.binarySearch(eastAsianVariantValues, ident);
+		if (idx >= 0) {
+			return eastAsianVariantValues[idx];
+		}
+		return null;
+	}
+
+	public static final CssIdent getEastAsianWidthValue(CssIdent ident) {
+		for (CssIdent id : eastAsianWidthValues) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
+
+	public static final CssIdent getEastAsianValue(CssIdent ident) {
+		CssIdent id = getEastAsianWidthValue(ident);
+		if (id == null) {
+			id = getEastAsianVariantValue(ident);
+		}
+		return id;
+	}
+
+	/**
+	 * Create a new CssFontVariantEastAsian
+	 */
+	public CssFontVariantEastAsian() {
+		value = initial;
+	}
+
+	/**
+	 * Creates a new CssFontVariantEastAsian
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 		if (check && expression.getCount() > 2) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -80,8 +108,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 			} else if (normal.equals(ident)) {
 				value = normal;
 			} else {
-				String idStr = ident.toString().toLowerCase();
-				value = eastAsianVariantValues.get(idStr);
+				value = getEastAsianVariantValue(ident);
 				if (value != null) {
 					if (expression.getCount() > 1) {
 						if (op != CssOperator.SPACE) {
@@ -92,7 +119,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 						val = expression.getValue();
 						CssIdent value2 = null;
 						if (val.getType() == CssTypes.CSS_IDENT) {
-							value2 = eastAsianWidthValues.get(val.toString().toLowerCase());
+							value2 = getEastAsianWidthValue((CssIdent) val);
 						}
 						if (value2 == null) {
 							throw new InvalidParamException("value",
@@ -105,7 +132,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 						value = new CssValueList(v);
 					}
 				} else {
-					value = eastAsianWidthValues.get(idStr);
+					value = getEastAsianWidthValue(ident);
 					if (value != null) {
 						if (expression.getCount() > 1) {
 							if (op != CssOperator.SPACE) {
@@ -116,7 +143,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 							val = expression.getValue();
 							CssIdent value2 = null;
 							if (val.getType() == CssTypes.CSS_IDENT) {
-								value2 = eastAsianVariantValues.get(val.toString().toLowerCase());
+								value2 = getEastAsianVariantValue((CssIdent) val);
 							}
 							if (value2 == null) {
 								throw new InvalidParamException("value",
@@ -141,12 +168,12 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 					getPropertyName(), ac);
 		}
 		expression.next();
-    }
+	}
 
-    public CssFontVariantEastAsian(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
 }
 

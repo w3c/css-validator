@@ -12,7 +12,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#font-variant-caps-prop
@@ -20,33 +20,44 @@ import java.util.HashMap;
 public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVariantCaps {
 
 	public static final CssIdent normal;
-	public static final HashMap<String, CssIdent> capsValues;
+	public static final CssIdent[] capsValues;
 	public static final String _capsValues[] = {"small-caps", "all-small-caps",
 			"petite-caps", "all-petite-caps", "titling-caps", "unicase"};
 
 	static {
 		normal = CssIdent.getIdent("normal");
-		capsValues = new HashMap<String, CssIdent>(_capsValues.length);
-		for (String s: _capsValues) {
-			capsValues.put(s, CssIdent.getIdent(s));
+		capsValues = new CssIdent[_capsValues.length];
+		int i = 0;
+		for (String s : _capsValues) {
+			capsValues[i++] = CssIdent.getIdent(s);
 		}
+		Arrays.sort(capsValues);
 	}
-    /**
-     * Create a new CssFontVariantCaps
-     */
-    public CssFontVariantCaps() {
-		value = initial;
-    }
 
-    /**
-     * Creates a new CssFontVariantCaps
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
-     */
-    public CssFontVariantCaps(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
+	public static final CssIdent getCapsValue(CssIdent ident) {
+		int idx = Arrays.binarySearch(capsValues, ident);
+		if (idx >= 0) {
+			return capsValues[idx];
+		}
+		return null;
+	}
+
+	/**
+	 * Create a new CssFontVariantCaps
+	 */
+	public CssFontVariantCaps() {
+		value = initial;
+	}
+
+	/**
+	 * Creates a new CssFontVariantCaps
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssFontVariantCaps(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -65,7 +76,7 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
 			} else if (normal.equals(ident)) {
 				value = normal;
 			} else {
-				value = capsValues.get(ident.toString().toLowerCase());
+				value = getCapsValue(ident);
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),
@@ -78,12 +89,12 @@ public class CssFontVariantCaps extends org.w3c.css.properties.css.CssFontVarian
 					getPropertyName(), ac);
 		}
 		expression.next();
-    }
+	}
 
-    public CssFontVariantCaps(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssFontVariantCaps(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
 }
 

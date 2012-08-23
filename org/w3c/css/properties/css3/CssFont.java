@@ -120,7 +120,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 							break;
 						}
 						// font-weight
-						v = CssFontWeight.allowed_values.get(ident.toString());
+						v = CssFontWeight.getAllowedValue(ident);
 						if (v != null) {
 							if (fontWeight != null) {
 								throw new InvalidParamException("value",
