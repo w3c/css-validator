@@ -13,23 +13,31 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
-
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/fonts.html#propdef-font-weight
  * @version $Revision$
  */
 public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 
-	public static final HashMap<String,CssIdent> allowed_values;
+	public static final CssIdent[] allowed_values;
 	static final String[] _allowed_values = {"normal", "bold", "bolder", "lighter"};
 
 	static {
-		allowed_values = new HashMap<String, CssIdent>(_allowed_values.length);
-		for (String s : _allowed_values) {
-			allowed_values.put(s, CssIdent.getIdent(s));
+		allowed_values = new CssIdent[_allowed_values.length];
+		for (int i = 0; i < allowed_values.length; i++) {
+			allowed_values[i] = CssIdent.getIdent(_allowed_values[i]);
 		}
 	}
+
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
+
     /**
      * Create a new CssFontWeight
      */
@@ -83,7 +91,7 @@ public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 					value = inherit;
 					break;
 				}
-				value = allowed_values.get(val.toString());
+				value = getAllowedValue(ident);
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),

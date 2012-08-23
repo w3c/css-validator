@@ -15,26 +15,37 @@ import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/fonts.html#font-size-props
  */
 public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
-	public static final HashMap<String,CssIdent> allowed_values;
+	public static final CssIdent[] allowed_values;
 	static final String[] absolute_values = {"xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"};
 	static final String[] relative_values = {"smaller", "larger"};
 
 	static {
-		allowed_values = new HashMap<String, CssIdent>();
+		allowed_values = new CssIdent[absolute_values.length + relative_values.length];
+		int i = 0;
 		for (String s : absolute_values) {
-			allowed_values.put(s, CssIdent.getIdent(s));
+			allowed_values[i++] = CssIdent.getIdent(s);
 		}
 		for (String s : relative_values) {
-			allowed_values.put(s, CssIdent.getIdent(s));
+			allowed_values[i++] = CssIdent.getIdent(s);
 		}
+		Arrays.sort(allowed_values);
 	}
+
+	public static CssIdent getAllowedValue(CssIdent ident) {
+		int idx = Arrays.binarySearch(allowed_values, ident);
+		if (idx >= 0) {
+			return allowed_values[idx];
+		}
+		return null;
+	}
+
 	/**
 	 * Create a new CssFontSize
 	 */
@@ -63,7 +74,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val = ((CssNumber)val).getLength();
+				val = ((CssNumber) val).getLength();
 			case CssTypes.CSS_LENGTH:
 				CssLength l = (CssLength) val;
 				if (!l.isPositive()) {
@@ -86,13 +97,13 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 					value = inherit;
 					break;
 				}
-				value = allowed_values.get(val.toString());
+				value = getAllowedValue(ident);
 				if (value == null) {
 					throw new InvalidParamException("value",
 							expression.getValue().toString(),
 							getPropertyName(), ac);
 				}
-				 break;
+				break;
 			default:
 				throw new InvalidParamException("value",
 						expression.getValue().toString(),
