@@ -13,7 +13,7 @@ import java.util.HashMap;
 /**
  * @version $Revision$
  */
-public class CssIdent extends CssValue {
+public class CssIdent extends CssValue implements Comparable<CssIdent> {
 
     public static HashMap<String, CssIdent> cachedValues;
 
@@ -41,6 +41,16 @@ public class CssIdent extends CssValue {
     }
 
     public static final int type = CssTypes.CSS_IDENT;
+
+	public int compareTo(CssIdent other) {
+		int hash, ohash;
+		hash = hashCode();
+		ohash = other.hashCode();
+		if (hash == ohash) {
+			return 0;
+		}
+		return (hash < ohash) ? 1 : -1;
+	}
 
     private int hashcode = 0;
 
