@@ -6,9 +6,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css2;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -16,134 +13,89 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
-
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/colors.html#propdef-background-repeat
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/colors.html#propdef-background-repeat
  */
 public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
-    // FIXME TODO is that the best way ?
 
-    public static boolean checkMatchingIdent(CssIdent ident) {
-        return allowed_values.containsValue(ident);
-    }
-    
-    private static HashMap<String, CssIdent> allowed_values;
+	private static CssIdent[] allowed_values;
 
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        String[] REPEAT = {"repeat", "repeat-x", "repeat-y", "no-repeat"};
+	static {
+		String[] REPEAT = {"repeat", "repeat-x", "repeat-y", "no-repeat"};
 
-        for (String aREPEAT : REPEAT) {
-            allowed_values.put(aREPEAT, CssIdent.getIdent(aREPEAT));
-        }
-    }
+		allowed_values = new CssIdent[REPEAT.length];
+		int i = 0;
+		for (String aREPEAT : REPEAT) {
+			allowed_values[i++] = CssIdent.getIdent(aREPEAT);
+		}
+	}
 
-    public CssValue value;
+	protected static boolean checkMatchingIdent(CssIdent ident) {
+		return (getMatchingIdent(ident) != null);
+	}
 
-    /**
-     * Create a new CssBackgroundRepeat
-     */
-    public CssBackgroundRepeat() {
-        value = repeat;
-    }
+	protected static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Set the value of the property
-     *
-     * @param expression The expression for this property
-     * @throws InvalidParamException The expression is incorrect
-     */
-    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
-                               boolean check) throws InvalidParamException {
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+	/**
+	 * Create a new CssBackgroundRepeat
+	 */
+	public CssBackgroundRepeat() {
+		value = repeat;
+	}
 
-        CssValue val = expression.getValue();
-        setByUser();
+	/**
+	 * Set the value of the property
+	 *
+	 * @param expression The expression for this property
+	 * @throws InvalidParamException The expression is incorrect
+	 */
+	public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+							   boolean check) throws InvalidParamException {
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value", expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            value = allowed_values.get(val.toString());
-            if (value == null) {
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-            }
-        }
-        expression.next();
-    }
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-    public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+		CssValue val = expression.getValue();
+		setByUser();
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value", expression.getValue(),
+					getPropertyName(), ac);
+		}
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			value = getMatchingIdent((CssIdent) val);
+			if (value == null) {
+				throw new InvalidParamException("value", expression.getValue(),
+						getPropertyName(), ac);
+			}
+		}
+		expression.next();
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value.toString();
-    }
+	public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    // TODO FIXME get rid of this when Css1Style gets only one background
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.repeat != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.repeat = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundRepeat();
-        } else {
-            return ((Css1Style) style).cssBackground.repeat;
-        }
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundRepeat &&
-                value == ((CssBackgroundRepeat) property).value);
-    }
-
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (repeat == value);
-    }
+	/**
+	 * Is the value of this property is a default value.
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (repeat == value);
+	}
 }
 
 
