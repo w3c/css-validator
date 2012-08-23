@@ -4,9 +4,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css21;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -16,47 +13,53 @@ import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
-
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * CssBackgroundPosition<br />
- * Created: Aug 31, 2005 5:45:30 PM<br />
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background-position
  */
 public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
 
+	public static CssIdent[] allowed_values;
+	public static CssIdent center, top, bottom, left, right;
+	private static CssPercentage defaultPercent0, defaultPercent50;
+	private static CssPercentage defaultPercent100;
 
-    public static boolean checkMatchingIdent(CssIdent ident) {
-        return allowed_values.containsValue(ident);
-    }
+	static {
+		top = CssIdent.getIdent("top");
+		bottom = CssIdent.getIdent("bottom");
+		left = CssIdent.getIdent("left");
+		right = CssIdent.getIdent("right");
+		center = CssIdent.getIdent("center");
+		allowed_values = new CssIdent[5];
+		allowed_values[0] = top;
+		allowed_values[1] = bottom;
+		allowed_values[2] = left;
+		allowed_values[3] = right;
+		allowed_values[4] = center;
 
-    private static final String propertyName = "background-position";
+		defaultPercent0 = new CssPercentage(0);
+		defaultPercent50 = new CssPercentage(50);
+		defaultPercent100 = new CssPercentage(100);
+	}
 
-    public static HashMap<String, CssIdent> allowed_values;
-    public static CssIdent center, top, bottom, left, right;
-    private static CssPercentage defaultPercent0, defaultPercent50;
-    private static CssPercentage defaultPercent100;
+	public static boolean checkMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    static {
-        top = CssIdent.getIdent("top");
-        bottom = CssIdent.getIdent("bottom");
-        left = CssIdent.getIdent("left");
-        right = CssIdent.getIdent("right");
-        center = CssIdent.getIdent("center");
-        allowed_values = new HashMap<String, CssIdent>();
-        allowed_values.put("top", top);
-        allowed_values.put("bottom", bottom);
-        allowed_values.put("left", left);
-        allowed_values.put("right", right);
-        allowed_values.put("center", center);
-
-        defaultPercent0 = new CssPercentage(0);
-        defaultPercent50 = new CssPercentage(50);
-        defaultPercent100 = new CssPercentage(100);
-    }
-
-    public CssValue value;
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
     /**
      * Create a new CssBackgroundPosition
@@ -195,7 +198,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         // ugly as we need to set values for equality tests
                         v.val_vertical = defaultPercent50;
                         v.val_horizontal = defaultPercent50;
-                        ident = allowed_values.get(ident.toString());
+                        ident = getMatchingIdent(ident);
                         if (ident != null) {
                             if (isVertical(ident)) {
                                 v.vertical = ident;
@@ -208,17 +211,16 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             break;
                         }
                         throw new InvalidParamException("unrecognize",
-                                ident, propertyName, ac);
+                                ident, getPropertyName(), ac);
                     case 2:
                         // one ident, two values... first MUST be horizontal
                         // and second vertical
                         CssValue val0 = v.value.get(0);
                         if (val0.getType() == CssTypes.CSS_IDENT) {
-
-                            ident = allowed_values.get(val0.toString());
+                            ident = getMatchingIdent((CssIdent)val0);
                             if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
-                                        ident, propertyName, ac);
+                                        ident, getPropertyName(), ac);
                             }
                             if (isVertical(ident)) {
                                 throw new InvalidParamException("incompatible",
@@ -233,15 +235,20 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             }
                             v.val_vertical = v.vertical;
                         } else {
-                            ident = allowed_values.get(v.value.get(1).toString());
-                            if (ident == null) {
-                                throw new InvalidParamException("unrecognize",
-                                        ident, propertyName, ac);
-                            }
-                            if (isHorizontal(ident)) {
-                                throw new InvalidParamException("incompatible",
-                                        val0, v.value.get(1), ac);
-                            }
+							CssValue value1 = v.value.get(1);
+							if (value1.getType() != CssTypes.CSS_IDENT) {
+								throw new InvalidParamException("unrecognize",
+										value1, getPropertyName(), ac);
+							}
+							ident = getMatchingIdent((CssIdent) value1);
+							if (ident == null) {
+								throw new InvalidParamException("unrecognize",
+										ident, getPropertyName(), ac);
+							}
+							if (isHorizontal(ident)) {
+								throw new InvalidParamException("incompatible",
+										val0, value1, ac);
+							}
                             v.vertical = ident;
                             v.val_vertical = identToPercent(ident);
                             // and the first value
@@ -287,35 +294,4 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             throws InvalidParamException {
         this(ac, expression, false);
     }
-
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.position != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.position = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundPosition();
-        } else {
-            return ((Css1Style) style).cssBackground.position;
-        }
-    }
-
 }

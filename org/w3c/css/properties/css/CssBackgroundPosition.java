@@ -38,7 +38,7 @@ public class CssBackgroundPosition extends CssProperty {
         defaultPercent100 = new CssPercentage(100);
     }
 
-    Object value;
+    public CssValue value;
 
     /**
      * Create a new CssBackgroundPosition
@@ -71,10 +71,6 @@ public class CssBackgroundPosition extends CssProperty {
         return value;
     }
 
-    public void set(Object val) {
-        value = val;
-    }
-    
     /**
      * Returns the name of this property
      */
