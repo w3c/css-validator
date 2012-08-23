@@ -15,165 +15,167 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-attachment
- * Name: 	background-attachment
- * Value: 	&lt;attachment&gt; [ , &lt;attachment&gt; ]*
- * Initial: 	scroll
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	as specified
- *
- * If background images are specified, this property specifies whether they
- * are fixed with regard to the viewport ('fixed') or scroll along with the
- * element ('scroll') or its contents ('local'). The property's value is given
- *  as a comma-separated list of &lt;attachment&gt; keywords where
- *
- * &lt;attachment&gt; = scroll | fixed | local
+ * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-attachment
  */
 public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackgroundAttachment {
 
-    private static HashMap<String, CssIdent> allowed_values;
-    public static CssIdent scroll;
+	private static CssIdent[] allowed_values;
 
-    static {
-        allowed_values = new HashMap<String, CssIdent>();
-        scroll = CssIdent.getIdent("scroll");
-        allowed_values.put("scroll", scroll);
-        allowed_values.put("fixed", CssIdent.getIdent("fixed"));
-        allowed_values.put("local", CssIdent.getIdent("local"));
-    }
+	static {
+		allowed_values = new CssIdent[3];
+		allowed_values[0] = CssIdent.getIdent("scroll");
+		allowed_values[1] = CssIdent.getIdent("fixed");
+		allowed_values[2] = CssIdent.getIdent("local");
+	}
 
-    public static boolean isMatchingIdent(CssIdent ident) {
-        return allowed_values.containsKey(ident.toString());
-    }
+	public static boolean isMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    Object value;
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Create a new CssBackgroundAttachment
-     */
-    public CssBackgroundAttachment() {
-        value = scroll;
-    }
+	Object value;
 
-    public void set(Object val) {
-        value = val;
-    }
+	/**
+	 * Create a new CssBackgroundAttachment
+	 */
+	public CssBackgroundAttachment() {
+		value = initial;
+	}
 
-    /**
-     * Creates a new CssBackgroundAttachment
-     *
-     * @param ac the context
-     * @param expression The expression for this property
-     * @param check if some length checking is required
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
-     */
-    public CssBackgroundAttachment(ApplContext ac, CssExpression expression,
-                                   boolean check) throws InvalidParamException {
+	public void set(Object val) {
+		value = val;
+	}
 
-        ArrayList<CssValue> values = new ArrayList<CssValue>();
-        char op;
-        CssValue val;
+	/**
+	 * Creates a new CssBackgroundAttachment
+	 *
+	 * @param ac         the context
+	 * @param expression The expression for this property
+	 * @param check      if some length checking is required
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Values are incorrect
+	 */
+	public CssBackgroundAttachment(ApplContext ac, CssExpression expression,
+								   boolean check) throws InvalidParamException {
 
-        setByUser();
+		ArrayList<CssValue> values = new ArrayList<CssValue>();
+		char op;
+		CssValue val;
 
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
-            if (val.getType() != CssTypes.CSS_IDENT) {
-                throw new InvalidParamException("value", val,
-                        getPropertyName(), ac);
-            }
-            if (inherit.equals(val)) {
-                // if we got inherit after other values, fail
-                // if we got more than one value... fail
-                if ((values.size() > 0) || (expression.getCount() > 1)) {
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
-                }
-                values.add(inherit);
-            } else {
-                // check that it's in the allowed values
-                CssValue new_val = allowed_values.get(val.toString());
-                if (new_val == null) {
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
-                }
-                values.add(new_val);
-            }
-            expression.next();
-            // and check that values are separated by commas
-            if (!expression.end() && (op != COMMA)) {
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
-            }
-        }
+		setByUser();
 
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = values;
-        }
-    }
+		while (!expression.end()) {
+			val = expression.getValue();
+			op = expression.getOperator();
+			if (val.getType() != CssTypes.CSS_IDENT) {
+				throw new InvalidParamException("value", val,
+						getPropertyName(), ac);
+			}
+			if (inherit.equals(val)) {
+				// if we got inherit after other values, fail
+				// if we got more than one value... fail
+				if ((values.size() > 0) || (expression.getCount() > 1)) {
+					throw new InvalidParamException("value", val,
+							getPropertyName(), ac);
+				}
+				values.add(inherit);
+			} else {
+				// check that it's in the allowed values
+				CssValue new_val = getMatchingIdent((CssIdent) val);
+				if (new_val == null) {
+					throw new InvalidParamException("value", val,
+							getPropertyName(), ac);
+				}
+				values.add(new_val);
+			}
+			expression.next();
+			// and check that values are separated by commas
+			if (!expression.end() && (op != COMMA)) {
+				throw new InvalidParamException("operator",
+						((new Character(op)).toString()), ac);
+			}
+		}
 
-    public CssBackgroundAttachment(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+		if (values.size() == 1) {
+			value = values.get(0);
+		} else {
+			value = values;
+		}
+	}
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
+	public CssBackgroundAttachment(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
+	/**
+	 * Returns the value of this property
+	 */
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (value instanceof ArrayList) {
-            ArrayList values = (ArrayList) value;
-            StringBuilder sb = new StringBuilder();
-            for (Object aValue : values) {
-                sb.append(aValue.toString()).append(", ");
-            }
-            sb.setLength(sb.length() - 2);
-            return sb.toString();
-        }
-        return value.toString();
-    }
+	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value equals inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return (inherit == value);
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundAttachment &&
-                value.equals(((CssBackgroundAttachment) property).value));
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (value instanceof ArrayList) {
+			ArrayList values = (ArrayList) value;
+			StringBuilder sb = new StringBuilder();
+			boolean addComma = false;
+			for (Object aValue : values) {
+				if (addComma) {
+					sb.append(", ");
+				} else {
+					addComma = true;
+				}
+				sb.append(aValue);
+			}
+			return sb.toString();
+		}
+		return value.toString();
+	}
 
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (scroll == value);
-    }
+	/**
+	 * Compares two properties for equality.
+	 *
+	 * @param property The other property.
+	 */
+	public boolean equals(CssProperty property) {
+		return (property instanceof CssBackgroundAttachment &&
+				value.equals(((CssBackgroundAttachment) property).value));
+	}
+
+	/**
+	 * Is the value of this property is a default value.
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (initial == value);
+	}
 }
