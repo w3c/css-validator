@@ -12,7 +12,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#propdef-font-stretch
@@ -22,13 +22,22 @@ public class CssFontStretch extends org.w3c.css.properties.css.CssFontStretch {
 	static final String[] _allowed_values = {"normal", "wider", "narrower",
 			"ultra-condensed", "extra-condensed", "condensed", "semi-condensed",
 			"semi-expanded", "expanded", "extra-expanded", "ultra-expanded"};
-	static final HashMap<String,CssIdent> allowed_values;
+	static final CssIdent[] allowed_values;
 
 	static {
-		allowed_values = new HashMap<String,CssIdent>();
-		for (String s : _allowed_values) {
-			allowed_values.put(s, CssIdent.getIdent(s));
+		allowed_values = new CssIdent[_allowed_values.length];
+		for (int i = 0; i < allowed_values.length; i++) {
+			allowed_values[i] = CssIdent.getIdent(_allowed_values[i]);
 		}
+		Arrays.sort(allowed_values);
+	}
+
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		int idx = Arrays.binarySearch(allowed_values, ident);
+		if (idx >= 0) {
+			return allowed_values[idx];
+		}
+		return null;
 	}
 
 	/**
@@ -62,7 +71,7 @@ public class CssFontStretch extends org.w3c.css.properties.css.CssFontStretch {
 			if (inherit.equals(ident)) {
 				value = inherit;
 			} else {
-				value = allowed_values.get(val.toString());
+				value = getAllowedValue(ident);
 				if (value == null) {
 					throw new InvalidParamException("value",
 							val.toString(),

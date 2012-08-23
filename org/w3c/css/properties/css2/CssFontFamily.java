@@ -37,11 +37,11 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 	};
 
 	static {
-		genericNames = new ArrayList<CssIdent>();
+		genericNames = new ArrayList<CssIdent>(_genericNames.length);
 		for (String s : _genericNames) {
 			genericNames.add(CssIdent.getIdent(s));
 		}
-		reservedNames = new ArrayList<CssIdent>();
+		reservedNames = new ArrayList<CssIdent>(_reservedNames.length);
 		for (String s : _reservedNames) {
 			reservedNames.add(CssIdent.getIdent(s));
 		}
