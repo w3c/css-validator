@@ -22,70 +22,55 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#background-position
- * <p/>
- * Name: 	background-position
- * Value: 	&lt;bg-position&gt; [ , &lt;bg-position&gt; ]*
- * Initial: 	0% 0%
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	refer to size of background positioning area minus size of
- * background image; see text
- * Media: 	visual
- * Computed value: 	If one or two values are specified, for a &lt;length&gt;
- * the absolute value, otherwise a percentage. If three or
- * four values are specified, two pairs of a keyword plus a
- * length or percentage.
- * <p/>
- * <p/>
- * If background images have been specified, this property specifies their
- * initial position (after any resizing) within their corresponding
- * background positioning area.
- * <p/>
- * Where
- * <p/>
- * &lt;bg-position&gt; = [
- * [ [ &lt;percentage&gt; | &lt;length&gt; | left | center | right ] ]
- * [ [ &lt;percentage&gt; | &lt;length&gt; | top | center | bottom ] ]?
- * |
- * [ center | [ left | right ] [ &lt;percentage&gt; | &lt;length&gt; ]? ] ||
- * [ center | [ top | bottom ] [ &lt;percentage&gt; | &lt;length&gt; ]? ]
- * ]
+ * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#background-position
  */
 public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
 
-    private static HashMap<String, CssIdent> allowed_values;
-    private static final CssIdent center, top, bottom, left, right;
-    private static final CssPercentage defaultPercent0, defaultPercent50;
-    private static final CssPercentage defaultPercent100;
+	public static CssIdent[] allowed_values;
+	public static CssIdent center, top, bottom, left, right;
+	private static CssPercentage defaultPercent0, defaultPercent50;
+	private static CssPercentage defaultPercent100;
 
-    static {
-        top = CssIdent.getIdent("top");
-        bottom = CssIdent.getIdent("bottom");
-        left = CssIdent.getIdent("left");
-        right = CssIdent.getIdent("right");
-        center = CssIdent.getIdent("center");
-        allowed_values = new HashMap<String, CssIdent>();
-        allowed_values.put("top", top);
-        allowed_values.put("bottom", bottom);
-        allowed_values.put("left", left);
-        allowed_values.put("right", right);
-        allowed_values.put("center", center);
+	static {
+		top = CssIdent.getIdent("top");
+		bottom = CssIdent.getIdent("bottom");
+		left = CssIdent.getIdent("left");
+		right = CssIdent.getIdent("right");
+		center = CssIdent.getIdent("center");
+		allowed_values = new CssIdent[5];
+		allowed_values[0] = top;
+		allowed_values[1] = bottom;
+		allowed_values[2] = left;
+		allowed_values[3] = right;
+		allowed_values[4] = center;
 
         defaultPercent0 = new CssPercentage(0);
         defaultPercent50 = new CssPercentage(50);
         defaultPercent100 = new CssPercentage(100);
     }
 
-    public static boolean isMatchingIdent(CssIdent ident) {
-        return allowed_values.containsKey(ident.toString());
-    }
+	public static boolean isMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
     Object value;
 
@@ -189,10 +174,15 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             ArrayList v_list;
             v_list = (ArrayList) value;
             StringBuilder sb = new StringBuilder();
+			boolean isFirst = true;
             for (Object val : v_list) {
-                sb.append(val.toString()).append(", ");
+				if (isFirst) {
+					isFirst = false;
+				} else {
+					sb.append(", ");
+				}
+                sb.append(val);
             }
-            sb.setLength(sb.length() - 2);
             return sb.toString();
         }
         return value.toString();
@@ -327,7 +317,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         // ugly as we need to set values for equality tests
                         v.val_vertical = defaultPercent50;
                         v.val_horizontal = defaultPercent50;
-                        ident = allowed_values.get(ident.toString());
+                        ident = getMatchingIdent(ident);
                         if (ident != null) {
                             if (isVertical(ident)) {
                                 v.vertical = ident;
@@ -346,8 +336,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         // and second vertical
                         CssValue val0 = v.value.get(0);
                         if (val0.getType() == CssTypes.CSS_IDENT) {
-
-                            ident = allowed_values.get(val0.toString());
+                            ident = getMatchingIdent((CssIdent)val0);
                             if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
                                         ident, getPropertyName(), ac);
@@ -365,14 +354,18 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             }
                             v.val_vertical = v.vertical;
                         } else {
-                            ident = allowed_values.get(v.value.get(1).toString());
-                            if (ident == null) {
+							CssValue value1 = v.value.get(1);
+							if (value1.getType() != CssTypes.CSS_IDENT) {
+								throw new InvalidParamException("unrecognize",
+										value1, getPropertyName(), ac);
+							}
+							ident = getMatchingIdent((CssIdent) value1);                            if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
                                         ident, getPropertyName(), ac);
                             }
                             if (isHorizontal(ident)) {
                                 throw new InvalidParamException("incompatible",
-                                        val0, v.value.get(1), ac);
+                                        val0, value1, ac);
                             }
                             v.vertical = ident;
                             v.val_vertical = identToPercent(ident);
@@ -403,7 +396,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                 for (CssValue aValue : v.value) {
                     switch (aValue.getType()) {
                         case CssTypes.CSS_IDENT:
-                            aValue = allowed_values.get(aValue.toString());
+                            aValue = getMatchingIdent((CssIdent)aValue);
                             if (aValue == null) {
                                 throw new InvalidParamException("unrecognize",
                                         aValue, getPropertyName(), ac);
