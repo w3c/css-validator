@@ -12,7 +12,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.HashMap;
+import java.util.Arrays;
 
 import static org.w3c.css.values.CssOperator.SPACE;
 
@@ -22,16 +22,26 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssFont extends org.w3c.css.properties.css.CssFont {
 
 	public static final CssIdent normal;
-	public static final HashMap<String, CssIdent> systemFonts;
+	public static final CssIdent[] systemFonts;
 	static final String[] _systemFonts = {"caption", "icon", "menu",
 			"message-box", "small-caption", "status-bar"};
 
 	static {
 		normal = CssIdent.getIdent("normal");
-		systemFonts = new HashMap<String, CssIdent>();
+		systemFonts = new CssIdent[_systemFonts.length];
+		int i = 0;
 		for (String s : _systemFonts) {
-			systemFonts.put(s, CssIdent.getIdent(s));
+			systemFonts[i++] = CssIdent.getIdent(s);
 		}
+		Arrays.sort(systemFonts);
+	}
+
+	public static final CssIdent getSystemFont(CssIdent ident) {
+		int idx = Arrays.binarySearch(systemFonts, ident);
+		if (idx >= 0) {
+			return systemFonts[idx];
+		}
+		return null;
 	}
 
 	/**
@@ -73,7 +83,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 						break;
 					}
 					CssIdent ident;
-					ident = systemFonts.get(val.toString());
+					ident = getSystemFont((CssIdent) val);
 					if (ident != null) {
 						if (expression.getCount() != 1) {
 							throw new InvalidParamException("value",
@@ -119,7 +129,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 							break;
 						}
 						// font-weight
-						v = CssFontWeight.allowed_values.get(ident.toString());
+						v = CssFontWeight.getAllowedValue(ident);
 						if (v != null) {
 							if (fontWeight != null) {
 								throw new InvalidParamException("value",
@@ -135,7 +145,7 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 					// check if we moved past and we now got
 					// a font-size
 					if (state == 0) {
-						CssIdent v = CssFontSize.allowed_values.get(ident.toString());
+						CssIdent v = CssFontSize.getAllowedValue(ident);
 						if (v != null) {
 							// we got a FontSize, so no more style/variant/weight
 							state = 1;
