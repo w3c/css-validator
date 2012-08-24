@@ -14,6 +14,7 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 
 /**
+ * @since CSS1
  * The 'display' property
  * using CSS21 values for now
  */
