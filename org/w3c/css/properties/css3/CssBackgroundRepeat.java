@@ -15,220 +15,236 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-repeat
- * <p/>
- * Name: 	background-repeat
- * Value: 	&lt;repeat-style&gt; [ , &lt;repeat-style&gt; ]*
- * Initial: 	repeat
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	as specified
- * <p/>
- * Specifies how background images are tiled after they have been sized and
- * positioned. Where
- * <p/>
- * &lt;repeat-style&gt; = repeat-x | repeat-y | [repeat | space |
- * round | no-repeat]{1,2}
+ * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-repeat
  */
 public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
 
-    public final static CssIdent repeat;
-    private static HashMap<String, CssIdent> allowed_simple_values;
-    private static HashMap<String, CssIdent> allowed_double_values;
+	public final static CssIdent repeat;
+	private static CssIdent[] allowed_simple_values;
+	private static CssIdent[] allowed_double_values;
 
-    static {
-        allowed_simple_values = new HashMap<String, CssIdent>();
-        allowed_double_values = new HashMap<String, CssIdent>();
-        String[] REPEAT = {"repeat", "space", "round", "no-repeat"};
+	static {
+		String[] REPEAT = {"repeat", "space", "round", "no-repeat"};
 
-        allowed_simple_values.put("repeat-x", CssIdent.getIdent("repeat-x"));
-        allowed_simple_values.put("repeat-y", CssIdent.getIdent("repeat-y"));
+		allowed_simple_values = new CssIdent[2];
 
-        for (String aREPEAT : REPEAT) {
-            allowed_double_values.put(aREPEAT, CssIdent.getIdent(aREPEAT));
-        }
-        repeat = CssIdent.getIdent("repeat");
-    }
+		allowed_simple_values[0] = CssIdent.getIdent("repeat-x");
+		allowed_simple_values[1] = CssIdent.getIdent("repeat-y");
 
-    public static boolean isMatchingIdent(CssIdent ident) {
-        String id = ident.toString();
+		allowed_double_values = new CssIdent[REPEAT.length];
 
-        return (allowed_simple_values.containsKey(id) ||
-                allowed_double_values.containsKey(id));
-    }
+		int i = 0;
+		for (String aREPEAT : REPEAT) {
+			allowed_double_values[i++] = CssIdent.getIdent(aREPEAT);
+		}
+		repeat = CssIdent.getIdent("repeat");
+	}
 
-    public Object value;
+	public static boolean isMatchingIdent(CssIdent ident) {
+		return (getMatchingIdent(ident) != null);
+	}
 
-    /**
-     * Create a new CssBackgroundRepeat
-     */
-    public CssBackgroundRepeat() {
-        value = repeat;
-    }
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_simple_values) {
+			if (id.equals(ident)) {
+				return ident;
+			}
+		}
+		for (CssIdent id : allowed_double_values) {
+			if (id.equals(ident)) {
+				return ident;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Set the value of the property
-     *
-     * @param ac         the context
-     * @param expression The expression for this property
-     * @param check      is length checking needed
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
-     */
-    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
-                               boolean check) throws InvalidParamException {
+	public static CssIdent getSimpleValue(CssIdent ident) {
+		for (CssIdent id : allowed_simple_values) {
+			if (id.equals(ident)) {
+				return ident;
+			}
+		}
+		return null;
+	}
 
-        ArrayList<CssValue> values = new ArrayList<CssValue>();
-        boolean is_complete = true;
-        CssValue val;
-        CssValueList vl = null;
-        char op;
+	public static CssIdent getDoubleValue(CssIdent ident) {
+		for (CssIdent id : allowed_double_values) {
+			if (id.equals(ident)) {
+				return ident;
+			}
+		}
+		return null;
+	}
 
-        setByUser();
+	public Object value;
 
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
+	/**
+	 * Create a new CssBackgroundRepeat
+	 */
+	public CssBackgroundRepeat() {
+		value = repeat;
+	}
 
-            // not an ident? fail
-            if (val.getType() != CssTypes.CSS_IDENT) {
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-            }
+	/**
+	 * Set the value of the property
+	 *
+	 * @param ac         the context
+	 * @param expression The expression for this property
+	 * @param check      is length checking needed
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+							   boolean check) throws InvalidParamException {
 
-            CssIdent id_val = (CssIdent) val;
-            if (inherit.equals(id_val)) {
-                // if we got inherit after other values, fail
-                // if we got more than one value... fail
-                if ((values.size() > 0) || (expression.getCount() > 1)) {
-                    throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
-                }
-                values.add(inherit);
-            } else {
-                String id_value = id_val.toString();
-                CssIdent new_val;
-                // check values that must be alone
-                new_val = allowed_simple_values.get(id_value);
-                if (new_val != null) {
-                    // if we already have a double value... it's an error
-                    if (!is_complete) {
-                        throw new InvalidParamException("value",
-                                val, getPropertyName(), ac);
-                    }
-                    values.add(new_val);
-                    is_complete = true;
-                } else {
-                    // the the one that may come in pairs
-                    new_val = allowed_double_values.get(id_value);
-                    // not an allowed value !
-                    if (new_val == null) {
-                        throw new InvalidParamException("value",
-                                val, getPropertyName(), ac);
-                    }
-                    if (is_complete) {
-                        vl = new CssValueList();
-                        vl.add(new_val);
-                    } else {
-                        vl.add(new_val);
-                        values.add(vl);
-                    }
-                    is_complete = !is_complete;
-                }
-            }
+		ArrayList<CssValue> values = new ArrayList<CssValue>();
+		boolean is_complete = true;
+		CssValue val;
+		CssValueList vl = null;
+		char op;
 
-            expression.next();
-            if (!expression.end()) {
-                // incomplete value followed by a comma... it's complete!
-                if (!is_complete && (op == COMMA)) {
-                    values.add(vl);
-                    is_complete = true;
-                }
-                // complete values are separated by a comma, otherwise space
-                if ((is_complete && (op != COMMA)) ||
-                        (!is_complete && (op != SPACE))) {
-                    throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
-                }
-            }
-        }
-        // if we reach the end in a value that can come in pair
-        if (!is_complete) {
-            values.add(vl);
-        }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = values;
-        }
-    }
+		setByUser();
+
+		while (!expression.end()) {
+			val = expression.getValue();
+			op = expression.getOperator();
+
+			// not an ident? fail
+			if (val.getType() != CssTypes.CSS_IDENT) {
+				throw new InvalidParamException("value", expression.getValue(),
+						getPropertyName(), ac);
+			}
+
+			CssIdent id_val = (CssIdent) val;
+			if (inherit.equals(id_val)) {
+				// if we got inherit after other values, fail
+				// if we got more than one value... fail
+				if ((values.size() > 0) || (expression.getCount() > 1)) {
+					throw new InvalidParamException("value", val,
+							getPropertyName(), ac);
+				}
+				values.add(inherit);
+			} else {
+				CssIdent new_val;
+				// check values that must be alone
+				new_val = getSimpleValue(id_val);
+				if (new_val != null) {
+					// if we already have a double value... it's an error
+					if (!is_complete) {
+						throw new InvalidParamException("value",
+								val, getPropertyName(), ac);
+					}
+					values.add(new_val);
+					is_complete = true;
+				} else {
+					// the the one that may come in pairs
+					new_val = getDoubleValue(id_val);
+					// not an allowed value !
+					if (new_val == null) {
+						throw new InvalidParamException("value",
+								val, getPropertyName(), ac);
+					}
+					if (is_complete) {
+						vl = new CssValueList();
+						vl.add(new_val);
+					} else {
+						vl.add(new_val);
+						values.add(vl);
+					}
+					is_complete = !is_complete;
+				}
+			}
+
+			expression.next();
+			if (!expression.end()) {
+				// incomplete value followed by a comma... it's complete!
+				if (!is_complete && (op == COMMA)) {
+					values.add(vl);
+					is_complete = true;
+				}
+				// complete values are separated by a comma, otherwise space
+				if ((is_complete && (op != COMMA)) ||
+						(!is_complete && (op != SPACE))) {
+					throw new InvalidParamException("operator",
+							((new Character(op)).toString()), ac);
+				}
+			}
+		}
+		// if we reach the end in a value that can come in pair
+		if (!is_complete) {
+			values.add(vl);
+		}
+		if (values.size() == 1) {
+			value = values.get(0);
+		} else {
+			value = values;
+		}
+	}
 
 
-    public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns the value of this property
-     */
+	/**
+	 * Returns the value of this property
+	 */
 
-    public Object get() {
-        return value;
-    }
+	public Object get() {
+		return value;
+	}
 
-    public void set(Object val) {
-        value = val;
-    }
+	public void set(Object val) {
+		value = val;
+	}
 
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
+	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value equals inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return (inherit == value);
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (value instanceof ArrayList) {
-            ArrayList values = (ArrayList) value;
-            StringBuilder sb = new StringBuilder();
-            for (Object aValue : values) {
-                sb.append(aValue.toString()).append(", ");
-            }
-            sb.setLength(sb.length() - 2);
-            return sb.toString();
-        }
-        return value.toString();
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (value instanceof ArrayList) {
+			ArrayList values = (ArrayList) value;
+			StringBuilder sb = new StringBuilder();
+			for (Object aValue : values) {
+				sb.append(aValue.toString()).append(", ");
+			}
+			sb.setLength(sb.length() - 2);
+			return sb.toString();
+		}
+		return value.toString();
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundRepeat &&
-                value == ((CssBackgroundRepeat) property).value);
-    }
+	/**
+	 * Compares two properties for equality.
+	 *
+	 * @param property The other property.
+	 */
+	public boolean equals(CssProperty property) {
+		return (property instanceof CssBackgroundRepeat &&
+				value == ((CssBackgroundRepeat) property).value);
+	}
 
-    /**
-     * Is the value of this property is a default value.
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (repeat == value);
-    }
+	/**
+	 * Is the value of this property is a default value.
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (repeat == value);
+	}
 
 }
 
