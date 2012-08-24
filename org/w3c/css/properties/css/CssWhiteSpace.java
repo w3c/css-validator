@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
  */
 public class CssWhiteSpace extends CssProperty {
 
-    CssValue value;
+    public CssValue value;
 
     /*
     * Create a new CssWhiteSpace
