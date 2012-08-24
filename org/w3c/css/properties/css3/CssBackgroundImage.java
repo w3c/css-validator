@@ -19,22 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-image
- * <p/>
- * Name: 	background-image
- * Value: 	&lt;bg-image&gt; [ , &lt;bg-image&gt; ]*
- * Initial: 	none
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	N/A
- * Media: 	visual
- * Computed value: 	as specified, but with URIs made absolute
- * <p/>
- * This property sets the background image(s) of an element. Images are drawn
- * with the first specified one on top (closest to the user) and each
- * subsequent image behind the previous one. Where
- * <p/>
- * &lt;bg-image&gt; = &lt;image&gt; | none
+ * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-image
  */
 public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackgroundImage {
 
