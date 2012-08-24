@@ -4,9 +4,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css21;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -109,32 +107,6 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
             return color.toString();
         }
         return "";
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        org.w3c.css.properties.css.CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.color != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.color = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundColor();
-        } else {
-            return ((Css1Style) style).cssBackground.color;
-        }
     }
 
     /**
