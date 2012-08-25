@@ -21,45 +21,75 @@ import java.util.ArrayList;
  */
 public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVariantNumeric {
 
-	public static final String[] numericFigValues = {"lining-nums", "oldstyle-nums"};
-	public static final String[] numericSpaValues = {"proportional-nums", "tabular-nums"};
-	public static final String[] numericFraValues = {"diagonal-fractions", "stacked-fractions"};
-
 	public static final CssIdent normal, slashedZero;
+	public static final CssIdent[] numericFigValues;
+	public static final CssIdent[] numericSpaValues;
+	public static final CssIdent[] numericFraValues;
 
 	static {
+		String[] _numericFigValues = {"lining-nums", "oldstyle-nums"};
+		String[] _numericSpaValues = {"proportional-nums", "tabular-nums"};
+		String[] _numericFraValues = {"diagonal-fractions", "stacked-fractions"};
+
 		normal = CssIdent.getIdent("normal");
 		slashedZero = CssIdent.getIdent("slashed-zero");
+		numericFigValues = new CssIdent[_numericFigValues.length];
+		int i = 0;
+		for (String s : _numericFigValues) {
+			numericFigValues[i++] = CssIdent.getIdent(s);
+		}
+		numericSpaValues = new CssIdent[_numericSpaValues.length];
+		i = 0;
+		for (String s : _numericSpaValues) {
+			numericSpaValues[i++] = CssIdent.getIdent(s);
+		}
+		numericFraValues = new CssIdent[_numericFraValues.length];
+		i = 0;
+		for (String s : _numericFraValues) {
+			numericFraValues[i++] = CssIdent.getIdent(s);
+		}
 	}
 
 	public static final CssIdent getNumericFigValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : numericFigValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : numericFigValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
 	}
 
 	public static final CssIdent getNumericSpaValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : numericSpaValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : numericSpaValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
 	}
 
 	public static final CssIdent getNumericFraValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : numericFraValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : numericFraValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
+	}
+
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		CssIdent id;
+		if (slashedZero.equals(ident)) {
+			return slashedZero;
+		}
+		id = getNumericFigValues(ident);
+		if (id == null) {
+			id = getNumericFraValues(ident);
+			if (id == null) {
+				id = getNumericSpaValues(ident);
+			}
+		}
+		return id;
 	}
 
 	/**

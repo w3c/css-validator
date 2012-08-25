@@ -63,6 +63,18 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 		return null;
 	}
 
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		CssIdent id;
+		id = getCommonLigValues(ident);
+		if (id == null) {
+			id = getDiscretionaryLigValues(ident);
+			if (id == null) {
+				id = getHistoricalLigValues(ident);
+			}
+		}
+		return id;
+	}
+
 	/**
 	 * Create a new CssFontVariantLigatures
 	 */

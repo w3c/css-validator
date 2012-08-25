@@ -63,7 +63,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 		return null;
 	}
 
-	public static final CssIdent getEastAsianValue(CssIdent ident) {
+	public static final CssIdent getAllowedValue(CssIdent ident) {
 		CssIdent id = getEastAsianWidthValue(ident);
 		if (id == null) {
 			id = getEastAsianVariantValue(ident);
