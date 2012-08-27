@@ -133,7 +133,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 	 */
 	public CssFontVariantLigatures(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 3) {
+		if (check && expression.getCount() > 4) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 
