@@ -17,11 +17,11 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-numeric
+ * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-numeric
  */
 public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVariantNumeric {
 
-	public static final CssIdent normal, slashedZero;
+	public static final CssIdent normal, slashedZero, ordinal;
 	public static final CssIdent[] numericFigValues;
 	public static final CssIdent[] numericSpaValues;
 	public static final CssIdent[] numericFraValues;
@@ -33,6 +33,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 
 		normal = CssIdent.getIdent("normal");
 		slashedZero = CssIdent.getIdent("slashed-zero");
+		ordinal = CssIdent.getIdent("ordinal");
 		numericFigValues = new CssIdent[_numericFigValues.length];
 		int i = 0;
 		for (String s : _numericFigValues) {
@@ -82,6 +83,9 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 		if (slashedZero.equals(ident)) {
 			return slashedZero;
 		}
+		if (ordinal.equals(ident)) {
+			return ordinal;
+		}
 		id = getNumericFigValues(ident);
 		if (id == null) {
 			id = getNumericFraValues(ident);
@@ -108,7 +112,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 	 */
 	public CssFontVariantNumeric(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 4) {
+		if (check && expression.getCount() > 5) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 
@@ -121,6 +125,7 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 		CssIdent figValue = null;
 		CssIdent spaValue = null;
 		CssIdent zerValue = null;
+		CssIdent ordValue = null;
 		boolean match;
 
 		while (!expression.end()) {
@@ -164,6 +169,12 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 							zerValue = slashedZero;
 						}
 					}
+					if (!match && ordValue == null) {
+						match = ordinal.equals(ident);
+						if (match) {
+							ordValue = ordinal;
+						}
+					}
 					if (!match) {
 						throw new InvalidParamException("value",
 								val.toString(),
@@ -193,6 +204,8 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 				value = spaValue;
 			} else if (zerValue != null) {
 				value = zerValue;
+			} else if (ordValue != null) {
+				value = ordValue;
 			}
 		} else {
 			// do this to keep the same order for comparisons
@@ -208,6 +221,9 @@ public class CssFontVariantNumeric extends org.w3c.css.properties.css.CssFontVar
 			}
 			if (zerValue != null) {
 				v.add(zerValue);
+			}
+			if (ordValue != null) {
+				v.add(ordValue);
 			}
 			value = new CssValueList(v);
 		}
