@@ -18,48 +18,21 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-alternates
+ * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-alternates
  */
 public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFontVariantAlternates {
 
-	public static final CssIdent[] contextualAltValues;
-
 	public static final CssIdent normal;
-	public static final CssIdent ruby;
 	public static final CssIdent historicalForms;
 
 	static {
 		normal = CssIdent.getIdent("normal");
-		ruby = CssIdent.getIdent("ruby");
 		historicalForms = CssIdent.getIdent("historical-forms");
-		String[] _contextualAltValues = {"contextual", "no-contextual"};
-		contextualAltValues = new CssIdent[_contextualAltValues.length];
-		int i = 0;
-		for (String s : _contextualAltValues) {
-			contextualAltValues[i++] = CssIdent.getIdent(s);
-		}
-	}
-
-	public static final CssIdent getContextualAltValues(CssIdent ident) {
-		for (CssIdent id : contextualAltValues) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
 	}
 
 	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (ruby.equals(ident)) {
-			return ruby;
-		}
 		if (historicalForms.equals(ident)) {
 			return historicalForms;
-		}
-		for (CssIdent id : contextualAltValues) {
-			if (id.equals(ident)) {
-				return id;
-			}
 		}
 		return null;
 	}
@@ -110,7 +83,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 	 */
 	public CssFontVariantAlternates(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 9) {
+		if (check && expression.getCount() > 7) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 		setByUser();
@@ -118,7 +91,6 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 		CssValue val;
 		char op;
 
-		CssIdent contextualAltVal = null;
 		CssFunction stylistic = null;
 		CssIdent histValue = null;
 		CssFunction styleSet = null;
@@ -126,7 +98,6 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 		CssFunction swash = null;
 		CssFunction ornaments = null;
 		CssFunction annotation = null;
-		CssIdent rubyVal = null;
 		boolean match;
 
 		while (!expression.end()) {
@@ -151,24 +122,12 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 						}
 						value = normal;
 					} else {
-						// no inherit, nor normal, test the up-to-three values
+						// no inherit, nor normal, test the up-to-(now one) values
 						match = false;
-						if (contextualAltVal == null) {
-							contextualAltVal = getContextualAltValues(ident);
-							value = contextualAltVal;
-							match = (contextualAltVal != null);
-						}
-						if (!match && histValue == null) {
+						if (histValue == null) {
 							if (historicalForms.equals(ident)) {
 								histValue = historicalForms;
 								value = histValue;
-								match = true;
-							}
-						}
-						if (!match && rubyVal == null) {
-							if (ruby.equals(ident)) {
-								rubyVal = ruby;
-								value = rubyVal;
 								match = true;
 							}
 						}
@@ -182,7 +141,7 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 				case CssTypes.CSS_FUNCTION:
 					match = false;
 					CssFunction func = (CssFunction) val;
-					String funcname = func.getName();
+					String funcname = func.getName().toLowerCase();
 					if (stylistic == null) {
 						if ("stylistic".equals(funcname)) {
 							checkFuncExpression(ac, func.getParameters(), false);
@@ -250,9 +209,6 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 		if (expression.getCount() > 1) {
 			// do this to keep the same order for comparisons
 			ArrayList<CssValue> v = new ArrayList<CssValue>();
-			if (contextualAltVal != null) {
-				v.add(contextualAltVal);
-			}
 			if (stylistic != null) {
 				v.add(stylistic);
 			}
@@ -274,12 +230,8 @@ public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFont
 			if (annotation != null) {
 				v.add(annotation);
 			}
-			if (rubyVal != null) {
-				v.add(rubyVal);
-			}
 			value = new CssValueList(v);
 		}
-
 	}
 
 	public CssFontVariantAlternates(ApplContext ac, CssExpression expression)
