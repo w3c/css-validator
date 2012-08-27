@@ -15,16 +15,14 @@ import org.w3c.css.values.CssValue;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-position
+ * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-position
  */
 public class CssFontVariantPosition extends org.w3c.css.properties.css.CssFontVariantPosition {
-
-	public static final String[] _allowedValues = {"normal", "sub",
-			"super", "ordinal"};
 
 	public static final CssIdent[] allowedValues;
 
 	static {
+		String[] _allowedValues = {"normal", "sub", "super"};
 		allowedValues = new CssIdent[_allowedValues.length];
 		for (int i = 0; i < allowedValues.length; i++) {
 			allowedValues[i] = CssIdent.getIdent(_allowedValues[i]);
