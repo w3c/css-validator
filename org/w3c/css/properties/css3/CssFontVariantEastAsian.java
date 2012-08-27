@@ -18,21 +18,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-east-asian
+ * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-east-asian
  */
 public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontVariantEastAsian {
-
-	public static final String[] _eastAsianVariantValues = {"jis78", "jis83", "jis90", "jis04",
-			"simplified", "traditional"};
-	public static final String[] _eastAsianWidthValues = {"full-width", "proportional-width"};
 
 	public static final CssIdent[] eastAsianVariantValues;
 	public static final CssIdent[] eastAsianWidthValues;
 
-	public static final CssIdent normal;
+	public static final CssIdent normal, ruby;
 
 	static {
 		normal = CssIdent.getIdent("normal");
+		ruby = CssIdent.getIdent("ruby");
+
+		String[] _eastAsianVariantValues = {"jis78", "jis83", "jis90", "jis04",
+				"simplified", "traditional"};
+		String[] _eastAsianWidthValues = {"full-width", "proportional-width"};
 
 		eastAsianVariantValues = new CssIdent[_eastAsianVariantValues.length];
 		for (int i = 0; i < eastAsianVariantValues.length; i++) {
@@ -64,6 +65,9 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 	}
 
 	public static final CssIdent getAllowedValue(CssIdent ident) {
+		if (ruby.equals(ident)) {
+			return ruby;
+		}
 		CssIdent id = getEastAsianWidthValue(ident);
 		if (id == null) {
 			id = getEastAsianVariantValue(ident);
@@ -87,7 +91,7 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 	 */
 	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
+		if (check && expression.getCount() > 3) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 
@@ -96,78 +100,83 @@ public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontV
 		CssValue val;
 		char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+		CssIdent varValue = null;
+		CssIdent widValue = null;
+		CssIdent rubValue = null;
+		boolean match;
 
-		value = null;
+		while (!expression.end()) {
+			val = expression.getValue();
+			op = expression.getOperator();
 
-		if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent ident = (CssIdent) val;
-			if (inherit.equals(ident)) {
-				value = inherit;
-			} else if (normal.equals(ident)) {
-				value = normal;
-			} else {
-				value = getEastAsianVariantValue(ident);
-				if (value != null) {
-					if (expression.getCount() > 1) {
-						if (op != CssOperator.SPACE) {
-							throw new InvalidParamException("operator",
-									((new Character(op)).toString()), ac);
-						}
-						expression.next();
-						val = expression.getValue();
-						CssIdent value2 = null;
-						if (val.getType() == CssTypes.CSS_IDENT) {
-							value2 = getEastAsianWidthValue((CssIdent) val);
-						}
-						if (value2 == null) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-						v.add(value);
-						v.add(value2);
-						value = new CssValueList(v);
+			if (val.getType() == CssTypes.CSS_IDENT) {
+				CssIdent ident = (CssIdent) val;
+				if (inherit.equals(ident)) {
+					if (expression.getCount() != 1) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								getPropertyName(), ac);
 					}
+					value = inherit;
+				} else if (normal.equals(ident)) {
+					if (expression.getCount() != 1) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								getPropertyName(), ac);
+					}
+					value = normal;
 				} else {
-					value = getEastAsianWidthValue(ident);
-					if (value != null) {
-						if (expression.getCount() > 1) {
-							if (op != CssOperator.SPACE) {
-								throw new InvalidParamException("operator",
-										((new Character(op)).toString()), ac);
-							}
-							expression.next();
-							val = expression.getValue();
-							CssIdent value2 = null;
-							if (val.getType() == CssTypes.CSS_IDENT) {
-								value2 = getEastAsianVariantValue((CssIdent) val);
-							}
-							if (value2 == null) {
-								throw new InvalidParamException("value",
-										val.toString(),
-										getPropertyName(), ac);
-							}
-							ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-							v.add(value2);
-							v.add(value);
-							value = new CssValueList(v);
+					// no inherit, nor normal, test the up-to-three values
+					match = false;
+					if (varValue == null) {
+						varValue = getEastAsianVariantValue(ident);
+						value = varValue;
+						match = (varValue != null);
+					}
+
+					if (!match && (widValue == null)) {
+						widValue = getEastAsianWidthValue(ident);
+						value = widValue;
+						match = (widValue != null);
+					}
+					if (!match && (rubValue == null)) {
+						match = ruby.equals(ident);
+						if (match) {
+							rubValue = ruby;
+							value = ruby;
 						}
-					} else {
+					}
+					if (!match) {
 						throw new InvalidParamException("value",
 								val.toString(),
 								getPropertyName(), ac);
 					}
 				}
+			} else {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
 			}
-		} else {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
+			if (op != CssOperator.SPACE) {
+				throw new InvalidParamException("operator",
+						((new Character(op)).toString()), ac);
+			}
+			expression.next();
 		}
-		expression.next();
+		if (expression.getCount() > 1) {
+			// do this to keep the same order for comparisons
+			ArrayList<CssValue> v = new ArrayList<CssValue>();
+			if (varValue != null) {
+				v.add(varValue);
+			}
+			if (widValue != null) {
+				v.add(widValue);
+			}
+			if (rubValue != null) {
+				v.add(rubValue);
+			}
+			value = new CssValueList(v);
+		}
 	}
 
 	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression)
