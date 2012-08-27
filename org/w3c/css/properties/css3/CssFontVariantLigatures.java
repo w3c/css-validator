@@ -24,6 +24,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 	public static final CssIdent[] commonLigValues;
 	public static final CssIdent[] discretionaryLigValues;
 	public static final CssIdent[] historicalLigValues;
+	public static final CssIdent[] contextualAltValues;
 
 	public static final CssIdent normal;
 
@@ -33,6 +34,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 				"no-discretionary-ligatures"};
 		String[] _historicalLigValues = {"historical-ligatures",
 				"no-historical-ligatures"};
+		String[] _contextualAltValues = {"contextual", "no-contextual"};
 
 		normal = CssIdent.getIdent("normal");
 
@@ -52,6 +54,12 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 		i = 0;
 		for (String s : _historicalLigValues) {
 			historicalLigValues[i++] = CssIdent.getIdent(s);
+		}
+
+		contextualAltValues = new CssIdent[_contextualAltValues.length];
+		i = 0;
+		for (String s : _contextualAltValues) {
+			contextualAltValues[i++] = CssIdent.getIdent(s);
 		}
 	}
 
@@ -82,6 +90,15 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 		return null;
 	}
 
+	public static final CssIdent getContextualAltValues(CssIdent ident) {
+		for (CssIdent id : contextualAltValues) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
+
 	public static final CssIdent getAllowedValue(CssIdent ident) {
 		CssIdent id;
 		if (none.equals(ident)) {
@@ -92,6 +109,9 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 			id = getDiscretionaryLigValues(ident);
 			if (id == null) {
 				id = getHistoricalLigValues(ident);
+				if (id == null) {
+					id = getContextualAltValues(ident);
+				}
 			}
 		}
 		return id;
@@ -125,6 +145,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 		CssIdent histValue = null;
 		CssIdent commonValue = null;
 		CssIdent discValue = null;
+		CssIdent altValue = null;
 		boolean match;
 
 		while (!expression.end()) {
@@ -169,6 +190,10 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 						discValue = getDiscretionaryLigValues(ident);
 						match = (discValue != null);
 					}
+					if (!match && altValue == null) {
+						altValue = getContextualAltValues(ident);
+						match = (altValue != null);
+					}
 					if (!match) {
 						throw new InvalidParamException("value",
 								val.toString(),
@@ -196,6 +221,8 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 				value = histValue;
 			} else if (discValue != null) {
 				value = discValue;
+			} else if (altValue != null) {
+				value = altValue;
 			}
 		} else {
 			// do this to keep the same order for comparisons
@@ -208,6 +235,9 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 			}
 			if (discValue != null) {
 				v.add(discValue);
+			}
+			if (altValue != null) {
+				v.add(altValue);
 			}
 			value = new CssValueList(v);
 		}
