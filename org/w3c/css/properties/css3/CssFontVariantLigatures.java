@@ -17,47 +17,66 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-variant-ligatures
+ * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-variant-ligatures
  */
 public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontVariantLigatures {
 
-	public static final String[] commonLigValues = {"common-ligatures", "no-common-ligatures"};
-	public static final String[] discretionaryLigValues = {"discretionary-ligatures",
-			"no-discretionary-ligatures"};
-	public static final String[] historicalLigValues = {"historical-ligatures",
-			"no-historical-ligatures"};
+	public static final CssIdent[] commonLigValues;
+	public static final CssIdent[] discretionaryLigValues;
+	public static final CssIdent[] historicalLigValues;
 
 	public static final CssIdent normal;
 
 	static {
+		String[] _commonLigValues = {"common-ligatures", "no-common-ligatures"};
+		String[] _discretionaryLigValues = {"discretionary-ligatures",
+				"no-discretionary-ligatures"};
+		String[] _historicalLigValues = {"historical-ligatures",
+				"no-historical-ligatures"};
+
 		normal = CssIdent.getIdent("normal");
+
+		commonLigValues = new CssIdent[_commonLigValues.length];
+		int i = 0;
+		for (String s : _commonLigValues) {
+			commonLigValues[i++] = CssIdent.getIdent(s);
+		}
+
+		discretionaryLigValues = new CssIdent[_discretionaryLigValues.length];
+		i = 0;
+		for (String s : _discretionaryLigValues) {
+			discretionaryLigValues[i++] = CssIdent.getIdent(s);
+		}
+
+		historicalLigValues = new CssIdent[_historicalLigValues.length];
+		i = 0;
+		for (String s : _historicalLigValues) {
+			historicalLigValues[i++] = CssIdent.getIdent(s);
+		}
 	}
 
 	public static final CssIdent getCommonLigValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : commonLigValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : commonLigValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
 	}
 
 	public static final CssIdent getDiscretionaryLigValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : discretionaryLigValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : discretionaryLigValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
 	}
 
 	public static final CssIdent getHistoricalLigValues(CssIdent ident) {
-		String s_id = ident.toString().toLowerCase();
-		for (String s : historicalLigValues) {
-			if (s_id.equals(s)) {
-				return ident;
+		for (CssIdent id : historicalLigValues) {
+			if (id.equals(ident)) {
+				return id;
 			}
 		}
 		return null;
@@ -65,6 +84,9 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 
 	public static final CssIdent getAllowedValue(CssIdent ident) {
 		CssIdent id;
+		if (none.equals(ident)) {
+			return none;
+		}
 		id = getCommonLigValues(ident);
 		if (id == null) {
 			id = getDiscretionaryLigValues(ident);
@@ -125,6 +147,13 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
 								getPropertyName(), ac);
 					}
 					value = normal;
+				} else if (none.equals(ident)) {
+					if (expression.getCount() != 1) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								getPropertyName(), ac);
+					}
+					value = none;
 				} else {
 					// no inherit, nor normal, test the up-to-three values
 					match = false;
