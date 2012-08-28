@@ -7,12 +7,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -29,7 +28,6 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
 	public final static CssIdent border_box;
 	public static CssIdent[] allowed_values;
 	public final static String val[] = {"border-box", "padding-box", "content-box"};
-	Object value;
 
 	static {
 		border_box = CssIdent.getIdent("border-box");
@@ -110,76 +108,13 @@ public class CssBackgroundClip extends org.w3c.css.properties.css.CssBackgroundC
 		if (values.size() == 1) {
 			value = values.get(0);
 		} else {
-			value = values;
+			value = new CssLayerList(values);
 		}
 	}
 
 	public CssBackgroundClip(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
-	}
-
-	public void set(Object val) {
-		value = val;
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
-
-	/**
-	 * Add this property to the CssStyle
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		// TODO FIXME -> in CssStyle
-		if (((Css3Style) style).cssBackgroundClip != null)
-			style.addRedefinitionWarning(ac, this);
-		((Css3Style) style).cssBackgroundClip = this;
-	}
-
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style   The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css3Style) style).getCssBackgroundClip();
-		} else {
-			return ((Css3Style) style).cssBackgroundClip;
-		}
-	}
-
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundClip &&
-				value.equals(((CssBackgroundClip) property).value));
-	}
-
-	/**
-	 * Returns a string representation of the object
-	 */
-	public String toString() {
-		if (value instanceof ArrayList) {
-			ArrayList values = (ArrayList) value;
-			StringBuilder sb = new StringBuilder();
-			for (Object aValue : values) {
-				sb.append(aValue.toString()).append(", ");
-			}
-			sb.setLength(sb.length() - 2);
-			return sb.toString();
-		}
-		return value.toString();
 	}
 
 	/**

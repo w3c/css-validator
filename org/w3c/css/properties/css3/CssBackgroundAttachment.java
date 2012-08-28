@@ -6,11 +6,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -50,17 +50,11 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
 		return null;
 	}
 
-	Object value;
-
 	/**
 	 * Create a new CssBackgroundAttachment
 	 */
 	public CssBackgroundAttachment() {
 		value = initial;
-	}
-
-	public void set(Object val) {
-		value = val;
 	}
 
 	/**
@@ -116,59 +110,13 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
 		if (values.size() == 1) {
 			value = values.get(0);
 		} else {
-			value = values;
+			value = new CssLayerList(values);
 		}
 	}
 
 	public CssBackgroundAttachment(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 * e.g. his value equals inherit
-	 */
-	public boolean isSoftlyInherited() {
-		return (inherit == value);
-	}
-
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		if (value instanceof ArrayList) {
-			ArrayList values = (ArrayList) value;
-			StringBuilder sb = new StringBuilder();
-			boolean addComma = false;
-			for (Object aValue : values) {
-				if (addComma) {
-					sb.append(", ");
-				} else {
-					addComma = true;
-				}
-				sb.append(aValue);
-			}
-			return sb.toString();
-		}
-		return value.toString();
-	}
-
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundAttachment &&
-				value.equals(((CssBackgroundAttachment) property).value));
 	}
 
 	/**

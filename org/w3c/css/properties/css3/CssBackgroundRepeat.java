@@ -5,11 +5,11 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -80,8 +80,6 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
 		}
 		return null;
 	}
-
-	public Object value;
 
 	/**
 	 * Create a new CssBackgroundRepeat
@@ -182,7 +180,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
 		if (values.size() == 1) {
 			value = values.get(0);
 		} else {
-			value = values;
+			value = new CssLayerList(values);
 		}
 	}
 
@@ -190,52 +188,6 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
 	public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-
-	public Object get() {
-		return value;
-	}
-
-	public void set(Object val) {
-		value = val;
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 * e.g. his value equals inherit
-	 */
-	public boolean isSoftlyInherited() {
-		return (inherit == value);
-	}
-
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		if (value instanceof ArrayList) {
-			ArrayList values = (ArrayList) value;
-			StringBuilder sb = new StringBuilder();
-			for (Object aValue : values) {
-				sb.append(aValue.toString()).append(", ");
-			}
-			sb.setLength(sb.length() - 2);
-			return sb.toString();
-		}
-		return value.toString();
-	}
-
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundRepeat &&
-				value == ((CssBackgroundRepeat) property).value);
 	}
 
 	/**

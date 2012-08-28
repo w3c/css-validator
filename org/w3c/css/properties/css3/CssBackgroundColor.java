@@ -7,7 +7,6 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -18,13 +17,11 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackgroundColor {
 
-    CssValue color;
-
     /**
      * Create a new CssBackgroundColor
      */
     public CssBackgroundColor() {
-        color = initial;
+        value = initial;
     }
 
     /**
@@ -45,7 +42,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
         }
 
         if (inherit.equals(val)) {
-            color = inherit;
+            value = inherit;
             expression.next();
         } else {
             try {
@@ -54,7 +51,7 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
                 CssColor tcolor = new CssColor(ac, expression, check);
                 // instead of using getColor, we get the value directly
                 // as we can have idents
-                color = tcolor.color;
+                value = tcolor.color;
             } catch (InvalidParamException e) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
@@ -69,56 +66,10 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
     }
 
     /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return color;
-    }
-
-
-    public void set(CssValue col) {
-        color = col;
-    }
-
-    /**
-     * Returns the color
-     */
-    public CssValue getColor() {
-        return color;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return color.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return color.toString();
-    }
-
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundColor &&
-                color.equals(((CssBackgroundColor) property).color));
-    }
-
-    /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (color == transparent);
+        return (value == transparent);
     }
-
 }

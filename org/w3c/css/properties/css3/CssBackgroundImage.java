@@ -6,11 +6,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -23,8 +23,6 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackgroundImage {
 
-
-    Object url = null;
 
     public static boolean isMatchingIdent(CssIdent ident) {
         return none.equals(ident);
@@ -85,9 +83,9 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
             }
         }
         if (values.size() == 1) {
-            url = values.get(0);
+            value = values.get(0);
         } else {
-            url = values;
+            value = new CssLayerList(values);
         }
     }
 
@@ -97,57 +95,11 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
     }
 
     /**
-     * Returns the value of this property
-     */
-
-    public Object get() {
-        return url;
-    }
-
-    public void set(Object val) {
-        url = val;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == url);
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (url instanceof ArrayList) {
-            ArrayList values = (ArrayList) url;
-            StringBuilder sb = new StringBuilder();
-            for (Object aValue : values) {
-                sb.append(aValue.toString()).append(", ");
-            }
-            sb.setLength(sb.length() - 2);
-            return sb.toString();
-        }
-        return url.toString();
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundImage && url != null &&
-                url.equals(((CssBackgroundImage) property).url));
-    }
-
-    /**
      * Is the value of this property is a default value.
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (url == none);
+        return (value == none);
     }
 
 }

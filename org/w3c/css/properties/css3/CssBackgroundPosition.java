@@ -7,14 +7,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssBackground;
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
@@ -72,8 +69,6 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 		return null;
 	}
 
-    Object value;
-
     /**
      * Create a new CssBackgroundPosition
      */
@@ -91,11 +86,11 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                                  boolean check) throws InvalidParamException {
         setByUser();
         CssValue val;
-        ArrayList<CssBackgroundPositionValue> values;
+        ArrayList<CssValue> values;
         CssBackgroundPositionValue b_val = null;
         char op;
 
-        values = new ArrayList<CssBackgroundPositionValue>();
+        values = new ArrayList<CssValue>();
         // we just accumulate values and check at validation
         while (!expression.end()) {
             val = expression.getValue();
@@ -137,7 +132,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         if (values.size() == 1) {
             value = values.get(0);
         } else {
-            value = values;
+            value = new CssLayerList(values);
         }
     }
 
@@ -146,84 +141,6 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         this(ac, expression, false);
     }
 
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
-
-    public void set(Object val) {
-        value = val;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     * e.g. his value equals inherit
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
-
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (value instanceof ArrayList) {
-            ArrayList v_list;
-            v_list = (ArrayList) value;
-            StringBuilder sb = new StringBuilder();
-			boolean isFirst = true;
-            for (Object val : v_list) {
-				if (isFirst) {
-					isFirst = false;
-				} else {
-					sb.append(", ");
-				}
-                sb.append(val);
-            }
-            return sb.toString();
-        }
-        return value.toString();
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        CssBackground cssBackground = ((Css1Style) style).cssBackground;
-        if (cssBackground.position != null)
-            style.addRedefinitionWarning(ac, this);
-        cssBackground.position = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css1Style) style).getBackgroundPosition();
-        } else {
-            return ((Css1Style) style).cssBackground.position;
-        }
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return ((property != null) &&
-                (property instanceof CssBackgroundPosition) &&
-                (value.equals(((CssBackgroundPosition) property).value)));
-    }
 
     /**
      * Is the value of this property is a default value.

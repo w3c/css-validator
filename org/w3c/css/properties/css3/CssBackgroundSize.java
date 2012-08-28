@@ -6,11 +6,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -22,23 +22,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-size
- * <p/>
- * <p/>
- * Name: 	background-size
- * Value: 	&lt;bg-size&gt; [ , &lt;bg-size&gt; ]*
- * Initial: 	auto
- * Applies to: 	all elements
- * Inherited: 	no
- * Percentages: 	see text
- * Media: 	visual
- * Computed value: 	for &lt;length&gt; the absolute value, otherwise as
- * specified
- * <p/>
- * Specifies the size of the background images. Where
- * <p/>
- * &lt;bg-size&gt; = [ &lt;length&gt; | &lt;percentage&gt; | auto ]{1,2} |
- * cover | contain
+ * @spec http://www.w3.org/TR/2009/CR-css3-background-20091217/#the-background-size
  */
 public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundSize {
 
@@ -65,8 +49,6 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 		}
 		return null;
 	}
-
-	Object value;
 
 	/**
 	 * Create a new CssBackgroundSize
@@ -173,7 +155,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 		if (values.size() == 1) {
 			value = values.get(0);
 		} else {
-			value = values;
+			value = new CssLayerList(values);
 		}
 	}
 
@@ -181,50 +163,6 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 	public CssBackgroundSize(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
-	}
-
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssBackgroundSize &&
-				value.equals(((CssBackgroundSize) property).value));
-	}
-
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
-
-	public void set(Object val) {
-		value = val;
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 */
-	public boolean isSoftlyInherited() {
-		return (inherit == value);
-	}
-
-	/**
-	 * Returns a string representation of the object
-	 */
-	public String toString() {
-		if (value instanceof ArrayList) {
-			ArrayList values = (ArrayList) value;
-			StringBuilder sb = new StringBuilder();
-			for (Object aValue : values) {
-				sb.append(aValue.toString()).append(", ");
-			}
-			sb.setLength(sb.length() - 2);
-			return sb.toString();
-		}
-		return value.toString();
 	}
 
 	/**
