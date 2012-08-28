@@ -19,10 +19,11 @@ import java.util.ArrayList;
  */
 public class CssFontStyle extends org.w3c.css.properties.css.CssFontStyle {
 
-	static final String[] _allowed_values = {"italic", "normal", "oblique"};
 	public static final ArrayList<CssIdent> allowed_values;
 
 	static {
+		String[] _allowed_values = {"italic", "normal", "oblique"};
+
 		allowed_values = new ArrayList<CssIdent>(_allowed_values.length);
 		for (String s : _allowed_values) {
 			allowed_values.add(CssIdent.getIdent(s));

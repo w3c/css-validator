@@ -25,18 +25,13 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 	public static final ArrayList<CssIdent> genericNames;
 	public static final ArrayList<CssIdent> reservedNames;
 
-	public static final String[] _genericNames = {
-			"serif",
-			"sans-serif",
-			"cursive",
-			"fantasy",
-			"monospace"};
-
-	public static final String[] _reservedNames = {"inherit",
-			"initial", "default"
-	};
-
 	static {
+		String[] _genericNames = {
+				"serif", "sans-serif", "cursive",
+				"fantasy", "monospace"};
+
+		String[] _reservedNames = {"inherit", "initial", "default"};
+
 		genericNames = new ArrayList<CssIdent>(_genericNames.length);
 		for (String s : _genericNames) {
 			genericNames.add(CssIdent.getIdent(s));

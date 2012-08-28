@@ -23,10 +23,11 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
 
 	public static final CssIdent normal;
 	public static final CssIdent[] systemFonts;
-	static final String[] _systemFonts = {"caption", "icon", "menu",
-			"message-box", "small-caption", "status-bar"};
 
 	static {
+		String[] _systemFonts = {"caption", "icon", "menu",
+				"message-box", "small-caption", "status-bar"};
+
 		normal = CssIdent.getIdent("normal");
 		systemFonts = new CssIdent[_systemFonts.length];
 		int i = 0;
