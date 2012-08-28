@@ -19,12 +19,12 @@ import java.util.Arrays;
  */
 public class CssFontStretch extends org.w3c.css.properties.css.CssFontStretch {
 
-	static final String[] _allowed_values = {"normal", "wider", "narrower",
-			"ultra-condensed", "extra-condensed", "condensed", "semi-condensed",
-			"semi-expanded", "expanded", "extra-expanded", "ultra-expanded"};
 	static final CssIdent[] allowed_values;
 
 	static {
+		String[] _allowed_values = {"normal", "wider", "narrower",
+				"ultra-condensed", "extra-condensed", "condensed", "semi-condensed",
+				"semi-expanded", "expanded", "extra-expanded", "ultra-expanded"};
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (int i = 0; i < allowed_values.length; i++) {
 			allowed_values[i] = CssIdent.getIdent(_allowed_values[i]);
