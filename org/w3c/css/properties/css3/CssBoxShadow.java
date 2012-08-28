@@ -8,11 +8,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
@@ -31,7 +31,6 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 
     public static CssIdent inset;
-    Object value;
 
     static {
         inset = CssIdent.getIdent("inset");
@@ -53,7 +52,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
     public CssBoxShadow(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
         CssExpression single_layer = null;
-        ArrayList<CssBoxShadowValue> values;
+        ArrayList<CssValue> values;
         CssBoxShadowValue boxShadowValue;
 
         setByUser();
@@ -79,7 +78,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     getPropertyName(), ac);
         }
         // ok, so we have one or multiple layers here...
-        values = new ArrayList<CssBoxShadowValue>();
+        values = new ArrayList<CssValue>();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -113,7 +112,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
         if (values.size() == 1) {
             value = values.get(0);
         } else {
-            value = values;
+            value = new CssLayerList(values);
         }
 
     }
@@ -225,52 +224,6 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
     public CssBoxShadow(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBoxShadow &&
-                value.equals(((CssBoxShadow) property).value));
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        if (value instanceof ArrayList) {
-            ArrayList v_list;
-            v_list = (ArrayList) value;
-            StringBuilder sb = new StringBuilder();
-            boolean isFirst = true;
-            for (Object val : v_list) {
-                if (isFirst) {
-                    isFirst = false;
-                } else {
-                    sb.append(", ");
-                }
-                sb.append(val.toString());
-            }
-            return sb.toString();
-        }
-        return value.toString();
     }
 
     /**
