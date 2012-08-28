@@ -83,7 +83,6 @@ public class Css1Style extends CssStyle {
     /**
      * text-shadow property
      */
-    public CssTextShadow cssTextShadow;
     public CssTextShadowATSC cssTextShadowATSC;
     // line-heigth : see cssFont
 
@@ -661,18 +660,6 @@ public class Css1Style extends CssStyle {
                             style, selector);
         }
         return cssTextIndentMob;
-    }
-
-    /**
-     * Get the text-shadow property
-     */
-    public final CssTextShadow getTextShadow() {
-        if (cssTextShadow == null) {
-            cssTextShadow =
-                    (CssTextShadow) style.CascadingOrder(new CssTextShadow(),
-                            style, selector);
-        }
-        return cssTextShadow;
     }
 
     public final CssTextShadowATSC getTextShadowATSC() {
