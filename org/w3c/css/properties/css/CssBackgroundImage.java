@@ -11,12 +11,13 @@ import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS1
  */
 public class CssBackgroundImage extends CssProperty {
-    Object url = null;
+    public CssValue value;
 
     /**
      * Create a new CssBackgroundImage
@@ -49,11 +50,7 @@ public class CssBackgroundImage extends CssProperty {
      */
 
     public Object get() {
-        return url;
-    }
-
-    public void set(Object val) {
-        url = val;
+        return value;
     }
 
     /**
@@ -61,14 +58,14 @@ public class CssBackgroundImage extends CssProperty {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-        return (inherit == url);
+        return (inherit == value);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-        return url.toString();
+        return value.toString();
     }
 
     /**
@@ -110,8 +107,8 @@ public class CssBackgroundImage extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBackgroundImage && url != null &&
-                url.equals(((CssBackgroundImage) property).url));
+        return (property instanceof CssBackgroundImage && value != null &&
+                value.equals(((CssBackgroundImage) property).value));
     }
 
     /**
