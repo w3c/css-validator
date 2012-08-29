@@ -80,10 +80,7 @@ public class Css1Style extends CssStyle {
      */
     public CssTextIndent cssTextIndent;
     public CssTextIndentMob cssTextIndentMob;
-    /**
-     * text-shadow property
-     */
-    public CssTextShadowATSC cssTextShadowATSC;
+
     // line-heigth : see cssFont
 
     /* Box properties */
@@ -660,15 +657,6 @@ public class Css1Style extends CssStyle {
                             style, selector);
         }
         return cssTextIndentMob;
-    }
-
-    public final CssTextShadowATSC getTextShadowATSC() {
-        if (cssTextShadowATSC == null) {
-            cssTextShadowATSC =
-                    (CssTextShadowATSC) style.CascadingOrder(new CssTextShadowATSC(),
-                            style, selector);
-        }
-        return cssTextShadowATSC;
     }
 
     /**

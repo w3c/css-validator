@@ -7,6 +7,7 @@
 package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.aural.ACssStyle;
+import org.w3c.css.properties.css.CssTextShadow;
 
 /**
  * @version $Revision$
@@ -24,6 +25,11 @@ public class Css2Style extends ACssStyle {
      */
 	public org.w3c.css.properties.css.CssFontStretch cssFontStretch;
 	public org.w3c.css.properties.css.CssFontSizeAdjust cssFontSizeAdjust;
+
+	/**
+	 * text properties
+	 */
+	public CssTextShadow cssTextShadow;
 
 	/**
      * Get the azimuth
@@ -118,4 +124,18 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssFontSizeAdjust;
 	}
+
+	/**
+	 * Get the text-shadow property
+	 * @return a CssTextShadow instance
+	 */
+	public final org.w3c.css.properties.css.CssTextShadow getTextShadow() {
+		if (cssTextShadow == null) {
+			cssTextShadow =
+					(org.w3c.css.properties.css.CssTextShadow) style.CascadingOrder(new org.w3c.css.properties.css.CssTextShadow(),
+							style, selector);
+		}
+		return cssTextShadow;
+	}
+
 }
