@@ -1236,6 +1236,11 @@ where warning means warninglevel in use (0 => normal, no => none).
       <description>Valid font-kerning level css3</description>
       <result valid="true" />
     </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-kerning/css3/001.css.~1.1.~</file>
+      <description>Valid font-kerning level css3</description>
+      <result valid="true" />
+    </test>
   </type>
   <type title="Valid_font-language-override">
     <test profile="css3" warning="no">
@@ -1262,6 +1267,11 @@ where warning means warninglevel in use (0 => normal, no => none).
       <description>Valid font-size-adjust level css3</description>
       <result valid="true" />
     </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-size-adjust/css3/001.css.~1.1.~</file>
+      <description>Valid font-size-adjust level css3</description>
+      <result valid="true" />
+    </test>
   </type>
   <type title="Valid_font-stretch">
     <test profile="css3" warning="no">
@@ -1281,6 +1291,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-synthesis/css3/001.css</file>
       <description>Valid font-synthesis level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-variant-alternates">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-variant-alternates/css3/001.css</file>
+      <description>Valid font-variant-alternates level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1354,6 +1371,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_overflow-wrap">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/overflow-wrap/css3/001.css</file>
+      <description>Valid overflow-wrap level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-decoration">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-decoration/css3/001.css</file>
@@ -1407,6 +1431,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/word-spacing/css3/001.css</file>
       <description>Valid word-spacing level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_word-wrap">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/word-wrap/css3/001.css</file>
+      <description>Valid word-wrap level css3</description>
       <result valid="true" />
     </test>
   </type>
