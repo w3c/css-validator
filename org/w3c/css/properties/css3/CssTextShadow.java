@@ -120,13 +120,9 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 		while (!exp.end()) {
 			val = exp.getValue();
 			// color is last, so if we reach this, we are in error
-			if (color != null) {
-				throw new InvalidParamException("value",
-						val, getPropertyName(), ac);
-			}
 			if (val.getType() == CssTypes.CSS_NUMBER) {
 				// case of 0, a number and a length
-				val = ((CssNumber)val).getLength();
+				val = ((CssNumber) val).getLength();
 			}
 			if (val.getType() == CssTypes.CSS_LENGTH) {
 				values.add(val);
@@ -134,6 +130,13 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 			} else {
 				CssColor c = new CssColor(ac, exp, false);
 				color = c.getColor();
+				// color can be first or last in CSS2
+				if (values.size() > 0 && exp.getRemainingCount() != 0) {
+					if (color != null) {
+						throw new InvalidParamException("value",
+								val, getPropertyName(), ac);
+					}
+				}
 				// no need for exp.next() as CssColor parsing is
 				// already doing that.
 			}
