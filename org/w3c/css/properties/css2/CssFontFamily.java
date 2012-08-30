@@ -141,7 +141,7 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 					ArrayList<CssIdent> idval = new ArrayList<CssIdent>();
 					idval.add((CssIdent) val);
 					// we add idents if separated by spaces...
-					while (op == SPACE && !expression.end()) {
+					while (op == SPACE && expression.getRemainingCount() > 1) {
 						expression.next();
 						op = expression.getOperator();
 						val = expression.getValue();
