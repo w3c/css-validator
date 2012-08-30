@@ -15,7 +15,7 @@ import org.w3c.css.values.CssValue;
 /**
  * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#word-break0
  */
-public class CssWordBreak extends org.w3c.css.properties.css.CssOverflowWrap {
+public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
 	public static final CssIdent[] allowed_values;
 
