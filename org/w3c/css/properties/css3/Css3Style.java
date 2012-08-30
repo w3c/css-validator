@@ -38,6 +38,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssWordBreak;
@@ -136,6 +137,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssOverflowWrap cssOverflowWrap;
 	public CssWordBreak cssWordBreak;
+	public CssHyphens cssHyphens;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1374,13 +1376,22 @@ public class Css3Style extends ATSCStyle {
 		return cssFontVariantAlternates;
 	}
 
-	public org.w3c.css.properties.css.CssOverflowWrap getOverflowWrap() {
+	public CssOverflowWrap getOverflowWrap() {
 		if (cssOverflowWrap == null) {
 			cssOverflowWrap =
 					(CssOverflowWrap) style.CascadingOrder(
 							new CssOverflowWrap(), style, selector);
 		}
 		return cssOverflowWrap;
+	}
+
+	public CssHyphens getHyphens() {
+		if (cssHyphens == null) {
+			cssHyphens =
+					(CssHyphens) style.CascadingOrder(
+							new CssHyphens(), style, selector);
+		}
+		return cssHyphens;
 	}
 
 	///
