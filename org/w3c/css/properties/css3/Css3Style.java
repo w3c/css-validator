@@ -39,6 +39,7 @@ import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssOpacity;
+import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -134,6 +135,8 @@ public class Css3Style extends ATSCStyle {
 	public CssFontVariantNumeric cssFontVariantNumeric;
 	public CssFontFeatureSettings cssFontFeatureSettings;
 	public CssFontVariantAlternates cssFontVariantAlternates;
+
+	public CssOverflowWrap cssOverflowWrap;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1388,6 +1391,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFontVariantAlternates(), style, selector);
 		}
 		return cssFontVariantAlternates;
+	}
+
+	public CssOverflowWrap getOverflowWrap() {
+		if (cssOverflowWrap == null) {
+			cssOverflowWrap =
+					(CssOverflowWrap) style.CascadingOrder(
+							new CssOverflowWrap(), style, selector);
+		}
+		return cssOverflowWrap;
 	}
 
 	///
