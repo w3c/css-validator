@@ -1,178 +1,93 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> normal || &lt;word-break-CJK&gt; || &lt;word-break-wrap&gt; ||
- *  word-break-inside || inherit<BR>
- *  <EM>Initial:</EM>normal<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
- *  <EM>Inherited:</EM>yes<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  The 'word-break' property is a shorthand property for setting
- *  'word-break-CJK', 'word-break-wrap' and 'word-break-inside', at the same
- *  place in the style sheet.
+ * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#word-break0
  */
+public class CssWordBreak extends org.w3c.css.properties.css.CssOverflowWrap {
 
-public class CssWordBreak extends CssProperty
-implements CssOperator {
+	public static final CssIdent[] allowed_values;
 
-    CssWordBreakCJK wbc;
-    CssWordBreakInside wbi;
-    CssValue wordbreak;
-
-    /**
-     * Create a new CssWordBreak
-     */
-    public CssWordBreak() {
-    }
-
-    /**
-     * Create a new CssWordBreak
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
-     */
-    public CssWordBreak(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-
-	CssValue val = expression.getValue();
-	int maxvalues = 3;
-	boolean correct = true;
-	char op = SPACE;
-
-	while (correct && (val != null) && (maxvalues-- > 0)) {
-
-	    correct = false;
-
-	    if (wbc == null) {
-		try {
-		    wbc = new CssWordBreakCJK(ac, expression);
-		    correct = true;
+	static {
+		String[] _allowed_values = {"normal", "keep-all", "break-all"};
+		allowed_values = new CssIdent[_allowed_values.length];
+		int i = 0;
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
 		}
-		catch (InvalidParamException e) {
+	}
+
+	public static final CssIdent getAllowedValue(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
 		}
-	    }
-	    if (!correct && wbi == null) {
-		try {
-		    wbi = new CssWordBreakInside(ac, expression);
-		    correct = true;
+		return null;
+	}
+
+	/**
+	 * Create a new CssOverflowWrap
+	 */
+	public CssWordBreak() {
+		value = initial;
+	}
+
+	/**
+	 * Creates a new CssOverflowWrap
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssWordBreak(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
 		}
-		catch (InvalidParamException e) {
+		setByUser();
+
+		CssValue val;
+		char op;
+
+		val = expression.getValue();
+		op = expression.getOperator();
+
+		if (val.getType() == CssTypes.CSS_IDENT) {
+			CssIdent ident = (CssIdent) val;
+			if (inherit.equals(ident)) {
+				value = inherit;
+			} else {
+				value = getAllowedValue(ident);
+				if (value == null) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
+				}
+			}
+		} else {
+			throw new InvalidParamException("value",
+					val.toString(),
+					getPropertyName(), ac);
 		}
-	    }
-	    if (!correct) {
-		throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-	    }
-
-	    val = expression.getValue();
-	    op = expression.getOperator();
-
+		expression.next();
 	}
 
-	if (wbc == null) {
-	    wbc = new CssWordBreakCJK();
+	public CssWordBreak(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-	if (wbi == null) {
-	    wbi = new CssWordBreakInside();
-	}
-
-    }
-
-    public CssWordBreak(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssWordBreak != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssWordBreak = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getWordBreak();
-	}
-	else {
-	    return ((Css3Style) style).cssWordBreak;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return false;
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "word-break";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return null;
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-
-	String ret = "";
-	if (wbc.isByUser()) {
-	    ret += " " + wbc;
-	}
-	if (wbi.isByUser()) {
-	    ret += " " + wbi;
-	}
-	return ret.substring(1);
-
-    }
-
-    //    /**
-    // * Is the value of this property a default value
-    //* It is used by alle macro for the function <code>print</code>
-    //*/
-    //public boolean isDefault() {
-    //return wordbreak == normal;
-    //}
 
 }
+
