@@ -1350,6 +1350,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_hyphens">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/hyphens/css3/001.css</file>
+      <description>Valid hyphens level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_letter-spacing">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/letter-spacing/css3/001.css</file>
