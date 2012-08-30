@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2009/CR-css3-multicol-20091217/#column-breaks
+ * @spec http://www.w3.org/TR/2012/WD-css3-break-20120823/#break-before
  */
 
 public class CssBreakBefore extends org.w3c.css.properties.css.CssBreakBefore {
@@ -26,8 +26,10 @@ public class CssBreakBefore extends org.w3c.css.properties.css.CssBreakBefore {
 
 	static {
 		auto = CssIdent.getIdent("auto");
-		String id_values[] = {"auto", "always", "avoid", "left", "right",
-				"page", "column", "avoid-page", "avoid-column"};
+		String id_values[] = {"auto", "avoid", "always", "page",
+				"left", "right", "recto", "verso",
+				"column", "region", "avoid-page", "avoid-column",
+				"avoid-region"};
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
 		for (String s : id_values) {
