@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -134,8 +135,8 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 					ArrayList<CssIdent> idval = new ArrayList<CssIdent>();
 					idval.add((CssIdent) val);
 					// we add idents if separated by spaces...
-					expression.next();
 					while (op == SPACE && !expression.end()) {
+						expression.next();
 						op = expression.getOperator();
 						val = expression.getValue();
 						if (val.getType() == CssTypes.CSS_IDENT) {
@@ -144,7 +145,6 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 							throw new InvalidParamException("value", val,
 									getPropertyName(), ac);
 						}
-						expression.next();
 					}
 					checkExpression(ac, values, idval, check);
 					break;
@@ -159,7 +159,7 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
 			}
 		}
 		checkValues(ac, values);
-		value = (values.size() > 1) ? values : values.get(0);
+		value = (values.size() > 1) ? new CssLayerList(values) : values.get(0);
 	}
 
 	public CssFontFamily(ApplContext ac, CssExpression expression)
