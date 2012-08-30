@@ -1392,6 +1392,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-shadow">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-shadow/css3/001.css</file>
+      <description>Valid text-shadow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_vertical-align">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/vertical-align/css3/001.css</file>
