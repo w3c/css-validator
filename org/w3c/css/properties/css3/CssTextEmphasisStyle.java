@@ -27,7 +27,7 @@ public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmph
 
 	static {
 		String[] _shapeStyle = {"filled", "open"};
-		String[] _shapeForm = {"dot", "circle", "double", "circle", "triangle", "sesame"};
+		String[] _shapeForm = {"dot", "circle", "double-circle", "triangle", "sesame"};
 
 		shapeStyle = new CssIdent[_shapeStyle.length];
 		int i = 0;
