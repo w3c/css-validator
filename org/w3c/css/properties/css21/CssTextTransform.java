@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#text-transform
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#propdef-text-transform
  */
 public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
 
@@ -65,13 +65,18 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
 					expression.getValue(),
 					getPropertyName(), ac);
 		}
-		val = getMatchingIdent((CssIdent) val);
-		if (val == null) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getMatchingIdent((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = val;
 		}
-		value = val;
 		expression.next();
 	}
 
