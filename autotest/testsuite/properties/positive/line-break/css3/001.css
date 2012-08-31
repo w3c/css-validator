@@ -1,0 +1,6 @@
+a { line-break: auto }
+b { line-break: loose }
+c { line-break: normal }
+d { line-break: strict }
+y { line-break: initial }
+z { line-break: inherit }
