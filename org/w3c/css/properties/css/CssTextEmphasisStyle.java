@@ -56,7 +56,7 @@ public class CssTextEmphasisStyle extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "text-emphasis-color";
+		return "text-emphasis-style";
 	}
 
 	/**
