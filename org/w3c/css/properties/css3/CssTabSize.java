@@ -57,6 +57,11 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 				}
 				value = val;
 				break;
+			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					value = inherit;
+					break;
+				}
 			default:
 				throw new InvalidParamException("value",
 						val, getPropertyName(), ac);
