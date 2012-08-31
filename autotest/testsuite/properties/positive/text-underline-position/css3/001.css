@@ -1,0 +1,11 @@
+tup1    { text-underline-position: auto }
+tup2    { text-underline-position: alphabetic }
+tup3    { text-underline-position: below }
+tup4    { text-underline-position: below left }
+tup5    { text-underline-position: below right }
+tup6    { text-underline-position: left below }
+tup7    { text-underline-position: right below }
+tup8    { text-underline-position: right }
+tup9    { text-underline-position: left }
+y    { text-underline-position: initial }
+z    { text-underline-position: inherit }
