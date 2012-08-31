@@ -43,6 +43,7 @@ import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssTextAlignLast;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -63,7 +64,6 @@ public class Css3Style extends ATSCStyle {
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
 	CssTextJustify cssTextJustify;
-	CssTextAlignLast cssTextAlignLast;
 	CssDominantBaseLine cssDominantBaseLine;
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
@@ -140,6 +140,7 @@ public class Css3Style extends ATSCStyle {
 	public CssWordBreak cssWordBreak;
 	public CssHyphens cssHyphens;
 	public CssLineBreak cssLineBreak;
+	public CssTextAlignLast cssTextAlignLast;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
