@@ -21,7 +21,7 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
 
 	static {
 		String id_values[] = {"none", "capitalize", "uppercase",
-				"lowercase", "full", "width"};
+				"lowercase", "full-width"};
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
 		for (String s : id_values) {
