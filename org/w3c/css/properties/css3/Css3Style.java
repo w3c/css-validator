@@ -45,6 +45,7 @@ import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
+import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
@@ -145,6 +146,7 @@ public class Css3Style extends ATSCStyle {
 	public CssTextJustify cssTextJustify;
 	public CssTextDecorationStyle cssTextDecorationStyle;
 	public CssTextDecorationColor cssTextDecorationColor;
+	public CssTextEmphasisColor cssTextEmphasisColor;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1417,6 +1419,15 @@ public class Css3Style extends ATSCStyle {
 							new CssTextDecorationColor(), style, selector);
 		}
 		return cssTextDecorationColor;
+	}
+
+	public CssTextEmphasisColor getTextEmphasisColor() {
+		if (cssTextEmphasisColor == null) {
+			cssTextEmphasisColor =
+					(CssTextEmphasisColor) style.CascadingOrder(
+							new CssTextEmphasisColor(), style, selector);
+		}
+		return cssTextEmphasisColor;
 	}
 
 	///
