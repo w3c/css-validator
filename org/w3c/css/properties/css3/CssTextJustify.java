@@ -1,158 +1,90 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> auto || inter-word || inter-ideograph || distribute ||
- *  newspaper || inter-cluster || kashida || inherit<BR>
- *  <EM>Initial:</EM>auto<BR>
- *  <EM>Applies to:</EM>block-level elements<BR>
- *  <EM>Inherited:</EM>yes<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  This property selects the type of justify alignment. It affects the text
- *  layout only if 'text-align' is set to 'justify'. That way, UA's that do
- *  not support this property will still render the text as fully
- *  justified, which most of the time is at least partially correct. Typically
- *  the text-justify property does not affect the last line, unless the last
- *  line itself is justified. Most of the text-justify values affects
- *  writing systems in very specific ways.
+ * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-justify0
  */
+public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
 
-public class CssTextJustify extends CssProperty {
+	private static CssIdent[] allowed_values;
 
-    CssValue textjustify;
-    private CssIdent auto = new CssIdent("auto");
+	static {
+		String id_values[] = {"auto", "none", "inter", "word", "inter",
+				"ideograph", "inter", "cluster", "distribute", "kashida"};
+		allowed_values = new CssIdent[id_values.length];
+		int i = 0;
+		for (String s : id_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
+	}
 
-    private static String[] values = {
-	"auto", "inter-word", "inter-ideograph", "distribute",
-	"newspaper", "inter-cluster", "kashida", "inherit"
-    };
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Create a new CssTextJustify
-     */
-    public CssTextJustify() {
-	textjustify = auto;
-    }
+	/**
+	 * Create a new CssTextJustify
+	 */
+	public CssTextJustify() {
+		value = initial;
+	}
 
-    /**
-     * Create a new CssTextJustify
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
-     */
-    public CssTextJustify(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+	/**
+	 * Creates a new CssTextJustify
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssTextJustify(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		setByUser();
+		CssValue val = expression.getValue();
 
-	setByUser();
-	CssValue val = expression.getValue();
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-	int i = 0;
-	for (; i < values.length; i++) {
-	    if (val.toString().equals(values[i])) {
-		textjustify = val;
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getMatchingIdent((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = val;
+		}
 		expression.next();
-		break;
-	    }
 	}
-	if (i == values.length) {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+
+	public CssTextJustify(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-    }
-
-    public CssTextJustify(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssTextJustify != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssTextJustify = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getTextJustify();
-	}
-	else {
-	    return ((Css3Style) style).cssTextJustify;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssTextJustify &&
-		textjustify.equals(((CssTextJustify) property).textjustify));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "text-justify";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return textjustify;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return textjustify.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return textjustify.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return (textjustify == auto);
-    }
 
 }
+
