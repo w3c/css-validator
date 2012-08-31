@@ -42,6 +42,8 @@ import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.CssLineBreak;
+
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -66,7 +68,6 @@ public class Css3Style extends ATSCStyle {
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
 	CssBaselineShift cssBaselineShift;
-	CssLineBreak cssLineBreak;
 	CssTextSpace cssTextSpace;
 	CssTextEndOverflow cssTextEndOverflow;
 	CssTextAfterOverflow cssTextAfterOverflow;
@@ -138,6 +139,7 @@ public class Css3Style extends ATSCStyle {
 	public CssOverflowWrap cssOverflowWrap;
 	public CssWordBreak cssWordBreak;
 	public CssHyphens cssHyphens;
+	public CssLineBreak cssLineBreak;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
