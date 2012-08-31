@@ -1364,6 +1364,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_line-break">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/line-break/css3/001.css</file>
+      <description>Valid line-break level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_line-height">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/line-height/css3/001.css</file>
@@ -1385,6 +1392,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_tab-size">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/tab-size/css3/001.css</file>
+      <description>Valid tab-size level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-decoration">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-decoration/css3/001.css</file>
@@ -1392,10 +1406,54 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-decoration-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-decoration-color/css3/001.css</file>
+      <description>Valid text-decoration-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-decoration-line">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-decoration-line/css3/001.css</file>
+      <description>Valid text-decoration-line level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-decoration-skip">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-decoration-skip/css3/001.css</file>
+      <description>Valid text-decoration-skip level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-decoration-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-decoration-style/css3/001.css</file>
+      <description>Valid text-decoration-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-emphasis-style">
+  </type>
   <type title="Valid_text-shadow">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-shadow/css3/001.css</file>
       <description>Valid text-shadow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-transform">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-transform/css3/001.css</file>
+      <description>Valid text-transform level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-underline-position">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-underline-position/css3/001.css</file>
+      <description>Valid text-underline-position level css3</description>
       <result valid="true" />
     </test>
   </type>

@@ -504,6 +504,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-transform">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/text-transform/css21/001.css</file>
+      <description>Valid text-transform level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_vertical-align">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/vertical-align/css21/001.css</file>
