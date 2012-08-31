@@ -3,5 +3,5 @@ name= letter-spacing
 css1= http://www.w3.org/TR/2008/REC-CSS1-20080411/#letter-spacing
 css2= http://www.w3.org/TR/2008/REC-CSS2-20080411/text.html#propdef-letter-spacing
 css21= http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#propdef-letter-spacing 
-css3= http://www.w3.org/TR/2011/WD-css3-text-20110901/#letter-spacing0
+css3= http://www.w3.org/TR/2012/WD-css3-text-20120814/#letter-spacing0
 */
