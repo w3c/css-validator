@@ -25,7 +25,8 @@ tes24  { text-emphasis-style:   open    triangle  }
 tes25  { text-emphasis-style:   open   circle  }
 tes26  { text-emphasis-style:   open   dot  }
 tes27  { text-emphasis-style:   open   double-circle  }
-tes28  { text-emphasis-style:  a  }
-tes29  { text-emphasis-style: none  }
+tes28  { text-emphasis-style:  'a'  }
+tes29  { text-emphasis-style:  "a"  }
+tes30  { text-emphasis-style: none  }
 y  { text-emphasis-style: initial }
 z  { text-emphasis-style: inherit }
