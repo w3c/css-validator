@@ -41,6 +41,7 @@ import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
+import org.w3c.css.properties.css.CssTextDecorationStyle;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssTextAlignLast;
@@ -142,6 +143,7 @@ public class Css3Style extends ATSCStyle {
 	public CssLineBreak cssLineBreak;
 	public CssTextAlignLast cssTextAlignLast;
 	public CssTextJustify cssTextJustify;
+	public CssTextDecorationStyle cssTextDecorationStyle;
 
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
@@ -1397,6 +1399,15 @@ public class Css3Style extends ATSCStyle {
 							new CssHyphens(), style, selector);
 		}
 		return cssHyphens;
+	}
+
+	public CssTextDecorationStyle getTextDecorationStyle() {
+		if (cssTextDecorationStyle == null) {
+			cssTextDecorationStyle =
+					(CssTextDecorationStyle) style.CascadingOrder(
+							new CssTextDecorationStyle(), style, selector);
+		}
+		return cssTextDecorationStyle;
 	}
 
 	///
