@@ -47,6 +47,7 @@ import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
+import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssWordBreak;
@@ -149,6 +150,7 @@ public class Css3Style extends ATSCStyle {
 	public CssTextDecorationStyle cssTextDecorationStyle;
 	public CssTextDecorationColor cssTextDecorationColor;
 	public CssTextEmphasisColor cssTextEmphasisColor;
+	public CssTextEmphasisPosition cssTextEmphasisPosition;
 	public CssTextEmphasisStyle cssTextEmphasisStyle;
 	public CssTabSize cssTabSize;
 
@@ -1434,6 +1436,15 @@ public class Css3Style extends ATSCStyle {
 		return cssTextEmphasisColor;
 	}
 
+	public CssTextEmphasisPosition getTextEmphasisPosition() {
+		if (cssTextEmphasisPosition == null) {
+			cssTextEmphasisPosition =
+					(CssTextEmphasisPosition) style.CascadingOrder(
+							new CssTextEmphasisPosition(), style, selector);
+		}
+		return cssTextEmphasisPosition;
+	}
+	
 	public CssTextEmphasisStyle getTextEmphasisStyle() {
 		if (cssTextEmphasisStyle == null) {
 			cssTextEmphasisStyle =
