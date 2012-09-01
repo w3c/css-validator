@@ -1236,11 +1236,6 @@ where warning means warninglevel in use (0 => normal, no => none).
       <description>Valid font-kerning level css3</description>
       <result valid="true" />
     </test>
-    <test profile="css3" warning="no">
-      <file>testsuite/properties/positive/font-kerning/css3/001.css.~1.1.~</file>
-      <description>Valid font-kerning level css3</description>
-      <result valid="true" />
-    </test>
   </type>
   <type title="Valid_font-language-override">
     <test profile="css3" warning="no">
@@ -1264,11 +1259,6 @@ where warning means warninglevel in use (0 => normal, no => none).
   <type title="Valid_font-size-adjust">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-size-adjust/css3/001.css</file>
-      <description>Valid font-size-adjust level css3</description>
-      <result valid="true" />
-    </test>
-    <test profile="css3" warning="no">
-      <file>testsuite/properties/positive/font-size-adjust/css3/001.css.~1.1.~</file>
       <description>Valid font-size-adjust level css3</description>
       <result valid="true" />
     </test>
