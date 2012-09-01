@@ -46,6 +46,7 @@ import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
+import org.w3c.css.properties.css.CssTextDecorationSkip;
 import org.w3c.css.properties.css.CssTextDecorationStyle;
 import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
@@ -148,9 +149,10 @@ public class Css3Style extends ATSCStyle {
 	public CssLineBreak cssLineBreak;
 	public CssTextAlignLast cssTextAlignLast;
 	public CssTextJustify cssTextJustify;
-	public CssTextDecorationStyle cssTextDecorationStyle;
 	public CssTextDecorationColor cssTextDecorationColor;
 	public CssTextDecorationLine cssTextDecorationLine;
+	public CssTextDecorationSkip cssTextDecorationSkip;
+	public CssTextDecorationStyle cssTextDecorationStyle;
 	public CssTextEmphasisColor cssTextEmphasisColor;
 	public CssTextEmphasisPosition cssTextEmphasisPosition;
 	public CssTextEmphasisStyle cssTextEmphasisStyle;
@@ -1436,6 +1438,15 @@ public class Css3Style extends ATSCStyle {
 							new CssTextDecorationLine(), style, selector);
 		}
 		return cssTextDecorationLine;
+	}
+
+	public CssTextDecorationSkip getTextDecorationSkip() {
+		if (cssTextDecorationSkip == null) {
+			cssTextDecorationSkip =
+					(CssTextDecorationSkip) style.CascadingOrder(
+							new CssTextDecorationSkip(), style, selector);
+		}
+		return cssTextDecorationSkip;
 	}
 	
 	public CssTextEmphasisColor getTextEmphasisColor() {
