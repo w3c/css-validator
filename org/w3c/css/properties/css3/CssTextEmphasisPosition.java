@@ -129,7 +129,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
 							getPropertyName(), ac);
 				}
 				nbgot++;
-				if (expression.getRemainingCount() == 1 || (nbgot == 2)) {
+				if (expression.getRemainingCount() == 1 || (!check && nbgot == 2)) {
 					// if we have both, exit
 					// (needed only if check == false...
 					break;
