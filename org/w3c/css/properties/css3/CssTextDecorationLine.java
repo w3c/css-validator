@@ -58,7 +58,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
 	 */
 	public CssTextDecorationLine(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
+		if (check && expression.getCount() > 3) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 		setByUser();
