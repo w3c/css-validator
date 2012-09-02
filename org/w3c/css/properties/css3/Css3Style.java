@@ -52,6 +52,7 @@ import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
+import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -80,11 +81,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextAfterOverflow cssTextAfterOverflow;
 	CssPunctuationTrim cssPunctuationTrim;
 	CssTextAutoSpace cssTextAutoSpace;
-	CssTextUlStyle cssTextUlStyle;
-	CssTextUlColor cssTextUlColor;
-	CssTextUlMode cssTextUlMode;
-	CssTextUlPos cssTextUlPos;
-	CssTextUnderLine cssTextUnderLine;
 	CssTextCombine cssTextCombine;
 	CssMedia cssMedia;
 	CssDisplayModel cssDisplayModel;
@@ -156,6 +152,7 @@ public class Css3Style extends ATSCStyle {
 	public CssTextEmphasisColor cssTextEmphasisColor;
 	public CssTextEmphasisPosition cssTextEmphasisPosition;
 	public CssTextEmphasisStyle cssTextEmphasisStyle;
+	public CssTextUnderlinePosition cssTextUnderlinePosition;
 	public CssTabSize cssTabSize;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
@@ -441,50 +438,6 @@ public class Css3Style extends ATSCStyle {
 		return cssTextAutoSpace;
 	}
 
-	public CssTextUlStyle getTextUlStyle() {
-		if (cssTextUlStyle == null) {
-			cssTextUlStyle =
-					(CssTextUlStyle) style.CascadingOrder(
-							new CssTextUlStyle(), style, selector);
-		}
-		return cssTextUlStyle;
-	}
-
-	public CssTextUlColor getTextUlColor() {
-		if (cssTextUlColor == null) {
-			cssTextUlColor =
-					(CssTextUlColor) style.CascadingOrder(
-							new CssTextUlColor(), style, selector);
-		}
-		return cssTextUlColor;
-	}
-
-	public CssTextUlMode getTextUlMode() {
-		if (cssTextUlMode == null) {
-			cssTextUlMode =
-					(CssTextUlMode) style.CascadingOrder(
-							new CssTextUlMode(), style, selector);
-		}
-		return cssTextUlMode;
-	}
-
-	public CssTextUlPos getTextUlPos() {
-		if (cssTextUlPos == null) {
-			cssTextUlPos =
-					(CssTextUlPos) style.CascadingOrder(
-							new CssTextUlPos(), style, selector);
-		}
-		return cssTextUlPos;
-	}
-
-	public CssTextUnderLine getTextUnderLine() {
-		if (cssTextUnderLine == null) {
-			cssTextUnderLine =
-					(CssTextUnderLine) style.CascadingOrder(
-							new CssTextUnderLine(), style, selector);
-		}
-		return cssTextUnderLine;
-	}
 
 	public CssTextCombine getTextCombine() {
 		if (cssTextCombine == null) {
@@ -1475,7 +1428,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssTextEmphasisStyle;
 	}
-	
+
+	public CssTextUnderlinePosition getTextUnderlinePosition() {
+		if (cssTextUnderlinePosition == null) {
+			cssTextUnderlinePosition =
+					(CssTextUnderlinePosition) style.CascadingOrder(
+							new CssTextUnderlinePosition(), style, selector);
+		}
+		return cssTextUnderlinePosition;
+	}
+
 	public CssTabSize getTabSize() {
 		if (cssTabSize == null) {
 			cssTabSize =
