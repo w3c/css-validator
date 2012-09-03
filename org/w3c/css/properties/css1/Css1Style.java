@@ -15,6 +15,7 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.properties.css.CssTextTransform;
 import org.w3c.css.properties.css.CssTextAlign;
+import org.w3c.css.properties.css.CssTextIndent;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
