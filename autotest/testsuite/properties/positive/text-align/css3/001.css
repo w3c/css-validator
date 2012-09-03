@@ -1,0 +1,32 @@
+ta1   { text-align: "a"  }
+ta2   { text-align: "a" center  }
+ta3   { text-align: "a" end  }
+ta4   { text-align: "a" left  }
+ta5   { text-align: "a" right  }
+ta6   { text-align: "a" start  }
+ta7   { text-align: 'a'  }
+ta8   { text-align: 'a' center  }
+ta9   { text-align: 'a' end  }
+ta10  { text-align: 'a' left  }
+ta11  { text-align: 'a' right  }
+ta12  { text-align: 'a' start  }
+ta13  { text-align: center  }
+ta14  { text-align: center "a"  }
+ta15  { text-align: center 'a'  }
+ta16  { text-align: end  }
+ta17  { text-align: end "a"  }
+ta18  { text-align: end 'a'  }
+ta19  { text-align: justify }
+ta20  { text-align: left  }
+ta21  { text-align: left "a"  }
+ta22  { text-align: left 'a'  }
+ta23  { text-align: match-parent }
+ta24  { text-align: right  }
+ta25  { text-align: right "a"  }
+ta26  { text-align: right 'a'  }
+ta27  { text-align: start  }
+ta28  { text-align: start "a"  }
+ta29  { text-align: start 'a'  }
+ta30  { text-align: start end}
+y { text-align: initial }
+z { text-align: inherit }
