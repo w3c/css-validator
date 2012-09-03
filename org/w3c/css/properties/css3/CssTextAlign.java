@@ -70,6 +70,7 @@ public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
 	 * Create a new CssTextAlign
 	 */
 	public CssTextAlign() {
+		value = initial;
 	}
 
 	/**
