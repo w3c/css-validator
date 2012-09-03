@@ -389,6 +389,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-align">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/text-align/css1/001.css</file>
+      <description>Valid text-align level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-decoration">
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/text-decoration/css1/001.css</file>
