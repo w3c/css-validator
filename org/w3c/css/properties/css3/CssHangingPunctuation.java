@@ -1,149 +1,164 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// COPYRIGHT (c) 1995-2000 World Wide Web Consortium, (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
 
 /**
- *
+ * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#hanging-punctuation0
  */
-public class CssHangingPunctuation extends CssProperty {
+public class CssHangingPunctuation extends org.w3c.css.properties.css.CssHangingPunctuation {
 
-    CssValue hangpunct;
+	public static final CssIdent first, last;
+	public static final CssIdent[] endValues;
+	public static final CssIdent none;
 
-    private static CssIdent none = new CssIdent("none");
-    private static CssIdent start = new CssIdent("start");
-    private static CssIdent end = new CssIdent("end");
-    private static CssIdent both = new CssIdent("both");
+	static {
+		first = CssIdent.getIdent("first");
+		last = CssIdent.getIdent("last");
+		none = CssIdent.getIdent("none");
 
-    /**
-     * Create a new CssHangingPunctuation
-     */
-    public CssHangingPunctuation() {
-	hangpunct = none;
-    }
-
-    /**
-     * Create a new CssHangingPunctuation
-     *
-     *
-     */
-    public CssHangingPunctuation(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-	setByUser();
-	CssValue val = expression.getValue();
-	if (val.equals(none)) {
-	    hangpunct = none;
-	    expression.next();
+		String[] _endValues = {"force-end", "allow-end"};
+		endValues = new CssIdent[_endValues.length];
+		int i = 0;
+		for (String s : _endValues) {
+			endValues[i++] = CssIdent.getIdent(s);
+		}
 	}
-	else if (val.equals(start)) {
-	    hangpunct = start;
-	    expression.next();
+
+	public static final CssIdent getEndValue(CssIdent ident) {
+		for (CssIdent id : endValues) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else if (val.equals(inherit)) {
-	    hangpunct = inherit;
-	    expression.next();
+
+	/**
+	 * Create a new CssHangingPunctuation
+	 */
+	public CssHangingPunctuation() {
 	}
-	else if (val.equals(end)) {
-	    hangpunct = end;
-	    expression.next();
+
+	/**
+	 * Creates a new CssHangingPunctuation
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssHangingPunctuation(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		if (check && expression.getCount() > 3) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		setByUser();
+
+		CssValue val;
+		char op;
+
+		CssIdent firstValue = null;
+		CssIdent lastValue = null;
+		CssIdent endValue = null;
+
+		val = expression.getValue();
+		op = expression.getOperator();
+
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					val.toString(),
+					getPropertyName(), ac);
+		}
+
+		CssIdent ident = (CssIdent) val;
+		if (inherit.equals(ident)) {
+			value = inherit;
+			if (check && expression.getCount() != 1) {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
+			}
+		} else if (none.equals(ident)) {
+			value = none;
+			if (check && expression.getCount() != 1) {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
+			}
+		} else {
+			int nbgot = 0;
+			do {
+				boolean match = false;
+				if (firstValue == null && first.equals(ident)) {
+					firstValue = first;
+					match = true;
+				} else if (lastValue == null && last.equals(ident)) {
+					lastValue = last;
+					match = true;
+				} else {
+					if (endValue == null) {
+						endValue = getEndValue(ident);
+						match = (endValue != null);
+					}
+				}
+				if (!match) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
+				}
+				nbgot++;
+				if (expression.getRemainingCount() == 1 || (!check && nbgot == 3)) {
+					// if we have both, exit
+					// (needed only if check == false...
+					break;
+				}
+				if (op != CssOperator.SPACE) {
+					throw new InvalidParamException("operator",
+							((new Character(op)).toString()), ac);
+				}
+				expression.next();
+				val = expression.getValue();
+				op = expression.getOperator();
+				if (val.getType() != CssTypes.CSS_IDENT) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
+				}
+				ident = (CssIdent) val;
+			} while (!expression.end());
+			// now construct the value
+			ArrayList<CssValue> v = new ArrayList<CssValue>(nbgot);
+			if (firstValue != null) {
+				v.add(firstValue);
+			}
+			if (endValue != null) {
+				v.add(endValue);
+			}
+			if (lastValue != null) {
+				v.add(lastValue);
+			}
+			value = (nbgot > 1) ? new CssValueList(v) : v.get(0);
+		}
+		expression.next();
 	}
-	else if (val.equals(both)) {
-	    hangpunct = both;
-	    expression.next();
+
+	public CssHangingPunctuation(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-	else {
-	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-	}
-    }
-
-    public CssHangingPunctuation(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssHangingPunctuation != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssHangingPunctuation = this;
-
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getHangingPunctuation();
-	} else {
-	    return ((Css3Style) style).cssHangingPunctuation;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssHangingPunctuation &&
-		hangpunct.equals( ((CssHangingPunctuation) property).hangpunct));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "hanging-punctuation";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return hangpunct;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return hangpunct.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return hangpunct.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return hangpunct == none;
-    }
 
 }
+
