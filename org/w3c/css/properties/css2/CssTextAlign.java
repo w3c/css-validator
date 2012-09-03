@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#text-align
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/text.html#propdef-text-align
  */
 public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
 
@@ -60,19 +60,42 @@ public class CssTextAlign extends org.w3c.css.properties.css.CssTextAlign {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
+		switch (val.getType()) {
+			case CssTypes.CSS_STRING:
+				// FIXME TODO check the element it applies to (See spec)
+				value = val;
+				break;
+			case CssTypes.CSS_IDENT:
+				// ident, so inherit, or allowed value
+				if (inherit.equals(val)) {
+					value = inherit;
+					break;
+				} else {
+					val = getMatchingIdent((CssIdent) val);
+					if (val != null) {
+						value = val;
+						break;
+					}
+					// unknown value, let it fail
+				}
+			default:
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
 		}
+
 		// ident, so inherit, or allowed value
-		val = getMatchingIdent((CssIdent) val);
-		if (val == null) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getMatchingIdent((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = val;
 		}
-		value = val;
 		expression.next();
 	}
 
