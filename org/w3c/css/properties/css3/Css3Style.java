@@ -202,7 +202,6 @@ public class Css3Style extends ATSCStyle {
 	CssMarqueeStyle cssMarqueeStyle;
 
 
-	CssTextIndentCSS3 cssTextIndentCSS3;
 	CssBlockProgression cssBlockProgression;
 
 
@@ -1448,15 +1447,6 @@ public class Css3Style extends ATSCStyle {
 		return cssTabSize;
 	}
 	///
-
-	public CssTextIndentCSS3 getTextIndentCSS3() {
-		if (cssTextIndentCSS3 == null) {
-			cssTextIndentCSS3 =
-					(CssTextIndentCSS3) style.CascadingOrder(
-							new CssTextIndentCSS3(), style, selector);
-		}
-		return cssTextIndentCSS3;
-	}
 
 	public CssBlockProgression getBlockProgression() {
 		if (cssBlockProgression == null) {
