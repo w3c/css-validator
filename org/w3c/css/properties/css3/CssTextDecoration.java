@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#propdef-text-decoration
+ * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-decoration0
  */
 public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecoration {
 
@@ -144,7 +144,7 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
 		int got = 0;
 		// now check the value
 		if (linExp != null) {
-		   lineValue = new CssTextDecorationLine(ac, linExp, check);
+			lineValue = new CssTextDecorationLine(ac, linExp, check);
 			got++;
 			value = lineValue.value;
 		}
