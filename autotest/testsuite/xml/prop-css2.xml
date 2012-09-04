@@ -468,6 +468,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-indent">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/text-indent/css2/001.css</file>
+      <description>Valid text-indent level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-shadow">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/text-shadow/css2/001.css</file>

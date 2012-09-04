@@ -403,6 +403,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_text-indent">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/text-indent/css1/001.css</file>
+      <description>Valid text-indent level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-transform">
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/text-transform/css1/001.css</file>

@@ -1333,6 +1333,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_hanging-punctuation">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/hanging-punctuation/css3/001.css</file>
+      <description>Valid hanging-punctuation level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_height">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/height/css3/001.css</file>
@@ -1397,6 +1404,11 @@ where warning means warninglevel in use (0 => normal, no => none).
     </test>
   </type>
   <type title="Valid_text-align-last">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-align-last/css3/001.css</file>
+      <description>Valid text-align-last level css3</description>
+      <result valid="true" />
+    </test>
   </type>
   <type title="Valid_text-decoration">
     <test profile="css3" warning="no">
@@ -1458,6 +1470,20 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-emphasis-style/css3/001.css</file>
       <description>Valid text-emphasis-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-indent">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-indent/css3/001.css</file>
+      <description>Valid text-indent level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_text-justify">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/text-justify/css3/001.css</file>
+      <description>Valid text-justify level css3</description>
       <result valid="true" />
     </test>
   </type>
