@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#text-decoration
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/text.html#propdef-text-decoration
  */
 public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecoration {
 
@@ -68,7 +68,14 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
 		}
 
 		CssIdent ident = (CssIdent) val;
-		if (none.equals(ident)) {
+		if (inherit.equals(ident)) {
+			value = inherit;
+			if (check && expression.getCount() != 1) {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
+			}
+		} else if (none.equals(ident)) {
 			value = none;
 			if (check && expression.getCount() != 1) {
 				throw new InvalidParamException("value",
