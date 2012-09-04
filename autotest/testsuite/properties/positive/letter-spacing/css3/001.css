@@ -1,16 +1,23 @@
-a { letter-spacing: normal }
-b { letter-spacing: 1em  }
-b1 { letter-spacing: -1em  }
-c { letter-spacing: 50%  }
-c1 { letter-spacing: -50%  }
-d { letter-spacing: normal 10%  }
-e { letter-spacing: normal 10% 10% }
-f { letter-spacing: normal 1em }
-g { letter-spacing: normal 1em 1px }
-h { letter-spacing: normal normal normal }
-i { letter-spacing: 1em normal normal }
-j { letter-spacing: 10% normal normal }
-k { letter-spacing: 0em -1em 1em }
-k1 { letter-spacing: 0 -1em 1em }
+lsp1    { letter-spacing: normal }
+lsp2    { letter-spacing: 1em  }
+lsp3    { letter-spacing: -1em  }
+lsp4    { letter-spacing: 1em normal }
+lsp5    { letter-spacing: 0 }
+lsp6    { letter-spacing: normal 1em }
+lsp7    { letter-spacing: normal -1em }
+lsp8    { letter-spacing: 1em normal 1em }
+lsp9    { letter-spacing: 1em normal -1em }
+lsp10   { letter-spacing: normal 0 }
+lsp11   { letter-spacing: 0 normal }
+lsp12   { letter-spacing: normal 1em 1px }
+lsp13   { letter-spacing: normal normal normal }
+lsp14   { letter-spacing: 1em normal normal }
+lsp15   { letter-spacing: 0 normal normal }
+lsp16   { letter-spacing: normal 0 normal }
+lsp17   { letter-spacing: normal normal 0 }
+lsp18   { letter-spacing: normal 1px normal }
+lsp19   { letter-spacing: 1em 1px normal }
+lsp20   { letter-spacing: 0em -1em 1em }
+lsp21   { letter-spacing: 0 -1em 1em }
 y { letter-spacing: initial }
 z { letter-spacing: inherit }
