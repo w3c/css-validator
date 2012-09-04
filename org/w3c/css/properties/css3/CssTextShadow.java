@@ -128,9 +128,14 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 				values.add(val);
 				exp.next();
 			} else {
+				// we can't have two colors
+				if (color != null) {
+					throw new InvalidParamException("value",
+							val, getPropertyName(), ac);
+				}
 				CssColor c = new CssColor(ac, exp, false);
 				color = c.getColor();
-				// color can be first or last in CSS2
+				// color can be first or last
 				if (values.size() > 0 && exp.getRemainingCount() != 0) {
 					if (color != null) {
 						throw new InvalidParamException("value",
