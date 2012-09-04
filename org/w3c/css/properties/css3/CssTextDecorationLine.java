@@ -30,6 +30,9 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
 	}
 
 	public static final CssIdent getAllowedValue(CssIdent ident) {
+		if (none.equals(ident)) {
+			return none;
+		}
 		if (underline.equals(ident)) {
 			return underline;
 		}

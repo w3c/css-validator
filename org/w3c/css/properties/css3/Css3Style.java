@@ -98,8 +98,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineHeightPolicy cssLineHeightPolicy;
 	CssLineBoxContain cssLineBoxContain;
 
-
-	CssTextDecorationCSS3 cssTextDecoration;
 	CssAllSpaceTreatment cssAllSpaceTreatment;
 	CssLineGrid cssLineGrid;
 	CssLineGridMode cssLineGridMode;
@@ -619,15 +617,6 @@ public class Css3Style extends ATSCStyle {
 							new CssBackgroundOrigin(), style, selector);
 		}
 		return cssBackgroundOrigin;
-	}
-
-	public CssTextDecorationCSS3 getCssTextDecoration() {
-		if (cssTextDecoration == null) {
-			cssTextDecoration =
-					(CssTextDecorationCSS3) style.CascadingOrder(
-							new CssTextDecorationCSS3(), style, selector);
-		}
-		return cssTextDecoration;
 	}
 
 	public CssAllSpaceTreatment getAllSpaceTreatment() {
