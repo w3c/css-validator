@@ -20,8 +20,8 @@ public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
 	private static CssIdent[] allowed_values;
 
 	static {
-		String id_values[] = {"auto", "none", "inter", "word", "inter",
-				"ideograph", "inter", "cluster", "distribute", "kashida"};
+		String id_values[] = {"auto", "none", "inter-word", "inter-ideograph",
+				"inter-cluster", "distribute", "kashida"};
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
 		for (String s : id_values) {
