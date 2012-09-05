@@ -84,7 +84,6 @@ public class Css3Style extends ATSCStyle {
 	CssPunctuationTrim cssPunctuationTrim;
 	CssTextAutoSpace cssTextAutoSpace;
 	CssTextCombine cssTextCombine;
-	CssMedia cssMedia;
 	CssFit cssFit;
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
@@ -418,15 +417,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextCombine(), style, selector);
 		}
 		return cssTextCombine;
-	}
-
-	public CssMedia getMedia() {
-		if (cssMedia == null) {
-			cssMedia =
-					(CssMedia) style.CascadingOrder(
-							new CssMedia(), style, selector);
-		}
-		return cssMedia;
 	}
 
 	public CssFit getFit() {
