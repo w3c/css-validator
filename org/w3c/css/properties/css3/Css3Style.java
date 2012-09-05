@@ -42,6 +42,7 @@ import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssTabSize;
@@ -128,6 +129,8 @@ public class Css3Style extends ATSCStyle {
 	public CssHangingPunctuation cssHangingPunctuation;
 	public CssTabSize cssTabSize;
 
+	public CssMarqueeDirection cssMarqueeDirection;
+
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
 	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -165,7 +168,6 @@ public class Css3Style extends ATSCStyle {
 	CssPaddingLeftCSS3 cssPaddingLeftCSS3;
 	CssPaddingRightCSS3 cssPaddingRightCSS3;
 	CssMarquee cssMarquee;
-	CssMarqueeDirection cssMarqueeDirection;
 	CssMarqueeRepetition cssMarqueeRepetition;
 	CssMarqueeSpeed cssMarqueeSpeed;
 	CssMarqueeStyle cssMarqueeStyle;
