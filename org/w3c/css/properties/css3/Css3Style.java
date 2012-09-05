@@ -77,7 +77,6 @@ public class Css3Style extends ATSCStyle {
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
 	CssBaselineShift cssBaselineShift;
-	CssTextSpace cssTextSpace;
 	CssFit cssFit;
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
@@ -340,15 +339,6 @@ public class Css3Style extends ATSCStyle {
 							new CssWordBreak(), style, selector);
 		}
 		return cssWordBreak;
-	}
-
-	public CssTextSpace getTextSpace() {
-		if (cssTextSpace == null) {
-			cssTextSpace =
-					(CssTextSpace) style.CascadingOrder(
-							new CssTextSpace(), style, selector);
-		}
-		return cssTextSpace;
 	}
 
 	public CssFit getFit() {
