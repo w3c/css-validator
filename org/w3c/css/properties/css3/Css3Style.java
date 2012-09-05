@@ -83,9 +83,6 @@ public class Css3Style extends ATSCStyle {
 	CssClearCSS3 cssClearCSS3;
 
 	CssScript cssScript;
-	CssTextOverflow cssTextOverflow;
-	CssTextOverflowEllipsis cssTextOverflowEllipsis;
-	CssTextOverflowMode cssTextOverflowMode;
 
 	public CssOpacity cssOpacity;
 	public CssBackgroundClip cssBackgroundClip;
@@ -453,33 +450,6 @@ public class Css3Style extends ATSCStyle {
 							new CssScript(), style, selector);
 		}
 		return cssScript;
-	}
-
-	public CssTextOverflow getTextOverflow() {
-		if (cssTextOverflow == null) {
-			cssTextOverflow =
-					(CssTextOverflow) style.CascadingOrder(
-							new CssTextOverflow(), style, selector);
-		}
-		return cssTextOverflow;
-	}
-
-	public CssTextOverflowEllipsis getTextOverflowEllipsis() {
-		if (cssTextOverflowEllipsis == null) {
-			cssTextOverflowEllipsis =
-					(CssTextOverflowEllipsis) style.CascadingOrder(
-							new CssTextOverflowEllipsis(), style, selector);
-		}
-		return cssTextOverflowEllipsis;
-	}
-
-	public CssTextOverflowMode getTextOverflowMode() {
-		if (cssTextOverflowMode == null) {
-			cssTextOverflowMode =
-					(CssTextOverflowMode) style.CascadingOrder(
-							new CssTextOverflowMode(), style, selector);
-		}
-		return cssTextOverflowMode;
 	}
 
 	public CssColumnGap getColumnGap() {
