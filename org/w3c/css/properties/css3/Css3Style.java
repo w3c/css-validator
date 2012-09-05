@@ -85,8 +85,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextAutoSpace cssTextAutoSpace;
 	CssTextCombine cssTextCombine;
 	CssMedia cssMedia;
-	CssDisplayModel cssDisplayModel;
-	CssDisplayRole cssDisplayRole;
 	CssMarginOutside cssMarginOutside;
 	CssMarginInside cssMarginInside;
 	CssFit cssFit;
@@ -448,24 +446,6 @@ public class Css3Style extends ATSCStyle {
 							new CssMedia(), style, selector);
 		}
 		return cssMedia;
-	}
-
-	public CssDisplayModel getDisplayModel() {
-		if (cssDisplayModel == null) {
-			cssDisplayModel =
-					(CssDisplayModel) style.CascadingOrder(
-							new CssDisplayModel(), style, selector);
-		}
-		return cssDisplayModel;
-	}
-
-	public CssDisplayRole getDisplayRole() {
-		if (cssDisplayRole == null) {
-			cssDisplayRole =
-					(CssDisplayRole) style.CascadingOrder(
-							new CssDisplayRole(), style, selector);
-		}
-		return cssDisplayRole;
 	}
 
 	public CssMarginOutside getMarginOutside() {
