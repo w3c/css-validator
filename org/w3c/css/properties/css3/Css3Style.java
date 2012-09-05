@@ -200,10 +200,6 @@ public class Css3Style extends ATSCStyle {
 	CssMarqueeSpeed cssMarqueeSpeed;
 	CssMarqueeStyle cssMarqueeStyle;
 
-
-	CssBlockProgression cssBlockProgression;
-
-
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
 			cssBorder.borderImage.source = (org.w3c.css.properties.css.CssBorderImageSource) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderImageSource(), style, selector);
@@ -1437,15 +1433,6 @@ public class Css3Style extends ATSCStyle {
 		return cssTabSize;
 	}
 	///
-
-	public CssBlockProgression getBlockProgression() {
-		if (cssBlockProgression == null) {
-			cssBlockProgression =
-					(CssBlockProgression) style.CascadingOrder(
-							new CssBlockProgression(), style, selector);
-		}
-		return cssBlockProgression;
-	}
 
 	/**
 	 * Returns the name of the actual selector
