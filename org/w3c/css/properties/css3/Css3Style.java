@@ -92,7 +92,6 @@ public class Css3Style extends ATSCStyle {
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
 	CssLineHeightPolicy cssLineHeightPolicy;
-	CssLineBoxContain cssLineBoxContain;
 
 	CssLineGrid cssLineGrid;
 	CssLineGridMode cssLineGridMode;
@@ -508,15 +507,6 @@ public class Css3Style extends ATSCStyle {
 							new CssLineHeightPolicy(), style, selector);
 		}
 		return cssLineHeightPolicy;
-	}
-
-	public CssLineBoxContain getLineBoxContain() {
-		if (cssLineBoxContain == null) {
-			cssLineBoxContain =
-					(CssLineBoxContain) style.CascadingOrder(
-							new CssLineBoxContain(), style, selector);
-		}
-		return cssLineBoxContain;
 	}
 
 	public CssColumns getColumns() {
