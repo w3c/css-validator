@@ -93,7 +93,6 @@ public class Css3Style extends ATSCStyle {
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
 
-	CssLinefeedTreatment cssLinefeedTreatment;
 	CssScript cssScript;
 	CssTextOverflow cssTextOverflow;
 	CssTextOverflowEllipsis cssTextOverflowEllipsis;
@@ -558,15 +557,6 @@ public class Css3Style extends ATSCStyle {
 							new CssHangingPunctuation(), style, selector);
 		}
 		return cssHangingPunctuation;
-	}
-
-	public CssLinefeedTreatment getLinefeedTreatment() {
-		if (cssLinefeedTreatment == null) {
-			cssLinefeedTreatment =
-					(CssLinefeedTreatment) style.CascadingOrder(
-							new CssLinefeedTreatment(), style, selector);
-		}
-		return cssLinefeedTreatment;
 	}
 
 	public CssScript getScript() {
