@@ -69,7 +69,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubyOverhang cssRubyOverhang;
 	CssBoxSizing cssBoxSizing;
 	CssResizer cssResizer;
-	CssToggleGroup cssToggleGroup;
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
@@ -231,15 +230,6 @@ public class Css3Style extends ATSCStyle {
 							new CssResizer(), style, selector);
 		}
 		return cssResizer;
-	}
-
-	public CssToggleGroup getToggleGroup() {
-		if (cssToggleGroup == null) {
-			cssToggleGroup =
-					(CssToggleGroup) style.CascadingOrder(
-							new CssToggleGroup(), style, selector);
-		}
-		return cssToggleGroup;
 	}
 
 	public CssWritingMode getWritingMode() {
