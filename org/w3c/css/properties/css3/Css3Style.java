@@ -79,7 +79,6 @@ public class Css3Style extends ATSCStyle {
 	CssBaselineShift cssBaselineShift;
 	CssTextSpace cssTextSpace;
 	CssTextEndOverflow cssTextEndOverflow;
-	CssTextAfterOverflow cssTextAfterOverflow;
 	CssTextAutoSpace cssTextAutoSpace;
 	CssTextCombine cssTextCombine;
 	CssFit cssFit;
@@ -368,15 +367,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextEndOverflow(), style, selector);
 		}
 		return cssTextEndOverflow;
-	}
-
-	public CssTextAfterOverflow getTextAfterOverflow() {
-		if (cssTextAfterOverflow == null) {
-			cssTextAfterOverflow =
-					(CssTextAfterOverflow) style.CascadingOrder(
-							new CssTextAfterOverflow(), style, selector);
-		}
-		return cssTextAfterOverflow;
 	}
 
 	public CssTextAutoSpace getTextAutoSpace() {
