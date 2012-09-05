@@ -1,167 +1,88 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssTime;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-public class CssMarqueeSpeed extends CssProperty {
+/**
+ * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-speed
+ */
+public class CssMarqueeSpeed extends org.w3c.css.properties.css.CssMarqueeSpeed {
 
-    String mspeed;
+	private static CssIdent[] allowed_values;
 
-    static CssIdent slow = new CssIdent("slow");
-    static CssIdent normal = new CssIdent("normal");
-    static CssIdent fast = new CssIdent("fast");
-    static CssIdent initial = new CssIdent("initial");
-
-    /**
-     * Create a new CssMarqueeSpeed
-     */
-    public CssMarqueeSpeed() {
-		mspeed = "normal";
-    }
-
-    /**
-     * Create a new CssMarqueeSpeed
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect values
-     */
-    public CssMarqueeSpeed(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(normal)) {
-	    mspeed = "normal";
-	    expression.next();
+	static {
+		String id_values[] = {"slow", "normal", "fast"};
+		allowed_values = new CssIdent[id_values.length];
+		int i = 0;
+		for (String s : id_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
 	}
-	else if (val.equals(slow)) {
-	    mspeed = "slow";
-	    expression.next();
+
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else if (val.equals(initial)) {
-		mspeed = "initial";
+
+	/**
+	 * Create a new CssMarqueeSpeed
+	 */
+	public CssMarqueeSpeed() {
+		value = initial;
+	}
+
+	/**
+	 * Creates a new CssMarqueeSpeed
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssMarqueeSpeed(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		setByUser();
+		CssValue val = expression.getValue();
+
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getMatchingIdent((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = val;
+		}
 		expression.next();
 	}
-	else if (val.equals(fast)) {
-	    mspeed = "fast";
-	    expression.next();
+
+	public CssMarqueeSpeed(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-	else if (val instanceof CssLength) {
-	    mspeed = val.toString();
-	    expression.next();
-
-	    val = expression.getValue();
-	    if (val != null) {
-		if (val instanceof CssTime) {
-		    mspeed = mspeed += " " + val.toString();
-		    expression.next();
-		} else {
-		    throw new InvalidParamException("value", expression.getValue(), getPropertyName(), ac);
-		}
-	    }
-	}
-	else if (val.equals(inherit)) {
-	    mspeed = "inherit";
-	    expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value",
-		    expression.getValue(),
-		    getPropertyName(), ac);
-	}
-
-    }
-
-    public CssMarqueeSpeed(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssMarqueeSpeed != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssMarqueeSpeed = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getMarqueeSpeed();
-	}
-	else {
-	    return ((Css3Style) style).cssMarqueeSpeed;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssMarqueeSpeed &&
-		mspeed.equals(((CssMarqueeSpeed) property).mspeed));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "marquee-speed";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return mspeed;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return mspeed.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return mspeed.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return mspeed.equals("normal");
-    }
-
 }
+
