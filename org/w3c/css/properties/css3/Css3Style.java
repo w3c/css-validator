@@ -88,8 +88,6 @@ public class Css3Style extends ATSCStyle {
 	CssMarginOutside cssMarginOutside;
 	CssMarginInside cssMarginInside;
 	CssFit cssFit;
-	CssLink cssLink;
-	CssLinkBehavior cssLinkBehavior;
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
 
@@ -458,24 +456,6 @@ public class Css3Style extends ATSCStyle {
 							new CssFit(), style, selector);
 		}
 		return cssFit;
-	}
-
-	public CssLink getLink() {
-		if (cssLink == null) {
-			cssLink =
-					(CssLink) style.CascadingOrder(
-							new CssLink(), style, selector);
-		}
-		return cssLink;
-	}
-
-	public CssLinkBehavior getLinkBehavior() {
-		if (cssLinkBehavior == null) {
-			cssLinkBehavior =
-					(CssLinkBehavior) style.CascadingOrder(
-							new CssLinkBehavior(), style, selector);
-		}
-		return cssLinkBehavior;
 	}
 
 	public CssFloatCSS3 getFloatCSS3() {
