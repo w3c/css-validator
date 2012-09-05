@@ -82,8 +82,6 @@ public class Css3Style extends ATSCStyle {
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
 
-	CssScript cssScript;
-
 	public CssOpacity cssOpacity;
 	public CssBackgroundClip cssBackgroundClip;
 	public CssBackgroundSize cssBackgroundSize;
@@ -441,15 +439,6 @@ public class Css3Style extends ATSCStyle {
 							new CssHangingPunctuation(), style, selector);
 		}
 		return cssHangingPunctuation;
-	}
-
-	public CssScript getScript() {
-		if (cssScript == null) {
-			cssScript =
-					(CssScript) style.CascadingOrder(
-							new CssScript(), style, selector);
-		}
-		return cssScript;
 	}
 
 	public CssColumnGap getColumnGap() {
