@@ -92,7 +92,6 @@ public class Css3Style extends ATSCStyle {
 	CssLinkBehavior cssLinkBehavior;
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
-	CssLineHeightPolicy cssLineHeightPolicy;
 
 	CssLinefeedTreatment cssLinefeedTreatment;
 	CssScript cssScript;
@@ -496,15 +495,6 @@ public class Css3Style extends ATSCStyle {
 							new CssClearCSS3(), style, selector);
 		}
 		return cssClearCSS3;
-	}
-
-	public CssLineHeightPolicy getLineHeightPolicy() {
-		if (cssLineHeightPolicy == null) {
-			cssLineHeightPolicy =
-					(CssLineHeightPolicy) style.CascadingOrder(
-							new CssLineHeightPolicy(), style, selector);
-		}
-		return cssLineHeightPolicy;
 	}
 
 	public CssColumns getColumns() {
