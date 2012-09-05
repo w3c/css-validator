@@ -44,6 +44,7 @@ import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
+import org.w3c.css.properties.css.CssMarqueeStyle;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssTabSize;
@@ -132,6 +133,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssMarqueeDirection cssMarqueeDirection;
 	public CssMarqueeSpeed cssMarqueeSpeed;
+	public CssMarqueeStyle cssMarqueeStyle;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -171,7 +173,6 @@ public class Css3Style extends ATSCStyle {
 	CssPaddingRightCSS3 cssPaddingRightCSS3;
 	CssMarquee cssMarquee;
 	CssMarqueeRepetition cssMarqueeRepetition;
-	CssMarqueeStyle cssMarqueeStyle;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
