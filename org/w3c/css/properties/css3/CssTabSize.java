@@ -43,6 +43,11 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				CssNumber number = (CssNumber) val;
+				if (!number.isInteger()) {
+					throw new InvalidParamException("integer",
+							val.toString(),
+							getPropertyName(), ac);
+				}
 				if (!number.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							number, getPropertyName(), ac);
