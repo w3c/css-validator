@@ -64,7 +64,6 @@ import org.w3c.css.util.Warnings;
 
 public class Css3Style extends ATSCStyle {
 
-	CssRenderIntent cssRenderIntent;
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
 	CssRubyOverhang cssRubyOverhang;
@@ -198,15 +197,6 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssOpacity;
-	}
-
-	public CssRenderIntent getRenderIntent() {
-		if (cssRenderIntent == null) {
-			cssRenderIntent =
-					(CssRenderIntent) style.CascadingOrder(new CssRenderIntent(),
-							style, selector);
-		}
-		return cssRenderIntent;
 	}
 
 	public CssRubyPosition getRubyPosition() {

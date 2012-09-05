@@ -82,7 +82,7 @@ public class SVGStyle extends SVGBasicStyle {
 	return cpName;
     }
 
-    public CssRenderIntent getCssRenderIntent() {
+    public CssRenderIntent getRenderIntent() {
 	if (cssRenderIntent == null) {
 	    cssRenderIntent =
 		(CssRenderIntent) style.CascadingOrder (
