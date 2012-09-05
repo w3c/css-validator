@@ -92,7 +92,6 @@ public class Css3Style extends ATSCStyle {
 	CssFit cssFit;
 	CssLink cssLink;
 	CssLinkBehavior cssLinkBehavior;
-	CssCollapse cssCollapse;
 	CssFloatCSS3 cssFloatCSS3;
 	CssClearCSS3 cssClearCSS3;
 	CssLineHeightPolicy cssLineHeightPolicy;
@@ -512,15 +511,6 @@ public class Css3Style extends ATSCStyle {
 							new CssLinkBehavior(), style, selector);
 		}
 		return cssLinkBehavior;
-	}
-
-	public CssCollapse getCollapse() {
-		if (cssCollapse == null) {
-			cssCollapse =
-					(CssCollapse) style.CascadingOrder(
-							new CssCollapse(), style, selector);
-		}
-		return cssCollapse;
 	}
 
 	public CssFloatCSS3 getFloatCSS3() {
