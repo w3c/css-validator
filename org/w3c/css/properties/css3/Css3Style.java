@@ -169,7 +169,6 @@ public class Css3Style extends ATSCStyle {
 	CssFitPosition cssFitPosition;
 	CssVisibilityCSS3 cssVisibilityCSS3;
 	CssOverflowCSS3 cssOverflowCSS3;
-	CssOverflowClip cssOverflowClip;
 	CssMaxWidthCSS3 cssMaxWidthCSS3;
 	CssMaxHeightCSS3 cssMaxHeightCSS3;
 	CssMinWidthCSS3 cssMinWidthCSS3;
@@ -876,15 +875,6 @@ public class Css3Style extends ATSCStyle {
 							new CssOverflowCSS3(), style, selector);
 		}
 		return cssOverflowCSS3;
-	}
-
-	public CssOverflowClip getOverflowClip() {
-		if (cssOverflowClip == null) {
-			cssOverflowClip =
-					(CssOverflowClip) style.CascadingOrder(
-							new CssOverflowClip(), style, selector);
-		}
-		return cssOverflowClip;
 	}
 
 	public CssMaxHeightCSS3 getMaxHeightCSS3() {
