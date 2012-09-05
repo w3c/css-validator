@@ -70,7 +70,6 @@ public class Css3Style extends ATSCStyle {
 	CssBoxSizing cssBoxSizing;
 	CssResizer cssResizer;
 	CssToggleGroup cssToggleGroup;
-	CssGroupReset cssGroupReset;
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
@@ -274,15 +273,6 @@ public class Css3Style extends ATSCStyle {
 							new CssToggleGroup(), style, selector);
 		}
 		return cssToggleGroup;
-	}
-
-	public CssGroupReset getGroupReset() {
-		if (cssGroupReset == null) {
-			cssGroupReset =
-					(CssGroupReset) style.CascadingOrder(
-							new CssGroupReset(), style, selector);
-		}
-		return cssGroupReset;
 	}
 
 	public CssWritingMode getWritingMode() {
