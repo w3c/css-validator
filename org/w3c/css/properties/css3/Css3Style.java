@@ -160,7 +160,6 @@ public class Css3Style extends ATSCStyle {
 	CssOverflowX cssOverflowX;
 	CssOverflowY cssOverflowY;
 	CssRubySpan cssRubySpan;
-	CssTextBlink cssTextBlink;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
 	CssVisibilityCSS3 cssVisibilityCSS3;
@@ -789,15 +788,6 @@ public class Css3Style extends ATSCStyle {
 							new CssRubySpan(), style, selector);
 		}
 		return cssRubySpan;
-	}
-
-	public CssTextBlink getTextBlink() {
-		if (cssTextBlink == null) {
-			cssTextBlink =
-					(CssTextBlink) style.CascadingOrder(
-							new CssTextBlink(), style, selector);
-		}
-		return cssTextBlink;
 	}
 
 	public CssCrop getCrop() {
