@@ -206,6 +206,10 @@ public class CssNumber extends CssValue implements CssValueFloat {
                 value.toString(), "frequency", ac);
     }
 
+	public CssNumber getNumber() throws InvalidParamException {
+		return this;
+	}
+
     /**
      * Returns a string representation of the object.
      */

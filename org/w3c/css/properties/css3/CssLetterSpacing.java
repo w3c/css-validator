@@ -8,7 +8,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -21,24 +20,24 @@ import java.util.ArrayList;
  */
 public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacing {
 
-    private static CssIdent normal = CssIdent.getIdent("normal");
+	private static CssIdent normal = CssIdent.getIdent("normal");
 
-    /**
-     * Create a new CssLetterSpacing.
-     */
-    public CssLetterSpacing() {
-        value = initial;
-    }
+	/**
+	 * Create a new CssLetterSpacing.
+	 */
+	public CssLetterSpacing() {
+		value = initial;
+	}
 
-    /**
-     * Create a new CssLetterSpacing with an expression
-     *
-     * @param expression The expression
-     * @throws org.w3c.css.util.InvalidParamException
-     *          The expression is incorrect
-     */
-    public CssLetterSpacing(ApplContext ac, CssExpression expression,
-                            boolean check) throws InvalidParamException {
+	/**
+	 * Create a new CssLetterSpacing with an expression
+	 *
+	 * @param expression The expression
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssLetterSpacing(ApplContext ac, CssExpression expression,
+							boolean check) throws InvalidParamException {
 		if (check && expression.getCount() > 3) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -54,7 +53,7 @@ public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacin
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = ((CssNumber) val).getLength();
+					val = val.getLength();
 				case CssTypes.CSS_LENGTH:
 					v.add(val);
 					break;
@@ -84,11 +83,11 @@ public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacin
 		if (value != inherit) {
 			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
 		}
-    }
+	}
 
-    public CssLetterSpacing(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssLetterSpacing(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
 }

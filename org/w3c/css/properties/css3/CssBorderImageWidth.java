@@ -23,100 +23,100 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderImageWidth {
 
-    public static final CssIdent auto;
+	public static final CssIdent auto;
 
-    static {
-        auto = CssIdent.getIdent("auto");
-    }
+	static {
+		auto = CssIdent.getIdent("auto");
+	}
 
-    public final static CssIdent getMatchingIdent(CssIdent ident) {
-        return (auto.equals(ident)) ? auto : null;
-    }
+	public final static CssIdent getMatchingIdent(CssIdent ident) {
+		return (auto.equals(ident)) ? auto : null;
+	}
 
-    /**
-     * Create a new CssBorderImageWidth
-     */
-    public CssBorderImageWidth() {
-        value = initial;
-    }
+	/**
+	 * Create a new CssBorderImageWidth
+	 */
+	public CssBorderImageWidth() {
+		value = initial;
+	}
 
-    /**
-     * Creates a new CssBorderImageWidth
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
-     */
-    public CssBorderImageWidth(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
+	/**
+	 * Creates a new CssBorderImageWidth
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssBorderImageWidth(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 
-        CssValueList valueList = new CssValueList();
-        if (check && expression.getCount() > 4) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-        CssValue val;
-        char op;
+		CssValueList valueList = new CssValueList();
+		if (check && expression.getCount() > 4) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		CssValue val;
+		char op;
 
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
+		while (!expression.end()) {
+			val = expression.getValue();
+			op = expression.getOperator();
 
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                    CssNumber num = (CssNumber)val;
-                    if (!num.isPositive()) {
-                        throw new InvalidParamException("negative-value", num,
-                                getPropertyName(), ac);
-                    }
-                    valueList.add(val);
-                    break;
-                case CssTypes.CSS_LENGTH:
-                    CssLength length = (CssLength)val;
-                    if (!length.isPositive()) {
-                        throw new InvalidParamException("negative-value", length,
-                                getPropertyName(), ac);
-                    }
-                    valueList.add(val);
-                    break;
-                case CssTypes.CSS_PERCENTAGE:
-                    CssPercentage percent = (CssPercentage) val;
-                    if (!percent.isPositive()) {
-                        throw new InvalidParamException("negative-value", percent,
-                                getPropertyName(), ac);
-                    }
-                    valueList.add(val);
-                    break;
-                case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("unrecognize", ac);
-                        }
-                        valueList.add(inherit);
-                        break;
-                    }
-                    if (auto.equals(val)) {
-                        // fill is first or last and can't appear twice
-                        valueList.add(auto);
-                        break;
-                    }
-                    // unrecognized ident, let it fail
-                default:
-                    throw new InvalidParamException("value", val.toString(),
-                            getPropertyName(), ac);
-            }
-            expression.next();
-            if (op != SPACE) {
-                throw new InvalidParamException("operator",
-                        Character.toString(op),
-                        ac);
-            }
-        }
-        value = (valueList.size() == 1) ? valueList.get(0) : valueList;
-    }
+			switch (val.getType()) {
+				case CssTypes.CSS_NUMBER:
+					CssNumber num = val.getNumber();
+					if (!num.isPositive()) {
+						throw new InvalidParamException("negative-value", num,
+								getPropertyName(), ac);
+					}
+					valueList.add(val);
+					break;
+				case CssTypes.CSS_LENGTH:
+					CssLength length = val.getLength();
+					if (!length.isPositive()) {
+						throw new InvalidParamException("negative-value", length,
+								getPropertyName(), ac);
+					}
+					valueList.add(val);
+					break;
+				case CssTypes.CSS_PERCENTAGE:
+					CssPercentage percent = val.getPercentage();
+					if (!percent.isPositive()) {
+						throw new InvalidParamException("negative-value", percent,
+								getPropertyName(), ac);
+					}
+					valueList.add(val);
+					break;
+				case CssTypes.CSS_IDENT:
+					if (inherit.equals(val)) {
+						if (expression.getCount() > 1) {
+							throw new InvalidParamException("unrecognize", ac);
+						}
+						valueList.add(inherit);
+						break;
+					}
+					if (auto.equals(val)) {
+						// fill is first or last and can't appear twice
+						valueList.add(auto);
+						break;
+					}
+					// unrecognized ident, let it fail
+				default:
+					throw new InvalidParamException("value", val.toString(),
+							getPropertyName(), ac);
+			}
+			expression.next();
+			if (op != SPACE) {
+				throw new InvalidParamException("operator",
+						Character.toString(op),
+						ac);
+			}
+		}
+		value = (valueList.size() == 1) ? valueList.get(0) : valueList;
+	}
 
-    public CssBorderImageWidth(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssBorderImageWidth(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 }
 

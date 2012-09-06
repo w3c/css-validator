@@ -23,7 +23,7 @@ public class CssColumnCount extends CssProperty {
 
     private static final String propertyName = "column-count";
 
-    CssValue count;
+    public CssValue value;
 
     /**
      * Create a new CssColumnCount
@@ -53,8 +53,9 @@ public class CssColumnCount extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssColumnCount != null)
+        if (((Css3Style) style).cssColumnCount != null) {
             style.addRedefinitionWarning(ac, this);
+		}
         ((Css3Style) style).cssColumnCount = this;
     }
 
@@ -79,7 +80,7 @@ public class CssColumnCount extends CssProperty {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnCount &&
-                count.equals(((CssColumnCount) property).count));
+                value.equals(((CssColumnCount) property).value));
     }
 
     /**
@@ -93,21 +94,21 @@ public class CssColumnCount extends CssProperty {
      * Returns the value of this property
      */
     public Object get() {
-        return count;
+        return value;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-        return (count == inherit);
+        return (value == inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-        return count.toString();
+        return value.toString();
     }
 
     /**

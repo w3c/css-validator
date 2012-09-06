@@ -8,13 +8,11 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -24,113 +22,81 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 
-    private static final String propertyName = "column-width";
+	private static final String propertyName = "column-width";
 
-    CssValue width;
 
-    static CssIdent auto;
+	static CssIdent auto;
 
-    static {
-        auto = CssIdent.getIdent("auto");
-    }
+	static {
+		auto = CssIdent.getIdent("auto");
+	}
 
-    /**
-     * Create a new CssColumnWidth
-     */
-    public CssColumnWidth() {
-        width = initial;
-    }
+	/**
+	 * Create a new CssColumnWidth
+	 */
+	public CssColumnWidth() {
+		value = initial;
+	}
 
-    /**
-     * Create a new CssColumnWidth
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
-     */
-    public CssColumnWidth(ApplContext ac, CssExpression expression,
-                          boolean check) throws InvalidParamException {
+	/**
+	 * Create a new CssColumnWidth
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Incorrect value
+	 */
+	public CssColumnWidth(ApplContext ac, CssExpression expression,
+						  boolean check) throws InvalidParamException {
 
-        setByUser();
-        CssValue val = expression.getValue();
+		setByUser();
+		CssValue val = expression.getValue();
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val = ((CssNumber) val).getLength();
-                // if we didn't fall in the first trap, there is another one :)
-                throw new InvalidParamException("strictly-positive",
-                        expression.getValue(),
-                        getPropertyName(), ac);
-            case CssTypes.CSS_LENGTH:
-                CssLength l = (CssLength) val;
-                if (l == null || !l.isStrictlyPositive()) {
-                    throw new InvalidParamException("strictly-positive",
-                            expression.getValue(),
-                            getPropertyName(), ac);
-                }
-                width = val;
-                break;
-            case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    width = inherit;
-                    break;
-                } else if (auto.equals(val)) {
-                    width = auto;
-                    break;
-                }
-            default:
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-        }
-        expression.next();
-    }
+		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val = val.getLength();
+				// if we didn't fall in the first trap, there is another one :)
+				throw new InvalidParamException("strictly-positive",
+						expression.getValue(),
+						getPropertyName(), ac);
+			case CssTypes.CSS_LENGTH:
+				CssLength l = val.getLength();
+				if (l == null || !l.isStrictlyPositive()) {
+					throw new InvalidParamException("strictly-positive",
+							expression.getValue(),
+							getPropertyName(), ac);
+				}
+				value = val;
+				break;
+			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					value = inherit;
+					break;
+				} else if (auto.equals(val)) {
+					value = auto;
+					break;
+				}
+			default:
+				throw new InvalidParamException("value", expression.getValue(),
+						getPropertyName(), ac);
+		}
+		expression.next();
+	}
 
-    public CssColumnWidth(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssColumnWidth(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssColumnWidth &&
-                width.equals(((CssColumnWidth) property).width));
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return width;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == width);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return width.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return (auto == initial);
-    }
+	/**
+	 * Is the value of this property a default value
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return (auto == initial);
+	}
 
 }

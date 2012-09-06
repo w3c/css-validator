@@ -8,7 +8,6 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -23,7 +22,6 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
-    CssValue count;
 
     static CssIdent auto = CssIdent.getIdent("auto");
 
@@ -31,7 +29,7 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
      * Create a new CssColumnCount
      */
     public CssColumnCount() {
-        count = auto;
+        value = initial;
     }
 
     /**
@@ -54,7 +52,7 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                num = (CssNumber) val;
+                num = val.getNumber();
                 if (!num.isInteger()) {
                     throw new InvalidParamException("integer",
                             expression.getValue(), getPropertyName(), ac);
@@ -64,15 +62,15 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
                             expression.getValue(),
                             getPropertyName(), ac);
                 }
-                count = val;
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
                 if (auto.equals(val)) {
-                    count = auto;
+                    value = auto;
                     break;
                 }
                 if (inherit.equals(val)) {
-                    count = inherit;
+                    value = inherit;
                     break;
                 }
             default:
@@ -88,41 +86,10 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
     }
 
     /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssColumnCount &&
-                count.equals(((CssColumnCount) property).count));
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return count;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (count == inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return count.toString();
-    }
-
-    /**
      * Is the value of this property a default value
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (count == auto);
+        return (value == auto) || (value == initial);
     }
 }

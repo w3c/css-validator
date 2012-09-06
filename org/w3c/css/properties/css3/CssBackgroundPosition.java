@@ -12,7 +12,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -171,7 +171,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         for (CssValue aValue : v.value) {
             switch (aValue.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    aValue = ((CssNumber) aValue).getLength();
+                    CssLength l = aValue.getLength();
                 case CssTypes.CSS_LENGTH:
                     nb_length++;
                     break;
@@ -332,7 +332,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             }
                             break;
                         case CssTypes.CSS_NUMBER:
-                            aValue = ((CssNumber) aValue).getPercentage();
+                            aValue = aValue.getPercentage();
                         case CssTypes.CSS_PERCENTAGE:
                         case CssTypes.CSS_LENGTH:
                             if (!got_ident) {

@@ -16,29 +16,29 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2002/WD-css3-linebox-20020515/#line-height
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2002/WD-css3-linebox-20020515/#line-height
  */
 public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 
 	public static final CssIdent normal = CssIdent.getIdent("normal");
 
-    /**
-     * Create a new CssLineHeight
-     */
-    public CssLineHeight() {
+	/**
+	 * Create a new CssLineHeight
+	 */
+	public CssLineHeight() {
 		value = initial;
-    }
+	}
 
-    /**
-     * Creates a new CssLineHeight
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
-     */
-    public CssLineHeight(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
+	/**
+	 * Creates a new CssLineHeight
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssLineHeight(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -59,7 +59,7 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 				}
 				break;
 			case CssTypes.CSS_LENGTH:
-				CssLength length = (CssLength) val;
+				CssLength length = val.getLength();
 				if (!length.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							val.toString(), ac);
@@ -67,7 +67,7 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 				value = val;
 				break;
 			case CssTypes.CSS_NUMBER:
-				CssNumber number = (CssNumber) val;
+				CssNumber number = val.getNumber();
 				if (!number.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							val.toString(), ac);
@@ -75,7 +75,7 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 				value = val;
 				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage percent = (CssPercentage) val;
+				CssPercentage percent = val.getPercentage();
 				if (!percent.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							val.toString(), ac);
@@ -87,12 +87,12 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 						getPropertyName(), ac);
 		}
 		expression.next();
-    }
+	}
 
-    public CssLineHeight(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssLineHeight(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
 
 }

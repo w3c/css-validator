@@ -66,7 +66,7 @@ public class CssFontWeight extends org.w3c.css.properties.css.CssFontWeight {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber num = (CssNumber) val;
+				CssNumber num = val.getNumber();
 				switch (num.getInt()) {
 					case 100:
 					case 200:

@@ -91,137 +91,142 @@ import java.math.BigDecimal;
  */
 public class CssLength extends CssValue {
 
-    public static final int type = CssTypes.CSS_LENGTH;
+	public static final int type = CssTypes.CSS_LENGTH;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
 
-    private BigDecimal value;
-    private int unit;
-    private static String[] units = {"mm", "cm", "pt", "pc", "em",
-            "ex", "px", "in", "gd"};
-    private static int[] hash_units;
+	private BigDecimal value;
+	private int unit;
+	private static String[] units = {"mm", "cm", "pt", "pc", "em",
+			"ex", "px", "in", "gd"};
+	private static int[] hash_units;
 
-    static {
-        hash_units = new int[units.length];
-        for (int i = 0; i < units.length; i++)
-            hash_units[i] = units[i].hashCode();
-    }
+	static {
+		hash_units = new int[units.length];
+		for (int i = 0; i < units.length; i++)
+			hash_units[i] = units[i].hashCode();
+	}
 
-    /**
-     * Create a new CssLength
-     */
-    public CssLength() {
-        value = BigDecimal.ZERO;
-    }
+	/**
+	 * Create a new CssLength
+	 */
+	public CssLength() {
+		value = BigDecimal.ZERO;
+	}
 
-    /**
-     * Set the value of this length.
-     *
-     * @param s the string representation of the length.
-     * @throws InvalidParamException The unit is incorrect
-     */
-    public void set(String s, ApplContext ac) throws InvalidParamException {
-        s = s.toLowerCase();
-        int length = s.length();
-        String unit = s.substring(length - 2, length);
-        this.value = new BigDecimal(s.substring(0, length - 2));
+	/**
+	 * Set the value of this length.
+	 *
+	 * @param s the string representation of the length.
+	 * @throws InvalidParamException The unit is incorrect
+	 */
+	public void set(String s, ApplContext ac) throws InvalidParamException {
+		s = s.toLowerCase();
+		int length = s.length();
+		String unit = s.substring(length - 2, length);
+		this.value = new BigDecimal(s.substring(0, length - 2));
 
-        this.unit = 2; // there is no unit by default
+		this.unit = 2; // there is no unit by default
 
-        if (unit.equals("gd") && (cssversion.equals("css2"))) {
-            throw new InvalidParamException("unit", unit, ac);
-        }
+		if (unit.equals("gd") && (cssversion.equals("css2"))) {
+			throw new InvalidParamException("unit", unit, ac);
+		}
 
-        if (value.floatValue() != 0) {
-            int hash = unit.hashCode();
-            int i = 0;
-            while (i < units.length) {
-                if (hash == hash_units[i]) {
-                    this.unit = i;
-                    return;
-                }
-                i++;
-            }
-        } else {
-            return;
-        }
+		if (value.floatValue() != 0) {
+			int hash = unit.hashCode();
+			int i = 0;
+			while (i < units.length) {
+				if (hash == hash_units[i]) {
+					this.unit = i;
+					return;
+				}
+				i++;
+			}
+		} else {
+			return;
+		}
 
-        throw new InvalidParamException("unit", unit, ac);
-    }
+		throw new InvalidParamException("unit", unit, ac);
+	}
 
-    /**
-     * Returns the current value
-     */
-    public Object get() {
-        // TODO this is old ugly crap, needed for not breaking everything
-        // remove as soon as reference to get is removed...
-        return new Float(value.floatValue());
-    }
+	// return self
+	public CssLength getLength() throws InvalidParamException {
+		return this;
+	}
 
-    /**
-     * return the float value
-     */
-    public float floatValue() {
-        return value.floatValue();
-    }
+	/**
+	 * Returns the current value
+	 */
+	public Object get() {
+		// TODO this is old ugly crap, needed for not breaking everything
+		// remove as soon as reference to get is removed...
+		return new Float(value.floatValue());
+	}
 
-    /**
-     * Returns true is the value is positive of null
-     *
-     * @return a boolean
-     */
-    public boolean isPositive() {
-        return (value.signum() >= 0);
-    }
+	/**
+	 * return the float value
+	 */
+	public float floatValue() {
+		return value.floatValue();
+	}
 
-    /**
-     * Returns true is the value is positive of null
-     *
-     * @return a boolean
-     */
-    public boolean isStrictlyPositive() {
-        return (value.signum() == 1);
-    }
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isPositive() {
+		return (value.signum() >= 0);
+	}
 
-    /**
-     * Returns true is the value is zero
-     *
-     * @return a boolean
-     */
-    public boolean isZero() {
-        return BigDecimal.ZERO.equals(value);
-    }
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isStrictlyPositive() {
+		return (value.signum() == 1);
+	}
 
-    /**
-     * Returns the current value
-     */
-    public String getUnit() {
-        return units[unit];
-    }
+	/**
+	 * Returns true is the value is zero
+	 *
+	 * @return a boolean
+	 */
+	public boolean isZero() {
+		return BigDecimal.ZERO.equals(value);
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (BigDecimal.ZERO.equals(value)) {
-            return value.toPlainString();
-        }
-        return value.toPlainString() + getUnit();
-    }
+	/**
+	 * Returns the current value
+	 */
+	public String getUnit() {
+		return units[unit];
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param value The other value.
-     */
-    public boolean equals(Object value) {
-        return (value instanceof CssLength &&
-                this.value.equals(((CssLength) value).value) &&
-                unit == ((CssLength) value).unit);
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (BigDecimal.ZERO.equals(value)) {
+			return value.toPlainString();
+		}
+		return value.toPlainString() + getUnit();
+	}
+
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param value The other value.
+	 */
+	public boolean equals(Object value) {
+		return (value instanceof CssLength &&
+				this.value.equals(((CssLength) value).value) &&
+				unit == ((CssLength) value).unit);
+	}
 
 }
 

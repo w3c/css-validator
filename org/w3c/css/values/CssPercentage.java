@@ -36,123 +36,126 @@ import java.math.BigDecimal;
  */
 public class CssPercentage extends CssValue {
 
-    public static final int type = CssTypes.CSS_PERCENTAGE;
+	public static final int type = CssTypes.CSS_PERCENTAGE;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
-    private BigDecimal defaultValue = BigDecimal.ZERO;
-    private BigDecimal value;
+	private BigDecimal defaultValue = BigDecimal.ZERO;
+	private BigDecimal value;
 
-    /**
-     * Create a new CssPercentage
-     */
-    public CssPercentage() {
-        this.value = defaultValue;
-    }
+	/**
+	 * Create a new CssPercentage
+	 */
+	public CssPercentage() {
+		this.value = defaultValue;
+	}
 
-    /**
-     * Create a new CssPercentage with a number
-     *
-     * @param value The value.
-     */
-    public CssPercentage(int value) {
-        this(new BigDecimal(value));
-    }
+	/**
+	 * Create a new CssPercentage with a number
+	 *
+	 * @param value The value.
+	 */
+	public CssPercentage(int value) {
+		this(new BigDecimal(value));
+	}
 
-    /**
-     * Create a new CssPercentage with a float
-     *
-     * @param value the float value.
-     */
-    public CssPercentage(float value) {
-        this(new BigDecimal(value));
-    }
+	/**
+	 * Create a new CssPercentage with a float
+	 *
+	 * @param value the float value.
+	 */
+	public CssPercentage(float value) {
+		this(new BigDecimal(value));
+	}
 
-    /**
-     * Create a new CssPercentage with a Float value.
-     *
-     * @param value the Float object.
-     */
-    public CssPercentage(BigDecimal value) {
-        this.value = value;
-    }
+	/**
+	 * Create a new CssPercentage with a Float value.
+	 *
+	 * @param value the Float object.
+	 */
+	public CssPercentage(BigDecimal value) {
+		this.value = value;
+	}
 
-    /**
-     * Set the value of this percentage.
-     *
-     * @param s  the string representation of the percentage.
-     * @param ac For errors and warnings reports.
-     * @throws InvalidParamException The unit is incorrect
-     */
-    public void set(String s, ApplContext ac) throws InvalidParamException {
-        int slength = s.length();
-        if (s.charAt(slength - 1) != '%') {
-            throw new InvalidParamException("percentage", s, ac);
-        }
-        this.value = new BigDecimal(s.substring(0, slength - 1));
-    }
+	/**
+	 * Set the value of this percentage.
+	 *
+	 * @param s  the string representation of the percentage.
+	 * @param ac For errors and warnings reports.
+	 * @throws InvalidParamException The unit is incorrect
+	 */
+	public void set(String s, ApplContext ac) throws InvalidParamException {
+		int slength = s.length();
+		if (s.charAt(slength - 1) != '%') {
+			throw new InvalidParamException("percentage", s, ac);
+		}
+		this.value = new BigDecimal(s.substring(0, slength - 1));
+	}
 
-    /**
-     * Returns the current value
-     */
-    public Object get() {
-        // TODO FIXME
-        return new Float(value.floatValue());
-    }
+	/**
+	 * Returns the current value
+	 */
+	public Object get() {
+		// TODO FIXME
+		return new Float(value.floatValue());
+	}
 
-    /**
-     * Returns true is the value is positive of null
-     *
-     * @return a boolean
-     */
-    public boolean isPositive() {
-        return (value.signum() >= 0);
-    }
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isPositive() {
+		return (value.signum() >= 0);
+	}
 
-    /**
-     * Returns true is the value is positive of null
-     *
-     * @return a boolean
-     */
-    public boolean isStrictlyPositive() {
-        return (value.signum() == 1);
-    }
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isStrictlyPositive() {
+		return (value.signum() == 1);
+	}
 
-    /**
-     * Returns true is the value is zero
-     *
-     * @return a boolean
-     */
-    public boolean isZero() {
-        return BigDecimal.ZERO.equals(value);
-    }
+	/**
+	 * Returns true is the value is zero
+	 *
+	 * @return a boolean
+	 */
+	public boolean isZero() {
+		return BigDecimal.ZERO.equals(value);
+	}
 
-    /**
-     * Returns the value as a float
-     */
-    public float floatValue() {
-        return value.floatValue();
-    }
+	/**
+	 * Returns the value as a float
+	 */
+	public float floatValue() {
+		return value.floatValue();
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(value.toPlainString()).append('%');
-        return sb.toString();
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(value.toPlainString()).append('%');
+		return sb.toString();
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param val The other value.
-     */
-    public boolean equals(Object val) {
-        return ((val instanceof CssPercentage)
-                && value.equals(((CssPercentage) val).value));
-    }
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param val The other value.
+	 */
+	public boolean equals(Object val) {
+		return ((val instanceof CssPercentage)
+				&& value.equals(((CssPercentage) val).value));
+	}
 
+	public CssPercentage getPercentage() throws InvalidParamException {
+		return this;
+	}
 }

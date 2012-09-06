@@ -524,22 +524,28 @@ TOKEN [IGNORE_CASE] :
   < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* ")" >
 }
 
+
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-  < LENGTH     : <NUM> "pt" 
-               | <NUM> "mm"
-	           | <NUM> "cm" 
-	           | <NUM> "pc" 
-	           | <NUM> "in"
-	           | <NUM> "gd" 
-	           | <NUM> "px" >
-  | < EMS        : <NUM> "em" >
-  | < EXS        : <NUM> "ex" >
+  < RELFONTLENGTH  : <NUM> "em"
+                   | <NUM> "ex"
+                   | <NUM> "ch"
+                   | <NUM> "rem" >
+  | <RELVIEWLENGTH : <NUM> "vw"
+                   | <NUM> "vh"
+                   | <NUM> "vmin"
+                   | <NUM> "vmax" >
+  | <ABSOLUTLENGTH : <NUM> "cm"
+                   | <NUM> "mm"
+                   | <NUM> "in"
+                   | <NUM> "pt"
+                   | <NUM> "pc"
+                   | <NUM> "px" >
   | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" | "turn" ) >
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> "Hz" | <NUM> "kHz" >
-  | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" >
+  | < RESOLUTION : <NUM> "dpi" | <NUM> "dpcm" | <NUM> "ddpx" >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
@@ -1663,9 +1669,9 @@ Token deprecated_class() :
     Token n;
 }
 {
-    ( n=<LENGTH>
-    | n=<EMS> 
-    | n=<EXS> 
+    ( n=<RELFONTLENGTH>
+    | n=<RELVIEWLENGTH>
+    | n=<ABSOLUTLENGTH>
     | n=<ANGLE>
     | n=<TIME> 
     | n=<FREQ> 
@@ -2154,9 +2160,9 @@ void term(CssExpression exp) :
     ( n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
     | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n, 
 				PERCENTAGE); }
-    | n=<LENGTH> { setValue(new CssLength(), exp, operator, n, LENGTH); }
-    | n=<EMS> { setValue(new CssLength(), exp, operator, n, EMS); }
-    | n=<EXS> { setValue(new CssLength(), exp, operator, n, EXS); }
+    | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
+    | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
+    | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
     | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
@@ -2217,9 +2223,9 @@ void mediaterm(CssExpression exp) :
       )
     | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n,
 				PERCENTAGE); }
-    | n=<LENGTH> { setValue(new CssLength(), exp, operator, n, LENGTH); }
-    | n=<EMS> { setValue(new CssLength(), exp, operator, n, EMS); }
-    | n=<EXS> { setValue(new CssLength(), exp, operator, n, EXS); }
+    | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
+    | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
+    | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
     | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
@@ -2278,7 +2284,7 @@ CssValue function() :
 	if (funcname.equals("rgb(")) {
 	    color.setRGBColor(exp, ac);
 	    return color;
-	} else if (n.image.toLowerCase().equals("atsc-rgba(")) {
+	} else if (funcname.equals("atsc-rgba(")) {
 	    if (getAtRule().toString().equals("@media atsc-tv")) {
 	        color.setATSCRGBAColor(exp, ac);
 	        return color;
@@ -2289,8 +2295,7 @@ CssValue function() :
 	    }
 	} else {
 	    CssFunction f = new CssFunction();
-	    f.set(n.image.substring(0, n.image.length() - 1),
-		  exp);
+	    f.set(n.image.substring(0, n.image.length() - 1), exp);
 	    return f;
 	}
     }

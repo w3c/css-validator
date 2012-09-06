@@ -10,7 +10,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -75,9 +74,8 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val = ((CssNumber) val).getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength l = (CssLength) val;
+				CssLength l = val.getLength();
 				if (!l.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							val.toString(), ac);
@@ -85,7 +83,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 				value = l;
 				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = (CssPercentage) val;
+				CssPercentage p = val.getPercentage();
 				if (!p.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							val.toString(), ac);

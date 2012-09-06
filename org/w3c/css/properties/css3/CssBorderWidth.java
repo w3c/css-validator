@@ -11,7 +11,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -94,9 +93,8 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val = ((CssNumber) val).getLength();
                 case CssTypes.CSS_LENGTH:
-                    CssLength length = (CssLength) val;
+                    CssLength length = val.getLength();
                     if (!length.isPositive()) {
                         throw new InvalidParamException("negative-value", expression.getValue(),
                                 getPropertyName(), ac);
@@ -177,9 +175,8 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                val = ((CssNumber) val).getLength();
             case CssTypes.CSS_LENGTH:
-                CssLength length = (CssLength) val;
+                CssLength length = val.getLength();
                 if (!length.isPositive()) {
                     throw new InvalidParamException("negative-value", expression.getValue(),
                             caller.getPropertyName(), ac);

@@ -11,7 +11,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssLength;
+import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -81,12 +82,25 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = ((CssNumber) val).getLength();
 				case CssTypes.CSS_LENGTH:
+					CssLength l = val.getLength();
+					if (!l.isPositive()) {
+						throw new InvalidParamException("negative-value",
+								val.toString(), ac);
+					}
+					if (is_complete) {
+						vl = new CssValueList();
+						vl.add(val);
+					} else {
+						vl.add(val);
+						values.add(vl);
+					}
+					is_complete = !is_complete;
+					break;
 				case CssTypes.CSS_PERCENTAGE:
 					// per spec only non-negative values are allowed
-					float f = ((Float) val.get()).floatValue();
-					if (f < 0) {
+					CssPercentage p = val.getPercentage();
+					if (!p.isPositive()) {
 						throw new InvalidParamException("negative-value",
 								val.toString(), ac);
 					}

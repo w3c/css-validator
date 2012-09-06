@@ -42,7 +42,7 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 		}
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber number = (CssNumber) val;
+				CssNumber number = val.getNumber();
 				if (!number.isInteger()) {
 					throw new InvalidParamException("integer",
 							val.toString(),
@@ -55,7 +55,7 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 				value = val;
 				break;
 			case CssTypes.CSS_LENGTH:
-				CssLength l = (CssLength) val;
+				CssLength l = val.getLength();
 				if (!l.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							l, getPropertyName(), ac);

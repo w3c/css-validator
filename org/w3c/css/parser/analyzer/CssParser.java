@@ -113,8 +113,6 @@ public abstract class CssParser implements CssParserConstants {
     private boolean reinited = false;
     private boolean charsetdeclared = false;
 
-    static StringBuilder SPACE = new StringBuilder(" ");
-
     // to be able to remove a ruleset if the selector is not valid
     protected boolean validSelector = true;
 
@@ -606,9 +604,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
       case LBRACKET:
       case ANY:
       case COLON:
-      case LENGTH:
-      case EMS:
-      case EXS:
+      case RELFONTLENGTH:
+      case RELVIEWLENGTH:
+      case ABSOLUTLENGTH:
       case ANGLE:
       case TIME:
       case FREQ:
@@ -955,9 +953,9 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
         case LBRACKET:
         case ANY:
         case COLON:
-        case LENGTH:
-        case EMS:
-        case EXS:
+        case RELFONTLENGTH:
+        case RELVIEWLENGTH:
+        case ABSOLUTLENGTH:
         case ANGLE:
         case TIME:
         case FREQ:
@@ -2274,9 +2272,9 @@ Token w,h,n;
         case HASH:
         case LBRACKET:
         case COLON:
-        case LENGTH:
-        case EMS:
-        case EXS:
+        case RELFONTLENGTH:
+        case RELVIEWLENGTH:
+        case ABSOLUTLENGTH:
         case ANGLE:
         case TIME:
         case FREQ:
@@ -2296,9 +2294,9 @@ Token w,h,n;
         case HASH:
           hash(selector);
           break;
-        case LENGTH:
-        case EMS:
-        case EXS:
+        case RELFONTLENGTH:
+        case RELVIEWLENGTH:
+        case ABSOLUTLENGTH:
         case ANGLE:
         case TIME:
         case FREQ:
@@ -2329,9 +2327,9 @@ Token w,h,n;
     case HASH:
     case LBRACKET:
     case COLON:
-    case LENGTH:
-    case EMS:
-    case EXS:
+    case RELFONTLENGTH:
+    case RELVIEWLENGTH:
+    case ABSOLUTLENGTH:
     case ANGLE:
     case TIME:
     case FREQ:
@@ -2347,9 +2345,9 @@ Token w,h,n;
         case HASH:
           hash(selector);
           break;
-        case LENGTH:
-        case EMS:
-        case EXS:
+        case RELFONTLENGTH:
+        case RELVIEWLENGTH:
+        case ABSOLUTLENGTH:
         case ANGLE:
         case TIME:
         case FREQ:
@@ -2378,9 +2376,9 @@ Token w,h,n;
         case HASH:
         case LBRACKET:
         case COLON:
-        case LENGTH:
-        case EMS:
-        case EXS:
+        case RELFONTLENGTH:
+        case RELVIEWLENGTH:
+        case ABSOLUTLENGTH:
         case ANGLE:
         case TIME:
         case FREQ:
@@ -2425,9 +2423,9 @@ Token w,h,n;
             {if (true) throw new ParseException(e.getMessage());}
         }
       break;
-    case LENGTH:
-    case EMS:
-    case EXS:
+    case RELFONTLENGTH:
+    case RELVIEWLENGTH:
+    case ABSOLUTLENGTH:
     case ANGLE:
     case TIME:
     case FREQ:
@@ -2501,14 +2499,14 @@ Token w,h,n;
   final public Token deprecated_class() throws ParseException {
     Token n;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case LENGTH:
-      n = jj_consume_token(LENGTH);
+    case RELFONTLENGTH:
+      n = jj_consume_token(RELFONTLENGTH);
       break;
-    case EMS:
-      n = jj_consume_token(EMS);
+    case RELVIEWLENGTH:
+      n = jj_consume_token(RELVIEWLENGTH);
       break;
-    case EXS:
-      n = jj_consume_token(EXS);
+    case ABSOLUTLENGTH:
+      n = jj_consume_token(ABSOLUTLENGTH);
       break;
     case ANGLE:
       n = jj_consume_token(ANGLE);
@@ -2825,9 +2823,9 @@ Token w,h,n;
     case HASH:
       hash(ns);
       break;
-    case LENGTH:
-    case EMS:
-    case EXS:
+    case RELFONTLENGTH:
+    case RELVIEWLENGTH:
+    case ABSOLUTLENGTH:
     case ANGLE:
     case TIME:
     case FREQ:
@@ -3334,9 +3332,9 @@ CssExpression param = null;
       case MINUS:
       case DIV:
       case URL:
-      case LENGTH:
-      case EMS:
-      case EXS:
+      case RELFONTLENGTH:
+      case RELVIEWLENGTH:
+      case ABSOLUTLENGTH:
       case ANGLE:
       case TIME:
       case FREQ:
@@ -3376,9 +3374,9 @@ CssExpression param = null;
       case HASH:
       case MINUS:
       case URL:
-      case LENGTH:
-      case EMS:
-      case EXS:
+      case RELFONTLENGTH:
+      case RELVIEWLENGTH:
+      case ABSOLUTLENGTH:
       case ANGLE:
       case TIME:
       case FREQ:
@@ -3411,9 +3409,9 @@ CssExpression param = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case PLUS:
     case MINUS:
-    case LENGTH:
-    case EMS:
-    case EXS:
+    case RELFONTLENGTH:
+    case RELVIEWLENGTH:
+    case ABSOLUTLENGTH:
     case ANGLE:
     case TIME:
     case FREQ:
@@ -3441,17 +3439,17 @@ CssExpression param = null;
                        setValue(new CssPercentage(), exp, operator, n,
                                 PERCENTAGE);
         break;
-      case LENGTH:
-        n = jj_consume_token(LENGTH);
-                   setValue(new CssLength(), exp, operator, n, LENGTH);
+      case RELFONTLENGTH:
+        n = jj_consume_token(RELFONTLENGTH);
+                          setValue(new CssLength(), exp, operator, n, RELFONTLENGTH);
         break;
-      case EMS:
-        n = jj_consume_token(EMS);
-                setValue(new CssLength(), exp, operator, n, EMS);
+      case RELVIEWLENGTH:
+        n = jj_consume_token(RELVIEWLENGTH);
+                          setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH);
         break;
-      case EXS:
-        n = jj_consume_token(EXS);
-                setValue(new CssLength(), exp, operator, n, EXS);
+      case ABSOLUTLENGTH:
+        n = jj_consume_token(ABSOLUTLENGTH);
+                          setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH);
         break;
       case ANGLE:
         n = jj_consume_token(ANGLE);
@@ -3585,9 +3583,9 @@ CssExpression param = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case PLUS:
     case MINUS:
-    case LENGTH:
-    case EMS:
-    case EXS:
+    case RELFONTLENGTH:
+    case RELVIEWLENGTH:
+    case ABSOLUTLENGTH:
     case ANGLE:
     case TIME:
     case FREQ:
@@ -3627,17 +3625,17 @@ CssExpression param = null;
                        setValue(new CssPercentage(), exp, operator, n,
                                 PERCENTAGE);
         break;
-      case LENGTH:
-        n = jj_consume_token(LENGTH);
-                   setValue(new CssLength(), exp, operator, n, LENGTH);
+      case RELFONTLENGTH:
+        n = jj_consume_token(RELFONTLENGTH);
+                          setValue(new CssLength(), exp, operator, n, RELFONTLENGTH);
         break;
-      case EMS:
-        n = jj_consume_token(EMS);
-                setValue(new CssLength(), exp, operator, n, EMS);
+      case RELVIEWLENGTH:
+        n = jj_consume_token(RELVIEWLENGTH);
+                          setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH);
         break;
-      case EXS:
-        n = jj_consume_token(EXS);
-                setValue(new CssLength(), exp, operator, n, EXS);
+      case ABSOLUTLENGTH:
+        n = jj_consume_token(ABSOLUTLENGTH);
+                          setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH);
         break;
       case ANGLE:
         n = jj_consume_token(ANGLE);
@@ -4092,16 +4090,6 @@ CssExpression param = null;
     finally { jj_save(1, xla); }
   }
 
-  private boolean jj_3R_93() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(35)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(48)) return true;
-    }
-    return false;
-  }
-
   private boolean jj_3_2() {
     if (jj_scan_token(NUMBER)) return true;
     Token xsp;
@@ -4118,6 +4106,16 @@ CssExpression param = null;
     xsp = jj_scanpos;
     if (jj_3R_93()) jj_scanpos = xsp;
     if (jj_scan_token(97)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_93() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(35)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(48)) return true;
+    }
     return false;
   }
 

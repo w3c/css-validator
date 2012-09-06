@@ -117,11 +117,11 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int URL = 53;
   /** RegularExpression Id. */
-  int LENGTH = 54;
+  int RELFONTLENGTH = 54;
   /** RegularExpression Id. */
-  int EMS = 55;
+  int RELVIEWLENGTH = 55;
   /** RegularExpression Id. */
-  int EXS = 56;
+  int ABSOLUTLENGTH = 56;
   /** RegularExpression Id. */
   int ANGLE = 57;
   /** RegularExpression Id. */
@@ -262,9 +262,9 @@ public interface CssParserConstants {
     "\"(\"",
     "\":\"",
     "<URL>",
-    "<LENGTH>",
-    "<EMS>",
-    "<EXS>",
+    "<RELFONTLENGTH>",
+    "<RELVIEWLENGTH>",
+    "<ABSOLUTLENGTH>",
     "<ANGLE>",
     "<TIME>",
     "<FREQ>",

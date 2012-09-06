@@ -10,7 +10,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -122,7 +121,7 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 			// color is last, so if we reach this, we are in error
 			if (val.getType() == CssTypes.CSS_NUMBER) {
 				// case of 0, a number and a length
-				val = ((CssNumber) val).getLength();
+				val = val.getLength();
 			}
 			if (val.getType() == CssTypes.CSS_LENGTH) {
 				values.add(val);
@@ -149,7 +148,7 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 		int lcount = values.size();
 		// sanity check third length if present must not be negative
 		if (lcount == 3) {
-			CssLength l = (CssLength) values.get(2);
+			CssLength l = values.get(2).getLength();
 			if (!l.isPositive()) {
 				throw new InvalidParamException("negative-value",
 						l, getPropertyName(), ac);
