@@ -130,7 +130,7 @@ public class CssLength extends CssValue {
 		unitIdx++;
 		String unit_str = low_s.substring(unitIdx, length);
 		// let's test the unit
-		boolean ok = true;
+
 		// TODO check the  if (!BigDecimal.ZERO.equals(value))) test
 		// that was here earlier
 		// seems legit to always test the unit no matter the value

@@ -35,11 +35,15 @@ public class CssTime extends CssValue {
         return type;
     }
 
+	private BigDecimal value;
+	protected String unit;
+	protected BigDecimal factor = BigDecimal.ONE;
+
     /**
      * Create a new CssTime.
      */
     public CssTime() {
-        value = defaultValue;
+        value = BigDecimal.ZERO;
     }
 
     /**
@@ -54,46 +58,46 @@ public class CssTime extends CssValue {
     /**
      * Set the value of this time.
      *
-     * @param ts  the string representation of the time.
+     * @param s  the string representation of the time.
      * @param ac For errors and warnings reports.
      * @throws InvalidParamException The unit is incorrect
      */
-    public void set(String ts, ApplContext ac) throws InvalidParamException {
-        String s = ts.toLowerCase();
-        int length = s.length();
-        String unit;
+    public void set(String s, ApplContext ac) throws InvalidParamException {
+		String low_s = s.toLowerCase();
+		int length = low_s.length();
+		int unitIdx = length - 1;
+		char c = low_s.charAt(unitIdx);
+		while (unitIdx > 0 && c <= 'z' && c >= 'a') {
+			c = low_s.charAt(--unitIdx);
+		}
+		if (unitIdx == length - 1) {
+			throw new InvalidParamException("unit", s, ac);
+		}
+		// we go back to the beginning of the unit
+		unitIdx++;
+		String unit_str = low_s.substring(unitIdx, length);
+		// let's test the unit
+		switch (ac.getCssVersion()) {
+			case CSS2:
+				CssUnitsCSS2.parseTimeUnit(unit_str, this, ac);
+				break;
+			case CSS21:
+				CssUnitsCSS21.parseTimeUnit(unit_str, this, ac);
+				break;
+			case CSS3:
+				CssUnitsCSS3.parseTimeUnit(unit_str, this, ac);
+				break;
+			default:
+				throw new InvalidParamException("unit", s, ac);
+		}
+		try {
+			value = new BigDecimal(low_s.substring(0, unitIdx));
+		} catch (NumberFormatException nex) {
+			throw new InvalidParamException("invalid-number",
+					low_s.substring(0, unitIdx), ac);
+		}
 
-        if (s.charAt(length - 2) == 'm') {
-            unit = s.substring(length - 2, length);
-            this.value = new BigDecimal(s.substring(0, length - 2));
-        } else {
-            unit = s.substring(length - 1, length);
-            this.value = new BigDecimal(s.substring(0, length - 1));
-        }
-
-        if (this.value.signum() == -1) {
-            throw new InvalidParamException("negative-value",
-                    this.value.toString(), ac);
-        }
-
-        this.unit = 1; // there is no unit by default
-
-        if (!BigDecimal.ZERO.equals(this.value)) {
-            int hash = unit.hashCode();
-            int i = 0;
-            while (i < units.length) {
-                if (hash == hash_units[i]) {
-                    this.unit = i;
-                    return;
-                }
-                i++;
-            }
-        } else {
-            return;
-        }
-
-        throw new InvalidParamException("unit", unit, ac);
-    }
+	}
 
     /**
      * Returns the current value
@@ -101,17 +105,15 @@ public class CssTime extends CssValue {
      * TODO move to a BigDecimal
      */
     public Object get() {
-        if (unit == 1) {
-            return new Float(value.floatValue() * 1000);
-        }
-        return value;
-    }
+		return value.multiply(factor).floatValue();
+
+	}
 
     /**
      * Returns the current value
      */
     public String getUnit() {
-        return units[unit];
+        return unit;
     }
 
     /**
@@ -121,29 +123,21 @@ public class CssTime extends CssValue {
         if (BigDecimal.ZERO.equals(value)) {
             return value.toPlainString();
         }
-        return value.toPlainString() + getUnit();
+        return value.toPlainString() + unit;
     }
 
     /**
      * Compares two values for equality.
      *
-     * @param value The other value.
+     * @param other The other value.
      */
-    public boolean equals(Object value) {
-        return (value instanceof CssTime && this.value.equals(((CssTime) value).value) &&
-                unit == ((CssTime) value).unit);
-    }
+    public boolean equals(Object other) {
+		if (((CssValue)other).getType() == getType()) {
+			return get().equals(((CssValue)other).get());
+		}
+		return false;
+	}
 
-    private BigDecimal value;
-    private int unit;
-    private static String[] units = {"ms", "s"};
-    private static int[] hash_units;
-    private static BigDecimal defaultValue = BigDecimal.ZERO;
 
-    static {
-        hash_units = new int[units.length];
-        for (int i = 0; i < units.length; i++)
-            hash_units[i] = units[i].hashCode();
-    }
 }
 
