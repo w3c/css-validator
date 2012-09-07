@@ -123,7 +123,7 @@ public class CssLength extends CssValue {
 		while (unitIdx > 0 && c <= 'z' && c >= 'a') {
 			c = low_s.charAt(--unitIdx);
 		}
-		if (unitIdx == 0 || (unitIdx == length - 1)) {
+		if (unitIdx == length - 1) {
 			throw new InvalidParamException("unit", s, ac);
 		}
 		// we go back to the beginning of the unit
