@@ -1,9 +1,9 @@
-//
 // $Id$
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 // Updated September 25th 2000 Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Updated 2012 by Yves Lafon <yves@w3.org>
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 1997.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
@@ -99,16 +99,8 @@ public class CssLength extends CssValue {
 
 
 	private BigDecimal value;
-	private int unit;
-	private static String[] units = {"mm", "cm", "pt", "pc", "em",
-			"ex", "px", "in", "gd"};
-	private static int[] hash_units;
-
-	static {
-		hash_units = new int[units.length];
-		for (int i = 0; i < units.length; i++)
-			hash_units[i] = units[i].hashCode();
-	}
+	protected String unit;
+	protected boolean absolute = false;
 
 	/**
 	 * Create a new CssLength
@@ -124,32 +116,46 @@ public class CssLength extends CssValue {
 	 * @throws InvalidParamException The unit is incorrect
 	 */
 	public void set(String s, ApplContext ac) throws InvalidParamException {
-		s = s.toLowerCase();
-		int length = s.length();
-		String unit = s.substring(length - 2, length);
-		this.value = new BigDecimal(s.substring(0, length - 2));
-
-		this.unit = 2; // there is no unit by default
-
-		if (unit.equals("gd") && (cssversion.equals("css2"))) {
-			throw new InvalidParamException("unit", unit, ac);
+		String low_s = s.toLowerCase();
+		int length = low_s.length();
+		int unitIdx = length - 1;
+		char c = low_s.charAt(unitIdx);
+		while (unitIdx > 0 && c <= 'z' && c >= 'a') {
+			c = low_s.charAt(--unitIdx);
 		}
-
-		if (value.floatValue() != 0) {
-			int hash = unit.hashCode();
-			int i = 0;
-			while (i < units.length) {
-				if (hash == hash_units[i]) {
-					this.unit = i;
-					return;
-				}
-				i++;
-			}
-		} else {
-			return;
+		if (unitIdx == 0 || (unitIdx == length - 1)) {
+			throw new InvalidParamException("unit", s, ac);
 		}
-
-		throw new InvalidParamException("unit", unit, ac);
+		// we go back to the beginning of the unit
+		unitIdx++;
+		String unit_str = low_s.substring(unitIdx, length);
+		// let's test the unit
+		boolean ok = true;
+		// TODO check the  if (!BigDecimal.ZERO.equals(value))) test
+		// that was here earlier
+		// seems legit to always test the unit no matter the value
+		switch (ac.getCssVersion()) {
+			case CSS1:
+				CssUnitsCSS1.parseLengthUnit(unit_str, this, ac);
+				break;
+			case CSS2:
+				CssUnitsCSS2.parseLengthUnit(unit_str, this, ac);
+				break;
+			case CSS21:
+				CssUnitsCSS21.parseLengthUnit(unit_str, this, ac);
+				break;
+			case CSS3:
+				CssUnitsCSS3.parseLengthUnit(unit_str, this, ac);
+				break;
+			default:
+				throw new InvalidParamException("unit", s, ac);
+		}
+		try {
+			value = new BigDecimal(low_s.substring(0, unitIdx));
+		} catch (NumberFormatException nex) {
+			throw new InvalidParamException("invalid-number",
+					low_s.substring(0, unitIdx), ac);
+		}
 	}
 
 	// return self
@@ -204,7 +210,21 @@ public class CssLength extends CssValue {
 	 * Returns the current value
 	 */
 	public String getUnit() {
-		return units[unit];
+		return unit;
+	}
+
+	/**
+	 * tells if it is relative or not
+	 */
+	public boolean isRelative() {
+		return !absolute;
+	}
+
+	/**
+	 * tells if it is absolute or not
+	 */
+	public boolean isAbsolute() {
+		return absolute;
 	}
 
 	/**
@@ -214,7 +234,7 @@ public class CssLength extends CssValue {
 		if (BigDecimal.ZERO.equals(value)) {
 			return value.toPlainString();
 		}
-		return value.toPlainString() + getUnit();
+		return value.toPlainString() + unit;
 	}
 
 	/**
@@ -225,7 +245,7 @@ public class CssLength extends CssValue {
 	public boolean equals(Object value) {
 		return (value instanceof CssLength &&
 				this.value.equals(((CssLength) value).value) &&
-				unit == ((CssLength) value).unit);
+				unit.equals(((CssLength) value).unit));
 	}
 
 }
