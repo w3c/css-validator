@@ -143,12 +143,12 @@ public class CssUnitsCSS3 {
 		time.unit = matchedUnit;
 	}
 
-	protected static void parseResolutionUnit(String unit, CssResolution time, ApplContext ac)
+	protected static void parseResolutionUnit(String unit, CssResolution resolution, ApplContext ac)
 			throws InvalidParamException {
 		String matchedUnit = null;
 		for (String s : resolution_units) {
 			if (s.equals(unit)) {
-				time.unit = s;
+				resolution.unit = s;
 				return;
 			}
 		}
