@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValue;
 /**
  * @spec http://www.w3.org/TR/2008/CR-css3-marquee-20081205/#marquee-play-count
  */
-public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueeDirection {
+public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePlayCount {
 
 	private static CssIdent infinite;
 
@@ -55,10 +55,8 @@ public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueeDi
 							val.toString(),
 							getPropertyName(), ac);
 				}
-				if (!num.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							num, getPropertyName(), ac);
-				}
+				num.checkPositiveness(ac, this);
+				value = num;
 				break;
 			case CssTypes.CSS_IDENT:
 				CssIdent ident = (CssIdent) val;

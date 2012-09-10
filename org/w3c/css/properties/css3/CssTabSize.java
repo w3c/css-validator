@@ -48,6 +48,7 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 							val.toString(),
 							getPropertyName(), ac);
 				}
+				number.checkPositiveness(ac, this);
 				if (!number.isPositive()) {
 					throw new InvalidParamException("negative-value",
 							number, getPropertyName(), ac);
