@@ -6,7 +6,6 @@
 package org.w3c.css.properties.css;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.properties.css2.Css2Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -82,7 +81,7 @@ public class CssBorderLeftStyle extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css1Style) style).cssBorder.borderStyle.left != null)
+        if (((Css2Style) style).cssBorder.borderStyle.left != null)
             style.addRedefinitionWarning(ac, this);
         ((Css2Style) style).cssBorder.borderStyle.left = this;
     }
