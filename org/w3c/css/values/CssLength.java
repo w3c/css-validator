@@ -7,6 +7,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -89,7 +90,7 @@ import java.math.BigDecimal;
  * @version $Revision$
  * @see CssPercentage
  */
-public class CssLength extends CssValue {
+public class CssLength extends CssCheckableValue {
 
 	public static final int type = CssTypes.CSS_LENGTH;
 
@@ -248,5 +249,47 @@ public class CssLength extends CssValue {
 				unit.equals(((CssLength) value).unit));
 	}
 
+
+	/**
+	 * check if the value is positive or null
+	 * @param ac the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isPositive()) {
+			throw new InvalidParamException("negative-value",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
+
+	/**
+	 * check if the value is strictly positive
+	 * @param ac the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isStrictlyPositive()) {
+			throw new InvalidParamException("negative-value",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
+
+	/**
+	 * check if the value is an integer
+	 * @param ac the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkInteger(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+	}
+
+	public boolean isInteger() {
+		return false;
+	}
 }
 

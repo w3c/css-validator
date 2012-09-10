@@ -12,13 +12,18 @@ import org.w3c.css.util.InvalidParamException;
 
 public abstract class CssCheckableValue extends CssValue {
 
+	abstract boolean isPositive();
+
 	abstract void checkPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
+
+	abstract boolean isStrictlyPositive();
 
 	abstract void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
 
-	abstract boolean isPositive();
+	abstract boolean isInteger();
 
-	abstract boolean isStrictlyPositive();
+	abstract void checkInteger(ApplContext ac, CssProperty property)
+			throws InvalidParamException;
 }
