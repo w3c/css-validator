@@ -121,10 +121,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
 					CssLength length = val.getLength();
-					if (!length.isPositive()) {
-						throw new InvalidParamException("negative-value", expression.getValue(),
-								caller.getPropertyName(), ac);
-					}
+					length.checkPositiveness(ac, caller);
 					_width = val;
 					break;
 				case CssTypes.CSS_COLOR:

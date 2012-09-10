@@ -273,23 +273,10 @@ public class CssLength extends CssCheckableValue {
 	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException {
 		if (!isStrictlyPositive()) {
-			throw new InvalidParamException("negative-value",
+			throw new InvalidParamException("strictly-positive",
 					toString(), property.getPropertyName(), ac);
 		}
 	}
 
-	/**
-	 * check if the value is an integer
-	 * @param ac the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkInteger(ApplContext ac, CssProperty property)
-			throws InvalidParamException {
-	}
-
-	public boolean isInteger() {
-		return false;
-	}
 }
 

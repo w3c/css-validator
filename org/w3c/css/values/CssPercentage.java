@@ -7,6 +7,7 @@
 
 package org.w3c.css.values;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -34,7 +35,7 @@ import java.math.BigDecimal;
  *
  * @version $Revision$
  */
-public class CssPercentage extends CssValue {
+public class CssPercentage extends CssCheckableValue {
 
 	public static final int type = CssTypes.CSS_PERCENTAGE;
 
@@ -158,4 +159,33 @@ public class CssPercentage extends CssValue {
 	public CssPercentage getPercentage() throws InvalidParamException {
 		return this;
 	}
+
+	/**
+	 * check if the value is positive or null
+	 * @param ac the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isPositive()) {
+			throw new InvalidParamException("negative-value",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
+
+	/**
+	 * check if the value is strictly positive
+	 * @param ac the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isStrictlyPositive()) {
+			throw new InvalidParamException("strictly-positive",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
+
 }

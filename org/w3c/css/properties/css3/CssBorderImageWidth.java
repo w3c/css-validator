@@ -64,26 +64,17 @@ public class CssBorderImageWidth extends org.w3c.css.properties.css.CssBorderIma
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
 					CssNumber num = val.getNumber();
-					if (!num.isPositive()) {
-						throw new InvalidParamException("negative-value", num,
-								getPropertyName(), ac);
-					}
+					num.checkPositiveness(ac, this);
 					valueList.add(val);
 					break;
 				case CssTypes.CSS_LENGTH:
 					CssLength length = val.getLength();
-					if (!length.isPositive()) {
-						throw new InvalidParamException("negative-value", length,
-								getPropertyName(), ac);
-					}
+					length.checkPositiveness(ac, this);
 					valueList.add(val);
 					break;
 				case CssTypes.CSS_PERCENTAGE:
 					CssPercentage percent = val.getPercentage();
-					if (!percent.isPositive()) {
-						throw new InvalidParamException("negative-value", percent,
-								getPropertyName(), ac);
-					}
+					percent.checkPositiveness(ac, this);
 					valueList.add(val);
 					break;
 				case CssTypes.CSS_IDENT:

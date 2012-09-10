@@ -140,11 +140,7 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				CssNumber n = val.getNumber();
-				if (!n.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
+				n.checkPositiveness(ac, this);
 				v.add(n);
 				break;
 			case CssTypes.CSS_IDENT:

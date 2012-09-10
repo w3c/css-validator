@@ -95,10 +95,7 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_LENGTH:
                     CssLength length = val.getLength();
-                    if (!length.isPositive()) {
-                        throw new InvalidParamException("negative-value", expression.getValue(),
-                                getPropertyName(), ac);
-                    }
+					length.checkPositiveness(ac, this);
                     res.add(length);
                     break;
                 case CssTypes.CSS_IDENT:
@@ -177,10 +174,7 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
             case CssTypes.CSS_NUMBER:
             case CssTypes.CSS_LENGTH:
                 CssLength length = val.getLength();
-                if (!length.isPositive()) {
-                    throw new InvalidParamException("negative-value", expression.getValue(),
-                            caller.getPropertyName(), ac);
-                }
+				length.checkPositiveness(ac, caller);
                 retval = length;
                 break;
             case CssTypes.CSS_IDENT:

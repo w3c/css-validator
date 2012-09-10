@@ -54,11 +54,7 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
 			case CssTypes.CSS_NUMBER:
 			case CssTypes.CSS_LENGTH:
 				CssLength l = val.getLength();
-				if (l == null || !l.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							expression.getValue(),
-							getPropertyName(), ac);
-				}
+				l.checkPositiveness(ac, this);
 				columngap = val;
 				break;
 			case CssTypes.CSS_IDENT:

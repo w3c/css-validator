@@ -53,15 +53,8 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 num = val.getNumber();
-                if (!num.isInteger()) {
-                    throw new InvalidParamException("integer",
-                            expression.getValue(), getPropertyName(), ac);
-                }
-                if (!num.isStrictlyPositive()) {
-                    throw new InvalidParamException("strictly-positive",
-                            expression.getValue(),
-                            getPropertyName(), ac);
-                }
+				num.checkInteger(ac, this);
+				num.checkStrictPositiveness(ac, this);
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:

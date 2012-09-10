@@ -22,9 +22,6 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 
-	private static final String propertyName = "column-width";
-
-
 	static CssIdent auto;
 
 	static {
@@ -64,11 +61,7 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 						getPropertyName(), ac);
 			case CssTypes.CSS_LENGTH:
 				CssLength l = val.getLength();
-				if (l == null || !l.isStrictlyPositive()) {
-					throw new InvalidParamException("strictly-positive",
-							expression.getValue(),
-							getPropertyName(), ac);
-				}
+				l.checkStrictPositiveness(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:

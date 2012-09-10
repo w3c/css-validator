@@ -64,18 +64,13 @@ public class CssBorderImageSlice extends org.w3c.css.properties.css.CssBorderIma
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
 					CssNumber num = val.getNumber();
-					if (!num.isPositive()) {
-						throw new InvalidParamException("negative-value", expression.getValue(),
-								getPropertyName(), ac);
-					}
+					num.checkPositiveness(ac, this);
 					valueList.add(val);
 					break;
 				case CssTypes.CSS_PERCENTAGE:
 					CssPercentage percent = val.getPercentage();
-					if (!percent.isPositive()) {
-						throw new InvalidParamException("negative-value", expression.getValue(),
-								getPropertyName(), ac);
-					}
+					percent.checkPositiveness(ac, this);
+					// TODO range checking
 					if (percent.floatValue() > 100f) {
 						ac.getFrame().addWarning("out-of-range", percent.toString());
 					}

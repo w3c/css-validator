@@ -60,26 +60,17 @@ public class CssLineHeight extends org.w3c.css.properties.css.CssLineHeight {
 				break;
 			case CssTypes.CSS_LENGTH:
 				CssLength length = val.getLength();
-				if (!length.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
+				length.checkPositiveness(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_NUMBER:
 				CssNumber number = val.getNumber();
-				if (!number.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
+				number.checkPositiveness(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_PERCENTAGE:
 				CssPercentage percent = val.getPercentage();
-				if (!percent.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
+				percent.checkPositiveness(ac, this);
 				value = val;
 				break;
 			default:

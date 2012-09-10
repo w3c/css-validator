@@ -149,12 +149,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 							break;
 						case 3:
 							CssLength length = val.getLength();
-							if (!length.isPositive()) {
-								throw new InvalidParamException("negative-value",
-										expression.getValue(),
-										getPropertyName(), ac);
-
-							}
+							length.checkPositiveness(ac, this);
 							value.blur_radius = length;
 							break;
 						case 4:

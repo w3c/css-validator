@@ -149,10 +149,7 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 		// sanity check third length if present must not be negative
 		if (lcount == 3) {
 			CssLength l = values.get(2).getLength();
-			if (!l.isPositive()) {
-				throw new InvalidParamException("negative-value",
-						l, getPropertyName(), ac);
-			}
+			l.checkPositiveness(ac, this);
 		}
 		// sanity check we need two to three length
 		if (lcount < 2 || lcount > 3) {

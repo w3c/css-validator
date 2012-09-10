@@ -251,7 +251,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException {
 		if (!isStrictlyPositive()) {
-			throw new InvalidParamException("negative-value",
+			throw new InvalidParamException("strictly-positive",
 					toString(), property.getPropertyName(), ac);
 		}
 	}

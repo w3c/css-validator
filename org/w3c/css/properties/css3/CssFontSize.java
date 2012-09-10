@@ -76,18 +76,12 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 			case CssTypes.CSS_NUMBER:
 			case CssTypes.CSS_LENGTH:
 				CssLength l = val.getLength();
-				if (!l.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
+				l.checkPositiveness(ac, this);
 				value = l;
 				break;
 			case CssTypes.CSS_PERCENTAGE:
 				CssPercentage p = val.getPercentage();
-				if (!p.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
+				p.checkPositiveness(ac, this);
 				value = p;
 				break;
 			case CssTypes.CSS_IDENT:

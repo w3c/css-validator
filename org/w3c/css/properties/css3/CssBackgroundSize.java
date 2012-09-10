@@ -84,10 +84,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
 					CssLength l = val.getLength();
-					if (!l.isPositive()) {
-						throw new InvalidParamException("negative-value",
-								val.toString(), ac);
-					}
+					l.checkPositiveness(ac, this);
 					if (is_complete) {
 						vl = new CssValueList();
 						vl.add(val);
@@ -100,10 +97,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
 				case CssTypes.CSS_PERCENTAGE:
 					// per spec only non-negative values are allowed
 					CssPercentage p = val.getPercentage();
-					if (!p.isPositive()) {
-						throw new InvalidParamException("negative-value",
-								val.toString(), ac);
-					}
+					p.checkPositiveness(ac, this);
 					if (is_complete) {
 						vl = new CssValueList();
 						vl.add(val);

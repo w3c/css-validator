@@ -50,11 +50,7 @@ public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePl
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				CssNumber num = val.getNumber();
-				if (!num.isInteger()) {
-					throw new InvalidParamException("integer",
-							val.toString(),
-							getPropertyName(), ac);
-				}
+				num.checkInteger(ac, this);
 				num.checkPositiveness(ac, this);
 				value = num;
 				break;
