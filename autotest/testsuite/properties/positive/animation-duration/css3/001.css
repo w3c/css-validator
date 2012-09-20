@@ -1,0 +1,10 @@
+y { animation-duration: initial }
+z { animation-duration: inherit }
+a { animation-duration: 0s }
+b { animation-duration: -10s }
+c { animation-duration: 1000ms }
+d { animation-duration: 1s }
+e { animation-duration: 1s, 0s, 10ms }
+f { animation-duration: 1s, -10s }
+g { animation-duration: -1s, 1000s }
+h { animation-duration: 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s }
