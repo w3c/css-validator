@@ -159,6 +159,15 @@ public class CssLength extends CssCheckableValue {
 		}
 	}
 
+
+	/**
+	 * set the native value
+	 * @param v the BigDecimal
+	 */
+	public void setValue(BigDecimal v) {
+		value = v;
+	}
+
 	// return self
 	public CssLength getLength() throws InvalidParamException {
 		return this;

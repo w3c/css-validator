@@ -96,6 +96,14 @@ public class CssPercentage extends CssCheckableValue {
 	}
 
 	/**
+	 * set the native value
+	 * @param v the BigDecimal
+	 */
+	public void setValue(BigDecimal v) {
+		value = v;
+	}
+
+	/**
 	 * Returns the current value
 	 */
 	public Object get() {
@@ -187,5 +195,4 @@ public class CssPercentage extends CssCheckableValue {
 					toString(), property.getPropertyName(), ac);
 		}
 	}
-
 }

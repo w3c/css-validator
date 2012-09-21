@@ -6,6 +6,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -27,43 +28,43 @@ import java.math.BigDecimal;
  *
  * @version $Revision$
  */
-public class CssFrequency extends CssValue {
+public class CssFrequency extends CssCheckableValue {
 
-    public static final int type = CssTypes.CSS_FREQUENCY;
+	public static final int type = CssTypes.CSS_FREQUENCY;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
-    private BigDecimal value;
+	private BigDecimal value;
 	protected String unit;
 	protected BigDecimal factor = BigDecimal.ONE;
 	private static BigDecimal defaultValue = BigDecimal.ZERO;
 
-    /**
-     * Create a new CssFrequency
-     */
-    public CssFrequency() {
-        value = defaultValue;
-    }
+	/**
+	 * Create a new CssFrequency
+	 */
+	public CssFrequency() {
+		value = defaultValue;
+	}
 
-    /**
-     * Create a new CssFrequency with a float number.
-     *
-     * @param value the float number.
-     */
-    public CssFrequency(BigDecimal value) {
-        this.value = value;
-    }
+	/**
+	 * Create a new CssFrequency with a float number.
+	 *
+	 * @param value the float number.
+	 */
+	public CssFrequency(BigDecimal value) {
+		this.value = value;
+	}
 
-    /**
-     * Set the value of this frequency.
-     *
-     * @param s  the string representation of the frequency.
-     * @param ac For errors and warnings reports.
-     * @throws InvalidParamException The unit is incorrect
-     */
-    public void set(String s, ApplContext ac) throws InvalidParamException {
+	/**
+	 * Set the value of this frequency.
+	 *
+	 * @param s  the string representation of the frequency.
+	 * @param ac For errors and warnings reports.
+	 * @throws InvalidParamException The unit is incorrect
+	 */
+	public void set(String s, ApplContext ac) throws InvalidParamException {
 		String low_s = s.toLowerCase();
 		int length = low_s.length();
 		int unitIdx = length - 1;
@@ -99,44 +100,108 @@ public class CssFrequency extends CssValue {
 					low_s.substring(0, unitIdx), ac);
 		}
 
-    }
+	}
 
-    /**
-     * Returns the current value
-     */
-    public Object get() {
-        // TODO FIXME should not be a Float...
-        return value.multiply(factor).floatValue();
-    }
+	/**
+	 * Returns the current value
+	 */
+	public Object get() {
+		// TODO FIXME should not be a Float...
+		return value.multiply(factor).floatValue();
+	}
 
-    /**
-     * Returns the current value
-     */
-    public String getUnit() {
-        return unit;
-    }
+	/**
+	 * Returns the current value
+	 */
+	public String getUnit() {
+		return unit;
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (BigDecimal.ZERO.equals(value)) {
-            return value.toPlainString();
-        }
-        return value.toPlainString() + unit;
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (BigDecimal.ZERO.equals(value)) {
+			return value.toPlainString();
+		}
+		return value.toPlainString() + unit;
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param value The other value.
-     */
-    public boolean equals(Object value) {
-        return (value instanceof CssFrequency
-                && this.value.equals(((CssFrequency) value).value)
-                && unit.equals(((CssFrequency) value).unit));
-    }
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param value The other value.
+	 */
+	public boolean equals(Object value) {
+		return (value instanceof CssFrequency
+				&& this.value.equals(((CssFrequency) value).value)
+				&& unit.equals(((CssFrequency) value).unit));
+	}
 
+	/**
+	 * set the native value
+	 *
+	 * @param v the BigDecimal
+	 */
+	public void setValue(BigDecimal v) {
+		value = v;
+	}
 
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isPositive() {
+		return (value.signum() >= 0);
+	}
+
+	/**
+	 * Returns true is the value is positive of null
+	 *
+	 * @return a boolean
+	 */
+	public boolean isStrictlyPositive() {
+		return (value.signum() == 1);
+	}
+
+	/**
+	 * Returns true is the value is zero
+	 *
+	 * @return a boolean
+	 */
+	public boolean isZero() {
+		return BigDecimal.ZERO.equals(value);
+	}
+
+	/**
+	 * check if the value is positive or null
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isPositive()) {
+			throw new InvalidParamException("negative-value",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
+
+	/**
+	 * check if the value is strictly positive
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isStrictlyPositive()) {
+			throw new InvalidParamException("strictly-positive",
+					toString(), property.getPropertyName(), ac);
+		}
+	}
 }
 

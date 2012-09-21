@@ -10,6 +10,8 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
+import java.math.BigDecimal;
+
 public abstract class CssCheckableValue extends CssValue {
 
 	abstract boolean isPositive();
@@ -36,4 +38,11 @@ public abstract class CssCheckableValue extends CssValue {
 	public void checkInteger(ApplContext ac, CssProperty property)
 			throws InvalidParamException {
 	}
+
+
+	/**
+	 * set the native value
+	 * @param v the BigDecimal
+	 */
+	public abstract void setValue(BigDecimal v);
 }

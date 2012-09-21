@@ -64,6 +64,18 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	}
 
 	/**
+	 * set the native value
+	 */
+	public void setValue(BigDecimal v) {
+		value = v;
+		try {
+			v.toBigIntegerExact();
+			isInt = true;
+		} catch (ArithmeticException e) {
+			isInt = false;
+		}
+	}
+	/**
 	 * Set the value explicitly
 	 */
 	public void setIntValue(int v) {
