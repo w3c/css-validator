@@ -5,6 +5,62 @@ like <test profile="css2" medium="all" warning="0">
 where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
+  <type title="Valid_animation-delay">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-delay/css3/001.css</file>
+      <description>Valid animation-delay level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-direction">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-direction/css3/001.css</file>
+      <description>Valid animation-direction level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-duration">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-duration/css3/001.css</file>
+      <description>Valid animation-duration level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-fill-mode">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-fill-mode/css3/001.css</file>
+      <description>Valid animation-fill-mode level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-iteration-count">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-iteration-count/css3/001.css</file>
+      <description>Valid animation-iteration-count level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-name">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-name/css3/001.css</file>
+      <description>Valid animation-name level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-play-state">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-play-state/css3/001.css</file>
+      <description>Valid animation-play-state level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_animation-timing-function">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation-timing-function/css3/001.css</file>
+      <description>Valid animation-timing-function level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_background">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/background/css3/000-aa.css</file>
@@ -1375,10 +1431,45 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_marquee-direction">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/marquee-direction/css3/001.css</file>
+      <description>Valid marquee-direction level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_marquee-play-count">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/marquee-play-count/css3/001.css</file>
+      <description>Valid marquee-play-count level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_marquee-speed">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/marquee-speed/css3/001.css</file>
+      <description>Valid marquee-speed level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_marquee-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/marquee-style/css3/001.css</file>
+      <description>Valid marquee-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_orphans">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/orphans/css3/001.css</file>
       <description>Valid orphans level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_overflow-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/overflow-style/css3/001.css</file>
+      <description>Valid overflow-style level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1505,6 +1596,34 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-underline-position/css3/001.css</file>
       <description>Valid text-underline-position level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transition-delay">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transition-delay/css3/001.css</file>
+      <description>Valid transition-delay level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transition-duration">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transition-duration/css3/001.css</file>
+      <description>Valid transition-duration level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transition-property">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transition-property/css3/001.css</file>
+      <description>Valid transition-property level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transition-timing-function">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transition-timing-function/css3/001.css</file>
+      <description>Valid transition-timing-function level css3</description>
       <result valid="true" />
     </test>
   </type>
