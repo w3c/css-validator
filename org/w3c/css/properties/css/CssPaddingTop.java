@@ -106,6 +106,14 @@ public class CssPaddingTop extends CssProperty {
 	}
 
 	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value is equals to inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return value.equals(inherit);
+	}
+
+	/**
 	 * Compares two properties for equality.
 	 *
 	 * @param property The other property.

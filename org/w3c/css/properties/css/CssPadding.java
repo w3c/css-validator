@@ -84,6 +84,13 @@ public class CssPadding extends CssProperty {
 		return value.toString();
 	}
 
+	/**
+	 * Returns true if this property is "softly" inherited
+	 * e.g. his value is equals to inherit
+	 */
+	public boolean isSoftlyInherited() {
+		return value.equals(inherit);
+	}
 
 	/**
 	 * Add this property to the CssStyle

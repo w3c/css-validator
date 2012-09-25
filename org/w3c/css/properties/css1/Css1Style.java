@@ -1676,11 +1676,11 @@ public class Css1Style extends CssStyle {
 		}
 		checker.reset();
 
-		if (cssPadding.paddingTop != null) {
+		if (cssPadding.paddingTop != null && !cssPadding.paddingTop.isSoftlyInherited()) {
 			info = cssPadding.paddingTop;
 			checker.compute(cssPadding.paddingTop.value);
 		}
-		if (cssPadding.paddingBottom != null) {
+		if (cssPadding.paddingBottom != null && !cssPadding.paddingBottom.isSoftlyInherited()) {
 			info = cssPadding.paddingBottom;
 			checker.compute(cssPadding.paddingBottom.value);
 		}
@@ -1692,11 +1692,11 @@ public class Css1Style extends CssStyle {
 		}
 		checker.reset();
 
-		if (cssPadding.paddingRight != null) {
+		if (cssPadding.paddingRight != null && !cssPadding.paddingRight.isSoftlyInherited()) {
 			info = cssPadding.paddingRight;
 			checker.compute(cssPadding.paddingRight.value);
 		}
-		if (cssPadding.paddingLeft != null) {
+		if (cssPadding.paddingLeft != null && !cssPadding.paddingLeft.isSoftlyInherited()) {
 			info = cssPadding.paddingLeft;
 			checker.compute(cssPadding.paddingLeft.value);
 		}
