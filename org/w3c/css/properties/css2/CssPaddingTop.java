@@ -3,21 +3,21 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#padding-right
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/box.html#propdef-padding-top
  */
-public class CssPaddingRight extends org.w3c.css.properties.css.CssPaddingRight {
+public class CssPaddingTop extends org.w3c.css.properties.css.CssPaddingTop {
 
 	/**
-	 * Create a new CssPaddingRight
+	 * Create a new CssPaddingTop
 	 */
-	public CssPaddingRight() {
+	public CssPaddingTop() {
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class CssPaddingRight extends org.w3c.css.properties.css.CssPaddingRight 
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssPaddingRight(ApplContext ac, CssExpression expression)
+	public CssPaddingTop(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
 	}
@@ -41,8 +41,8 @@ public class CssPaddingRight extends org.w3c.css.properties.css.CssPaddingRight 
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssPaddingRight(ApplContext ac, CssExpression expression,
-						   boolean check) throws InvalidParamException {
+	public CssPaddingTop(ApplContext ac, CssExpression expression,
+						 boolean check) throws InvalidParamException {
 		setByUser();
 		CssPadding.checkValue(ac, expression, check, this);
 	}

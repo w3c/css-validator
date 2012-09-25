@@ -36,7 +36,7 @@ public class CssBorder extends CssProperty {
     public boolean shorthand = false;
 
     /**
-     * Create a new CssBackground
+     * Create a new CssBorder
      */
     public CssBorder() {
     }

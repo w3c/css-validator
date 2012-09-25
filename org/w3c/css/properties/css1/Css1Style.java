@@ -17,6 +17,11 @@ import org.w3c.css.properties.css.CssTextTransform;
 import org.w3c.css.properties.css.CssTextAlign;
 import org.w3c.css.properties.css.CssTextDecoration;
 import org.w3c.css.properties.css.CssTextIndent;
+import org.w3c.css.properties.css.CssPaddingLeft;
+import org.w3c.css.properties.css.CssPaddingTop;
+import org.w3c.css.properties.css.CssPaddingRight;
+import org.w3c.css.properties.css.CssPaddingBottom;
+import org.w3c.css.properties.css.CssPadding;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -97,7 +102,7 @@ public class Css1Style extends CssStyle {
 	/**
 	 * padding properties
 	 */
-	public CssPadding cssPadding = new CssPadding();
+	public org.w3c.css.properties.css.CssPadding cssPadding = new org.w3c.css.properties.css.CssPadding();
 	/**
 	 * border properties
 	 */
@@ -747,62 +752,62 @@ public class Css1Style extends CssStyle {
 	 * Get the padding-top property
 	 */
 	public final CssPaddingTop getPaddingTop() {
-		if (cssPadding.top == null) {
-			cssPadding.top =
+		if (cssPadding.paddingTop == null) {
+			cssPadding.paddingTop =
 					(CssPaddingTop) style.CascadingOrder(new CssPaddingTop(),
 							style, selector);
 		}
-		return cssPadding.top;
+		return cssPadding.paddingTop;
 	}
 
 	/**
 	 * Get the padding-right property
 	 */
 	public final CssPaddingRight getPaddingRight() {
-		if (cssPadding.right == null) {
-			cssPadding.right =
+		if (cssPadding.paddingRight == null) {
+			cssPadding.paddingRight =
 					(CssPaddingRight) style.CascadingOrder(new CssPaddingRight(),
 							style, selector);
 		}
-		return cssPadding.right;
+		return cssPadding.paddingRight;
 	}
 
 	/**
 	 * Get the padding-bottom property
 	 */
 	public final CssPaddingBottom getPaddingBottom() {
-		if (cssPadding.bottom == null) {
-			cssPadding.bottom =
+		if (cssPadding.paddingBottom == null) {
+			cssPadding.paddingBottom =
 					(CssPaddingBottom) style.CascadingOrder(new CssPaddingBottom(),
 							style, selector);
 		}
-		return cssPadding.bottom;
+		return cssPadding.paddingBottom;
 	}
 
 	/**
 	 * Get the padding-left property
 	 */
 	public final CssPaddingLeft getPaddingLeft() {
-		if (cssPadding.left == null) {
-			cssPadding.left =
+		if (cssPadding.paddingLeft == null) {
+			cssPadding.paddingLeft =
 					(CssPaddingLeft) style.CascadingOrder(new CssPaddingLeft(),
 							style, selector);
 		}
-		return cssPadding.left;
+		return cssPadding.paddingLeft;
 	}
 
 	/**
 	 * Get the padding property
 	 */
 	public final CssPadding getPadding() {
-		if (cssPadding.top == null)
-			cssPadding.top = getPaddingTop();
-		if (cssPadding.right == null)
-			cssPadding.right = getPaddingRight();
-		if (cssPadding.bottom == null)
-			cssPadding.bottom = getPaddingBottom();
-		if (cssPadding.left == null)
-			cssPadding.left = getPaddingLeft();
+		if (cssPadding.paddingTop == null)
+			cssPadding.paddingTop = getPaddingTop();
+		if (cssPadding.paddingRight == null)
+			cssPadding.paddingRight = getPaddingRight();
+		if (cssPadding.paddingBottom == null)
+			cssPadding.paddingBottom = getPaddingBottom();
+		if (cssPadding.paddingLeft == null)
+			cssPadding.paddingLeft = getPaddingLeft();
 		return cssPadding;
 	}
 
@@ -1671,13 +1676,13 @@ public class Css1Style extends CssStyle {
 		}
 		checker.reset();
 
-		if (cssPadding.getTop() != null) {
-			info = cssPadding.getTop();
-			checker.compute(cssPadding.getTop().getValue());
+		if (cssPadding.paddingTop != null) {
+			info = cssPadding.paddingTop;
+			checker.compute(cssPadding.paddingTop.value);
 		}
-		if (cssPadding.getBottom() != null) {
-			info = cssPadding.getBottom();
-			checker.compute(cssPadding.getBottom().getValue());
+		if (cssPadding.paddingBottom != null) {
+			info = cssPadding.paddingBottom;
+			checker.compute(cssPadding.paddingBottom.value);
 		}
 		if (checker.isNotRobust()) {
 			warnings.addWarning(new Warning(info.getSourceFile(),
@@ -1687,13 +1692,13 @@ public class Css1Style extends CssStyle {
 		}
 		checker.reset();
 
-		if (cssPadding.getRight() != null) {
-			info = cssPadding.getRight();
-			checker.compute(cssPadding.getRight().getValue());
+		if (cssPadding.paddingRight != null) {
+			info = cssPadding.paddingRight;
+			checker.compute(cssPadding.paddingRight.value);
 		}
-		if (cssPadding.getLeft() != null) {
-			info = cssPadding.getLeft();
-			checker.compute(cssPadding.getLeft().getValue());
+		if (cssPadding.paddingLeft != null) {
+			info = cssPadding.paddingLeft;
+			checker.compute(cssPadding.paddingLeft.value);
 		}
 
 		if (checker.isNotRobust()) {

@@ -22,10 +22,12 @@ import java.util.Arrays;
 public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 	public static final CssIdent[] allowed_values;
-	static final String[] absolute_values = {"xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"};
-	static final String[] relative_values = {"smaller", "larger"};
+
 
 	static {
+		String[] absolute_values = {"xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"};
+		String[] relative_values = {"smaller", "larger"};
+
 		allowed_values = new CssIdent[absolute_values.length + relative_values.length];
 		int i = 0;
 		for (String s : absolute_values) {
