@@ -108,6 +108,21 @@ public class CssPadding extends CssProperty {
 	}
 
 	/**
+	 * Update the source file and the line.
+	 * Overrides this method for a macro
+	 *
+	 * @param line   The line number where this property is defined
+	 * @param source The source file where this property is defined
+	 */
+	public void setInfo(int line, String source) {
+		super.setInfo(line, source);
+		paddingLeft.setInfo(line, source);
+		paddingRight.setInfo(line, source);
+		paddingTop.setInfo(line, source);
+		paddingBottom.setInfo(line, source);
+	}
+
+	/**
 	 * Get this property in the style.
 	 *
 	 * @param style   The style where the property is
