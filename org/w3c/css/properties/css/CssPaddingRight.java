@@ -81,7 +81,7 @@ public class CssPaddingRight extends CssProperty {
 	 * e.g. his value is equals to inherit
 	 */
 	public boolean isSoftlyInherited() {
-		return value.equals(inherit);
+		return inherit.equals(value);
 	}
 
 	/**
