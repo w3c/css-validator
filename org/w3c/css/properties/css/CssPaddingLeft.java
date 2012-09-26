@@ -106,9 +106,9 @@ public class CssPaddingLeft extends CssProperty {
 	 */
 	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 		if (resolve) {
-			return ((Css1Style) style).getPaddingBottom();
+			return ((Css1Style) style).getPaddingLeft();
 		} else {
-			return ((Css1Style) style).cssPadding.paddingBottom;
+			return ((Css1Style) style).cssPadding.paddingLeft;
 		}
 	}
 
