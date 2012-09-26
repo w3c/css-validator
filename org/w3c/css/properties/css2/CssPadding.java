@@ -173,6 +173,7 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 			case CssTypes.CSS_PERCENTAGE:
 				CssPercentage p = val.getPercentage();
 				p.checkPositiveness(ac, caller);
+				expression.next();
 				return val;
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
