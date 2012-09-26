@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#margin
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/box.html#propdef-margin
  */
 public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 
@@ -62,6 +62,7 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 		CssValue val;
 		char op;
 		ArrayList<CssValue> v = new ArrayList<CssValue>();
+		boolean gotInherit = false;
 
 		while (!expression.end()) {
 			val = expression.getValue();
@@ -75,10 +76,17 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 					v.add(val);
 					break;
 				case CssTypes.CSS_IDENT:
+					if (inherit.equals(val)) {
+						v.add(inherit);
+						gotInherit = true;
+						break;
+					}
 					if (auto.equals(val)) {
 						v.add(auto);
 						break;
 					}
+					// if not inherit, or not an ident
+					// let it flow to the exception
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),
@@ -97,35 +105,46 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 		marginTop = new CssMarginTop();
 		marginRight = new CssMarginRight();
 
-		switch (v.size()) {
-			case 1:
-				marginTop.value = v.get(0);
-				marginRight.value = v.get(0);
-				marginBottom.value = v.get(0);
-				marginLeft.value = v.get(0);
-				break;
-			case 2:
-				marginTop.value = v.get(0);
-				marginRight.value = v.get(1);
-				marginBottom.value = v.get(0);
-				marginLeft.value = v.get(1);
-				break;
-			case 3:
-				marginTop.value = v.get(0);
-				marginRight.value = v.get(1);
-				marginBottom.value = v.get(2);
-				marginLeft.value = v.get(1);
-				break;
-			case 4:
-				marginTop.value = v.get(0);
-				marginRight.value = v.get(1);
-				marginBottom.value = v.get(2);
-				marginLeft.value = v.get(3);
-				break;
-			default:
-				// can't happen unless we are not checking
-				// the size
+		if (gotInherit) {
+			if (v.size() > 1) {
 				throw new InvalidParamException("unrecognize", ac);
+			}
+			value = inherit;
+			marginBottom.value = inherit;
+			marginTop.value = inherit;
+			marginLeft.value = inherit;
+			marginRight.value = inherit;
+		} else {
+			switch (v.size()) {
+				case 1:
+					marginTop.value = v.get(0);
+					marginRight.value = v.get(0);
+					marginBottom.value = v.get(0);
+					marginLeft.value = v.get(0);
+					break;
+				case 2:
+					marginTop.value = v.get(0);
+					marginRight.value = v.get(1);
+					marginBottom.value = v.get(0);
+					marginLeft.value = v.get(1);
+					break;
+				case 3:
+					marginTop.value = v.get(0);
+					marginRight.value = v.get(1);
+					marginBottom.value = v.get(2);
+					marginLeft.value = v.get(1);
+					break;
+				case 4:
+					marginTop.value = v.get(0);
+					marginRight.value = v.get(1);
+					marginBottom.value = v.get(2);
+					marginLeft.value = v.get(3);
+					break;
+				default:
+					// can't happen unless we are not checking
+					// the size
+					throw new InvalidParamException("unrecognize", ac);
+			}
 		}
 		value = new CssValueList(v);
 	}
@@ -153,6 +172,10 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 				expression.next();
 				return val;
 			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					expression.next();
+					return inherit;
+				}
 				if (auto.equals(val)) {
 					expression.next();
 					return auto;

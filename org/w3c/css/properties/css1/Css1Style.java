@@ -22,6 +22,11 @@ import org.w3c.css.properties.css.CssPaddingTop;
 import org.w3c.css.properties.css.CssPaddingRight;
 import org.w3c.css.properties.css.CssPaddingBottom;
 import org.w3c.css.properties.css.CssPadding;
+import org.w3c.css.properties.css.CssMargin;
+import org.w3c.css.properties.css.CssMarginTop;
+import org.w3c.css.properties.css.CssMarginBottom;
+import org.w3c.css.properties.css.CssMarginLeft;
+import org.w3c.css.properties.css.CssMarginRight;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -689,62 +694,62 @@ public class Css1Style extends CssStyle {
 	 * Get the margin-top property
 	 */
 	public final CssMarginTop getMarginTop() {
-		if (cssMargin.top == null) {
-			cssMargin.top =
+		if (cssMargin.marginTop == null) {
+			cssMargin.marginTop =
 					(CssMarginTop) style.CascadingOrder(new CssMarginTop(),
 							style, selector);
 		}
-		return cssMargin.top;
+		return cssMargin.marginTop;
 	}
 
 	/**
 	 * Get the margin-right property
 	 */
 	public final CssMarginRight getMarginRight() {
-		if (cssMargin.right == null) {
-			cssMargin.right =
+		if (cssMargin.marginRight == null) {
+			cssMargin.marginRight =
 					(CssMarginRight) style.CascadingOrder(new CssMarginRight(),
 							style, selector);
 		}
-		return cssMargin.right;
+		return cssMargin.marginRight;
 	}
 
 	/**
 	 * Get the margin-bottom property
 	 */
 	public final CssMarginBottom getMarginBottom() {
-		if (cssMargin.bottom == null) {
-			cssMargin.bottom =
+		if (cssMargin.marginBottom == null) {
+			cssMargin.marginBottom =
 					(CssMarginBottom) style.CascadingOrder(new CssMarginBottom(),
 							style, selector);
 		}
-		return cssMargin.bottom;
+		return cssMargin.marginBottom;
 	}
 
 	/**
 	 * Get the margin-left property
 	 */
 	public final CssMarginLeft getMarginLeft() {
-		if (cssMargin.left == null) {
-			cssMargin.left =
+		if (cssMargin.marginLeft == null) {
+			cssMargin.marginLeft =
 					(CssMarginLeft) style.CascadingOrder(new CssMarginLeft(),
 							style, selector);
 		}
-		return cssMargin.left;
+		return cssMargin.marginLeft;
 	}
 
 	/**
 	 * Get the margin property
 	 */
 	public final CssMargin getMargin() {
-		if (cssMargin.top == null)
-			cssMargin.top = getMarginTop();
-		if (cssMargin.right == null)
-			cssMargin.right = getMarginRight();
-		if (cssMargin.bottom == null)
-			cssMargin.bottom = getMarginBottom();
-		if (cssMargin.left == null)
-			cssMargin.left = getMarginLeft();
+		if (cssMargin.marginTop == null)
+			cssMargin.marginTop = getMarginTop();
+		if (cssMargin.marginRight == null)
+			cssMargin.marginRight = getMarginRight();
+		if (cssMargin.marginBottom == null)
+			cssMargin.marginBottom = getMarginBottom();
+		if (cssMargin.marginLeft == null)
+			cssMargin.marginLeft = getMarginLeft();
 		return cssMargin;
 	}
 
@@ -1644,13 +1649,13 @@ public class Css1Style extends CssStyle {
 		RelativeAndAbsolute checker = new RelativeAndAbsolute();
 		CssProperty info = null;
 
-		if (cssMargin.getTop() != null) {
-			info = cssMargin.getTop();
-			checker.compute(cssMargin.getTop().getValue());
+		if (cssMargin.marginTop != null) {
+			info = cssMargin.marginTop;
+			checker.compute(cssMargin.marginTop.value);
 		}
-		if (cssMargin.getBottom() != null) {
-			info = cssMargin.getBottom();
-			checker.compute(cssMargin.getBottom().getValue());
+		if (cssMargin.marginBottom != null) {
+			info = cssMargin.marginBottom;
+			checker.compute(cssMargin.marginBottom.value);
 		}
 		if (checker.isNotRobust()) {
 			warnings.addWarning(new Warning(info.getSourceFile(),
@@ -1660,13 +1665,13 @@ public class Css1Style extends CssStyle {
 		}
 		checker.reset();
 
-		if (cssMargin.getRight() != null) {
-			info = cssMargin.getRight();
-			checker.compute(cssMargin.getRight().getValue());
+		if (cssMargin.marginRight != null) {
+			info = cssMargin.marginRight;
+			checker.compute(cssMargin.marginRight.value);
 		}
-		if (cssMargin.getLeft() != null) {
-			info = cssMargin.getLeft();
-			checker.compute(cssMargin.getLeft().getValue());
+		if (cssMargin.marginLeft != null) {
+			info = cssMargin.marginLeft;
+			checker.compute(cssMargin.marginLeft.value);
 		}
 		if (checker.isNotRobust()) {
 			warnings.addWarning(new Warning(info.getSourceFile(),
