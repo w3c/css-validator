@@ -29,6 +29,11 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 	 * Create a new CssMargin
 	 */
 	public CssMargin() {
+		value = initial;
+		marginBottom = new CssMarginBottom();
+		marginLeft = new CssMarginLeft();
+		marginTop = new CssMarginTop();
+		marginRight = new CssMarginRight();
 	}
 
 
