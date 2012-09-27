@@ -1,0 +1,8 @@
+a { position: static }
+b { position: relative }
+c { position: absolute }
+d { position: fixed }
+e { position: center }
+f { position: page }
+y { position: initial }
+z { position: inherit }

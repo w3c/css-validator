@@ -1,0 +1,13 @@
+a { clip: auto }
+b { clip: rect(5px, 10px, 10px, 5px) }
+c { clip: rect(5px, -10px, 10px, 5px) }
+d { clip: rect(0, -10px, 0px, auto) }
+e { clip: rect(auto, -10px, 10px, auto) }
+f { clip: rect(auto, auto, auto, auto) }
+g { clip: inset(5px, 10px, 10px, 5px) }
+h { clip: inset(5px, -10px, 10px, 5px) }
+i { clip: inset(0, -10px, 0px, auto) }
+j { clip: inset(auto, -10px, 10px, auto) }
+k { clip: inset(auto, auto, auto, auto) }
+y { clip: initial }
+z {clip: inherit }
