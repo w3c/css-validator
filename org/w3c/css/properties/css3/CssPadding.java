@@ -29,6 +29,10 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 	 */
 	public CssPadding() {
 		value = initial;
+		paddingBottom = new CssPaddingBottom();
+		paddingLeft = new CssPaddingLeft();
+		paddingTop = new CssPaddingTop();
+		paddingRight = new CssPaddingRight();
 	}
 
 
