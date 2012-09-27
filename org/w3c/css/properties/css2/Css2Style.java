@@ -7,7 +7,11 @@
 package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.aural.ACssStyle;
+import org.w3c.css.properties.css.CssBottom;
+import org.w3c.css.properties.css.CssLeft;
+import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
+import org.w3c.css.properties.css.CssTop;
 
 /**
  * @version $Revision$
@@ -30,6 +34,12 @@ public class Css2Style extends ACssStyle {
 	 * text properties
 	 */
 	public CssTextShadow cssTextShadow;
+
+	public CssTop cssTop;
+	public CssBottom cssBottom;
+	public CssLeft cssLeft;
+	public CssRight cssRight;
+
 
 	/**
      * Get the azimuth
@@ -138,4 +148,47 @@ public class Css2Style extends ACssStyle {
 		return cssTextShadow;
 	}
 
+	/**
+	 * Get the top property
+	 */
+	public final CssTop getTop() {
+		if (cssTop == null) {
+			cssTop =
+					(CssTop) style.CascadingOrder(new CssTop(), style, selector);
+		}
+		return cssTop;
+	}
+
+	/**
+	 * Get the bottom property
+	 */
+	public final CssBottom getBottom() {
+		if (cssBottom == null) {
+			cssBottom =
+					(CssBottom) style.CascadingOrder(new CssBottom(), style, selector);
+		}
+		return cssBottom;
+	}
+
+	/**
+	 * Get the left property
+	 */
+	public final CssLeft getLeft() {
+		if (cssLeft == null) {
+			cssLeft =
+					(CssLeft) style.CascadingOrder(new CssLeft(), style, selector);
+		}
+		return cssLeft;
+	}
+
+	/**
+	 * Get the right property
+	 */
+	public final CssRight getRight() {
+		if (cssRight == null) {
+			cssRight =
+					(CssRight) style.CascadingOrder(new CssRight(), style, selector);
+		}
+		return cssRight;
+	}
 }

@@ -1,8 +1,7 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css;
 
@@ -15,33 +14,32 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS2
- * @version $Revision$
  */
-public class CssAzimuth extends CssProperty {
+public class CssLeft extends CssProperty {
 
     public CssValue value;
 
     /**
-     * Create a new CssAzimuth
+     * Create a new CssLeft
      */
-    public CssAzimuth() {
+    public CssLeft() {
     }
 
     /**
-     * Creates a new CssAzimuth
+     * Creates a new CssLeft
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssAzimuth(ApplContext ac, CssExpression expression, boolean check)
+    public CssLeft(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
     }
 
-    public CssAzimuth(ApplContext ac, CssExpression expression)
+    public CssLeft(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -58,7 +56,7 @@ public class CssAzimuth extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "azimuth";
+        return "left";
     }
 
     /**
@@ -66,7 +64,7 @@ public class CssAzimuth extends CssProperty {
      * e.g. his value is equals to inherit
      */
     public boolean isSoftlyInherited() {
-        return value.equals(inherit);
+        return inherit.equals(value);
     }
 
     /**
@@ -82,9 +80,9 @@ public class CssAzimuth extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css2Style) style).cssAzimuth != null)
+        if (((Css2Style) style).cssLeft != null)
             style.addRedefinitionWarning(ac, this);
-        ((Css2Style) style).cssAzimuth = this;
+        ((Css2Style) style).cssLeft = this;
     }
 
     /**
@@ -93,8 +91,8 @@ public class CssAzimuth extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssAzimuth &&
-                value.equals(((CssAzimuth) property).value));
+        return (property instanceof CssLeft &&
+                value.equals(((CssLeft) property).value));
     }
 
 
@@ -106,9 +104,9 @@ public class CssAzimuth extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css2Style) style).getAzimuth();
+            return ((Css2Style) style).getLeft();
         } else {
-            return ((Css2Style) style).cssAzimuth;
+            return ((Css2Style) style).cssLeft;
         }
     }
 }
