@@ -1251,6 +1251,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_bottom">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/bottom/css3/001.css</file>
+      <description>Valid bottom level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_box-decoration-break">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/box-decoration-break/css3/001.css</file>
@@ -1262,6 +1269,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/box-shadow/css3/001.css</file>
       <description>Valid box-shadow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_clip">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/clip/css3/001.css</file>
+      <description>Valid clip level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1410,6 +1424,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_left">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/left/css3/001.css</file>
+      <description>Valid left level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_letter-spacing">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/letter-spacing/css3/001.css</file>
@@ -1428,6 +1449,41 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/line-height/css3/001.css</file>
       <description>Valid line-height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/margin/css3/001.css</file>
+      <description>Valid margin level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-bottom">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/margin-bottom/css3/001.css</file>
+      <description>Valid margin-bottom level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-left">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/margin-left/css3/001.css</file>
+      <description>Valid margin-left level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-right">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/margin-right/css3/001.css</file>
+      <description>Valid margin-right level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-top">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/margin-top/css3/001.css</file>
+      <description>Valid margin-top level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1477,6 +1533,20 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/overflow-wrap/css3/001.css</file>
       <description>Valid overflow-wrap level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_position">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/position/css3/001.css</file>
+      <description>Valid position level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_right">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/right/css3/001.css</file>
+      <description>Valid right level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1596,6 +1666,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/text-underline-position/css3/001.css</file>
       <description>Valid text-underline-position level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_top">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/top/css3/001.css</file>
+      <description>Valid top level css3</description>
       <result valid="true" />
     </test>
   </type>

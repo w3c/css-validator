@@ -377,6 +377,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_bottom">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/bottom/css2/001.css</file>
+      <description>Valid bottom level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_clip">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/clip/css2/001.css</file>
+      <description>Valid clip level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/font/css2/001.css</file>
@@ -433,6 +447,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_left">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/left/css2/001.css</file>
+      <description>Valid left level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_letter-spacing">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/letter-spacing/css2/001.css</file>
@@ -447,10 +468,59 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_margin">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/margin/css2/001.css</file>
+      <description>Valid margin level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-bottom">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/margin-bottom/css2/001.css</file>
+      <description>Valid margin-bottom level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-left">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/margin-left/css2/001.css</file>
+      <description>Valid margin-left level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-right">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/margin-right/css2/001.css</file>
+      <description>Valid margin-right level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-top">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/margin-top/css2/001.css</file>
+      <description>Valid margin-top level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_orphans">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/orphans/css2/001.css</file>
       <description>Valid orphans level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_position">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/position/css2/001.css</file>
+      <description>Valid position level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_right">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/right/css2/001.css</file>
+      <description>Valid right level css2</description>
       <result valid="true" />
     </test>
   </type>
@@ -486,6 +556,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/text-transform/css2/001.css</file>
       <description>Valid text-transform level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_top">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/top/css2/001.css</file>
+      <description>Valid top level css2</description>
       <result valid="true" />
     </test>
   </type>

@@ -389,6 +389,41 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_margin">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/margin/css1/001.css</file>
+      <description>Valid margin level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-bottom">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/margin-bottom/css1/001.css</file>
+      <description>Valid margin-bottom level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-left">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/margin-left/css1/001.css</file>
+      <description>Valid margin-left level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-right">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/margin-right/css1/001.css</file>
+      <description>Valid margin-right level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-top">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/margin-top/css1/001.css</file>
+      <description>Valid margin-top level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_text-align">
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/text-align/css1/001.css</file>

@@ -427,6 +427,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_bottom">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/bottom/css21/001.css</file>
+      <description>Valid bottom level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_clip">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/clip/css21/001.css</file>
+      <description>Valid clip level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/font/css21/001.css</file>
@@ -476,6 +490,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_left">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/left/css21/001.css</file>
+      <description>Valid left level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_letter-spacing">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/letter-spacing/css21/001.css</file>
@@ -490,10 +511,59 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_margin">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/margin/css21/001.css</file>
+      <description>Valid margin level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-bottom">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/margin-bottom/css21/001.css</file>
+      <description>Valid margin-bottom level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-left">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/margin-left/css21/001.css</file>
+      <description>Valid margin-left level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-right">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/margin-right/css21/001.css</file>
+      <description>Valid margin-right level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_margin-top">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/margin-top/css21/001.css</file>
+      <description>Valid margin-top level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_orphans">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/orphans/css21/001.css</file>
       <description>Valid orphans level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_position">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/position/css21/001.css</file>
+      <description>Valid position level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_right">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/right/css21/001.css</file>
+      <description>Valid right level css21</description>
       <result valid="true" />
     </test>
   </type>
@@ -522,6 +592,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/text-transform/css21/001.css</file>
       <description>Valid text-transform level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_top">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/top/css21/001.css</file>
+      <description>Valid top level css21</description>
       <result valid="true" />
     </test>
   </type>
