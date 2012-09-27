@@ -83,7 +83,6 @@ public class Css3Style extends ATSCStyle {
 	CssBaselineShift cssBaselineShift;
 	CssFit cssFit;
 	CssFloatCSS3 cssFloatCSS3;
-	CssClearCSS3 cssClearCSS3;
 
 	public CssOpacity cssOpacity;
 	public CssBackgroundClip cssBackgroundClip;
@@ -348,15 +347,6 @@ public class Css3Style extends ATSCStyle {
 							new CssFloatCSS3(), style, selector);
 		}
 		return cssFloatCSS3;
-	}
-
-	public CssClearCSS3 getClearCSS3() {
-		if (cssClearCSS3 == null) {
-			cssClearCSS3 =
-					(CssClearCSS3) style.CascadingOrder(
-							new CssClearCSS3(), style, selector);
-		}
-		return cssClearCSS3;
 	}
 
 	public CssColumns getColumns() {

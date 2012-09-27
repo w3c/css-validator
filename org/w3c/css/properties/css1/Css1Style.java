@@ -27,6 +27,7 @@ import org.w3c.css.properties.css.CssMarginTop;
 import org.w3c.css.properties.css.CssMarginBottom;
 import org.w3c.css.properties.css.CssMarginLeft;
 import org.w3c.css.properties.css.CssMarginRight;
+import org.w3c.css.properties.css.CssClear;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
