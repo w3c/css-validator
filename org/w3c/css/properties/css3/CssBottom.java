@@ -19,6 +19,7 @@ public class CssBottom extends org.w3c.css.properties.css.CssBottom {
 	 * Create a new CssBottom
 	 */
 	public CssBottom() {
+		value = initial;
 	}
 
 	/**

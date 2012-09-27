@@ -25,6 +25,7 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
 	 * Create a new CssTop
 	 */
 	public CssTop() {
+		value = initial;
 	}
 
 	/**

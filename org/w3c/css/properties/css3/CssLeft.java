@@ -19,6 +19,7 @@ public class CssLeft extends org.w3c.css.properties.css.CssLeft {
 	 * Create a new CssLeft
 	 */
 	public CssLeft() {
+		value = initial;
 	}
 
 	/**

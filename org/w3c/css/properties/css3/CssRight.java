@@ -19,6 +19,7 @@ public class CssRight extends org.w3c.css.properties.css.CssTop {
 	 * Create a new CssRight
 	 */
 	public CssRight() {
+		value = initial;
 	}
 
 	/**
