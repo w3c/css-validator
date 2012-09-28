@@ -32,8 +32,7 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/properties/ok/aural.css</file>
       <description>Aural testsuite/properties</description>
-      <result valid="false">
-	<errors>1</errors>
+      <result valid="true">
       </result>
     </test>
     <test>
