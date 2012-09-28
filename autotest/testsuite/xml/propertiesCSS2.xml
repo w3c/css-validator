@@ -43,9 +43,7 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/properties/ok/generated-content.css</file>
       <description>Generation contents testsuite/properties</description>
-      <result valid="false">
-	<errors>2</errors>
-      </result>
+      <result valid="true"/>
     </test>
     <test>
       <file>testsuite/properties/ok/paged.css</file>
@@ -55,9 +53,7 @@ test markup also accepts 3 properties: warning, profile and medium
     <test>
       <file>testsuite/properties/ok/ui.css</file>
       <description>User Interface testsuite/properties</description>
-      <result valid="false">
-	<errors>1</errors>
-      </result>
+      <result valid="true"/>
     </test>
     <test>
       <file>testsuite/properties/ok/visual-effects.css</file>
