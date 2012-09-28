@@ -35,7 +35,7 @@ a {
     border-color: blue yellow black red;
     border-color: blue yellow black red;
 
-    border-style: solid hidden dotted dashed;
+    border-style: solid dashed dotted dashed;
     border-style: none double groove;
     border-style: inset outset;
     border-style: ridge;
