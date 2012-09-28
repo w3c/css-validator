@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#float
+ * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#float
  */
 public class CssFloat extends org.w3c.css.properties.css.CssFloat {
 
@@ -41,6 +41,7 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
 	 * Create a new CssFloat
 	 */
 	public CssFloat() {
+		value = initial;
 	}
 
 
@@ -79,11 +80,16 @@ public class CssFloat extends org.w3c.css.properties.css.CssFloat {
 		op = expression.getOperator();
 
 		if (val.getType() == CssTypes.CSS_IDENT) {
-			value = getAllowedIdent((CssIdent) val);
-			if (value == null) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
+			CssIdent id = (CssIdent) val;
+			if (inherit.equals(id)) {
+				value = inherit;
+			} else {
+				value = getAllowedIdent(id);
+				if (value == null) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
+				}
 			}
 		} else {
 			throw new InvalidParamException("value",
