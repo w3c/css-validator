@@ -19,50 +19,52 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
 
-    /**
-     * Create a new CssBorderRight
-     */
-    public CssBorderRight() {
-    }
+	/**
+	 * Create a new CssBorderRight
+	 */
+	public CssBorderRight() {
+	}
 
-    /**
-     * Set the value of the property<br/>
-     * Does not check the number of values
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
-     */
-    public CssBorderRight(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	/**
+	 * Set the value of the property<br/>
+	 * Does not check the number of values
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssBorderRight(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Set the value of the property
-     *
-     * @param expression The expression for this property
-     * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
-     */
-    public CssBorderRight(ApplContext ac, CssExpression expression,
-                          boolean check) throws InvalidParamException {
-        CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
-        if (values.width != null) {
-            _width = new CssBorderRightWidth();
-            _width.setByUser();
-            _width.value = values.width;
-        }
-        if (values.style != null) {
-            _style = new CssBorderRightStyle();
-            _style.setByUser();
-            _style.value = values.style;
-        }
-        if (values.color != null) {
-            _color = new CssBorderRightColor();
-            _color.setByUser();
-            _color.value = values.color;
-        }
-    }
+	/**
+	 * Set the value of the property
+	 *
+	 * @param expression The expression for this property
+	 * @param check      set it to true to check the number of values
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssBorderRight(ApplContext ac, CssExpression expression,
+						  boolean check) throws InvalidParamException {
+		CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
+		if (values.width != null) {
+			_width = new CssBorderRightWidth();
+			_width.setByUser();
+			_width.value = values.width;
+		}
+		if (values.style != null) {
+			_style = new CssBorderRightStyle();
+			_style.setByUser();
+			_style.value = values.style;
+		}
+		if (values.color != null) {
+			_color = new CssBorderRightColor();
+			_color.setByUser();
+			_color.value = values.color;
+		}
+	}
 
 	/**
 	 * Add this property to the CssStyle
@@ -79,45 +81,50 @@ public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
 		if (_width != null) {
 			_width.addToStyle(ac, style);
 		}
-		if (css1Style.cssBorder.borderColor.right != null) {
-			style.addRedefinitionWarning(ac, _color);
+		if (_color != null) {
+			if (css1Style.cssBorder.borderColor.right != null) {
+				style.addRedefinitionWarning(ac, _color);
+				css1Style.cssBorder.borderColor.right = _color;
+			}
 		}
-		css1Style.cssBorder.borderColor.right = _color;
-		if (css1Style.cssBorder.borderStyle.right != null) {
-			style.addRedefinitionWarning(ac, _style);
+		if (_style != null) {
+			if (css1Style.cssBorder.borderStyle.right != null) {
+				style.addRedefinitionWarning(ac, _style);
+			}
+			css1Style.cssBorder.borderStyle.right = _style;
 		}
-		css1Style.cssBorder.borderStyle.right = _style;
 	}
 
 	/**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (_width != null && inherit == _width.value) {
-            return inherit.toString();
-        }
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        if (_width != null) {
-            sb.append(_width);
-            first = false;
-        }
-        if (_style != null) {
-            if (first) {
-                sb.append(_style);
-            } else {
-                sb.append(' ').append(_style);
-            }
-            first = false;
-        }
-        if (_color != null) {
-            if (first) {
-                sb.append(_color);
-            } else {
-                sb.append(' ').append(_color);
-            }
-        }
-        return sb.toString();
-    }
+	 * Returns a string representation of the object.
+	 */
+
+	public String toString() {
+		if (_width != null && inherit == _width.value) {
+			return inherit.toString();
+		}
+		StringBuilder sb = new StringBuilder();
+		boolean first = true;
+		if (_width != null) {
+			sb.append(_width);
+			first = false;
+		}
+		if (_style != null) {
+			if (first) {
+				sb.append(_style);
+			} else {
+				sb.append(' ').append(_style);
+			}
+			first = false;
+		}
+		if (_color != null) {
+			if (first) {
+				sb.append(_color);
+			} else {
+				sb.append(' ').append(_color);
+			}
+		}
+		return sb.toString();
+	}
 
 }
