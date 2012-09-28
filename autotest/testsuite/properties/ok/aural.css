@@ -1,6 +1,6 @@
 h1   { azimuth: 30deg }
 td.a { azimuth: far-right }          /*  60deg */
-#12  { azimuth: behind far-right }   /* 120deg */
+#a12  { azimuth: behind far-right }   /* 120deg */
 p.comment { azimuth: behind }        /* 180deg */
 
 h1 {
