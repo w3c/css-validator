@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec @@FIXME@@ TV profile
+ * @spec http://www.w3.org/TR/2003/CR-css-tv-20030514
  */
 public class CssPosition extends org.w3c.css.properties.css.CssPosition {
 
