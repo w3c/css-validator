@@ -109,7 +109,7 @@ public class CssResolution extends CssValue {
 	 * Returns a string representation of the object.
 	 */
 	public String toString() {
-		return value.toPlainString() + ((BigDecimal.ZERO.equals(value)) ? "dpi" : unit);
+		return value.toPlainString() + ((BigDecimal.ZERO.compareTo(value) == 0) ? "dpi" : unit);
 	}
 
 	/**

@@ -75,6 +75,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 			isInt = false;
 		}
 	}
+
 	/**
 	 * Set the value explicitly
 	 */
@@ -146,7 +147,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @return a boolean
 	 */
 	public boolean isZero() {
-		return BigDecimal.ZERO.equals(value);
+		return (BigDecimal.ZERO.compareTo(value) == 0);
 	}
 
 	/**
@@ -156,7 +157,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @throws InvalidParamException The value is not zero
 	 */
 	public CssLength getLength() throws InvalidParamException {
-		if (value.equals(BigDecimal.ZERO)) {
+		if (value.compareTo(BigDecimal.ZERO) == 0) {
 			return new CssLength();
 		}
 		throw new InvalidParamException("zero", "length", ac);
@@ -169,7 +170,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @throws InvalidParamException The value is not zero
 	 */
 	public CssPercentage getPercentage() throws InvalidParamException {
-		if (value.equals(BigDecimal.ZERO)) {
+		if (value.compareTo(BigDecimal.ZERO) == 0) {
 			return new CssPercentage();
 		}
 		throw new InvalidParamException("zero",
@@ -184,7 +185,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @throws InvalidParamException The value is not zero
 	 */
 	public CssTime getTime() throws InvalidParamException {
-		if (value.equals(BigDecimal.ZERO)) {
+		if (value.compareTo(BigDecimal.ZERO) == 0) {
 			return new CssTime();
 		}
 		throw new InvalidParamException("zero", value.toString(),
@@ -198,7 +199,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @throws InvalidParamException The value is not zero
 	 */
 	public CssAngle getAngle() throws InvalidParamException {
-		if (value.equals(BigDecimal.ZERO)) {
+		if (value.compareTo(BigDecimal.ZERO) == 0) {
 			return new CssAngle();
 		}
 		throw new InvalidParamException("zero", value.toString(),
@@ -212,7 +213,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 * @throws InvalidParamException The value is not zero
 	 */
 	public CssFrequency getFrequency() throws InvalidParamException {
-		if (value.equals(BigDecimal.ZERO)) {
+		if (value.compareTo(BigDecimal.ZERO) == 0) {
 			return new CssFrequency();
 		}
 		throw new InvalidParamException("zero",
@@ -242,7 +243,8 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * check if the value is positive or null
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -256,7 +258,8 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * check if the value is strictly positive
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -270,7 +273,8 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * check if the value is an integer
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */

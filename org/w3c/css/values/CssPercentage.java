@@ -97,6 +97,7 @@ public class CssPercentage extends CssCheckableValue {
 
 	/**
 	 * set the native value
+	 *
 	 * @param v the BigDecimal
 	 */
 	public void setValue(BigDecimal v) {
@@ -135,7 +136,7 @@ public class CssPercentage extends CssCheckableValue {
 	 * @return a boolean
 	 */
 	public boolean isZero() {
-		return BigDecimal.ZERO.equals(value);
+		return (BigDecimal.ZERO.compareTo(value) == 0);
 	}
 
 	/**
@@ -170,7 +171,8 @@ public class CssPercentage extends CssCheckableValue {
 
 	/**
 	 * check if the value is positive or null
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -184,7 +186,8 @@ public class CssPercentage extends CssCheckableValue {
 
 	/**
 	 * check if the value is strictly positive
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */

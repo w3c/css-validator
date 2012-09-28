@@ -71,6 +71,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * set the native value
+	 *
 	 * @param v the BigDecimal
 	 */
 	public void setValue(BigDecimal v) {
@@ -142,7 +143,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 	 * Returns a string representation of the object.
 	 */
 	public String toString() {
-		return value.toPlainString() + ((BigDecimal.ZERO.equals(value)) ? "deg" : unit);
+		return value.toPlainString() + ((BigDecimal.ZERO.compareTo(value) == 0) ? "deg" : unit);
 	}
 
 	/**
@@ -199,7 +200,8 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * check if the value is positive or null
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -213,7 +215,8 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * check if the value is strictly positive
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */

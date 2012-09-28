@@ -121,8 +121,8 @@ public class CssFrequency extends CssCheckableValue {
 	 * Returns a string representation of the object.
 	 */
 	public String toString() {
-		if (BigDecimal.ZERO.equals(value)) {
-			return value.toPlainString();
+		if (BigDecimal.ZERO.compareTo(value) == 0) {
+			return BigDecimal.ZERO.toPlainString();
 		}
 		return value.toPlainString() + unit;
 	}
@@ -171,7 +171,7 @@ public class CssFrequency extends CssCheckableValue {
 	 * @return a boolean
 	 */
 	public boolean isZero() {
-		return BigDecimal.ZERO.equals(value);
+		return (BigDecimal.ZERO.compareTo(value) == 0);
 	}
 
 	/**

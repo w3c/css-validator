@@ -30,40 +30,40 @@ import java.math.BigDecimal;
  */
 public class CssTime extends CssCheckableValue {
 
-    public static final int type = CssTypes.CSS_TIME;
+	public static final int type = CssTypes.CSS_TIME;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
 	private BigDecimal value;
 	protected String unit;
 	protected BigDecimal factor = BigDecimal.ONE;
 
-    /**
-     * Create a new CssTime.
-     */
-    public CssTime() {
-        value = BigDecimal.ZERO;
-    }
+	/**
+	 * Create a new CssTime.
+	 */
+	public CssTime() {
+		value = BigDecimal.ZERO;
+	}
 
-    /**
-     * Create a new CssTime with a Float object.
-     *
-     * @param value the Float object
-     */
-    public CssTime(Float value) {
-        this.value = new BigDecimal(value);
-    }
+	/**
+	 * Create a new CssTime with a Float object.
+	 *
+	 * @param value the Float object
+	 */
+	public CssTime(Float value) {
+		this.value = new BigDecimal(value);
+	}
 
-    /**
-     * Set the value of this time.
-     *
-     * @param s  the string representation of the time.
-     * @param ac For errors and warnings reports.
-     * @throws InvalidParamException The unit is incorrect
-     */
-    public void set(String s, ApplContext ac) throws InvalidParamException {
+	/**
+	 * Set the value of this time.
+	 *
+	 * @param s  the string representation of the time.
+	 * @param ac For errors and warnings reports.
+	 * @throws InvalidParamException The unit is incorrect
+	 */
+	public void set(String s, ApplContext ac) throws InvalidParamException {
 		String low_s = s.toLowerCase();
 		int length = low_s.length();
 		int unitIdx = length - 1;
@@ -100,47 +100,48 @@ public class CssTime extends CssCheckableValue {
 
 	}
 
-    /**
-     * Returns the current value
-     * Float
-     * TODO move to a BigDecimal
-     */
-    public Object get() {
+	/**
+	 * Returns the current value
+	 * Float
+	 * TODO move to a BigDecimal
+	 */
+	public Object get() {
 		return value.multiply(factor).floatValue();
 
 	}
 
-    /**
-     * Returns the current value
-     */
-    public String getUnit() {
-        return unit;
-    }
+	/**
+	 * Returns the current value
+	 */
+	public String getUnit() {
+		return unit;
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (BigDecimal.ZERO.equals(value)) {
-            return value.toPlainString();
-        }
-        return value.toPlainString() + unit;
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (BigDecimal.ZERO.compareTo(value) == 0) {
+			return value.toPlainString();
+		}
+		return value.toPlainString() + unit;
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param other The other value.
-     */
-    public boolean equals(Object other) {
-		if (((CssValue)other).getType() == getType()) {
-			return get().equals(((CssValue)other).get());
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param other The other value.
+	 */
+	public boolean equals(Object other) {
+		if (((CssValue) other).getType() == getType()) {
+			return get().equals(((CssValue) other).get());
 		}
 		return false;
 	}
 
 	/**
 	 * set the native value
+	 *
 	 * @param v the BigDecimal
 	 */
 	public void setValue(BigDecimal v) {
@@ -171,12 +172,13 @@ public class CssTime extends CssCheckableValue {
 	 * @return a boolean
 	 */
 	public boolean isZero() {
-		return BigDecimal.ZERO.equals(value);
+		return (BigDecimal.ZERO.compareTo(value) == 0);
 	}
 
 	/**
 	 * check if the value is positive or null
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -190,7 +192,8 @@ public class CssTime extends CssCheckableValue {
 
 	/**
 	 * check if the value is strictly positive
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */

@@ -162,6 +162,7 @@ public class CssLength extends CssCheckableValue {
 
 	/**
 	 * set the native value
+	 *
 	 * @param v the BigDecimal
 	 */
 	public void setValue(BigDecimal v) {
@@ -213,7 +214,7 @@ public class CssLength extends CssCheckableValue {
 	 * @return a boolean
 	 */
 	public boolean isZero() {
-		return BigDecimal.ZERO.equals(value);
+		return (BigDecimal.ZERO.compareTo(value) == 0);
 	}
 
 	/**
@@ -241,8 +242,8 @@ public class CssLength extends CssCheckableValue {
 	 * Returns a string representation of the object.
 	 */
 	public String toString() {
-		if (BigDecimal.ZERO.equals(value)) {
-			return value.toPlainString();
+		if (BigDecimal.ZERO.compareTo(value) == 0) {
+			return BigDecimal.ZERO.toPlainString();
 		}
 		return value.toPlainString() + unit;
 	}
@@ -261,7 +262,8 @@ public class CssLength extends CssCheckableValue {
 
 	/**
 	 * check if the value is positive or null
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -275,7 +277,8 @@ public class CssLength extends CssCheckableValue {
 
 	/**
 	 * check if the value is strictly positive
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
