@@ -54,12 +54,14 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	 */
 	public void set(String s, ApplContext ac) {
 		value = new BigDecimal(s);
-		try {
+		isInt = (s.indexOf('.') < 0);
+/*		CSS integers are not value-based integers.
+        try {
 			value.toBigIntegerExact();
 			isInt = true;
 		} catch (ArithmeticException e) {
 			isInt = false;
-		}
+		} */
 		this.ac = ac;
 	}
 
