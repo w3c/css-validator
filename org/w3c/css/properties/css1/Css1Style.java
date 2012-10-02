@@ -9,27 +9,26 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssClear;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssDisplay;
-import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.properties.css.CssZIndex;
-import org.w3c.css.properties.css.CssTextTransform;
-import org.w3c.css.properties.css.CssTextAlign;
-import org.w3c.css.properties.css.CssTextDecoration;
-import org.w3c.css.properties.css.CssTextIndent;
-import org.w3c.css.properties.css.CssPaddingLeft;
-import org.w3c.css.properties.css.CssPaddingTop;
-import org.w3c.css.properties.css.CssPaddingRight;
-import org.w3c.css.properties.css.CssPaddingBottom;
-import org.w3c.css.properties.css.CssPadding;
+import org.w3c.css.properties.css.CssFloat;
 import org.w3c.css.properties.css.CssMargin;
-import org.w3c.css.properties.css.CssMarginTop;
 import org.w3c.css.properties.css.CssMarginBottom;
 import org.w3c.css.properties.css.CssMarginLeft;
 import org.w3c.css.properties.css.CssMarginRight;
-import org.w3c.css.properties.css.CssClear;
-import org.w3c.css.properties.css.CssFloat;
-
+import org.w3c.css.properties.css.CssMarginTop;
+import org.w3c.css.properties.css.CssPadding;
+import org.w3c.css.properties.css.CssPaddingBottom;
+import org.w3c.css.properties.css.CssPaddingLeft;
+import org.w3c.css.properties.css.CssPaddingRight;
+import org.w3c.css.properties.css.CssPaddingTop;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.properties.css.CssTextAlign;
+import org.w3c.css.properties.css.CssTextDecoration;
+import org.w3c.css.properties.css.CssTextIndent;
+import org.w3c.css.properties.css.CssTextTransform;
+import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
@@ -1434,15 +1433,6 @@ public class Css1Style extends CssStyle {
 
 		if (cssBackground.getColor() != null) {
 			org.w3c.css.properties.css.CssColor fgColor = cssColor;
-			// we need to look if there is the same selector elsewhere
-			// containing a color definition
-			for (int i = 0; i < allSelectors.length; i++) {
-				CssSelectors sel = allSelectors[i];
-				if (sel.toString().equals(selector.toString())) {
-					fgColor = ((Css1Style) sel.getStyle()).cssColor;
-					break;
-				}
-			}
 			if (fgColor != null) {
 				if (cssBackground.getColor().equals(fgColor.getColor())) {
 					// background and color can't have the same color
@@ -1517,42 +1507,10 @@ public class Css1Style extends CssStyle {
 					}
 				}
 			}
-			/* suppressed 03-09-98
-						if ((cssPadding.top == null) ||
-						(cssPadding.right == null) ||
-						(cssPadding.bottom == null) ||
-						(cssPadding.left == null)) {
-						// It's better to have a padding with a background color.
-						 warnings.addWarning(new Warning(cssBackground.color, "no-padding", 2));
-						 }
-						 */
 		} else if (cssColor != null) {
-			CssValue backgroundColor = null;
-			// we need to look if there is the same selector elsewhere
-			// containing a color definition
-			for (int i = 0; i < allSelectors.length; i++) {
-				CssSelectors sel = allSelectors[i];
-				Css1Style style =
-						(Css1Style) sel.getStyle();
-				if (backgroundColor == null &&
-						sel.toString().equals(selector.toString())) {
-					backgroundColor = ((Css1Style) sel.getStyle()).
-							cssBackground.getColor();
-				}
-				if (style.cssBackground.getColor() != null) {
-					if (style.cssBackground.getColor().equals(cssColor.getColor())) {
-						warnings.addWarning(new Warning(cssColor, "same-colors2", 1,
-								new String[]{style.cssBackground.color.getSelectors().toString(),
-										cssColor.getSelectors().toString()}, ac));
-					}
-				}
-			}
-			if (backgroundColor == null) {
-				// It's better to have a background color with a color
-				warnings.addWarning(new Warning(cssColor,
-						"no-background-color", 2, emptyArray, ac));
-			}
-
+			// It's better to have a background color with a color
+			warnings.addWarning(new Warning(cssColor,
+					"no-background-color", 2, emptyArray, ac));
 		}
 
 		// now testing for % and length in padding and marging
