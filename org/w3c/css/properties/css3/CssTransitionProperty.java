@@ -5,9 +5,11 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -21,6 +23,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransitionProperty {
 
+	public static final CssIdent all = CssIdent.getIdent("all");
 	/**
 	 * Create a new CssTransitionProperty
 	 */
@@ -58,8 +61,12 @@ public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransit
 						singleVal = true;
 						sValue = none;
 						values.add(none);
+					} else if (all.equals(val)) {
+						values.add(all);
 					} else {
-						// TOTO check it's an existing property
+						if (PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(val.toString()) == null) {
+							ac.getFrame().addWarning("noexproperty", val.toString());
+						}
 						values.add(val);
 					}
 					break;
