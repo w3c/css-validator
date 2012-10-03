@@ -9,7 +9,7 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 
 /**
- * A CSS float number.
+ * A CSS function.
  *
  * @version $Revision$
  */
