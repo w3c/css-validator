@@ -173,6 +173,9 @@ warning.unsupported-import: Imported style sheets are not checked in direct inpu
 warning.out-of-range: %s is out of range
 error.invalid-color: Invalid RGB function
 
+# used for clipping negative values
+warning.negative: negative value %s will be interpreted as 0
+
 warning.marker: The marker-offset property applies on elements with 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
