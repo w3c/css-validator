@@ -1,10 +1,10 @@
-y { animation/transition-delay: initial }
-z { animation/transition-delay: inherit }
-a { animation/transition-delay: 0s }
-b { animation/transition-delay: -10s }
-c { animation/transition-delay: 1000ms }
-d { animation/transition-delay: 1s }
-e { animation/transition-delay: 1s, 0s, 10ms }
-f { animation/transition-delay: 1s, -10s }
-g { animation/transition-delay: -1s, 1000s }
-h { animation/transition-delay: 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s }
+y { transition-delay: initial }
+z { transition-delay: inherit }
+a { transition-delay: 0s }
+b { transition-delay: -10s }
+c { transition-delay: 1000ms }
+d { transition-delay: 1s }
+e { transition-delay: 1s, 0s, 10ms }
+f { transition-delay: 1s, -10s }
+g { transition-delay: -1s, 1000s }
+h { transition-delay: 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s, 1s }
