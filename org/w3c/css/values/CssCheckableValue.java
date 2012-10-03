@@ -24,6 +24,7 @@ public abstract class CssCheckableValue extends CssValue {
 	abstract void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
 
+	abstract void warnPositiveness(ApplContext ac, CssProperty property);
 
 	public boolean isInteger() {
 		return false;

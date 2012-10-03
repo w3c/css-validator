@@ -65,4 +65,8 @@ public abstract class CssValue {
 	public CssNumber getNumber() throws InvalidParamException {
 		throw new ClassCastException("unknown");
 	}
+
+	public CssTime getTime() throws InvalidParamException {
+		throw new ClassCastException("unknown");
+	}
 }

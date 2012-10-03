@@ -227,5 +227,17 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 					toString(), property.getPropertyName(), ac);
 		}
 	}
+
+	/**
+	 * warn if the value is not positive or null
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 */
+	public void warnPositiveness(ApplContext ac, CssProperty property) {
+		if (!isPositive()) {
+			ac.getFrame().addWarning("negative", toString());
+		}
+	}
 }
 

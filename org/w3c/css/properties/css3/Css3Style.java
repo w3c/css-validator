@@ -61,6 +61,8 @@ import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTransitionDelay;
+import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -137,6 +139,9 @@ public class Css3Style extends ATSCStyle {
 	public CssMarqueePlayCount cssMarqueePlayCount;
 	public CssOverflowStyle cssOverflowStyle;
 
+	public CssTransitionDelay cssTransitionDelay;
+	public CssTransitionDuration cssTransitionDuration;
+	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
 	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -1067,6 +1072,25 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssTabSize;
 	}
+
+	public CssTransitionDelay getTransitionDelay() {
+		if (cssTransitionDelay == null) {
+			cssTransitionDelay =
+					(CssTransitionDelay) style.CascadingOrder(
+							new CssTransitionDelay(), style, selector);
+		}
+		return cssTransitionDelay;
+	}
+
+	public CssTransitionDuration getTransitionDuration() {
+		if (cssTransitionDuration == null) {
+			cssTransitionDuration =
+					(CssTransitionDuration) style.CascadingOrder(
+							new CssTransitionDuration(), style, selector);
+		}
+		return cssTransitionDuration;
+	}
+
 	///
 
 	/**

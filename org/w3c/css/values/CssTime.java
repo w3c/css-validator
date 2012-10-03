@@ -122,7 +122,7 @@ public class CssTime extends CssCheckableValue {
 	 */
 	public String toString() {
 		if (BigDecimal.ZERO.compareTo(value) == 0) {
-			return value.toPlainString();
+			return value.toPlainString() + 's';
 		}
 		return value.toPlainString() + unit;
 	}
@@ -191,6 +191,18 @@ public class CssTime extends CssCheckableValue {
 	}
 
 	/**
+	 * warn if the value is not positive or null
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 */
+	public void warnPositiveness(ApplContext ac, CssProperty property) {
+		if (!isPositive()) {
+			ac.getFrame().addWarning("negative", toString());
+		}
+	}
+
+	/**
 	 * check if the value is strictly positive
 	 *
 	 * @param ac       the validation context
@@ -203,6 +215,10 @@ public class CssTime extends CssCheckableValue {
 			throw new InvalidParamException("strictly-positive",
 					toString(), property.getPropertyName(), ac);
 		}
+	}
+
+	public CssTime getTime() throws InvalidParamException {
+		return this;
 	}
 }
 
