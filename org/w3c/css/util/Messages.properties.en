@@ -273,6 +273,12 @@ error.zero: only 0 can be a %s. You must put a unit after your number
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s is not valid, only values greater than 0 allowed.
 
+error.lowerequal: %s is not valid, only values lower than or equal to %s are allowed.
+error.lower: %s is not valid, only values strictly lower than %s are allowed.
+
+error.greaterequal: %s is not valid, only values greater than or equal to %s are allowed.
+error.greater: %s is not valid, only values strictly greater than %s are allowed.
+
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Property %s doesn't exist
 error.noexistence-media: Feature %s doesn't exist for media %s
