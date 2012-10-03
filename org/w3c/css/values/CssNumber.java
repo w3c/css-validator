@@ -299,4 +299,20 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 			ac.getFrame().addWarning("negative", toString());
 		}
 	}
+
+	/**
+	 * check if the value is positive or null
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkLowerEqualThan(ApplContext ac, double d, CssProperty property)
+			throws InvalidParamException {
+		BigDecimal other = BigDecimal.valueOf(d);
+		if (value.compareTo(other) > 0) {
+			throw new InvalidParamException("lowerequal",
+					toString(), other.toPlainString(), ac);
+		}
+	}
 }
