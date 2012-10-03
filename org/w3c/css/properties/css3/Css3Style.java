@@ -63,6 +63,7 @@ import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
+import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -141,6 +142,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssTransitionDelay cssTransitionDelay;
 	public CssTransitionDuration cssTransitionDuration;
+	public CssTransitionProperty cssTransitionProperty;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1091,6 +1093,14 @@ public class Css3Style extends ATSCStyle {
 		return cssTransitionDuration;
 	}
 
+	public CssTransitionProperty getTransitionProperty() {
+		if (cssTransitionProperty == null) {
+			cssTransitionProperty =
+					(CssTransitionProperty) style.CascadingOrder(
+							new CssTransitionProperty(), style, selector);
+		}
+		return cssTransitionProperty;
+	}
 	///
 
 	/**
