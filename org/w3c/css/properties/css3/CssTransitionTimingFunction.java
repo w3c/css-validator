@@ -213,9 +213,11 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 			}
 			// we have a number, continue checks
 			CssNumber number = val.getNumber();
-			// it must be a >0 integer
-			number.checkPositiveness(ac, caller);
-			number.checkLowerEqualThan(ac, 1., caller);
+			// it must be betwee 0 and 1 for X [x1,y1,x2,y2]
+			if ((i & 0x1) == 0) {
+				number.checkPositiveness(ac, caller);
+				number.checkLowerEqualThan(ac, 1., caller);
+			}
 			values.add(val);
 			// go to the next item...
 			funcparam.next();
