@@ -24,11 +24,25 @@ import static org.w3c.css.values.CssOperator.COMMA;
 public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransitionProperty {
 
 	public static final CssIdent all = CssIdent.getIdent("all");
+
 	/**
 	 * Create a new CssTransitionProperty
 	 */
 	public CssTransitionProperty() {
 		value = initial;
+	}
+
+	public static CssIdent getAllowedIdent(ApplContext ac, CssIdent ident) {
+		if (none.equals(ident)) {
+			return none;
+		}
+		if (all.equals(ident)) {
+			return all;
+		}
+		if (PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(ident.toString()) == null) {
+			ac.getFrame().addWarning("noexproperty", ident.toString());
+		}
+		return ident;
 	}
 
 	/**
@@ -57,17 +71,13 @@ public class CssTransitionProperty extends org.w3c.css.properties.css.CssTransit
 						singleVal = true;
 						sValue = inherit;
 						values.add(inherit);
-					} else if (none.equals(val)) {
-						singleVal = true;
-						sValue = none;
-						values.add(none);
-					} else if (all.equals(val)) {
-						values.add(all);
 					} else {
-						if (PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(val.toString()) == null) {
-							ac.getFrame().addWarning("noexproperty", val.toString());
+						CssIdent ident = getAllowedIdent(ac, (CssIdent) val);
+						if (ident == none) {
+							singleVal = true;
+							sValue = none;
 						}
-						values.add(val);
+						values.add(ident);
 					}
 					break;
 				default:

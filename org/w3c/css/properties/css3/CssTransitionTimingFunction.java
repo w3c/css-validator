@@ -44,7 +44,7 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 		end = CssIdent.getIdent("end");
 	}
 
-	public CssIdent getAllowedIdent(CssIdent ident) {
+	public static CssIdent getAllowedIdent(CssIdent ident) {
 		for (CssIdent id : allowed_values) {
 			if (id.equals(ident)) {
 				return id;
@@ -82,21 +82,9 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_FUNCTION:
-					CssFunction function = (CssFunction) val;
-					String fname = function.getName().toLowerCase();
-					if (steps_func.equals(fname)) {
-						parseStepsFunction(ac, function.getParameters(), this);
-						values.add(val);
-						break;
-					} else if (cubic_bezier_func.equals(fname)) {
-						parseCubicBezierFunction(ac, function.getParameters(), this);
-						values.add(val);
-						break;
-					}
-					// unrecognized function
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
+					parseFunctionValues(ac, val, this);
+					values.add(val);
+					break;
 				case CssTypes.CSS_IDENT:
 					if (inherit.equals(val)) {
 						singleVal = true;
@@ -227,6 +215,22 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 			}
 		}
 		return new CssLayerList(values);
+	}
+
+	protected static CssValue parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
+			throws InvalidParamException {
+		CssFunction function = (CssFunction) func;
+		String fname = function.getName().toLowerCase();
+		if (steps_func.equals(fname)) {
+			return parseStepsFunction(ac, function.getParameters(), caller);
+		} else if (cubic_bezier_func.equals(fname)) {
+			return parseCubicBezierFunction(ac, function.getParameters(), caller);
+		}
+		// unrecognized function
+		throw new InvalidParamException("value",
+				func.toString(),
+				caller.getPropertyName(), ac);
+
 	}
 }
 

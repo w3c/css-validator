@@ -61,6 +61,7 @@ import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTransition;
 import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssTransitionProperty;
@@ -141,6 +142,7 @@ public class Css3Style extends ATSCStyle {
 	public CssMarqueePlayCount cssMarqueePlayCount;
 	public CssOverflowStyle cssOverflowStyle;
 
+	public CssTransition cssTransition;
 	public CssTransitionDelay cssTransitionDelay;
 	public CssTransitionDuration cssTransitionDuration;
 	public CssTransitionProperty cssTransitionProperty;
@@ -1112,6 +1114,17 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssTransitionTimingFunction;
 	}
+
+
+	public CssTransition getTransition() {
+		if (cssTransition == null) {
+			cssTransition =
+					(CssTransition) style.CascadingOrder(
+							new CssTransition(), style, selector);
+		}
+		return cssTransition;
+	}
+	
 	///
 
 	/**
