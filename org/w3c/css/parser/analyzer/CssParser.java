@@ -7,8 +7,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.net.URL;
+import java.math.BigDecimal;
 
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssURL;
@@ -25,6 +27,7 @@ import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
 import org.w3c.css.values.CssRatio;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
 import org.w3c.css.parser.CssError;
@@ -332,19 +335,32 @@ public abstract class CssParser implements CssParserConstants {
     private void setValue(CssValue v, CssExpression expr,
                           char operator, Token n, int token)
         throws ParseException {
+
+        if ( token == FUNCTION ) {
+            if ( v.getType() == CssTypes.CSS_FUNCTION ) {
+            CssFunction f = (CssFunction) v;
+            if (f.getParameters().hasVendorExtensions()) {
+                expr.markVendorExtension();
+            }
+        }
+        }
         if (n != null) {
             if (ac.getCssVersion() == CssVersion.CSS1 &&
-                (n.image).equals("inherit")) {
-                incompatible_error = true;
+                                          (n.image).equals("inherit")) {
+                    incompatible_error = true;
             }
             String val = (operator == ' ') ? n.image : operator+n.image;
 
             if (n.kind == CssParserConstants.IDENT) {
-                v.set(convertIdent(val), ac);
+                String s = convertIdent(val);
+            if ('-' == s.charAt(0)) {
+                expr.markVendorExtension();
+            }
+                    v.set(convertIdent(val), ac);
             } else if (n.kind == CssParserConstants.STRING) {
-                v.set(val, ac);
+                    v.set(val, ac);
             } else {
-                v.set(val, ac);
+                    v.set(val, ac);
             }
         }
         expr.addValue(v);
@@ -3780,7 +3796,7 @@ CssExpression param = null;
         if (funcname.equals("rgb(")) {
             color.setRGBColor(exp, ac);
             {if (true) return color;}
-        } else if (n.image.toLowerCase().equals("atsc-rgba(")) {
+        } else if (funcname.equals("atsc-rgba(")) {
             if (getAtRule().toString().equals("@media atsc-tv")) {
                 color.setATSCRGBAColor(exp, ac);
                 {if (true) return color;}
@@ -3791,8 +3807,10 @@ CssExpression param = null;
             }
         } else {
             CssFunction f = new CssFunction();
-            f.set(n.image.substring(0, n.image.length() - 1),
-                  exp);
+            f.set(n.image.substring(0, n.image.length() - 1), exp);
+            if (funcname.charAt(0) == '-') {
+                exp.markVendorExtension();
+            }
             {if (true) return f;}
         }
     throw new Error("Missing return statement in function");
@@ -4090,6 +4108,16 @@ CssExpression param = null;
     finally { jj_save(1, xla); }
   }
 
+  private boolean jj_3R_93() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(35)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(48)) return true;
+    }
+    return false;
+  }
+
   private boolean jj_3_2() {
     if (jj_scan_token(NUMBER)) return true;
     Token xsp;
@@ -4106,16 +4134,6 @@ CssExpression param = null;
     xsp = jj_scanpos;
     if (jj_3R_93()) jj_scanpos = xsp;
     if (jj_scan_token(97)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_93() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(35)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(48)) return true;
-    }
     return false;
   }
 
