@@ -18,9 +18,6 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBackgroundSize extends CssProperty {
 
-    private static final String propertyName = "background-size";
-
-
     public CssValue value;
 
     /**
