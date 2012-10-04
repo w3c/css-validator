@@ -32,156 +32,161 @@ import java.util.StringTokenizer;
  */
 public class CssPropertyFactory implements Cloneable {
 
-    // all recognized properties are here.
-    private Utf8Properties properties;
+	// all recognized properties are here.
+	private Utf8Properties properties;
 
-    //all used profiles are here (in the priority order)
-    private static String[] SORTEDPROFILES = PropertiesLoader.getProfiles();
+	//all used profiles are here (in the priority order)
+	private static String[] SORTEDPROFILES = PropertiesLoader.getProfiles();
 
-    // private Utf8Properties allprops;
+	// private Utf8Properties allprops;
 
-    // does not seem to be used
-    // private String usermedium;
+	// does not seem to be used
+	// private String usermedium;
 
-    public CssPropertyFactory getClone() {
-        try {
-            return (CssPropertyFactory) clone();
-        } catch (CloneNotSupportedException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
+	public CssPropertyFactory getClone() {
+		try {
+			return (CssPropertyFactory) clone();
+		} catch (CloneNotSupportedException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 
-    /**
-     * Create a new CssPropertyFactory
-     */
-    public CssPropertyFactory(String profile) {
-        properties = PropertiesLoader.getProfile(profile);
-        // It's not good to have null properties :-/
-        if (properties == null) {
-            throw new NullPointerException();
-        }
-    }
+	/**
+	 * Create a new CssPropertyFactory
+	 */
+	public CssPropertyFactory(String profile) {
+		properties = PropertiesLoader.getProfile(profile);
+		// It's not good to have null properties :-/
+		if (properties == null) {
+			throw new NullPointerException();
+		}
+	}
 
-    public String getProperty(String name) {
-        return properties.getProperty(name);
-    }
+	public String getProperty(String name) {
+		return properties.getProperty(name);
+	}
 
-    private ArrayList<String> getMediaList(String media) {
-        ArrayList<String> list = new ArrayList<String>();
-        String medium;
-        StringTokenizer tok = new StringTokenizer(media, ",");
+	private ArrayList<String> getMediaList(String media) {
+		ArrayList<String> list = new ArrayList<String>();
+		String medium;
+		StringTokenizer tok = new StringTokenizer(media, ",");
 
-        while (tok.hasMoreTokens()) {
-            medium = tok.nextToken();
-            medium = medium.trim();
-            list.add(medium);
-        }
-        return list;
-    }
+		while (tok.hasMoreTokens()) {
+			medium = tok.nextToken();
+			medium = medium.trim();
+			list.add(medium);
+		}
+		return list;
+	}
 
-    // bug: FIXME
-    // @media screen and (min-width: 400px) and (max-width: 700px), print {
-    // a {
-    // border: 0;
-    // }
-    // }
-    public synchronized MediaFeature createMediaFeature(ApplContext ac, AtRule atRule, String feature,
-                                                        CssExpression expression) throws Exception {
-        String modifier = null;
-        String classname;
-        int dashpos = feature.indexOf('-');
-        feature = feature.toLowerCase();
+	// bug: FIXME
+	// @media screen and (min-width: 400px) and (max-width: 700px), print {
+	// a {
+	// border: 0;
+	// }
+	// }
+	public synchronized MediaFeature createMediaFeature(ApplContext ac, AtRule atRule, String feature,
+														CssExpression expression) throws Exception {
+		String modifier = null;
+		String classname;
+		int dashpos = feature.indexOf('-');
+		feature = feature.toLowerCase();
 
-        if (dashpos != -1) {
-            if (dashpos == 0) {
-                // vendor media?
-                try {
-                    AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
-                    // I don't know this property
-                    // TODO get the latest media it applies to
-                    throw new InvalidParamException("noexistence-media", feature,
-                            atRuleMedia.getCurrentMedia(), ac);
-                } catch (ClassCastException cce) {
-                    // I don't know this property
-                    throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
-                }
-            }
-            modifier = feature.substring(0, dashpos);
-            // clash between feature name and modifier...
-            // link min-width and color-index, so we check we have min- or max-
-            if (modifier.equals("min") || modifier.equals("max")) {
-                feature = feature.substring(dashpos + 1);
-            } else {
-                // back to normal
-                modifier = null;
-            }
-        }
+		if (dashpos != -1) {
+			if (dashpos == 0) {
+				// vendor media?
+				try {
+					AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
+					// I don't know this property
+					// TODO get the latest media it applies to
+					throw new InvalidParamException("noexistence-media", feature,
+							atRuleMedia.getCurrentMedia(), ac);
+				} catch (ClassCastException cce) {
+					// I don't know this property
+					throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
+				}
+			}
+			modifier = feature.substring(0, dashpos);
+			// clash between feature name and modifier...
+			// link min-width and color-index, so we check we have min- or max-
+			if (modifier.equals("min") || modifier.equals("max")) {
+				feature = feature.substring(dashpos + 1);
+			} else {
+				// back to normal
+				modifier = null;
+			}
+		}
 
-        classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
-        if (classname == null) {
-            try {
-                AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
-                // I don't know this property
-                // TODO get the latest media it applies to
-                throw new InvalidParamException("noexistence-media", feature,
-                        atRuleMedia.getCurrentMedia(), ac);
-            } catch (ClassCastException cce) {
-                // I don't know this property
-                throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
-            }
-        }
+		classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
+		if (classname == null) {
+			try {
+				AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
+				// I don't know this property
+				// TODO get the latest media it applies to
+				throw new InvalidParamException("noexistence-media", feature,
+						atRuleMedia.getCurrentMedia(), ac);
+			} catch (ClassCastException cce) {
+				// I don't know this property
+				throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
+			}
+		}
 
-        try {
-            // create an instance of your property class
-            Class expressionclass = CssExpression.class;
-            if (expression != null) {
-                expressionclass = expression.getClass();
-            }
-            // Maybe it will be necessary to add the check parameter as for
-            // create property, so... FIXME
-            Class[] parametersType = {ac.getClass(), String.class, expressionclass};
-            Constructor constructor = Class.forName(classname).getConstructor(parametersType);
-            Object[] parameters = {ac, modifier, expression};
-            // invoke the constructor
-            return (MediaFeature) constructor.newInstance(parameters);
-        } catch (InvocationTargetException e) {
-            // catch InvalidParamException
-            Exception ex = (Exception) e.getTargetException();
-            throw ex;
-        }
-    }
+		try {
+			// create an instance of your property class
+			Class expressionclass = CssExpression.class;
+			if (expression != null) {
+				expressionclass = expression.getClass();
+			}
+			// Maybe it will be necessary to add the check parameter as for
+			// create property, so... FIXME
+			Class[] parametersType = {ac.getClass(), String.class, expressionclass};
+			Constructor constructor = Class.forName(classname).getConstructor(parametersType);
+			Object[] parameters = {ac, modifier, expression};
+			// invoke the constructor
+			return (MediaFeature) constructor.newInstance(parameters);
+		} catch (InvocationTargetException e) {
+			// catch InvalidParamException
+			Exception ex = (Exception) e.getTargetException();
+			throw ex;
+		}
+	}
 
-    public synchronized CssProperty createProperty(ApplContext ac, AtRule atRule, String property,
-                                                   CssExpression expression) throws Exception {
-        String classname = null;
-        AtRuleMedia atRuleMedia;
-        String media = null;
+	public synchronized CssProperty createProperty(ApplContext ac, AtRule atRule, String property,
+												   CssExpression expression) throws Exception {
+		String classname = null;
+		AtRuleMedia atRuleMedia;
+		String media = null;
 
-        try {
-            atRuleMedia = (AtRuleMedia) atRule;
-            // TODO FIXME in fact, it should use a vector of media instead of extracting
-            // only one media, so let's use kludges
-            for (Media m : atRuleMedia.getMediaList()) {
-                if (!m.getNot()) {
-                    media = m.getMedia();
-                    break;
-                }
-            }
-        } catch (ClassCastException cce) {
-            media = "all";
-        }
-        classname = setClassName(atRule, media, ac, property);
+		if (ac.getTreatVendorExtensionsAsWarnings()) {
+			if (isVendorExtension(property)) {
+				throw new WarningParamException("vendor-extension", property);
+			}
+			if (expression.hasVendorExtensions()) {
+				throw new WarningParamException("vendor-extension", expression.toStringFromStart());
+			}
+		}
 
-        // the property does not exist in this profile
-        // this is an error... or a warning if it exists in another profile
-        if (classname == null) {
-            if (ac.getTreatVendorExtensionsAsWarnings() &&
-                    isVendorExtension(property)) {
-                throw new WarningParamException("vendor-extension", property);
-            }
-            ArrayList<String> pfsOk = new ArrayList<String>();
-            String spec = ac.getPropertyKey();
+		try {
+			atRuleMedia = (AtRuleMedia) atRule;
+			// TODO FIXME in fact, it should use a vector of media instead of extracting
+			// only one media, so let's use kludges
+			for (Media m : atRuleMedia.getMediaList()) {
+				if (!m.getNot()) {
+					media = m.getMedia();
+					break;
+				}
+			}
+		} catch (ClassCastException cce) {
+			media = "all";
+		}
+		classname = setClassName(atRule, media, ac, property);
+
+		// the property does not exist in this profile
+		// this is an error... or a warning if it exists in another profile
+		if (classname == null) {
+			ArrayList<String> pfsOk = new ArrayList<String>();
+			String spec = ac.getPropertyKey();
 
 			for (String p : SORTEDPROFILES) {
 				if (!p.equals(spec) && PropertiesLoader.getProfile(p).containsKey(property)) {
@@ -189,90 +194,94 @@ public class CssPropertyFactory implements Cloneable {
 				}
 			}
 
-            if (pfsOk.size() > 0) {
-                if (ac.getCssProfile() == CssProfile.NONE) {
-                    String latestVersion = pfsOk.get(pfsOk.size() - 1);
-                    CssVersion v = CssVersion.resolve(ac, latestVersion);
-                    // should always be true... otherwise there is an issue...
-                    if (v.compareTo(ac.getCssVersion()) > 0) {
-                        ac.getFrame().addWarning("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()});
-                        ac.setCssVersion(v);
-                    }
-                    classname = setClassName(atRule, media, ac, property);
-                } else {
+			if (pfsOk.size() > 0) {
+				if (ac.getCssProfile() == CssProfile.NONE) {
+					String latestVersion = pfsOk.get(pfsOk.size() - 1);
+					CssVersion v = CssVersion.resolve(ac, latestVersion);
+					// should always be true... otherwise there is an issue...
+					if (v.compareTo(ac.getCssVersion()) > 0) {
+						ac.getFrame().addWarning("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()});
+						ac.setCssVersion(v);
+					}
+					classname = setClassName(atRule, media, ac, property);
+				} else {
 
-                    /*
-                    // This should be uncommented when no-profile in enabled
-                    if (ac.getProfileString().equals("none")) {
-                    // the last one should be the best one to use
-                    String	pf = (String) pfsOk.get(pfsOk.size()-1),
-                    old_pf = ac.getCssVersionString();
-                    ac.setCssVersion(pf);
-                    ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
-                    classname = setClassName(atRule, media, ac, property);
-                    ac.setCssVersion(old_pf);
-                    }
-                    else
-                    */
-                    throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
-                }
-            } else {
-                throw new InvalidParamException("noexistence-at-all", property, ac);
-            }
-        }
+					/*
+										// This should be uncommented when no-profile in enabled
+										if (ac.getProfileString().equals("none")) {
+										// the last one should be the best one to use
+										String	pf = (String) pfsOk.get(pfsOk.size()-1),
+										old_pf = ac.getCssVersionString();
+										ac.setCssVersion(pf);
+										ac.getFrame().addWarning("noexistence", new String[] { property, ac.getMsg().getString(old_pf), pfsOk.toString() });
+										classname = setClassName(atRule, media, ac, property);
+										ac.setCssVersion(old_pf);
+										}
+										else
+										*/
+					throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
+				}
+			} else {
+				throw new InvalidParamException("noexistence-at-all", property, ac);
+			}
+		}
 
-        CssIdent initial = CssIdent.getIdent("initial");
+		CssIdent initial = CssIdent.getIdent("initial");
 
-        try {
-            if ((ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) && (expression.getCount() == 1)
-                    && expression.getValue().equals(initial)) {
-                // create an instance of your property class
-                Class[] parametersType = {};
-                Constructor constructor = Class.forName(classname).getConstructor(parametersType);
-                Object[] parameters = {};
-                // invoke the constructor
-                return (CssProperty) constructor.newInstance(parameters);
-            } else {
-                // create an instance of your property class
-                Class[] parametersType = {ac.getClass(), expression.getClass(), boolean.class};
-                Constructor constructor = Class.forName(classname).getConstructor(parametersType);
-                Object[] parameters = {ac, expression, Boolean.TRUE};
-                // invoke the constructor
-                return (CssProperty) constructor.newInstance(parameters);
+		try {
+			if ((ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) && (expression.getCount() == 1)
+					&& expression.getValue().equals(initial)) {
+				// create an instance of your property class
+				Class[] parametersType = {};
+				Constructor constructor = Class.forName(classname).getConstructor(parametersType);
+				Object[] parameters = {};
+				// invoke the constructor
+				return (CssProperty) constructor.newInstance(parameters);
+			} else {
+				// create an instance of your property class
+				Class[] parametersType = {ac.getClass(), expression.getClass(), boolean.class};
+				Constructor constructor = Class.forName(classname).getConstructor(parametersType);
+				Object[] parameters = {ac, expression, Boolean.TRUE};
+				// invoke the constructor
+				return (CssProperty) constructor.newInstance(parameters);
 
-            }
-        } catch (InvocationTargetException e) {
-            // catch InvalidParamException
-            Exception ex = (Exception) e.getTargetException();
-            throw ex;
-        }
-    }
+			}
+		} catch (InvocationTargetException e) {
+			// catch InvalidParamException
+			Exception ex = (Exception) e.getTargetException();
+			//	uncomment for debug - ex.printStackTrace();
+			throw ex;
+		}
+	}
 
-    private String setClassName(AtRule atRule, String media, ApplContext ac, String property) {
-        String className;
-        if (atRule instanceof AtRuleMedia) {
-            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
-            // a list of media has been specified
-            if (className != null && media != null && !media.equals("all")) {
-                String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
-                ArrayList<String> list = getMediaList(media);
-                for (String medium : list) {
-                    if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
-                        ac.getFrame().addWarning("noexistence-media", new String[]{property, medium + " (" + propMedia + ")"});
-                    }
-                }
-            }
-        } else {
+	private String setClassName(AtRule atRule, String media, ApplContext ac, String property) {
+		String className;
+		if (atRule instanceof AtRuleMedia) {
+			className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
+			// a list of media has been specified
+			if (className != null && media != null && !media.equals("all")) {
+				String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
+				if (propMedia == null) {
+					return className;
+				}
+				ArrayList<String> list = getMediaList(media);
+				for (String medium : list) {
+					if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
+						ac.getFrame().addWarning("noexistence-media", new String[]{property, medium + " (" + propMedia + ")"});
+					}
+				}
+			}
+		} else {
 			StringBuilder sb = new StringBuilder();
 			// construct the property key
 			sb.append('@').append(atRule.keyword()).append('.').append(property);
-            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(sb.toString());
-        }
-        return className;
-    }
+			className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(sb.toString());
+		}
+		return className;
+	}
 
-    private boolean isVendorExtension(String property) {
-        return property.length() > 0 &&
-                (property.charAt(0) == '-' || property.charAt(0) == '_');
-    }
+	private boolean isVendorExtension(String property) {
+		return property.length() > 0 &&
+				(property.charAt(0) == '-' || property.charAt(0) == '_');
+	}
 }
