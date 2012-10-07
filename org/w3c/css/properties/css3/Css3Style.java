@@ -33,6 +33,7 @@ import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssFlexDirection;
+import org.w3c.css.properties.css.CssFlexWrap;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
@@ -156,6 +157,7 @@ public class Css3Style extends ATSCStyle {
 	public CssAlignItems cssAlignItems;
 	public CssAlignSelf cssAlignSelf;
 	public CssFlexDirection cssFlexDirection;
+	public CssFlexWrap cssFlexWrap;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1168,6 +1170,15 @@ public class Css3Style extends ATSCStyle {
 							new CssFlexDirection(), style, selector);
 		}
 		return cssFlexDirection;
+	}
+
+	public CssFlexWrap getFlexWrap() {
+		if (cssFlexWrap == null) {
+			cssFlexWrap =
+					(CssFlexWrap) style.CascadingOrder(
+							new CssFlexWrap(), style, selector);
+		}
+		return cssFlexWrap;
 	}
 	
 	///
