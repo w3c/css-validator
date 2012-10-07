@@ -11,6 +11,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.atsc.ATSCStyle;
+import org.w3c.css.properties.css.CssAlignContent;
+import org.w3c.css.properties.css.CssAlignItems;
+import org.w3c.css.properties.css.CssAlignSelf;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
@@ -147,6 +150,10 @@ public class Css3Style extends ATSCStyle {
 	public CssTransitionDuration cssTransitionDuration;
 	public CssTransitionProperty cssTransitionProperty;
 	public CssTransitionTimingFunction cssTransitionTimingFunction;
+	
+	public CssAlignContent cssAlignContent;
+	public CssAlignItems cssAlignItems;
+	public CssAlignSelf cssAlignSelf;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1124,7 +1131,33 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssTransition;
 	}
-	
+
+	public CssAlignContent getAlignContent() {
+		if (cssAlignContent == null) {
+			cssAlignContent =
+					(CssAlignContent) style.CascadingOrder(
+							new CssAlignContent(), style, selector);
+		}
+		return cssAlignContent;
+	}
+
+	public CssAlignItems getAlignItems() {
+		if (cssAlignItems == null) {
+			cssAlignItems =
+					(CssAlignItems) style.CascadingOrder(
+							new CssAlignItems(), style, selector);
+		}
+		return cssAlignItems;
+	}
+
+	public CssAlignSelf getAlignSelf() {
+		if (cssAlignSelf == null) {
+			cssAlignSelf =
+					(CssAlignSelf) style.CascadingOrder(
+							new CssAlignSelf(), style, selector);
+		}
+		return cssAlignSelf;
+	}
 	///
 
 	/**
