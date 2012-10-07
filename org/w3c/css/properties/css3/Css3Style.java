@@ -35,6 +35,7 @@ import org.w3c.css.properties.css.CssColumns;
 import org.w3c.css.properties.css.CssFlexDirection;
 import org.w3c.css.properties.css.CssFlexFlow;
 import org.w3c.css.properties.css.CssFlexGrow;
+import org.w3c.css.properties.css.CssFlexShrink;
 import org.w3c.css.properties.css.CssFlexWrap;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
@@ -163,6 +164,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFlexWrap cssFlexWrap;
 	public CssFlexFlow cssFlexFlow;
 	public CssFlexGrow cssFlexGrow;
+	public CssFlexShrink cssFlexShrink;
 	public CssJustifyContent cssJustifyContent;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
@@ -1204,7 +1206,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssFlexGrow;
 	}
-	
+
+	public CssFlexShrink getFlexShrink() {
+		if (cssFlexShrink == null) {
+			cssFlexShrink =
+					(CssFlexShrink) style.CascadingOrder(
+							new CssFlexShrink(), style, selector);
+		}
+		return cssFlexShrink;
+	}
+
 	public CssJustifyContent getJustifyContent() {
 		if (cssJustifyContent == null) {
 			cssJustifyContent =
