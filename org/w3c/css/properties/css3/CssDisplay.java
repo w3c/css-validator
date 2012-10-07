@@ -15,6 +15,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#the-lsquo
+ * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex-containers
  * <p/>
  * TODO do &lt;template&gt; from http://www.w3.org/TR/2010/WD-css3-layout-20100429/#declaring-templates-the-display-property
  */
@@ -31,9 +32,13 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 				"table-caption", "ruby", "ruby-base", "ruby-text",
 				"ruby-base-group", "ruby-text-group", "none"
 		};
-		allowed_values = new CssIdent[DISPLAY.length];
+		String[] FLEX_DISPLAY = {"flex", "inline-flex"};
+		allowed_values = new CssIdent[DISPLAY.length+FLEX_DISPLAY.length];
 		int i = 0;
 		for (String aDISPLAY : DISPLAY) {
+			allowed_values[i++] = CssIdent.getIdent(aDISPLAY);
+		}
+		for(String aDISPLAY : FLEX_DISPLAY) {
 			allowed_values[i++] = CssIdent.getIdent(aDISPLAY);
 		}
 	}
