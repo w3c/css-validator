@@ -47,6 +47,7 @@ import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
+import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
@@ -160,6 +161,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFlexDirection cssFlexDirection;
 	public CssFlexWrap cssFlexWrap;
 	public CssFlexFlow cssFlexFlow;
+	public CssJustifyContent cssJustifyContent;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1191,6 +1193,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssFlexFlow;
 	}
+
+	public CssJustifyContent getJustifyContent() {
+		if (cssJustifyContent == null) {
+			cssJustifyContent =
+					(CssJustifyContent) style.CascadingOrder(
+							new CssJustifyContent(), style, selector);
+		}
+		return cssJustifyContent;
+	}
+	
 	///
 
 	/**
