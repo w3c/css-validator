@@ -5,7 +5,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -34,9 +33,9 @@ public class CssAnimationName extends org.w3c.css.properties.css.CssAnimationNam
 		if (none.equals(ident)) {
 			return none;
 		}
-		if (PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(ident.toString()) == null) {
-			ac.getFrame().addWarning("noexproperty", ident.toString());
-		}
+		// here we are not matching @keyframes to raise a warning
+		// it might be done in findConflict
+		// TODO @keyframe check
 		return ident;
 	}
 
