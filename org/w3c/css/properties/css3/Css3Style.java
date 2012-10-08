@@ -15,6 +15,7 @@ import org.w3c.css.properties.css.CssAlignContent;
 import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
 import org.w3c.css.properties.css.CssAnimationDelay;
+import org.w3c.css.properties.css.CssAnimationDirection;
 import org.w3c.css.properties.css.CssAnimationDuration;
 import org.w3c.css.properties.css.CssAnimationFillMode;
 import org.w3c.css.properties.css.CssAnimationName;
@@ -167,6 +168,7 @@ public class Css3Style extends ATSCStyle {
 	public CssTransitionTimingFunction cssTransitionTimingFunction;
 
 	public CssAnimationDelay cssAnimationDelay;
+	public CssAnimationDirection cssAnimationDirection;
 	public CssAnimationDuration cssAnimationDuration;
 	public CssAnimationFillMode cssAnimationFillMode;
 	public CssAnimationName cssAnimationName;
@@ -1126,6 +1128,15 @@ public class Css3Style extends ATSCStyle {
 		return cssAnimationDelay;
 	}
 
+	public CssAnimationDirection getAnimationDirection() {
+		if (cssAnimationDirection == null) {
+			cssAnimationDirection =
+					(CssAnimationDirection) style.CascadingOrder(
+							new CssAnimationDirection(), style, selector);
+		}
+		return cssAnimationDirection;
+	}
+	
 	public CssAnimationDuration getAnimationDuration() {
 		if (cssAnimationDuration == null) {
 			cssAnimationDuration =
