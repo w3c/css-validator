@@ -22,6 +22,13 @@ public class CssFlexBasis extends org.w3c.css.properties.css.CssFlexBasis {
 
 	public static final CssIdent auto = CssIdent.getIdent("auto");
 
+	public static final CssIdent getAllowedIdent(CssIdent ident) {
+		if (auto.equals(ident)) {
+			return auto;
+		}
+		return null;
+	}
+
 	/**
 	 * Create a new CssFlexBasis
 	 */

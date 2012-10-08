@@ -32,6 +32,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssFlex;
 import org.w3c.css.properties.css.CssFlexBasis;
 import org.w3c.css.properties.css.CssFlexDirection;
 import org.w3c.css.properties.css.CssFlexFlow;
@@ -162,6 +163,7 @@ public class Css3Style extends ATSCStyle {
 	public CssAlignContent cssAlignContent;
 	public CssAlignItems cssAlignItems;
 	public CssAlignSelf cssAlignSelf;
+	public CssFlex cssFlex;
 	public CssFlexBasis cssFlexBasis;
 	public CssFlexDirection cssFlexDirection;
 	public CssFlexWrap cssFlexWrap;
@@ -1173,6 +1175,15 @@ public class Css3Style extends ATSCStyle {
 							new CssAlignSelf(), style, selector);
 		}
 		return cssAlignSelf;
+	}
+
+	public CssFlex getFlex() {
+		if (cssFlex == null) {
+			cssFlex =
+					(CssFlex) style.CascadingOrder(
+							new CssFlex(), style, selector);
+		}
+		return cssFlex;
 	}
 
 	public CssFlexBasis getFlexBasis() {
