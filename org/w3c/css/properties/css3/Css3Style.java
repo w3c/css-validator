@@ -14,6 +14,7 @@ import org.w3c.css.properties.atsc.ATSCStyle;
 import org.w3c.css.properties.css.CssAlignContent;
 import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
+import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
@@ -159,7 +160,9 @@ public class Css3Style extends ATSCStyle {
 	public CssTransitionDuration cssTransitionDuration;
 	public CssTransitionProperty cssTransitionProperty;
 	public CssTransitionTimingFunction cssTransitionTimingFunction;
-	
+
+	public CssAnimationDelay cssAnimationDelay;
+
 	public CssAlignContent cssAlignContent;
 	public CssAlignItems cssAlignItems;
 	public CssAlignSelf cssAlignSelf;
@@ -1102,6 +1105,15 @@ public class Css3Style extends ATSCStyle {
 							new CssTabSize(), style, selector);
 		}
 		return cssTabSize;
+	}
+
+	public CssAnimationDelay getAnimationDelay() {
+		if (cssAnimationDelay == null) {
+			cssAnimationDelay =
+					(CssAnimationDelay) style.CascadingOrder(
+							new CssAnimationDelay(), style, selector);
+		}
+		return cssAnimationDelay;
 	}
 
 	public CssTransitionDelay getTransitionDelay() {
