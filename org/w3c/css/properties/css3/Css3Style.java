@@ -14,6 +14,7 @@ import org.w3c.css.properties.atsc.ATSCStyle;
 import org.w3c.css.properties.css.CssAlignContent;
 import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
+import org.w3c.css.properties.css.CssAnimation;
 import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssAnimationDirection;
 import org.w3c.css.properties.css.CssAnimationDuration;
@@ -168,6 +169,7 @@ public class Css3Style extends ATSCStyle {
 	public CssTransitionProperty cssTransitionProperty;
 	public CssTransitionTimingFunction cssTransitionTimingFunction;
 
+	public CssAnimation cssAnimation;
 	public CssAnimationDelay cssAnimationDelay;
 	public CssAnimationDirection cssAnimationDirection;
 	public CssAnimationDuration cssAnimationDuration;
@@ -1121,6 +1123,15 @@ public class Css3Style extends ATSCStyle {
 		return cssTabSize;
 	}
 
+	public CssAnimation getAnimation() {
+		if (cssAnimation == null) {
+			cssAnimation =
+					(CssAnimation) style.CascadingOrder(
+							new CssAnimation(), style, selector);
+		}
+		return cssAnimation;
+	}
+	
 	public CssAnimationDelay getAnimationDelay() {
 		if (cssAnimationDelay == null) {
 			cssAnimationDelay =
