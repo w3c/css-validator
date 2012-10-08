@@ -75,11 +75,15 @@ public class CssAnimationFillMode extends org.w3c.css.properties.css.CssAnimatio
 						singleVal = true;
 						sValue = inherit;
 						values.add(inherit);
+						break;
 					} else {
 						CssIdent ident = getAllowedIdent((CssIdent) val);
-						values.add(ident);
+						if (ident != null) {
+							values.add(ident);
+							break;
+						}
 					}
-					break;
+					// let it fail
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),

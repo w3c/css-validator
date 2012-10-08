@@ -75,11 +75,15 @@ public class CssAnimationPlayState extends org.w3c.css.properties.css.CssAnimati
 						singleVal = true;
 						sValue = inherit;
 						values.add(inherit);
+						break;
 					} else {
 						CssIdent ident = getAllowedIdent((CssIdent) val);
-						values.add(ident);
+						if (ident != null) {
+							values.add(ident);
+							break;
+						}
 					}
-					break;
+					// let if fail
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),
