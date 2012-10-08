@@ -186,6 +186,11 @@ warning.unsupported-import: En mode «chargement de fichier» et «saisie direct
 warning.out-of-range: %s est hors-limites
 error.invalid-color: Cette fonction RVB est invalide
 
+# used for clipping negative values
+warning.negative: La valeur négative %s sera considérée comme étant 0
+
+warning.noexproperty: La propriété %s n'existe pas
+
 warning.marker: La propriété "marker-offset" ne s'applique que sur des\
  éléments contenant 'display: marker'
 
@@ -280,6 +285,12 @@ error.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nom
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s n'est pas valide, seules les valeurs strictement supérieures à zéro sont autorisées.
+
+error.lowerequal: %s n'est pas valide, seules les valeurs inférieures ou égales à %s sont autorisées.
+error.lower: %s n'est pas valide, seules les valeurs strictement inférieures à %s sont autorisées.
+
+error.greaterequal: %s n'est pas valide, seules les valeurs supérieures ou égales à %s sont autorisées.
+error.greater: %s n'est pas valide, seules les valeurs strictement supérieures à %s sont autorisées.
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Erreur inconnue
