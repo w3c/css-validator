@@ -16,6 +16,7 @@ import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
 import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssAnimationDuration;
+import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
@@ -165,6 +166,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssAnimationDelay cssAnimationDelay;
 	public CssAnimationDuration cssAnimationDuration;
+	public CssAnimationName cssAnimationName;
 	public CssAnimationTimingFunction cssAnimationTimingFunction;
 	
 	public CssAlignContent cssAlignContent;
@@ -1127,6 +1129,15 @@ public class Css3Style extends ATSCStyle {
 							new CssAnimationDuration(), style, selector);
 		}
 		return cssAnimationDuration;
+	}
+
+	public CssAnimationName getAnimationName() {
+		if (cssAnimationName == null) {
+			cssAnimationName =
+					(CssAnimationName) style.CascadingOrder(
+							new CssAnimationName(), style, selector);
+		}
+		return cssAnimationName;
 	}
 
 	public CssAnimationTimingFunction getAnimationTimingFunction() {
