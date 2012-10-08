@@ -18,6 +18,7 @@ import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssAnimationDirection;
 import org.w3c.css.properties.css.CssAnimationDuration;
 import org.w3c.css.properties.css.CssAnimationFillMode;
+import org.w3c.css.properties.css.CssAnimationIterationCount;
 import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
@@ -171,6 +172,7 @@ public class Css3Style extends ATSCStyle {
 	public CssAnimationDirection cssAnimationDirection;
 	public CssAnimationDuration cssAnimationDuration;
 	public CssAnimationFillMode cssAnimationFillMode;
+	public CssAnimationIterationCount cssAnimationIterationCount;
 	public CssAnimationName cssAnimationName;
 	public CssAnimationPlayState cssAnimationPlayState;
 	public CssAnimationTimingFunction cssAnimationTimingFunction;
@@ -1146,6 +1148,15 @@ public class Css3Style extends ATSCStyle {
 		return cssAnimationDuration;
 	}
 
+	public CssAnimationIterationCount getAnimationIterationCount() {
+		if (cssAnimationIterationCount == null) {
+			cssAnimationIterationCount =
+					(CssAnimationIterationCount) style.CascadingOrder(
+							new CssAnimationIterationCount(), style, selector);
+		}
+		return cssAnimationIterationCount;
+	}
+	
 	public CssAnimationName getAnimationName() {
 		if (cssAnimationName == null) {
 			cssAnimationName =
