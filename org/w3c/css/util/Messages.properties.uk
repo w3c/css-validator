@@ -343,7 +343,6 @@ warning.atsc: %s може не підтримуватися пристроєм a
 error.onlyATSC: %s ця функція використовується лише у середовищі atsc-tv
 
 warning.otherprofile: властивість %s не існує для даного профілю, але вона перевіряється у відповідності з іншим профілем
-warning.deprecated: це значення є небажаним
 
 warning.float-no-width: У (x)HTML+CSS рухомі елементи повинні мати оголошену ширину. Це не розповсюджується лише на елементи з вбудованою шириною (html, img, input, textarea, select, або object)
 parser.charsetcss1: @charset правила не можуть бути використані у CSS1

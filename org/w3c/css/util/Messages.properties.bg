@@ -365,7 +365,6 @@ warning.atsc: %s е възможно да не се поддържа от мед
 error.onlyATSC: %s тази функция е само за медия atsc-tv
 
 warning.otherprofile: свойство %s не съществува за този профил, но е валидно за друг профил
-warning.deprecated: тази стойност вече не се използва
 
 warning.float-no-width: В (x)HTML+CSS, елементите използващи float трябва да имат декларирана ширина. Само елементи с онаследена ширинаю (html, img, input, textarea, select или object) не се влияят
 

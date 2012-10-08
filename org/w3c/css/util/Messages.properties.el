@@ -362,7 +362,6 @@ warning.atsc: Το %s μπορεί να μην υποστηρίζεται από
 error.onlyATSC: %s η λειτουργία αυτή υποστηρίζεται μόνο για το μέσο atsc-tv
 
 warning.otherprofile: η ιδιότητα %s δεν υπάρχει σ' αυτό το προφίλ, αλλά μπορεί να ελεγχθεί η εγκυρότητα του με βάση ένα άλλο προφίλ
-warning.deprecated: η τιμή αυτή αποδοκιμάζεται
 
 warning.float-no-width: Στο (x)HTML+CSS, τα πλωτά στοιχεία (floated elements) χρειάζεται να έχουν ορισμένο πλάτος. Μόνο τα στοιχεία με φυσικό πλάτος δεν επηρεάζονται (html, img, input, textarea, select, ή object)
 

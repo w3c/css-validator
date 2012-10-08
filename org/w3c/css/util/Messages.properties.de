@@ -355,7 +355,6 @@ warning.vendor-extension: Die Eigenschaft %s ist eine unbekannte Erweiterung des
 error.unrecognized.link: Nicht erkanntes Linkelement oder xml-stylesheet PI.
 
 warning.otherprofile : Die Eigenschaft %s existiert in der angegebenen Version von CSS nicht, ist aber in einer anderen Version vorhanden und valide 
-warning.deprecated : Dieser Wert ist abgelehnt
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: Die Kombination %s von Selektoren ist in diesem Profil oder dieser Version nicht erlaubt.

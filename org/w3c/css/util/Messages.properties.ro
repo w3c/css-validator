@@ -354,7 +354,6 @@ warning.atsc: %s s-ar putea sa nu fie suportat de mediul atsc-tv
 error.onlyATSC: %s este o functie doar pentru mediul atsc-tv 
 
 warning.otherprofile: proprietatea %s nu exista pentru acest profil, dar este validatat conform unui alt profil
-warning.deprecated: Valoarea este critica
 
 warning.float-no-width: In (x)HTML+CSS, elemetele flotante trebuie sa ai o latime declarata. Numai elementele cu latime intrinseca (html, img, input, textarea, select, or object) nu sunt afectate
 

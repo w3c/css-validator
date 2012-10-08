@@ -340,7 +340,6 @@ error.onlyATSC: %s この関数は atsc-tv メディアでしか利用できま�
 warning.atsc: %s は atsc-tv メディアでサポートされていない可能性があります
 error.percentage: パーセンテージ値が必要です
 error.unknown: 不明なエラー
-warning.deprecated: この値は廃止されました
 warning.direction: ブロックレベル要素には'direction'ではなく新しいCSS3の'writing-mode'プロパティを用いてください
 warning.medialist:  メディアリストは 'media :' %s で始まるべきです
 warning.noothermedium: 他のメディア用のプロパティは usermedium では動作しない可能性があります

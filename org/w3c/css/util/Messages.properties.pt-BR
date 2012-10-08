@@ -366,7 +366,6 @@ warning.atsc: %s pode não ser suportada pela mídia atsc-tv
 error.onlyATSC: %s esta função é exclusiva para a mídia atsc-tv
 
 warning.otherprofile: A propriedade %s não existe nesse perfil, mas valida em outro perfil.
-warning.deprecated: este valor está em desuso
 parser.unknown-dimension: Dimensão desconhecida
 generator.dontmixhtml: Erro de parseamento. Sintaxe HTML não é permitida em folhas de estilo
 

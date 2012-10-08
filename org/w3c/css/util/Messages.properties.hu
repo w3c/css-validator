@@ -357,7 +357,6 @@ warning.atsc: %s nem biztos, hogy támogatottt az atsc-tv médiumon
 error.onlyATSC: %s this function is only for the atsc-tv medium
 
 warning.otherprofile: A(z) %s tulajdonság nem létezik ehhez a profilhoz, de egy másik profilnak megfelelően érvényesítve lesz
-warning.deprecated: ezt az értéket nem javasoljuk
 
 warning.float-no-width: A (x)HTML+CSS-ben, a lebegő elemek szélességét deklarálni kell. Csak valódi szélességgel rendelkező elemek (html, img, input, textarea, select, or object) nincsenek érintve
 

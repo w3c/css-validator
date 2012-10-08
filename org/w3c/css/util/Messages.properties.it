@@ -359,7 +359,6 @@ warning.atsc : %s potrebbe non essere supportato dal medium atsc-tv
 error.onlyATSC : %s questa funzione è valida solo per il medium atsc-tv
 
 warning.otherprofile : la proprietà %s non esiste per questo profilo, ma viene validata in conformità ad un altro profilo 
-warning.deprecated : questo valore è deprecato
 error.unknown: Errore sconosciuto
 
 warning.float-no-width: Nel (x)HTML+CSS, gli elementi con proprietà float hanno bisogno che la loro larghezza venga dichiarata. Soltanto gli elementi con una larghezza intrinseca (html, img, input, textarea, select, o object) non presentano questo problema

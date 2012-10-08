@@ -358,7 +358,6 @@ warning.atsc : %s podría no ser compatible con el medio atsc-tv
 error.onlyATSC : %s esta función es sólo para el medio atsc-tv
 
 warning.otherprofile : la propiedad %s no existe en este perfil, pero es válida conforme a otro perfil
-warning.deprecated : este valor está desaprobado
 
 #used by org.w3c.css.parser.analyzer.CssParser
 error.nocomb: La combinación %s entre selectores no está permitida en este perfil o versión

@@ -368,7 +368,6 @@ error.onlyATSC: %s 该函式只能在 atsc-tv 媒介中使用
 
 
 warning.otherprofile: 属性 %s 不存在于该配置中, 但在另一个配置中有效
-warning.deprecated: 该值已作废
 
 warning.float-no-width: 在 (x)HTML+CSS 框架下，浮动元素需要声明宽度。具有固有宽度的元素 (html, img, input, textarea, select 或 object) 不受影响
 parser.charsetcss1: @charset 条件不能在 CSS1 中使用
