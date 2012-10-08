@@ -16,6 +16,7 @@ import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
 import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssAnimationDuration;
+import org.w3c.css.properties.css.CssAnimationFillMode;
 import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
@@ -167,10 +168,11 @@ public class Css3Style extends ATSCStyle {
 
 	public CssAnimationDelay cssAnimationDelay;
 	public CssAnimationDuration cssAnimationDuration;
+	public CssAnimationFillMode cssAnimationFillMode;
 	public CssAnimationName cssAnimationName;
 	public CssAnimationPlayState cssAnimationPlayState;
 	public CssAnimationTimingFunction cssAnimationTimingFunction;
-	
+
 	public CssAlignContent cssAlignContent;
 	public CssAlignItems cssAlignItems;
 	public CssAlignSelf cssAlignSelf;
@@ -183,7 +185,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFlexShrink cssFlexShrink;
 	public CssJustifyContent cssJustifyContent;
 	public CssOrder cssOrder;
-	
+
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
 	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -1087,7 +1089,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssTextEmphasisPosition;
 	}
-	
+
 	public CssTextEmphasisStyle getTextEmphasisStyle() {
 		if (cssTextEmphasisStyle == null) {
 			cssTextEmphasisStyle =
@@ -1150,7 +1152,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssAnimationPlayState;
 	}
-	
+
+	public CssAnimationFillMode getAnimationFillMode() {
+		if (cssAnimationFillMode == null) {
+			cssAnimationFillMode =
+					(CssAnimationFillMode) style.CascadingOrder(
+							new CssAnimationFillMode(), style, selector);
+		}
+		return cssAnimationFillMode;
+	}
+
 	public CssAnimationTimingFunction getAnimationTimingFunction() {
 		if (cssAnimationTimingFunction == null) {
 			cssAnimationTimingFunction =
@@ -1250,7 +1261,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssFlexBasis;
 	}
-	
+
 	public CssFlexDirection getFlexDirection() {
 		if (cssFlexDirection == null) {
 			cssFlexDirection =
@@ -1313,7 +1324,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssOrder;
 	}
-	
+
 	///
 
 	/**
