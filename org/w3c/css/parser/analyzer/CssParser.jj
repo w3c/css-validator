@@ -1136,12 +1136,23 @@ CssSelectors keyframe_selector(CssSelectors next) :
 { CssSelectors selector = new CssSelectors(ac, next);
     selector.setAtRule(getAtRule());
     Token n;
+    Token op = null;
 }
 {
     try {
     ( n=<IDENT> {
-      selector.addType(new TypeSelector(convertIdent(n.image)));
-    } | n=<PERCENTAGE> {
+      CssIdent ident = new CssIdent();
+      ident.set(convertIdent(n.image), ac);
+      AtRuleKeyframes.checkSelectorValue(ident, ac);
+      selector.addType(new TypeSelector(ident.toString()));
+    } | ( op=<PLUS> | op="-" )? n=<PERCENTAGE> {
+      CssPercentage p = new CssPercentage();
+      if (op == null) {
+        p.set(n.image, ac);
+      } else {
+        p.set(op.image+n.image, ac);
+      }
+      AtRuleKeyframes.checkSelectorValue(p, ac);
       selector.addType(new TypeSelector(n.image));
     } )  ( <S> )*
 	{
@@ -1220,25 +1231,27 @@ void keyframes() :
     } )*
       <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* {
       	validSelector = (sl.size() != 0);
-        if (v == null) {
-          ac.getFrame().addWarning("no-declaration");
-        } else {
-          boolean first = true;
-          for (CssSelectors _s : sl) {
-            if (first) {
-               handleRule(_s, v);
-               first = false;
-            } else {
-               ArrayList<CssProperty> vcopy = new ArrayList<CssProperty>(v.size());
-               for (CssProperty p : v) {
-                 vcopy.add(p.duplicate());
-               }
-               handleRule(_s, vcopy);
+        if (validSelector) {
+          if (v == null) {
+            ac.getFrame().addWarning("no-declaration");
+          } else {
+            boolean first = true;
+            for (CssSelectors _s : sl) {
+              if (first) {
+                 handleRule(_s, v);
+                 first = false;
+              } else {
+                 ArrayList<CssProperty> vcopy = new ArrayList<CssProperty>(v.size());
+                 for (CssProperty p : v) {
+                   vcopy.add(p.duplicate());
+                 }
+                 handleRule(_s, vcopy);
+              }
             }
           }
+          setSelectorList(sl);
+          endOfRule();
         }
-        setSelectorList(sl);
-        endOfRule();
     }
     )* <RBRACE> ( <S> )*  {
         endOfAtRule();
@@ -2261,6 +2274,7 @@ CssExpression expression() :
     ( ( <PLUS> { operator = '+' ; } 
 	| <MINUS> { operator = '-'; }
 	| n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+	| n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n, PERCENTAGE); }
 	// FIXME dimen should be a CssDimension()
 	| n=<DIMEN> { setValue(new CssIdent(), exp, operator, n, IDENT); } 
 	| n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); } 
