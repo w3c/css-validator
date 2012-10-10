@@ -642,11 +642,15 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG  : "lang(" >
-    | <FUNCTIONNOT  : ":not(" >
-    | <FUNCTIONCALC : "calc(" >
-    | <FUNCTIONATTR : "attr(" >
+    < FUNCTIONLANG : "lang(" >
 }
+
+<DEFAULT>
+TOKEN [IGNORE_CASE] :
+{
+    < FUNCTIONNOT : ":not(" >
+}
+
 
 <DEFAULT>
     TOKEN :
@@ -2410,91 +2414,6 @@ void mediaterm(CssExpression exp) :
 				UNICODERANGE); }
     ) ( <S> )* )
 }
-
-CssCheckableValue mathcalc() :
-{
-CssCheckableValue v;
-}
-{
-  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* ")" ) {
-    return v;
-  }
-}
-
-CssCheckableValue mathsum() :
-{ Token n,o;
-  CssCheckableValue v1 = null;
-  CssCheckableValue v2 = null;
-}
-{   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() ( LOOKAHEAD(1) ( <S> )+ ( o="+" | o="-" ) ( <S> )+ v2=mathproduct() {
-                      // TODO add stuff, type checking etc...
-                     }
-                    )*
- ) { return v1; }
-}
-
-
-CssCheckableValue mathproduct() :
-{ Token n,o;
-  CssCheckableValue v1 = null;
-  CssCheckableValue v2 = null;
-}
-{
-
- ( v1=mathunit()  ( LOOKAHEAD(1) ( <S> )* (  ( o="*" ( <S> )* v2=mathunit() )
-                             | ( o="/" ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
-                          ) { /* TODO check */
-                              if ("/".equals(o.image)) {
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  if (BigDecimal.ZERO.equals(d)) {
-                                  // TODO throw divided by zero error
-                                  }
-                                  p.divide(d);
-                                  v1.setValue(p);
-                              } else {
-                                  if ((v1.getType() != CssTypes.CSS_NUMBER) &&
-                                      (v2.getType() != CssTypes.CSS_NUMBER)) {
-                                  // TODO one operand must be a number
-                                  }
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  p.multiply(d);
-                                  if (v1.getType() == CssTypes.CSS_NUMBER) {
-                                     v2.setValue(p);
-                                     v1 = v2;
-                                  } else {
-                                     v1.setValue(p);
-                                  }
-                              }
-                          }
-                  )*
- ) { return v1; }
-}
-
-CssCheckableValue mathunit() :
-{ Token n;
-CssCheckableValue v = null;
-}
-{
-( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
- | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
-     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
-     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
-     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
-     | ( "(" ( <S> )* v=mathsum() ( <S> )* ")" )
-     | v=mathcalc()
-   // | v=attr()
-     ) {
-     return v;
-     }
-}
-
-
 /**
  * @exception ParseException exception during the parse
  */
