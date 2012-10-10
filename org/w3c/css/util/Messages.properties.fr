@@ -427,3 +427,7 @@ error.nomediafeature: Les propriétés de media ne sont pas définies dans ce ni
 error.nomodifiershortmedia: Les préfixes sont interdits pour les propriétés de media n'ayant pas de valeur
 error.nomodifiermedia: La propriété de media %s n'autorise pas l'utilisation de préfixes
 error.grid: Seuls 0 et 1 sont des valeurs possibles pour 'grid'
+
+error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
+error.errortoken: Contenu inattendu "%s" ligne %s, le type de valeur attendu était parmi: %s (%s à été ignoré)
+

@@ -403,3 +403,5 @@ error.nomediafeature: Media features are not defined in this CSS level
 error.nomodifiershortmedia: No prefixes are allowed for media features with no value
 error.nomodifiermedia: The media feature %s does not support prefixes
 error.grid: Only 0 and 1 are acceptable values for grid
+
+error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
