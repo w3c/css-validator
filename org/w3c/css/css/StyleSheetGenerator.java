@@ -285,7 +285,7 @@ public class StyleSheetGenerator extends StyleReport {
                     } else if (ex instanceof CssParseException) {
                         produceParseException((CssParseException) ex, h);
                     } else if (ex instanceof InvalidParamException) {
-                        h.put("ClassName", "invalidparam");
+						h.put("ClassName", "invalidparam");
                     } else if (ex instanceof IOException) {
                         String stringError = ex.toString();
                         // int index = stringError.indexOf(':');
@@ -303,12 +303,39 @@ public class StyleSheetGenerator extends StyleReport {
                         h.put("ClassName", "io");
 
                     } else if (csserror instanceof CssErrorToken) {
-                        CssErrorToken terror = (CssErrorToken) csserror;
+						CssErrorToken terror = (CssErrorToken) csserror;
                         h.put("ClassName", "errortoken");
-                        h.put("ErrorMsg", terror.getErrorDescription() + " : "
-                                + terror.getSkippedString());
+						String str = ac.getMsg().getErrorString("errortoken");
+						if (str == null) {
+							str="Parse Error %s";
+						}
+						String[] params = new String[4];
+						params[0] = terror.getErrorToken();
+						params[1] = Integer.toString(terror.getLine());
+						StringBuilder sb = new StringBuilder();
+						boolean notfirst = false;
+						for (String t : terror.getExpected()) {
+							if (notfirst) {
+								sb.append(", ");
+							}
+							sb.append(t);
+						}
+						params[2] = sb.toString();
+						params[3] = terror.getSkippedString();
+						// replace all parameters
+						String[] msg_parts = str.split("%s", -1);
+						int j = 0;
+						sb.setLength(0);
+						sb.append(msg_parts[0]);
+						for (int k = 1; k < msg_parts.length; k++) {
+							if (j < params.length) {
+								sb.append(params[j++]);
+							}
+							sb.append(msg_parts[k]);
+						}
+                        h.put("ErrorMsg", queryReplace(sb.toString()));
                     } else {
-                        h.put("ClassName", "unkownerror");
+						h.put("ClassName", "unkownerror");
                         h.put("ErrorMsg", ac.getMsg().getErrorString("unknown")
                                 + " " + ex);
                         if (ex instanceof NullPointerException) {
