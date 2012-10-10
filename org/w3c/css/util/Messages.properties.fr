@@ -430,4 +430,5 @@ error.grid: Seuls 0 et 1 sont des valeurs possibles pour 'grid'
 
 error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
 error.errortoken: Contenu inattendu "%s" ligne %s, le type de valeur attendu était parmi: %s (%s à été ignoré)
+error.selectorname: Selecteur invalide %s
 

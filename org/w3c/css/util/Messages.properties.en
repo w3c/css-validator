@@ -405,3 +405,4 @@ error.nomodifiermedia: The media feature %s does not support prefixes
 error.grid: Only 0 and 1 are acceptable values for grid
 
 error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
+error.selectorname: Invalid selector name %s
