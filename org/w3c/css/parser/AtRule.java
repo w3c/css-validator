@@ -11,27 +11,31 @@
 package org.w3c.css.parser;
 
 /**
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public abstract class AtRule {
 
-    /**
-     * Returns the at rule keyword
-     */
-    public abstract String keyword();
+	/**
+	 * Returns the at rule keyword
+	 */
+	public abstract String keyword();
 
-    /**
-     * The second must be exactly the same of this one
-     */
-    public abstract boolean canApply(AtRule atRule);
+	/**
+	 * The second must be exactly the same of this one
+	 */
+	public abstract boolean canApply(AtRule atRule);
 
-    /**
-     * The second must only match this one
-     */
-    public abstract boolean canMatch(AtRule atRule);
+	/**
+	 * The second must only match this one
+	 */
+	public abstract boolean canMatch(AtRule atRule);
 
-    public boolean isEmpty() {
-	return false;
-    }
+	public boolean isEmpty() {
+		return false;
+	}
+
+	public String lookupPrefix() {
+		return keyword();
+	}
 }

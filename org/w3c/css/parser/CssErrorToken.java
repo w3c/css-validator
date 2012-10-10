@@ -7,83 +7,73 @@
 
 package org.w3c.css.parser;
 
-import java.util.Vector;
+import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.analyzer.Token;
+
+import java.util.ArrayList;
 
 /**
  * @version $Revision$
  */
 public class CssErrorToken extends CssError {
 
-  /**
-   * The list of context when the error appears
-   */
-  Vector context;
+	/**
+	 * the property name
+	 */
+	String property;
 
-  /**
-   * the property name
-   */
-  String property;
+	/**
+	 * the expected text
+	 */
+	String[] expectedTokens;
 
-  /**
-   * the string description of the error
-   */
-  String errorString;
+	/**
+	 * the token in error
+	 */
+	String errorToken;
+	/**
+	 * the skipped text
+	 */
+	String skippedString;
 
-  /**
-   * the expected text
-   */
-  String[] expectedTokens;
+	public CssErrorToken(ParseException ex, String skippedString) {
+		Token errtoken = ex.currentToken;
+		this.skippedString = skippedString;
+		line = errtoken.next.beginLine;
+		ArrayList<String> expected = new ArrayList<String>();
+		for (int[] idx : ex.expectedTokenSequences) {
+			if (idx.length > 0) {
+				expected.add(ex.tokenImage[idx[0]]);
+			}
+		}
+		expectedTokens = new String[expected.size()];
+		expectedTokens = expected.toArray(expectedTokens);
+		errorToken =  errtoken.next.image;
+		error = ex;
+	}
 
-  /**
-   * the skipped text
-   */
-  String skippedString;
+	/**
+	 * Get the name of the property.
+	 */
+	public String getPropertyName() {
+		return property;
+	}
 
-  /**
-   * Create a new CssErrorToken.
-   *
-   * @param lin      The line number
-   * @param error    The string description of the error
-   * @param expected The expected text
-   */
-  CssErrorToken(int lin, String error, String[] expected) {
-    line = lin;
-    errorString = error;
-    expectedTokens = expected;
-  }
+	/**
+	 * Get the expected text.
+	 */
+	public String[] getExpected() {
+		return expectedTokens;
+	}
 
-  /**
-   * Get contexts
-   */
-  public Vector getContexts() {
-    return context;
-  }
+	/**
+	 * Get the skipped text.
+	 */
+	public String getSkippedString() {
+		return skippedString;
+	}
 
-  /**
-   * Get the name of the property.
-   */
-  public String getPropertyName() {
-    return property;
-  }
-
-  /**
-   * Get the string description of the error.
-   */
-  public String getErrorDescription() {
-    return errorString;
-  }
-
-  /**
-   * Get the expected text.
-   */
-  public String[] getExpected() {
-    return expectedTokens;
-  }
-
-  /**
-   * Get the skipped text.
-   */
-  public String getSkippedString() {
-    return skippedString;
-  }
+	public String getErrorToken() {
+		return errorToken;
+	}
 }

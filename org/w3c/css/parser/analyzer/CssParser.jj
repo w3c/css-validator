@@ -51,12 +51,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.parser.Frame;
 import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.media.AtRuleMedia;
 import org.w3c.css.media.MediaFeature;
 import org.w3c.css.parser.AtRuleFontFace;
+import org.w3c.css.parser.AtRuleKeyframes;
 import org.w3c.css.parser.AtRulePage;
 import org.w3c.css.parser.AtRulePreference;
 import org.w3c.css.parser.AtRulePhoneticAlphabet;
@@ -420,6 +422,15 @@ public abstract class CssParser {
 	ac.getFrame().addError(error);
 	//	}
     }
+
+    private void addParseError(ParseException e, String skipped) {
+          if (Util.onDebug) {
+              System.err.println(e.getMessage());
+              e.printStackTrace();
+          }
+          CssErrorToken err = new CssErrorToken(e, skipped);
+          ac.getFrame().addError(err);
+    }
 }
 
 PARSER_END(CssParser)
@@ -540,7 +551,6 @@ TOKEN [IGNORE_CASE] :
   < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* ")" >
 }
 
-
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
@@ -594,6 +604,7 @@ TOKEN [IGNORE_CASE] :
   | < MEDIA_SYM             : "@media" >
   | < PAGE_SYM              : "@page"  >
   | < FONT_FACE_SYM         : "@font-face" >
+  | < KEYFRAMES_SYM         : "@keyframes" >
   | < PREF_SYM              : "@preference" >
   | < COLOR_PROFILE         : "@color-profile" >
   | < ATTOP	                : "@top" >
@@ -631,15 +642,11 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG : "lang(" >
+    < FUNCTIONLANG  : "lang(" >
+    | <FUNCTIONNOT  : ":not(" >
+    | <FUNCTIONCALC : "calc(" >
+    | <FUNCTIONATTR : "attr(" >
 }
-
-<DEFAULT>
-TOKEN [IGNORE_CASE] :
-{
-    < FUNCTIONNOT : ":not(" >
-}
-
 
 <DEFAULT>
     TOKEN :
@@ -768,7 +775,7 @@ void charset() :
 void afterImportDeclaration() :
 {String ret; }
 {
-    ( ( ruleSet() | media() | page() | fontFace() | preference() | 
+    ( ( ruleSet() | media() | page() | fontFace() | keyframes() | preference() |
 	colorprofile() | phoneticAlphabet() | ret=skipStatement() 
 	{ if ((ret == null) || (ret.length() == 0)) {
 		return; 
@@ -1118,6 +1125,127 @@ void pseudo_page(AtRulePage page) :
     }
 }
 
+/**
+ * @exception ParseException exception during the parse
+ */
+CssSelectors keyframe_selector(CssSelectors next) :
+{ CssSelectors selector = new CssSelectors(ac, next);
+    selector.setAtRule(getAtRule());
+    Token n;
+}
+{
+    try {
+    ( n=<IDENT> {
+      selector.addType(new TypeSelector(convertIdent(n.image)));
+    } | n=<PERCENTAGE> {
+      selector.addType(new TypeSelector(n.image));
+    } )  ( <S> )*
+	{
+	    return selector;
+	}
+	} catch (InvalidParamException ie) {
+      	ac.getFrame().addError(new CssError(ie));
+      	Token t = getToken(1);
+      	StringBuilder s = new StringBuilder();
+      	s.append(getToken(0).image);
+      	// eat until , { or EOF
+      	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+      	    s.append(t.image);
+      	    getNextToken();
+      	    t = getToken(1);
+      	}
+      	return null;
+    } catch (ParseException e) {
+       // TODO fix the error
+      	Token t = getToken(1);
+      	int _line = t.beginLine;
+      	int _col  = t.beginColumn;
+      	StringBuilder s = new StringBuilder();
+      	s.append(" [");
+      	s.append(getToken(0).image);
+      	// eat until , { or EOF
+      	while ((t.kind != COMMA) && (t.kind != LBRACE) && (t.kind != EOF)) {
+      	    s.append(t.image);
+      	    getNextToken();
+      	    t = getToken(1);
+      	}
+      	s.append(']');
+      	addParseError(e, s.toString());
+      	validSelector = true;
+      	return null;
+     }
+}
+
+
+void keyframes() :
+{
+  Token n;
+  ArrayList<CssProperty> v;
+  AtRule old = getAtRule();
+  AtRuleKeyframes krule = new AtRuleKeyframes("-internal-");
+  setAtRule(krule);
+  CssSelectors s;
+  ArrayList<CssSelectors> sl;
+  CssVersion version = ac.getCssVersion();
+}
+{
+  try {
+    <KEYFRAMES_SYM> ( <S> )+ n=<IDENT> ( <S> )* {
+      krule.setName(convertIdent(n.image));
+      if (version.compareTo(CssVersion.CSS3) < 0) {
+        skipStatement();
+        addError(new InvalidParamException("noatruleyet", "", ac),
+    			     getAtRule().toString());
+      } else {
+        newAtRule(getAtRule());
+      }
+    }
+    <LBRACE> ( <S> )*
+    ( s=keyframe_selector(null) {
+        sl = new ArrayList<CssSelectors>();
+        if (s != null) {
+          s.setAtRule(getAtRule());
+          sl.add(s);
+        }
+    }
+    ( <COMMA> ( <S> )* s=keyframe_selector(null) {
+       if (s != null) {
+         s.setAtRule(getAtRule());
+         sl.add(s);
+       }
+    } )*
+      <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* {
+      	validSelector = (sl.size() != 0);
+        if (v == null) {
+          ac.getFrame().addWarning("no-declaration");
+        } else {
+          boolean first = true;
+          for (CssSelectors _s : sl) {
+            if (first) {
+               handleRule(_s, v);
+               first = false;
+            } else {
+               ArrayList<CssProperty> vcopy = new ArrayList<CssProperty>(v.size());
+               for (CssProperty p : v) {
+                 vcopy.add(p.duplicate());
+               }
+               handleRule(_s, vcopy);
+            }
+          }
+        }
+        setSelectorList(sl);
+        endOfRule();
+    }
+    )* <RBRACE> ( <S> )*  {
+        endOfAtRule();
+    }
+  } catch (ParseException e) {
+    addError(e, skipStatement());
+  } finally {
+    setAtRule(old);
+  }
+}
+
 void fontFace() :
 {
     ArrayList<CssProperty> v;
@@ -1399,10 +1527,7 @@ void ruleSet() :
 			} else {*/
 		if (value_set != null) {
 		    boolean first = true;
-		    CssSelectors sel = null;
-                    Iterator<CssSelectors> e = context_set.iterator();
-		    while (e.hasNext()) {
-			sel = e.next();
+                    for (CssSelectors sel : context_set) {
 			if (first) {
 			    handleRule(sel, value_set);
 			    first = false;
@@ -1412,9 +1537,9 @@ void ruleSet() :
 			    // badly with conflict detection
 			    int vsize = value_set.size();
 			    ArrayList<CssProperty> v = new ArrayList<CssProperty>(vsize);
-			    for (int i=0; i<vsize; i++) {
-				v.add(value_set.get(i).duplicate());
-			    }
+                            for (CssProperty p : value_set) {
+			        v.add(p.duplicate());
+        		    }
 			    handleRule(sel, v);
 			}
 		    }
@@ -1425,7 +1550,7 @@ void ruleSet() :
 	    }
     } catch (ParseException e) {
     if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
-		addError(e, skipStatement()); 
+		addError(e, skipStatement());
 	}
     } catch (TokenMgrError e) {
 	addError(new ParseException(e.getMessage()), skipStatement());
@@ -2285,6 +2410,91 @@ void mediaterm(CssExpression exp) :
 				UNICODERANGE); }
     ) ( <S> )* )
 }
+
+CssCheckableValue mathcalc() :
+{
+CssCheckableValue v;
+}
+{
+  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* ")" ) {
+    return v;
+  }
+}
+
+CssCheckableValue mathsum() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+}
+{   // product [ S+ [ "+" | "-" ] S+ product ]*;
+   ( v1=mathproduct() ( LOOKAHEAD(1) ( <S> )+ ( o="+" | o="-" ) ( <S> )+ v2=mathproduct() {
+                      // TODO add stuff, type checking etc...
+                     }
+                    )*
+ ) { return v1; }
+}
+
+
+CssCheckableValue mathproduct() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+}
+{
+
+ ( v1=mathunit()  ( LOOKAHEAD(1) ( <S> )* (  ( o="*" ( <S> )* v2=mathunit() )
+                             | ( o="/" ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
+                          ) { /* TODO check */
+                              if ("/".equals(o.image)) {
+                                  BigDecimal p = (BigDecimal) v1.get();
+                                  BigDecimal d = (BigDecimal) v2.get();
+                                  if (BigDecimal.ZERO.equals(d)) {
+                                  // TODO throw divided by zero error
+                                  }
+                                  p.divide(d);
+                                  v1.setValue(p);
+                              } else {
+                                  if ((v1.getType() != CssTypes.CSS_NUMBER) &&
+                                      (v2.getType() != CssTypes.CSS_NUMBER)) {
+                                  // TODO one operand must be a number
+                                  }
+                                  BigDecimal p = (BigDecimal) v1.get();
+                                  BigDecimal d = (BigDecimal) v2.get();
+                                  p.multiply(d);
+                                  if (v1.getType() == CssTypes.CSS_NUMBER) {
+                                     v2.setValue(p);
+                                     v1 = v2;
+                                  } else {
+                                     v1.setValue(p);
+                                  }
+                              }
+                          }
+                  )*
+ ) { return v1; }
+}
+
+CssCheckableValue mathunit() :
+{ Token n;
+CssCheckableValue v = null;
+}
+{
+( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
+ | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
+     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
+     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
+     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
+     | ( "(" ( <S> )* v=mathsum() ( <S> )* ")" )
+     | v=mathcalc()
+   // | v=attr()
+     ) {
+     return v;
+     }
+}
+
+
 /**
  * @exception ParseException exception during the parse
  */

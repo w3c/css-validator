@@ -256,7 +256,9 @@ public class CssPropertyFactory implements Cloneable {
 
 	private String setClassName(AtRule atRule, String media, ApplContext ac, String property) {
 		String className;
-		if (atRule instanceof AtRuleMedia) {
+		String prefix = atRule.lookupPrefix();
+
+		if (prefix.isEmpty() || (atRule instanceof AtRuleMedia)) {
 			className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
 			// a list of media has been specified
 			if (className != null && media != null && !media.equals("all")) {
