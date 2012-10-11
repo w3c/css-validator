@@ -56,7 +56,7 @@ public class CssMinWidth extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "left";
+        return "min-width";
     }
 
     /**
