@@ -121,12 +121,6 @@ public class Css1Style extends CssStyle {
 	public CssWidthMob cssWidthMob;
 
 	/**
-	 * max-height property
-	 */
-	public CssMaxHeight cssMaxHeight;
-	public CssMaxHeightATSC cssMaxHeightATSC;
-
-	/**
 	 * height property
 	 */
 	public org.w3c.css.properties.css.CssHeight cssHeight;
@@ -850,25 +844,6 @@ public class Css1Style extends CssStyle {
 					(CssWidthMob) style.CascadingOrder(new CssWidthMob(), style, selector);
 		}
 		return cssWidthMob;
-	}
-
-	/**
-	 * Get the max-height property
-	 */
-	public final CssMaxHeight getMaxHeight() {
-		if (cssMaxHeight == null) {
-			cssMaxHeight =
-					(CssMaxHeight) style.CascadingOrder(new CssMaxHeight(), style, selector);
-		}
-		return cssMaxHeight;
-	}
-
-	public final CssMaxHeightATSC getMaxHeightATSC() {
-		if (cssMaxHeightATSC == null) {
-			cssMaxHeightATSC =
-					(CssMaxHeightATSC) style.CascadingOrder(new CssMaxHeightATSC(), style, selector);
-		}
-		return cssMaxHeightATSC;
 	}
 
 	/**
