@@ -10,6 +10,7 @@ import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssLeft;
 import org.w3c.css.properties.css.CssMaxWidth;
+import org.w3c.css.properties.css.CssMinHeight;
 import org.w3c.css.properties.css.CssMinWidth;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssRight;
@@ -47,6 +48,7 @@ public class Css2Style extends ACssStyle {
 
 	public CssMinWidth cssMinWidth;
 	public CssMaxWidth cssMaxWidth;
+	public CssMinHeight cssMinHeight;
 	
 	/**
      * Get the azimuth
@@ -225,4 +227,13 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssMaxWidth;
 	}
+
+	public final CssMinHeight getMinHeight() {
+		if (cssMinHeight == null) {
+			cssMinHeight =
+					(CssMinHeight) style.CascadingOrder(new CssMinHeight(), style, selector);
+		}
+		return cssMinHeight;
+	}
+
 }

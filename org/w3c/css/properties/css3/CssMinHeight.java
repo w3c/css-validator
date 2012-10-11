@@ -15,27 +15,27 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#min-width
+ * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#min-height
  * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#min-size-auto
  */
-public class CssMinWidth extends org.w3c.css.properties.css.CssMinWidth {
+public class CssMinHeight extends org.w3c.css.properties.css.CssMinHeight {
 
 	public static final CssIdent auto = CssIdent.getIdent("auto");
     /**
-     * Create a new CssMinWidth
+     * Create a new CssMinHeight
      */
-    public CssMinWidth() {
+    public CssMinHeight() {
 		value = initial;
     }
 
     /**
-     * Creates a new CssMinWidth
+     * Creates a new CssMinHeight
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssMinWidth(ApplContext ac, CssExpression expression, boolean check)
+    public CssMinHeight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
@@ -74,7 +74,7 @@ public class CssMinWidth extends org.w3c.css.properties.css.CssMinWidth {
 		expression.next();
     }
 
-    public CssMinWidth(ApplContext ac, CssExpression expression)
+    public CssMinHeight(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
