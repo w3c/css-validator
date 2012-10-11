@@ -9,6 +9,7 @@ package org.w3c.css.properties.css2;
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssLeft;
+import org.w3c.css.properties.css.CssMinWidth;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
@@ -43,6 +44,8 @@ public class Css2Style extends ACssStyle {
 
 	public CssPosition cssPosition;
 
+	public CssMinWidth cssMinWidth;
+	
 	/**
      * Get the azimuth
      */
@@ -203,5 +206,13 @@ public class Css2Style extends ACssStyle {
 					(CssPosition) style.CascadingOrder(new CssPosition(), style, selector);
 		}
 		return cssPosition;
+	}
+
+	public final CssMinWidth getMinWidth() {
+		if (cssMinWidth == null) {
+			cssMinWidth =
+					(CssMinWidth) style.CascadingOrder(new CssMinWidth(), style, selector);
+		}
+		return cssMinWidth;
 	}
 }

@@ -121,11 +121,6 @@ public class Css1Style extends CssStyle {
 	public CssWidthMob cssWidthMob;
 
 	/**
-	 * min-width property
-	 */
-	public CssMinWidth cssMinWidth;
-	public CssMinWidthATSC cssMinWidthATSC;
-	/**
 	 * max-width property
 	 */
 	public CssMaxWidth cssMaxWidth;
@@ -866,25 +861,6 @@ public class Css1Style extends CssStyle {
 					(CssWidthMob) style.CascadingOrder(new CssWidthMob(), style, selector);
 		}
 		return cssWidthMob;
-	}
-
-	/**
-	 * Get the min-width property
-	 */
-	public final CssMinWidth getMinWidth() {
-		if (cssMinWidth == null) {
-			cssMinWidth =
-					(CssMinWidth) style.CascadingOrder(new CssMinWidth(), style, selector);
-		}
-		return cssMinWidth;
-	}
-
-	public final CssMinWidthATSC getMinWidthATSC() {
-		if (cssMinWidthATSC == null) {
-			cssMinWidthATSC =
-					(CssMinWidthATSC) style.CascadingOrder(new CssMinWidthATSC(), style, selector);
-		}
-		return cssMinWidthATSC;
 	}
 
 	/**
