@@ -219,9 +219,7 @@ public class Css3Style extends ATSCStyle {
 	CssFitPosition cssFitPosition;
 	CssVisibilityCSS3 cssVisibilityCSS3;
 	CssOverflowCSS3 cssOverflowCSS3;
-	CssMaxWidthCSS3 cssMaxWidthCSS3;
 	CssMaxHeightCSS3 cssMaxHeightCSS3;
-	CssMinWidthCSS3 cssMinWidthCSS3;
 	CssMinHeightCSS3 cssMinHeightCSS3;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
@@ -790,15 +788,6 @@ public class Css3Style extends ATSCStyle {
 		return cssMaxHeightCSS3;
 	}
 
-	public CssMaxWidthCSS3 getMaxWidthCSS3() {
-		if (cssMaxWidthCSS3 == null) {
-			cssMaxWidthCSS3 =
-					(CssMaxWidthCSS3) style.CascadingOrder(
-							new CssMaxWidthCSS3(), style, selector);
-		}
-		return cssMaxWidthCSS3;
-	}
-
 	public CssMinHeightCSS3 getMinHeightCSS3() {
 		if (cssMinHeightCSS3 == null) {
 			cssMinHeightCSS3 =
@@ -806,15 +795,6 @@ public class Css3Style extends ATSCStyle {
 							new CssMinHeightCSS3(), style, selector);
 		}
 		return cssMinHeightCSS3;
-	}
-
-	public CssMinWidthCSS3 getMinWidthCSS3() {
-		if (cssMinWidthCSS3 == null) {
-			cssMinWidthCSS3 =
-					(CssMinWidthCSS3) style.CascadingOrder(
-							new CssMinWidthCSS3(), style, selector);
-		}
-		return cssMinWidthCSS3;
 	}
 
 	public CssMarqueeDirection getMarqueeDirection() {
