@@ -85,6 +85,7 @@ import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTransform;
 import org.w3c.css.properties.css.CssTransformOrigin;
 import org.w3c.css.properties.css.CssTransformStyle;
 import org.w3c.css.properties.css.CssTransition;
@@ -202,6 +203,7 @@ public class Css3Style extends ATSCStyle {
 	public CssPerspective cssPerspective;
 	public CssPerspectiveOrigin cssPerspectiveOrigin;
 	public CssTransformOrigin cssTransformOrigin;
+	public CssTransform cssTransform;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1374,6 +1376,15 @@ public class Css3Style extends ATSCStyle {
 		return cssTransformOrigin;
 	}
 
+	public CssTransform getTransform() {
+		if (cssTransform == null) {
+			cssTransform =
+					(CssTransform) style.CascadingOrder(
+							new CssTransform(), style, selector);
+		}
+		return cssTransform;
+	}
+	
 	///
 
 	/**
