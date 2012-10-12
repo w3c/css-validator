@@ -23,6 +23,7 @@ public class CssTransform extends CssProperty {
 	 * Create a new CssTransform
 	 */
 	public CssTransform() {
+		value = initial;
 	}
 
 	/**
