@@ -57,14 +57,14 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
 	}
 
 	/**
-	 * Create a new CssBackgroundPosition
+	 * Create a new CssTransformOrigin
 	 */
 	public CssPerspectiveOrigin() {
 		super();
 	}
 
 	/**
-	 * Creates a new CssBackgroundPosition
+	 * Creates a new CssTransformOrigin
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException

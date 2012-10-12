@@ -56,7 +56,7 @@ public class CssPerspectiveOrigin extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "perspective";
+		return "perspective-origin";
 	}
 
 	/**
