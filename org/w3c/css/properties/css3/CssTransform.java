@@ -211,8 +211,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		}
 		CssValue val;
 		val = expression.getValue();
-		if (val.getType() != CssTypes.CSS_NUMBER &&
-				val.getType() != CssTypes.CSS_LENGTH) {
+		if (val.getType() != type) {
 			throw new InvalidParamException("value",
 					val.toString(),
 					caller.getPropertyName(), ac);
