@@ -71,6 +71,7 @@ import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOverflowStyle;
 import org.w3c.css.properties.css.CssOverflowWrap;
+import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
@@ -196,6 +197,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssTransformStyle cssTransformStyle;
 	public CssBackfaceVisibility cssBackfaceVisibility;
+	public CssPerspective cssPerspective;
 	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1340,7 +1342,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssBackfaceVisibility;
 	}
-	
+
+	public CssPerspective getPerspective() {
+		if (cssPerspective == null) {
+			cssPerspective =
+					(CssPerspective) style.CascadingOrder(
+							new CssPerspective(), style, selector);
+		}
+		return cssPerspective;
+	}
+
 	///
 
 	/**
