@@ -85,6 +85,7 @@ import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTransformOrigin;
 import org.w3c.css.properties.css.CssTransformStyle;
 import org.w3c.css.properties.css.CssTransition;
 import org.w3c.css.properties.css.CssTransitionDelay;
@@ -200,7 +201,8 @@ public class Css3Style extends ATSCStyle {
 	public CssBackfaceVisibility cssBackfaceVisibility;
 	public CssPerspective cssPerspective;
 	public CssPerspectiveOrigin cssPerspectiveOrigin;
-	
+	public CssTransformOrigin cssTransformOrigin;
+
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
 	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -1100,7 +1102,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssAnimation;
 	}
-	
+
 	public CssAnimationDelay getAnimationDelay() {
 		if (cssAnimationDelay == null) {
 			cssAnimationDelay =
@@ -1118,7 +1120,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssAnimationDirection;
 	}
-	
+
 	public CssAnimationDuration getAnimationDuration() {
 		if (cssAnimationDuration == null) {
 			cssAnimationDuration =
@@ -1136,7 +1138,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssAnimationIterationCount;
 	}
-	
+
 	public CssAnimationName getAnimationName() {
 		if (cssAnimationName == null) {
 			cssAnimationName =
@@ -1362,6 +1364,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssPerspectiveOrigin;
 	}
+
+	public CssTransformOrigin getTransformOrigin() {
+		if (cssTransformOrigin == null) {
+			cssTransformOrigin =
+					(CssTransformOrigin) style.CascadingOrder(
+							new CssTransformOrigin(), style, selector);
+		}
+		return cssTransformOrigin;
+	}
+
 	///
 
 	/**
