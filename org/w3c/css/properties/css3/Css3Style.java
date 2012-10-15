@@ -74,6 +74,7 @@ import org.w3c.css.properties.css.CssOverflowStyle;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
+import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
@@ -105,7 +106,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
 	CssRubyOverhang cssRubyOverhang;
-	CssResizer cssResizer;
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
@@ -206,7 +206,8 @@ public class Css3Style extends ATSCStyle {
 	public CssTransform cssTransform;
 
 	public CssBoxSizing cssBoxSizing;
-
+	public CssResize cssResize;
+	
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
 	CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
@@ -288,13 +289,13 @@ public class Css3Style extends ATSCStyle {
 		return cssBoxSizing;
 	}
 
-	public CssResizer getResizer() {
-		if (cssResizer == null) {
-			cssResizer =
-					(CssResizer) style.CascadingOrder(
-							new CssResizer(), style, selector);
+	public CssResize getResize() {
+		if (cssResize == null) {
+			cssResize =
+					(CssResize) style.CascadingOrder(
+							new CssResize(), style, selector);
 		}
-		return cssResizer;
+		return cssResize;
 	}
 
 	public CssWritingMode getWritingMode() {
