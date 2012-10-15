@@ -29,6 +29,7 @@ import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
+import org.w3c.css.properties.css.CssBoxSizing;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
@@ -104,7 +105,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
 	CssRubyOverhang cssRubyOverhang;
-	CssBoxSizing cssBoxSizing;
 	CssResizer cssResizer;
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
@@ -204,6 +204,8 @@ public class Css3Style extends ATSCStyle {
 	public CssPerspectiveOrigin cssPerspectiveOrigin;
 	public CssTransformOrigin cssTransformOrigin;
 	public CssTransform cssTransform;
+
+	public CssBoxSizing cssBoxSizing;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;

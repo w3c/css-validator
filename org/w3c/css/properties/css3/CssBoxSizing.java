@@ -1,149 +1,89 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> content-box || border-box || inherit<BR>
- *  <EM>Initial:</EM>content-box<BR>
- *  <EM>Applies to:</EM>all elements that accept width or height<BR>
- *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
+ * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#box-sizing0
  */
+public class CssBoxSizing extends org.w3c.css.properties.css.CssBoxSizing {
 
-public class CssBoxSizing extends CssProperty {
+	private static CssIdent[] allowed_values;
 
-    CssValue boxsizing;
-    ApplContext ac;
-
-    CssIdent contentbox = new CssIdent("content-box");
-    CssIdent borderbox = new CssIdent("border-box");
-    CssIdent initial = new CssIdent("initial");
-
-    /**
-     * Create a new CssBoxSizing
-     */
-    public CssBoxSizing() {
-	boxsizing = contentbox;
-    }
-
-    public CssBoxSizing(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(contentbox)) {
-	    boxsizing = contentbox;
-	    expression.next();
+	static {
+		String id_values[] = {"content-box", "padding-box", "border-box"};
+		allowed_values = new CssIdent[id_values.length];
+		int i = 0;
+		for (String s : id_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
 	}
-	else if (val.equals(borderbox)) {
-	    boxsizing = borderbox;
-	    expression.next();
+
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else if (val.equals(inherit)) {
-	    boxsizing = inherit;
-	    expression.next();
+
+	/**
+	 * Create a new CssBoxSizing
+	 */
+	public CssBoxSizing() {
+		value = initial;
 	}
-	else if (val.equals(initial)) {
-	    boxsizing = initial;
-	    expression.next();
+
+	/**
+	 * Creates a new CssBoxSizing
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssBoxSizing(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		setByUser();
+		CssValue val = expression.getValue();
+
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else {
+			val = getMatchingIdent((CssIdent) val);
+			if (val == null) {
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						getPropertyName(), ac);
+			}
+			value = val;
+		}
+		expression.next();
 	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+
+	public CssBoxSizing(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-    }
-
-    public CssBoxSizing(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle.
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssBoxSizing != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssBoxSizing = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getBoxSizing();
-	} else {
-	    return ((Css3Style) style).cssBoxSizing;
-	}
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssBoxSizing &&
-                boxsizing.equals( ((CssBoxSizing) property).boxsizing));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "box-sizing";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return boxsizing;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return boxsizing.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return boxsizing.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return boxsizing == contentbox;
-    }
 
 }
+
