@@ -71,6 +71,7 @@ public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor 
 				try {
 					CssColor tcolor = new CssColor(ac, expression, check);
 					value = tcolor.getColor();
+					break;
 				} catch (InvalidParamException e) {
 					// we recreate the exception, as it will have
 					// the wrong property name otherwise

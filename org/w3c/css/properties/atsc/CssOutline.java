@@ -13,6 +13,9 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
 
@@ -135,6 +138,27 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 						Character.toString(op),
 						ac);
 			}
+		}
+		if (expression.getCount() == 1) {
+			if (_width.value != null) {
+				value = _width.value;
+			} else if (_style.value != null) {
+				value = _style.value;
+			} else {
+				value = _color.value;
+			}
+		} else {
+			ArrayList<CssValue> values = new ArrayList<CssValue>(4);
+			if (_width.value != null) {
+				values.add(_width.value);
+			}
+			if (_style.value != null) {
+				values.add(_style.value);
+			}
+			if (_color.value != null ){
+				values.add(_color.value);
+			}
+			value = new CssValueList(values);
 		}
 	}
 

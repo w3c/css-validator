@@ -11,6 +11,9 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
 
@@ -26,7 +29,7 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 	 */
 	public CssOutline() {
 		_color = new CssOutlineColor();
-		_style = new org.w3c.css.properties.css21.CssOutlineStyle();
+		_style = new CssOutlineStyle();
 		_width = new CssOutlineWidth();
 	}
 
@@ -49,9 +52,9 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 		CssValue val;
 		char op;
 
-		_color = new CssOutlineColor();
-		_style = new CssOutlineStyle();
-		_width = new CssOutlineWidth();
+		CssValue colorValue = null;
+		CssValue widthValue = null;
+		CssValue styleValue = null;
 
 		while (!expression.end()) {
 			val = expression.getValue();
@@ -60,10 +63,11 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
-					if (_width.value == null) {
+					if (widthValue == null) {
 						CssExpression ex = new CssExpression();
 						ex.addValue(val);
 						_width = new CssOutlineWidth(ac, ex, check);
+						widthValue = _width.value;
 						break;
 					}
 					// else, we already got one...
@@ -71,10 +75,11 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 							val.toString(),
 							getPropertyName(), ac);
 				case CssTypes.CSS_COLOR:
-					if (_color.value == null) {
+					if (colorValue == null) {
 						CssExpression ex = new CssExpression();
 						ex.addValue(val);
 						_color = new CssOutlineColor(ac, ex, check);
+						colorValue = _color.value;
 						break;
 					}
 					// else, we already got one...
@@ -93,29 +98,30 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 					}
 					CssIdent ident = (CssIdent) val;
 					// let's try to find which ident we have...
-					if (_style.value == null) {
+					if (styleValue == null) {
 						CssIdent match = CssOutlineStyle.getMatchingIdent(ident);
 						if (match != null) {
-							_style.value = match;
+							styleValue = match;
 							break;
 						}
 					}
-					if (_width.value == null) {
+					if (widthValue == null) {
 						CssIdent match = CssBorderWidth.getMatchingIdent(ident);
 						if (match != null) {
-							_width.value = match;
+							widthValue = match;
 							break;
 						}
 					}
-					if (_color.value == null) {
+					if (colorValue == null) {
 						CssIdent match = CssOutlineColor.getMatchingIdent(ident);
 						if (match != null) {
-							_color.value = match;
+							colorValue = match;
 							break;
 						} else {
 							CssExpression ex = new CssExpression();
 							ex.addValue(val);
 							_color = new CssOutlineColor(ac, ex, check);
+							colorValue = _color.value;
 							break;
 						}
 					}
@@ -131,6 +137,43 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 						Character.toString(op),
 						ac);
 			}
+		}
+		if (_width == null) {
+			_width = new CssOutlineWidth();
+		}
+		if (_style == null) {
+			_style = new CssOutlineStyle();
+		}
+		if (_color == null) {
+			_color = new CssOutlineColor();
+		}
+		// now construct the value...
+		if (expression.getCount() == 1) {
+			if (widthValue != null) {
+				value = widthValue;
+				_width.value = widthValue;
+			} else if (styleValue != null) {
+				value = styleValue;
+				_style.value = styleValue;
+			} else {
+				value = colorValue;
+				_color.value = colorValue;
+			}
+		} else {
+			ArrayList<CssValue> values = new ArrayList<CssValue>(4);
+			if (widthValue != null) {
+				values.add(widthValue);
+				_width.value = widthValue;
+			}
+			if (styleValue != null) {
+				values.add(styleValue);
+				_style.value = styleValue;
+			}
+			if (colorValue != null ){
+				values.add(colorValue);
+				_color.value = colorValue;
+			}
+			value = new CssValueList(values);
 		}
 	}
 
