@@ -13,6 +13,10 @@ import org.w3c.css.properties.css.CssMaxHeight;
 import org.w3c.css.properties.css.CssMaxWidth;
 import org.w3c.css.properties.css.CssMinHeight;
 import org.w3c.css.properties.css.CssMinWidth;
+import org.w3c.css.properties.css.CssOutline;
+import org.w3c.css.properties.css.CssOutlineColor;
+import org.w3c.css.properties.css.CssOutlineStyle;
+import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
@@ -51,6 +55,11 @@ public class Css2Style extends ACssStyle {
 	public CssMaxWidth cssMaxWidth;
 	public CssMinHeight cssMinHeight;
 	public CssMaxHeight cssMaxHeight;
+	
+	public CssOutlineWidth cssOutlineWidth;
+	public CssOutlineStyle cssOutlineStyle;
+	public CssOutlineColor cssOutlineColor;
+	public CssOutline cssOutline;
 	
 	/**
      * Get the azimuth
@@ -244,5 +253,37 @@ public class Css2Style extends ACssStyle {
 					(CssMaxHeight) style.CascadingOrder(new CssMaxHeight(), style, selector);
 		}
 		return cssMaxHeight;
+	}
+
+	public final CssOutlineWidth getOutlineWidth() {
+		if (cssOutlineWidth == null) {
+			cssOutlineWidth =
+					(CssOutlineWidth) style.CascadingOrder(new CssOutlineWidth(), style, selector);
+		}
+		return cssOutlineWidth;
+	}
+
+	public final CssOutlineStyle getOutlineStyle() {
+		if (cssOutlineStyle == null) {
+			cssOutlineStyle =
+					(CssOutlineStyle) style.CascadingOrder(new CssOutlineStyle(), style, selector);
+		}
+		return cssOutlineStyle;
+	}
+
+	public final CssOutlineColor getOutlineColor() {
+		if (cssOutlineColor == null) {
+			cssOutlineColor =
+					(CssOutlineColor) style.CascadingOrder(new CssOutlineColor(), style, selector);
+		}
+		return cssOutlineColor;
+	}
+
+	public final CssOutline getOutline() {
+		if (cssOutline == null) {
+			cssOutline =
+					(CssOutline) style.CascadingOrder(new CssOutline(), style, selector);
+		}
+		return cssOutline;
 	}
 }
