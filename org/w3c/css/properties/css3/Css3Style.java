@@ -89,6 +89,7 @@ import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
+import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTransform;
 import org.w3c.css.properties.css.CssTransformOrigin;
@@ -213,6 +214,7 @@ public class Css3Style extends ATSCStyle {
 	public CssOutlineOffset cssOutlineOffset;
 	public CssImeMode cssImeMode;
 	public CssNavIndex cssNavIndex;
+	public CssTextOverflow cssTextOverflow;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1399,6 +1401,15 @@ public class Css3Style extends ATSCStyle {
 							new CssImeMode(), style, selector);
 		}
 		return cssImeMode;
+	}
+
+	public CssTextOverflow getTextOverflow() {
+		if (cssTextOverflow == null) {
+			cssTextOverflow =
+					(CssTextOverflow) style.CascadingOrder(
+							new CssTextOverflow(), style, selector);
+		}
+		return cssTextOverflow;
 	}
 
 	///
