@@ -62,6 +62,7 @@ import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
+import org.w3c.css.properties.css.CssIcon;
 import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLineBreak;
@@ -215,6 +216,7 @@ public class Css3Style extends ATSCStyle {
 	public CssImeMode cssImeMode;
 	public CssNavIndex cssNavIndex;
 	public CssTextOverflow cssTextOverflow;
+	public CssIcon cssIcon;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -229,7 +231,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
 	CssAppearance cssAppearance;
-	CssIcon cssIcon;
 	CssNavUp cssNavUp;
 	CssNavRight cssNavRight;
 	CssNavDown cssNavDown;
