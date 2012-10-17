@@ -62,6 +62,7 @@ import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
+import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarqueeDirection;
@@ -209,6 +210,7 @@ public class Css3Style extends ATSCStyle {
 	public CssBoxSizing cssBoxSizing;
 	public CssResize cssResize;
 	public CssOutlineOffset cssOutlineOffset;
+	public CssImeMode cssImeMode;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1387,6 +1389,15 @@ public class Css3Style extends ATSCStyle {
 							new CssTransform(), style, selector);
 		}
 		return cssTransform;
+	}
+
+	public CssImeMode getImeMode() {
+		if (cssImeMode == null) {
+			cssImeMode =
+					(CssImeMode) style.CascadingOrder(
+							new CssImeMode(), style, selector);
+		}
+		return cssImeMode;
 	}
 
 	///
