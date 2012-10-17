@@ -69,6 +69,7 @@ import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
+import org.w3c.css.properties.css.CssNavIndex;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
@@ -211,6 +212,7 @@ public class Css3Style extends ATSCStyle {
 	public CssResize cssResize;
 	public CssOutlineOffset cssOutlineOffset;
 	public CssImeMode cssImeMode;
+	public CssNavIndex cssNavIndex;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -226,7 +228,6 @@ public class Css3Style extends ATSCStyle {
 	CssTextHeight cssTextHeight;
 	CssAppearance cssAppearance;
 	CssIcon cssIcon;
-	CssNavIndex cssNavIndex;
 	CssNavUp cssNavUp;
 	CssNavRight cssNavRight;
 	CssNavDown cssNavDown;
