@@ -2356,7 +2356,7 @@ void term(CssExpression exp) :
 	    setValue(new CssIdent(), exp, operator, n, IDENT);
 	}
     }
-    | hexcolor(exp)
+    | hashident(exp)
     | n=<URL> { 
 	CssURL _u = new CssURL();
 	_u.set(n.image, ac, url);
@@ -2418,7 +2418,7 @@ void mediaterm(CssExpression exp) :
 	    setValue(new CssIdent(), exp, operator, n, IDENT);
 	}
     }
-    | hexcolor(exp)
+    | hashident(exp)
     | n=<URL> {
 	CssURL _u = new CssURL();
 	_u.set(n.image, ac, url);
@@ -2466,13 +2466,13 @@ CssValue function() :
 /**
  * @exception ParseException exception during the parse
  */
-void hexcolor(CssExpression exp) :
+void hashident(CssExpression exp) :
 {Token n; 
 }
 {
     ( n=<HASHIDENT> | n=<HASH> ) { 
      n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH); 
+     setValue(new org.w3c.css.values.CssHashIdent(), exp, ' ', n, HASH); 
     }
 }
 

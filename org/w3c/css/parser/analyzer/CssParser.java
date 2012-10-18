@@ -3845,7 +3845,7 @@ CssExpression param = null;
         break;
       case HASHIDENT:
       case HASH:
-        hexcolor(exp);
+        hashident(exp);
         break;
       case URL:
         n = jj_consume_token(URL);
@@ -4026,7 +4026,7 @@ CssExpression param = null;
         break;
       case HASHIDENT:
       case HASH:
-        hexcolor(exp);
+        hashident(exp);
         break;
       case URL:
         n = jj_consume_token(URL);
@@ -4113,7 +4113,7 @@ CssExpression param = null;
 /**
  * @exception ParseException exception during the parse
  */
-  final public void hexcolor(CssExpression exp) throws ParseException {
+  final public void hashident(CssExpression exp) throws ParseException {
  Token n;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case HASHIDENT:
@@ -4128,7 +4128,7 @@ CssExpression param = null;
       throw new ParseException();
     }
      n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssColor(), exp, ' ', n, HASH);
+     setValue(new org.w3c.css.values.CssHashIdent(), exp, ' ', n, HASH);
   }
 
   String skipStatement() throws ParseException {
