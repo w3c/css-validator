@@ -1,137 +1,173 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssURL;
+import org.w3c.css.values.CssString;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
 
-public class CssNavUp extends CssProperty {
+import java.util.ArrayList;
 
-    CssValue navUp;
+import static org.w3c.css.values.CssOperator.SPACE;
 
-    static CssIdent auto = new CssIdent("auto");
+/**
+ * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#nav-up0
+ */
+public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
-    /**
-     * Create a new CssNavUp
-     */
-    public CssNavUp() {
-	// nothing to do
-    }
+	public static final CssIdent auto = CssIdent.getIdent("auto");
 
-    /**
-     * Create a new CssNavUp
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
-     */
-    public CssNavUp(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+	private static CssIdent[] allowed_values;
 
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(inherit)) {
-	    navUp = val;
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    navUp = val;
-	    expression.next();
-	} else if (val instanceof CssURL) {
-	    navUp = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+	static {
+		String id_values[] = {"current", "root"};
+		allowed_values = new CssIdent[id_values.length];
+		int i = 0;
+		for (String s : id_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
 	}
-    }
 
-    public CssNavUp(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssNavUp != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssNavUp = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getNavUpCSS3();
+	public static CssIdent getMatchingNonUniqueIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else {
-	    return ((Css3Style) style).cssNavUp;
+
+	public static CssIdent getMatchingIdent(CssIdent ident) {
+		if (auto.equals(ident)) {
+			return auto;
+		}
+		return getMatchingNonUniqueIdent(ident);
 	}
-    }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssNavUp &&
-		navUp.equals(((CssNavUp) property).navUp));
-    }
+	/**
+	 * Create a new CssNavUp
+	 */
+	public CssNavUp() {
+		value = initial;
+	}
 
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "nav-up";
-    }
+	/**
+	 * Create a new CssNavUp
+	 *
+	 * @param ac         The context
+	 * @param expression The expression for this property
+	 * @param check      true will test the number of parameters
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssNavUp(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return navUp;
-    }
+		setByUser();
+		value = checkValues(ac, expression, check, this);
+	}
 
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return navUp.equals(inherit);
-    }
+	/**
+	 * Create a new CssNavUp
+	 *
+	 * @param ac,        the Context
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssNavUp(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return navUp.toString();
-    }
+	public boolean isDefault() {
+		return (auto == value) || (auto == initial);
+	}
 
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return (navUp == auto);
-    }
+	// the main check is here (to be shared with other
+	// nav-<dir>
+	public static CssValue checkValues(ApplContext ac, CssExpression expression,
+									   boolean check, CssProperty caller)
+			throws InvalidParamException {
+		if (check && expression.getCount() > 2) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		CssValue value;
+		CssValue val = expression.getValue();
+		char op = expression.getOperator();
 
+		switch (val.getType()) {
+			case CssTypes.CSS_HASH_IDENT:
+				CssHashIdent hash = (CssHashIdent) val;
+				value = hash;
+				// we got it, we must check if there are other values
+				if (expression.getRemainingCount() > 1) {
+					if (op != SPACE) {
+						throw new InvalidParamException("operator",
+								Character.toString(op),
+								ac);
+					}
+					ArrayList<CssValue> values = new ArrayList<CssValue>();
+					values.add(hash);
+					expression.next();
+					val = expression.getValue();
+					switch (val.getType()) {
+						case CssTypes.CSS_IDENT:
+							CssIdent match = getMatchingNonUniqueIdent((CssIdent) val);
+							if (match == null) {
+								throw new InvalidParamException("value", val,
+										caller.getPropertyName(), ac);
+							}
+							values.add(match);
+							break;
+						case CssTypes.CSS_STRING:
+							CssString s = (CssString) val;
+							if (s.toString().charAt(1) == '_') {
+								// TODO better error (do not start with _)
+								throw new InvalidParamException("value", val,
+										caller.getPropertyName(), ac);
+							}
+							values.add(s);
+						default:
+							throw new InvalidParamException("value", val,
+									caller.getPropertyName(), ac);
+					}
+					value = new CssValueList(values);
+				}
+				break;
+			case CssTypes.CSS_IDENT:
+				CssIdent ide = (CssIdent) val;
+				if (inherit.equals(ide)) {
+					if (expression.getCount() > 1) {
+						throw new InvalidParamException("value", inherit,
+								caller.getPropertyName(), ac);
+					}
+					value = inherit;
+					break;
+				} else if (auto.equals(ide)) {
+					if (expression.getCount() > 1) {
+						throw new InvalidParamException("value", auto,
+								caller.getPropertyName(), ac);
+					}
+					value = auto;
+					break;
+				}
+				// let it fail
+			default:
+				throw new InvalidParamException("value", expression.getValue(),
+						caller.getPropertyName(), ac);
+		}
+		expression.next();
+		return value;
+	}
 }
