@@ -186,7 +186,7 @@ public class CssColor extends CssValue {
      * Parse a RGB color.
      * format #(3-6)<hexnum>
      */
-    private void setShortRGBColor(String s, ApplContext ac)
+    public void setShortRGBColor(String s, ApplContext ac)
             throws InvalidParamException {
         int r;
         int g;
