@@ -250,6 +250,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 			op = expression.getOperator();
 
 			switch (val.getType()) {
+				case CssTypes.CSS_HASH_IDENT:
 				case CssTypes.CSS_COLOR:
 					// we already got one, fail...
 					if (v.color != null || next_is_size || !is_final) {

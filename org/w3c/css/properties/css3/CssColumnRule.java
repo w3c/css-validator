@@ -63,6 +63,7 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
                         ac);
             }
             switch (val.getType()) {
+				case CssTypes.CSS_HASH_IDENT:
                 case CssTypes.CSS_FUNCTION:
                 case CssTypes.CSS_COLOR:
                     if (rule_color != null) {

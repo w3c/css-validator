@@ -68,6 +68,11 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
             op = expression.getOperator();
 
             switch (val.getType()) {
+				case CssTypes.CSS_HASH_IDENT:
+					org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+					c.setShortRGBColor(val.toString(), ac);
+					res.add(c);
+					break;
                 case CssTypes.CSS_COLOR:
                     res.add(val);
                     break;

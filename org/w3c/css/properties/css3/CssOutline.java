@@ -74,6 +74,7 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 					throw new InvalidParamException("value",
 							val.toString(),
 							getPropertyName(), ac);
+				case CssTypes.CSS_HASH_IDENT:
 				case CssTypes.CSS_COLOR:
 					if (colorValue == null) {
 						CssExpression ex = new CssExpression();

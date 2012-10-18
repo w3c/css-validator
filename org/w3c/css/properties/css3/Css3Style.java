@@ -71,6 +71,7 @@ import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
 import org.w3c.css.properties.css.CssNavIndex;
+import org.w3c.css.properties.css.CssNavUp;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
@@ -215,6 +216,7 @@ public class Css3Style extends ATSCStyle {
 	public CssOutlineOffset cssOutlineOffset;
 	public CssImeMode cssImeMode;
 	public CssNavIndex cssNavIndex;
+	public CssNavUp cssNavUp;
 	public CssTextOverflow cssTextOverflow;
 	public CssIcon cssIcon;
 
@@ -231,7 +233,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
 	CssAppearance cssAppearance;
-	CssNavUp cssNavUp;
 	CssNavRight cssNavRight;
 	CssNavDown cssNavDown;
 	CssNavLeft cssNavLeft;

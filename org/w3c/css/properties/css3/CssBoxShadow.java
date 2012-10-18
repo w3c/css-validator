@@ -187,6 +187,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 					CssColor color = new CssColor(ac, exp, check);
 					value.color = (CssValue) color.get();
 					break;
+				case CssTypes.CSS_HASH_IDENT:
 				case CssTypes.CSS_COLOR:
 				case CssTypes.CSS_FUNCTION:
 					if (got_length != 0) {

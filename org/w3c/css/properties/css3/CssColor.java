@@ -49,6 +49,11 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         setByUser();
 
         switch (val.getType()) {
+			case CssTypes.CSS_HASH_IDENT:
+				org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+				c.setShortRGBColor(val.toString(), ac);
+				color = c;
+				break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     color = inherit;

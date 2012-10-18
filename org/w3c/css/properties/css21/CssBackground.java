@@ -87,6 +87,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 					}
 					find = false;
 					break;
+				case CssTypes.CSS_HASH_IDENT:
 				case CssTypes.CSS_COLOR:
 					if (color == null) {
 						color = new CssBackgroundColor(ac, expression);
