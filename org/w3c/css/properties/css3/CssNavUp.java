@@ -96,7 +96,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
 	// the main check is here (to be shared with other
 	// nav-<dir>
-	public static CssValue checkValues(ApplContext ac, CssExpression expression,
+	protected static CssValue checkValues(ApplContext ac, CssExpression expression,
 									   boolean check, CssProperty caller)
 			throws InvalidParamException {
 		if (check && expression.getCount() > 2) {

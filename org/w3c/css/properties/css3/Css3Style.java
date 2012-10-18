@@ -72,6 +72,9 @@ import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
 import org.w3c.css.properties.css.CssNavIndex;
 import org.w3c.css.properties.css.CssNavUp;
+import org.w3c.css.properties.css.CssNavDown;
+import org.w3c.css.properties.css.CssNavLeft;
+import org.w3c.css.properties.css.CssNavRight;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
@@ -217,6 +220,9 @@ public class Css3Style extends ATSCStyle {
 	public CssImeMode cssImeMode;
 	public CssNavIndex cssNavIndex;
 	public CssNavUp cssNavUp;
+	public CssNavRight cssNavRight;
+	public CssNavDown cssNavDown;
+	public CssNavLeft cssNavLeft;
 	public CssTextOverflow cssTextOverflow;
 	public CssIcon cssIcon;
 
@@ -233,9 +239,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
 	CssAppearance cssAppearance;
-	CssNavRight cssNavRight;
-	CssNavDown cssNavDown;
-	CssNavLeft cssNavLeft;
 	CssOverflowX cssOverflowX;
 	CssOverflowY cssOverflowY;
 	CssRubySpan cssRubySpan;

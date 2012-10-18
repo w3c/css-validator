@@ -1,137 +1,60 @@
-//
 // $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYDown 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyDown statement at
-// http://www.w3.org/Consortium/Legal/copyDown-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssURL;
-import org.w3c.css.values.CssValue;
 
-public class CssNavDown extends CssProperty {
+/**
+ * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#nav-down0
+ * @see CssNavUp
+ */
+public class CssNavDown extends org.w3c.css.properties.css.CssNavDown {
 
-    CssValue navDown;
+	public static final CssIdent auto = CssIdent.getIdent("auto");
 
-    static CssIdent auto = new CssIdent("auto");
-
-    /**
-     * Create a new CssNavDown
-     */
-    public CssNavDown() {
-	// nothing to do
-    }
-
-    /**
-     * Create a new CssNavDown
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
-     */
-    public CssNavDown(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(inherit)) {
-	    navDown = val;
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    navDown = val;
-	    expression.next();
-	} else if (val instanceof CssURL) {
-	    navDown = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
+	/**
+	 * Create a new CssNavDown
+	 */
+	public CssNavDown() {
+		value = initial;
 	}
-    }
 
-    public CssNavDown(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
+	/**
+	 * Create a new CssNavDown
+	 *
+	 * @param ac         The context
+	 * @param expression The expression for this property
+	 * @param check      true will test the number of parameters
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssNavDown(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
 
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssNavDown != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssNavDown = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getNavDownCSS3();
+		setByUser();
+		value = CssNavUp.checkValues(ac, expression, check, this);
 	}
-	else {
-	    return ((Css3Style) style).cssNavDown;
+
+	/**
+	 * Create a new CssNavDown
+	 *
+	 * @param ac,        the Context
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          The expression is incorrect
+	 */
+	public CssNavDown(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
 	}
-    }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssNavDown &&
-		navDown.equals(((CssNavDown) property).navDown));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "nav-down";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return navDown;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return navDown.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return navDown.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return (navDown == auto);
-    }
-
+	public boolean isDefault() {
+		return (auto == value) || (auto == initial);
+	}
 }
