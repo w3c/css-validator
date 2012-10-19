@@ -189,7 +189,22 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		while (!expression.end()) {
 			val = expression.getValue();
 			op = expression.getOperator();
-			if (val.getType() != type) {
+			// special case, 0 can be a length or an angle...
+			if (val.getType() == CssTypes.CSS_NUMBER) {
+				switch (type) {
+					case CssTypes.CSS_LENGTH:
+						val.getNumber().getLength();
+						break;
+					case CssTypes.CSS_ANGLE:
+						val.getNumber().getAngle();
+					case CssTypes.CSS_NUMBER:
+						break;
+					default:
+						throw new InvalidParamException("value",
+								val.toString(),
+								caller.getPropertyName(), ac);
+				}
+			} else if (val.getType() != type) {
 				throw new InvalidParamException("value",
 						val.toString(),
 						caller.getPropertyName(), ac);
@@ -211,6 +226,16 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		}
 		CssValue val;
 		val = expression.getValue();
+		// special case, 0 can be a length or an angle...
+		if (val.getType() == CssTypes.CSS_NUMBER) {
+			if (type == CssTypes.CSS_LENGTH || type == CssTypes.CSS_ANGLE) {
+				// if not zero, it will fail
+				if (val.getNumber().isZero()) {
+					expression.next();
+					return;
+				}
+			}
+		}
 		if (val.getType() != type) {
 			throw new InvalidParamException("value",
 					val.toString(),
@@ -233,11 +258,16 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		while (!expression.end()) {
 			val = expression.getValue();
 			op = expression.getOperator();
-			if (val.getType() != CssTypes.CSS_NUMBER &&
-					val.getType() != CssTypes.CSS_LENGTH) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						caller.getPropertyName(), ac);
+			switch (val.getType()) {
+				case CssTypes.CSS_NUMBER:
+					val.getLength();
+				case CssTypes.CSS_LENGTH:
+				case CssTypes.CSS_PERCENTAGE:
+					break;
+				default:
+					throw new InvalidParamException("value",
+							val.toString(),
+							caller.getPropertyName(), ac);
 			}
 			expression.next();
 			if (!expression.end() && (op != COMMA)) {
@@ -255,11 +285,16 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		}
 		CssValue val;
 		val = expression.getValue();
-		if (val.getType() != CssTypes.CSS_NUMBER &&
-				val.getType() != CssTypes.CSS_LENGTH) {
-			throw new InvalidParamException("value",
-					val.toString(),
-					caller.getPropertyName(), ac);
+		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getLength();
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+				break;
+			default:
+				throw new InvalidParamException("value",
+						val.toString(),
+						caller.getPropertyName(), ac);
 		}
 		expression.next();
 	}
@@ -278,11 +313,16 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		for (int i = 0; i < 2; i++) {
 			val = expression.getValue();
 			op = expression.getOperator();
-			if (val.getType() != CssTypes.CSS_NUMBER &&
-					val.getType() != CssTypes.CSS_LENGTH) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						caller.getPropertyName(), ac);
+			switch (val.getType()) {
+				case CssTypes.CSS_NUMBER:
+					val.getLength();
+				case CssTypes.CSS_LENGTH:
+				case CssTypes.CSS_PERCENTAGE:
+					break;
+				default:
+					throw new InvalidParamException("value",
+							val.toString(),
+							caller.getPropertyName(), ac);
 			}
 			expression.next();
 			if (op != COMMA) {
@@ -291,7 +331,9 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 			}
 		}
 		val = expression.getValue();
-		if (val.getType() != CssTypes.CSS_LENGTH) {
+		if (val.getType() == CssTypes.CSS_NUMBER) {
+			val.getLength();
+		} else if (val.getType() != CssTypes.CSS_LENGTH) {
 			throw new InvalidParamException("value",
 					val.toString(),
 					caller.getPropertyName(), ac);
