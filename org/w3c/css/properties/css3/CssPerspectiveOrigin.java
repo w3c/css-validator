@@ -50,22 +50,22 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
 	}
 
 	public boolean isVerticalIdent(CssIdent ident) {
-		return top.equals(ident) || center.equals(ident) || bottom.equals(ident);
+		return top.equals(ident) || bottom.equals(ident);
 	}
 
 	public boolean isHorizontalIdent(CssIdent ident) {
-		return left.equals(ident) || center.equals(ident) || right.equals(ident);
+		return left.equals(ident) || right.equals(ident);
 	}
 
 	/**
-	 * Create a new CssTransformOrigin
+	 * Create a new CssPerspectiveOrigin
 	 */
 	public CssPerspectiveOrigin() {
-		super();
+		value = initial;
 	}
 
 	/**
-	 * Creates a new CssTransformOrigin
+	 * Creates a new CssPerspectiveOrigin
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
@@ -143,18 +143,26 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
 		// then we need to ckeck the values if we got two values and
 		// at least one keyword (as restrictions may occur)
 		if (nb_keyword > 0 && nb_values == 2) {
+			boolean gothorizontal = false;
+			boolean gotvertical = false;
 			CssValue v = values.get(0);
 			if (v.getType() == CssTypes.CSS_IDENT) {
 				CssIdent id = (CssIdent) v;
-				if (!isHorizontalIdent(id)) {
-					throw new InvalidParamException("value", id,
-							getPropertyName(), ac);
+				// strictly horizontal or vertical
+				gothorizontal = isHorizontalIdent(id);
+				if (!gothorizontal) {
+					gotvertical = isVerticalIdent(id);
 				}
 			}
 			v = values.get(1);
 			if (v.getType() == CssTypes.CSS_IDENT) {
 				CssIdent id = (CssIdent) v;
-				if (!isVerticalIdent(id)) {
+				// yeah, it can be a single ugly test.
+				if (gothorizontal && isHorizontalIdent(id)) {
+					throw new InvalidParamException("value", id,
+							getPropertyName(), ac);
+				}
+				if (gotvertical && isVerticalIdent(id)) {
 					throw new InvalidParamException("value", id,
 							getPropertyName(), ac);
 				}
