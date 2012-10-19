@@ -78,6 +78,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_backface-visibility">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/backface-visibility/css3/001.css</file>
+      <description>Valid backface-visibility level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_background">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/background/css3/000-aa.css</file>
@@ -1553,6 +1560,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_perspective">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/perspective/css3/001.css</file>
+      <description>Valid perspective level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_perspective-origin">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/perspective-origin/css3/001.css</file>
+      <description>Valid perspective-origin level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_position">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/position/css3/001.css</file>
@@ -1690,6 +1711,27 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/top/css3/001.css</file>
       <description>Valid top level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transform">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transform/css3/001.css</file>
+      <description>Valid transform level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transform-origin">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transform-origin/css3/001.css</file>
+      <description>Valid transform-origin level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transform-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transform-style/css3/001.css</file>
+      <description>Valid transform-style level css3</description>
       <result valid="true" />
     </test>
   </type>
