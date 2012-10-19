@@ -41,7 +41,6 @@ peror215 { perspective-origin:  bottom  10px  }
 peror216 { perspective-origin:  bottom  center  }
 peror217 { perspective-origin:  bottom  left  }
 peror218 { perspective-origin:  bottom  right  }
-peror219 { perspective-origin:  bottom  top  }
 peror220 { perspective-origin:  center  -10%  }
 peror221 { perspective-origin:  center  0  }
 peror222 { perspective-origin:  center  10px  }
@@ -54,19 +53,16 @@ peror228 { perspective-origin:  left  0  }
 peror229 { perspective-origin:  left  10px  }
 peror230 { perspective-origin:  left  bottom  }
 peror231 { perspective-origin:  left  center  }
-peror232 { perspective-origin:  left  right  }
 peror233 { perspective-origin:  left  top  }
 peror234 { perspective-origin:  right  -10%  }
 peror235 { perspective-origin:  right  0  }
 peror236 { perspective-origin:  right  10px  }
 peror237 { perspective-origin:  right  bottom  }
 peror238 { perspective-origin:  right  center  }
-peror239 { perspective-origin:  right  left  }
 peror240 { perspective-origin:  right  top  }
 peror241 { perspective-origin:  top  -10%  }
 peror242 { perspective-origin:  top  0  }
 peror243 { perspective-origin:  top  10px  }
-peror244 { perspective-origin:  top  bottom  }
 peror245 { perspective-origin:  top  center  }
 peror246 { perspective-origin:  top  left  }
 peror247 { perspective-origin:  top  right  }
