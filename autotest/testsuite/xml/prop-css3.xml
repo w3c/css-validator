@@ -5,6 +5,23 @@ like <test profile="css2" medium="all" warning="0">
 where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
+  <type title="Valid_animation">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation/css3/001.css</file>
+      <description>Valid animation level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation/css3/002.css</file>
+      <description>Valid animation level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/animation/css3/003.css</file>
+      <description>Valid animation level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_animation-delay">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/animation-delay/css3/001.css</file>
@@ -1673,6 +1690,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/top/css3/001.css</file>
       <description>Valid top level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_transition">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/transition/css3/001.css</file>
+      <description>Valid transition level css3</description>
       <result valid="true" />
     </test>
   </type>
