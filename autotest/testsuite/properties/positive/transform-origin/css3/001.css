@@ -41,7 +41,6 @@ tror38  { transform-origin:  bottom  10px  100px }
 tror39  { transform-origin:  bottom  center  100px }
 tror40  { transform-origin:  bottom  left  100px }
 tror41  { transform-origin:  bottom  right  100px }
-tror42  { transform-origin:  bottom  top  100px }
 tror43  { transform-origin:  center  -10%  100px }
 tror44  { transform-origin:  center  0  100px }
 tror45  { transform-origin:  center  10px  100px }
@@ -54,19 +53,16 @@ tror51  { transform-origin:  left  0  100px }
 tror52  { transform-origin:  left  10px  100px }
 tror53  { transform-origin:  left  bottom  100px }
 tror54  { transform-origin:  left  center  100px }
-tror55  { transform-origin:  left  right  100px }
 tror56  { transform-origin:  left  top  100px }
 tror57  { transform-origin:  right  -10%  100px }
 tror58  { transform-origin:  right  0  100px }
 tror59  { transform-origin:  right  10px  100px }
 tror60  { transform-origin:  right  bottom  100px }
 tror61  { transform-origin:  right  center  100px }
-tror62  { transform-origin:  right  left  100px }
 tror63  { transform-origin:  right  top  100px }
 tror64  { transform-origin:  top  -10%  100px }
 tror65  { transform-origin:  top  0  100px }
 tror66  { transform-origin:  top  10px  100px }
-tror67  { transform-origin:  top  bottom  100px }
 tror68  { transform-origin:  top  center  100px }
 tror69  { transform-origin:  top  left  100px }
 tror70  { transform-origin:  top  right  100px }
@@ -100,7 +96,6 @@ tror97  { transform-origin:  bottom  10px  -10cm }
 tror98  { transform-origin:  bottom  center  -10cm }
 tror99  { transform-origin:  bottom  left  -10cm }
 tror100 { transform-origin:  bottom  right  -10cm }
-tror101 { transform-origin:  bottom  top  -10cm }
 tror102 { transform-origin:  center  -10%  -10cm }
 tror103 { transform-origin:  center  0  -10cm }
 tror104 { transform-origin:  center  10px  -10cm }
@@ -113,19 +108,16 @@ tror110 { transform-origin:  left  0  -10cm }
 tror111 { transform-origin:  left  10px  -10cm }
 tror112 { transform-origin:  left  bottom  -10cm }
 tror113 { transform-origin:  left  center  -10cm }
-tror114 { transform-origin:  left  right  -10cm }
 tror115 { transform-origin:  left  top  -10cm }
 tror116 { transform-origin:  right  -10%  -10cm }
 tror117 { transform-origin:  right  0  -10cm }
 tror118 { transform-origin:  right  10px  -10cm }
 tror119 { transform-origin:  right  bottom  -10cm }
 tror120 { transform-origin:  right  center  -10cm }
-tror121 { transform-origin:  right  left  -10cm }
 tror122 { transform-origin:  right  top  -10cm }
 tror123 { transform-origin:  top  -10%  -10cm }
 tror124 { transform-origin:  top  0  -10cm }
 tror125 { transform-origin:  top  10px  -10cm }
-tror126 { transform-origin:  top  bottom  -10cm }
 tror127 { transform-origin:  top  center  -10cm }
 tror128 { transform-origin:  top  left  -10cm }
 tror129 { transform-origin:  top  right  -10cm }
@@ -159,7 +151,6 @@ tror156 { transform-origin:  bottom  10px  0 }
 tror157 { transform-origin:  bottom  center  0 }
 tror158 { transform-origin:  bottom  left  0 }
 tror159 { transform-origin:  bottom  right  0 }
-tror160 { transform-origin:  bottom  top  0 }
 tror161 { transform-origin:  center  -10%  0 }
 tror162 { transform-origin:  center  0  0 }
 tror163 { transform-origin:  center  10px  0 }
@@ -172,19 +163,16 @@ tror169 { transform-origin:  left  0  0 }
 tror170 { transform-origin:  left  10px  0 }
 tror171 { transform-origin:  left  bottom  0 }
 tror172 { transform-origin:  left  center  0 }
-tror173 { transform-origin:  left  right  0 }
 tror174 { transform-origin:  left  top  0 }
 tror175 { transform-origin:  right  -10%  0 }
 tror176 { transform-origin:  right  0  0 }
 tror177 { transform-origin:  right  10px  0 }
 tror178 { transform-origin:  right  bottom  0 }
 tror179 { transform-origin:  right  center  0 }
-tror180 { transform-origin:  right  left  0 }
 tror181 { transform-origin:  right  top  0 }
 tror182 { transform-origin:  top  -10%  0 }
 tror183 { transform-origin:  top  0  0 }
 tror184 { transform-origin:  top  10px  0 }
-tror185 { transform-origin:  top  bottom  0 }
 tror186 { transform-origin:  top  center  0 }
 tror187 { transform-origin:  top  left  0 }
 tror188 { transform-origin:  top  right  0 }
@@ -218,7 +206,6 @@ tror215 { transform-origin:  bottom  10px  }
 tror216 { transform-origin:  bottom  center  }
 tror217 { transform-origin:  bottom  left  }
 tror218 { transform-origin:  bottom  right  }
-tror219 { transform-origin:  bottom  top  }
 tror220 { transform-origin:  center  -10%  }
 tror221 { transform-origin:  center  0  }
 tror222 { transform-origin:  center  10px  }
@@ -231,19 +218,16 @@ tror228 { transform-origin:  left  0  }
 tror229 { transform-origin:  left  10px  }
 tror230 { transform-origin:  left  bottom  }
 tror231 { transform-origin:  left  center  }
-tror232 { transform-origin:  left  right  }
 tror233 { transform-origin:  left  top  }
 tror234 { transform-origin:  right  -10%  }
 tror235 { transform-origin:  right  0  }
 tror236 { transform-origin:  right  10px  }
 tror237 { transform-origin:  right  bottom  }
 tror238 { transform-origin:  right  center  }
-tror239 { transform-origin:  right  left  }
 tror240 { transform-origin:  right  top  }
 tror241 { transform-origin:  top  -10%  }
 tror242 { transform-origin:  top  0  }
 tror243 { transform-origin:  top  10px  }
-tror244 { transform-origin:  top  bottom  }
 tror245 { transform-origin:  top  center  }
 tror246 { transform-origin:  top  left  }
 tror247 { transform-origin:  top  right  }
