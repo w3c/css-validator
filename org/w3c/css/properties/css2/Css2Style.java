@@ -8,6 +8,7 @@ package org.w3c.css.properties.css2;
 
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
+import org.w3c.css.properties.css.CssCursor;
 import org.w3c.css.properties.css.CssLeft;
 import org.w3c.css.properties.css.CssMaxHeight;
 import org.w3c.css.properties.css.CssMaxWidth;
@@ -60,6 +61,7 @@ public class Css2Style extends ACssStyle {
 	public CssOutlineStyle cssOutlineStyle;
 	public CssOutlineColor cssOutlineColor;
 	public CssOutline cssOutline;
+	public CssCursor cssCursor;
 	
 	/**
      * Get the azimuth
@@ -285,5 +287,13 @@ public class Css2Style extends ACssStyle {
 					(CssOutline) style.CascadingOrder(new CssOutline(), style, selector);
 		}
 		return cssOutline;
+	}
+	
+	public final CssCursor getCursor() {
+		if (cssCursor == null) {
+			cssCursor =
+					(CssCursor) style.CascadingOrder(new CssCursor(), style, selector);
+		}
+		return cssCursor;
 	}
 }
