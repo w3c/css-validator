@@ -61,7 +61,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
 	 * Create a new CssTransformOrigin
 	 */
 	public CssTransformOrigin() {
-		super();
+		value = initial;
 	}
 
 	/**
