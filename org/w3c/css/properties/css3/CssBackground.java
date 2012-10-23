@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/#the-background
+ * @spec http://www.w3.org/TR/2012/CR-css3-background-20120724/#the-background
  * @see org.w3c.css.properties.css.CssBackgroundColor
  * @see org.w3c.css.properties.css.CssBackgroundImage
  * @see org.w3c.css.properties.css.CssBackgroundRepeat
@@ -126,7 +126,6 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 		CssExpression exp = new CssExpression();
 
 		exp.addValue(expression.getValue());
-		CssBackgroundRepeat bg_size;
 		repeat = new CssBackgroundRepeat(ac, exp, check);
 		// now check if we can add a second value ;)
 		if ((op == SPACE) && !expression.end()) {
@@ -240,11 +239,12 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 		char op;
 		CssExpression exp;
 		CssBackgroundValue v = new CssBackgroundValue();
-		boolean next_is_size, got_size;
+		boolean next_is_size, got_size, prev_is_position;
 		Object res;
 
 		next_is_size = false;
 		got_size = false;
+		prev_is_position = false;
 		while (!expression.end()) {
 			val = expression.getValue();
 			op = expression.getOperator();
@@ -252,6 +252,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 			switch (val.getType()) {
 				case CssTypes.CSS_HASH_IDENT:
 				case CssTypes.CSS_COLOR:
+					prev_is_position = false;
 					// we already got one, fail...
 					if (v.color != null || next_is_size || !is_final) {
 						throw new InvalidParamException("value", val,
@@ -266,6 +267,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 					break;
 
 				case CssTypes.CSS_URL:
+					prev_is_position = false;
 					// we already got one, fail...
 					if (v.bg_image != null || next_is_size) {
 						throw new InvalidParamException("value", val,
@@ -288,6 +290,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
+					prev_is_position = false;
 					// ok, so now we have a background position or size.
 					// and...
 					// in <bg_layer>: where '<bg-position>' must occur before
@@ -321,7 +324,8 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 						}
 						res = getCssBackgroundPositionValue(ac, expression, check);
 						op = expression.getOperator();
-						// we only have one vale so it should always be the case
+						prev_is_position = true;
+						// we only have one value so it should always be the case
 						if (res instanceof CssValue) {
 							v.bg_position = (CssValue) res;
 						} else {
@@ -332,6 +336,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 					}
 					break;
 				case CssTypes.CSS_IDENT:
+					prev_is_position = false;
 					// inherit is already taken care of...
 					CssIdent ident_val = (CssIdent) val;
 					if (CssBackgroundAttachment.isMatchingIdent(ident_val)) {
@@ -468,6 +473,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 							}
 							res = getCssBackgroundPositionValue(ac, expression, check);
 							op = expression.getOperator();
+							prev_is_position = true;
 							// we only have one vale so it should always be the case
 							if (res instanceof CssValue) {
 								v.bg_position = (CssValue) res;
@@ -494,6 +500,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 					// unrecognized or unwanted ident
 					// let it fail now
 				case CssTypes.CSS_FUNCTION:
+					prev_is_position = false;
 					// function can only be a value here
 					// we already got one, fail...
 					if (v.color != null || next_is_size || !is_final) {
@@ -509,6 +516,10 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 				// the infamous switch...
 				// note that we should check that we got something first.
 				case CssTypes.CSS_SWITCH:
+					if (!prev_is_position){
+						throw new InvalidParamException("operator", val,
+								getPropertyName(), ac);
+					}
 					next_is_size = true;
 					break;
 				default:
@@ -517,7 +528,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 			}
 
 			if (op != SPACE) {
-				throw new InvalidParamException("operator", val,
+				throw new InvalidParamException("operator", op,
 						getPropertyName(), ac);
 			}
 			expression.next();
