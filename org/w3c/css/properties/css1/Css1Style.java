@@ -62,7 +62,6 @@ public class Css1Style extends CssStyle {
 	 * background properties
 	 */
 	public org.w3c.css.properties.css.CssBackground cssBackground = new org.w3c.css.properties.css.CssBackground();
-	public CssBackgroundMob cssBackgroundMob = new CssBackgroundMob();
 
 	/* Text properties */
 	/**
@@ -341,16 +340,6 @@ public class Css1Style extends CssStyle {
 		return cssBackground.color;
 	}
 
-	public final CssBackgroundColorMob getBackgroundColorMob() {
-		if (cssBackgroundMob.color == null) {
-			cssBackgroundMob.color =
-					(CssBackgroundColorMob) style.CascadingOrder(
-							new CssBackgroundColorMob(),
-							style, selector);
-		}
-		return cssBackgroundMob.color;
-	}
-
 	/**
 	 * Get the background-image property
 	 */
@@ -361,16 +350,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssBackground.image;
-	}
-
-	// TODO this one has to go as well
-	public final CssBackgroundImageMob getBackgroundImageMob() {
-		if (cssBackgroundMob.image == null) {
-			cssBackgroundMob.image =
-					(CssBackgroundImageMob) style.CascadingOrder(new CssBackgroundImageMob(),
-							style, selector);
-		}
-		return cssBackgroundMob.image;
 	}
 
 	/**
@@ -385,17 +364,6 @@ public class Css1Style extends CssStyle {
 		return cssBackground.repeat;
 	}
 
-	// TODO this one has to go as well
-
-	public final CssBackgroundRepeatMob getBackgroundRepeatMob() {
-		if (cssBackgroundMob.repeat == null) {
-			cssBackgroundMob.repeat =
-					(CssBackgroundRepeatMob) style.CascadingOrder(new CssBackgroundRepeatMob(),
-							style, selector);
-		}
-		return cssBackgroundMob.repeat;
-	}
-
 	/**
 	 * Get the background-attachment property
 	 */
@@ -408,16 +376,6 @@ public class Css1Style extends CssStyle {
 		return cssBackground.attachment;
 	}
 
-	// TODO this one has to go as well
-	public final CssBackgroundAttachmentMob getBackgroundAttachmentMob() {
-		if (cssBackgroundMob.attachment == null) {
-			cssBackgroundMob.attachment =
-					(CssBackgroundAttachmentMob) style.CascadingOrder(new CssBackgroundAttachmentMob(),
-							style, selector);
-		}
-		return cssBackgroundMob.attachment;
-	}
-
 	/**
 	 * Get the background-position property
 	 */
@@ -428,16 +386,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssBackground.position;
-	}
-
-	// TODO this one has to go as well
-	public final CssBackgroundPositionMob getBackgroundPositionMob() {
-		if (cssBackgroundMob.position == null) {
-			cssBackgroundMob.position =
-					(CssBackgroundPositionMob) style.CascadingOrder(new CssBackgroundPositionMob(),
-							style, selector);
-		}
-		return cssBackgroundMob.position;
 	}
 
 	/**
@@ -461,29 +409,6 @@ public class Css1Style extends CssStyle {
 		}
 		return cssBackground;
 	}
-
-	public final CssBackgroundMob getBackgroundMob() {
-		if (cssBackgroundMob.getColor() == null) {
-			cssBackgroundMob.color = getBackgroundColorMob();
-		}
-		if (cssBackgroundMob.image == null) {
-			cssBackgroundMob.image = getBackgroundImageMob();
-		}
-		if (cssBackgroundMob.repeat == null) {
-			cssBackgroundMob.repeat = getBackgroundRepeatMob();
-		}
-		if (cssBackgroundMob.attachment == null) {
-			cssBackgroundMob.attachment = getBackgroundAttachmentMob();
-		}
-		if (cssBackgroundMob.position == null) {
-			cssBackgroundMob.position = getBackgroundPositionMob();
-		}
-		return cssBackgroundMob;
-	}
-
-	/*
-		 * Text properties
-		 */
 
 	/**
 	 * Get the word-spacing property
@@ -1409,26 +1334,11 @@ public class Css1Style extends CssStyle {
 					&& (!selector.isBlockLevelElement())) {
 				warnings.addWarning(new Warning(cssTextIndent,
 						"block-level", 1, ac));
-			} else if ((cssTextIndentMob != null)
-					&& (selector != null)
-					&& (!selector.isBlockLevelElement())) {
-				warnings.addWarning(new Warning(cssTextAlignMob,
-						"block-level", 1, ac));
 			}
 			if ((cssTextAlign != null)
 					&& (selector != null)
 					&& (!selector.isBlockLevelElement())) {
 				warnings.addWarning(new Warning(cssTextAlign,
-						"block-level", 1, ac));
-			} else if ((cssTextAlignMob != null)
-					&& (selector != null)
-					&& (!selector.isBlockLevelElement())) {
-				warnings.addWarning(new Warning(cssTextAlignMob,
-						"block-level", 1, ac));
-			} else if ((cssTextAlignTV != null)
-					&& (selector != null)
-					&& (!selector.isBlockLevelElement())) {
-				warnings.addWarning(new Warning(cssTextAlignTV,
 						"block-level", 1, ac));
 			}
 			if ((cssWhiteSpace != null)

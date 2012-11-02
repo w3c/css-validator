@@ -31,7 +31,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
 		}
 	}
 
-	protected static boolean checkMatchingIdent(CssIdent ident) {
+	public static boolean checkMatchingIdent(CssIdent ident) {
 		return (getMatchingIdent(ident) != null);
 	}
 
