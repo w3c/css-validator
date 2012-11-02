@@ -19,16 +19,6 @@ public interface CssTextPropertiesConstants {
   public static String[] TEXTDECORATIONMOB = {
     "underline", "inherit" };
 
-  public static String[] VERTICALALIGN = {
-    "auto", "use-script", "baseline", "sub", "super", "top", "text-top",
-    "central", "middle", "bottom", "text-bottom", "inherit", "initial" };
-
-  public static String[] VERTICALALIGNMOB = {
-    "baseline", "sub", "super", "inherit" };
-
-  public static String[] VERTICALALIGNTV = {
-    "baseline", "sub", "super", "top", "middle", "bottom", "inherit" };
-
   public static String[] TEXTTRANSFORM = {
     "none", "capitalize", "uppercase", "lowercase", "inherit" };
 

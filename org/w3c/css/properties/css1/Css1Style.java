@@ -28,6 +28,7 @@ import org.w3c.css.properties.css.CssTextAlign;
 import org.w3c.css.properties.css.CssTextDecoration;
 import org.w3c.css.properties.css.CssTextIndent;
 import org.w3c.css.properties.css.CssTextTransform;
+import org.w3c.css.properties.css.CssVerticalAlign;
 import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -81,8 +82,7 @@ public class Css1Style extends CssStyle {
 	 * vertical-align property
 	 */
 	public CssVerticalAlign cssVerticalAlign;
-	public CssVerticalAlignCSS1 cssVerticalAlignCSS1;
-	public CssVerticalAlignMob cssVerticalAlignMob;
+
 	/**
 	 * text-transform property
 	 */
@@ -224,10 +224,6 @@ public class Css1Style extends CssStyle {
 	 * TV property
 	 */
 	public CssTextDecorationTV cssTextDecorationTV;
-	/**
-	 * TV property
-	 */
-	public CssVerticalAlignTV cssVerticalAlignTV;
 
 	public String[] emptyArray = {};
 
@@ -554,24 +550,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssVerticalAlign;
-	}
-
-	public final CssVerticalAlignMob getVerticalAlignMob() {
-		if (cssVerticalAlignMob == null) {
-			cssVerticalAlignMob =
-					(CssVerticalAlignMob) style.CascadingOrder(new CssVerticalAlignMob(),
-							style, selector);
-		}
-		return cssVerticalAlignMob;
-	}
-
-	public final CssVerticalAlignCSS1 getVerticalAlignCSS1() {
-		if (cssVerticalAlignCSS1 == null) {
-			cssVerticalAlignCSS1 =
-					(CssVerticalAlignCSS1) style.CascadingOrder(new CssVerticalAlignCSS1(),
-							style, selector);
-		}
-		return cssVerticalAlignCSS1;
 	}
 
 	/**
@@ -1256,17 +1234,6 @@ public class Css1Style extends CssStyle {
 
 		return cssTextDecorationTV;
 	}
-
-	public final CssVerticalAlignTV getVerticalAlignTV() {
-		if (cssVerticalAlignTV == null) {
-			cssVerticalAlignTV =
-					(CssVerticalAlignTV) style.CascadingOrder(new CssVerticalAlignTV(),
-							style, selector);
-		}
-
-		return cssVerticalAlignTV;
-	}
-
 
 	/**
 	 * Find conflicts in this Style

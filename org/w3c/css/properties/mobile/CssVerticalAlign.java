@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.mobile;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,15 +13,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#vertical-align
+ * @spec http://www.w3.org/TR/2008/CR-css-mobile-20081210/#properties
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-vertical-align
  */
 public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlign {
 
 	private static CssIdent[] allowed_values;
 
 	static {
-		String id_values[] = {"baseline", "sub", "super", "top", "text-top",
-				"middle", "bottom", "text-bottom"};
+		String id_values[] = {"top", "middle", "bottom", "baseline"};
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
 		for (String s : id_values) {
@@ -75,10 +75,11 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
 		}
 
 		switch (val.getType()) {
-			case CssTypes.CSS_PERCENTAGE:
-				value = val;
-				break;
 			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					value = inherit;
+					break;
+				}
 				val = getMatchingIdent((CssIdent) val);
 				if (val != null) {
 					value = val;
