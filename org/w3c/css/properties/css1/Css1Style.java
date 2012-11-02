@@ -35,7 +35,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
@@ -199,11 +198,6 @@ public class Css1Style extends CssStyle {
 	 * counter-increment property
 	 */
 	public CssCounterIncrement cssCounterIncrement;
-	/**
-	 * marker-offset property
-	 */
-	public CssMarkerOffset cssMarkerOffset;
-	public CssMarkerOffsetATSC cssMarkerOffsetATSC;
 
 	/**
 	 * TV property
@@ -1071,27 +1065,6 @@ public class Css1Style extends CssStyle {
 		return cssCounterIncrement;
 	}
 
-	/**
-	 * Get the marker-offset property
-	 */
-	public final CssMarkerOffset getMarkerOffset() {
-		if (cssMarkerOffset == null) {
-			cssMarkerOffset =
-					(CssMarkerOffset) style.CascadingOrder(new CssMarkerOffset(),
-							style, selector);
-		}
-		return cssMarkerOffset;
-	}
-
-	public final CssMarkerOffsetATSC getMarkerOffsetATSC() {
-		if (cssMarkerOffsetATSC == null) {
-			cssMarkerOffsetATSC =
-					(CssMarkerOffsetATSC) style.CascadingOrder(new CssMarkerOffsetATSC(),
-							style, selector);
-		}
-		return cssMarkerOffsetATSC;
-	}
-
 	public final CssListStyleTypeTV getListStyleTypeTV() {
 		if (cssListStyleTypeTV == null) {
 			cssListStyleTypeTV =
@@ -1346,15 +1319,6 @@ public class Css1Style extends CssStyle {
 					&& (!selector.isBlockLevelElement())) {
 				warnings.addWarning(new Warning(cssWhiteSpace,
 						"block-level", 1, ac));
-			}
-		}
-
-		if (cssMarkerOffset != null) {
-			//@@ beurk you know what ? 5 is horrible.
-			if ((cssDisplay == null)
-					|| (CssIdent.getIdent("marker").equals(cssDisplay.get()))) {
-				warnings.addWarning(new Warning(cssMarkerOffset,
-						"marker", 1, ac));
 			}
 		}
 	}
