@@ -61,6 +61,19 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 			op = expression.getOperator();
 
 			switch (val.getType()) {
+				// temporary, until the parser fixes rgba hsl and others for good
+				case CssTypes.CSS_FUNCTION:
+					if (colorValue == null) {
+						CssExpression ex = new CssExpression();
+						ex.addValue(val);
+						_color = new CssOutlineColor(ac, ex, check);
+						colorValue = _color.value;
+						break;
+					}
+					// else, we already got one...
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
 				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
 					if (widthValue == null) {
