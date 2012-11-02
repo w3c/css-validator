@@ -32,8 +32,8 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 
 	/**
-	 *  Create a new CssBackground
-     */
+	 * Create a new CssBackground
+	 */
 	public CssBackground() {
 		value = initial;
 	}
@@ -516,7 +516,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 				// the infamous switch...
 				// note that we should check that we got something first.
 				case CssTypes.CSS_SWITCH:
-					if (!prev_is_position){
+					if (!prev_is_position) {
 						throw new InvalidParamException("operator", val,
 								getPropertyName(), ac);
 					}
@@ -806,9 +806,9 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 			}
 			if (bg_position != null) {
 				sb.append(bg_position).append(' ');
-			}
-			if (bg_size != null) {
-				sb.append('/').append(bg_size).append(' ');
+				if (bg_size != null) {
+					sb.append('/').append(bg_size).append(' ');
+				}
 			}
 			if (repeat_style != null) {
 				sb.append(repeat_style).append(' ');
