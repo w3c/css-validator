@@ -142,12 +142,6 @@ public class Css1Style extends CssStyle {
 	public CssZIndex cssZIndex;
 
 	/**
-	 * unicode-bidi property
-	 */
-	public CssUnicodeBidi cssUnicodeBidi;
-	public CssUnicodeBidiATSC cssUnicodeBidiATSC;
-
-	/**
 	 * white-space property
 	 */
 	public org.w3c.css.properties.css.CssWhiteSpace cssWhiteSpace;
@@ -793,27 +787,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssVisibility;
-	}
-
-	/**
-	 * Get the unicode-bidi property
-	 */
-	public final CssUnicodeBidi getUnicodeBidi() {
-		if (cssUnicodeBidi == null) {
-			cssUnicodeBidi =
-					(CssUnicodeBidi) style.CascadingOrder(new CssUnicodeBidi(),
-							style, selector);
-		}
-		return cssUnicodeBidi;
-	}
-
-	public final CssUnicodeBidiATSC getUnicodeBidiATSC() {
-		if (cssUnicodeBidiATSC == null) {
-			cssUnicodeBidiATSC =
-					(CssUnicodeBidiATSC) style.CascadingOrder(new CssUnicodeBidiATSC(),
-							style, selector);
-		}
-		return cssUnicodeBidiATSC;
 	}
 
 	/**
