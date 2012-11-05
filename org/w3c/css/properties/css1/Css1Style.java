@@ -157,11 +157,7 @@ public class Css1Style extends CssStyle {
 	 */
 	public CssContentCSS2 cssContentCSS2;
 	public CssContent cssContent;
-	/**
-	 * quotes property
-	 */
-	public CssQuotes cssQuotes;
-	public CssQuotesATSC cssQuotesATSC;
+
 	/**
 	 * counter-reset property
 	 */
@@ -911,27 +907,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssContentCSS2;
-	}
-
-	/**
-	 * Get the quotes property
-	 */
-	public final CssQuotes getQuotes() {
-		if (cssQuotes == null) {
-			cssQuotes =
-					(CssQuotes) style.CascadingOrder(new CssQuotes(),
-							style, selector);
-		}
-		return cssQuotes;
-	}
-
-	public final CssQuotesATSC getQuotesATSC() {
-		if (cssQuotesATSC == null) {
-			cssQuotesATSC =
-					(CssQuotesATSC) style.CascadingOrder(new CssQuotesATSC(),
-							style, selector);
-		}
-		return cssQuotesATSC;
 	}
 
 	/**

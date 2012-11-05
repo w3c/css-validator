@@ -24,6 +24,7 @@ import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
 import org.w3c.css.properties.css.CssPosition;
+import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
@@ -81,6 +82,7 @@ public class Css2Style extends ACssStyle {
 	public CssUnicodeBidi cssUnicodeBidi;
 	public CssVisibility cssVisibility;
 	public CssOverflow cssOverflow;
+	public CssQuotes cssQuotes;
 
 	/**
 	 * Get the azimuth
@@ -385,6 +387,17 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssOverflow;
+	}
+	/**
+	 * Get the quotes property
+	 */
+	public final CssQuotes getQuotes() {
+		if (cssQuotes == null) {
+			cssQuotes =
+					(CssQuotes) style.CascadingOrder(new CssQuotes(),
+							style, selector);
+		}
+		return cssQuotes;
 	}
 	/**
 	 * Find conflicts in this Style
