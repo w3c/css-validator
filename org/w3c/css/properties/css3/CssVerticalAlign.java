@@ -14,7 +14,6 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2002/WD-css3-linebox-20020515/#vertical-align
- * (amended, 'use-script' removed per 20121102 ed-draft)
  */
 public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlign {
 
@@ -22,7 +21,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
 
 	static {
 		String id_values[] = {"auto", "baseline", "sub", "super", "top", "text-top",
-				"central", "middle", "bottom", "text-bottom"};
+				"central", "middle", "bottom", "text-bottom", "use-script"};
 
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
@@ -44,6 +43,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
 	 * Create a new CssVerticalAlign
 	 */
 	public CssVerticalAlign() {
+		value = initial;
 	}
 
 	/**
