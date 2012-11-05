@@ -5,6 +5,13 @@ like <test profile="css2" medium="all" warning="0">
 where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
+  <type title="Valid_azimuth">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/azimuth/css21/001.css</file>
+      <description>Valid azimuth level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_background">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/background/css21/001.css</file>
@@ -434,10 +441,31 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_caption-side">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/caption-side/css21/001.css</file>
+      <description>Valid caption-side level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_clip">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/clip/css21/001.css</file>
       <description>Valid clip level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_color">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/color/css21/001.css</file>
+      <description>Valid color level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_elevation">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/elevation/css21/001.css</file>
+      <description>Valid elevation level css21</description>
       <result valid="true" />
     </test>
   </type>

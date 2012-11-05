@@ -1303,6 +1303,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/color/css3/001.css</file>
+      <description>Valid color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font/css3/001.css</file>
