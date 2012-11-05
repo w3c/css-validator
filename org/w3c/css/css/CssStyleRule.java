@@ -55,7 +55,7 @@ public class CssStyleRule {
             ret.append(" : ");
             ret.append(property.toString());
             if (property.getImportant()) {
-                ret.append(" important");
+                ret.append(" !important");
             }
             ret.append(";\n");
         }
@@ -69,21 +69,6 @@ public class CssStyleRule {
     public String toStringEscaped() {
         return Messages.escapeString(toString());
     }
-
-    /*
-     * public String toHTML() { StringBuffer ret = new StringBuffer("<li><span
-     * class='selector'>"); if (selectors != null) { ret.append(selectors);
-     * ret.append("</span> {<ul class='vRule'>\n"); }
-     * 
-     * for (int i = 0; i < properties.size() ; i++) { CssProperty property =
-     * (CssProperty)properties.elementAt(i); ret.append("<li>");
-     * ret.append(property.getFeatureName()); ret.append(" : <span
-     * class='vPropertyValue'>"); ret.append(property.toString());
-     * ret.append("</span>");
-     * if (property.getImportant()) { ret.append(" !important"); } 
-     * ret.append(";</li>\n"); }
-     * ret.append("</ul>}</li>\n\n"); return ret.toString(); }
-     */
 
     /**
      * This method returns a part of the style sheet to be displayed
