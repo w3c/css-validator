@@ -1,32 +1,20 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- */
 package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * See
- * http://www.w3.org/TR/2008/REC-CSS2-20080411/visuren.html#propdef-direction
- *
- * 'direction'
-    Value:  	ltr | rtl | inherit
-    Initial:  	ltr
-    Applies to:  	all elements, but see prose
-    Inherited:  	yes
-    Percentages:  	N/A
-    Media:  	visual
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/visuren.html#propdef-direction
  */
 public class CssDirection extends org.w3c.css.properties.css.CssDirection {
-
 
     /**
      * Create a new CssDirection
@@ -51,20 +39,21 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
         CssValue val = expression.getValue();
 
         setByUser();
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value", expression.getValue(),
+					getPropertyName(), ac);
+		}
         if (val.equals(inherit)) {
             value = inherit;
-            expression.next();
         } else if (val.equals(ltr)) {
             value = ltr;
-            expression.next();
         } else if (val.equals(rtl)) {
             value = rtl;
-            expression.next();
         } else {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-
+		expression.next();
     }
 
     public CssDirection(ApplContext ac, CssExpression expression)

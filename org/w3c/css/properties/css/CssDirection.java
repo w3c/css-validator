@@ -1,15 +1,12 @@
-//
 // $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT and INRIA, 1997.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
-/*
- */
 package org.w3c.css.properties.css;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css1.Css1Style;
+import org.w3c.css.properties.css2.Css2Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -17,6 +14,7 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
 
 /**
+ * @since CSS2
  */
 public class CssDirection extends CssProperty {
 
@@ -88,7 +86,7 @@ public class CssDirection extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        Css1Style style0 = (Css1Style) style;
+        Css2Style style0 = (Css2Style) style;
         if (style0.cssDirection != null)
             style0.addRedefinitionWarning(ac, this);
         style0.cssDirection = this;
@@ -102,9 +100,9 @@ public class CssDirection extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css1Style) style).getDirection();
+            return ((Css2Style) style).getDirection();
         } else {
-            return ((Css1Style) style).cssDirection;
+            return ((Css2Style) style).cssDirection;
         }
     }
 

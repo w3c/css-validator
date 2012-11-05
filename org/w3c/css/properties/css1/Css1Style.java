@@ -10,7 +10,6 @@ package org.w3c.css.properties.css1;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssClear;
-import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssDisplay;
 import org.w3c.css.properties.css.CssFloat;
 import org.w3c.css.properties.css.CssMargin;
@@ -141,12 +140,6 @@ public class Css1Style extends CssStyle {
 	 * z-index property
 	 */
 	public CssZIndex cssZIndex;
-
-	/**
-	 * direction property
-	 */
-	public CssDirection cssDirection;
-	public CssDirectionATSC cssDirectionATSC;
 
 	/**
 	 * unicode-bidi property
@@ -776,27 +769,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssZIndex;
-	}
-
-	/**
-	 * Get the direction property
-	 */
-	public final CssDirection getDirection() {
-		if (cssDirection == null) {
-			cssDirection =
-					(CssDirection) style.CascadingOrder(new CssDirection(),
-							style, selector);
-		}
-		return cssDirection;
-	}
-
-	public final CssDirectionATSC getDirectionATSC() {
-		if (cssDirectionATSC == null) {
-			cssDirectionATSC =
-					(CssDirectionATSC) style.CascadingOrder(new CssDirectionATSC(),
-							style, selector);
-		}
-		return cssDirectionATSC;
 	}
 
 	/**

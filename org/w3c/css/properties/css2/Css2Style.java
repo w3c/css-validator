@@ -11,6 +11,7 @@ import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssClip;
 import org.w3c.css.properties.css.CssCursor;
+import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssLeft;
 import org.w3c.css.properties.css.CssMarkerOffset;
 import org.w3c.css.properties.css.CssMaxHeight;
@@ -73,6 +74,8 @@ public class Css2Style extends ACssStyle {
 
 	public CssClip cssClip;
 	public CssMarkerOffset cssMarkerOffset;
+	public CssDirection cssDirection;
+
 
 	/**
 	 * Get the azimuth
@@ -332,7 +335,17 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssClip;
 	}
-
+	/**
+	 * Get the direction property
+	 */
+	public final CssDirection getDirection() {
+		if (cssDirection == null) {
+			cssDirection =
+					(CssDirection) style.CascadingOrder(new CssDirection(),
+							style, selector);
+		}
+		return cssDirection;
+	}
 
 	/**
 	 * Find conflicts in this Style
