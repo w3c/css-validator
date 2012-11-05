@@ -9,6 +9,7 @@ package org.w3c.css.properties.css2;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
+import org.w3c.css.properties.css.CssClip;
 import org.w3c.css.properties.css.CssCursor;
 import org.w3c.css.properties.css.CssLeft;
 import org.w3c.css.properties.css.CssMarkerOffset;
@@ -70,6 +71,7 @@ public class Css2Style extends ACssStyle {
 	public CssOutline cssOutline;
 	public CssCursor cssCursor;
 
+	public CssClip cssClip;
 	public CssMarkerOffset cssMarkerOffset;
 
 	/**
@@ -317,6 +319,20 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssMarkerOffset;
 	}
+
+
+	/**
+	 * Get the clip property
+	 */
+	public final CssClip getClip() {
+		if (cssClip == null) {
+			cssClip =
+					(CssClip) style.CascadingOrder(new CssClip(),
+							style, selector);
+		}
+		return cssClip;
+	}
+
 
 	/**
 	 * Find conflicts in this Style

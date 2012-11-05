@@ -171,11 +171,6 @@ public class Css1Style extends CssStyle {
 	public CssOverflow cssOverflow;
 
 	/**
-	 * clip property
-	 */
-	public CssClip cssClip;
-
-	/**
 	 * visibility property
 	 */
 	public CssVisibility cssVisibility;
@@ -814,18 +809,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssOverflow;
-	}
-
-	/**
-	 * Get the clip property
-	 */
-	public final CssClip getClip() {
-		if (cssClip == null) {
-			cssClip =
-					(CssClip) style.CascadingOrder(new CssClip(),
-							style, selector);
-		}
-		return cssClip;
 	}
 
 	/**
