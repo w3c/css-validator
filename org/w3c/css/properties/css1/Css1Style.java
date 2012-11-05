@@ -153,11 +153,6 @@ public class Css1Style extends CssStyle {
 	public CssListStyleCSS1 cssListStyleCSS1 = new CssListStyleCSS1();
 
 	/**
-	 * overflow property
-	 */
-	public CssOverflow cssOverflow;
-
-	/**
 	 * content property
 	 */
 	public CssContentCSS2 cssContentCSS2;
@@ -758,18 +753,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssZIndex;
-	}
-
-	/**
-	 * Get the overflow property
-	 */
-	public final CssOverflow getOverflow() {
-		if (cssOverflow == null) {
-			cssOverflow =
-					(CssOverflow) style.CascadingOrder(new CssOverflow(),
-							style, selector);
-		}
-		return cssOverflow;
 	}
 	/**
 	 * Get the white-space property

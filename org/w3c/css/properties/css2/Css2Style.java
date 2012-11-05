@@ -22,6 +22,7 @@ import org.w3c.css.properties.css.CssOutline;
 import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
+import org.w3c.css.properties.css.CssOverflow;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
@@ -79,6 +80,7 @@ public class Css2Style extends ACssStyle {
 	public CssDirection cssDirection;
 	public CssUnicodeBidi cssUnicodeBidi;
 	public CssVisibility cssVisibility;
+	public CssOverflow cssOverflow;
 
 	/**
 	 * Get the azimuth
@@ -372,6 +374,17 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssVisibility;
+	}
+	/**
+	 * Get the overflow property
+	 */
+	public final CssOverflow getOverflow() {
+		if (cssOverflow == null) {
+			cssOverflow =
+					(CssOverflow) style.CascadingOrder(new CssOverflow(),
+							style, selector);
+		}
+		return cssOverflow;
 	}
 	/**
 	 * Find conflicts in this Style
