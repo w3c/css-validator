@@ -158,11 +158,6 @@ public class Css1Style extends CssStyle {
 	public CssOverflow cssOverflow;
 
 	/**
-	 * visibility property
-	 */
-	public CssVisibility cssVisibility;
-
-	/**
 	 * content property
 	 */
 	public CssContentCSS2 cssContentCSS2;
@@ -776,19 +771,6 @@ public class Css1Style extends CssStyle {
 		}
 		return cssOverflow;
 	}
-
-	/**
-	 * Get the visibility property
-	 */
-	public final CssVisibility getVisibility() {
-		if (cssVisibility == null) {
-			cssVisibility =
-					(CssVisibility) style.CascadingOrder(new CssVisibility(),
-							style, selector);
-		}
-		return cssVisibility;
-	}
-
 	/**
 	 * Get the white-space property
 	 */

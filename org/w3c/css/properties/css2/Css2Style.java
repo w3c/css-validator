@@ -27,6 +27,7 @@ import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
 import org.w3c.css.properties.css.CssUnicodeBidi;
+import org.w3c.css.properties.css.CssVisibility;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
@@ -77,6 +78,7 @@ public class Css2Style extends ACssStyle {
 	public CssMarkerOffset cssMarkerOffset;
 	public CssDirection cssDirection;
 	public CssUnicodeBidi cssUnicodeBidi;
+	public CssVisibility cssVisibility;
 
 	/**
 	 * Get the azimuth
@@ -360,7 +362,17 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssUnicodeBidi;
 	}
-
+	/**
+	 * Get the visibility property
+	 */
+	public final CssVisibility getVisibility() {
+		if (cssVisibility == null) {
+			cssVisibility =
+					(CssVisibility) style.CascadingOrder(new CssVisibility(),
+							style, selector);
+		}
+		return cssVisibility;
+	}
 	/**
 	 * Find conflicts in this Style
 	 *

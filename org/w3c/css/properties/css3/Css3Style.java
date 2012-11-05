@@ -244,7 +244,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubySpan cssRubySpan;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
-	CssVisibilityCSS3 cssVisibilityCSS3;
 	CssOverflowCSS3 cssOverflowCSS3;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
@@ -784,15 +783,6 @@ public class Css3Style extends ATSCStyle {
 							new CssFitPosition(), style, selector);
 		}
 		return cssFitPosition;
-	}
-
-	public CssVisibilityCSS3 getVisibilityCSS3() {
-		if (cssVisibilityCSS3 == null) {
-			cssVisibilityCSS3 =
-					(CssVisibilityCSS3) style.CascadingOrder(
-							new CssVisibilityCSS3(), style, selector);
-		}
-		return cssVisibilityCSS3;
 	}
 
 	public CssOverflowCSS3 getOverflowCSS3() {
