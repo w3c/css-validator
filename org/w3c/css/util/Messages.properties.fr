@@ -233,8 +233,8 @@ ils doivent donc être sans guillemets.
 
 # used by org.w3c.css.properties.CssClip
 error.shape: Définition de forme non valide: rect(<haut>,<droit>,<bas>,<gauche>)
-error.shape-separator: Séparateur non valide dans la définition de la forme, \
-cela doit être une virgule.
+error.shape-separator: Séparateur non valide dans la définition de la forme, seule la virgue est acceptée.
+warning.shape-separator: Séparateur non valide dans la définition de la forme, seule la virgue est acceptée.
 
 # used by org.w3c.css.properties.CssContent
 error.attr: Définition d'attribut non valide attr(X)

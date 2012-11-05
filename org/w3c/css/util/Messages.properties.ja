@@ -201,8 +201,8 @@ error.generic-family.quote: 一般フォントファミリー名(Generic font fa
 
 # used by org.w3c.css.properties.CssClip
 error.shape: 間違った形状指定が rect(<top>,<right>,<bottom>,<left>) になされています
-error.shape-separator: 形状指定の区切り文字が正しくありません。\
-これはカンマ(,)である必要があります
+error.shape-separator: 形状指定の区切り文字が正しくありません。これはカンマ(,)である必要があります
+warning.shape-separator: 形状指定の区切り文字が正しくありません。これはカンマ(,)である必要があります
 
 # used by org.w3c.css.properties.CssContent
 error.attr: 属性の定義が間違っています attr(X)
