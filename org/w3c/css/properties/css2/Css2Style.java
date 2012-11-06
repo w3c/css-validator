@@ -10,6 +10,7 @@ import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssClip;
+import org.w3c.css.properties.css.CssCounterIncrement;
 import org.w3c.css.properties.css.CssCursor;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssLeft;
@@ -83,6 +84,7 @@ public class Css2Style extends ACssStyle {
 	public CssVisibility cssVisibility;
 	public CssOverflow cssOverflow;
 	public CssQuotes cssQuotes;
+	public CssCounterIncrement cssCounterIncrement;
 
 	/**
 	 * Get the azimuth
@@ -399,6 +401,18 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssQuotes;
 	}
+	/**
+	 * Get the counter-increment property
+	 */
+	public final CssCounterIncrement getCounterIncrement() {
+		if (cssCounterIncrement == null) {
+			cssCounterIncrement =
+					(CssCounterIncrement) style.CascadingOrder(new CssCounterIncrement(),
+							style, selector);
+		}
+		return cssCounterIncrement;
+	}
+
 	/**
 	 * Find conflicts in this Style
 	 *

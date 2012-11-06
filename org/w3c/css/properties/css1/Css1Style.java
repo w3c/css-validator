@@ -162,10 +162,6 @@ public class Css1Style extends CssStyle {
 	 * counter-reset property
 	 */
 	public CssCounterReset cssCounterReset;
-	/**
-	 * counter-increment property
-	 */
-	public CssCounterIncrement cssCounterIncrement;
 
 	/**
 	 * TV property
@@ -919,18 +915,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssCounterReset;
-	}
-
-	/**
-	 * Get the counter-increment property
-	 */
-	public final CssCounterIncrement getCounterIncrement() {
-		if (cssCounterIncrement == null) {
-			cssCounterIncrement =
-					(CssCounterIncrement) style.CascadingOrder(new CssCounterIncrement(),
-							style, selector);
-		}
-		return cssCounterIncrement;
 	}
 
 	public final CssListStyleTypeTV getListStyleTypeTV() {
