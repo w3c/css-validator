@@ -26,6 +26,7 @@ public class CssCounterReset extends org.w3c.css.properties.css.CssCounterReset 
 	 * Create a new CssCounterReset
 	 */
 	public CssCounterReset() {
+		value = initial;
 	}
 
 	/**

@@ -26,6 +26,7 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
 	 * Create a new CssCounterIncrement
 	 */
 	public CssCounterIncrement() {
+		value = initial;
 	}
 
 	/**
