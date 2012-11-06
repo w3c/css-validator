@@ -159,11 +159,6 @@ public class Css1Style extends CssStyle {
 	public CssContent cssContent;
 
 	/**
-	 * counter-reset property
-	 */
-	public CssCounterReset cssCounterReset;
-
-	/**
 	 * TV property
 	 */
 	public CssListStyleTypeTV cssListStyleTypeTV;
@@ -903,18 +898,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssContentCSS2;
-	}
-
-	/**
-	 * Get the counter-reset property
-	 */
-	public final CssCounterReset getCounterReset() {
-		if (cssCounterReset == null) {
-			cssCounterReset =
-					(CssCounterReset) style.CascadingOrder(new CssCounterReset(),
-							style, selector);
-		}
-		return cssCounterReset;
 	}
 
 	public final CssListStyleTypeTV getListStyleTypeTV() {

@@ -11,6 +11,7 @@ import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssClip;
 import org.w3c.css.properties.css.CssCounterIncrement;
+import org.w3c.css.properties.css.CssCounterReset;
 import org.w3c.css.properties.css.CssCursor;
 import org.w3c.css.properties.css.CssDirection;
 import org.w3c.css.properties.css.CssLeft;
@@ -85,6 +86,7 @@ public class Css2Style extends ACssStyle {
 	public CssOverflow cssOverflow;
 	public CssQuotes cssQuotes;
 	public CssCounterIncrement cssCounterIncrement;
+	public CssCounterReset cssCounterReset;
 
 	/**
 	 * Get the azimuth
@@ -411,6 +413,17 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssCounterIncrement;
+	}
+	/**
+	 * Get the counter-reset property
+	 */
+	public final CssCounterReset getCounterReset() {
+		if (cssCounterReset == null) {
+			cssCounterReset =
+					(CssCounterReset) style.CascadingOrder(new CssCounterReset(),
+							style, selector);
+		}
+		return cssCounterReset;
 	}
 
 	/**
