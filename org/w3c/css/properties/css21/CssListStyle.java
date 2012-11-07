@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#list-style
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/generate.html#propdef-list-style
  */
 public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 
@@ -62,6 +62,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 		CssValue imageVal = null;
 		CssValue positionVal = null;
 		CssValue typeVal = null;
+		int nbnone = 0;
 
 		while (!expression.end()) {
 			val = expression.getValue();
@@ -76,14 +77,18 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 					imageVal = val;
 					break;
 				case CssTypes.CSS_IDENT:
-					if (none.equals(val)) {
-						if (imageVal != null || typeVal != null) {
-							// TODO duplicate value error
-							throw new InvalidParamException("value", val,
-									getPropertyName(), ac);
+					if (inherit.equals(val)) {
+						if (expression.getCount() > 1) {
+							throw new InvalidParamException("unrecognize", ac);
 						}
-						typeVal = none;
-						imageVal = none;
+						value = inherit;
+						imageVal = inherit;
+						positionVal = inherit;
+						typeVal = inherit;
+						break;
+					}
+					if (none.equals(val)) {
+						nbnone++;
 						break;
 					}
 					// now we go to other values...
@@ -95,7 +100,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 						}
 					}
 					if (typeVal == null) {
-						typeVal = org.w3c.css.properties.css2.CssListStyleType.getAllowedIdent(id);
+						typeVal = CssListStyleType.getAllowedIdent(id);
 						if (typeVal != null) {
 							break;
 						}
@@ -111,6 +116,39 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 			}
 			expression.next();
 		}
+		// some postprocessing...
+		if (nbnone > 0) {
+			switch (nbnone) {
+				case 1:
+					// we set the value ot the non-specified by the shorthand
+					// values...
+					if (imageVal != null && typeVal != null) {
+						// TODO duplicate value error
+						throw new InvalidParamException("value", none,
+								getPropertyName(), ac);
+					}
+					if (typeVal == null) {
+						typeVal = none;
+					}
+					if (imageVal == null) {
+						imageVal = none;
+					}
+					break;
+				case 2:
+					if (imageVal != null || typeVal != null) {
+						// TODO duplicate value error
+						throw new InvalidParamException("value", none,
+								getPropertyName(), ac);
+					}
+					typeVal = none;
+					imageVal = none;
+					break;
+				default:
+					throw new InvalidParamException("value", none,
+							getPropertyName(), ac);
+			}
+		}
+
 		// set the value
 		if (value != inherit) {
 			ArrayList<CssValue> v = new ArrayList<CssValue>();

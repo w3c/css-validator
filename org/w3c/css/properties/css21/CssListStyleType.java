@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css21;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,14 +13,17 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#list-style-position
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/generate.html#propdef-list-style-type
  */
-public class CssListStylePosition extends org.w3c.css.properties.css.CssListStylePosition {
+public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleType {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"inside", "outside"};
+		String[] _allowed_values = {"none", "disc", "circle", "square", "decimal",
+				"decimal-leading-zero", "lower-roman", "upper-roman", "lower-greek",
+				"lower-latin", "upper-latin", "armenian", "georgian", "lower-alpha",
+				"upper-alpha"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
@@ -38,9 +41,9 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 	}
 
 	/**
-	 * Create a new CssListStylePosition
+	 * Create a new CssListStyleType
 	 */
-	public CssListStylePosition() {
+	public CssListStyleType() {
 	}
 
 
@@ -52,7 +55,7 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssListStylePosition(ApplContext ac, CssExpression expression)
+	public CssListStyleType(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
 	}
@@ -65,8 +68,8 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssListStylePosition(ApplContext ac, CssExpression expression,
-								boolean check) throws InvalidParamException {
+	public CssListStyleType(ApplContext ac, CssExpression expression,
+							boolean check) throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -83,12 +86,15 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 					getPropertyName(), ac);
 		}
 		CssIdent id = (CssIdent) val;
-		value = getAllowedIdent(id);
-		if (value == null) {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
-
+		if (inherit.equals(id)) {
+			value = inherit;
+		} else {
+			value = getAllowedIdent(id);
+			if (value == null) {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
+			}
 		}
 		expression.next();
 	}

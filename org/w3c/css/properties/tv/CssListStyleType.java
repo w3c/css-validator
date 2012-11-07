@@ -3,23 +3,46 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.tv;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#list-style-image
+ * @spec http://www.w3.org/TR/2003/CR-css-tv-20030514
  */
-public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleImage {
+public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleType {
+
+	public static final CssIdent[] allowed_values;
+
+	static {
+		String[] _allowed_values = {"none", "disc", "circle", "square",
+				"decimal", "lower-roman", "upper-roman", "lower-alpha",
+				"lower-latin", "upper-alpha", "upper-latin"};
+		int i = 0;
+		allowed_values = new CssIdent[_allowed_values.length];
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
+	}
+
+	public static final CssIdent getAllowedIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
 
 	/**
-	 * Create a new CssListStyleImage
+	 * Create a new CssListStyleType
 	 */
-	public CssListStyleImage() {
+	public CssListStyleType() {
 	}
 
 
@@ -31,7 +54,7 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssListStyleImage(ApplContext ac, CssExpression expression)
+	public CssListStyleType(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
 	}
@@ -44,8 +67,8 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          The expression is incorrect
 	 */
-	public CssListStyleImage(ApplContext ac, CssExpression expression,
-							 boolean check) throws InvalidParamException {
+	public CssListStyleType(ApplContext ac, CssExpression expression,
+							boolean check) throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -57,20 +80,22 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 		val = expression.getValue();
 		op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_URL:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (none.equals(val)) {
-					value = none;
-					break;
-				}
-			default:
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value", val,
+					getPropertyName(), ac);
+		}
+		CssIdent id = (CssIdent) val;
+		if (inherit.equals(id)) {
+			value = inherit;
+		} else {
+			value = getAllowedIdent(id);
+			if (value == null) {
 				throw new InvalidParamException("value",
 						val.toString(),
 						getPropertyName(), ac);
+			}
 		}
 		expression.next();
 	}
+
 }

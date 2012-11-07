@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#list-style-image
+ * @spec http://www.w3.org/TR/2011/WD-css3-lists-20110524/#list-style-image
  */
 public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleImage {
 
@@ -58,10 +58,17 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_FUNCTION:
+				// TODO check gradient, image
+				// perhaps using val.getImage(); ?
 			case CssTypes.CSS_URL:
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					value = inherit;
+					break;
+				}
 				if (none.equals(val)) {
 					value = none;
 					break;

@@ -12,6 +12,10 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssClear;
 import org.w3c.css.properties.css.CssDisplay;
 import org.w3c.css.properties.css.CssFloat;
+import org.w3c.css.properties.css.CssListStyle;
+import org.w3c.css.properties.css.CssListStyleImage;
+import org.w3c.css.properties.css.CssListStylePosition;
+import org.w3c.css.properties.css.CssListStyleType;
 import org.w3c.css.properties.css.CssMargin;
 import org.w3c.css.properties.css.CssMarginBottom;
 import org.w3c.css.properties.css.CssMarginLeft;
@@ -28,6 +32,7 @@ import org.w3c.css.properties.css.CssTextDecoration;
 import org.w3c.css.properties.css.CssTextIndent;
 import org.w3c.css.properties.css.CssTextTransform;
 import org.w3c.css.properties.css.CssVerticalAlign;
+import org.w3c.css.properties.css.CssWordSpacing;
 import org.w3c.css.properties.css.CssZIndex;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -65,7 +70,7 @@ public class Css1Style extends CssStyle {
 	/**
 	 * word-spacing property
 	 */
-	public org.w3c.css.properties.css.CssWordSpacing cssWordSpacing;
+	public CssWordSpacing cssWordSpacing;
 	/**
 	 * letter-spacing property
 	 */
@@ -148,24 +153,16 @@ public class Css1Style extends CssStyle {
 	/**
 	 * list-style properties
 	 */
-	public CssListStyle cssListStyle = new CssListStyle();
-	public CssListStyleCSS2 cssListStyleCSS2 = new CssListStyleCSS2();
-	public CssListStyleCSS1 cssListStyleCSS1 = new CssListStyleCSS1();
+	public CssListStylePosition cssListStylePosition;
+	public CssListStyleImage cssListStyleImage;
+	public CssListStyleType cssListStyleType;
+	public CssListStyle cssListStyle;
 
 	/**
 	 * content property
 	 */
 	public CssContentCSS2 cssContentCSS2;
 	public CssContent cssContent;
-
-	/**
-	 * TV property
-	 */
-	public CssListStyleTypeTV cssListStyleTypeTV;
-	/**
-	 * TV property
-	 */
-	public CssListStyleTV cssListStyleTV;
 
 	public String[] emptyArray = {};
 
@@ -757,126 +754,48 @@ public class Css1Style extends CssStyle {
 	 * Get the list-style-type property
 	 */
 	public final CssListStyleType getListStyleType() {
-		if (cssListStyle.listStyleType == null) {
-			cssListStyle.listStyleType =
+		if (cssListStyleType == null) {
+			cssListStyleType =
 					(CssListStyleType) style.CascadingOrder(new CssListStyleType(),
 							style, selector);
 		}
-		return cssListStyle.listStyleType;
-	}
-
-	public final CssListStyleTypeCSS2 getListStyleTypeCSS2() {
-		if (cssListStyleCSS2.listStyleType == null) {
-			cssListStyleCSS2.listStyleType =
-					(CssListStyleTypeCSS2) style.CascadingOrder(new CssListStyleTypeCSS2(),
-							style, selector);
-		}
-		return cssListStyleCSS2.listStyleType;
-	}
-
-	public final CssListStyleTypeCSS1 getListStyleTypeCSS1() {
-		if (cssListStyleCSS1.listStyleType == null) {
-			cssListStyleCSS1.listStyleType =
-					(CssListStyleTypeCSS1) style.CascadingOrder(new CssListStyleTypeCSS1(),
-							style, selector);
-		}
-		return cssListStyleCSS1.listStyleType;
+		return cssListStyleType;
 	}
 
 	/**
 	 * Get the list-style-image property
 	 */
 	public final CssListStyleImage getListStyleImage() {
-		if (cssListStyle.listStyleImage == null) {
-			cssListStyle.listStyleImage =
+		if (cssListStyleImage == null) {
+			cssListStyleImage =
 					(CssListStyleImage) style.CascadingOrder(new CssListStyleImage(),
 							style, selector);
 		}
-		return cssListStyle.listStyleImage;
-	}
-
-	public final CssListStyleImageCSS2 getListStyleImageCSS2() {
-		if (cssListStyleCSS2.listStyleImage == null) {
-			cssListStyleCSS2.listStyleImage =
-					(CssListStyleImageCSS2) style.CascadingOrder(new CssListStyleImageCSS2(),
-							style, selector);
-		}
-		return cssListStyleCSS2.listStyleImage;
-	}
-
-	public final CssListStyleImageCSS1 getListStyleImageCSS1() {
-		if (cssListStyleCSS1.listStyleImage == null) {
-			cssListStyleCSS1.listStyleImage =
-					(CssListStyleImageCSS1) style.CascadingOrder(new CssListStyleImageCSS1(),
-							style, selector);
-		}
-		return cssListStyleCSS1.listStyleImage;
+		return cssListStyleImage;
 	}
 
 	/**
 	 * Get the list-style-position property
 	 */
 	public final CssListStylePosition getListStylePosition() {
-		if (cssListStyle.listStylePosition == null) {
-			cssListStyle.listStylePosition =
+		if (cssListStylePosition == null) {
+			cssListStylePosition =
 					(CssListStylePosition)
 							style.CascadingOrder(new CssListStylePosition(),
 									style, selector);
 		}
-		return cssListStyle.listStylePosition;
-	}
-
-	public final CssListStylePositionCSS2 getListStylePositionCSS2() {
-		if (cssListStyleCSS2.listStylePosition == null) {
-			cssListStyleCSS2.listStylePosition =
-					(CssListStylePositionCSS2)
-							style.CascadingOrder(new CssListStylePositionCSS2(),
-									style, selector);
-		}
-		return cssListStyleCSS2.listStylePosition;
-	}
-
-	public final CssListStylePositionCSS1 getListStylePositionCSS1() {
-		if (cssListStyleCSS1.listStylePosition == null) {
-			cssListStyleCSS1.listStylePosition =
-					(CssListStylePositionCSS1)
-							style.CascadingOrder(new CssListStylePositionCSS1(),
-									style, selector);
-		}
-		return cssListStyleCSS1.listStylePosition;
+		return cssListStylePosition;
 	}
 
 	/**
 	 * Get the list-style property
 	 */
 	public final CssListStyle getListStyle() {
-		if (cssListStyle.listStyleType == null)
-			cssListStyle.listStyleType = getListStyleType();
-		if (cssListStyle.listStyleImage == null)
-			cssListStyle.listStyleImage = getListStyleImage();
-		if (cssListStyle.listStylePosition == null)
-			cssListStyle.listStylePosition = getListStylePosition();
+		if (cssListStyle == null) {
+			cssListStyle = (CssListStyle) style.CascadingOrder(new CssListStyle(),
+					style, selector);
+		}
 		return cssListStyle;
-	}
-
-	public final CssListStyleCSS2 getListStyleCSS2() {
-		if (cssListStyleCSS2.listStyleType == null)
-			cssListStyleCSS2.listStyleType = getListStyleTypeCSS2();
-		if (cssListStyleCSS2.listStyleImage == null)
-			cssListStyleCSS2.listStyleImage = getListStyleImageCSS2();
-		if (cssListStyleCSS2.listStylePosition == null)
-			cssListStyleCSS2.listStylePosition = getListStylePositionCSS2();
-		return cssListStyleCSS2;
-	}
-
-	public final CssListStyleCSS1 getListStyleCSS1() {
-		if (cssListStyleCSS1.listStyleType == null)
-			cssListStyleCSS1.listStyleType = getListStyleTypeCSS1();
-		if (cssListStyleCSS1.listStyleImage == null)
-			cssListStyleCSS1.listStyleImage = getListStyleImageCSS1();
-		if (cssListStyleCSS1.listStylePosition == null)
-			cssListStyleCSS1.listStylePosition = getListStylePositionCSS1();
-		return cssListStyleCSS1;
 	}
 
 	/**
@@ -898,26 +817,6 @@ public class Css1Style extends CssStyle {
 							style, selector);
 		}
 		return cssContentCSS2;
-	}
-
-	public final CssListStyleTypeTV getListStyleTypeTV() {
-		if (cssListStyleTypeTV == null) {
-			cssListStyleTypeTV =
-					(CssListStyleTypeTV) style.CascadingOrder(new CssListStyleTypeTV(),
-							style, selector);
-		}
-
-		return cssListStyleTypeTV;
-	}
-
-	public final CssListStyleTV getListStyleTV() {
-		if (cssListStyleTV == null) {
-			cssListStyleTV =
-					(CssListStyleTV) style.CascadingOrder(new CssListStyleTV(),
-							style, selector);
-		}
-
-		return cssListStyleTV;
 	}
 
 	/**

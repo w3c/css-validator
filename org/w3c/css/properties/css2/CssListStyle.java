@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css1;
+package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#list-style
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/generate.html#propdef-list-style
  */
 public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 
@@ -76,6 +76,16 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 					imageVal = val;
 					break;
 				case CssTypes.CSS_IDENT:
+					if (inherit.equals(val)) {
+						if (expression.getCount() > 1) {
+							throw new InvalidParamException("unrecognize", ac);
+						}
+						value = inherit;
+						imageVal = inherit;
+						positionVal = inherit;
+						typeVal = inherit;
+						break;
+					}
 					if (none.equals(val)) {
 						if (imageVal != null || typeVal != null) {
 							// TODO duplicate value error
@@ -95,7 +105,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 						}
 					}
 					if (typeVal == null) {
-						typeVal = org.w3c.css.properties.css2.CssListStyleType.getAllowedIdent(id);
+						typeVal = CssListStyleType.getAllowedIdent(id);
 						if (typeVal != null) {
 							break;
 						}
