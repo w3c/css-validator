@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css2.Css2Style;
@@ -160,6 +161,42 @@ public class CssOverflow extends org.w3c.css.properties.css.CssOverflow {
 		}
 		expression.next();
 		return value;
+	}
+
+	/**
+	 * Update the source file and the line.
+	 * Overrides this method for a macro
+	 *
+	 * @param line   The line number where this property is defined
+	 * @param source The source file where this property is defined
+	 */
+	public void setInfo(int line, String source) {
+		super.setInfo(line, source);
+		cssOverflowX.setInfo(line, source);
+		cssOverflowY.setInfo(line, source);
+	}
+
+	/**
+	 * Set this property to be important.
+	 * Overrides this method for a macro
+	 */
+	public void setImportant() {
+		super.setImportant();
+		cssOverflowX.setImportant();
+		cssOverflowY.setImportant();
+	}
+
+	/**
+	 * Set the context.
+	 * Overrides this method for a macro
+	 *
+	 * @see org.w3c.css.css.CssCascadingOrder#order
+	 * @see org.w3c.css.css.StyleSheetParser#handleRule
+	 */
+	public void setSelectors(CssSelectors selector) {
+		super.setSelectors(selector);
+		cssOverflowX.setSelectors(selector);
+		cssOverflowY.setSelectors(selector);
 	}
 }
 
