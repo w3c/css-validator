@@ -1,0 +1,11 @@
+a { break-before:  auto  }
+b { break-before:  always  }
+c { break-before:  avoid  }
+d { break-before:  left  }
+e { break-before:  right  }
+f { break-before:  page  }
+g { break-before:  column  }
+h { break-before:  avoid-page  }
+i { break-before:  avoid-column  }
+y { break-before:  initial  }
+z { break-before:  inherit  }
