@@ -2443,6 +2443,15 @@ CssValue function() :
 	if (funcname.equals("rgb(")) {
 	    color.setRGBColor(exp, ac);
 	    return color;
+	} else if (funcname.equals("rgba(")) {
+	    color.setRGBAColor(exp, ac);
+	    return color;
+	} else if (funcname.equals("hsl(")) {
+	    color.setHSLColor(exp, ac);
+	    return color;
+	} else if (funcname.equals("hsla(")) {
+	    color.setHSLAColor(exp, ac);
+	    return color;
 	} else if (funcname.equals("atsc-rgba(")) {
 	    if (getAtRule().toString().equals("@media atsc-tv")) {
 	        color.setATSCRGBAColor(exp, ac);
