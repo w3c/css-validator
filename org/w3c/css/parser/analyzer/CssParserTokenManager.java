@@ -16,6 +16,7 @@ import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;

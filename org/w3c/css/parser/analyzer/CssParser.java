@@ -18,6 +18,7 @@ import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;
@@ -4099,6 +4100,10 @@ CssExpression param = null;
         } else if (funcname.equals("hsla(")) {
             color.setHSLAColor(exp, ac);
             {if (true) return color;}
+        } else if (funcname.equals("image(")) {
+            CssImage img = new CssImage();
+            img.setImageList(exp, ac);
+            {if (true) return img;}
         } else if (funcname.equals("atsc-rgba(")) {
             if (getAtRule().toString().equals("@media atsc-tv")) {
                 color.setATSCRGBAColor(exp, ac);
