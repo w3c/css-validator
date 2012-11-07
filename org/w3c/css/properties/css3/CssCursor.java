@@ -80,6 +80,7 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_URL:
+				case CssTypes.CSS_IMAGE:
 					if (lastIdent != null) {
 						throw new InvalidParamException("value",
 								val.toString(),
@@ -158,7 +159,7 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 		// we must have <url number number>
 		CssValue val = expression.getValue();
 		ArrayList<CssValue> values = new ArrayList<CssValue>();
-		if (val.getType() != CssTypes.CSS_URL) {
+		if (val.getType() != CssTypes.CSS_URL && val.getType() != CssTypes.CSS_IMAGE) {
 			throw new InvalidParamException("value",
 					val.toString(),
 					caller.getPropertyName(), ac);

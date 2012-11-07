@@ -267,6 +267,7 @@ public class CssBackground extends org.w3c.css.properties.css.CssBackground {
 					break;
 
 				case CssTypes.CSS_URL:
+				case CssTypes.CSS_IMAGE:
 					prev_is_position = false;
 					// we already got one, fail...
 					if (v.bg_image != null || next_is_size) {

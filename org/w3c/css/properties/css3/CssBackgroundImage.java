@@ -55,7 +55,8 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
             val = expression.getValue();
             op = expression.getOperator();
             switch (val.getType()) {
-                case CssTypes.CSS_URL:
+				case CssTypes.CSS_URL:
+                case CssTypes.CSS_IMAGE:
                     values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:

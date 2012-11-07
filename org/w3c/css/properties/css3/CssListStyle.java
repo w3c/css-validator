@@ -69,8 +69,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 			op = expression.getOperator();
 
 			switch (val.getType()) {
-				case CssTypes.CSS_FUNCTION:
-					//TODO gradient/image
+				case CssTypes.CSS_IMAGE:
 				case CssTypes.CSS_URL:
 					if (imageVal != null) {
 						throw new InvalidParamException("value", val,

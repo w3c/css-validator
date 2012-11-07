@@ -58,9 +58,7 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 		op = expression.getOperator();
 
 		switch (val.getType()) {
-			case CssTypes.CSS_FUNCTION:
-				// TODO check gradient, image
-				// perhaps using val.getImage(); ?
+			case CssTypes.CSS_IMAGE:
 			case CssTypes.CSS_URL:
 				value = val;
 				break;

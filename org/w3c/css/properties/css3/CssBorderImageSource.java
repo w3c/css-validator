@@ -46,6 +46,7 @@ public class CssBorderImageSource extends org.w3c.css.properties.css.CssBorderIm
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_URL:
+			case CssTypes.CSS_IMAGE:
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:
