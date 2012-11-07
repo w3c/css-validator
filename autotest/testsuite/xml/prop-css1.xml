@@ -333,6 +333,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_display">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/display/css1/001.css</file>
+      <description>Valid display level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/font/css1/001.css</file>

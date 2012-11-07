@@ -412,6 +412,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_display">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/display/css2/001.css</file>
+      <description>Valid display level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_elevation">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/elevation/css2/001.css</file>
@@ -528,6 +535,34 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/margin-top/css2/001.css</file>
       <description>Valid margin-top level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-height">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/max-height/css2/001.css</file>
+      <description>Valid max-height level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/max-width/css2/001.css</file>
+      <description>Valid max-width level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-height">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/min-height/css2/001.css</file>
+      <description>Valid min-height level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-width">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/min-width/css2/001.css</file>
+      <description>Valid min-width level css2</description>
       <result valid="true" />
     </test>
   </type>

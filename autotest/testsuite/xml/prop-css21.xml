@@ -462,6 +462,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_display">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/display/css21/001.css</file>
+      <description>Valid display level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_elevation">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/elevation/css21/001.css</file>
@@ -571,6 +578,34 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/margin-top/css21/001.css</file>
       <description>Valid margin-top level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-height">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/max-height/css21/001.css</file>
+      <description>Valid max-height level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-width">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/max-width/css21/001.css</file>
+      <description>Valid max-width level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-height">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/min-height/css21/001.css</file>
+      <description>Valid min-height level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-width">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/min-width/css21/001.css</file>
+      <description>Valid min-width level css21</description>
       <result valid="true" />
     </test>
   </type>

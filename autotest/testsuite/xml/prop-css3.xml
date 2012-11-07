@@ -5,6 +5,27 @@ like <test profile="css2" medium="all" warning="0">
 where warning means warninglevel in use (0 => normal, no => none).
 -->
 <testsuite>
+  <type title="Valid_align-content">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/align-content/css3/001.css</file>
+      <description>Valid align-content level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_align-items">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/align-items/css3/001.css</file>
+      <description>Valid align-items level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_align-self">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/align-self/css3/001.css</file>
+      <description>Valid align-self level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_animation">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/animation/css3/001.css</file>
@@ -1310,6 +1331,72 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_display">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/display/css3/001.css</file>
+      <description>Valid display level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/display/css3/002.css</file>
+      <description>Valid display level css3</description>
+      <result valid="true" />
+    </test>
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/display/css3/003.css</file>
+      <description>Valid display level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex/css3/001.css</file>
+      <description>Valid flex level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-basis">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-basis/css3/001.css</file>
+      <description>Valid flex-basis level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-direction">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-direction/css3/001.css</file>
+      <description>Valid flex-direction level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-flow">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-flow/css3/001.css</file>
+      <description>Valid flex-flow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-grow">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-grow/css3/001.css</file>
+      <description>Valid flex-grow level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-shrink">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-shrink/css3/001.css</file>
+      <description>Valid flex-shrink level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_flex-wrap">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/flex-wrap/css3/001.css</file>
+      <description>Valid flex-wrap level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font/css3/001.css</file>
@@ -1455,6 +1542,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_justify-content">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/justify-content/css3/001.css</file>
+      <description>Valid justify-content level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_left">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/left/css3/001.css</file>
@@ -1543,6 +1637,41 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/marquee-style/css3/001.css</file>
       <description>Valid marquee-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-height">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/max-height/css3/001.css</file>
+      <description>Valid max-height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_max-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/max-width/css3/001.css</file>
+      <description>Valid max-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-height">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/min-height/css3/001.css</file>
+      <description>Valid min-height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_min-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/min-width/css3/001.css</file>
+      <description>Valid min-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_order">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/order/css3/001.css</file>
+      <description>Valid order level css3</description>
       <result valid="true" />
     </test>
   </type>
