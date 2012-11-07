@@ -8,6 +8,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
@@ -359,6 +360,13 @@ public class CssColor extends CssValue {
 
     public void setRGBAColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
+		// RGBA defined in CSS3 and onward
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("rgba(").append(exp.toStringFromStart()).append(')');
+			throw new InvalidParamException("notversion", sb.toString(),
+					ac.getCssVersionString(), ac);
+		}
         rgba = new RGBA();
         __setRGBAColor(rgba, exp, ac);
     }
@@ -470,6 +478,13 @@ public class CssColor extends CssValue {
 
     public void setHSLColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
+		// HSL defined in CSS3 and onward
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("hsl(").append(exp.toStringFromStart()).append(')');
+			throw new InvalidParamException("notversion", sb.toString(),
+					ac.getCssVersionString(), ac);
+		}
         color = null;
         hsl = new HSL();
 
@@ -529,6 +544,14 @@ public class CssColor extends CssValue {
 
     public void setHSLAColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
+		// RGBA defined in CSS3 and onward
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("hsla(").append(exp.toStringFromStart()).append(')');
+			throw new InvalidParamException("notversion", sb.toString(),
+					ac.getCssVersionString(), ac);
+		}
+
         color = null;
         hsla = new HSLA();
 

@@ -91,15 +91,6 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
                     } else {
                         attrvalue = "attr(" + v1 + ", " + v2 + ')';
                     }
-                } else if (fname.equals("rgba")) {
-                    tempcolor.setRGBAColor(params, ac);
-                    color = tempcolor;
-                } else if (fname.equals("hsl")) {
-                    tempcolor.setHSLColor(params, ac);
-                    color = tempcolor;
-                } else if (fname.equals("hsla")) {
-                    tempcolor.setHSLAColor(params, ac);
-                    color = tempcolor;
                 } else {
                     throw new InvalidParamException("value",
                             params.getValue(),
