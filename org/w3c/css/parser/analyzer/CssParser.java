@@ -4090,6 +4090,15 @@ CssExpression param = null;
         if (funcname.equals("rgb(")) {
             color.setRGBColor(exp, ac);
             {if (true) return color;}
+        } else if (funcname.equals("rgba(")) {
+            color.setRGBAColor(exp, ac);
+            {if (true) return color;}
+        } else if (funcname.equals("hsl(")) {
+            color.setHSLColor(exp, ac);
+            {if (true) return color;}
+        } else if (funcname.equals("hsla(")) {
+            color.setHSLAColor(exp, ac);
+            {if (true) return color;}
         } else if (funcname.equals("atsc-rgba(")) {
             if (getAtRule().toString().equals("@media atsc-tv")) {
                 color.setATSCRGBAColor(exp, ac);
