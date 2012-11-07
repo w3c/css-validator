@@ -7,14 +7,14 @@ flex6   { flex: 0 0  10% }
 flex7   { flex: 0 0  10px }
 flex8   { flex: 0 0  auto }
 flex9   { flex: 0 0 0  }
-flex10  { flex: 0 0 1.25  }
+flex10  { flex: 0px 0 1.25  }
 flex11  { flex: 0 0px }
 flex12  { flex: 0 1.25 }
 flex13  { flex: 0 1.25  0 }
 flex14  { flex: 0 1.25  10% }
 flex15  { flex: 0 1.25  10px }
 flex16  { flex: 0 1.25  auto }
-flex17  { flex: 0 1.25 2.25  }
+flex17  { flex: 0px 1.25 2.25  }
 flex18  { flex: 0px 0  }
 flex19  { flex: 0px 1.25  }
 flex20  { flex: 10% 0  }
