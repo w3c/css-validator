@@ -269,7 +269,7 @@ public class CssColor extends CssValue {
     /**
      * Parse an ident color.
      */
-    private void setIdentColor(String s, ApplContext ac)
+    protected void setIdentColor(String s, ApplContext ac)
             throws InvalidParamException {
         String lower_s = s.toLowerCase();
         switch (ac.getCssVersion()) {
