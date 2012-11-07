@@ -1317,6 +1317,34 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_break-after">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/break-after/css3/001.css</file>
+      <description>Valid break-after level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_break-before">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/break-before/css3/001.css</file>
+      <description>Valid break-before level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_break-inside">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/break-inside/css3/001.css</file>
+      <description>Valid break-inside level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_clear">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/clear/css3/001.css</file>
+      <description>Valid clear level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_clip">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/clip/css3/001.css</file>
@@ -1328,6 +1356,76 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/color/css3/001.css</file>
       <description>Valid color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-count">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-count/css3/001.css</file>
+      <description>Valid column-count level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-fill">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-fill/css3/001.css</file>
+      <description>Valid column-fill level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-gap">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-gap/css3/001.css</file>
+      <description>Valid column-gap level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-rule">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-rule/css3/001.css</file>
+      <description>Valid column-rule level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-rule-color">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-rule-color/css3/001.css</file>
+      <description>Valid column-rule-color level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-rule-style">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-rule-style/css3/001.css</file>
+      <description>Valid column-rule-style level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-rule-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-rule-width/css3/001.css</file>
+      <description>Valid column-rule-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-span">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-span/css3/001.css</file>
+      <description>Valid column-span level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_column-width">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/column-width/css3/001.css</file>
+      <description>Valid column-width level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_columns">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/columns/css3/001.css</file>
+      <description>Valid columns level css3</description>
       <result valid="true" />
     </test>
   </type>

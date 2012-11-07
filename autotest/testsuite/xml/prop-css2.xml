@@ -179,6 +179,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_border-collapse">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-collapse/css2/001.css</file>
+      <description>Valid border-collapse level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_border-color">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/border-color/css2/001-aa.css</file>
@@ -342,6 +349,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_border-spacing">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/border-spacing/css2/001.css</file>
+      <description>Valid border-spacing level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_border-style">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/border-style/css2/001.css</file>
@@ -395,6 +409,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/caption-side/css2/001.css</file>
       <description>Valid caption-side level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_clear">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/clear/css2/001.css</file>
+      <description>Valid clear level css2</description>
       <result valid="true" />
     </test>
   </type>
