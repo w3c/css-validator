@@ -4104,6 +4104,22 @@ CssExpression param = null;
             CssImage img = new CssImage();
             img.setImageList(exp, ac);
             {if (true) return img;}
+        } else if (funcname.equals("linear-gradient(")) {
+            CssImage img = new CssImage();
+            img.setLinearGradient(exp, ac);
+            {if (true) return img;}
+        } else if (funcname.equals("repeating-linear-gradient(")) {
+            CssImage img = new CssImage();
+            img.setRepeatingLinearGradient(exp, ac);
+            {if (true) return img;}
+        } else if (funcname.equals("radial-gradient(")) {
+            CssImage img = new CssImage();
+            img.setRadialGradient(exp, ac);
+            {if (true) return img;}
+        } else if (funcname.equals("repeating-radial-gradient(")) {
+            CssImage img = new CssImage();
+            img.setRepeatingRadialGradient(exp, ac);
+            {if (true) return img;}
         } else if (funcname.equals("atsc-rgba(")) {
             if (getAtRule().toString().equals("@media atsc-tv")) {
                 color.setATSCRGBAColor(exp, ac);
