@@ -141,6 +141,30 @@ public class CssImage extends CssValue {
 			throws InvalidParamException {
 		name = "linear-gradient";
 		_cache = null;
+		_setLinearGradient(exp, ac);
+	}
+
+	/**
+	 * @param exp
+	 * @param ac
+	 * @throws InvalidParamException
+	 * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#linear-gradient-type
+	 */
+	public void setRepeatingLinearGradient(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
+		name = "repeating-linear-gradient";
+		_cache = null;
+		_setLinearGradient(exp, ac);
+	}
+
+	/**
+	 * @param exp
+	 * @param ac
+	 * @throws InvalidParamException
+	 * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#linear-gradient-type
+	 */
+	private void _setLinearGradient(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
 		// ImageList defined in CSS3 and onward
 		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
 			StringBuilder sb = new StringBuilder();
