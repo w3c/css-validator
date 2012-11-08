@@ -266,6 +266,141 @@ public class CssImage extends CssValue {
 		value = new CssLayerList(v);
 	}
 
+	/**
+	 * @param exp
+	 * @param ac
+	 * @throws InvalidParamException
+	 * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#radial-gradient-type
+	 */
+	public void setRadialGradient(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
+		name = "radial-gradient";
+		_cache = null;
+		_setRadialGradient(exp, ac);
+	}
+
+	/**
+	 * @param exp
+	 * @param ac
+	 * @throws InvalidParamException
+	 * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#repeating-radial-gradient-type
+	 */
+	public void setRepeatingRadialGradient(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
+		name = "repeating-radial-gradient";
+		_cache = null;
+		_setRadialGradient(exp, ac);
+	}
+
+	/**
+	 * @param exp
+	 * @param ac
+	 * @throws InvalidParamException
+	 * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#linear-gradient-type
+	 */
+	private void _setRadialGradient(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
+		// ImageList defined in CSS3 and onward
+		if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(name).append('(').append(exp.toStringFromStart()).append(')');
+			throw new InvalidParamException("notversion", sb.toString(),
+					ac.getCssVersionString(), ac);
+		}
+		ArrayList<CssValue> v = new ArrayList<CssValue>();
+		CssValue val = exp.getValue();
+		char op = exp.getOperator();
+
+		if (val.getType() == CssTypes.CSS_ANGLE) {
+			v.add(val);
+			if (op != COMMA) {
+				exp.starts();
+				throw new InvalidParamException("operator",
+						((new Character(op)).toString()), ac);
+			}
+			exp.next();
+		} else if (val.getType() == CssTypes.CSS_IDENT) {
+			CssIdent ident = (CssIdent) val;
+			if (to.equals(ident)) {
+				CssValueList vl = new CssValueList();
+				vl.add(to);
+				// we must now eat one or two valid idents
+				// this is boringly boring...
+				CssIdent v1 = null;
+				CssIdent v2 = null;
+				if (op != SPACE) {
+					exp.starts();
+					throw new InvalidParamException("operator",
+							((new Character(op)).toString()), ac);
+				}
+				exp.next();
+				if (exp.end()) {
+					throw new InvalidParamException("few-value", name, ac);
+				}
+				val = exp.getValue();
+				op = exp.getOperator();
+				boolean isV1Vertical, isV2Vertical;
+				if (val.getType() != CssTypes.CSS_IDENT) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							name, ac);
+				}
+				v1 = getLinearGradientIdent((CssIdent) val);
+				if (v1 == null) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							name, ac);
+				}
+				vl.add(v1);
+				isV1Vertical = isVerticalIdent(v1);
+				exp.next();
+				if (exp.end()) {
+					throw new InvalidParamException("few-value", name, ac);
+				}
+				if (op == SPACE) {
+					// the operator is a space, we should have
+					// another
+					val = exp.getValue();
+					op = exp.getOperator();
+					if (val.getType() != CssTypes.CSS_IDENT) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								name, ac);
+					}
+					v2 = getLinearGradientIdent((CssIdent) val);
+					if (v2 == null) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								name, ac);
+					}
+					isV2Vertical = isVerticalIdent(v2);
+					if ((isV1Vertical && isV2Vertical) ||
+							(!isV1Vertical && !isV2Vertical)) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								name, ac);
+					}
+					vl.add(v2);
+					exp.next();
+				}
+				v.add(vl);
+				if (op != COMMA) {
+					exp.starts();
+					throw new InvalidParamException("operator",
+							((new Character(op)).toString()), ac);
+				}
+			}
+		}
+		// now we a list of at least two color stops.
+		ArrayList<CssValue> stops = parseColorStops(exp, ac);
+		if (stops.size() < 2) {
+			throw new InvalidParamException("few-value", name, ac);
+		}
+
+		v.addAll(stops);
+		value = new CssLayerList(v);
+	}
+
 	private final ArrayList<CssValue> parseColorStops(CssExpression expression,
 													  ApplContext ac)
 			throws InvalidParamException {
