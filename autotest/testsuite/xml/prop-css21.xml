@@ -483,6 +483,27 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_content">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/content/css21/001.css</file>
+      <description>Valid content level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_counter-increment">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/counter-increment/css21/001.css</file>
+      <description>Valid counter-increment level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_counter-reset">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/counter-reset/css21/001.css</file>
+      <description>Valid counter-reset level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/display/css21/001.css</file>

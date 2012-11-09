@@ -1429,6 +1429,27 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_content">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/content/css3/001.css</file>
+      <description>Valid content level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_counter-increment">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/counter-increment/css3/001.css</file>
+      <description>Valid counter-increment level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_counter-reset">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/counter-reset/css3/001.css</file>
+      <description>Valid counter-reset level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/display/css3/001.css</file>
