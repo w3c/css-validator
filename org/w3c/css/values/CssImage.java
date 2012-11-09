@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.values;
 
+import org.w3c.css.properties.css3.CssBackgroundPosition;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
@@ -30,6 +31,20 @@ public class CssImage extends CssValue {
 	static final CssIdent right = CssIdent.getIdent("right");
 	static final CssIdent top = CssIdent.getIdent("top");
 	static final CssIdent bottom = CssIdent.getIdent("bottom");
+	static final CssIdent at = CssIdent.getIdent("at");
+	static final CssIdent circle = CssIdent.getIdent("circle");
+	static final CssIdent ellipse = CssIdent.getIdent("ellipse");
+	static final CssIdent[] extent_keywords;
+
+	static {
+		String _val[] = {"closest-corner", "closest-side",
+				"farthest-corner", "farthest-side"};
+		extent_keywords = new CssIdent[_val.length];
+		int i = 0;
+		for (String s : _val) {
+			extent_keywords[i++] = CssIdent.getIdent(s);
+		}
+	}
 
 	public static boolean isVerticalIdent(CssIdent ident) {
 		return ident.equals(top) || ident.equals(bottom);
@@ -47,6 +62,25 @@ public class CssImage extends CssValue {
 		}
 		if (bottom.equals(ident)) {
 			return bottom;
+		}
+		return null;
+	}
+
+	public static CssIdent getExtentIdent(CssIdent ident) {
+		for (CssIdent id : extent_keywords) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
+	}
+
+	public static CssIdent getShape(CssIdent ident) {
+		if (circle.equals(ident)) {
+			return circle;
+		}
+		if (ellipse.equals(ident)) {
+			return ellipse;
 		}
 		return null;
 	}
@@ -311,85 +345,34 @@ public class CssImage extends CssValue {
 		CssValue val = exp.getValue();
 		char op = exp.getOperator();
 
-		if (val.getType() == CssTypes.CSS_ANGLE) {
-			v.add(val);
-			if (op != COMMA) {
-				exp.starts();
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			exp.next();
-		} else if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent ident = (CssIdent) val;
-			if (to.equals(ident)) {
-				CssValueList vl = new CssValueList();
-				vl.add(to);
-				// we must now eat one or two valid idents
-				// this is boringly boring...
-				CssIdent v1 = null;
-				CssIdent v2 = null;
-				if (op != SPACE) {
-					exp.starts();
-					throw new InvalidParamException("operator",
-							((new Character(op)).toString()), ac);
-				}
-				exp.next();
-				if (exp.end()) {
-					throw new InvalidParamException("few-value", name, ac);
-				}
+		// check if there is something before the color stops list
+		boolean parse_prolog = false;
+		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getLength();
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+				parse_prolog = true;
+				break;
+			case CssTypes.CSS_IDENT:
+				CssIdent id = (CssIdent) val;
+				parse_prolog = at.equals(id) ||
+						(getShape(id) != null) ||
+						(getExtentIdent(id) != null);
+				break;
+		}
+
+		if (parse_prolog) {
+			CssExpression newexp = new CssExpression();
+			boolean done = false;
+			while (!done && !exp.end()) {
 				val = exp.getValue();
 				op = exp.getOperator();
-				boolean isV1Vertical, isV2Vertical;
-				if (val.getType() != CssTypes.CSS_IDENT) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							name, ac);
-				}
-				v1 = getLinearGradientIdent((CssIdent) val);
-				if (v1 == null) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							name, ac);
-				}
-				vl.add(v1);
-				isV1Vertical = isVerticalIdent(v1);
+				newexp.addValue(val);
+				done = (op == COMMA);
 				exp.next();
-				if (exp.end()) {
-					throw new InvalidParamException("few-value", name, ac);
-				}
-				if (op == SPACE) {
-					// the operator is a space, we should have
-					// another
-					val = exp.getValue();
-					op = exp.getOperator();
-					if (val.getType() != CssTypes.CSS_IDENT) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								name, ac);
-					}
-					v2 = getLinearGradientIdent((CssIdent) val);
-					if (v2 == null) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								name, ac);
-					}
-					isV2Vertical = isVerticalIdent(v2);
-					if ((isV1Vertical && isV2Vertical) ||
-							(!isV1Vertical && !isV2Vertical)) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								name, ac);
-					}
-					vl.add(v2);
-					exp.next();
-				}
-				v.add(vl);
-				if (op != COMMA) {
-					exp.starts();
-					throw new InvalidParamException("operator",
-							((new Character(op)).toString()), ac);
-				}
 			}
+			v.add(parseRadialProlog(newexp, ac));
 		}
 		// now we a list of at least two color stops.
 		ArrayList<CssValue> stops = parseColorStops(exp, ac);
@@ -399,6 +382,141 @@ public class CssImage extends CssValue {
 
 		v.addAll(stops);
 		value = new CssLayerList(v);
+	}
+
+	private CssValue parseRadialProlog(CssExpression expression,
+									   ApplContext ac)
+			throws InvalidParamException {
+		// the fun begins :)
+		CssIdent shape = null;
+		CssValue extend = null;
+		CssValue extend2 = null;
+		CssValue atPosition = null;
+
+		ArrayList<CssValue> v = new ArrayList<CssValue>();
+
+		CssValue val;
+		boolean shapeInMiddle = false;
+
+		while (!expression.end()) {
+			val = expression.getValue();
+			switch (val.getType()) {
+				case CssTypes.CSS_PERCENTAGE:
+					if (shapeInMiddle) {
+						throw new InvalidParamException("value",
+								val, name, ac);
+					}
+					CssPercentage p = val.getPercentage();
+					if (!p.isPositive()) {
+						throw new InvalidParamException("negative-value",
+								val, name, ac);
+					}
+					if (extend == null) {
+						extend = val;
+						break;
+					}
+					if (extend2 == null) {
+						extend2 = val;
+						break;
+					}
+					throw new InvalidParamException("value",
+							val, name, ac);
+				case CssTypes.CSS_NUMBER:
+				case CssTypes.CSS_LENGTH:
+					if (shapeInMiddle) {
+						throw new InvalidParamException("value",
+								val, name, ac);
+					}
+					CssLength l = val.getLength();
+					if (!l.isPositive()) {
+						throw new InvalidParamException("negative-value",
+								val, name, ac);
+					}
+					if (extend == null) {
+						extend = val;
+						break;
+					} else {
+						if (extend.getType() == CssTypes.CSS_IDENT) {
+							// don't mix ident and length/percentage
+							throw new InvalidParamException("value",
+									val, name, ac);
+						}
+					}
+					if (extend2 == null) {
+						extend2 = val;
+						break;
+					}
+					throw new InvalidParamException("value",
+							val, name, ac);
+				case CssTypes.CSS_IDENT:
+					CssIdent id = (CssIdent) val;
+					// final 'at'
+					if (at.equals(id)) {
+						CssExpression exp = new CssExpression();
+						expression.next();
+						while (!expression.end()) {
+							exp.addValue(expression.getValue());
+							expression.next();
+						}
+						atPosition = checkPosition(exp, ac);
+						break;
+					}
+					if (shape == null) {
+						shape = getShape(id);
+						if (shape != null) {
+							shapeInMiddle = (expression.getCount() != expression.getRemainingCount());
+							break;
+						}
+					}
+					if (extend == null) {
+						extend = getExtentIdent(id);
+						if (extend != null) {
+							if (shapeInMiddle) {
+								throw new InvalidParamException("value",
+										val, name, ac);
+							}
+							break;
+						}
+					}
+					// unrecognized ident
+				default:
+					throw new InvalidParamException("value",
+							val.toString(),
+							name, ac);
+
+			}
+			expression.next();
+		}
+		// extra checks...
+		// circle can have at most one extend and it must not be a percentage
+		if (shape == circle && (extend2 != null || (extend != null && extend.getType() == CssTypes.CSS_PERCENTAGE))) {
+			throw new InvalidParamException("value",
+					expression.toStringFromStart(), name, ac);
+		}
+		// ellipsis must have one extent ident or two (percentage/length)
+		if (shape == ellipse && (extend2 == null || (extend != null && extend.getType() != CssTypes.CSS_IDENT))) {
+			throw new InvalidParamException("value",
+					expression.toStringFromStart(), name, ac);
+		}
+		// if shape is null, it's a circle
+		if (shape == null && extend2 == null && extend != null && extend.getType() == CssTypes.CSS_PERCENTAGE) {
+			throw new InvalidParamException("value",
+					expression.toStringFromStart(), name, ac);
+		}
+		if (shape != null) {
+			v.add(shape);
+		}
+		if (extend != null) {
+			v.add(extend);
+			if (extend2 != null) {
+				v.add(extend2);
+			}
+		}
+		if (atPosition != null) {
+			v.add(at);
+			v.add(atPosition);
+		}
+		return (v.size() == 1) ? v.get(0) : new CssValueList(v);
 	}
 
 	private final ArrayList<CssValue> parseColorStops(CssExpression expression,
@@ -460,6 +578,19 @@ public class CssImage extends CssValue {
 			}
 		}
 		return v;
+	}
+
+	private CssValue checkPosition(CssExpression expression, ApplContext ac)
+			throws InvalidParamException {
+		switch (ac.getCssVersion()) {
+			case CSS3:
+				return CssBackgroundPosition.checkSyntax(expression, ac, name);
+			default:
+				StringBuilder sb = new StringBuilder();
+				sb.append(name).append('(').append(expression.toStringFromStart()).append(')');
+				throw new InvalidParamException("notversion", sb.toString(),
+						ac.getCssVersionString(), ac);
+		}
 	}
 
 	/**
