@@ -144,6 +144,10 @@ public class CssImage extends CssValue {
 					v.add(c);
 					gotcolor = true;
 					break;
+				case CssTypes.CSS_COLOR:
+					v.add(val);
+					gotcolor = true;
+					break;
 				case CssTypes.CSS_IDENT:
 					c = new CssColor();
 					c.setIdentColor(val.toString(), ac);
