@@ -504,6 +504,27 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_cue">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/cue/css21/001.css</file>
+      <description>Valid cue level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_cue-after">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/cue-after/css21/001.css</file>
+      <description>Valid cue-after level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_cue-before">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/cue-before/css21/001.css</file>
+      <description>Valid cue-before level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/display/css21/001.css</file>
@@ -658,6 +679,48 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_pause">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/pause/css21/001.css</file>
+      <description>Valid pause level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_pause-after">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/pause-after/css21/001.css</file>
+      <description>Valid pause-after level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_pause-before">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/pause-before/css21/001.css</file>
+      <description>Valid pause-before level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_pitch">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/pitch/css21/001.css</file>
+      <description>Valid pitch level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_pitch-range">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/pitch-range/css21/001.css</file>
+      <description>Valid pitch-range level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_play-during">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/play-during/css21/001.css</file>
+      <description>Valid play-during level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_position">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/position/css21/001.css</file>
@@ -665,10 +728,59 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_richness">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/richness/css21/001.css</file>
+      <description>Valid richness level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_right">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/right/css21/001.css</file>
       <description>Valid right level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_speak">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/speak/css21/001.css</file>
+      <description>Valid speak level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_speak-header">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/speak-header/css21/001.css</file>
+      <description>Valid speak-header level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_speak-numeral">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/speak-numeral/css21/001.css</file>
+      <description>Valid speak-numeral level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_speak-punctuation">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/speak-punctuation/css21/001.css</file>
+      <description>Valid speak-punctuation level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_speech-rate">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/speech-rate/css21/001.css</file>
+      <description>Valid speech-rate level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_stress">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/stress/css21/001.css</file>
+      <description>Valid stress level css21</description>
       <result valid="true" />
     </test>
   </type>
@@ -718,6 +830,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/visibility/css21/001.css</file>
       <description>Valid visibility level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_voice-family">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/voice-family/css21/001.css</file>
+      <description>Valid voice-family level css21</description>
       <result valid="true" />
     </test>
   </type>
