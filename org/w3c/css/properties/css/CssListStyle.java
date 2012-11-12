@@ -71,7 +71,7 @@ public class CssListStyle extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "list-style-position";
+		return "list-style";
 	}
 
 	/**
