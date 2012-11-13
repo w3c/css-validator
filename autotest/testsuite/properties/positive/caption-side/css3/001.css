@@ -1,0 +1,7 @@
+a { caption-side: top }
+b { caption-side: bottom }
+c { caption-side: left }
+d { caption-side: right }
+e { caption-side: before }
+f { caption-side: after }
+z { caption-side: inherit }
