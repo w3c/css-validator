@@ -1,0 +1,64 @@
+a { float: left }
+b { float: right }
+c { float: none }
+z { float: inherit }
+y { float: initial }
+floatGCPM1   { float: top }
+floatGCPM2   { float: bottom }
+floatGCPM3   { float: top-corner }
+floatGCPM4   { float: bottom-corner }
+floatGCPM5   { float: snap }
+floatGCPM6   { float: top next-page }
+floatGCPM7   { float: bottom next-page }
+floatGCPM8   { float: top-corner next-page }
+floatGCPM9   { float: bottom-corner next-page }
+floatGCPM10  { float: next-page top }
+floatGCPM11  { float: next-page bottom }
+floatGCPM12  { float: next-page top-corner }
+floatGCPM13  { float: next-page bottom-corner }
+floatGCPM14  { float: top next-column }
+floatGCPM15  { float: bottom next-column }
+floatGCPM16  { float: top-corner next-column }
+floatGCPM17  { float: bottom-corner next-column }
+floatGCPM18  { float: next-column top }
+floatGCPM19  { float: next-column bottom }
+floatGCPM20  { float: next-column top-corner }
+floatGCPM21  { float: next-column bottom-corner }
+floatGCPM22  { float: unless-room top }
+floatGCPM23  { float: unless-room bottom }
+floatGCPM24  { float: unless-room top-corner }
+floatGCPM25  { float: unless-room bottom-corner }
+floatGCPM26  { float: top unless-room }
+floatGCPM27  { float: bottom unless-room }
+floatGCPM28  { float: top-corner unless-room }
+floatGCPM29  { float: bottom-corner unless-room }
+floatGCPM30  { float: top left }
+floatGCPM31  { float: top right }
+floatGCPM32  { float: bottom left }
+floatGCPM33  { float: bottom right }
+floatGCPM34  { float: left top }
+floatGCPM35  { float: right top }
+floatGCPM36  { float: left bottom }
+floatGCPM37  { float: right bottom }
+floatGCPM38  { float: top-corner left }
+floatGCPM39  { float: top-corner right }
+floatGCPM40  { float: left top-corner }
+floatGCPM41  { float: right top-corner }
+floatGCPM42  { float: bottom-corner left }
+floatGCPM43  { float: bottom-corner right }
+floatGCPM44  { float: left bottom-corner }
+floatGCPM45  { float: right bottom-corner }
+floatGCPM46  { float: inside }
+floatGCPM47  { float: outside }
+floatGCPM48  { float: left intrude }
+floatGCPM49  { float: intrude left }
+floatGCPM50  { float: right intrude }
+floatGCPM51  { float: intrude right }
+floatGCPM52  { float: top intrude }
+floatGCPM53  { float: intrude top }
+floatGCPM54  { float: bottom intrude }
+floatGCPM55  { float: intrude bottom }
+floatGCPM56  { float: top-corner intrude }
+floatGCPM57  { float: intrude top-corner }
+floatGCPM58  { float: bottom-corner-intrude }
+floatGCPM59  { float: intrude bottom-corner }
