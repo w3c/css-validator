@@ -159,7 +159,9 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 				v.add(positionVal);
 			}
 			if (imageVal != null) {
-				v.add(imageVal);
+				if (nbnone != 1 || typeVal != none || imageVal != none) {
+					v.add(imageVal);
+				}
 			}
 			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
 		}
