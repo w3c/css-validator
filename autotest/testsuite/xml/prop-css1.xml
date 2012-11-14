@@ -347,6 +347,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_float">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/float/css1/001.css</file>
+      <description>Valid float level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_font">
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/font/css1/001.css</file>
@@ -407,6 +414,27 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css1" warning="no">
       <file>testsuite/properties/positive/line-height/css1/001.css</file>
       <description>Valid line-height level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-image">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/list-style-image/css1/001.css</file>
+      <description>Valid list-style-image level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-position">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/list-style-position/css1/001.css</file>
+      <description>Valid list-style-position level css1</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-type">
+    <test profile="css1" warning="no">
+      <file>testsuite/properties/positive/list-style-type/css1/001.css</file>
+      <description>Valid list-style-type level css1</description>
       <result valid="true" />
     </test>
   </type>

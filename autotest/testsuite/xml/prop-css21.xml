@@ -525,6 +525,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_cursor">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/cursor/css21/001.css</file>
+      <description>Valid cursor level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_direction">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/direction/css21/001.css</file>
+      <description>Valid direction level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/display/css21/001.css</file>
@@ -536,6 +550,20 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/elevation/css21/001.css</file>
       <description>Valid elevation level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_empty-cells">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/empty-cells/css21/001.css</file>
+      <description>Valid empty-cells level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_float">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/float/css21/001.css</file>
+      <description>Valid float level css21</description>
       <result valid="true" />
     </test>
   </type>
@@ -606,6 +634,27 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/line-height/css21/001.css</file>
       <description>Valid line-height level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-image">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/list-style-image/css21/001.css</file>
+      <description>Valid list-style-image level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-position">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/list-style-position/css21/001.css</file>
+      <description>Valid list-style-position level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-type">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/list-style-type/css21/001.css</file>
+      <description>Valid list-style-type level css21</description>
       <result valid="true" />
     </test>
   </type>
@@ -816,6 +865,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css21" warning="no">
       <file>testsuite/properties/positive/top/css21/001.css</file>
       <description>Valid top level css21</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_unicode-bidi">
+    <test profile="css21" warning="no">
+      <file>testsuite/properties/positive/unicode-bidi/css21/001.css</file>
+      <description>Valid unicode-bidi level css21</description>
       <result valid="true" />
     </test>
   </type>

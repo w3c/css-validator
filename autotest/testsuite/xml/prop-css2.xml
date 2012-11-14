@@ -475,6 +475,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_cursor">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/cursor/css2/001.css</file>
+      <description>Valid cursor level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_direction">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/direction/css2/001.css</file>
+      <description>Valid direction level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/display/css2/001.css</file>
@@ -486,6 +500,20 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/elevation/css2/001.css</file>
       <description>Valid elevation level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_empty-cells">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/empty-cells/css2/001.css</file>
+      <description>Valid empty-cells level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_float">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/float/css2/001.css</file>
+      <description>Valid float level css2</description>
       <result valid="true" />
     </test>
   </type>
@@ -563,6 +591,27 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/line-height/css2/001.css</file>
       <description>Valid line-height level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-image">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/list-style-image/css2/001.css</file>
+      <description>Valid list-style-image level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-position">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/list-style-position/css2/001.css</file>
+      <description>Valid list-style-position level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-type">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/list-style-type/css2/001.css</file>
+      <description>Valid list-style-type level css2</description>
       <result valid="true" />
     </test>
   </type>
@@ -780,6 +829,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css2" warning="no">
       <file>testsuite/properties/positive/top/css2/001.css</file>
       <description>Valid top level css2</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_unicode-bidi">
+    <test profile="css2" warning="no">
+      <file>testsuite/properties/positive/unicode-bidi/css2/001.css</file>
+      <description>Valid unicode-bidi level css2</description>
       <result valid="true" />
     </test>
   </type>

@@ -1338,6 +1338,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_caption-side">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/caption-side/css3/001.css</file>
+      <description>Valid caption-side level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_clear">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/clear/css3/001.css</file>
@@ -1471,6 +1478,20 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_cursor">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/cursor/css3/001.css</file>
+      <description>Valid cursor level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_direction">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/direction/css3/001.css</file>
+      <description>Valid direction level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_display">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/display/css3/001.css</file>
@@ -1534,6 +1555,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/flex-wrap/css3/001.css</file>
       <description>Valid flex-wrap level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_float">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/float/css3/001.css</file>
+      <description>Valid float level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1609,6 +1637,13 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/font-synthesis/css3/001.css</file>
       <description>Valid font-synthesis level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_font-variant">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/font-variant/css3/001.css</file>
+      <description>Valid font-variant level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -1714,6 +1749,27 @@ where warning means warninglevel in use (0 => normal, no => none).
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/line-height/css3/001.css</file>
       <description>Valid line-height level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-image">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/list-style-image/css3/001.css</file>
+      <description>Valid list-style-image level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-position">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/list-style-position/css3/001.css</file>
+      <description>Valid list-style-position level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_list-style-type">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/list-style-type/css3/001.css</file>
+      <description>Valid list-style-type level css3</description>
       <result valid="true" />
     </test>
   </type>
@@ -2102,6 +2158,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_unicode-bidi">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/unicode-bidi/css3/001.css</file>
+      <description>Valid unicode-bidi level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_vertical-align">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/vertical-align/css3/001.css</file>
@@ -2123,6 +2186,13 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_voice-duration">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/voice-duration/css3/001.css</file>
+      <description>Valid voice-duration level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_voice-family">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/voice-family/css3/001.css</file>
@@ -2137,10 +2207,24 @@ where warning means warninglevel in use (0 => normal, no => none).
       <result valid="true" />
     </test>
   </type>
+  <type title="Valid_voice-range">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/voice-range/css3/001.css</file>
+      <description>Valid voice-range level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
   <type title="Valid_voice-rate">
     <test profile="css3" warning="no">
       <file>testsuite/properties/positive/voice-rate/css3/001.css</file>
       <description>Valid voice-rate level css3</description>
+      <result valid="true" />
+    </test>
+  </type>
+  <type title="Valid_voice-stress">
+    <test profile="css3" warning="no">
+      <file>testsuite/properties/positive/voice-stress/css3/001.css</file>
+      <description>Valid voice-stress level css3</description>
       <result valid="true" />
     </test>
   </type>
