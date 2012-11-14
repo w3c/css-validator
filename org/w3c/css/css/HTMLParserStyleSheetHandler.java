@@ -563,6 +563,22 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         }
     }
 
+	/**
+	 * Parse an HTML document, given as a Reader
+	 *
+	 * @param reader the Reader of the document
+	 * @throws IOException
+	 * @throws SAXException
+	 */
+	public void parse(Reader reader) throws IOException, SAXException {
+		InputSource inputSource = new InputSource(reader);
+		try {
+			parse(inputSource, null);
+		} finally {
+			reader.close();
+		}
+	}
+
     /**
      * Parse an HTML document, given as a Reader
      * @param reader the Reader of the document

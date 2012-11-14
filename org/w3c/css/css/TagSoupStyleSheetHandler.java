@@ -561,6 +561,22 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         }
     }
 
+	/**
+	 * Parse an HTML document, given as a Reader
+	 * @param reader the Reader of the document
+	 * @param docref the String version of the URI of the document
+	 * @throws IOException
+	 * @throws SAXException
+	 */
+	public void parse(Reader reader, String docref) throws IOException, SAXException {
+		InputSource inputSource = new InputSource(reader);
+		try {
+			parse(inputSource, docref);
+		} finally {
+			reader.close();
+		}
+	}
+
     void parse(URL url) throws Exception {
         InputSource source = new InputSource();
         URLConnection connection;
