@@ -1,0 +1,540 @@
+y { list-style:     initial   }
+z { list-style:     inherit   }
+ls1   { list-style:     bengali   }
+ls2   { list-style:     box   }
+ls3   { list-style:     chocolat   }
+ls4   { list-style:     hanging   }
+ls5   { list-style:     image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls6   { list-style:     inline   }
+ls7   { list-style:     inside   }
+ls8   { list-style:     linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls9   { list-style:     none   }
+ls10  { list-style:     outside   }
+ls11  { list-style:     url("goo.fif")   }
+ls12  { list-style:    bengali    }
+ls13  { list-style:    bengali   hanging   }
+ls14  { list-style:    bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls15  { list-style:    bengali   inside   }
+ls16  { list-style:    bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls17  { list-style:    bengali   outside   }
+ls18  { list-style:    bengali   url("goo.fif")   }
+ls19  { list-style:    box    }
+ls20  { list-style:    box   hanging   }
+ls21  { list-style:    box   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls22  { list-style:    box   inside   }
+ls23  { list-style:    box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls24  { list-style:    box   outside   }
+ls25  { list-style:    box   url("goo.fif")   }
+ls26  { list-style:    chocolat    }
+ls27  { list-style:    chocolat   hanging   }
+ls28  { list-style:    chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls29  { list-style:    chocolat   inside   }
+ls30  { list-style:    chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls31  { list-style:    chocolat   outside   }
+ls32  { list-style:    chocolat   url("goo.fif")   }
+ls33  { list-style:    hanging    }
+ls34  { list-style:    hanging   bengali   }
+ls35  { list-style:    hanging   box   }
+ls36  { list-style:    hanging   chocolat   }
+ls37  { list-style:    hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls38  { list-style:    hanging   inline   }
+ls39  { list-style:    hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls40  { list-style:    hanging   none   }
+ls41  { list-style:    hanging   url("goo.fif")   }
+ls42  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls43  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   }
+ls44  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   box   }
+ls45  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   }
+ls46  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls47  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   }
+ls48  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls49  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   none   }
+ls50  { list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls51  { list-style:    inline    }
+ls52  { list-style:    inline   hanging   }
+ls53  { list-style:    inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls54  { list-style:    inline   inside   }
+ls55  { list-style:    inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls56  { list-style:    inline   outside   }
+ls57  { list-style:    inline   url("goo.fif")   }
+ls58  { list-style:    inside    }
+ls59  { list-style:    inside   bengali   }
+ls60  { list-style:    inside   box   }
+ls61  { list-style:    inside   chocolat   }
+ls62  { list-style:    inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls63  { list-style:    inside   inline   }
+ls64  { list-style:    inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls65  { list-style:    inside   none   }
+ls66  { list-style:    inside   url("goo.fif")   }
+ls67  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls68  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   }
+ls69  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   }
+ls70  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
+ls71  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls72  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   }
+ls73  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls74  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   }
+ls75  { list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls76  { list-style:    none    }
+ls77  { list-style:    none   hanging   }
+ls78  { list-style:    none   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls79  { list-style:    none   inside   }
+ls80  { list-style:    none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls81  { list-style:    none   outside   }
+ls82  { list-style:    none   url("goo.fif")   }
+ls83  { list-style:    outside    }
+ls84  { list-style:    outside   bengali   }
+ls85  { list-style:    outside   box   }
+ls86  { list-style:    outside   chocolat   }
+ls87  { list-style:    outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls88  { list-style:    outside   inline   }
+ls89  { list-style:    outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls90  { list-style:    outside   none   }
+ls91  { list-style:    outside   url("goo.fif")   }
+ls92  { list-style:    url("goo.fif")    }
+ls93  { list-style:    url("goo.fif")   bengali   }
+ls94  { list-style:    url("goo.fif")   box   }
+ls95  { list-style:    url("goo.fif")   chocolat   }
+ls96  { list-style:    url("goo.fif")   hanging   }
+ls97  { list-style:    url("goo.fif")   inline   }
+ls98  { list-style:    url("goo.fif")   inside   }
+ls99  { list-style:    url("goo.fif")   none   }
+ls100 { list-style:    url("goo.fif")   outside   }
+ls101 { list-style:   bengali     }
+ls102 { list-style:   bengali    hanging   }
+ls103 { list-style:   bengali    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls104 { list-style:   bengali    inside   }
+ls105 { list-style:   bengali    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls106 { list-style:   bengali    outside   }
+ls107 { list-style:   bengali    url("goo.fif")   }
+ls108 { list-style:   bengali   hanging    }
+ls109 { list-style:   bengali   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls110 { list-style:   bengali   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls111 { list-style:   bengali   hanging   url("goo.fif")   }
+ls112 { list-style:   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls113 { list-style:   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls114 { list-style:   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls115 { list-style:   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls116 { list-style:   bengali   inside    }
+ls117 { list-style:   bengali   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls118 { list-style:   bengali   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls119 { list-style:   bengali   inside   url("goo.fif")   }
+ls120 { list-style:   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls121 { list-style:   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls122 { list-style:   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls123 { list-style:   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls124 { list-style:   bengali   outside    }
+ls125 { list-style:   bengali   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls126 { list-style:   bengali   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls127 { list-style:   bengali   outside   url("goo.fif")   }
+ls128 { list-style:   bengali   url("goo.fif")    }
+ls129 { list-style:   bengali   url("goo.fif")   hanging   }
+ls130 { list-style:   bengali   url("goo.fif")   inside   }
+ls131 { list-style:   bengali   url("goo.fif")   outside   }
+ls132 { list-style:   box     }
+ls133 { list-style:   box    hanging   }
+ls134 { list-style:   box    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls135 { list-style:   box    inside   }
+ls136 { list-style:   box    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls137 { list-style:   box    outside   }
+ls138 { list-style:   box    url("goo.fif")   }
+ls139 { list-style:   box   hanging    }
+ls140 { list-style:   box   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls141 { list-style:   box   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls142 { list-style:   box   hanging   url("goo.fif")   }
+ls143 { list-style:   box   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls144 { list-style:   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls145 { list-style:   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls146 { list-style:   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls147 { list-style:   box   inside    }
+ls148 { list-style:   box   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls149 { list-style:   box   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls150 { list-style:   box   inside   url("goo.fif")   }
+ls151 { list-style:   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls152 { list-style:   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls153 { list-style:   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls154 { list-style:   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls155 { list-style:   box   outside    }
+ls156 { list-style:   box   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls157 { list-style:   box   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls158 { list-style:   box   outside   url("goo.fif")   }
+ls159 { list-style:   box   url("goo.fif")    }
+ls160 { list-style:   box   url("goo.fif")   hanging   }
+ls161 { list-style:   box   url("goo.fif")   inside   }
+ls162 { list-style:   box   url("goo.fif")   outside   }
+ls163 { list-style:   chocolat     }
+ls164 { list-style:   chocolat    hanging   }
+ls165 { list-style:   chocolat    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls166 { list-style:   chocolat    inside   }
+ls167 { list-style:   chocolat    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls168 { list-style:   chocolat    outside   }
+ls169 { list-style:   chocolat    url("goo.fif")   }
+ls170 { list-style:   chocolat   hanging    }
+ls171 { list-style:   chocolat   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls172 { list-style:   chocolat   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls173 { list-style:   chocolat   hanging   url("goo.fif")   }
+ls174 { list-style:   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls175 { list-style:   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls176 { list-style:   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls177 { list-style:   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls178 { list-style:   chocolat   inside    }
+ls179 { list-style:   chocolat   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls180 { list-style:   chocolat   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls181 { list-style:   chocolat   inside   url("goo.fif")   }
+ls182 { list-style:   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls183 { list-style:   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls184 { list-style:   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls185 { list-style:   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls186 { list-style:   chocolat   outside    }
+ls187 { list-style:   chocolat   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls188 { list-style:   chocolat   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls189 { list-style:   chocolat   outside   url("goo.fif")   }
+ls190 { list-style:   chocolat   url("goo.fif")    }
+ls191 { list-style:   chocolat   url("goo.fif")   hanging   }
+ls192 { list-style:   chocolat   url("goo.fif")   inside   }
+ls193 { list-style:   chocolat   url("goo.fif")   outside   }
+ls194 { list-style:   hanging     }
+ls195 { list-style:   hanging    bengali   }
+ls196 { list-style:   hanging    box   }
+ls197 { list-style:   hanging    chocolat   }
+ls198 { list-style:   hanging    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls199 { list-style:   hanging    inline   }
+ls200 { list-style:   hanging    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls201 { list-style:   hanging    none   }
+ls202 { list-style:   hanging    url("goo.fif")   }
+ls203 { list-style:   hanging   bengali    }
+ls204 { list-style:   hanging   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls205 { list-style:   hanging   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls206 { list-style:   hanging   bengali   url("goo.fif")   }
+ls207 { list-style:   hanging   box    }
+ls208 { list-style:   hanging   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls209 { list-style:   hanging   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls210 { list-style:   hanging   box   url("goo.fif")   }
+ls211 { list-style:   hanging   chocolat    }
+ls212 { list-style:   hanging   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls213 { list-style:   hanging   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls214 { list-style:   hanging   chocolat   url("goo.fif")   }
+ls215 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls216 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   }
+ls217 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   }
+ls218 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   }
+ls219 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   }
+ls220 { list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   }
+ls221 { list-style:   hanging   inline    }
+ls222 { list-style:   hanging   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls223 { list-style:   hanging   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls224 { list-style:   hanging   inline   url("goo.fif")   }
+ls225 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls226 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   }
+ls227 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   }
+ls228 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
+ls229 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   }
+ls230 { list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   }
+ls231 { list-style:   hanging   none    }
+ls232 { list-style:   hanging   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls233 { list-style:   hanging   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls234 { list-style:   hanging   none   url("goo.fif")   }
+ls235 { list-style:   hanging   url("goo.fif")    }
+ls236 { list-style:   hanging   url("goo.fif")   bengali   }
+ls237 { list-style:   hanging   url("goo.fif")   box   }
+ls238 { list-style:   hanging   url("goo.fif")   chocolat   }
+ls239 { list-style:   hanging   url("goo.fif")   inline   }
+ls240 { list-style:   hanging   url("goo.fif")   none   }
+ls241 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )     }
+ls242 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    bengali   }
+ls243 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    box   }
+ls244 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    chocolat   }
+ls245 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    hanging   }
+ls246 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    inline   }
+ls247 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    inside   }
+ls248 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    none   }
+ls249 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    outside   }
+ls250 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali    }
+ls251 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   hanging   }
+ls252 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   inside   }
+ls253 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   outside   }
+ls254 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   box    }
+ls255 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   hanging   }
+ls256 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   inside   }
+ls257 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   outside   }
+ls258 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat    }
+ls259 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   hanging   }
+ls260 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   inside   }
+ls261 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   outside   }
+ls262 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging    }
+ls263 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   bengali   }
+ls264 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   box   }
+ls265 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   chocolat   }
+ls266 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   inline   }
+ls267 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   none   }
+ls268 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline    }
+ls269 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   hanging   }
+ls270 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   inside   }
+ls271 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   outside   }
+ls272 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside    }
+ls273 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   bengali   }
+ls274 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   box   }
+ls275 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   chocolat   }
+ls276 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   inline   }
+ls277 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   none   }
+ls278 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   none    }
+ls279 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   hanging   }
+ls280 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   inside   }
+ls281 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   outside   }
+ls282 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside    }
+ls283 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   bengali   }
+ls284 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   box   }
+ls285 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   chocolat   }
+ls286 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   inline   }
+ls287 { list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   none   }
+ls288 { list-style:   inline     }
+ls289 { list-style:   inline    hanging   }
+ls290 { list-style:   inline    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls291 { list-style:   inline    inside   }
+ls292 { list-style:   inline    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls293 { list-style:   inline    outside   }
+ls294 { list-style:   inline    url("goo.fif")   }
+ls295 { list-style:   inline   hanging    }
+ls296 { list-style:   inline   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls297 { list-style:   inline   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls298 { list-style:   inline   hanging   url("goo.fif")   }
+ls299 { list-style:   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls300 { list-style:   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls301 { list-style:   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls302 { list-style:   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls303 { list-style:   inline   inside    }
+ls304 { list-style:   inline   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls305 { list-style:   inline   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls306 { list-style:   inline   inside   url("goo.fif")   }
+ls307 { list-style:   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls308 { list-style:   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls309 { list-style:   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls310 { list-style:   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls311 { list-style:   inline   outside    }
+ls312 { list-style:   inline   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls313 { list-style:   inline   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls314 { list-style:   inline   outside   url("goo.fif")   }
+ls315 { list-style:   inline   url("goo.fif")    }
+ls316 { list-style:   inline   url("goo.fif")   hanging   }
+ls317 { list-style:   inline   url("goo.fif")   inside   }
+ls318 { list-style:   inline   url("goo.fif")   outside   }
+ls319 { list-style:   inside     }
+ls320 { list-style:   inside    bengali   }
+ls321 { list-style:   inside    box   }
+ls322 { list-style:   inside    chocolat   }
+ls323 { list-style:   inside    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls324 { list-style:   inside    inline   }
+ls325 { list-style:   inside    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls326 { list-style:   inside    none   }
+ls327 { list-style:   inside    url("goo.fif")   }
+ls328 { list-style:   inside   bengali    }
+ls329 { list-style:   inside   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls330 { list-style:   inside   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls331 { list-style:   inside   bengali   url("goo.fif")   }
+ls332 { list-style:   inside   box    }
+ls333 { list-style:   inside   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls334 { list-style:   inside   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls335 { list-style:   inside   box   url("goo.fif")   }
+ls336 { list-style:   inside   chocolat    }
+ls337 { list-style:   inside   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls338 { list-style:   inside   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls339 { list-style:   inside   chocolat   url("goo.fif")   }
+ls340 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls341 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   }
+ls342 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   }
+ls343 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   }
+ls344 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   }
+ls345 { list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   }
+ls346 { list-style:   inside   inline    }
+ls347 { list-style:   inside   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls348 { list-style:   inside   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls349 { list-style:   inside   inline   url("goo.fif")   }
+ls350 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls351 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   }
+ls352 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   }
+ls353 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
+ls354 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   }
+ls355 { list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   }
+ls356 { list-style:   inside   none    }
+ls357 { list-style:   inside   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls358 { list-style:   inside   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls359 { list-style:   inside   none   url("goo.fif")   }
+ls360 { list-style:   inside   url("goo.fif")    }
+ls361 { list-style:   inside   url("goo.fif")   bengali   }
+ls362 { list-style:   inside   url("goo.fif")   box   }
+ls363 { list-style:   inside   url("goo.fif")   chocolat   }
+ls364 { list-style:   inside   url("goo.fif")   inline   }
+ls365 { list-style:   inside   url("goo.fif")   none   }
+ls366 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )      }
+ls367 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     bengali   }
+ls368 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     box   }
+ls369 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     chocolat   }
+ls370 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     hanging   }
+ls371 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     inline   }
+ls372 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     inside   }
+ls373 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     none   }
+ls374 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     outside   }
+ls375 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali    }
+ls376 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   hanging   }
+ls377 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   inside   }
+ls378 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   outside   }
+ls379 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box    }
+ls380 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   hanging   }
+ls381 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   inside   }
+ls382 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   outside   }
+ls383 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat    }
+ls384 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   hanging   }
+ls385 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   inside   }
+ls386 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   outside   }
+ls387 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging    }
+ls388 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   bengali   }
+ls389 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   box   }
+ls390 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   chocolat   }
+ls391 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   inline   }
+ls392 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   none   }
+ls393 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline    }
+ls394 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   hanging   }
+ls395 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   inside   }
+ls396 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   outside   }
+ls397 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside    }
+ls398 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   bengali   }
+ls399 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   box   }
+ls400 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   chocolat   }
+ls401 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   inline   }
+ls402 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   none   }
+ls403 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none    }
+ls404 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   hanging   }
+ls405 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   inside   }
+ls406 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   outside   }
+ls407 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside    }
+ls408 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   bengali   }
+ls409 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   box   }
+ls410 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   chocolat   }
+ls411 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   inline   }
+ls412 { list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   none   }
+ls413 { list-style:   none     }
+ls414 { list-style:   none    hanging   }
+ls415 { list-style:   none    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls416 { list-style:   none    inside   }
+ls417 { list-style:   none    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls418 { list-style:   none    outside   }
+ls419 { list-style:   none    url("goo.fif")   }
+ls420 { list-style:   none   hanging    }
+ls421 { list-style:   none   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls422 { list-style:   none   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls423 { list-style:   none   hanging   url("goo.fif")   }
+ls424 { list-style:   none   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls425 { list-style:   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   hanging   }
+ls426 { list-style:   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   inside   }
+ls427 { list-style:   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   outside   }
+ls428 { list-style:   none   inside    }
+ls429 { list-style:   none   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls430 { list-style:   none   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls431 { list-style:   none   inside   url("goo.fif")   }
+ls432 { list-style:   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls433 { list-style:   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   }
+ls434 { list-style:   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   }
+ls435 { list-style:   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   }
+ls436 { list-style:   none   outside    }
+ls437 { list-style:   none   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls438 { list-style:   none   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls439 { list-style:   none   outside   url("goo.fif")   }
+ls440 { list-style:   none   url("goo.fif")    }
+ls441 { list-style:   none   url("goo.fif")   hanging   }
+ls442 { list-style:   none   url("goo.fif")   inside   }
+ls443 { list-style:   none   url("goo.fif")   outside   }
+ls444 { list-style:   outside     }
+ls445 { list-style:   outside    bengali   }
+ls446 { list-style:   outside    box   }
+ls447 { list-style:   outside    chocolat   }
+ls448 { list-style:   outside    image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls449 { list-style:   outside    inline   }
+ls450 { list-style:   outside    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls451 { list-style:   outside    none   }
+ls452 { list-style:   outside    url("goo.fif")   }
+ls453 { list-style:   outside   bengali    }
+ls454 { list-style:   outside   bengali   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls455 { list-style:   outside   bengali   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls456 { list-style:   outside   bengali   url("goo.fif")   }
+ls457 { list-style:   outside   box    }
+ls458 { list-style:   outside   box   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls459 { list-style:   outside   box   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls460 { list-style:   outside   box   url("goo.fif")   }
+ls461 { list-style:   outside   chocolat    }
+ls462 { list-style:   outside   chocolat   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls463 { list-style:   outside   chocolat   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls464 { list-style:   outside   chocolat   url("goo.fif")   }
+ls465 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )    }
+ls466 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   bengali   }
+ls467 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   box   }
+ls468 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   chocolat   }
+ls469 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   inline   }
+ls470 { list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   none   }
+ls471 { list-style:   outside   inline    }
+ls472 { list-style:   outside   inline   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls473 { list-style:   outside   inline   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls474 { list-style:   outside   inline   url("goo.fif")   }
+ls475 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     }
+ls476 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    bengali   }
+ls477 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    box   }
+ls478 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
+ls479 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inline   }
+ls480 { list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    none   }
+ls481 { list-style:   outside   none    }
+ls482 { list-style:   outside   none   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
+ls483 { list-style:   outside   none   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
+ls484 { list-style:   outside   none   url("goo.fif")   }
+ls485 { list-style:   outside   url("goo.fif")    }
+ls486 { list-style:   outside   url("goo.fif")   bengali   }
+ls487 { list-style:   outside   url("goo.fif")   box   }
+ls488 { list-style:   outside   url("goo.fif")   chocolat   }
+ls489 { list-style:   outside   url("goo.fif")   inline   }
+ls490 { list-style:   outside   url("goo.fif")   none   }
+ls491 { list-style:   url("goo.fif")     }
+ls492 { list-style:   url("goo.fif")    bengali   }
+ls493 { list-style:   url("goo.fif")    box   }
+ls494 { list-style:   url("goo.fif")    chocolat   }
+ls495 { list-style:   url("goo.fif")    hanging   }
+ls496 { list-style:   url("goo.fif")    inline   }
+ls497 { list-style:   url("goo.fif")    inside   }
+ls498 { list-style:   url("goo.fif")    none   }
+ls499 { list-style:   url("goo.fif")    outside   }
+ls500 { list-style:   url("goo.fif")   bengali    }
+ls501 { list-style:   url("goo.fif")   bengali   hanging   }
+ls502 { list-style:   url("goo.fif")   bengali   inside   }
+ls503 { list-style:   url("goo.fif")   bengali   outside   }
+ls504 { list-style:   url("goo.fif")   box    }
+ls505 { list-style:   url("goo.fif")   box   hanging   }
+ls506 { list-style:   url("goo.fif")   box   inside   }
+ls507 { list-style:   url("goo.fif")   box   outside   }
+ls508 { list-style:   url("goo.fif")   chocolat    }
+ls509 { list-style:   url("goo.fif")   chocolat   hanging   }
+ls510 { list-style:   url("goo.fif")   chocolat   inside   }
+ls511 { list-style:   url("goo.fif")   chocolat   outside   }
+ls512 { list-style:   url("goo.fif")   hanging    }
+ls513 { list-style:   url("goo.fif")   hanging   bengali   }
+ls514 { list-style:   url("goo.fif")   hanging   box   }
+ls515 { list-style:   url("goo.fif")   hanging   chocolat   }
+ls516 { list-style:   url("goo.fif")   hanging   inline   }
+ls517 { list-style:   url("goo.fif")   hanging   none   }
+ls518 { list-style:   url("goo.fif")   inline    }
+ls519 { list-style:   url("goo.fif")   inline   hanging   }
+ls520 { list-style:   url("goo.fif")   inline   inside   }
+ls521 { list-style:   url("goo.fif")   inline   outside   }
+ls522 { list-style:   url("goo.fif")   inside    }
+ls523 { list-style:   url("goo.fif")   inside   bengali   }
+ls524 { list-style:   url("goo.fif")   inside   box   }
+ls525 { list-style:   url("goo.fif")   inside   chocolat   }
+ls526 { list-style:   url("goo.fif")   inside   inline   }
+ls527 { list-style:   url("goo.fif")   inside   none   }
+ls528 { list-style:   url("goo.fif")   none    }
+ls529 { list-style:   url("goo.fif")   none   hanging   }
+ls530 { list-style:   url("goo.fif")   none   inside   }
+ls531 { list-style:   url("goo.fif")   none   outside   }
+ls532 { list-style:   url("goo.fif")   outside    }
+ls533 { list-style:   url("goo.fif")   outside   bengali   }
+ls534 { list-style:   url("goo.fif")   outside   box   }
+ls535 { list-style:   url("goo.fif")   outside   chocolat   }
+ls536 { list-style:   url("goo.fif")   outside   inline   }
+ls537 { list-style:   url("goo.fif")   outside   none   }
+ls538 { list-style:   none   outside   none   }
