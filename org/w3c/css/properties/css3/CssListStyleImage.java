@@ -20,6 +20,7 @@ public class CssListStyleImage extends org.w3c.css.properties.css.CssListStyleIm
 	 * Create a new CssListStyleImage
 	 */
 	public CssListStyleImage() {
+		value = initial;
 	}
 
 

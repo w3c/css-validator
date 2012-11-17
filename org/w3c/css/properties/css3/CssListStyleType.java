@@ -80,6 +80,7 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
 	 * Create a new CssListStyleType
 	 */
 	public CssListStyleType() {
+		value = initial;
 	}
 
 

@@ -26,6 +26,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 	 * Create a new CssListStyle
 	 */
 	public CssListStyle() {
+		value = initial;
 	}
 
 
