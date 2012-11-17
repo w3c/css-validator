@@ -13,6 +13,8 @@ public class CssColorCSS3 {
     protected static final HashMap<String, RGB> definedRGBColorsCSS3;
     private static final RGBA trans;
 
+	static final CssIdent currentColor = CssIdent.getIdent("currentColor");
+
     public static RGB getRGB(String ident) {
         return definedRGBColorsCSS3.get(ident);
     }

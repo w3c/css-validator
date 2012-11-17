@@ -149,6 +149,11 @@ public class CssImage extends CssValue {
 					gotcolor = true;
 					break;
 				case CssTypes.CSS_IDENT:
+					if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+						v.add(val);
+						gotcolor = true;
+						break;
+					}
 					c = new CssColor();
 					c.setIdentColor(val.toString(), ac);
 					v.add(c);
@@ -530,6 +535,7 @@ public class CssImage extends CssValue {
 		CssValue val;
 		char op;
 		CssColor stopcol;
+		CssValue stopcolv;
 		CssValue stopval;
 
 		while (!expression.end()) {
@@ -540,13 +546,19 @@ public class CssImage extends CssValue {
 				case CssTypes.CSS_HASH_IDENT:
 					stopcol = new CssColor();
 					stopcol.setShortRGBColor(val.toString(), ac);
+					stopcolv = stopcol;
 					break;
 				case CssTypes.CSS_IDENT:
+					if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+						stopcolv = CssColorCSS3.currentColor;
+						break;
+					}
 					stopcol = new CssColor();
 					stopcol.setIdentColor(val.toString(), ac);
+					stopcolv = stopcol;
 					break;
 				case CssTypes.CSS_COLOR:
-					stopcol = (CssColor) val;
+					stopcolv = val;
 					break;
 				default:
 					throw new InvalidParamException("value", val.toString(),
@@ -563,7 +575,7 @@ public class CssImage extends CssValue {
 					case CssTypes.CSS_LENGTH:
 					case CssTypes.CSS_PERCENTAGE:
 						ArrayList<CssValue> stop = new ArrayList<CssValue>(2);
-						stop.add(stopcol);
+						stop.add(stopcolv);
 						stop.add(stopval);
 						v.add(new CssValueList(stop));
 						break;
@@ -572,7 +584,7 @@ public class CssImage extends CssValue {
 								"color-stop", ac);
 				}
 			} else {
-				v.add(stopcol);
+				v.add(stopcolv);
 			}
 			expression.next();
 			if (!expression.end() && op != COMMA) {
