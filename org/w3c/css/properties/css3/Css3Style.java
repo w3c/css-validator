@@ -70,18 +70,19 @@ import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
-import org.w3c.css.properties.css.CssNavIndex;
-import org.w3c.css.properties.css.CssNavUp;
 import org.w3c.css.properties.css.CssNavDown;
+import org.w3c.css.properties.css.CssNavIndex;
 import org.w3c.css.properties.css.CssNavLeft;
 import org.w3c.css.properties.css.CssNavRight;
+import org.w3c.css.properties.css.CssNavUp;
 import org.w3c.css.properties.css.CssObjectFit;
+import org.w3c.css.properties.css.CssObjectPosition;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
 import org.w3c.css.properties.css.CssOverflowStyle;
-import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowWrap;
+import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
@@ -233,6 +234,7 @@ public class Css3Style extends ATSCStyle {
 	public CssOverflowY	cssOverflowY;
 	
 	public CssObjectFit cssObjectFit;
+	public CssObjectPosition cssObjectPosition;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1410,6 +1412,15 @@ public class Css3Style extends ATSCStyle {
 							new CssObjectFit(), style, selector);
 		}
 		return cssObjectFit;
+	}
+
+	public CssObjectPosition getObjectPosition() {
+		if (cssObjectPosition == null) {
+			cssObjectPosition =
+					(CssObjectPosition) style.CascadingOrder(
+							new CssObjectPosition(), style, selector);
+		}
+		return cssObjectPosition;
 	}
 	
 	///
