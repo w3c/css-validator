@@ -75,6 +75,7 @@ import org.w3c.css.properties.css.CssNavUp;
 import org.w3c.css.properties.css.CssNavDown;
 import org.w3c.css.properties.css.CssNavLeft;
 import org.w3c.css.properties.css.CssNavRight;
+import org.w3c.css.properties.css.CssObjectFit;
 import org.w3c.css.properties.css.CssOpacity;
 import org.w3c.css.properties.css.CssOrder;
 import org.w3c.css.properties.css.CssOutlineOffset;
@@ -230,6 +231,8 @@ public class Css3Style extends ATSCStyle {
 
 	public CssOverflowX cssOverflowX;
 	public CssOverflowY	cssOverflowY;
+	
+	public CssObjectFit cssObjectFit;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1400,6 +1403,15 @@ public class Css3Style extends ATSCStyle {
 		return cssTextOverflow;
 	}
 
+	public CssObjectFit getObjectFit() {
+		if (cssObjectFit == null) {
+			cssObjectFit =
+					(CssObjectFit) style.CascadingOrder(
+							new CssObjectFit(), style, selector);
+		}
+		return cssObjectFit;
+	}
+	
 	///
 
 	/**
