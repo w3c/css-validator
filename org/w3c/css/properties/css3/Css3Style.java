@@ -64,6 +64,7 @@ import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssIcon;
 import org.w3c.css.properties.css.CssImageOrientation;
+import org.w3c.css.properties.css.CssImageResolution;
 import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLineBreak;
@@ -232,11 +233,12 @@ public class Css3Style extends ATSCStyle {
 	public CssIcon cssIcon;
 
 	public CssOverflowX cssOverflowX;
-	public CssOverflowY	cssOverflowY;
-	
+	public CssOverflowY cssOverflowY;
+
 	public CssObjectFit cssObjectFit;
 	public CssObjectPosition cssObjectPosition;
 	public CssImageOrientation cssImageOrientation;
+	public CssImageResolution cssImageResolution;
 
 	CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
 	CssDropInitialAfterAlign cssDropInitialAfterAlign;
@@ -1432,6 +1434,15 @@ public class Css3Style extends ATSCStyle {
 							new CssImageOrientation(), style, selector);
 		}
 		return cssImageOrientation;
+	}
+
+	public CssImageResolution getImageResolution() {
+		if (cssImageResolution == null) {
+			cssImageResolution =
+					(CssImageResolution) style.CascadingOrder(
+							new CssImageResolution(), style, selector);
+		}
+		return cssImageResolution;
 	}
 	///
 
