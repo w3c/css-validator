@@ -20,8 +20,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
     CaptionSide captionSide;
     TableLayout tableLayout;
     TableLayoutATSC tableLayoutATSC;
-    BorderCollapse borderCollapse;
-    BorderCollapseATSC borderCollapseATSC;
     BorderSpacing borderSpacing;
     BorderSpacingATSC borderSpacingATSC;
     SpeakHeader speakHeader;
@@ -94,25 +92,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 		style.CascadingOrder(new CaptionSide(), style, selector);
 	}
 	return captionSide;
-    }
-
-    /**
-     * Get the border-collapse property
-     */
-    public final BorderCollapse getBorderCollapse() {
-	if (borderCollapse == null) {
-	    borderCollapse = (BorderCollapse)
-		style.CascadingOrder(new BorderCollapse(), style, selector);
-	}
-	return borderCollapse;
-    }
-
-    public final BorderCollapseATSC getBorderCollapseATSC() {
-	if (borderCollapseATSC == null) {
-	    borderCollapseATSC = (BorderCollapseATSC)
-		style.CascadingOrder(new BorderCollapseATSC(), style, selector);
-	}
-	return borderCollapseATSC;
     }
 
     /**

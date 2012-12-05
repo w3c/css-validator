@@ -8,6 +8,7 @@ package org.w3c.css.properties.css2;
 
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.aural.ACssStyle;
+import org.w3c.css.properties.css.CssBorderCollapse;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssClip;
 import org.w3c.css.properties.css.CssCounterIncrement;
@@ -89,6 +90,7 @@ public class Css2Style extends ACssStyle {
 	public CssCounterIncrement cssCounterIncrement;
 	public CssCounterReset cssCounterReset;
 	
+	public CssBorderCollapse cssBorderCollapse;
 	public CssEmptyCells cssEmptyCells;
 
 	/**
@@ -429,6 +431,15 @@ public class Css2Style extends ACssStyle {
 		return cssCounterReset;
 	}
 
+	public final CssBorderCollapse getBorderCollapse() {
+		if (cssBorderCollapse == null) {
+			cssBorderCollapse =
+					(CssBorderCollapse) style.CascadingOrder(new CssBorderCollapse(),
+							style, selector);
+		}
+		return cssBorderCollapse;
+	}
+	
 	public final CssEmptyCells getEmptyCells() {
 		if (cssEmptyCells == null) {
 			cssEmptyCells =
