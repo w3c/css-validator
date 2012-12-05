@@ -15,13 +15,14 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/tables.html#propdef-caption-side
+ * @spec http://www.w3.org/TR/2012/WD-css3-writing-modes-20120501/#caption-side
  */
 public class CssCaptionSide extends org.w3c.css.properties.css.CssCaptionSide {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"top", "bottom"};
+		String[] _allowed_values = {"top", "bottom", "before", "after"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
