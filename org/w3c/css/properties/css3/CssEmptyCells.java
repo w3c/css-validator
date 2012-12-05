@@ -42,6 +42,7 @@ public class CssEmptyCells extends org.w3c.css.properties.css.CssEmptyCells {
      * Create a new CssEmptyCells
      */
     public CssEmptyCells() {
+		value = initial;
     }
 
     /**
