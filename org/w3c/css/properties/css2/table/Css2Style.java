@@ -24,8 +24,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
     BorderCollapseATSC borderCollapseATSC;
     BorderSpacing borderSpacing;
     BorderSpacingATSC borderSpacingATSC;
-    EmptyCells emptyCells;
-    EmptyCellsATSC emptyCellsATSC;
     SpeakHeader speakHeader;
     SpeakHeaderATSC speakHeaderATSC;
 
@@ -134,25 +132,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 		style.CascadingOrder(new BorderSpacingATSC(), style, selector);
 	}
 	return borderSpacingATSC;
-    }
-
-    /**
-     * Get the emtpy-cells property
-     */
-    public final EmptyCells getEmptyCells() {
-	if (emptyCells == null) {
-	    emptyCells = (EmptyCells)
-		style.CascadingOrder(new EmptyCells(), style, selector);
-	}
-	return emptyCells;
-    }
-
-    public final EmptyCellsATSC getEmptyCellsATSC() {
-	if (emptyCellsATSC == null) {
-	    emptyCellsATSC = (EmptyCellsATSC)
-		style.CascadingOrder(new EmptyCellsATSC(), style, selector);
-	}
-	return emptyCellsATSC;
     }
 
     /**
