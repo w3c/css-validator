@@ -17,7 +17,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
     RowSpanATSC rowSpanATSC;
     ColumnSpan columnSpan;
     ColumnSpanATSC columnSpanATSC;
-    CaptionSide captionSide;
     TableLayout tableLayout;
     TableLayoutATSC tableLayoutATSC;
     BorderSpacing borderSpacing;
@@ -81,17 +80,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 		style.CascadingOrder(new TableLayoutATSC(), style, selector);
 	}
 	return tableLayoutATSC;
-    }
-
-    /**
-     * Get the caption-side property
-     */
-    public final CaptionSide getCaptionSide() {
-	if (captionSide == null) {
-	    captionSide = (CaptionSide)
-		style.CascadingOrder(new CaptionSide(), style, selector);
-	}
-	return captionSide;
     }
 
     /**

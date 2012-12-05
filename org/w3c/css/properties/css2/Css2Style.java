@@ -10,6 +10,7 @@ import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBorderCollapse;
 import org.w3c.css.properties.css.CssBottom;
+import org.w3c.css.properties.css.CssCaptionSide;
 import org.w3c.css.properties.css.CssClip;
 import org.w3c.css.properties.css.CssCounterIncrement;
 import org.w3c.css.properties.css.CssCounterReset;
@@ -90,6 +91,7 @@ public class Css2Style extends ACssStyle {
 	public CssCounterIncrement cssCounterIncrement;
 	public CssCounterReset cssCounterReset;
 	
+	public CssCaptionSide cssCaptionSide;
 	public CssBorderCollapse cssBorderCollapse;
 	public CssEmptyCells cssEmptyCells;
 
@@ -431,6 +433,15 @@ public class Css2Style extends ACssStyle {
 		return cssCounterReset;
 	}
 
+	public final CssCaptionSide getCaptionSide() {
+		if (cssCaptionSide == null) {
+			cssCaptionSide =
+					(CssCaptionSide) style.CascadingOrder(new CssCaptionSide(),
+							style, selector);
+		}
+		return cssCaptionSide;
+	}
+	
 	public final CssBorderCollapse getBorderCollapse() {
 		if (cssBorderCollapse == null) {
 			cssBorderCollapse =
