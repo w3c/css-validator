@@ -31,6 +31,7 @@ import org.w3c.css.properties.css.CssOverflow;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRight;
+import org.w3c.css.properties.css.CssTableLayout;
 import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
 import org.w3c.css.properties.css.CssUnicodeBidi;
@@ -94,6 +95,7 @@ public class Css2Style extends ACssStyle {
 	public CssCaptionSide cssCaptionSide;
 	public CssBorderCollapse cssBorderCollapse;
 	public CssEmptyCells cssEmptyCells;
+	public CssTableLayout cssTableLayout;
 
 	/**
 	 * Get the azimuth
@@ -458,6 +460,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssEmptyCells;
+	}
+
+	public final CssTableLayout getTableLayout() {
+		if (cssTableLayout == null) {
+			cssTableLayout =
+					(CssTableLayout) style.CascadingOrder(new CssTableLayout(),
+							style, selector);
+		}
+		return cssTableLayout;
 	}
 	/**
 	 * Find conflicts in this Style

@@ -17,8 +17,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
     RowSpanATSC rowSpanATSC;
     ColumnSpan columnSpan;
     ColumnSpanATSC columnSpanATSC;
-    TableLayout tableLayout;
-    TableLayoutATSC tableLayoutATSC;
     BorderSpacing borderSpacing;
     BorderSpacingATSC borderSpacingATSC;
     SpeakHeader speakHeader;
@@ -61,25 +59,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 		style.CascadingOrder(new ColumnSpanATSC(), style, selector);
 	}
 	return columnSpanATSC;
-    }
-
-    /**
-     * Get the table-layout property
-     */
-    public final TableLayout getTableLayout() {
-	if (tableLayout == null) {
-	    tableLayout = (TableLayout)
-		style.CascadingOrder(new TableLayout(), style, selector);
-	}
-	return tableLayout;
-    }
-
-    public final TableLayoutATSC getTableLayoutATSC() {
-	if (tableLayoutATSC == null) {
-	    tableLayoutATSC = (TableLayoutATSC)
-		style.CascadingOrder(new TableLayoutATSC(), style, selector);
-	}
-	return tableLayoutATSC;
     }
 
     /**
