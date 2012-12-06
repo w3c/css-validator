@@ -9,6 +9,7 @@ package org.w3c.css.properties.css2;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.aural.ACssStyle;
 import org.w3c.css.properties.css.CssBorderCollapse;
+import org.w3c.css.properties.css.CssBorderSpacing;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssCaptionSide;
 import org.w3c.css.properties.css.CssClip;
@@ -94,6 +95,7 @@ public class Css2Style extends ACssStyle {
 	
 	public CssCaptionSide cssCaptionSide;
 	public CssBorderCollapse cssBorderCollapse;
+	public CssBorderSpacing cssBorderSpacing;
 	public CssEmptyCells cssEmptyCells;
 	public CssTableLayout cssTableLayout;
 
@@ -469,6 +471,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssTableLayout;
+	}
+
+	public final CssBorderSpacing getBorderSpacing() {
+		if (cssBorderSpacing == null) {
+			cssBorderSpacing =
+					(CssBorderSpacing) style.CascadingOrder(new CssBorderSpacing(),
+							style, selector);
+		}
+		return cssBorderSpacing;
 	}
 	/**
 	 * Find conflicts in this Style

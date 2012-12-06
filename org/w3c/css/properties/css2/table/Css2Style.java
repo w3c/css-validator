@@ -17,8 +17,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
     RowSpanATSC rowSpanATSC;
     ColumnSpan columnSpan;
     ColumnSpanATSC columnSpanATSC;
-    BorderSpacing borderSpacing;
-    BorderSpacingATSC borderSpacingATSC;
     SpeakHeader speakHeader;
     SpeakHeaderATSC speakHeaderATSC;
 
@@ -59,25 +57,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 		style.CascadingOrder(new ColumnSpanATSC(), style, selector);
 	}
 	return columnSpanATSC;
-    }
-
-    /**
-     * Get the border-spacing property
-     */
-    public final BorderSpacing getBorderSpacing() {
-	if (borderSpacing == null) {
-	    borderSpacing = (BorderSpacing)
-		style.CascadingOrder(new BorderSpacing(), style, selector);
-	}
-	return borderSpacing;
-    }
-
-    public final BorderSpacingATSC getBorderSpacingATSC() {
-	if (borderSpacingATSC == null) {
-	    borderSpacingATSC = (BorderSpacingATSC)
-		style.CascadingOrder(new BorderSpacingATSC(), style, selector);
-	}
-	return borderSpacingATSC;
     }
 
     /**
