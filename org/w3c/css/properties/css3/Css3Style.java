@@ -445,6 +445,15 @@ public class Css3Style extends ATSCStyle {
 		return cssColumnCount;
 	}
 
+	public CssColumnSpan getColumnSpan() {
+		if (cssColumnSpan == null) {
+			cssColumnSpan =
+					(CssColumnSpan) style.CascadingOrder(
+							new CssColumnSpan(), style, selector);
+		}
+		return cssColumnSpan;
+	}
+	
 	public CssColumnWidth getColumnWidth() {
 		if (cssColumnWidth == null) {
 			cssColumnWidth =
