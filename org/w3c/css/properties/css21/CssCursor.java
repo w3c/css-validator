@@ -90,15 +90,17 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 						value = inherit;
 						break;
 					}
-					lastIdent = getMatchingIdent((CssIdent) val);
-					// not recognized... exit
 					if (lastIdent == null) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
+						lastIdent = getMatchingIdent((CssIdent) val);
+						// not recognized... exit
+						if (lastIdent == null) {
+							throw new InvalidParamException("value",
+									val.toString(),
+									getPropertyName(), ac);
+						}
+						values.add(val);
+						break;
 					}
-					values.add(val);
-					break;
 				default:
 					throw new InvalidParamException("value",
 							val.toString(),
