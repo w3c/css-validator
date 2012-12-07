@@ -12,7 +12,7 @@ package org.w3c.css.properties.paged;
 /**
  * @version $Revision$
  */
-public class Css2Style extends org.w3c.css.properties.css2.table.Css2Style {
+public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
     Size size;
     Marks marks;

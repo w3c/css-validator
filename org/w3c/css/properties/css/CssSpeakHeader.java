@@ -16,31 +16,31 @@ import org.w3c.css.values.CssValue;
  * @since CSS2
  * @version $Revision$
  */
-public class CssBorderCollapse extends CssProperty {
+public class CssSpeakHeader extends CssProperty {
 
     public CssValue value;
 
     /**
-     * Create a new CssBorderCollapse
+     * Create a new CssSpeakHeader
      */
-    public CssBorderCollapse() {
+    public CssSpeakHeader() {
     }
 
     /**
-     * Creates a new CssBorderCollapse
+     * Creates a new CssSpeakHeader
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssBorderCollapse(ApplContext ac, CssExpression expression, boolean check)
+    public CssSpeakHeader(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
     }
 
-    public CssBorderCollapse(ApplContext ac, CssExpression expression)
+    public CssSpeakHeader(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -57,7 +57,7 @@ public class CssBorderCollapse extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "border-collapse";
+        return "speak-header";
     }
 
     /**
@@ -81,9 +81,9 @@ public class CssBorderCollapse extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css2Style) style).cssBorderCollapse != null)
+        if (((Css2Style) style).cssSpeakHeader != null)
             style.addRedefinitionWarning(ac, this);
-        ((Css2Style) style).cssBorderCollapse = this;
+        ((Css2Style) style).cssSpeakHeader = this;
     }
 
     /**
@@ -92,8 +92,8 @@ public class CssBorderCollapse extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssBorderCollapse &&
-                value.equals(((CssBorderCollapse) property).value));
+        return (property instanceof CssSpeakHeader &&
+                value.equals(((CssSpeakHeader) property).value));
     }
 
 
@@ -105,9 +105,9 @@ public class CssBorderCollapse extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css2Style) style).getBorderCollapse();
+            return ((Css2Style) style).getSpeakHeader();
         } else {
-            return ((Css2Style) style).cssBorderCollapse;
+            return ((Css2Style) style).cssSpeakHeader;
         }
     }
 }
