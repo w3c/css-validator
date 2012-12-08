@@ -27,6 +27,9 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 	 */
 	public CssListStyle() {
 		value = initial;
+		cssListStyleType = new CssListStyleType();
+		cssListStylePosition = new CssListStylePosition();
+		cssListStyleImage = new CssListStyleImage();
 	}
 
 
