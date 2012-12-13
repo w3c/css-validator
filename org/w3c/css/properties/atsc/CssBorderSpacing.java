@@ -55,6 +55,7 @@ public class CssBorderSpacing extends org.w3c.css.properties.css.CssBorderSpacin
 			val = expression.getValue();
 			op = expression.getOperator();
 			switch (val.getType()) {
+				case CssTypes.CSS_NUMBER:
 				case CssTypes.CSS_LENGTH:
 					CssLength l = val.getLength();
 					l.checkPositiveness(ac, this);
