@@ -11,61 +11,33 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
-
-import java.util.ArrayList;
-
-import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-writing-modes-20120501/#unicode-bidi
+ * @spec http://www.w3.org/TR/2012/WD-css3-writing-modes-20121115/#unicode-bidi
  */
 public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
 
-	public static final CssIdent[] allowed_values_single;
-	public static final CssIdent[] allowed_values_multi;
+	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values_single = {"normal", "embed"};
-		String[] _allowed_values_multi = {"isolate", "bidi-override"};
+		String[] _allowed_values = {"normal", "embed", "isolate", "bidi-override",
+				"isolate-override", "plaintext"};
 		int i = 0;
-		allowed_values_single = new CssIdent[_allowed_values_single.length];
-		for (String s : _allowed_values_single) {
-			allowed_values_single[i++] = CssIdent.getIdent(s);
-		}
-		i = 0;
-		allowed_values_multi = new CssIdent[_allowed_values_multi.length];
-		for (String s : _allowed_values_multi) {
-			allowed_values_multi[i++] = CssIdent.getIdent(s);
+		allowed_values = new CssIdent[_allowed_values.length];
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
 		}
 	}
-
-	public static final CssIdent getAllowedSingleIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values_single) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
-
-	public static final CssIdent getAllowedIdentMulti(CssIdent ident) {
-		for (CssIdent id : allowed_values_multi) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
-
 
 	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		CssIdent id = getAllowedSingleIdent(ident);
-		if (id == null) {
-			id = getAllowedIdentMulti(ident);
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
 		}
-		return id;
+		return null;
 	}
+
 
 	/**
 	 * Create a new CssUnicodeBidi
@@ -83,7 +55,7 @@ public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
 	 */
 	public CssUnicodeBidi(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
+		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 		setByUser();
@@ -101,55 +73,12 @@ public class CssUnicodeBidi extends org.w3c.css.properties.css.CssUnicodeBidi {
 		CssIdent id = (CssIdent) val;
 		if (inherit.equals(id)) {
 			value = inherit;
-			if (expression.getCount() > 1) {
-				throw new InvalidParamException("value", val,
-						getPropertyName(), ac);
-			}
 		} else {
-			switch (expression.getCount()) {
-				case 1:
-					value = getAllowedSingleIdent(id);
-					if (value == null) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					break;
-				case 2:
-					ArrayList<CssValue> vals = new ArrayList<CssValue>(4);
-					CssValue v;
-					v = getAllowedIdentMulti(id);
-					if (v == null) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					vals.add(v);
-					if (op != SPACE) {
-						throw new InvalidParamException("operator",
-								((new Character(op)).toString()), ac);
-					}
-					expression.next();
-					val = expression.getValue();
-					if (val.getType() != CssTypes.CSS_IDENT) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					v = getAllowedIdentMulti((CssIdent) val);
-					if (v == null) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					vals.add(v);
-					if (v == vals.get(0)) {
-						// we can't have the same ident twice
-						// and yes we can use == here
-						// TODO fixme duplicate keyword error
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					value = new CssValueList(vals);
-					break;
-				default:
-					throw new InvalidParamException("unrecognize", ac);
+			value = getAllowedIdent(id);
+			if (value == null) {
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
 			}
 		}
 		expression.next();
