@@ -175,7 +175,7 @@ error.invalid-color: Invalid RGB function
 
 # used for clipping negative values
 warning.negative: negative value %s will be interpreted as 0
-
+warning.lowerequal: value %s will be interpreted as %s
 warning.noexproperty: Property %s does not exist
 
 warning.marker: The marker-offset property applies on elements with 'display: marker'
