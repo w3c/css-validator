@@ -328,7 +328,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 		if (value.compareTo(other) > 0) {
 			String[] s = new String[2];
 			s[0] = toString();
-			s[1] = Double.toString(d);
+			s[1] = other.toPlainString();
 			ac.getFrame().addWarning("lowerequal", s);
 		}
 	}
