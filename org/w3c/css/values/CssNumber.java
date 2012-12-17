@@ -301,7 +301,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	}
 
 	/**
-	 * check if the value is positive or null
+	 * check if the value is lower or equal than...
 	 *
 	 * @param ac       the validation context
 	 * @param property the property the value is defined in
@@ -313,6 +313,23 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 		if (value.compareTo(other) > 0) {
 			throw new InvalidParamException("lowerequal",
 					toString(), other.toPlainString(), ac);
+		}
+	}
+
+	/**
+	 * check if the value is lower or equal than...
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void warnLowerEqualThan(ApplContext ac, double d, CssProperty property) {
+		BigDecimal other = BigDecimal.valueOf(d);
+		if (value.compareTo(other) > 0) {
+			String[] s = new String[2];
+			s[0] = toString();
+			s[1] = Double.toHexString(d);
+			ac.getFrame().addWarning("lowerequal", s);
 		}
 	}
 }
