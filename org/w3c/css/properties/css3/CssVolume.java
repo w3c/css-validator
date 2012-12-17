@@ -67,7 +67,7 @@ public class CssVolume extends org.w3c.css.properties.css.CssVolume {
 		op = expression.getOperator();
 
 		// same as CSS21 plus a warning
-		ac.getFrame().addWarning("deprecatedproperty", expression.toStringFromStart());
+		ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:

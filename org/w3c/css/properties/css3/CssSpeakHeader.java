@@ -65,7 +65,7 @@ public class CssSpeakHeader extends org.w3c.css.properties.css.CssSpeakHeader {
 		op = expression.getOperator();
 
 		// same as CSS21 plus a warning
-		ac.getFrame().addWarning("deprecatedproperty", expression.toStringFromStart());
+		ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
 		if (val.getType() == CssTypes.CSS_IDENT) {
 			CssIdent id = (CssIdent) val;
