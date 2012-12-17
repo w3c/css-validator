@@ -239,7 +239,7 @@ public class CssPercentage extends CssCheckableValue {
 		if (value.compareTo(other) > 0) {
 			String[] s = new String[2];
 			s[0] = toString();
-			s[1] = Double.toHexString(d) + '%';
+			s[1] = Double.toString(d) + '%';
 			ac.getFrame().addWarning("lowerequal", s);
 		}
 	}
