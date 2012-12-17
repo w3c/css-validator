@@ -18,7 +18,6 @@ import org.w3c.css.values.CssPercentage;
  */
 public class ACssStyle extends Css1Style {
 
-  ACssVolume acssVolume;
   ACssPause  acssPause = new ACssPause(); // it's a macro
   ACssCue  acssCue = new ACssCue(); // it's a macro
   ACssSpeechRate acssSpeechRate;
@@ -46,16 +45,6 @@ public class ACssStyle extends Css1Style {
   ACssVoiceDuration acssVoiceDuration;
   ACssInterpretAs  acssInterpretAs;
   ACssPhonemes 	   acssPhonemes;
-
-  /**
-   * Get the volume
-   */
-  public ACssVolume getVolume() {
-    if (acssVolume == null) {
-      acssVolume = (ACssVolume) style.CascadingOrder(new ACssVolume(), style, selector);
-    }
-    return acssVolume;
-  }
 
   /**
    * Get the pause after
