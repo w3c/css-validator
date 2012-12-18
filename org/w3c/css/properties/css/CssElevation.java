@@ -15,11 +15,11 @@ import org.w3c.css.values.CssValue;
 
 
 /**
- * @version $Revision$
+ * @since CSS2
  */
 public class CssElevation extends CssProperty {
 
-    CssValue value;
+    public CssValue value;
 
     /**
      * Create a new CssElevation

@@ -4,7 +4,7 @@
 // (c) COPYRIGHT MIT, ERCIM and Keio University 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.properties.css21;
+package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -60,6 +60,9 @@ public class CssElevation extends org.w3c.css.properties.css.CssElevation {
 
 		CssValue val = expression.getValue();
 		setByUser();
+
+		// same as CSS21 plus a warning
+		ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
 		switch (val.getType()) {
 			case CssTypes.CSS_ANGLE:
