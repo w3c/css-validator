@@ -34,6 +34,7 @@ import org.w3c.css.properties.css.CssOverflow;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRight;
+import org.w3c.css.properties.css.CssSpeak;
 import org.w3c.css.properties.css.CssSpeakHeader;
 import org.w3c.css.properties.css.CssTableLayout;
 import org.w3c.css.properties.css.CssTextShadow;
@@ -58,6 +59,7 @@ public class Css2Style extends ACssStyle {
 	public CssAzimuth cssAzimuth;
 	public CssElevation cssElevation;
 	public CssVolume cssVolume;
+	public CssSpeak cssSpeak;
 
 	/**
 	 * font properties
@@ -504,6 +506,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssVolume;
+	}
+
+	public final CssSpeak getSpeak() {
+		if (cssSpeak == null) {
+			cssSpeak =
+					(CssSpeak) style.CascadingOrder(new CssSpeak(),
+							style, selector);
+		}
+		return cssSpeak;
 	}
 	/**
 	 * Find conflicts in this Style
