@@ -41,6 +41,7 @@ public class CssSpeak extends org.w3c.css.properties.css.CssSpeak {
 	 * Create a new CssSpeak
 	 */
 	public CssSpeak() {
+		value = initial;
 	}
 
 	/**

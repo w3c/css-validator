@@ -59,6 +59,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
      * Create a new CssAzimuth
      */
     public CssAzimuth() {
+		identValue = initial;
     }
 
     // check if the ident is in the allowed values
