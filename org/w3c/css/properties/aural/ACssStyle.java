@@ -20,7 +20,6 @@ public class ACssStyle extends Css1Style {
 
   ACssPause  acssPause = new ACssPause(); // it's a macro
   ACssCue  acssCue = new ACssCue(); // it's a macro
-  ACssSpeechRate acssSpeechRate;
   ACssVoiceFamily acssVoiceFamily;
   ACssPitch acssPitch;
   ACssPitchRange acssPitchRange;
@@ -75,16 +74,6 @@ public class ACssStyle extends Css1Style {
       acssPause.pauseBefore = getPauseBefore();
     }
     return acssPause;
-  }
-
-  /**
-   * Get the speech rate
-   */
-  public ACssSpeechRate getSpeechRate() {
-    if (acssSpeechRate == null) {
-      acssSpeechRate = (ACssSpeechRate) style.CascadingOrder(new ACssSpeechRate(), style, selector);
-    }
-    return acssSpeechRate;
   }
 
   /**

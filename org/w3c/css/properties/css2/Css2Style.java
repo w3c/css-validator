@@ -36,6 +36,7 @@ import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssSpeak;
 import org.w3c.css.properties.css.CssSpeakHeader;
+import org.w3c.css.properties.css.CssSpeechRate;
 import org.w3c.css.properties.css.CssTableLayout;
 import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
@@ -60,6 +61,7 @@ public class Css2Style extends ACssStyle {
 	public CssElevation cssElevation;
 	public CssVolume cssVolume;
 	public CssSpeak cssSpeak;
+	public CssSpeechRate cssSpeechRate;
 
 	/**
 	 * font properties
@@ -516,6 +518,16 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssSpeak;
 	}
+
+	public final CssSpeechRate getSpeechRate() {
+		if (cssSpeechRate == null) {
+			cssSpeechRate =
+					(CssSpeechRate) style.CascadingOrder(new CssSpeechRate(),
+							style, selector);
+		}
+		return cssSpeechRate;
+	}
+	
 	/**
 	 * Find conflicts in this Style
 	 *
