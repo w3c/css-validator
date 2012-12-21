@@ -44,6 +44,7 @@ public class CssSpeechRate extends org.w3c.css.properties.css.CssSpeechRate {
 	 * Create a new CssSpeechRate
 	 */
 	public CssSpeechRate() {
+		value = initial;
 	}
 
 	/**
