@@ -21,7 +21,7 @@ public class CssSpeakPunctuation extends CssProperty {
     public CssValue value;
 
     /**
-     * Create a new CssSpeakHeader
+     * Create a new CssSpeakPunctuation
      */
     public CssSpeakPunctuation() {
     }
