@@ -31,6 +31,7 @@ import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
+import org.w3c.css.properties.css.CssPitchRange;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRichness;
@@ -70,6 +71,7 @@ public class Css2Style extends ACssStyle {
 	public CssSpeakNumeral cssSpeakNumeral;
 	public CssRichness cssRichness;
 	public CssStress cssStress;
+	public CssPitchRange cssPitchRange;
 
 	/**
 	 * font properties
@@ -570,6 +572,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssStress;
+	}
+
+	public final CssPitchRange getPitchRange() {
+		if (cssPitchRange == null) {
+			cssPitchRange =
+					(CssPitchRange) style.CascadingOrder(new CssPitchRange(),
+							style, selector);
+		}
+		return cssPitchRange;
 	}
 	/**
 	 * Find conflicts in this Style

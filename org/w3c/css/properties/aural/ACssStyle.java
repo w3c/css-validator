@@ -22,7 +22,6 @@ public class ACssStyle extends Css1Style {
   ACssCue  acssCue = new ACssCue(); // it's a macro
   ACssVoiceFamily acssVoiceFamily;
   ACssPitch acssPitch;
-  ACssPitchRange acssPitchRange;
   ACssPlayDuring acssPlayDuring;
 
   ACssSpeakDate    acssSpeakDate;
@@ -89,16 +88,6 @@ public class ACssStyle extends Css1Style {
       acssPitch = (ACssPitch) style.CascadingOrder(new ACssPitch(), style, selector);
     }
     return acssPitch;
-  }
-
-  /**
-   * Get the pitch
-   */
-  public ACssPitchRange getPitchRange() {
-    if (acssPitchRange == null) {
-      acssPitchRange = (ACssPitchRange) style.CascadingOrder(new ACssPitchRange(), style, selector);
-    }
-    return acssPitchRange;
   }
 
   /**
