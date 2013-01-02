@@ -28,7 +28,6 @@ public class ACssStyle extends Css1Style {
   ACssStress acssStress;
   ACssRichness acssRichness;
 
-  ACssSpeakPunctuation acssSpeakPunctuation;
   ACssSpeakDate    acssSpeakDate;
   ACssSpeakNumeral acssSpeakNumeral;
   ACssSpeakTime    acssSpeakTime;
@@ -173,18 +172,6 @@ public class ACssStyle extends Css1Style {
 					    style, selector);
     }
     return acssRichness;
-  }
-
-  /**
-   * Get the speak punctuation
-   */
-  public ACssSpeakPunctuation getSpeakPunctuation() {
-    if (acssSpeakPunctuation == null) {
-      acssSpeakPunctuation =
-	(ACssSpeakPunctuation) style.CascadingOrder(new ACssSpeakPunctuation(),
-						    style, selector);
-    }
-    return acssSpeakPunctuation;
   }
 
   /**
