@@ -16,31 +16,31 @@ import org.w3c.css.values.CssValue;
  * @since CSS2
  * @version $Revision$
  */
-public class CssSpeakNumeral extends CssProperty {
+public class CssRichness extends CssProperty {
 
     public CssValue value;
 
     /**
-     * Create a new CssSpeakNumeral
+     * Create a new CssRichness
      */
-    public CssSpeakNumeral() {
+    public CssRichness() {
     }
 
     /**
-     * Creates a new CssSpeakNumeral
+     * Creates a new CssRichness
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssSpeakNumeral(ApplContext ac, CssExpression expression, boolean check)
+    public CssRichness(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
     }
 
-    public CssSpeakNumeral(ApplContext ac, CssExpression expression)
+    public CssRichness(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -57,7 +57,7 @@ public class CssSpeakNumeral extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "speak-numeral";
+        return "richness";
     }
 
     /**
@@ -81,9 +81,9 @@ public class CssSpeakNumeral extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css2Style) style).cssSpeakNumeral != null)
+        if (((Css2Style) style).cssRichness != null)
             style.addRedefinitionWarning(ac, this);
-        ((Css2Style) style).cssSpeakNumeral = this;
+        ((Css2Style) style).cssRichness = this;
     }
 
     /**
@@ -92,8 +92,8 @@ public class CssSpeakNumeral extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssSpeakNumeral &&
-                value.equals(((CssSpeakNumeral) property).value));
+        return (property instanceof CssRichness &&
+                value.equals(((CssRichness) property).value));
     }
 
 
@@ -105,9 +105,9 @@ public class CssSpeakNumeral extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css2Style) style).getSpeakNumeral();
+            return ((Css2Style) style).getRichness();
         } else {
-            return ((Css2Style) style).cssSpeakNumeral;
+            return ((Css2Style) style).cssRichness;
         }
     }
 }

@@ -33,6 +33,7 @@ import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
+import org.w3c.css.properties.css.CssRichness;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssSpeak;
 import org.w3c.css.properties.css.CssSpeakHeader;
@@ -66,6 +67,7 @@ public class Css2Style extends ACssStyle {
 	public CssSpeechRate cssSpeechRate;
 	public CssSpeakPunctuation cssSpeakPunctuation;
 	public CssSpeakNumeral cssSpeakNumeral;
+	public CssRichness cssRichness;
 
 	/**
 	 * font properties
@@ -548,6 +550,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssSpeakNumeral;
+	}
+
+	public final CssRichness getRichness() {
+		if (cssRichness == null) {
+			cssRichness =
+					(CssRichness) style.CascadingOrder(new CssRichness(),
+							style, selector);
+		}
+		return cssRichness;
 	}
 	/**
 	 * Find conflicts in this Style

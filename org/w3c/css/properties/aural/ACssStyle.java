@@ -26,7 +26,6 @@ public class ACssStyle extends Css1Style {
   ACssPlayDuring acssPlayDuring;
 
   ACssStress acssStress;
-  ACssRichness acssRichness;
 
   ACssSpeakDate    acssSpeakDate;
   ACssSpeakTime    acssSpeakTime;
@@ -159,18 +158,6 @@ public class ACssStyle extends Css1Style {
 					    style, selector);
     }
     return acssStress;
-  }
-
-  /**
-   * Get the richness
-   */
-  public ACssRichness getRichness() {
-    if (acssRichness == null) {
-      acssRichness =
-	(ACssRichness) style.CascadingOrder(new ACssRichness(),
-					    style, selector);
-    }
-    return acssRichness;
   }
 
   /**
