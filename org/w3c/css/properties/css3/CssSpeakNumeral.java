@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-speak-numeral
+ * @deprecated
  */
 public class CssSpeakNumeral extends org.w3c.css.properties.css.CssSpeakNumeral {
 

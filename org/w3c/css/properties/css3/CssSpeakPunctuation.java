@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-speak-punctuation
+ * @deprecated
  */
 public class CssSpeakPunctuation extends org.w3c.css.properties.css.CssSpeakPunctuation {
 
@@ -38,9 +39,10 @@ public class CssSpeakPunctuation extends org.w3c.css.properties.css.CssSpeakPunc
 	}
 
 	/**
-	 * Create a new CssSpeakHeader
+	 * Create a new CssSpeakPunctuation
 	 */
 	public CssSpeakPunctuation() {
+		value = initial;
 	}
 
 	/**
