@@ -36,6 +36,7 @@ import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRight;
 import org.w3c.css.properties.css.CssSpeak;
 import org.w3c.css.properties.css.CssSpeakHeader;
+import org.w3c.css.properties.css.CssSpeakNumeral;
 import org.w3c.css.properties.css.CssSpeakPunctuation;
 import org.w3c.css.properties.css.CssSpeechRate;
 import org.w3c.css.properties.css.CssTableLayout;
@@ -64,6 +65,7 @@ public class Css2Style extends ACssStyle {
 	public CssSpeak cssSpeak;
 	public CssSpeechRate cssSpeechRate;
 	public CssSpeakPunctuation cssSpeakPunctuation;
+	public CssSpeakNumeral cssSpeakNumeral;
 
 	/**
 	 * font properties
@@ -537,6 +539,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssSpeakPunctuation;
+	}
+
+	public final CssSpeakNumeral getSpeakNumeral() {
+		if (cssSpeakNumeral == null) {
+			cssSpeakNumeral =
+					(CssSpeakNumeral) style.CascadingOrder(new CssSpeakNumeral(),
+							style, selector);
+		}
+		return cssSpeakNumeral;
 	}
 	/**
 	 * Find conflicts in this Style

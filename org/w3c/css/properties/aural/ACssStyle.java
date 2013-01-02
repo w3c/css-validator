@@ -29,7 +29,6 @@ public class ACssStyle extends Css1Style {
   ACssRichness acssRichness;
 
   ACssSpeakDate    acssSpeakDate;
-  ACssSpeakNumeral acssSpeakNumeral;
   ACssSpeakTime    acssSpeakTime;
 
   ACssVoiceVolume  acssVoiceVolume;
@@ -183,17 +182,6 @@ public class ACssStyle extends Css1Style {
 	(ACssSpeakDate) style.CascadingOrder(new ACssSpeakDate(), style, selector);
     }
     return acssSpeakDate;
-  }
-
-  /**
-   * Get the speak numeral
-   */
-  public ACssSpeakNumeral getSpeakNumeral() {
-    if (acssSpeakNumeral == null) {
-      acssSpeakNumeral =
-	(ACssSpeakNumeral) style.CascadingOrder(new ACssSpeakNumeral(), style, selector);
-    }
-    return acssSpeakNumeral;
   }
 
   /**
