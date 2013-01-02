@@ -57,7 +57,7 @@ public class CssSpeakPunctuation extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "speak-header";
+        return "speak-punctuation";
     }
 
     /**
