@@ -46,9 +46,8 @@ public class CssRichness extends org.w3c.css.properties.css.CssRichness {
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				CssNumber n = val.getNumber();
-				n.warnPositiveness(ac, this);
-				n.warnLowerEqualThan(ac, 100, this);
-				// FIXME clip to 100
+				n.checkPositiveness(ac, this);
+				n.checkLowerEqualThan(ac, 100, this);
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:

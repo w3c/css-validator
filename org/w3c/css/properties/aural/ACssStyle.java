@@ -25,8 +25,6 @@ public class ACssStyle extends Css1Style {
   ACssPitchRange acssPitchRange;
   ACssPlayDuring acssPlayDuring;
 
-  ACssStress acssStress;
-
   ACssSpeakDate    acssSpeakDate;
   ACssSpeakTime    acssSpeakTime;
 
@@ -146,18 +144,6 @@ public class ACssStyle extends Css1Style {
 					      style, selector);
     }
     return acssPlayDuring;
-  }
-
-  /**
-   * Get the stress
-   */
-  public ACssStress getStress() {
-    if (acssStress == null) {
-      acssStress =
-	(ACssStress) style.CascadingOrder(new ACssStress(),
-					    style, selector);
-    }
-    return acssStress;
   }
 
   /**

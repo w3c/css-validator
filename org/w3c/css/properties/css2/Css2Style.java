@@ -40,6 +40,7 @@ import org.w3c.css.properties.css.CssSpeakHeader;
 import org.w3c.css.properties.css.CssSpeakNumeral;
 import org.w3c.css.properties.css.CssSpeakPunctuation;
 import org.w3c.css.properties.css.CssSpeechRate;
+import org.w3c.css.properties.css.CssStress;
 import org.w3c.css.properties.css.CssTableLayout;
 import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
@@ -68,6 +69,7 @@ public class Css2Style extends ACssStyle {
 	public CssSpeakPunctuation cssSpeakPunctuation;
 	public CssSpeakNumeral cssSpeakNumeral;
 	public CssRichness cssRichness;
+	public CssStress cssStress;
 
 	/**
 	 * font properties
@@ -559,6 +561,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssRichness;
+	}
+
+	public final CssStress getStress() {
+		if (cssStress == null) {
+			cssStress =
+					(CssStress) style.CascadingOrder(new CssStress(),
+							style, selector);
+		}
+		return cssStress;
 	}
 	/**
 	 * Find conflicts in this Style

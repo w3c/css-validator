@@ -3,7 +3,7 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css21;
+package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -13,24 +13,26 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-richness
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-stress
+ * @deprecated
  */
-public class CssRichness extends org.w3c.css.properties.css.CssRichness {
+public class CssStress extends org.w3c.css.properties.css.CssStress {
 
 	/**
-	 * Create a new CssRichness
+	 * Create a new CssStress
 	 */
-	public CssRichness() {
+	public CssStress() {
+		value = initial;
 	}
 
 	/**
-	 * Creates a new CssRichness
+	 * Creates a new CssStress
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          Expressions are incorrect
 	 */
-	public CssRichness(ApplContext ac, CssExpression expression, boolean check)
+	public CssStress(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
@@ -42,6 +44,9 @@ public class CssRichness extends org.w3c.css.properties.css.CssRichness {
 
 		val = expression.getValue();
 		op = expression.getOperator();
+
+		// same as CSS21 plus a warning
+		ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
@@ -63,9 +68,10 @@ public class CssRichness extends org.w3c.css.properties.css.CssRichness {
 		expression.next();
 	}
 
-	public CssRichness(ApplContext ac, CssExpression expression)
+	public CssStress(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
 	}
+
 }
 

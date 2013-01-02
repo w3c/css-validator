@@ -13,25 +13,25 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-richness
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-stress
  */
-public class CssRichness extends org.w3c.css.properties.css.CssRichness {
+public class CssStress extends org.w3c.css.properties.css.CssStress {
 
-	/**
-	 * Create a new CssRichness
-	 */
-	public CssRichness() {
-	}
+    /**
+     * Create a new CssStress
+     */
+    public CssStress() {
+    }
 
-	/**
-	 * Creates a new CssRichness
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssRichness(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
+    /**
+     * Creates a new CssStress
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssStress(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 		if (check && expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
@@ -61,11 +61,12 @@ public class CssRichness extends org.w3c.css.properties.css.CssRichness {
 						getPropertyName(), ac);
 		}
 		expression.next();
-	}
+    }
 
-	public CssRichness(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssStress(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
 }
 
