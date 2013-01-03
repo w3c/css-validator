@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-underline-position0
+ * @spec http://www.w3.org/TR/2013/WD-css-text-decor-3-20130103/#text-underline-position
  */
 public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssTextUnderlinePosition {
 
@@ -32,7 +32,7 @@ public class CssTextUnderlinePosition extends org.w3c.css.properties.css.CssText
 			horizontalValues[i++] = CssIdent.getIdent(s);
 		}
 		alphabetic = CssIdent.getIdent("alphabetic");
-		below = CssIdent.getIdent("below");
+		below = CssIdent.getIdent("under");
 		auto = CssIdent.getIdent("auto");
 	}
 

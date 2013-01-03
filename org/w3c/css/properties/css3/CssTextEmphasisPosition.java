@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-emphasis-position0
+ * @spec http://www.w3.org/TR/2013/WD-css-text-decor-3-20130103/#text-emphasis-position
  */
 public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextEmphasisPosition {
 
@@ -25,7 +25,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
 	public static final CssIdent[] horiValues;
 
 	static {
-		String[] _vertValues = {"above", "below"};
+		String[] _vertValues = {"over", "under"};
 		String[] _horiValues = {"right", "left"};
 
 		vertValues = new CssIdent[_vertValues.length];
