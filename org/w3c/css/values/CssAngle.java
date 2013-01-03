@@ -165,6 +165,10 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
 		return degree;
 	}
 
+	public CssAngle getAngle() {
+		return this;
+	}
+
 	//@@FIXME I should return the remainder for all ...
 
 	public float getDegree() {

@@ -66,9 +66,9 @@ public class CssElevation extends org.w3c.css.properties.css.CssElevation {
 		setByUser();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
 			case CssTypes.CSS_ANGLE:
-				// TODO getAngle()
-				CssAngle a = (CssAngle) val;
+				CssAngle a = val.getAngle();
 				float v = a.getDegree();
 				if (v > 90 && v < 270) {
 					throw new InvalidParamException("elevation.range", ac);
