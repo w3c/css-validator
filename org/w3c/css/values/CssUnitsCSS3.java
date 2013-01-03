@@ -25,6 +25,9 @@ public class CssUnitsCSS3 {
 	public static final String[] angle_units = {
 			"deg", "grad", "rad", "turn"
 	};
+
+	public static final String volume_unit = "db";
+
 	private static final BigDecimal[] angle_mult;
 
 	static {
@@ -151,6 +154,15 @@ public class CssUnitsCSS3 {
 				resolution.unit = s;
 				return;
 			}
+		}
+		throw new InvalidParamException("unit", unit, ac);
+	}
+
+	protected static void parseVolumeUnit(String unit, CssVolume vol, ApplContext ac)
+			throws InvalidParamException {
+		if (volume_unit.equals(unit))  {
+			vol.unit = volume_unit;
+			return;
 		}
 		throw new InvalidParamException("unit", unit, ac);
 	}

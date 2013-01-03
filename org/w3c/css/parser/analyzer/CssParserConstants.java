@@ -125,85 +125,87 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int ANGLE = 57;
   /** RegularExpression Id. */
-  int TIME = 58;
+  int SPL = 58;
   /** RegularExpression Id. */
-  int FREQ = 59;
+  int TIME = 59;
   /** RegularExpression Id. */
-  int RESOLUTION = 60;
+  int FREQ = 60;
   /** RegularExpression Id. */
-  int DIMEN = 61;
+  int RESOLUTION = 61;
   /** RegularExpression Id. */
-  int PERCENTAGE = 62;
+  int DIMEN = 62;
   /** RegularExpression Id. */
-  int NUMBER = 63;
+  int PERCENTAGE = 63;
   /** RegularExpression Id. */
-  int IMPORTANT_SYM = 64;
+  int NUMBER = 64;
   /** RegularExpression Id. */
-  int PSEUDOELEMENT_SYM = 65;
+  int IMPORTANT_SYM = 65;
   /** RegularExpression Id. */
-  int CHARSET_SYM = 66;
+  int PSEUDOELEMENT_SYM = 66;
   /** RegularExpression Id. */
-  int IMPORT_SYM = 67;
+  int CHARSET_SYM = 67;
   /** RegularExpression Id. */
-  int NAMESPACE_SYM = 68;
+  int IMPORT_SYM = 68;
   /** RegularExpression Id. */
-  int MEDIA_SYM = 69;
+  int NAMESPACE_SYM = 69;
   /** RegularExpression Id. */
-  int PAGE_SYM = 70;
+  int MEDIA_SYM = 70;
   /** RegularExpression Id. */
-  int FONT_FACE_SYM = 71;
+  int PAGE_SYM = 71;
   /** RegularExpression Id. */
-  int KEYFRAMES_SYM = 72;
+  int FONT_FACE_SYM = 72;
   /** RegularExpression Id. */
-  int PREF_SYM = 73;
+  int KEYFRAMES_SYM = 73;
   /** RegularExpression Id. */
-  int COLOR_PROFILE = 74;
+  int PREF_SYM = 74;
   /** RegularExpression Id. */
-  int ATTOP = 75;
+  int COLOR_PROFILE = 75;
   /** RegularExpression Id. */
-  int ATRIGHT = 76;
+  int ATTOP = 76;
   /** RegularExpression Id. */
-  int ATBOTTOM = 77;
+  int ATRIGHT = 77;
   /** RegularExpression Id. */
-  int ATLEFT = 78;
+  int ATBOTTOM = 78;
   /** RegularExpression Id. */
-  int ATCOUNTER = 79;
+  int ATLEFT = 79;
   /** RegularExpression Id. */
-  int PHONETIC_ALPHABET_SYM = 80;
+  int ATCOUNTER = 80;
   /** RegularExpression Id. */
-  int ATKEYWORD = 81;
+  int PHONETIC_ALPHABET_SYM = 81;
   /** RegularExpression Id. */
-  int RANGE0 = 82;
+  int ATKEYWORD = 82;
   /** RegularExpression Id. */
-  int RANGE1 = 83;
+  int RANGE0 = 83;
   /** RegularExpression Id. */
-  int RANGE2 = 84;
+  int RANGE1 = 84;
   /** RegularExpression Id. */
-  int RANGE3 = 85;
+  int RANGE2 = 85;
   /** RegularExpression Id. */
-  int RANGE4 = 86;
+  int RANGE3 = 86;
   /** RegularExpression Id. */
-  int RANGE5 = 87;
+  int RANGE4 = 87;
   /** RegularExpression Id. */
-  int RANGE6 = 88;
+  int RANGE5 = 88;
   /** RegularExpression Id. */
-  int RANGE = 89;
+  int RANGE6 = 89;
   /** RegularExpression Id. */
-  int UNI = 90;
+  int RANGE = 90;
   /** RegularExpression Id. */
-  int UNICODERANGE = 91;
+  int UNI = 91;
   /** RegularExpression Id. */
-  int CLASS = 92;
+  int UNICODERANGE = 92;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 93;
+  int CLASS = 93;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 94;
+  int FUNCTIONLANG = 94;
   /** RegularExpression Id. */
-  int FUNCTION = 95;
+  int FUNCTIONNOT = 95;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 96;
+  int FUNCTION = 96;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 97;
+  int HTMLSTARTTAG = 97;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 98;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -268,6 +270,7 @@ public interface CssParserConstants {
     "<RELVIEWLENGTH>",
     "<ABSOLUTLENGTH>",
     "<ANGLE>",
+    "<SPL>",
     "<TIME>",
     "<FREQ>",
     "<RESOLUTION>",
