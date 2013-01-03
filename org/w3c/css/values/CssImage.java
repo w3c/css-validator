@@ -571,7 +571,7 @@ public class CssImage extends CssValue {
 
 				switch (stopval.getType()) {
 					case CssTypes.CSS_NUMBER:
-						val.getLength();
+						stopval.getLength();
 					case CssTypes.CSS_LENGTH:
 					case CssTypes.CSS_PERCENTAGE:
 						ArrayList<CssValue> stop = new ArrayList<CssValue>(2);
