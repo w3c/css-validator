@@ -30,7 +30,6 @@ public class ACssStyle extends Css1Style {
 	ACssVoicePitchRange acssVoicePitchRange;
 	ACssVoiceStress acssVoiceStress;
 	ACssVoiceDuration acssVoiceDuration;
-	ACssInterpretAs acssInterpretAs;
 
 	/**
 	 * Get the voice family
@@ -130,14 +129,6 @@ public class ACssStyle extends Css1Style {
 					(ACssVoiceDuration) style.CascadingOrder(new ACssVoiceDuration(), style, selector);
 		}
 		return acssVoiceDuration;
-	}
-
-	public ACssInterpretAs getInterpretAs() {
-		if (acssInterpretAs == null) {
-			acssInterpretAs =
-					(ACssInterpretAs) style.CascadingOrder(new ACssInterpretAs(), style, selector);
-		}
-		return acssInterpretAs;
 	}
 
 	/**
