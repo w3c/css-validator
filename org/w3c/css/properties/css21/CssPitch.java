@@ -64,6 +64,9 @@ public class CssPitch extends org.w3c.css.properties.css.CssPitch {
 		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				// it should be getFrequency()
+				val.getLength();
 			case CssTypes.CSS_FREQUENCY:
 				value = val;
 				break;
