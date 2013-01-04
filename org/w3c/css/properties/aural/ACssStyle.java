@@ -28,7 +28,6 @@ public class ACssStyle extends Css1Style {
 	ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
 	ACssVoiceRate acssVoiceRate;
 	ACssVoicePitchRange acssVoicePitchRange;
-	ACssVoiceDuration acssVoiceDuration;
 
 	/**
 	 * Get the voice family
@@ -112,14 +111,6 @@ public class ACssStyle extends Css1Style {
 					(ACssVoicePitchRange) style.CascadingOrder(new ACssVoicePitchRange(), style, selector);
 		}
 		return acssVoicePitchRange;
-	}
-
-	public ACssVoiceDuration getVoiceDuration() {
-		if (acssVoiceDuration == null) {
-			acssVoiceDuration =
-					(ACssVoiceDuration) style.CascadingOrder(new ACssVoiceDuration(), style, selector);
-		}
-		return acssVoiceDuration;
 	}
 
 	/**
