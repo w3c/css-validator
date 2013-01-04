@@ -20,9 +20,6 @@ public class ACssStyle extends Css1Style {
 	ACssVoiceFamily acssVoiceFamily;
 	ACssPlayDuring acssPlayDuring;
 
-	ACssSpeakDate acssSpeakDate;
-	ACssSpeakTime acssSpeakTime;
-
 	ACssVoiceVolume acssVoiceVolume;
 	ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
 	ACssVoiceRate acssVoiceRate;
@@ -48,28 +45,6 @@ public class ACssStyle extends Css1Style {
 							style, selector);
 		}
 		return acssPlayDuring;
-	}
-
-	/**
-	 * Get the speak date
-	 */
-	public ACssSpeakDate getSpeakDate() {
-		if (acssSpeakDate == null) {
-			acssSpeakDate =
-					(ACssSpeakDate) style.CascadingOrder(new ACssSpeakDate(), style, selector);
-		}
-		return acssSpeakDate;
-	}
-
-	/**
-	 * Get the speak time
-	 */
-	public ACssSpeakTime getSpeakTime() {
-		if (acssSpeakTime == null) {
-			acssSpeakTime =
-					(ACssSpeakTime) style.CascadingOrder(new ACssSpeakTime(), style, selector);
-		}
-		return acssSpeakTime;
 	}
 
 	public ACssVoiceVolume getVoiceVolume() {
