@@ -34,6 +34,9 @@ import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
+import org.w3c.css.properties.css.CssPause;
+import org.w3c.css.properties.css.CssPauseAfter;
+import org.w3c.css.properties.css.CssPauseBefore;
 import org.w3c.css.properties.css.CssPitch;
 import org.w3c.css.properties.css.CssPitchRange;
 import org.w3c.css.properties.css.CssPosition;
@@ -80,6 +83,9 @@ public class Css2Style extends ACssStyle {
 	public CssCueBefore cssCueBefore;
 	public CssCue cssCue;
 	public CssPitch cssPitch;
+	public CssPauseAfter cssPauseAfter;
+	public CssPauseBefore cssPauseBefore;
+	public CssPause cssPause;
 
 	/**
 	 * font properties
@@ -626,6 +632,34 @@ public class Css2Style extends ACssStyle {
 		}
 		return cssPitch;
 	}
+	
+	public final CssPauseAfter getPauseAfter() {
+		if (cssPauseAfter == null) {
+			cssPauseAfter =
+					(CssPauseAfter) style.CascadingOrder(new CssPauseAfter(),
+							style, selector);
+		}
+		return cssPauseAfter;
+	}
+
+	public final CssPauseBefore getPauseBefore() {
+		if (cssPauseBefore == null) {
+			cssPauseBefore =
+					(CssPauseBefore) style.CascadingOrder(new CssPauseBefore(),
+							style, selector);
+		}
+		return cssPauseBefore;
+	}
+
+	public final CssPause getPause() {
+		if (cssPause == null) {
+			cssPause =
+					(CssPause) style.CascadingOrder(new CssPause(),
+							style, selector);
+		}
+		return cssPause;
+	}
+	
 	/**
 	 * Find conflicts in this Style
 	 *
