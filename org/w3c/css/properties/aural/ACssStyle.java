@@ -24,7 +24,6 @@ public class ACssStyle extends Css1Style {
 	ACssSpeakTime acssSpeakTime;
 
 	ACssVoiceVolume acssVoiceVolume;
-	ACssVoiceBalance acssVoiceBalance;
 	ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
 	ACssVoiceRate acssVoiceRate;
 	ACssVoicePitchRange acssVoicePitchRange;
@@ -79,14 +78,6 @@ public class ACssStyle extends Css1Style {
 					(ACssVoiceVolume) style.CascadingOrder(new ACssVoiceVolume(), style, selector);
 		}
 		return acssVoiceVolume;
-	}
-
-	public ACssVoiceBalance getVoiceBalance() {
-		if (acssVoiceBalance == null) {
-			acssVoiceBalance =
-					(ACssVoiceBalance) style.CascadingOrder(new ACssVoiceBalance(), style, selector);
-		}
-		return acssVoiceBalance;
 	}
 
 	public ACssVoiceFamilyCSS3 getVoiceFamilyCSS3() {

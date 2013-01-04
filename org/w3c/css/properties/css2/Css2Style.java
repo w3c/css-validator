@@ -88,8 +88,7 @@ public class Css2Style extends ACssStyle {
 	public CssPauseAfter cssPauseAfter;
 	public CssPauseBefore cssPauseBefore;
 	public CssPause cssPause;
-	public CssVoiceDuration cssVoiceDuration;
-	public CssVoiceStress cssVoiceStress;
+
 
 	/**
 	 * font properties
@@ -664,23 +663,6 @@ public class Css2Style extends ACssStyle {
 		return cssPause;
 	}
 
-	public final CssVoiceStress getVoiceStress() {
-		if (cssVoiceStress == null) {
-			cssVoiceStress =
-					(CssVoiceStress) style.CascadingOrder(new CssVoiceStress(),
-							style, selector);
-		}
-		return cssVoiceStress;
-	}
-
-	public final CssVoiceDuration getVoiceDuration() {
-		if (cssVoiceDuration == null) {
-			cssVoiceDuration =
-					(CssVoiceDuration) style.CascadingOrder(new CssVoiceDuration(),
-							style, selector);
-		}
-		return cssVoiceDuration;
-	}
 	
 	/**
 	 * Find conflicts in this Style
