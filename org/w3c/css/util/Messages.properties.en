@@ -176,6 +176,7 @@ error.invalid-color: Invalid RGB function
 # used for clipping negative values
 warning.negative: negative value %s will be interpreted as 0
 warning.lowerequal: value %s will be interpreted as %s
+warning.greaterequal: value %s will be interpreted as %s
 warning.noexproperty: Property %s does not exist
 
 warning.marker: The marker-offset property applies on elements with 'display: marker'
@@ -274,6 +275,7 @@ error.zero: only 0 can be a %s. You must put a unit after your number
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s is not valid, only values greater than 0 allowed.
 
+error.greaterequal: %s is not valid, only values greater than or equal to %s are allowed.
 error.lowerequal: %s is not valid, only values lower than or equal to %s are allowed.
 error.lower: %s is not valid, only values strictly lower than %s are allowed.
 

@@ -189,6 +189,7 @@ error.invalid-color: Cette fonction RVB est invalide
 # used for clipping negative values
 warning.negative: La valeur négative %s sera considérée comme étant 0
 warning.lowerequal: La valeur %s sera considérée comme étant %s
+warning.greaterequal: La valeur %s sera considérée comme étant %s
 
 warning.noexproperty: La propriété %s n'existe pas
 
