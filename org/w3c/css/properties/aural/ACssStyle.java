@@ -20,7 +20,6 @@ public class ACssStyle extends Css1Style {
 
   ACssPause  acssPause = new ACssPause(); // it's a macro
   ACssVoiceFamily acssVoiceFamily;
-  ACssPitch acssPitch;
   ACssPlayDuring acssPlayDuring;
 
   ACssSpeakDate    acssSpeakDate;
@@ -77,16 +76,6 @@ public class ACssStyle extends Css1Style {
       acssVoiceFamily = (ACssVoiceFamily) style.CascadingOrder(new ACssVoiceFamily(), style, selector);
     }
     return acssVoiceFamily;
-  }
-
-  /**
-   * Get the pitch
-   */
-  public ACssPitch getPitch() {
-    if (acssPitch == null) {
-      acssPitch = (ACssPitch) style.CascadingOrder(new ACssPitch(), style, selector);
-    }
-    return acssPitch;
   }
 
   /**

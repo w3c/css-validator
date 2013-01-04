@@ -34,6 +34,7 @@ import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
+import org.w3c.css.properties.css.CssPitch;
 import org.w3c.css.properties.css.CssPitchRange;
 import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
@@ -78,6 +79,7 @@ public class Css2Style extends ACssStyle {
 	public CssCueAfter cssCueAfter;
 	public CssCueBefore cssCueBefore;
 	public CssCue cssCue;
+	public CssPitch cssPitch;
 
 	/**
 	 * font properties
@@ -614,6 +616,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssCue;
+	}
+
+	public final CssPitch getPitch() {
+		if (cssPitch == null) {
+			cssPitch =
+					(CssPitch) style.CascadingOrder(new CssPitch(),
+							style, selector);
+		}
+		return cssPitch;
 	}
 	/**
 	 * Find conflicts in this Style
