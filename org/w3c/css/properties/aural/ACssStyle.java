@@ -18,7 +18,6 @@ import org.w3c.css.util.Warnings;
 public class ACssStyle extends Css1Style {
 
 	ACssVoiceFamily acssVoiceFamily;
-	ACssPlayDuring acssPlayDuring;
 
 	ACssVoiceVolume acssVoiceVolume;
 	ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
@@ -33,18 +32,6 @@ public class ACssStyle extends Css1Style {
 			acssVoiceFamily = (ACssVoiceFamily) style.CascadingOrder(new ACssVoiceFamily(), style, selector);
 		}
 		return acssVoiceFamily;
-	}
-
-	/**
-	 * Get the play during
-	 */
-	public ACssPlayDuring getPlayDuring() {
-		if (acssPlayDuring == null) {
-			acssPlayDuring =
-					(ACssPlayDuring) style.CascadingOrder(new ACssPlayDuring(),
-							style, selector);
-		}
-		return acssPlayDuring;
 	}
 
 	public ACssVoiceVolume getVoiceVolume() {
