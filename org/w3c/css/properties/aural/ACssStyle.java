@@ -19,7 +19,6 @@ public class ACssStyle extends Css1Style {
 
 	ACssVoiceVolume acssVoiceVolume;
 	ACssVoiceRate acssVoiceRate;
-	ACssVoicePitchRange acssVoicePitchRange;
 
 
 	public ACssVoiceVolume getVoiceVolume() {
@@ -36,14 +35,6 @@ public class ACssStyle extends Css1Style {
 					(ACssVoiceRate) style.CascadingOrder(new ACssVoiceRate(), style, selector);
 		}
 		return acssVoiceRate;
-	}
-
-	public ACssVoicePitchRange getVoicePitchRange() {
-		if (acssVoicePitchRange == null) {
-			acssVoicePitchRange =
-					(ACssVoicePitchRange) style.CascadingOrder(new ACssVoicePitchRange(), style, selector);
-		}
-		return acssVoicePitchRange;
 	}
 
 	/**
