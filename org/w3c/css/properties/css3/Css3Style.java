@@ -110,10 +110,11 @@ import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssTransitionTimingFunction;
-import org.w3c.css.properties.css.CssVoiceStress;
-import org.w3c.css.properties.css.CssVoiceDuration;
 import org.w3c.css.properties.css.CssVoiceBalance;
+import org.w3c.css.properties.css.CssVoiceDuration;
 import org.w3c.css.properties.css.CssVoiceRate;
+import org.w3c.css.properties.css.CssVoiceStress;
+import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -126,6 +127,7 @@ public class Css3Style extends ATSCStyle {
 	public CssVoiceDuration cssVoiceDuration;
 	public CssVoiceRate cssVoiceRate;
 	public CssVoiceStress cssVoiceStress;
+	public CssVoiceVolume cssVoiceVolume;
 
 	
 	CssRubyPosition cssRubyPosition;
@@ -1498,6 +1500,16 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssVoiceRate;
+	}
+
+
+	public final CssVoiceVolume getVoiceVolume() {
+		if (cssVoiceVolume == null) {
+			cssVoiceVolume =
+					(CssVoiceVolume) style.CascadingOrder(new CssVoiceVolume(),
+							style, selector);
+		}
+		return cssVoiceVolume;
 	}
 	///
 
