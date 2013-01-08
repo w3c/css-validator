@@ -55,6 +55,7 @@ import org.w3c.css.properties.css.CssTextShadow;
 import org.w3c.css.properties.css.CssTop;
 import org.w3c.css.properties.css.CssUnicodeBidi;
 import org.w3c.css.properties.css.CssVisibility;
+import org.w3c.css.properties.css.CssVoiceFamily;
 import org.w3c.css.properties.css.CssVolume;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
@@ -88,7 +89,7 @@ public class Css2Style extends ACssStyle {
 	public CssPauseBefore cssPauseBefore;
 	public CssPause cssPause;
 	public CssPlayDuring cssPlayDuring;
-
+	public CssVoiceFamily cssVoiceFamily;
 
 	/**
 	 * font properties
@@ -670,6 +671,15 @@ public class Css2Style extends ACssStyle {
 							style, selector);
 		}
 		return cssPlayDuring;
+	}
+
+	public final CssVoiceFamily getVoiceFamily() {
+		if (cssVoiceFamily == null) {
+			cssVoiceFamily =
+					(CssVoiceFamily) style.CascadingOrder(new CssVoiceFamily(),
+							style, selector);
+		}
+		return cssVoiceFamily;
 	}
 	
 	/**

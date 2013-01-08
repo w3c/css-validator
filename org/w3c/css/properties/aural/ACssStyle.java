@@ -9,7 +9,6 @@ package org.w3c.css.properties.aural;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
 /**
@@ -17,22 +16,11 @@ import org.w3c.css.util.Warnings;
  */
 public class ACssStyle extends Css1Style {
 
-	ACssVoiceFamily acssVoiceFamily;
 
 	ACssVoiceVolume acssVoiceVolume;
-	ACssVoiceFamilyCSS3 acssVoiceFamilyCSS3;
 	ACssVoiceRate acssVoiceRate;
 	ACssVoicePitchRange acssVoicePitchRange;
 
-	/**
-	 * Get the voice family
-	 */
-	public ACssVoiceFamily getVoiceFamily() {
-		if (acssVoiceFamily == null) {
-			acssVoiceFamily = (ACssVoiceFamily) style.CascadingOrder(new ACssVoiceFamily(), style, selector);
-		}
-		return acssVoiceFamily;
-	}
 
 	public ACssVoiceVolume getVoiceVolume() {
 		if (acssVoiceVolume == null) {
@@ -40,14 +28,6 @@ public class ACssStyle extends Css1Style {
 					(ACssVoiceVolume) style.CascadingOrder(new ACssVoiceVolume(), style, selector);
 		}
 		return acssVoiceVolume;
-	}
-
-	public ACssVoiceFamilyCSS3 getVoiceFamilyCSS3() {
-		if (acssVoiceFamilyCSS3 == null) {
-			acssVoiceFamilyCSS3 =
-					(ACssVoiceFamilyCSS3) style.CascadingOrder(new ACssVoiceFamilyCSS3(), style, selector);
-		}
-		return acssVoiceFamilyCSS3;
 	}
 
 	public ACssVoiceRate getVoiceRate() {
@@ -75,6 +55,7 @@ public class ACssStyle extends Css1Style {
 	public void findConflicts(ApplContext ac, Warnings warnings,
 							  CssSelectors selector, CssSelectors[] allSelectors) {
 		super.findConflicts(ac, warnings, selector, allSelectors);
+		/*
 		if (acssVoiceFamily != null) {
 			if (!acssVoiceFamily.containsGenericFamily()) {
 				warnings.addWarning(new Warning(acssVoiceFamily,
@@ -85,6 +66,7 @@ public class ACssStyle extends Css1Style {
 						"with-space", 1, ac));
 			}
 		}
+		*/
 	  /* TODO move to CSS2
 
 		if ((acssPause.getBefore() != null) &&
