@@ -118,6 +118,12 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 							// TODO check the @counter-style
 							typeVal = val;
 							break;
+						} else {
+							// it's still acceptable
+							// but the name should be listed in a
+							// @counter-style rule
+							typeVal = val;
+							break;
 						}
 					}
 					// unrecognized ident.. fail!
