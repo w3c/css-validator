@@ -95,8 +95,8 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
 						((new Character(op)).toString()), ac);
 			}
 		}
-		checkValues(ac, values);
 		value = (values.size() > 1) ? new CssLayerList(values) : values.get(0);
+		checkValues(ac, values);
 	}
 
 	public CssVoiceFamily(ApplContext ac, CssExpression expression)
