@@ -62,6 +62,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 		CssValue imageVal = null;
 		CssValue positionVal = null;
 		CssValue typeVal = null;
+		int nbnone = 0;
 
 		while (!expression.end()) {
 			val = expression.getValue();
@@ -87,13 +88,7 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 						break;
 					}
 					if (none.equals(val)) {
-						if (imageVal != null || typeVal != null) {
-							// TODO duplicate value error
-							throw new InvalidParamException("value", val,
-									getPropertyName(), ac);
-						}
-						typeVal = none;
-						imageVal = none;
+						nbnone++;
 						break;
 					}
 					// now we go to other values...
@@ -120,6 +115,39 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 						((new Character(op)).toString()), ac);
 			}
 			expression.next();
+		}
+
+		// some postprocessing...
+		if (nbnone > 0) {
+			switch (nbnone) {
+				case 1:
+					// we set the value ot the non-specified by the shorthand
+					// values...
+					if (imageVal != null && typeVal != null) {
+						// TODO duplicate value error
+						throw new InvalidParamException("value", none,
+								getPropertyName(), ac);
+					}
+					if (typeVal == null) {
+						typeVal = none;
+					}
+					if (imageVal == null) {
+						imageVal = none;
+					}
+					break;
+				case 2:
+					if (imageVal != null || typeVal != null) {
+						// TODO duplicate value error
+						throw new InvalidParamException("value", none,
+								getPropertyName(), ac);
+					}
+					typeVal = none;
+					imageVal = none;
+					break;
+				default:
+					throw new InvalidParamException("value", none,
+							getPropertyName(), ac);
+			}
 		}
 		// set the value
 		if (value != inherit) {
