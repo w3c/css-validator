@@ -89,6 +89,7 @@ import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssResize;
+import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
@@ -128,6 +129,7 @@ public class Css3Style extends ATSCStyle {
 	public CssVoiceRate cssVoiceRate;
 	public CssVoiceStress cssVoiceStress;
 	public CssVoiceVolume cssVoiceVolume;
+	public CssRestAfter cssRestAfter;
 
 	
 	CssRubyPosition cssRubyPosition;
@@ -1502,7 +1504,6 @@ public class Css3Style extends ATSCStyle {
 		return cssVoiceRate;
 	}
 
-
 	public final CssVoiceVolume getVoiceVolume() {
 		if (cssVoiceVolume == null) {
 			cssVoiceVolume =
@@ -1510,6 +1511,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssVoiceVolume;
+	}
+
+	public final CssRestAfter getRestAfter() {
+		if (cssRestAfter == null) {
+			cssRestAfter =
+					(CssRestAfter) style.CascadingOrder(new CssRestAfter(),
+							style, selector);
+		}
+		return cssRestAfter;
 	}
 	///
 
