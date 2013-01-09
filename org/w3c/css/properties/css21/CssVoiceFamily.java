@@ -23,14 +23,15 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
 
-	public static final ArrayList<CssIdent> genericVoices;
+	public static final CssIdent[] genericVoices;
 
 	static {
 		String[] _genericVoices = {"male", "female", "child"};
 
-		genericVoices = new ArrayList<CssIdent>(_genericVoices.length);
+		genericVoices = new CssIdent[_genericVoices.length];
+		int i = 0;
 		for (String s : _genericVoices) {
-			genericVoices.add(CssIdent.getIdent(s));
+			genericVoices[i++] = CssIdent.getIdent(s);
 		}
 	}
 
