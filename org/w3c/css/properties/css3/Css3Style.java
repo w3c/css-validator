@@ -89,6 +89,7 @@ import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssResize;
+import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
 import org.w3c.css.properties.css.CssTabSize;
@@ -132,6 +133,7 @@ public class Css3Style extends ATSCStyle {
 	public CssVoiceVolume cssVoiceVolume;
 	public CssRestAfter cssRestAfter;
 	public CssRestBefore cssRestBefore;
+	public CssRest cssRest;
 
 	
 	CssRubyPosition cssRubyPosition;
@@ -1531,6 +1533,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssRestBefore;
+	}
+
+	public final CssRest getRest() {
+		if (cssRest == null) {
+			cssRest =
+					(CssRest) style.CascadingOrder(new CssRest(),
+							style, selector);
+		}
+		return cssRest;
 	}
 	///
 
