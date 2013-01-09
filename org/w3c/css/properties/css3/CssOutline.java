@@ -28,6 +28,7 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
 	 * Create a new CssOutline
 	 */
 	public CssOutline() {
+		value = initial;
 		_color = new CssOutlineColor();
 		_style = new CssOutlineStyle();
 		_width = new CssOutlineWidth();
