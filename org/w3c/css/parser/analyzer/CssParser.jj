@@ -48,6 +48,7 @@ import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
 import org.w3c.css.values.CssRatio;
+import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
 import org.w3c.css.properties.css.CssProperty;
@@ -572,6 +573,7 @@ TOKEN [IGNORE_CASE] :
                    | <NUM> "px" >
   | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" | "turn" ) >
   | < SPL        : <NUM> "db" >
+  | < ST         : <NUM> "st" >
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> ( "Hz" | "kHz" ) >
   | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "ddpx" ) >
@@ -2329,6 +2331,7 @@ void term(CssExpression exp) :
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+    | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
