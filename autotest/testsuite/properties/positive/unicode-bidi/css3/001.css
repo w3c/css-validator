@@ -1,9 +1,8 @@
 a { unicode-bidi:  normal  }
 b { unicode-bidi:  embed  }
 c { unicode-bidi:  isolate  }
-d { unicode-bidi:  isolate bidi-override }
-e { unicode-bidi:  bidi-override isolate }
-f { unicode-bidi:  bidi-override  }
+d { unicode-bidi:  bidi-override }
+e { unicode-bidi:  isolate-override }
 g { unicode-bidi:  plaintext  }
 y { unicode-bidi:  initial  }
 z { unicode-bidi:  inherit  }
