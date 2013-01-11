@@ -215,5 +215,9 @@ public class CssFrequency extends CssCheckableValue {
 			ac.getFrame().addWarning("negative", toString());
 		}
 	}
+
+	public CssFrequency getFrequency() {
+		return this;
+	}
 }
 

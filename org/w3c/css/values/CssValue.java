@@ -73,4 +73,8 @@ public abstract class CssValue {
 	public CssAngle getAngle() throws  InvalidParamException {
 		throw new ClassCastException("unknown");
 	}
+
+	public CssFrequency getFrequency() throws  InvalidParamException {
+		throw new ClassCastException("unknown");
+	}
 }
