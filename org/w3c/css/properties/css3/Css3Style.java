@@ -116,6 +116,7 @@ import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssTransitionTimingFunction;
 import org.w3c.css.properties.css.CssVoiceBalance;
 import org.w3c.css.properties.css.CssVoiceDuration;
+import org.w3c.css.properties.css.CssVoicePitch;
 import org.w3c.css.properties.css.CssVoiceRate;
 import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
@@ -136,7 +137,7 @@ public class Css3Style extends ATSCStyle {
 	public CssRestBefore cssRestBefore;
 	public CssRest cssRest;
 	public CssSpeakAs cssSpeakAs;
-
+	public CssVoicePitch cssVoicePitch;
 
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
@@ -1551,6 +1552,13 @@ public class Css3Style extends ATSCStyle {
 			cssSpeakAs = (CssSpeakAs) style.CascadingOrder(new CssSpeakAs(), style, selector);
 		}
 		return cssSpeakAs;
+	}
+
+	public final CssVoicePitch getVoicePitch() {
+		if (cssVoicePitch == null) {
+			cssVoicePitch = (CssVoicePitch) style.CascadingOrder(new CssVoicePitch(), style, selector);
+		}
+		return cssVoicePitch;
 	}
 	///
 
