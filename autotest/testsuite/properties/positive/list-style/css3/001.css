@@ -549,7 +549,7 @@ ls546{ list-style:    "tomate verte"   url("goo.fif")   }
 ls547{ list-style:    hanging   "tomate verte"   }
 ls548{ list-style:    image('sprites.svg#xywh=40,0,20,20', #f00 )   "tomate verte"   }
 ls549{ list-style:    inside   "tomate verte"   }
-ls550{ list-style:    linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   }
+ls550{ list-style:    linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
 ls551{ list-style:    outside   "tomate verte"   }
 ls552{ list-style:    url("goo.fif")   "tomate verte"   }
 ls553{ list-style:   "tomate verte"     }
@@ -589,7 +589,7 @@ ls586{ list-style:   hanging   "tomate verte"   image('sprites.svg#xywh=40,0,20,
 ls587{ list-style:   hanging   "tomate verte"   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
 ls588{ list-style:   hanging   "tomate verte"   url("goo.fif")   }
 ls589{ list-style:   hanging   image('sprites.svg#xywh=40,0,20,20', #f00 )   "tomate verte"   }
-ls590{ list-style:   hanging   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   }
+ls590{ list-style:   hanging   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
 ls591{ list-style:   hanging   url("goo.fif")   "tomate verte"   }
 ls592{ list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )    "tomate verte"   }
 ls593{ list-style:   image('sprites.svg#xywh=40,0,20,20', #f00 )   "tomate verte"    }
@@ -605,23 +605,23 @@ ls602{ list-style:   inside   "tomate verte"   image('sprites.svg#xywh=40,0,20,2
 ls603{ list-style:   inside   "tomate verte"   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
 ls604{ list-style:   inside   "tomate verte"   url("goo.fif")   }
 ls605{ list-style:   inside   image('sprites.svg#xywh=40,0,20,20', #f00 )   "tomate verte"   }
-ls606{ list-style:   inside   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   }
+ls606{ list-style:   inside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
 ls607{ list-style:   inside   url("goo.fif")   "tomate verte"   }
-ls608{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )     chocolat   }
-ls609{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat    }
-ls610{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   hanging   }
-ls611{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   inside   }
-ls612{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   outside   }
-ls613{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    hanging   chocolat   }
-ls614{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    inside   chocolat   }
-ls615{ list-style:   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    outside   chocolat   }
+ls608{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )     chocolat   }
+ls609{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat    }
+ls610{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   hanging   }
+ls611{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   inside   }
+ls612{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   outside   }
+ls613{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    hanging   chocolat   }
+ls614{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    inside   chocolat   }
+ls615{ list-style:   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    outside   chocolat   }
 ls616{ list-style:   outside    "tomate verte"   }
 ls617{ list-style:   outside   "tomate verte"    }
 ls618{ list-style:   outside   "tomate verte"   image('sprites.svg#xywh=40,0,20,20', #f00 )   }
 ls619{ list-style:   outside   "tomate verte"   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    }
 ls620{ list-style:   outside   "tomate verte"   url("goo.fif")   }
 ls621{ list-style:   outside   image('sprites.svg#xywh=40,0,20,20', #f00 )   "tomate verte"   }
-ls622{ list-style:   outside   linear-gradient( to left bottom, "tomate verte"e 0.5cm, orange 10px )    chocolat   }
+ls622{ list-style:   outside   linear-gradient( to left bottom, chocolate 0.5cm, orange 10px )    chocolat   }
 ls623{ list-style:   outside   url("goo.fif")   "tomate verte"   }
 ls624{ list-style:   url("goo.fif")    "tomate verte"   }
 ls625{ list-style:   url("goo.fif")   "tomate verte"    }
