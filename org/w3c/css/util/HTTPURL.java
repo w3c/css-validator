@@ -9,6 +9,7 @@
 package org.w3c.css.util;
 
 import org.apache.velocity.io.UnicodeInputStream;
+import org.w3c.css.servlet.CssValidator;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
 
@@ -77,6 +78,8 @@ public class HTTPURL {
 				return "(Unused)";
 			case 307:
 				return "Temporary Redirect";
+			case 308:
+				return "Permanent Redirect";
 			case 400:
 				return "Bad Request";
 			case 401:
@@ -222,8 +225,7 @@ public class HTTPURL {
 		urlC.setRequestProperty("Pragma", "no-cache");
 		urlC.setRequestProperty("Cache-Control", "no-cache, no-store");
 		// for the fun
-		urlC.setRequestProperty("User-Agent",
-				"Jigsaw/2.2.5 W3C_CSS_Validator_JFouffa/2.0");
+		urlC.setRequestProperty("User-Agent", CssValidator.server_name);
 		// referrer
 		setReferrer(urlC, ref);
 		// relay authorization information

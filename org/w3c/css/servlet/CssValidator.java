@@ -58,8 +58,8 @@ public final class CssValidator extends HttpServlet {
 
 	final static String json = "application/json";
 
-	final static String server_name = "Jigsaw/2.2.5 "
-			+ "W3C_CSS_Validator_JFouffa/2.0";
+	public final static String server_name =
+			"Jigsaw/2.3.0 W3C_CSS_Validator_JFouffa/2.0 (See <http://validator.w3.org/services>)";
 
 	final static String headers_name = "X-W3C-Validator-";
 
