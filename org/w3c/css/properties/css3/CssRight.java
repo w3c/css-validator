@@ -13,7 +13,7 @@ import org.w3c.css.values.CssExpression;
  * @spec http://www.w3.org/TR/2012/WD-css3-positioning-20120207/#right
  * @see org.w3c.css.properties.css3.CssTop
  */
-public class CssRight extends org.w3c.css.properties.css.CssTop {
+public class CssRight extends org.w3c.css.properties.css.CssRight {
 
 	/**
 	 * Create a new CssRight
