@@ -177,6 +177,17 @@ public final class CssSelectors extends SelectorsList
 
 		String spec = ac.getPropertyKey();
 
+		if (ac.getTreatVendorExtensionsAsWarnings()) {
+			if (ac.getCssVersion() != CssVersion.CSS1) {
+				if (pseudo.startsWith("-")) {
+					// a vendor extension
+					addPseudoClass(new PseudoClassSelector(pseudo));
+					ac.getFrame().addWarning("vendor-ext-pseudo-class", ":" + pseudo);
+					return;
+				}
+			}
+		}
+
 		// is it a pseudo-class?
 		String[] ps = PseudoFactory.getPseudoClass(spec);
 		if (ps != null) {
@@ -207,6 +218,17 @@ public final class CssSelectors extends SelectorsList
 		}
 
 		CssVersion version = ac.getCssVersion();
+
+		if (ac.getTreatVendorExtensionsAsWarnings()) {
+			if (version != CssVersion.CSS1) {
+				if (pseudo.startsWith("-")) {
+					// a vendor extension
+					addPseudoElement(new PseudoElementSelector(pseudo));
+					ac.getFrame().addWarning("vendor-ext-pseudo-element", "::" + pseudo);
+					return;
+				}
+			}
+		}
 		// is it a pseudo-element?
 		String[] ps = PseudoFactory.getPseudoElement(version);
 		if (ps != null) {
