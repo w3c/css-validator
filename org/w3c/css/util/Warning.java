@@ -21,6 +21,7 @@ public class Warning implements Comparable<Warning> {
     int line = 0;
     CssSelectors selector;
     String warningMessage;
+	String warningType = null;
 
     /**
      * Create a new Warning with message parameters.
@@ -37,6 +38,7 @@ public class Warning implements Comparable<Warning> {
         this.sourceFile = sourceFile;
         this.hashSource = sourceFile.hashCode() % 100;
         this.line = line;
+		this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, messages, ac);
         this.level = getLevel(warningMessage, level, ac);
     }
@@ -71,6 +73,7 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
+		this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, new String[]{message1,
                 message2}, ac);
         this.level = getLevel(warningMessage, level, ac);
@@ -92,6 +95,7 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
+		this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, messages, ac);
         this.level = getLevel(warningMessage, level, ac);
         this.line = property.getLine();
@@ -178,6 +182,13 @@ public class Warning implements Comparable<Warning> {
     public String getWarningMessage() {
         return warningMessage;
     }
+
+	/**
+	 * Get the warning type
+	 */
+	public String getWarningType() {
+		return warningType;
+	}
 
     /**
      * Get the message.
