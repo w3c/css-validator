@@ -13,6 +13,7 @@ import org.w3c.css.parser.analyzer.ParseException;
  * @version $Revision$
  */
 public class InvalidParamException extends ParseException {
+	String errorType = null;
 
     /**
      * Create a new InvalidParamException.
@@ -28,6 +29,7 @@ public class InvalidParamException extends ParseException {
      */
     public InvalidParamException(String message, ApplContext ac) {
         super(ac.getMsg().getErrorString((message != null) ? message : ""));
+		errorType = message;
     }
 
     /**
@@ -38,6 +40,7 @@ public class InvalidParamException extends ParseException {
      */
     public InvalidParamException(String error, Object message, ApplContext ac) {
         super(processError(error, (message != null) ? message : null, ac));
+		errorType = error;
     }
 
     /**
@@ -48,6 +51,7 @@ public class InvalidParamException extends ParseException {
      */
     public InvalidParamException(String error, String[] args, ApplContext ac) {
         super(processError(error, args, ac));
+		errorType = error;
     }
 
     /**
@@ -63,7 +67,16 @@ public class InvalidParamException extends ParseException {
                 (message1 != null) ? message1.toString() : null,
                 (message2 != null) ? message2.toString() : null,
                 ac));
+		errorType = error;
     }
+
+	/**
+	 * Get the error type if defined
+	 * @return a String or null if undefined
+	 */
+	public String getErrorType() {
+		return errorType;
+	}
 
     private static String processError(String error, String[] args, ApplContext ac) {
         StringBuilder sb = new StringBuilder();
