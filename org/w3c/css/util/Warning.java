@@ -186,7 +186,7 @@ public class Warning implements Comparable<Warning> {
 	/**
 	 * Get the warning type
 	 */
-	public String getWarningType() {
+	public String getType() {
 		return warningType;
 	}
 
