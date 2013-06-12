@@ -510,7 +510,7 @@ public final class CssSelectors extends SelectorsList
 	}
 
 	/**
-	 * Returns <code>true</code> if the selector can matched this selector.
+	 * Returns <code>true</code> if the selector can match this selector.
 	 * <p/>
 	 * <p/>
 	 * Examples:<br>
@@ -570,7 +570,7 @@ public final class CssSelectors extends SelectorsList
 	}
 
 	/**
-	 * Returns true if the selector can matched another selector. called by
+	 * Returns true if the selector can match another selector. called by
 	 * canApply
 	 *
 	 * @param selector The selector to compare
@@ -588,12 +588,12 @@ public final class CssSelectors extends SelectorsList
 			if ((connector == DESCENDANT) && (selector.next != null)) {
 				// here we are in this case :
 				// H1 and HTML BODY H1 EM
-				// H1 can't matched EM but EM have next
+				// H1 can't match EM but EM have next
 				return canMatch(selector.next);
 			} else {
 				// here we are in this case :
 				// H1 and HTML
-				// H1 can't matched HTML and HTML don't have next
+				// H1 can't match HTML and HTML don't have next
 				Util.verbose("canMatch RETURN FALSE");
 				return false;
 			}
