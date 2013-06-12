@@ -64,7 +64,7 @@ public class CssUnitsCSS3 {
 	}
 
 	public static final String[] resolution_units = {
-			"dpi", "dpcm", "ddpx"
+			"dpi", "dpcm", "dppx"
 	};
 
 	protected static String getRelativeLengthUnit(String unit) {

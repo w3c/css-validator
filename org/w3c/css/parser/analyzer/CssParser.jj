@@ -576,7 +576,7 @@ TOKEN [IGNORE_CASE] :
   | < ST         : <NUM> "st" >
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> ( "Hz" | "kHz" ) >
-  | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "ddpx" ) >
+  | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "dppx" ) >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
