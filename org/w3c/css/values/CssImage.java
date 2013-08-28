@@ -503,7 +503,7 @@ public class CssImage extends CssValue {
 					expression.toStringFromStart(), name, ac);
 		}
 		// ellipsis must have one extent ident or two (percentage/length)
-		if (shape == ellipse && (extend2 == null || (extend != null && extend.getType() != CssTypes.CSS_IDENT))) {
+		if (shape == ellipse && (extend2 == null && (extend != null && extend.getType() != CssTypes.CSS_IDENT))) {
 			throw new InvalidParamException("value",
 					expression.toStringFromStart(), name, ac);
 		}
