@@ -328,10 +328,8 @@
     </span>
   </div>
 
-  <div class="intro" id="don_program"></div>  
-  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
-  
-  
+  <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
+
   <div class="intro">
   <p><strong>टिप्पणी</strong>: यदि आप अपने (X) HTML दस्तावेज़ में एम्बेड होई सीएसएस शैली शीट का मान्यकर्ण करना चाहते हैं, तो पहले आप <a href="http://validator.w3.org/">जाँच करें कि जिस (X) HTML दस्तावेज़ का आप का उपयोग कर रहें हैं वो मान्यकृत है।</a>.
   </p>

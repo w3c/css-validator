@@ -328,10 +328,8 @@
     </span>
   </div>
 
-  <div class="intro" id="don_program"></div>  
-  <script type="text/javascript" src="http://www.w3.org/QA/Tools/don_prog.js"></script>
-  
-  
+  <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
+
   <div class="intro">
   <p><strong>Opmerking</strong>: Als je een CSS style sheet wilt valideren die gebruikt wordt in een (X)HTML document, zou je die eerst moeten <a href="http://validator.w3.org/">laten controleren</a>.
   </p>
