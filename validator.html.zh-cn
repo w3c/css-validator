@@ -311,23 +311,6 @@
       </div><!-- fields -->
   </div> <!-- frontforms -->
   
-  <div id="suite" class="intro" style="overflow: auto;">
-    <span style="float: left; padding-right: 1em">
-      <a href="http://www.w3.org/2013/ValidatorSuite/">
-         <img src="http://www.w3.org/Icons/VSlogo" alt="W3C Validator Suite Logo"/>
-      </a>
-    </span>
-    <span xml:lang="en" lang="en" dir="ltr" style="display:block; text-align:center">
-      <span style="color:red; font-weight:bold">NEW</span> -
-      W3C offers a beta release of a new service providing you an
-      integrated validation report on your entire web site.
-      <br />
-      <a href="http://www.w3.org/2013/ValidatorSuite/beta/">Try it now</a>
-      to quickly identify those portions of your web site that may
-      benefit from attention.
-    </span>
-  </div>
-
   <div id="w3c-include"><script type="text/javascript" src="//www.w3.org/QA/Tools/w3c-include.js"></script></div>
 
   <div class="intro">
