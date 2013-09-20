@@ -60,7 +60,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 	 * Create a new CssDisplay
 	 */
 	public CssDisplay() {
-		// nothing to do
+		value = initial;
 	}
 
 	/**
