@@ -28,6 +28,7 @@ import org.w3c.css.properties.css.CssMaxHeight;
 import org.w3c.css.properties.css.CssMaxWidth;
 import org.w3c.css.properties.css.CssMinHeight;
 import org.w3c.css.properties.css.CssMinWidth;
+import org.w3c.css.properties.css.CssOrphans;
 import org.w3c.css.properties.css.CssOutline;
 import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
@@ -56,6 +57,7 @@ import org.w3c.css.properties.css.CssUnicodeBidi;
 import org.w3c.css.properties.css.CssVisibility;
 import org.w3c.css.properties.css.CssVoiceFamily;
 import org.w3c.css.properties.css.CssVolume;
+import org.w3c.css.properties.css.CssWidows;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
@@ -136,6 +138,9 @@ public class Css2Style extends Css1Style {
 	public CssEmptyCells cssEmptyCells;
 	public CssTableLayout cssTableLayout;
 	public CssSpeakHeader cssSpeakHeader;
+
+	public CssOrphans cssOrphans;
+	public CssWidows cssWidows;
 
 	/**
 	 * Get the azimuth
@@ -680,6 +685,24 @@ public class Css2Style extends Css1Style {
 							style, selector);
 		}
 		return cssVoiceFamily;
+	}
+
+	public final CssOrphans getOrphans() {
+		if (cssOrphans == null) {
+			cssOrphans =
+					(CssOrphans) style.CascadingOrder(new CssOrphans(),
+							style, selector);
+		}
+		return cssOrphans;
+	}
+
+	public final CssWidows getWidows() {
+		if (cssWidows == null) {
+			cssWidows =
+					(CssWidows) style.CascadingOrder(new CssWidows(),
+							style, selector);
+		}
+		return cssWidows;
 	}
 	
 	/**

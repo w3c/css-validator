@@ -26,10 +26,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
     Page page;
     PageATSC pageATSC;
-    Orphans orphans;
-    OrphansATSC orphansATSC;
-    Widows widows;
-    WidowsATSC widowsATSC;
 
     /**
      * Get the size property
@@ -137,47 +133,4 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 	}
 	return pageATSC;
     }
-
-    /**
-     * Get the orphans property
-     */
-    public final Orphans getOrphans() {
-	if (orphans == null) {
-	    orphans =
-		(Orphans) style.CascadingOrder(new Orphans(),
-						       style, selector);
-	}
-	return orphans;
-    }
-
-    public final OrphansATSC getOrphansATSC() {
-	if (orphansATSC == null) {
-	    orphansATSC =
-		(OrphansATSC) style.CascadingOrder(new OrphansATSC(),
-						       style, selector);
-	}
-	return orphansATSC;
-    }
-
-    /**
-     * Get the widows property
-     */
-    public final Widows getWidows() {
-	if (widows == null) {
-	    widows =
-		(Widows) style.CascadingOrder(new Widows(),
-						       style, selector);
-	}
-	return widows;
-    }
-
-    public final WidowsATSC getWidowsATSC() {
-	if (widowsATSC == null) {
-	    widowsATSC =
-		(WidowsATSC) style.CascadingOrder(new WidowsATSC(),
-						       style, selector);
-	}
-	return widowsATSC;
-    }
-
 }
