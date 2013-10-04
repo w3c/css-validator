@@ -13,26 +13,13 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20121211/#propdef-font-size-adjust
+ * @spec http://www.w3.org/TR/2013/CR-css-fonts-3-20131003/#propdef-font-size-adjust
  */
 public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdjust {
 
-	public static final CssIdent[] allowed_values;
-
-	static {
-		String[] _allowed_values = {"none", "auto"};
-		int i = 0;
-		allowed_values = new CssIdent[_allowed_values.length];
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-	}
-
 	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
+		if (none.equals(ident)) {
+			return none;
 		}
 		return null;
 	}
