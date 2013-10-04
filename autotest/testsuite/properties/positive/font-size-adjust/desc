@@ -3,6 +3,6 @@ name= font-size-adjust
 css1= NA
 css2= http://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#propdef-font-size-adjust
 css21= NA
-css3= http://www.w3.org/TR/2011/WD-css3-fonts-20111004/#propdef-font-size-adjust
+css3= http://www.w3.org/TR/2013/CR-css-fonts-3-20131003/#propdef-font-size-adjust
 other= 
 */

@@ -1,7 +1,6 @@
 a { font-size-adjust: 0.45 }
-b { font-size-adjust: none }
+b { font-size-adjust: -12 }
 y { font-size-adjust: initial }
 z { font-size-adjust: inherit }
-cb { font-size-adjust: NoNe }
 cy { font-size-adjust: iNiTial }
 cz { font-size-adjust: iNheRit }
