@@ -48,7 +48,6 @@ public class CssBorder extends CssProperty {
             borderColor = new CssBorderColor();
             borderStyle = new CssBorderStyle();
             borderWidth = new CssBorderWidth();
-            borderRight = new CssBorderRight();
             // we are not generating border-(sides)
             // css3 holders
             borderRadius = new CssBorderRadius();
