@@ -97,19 +97,21 @@ public class CssError {
 	/**
 	 * get the error type, null if undefined
 	 */
-	 public String getType() {
-		 if(type == null) {
-			 if (error == null) {
-				 return null;
-			 }
-			 if (error instanceof InvalidParamException) {
-				 InvalidParamException exception = (InvalidParamException) error;
-				 type = exception.getErrorType();
-			 } else {
-				 type = error.getClass().getName();
-			 }
-		 }
-		 return type;
-	 }
+	public String getType() {
+		if (type == null) {
+			if (error == null) {
+				return null;
+			}
+			if (error instanceof InvalidParamException) {
+				InvalidParamException exception = (InvalidParamException) error;
+				type = exception.getErrorType();
+			} else if (error instanceof CssParseException) {
+				type = ((CssParseException) error).getErrorType();
+			} else {
+				type = error.getClass().getName();
+			}
+		}
+		return type;
+	}
 }
 

@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
  * This class allows to create 2 different soap messages to handle errors:
  * <ul>
  * <li>Sender errors if the URI given in parameter of the servlet is invalid</li>
- * <li>Receiver errors if the URI given is valid but inreachable</li>
+ * <li>Receiver errors if the URI given is valid but unreachable</li>
  * </ul>
  */
 public class ErrorReportSOAP12 extends ErrorReport {

@@ -9,16 +9,17 @@ import java.io.IOException;
 
 /**
  * Thrown when a HTTP Get is interrupted
+ *
+ * @author Benoit Mahe (bmahe@w3.org)
  * @version $Revision$
- * @author  Benoit Mahe (bmahe@w3.org)
  */
 public class InterruptedGetException extends IOException {
 
-    public long bytesTransferred = 0;
-    public long bytesExpected    = 0;
+	public long bytesTransferred = 0;
+	public long bytesExpected = 0;
 
-    public InterruptedGetException(String message) {
-	super(message);
-    }
+	public InterruptedGetException(String message) {
+		super(message);
+	}
 
 }

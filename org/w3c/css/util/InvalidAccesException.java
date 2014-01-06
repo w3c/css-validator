@@ -17,24 +17,24 @@
  * impossible to a ressource.
  *
  * @version $Revision$
- * @author  Philippe Le Hegaret
+ * @author Philippe Le Hegaret
  */
 
 package org.w3c.css.util;
 
 public class InvalidAccesException extends RuntimeException {
 
-    /**
-     * Creates a new InvalidAccesException
-     */
-    public InvalidAccesException() {
-        super();
-    }
+	/**
+	 * Creates a new InvalidAccesException
+	 */
+	public InvalidAccesException() {
+		super();
+	}
 
-    /**
-     * Creates a new InvalidAccesException with a specified string
-     */
-    public InvalidAccesException(String s) {
-	super(s);
-    }
+	/**
+	 * Creates a new InvalidAccesException with a specified string
+	 */
+	public InvalidAccesException(String s) {
+		super(s);
+	}
 }

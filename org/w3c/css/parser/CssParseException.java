@@ -8,6 +8,7 @@
 package org.w3c.css.parser;
 
 import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 import java.util.ArrayList;
@@ -147,4 +148,14 @@ public class CssParseException extends ParseException {
     public CssExpression getExp() {
         return exp;
     }
+
+	public String getErrorType() {
+		if (parseException == null) {
+			return null;
+		}
+		if (parseException instanceof InvalidParamException) {
+			return ((InvalidParamException) parseException).getErrorType();
+		}
+		return parseException.getClass().toString();
+	}
 }
