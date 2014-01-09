@@ -17,6 +17,8 @@ import org.w3c.css.util.Messages;
  */
 public class CssError {
 
+	static final String parserError = "generator.unrecognize";
+
 	/**
 	 * The source file
 	 */

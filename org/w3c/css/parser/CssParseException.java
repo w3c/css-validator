@@ -156,6 +156,9 @@ public class CssParseException extends ParseException {
 		if (parseException instanceof InvalidParamException) {
 			return ((InvalidParamException) parseException).getErrorType();
 		}
+		if (parseException instanceof ParseException) {
+			return CssError.parserError;
+		}
 		return parseException.getClass().toString();
 	}
 }

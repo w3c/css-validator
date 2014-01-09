@@ -645,7 +645,6 @@ public final class CssFouffa extends CssParser {
      *
      * @param context The current context
      * @see org.w3c.css.parser.CssFouffa#addListener
-     * @see org.w3c.css.parser.CssSelectors#setElement
      */
     public void parseDeclarations(CssSelectors context) {
         // here we have an example for reusing the parser.
