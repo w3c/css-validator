@@ -7,7 +7,13 @@
 
 package org.w3c.css.servlet;
 
-import org.w3c.css.css.*;
+import org.w3c.css.css.CssParser;
+import org.w3c.css.css.DocumentParser;
+import org.w3c.css.css.StyleReport;
+import org.w3c.css.css.StyleReportFactory;
+import org.w3c.css.css.StyleSheet;
+import org.w3c.css.css.StyleSheetParser;
+import org.w3c.css.css.TagSoupStyleSheetHandler;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
@@ -242,7 +248,7 @@ public final class CssValidator extends HttpServlet {
 
 		String uri = null;
 		try {
-			uri = req.getParameter("uri"); // null if the parameter does not
+			uri = req.getParameter("uri"); // null if the parameter does not exist
 			// exist
 		} catch (Exception ex) {
 			// pb in URI decoding (bad escaping, most probably)
@@ -360,10 +366,15 @@ public final class CssValidator extends HttpServlet {
 				// that it is a valid
 				// url
 				uri = uri.replaceAll(" ", "%20");
-				DocumentParser URLparser = new DocumentParser(ac, uri);
-
-				handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
-						warningLevel, errorReport);
+				if (Util.checkURI(uri)) {
+					DocumentParser URLparser = new DocumentParser(ac, uri);
+					handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
+							warningLevel, errorReport);
+				} else {
+					res.setHeader("Rejected", "Requested URI Forbidden by Rule");
+					handleError(res, ac, output, "Forbidden", new IOException(
+							"URI Forbidden by rule"), false);
+				}
 			} catch (ProtocolException pex) {
 				if (Util.onDebug) {
 					pex.printStackTrace();

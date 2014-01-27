@@ -39,6 +39,12 @@
 package org.w3c.css.util;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * This class holds various utility methods.
  *
@@ -54,6 +60,50 @@ public final class Util {
 	private Util() {
 	}
 
+	private static Pattern uri_param = Pattern.compile("[&?][^&?=]+=([^&?]+)");
+
+	//unravel uris contained in querystrings by url decoding and then looking for all sub URIs
+	// like http://www.example.com/foo?bar=http%3A%2F%2fwww.example.org%2Ftoto
+	// ->  http://www.example.com/foo?bar=http%3A%2F%2fwww.example.org%2Ftoto
+	// and http://www.example.org/toto
+	private static ArrayList<String> parseURIs(String uri) {
+		ArrayList<String> uris = new ArrayList<String>();
+		int pos = 0;
+		uris.add(uri);
+		// we avoid recursion by putting stuff on our plate at the right place for processing
+		while (pos < uris.size()) {
+			String u = uris.get(pos++);
+			Matcher m = uri_param.matcher(u);
+			while (m.find()) {
+				try {
+					String compound = URLDecoder.decode(m.group(1), "UTF-8");
+					if (compound.contains("://")) {
+						uris.add(compound);
+					}
+				} catch (UnsupportedEncodingException e) {
+					// it is supported
+				}
+			}
+		}
+		return uris;
+	}
+
+	public static boolean checkURI(String uri) {
+		ArrayList<String> uris = parseURIs(uri);
+		// now let's check if there is a recursive call
+		for (String u: uris) {
+			int qm = u.indexOf('?');
+			if (qm != -1) {
+				u = u.substring(0, qm);
+			}
+			u.toLowerCase();
+			// TODO: use a list of forbidden URIs
+			if (u.startsWith("http://jigsaw.w3.org/css-validator/validator")) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// Methods
 
