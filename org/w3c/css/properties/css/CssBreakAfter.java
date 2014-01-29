@@ -24,13 +24,13 @@ public class CssBreakAfter extends CssProperty {
 	public CssValue value;
 
 	/**
-	 * Create a new CssBreakAfter
+	 * Create a new CssPageBreakAfter
 	 */
 	public CssBreakAfter() {
 	}
 
 	/**
-	 * Create a new CssBreakAfter
+	 * Create a new CssPageBreakAfter
 	 *
 	 * @param expression The expression for this property
 	 * @throws InvalidParamException Incorrect value

@@ -34,6 +34,9 @@ import org.w3c.css.properties.css.CssOutlineColor;
 import org.w3c.css.properties.css.CssOutlineStyle;
 import org.w3c.css.properties.css.CssOutlineWidth;
 import org.w3c.css.properties.css.CssOverflow;
+import org.w3c.css.properties.css.CssPageBreakAfter;
+import org.w3c.css.properties.css.CssPageBreakBefore;
+import org.w3c.css.properties.css.CssPageBreakInside;
 import org.w3c.css.properties.css.CssPause;
 import org.w3c.css.properties.css.CssPauseAfter;
 import org.w3c.css.properties.css.CssPauseBefore;
@@ -93,6 +96,10 @@ public class Css2Style extends Css1Style {
 	public CssPlayDuring cssPlayDuring;
 	public CssVoiceFamily cssVoiceFamily;
 
+	public CssPageBreakAfter cssPageBreakAfter;
+	public CssPageBreakBefore cssPageBreakBefore;
+	public CssPageBreakInside cssPageBreakInside;
+
 	/**
 	 * font properties
 	 */
@@ -131,7 +138,7 @@ public class Css2Style extends Css1Style {
 	public CssQuotes cssQuotes;
 	public CssCounterIncrement cssCounterIncrement;
 	public CssCounterReset cssCounterReset;
-	
+
 	public CssCaptionSide cssCaptionSide;
 	public CssBorderCollapse cssBorderCollapse;
 	public CssBorderSpacing cssBorderSpacing;
@@ -210,6 +217,43 @@ public class Css2Style extends Css1Style {
 							style, selector);
 		}
 		return cssBorder.borderStyle.left;
+	}
+
+
+	/**
+	 * Get the page-break-after property
+	 */
+	public final CssPageBreakAfter getPageBreakAfter() {
+		if (cssPageBreakAfter == null) {
+			cssPageBreakAfter =
+					(CssPageBreakAfter) style.CascadingOrder(new CssPageBreakAfter(),
+							style, selector);
+		}
+		return cssPageBreakAfter;
+	}
+
+	/**
+	 * Get the page-break-before property
+	 */
+	public final CssPageBreakBefore getPageBreakBefore() {
+		if (cssPageBreakBefore == null) {
+			cssPageBreakBefore =
+					(CssPageBreakBefore) style.CascadingOrder(new CssPageBreakBefore(),
+							style, selector);
+		}
+		return cssPageBreakBefore;
+	}
+
+	/**
+	 * Get the page-break-inside property
+	 */
+	public final CssPageBreakInside getPageBreakInside() {
+		if (cssPageBreakInside == null) {
+			cssPageBreakInside =
+					(CssPageBreakInside) style.CascadingOrder(new CssPageBreakInside(),
+							style, selector);
+		}
+		return cssPageBreakInside;
 	}
 
 	/**
@@ -424,6 +468,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssUnicodeBidi;
 	}
+
 	/**
 	 * Get the visibility property
 	 */
@@ -435,6 +480,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssVisibility;
 	}
+
 	/**
 	 * Get the overflow property
 	 */
@@ -446,6 +492,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssOverflow;
 	}
+
 	/**
 	 * Get the quotes property
 	 */
@@ -457,6 +504,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssQuotes;
 	}
+
 	/**
 	 * Get the counter-increment property
 	 */
@@ -468,6 +516,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssCounterIncrement;
 	}
+
 	/**
 	 * Get the counter-reset property
 	 */
@@ -488,7 +537,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssCaptionSide;
 	}
-	
+
 	public final CssBorderCollapse getBorderCollapse() {
 		if (cssBorderCollapse == null) {
 			cssBorderCollapse =
@@ -497,7 +546,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssBorderCollapse;
 	}
-	
+
 	public final CssEmptyCells getEmptyCells() {
 		if (cssEmptyCells == null) {
 			cssEmptyCells =
@@ -614,7 +663,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssCueAfter;
 	}
-	
+
 	public final CssCueBefore getCueBefore() {
 		if (cssCueBefore == null) {
 			cssCueBefore =
@@ -641,7 +690,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssPitch;
 	}
-	
+
 	public final CssPauseAfter getPauseAfter() {
 		if (cssPauseAfter == null) {
 			cssPauseAfter =
@@ -704,7 +753,7 @@ public class Css2Style extends Css1Style {
 		}
 		return cssWidows;
 	}
-	
+
 	/**
 	 * Find conflicts in this Style
 	 *

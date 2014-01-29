@@ -48,14 +48,14 @@ public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
 	}
 
 	/**
-	 * Create a new CssBreakAfter
+	 * Create a new CssPageBreakAfter
 	 */
 	public CssBreakAfter() {
 		value = initial;
 	}
 
 	/**
-	 * Create a new CssBreakAfter
+	 * Create a new CssPageBreakAfter
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
