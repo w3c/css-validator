@@ -46,6 +46,7 @@ public class CssMarks extends org.w3c.css.properties.css.CssMarks {
 	 * Create a new CssMarks
 	 */
 	public CssMarks() {
+		value = initial;
 	}
 
 	/**
