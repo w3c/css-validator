@@ -15,7 +15,6 @@ package org.w3c.css.properties.paged;
 public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
 	Size size;
-	Marks marks;
 
 	Page page;
 	PageATSC pageATSC;
@@ -29,17 +28,6 @@ public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 					style, selector);
 		}
 		return size;
-	}
-
-	/**
-	 * Get the marks property
-	 */
-	public final Marks getMarks() {
-		if (marks == null) {
-			marks = (Marks) style.CascadingOrder(new Marks(),
-					style, selector);
-		}
-		return marks;
 	}
 
 	/**

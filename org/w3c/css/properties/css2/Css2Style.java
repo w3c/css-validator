@@ -24,6 +24,7 @@ import org.w3c.css.properties.css.CssElevation;
 import org.w3c.css.properties.css.CssEmptyCells;
 import org.w3c.css.properties.css.CssLeft;
 import org.w3c.css.properties.css.CssMarkerOffset;
+import org.w3c.css.properties.css.CssMarks;
 import org.w3c.css.properties.css.CssMaxHeight;
 import org.w3c.css.properties.css.CssMaxWidth;
 import org.w3c.css.properties.css.CssMinHeight;
@@ -99,6 +100,7 @@ public class Css2Style extends Css1Style {
 	public CssPageBreakAfter cssPageBreakAfter;
 	public CssPageBreakBefore cssPageBreakBefore;
 	public CssPageBreakInside cssPageBreakInside;
+	public CssMarks cssMarks;
 
 	/**
 	 * font properties
@@ -256,6 +258,18 @@ public class Css2Style extends Css1Style {
 		return cssPageBreakInside;
 	}
 
+	/**
+	 * Get the marks property
+	 */
+	public final CssMarks getMarks() {
+		if (cssMarks == null) {
+			cssMarks =
+					(CssMarks) style.CascadingOrder(new CssMarks(),
+							style, selector);
+		}
+		return cssMarks;
+	}
+	
 	/**
 	 * get the font-stretch property
 	 *
