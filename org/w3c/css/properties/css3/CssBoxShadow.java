@@ -24,7 +24,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/#box-shadow
+ * @spec http://www.w3.org/TR/2014/WD-css3-background-20140204/#box-shadow
  */
 
 public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
@@ -171,33 +171,29 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 						throw new InvalidParamException("value", val,
 								getPropertyName(), ac);
 					}
-					if (inset.equals(ident)) {
+					if (inset.equals(ident) && value.shadow_mod == null) {
 						value.shadow_mod = inset;
-						// inset can be first or last
-						if ((value.color != null || got_length != 0) &&
-								expression.getRemainingCount() != 1) {
-							throw new InvalidParamException("unrecognize", ac);
-						}
+						// inset has been relaxed
 						break;
 					}
 					// if not a known ident, it must be a color
 					// and let's use the CSS3 color.
+					// so let it flow as if it was a color
+				case CssTypes.CSS_HASH_IDENT:
+				case CssTypes.CSS_COLOR:
+					// this one is a pain... need to remove function for colors.
+				case CssTypes.CSS_FUNCTION:
+					if (value.color != null) {
+						throw new InvalidParamException("value", val,
+								getPropertyName(), ac);
+					}
+					if (got_length != 0) {
+						length_ok = false;
+					}
 					CssExpression exp = new CssExpression();
 					exp.addValue(val);
 					CssColor color = new CssColor(ac, exp, check);
 					value.color = (CssValue) color.get();
-					break;
-				case CssTypes.CSS_HASH_IDENT:
-				case CssTypes.CSS_COLOR:
-				case CssTypes.CSS_FUNCTION:
-					if (got_length != 0) {
-						length_ok = false;
-					}
-					// this one is a pain... need to remove function for colors.
-					CssExpression fexp = new CssExpression();
-					fexp.addValue(val);
-					CssColor fcolor = new CssColor(ac, fexp, check);
-					value.color = (CssValue) fcolor.get();
 					break;
 				default:
 					throw new InvalidParamException("value", val,
