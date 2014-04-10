@@ -14,21 +14,8 @@ package org.w3c.css.properties.paged;
  */
 public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
-	Size size;
-
 	Page page;
 	PageATSC pageATSC;
-
-	/**
-	 * Get the size property
-	 */
-	public final Size getSize() {
-		if (size == null) {
-			size = (Size) style.CascadingOrder(new Size(),
-					style, selector);
-		}
-		return size;
-	}
 
 	/**
 	 * Get the page property

@@ -48,6 +48,7 @@ import org.w3c.css.properties.css.CssPosition;
 import org.w3c.css.properties.css.CssQuotes;
 import org.w3c.css.properties.css.CssRichness;
 import org.w3c.css.properties.css.CssRight;
+import org.w3c.css.properties.css.CssSize;
 import org.w3c.css.properties.css.CssSpeak;
 import org.w3c.css.properties.css.CssSpeakHeader;
 import org.w3c.css.properties.css.CssSpeakNumeral;
@@ -101,6 +102,7 @@ public class Css2Style extends Css1Style {
 	public CssPageBreakBefore cssPageBreakBefore;
 	public CssPageBreakInside cssPageBreakInside;
 	public CssMarks cssMarks;
+	public CssSize cssSize;
 
 	/**
 	 * font properties
@@ -269,7 +271,18 @@ public class Css2Style extends Css1Style {
 		}
 		return cssMarks;
 	}
-	
+
+	/**
+	 * Get the size property
+	 */
+	public final CssSize getSize() {
+		if (cssSize == null) {
+			cssSize =
+					(CssSize) style.CascadingOrder(new CssSize(),
+							style, selector);
+		}
+		return cssSize;
+	}	
 	/**
 	 * get the font-stretch property
 	 *
