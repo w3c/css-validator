@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec 1
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/page.html#propdef-size
  */
 public class CssSize extends org.w3c.css.properties.css.CssSize {
 
