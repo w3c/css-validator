@@ -42,6 +42,7 @@ public class CssPosition extends org.w3c.css.properties.css.CssPosition {
 	 * Create a new CssPosition
 	 */
 	public CssPosition() {
+		value = initial;
 	}
 
 	/**
