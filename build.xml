@@ -57,6 +57,7 @@
     <get dest="tmp/commons-collections-3.2.1-bin.zip" src="http://www.apache.org/dist/commons/collections/binaries/commons-collections-3.2.1-bin.zip" usetimestamp="true"/>
     <get dest="tmp/commons-lang-2.6-bin.zip" src="http://www.apache.org/dist/commons/lang/binaries/commons-lang-2.6-bin.zip" usetimestamp="true"/>
     <get dest="tmp/velocity-1.7.tar.gz" src="http://www.apache.org/dist/velocity/engine/1.7/velocity-1.7.tar.gz" usetimestamp="true"/>
+    <get dest="tmp/velocity-tools-2.0.tar.gz" src="http://www.apache.org/dist/velocity/tools/2.0/velocity-tools-2.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/Xerces-J-bin.2.11.0.tar.gz" src="http://www.apache.org/dist/xerces/j/binaries/Xerces-J-bin.2.11.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/servlet-api-2.5-6.0.0.jar" src="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.0/servlet-api-2.5-6.0.0.jar" usetimestamp="true"/>
     <get dest="tmp/htmlparser-1.3.1.zip" src="http://about.validator.nu/htmlparser/htmlparser-1.3.1.zip" usetimestamp="true"/>
@@ -66,6 +67,7 @@
     <unzip src="tmp/commons-lang-2.6-bin.zip" dest="tmp"/>
     <unzip src="tmp/htmlparser-1.3.1.zip" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-1.7.tar.gz" dest="tmp"/>
+    <untar compression="gzip" src="tmp/velocity-tools-2.0.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/Xerces-J-bin.2.11.0.tar.gz" dest="tmp"/>
     <copy file="tmp/servlet-api-2.5-6.0.0.jar" tofile="lib/servlet-api-2.5-6.0.0.jar"/>
 
@@ -73,6 +75,7 @@
     <copy file="tmp/commons-collections-3.2.1/commons-collections-3.2.1.jar" tofile="lib/commons-collections-3.2.1.jar"/>
     <copy file="tmp/commons-lang-2.6/commons-lang-2.6.jar" tofile="lib/commons-lang-2.6.jar"/>
     <copy file="tmp/velocity-1.7/velocity-1.7.jar" tofile="lib/velocity-1.7.jar"/>
+    <copy file="tmp/velocity-tools-2.0/lib/velocity-tools-generic-2.0.jar" tofile="lib/velocity-tools-generic-2.0.jar"/>
     <copy file="tmp/xerces-2_11_0/xercesImpl.jar" tofile="lib/xercesImpl.jar"/>
     <copy file="tmp/xerces-2_11_0/xml-apis.jar" tofile="lib/xml-apis.jar"/>
     <get dest="lib/tagsoup-1.2.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.jar"/>
@@ -117,7 +120,7 @@
 			<include name="org/**"/>
 			<manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
-        <attribute name="Class-path" value=". lib/commons-collections-3.2.1.jar lib/commons-lang-2.6.jar lib/jigsaw.jar lib/tagsoup-1.2.jar lib/velocity-1.7.jar lib/xercesImpl.jar lib/xml-apis.jar lib/htmlparser-1.3.1.jar"/>
+        <attribute name="Class-path" value=". lib/commons-collections-3.2.1.jar lib/commons-lang-2.6.jar lib/jigsaw.jar lib/tagsoup-1.2.jar lib/velocity-1.7.jar lib/velocity-tools-generic-2.0.jar lib/xercesImpl.jar lib/xml-apis.jar lib/htmlparser-1.3.1.jar"/>
 			</manifest>
 		</jar>
 	</target>
