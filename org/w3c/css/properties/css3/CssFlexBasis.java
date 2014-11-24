@@ -15,16 +15,16 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex-basis-propdef
+ * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex-basis
  * @see CssWidth
  */
 public class CssFlexBasis extends org.w3c.css.properties.css.CssFlexBasis {
 
-	public static final CssIdent auto = CssIdent.getIdent("auto");
+	public static final CssIdent main_size = CssIdent.getIdent("main-size");
 
 	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (auto.equals(ident)) {
-			return auto;
+		if (main_size.equals(ident)) {
+			return main_size;
 		}
 		return null;
 	}
@@ -64,8 +64,8 @@ public class CssFlexBasis extends org.w3c.css.properties.css.CssFlexBasis {
 				CssIdent ident = (CssIdent) val;
 				if (inherit.equals(val)) {
 					value = inherit;
-				} else if (auto.equals(val)) {
-					value = auto;
+				} else if (main_size.equals(val)) {
+					value = main_size;
 				} else {
 					throw new InvalidParamException("unrecognize", ac);
 				}
@@ -97,7 +97,7 @@ public class CssFlexBasis extends org.w3c.css.properties.css.CssFlexBasis {
 	 * It is used by all macro for the function <code>print</code>
 	 */
 	public boolean isDefault() {
-		return ((value == auto) || (value == initial));
+		return ((value == main_size) || (value == initial));
 	}
 }
 
