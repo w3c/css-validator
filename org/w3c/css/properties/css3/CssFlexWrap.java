@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex-wrap
+ * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex-wrap
  */
 public class CssFlexWrap extends org.w3c.css.properties.css.CssFlexWrap {
 

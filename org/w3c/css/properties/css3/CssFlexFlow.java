@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex-flow
+ * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex-flow
  */
 public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
 
