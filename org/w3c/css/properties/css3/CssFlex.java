@@ -21,9 +21,11 @@ import org.w3c.css.values.CssValueList;
 import java.math.BigDecimal;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex
+ * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex
  */
 public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
+
+	public CssIdent auto = CssIdent.getIdent("auto");
 
 	private CssFlexGrow flexGrow;
 	private CssFlexShrink flexShrink;
@@ -78,6 +80,15 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 					}
 					if (none.equals(ident)) {
 						value = none;
+						if (expression.getCount() > 1) {
+							throw new InvalidParamException("value",
+									val.toString(),
+									getPropertyName(), ac);
+						}
+						break;
+					}
+					if (auto.equals(ident)) {
+						value = auto;
 						if (expression.getCount() > 1) {
 							throw new InvalidParamException("value",
 									val.toString(),
@@ -152,11 +163,17 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 			flexGrow.value = inherit;
 			flexShrink.value = inherit;
 		} else if (value == none) {
-			flexBasis.value = CssFlexBasis.auto;
+			flexBasis.value = CssFlexBasis.main_size;
 			CssNumber z = new CssNumber();
 			z.setValue(BigDecimal.ZERO);
 			flexGrow.value = z;
 			flexShrink.value = z;
+		} else if (value == auto) {
+			flexBasis.value = CssFlexBasis.main_size;
+			CssNumber one = new CssNumber();
+			one.setValue(BigDecimal.ONE);
+			flexGrow.value = one;
+			flexShrink.value = one;
 		} else {
 			CssValueList v = new CssValueList();
 			if (growVal != null) {
