@@ -299,7 +299,7 @@ public class MimeType implements Serializable, Cloneable {
 	}
 
 	/**
-	 * adds a parameterto a MimeType
+	 * adds a parameter to a MimeType
 	 *
 	 * @param param the parameter name, as a String
 	 * @param value the parameter value, as a Sting
