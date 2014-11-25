@@ -6,7 +6,7 @@
 package org.w3c.css.util;
 
 public enum CssVersion {
-    CSS1("css1"), CSS2("css2"), CSS21("css21"), CSS3("css3");
+    CSS1("css1"), CSS2("css2"), CSS21("css21"), CSS3("css3"), CSS4("css4");
     private final String version;
 
     CssVersion(String version) {
