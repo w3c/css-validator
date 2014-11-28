@@ -56,7 +56,7 @@ public class CssOrder extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "flex-order";
+		return "order";
 	}
 
 	/**
