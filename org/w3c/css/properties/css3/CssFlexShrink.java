@@ -49,6 +49,7 @@ public class CssFlexShrink extends org.w3c.css.properties.css.CssFlexShrink {
 			case CssTypes.CSS_NUMBER:
 				CssNumber num = val.getNumber();
 				num.checkPositiveness(ac, this);
+				value = num;
 				break;
 			case CssTypes.CSS_IDENT:
 				CssIdent ident = (CssIdent) val;
