@@ -477,11 +477,11 @@
 
 <div id="footer">
    <p id="activity_logos">
-     <a href="http://www.w3.org/QA/" title="Činnost zajištění kvality W3C vám přináší webové nástroje zdarma a mnohem více "><img src="http://www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="http://www.w3.org/Style/CSS/learning" title="Dozvědět se více o tabulkách kaskádových stylů"><img src="images/woolly-icon" alt="CSS" /></a>
+     <a href="//www.w3.org/QA/" title="Činnost zajištění kvality W3C vám přináší webové nástroje zdarma a mnohem více "><img src="//www.w3.org/QA/2002/12/qa-small.png" alt="QA" /></a><a href="//www.w3.org/Style/CSS/learning" title="Dozvědět se více o tabulkách kaskádových stylů"><img src="images/woolly-icon" alt="CSS" /></a>
    </p>
    <p id="support_logo">
-   <a href="http://www.w3.org/QA/Tools/Donate">
-   <img src="http://www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
+   <a href="//www.w3.org/QA/Tools/Donate">
+   <img src=//www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" />
    </a>
    </p>
 
