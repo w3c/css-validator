@@ -20,7 +20,7 @@ public class CssUnitsCSS3 {
 	};
 
 	private static final String[] absolute_length_units = {
-			"in", "cm", "mm", "pt", "pc", "px"
+			"in", "cm", "mm", "pt", "pc", "px", "q"
 	};
 
 	public static final String[] angle_units = {

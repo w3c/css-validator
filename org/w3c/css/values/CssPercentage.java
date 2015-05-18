@@ -113,6 +113,13 @@ public class CssPercentage extends CssCheckableValue {
 	}
 
 	/**
+	 * Returns the real value
+	 */
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	/**
 	 * Returns true is the value is positive of null
 	 *
 	 * @return a boolean

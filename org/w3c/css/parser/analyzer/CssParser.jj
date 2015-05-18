@@ -165,7 +165,7 @@ public abstract class CssParser {
     /**
      * Set the attribute mediaDeclaration
      *
-     * @param mediaDeclaration indicator if in a media expression list or not
+     * @param mediadeclaration indicator if in a media expression list or not
      */
     public void setMediaDeclaration(boolean mediadeclaration) {
         this.mediaDeclaration = mediadeclaration;
@@ -242,7 +242,7 @@ public abstract class CssParser {
      *
      * @param ident  The ident for this at-rule (for example: 'font-face')
      * @param string The string associate to this at-rule
-     * @see          org.w3c.css.parser.Analyzer.Couple
+     * @see          org.w3c.css.parser.analyzer.Couple
      */  
     public abstract void handleAtRule(String ident, String string);
 
@@ -270,7 +270,7 @@ public abstract class CssParser {
      *
      * @return           <code>null</code>or a property
      * 
-     * @see              org.w3c.css.css.CssProperty
+     * @see              org.w3c.css.properties.css.CssProperty
      */
     public abstract CssProperty handleDeclaration(String property, 
 						  CssExpression values, 
@@ -280,16 +280,16 @@ public abstract class CssParser {
     /**
      * Assign an expression to a mediafeature.
      * This function create a new mediafeature
-     * with <code>featureName</code> and assign to it the expression.
+     * with <code>mediaFeature</code> and assign to it the expression.
      * <p>
      * A subclass must provide an implementation of this method.
      *
-     * @param  featureName  the name of the media feature
-     * @param  expr    the expression representation of values
+     * @param  mediaFeature  the name of the media feature
+     * @param  expr          the expression representation of values
      *
      * @return           <code>null</code>or a property
      *
-     * @see              org.w3c.css.css.CssProperty
+     * @see              org.w3c.css.properties.css.CssProperty
      */
     public abstract MediaFeature handleMediaFeature(AtRuleMedia rule,
                                                     String mediaFeature,
@@ -329,7 +329,7 @@ public abstract class CssParser {
     /**
      * Set the URL of the style sheet.
      *
-     * @param URL The URL for the style sheet
+     * @param url The URL for the style sheet
      */
     public final void setURL(URL url) {
 	this.url = url;
@@ -567,6 +567,7 @@ TOKEN [IGNORE_CASE] :
                    | <NUM> "vmax" >
   | <ABSOLUTLENGTH : <NUM> "cm"
                    | <NUM> "mm"
+                   | <NUM> "q"
                    | <NUM> "in"
                    | <NUM> "pt"
                    | <NUM> "pc"
@@ -647,15 +648,11 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG : "lang(" >
+    < FUNCTIONLANG  : "lang(" >
+    | <FUNCTIONNOT  : ":not(" >
+    | <FUNCTIONCALC : "calc(" >
+    | <FUNCTIONATTR : "attr(" >
 }
-
-<DEFAULT>
-TOKEN [IGNORE_CASE] :
-{
-    < FUNCTIONNOT : ":not(" >
-}
-
 
 <DEFAULT>
     TOKEN :
@@ -2435,6 +2432,91 @@ void mediaterm(CssExpression exp) :
 				UNICODERANGE); }
     ) ( <S> )* )
 }
+
+CssCheckableValue mathcalc() :
+{
+CssCheckableValue v;
+}
+{
+  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* ")" ) {
+    return v;
+  }
+}
+
+CssCheckableValue mathsum() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+}
+{   // product [ S+ [ "+" | "-" ] S+ product ]*;
+   ( v1=mathproduct() ( LOOKAHEAD(1) ( <S> )+ ( o="+" | o="-" ) ( <S> )+ v2=mathproduct() {
+                      // TODO add stuff, type checking etc...
+                     }
+                    )*
+ ) { return v1; }
+}
+
+
+CssCheckableValue mathproduct() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+}
+{
+
+ ( v1=mathunit()  ( LOOKAHEAD(1) ( <S> )* (  ( o="*" ( <S> )* v2=mathunit() )
+                             | ( o="/" ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
+                          ) { /* TODO check */
+                              if ("/".equals(o.image)) {
+                                  BigDecimal p = (BigDecimal) v1.get();
+                                  BigDecimal d = (BigDecimal) v2.get();
+                                  if (BigDecimal.ZERO.equals(d)) {
+                                  // TODO throw divided by zero error
+                                  }
+                                  p.divide(d);
+                                  v1.setValue(p);
+                              } else {
+                                  if ((v1.getType() != CssTypes.CSS_NUMBER) &&
+                                      (v2.getType() != CssTypes.CSS_NUMBER)) {
+                                  // TODO one operand must be a number
+                                  }
+                                  BigDecimal p = (BigDecimal) v1.get();
+                                  BigDecimal d = (BigDecimal) v2.get();
+                                  p.multiply(d);
+                                  if (v1.getType() == CssTypes.CSS_NUMBER) {
+                                     v2.setValue(p);
+                                     v1 = v2;
+                                  } else {
+                                     v1.setValue(p);
+                                  }
+                              }
+                          }
+                  )*
+ ) { return v1; }
+}
+
+CssCheckableValue mathunit() :
+{ Token n;
+CssCheckableValue v = null;
+}
+{
+( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
+ | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
+     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
+     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
+     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
+     | ( "(" ( <S> )* v=mathsum() ( <S> )* ")" )
+     | v=mathcalc()
+   // | v=attr()
+     ) {
+     return v;
+     }
+}
+
+
 /**
  * @exception ParseException exception during the parse
  */
