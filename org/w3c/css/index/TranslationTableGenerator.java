@@ -95,6 +95,7 @@ public class TranslationTableGenerator {
             HashMap<String, ApplContext> translations = new HashMap<String, ApplContext>();
             HashMap<String, Integer> translation_completeness = new HashMap<String, Integer>();
             table_head.append("<tr><th scope='col'>Property</th>");
+
             for (int i = 0; i < Messages.languages_name.size(); ++i) {
                 name = String.valueOf(Messages.languages_name.get(i));
                 HashMap<String, String> l = new HashMap<String, String>();
@@ -130,6 +131,7 @@ public class TranslationTableGenerator {
                 translation_completeness.put(name, 0);
 
             }
+
             table_head.append("</tr>");
             Vector<String> sorted_properties_keys;
             Set properties_keyset = ac_default.getMsg().properties.keySet();
@@ -146,7 +148,7 @@ public class TranslationTableGenerator {
                 translations_table.append("</p></th>");
                 for (int i = 0; i < Messages.languages_name.size(); ++i) {
                     HashMap<String, String> language = languages.get(i);
-                    ApplContext translation = (ApplContext) translations.get(language.get("name"));
+                    ApplContext translation = translations.get(language.get("name"));
                     String property_translated = translation.getMsg().getString(property_name);
                     if (language.get("name").equals(default_lang)) {
                         vc.put(property_name, property_translated);
