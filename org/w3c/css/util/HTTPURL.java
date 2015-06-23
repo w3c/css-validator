@@ -211,6 +211,12 @@ public class HTTPURL {
 				throw new FileNotFoundException("import " + url +
 						": Operation not permitted");
 			}
+			if (url.getPort() >= 0 && url.getPort() != 80 && url.getPort() != 443 && url.getPort() <= 1024) {
+				System.err.println("[WARNING] : someone is trying to access a forbidden port: "
+						+ url);
+				throw new FileNotFoundException("import " + url +
+						": Operation not permitted");
+			}
 		}
 
 		URLConnection urlC = url.openConnection();
