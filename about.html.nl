@@ -107,7 +107,7 @@ te verbeteren, mee te werken door de validator in jouw taal te vertalen, of door
 <h3 id="dev">Voor Ontwikkelaars</h3>
 <h4 id="code">In welke taal is de CSS Validator geschreven? Is de broncode ergens beschikbaar?</h4>
 <p>De W3C CSS validator is geschreven in java en ja, de broncode is beschikbaar.
-Door middel van CVS kun je de code <a href="http://dev.w3.org/cvsweb/2002/css-validator/">online bekijken</a> 
+Door middel van CVS kun je de code <a href="https://github.com/w3c/css-validator">online bekijken</a> 
 of volg de instructies op die pagina om alle beschikbare code te downloaden. Voor een snel overzicht van de classes die gebruikt worden in de
 CSS Validator code kun je de <a href="README.html">README</a> lezen.</p>
 

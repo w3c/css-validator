@@ -34,7 +34,7 @@
 
 	<h4 id="source">소스 코드 다운로드</h4>
     <p>
-      <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS 검사도구</a>는 CVS를 통하여 다운로드를 제공하고 있습니다.
+      <a href='https://github.com/w3c/css-validator'>CSS 검사도구</a>는 CVS를 통하여 다운로드를 제공하고 있습니다.
       Follow the <a href='http://dev.w3.org/cvsweb/'>사용 안내</a>를
           참고하여 W3C 공개 CVS 서버에 접근하여 2002/css-validator를 다운로드하면 됩니다. 보통
           온라인 서비스로 제공하는 검사 서비스가 상대적으로 오래된 버전이므로 검사 결과가 다소 다를 수도 있습니다.

@@ -25,7 +25,7 @@
 
 	<h4 id="source">دانلود منبع</h4>
     <p>
-      &nbsp;<a href="http://dev.w3.org/cvsweb/2002/css-validator">اعتبار سنج CSS</a> 
+      &nbsp;<a href="https://github.com/w3c/css-validator">اعتبار سنج CSS</a> 
 		برای دانلود با استفاده از CVS در دسترس است.
 		<a href="http://dev.w3.org/cvsweb/">دستورالعمل ها</a> را جهت دسترسی به 
 		سرویس دهنده ی عمومی W3C CVS و بدست آوردن 2002/css-validator دنبال کنید. 

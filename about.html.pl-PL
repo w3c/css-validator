@@ -87,7 +87,7 @@ lub budowanie nowych funkcji. </p>
 
 <h3 id="dev">Kącik dla Deweloperów</h3>
 <h4 id="code">W jakim języku jest napisany walidator? Czy źródło jest gdzieś dostępne?</h4>
-<p> W3C Walidator CSS jest napisany w języku Java i oczywiście kod jest dostępny używając  CVS: możesz <a href="http://dev.w3.org/cvsweb/2002/css-validator/">przeglądnąć kod  online</a> 
+<p> W3C Walidator CSS jest napisany w języku Java i oczywiście kod jest dostępny używając  CVS: możesz <a href="https://github.com/w3c/css-validator">przeglądnąć kod  online</a> 
 lub ściągnąć go według zamieszczonych instrukcji. Po szybki przegląd klas zastosowanych w kodzie walidatora CSS, sprawdź plik zatytułowany &quot; 
 <a href="README.html">README</a> &quot;.</p>
 

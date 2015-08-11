@@ -89,7 +89,7 @@ ou criando novas funcionalidades.</p>
 <h3 id="dev">Cantinho do desenvolvedor </h3>
 <h4 id="code">Como foi escrito o código do  validador  CSS ? Ele está disponível em algum lugar?</h4>
 <p>O validador CSS do  W3C foi escrito em linguagem java e seu código está disponível usando CVS: você pode 
-<a href="http://dev.w3.org/cvsweb/2002/css-validator/">navegar online pelo código</a> 
+<a href="https://github.com/w3c/css-validator">navegar online pelo código</a> 
 ou baixar o código seguindo as instruções ali contidas. Para uma visão rápida das classses usadas pelo código ao validador CSS veja o arquivo 
 <a href="README.html">LEIA-ME</a>.</p>
 

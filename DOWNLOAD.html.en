@@ -29,15 +29,14 @@
 <h2>Download and Install the CSS Validator</h2>
 <h3 id="download">Download the CSS Validator</h3>	
 
-<p>The CSS validator is available in three different packaging: from CVS for developers who want the very latest version, 
+<p>The CSS validator is available in three different packaging: from Git for developers who want the very latest version, 
   as a jar archive to build applications and for use as a command line tool, and (since 2009) as a war archive for server-side
   applications.</p>
 
 <h4 id="source">Download the source code</h4>
-<p>The <a href="http://dev.w3.org/cvsweb/2002/css-validator">source of the CSS Validator</a> can be retrieved with CVS.
-Follow the <a href='http://dev.w3.org/cvsweb/'>instructions</a> to connect to the W3C's CVS server, and retrieve the
-<code>2002/css-validator</code> module. Please note that the online service for the CSS validator is a stable release, 
-generally a little older than the version under CVS, and their results and behaviour may differ.</p>
+<p>The <a href="https://github.com/w3c/css-validator">source of the CSS Validator</a> can be retrieved with Git.
+Please note that the online service for the CSS validator is a stable release, 
+generally a little older than the version under Git, and their results and behaviour may differ.</p>
 
 
 <h4>Download the Java archive (jar)</h4>
@@ -66,7 +65,7 @@ generally a little older than the version under CVS, and their results and behav
 
 <h4>Installation of the CSS validator under Tomcat</h4>
 <ol class="instructions">
-<li>Download the CVS source as explained <a href="#source">above</a> ;</li>
+<li>Download the Git source as explained <a href="#source">above</a> ;</li>
 <li>Edit the file called <span class="file">[<span class="const">VALIDATOR_DIR</span>]build.xml</span> and replace the value of
   property servlet.lib with the full path to <span class="file">servlet.jar</span>
 </li>
@@ -83,7 +82,7 @@ Copy or move <span class="file">css-validator.war</span> to <span class="dir">[<
 
 <h4>Installation of the CSS validator under Jigsaw</h4>
 <ol class="instructions">
-<li>Download the CVS source as explained previously,  save it under <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>
+<li>Download the Git source as explained previously,  save it under <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>
 and build source with <kbd>ant jigsaw</kbd> ;
 </li>
 <li>Next, configure the root folder for the validator (in most cases it will be called css-validator) to make it a servlet container.

@@ -176,7 +176,7 @@ W3C:s CSS-validerare är skriven i Java, och ja, dess källkod finns
 tillgänglig via CVS.
 
 Du kan
-<a href="http://dev.w3.org/cvsweb/2002/css-validator/">inspektera koden online</a>
+<a href="https://github.com/w3c/css-validator">inspektera koden online</a>
 eller följa anvisningarna där för att ladda ned hela källkodsträdet.
 
 En snabb översikt över klasserna i koden för CSS-valideraren finns på

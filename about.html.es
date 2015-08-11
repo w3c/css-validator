@@ -97,7 +97,7 @@ o ayudando a construir nuevas funciones.</p>
 <a href="Email">foros y listas de correo</a> disponibles. Pero antes, aseg&uacute;rate de que tu pregunta o comentario no est&aacute; ya cubierto por el documento de <a href="http://www.websitedev.de/css/validator-faq">Preguntas frecuentes del Validador CSS</a>.</p>
 <h3 id="dev">El rincon del desarrollador</h3>
 <h4 id="code">&iquest;En qu&eacute; est&aacute; escrito el Validador CSS? &iquest;Se encuentra el código fuente disponible en alg&uacute;n sitio?</h4>
-<p>El validador CSS del W3C est&aacute; escrito utilizando el lenguaje java, y s&iacute;, su código fuente se encuentra disponible, usando CVS: puedes <a href="http://dev.w3.org/cvsweb/2002/css-validator/">navegar el c&oacute;digo en l&iacute;nea</a> 
+<p>El validador CSS del W3C est&aacute; escrito utilizando el lenguaje java, y s&iacute;, su código fuente se encuentra disponible, usando CVS: puedes <a href="https://github.com/w3c/css-validator">navegar el c&oacute;digo en l&iacute;nea</a> 
 o seguir las instrucciones para descargar el &aacute;rbol completo del código fuente. Para una r&aacute;pida vista general de las clases usadas en el c&oacute;digo del Validador CSS, revisa el archivo 
 <a href="README.html">README</a>.</p>
 <h4 id="install">&iquest;Puedo instalar y ejecutar el Validador CSS por m&iacute; mismo?</h4>

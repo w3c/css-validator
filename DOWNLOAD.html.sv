@@ -38,7 +38,7 @@
 
 <h4 id="source">Ladda ned källkod</h4>
 <p>
-  <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS-valideraren</a>
+  <a href='https://github.com/w3c/css-validator'>CSS-valideraren</a>
   kan laddas ned med CVS.
   Följ <a href='http://dev.w3.org/cvsweb/'>anvisningarna</a> om
   hur man kontaktar W3C:s offentliga CVS-server, och hämta 2002/css-validator.

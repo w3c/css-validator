@@ -102,7 +102,7 @@ W3C의 <a href="http://www.w3.org/Consortium/sup">서포터즈 프로그램</a>�
 <h3 id="dev">개발자 코너</h3>
 <h4 id="code">이 검사 도구를 개발할때 사용한 언어는 무엇으며, 소스 코드는 제공이 되나요?</h4>
 <p>W3C CSS 검사 도구는 자바를 기반으로 제작하였으며, CVS를 통하여 소스 코드를 제공하고 있습니다.
-CVS에 있는 코드를 <a href="http://dev.w3.org/cvsweb/2002/css-validator/">온라인으로 보거나</a> 
+CVS에 있는 코드를 <a href="https://github.com/w3c/css-validator">온라인으로 보거나</a> 
 해당 페이지에서 제공하는 도움말을 참고로 하여 소스코드를 다운로드 받으시기 바랍니다.
 CSS 검사 도구에서 사용하는 클래스에 대한 개괄적인 설명은 <a href="README.html">이 곳에서</a> 제공하고 있습니다.</p>
 
