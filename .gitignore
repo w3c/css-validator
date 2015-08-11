@@ -5,3 +5,6 @@
 build
 lib
 tmp
+observer-response.xsd
+properties.zip
+variables.test
