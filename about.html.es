@@ -78,7 +78,7 @@ Puede utilizarse mediante este <a href="./">servicio gratu&iacute;to</a> en la w
 Lo que hace esta herramienta es ayudar a las personas que escriben CSS a comprobar, y corregir si es necesario, sus Hojas de Estilo en Cascada.</p>
 <h4 id="reference">De modo que, &iquest;&eacute;sto es lo que decide qu&eacute; es CSS correcto y qu&eacute; no lo es?</h4>
 <p>No. Es una herramienta &uacute;til y confiable, pero es una herramienta de software, y como todo software, tiene algunos 
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">errores e incidencias</a>.
+<a href="https://github.com/w3c/css-validator/issues">errores e incidencias</a>.
 La verdadera referencia sobre Hojas de Estilo en Cascada son las <a href="http://www.w3.org/Style/CSS/#specs">Especificaciones de CSS</a>.</p>
 <h4 id="free">&iquest;Cu&aacute;nto cuesta?</h4>
 <p>Nada. El servicio es gratis. El código fuente es <a href="DOWNLOAD.html">abierto</a> y eres libre de descargarlo, usarlo, modificarlo, distribuirlo y <a href="http://www.w3.org/Consortium/Legal/copyright-software">m&aacute;s</a>.
@@ -88,7 +88,7 @@ Si realmente te gusta, eres bienvenido a <a href="#participate">unirte al proyec
 <p>El W3C mantiene y aloja la herramienta, gracias al trabajo y contribuciones del personal del W3C, desarrolladores y traductores voluntarios. Lee la <a href="thanks.html">p&aacute;gina de cr&eacute;ditos y reconocimientos</a> para m&aacute;s detalles. <a href="#participate">T&uacute; tambi&eacute;n puedes ayudar</a>.</p>
 <h4 id="participate">&iquest;Puedo ayudar?</h4>
 <p>Por supueso. Si eres un programador java, puedes ayudar al proyecto del Validador CSS revisando el <a href="#code">c&oacute;digo</a>,
-adoptando y corrigiendo <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs</a>,
+adoptando y corrigiendo <a href="https://github.com/w3c/css-validator/issues">bugs</a>,
 o ayudando a construir nuevas funciones.</p>
 <p>Pero no necesitas ser un programador para ayudar a construir y mantener esta herramienta: tambi&eacute;n puedes ayudar a mejorar la documentaci&oacute;n, participar en la traducci&oacute;n del validador a tu lenguaje, o suscribirte a la 
 <a href="http://lists.w3.org/Archives/Public/www-validator-css/">lista de correo</a> y discutir sobre la herramienta o ayudar a otros usuarios.</p>

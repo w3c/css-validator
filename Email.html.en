@@ -35,7 +35,7 @@
       href='http://www.websitedev.de/css/validator-faq'>W3C CSS
       Validator Frequently Asked Questions (FAQ)</a> to see if your
       question has been answered there. A list of <a
-      href='http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator'>reported problems</a> is also available.
+      href='https://github.com/w3c/css-validator/issues'>reported problems</a> is also available.
     </p>
     <p>
       You have several CSS related mailing lists, so please pick the

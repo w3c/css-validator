@@ -94,7 +94,7 @@ CSS och vid skapandet av CSS formatmallar.
 
 Nej. Det är ett verktyg, hjälpande och tillförlitligt, men ändå ett
 programvaruverktyg, och som all annan programvara så har den några
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel och brister</a>.
+<a href="https://github.com/w3c/css-validator/issues">fel och brister</a>.
 
 Den sanna måttstocken för CSS-formatmallar är 
 <a href="http://www.w3.org/Style/CSS/#specs">CSS specifikationerna</a>.
@@ -138,7 +138,7 @@ Naturligtvis. Om du är Javaprogrammerare, så kan du hjälpa projektet
 CSS-valideraren genom att granska
 <a href="#code">koden</a>,
 diagnosticera och rätta
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">fel</a>,
+<a href="https://github.com/w3c/css-validator/issues">fel</a>,
 eller att hjälpa till med att konstruera ny funktionalitet.
 
 </p><p>

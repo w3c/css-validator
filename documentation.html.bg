@@ -60,7 +60,7 @@
     <dt><a href="./api.html">Web Service API</a></dt>
     <dd>Документация на SOAP 1.2 интерфейс за валидация</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Бъгове</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Бъгове</a></dt>
     <dd>Спорни моменти в настоящата версия на валидатора и интерфейс за известяване за бъгове и проблеми. 
     Вижте също <a href="Email.html">инструкциите за обратна връзка</a>.</dd>
 
