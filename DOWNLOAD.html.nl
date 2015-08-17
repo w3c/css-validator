@@ -35,7 +35,7 @@
 
 	<h4 id="source">Download de broncode</h4>
     <p>
-      De <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS validator</a> is als download beschikbaar via CVS.
+      De <a href='https://github.com/w3c/css-validator'>CSS validator</a> is als download beschikbaar via CVS.
       Volg de <a href='http://dev.w3.org/cvsweb/'>instructies</a> om
 	      de publieke W3C CVS server te benaderen en download 2002/css-validator. Opmerking: de online versie
 	  van de CSS Validator is in het algemeen ouder dan de CVS versie, dus resultaten en het uiterlijk

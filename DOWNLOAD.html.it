@@ -36,7 +36,7 @@
 
 	<h4 id="source">Scaricare il sorgente</h4>
     <p>
-      Il <a href='http://dev.w3.org/cvsweb/2002/css-validator'>validatore CSS</a> è disponibile per lo scaricamento utilizzando CVS.
+      Il <a href='https://github.com/w3c/css-validator'>validatore CSS</a> è disponibile per lo scaricamento utilizzando CVS.
       Seguire le <a href='http://dev.w3.org/cvsweb/'>istruzioni</a> per accedere al server CVS pubblico del W3C acquisendo la sezione 2002/css-validator. Nota che la versione in linea del validatore CSS generalmente è antecedente alla versione disponibile nel CVS e pertanto il risultato e l'aspetto dell'applicazione potrebbero avere delle piccole differenze...
     </p>	
 	<h4>Scarica come pacchetto java (jar oppure war)</h4>

@@ -79,7 +79,7 @@
 
 <h3 id="dev">开发者园地</h3>
 <h4 id="code">这个css验证器是用什么写的？源代码可以拿到么？</h4>
-<p>W3C的 css验证器是使用Java开发的，当然，还是开源的，你可以通过CVS：<a href="http://dev.w3.org/cvsweb/2002/css-validator/">在线察看代码</a>或者下载所有的代码。察看<a href="README.html">readme</a>文件可以快速的了解css验证器的概貌。</p>
+<p>W3C的 css验证器是使用Java开发的，当然，还是开源的，你可以通过CVS：<a href="https://github.com/w3c/css-validator">在线察看代码</a>或者下载所有的代码。察看<a href="README.html">readme</a>文件可以快速的了解css验证器的概貌。</p>
 
 <h4 id="install">我能自己安装并运行这个验证器么？</h4>
 <p>当然可以，你还可以以命令行的形式或者安装到web服务器上以servlet的形式运行。你可以参考 <a href="RUN.html">如何安装和运行</a> 。</p>

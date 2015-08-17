@@ -33,7 +33,7 @@
 <h3 id="download">Загрузка</h3>	
 
 	<h4 id="source">Загрузка исходных файлов</h4>
-    <p><a href="http://dev.w3.org/cvsweb/2002/css-validator">Сервис проверки CSS</a> доступен для загрузки через CVS. Следуйте <a href="http://dev.w3.org/cvsweb/">инструкциям для доступа к общедоступному серверу CVS</a> и загрузите 2002/css-validator. Заметьте, что на jigsaw.w3.org/css-validator установлена более ранняя версия, нежели та, что хранится в репозитории CVS, так что результаты вывода и внешний вид могут незначительно различаться</p>
+    <p><a href="https://github.com/w3c/css-validator">Сервис проверки CSS</a> доступен для загрузки через CVS. Следуйте <a href="http://dev.w3.org/cvsweb/">инструкциям для доступа к общедоступному серверу CVS</a> и загрузите 2002/css-validator. Заметьте, что на jigsaw.w3.org/css-validator установлена более ранняя версия, нежели та, что хранится в репозитории CVS, так что результаты вывода и внешний вид могут незначительно различаться</p>
 
 	<h4>Загрузка пакета Java (jar или war)</h4>
 <!--	<p>TBD... we just need a stable location to put jar/war archives on a regular basis</p>-->

@@ -32,7 +32,7 @@
 
 	<h4 id="source">Изтегляне на кода</h4>
     <p>
-      <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS валидаторът</a> е достъпен за изтегляне през CVS.
+      <a href='https://github.com/w3c/css-validator'>CSS валидаторът</a> е достъпен за изтегляне през CVS.
       Следвайте <a href='http://dev.w3.org/cvsweb/'>инструкциите</a> за
       достъп до публичния W3C CVS сървър и намерете 2002/css-validator. Забележете,
       че онлайн версията на CSS Валидатора е, по принцип, по-стара от CVS

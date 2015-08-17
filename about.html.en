@@ -124,8 +124,8 @@ or comment is not covered already by the <a href="http://www.websitedev.de/css/v
 <h3 id="dev">Developers' corner</h3>
 <h4 id="code">What is the CSS Validator written in? Is the source available somewhere?</h4>
 <p>The W3C CSS validator is written using the java language, and yes, its source 
-is available, using CVS: you can 
-<a href="http://dev.w3.org/cvsweb/2002/css-validator/">browse the code online</a> 
+is available, using Git: you can 
+<a href="https://github.com/w3c/css-validator">browse the code online</a> 
 or follow the instructions there to download the whole source tree. For a quick
 overview of the classes used in the CSS Validator code, check out the 
 <a href="README.html">README</a> file.</p>

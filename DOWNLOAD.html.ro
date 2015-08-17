@@ -32,7 +32,7 @@
 <p>Validatorul CSS este disponibil in trei pachete diferite : prin CVS-uri de la dezvoltatorii care vor ultima versiune aparuta, ca o arhiva jar pentr a construi aplicatii si pentru folosire ca serviciu cu linie de comanda, si (din 2009) ca o arhiva war pentru aplicatiile server-side.</p>
 
 <h4 id="source">Descarca codul sursa</h4>
-<p><a href="http://dev.w3.org/cvsweb/2002/css-validator">Codul sursa al validatorului CSS</a> poate fi obtinut cu CVS.
+<p><a href="https://github.com/w3c/css-validator">Codul sursa al validatorului CSS</a> poate fi obtinut cu CVS.
 Urmeaza <a href='http://dev.w3.org/cvsweb/'>instructiunile </a> pentru a te conecta la serverul CVS al W3C si obtine modulul
 <code>2002/css-validator</code>. Observa ca serviciul online pentru validatorul CSS este o aparitie stabila, in general putin mai veche decat versiunea sub CVS, si rezultatele si comportamentul lor pot fi diferite.</p>
 

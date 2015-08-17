@@ -29,7 +29,7 @@
 <h3 id="download">Télécharger le validateur CSS</h3>	
 
 <h4 id="source">Télécharger le code source</h4>
-<p>Le <a href="http://dev.w3.org/cvsweb/2002/css-validator">validateur CSS</a> est disponible en téléchargement par CVS.
+<p>Le <a href="https://github.com/w3c/css-validator">validateur CSS</a> est disponible en téléchargement par CVS.
 Suivez les <a href='http://dev.w3.org/cvsweb/'>instructions</a> pour accéder au serveur CVS public du W3C et sélectionnez
 2002/css-validator. Notez que la version en ligne du validateur CSS est en général plus ancienne que la version CVS,
 de sorte que les résultats et l'aspect peuvent varier légèrement.

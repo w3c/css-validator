@@ -99,7 +99,7 @@ dans la <a href="http://www.websitedev.de/css/validator-faq"><abbr lang="fr" tit
 <h3 id="dev">Le coin des développeurs</h3>
 <h4 id="code">En quoi le validateur CSS est-il écrit ? Le code source est-il disponible quelque part ?</h4>
 <p>Le validateur CSS du W3C est écrit dans le langage Java, et oui, son code source est disponible par CVS : vous pouvez
-<a href="http://dev.w3.org/cvsweb/2002/css-validator/">parcourir le code en ligne</a>, ou y suivre les instructions pour télécharger
+<a href="https://github.com/w3c/css-validator">parcourir le code en ligne</a>, ou y suivre les instructions pour télécharger
 l'arbre source entier. Pour un aperçu des classes utilisées par le code du validateur CSS, voyez le fichier
 « <a href="README.html">README</a> ».</p>
 

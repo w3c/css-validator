@@ -35,7 +35,7 @@
 
 	<h4 id="source">下载源代码</h4>
     <p>
-      <a href='http://dev.w3.org/cvsweb/2002/css-validator'>CSS 验证器</a> 可以通过CVS下载。请参考<a href='http://dev.w3.org/cvsweb/'>W3C CVS Web客户端</a>  来访问w3c的公开cvs服务器，取得2002/css-validator目录即可取得源代码。
+      <a href='https://github.com/w3c/css-validator'>CSS 验证器</a> 可以通过CVS下载。请参考<a href='http://dev.w3.org/cvsweb/'>W3C CVS Web客户端</a>  来访问w3c的公开cvs服务器，取得2002/css-validator目录即可取得源代码。
 注意：这些源代码和cvs中正在开发的版本相比有点旧，所以可能看起来会和现在的版本有一点不同...
     </p>	
 	<h4>下载Java包(jar包格式或者war包格式)</h4>
