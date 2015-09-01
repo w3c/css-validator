@@ -5,7 +5,7 @@
   <!-- =================================================================== -->
   <!-- User-overrideable properties                                      -->
   <!-- =================================================================== -->
-      
+
   <property name="servlet.lib" value="/usr/share/java/servlet-2.3.jar"/>
 
   <!-- =================================================================== -->
@@ -16,18 +16,18 @@
   <property name="app.name" value="css-validator"/>
   <property name="jar.file" value="${app.name}.jar"/>
   <property name="war.file" value="${app.name}.war"/>
-	
+
   <!-- =================================================================== -->
   <!-- Targets                                                             -->
   <!-- =================================================================== -->
 
-	<path id="build.class.path">
-		<pathelement location="${servlet.lib}"/>
+  <path id="build.class.path">
+    <pathelement location="${servlet.lib}"/>
     <fileset dir="lib">
         <include name="*.jar"/>
     </fileset>
-	</path>
-	
+  </path>
+
   <target name="prepare.check">
     <condition property="prepare.run">
       <and>
@@ -89,58 +89,58 @@
     <copy file="tmp/htmlparser-1.4.1.jar" tofile="lib/htmlparser-1.4.1.jar"/>
   </target>
 
-	<target name="build" description="Builds the validator" depends="prepare">
-		<mkdir dir="./build"/>
-		<javac classpathref="build.class.path" destdir="./build" encoding="UTF-8"
+  <target name="build" description="Builds the validator" depends="prepare">
+    <mkdir dir="./build"/>
+    <javac classpathref="build.class.path" destdir="./build" encoding="UTF-8"
            debug="yes" includes="org/w3c/**" srcdir="." source="1.7" target="1.7"/>
-		<copy todir="./build">
+    <copy todir="./build">
       <fileset dir="./">
         <include name="org/**"/>
         <exclude name="**/*.java"/>
         <exclude name="**/*.class"/>
       </fileset>
-		</copy>
-	</target>
+    </copy>
+  </target>
 
-	<target name="jigsaw" description="Builds the validator for Jigsaw" depends="prepare">
-		<mkdir dir="./build"/>
-		<javac classpathref="build.class.path" destdir="." encoding="UTF-8"
+  <target name="jigsaw" description="Builds the validator for Jigsaw" depends="prepare">
+    <mkdir dir="./build"/>
+    <javac classpathref="build.class.path" destdir="." encoding="UTF-8"
            debug="yes" source="1.7" target="1.7">
-			<src path="./org/w3c"/>
-		</javac>
-	</target>
+      <src path="./org/w3c"/>
+    </javac>
+  </target>
 
-	<target name="javadoc" description="Generates API docs">
-		<mkdir dir="./javadoc"/>
-		<javadoc 
-			packagenames="org.w3c.*"
-			sourcepath="./"
-			destdir="./javadoc"
-			author="true"
-			version="true"
-			windowtitle="W3C CSS Validator API"/>
-	</target>	
-	
-	<target name="jar" depends="build" description="Creates the lib archive">
-		<delete file="${jar.file}"/>
-		<jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
-			<include name="org/**"/>
-			<manifest>
+  <target name="javadoc" description="Generates API docs">
+    <mkdir dir="./javadoc"/>
+    <javadoc
+      packagenames="org.w3c.*"
+      sourcepath="./"
+      destdir="./javadoc"
+      author="true"
+      version="true"
+      windowtitle="W3C CSS Validator API"/>
+  </target>
+
+  <target name="jar" depends="build" description="Creates the lib archive">
+    <delete file="${jar.file}"/>
+    <jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
+      <include name="org/**"/>
+      <manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
         <attribute name="Class-path" value=". lib/commons-beanutils-1.9.0.jar lib/commons-collections-3.2.1.jar lib/commons-digester-1.8.1.jar lib/commons-lang-2.6.jar lib/commons-logging-1.1.1.jar lib/jigsaw.jar lib/tagsoup-1.2.1.jar lib/velocity-1.7.jar lib/velocity-tools-generic-2.0.jar lib/xercesImpl.jar lib/xml-apis.jar lib/htmlparser-1.4.1.jar"/>
-			</manifest>
-		</jar>
-	</target>
+      </manifest>
+    </jar>
+  </target>
 
-	<target name="war" depends="build" description="Creates the webapp module">
-		<delete file="${war.file}"/>
-		<war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html,css-validator.*">
-                  <classes dir="build"/>
-                  <lib dir="lib">
-                    <exclude name="*servlet*.jar"/>
-                  </lib>
-		</war>
-	</target>
+  <target name="war" depends="build" description="Creates the webapp module">
+    <delete file="${war.file}"/>
+    <war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html,css-validator.*">
+      <classes dir="build"/>
+      <lib dir="lib">
+        <exclude name="*servlet*.jar"/>
+      </lib>
+    </war>
+  </target>
 
   <target name="clean" description="Cleans up generated files">
     <delete file="${jar.file}"/>
