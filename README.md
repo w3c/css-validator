@@ -1,5 +1,7 @@
 # CSS Validator Project ![Jigsaw Powered](http://jigsaw.w3.org/Icons/jigpower.gif)
 
+[![Build Status](https://travis-ci.org/w3c/css-validator.svg?branch=master)](https://travis-ci.org/w3c/css-validator)
+
 The latest development code for the CSS Validator is available through [the GitHub repository](https://github.com/w3c/css-validator).
 
 For a visual representation, see the [CSS Validator Sequence Diagram](https://github.com/w3c/css-validator/raw/master/docs/CSS_Validator_Sequence_Diagram.png), which is available in [png](https://github.com/w3c/css-validator/raw/master/docs/CSS_Validator_Sequence_Diagram.png), [graffle](https://github.com/w3c/css-validator/raw/master/docs/CSS_Validator_Sequence_Diagram.graffle) and [svg](https://github.com/w3c/css-validator/raw/master/docs/CSS_Validator_Sequence_Diagram.svg) formats.
