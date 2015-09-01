@@ -51,7 +51,7 @@
 <dd>Un aperçu du code du validateur CSS</dd>
 <dt><a href="./api.html">L'API de service Web</a></dt>
 <dd>La documentation de l'interface de validation SOAP 1.2</dd>
-<dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Les bogues</a></dt>
+<dt><a href="https://github.com/w3c/css-validator/issues">Les bogues</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Les bogues</a></dt>
 <dd>Les problèmes connus de la version actuelle du validateur, et une interface pour soumettre des bogues et problèmes nouveaux. 
 Voir également les <a href="Email.html">instructions pour laisser un commentaire</a>.</dd>
 </dl>

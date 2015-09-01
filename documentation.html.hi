@@ -58,6 +58,9 @@
 			<dt><a href="./api.html">वेब सेवा एपीआई</a></dt>
 			<dd>ससोप 1.2 अंतरफलक प्रलेखन सत्यापन</dd>
 			<dt>
+			<a href="https://github.com/w3c/css-validator/issues">
+			कीड़े</a>
+			&amp;
 			<a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">
 			कीड़े</a></dt>
 			<dd>मान्यकर्ता के वर्तमान संस्करण में ज्ञात मुद्दों, और एक अंतरफलक नए 

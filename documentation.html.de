@@ -51,7 +51,7 @@
     <dt><a href="./api.html">Web Service API</a></dt>
     <dd>Dokumentation zum SOAP 1.2 Interface</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Legacy Bugs</a></dt>
     <dd>Bekannte Probleme in der aktuellen Version des Validators und ein Interface zum Melden von neuen Bugs und Problemen. Siehe auch <a href="Email.html">Anleitung zum Feedback</a>.</dd>
 
 

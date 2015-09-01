@@ -58,7 +58,7 @@
     <dt><a href="./api.html">Web Service 的 API</a></dt>
     <dd>关于SOAP 1.2 验证接口的文档</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Bugs</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Legacy Bugs</a></dt>
     <dd>关于当前版本CSS 验证器的一些已知问题，并且提供提交新的bug和问题的链接。 更多请参考<a href="Email.html">如何反馈信息</a>.</dd>
 
 </dl>

@@ -81,8 +81,11 @@
 	<h4 id="reference">तो, क्या यह अधिकार सही है सीएसएस और क्या नहीं है? </h4>
 	<p>नहीं, यह एक उपयोगी और विश्वसनीय उपकरण है, लेकिन एक सॉफ्टवेयर उपकरण है, हर 
 	सॉफ्टवेयर की तरह और, यह
-	<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कुछ 
-	क़ी मुददा</a> है शैली पत्रक कास्केडिंग पर वास्तविक संदर्भ
+	<a href="https://github.com/w3c/css-validator/issues">कुछ 
+	क़ी मुददा</a>
+	&amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कुछ 
+	क़ी मुददा</a>
+	है शैली पत्रक कास्केडिंग पर वास्तविक संदर्भ
 	<a href="http://www.w3.org/Style/CSS/#specs">सीएसएस निर्दिष्टीकरण</a> हैं.</p>
 	<h4 id="validCSS">मान्य सीएसएस का क्या मतलब है? यह मान्यकर्ता कौन से सीएसएस 
 	संस्करण में का उपयोग करता है?</h4>
@@ -119,7 +122,9 @@
 	<h4 id="participate">मैं मदद कर सकता हूँ ?</h4>
 	<p>बेशक. यदि आप एक जावा प्रोग्रामर हैं, तो आप <a href="#code">कोड</a> बाहर की 
 	जाँच द्वारा सीएसएस मान्यकर्ता परियोजना मदद, अपनाने और
-	<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कीड़े 
+	<a href="https://github.com/w3c/css-validator/issues">कीड़े 
+	फिक्सिंग</a>
+	&amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">कीड़े 
 	फिक्सिंग</a>, या नई सुविधाओं के निर्माण में मदद कर सकते हैं. </p>
 	<p>लेकिन आप एक मदद करने के लिए इस उपकरण का निर्माण और बनाए रखने के लिए सांकेतिक 
 	शब्दों में बदलनेवाला की आवश्यकता नहीं है: क्या आप भी मदद कर सकते है प्रलेखन 

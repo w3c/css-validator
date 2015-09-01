@@ -62,7 +62,7 @@ A finalidade da ferramenta validador CSS é a de auxiliar o desenvolvedor na tar
 
 <h4 id="reference">Então, essa é a autoridade que determina se a CSS está ou não correta?</h4>
 <p>Não. É apenas uma ferramenta valiosa e confiável, ressalvado que, sendo uma ferramenta baseada em um software, está sujeita a 
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs e incorreções </a>.
+<a href="https://github.com/w3c/css-validator/issues">bugs e incorreções </a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs e incorreções </a>.
 A referência atual para folhas de estilo é a  <a href="http://www.w3.org/Style/CSS/#specs">especificação para CSS</a>.</p>
 
 <h4 id="free">Quanto custa ?</h4>
@@ -76,7 +76,7 @@ para maiores detalhes. <a href="#participate">Você pode participar.</a></p>
 
 <h4 id="participate">Posso ajudar ?</h4>
 <p>Certamente que sim . Se você é um programador  java você pode ajudar a desenvolver o projeto do validador conferindo o  <a href="#code">código</a>,
-analisando e corrigindo <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bugs</a>,
+analisando e corrigindo <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>,
 ou criando novas funcionalidades.</p>
 <p>Mas, você não precisa ser um programador para manutenir e aperfeiçoar essa ferramenta: você pode ajudar na melhoria da documentação, participar de traduções do validador ou mesmo se inscrever na 
 <a href="http://lists.w3.org/Archives/Public/www-validator-css/">lista de discussão</a> para participar das discussões e ajudar usuários com dúvidas.</p>

@@ -61,7 +61,7 @@
 <p>大部分的网页是使用html的计算机语言编写的，这种语言能创建一个结构化划分信息，超链接，多媒体对象等。对于颜色，文字，布局等样式方面的问题，html采用css来解决，css是“层叠样式表”的简称。这个工具所做的事情就是帮助用户进行css的检查，并且在需要的时候可以做一些自动更正。</p>
 
 <h4 id="reference">那么，这个东西是判断一个css是正确与否的权威么？</h4>
-<p>不，它只是一个有用的可靠的软件工具，和所有的软件一样，它也有自己的<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bug和问题</a>。真正的权威应该参考<a href="http://www.w3.org/Style/CSS/#specs">css标准</a>。</p>
+<p>不，它只是一个有用的可靠的软件工具，和所有的软件一样，它也有自己的<a href="https://github.com/w3c/css-validator/issues">bug和问题</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug和问题</a>。真正的权威应该参考<a href="http://www.w3.org/Style/CSS/#specs">css标准</a>。</p>
 
 <h4 id="free">需要花费多少钱？</h4>
 <p>不需要。这个服务是免费的，并且<a href="DOWNLOAD.html">源代码</a>也是公开的，你可以自由的下载，使用，修改，分发<a href="http://www.w3.org/Consortium/Legal/copyright-software">等等</a>。 如果你很喜欢它，我们也欢迎你<a href="#participate">加入这个项目</a>，或者通过<a href="http://www.w3.org/Consortium/sup">w3c的支持者程序</a>来资助它，但是没有任何人可以强迫你这样做。</p>
@@ -70,7 +70,7 @@
 <p>W3C维护并运行这个服务，感谢w3c的成员，志愿开发者和志愿翻译者所作的工作。更详细的信息请访问<a href="thanks.html">创作人员列表</a>。你也可以<a href="#participate">加入</a>进来。 </p>
 
 <h4 id="participate">我能帮着做点什么呢？</h4>
-<p>当然，如果你是一个Java的编程人员，你可以通过取得<a href="#code">源代码</a>，添加你的新代码或者改正<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bug</a>的代码。</p>
+<p>当然，如果你是一个Java的编程人员，你可以通过取得<a href="#code">源代码</a>，添加你的新代码或者改正<a href="https://github.com/w3c/css-validator/issues">bug</a>&amp;<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bug</a>的代码。</p>
 <p>除此之外，你也可以通过改进文档，翻译，加入<a href="http://lists.w3.org/Archives/Public/www-validator-css/">mailinglist</a>去解答别人的疑问来帮助这个工具。</p>
 
 <h4 id="contact">还有别的问题？</h4>

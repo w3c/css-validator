@@ -69,7 +69,7 @@
 
 <h4 id="reference">요약하자면 어떤 CSS가 올바른지 올바르지 않은지 평가할 수 있는 절대적인 기준이라는 말이군요?</h4>
 <p>그렇지는 않습니다. 비록 비교적 안정적인 도구이지만, 모든 소프트웨어가 그렇듯 이 검사 도구
-역시 소프트웨어인 만큼 <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">버그와 문제점</a>이
+역시 소프트웨어인 만큼 <a href="https://github.com/w3c/css-validator/issues">버그와 문제점</a>이 &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">버그와 문제점</a>이
 있습니다. 절대적인 기준이 필요할 경우에는 <a href="http://www.w3.org/Style/CSS/#specs">CSS 표준 문서</a>를
 참고하면 됩니다.</p>
 
@@ -86,7 +86,7 @@ W3C의 <a href="http://www.w3.org/Consortium/sup">서포터즈 프로그램</a>�
 
 <h4 id="participate">참여할 수 있는 방법이 있나요?</h4>
 <p>물론입니다. 만일 자바 프로그래밍이 가능하다면, <a href="#code">소스 코드</a> 체크 아웃을 하고
-현재 알려진 <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">버그 또는 문제점</a>을
+현재 알려진 <a href="https://github.com/w3c/css-validator/issues">버그 또는 문제점</a>을 &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">버그 또는 문제점</a>을
 수정하거나 새로운 기능을 추가하는데 도움을 주는 방법으로 참여할 수 있습니다.</p>
 <p>
 하지만 참여를 위해서 반드시 프로그래밍 능력이 필요한 것은 아닙니다. 서비스의 설명서와 같은 문서를 개선하거나

@@ -64,7 +64,7 @@ Può essere utilizzato sia tramite questo <a href="./">servizio gratuito</a> dis
 
 <h4 id="reference">Allora questa è l'autorità che giudica se un CSS è corretto oppure se non lo è?</h4>
 <p>No. Questo strumento è senz'altro di grande aiuto ma è un'applicazione software e come ogni software incorre in
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">problemi e necessità di implementazioni aggiuntive</a>.
+<a href="https://github.com/w3c/css-validator/issues">problemi e necessità di implementazioni aggiuntive</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">problemi e necessità di implementazioni aggiuntive</a>.
 Il riferimento attuale per i fogli di stile a cascata sono le <a href="http://www.w3.org/Style/CSS/#specs">Specifiche CSS</a>.</p>
 
 <h4 id="free">Quanto costa?</h4>
@@ -76,7 +76,7 @@ Se realmente il prodotto ti piace, sei il benvenuto ad <a href="#participate">ac
 <p>Il W3C mantiene ed ospita questo strumento, grazie al lavoro ed al contributo dello staff del W3C e all'attività volontaria di supporto di sviluppatori e traduttori. Consulta la <a href="thanks.html">pagina dei crediti e riconoscimenti</a> per maggiori dettagli. Se lo desideri, <a href="#participate">puoi anche aiutarci</a>.</p>
 
 <h4 id="participate">Posso aiutarvi?</h4>
-<p>Certamente. Se sei uno sviluppatore java puoi aiutare il progetto del Validatore CSS analizzando il <a href="#code">codice</a>, selezionando e risolvendo <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">problemi</a>, oppure aiutando a sviluppare nuove caratteristiche.</p>
+<p>Certamente. Se sei uno sviluppatore java puoi aiutare il progetto del Validatore CSS analizzando il <a href="#code">codice</a>, selezionando e risolvendo <a href="https://github.com/w3c/css-validator/issues">problemi</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">problemi</a>, oppure aiutando a sviluppare nuove caratteristiche.</p>
 <p>Comunque non è necessario essere dei programmatori per aiutare a sviluppare e a mantenere questo strumento: puoi anche partecipare allo sviluppo della documentazione, partecipare alla traduzione del validatore nella tua lingua oppure partecipare alla  
 <a href="http://lists.w3.org/Archives/Public/www-validator-css/">lista di discussione</a> relativa allo strumento di validazione dei CSS aiutando gli altri utenti.</p>
 

@@ -59,8 +59,8 @@
     <dd>مستند سازی واسط اعتبار سنجی SOAP 1.2</dd>
     
     <dt>
-	<a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">
-	اشکالات</a></dt>
+	<a href="https://github.com/w3c/css-validator/issues">
+	اشکالات</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">اشکالات</a></dt>
     <dd>موضوعات شناخته شده در ورژن جاری اعتبار سنج و یک واسط جهت ارایه ی اشکالات 
 	جدید و مسائل مشخص. <a href="Email.html">دستور العمل های بازخورد</a> 
 	را نیز مشاهده کنید.</dd>

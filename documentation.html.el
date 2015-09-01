@@ -62,7 +62,7 @@
     <dt><a href="./api.html">API Υπηρεσίας Web</a></dt>
     <dd>Εγχειρίδιο της διασύνδεσης ελέγχου εγκυρότητας SOAP 1.2</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Σφάλματα</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Σφάλματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Σφάλματα</a></dt>
     <dd>Γνωστά προβλήματα στην τρέχουσα έκδοση του ελεγκτή εγκυρότητας και μία διασύνδεση για την υποβολή νέων σφαλμάτων και προβλημάτων. 
     Δείτε επίσης τις <a href="Email.html">οδηγίες για την υποβολή της γνώμη σας</a>.</dd>
 </dl>

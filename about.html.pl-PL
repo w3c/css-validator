@@ -63,7 +63,7 @@ Można z niego korzystać w sieci dzięki <a href="./">naszej darmowej usłudze<
 <p>Większość dokumentów internetowych napisana jest w języku zwanym HTML. Język ten jest używany do tworzenia stron internetowych zawierających informacje dotyczące struktury, linków i obiektów multimedialnych. HTML korzysta z języka stylów nazwanego CSS, skrót od "Cascading Style Sheets", do formatowania koloru, tekstu i layoutu dokumentów. Narzędzie nasze pomaga ludziom w sprawdzaniu poprawności CSS i ewentualnym poprawkom arkuszy stylów.</p>
 
 <h4 id="reference">Czy walidator jest wyznacznikiem tego co jest poprawnym dokumentem CSS, a co nie jest?</h4>
-<p>Nie. Jest pomocnym i przydatnym narzędziem, ale jedynie programem i jak każdy program ma pewne <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">błędy i problemy</a>.
+<p>Nie. Jest pomocnym i przydatnym narzędziem, ale jedynie programem i jak każdy program ma pewne <a href="https://github.com/w3c/css-validator/issues">błędy i problemy</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">błędy i problemy</a>.
 Właściwymi referencjami odnośnie Kaskadowych Arkuszy Stylów są <a href="http://www.w3.org/Style/CSS/#specs">specyfikacje CSS</a>.</p>
 
 <h4 id="free">Ile to kosztuje?</h4>
@@ -77,7 +77,7 @@ po więcej szczegółów.<a href="#participate"> Ty również możesz pomóc</a>
 
 <h4 id="participate">Czy mogę pomóc?</h4>
 <p>Oczywiście. Jeśli jesteś programistą(ką) w języku Java, możesz pomóc w Projekcie Walidatora CSS poprzez sprawdzanie <a href="#code">kodu</a>,
-usuwanie <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">błędów</a>
+usuwanie <a href="https://github.com/w3c/css-validator/issues">błędów</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">błędów</a>
 lub budowanie nowych funkcji. </p>
 <p>Nie musisz być jednak programistą, aby pomóc w budowaniu i utrzymywaniu tego narzędzia: możesz również pomagać przy polepszaniu dokumentacji, tłumaczeniu Walidatora na inne języki lub poprzez wpisanie się na naszą <a href="http://lists.w3.org/Archives/Public/www-validator-css/">listę mailingową</a> w celu prowadzenia dyskusji na temat tego programu lub pomocy innym użytkownikom tego narzędzia. </p>
 

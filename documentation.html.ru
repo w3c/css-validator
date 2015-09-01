@@ -58,7 +58,7 @@
     <dt><a href="./api.html">API веб-сервиса</a></dt>
     <dd>— документация по интерфейсу взаимодействия через SOAP 1.2.</dd>
 
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Ошибки</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Ошибки</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Ошибки</a></dt>
     <dd>— известные ошибки и проблемы работы текущей версии сервиса, форма для сообщения о новых ошибках и проблемах. Также смотрите <a href="Email.html">инструкции по составлению отзывов</a>.</dd>
 
 </dl>

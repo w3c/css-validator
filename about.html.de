@@ -72,7 +72,7 @@ Textformate und Layout benutzt HTML die Style-Sprache CSS, kurz für
 zu helfen, CSS Style Sheets zu entwickeln und, wenn nötig, zu
 korrigieren.</p><h4 id="reference">Ist der Validator die letzte Instanz wenn es um korrektes CSS geht?<br />
 </h4>
-<p>Nein. Aber er ist ein nützliches und zuverlässiges Tool, und wie jede Software hat er <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">Bugs und Probleme</a>.
+<p>Nein. Aber er ist ein nützliches und zuverlässiges Tool, und wie jede Software hat er <a href="https://github.com/w3c/css-validator/issues">Bugs und Probleme</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy Bugs und Probleme</a>.
 Die eigentliche Referenz für Cascading Style Sheets sind die <a href="http://www.w3.org/Style/CSS/#specs">CSS Spezifikationen</a>.</p>
 
 
@@ -87,7 +87,7 @@ hierzu die Seite mit <a href="thanks.html">Referenzen und Danksagungen</a>. <a h
 
 
 <h4 id="participate">Kann ich mithelfen?</h4>
-<p>Natürlich. Wenn Sie Java-Programmierer sind, können Sie dem CSS Validator Projekt helfen, indem Sie den <a href="#code">code</a> auschecken, sich der <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">Bugs</a> annehmen und sie fixen, oder mithelfen, neue Features zu bauen.</p>
+<p>Natürlich. Wenn Sie Java-Programmierer sind, können Sie dem CSS Validator Projekt helfen, indem Sie den <a href="#code">code</a> auschecken, sich der <a href="https://github.com/w3c/css-validator/issues">Bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy Bugs</a> annehmen und sie fixen, oder mithelfen, neue Features zu bauen.</p>
 
 <p>Aber Sie müssen kein Programmierer sein, um beim Aufbau und der
 Pflege des Validators mithelfen zu können. Sie können auch beitragen,

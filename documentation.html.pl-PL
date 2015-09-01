@@ -57,7 +57,7 @@
     <dt><a href="./api.html">API Usługi</a></dt>
     <dd>Dokumentacja interfejsu walidatora SOAP 1.2</dd>
     
-    <dt><a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (bugs)</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Błędy (bugs)</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Błędy (legacy bugs)</a></dt>
     <dd>Znane problemy w obecnej wersji walidatora oraz interfejs do zgłaszania błędów i problemów. Zobacz także <a href="./Email.html">instrukcje na temat dostarczania opinii.</a></dd>
 
 </dl>

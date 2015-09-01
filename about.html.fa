@@ -80,7 +80,8 @@
 است و آنچه را که&nbsp; اینگونه نیست را در اختیار قرار می دهد؟</h4>
 <p>نه. این ابزاری سودمند و قابل اطمینان است، در عین حال یک ابزار نرم افزاری است و مشابه هر 
 نرم افزار دیگری
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">مشکلات 
+<a href="https://github.com/w3c/css-validator/issues">مشکلات 
+و اشکالاتی</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">مشکلات 
 و اشکالاتی</a> دارد.
 مرجع واقعی در شیوه نامه های آبشاری <a href="http://www.w3.org/Style/CSS/#specs">
 خصوصیات CSS</a> هستند.</p>
@@ -102,7 +103,7 @@ W3C</span>، توسعه دهندگان و مترجم های داوطلب جای 
 <h4 id="participate">می توانم کمک کنم؟</h4>
 <p>مطمئنا. اگر شما یک برنامه نویس جاوا هستید، می توانید با مورد بررسی قرار دادن
 <a href="#code">کد</a>، گزینش
-<a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">اشکالات</a> 
+<a href="https://github.com/w3c/css-validator/issues">اشکالات</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">اشکالات</a>
 ثابت یا یاری در ایجاد ویژگی های جدید، به پروژه ی اعتبار سنج <span lang="en-us">
 CSS</span> کمک کنید.</p>
 <p>اما شما جهت ایجاد و پشتیانی از این ابزار به وجود یک رمزگذار نیاز ندارید: 
