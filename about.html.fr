@@ -68,7 +68,7 @@ Le validateur aide donc les créateurs CSS à vérifier et à réparer, le cas �
 
 <h4 id="reference">C'est donc l'instance qui décide si le CSS est correct ou s'il ne l'est pas ?</h4>
 <p>Non. C'est un outil efficace et fiable, mais c'est un outil logiciel qui, comme tout logiciel, a des
-<a href="https://github.com/w3c/css-validator/issues">bogues et des problèmes</a>.
+<a href="https://github.com/w3c/css-validator/issues">bogues et des problèmes</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bogues et des problèmes</a>.
 Les véritables références pour les feuilles de style en cascade sont les <a href="http://www.w3.org/Style/CSS/#specs">spécifications CSS</a>.</p>
 
 <h4 id="free">Combien ça coûte ?</h4>
@@ -84,7 +84,7 @@ et traducteurs bénévoles. Voir la <a href="thanks.html">pages des mentions et 
 
 <h4 id="participate">Puis-je aider ?</h4>
 <p>Bien sûr. Si vous êtes un programmeur Java, vous pouvez contribuer au projet du validateur CSS en vérifiant le <a href="#code">code</a>,
-en prenant les <a href="https://github.com/w3c/css-validator/issues">bogues</a> à votre compte et en les réparant,
+en prenant les <a href="https://github.com/w3c/css-validator/issues">bogues</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">bogues</a> à votre compte et en les réparant,
 ou en y apportant de nouvelles fonctionnalités.</p>
 <p>Mais il n'est pas nécessaire de programmer pour construire et entretenir cet outil : vous pouvez aussi contribuer en améliorant
 la documentation, en traduisant le validateur dans votre langue, ou vous inscrire à la 

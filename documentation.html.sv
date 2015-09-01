@@ -59,7 +59,7 @@
   <dt><a href="./api.html">Web Service API</a></dt>
   <dd>Dokumentation av SOAP 1.2-gränssnitt mot valideraren</dd>
       
-  <dt><a href="https://github.com/w3c/css-validator/issues">Buggar</a></dt>
+  <dt><a href="https://github.com/w3c/css-validator/issues">Buggar</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Buggar</a></dt>
   <dd>Kända problem i aktuell version av valideraren, och ett
       gränssnitt med vilket man kan meddela nya buggar och problem.
       Se även <a href="Email.html">anvisningar för hur synpunkter delges</a>.</dd>

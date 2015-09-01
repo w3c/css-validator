@@ -66,7 +66,7 @@ CSS, θα σας βοηθάει να εντοπίσετε τα λάθη ή τι�
 
 <h4 id="reference">Οπότε, πρόκειται για μία υπηρεσία ελέγχου σχετικά με το τί είναι σωστό CSS και τι όχι;</h4>
 <p>Όχι. Είναι ένα χρήσιμο και αξιόπιστο εργαλείο, αλλά ένα εργαλείο λογισμικού, και όπως κάθε εργαλείο λογισμικού, έχει κάποια 
-<a href="https://github.com/w3c/css-validator/issues">σφάλματα και προβλήματα</a>.
+<a href="https://github.com/w3c/css-validator/issues">σφάλματα και προβλήματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα και προβλήματα</a>.
 Η πραγματική αναφορά στα Cascading Style Sheets βρίσκεται στις <a href="http://www.w3.org/Style/CSS/#specs">Προδιαγραφές CSS</a>.</p>
 
 <h4 id="validCSS">Τι σημαίνει “Έγκυρο CSS”; Ποια έκδοση  CSS χρησιμοποιεί ο Ελεγκτής Εγκυρότητας;</h4>
@@ -94,7 +94,7 @@ title="Cascading Style Sheets Level 2 Revision 1 (CSS&nbsp;2.1) Specification">C
 
 <h4 id="participate">Μπορώ να βοηθήσω;</h4>
 <p>Φυσικά. Εάν είστε προγραμματιστής  java, μπορείτε να βοηθήσετε στο έργο Ελεγκτή Εγκυρότητας CSS, ελέγχοντας τον <a href="#code">κώδικα</a>,
-διορθώνοντας <a href="https://github.com/w3c/css-validator/issues">σφάλματα</a>
+διορθώνοντας <a href="https://github.com/w3c/css-validator/issues">σφάλματα</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">σφάλματα</a>
 ή βοηθώντας στη δημιουργία νέων χαρακτηριστικών.</p>
 <p>Αλλά δε χρειάζεται να είστε προγραμματιστής για να βοηθήσετε στη δημιουργία και συντήρηση του εργαλείου, μπορείτε να βοηθήσετε στη βελτίωση του εγχειρίδιου χρήσης, να συμμετέχετε στην μετάφραση του ελεγκτή εγκυρότητας στη γλώσσα σας ή να εγγραφείτε στη  
 <a href="http://lists.w3.org/Archives/Public/www-validator-css/">λίστα ενημέρωσης</a> και να συζητήσετε για το εργαλείο ή να βοηθήσετε άλλους.</p>

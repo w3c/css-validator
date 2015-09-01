@@ -71,7 +71,7 @@ What this tool does is help people authoring CSS check, and fix if necessary, th
 
 <h4 id="reference">So, this is the authority on what is correct CSS and what isn't?</h4>
 <p>No. It is a helpful and reliable tool, but a software tool, and like every software, it has some
-<a href="https://github.com/w3c/css-validator/issues">bugs and issues</a>.
+<a href="https://github.com/w3c/css-validator/issues">bugs and issues</a> (and <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>).
 The actual reference on Cascading Style Sheets are the <a href="http://www.w3.org/Style/CSS/#specs">CSS 
 Specifications</a>.</p>
 
@@ -107,7 +107,7 @@ for details. <a href="#participate">You too can help</a>.</p>
 <h4 id="participate">Can I help?</h4>
 <p>Of course. If you are a java programmer, you can help the CSS Validator project by 
 checking out the <a href="#code">code</a>,
-adopting and fixing <a href="https://github.com/w3c/css-validator/issues">bugs</a>,
+adopting and fixing <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>,
 or helping build new features.</p>
 <p>But you do not need to be a coder to help build and maintain this tool: you can also help improve the 
 documentation, participate in translating the validator in your language, or subscribe to the 

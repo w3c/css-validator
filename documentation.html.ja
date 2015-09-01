@@ -64,7 +64,7 @@
     <dt><a href="./api.html">ウェブサービスAPI</a></dt>
     <dd>SOAP 1.2 検査インターフェースについての文書</dd>
     
-    <dt><a href="https://github.com/w3c/css-validator/issues">バグ</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">バグ</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">バグ</a></dt>
     <dd>現バージョンの CSS 検証サービスに既知の問題と、新しいバグや問題を投稿するためのインターフェース。
     <a href="Email.html">フィードバックの手引き</a>も参照してください。</dd>
 

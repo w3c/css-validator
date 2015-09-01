@@ -74,7 +74,7 @@ Deze tool helpt mensen die zich bezig houden met het ontwikkelen van webpagina's
 
 <h4 id="reference">Dus deze service bepaalt wat wel of geen correct CSS is?</h4>
 <p>Nee. Het is een helpvolle en betrouwbare tool, maar het blijft software, en zoals elk stuk software heeft de validator een aantal
-<a href="https://github.com/w3c/css-validator/issues">bugs en problemen</a>.
+<a href="https://github.com/w3c/css-validator/issues">bugs en problemen</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs en problemen</a>.
 De echte referentie over Cascading Style Sheets zijn de offici&euml;le <a href="http://www.w3.org/Style/CSS/#specs">CSS 
 Specificaties</a>.</p>
 
@@ -93,7 +93,7 @@ voor details. <a href="#participate">Ook jij kunt helpen</a>.</p>
 
 <h4 id="participate">Kan ik helpen?</h4>
 <p>Natuurlijk, graag zelfs! Als je een java programmeur bent kun je meehelpen aan het CSS Validator project door 
-de <a href="#code">broncode</a> op te halen en te helpen bij het oplossen van <a href="https://github.com/w3c/css-validator/issues">bugs</a>,
+de <a href="#code">broncode</a> op te halen en te helpen bij het oplossen van <a href="https://github.com/w3c/css-validator/issues">bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">legacy bugs</a>,
 of door het helpen bij het implementeren van nieuwe functies.</p>
 <p>Maar je hoeft niet perse een coder te zijn om te helpen bij het bouwen en onderhouden van deze tool: je kunt ook helpen de documentatie
 te verbeteren, mee te werken door de validator in jouw taal te vertalen, of door je aan te melden bij de

@@ -62,7 +62,7 @@
 
 <h4 id="reference">Deci, aceasta este instanta in masura sa decida daca un CSS este corect sau nu?</h4>
 <p>Nu. Este un serviciu de incredere, dar, ca orice alt software, are 
-<a href="https://github.com/w3c/css-validator/issues">erori si probleme</a>.
+<a href="https://github.com/w3c/css-validator/issues">erori si probleme</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">erori si probleme</a>.
 Referintele exacte despre foile de lucru in cascada sunt <a href="http://www.w3.org/Style/CSS/#specs">Specificatiile CSS</a>.</p>
 
 <h4 id="validCSS">Ce inseamna un "CSS valid"?  Ce versiune de CSS foloseste acest validator?</h4>
@@ -86,7 +86,7 @@ Daca iti place cu adevarat, poti sa <a href="#participate">participi la proiect<
 
 <h4 id="participate">Pot ajuta?</h4>
 <p>Desigur, Daca esti programator java, poti ajuta proiectul Validator CSS prin verificarea <a href="#code">codului</a>,
-adoptarea si repararea <a href="https://github.com/w3c/css-validator/issues">erorilor</a>, sau poti ajuta sa construim noi elemente.</p>
+adoptarea si repararea <a href="https://github.com/w3c/css-validator/issues">erorilor</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?product=CSSValidator">erorilor</a>, sau poti ajuta sa construim noi elemente.</p>
 <p>Deasemenea poti ajuta la imbunatatirea documentatiei, participand la traducerea validatorului in limba ta materna, sau sa te inscrii in <a href="http://lists.w3.org/Archives/Public/www-validator-css/">lista de discutii</a> si sa dezbati despre acest serviciu, sau sa-i ajuti pe altii.</p>
 
 <h4 id="contact">Alte intrebari?</h4>

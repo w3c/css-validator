@@ -61,7 +61,7 @@
 
     <dd>SOAP 1.2 validation interface documentatie</dd>
     
-    <dt><a href="https://github.com/w3c/css-validator/issues">Bugs</a></dt>
+    <dt><a href="https://github.com/w3c/css-validator/issues">Bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Legacy Bugs</a></dt>
     <dd>Bekende problemen in de huidige validator versie, en een mogelijkheid om nieuwe problemen in te sturen. 
     Zie ook <a href="Email.html">de feedback instructies</a>.</dd>
 

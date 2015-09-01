@@ -59,7 +59,7 @@
 </dt>
 <dd>Documentaci&oacute;n de la interfaz de validaci&oacute;n SOAP 1.2</dd>
 <dt>
-<a href="https://github.com/w3c/css-validator/issues">Bugs</a>
+<a href="https://github.com/w3c/css-validator/issues">Bugs</a> &amp; <a href="http://www.w3.org/Bugs/Public/buglist.cgi?bug_status=__open__;product=CSSValidator">Legacy Bugs</a>
 </dt>
 <dd>Incidencias conocidas en la versi&oacute;n actual del validador, y una interfaz para enviar nuevas incidencias o errores. 
     Ver tambi&eacute;n <a href="Email.html">las instrucciones de feedback</a>.</dd>
