@@ -61,7 +61,6 @@
     <get dest="tmp/commons-logging-1.1.1.jar" src="https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" usetimestamp="true"/>
     <get dest="tmp/velocity-1.7.tar.gz" src="http://www.apache.org/dist/velocity/engine/1.7/velocity-1.7.tar.gz" usetimestamp="true"/>
     <get dest="tmp/velocity-tools-2.0.tar.gz" src="http://www.apache.org/dist/velocity/tools/2.0/velocity-tools-2.0.tar.gz" usetimestamp="true"/>
-    <get dest="tmp/Xerces-J-bin.2.11.0.tar.gz" src="http://www.apache.org/dist/xerces/j/binaries/Xerces-J-bin.2.11.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/xercesImpl-2.11.0.jar" src="https://repo1.maven.org/maven2/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar" usetimestamp="true"/>
     <get dest="tmp/xml-apis-1.4.01.jar" src="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" usetimestamp="true"/>
     <get dest="tmp/tagsoup-1.2.1.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.1.jar" usetimestamp="true"/>
@@ -74,7 +73,6 @@
     <unzip src="tmp/commons-lang-2.6-bin.zip" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-1.7.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-tools-2.0.tar.gz" dest="tmp"/>
-    <untar compression="gzip" src="tmp/Xerces-J-bin.2.11.0.tar.gz" dest="tmp"/>
 
     <copy file="tmp/servlet-api-2.5-6.0.0.jar" tofile="lib/servlet-api-2.5-6.0.0.jar"/>
     <copy file="tmp/Jigsaw/classes/jigsaw.jar" tofile="lib/jigsaw.jar"/>
