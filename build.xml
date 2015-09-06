@@ -39,7 +39,7 @@
         <available file="lib/commons-logging-1.1.1.jar"/>
         <available file="lib/velocity-1.7.jar"/>
         <available file="lib/xercesImpl-2.11.0.jar"/>
-        <available file="lib/xml-apis.jar"/>
+        <available file="lib/xml-apis-1.4.01.jar"/>
         <available file="lib/tagsoup-1.2.1.jar"/>
         <available file="lib/servlet-api-2.5-6.0.0.jar"/>
         <available file="lib/htmlparser-1.4.1.jar"/>
@@ -63,6 +63,7 @@
     <get dest="tmp/velocity-tools-2.0.tar.gz" src="http://www.apache.org/dist/velocity/tools/2.0/velocity-tools-2.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/Xerces-J-bin.2.11.0.tar.gz" src="http://www.apache.org/dist/xerces/j/binaries/Xerces-J-bin.2.11.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/xercesImpl-2.11.0.jar" src="https://repo1.maven.org/maven2/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar" usetimestamp="true"/>
+    <get dest="tmp/xml-apis-1.4.01.jar" src="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" usetimestamp="true"/>
     <get dest="tmp/tagsoup-1.2.1.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.1.jar" usetimestamp="true"/>
     <get dest="tmp/servlet-api-2.5-6.0.0.jar" src="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.0/servlet-api-2.5-6.0.0.jar" usetimestamp="true"/>
     <get dest="tmp/htmlparser-1.4.1.jar" src="https://repo1.maven.org/maven2/nu/validator/htmlparser/1.4.1/htmlparser-1.4.1.jar" usetimestamp="true"/>
@@ -85,7 +86,7 @@
     <copy file="tmp/velocity-1.7/velocity-1.7.jar" tofile="lib/velocity-1.7.jar"/>
     <copy file="tmp/velocity-tools-2.0/lib/velocity-tools-generic-2.0.jar" tofile="lib/velocity-tools-generic-2.0.jar"/>
     <copy file="tmp/xercesImpl-2.11.0.jar" tofile="lib/xercesImpl-2.11.0.jar"/>
-    <copy file="tmp/xerces-2_11_0/xml-apis.jar" tofile="lib/xml-apis.jar"/>
+    <copy file="tmp/xml-apis-1.4.01.jar" tofile="lib/xml-apis-1.4.01.jar"/>
     <copy file="tmp/tagsoup-1.2.1.jar" tofile="lib/tagsoup-1.2.1.jar"/>
     <copy file="tmp/htmlparser-1.4.1.jar" tofile="lib/htmlparser-1.4.1.jar"/>
   </target>
@@ -128,7 +129,7 @@
       <include name="org/**"/>
       <manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
-        <attribute name="Class-path" value=". lib/commons-beanutils-1.9.2.jar lib/commons-collections-3.2.1.jar lib/commons-digester-1.8.1.jar lib/commons-lang-2.6.jar lib/commons-logging-1.1.1.jar lib/jigsaw.jar lib/tagsoup-1.2.1.jar lib/velocity-1.7.jar lib/velocity-tools-generic-2.0.jar lib/xercesImpl-2.11.0.jar lib/xml-apis.jar lib/htmlparser-1.4.1.jar"/>
+        <attribute name="Class-path" value=". lib/commons-beanutils-1.9.2.jar lib/commons-collections-3.2.1.jar lib/commons-digester-1.8.1.jar lib/commons-lang-2.6.jar lib/commons-logging-1.1.1.jar lib/jigsaw.jar lib/tagsoup-1.2.1.jar lib/velocity-1.7.jar lib/velocity-tools-generic-2.0.jar lib/xercesImpl-2.11.0.jar lib/xml-apis-1.4.01.jar lib/htmlparser-1.4.1.jar"/>
       </manifest>
     </jar>
   </target>
