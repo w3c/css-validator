@@ -59,7 +59,7 @@
     <get dest="tmp/commons-digester-1.8.1-bin.zip" src="https://archive.apache.org/dist/commons/digester/binaries/commons-digester-1.8.1-bin.zip" usetimestamp="true"/>
     <get dest="tmp/commons-lang-2.6-bin.zip" src="http://www.apache.org/dist/commons/lang/binaries/commons-lang-2.6-bin.zip" usetimestamp="true"/>
     <get dest="tmp/commons-logging-1.1.1.jar" src="https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" usetimestamp="true"/>
-    <get dest="tmp/velocity-1.7.tar.gz" src="http://www.apache.org/dist/velocity/engine/1.7/velocity-1.7.tar.gz" usetimestamp="true"/>
+    <get dest="tmp/velocity-1.7.jar" src="https://repo1.maven.org/maven2/org/apache/velocity/velocity/1.7/velocity-1.7.jar" usetimestamp="true"/>
     <get dest="tmp/velocity-tools-2.0.tar.gz" src="http://www.apache.org/dist/velocity/tools/2.0/velocity-tools-2.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/Xerces-J-bin.2.11.0.tar.gz" src="http://www.apache.org/dist/xerces/j/binaries/Xerces-J-bin.2.11.0.tar.gz" usetimestamp="true"/>
     <get dest="tmp/tagsoup-1.2.1.jar" src="http://home.ccil.org/~cowan/XML/tagsoup/tagsoup-1.2.1.jar" usetimestamp="true"/>
@@ -70,7 +70,6 @@
     <unzip src="tmp/commons-collections-3.2.1-bin.zip" dest="tmp"/>
     <unzip src="tmp/commons-digester-1.8.1-bin.zip" dest="tmp"/>
     <unzip src="tmp/commons-lang-2.6-bin.zip" dest="tmp"/>
-    <untar compression="gzip" src="tmp/velocity-1.7.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/velocity-tools-2.0.tar.gz" dest="tmp"/>
     <untar compression="gzip" src="tmp/Xerces-J-bin.2.11.0.tar.gz" dest="tmp"/>
 
@@ -81,7 +80,7 @@
     <copy file="tmp/commons-digester-1.8.1/commons-digester-1.8.1.jar" tofile="lib/commons-digester-1.8.1.jar"/>
     <copy file="tmp/commons-lang-2.6/commons-lang-2.6.jar" tofile="lib/commons-lang-2.6.jar"/>
     <copy file="tmp/commons-logging-1.1.1.jar" tofile="lib/commons-logging-1.1.1.jar"/>
-    <copy file="tmp/velocity-1.7/velocity-1.7.jar" tofile="lib/velocity-1.7.jar"/>
+    <copy file="tmp/velocity-1.7.jar" tofile="lib/velocity-1.7.jar"/>
     <copy file="tmp/velocity-tools-2.0/lib/velocity-tools-generic-2.0.jar" tofile="lib/velocity-tools-generic-2.0.jar"/>
     <copy file="tmp/xerces-2_11_0/xercesImpl.jar" tofile="lib/xercesImpl.jar"/>
     <copy file="tmp/xerces-2_11_0/xml-apis.jar" tofile="lib/xml-apis.jar"/>
