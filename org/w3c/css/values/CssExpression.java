@@ -107,6 +107,18 @@ public class CssExpression implements CssOperator {
 		}
 	}
 
+	/**
+	 * Returns the last value in the expression
+	 * without changing the position in the expression
+	 */
+	public CssValue getLastValue() {
+		if (count <= 0) {
+			return null;
+		} else {
+			return items.get(count - 1).value;
+		}
+	}
+
 	/* Modified by Sijtsche de Jong */
 
 	/**

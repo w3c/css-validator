@@ -85,4 +85,11 @@ public abstract class CssValue {
 	public CssCheckableValue getCheckableValue() throws InvalidParamException {
 		throw new ClassCastException("unknown");
 	}
+
+    /**
+     * Does this value contain a "\9" CSS declaration hack?
+     */
+    public boolean hasBackslash9Hack() {
+        return false;
+    }
 }

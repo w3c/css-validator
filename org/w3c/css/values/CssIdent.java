@@ -143,5 +143,12 @@ public class CssIdent extends CssValue implements Comparable<CssIdent> {
 		return hashcode;
 	}
 
+	/**
+	 * Does this value contain a "\9" CSS declaration hack?
+	 */
+	public boolean hasBackslash9Hack() {
+		return value.endsWith("\\000009");
+	}
+
 	private String value;
 }
