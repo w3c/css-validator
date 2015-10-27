@@ -43,6 +43,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
 import org.w3c.css.properties.css.CssFlexBasis;
 import org.w3c.css.properties.css.CssFlexDirection;
@@ -279,6 +280,8 @@ public class Css3Style extends ATSCStyle {
 	CssRubySpan cssRubySpan;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
+
+	public CssFilter cssFilter;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
@@ -1568,6 +1571,13 @@ public class Css3Style extends ATSCStyle {
 			cssVoiceRange = (CssVoiceRange) style.CascadingOrder(new CssVoiceRange(), style, selector);
 		}
 		return cssVoiceRange;
+	}
+
+	public final CssFilter getFilter() {
+		if (cssFilter == null) {
+			cssFilter = (CssFilter) style.CascadingOrder(new CssFilter(), style, selector);
+		}
+		return cssFilter;
 	}
 	///
 
