@@ -30,6 +30,7 @@ import java.net.URL;
 import java.math.BigDecimal;
 
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssString;
@@ -446,14 +447,14 @@ PARSER_END(CssParser)
 SPECIAL_TOKEN :
 {
     < COMMENT : "/*" ( ~["*"] )* ( "*" )+ ( ~["/", "*"] ( ~["*"] )* ( "*" )+ )* "/" >
-} 
+}
 
 <DEFAULT>
     TOKEN [IGNORE_CASE] : /* basic tokens */
 { 
     < #H          : ["0"-"9", "a"-"f"] > 
   | < #NONASCII   : ["\200"-"\377"] >
-  | < #UNICODE    : "\\" <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )? 
+  | < #UNICODE    : "\\" <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )?
 	            ( "\r\n" | [ " ", "\t" , "\n" , "\r", "\f" ] )? >
   | < #ESCAPE     : <UNICODE> | ( "\\" ~[ "\r", "\n", "\f", "0"-"9", "a"-"f" ] ) >
   | < #NMSTART    : [ "a"-"z", "_" ] | <NONASCII> | <ESCAPE> >
@@ -665,7 +666,7 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
     TOKEN:
 {
-    <HTMLSTARTTAG : "<" ( <S> )* <IDENT> ( <S> )* 
+    <HTMLSTARTTAG : "<" ( "!doctype" )? ( <S> )* <IDENT> ( <S> )*
 	                ( <IDENT> "=" ( <IDENT> | <STRING> ) ( <S> )* )* 
 	            ">" >
   | <HTMLENDTAG : "</" ( <S> )* <IDENT> ( <S> )* ">" >
@@ -2331,7 +2332,7 @@ void term(CssExpression exp) :
     | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
-	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }    
+	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2393,12 +2394,14 @@ void mediaterm(CssExpression exp) :
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
     | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+    | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
+    | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
-  | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
-    | n=<IDENT>
+   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
+   | n=<IDENT>
     {
 	/*
 	 * Common error :
@@ -2521,12 +2524,12 @@ CssCheckableValue v = null;
  * @exception ParseException exception during the parse
  */
 CssValue function() :
-{Token n;
+{Token n,p = null,q = null;
  CssExpression exp;
  org.w3c.css.values.CssColor color = new org.w3c.css.values.CssColor();
 }
 {
-    n=<FUNCTION> ( <S> )* exp=expr() 
+    n=<FUNCTION> ( <S> )*  ( LOOKAHEAD(2) exp=expr()
     ")" { 
 	String funcname = n.image.toLowerCase();
 	if (funcname.equals("rgb(")) {
@@ -2578,6 +2581,17 @@ CssValue function() :
 	    }
 	    return f;
 	}
+    }   |  p=<IDENT> <EQ> q=<NUMBER> ")" ) {
+    // this one is for vendor extension like alpha(opacity=50);
+        exp = new CssExpression();
+        setValue(new CssIdent(), exp, ' ', p, IDENT);
+        exp.setOperator(CssOperator.EQUAL);
+        setValue(new CssNumber(), exp, ' ', q, NUMBER);
+        exp.markVendorExtension();
+
+        CssFunction f = new CssFunction();
+        f.set(n.image.substring(0, n.image.length() - 1), exp);
+    	return f;
     }
 }
 
