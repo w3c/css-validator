@@ -84,7 +84,6 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
         }
         // FIXME: Does not yet handle the following forms of legacy IE filters since they fail to parse as `CssValue`s:
         // filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
-        // filter: alpha(opacity=40);
         if (allowLegacyIEValues(ac) && val instanceof CssString) {
             final String funcall = val.toString().substring(1).trim().toLowerCase(Locale.ENGLISH);
             if (funcall.startsWith("progid:") ||
