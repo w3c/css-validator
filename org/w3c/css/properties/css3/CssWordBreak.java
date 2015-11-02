@@ -38,14 +38,14 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 	}
 
 	/**
-	 * Create a new CssOverflowWrap
+	 * Create a new CssWordBreak
 	 */
 	public CssWordBreak() {
 		value = initial;
 	}
 
 	/**
-	 * Creates a new CssOverflowWrap
+	 * Creates a new CssWorkBreak
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
