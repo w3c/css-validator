@@ -56,7 +56,7 @@ public class CssColorInterpolationFilters extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "flex";
+		return "color-interpolation-filters";
 	}
 
 	/**

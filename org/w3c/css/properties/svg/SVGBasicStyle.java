@@ -14,7 +14,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
     ClipPath clipPath;
     ClipRule clipRule;
     ColorInterpolation colorInterpolation;
-    ColorInterpolationFilters colorInterpolationFilters;
     ColorRendering colorRendering;
     EnableBackground enableBackground;
     WritingModeSVG writingModeSVG;
@@ -79,15 +78,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		    new ColorInterpolation(), style, selector);
 	}
 	return colorInterpolation;
-    }
-
-    public ColorInterpolationFilters getColorInterpolationFilters() {
-	if (colorInterpolationFilters == null) {
-	    colorInterpolationFilters =
-		(ColorInterpolationFilters) style.CascadingOrder (
-		    new ColorInterpolationFilters(), style, selector);
-	}
-	return colorInterpolationFilters;
     }
 
     public ColorRendering getColorRendering() {
