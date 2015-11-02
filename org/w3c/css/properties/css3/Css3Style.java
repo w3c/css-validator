@@ -33,6 +33,7 @@ import org.w3c.css.properties.css.CssBoxSizing;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
+import org.w3c.css.properties.css.CssColorInterpolationFilters;
 import org.w3c.css.properties.css.CssColumnCount;
 import org.w3c.css.properties.css.CssColumnFill;
 import org.w3c.css.properties.css.CssColumnGap;
@@ -282,6 +283,7 @@ public class Css3Style extends ATSCStyle {
 	CssFitPosition cssFitPosition;
 
 	public CssFilter cssFilter;
+	public CssColorInterpolationFilters cssColorInterpolationFilters;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
@@ -1578,6 +1580,14 @@ public class Css3Style extends ATSCStyle {
 			cssFilter = (CssFilter) style.CascadingOrder(new CssFilter(), style, selector);
 		}
 		return cssFilter;
+	}
+
+	public final CssColorInterpolationFilters getColorInterpolationFilters() {
+		if (cssColorInterpolationFilters == null) {
+			cssColorInterpolationFilters = (CssColorInterpolationFilters) style.CascadingOrder(
+					new CssColorInterpolationFilters(), style, selector);
+		}
+		return cssColorInterpolationFilters;
 	}
 	///
 
