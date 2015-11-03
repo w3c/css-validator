@@ -71,6 +71,7 @@ import org.w3c.css.properties.css.CssImageOrientation;
 import org.w3c.css.properties.css.CssImageResolution;
 import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssJustifyContent;
+import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
@@ -288,6 +289,7 @@ public class Css3Style extends ATSCStyle {
 	public CssColorInterpolationFilters cssColorInterpolationFilters;
 	public CssFloodColor cssFloodColor;
 	public CssFloodOpacity cssFloodOpacity;
+	public CssLightingColor cssLightingColor;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
@@ -1606,6 +1608,13 @@ public class Css3Style extends ATSCStyle {
 			cssFloodOpacity = (CssFloodOpacity) style.CascadingOrder(new CssFloodOpacity(), style, selector);
 		}
 		return cssFloodOpacity;
+	}
+
+	public final CssLightingColor getLightingColor() {
+		if (cssLightingColor == null) {
+			cssLightingColor = (CssLightingColor) style.CascadingOrder(new CssLightingColor(), style, selector);
+		}
+		return cssLightingColor;
 	}
 	///
 

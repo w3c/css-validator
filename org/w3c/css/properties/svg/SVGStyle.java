@@ -14,7 +14,6 @@ public class SVGStyle extends SVGBasicStyle {
     MarkerStart markerStart;
     MarkerEnd markerEnd;
     MarkerMid markerMid;
-    LightingColor lightingColor;
     ColorProfileSrc cpSrc;
     ColorProfileName cpName;
     CssRenderIntent cssRenderIntent;
@@ -53,15 +52,6 @@ public class SVGStyle extends SVGBasicStyle {
 			new MarkerMid(), style, selector);
 	}
 	return markerMid;
-    }
-
-    public LightingColor getLightingColor() {
-	if (lightingColor == null) {
-	    lightingColor =
-		(LightingColor) style.CascadingOrder(
-			new LightingColor(), style, selector);
-	}
-	return lightingColor;
     }
 
     public ColorProfileSrc getColorProfileSrc() {
