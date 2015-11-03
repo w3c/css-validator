@@ -45,6 +45,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
 import org.w3c.css.properties.css.CssFlexBasis;
@@ -153,10 +154,10 @@ public class Css3Style extends ATSCStyle {
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
-	CssDominantBaseLine cssDominantBaseLine;
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
 	public CssBaselineShift cssBaselineShift;
+	public CssDominantBaseline cssDominantBaseline;
 	CssFit cssFit;
 
 	public CssOpacity cssOpacity;
@@ -399,13 +400,13 @@ public class Css3Style extends ATSCStyle {
 		return cssTextAlignLast;
 	}
 
-	public CssDominantBaseLine getDominantBaseLine() {
-		if (cssDominantBaseLine == null) {
-			cssDominantBaseLine =
-					(CssDominantBaseLine) style.CascadingOrder(
-							new CssDominantBaseLine(), style, selector);
+	public CssDominantBaseline getDominantBaseline() {
+		if (cssDominantBaseline == null) {
+			cssDominantBaseline =
+					(CssDominantBaseline) style.CascadingOrder(
+							new CssDominantBaseline(), style, selector);
 		}
-		return cssDominantBaseLine;
+		return cssDominantBaseline;
 	}
 
 	public CssAlignmentBaseLine getAlignmentBaseLine() {
