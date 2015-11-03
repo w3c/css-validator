@@ -27,6 +27,7 @@ import org.w3c.css.properties.css.CssBackfaceVisibility;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
+import org.w3c.css.properties.css.CssBaselineShift;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBoxSizing;
@@ -155,7 +156,7 @@ public class Css3Style extends ATSCStyle {
 	CssDominantBaseLine cssDominantBaseLine;
 	CssAlignmentBaseLine cssAlignmentBaseLine;
 	CssAlignmentAdjust cssAlignmentAdjust;
-	CssBaselineShift cssBaselineShift;
+	public CssBaselineShift cssBaselineShift;
 	CssFit cssFit;
 
 	public CssOpacity cssOpacity;

@@ -1,176 +1,93 @@
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
-//
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> baseline || sub || super || &lt;percentage&gt; || &lt;length&gt; || inherit<BR>
- *  <EM>Initial:</EM>baseline<BR>
- *  <EM>Applies to:</EM>inline-level elements<BR>
- *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>refers to the 'line-height' of the element<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  The 'baseline-shift' property allows repositioning of the dominant-baseline
- *  relative to the dominant-baseline. The shifted object might be a sub- or
- *  superscript. Within the shifted object, the whole baseline table is offset;
- *  not just a single baseline. For sub- and superscript, the amount of offset
- *  is determined from the nominal font of the parent.
+ * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#baseline-shift-property
  */
 
-public class CssBaselineShift extends CssProperty {
+public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShift {
 
-    CssValue baselineshift;
+	public static final CssIdent[] allowed_values;
 
-    private static CssIdent baseline = new CssIdent("baseline");
-    private static CssIdent sub = new CssIdent("sub");
-    private static CssIdent sup = new CssIdent("super");
-    private static CssIdent initial = new CssIdent("initial");
-
-    /**
-     * Create a new CssBaselineShift
-     */
-    public CssBaselineShift() {
-	baselineshift = baseline;
-    }
-
-    /**
-     * Create a new CssBaselineShift
-     *
-     * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
-     */
-    public CssBaselineShift(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(inherit)) {
-	    baselineshift = inherit;
-	    expression.next();
+	static {
+		String[] _allowed_values = {"sub", "super"};
+		int i = 0;
+		allowed_values = new CssIdent[_allowed_values.length];
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
 	}
-	else if (val.equals(baseline)) {
-	    baselineshift = baseline;
-	    expression.next();
-	}
-	else if (val.equals(sub)) {
-	    baselineshift = sub;
-	    expression.next();
-	}
-	else if (val.equals(sup)) {
-	    baselineshift = sup;
-	    expression.next();
-	}
-	else if (val.equals(initial)) {
-		baselineshift = initial;
-		expression.next();
-	}
-	else if (val instanceof CssPercentage) {
-	    baselineshift = val;
-	    expression.next();
-	}
-	else if (val instanceof CssLength) {
-	    baselineshift = val;
-	    expression.next();
-	}
-       	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
-    }
 
-    public CssBaselineShift(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssBaselineShift != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssBaselineShift = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getBaselineShift();
+	public static final CssIdent getAllowedIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else {
-	    return ((Css3Style) style).cssBaselineShift;
+
+	/**
+	 * Creates a new CssBaselineShift
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssBaselineShift(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		setByUser();
+
+		CssValue val;
+
+		val = expression.getValue();
+
+		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				// zero is a valid length. otherwise it will fail.
+				val = val.getLength();
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+				value = val;
+				break;
+			case CssTypes.CSS_IDENT:
+				CssIdent id = (CssIdent) val;
+				if (inherit.equals(id)) {
+					value = inherit;
+					break;
+				}
+				value = getAllowedIdent(id);
+				if (value != null) {
+					break;
+				}
+				// unrecognized ident -> fail.
+			default:
+				throw new InvalidParamException("value",
+						val.toString(),
+						getPropertyName(), ac);
+		}
+
 	}
-    }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssBaselineShift &&
-		baselineshift.equals(((CssBaselineShift) property).baselineshift));
-    }
 
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "baseline-shift";
-    }
+	public CssBaselineShift(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return baselineshift;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return baselineshift.equals(inherit);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return baselineshift.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return baselineshift == baseline;
-    }
 
 }
