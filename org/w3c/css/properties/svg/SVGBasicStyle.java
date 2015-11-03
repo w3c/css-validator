@@ -30,7 +30,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
     StrokeOpacity strokeOpacity;
     StopColor stopColor;
     SolidColor solidColor;
-    FloodColor floodColor;
     ColorProfile colorProfile;
     DominantBaseLine dominantBaseLine;
     SolidOpacity solidOpacity;
@@ -222,15 +221,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		    new SolidColor(), style, selector);
 	}
 	return solidColor;
-    }
-
-    public FloodColor getFloodColor() {
-	if (floodColor == null) {
-	    floodColor =
-		(FloodColor) style.CascadingOrder (
-		    new FloodColor(), style, selector);
-	}
-	return floodColor;
     }
 
     public ColorProfile getColorProfileSVG() {
