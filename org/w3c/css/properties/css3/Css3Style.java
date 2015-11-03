@@ -75,6 +75,7 @@ import org.w3c.css.properties.css.CssImageResolution;
 import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
+import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
@@ -164,6 +165,7 @@ public class Css3Style extends ATSCStyle {
 	CssFit cssFit;
 	public CssInitialLetter cssInitialLetter;
 	public CssInitialLetterAlign cssInitialLetterAlign;
+	public CssInitialLetterWrap cssInitialLetterWrap;
 
 	public CssOpacity cssOpacity;
 	public CssBackgroundClip cssBackgroundClip;
@@ -457,6 +459,15 @@ public class Css3Style extends ATSCStyle {
 							new CssInitialLetterAlign(), style, selector);
 		}
 		return cssInitialLetterAlign;
+	}
+
+	public CssInitialLetterWrap getInitialLetterWrap() {
+		if (cssInitialLetterWrap == null) {
+			cssInitialLetterWrap =
+					(CssInitialLetterWrap) style.CascadingOrder(
+							new CssInitialLetterWrap(), style, selector);
+		}
+		return cssInitialLetterWrap;
 	}
 
 	public CssLineBreak getLineBreak() {
