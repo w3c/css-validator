@@ -14,6 +14,7 @@ import org.w3c.css.properties.atsc.ATSCStyle;
 import org.w3c.css.properties.css.CssAlignContent;
 import org.w3c.css.properties.css.CssAlignItems;
 import org.w3c.css.properties.css.CssAlignSelf;
+import org.w3c.css.properties.css.CssAlignmentBaseline;
 import org.w3c.css.properties.css.CssAnimation;
 import org.w3c.css.properties.css.CssAnimationDelay;
 import org.w3c.css.properties.css.CssAnimationDirection;
@@ -154,7 +155,7 @@ public class Css3Style extends ATSCStyle {
 	CssWritingMode cssWritingMode;
 	CssGlyphOrVert cssGlyphOrVert;
 	CssGlyphHor cssGlyphHor;
-	CssAlignmentBaseLine cssAlignmentBaseLine;
+	public CssAlignmentBaseline cssAlignmentBaseline;
 	CssAlignmentAdjust cssAlignmentAdjust;
 	public CssBaselineShift cssBaselineShift;
 	public CssDominantBaseline cssDominantBaseline;
@@ -409,13 +410,13 @@ public class Css3Style extends ATSCStyle {
 		return cssDominantBaseline;
 	}
 
-	public CssAlignmentBaseLine getAlignmentBaseLine() {
-		if (cssAlignmentBaseLine == null) {
-			cssAlignmentBaseLine =
-					(CssAlignmentBaseLine) style.CascadingOrder(
-							new CssAlignmentBaseLine(), style, selector);
+	public CssAlignmentBaseline getAlignmentBaseline() {
+		if (cssAlignmentBaseline == null) {
+			cssAlignmentBaseline =
+					(CssAlignmentBaseline) style.CascadingOrder(
+							new CssAlignmentBaseline(), style, selector);
 		}
-		return cssAlignmentBaseLine;
+		return cssAlignmentBaseline;
 	}
 
 	public CssAlignmentAdjust getAlignmentAdjust() {

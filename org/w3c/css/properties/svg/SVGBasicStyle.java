@@ -10,7 +10,6 @@ package org.w3c.css.properties.svg;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
-    AlignmentBaseline alignmentBaseline;
     ClipPath clipPath;
     ClipRule clipRule;
     ColorInterpolation colorInterpolation;
@@ -32,15 +31,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
     ColorProfile colorProfile;
     DominantBaseLine dominantBaseLine;
     SolidOpacity solidOpacity;
-
-    public AlignmentBaseline getAlignmentBaseline() {
-	if (alignmentBaseline == null) {
-	    alignmentBaseline =
-		(AlignmentBaseline) style.CascadingOrder (
-		    new AlignmentBaseline(), style, selector);
-	}
-	return alignmentBaseline;
-    }
 
     public DominantBaseLine getDominantBaseLineSVG() {
 	if (dominantBaseLine == null) {
