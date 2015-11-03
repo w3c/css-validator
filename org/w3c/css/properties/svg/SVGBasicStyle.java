@@ -17,7 +17,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
     ColorRendering colorRendering;
     EnableBackground enableBackground;
     WritingModeSVG writingModeSVG;
-    FloodOpacity floodOpacity;
     FillOpacity fillOpacity;
     ImageRendering imageRendering;
     Mask mask;
@@ -104,15 +103,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		    new WritingModeSVG(), style, selector);
 	}
 	return writingModeSVG;
-    }
-
-    public FloodOpacity getFloodOpacity() {
-	if (floodOpacity == null) {
-	    floodOpacity =
-		(FloodOpacity) style.CascadingOrder (
-		    new FloodOpacity(), style, selector);
-	}
-	return floodOpacity;
     }
 
     public FillOpacity getFillOpacity() {

@@ -53,6 +53,7 @@ import org.w3c.css.properties.css.CssFlexGrow;
 import org.w3c.css.properties.css.CssFlexShrink;
 import org.w3c.css.properties.css.CssFlexWrap;
 import org.w3c.css.properties.css.CssFloodColor;
+import org.w3c.css.properties.css.CssFloodOpacity;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
 import org.w3c.css.properties.css.CssFontKerning;
 import org.w3c.css.properties.css.CssFontLanguageOverride;
@@ -286,6 +287,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFilter cssFilter;
 	public CssColorInterpolationFilters cssColorInterpolationFilters;
 	public CssFloodColor cssFloodColor;
+	public CssFloodOpacity cssFloodOpacity;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
@@ -1597,6 +1599,13 @@ public class Css3Style extends ATSCStyle {
 			cssFloodColor = (CssFloodColor) style.CascadingOrder(new CssFloodColor(), style, selector);
 		}
 		return cssFloodColor;
+	}
+
+	public final CssFloodOpacity getFloodOpacity() {
+		if (cssFloodOpacity == null) {
+			cssFloodOpacity = (CssFloodOpacity) style.CascadingOrder(new CssFloodOpacity(), style, selector);
+		}
+		return cssFloodOpacity;
 	}
 	///
 
