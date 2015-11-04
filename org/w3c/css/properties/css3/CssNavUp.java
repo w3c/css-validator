@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#nav-up0
+ * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-nav-up
  */
 public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 
@@ -97,7 +97,7 @@ public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 	// the main check is here (to be shared with other
 	// nav-<dir>
 	protected static CssValue checkValues(ApplContext ac, CssExpression expression,
-									   boolean check, CssProperty caller)
+										  boolean check, CssProperty caller)
 			throws InvalidParamException {
 		if (check && expression.getCount() > 2) {
 			throw new InvalidParamException("unrecognize", ac);
