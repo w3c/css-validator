@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#box-sizing0
+ * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-box-sizing
  */
 public class CssBoxSizing extends org.w3c.css.properties.css.CssBoxSizing {
 
 	private static CssIdent[] allowed_values;
 
 	static {
-		String id_values[] = {"content-box", "padding-box", "border-box"};
+		String id_values[] = {"content-box", "border-box"};
 		allowed_values = new CssIdent[id_values.length];
 		int i = 0;
 		for (String s : id_values) {
