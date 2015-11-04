@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#outline-style
+ * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-outline-style
  * @see org.w3c.css.properties.css3.CssBorderStyle
  */
 public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle {
