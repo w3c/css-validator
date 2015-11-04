@@ -55,6 +55,7 @@ import org.w3c.css.properties.css.CssFlexFlow;
 import org.w3c.css.properties.css.CssFlexGrow;
 import org.w3c.css.properties.css.CssFlexShrink;
 import org.w3c.css.properties.css.CssFlexWrap;
+import org.w3c.css.properties.css.CssFloatReference;
 import org.w3c.css.properties.css.CssFloodColor;
 import org.w3c.css.properties.css.CssFloodOpacity;
 import org.w3c.css.properties.css.CssFontFeatureSettings;
@@ -299,6 +300,8 @@ public class Css3Style extends ATSCStyle {
 	public CssFloodColor cssFloodColor;
 	public CssFloodOpacity cssFloodOpacity;
 	public CssLightingColor cssLightingColor;
+	
+	public CssFloatReference cssFloatReference;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
@@ -1651,6 +1654,13 @@ public class Css3Style extends ATSCStyle {
 			cssLightingColor = (CssLightingColor) style.CascadingOrder(new CssLightingColor(), style, selector);
 		}
 		return cssLightingColor;
+	}
+
+	public final CssFloatReference getFloatReference() {
+		if (cssFloatReference == null) {
+			cssFloatReference = (CssFloatReference) style.CascadingOrder(new CssFloatReference(), style, selector);
+		}
+		return cssFloatReference;
 	}
 	///
 
