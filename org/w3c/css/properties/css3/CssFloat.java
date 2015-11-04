@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,14 +13,16 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#float
+ * @spec http://www.w3.org/TR/2015/WD-css-page-floats-3-20150915/#propdef-float
  */
 public class CssFloat extends org.w3c.css.properties.css.CssFloat {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"left", "right", "none"};
+		String[] _allowed_values = {"block-start", "block-end", "inline-start",
+				"inline-end", "snap-block", "snap-inline",
+				"left", "right", "top", "bottom", "none"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
