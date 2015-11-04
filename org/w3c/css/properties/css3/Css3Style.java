@@ -56,6 +56,7 @@ import org.w3c.css.properties.css.CssFlexGrow;
 import org.w3c.css.properties.css.CssFlexShrink;
 import org.w3c.css.properties.css.CssFlexWrap;
 import org.w3c.css.properties.css.CssFloatDefer;
+import org.w3c.css.properties.css.CssFloatOffset;
 import org.w3c.css.properties.css.CssFloatReference;
 import org.w3c.css.properties.css.CssFloodColor;
 import org.w3c.css.properties.css.CssFloodOpacity;
@@ -303,6 +304,7 @@ public class Css3Style extends ATSCStyle {
 	public CssLightingColor cssLightingColor;
 	
 	public CssFloatReference cssFloatReference;
+	public CssFloatOffset cssFloatOffset;
 	public CssFloatDefer cssFloatDefer;
 
 	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
@@ -1670,6 +1672,13 @@ public class Css3Style extends ATSCStyle {
 			cssFloatDefer = (CssFloatDefer) style.CascadingOrder(new CssFloatDefer(), style, selector);
 		}
 		return cssFloatDefer;
+	}
+
+	public final CssFloatOffset getFloatOffset() {
+		if (cssFloatOffset == null) {
+			cssFloatOffset = (CssFloatOffset) style.CascadingOrder(new CssFloatOffset(), style, selector);
+		}
+		return cssFloatOffset;
 	}
 	///
 
