@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-page-floats-3-20150915/#propdef-float
+ * @spec http://www.w3.org/TR/2015/WD-css-page-floats-3-20150915/#propdef-float-reference
  */
 public class CssFloatReference extends org.w3c.css.properties.css.CssFloatReference {
 
