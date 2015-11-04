@@ -35,6 +35,7 @@ import org.w3c.css.properties.css.CssBoxSizing;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
+import org.w3c.css.properties.css.CssCaretColor;
 import org.w3c.css.properties.css.CssColorInterpolationFilters;
 import org.w3c.css.properties.css.CssColumnCount;
 import org.w3c.css.properties.css.CssColumnFill;
@@ -269,6 +270,7 @@ public class Css3Style extends ATSCStyle {
 	public CssNavLeft cssNavLeft;
 	public CssTextOverflow cssTextOverflow;
 	public CssIcon cssIcon;
+	public CssCaretColor cssCaretColor;
 
 	public CssOverflowX cssOverflowX;
 	public CssOverflowY cssOverflowY;
@@ -781,6 +783,7 @@ public class Css3Style extends ATSCStyle {
 		return cssIcon;
 	}
 
+	// TODO FIXME should be getNavUp... fix ATSC for that.
 	public CssNavUp getNavUpCSS3() {
 		if (cssNavUp == null) {
 			cssNavUp =
@@ -815,6 +818,15 @@ public class Css3Style extends ATSCStyle {
 							new CssNavLeft(), style, selector);
 		}
 		return cssNavLeft;
+	}
+
+	public CssCaretColor getCaretColor() {
+		if (cssCaretColor == null) {
+			cssCaretColor =
+					(CssCaretColor) style.CascadingOrder(
+							new CssCaretColor(), style, selector);
+		}
+		return cssCaretColor;
 	}
 
 	public CssOutlineOffset getOutlineOffset() {
