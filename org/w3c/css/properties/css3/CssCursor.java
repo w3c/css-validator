@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#cursor0
+ * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-cursor
  */
 public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 
@@ -32,11 +32,12 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 				"auto", "default", "none", "context-menu", "help",
 				"pointer", "progress", "wait", "cell", "crosshair",
 				"text", "vertical-text", "alias", "copy", "move",
-				"no-drop", "not-allowed", "e-resize", "n-resize",
-				"ne-resize", "nw-resize", "s-resize", "se-resize",
-				"sw-resize", "w-resize", "ew-resize", "ns-resize",
-				"nesw-resize", "nwse-resize", "col-resize",
-				"row-resize", "all-scroll", "zoom-in", "zoom-out"};
+				"no-drop", "not-allowed", "grab", "grabbing",
+				"e-resize", "n-resize", "ne-resize", "nw-resize",
+				"s-resize", "se-resize", "sw-resize", "w-resize",
+				"ew-resize", "ns-resize", "nesw-resize", "nwse-resize",
+				"col-resize", "row-resize", "all-scroll", "zoom-in",
+				"zoom-out"};
 		allowed_values = new CssIdent[_allowed_values.length];
 		int i = 0;
 		for (String s : _allowed_values) {
@@ -57,6 +58,7 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 	 * Create a new CssCursor
 	 */
 	public CssCursor() {
+		value = initial;
 	}
 
 	/**
