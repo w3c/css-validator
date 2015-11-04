@@ -20,7 +20,9 @@ public class CssClear extends org.w3c.css.properties.css.CssClear {
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"inline-start", "inline-end", "block-start",
+		String[] _allowed_values = {"both" /* This one is for CSS21 backward compat.
+		   discussion started in CSS WG */
+				, "inline-start", "inline-end", "block-start",
 				"block-end", "left", "right", "top", "bottom", "none"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
