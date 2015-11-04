@@ -87,7 +87,6 @@ import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
 import org.w3c.css.properties.css.CssNavDown;
-import org.w3c.css.properties.css.CssNavIndex;
 import org.w3c.css.properties.css.CssNavLeft;
 import org.w3c.css.properties.css.CssNavRight;
 import org.w3c.css.properties.css.CssNavUp;
@@ -264,7 +263,6 @@ public class Css3Style extends ATSCStyle {
 	public CssResize cssResize;
 	public CssOutlineOffset cssOutlineOffset;
 	public CssImeMode cssImeMode;
-	public CssNavIndex cssNavIndex;
 	public CssNavUp cssNavUp;
 	public CssNavRight cssNavRight;
 	public CssNavDown cssNavDown;
@@ -781,15 +779,6 @@ public class Css3Style extends ATSCStyle {
 							new CssIcon(), style, selector);
 		}
 		return cssIcon;
-	}
-
-	public CssNavIndex getNavIndexCSS3() {
-		if (cssNavIndex == null) {
-			cssNavIndex =
-					(CssNavIndex) style.CascadingOrder(
-							new CssNavIndex(), style, selector);
-		}
-		return cssNavIndex;
 	}
 
 	public CssNavUp getNavUpCSS3() {
