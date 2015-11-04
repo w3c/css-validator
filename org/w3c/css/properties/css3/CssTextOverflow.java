@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -9,16 +9,16 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#text-overflow0
+ * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-text-overflow
  */
 public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow {
 
@@ -68,7 +68,7 @@ public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow 
 
 		CssValue val;
 		char op;
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
+		ArrayList<CssValue> values = new ArrayList<>(4);
 
 		while (!expression.end()) {
 			val = expression.getValue();
@@ -105,7 +105,7 @@ public class CssTextOverflow extends org.w3c.css.properties.css.CssTextOverflow 
 			expression.next();
 
 		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
 
 	public CssTextOverflow(ApplContext ac, CssExpression expression)
