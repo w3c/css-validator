@@ -514,6 +514,7 @@ TOKEN :
 TOKEN [IGNORE_CASE] :
 {
     < AND : "and" > 
+  | < OR  : "or"  >
 }  
 
 TOKEN [IGNORE_CASE] :
@@ -626,6 +627,7 @@ TOKEN [IGNORE_CASE] :
   | < ATLEFT                : "@left" >
   | < ATCOUNTER             : "@counter" >
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
+  | < SUPPORTS_SYM          : "@supports" >
   | < ATKEYWORD             : "@" <IDENT> >
 }
 
@@ -990,8 +992,8 @@ void mediaquery(AtRuleMedia mediaRule) :
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
    n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-   (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
-   (mediaexpression(mediaRule, true) (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+   ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
+   (mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
    }
 }
