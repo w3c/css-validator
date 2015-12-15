@@ -3,9 +3,9 @@
 // (c) COPYRIGHT MIT, ECRIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media.css3;
+package org.w3c.css.atrules.css3.media;
 
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#device-aspect-ratio
+ * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#aspect-ratio
  */
-public class MediaDeviceAspectRatio extends MediaFeature {
+public class MediaAspectRatio extends MediaFeature {
 
     /**
      * Create a new MediaHeight
      */
-    public MediaDeviceAspectRatio() {
+    public MediaAspectRatio() {
     }
 
     /**
@@ -30,8 +30,8 @@ public class MediaDeviceAspectRatio extends MediaFeature {
      * @throws org.w3c.css.util.InvalidParamException
      *          Values are incorrect
      */
-    public MediaDeviceAspectRatio(ApplContext ac, String modifier,
-                                  CssExpression expression, boolean check)
+    public MediaAspectRatio(ApplContext ac, String modifier,
+                            CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (expression != null) {
@@ -53,10 +53,9 @@ public class MediaDeviceAspectRatio extends MediaFeature {
                         getFeatureName(), ac);
             }
         }
-
     }
 
-    public MediaDeviceAspectRatio(ApplContext ac, String modifier, CssExpression expression)
+    public MediaAspectRatio(ApplContext ac, String modifier, CssExpression expression)
             throws InvalidParamException {
         this(ac, modifier, expression, false);
     }
@@ -73,7 +72,7 @@ public class MediaDeviceAspectRatio extends MediaFeature {
      * Returns the name of this media feature.
      */
     public final String getFeatureName() {
-        return "device-aspect-ratio";
+        return "aspect-ratio";
     }
 
     /**
@@ -83,7 +82,7 @@ public class MediaDeviceAspectRatio extends MediaFeature {
      */
     public boolean equals(MediaFeature other) {
         try {
-            MediaDeviceAspectRatio mar = (MediaDeviceAspectRatio) other;
+            MediaAspectRatio mar = (MediaAspectRatio) other;
             if (value == null) {
                 return (other.value == null);
             }
@@ -92,5 +91,4 @@ public class MediaDeviceAspectRatio extends MediaFeature {
             return false;
         }
     }
-
 }
