@@ -3,9 +3,9 @@
 // (c) COPYRIGHT MIT, ECRIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media.css3;
+package org.w3c.css.atrules.css3.media;
 
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
