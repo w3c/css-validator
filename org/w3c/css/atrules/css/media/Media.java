@@ -1,4 +1,4 @@
-package org.w3c.css.media;
+package org.w3c.css.atrules.css.media;
 
 
 import java.util.ArrayList;
