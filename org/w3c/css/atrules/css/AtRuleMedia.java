@@ -3,8 +3,10 @@
 // (c) COPYRIGHT MIT, ECIM and Keio University, 2011.
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media;
+package org.w3c.css.atrules.css;
 
+import org.w3c.css.atrules.css.media.Media;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
@@ -60,7 +62,7 @@ public abstract class AtRuleMedia extends AtRule {
 
     public String getCurrentMedia() {
         if (!allMedia.isEmpty()) {
-            return allMedia.get(allMedia.size() - 1).media;
+            return allMedia.get(allMedia.size()-1).getMedia();
         }
         return null;
     }
@@ -90,15 +92,15 @@ public abstract class AtRuleMedia extends AtRule {
     public static final AtRuleMedia getInstance(CssVersion version) {
         switch (version) {
             case CSS1:
-                return new org.w3c.css.media.css1.AtRuleMedia();
+                return new org.w3c.css.atrules.css1.AtRuleMedia();
             case CSS2:
-                return new org.w3c.css.media.css2.AtRuleMedia();
+                return new org.w3c.css.atrules.css2.AtRuleMedia();
             case CSS21:
-                return new org.w3c.css.media.css21.AtRuleMedia();
+                return new org.w3c.css.atrules.css21.AtRuleMedia();
             case CSS3:
             case CSS:
             case CSS_2015:
-                return new org.w3c.css.media.css3.AtRuleMedia();
+                return new org.w3c.css.atrules.css3.AtRuleMedia();
             default:
                 throw new IllegalArgumentException(
                         "AtRuleMedia.getInstance called with unhandled"

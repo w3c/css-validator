@@ -1,12 +1,12 @@
 // $Id$
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University
+// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media.css3;
+package org.w3c.css.atrules.css21;
 
-import org.w3c.css.media.Media;
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.Media;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -14,10 +14,10 @@ import org.w3c.css.util.InvalidParamException;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#media-types
  */
+public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
 
-public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
     static final String[] mediaCSS21 = {
             "all", "braille", "embossed", "handheld", "print", "projection",
             "screen", "speech", "tty", "tv"
@@ -32,28 +32,16 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
      *
      * @throws InvalidParamException the medium doesn't exist
      */
-    public org.w3c.css.media.AtRuleMedia addMedia(String restrictor, String medium,
+    public org.w3c.css.atrules.css.AtRuleMedia addMedia(String restrictor, String medium,
                                                   ApplContext ac) throws InvalidParamException {
-        Media media = new Media();
         if (restrictor != null) {
-            // the grammar construct will build a restrictor as 'not' or 'only'
-            // otherwise it will fail at a parse error, that is why we don't
-            // have another else with error reporting
-            if ("not".equalsIgnoreCase(restrictor)) {
-                media.setNot(true);
-            } else if ("only".equalsIgnoreCase(restrictor)) {
-                media.setOnly(true);
-            }
-        }
-        if (medium == null) {
-            allMedia.add(media);
-            return this;
+            // media restrictor not supported in CSS21
+            throw new InvalidParamException("nomediarestrictor", restrictor, ac);
         }
         medium = medium.toLowerCase();
         for (String s : mediaCSS21) {
             if (medium.equals(s)) {
-                media.setMedia(s);
-                allMedia.add(media);
+                allMedia.add(new Media(s));
                 return this;
             }
         }
@@ -70,14 +58,16 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
     }
 
     /**
+     * Mediafeatures are not supported in CSS21
+     *
      * @param feature
      * @param ac
      * @throws InvalidParamException
      */
     public void addMediaFeature(MediaFeature feature, ApplContext ac)
             throws InvalidParamException {
-        Media latest = allMedia.get(allMedia.size() - 1);
-        latest.addFeature(feature);
+        throw new InvalidParamException("nomediafeature",
+                feature.toString(), ac);
     }
 
     /**
@@ -86,7 +76,7 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
      */
     public boolean canApply(AtRule atRule) {
         try {
-            org.w3c.css.media.AtRuleMedia second = (org.w3c.css.media.AtRuleMedia) atRule;
+            org.w3c.css.atrules.css.AtRuleMedia second = (org.w3c.css.atrules.css.AtRuleMedia) atRule;
             return (canMatch(second) && second.canMatch(this));
         } catch (ClassCastException cce) {
             return false;
@@ -98,7 +88,7 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
      */
     public boolean canMatch(AtRule atRule) {
         try {
-            org.w3c.css.media.AtRuleMedia second = (org.w3c.css.media.AtRuleMedia) atRule;
+            org.w3c.css.atrules.css.AtRuleMedia second = (org.w3c.css.atrules.css.AtRuleMedia) atRule;
             ArrayList<Media> otherMediaList = second.getMediaList();
 
             for (Media m : otherMediaList) {

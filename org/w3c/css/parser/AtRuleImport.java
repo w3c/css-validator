@@ -9,7 +9,7 @@
  */
 package org.w3c.css.parser;
 
-import org.w3c.css.media.AtRuleMedia;
+import org.w3c.css.atrules.css.AtRuleMedia;
 
 /**
  * This class manages all imports

@@ -3,9 +3,9 @@
 // (c) COPYRIGHT MIT, ECRIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media.css3;
+package org.w3c.css.atrules.css3.media;
 
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -15,32 +15,30 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#width
+ * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#height
  */
-public class MediaWidth extends MediaFeature {
+public class MediaHeight extends MediaFeature {
 
     /**
-     * Create a new MediaWidth
+     * Create a new MediaHeight
      */
-    public MediaWidth() {
+    public MediaHeight() {
     }
 
     /**
-     * Create a new MediaWidth.
+     * Create a new MediaHeight.
      *
      * @param expression The expression for this media feature
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
-    public MediaWidth(ApplContext ac, String modifier,
-                      CssExpression expression, boolean check)
+    public MediaHeight(ApplContext ac, String modifier,
+                       CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (expression != null) {
-            if (check && expression.getCount() > 1) {
+            if (expression.getCount() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
-            }
-            if (expression.getCount() == 0) {
-                throw new InvalidParamException("few-value", getFeatureName(), ac);
             }
             CssValue val = expression.getValue();
 
@@ -70,7 +68,7 @@ public class MediaWidth extends MediaFeature {
         }
     }
 
-    public MediaWidth(ApplContext ac, String modifier, CssExpression expression)
+    public MediaHeight(ApplContext ac, String modifier, CssExpression expression)
             throws InvalidParamException {
         this(ac, modifier, expression, false);
     }
@@ -87,7 +85,7 @@ public class MediaWidth extends MediaFeature {
      * Returns the name of this media feature.
      */
     public final String getFeatureName() {
-        return "width";
+        return "height";
     }
 
     /**
@@ -97,9 +95,9 @@ public class MediaWidth extends MediaFeature {
      */
     public boolean equals(MediaFeature other) {
         try {
-            MediaWidth mw = (MediaWidth) other;
-            return (((value == null) && (mw.value == null)) || ((value != null) && value.equals(mw.value)))
-                    && (((modifier == null) && (mw.modifier == null)) || ((modifier != null) && modifier.equals(mw.modifier)));
+            MediaHeight mh = (MediaHeight) other;
+            return (((value == null) && (mh.value == null)) || ((value != null) && value.equals(mh.value)))
+                    && (((modifier == null) && (mh.modifier == null)) || ((modifier != null) && modifier.equals(mh.modifier)));
         } catch (ClassCastException cce) {
             return false;
         }
