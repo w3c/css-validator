@@ -3,9 +3,9 @@
 // (c) COPYRIGHT MIT, ECRIM and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 
-package org.w3c.css.media.css3;
+package org.w3c.css.atrules.css3.media;
 
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -15,28 +15,29 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#width
+ * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#device-width
  */
-public class MediaWidth extends MediaFeature {
+public class MediaDeviceWidth extends MediaFeature {
 
     /**
      * Create a new MediaWidth
      */
-    public MediaWidth() {
+    public MediaDeviceWidth() {
     }
 
     /**
      * Create a new MediaWidth.
      *
      * @param expression The expression for this media feature
-     * @throws InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
-    public MediaWidth(ApplContext ac, String modifier,
-                      CssExpression expression, boolean check)
+    public MediaDeviceWidth(ApplContext ac, String modifier,
+                            CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (expression != null) {
-            if (check && expression.getCount() > 1) {
+            if (expression.getCount() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
             }
 
@@ -68,7 +69,7 @@ public class MediaWidth extends MediaFeature {
         }
     }
 
-    public MediaWidth(ApplContext ac, String modifier, CssExpression expression)
+    public MediaDeviceWidth(ApplContext ac, String modifier, CssExpression expression)
             throws InvalidParamException {
         this(ac, modifier, expression, false);
     }
@@ -85,7 +86,7 @@ public class MediaWidth extends MediaFeature {
      * Returns the name of this media feature.
      */
     public final String getFeatureName() {
-        return "width";
+        return "device-width";
     }
 
     /**
@@ -95,9 +96,9 @@ public class MediaWidth extends MediaFeature {
      */
     public boolean equals(MediaFeature other) {
         try {
-            MediaWidth mw = (MediaWidth) other;
-            return (((value == null) && (mw.value == null)) || ((value != null) && value.equals(mw.value)))
-                    && (((modifier == null) && (mw.modifier == null)) || ((modifier != null) && modifier.equals(mw.modifier)));
+            MediaDeviceWidth mdw = (MediaDeviceWidth) other;
+            return (((value == null) && (mdw.value == null)) || ((value != null) && value.equals(mdw.value)))
+                    && (((modifier == null) && (mdw.modifier == null)) || ((modifier != null) && modifier.equals(mdw.modifier)));
         } catch (ClassCastException cce) {
             return false;
         }
