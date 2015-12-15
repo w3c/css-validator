@@ -1,4 +1,4 @@
-package org.w3c.css.media;
+package org.w3c.css.atrules.css.media;
 
 import org.w3c.css.css.StyleSheetOrigin;
 import org.w3c.css.util.ApplContext;
