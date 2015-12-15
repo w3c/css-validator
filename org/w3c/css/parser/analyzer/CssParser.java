@@ -45,9 +45,6 @@ import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleCounterStyle;
-import org.w3c.css.media.AtRuleMedia;
-import org.w3c.css.media.MediaFeature;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.parser.AtRuleFontFace;
@@ -585,7 +582,7 @@ addError (new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.
 addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
             err.getMessage());
     }
-  }
+}
 
   final public void charset() throws ParseException {Token n = null;
     Token charsetToken = null;
@@ -675,7 +672,7 @@ String skip = charsetToken +
             ";";
         addError(e, skip);
     }
-  }
+}
 
   final public void afterImportDeclaration() throws ParseException {String ret;
     label_8:
@@ -763,7 +760,7 @@ if ((ret == null) || (ret.length() == 0)) {
       }
       ignoreStatement();
     }
-  }
+}
 
   final public void ignoreStatement() throws ParseException {
     label_9:
@@ -806,7 +803,7 @@ if ((ret == null) || (ret.length() == 0)) {
         jj_consume_token(S);
       }
     }
-  }
+}
 
   final public void namespaceDeclaration() throws ParseException {Token n=null;
     Token v=null;
@@ -911,7 +908,7 @@ is_url = true;
                 handleNamespaceDeclaration(getURL(), prefix, nsname, is_url);
             }
         }
-  }
+}
 
 /**
  * The import statement
@@ -1004,7 +1001,7 @@ handleImport(getURL(), importFile, is_url, media);
     } catch (ParseException e) {
 addError(e, skipStatement());
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -1187,7 +1184,7 @@ setAtRule(old);
             {if ("" != null) return newRule;}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public void ratio(CssExpression exp, char operator) throws ParseException {Token w,h,n;
     w = jj_consume_token(NUMBER);
@@ -1223,7 +1220,7 @@ StringBuilder sb = new StringBuilder();
      sb.append(w.image).append('/').append(h.image);
      n = Token.newToken(w.kind, sb.toString());
      setValue(new CssRatio(), exp, operator, n, NUMBER);
-  }
+}
 
   final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {
     mediaquery(mediaRule);
@@ -1254,7 +1251,7 @@ StringBuilder sb = new StringBuilder();
       }
       mediaquery(mediaRule);
     }
-  }
+}
 
   final public void mediaquery(AtRuleMedia mediaRule) throws ParseException {Token n;
   String mediarestrictor = null;
@@ -1365,7 +1362,7 @@ mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac);
       throw new ParseException();
     }
 
-  }
+}
 
   final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) throws ParseException {CssExpression val = null;
   String mediaFeatureName = null;
@@ -1444,7 +1441,7 @@ MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         if (mf != null) {
             mediaRule.addMediaFeature(mf, ac);
         }
-  }
+}
 
   final public void unused_production_generic_syntax() throws ParseException {CssExpression values = new CssExpression();
     jj_consume_token(RPARAN);
@@ -1464,7 +1461,7 @@ MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
     term(values);
     jj_consume_token(LPARAN);
 
-  }
+}
 
   final public void unused_production_definition() throws ParseException {CssExpression values = new CssExpression();
     jj_consume_token(LBRACKET);
@@ -1484,7 +1481,7 @@ MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
     term(values);
     jj_consume_token(RBRACKET);
 
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -1602,7 +1599,7 @@ if (!isCss1) {
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public ArrayList<CssProperty> pageContent() throws ParseException {CssProperty prop;
     ArrayList<CssProperty> v = new ArrayList<CssProperty>();
@@ -1622,7 +1619,7 @@ setAtRule(old);
 {if ("" != null) return v;}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public ArrayList<CssProperty> prefAtRule() throws ParseException {Token n;
     ArrayList<CssProperty> v;
@@ -1696,7 +1693,7 @@ setAtRule(old);
 addError(e, skipStatement());
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public void pseudo_page(AtRulePage page) throws ParseException {Token n;
     jj_consume_token(COLON);
@@ -1721,7 +1718,7 @@ try {
             /*CssError error = new CssError(getSourceFile(), getLine(), e);
 	      ac.getFrame().addError(error);	*/
         }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -1830,7 +1827,7 @@ ac.getFrame()
         {if ("" != null) return null;}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public void keyframes() throws ParseException {Token n;
   ArrayList<CssProperty> v;
@@ -2014,7 +2011,7 @@ addError(e, skipStatement());
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public void fontFace() throws ParseException {ArrayList<CssProperty> v;
     AtRule old = getAtRule();
@@ -2090,7 +2087,7 @@ if (!isCss1) {
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public void colorprofile() throws ParseException {ArrayList<CssProperty> v;
     AtRule old = getAtRule();
@@ -2170,7 +2167,7 @@ if (isSVG) {
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public void counterstyle() throws ParseException {Token n;
   ArrayList<CssProperty> v;
@@ -2260,7 +2257,7 @@ addError(e, skipStatement());
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public void preference() throws ParseException {ArrayList<CssProperty> v;
     AtRule old = getAtRule();
@@ -2337,7 +2334,7 @@ if (!isCSS1) {
     } finally {
 setAtRule(old);
     }
-  }
+}
 
   final public void phoneticAlphabet() throws ParseException {AtRule old = getAtRule();
     AtRulePhoneticAlphabet alphabetrule = new AtRulePhoneticAlphabet();
@@ -2393,7 +2390,7 @@ if (version != CssVersion.CSS1) {
     } finally {
 setAtRule(old);
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -2412,7 +2409,7 @@ if (n.toString().charAt(1) == '-') {
                         addAtRuleError();
                 }
             skipStatement();
-  }
+}
 
   void addAtRuleError() throws ParseException {//
         ac.getFrame()
@@ -2448,7 +2445,7 @@ if (expr.getCount() > 0) expr.setOperator(',');
       jj_la1[89] = jj_gen;
       ;
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -2518,7 +2515,7 @@ connector = ' ' ;
     }
 {if ("" != null) return connector;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -2541,7 +2538,7 @@ connector = ' ' ;
       throw new ParseException();
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -2717,7 +2714,7 @@ if (ac.getTreatCssHacksAsWarnings()) {
       throw new ParseException();
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -2825,7 +2822,7 @@ if ((ac.getCssProfile() != CssProfile.MOBILE) && !context_set.isEmpty()) {
     } catch (TokenMgrError e) {
 addError(new ParseException(e.getMessage()), skipStatement());
     }
-  }
+}
 
   final public ArrayList<CssProperty> declarations() throws ParseException {if(!validSelector) {
         validSelector = true;
@@ -2933,7 +2930,7 @@ if (!wrong_value) {
                 {if ("" != null) return null;}
             }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /** 
  * Used only when HTML is parsed, as otherwise parsing <S>* is missed 
@@ -2959,7 +2956,7 @@ if (!wrong_value) {
 {if (true) throw new ParseException(ac.getMsg().getString("generator.unrecognize"));}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3058,7 +3055,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
         {if ("" != null) return null;}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * I made this rule to parse a selector from a document. Combinator are avoid.
@@ -3094,7 +3091,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
     }
 {if ("" != null) return current;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3259,7 +3256,7 @@ if ((ac.getCssProfile() == CssProfile.MOBILE) ||
       throw new ParseException();
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3354,7 +3351,7 @@ if (n.image.charAt(0) == '.') {
       jj_consume_token(-1);
       throw new ParseException();
     }
-  }
+}
 
   final public Token deprecated_class() throws ParseException {Token n;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
@@ -3397,7 +3394,7 @@ if (n.image.charAt(0) == '.') {
     }
 {if ("" != null) return n;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3486,7 +3483,7 @@ if (ac.getCssVersion() != CssVersion.CSS1) {
       jj_consume_token(-1);
       throw new ParseException();
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3687,7 +3684,7 @@ if (ac.getCssVersion() == CssVersion.CSS1) {
                          getBeginColumn(), getEndLine(), getEndColumn(), e));
               }
           }
-  }
+}
 
   final public void negation(CssSelectors s) throws ParseException {Token n;
     CssSelectors ns = new CssSelectors(ac, null);
@@ -3758,7 +3755,7 @@ if (ac.getCssVersion() == CssVersion.CSS1) {
     }
     jj_consume_token(LPARAN);
 s.setPseudoFun("not", ns.toString());
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3912,7 +3909,7 @@ try {
       jj_consume_token(-1);
       throw new ParseException();
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -3993,7 +3990,7 @@ n.image = n.image.substring(1);
       jj_consume_token(-1);
       throw new ParseException();
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4068,7 +4065,7 @@ skipAfterExpression(e);
 setMediaDeclaration(false);
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4152,7 +4149,7 @@ skipAfterExpression(e);
      {if ("" != null) return null;}
     }
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4174,7 +4171,7 @@ skipAfterExpression(e);
     }
 {if ("" != null) return true;}
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public CssExpression expression() throws ParseException {CssExpression exp = new CssExpression();
     char operator = ' ';
@@ -4253,7 +4250,7 @@ setValue(new CssIdent(), exp, operator, n, IDENT);
     }
 {if ("" != null) return exp;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4310,7 +4307,7 @@ ac.getFrame().addWarning(e.getMessage(), e.getMessageArgs());
     }
 {if ("" != null) return values;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4357,7 +4354,7 @@ ac.getFrame().addWarning(e.getMessage(), e.getMessageArgs());
     }
 {if ("" != null) return values;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4627,7 +4624,7 @@ setValue(new CssUnicodeRange(), exp, operator, n, UNICODERANGE);
       }
       jj_consume_token(S);
     }
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -4875,7 +4872,7 @@ setValue(new CssUnicodeRange(), exp, operator, n,
       jj_consume_token(-1);
       throw new ParseException();
     }
-  }
+}
 
   final public CssCheckableValue mathcalc() throws ParseException {CssCheckableValue v;
 CssCalc c;
@@ -4928,7 +4925,7 @@ String funcname = n.image.toLowerCase();
     c.validate();
     {if ("" != null) return c;}
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public CssCheckableValue mathsum() throws ParseException {Token n,o;
   CssCheckableValue v1 = null;
@@ -5004,7 +5001,7 @@ nb_pre_sp = 0;
     }
 {if ("" != null) return c;}
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public CssCheckableValue mathproduct() throws ParseException {Token n,o;
   CssCheckableValue v1 = null;
@@ -5098,7 +5095,7 @@ if (concat) {
     }
 {if ("" != null) return c;}
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public CssCheckableValue mathunit() throws ParseException {Token n;
 CssCheckableValue v = null;
@@ -5226,7 +5223,7 @@ v= new CssFrequency(); v.set(addOperator(operator, n.image), ac);
     }
 {if ("" != null) return v;}
     throw new Error("Missing return statement in function");
-  }
+}
 
   final public CssCheckableValue attr() throws ParseException {CssAttr v = null;
 Token n = null;
@@ -5327,7 +5324,7 @@ v = new CssAttr();
        v.setValue(exp, ac);
        {if ("" != null) return v;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -5428,7 +5425,7 @@ String funcname = n.image.toLowerCase();
         f.set(n.image.substring(0, n.image.length() - 1), exp);
         {if ("" != null) return f;}
     throw new Error("Missing return statement in function");
-  }
+}
 
 /**
  * @exception ParseException exception during the parse
@@ -5450,7 +5447,7 @@ String funcname = n.image.toLowerCase();
     }
 n.image = Util.strip(n.image);
      setValue(new CssHashIdent(), exp, ' ', n, HASH);
-  }
+}
 
   String skipStatement() throws ParseException {StringBuilder s = new StringBuilder();
     Token tok = getToken(0);
@@ -5738,6 +5735,12 @@ n.image = Util.strip(n.image);
     try { return (!jj_3_5()); }
     catch(LookaheadSuccess ls) { return true; }
     finally { jj_save(4, xla); }
+  }
+
+  private boolean jj_3R_178()
+ {
+    if (jj_scan_token(IDENT)) return true;
+    return false;
   }
 
   private boolean jj_3R_177()
@@ -6375,12 +6378,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_128()
  {
     if (jj_scan_token(S)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_178()
- {
-    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 

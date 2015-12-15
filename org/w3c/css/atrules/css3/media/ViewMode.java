@@ -20,101 +20,101 @@ import java.util.ArrayList;
  */
 public class ViewMode extends MediaFeature {
 
-    static ArrayList<CssIdent> allowed_values;
-    static final String specval[] = {"windowed", "floating", "fullscreen", "maximized", "minimized"};
+	static ArrayList<CssIdent> allowed_values;
+	static final String specval[] = {"windowed", "floating", "fullscreen", "maximized", "minimized"};
 
-    static {
-        allowed_values = new ArrayList<CssIdent>();
-        for (String val : specval) {
-            allowed_values.add(CssIdent.getIdent(val));
-        }
-    }
+	static {
+		allowed_values = new ArrayList<CssIdent>();
+		for (String val : specval) {
+			allowed_values.add(CssIdent.getIdent(val));
+		}
+	}
 
-    /**
-     * Create a new ViewMode
-     */
-    public ViewMode() {
-    }
+	/**
+	 * Create a new ViewMode
+	 */
+	public ViewMode() {
+	}
 
-    /**
-     * Create a new ViewMode.
-     *
-     * @param expression The expression for this media feature
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
-     */
-    public ViewMode(ApplContext ac, String modifier,
-                    CssExpression expression, boolean check)
-            throws InvalidParamException {
+	/**
+	 * Create a new ViewMode.
+	 *
+	 * @param expression The expression for this media feature
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Values are incorrect
+	 */
+	public ViewMode(ApplContext ac, String modifier,
+					CssExpression expression, boolean check)
+			throws InvalidParamException {
 
-        if (modifier != null) {
-            throw new InvalidParamException("nomodifiermedia",
-                    getFeatureName(), ac);
-        }
+		if (modifier != null) {
+			throw new InvalidParamException("nomodifiermedia",
+					getFeatureName(), ac);
+		}
 
-        if (expression != null) {
-            if (expression.getCount() > 1) {
-                throw new InvalidParamException("unrecognize", ac);
-            }
+		if (expression != null) {
+			if (expression.getCount() > 1) {
+				throw new InvalidParamException("unrecognize", ac);
+			}
 
-            CssValue val = expression.getValue();
+			CssValue val = expression.getValue();
 
-            switch (val.getType()) {
-                case CssTypes.CSS_IDENT:
-                    int idx = allowed_values.indexOf((CssIdent) val);
-                    if (idx != -1) {
-                        value = allowed_values.get(idx);
-                        break;
-                    }
-                    // let it flow through the exception
-                default:
-                    throw new InvalidParamException("value", expression.getValue(),
-                            getFeatureName(), ac);
-            }
-        } else {
-            // TODO add a warning for value less mediafeature that makes no sense
-        }
-    }
+			switch (val.getType()) {
+				case CssTypes.CSS_IDENT:
+					int idx = allowed_values.indexOf((CssIdent) val);
+					if (idx != -1) {
+						value = allowed_values.get(idx);
+						break;
+					}
+					// let it flow through the exception
+				default:
+					throw new InvalidParamException("value", expression.getValue(),
+							getFeatureName(), ac);
+			}
+		} else {
+			// TODO add a warning for value less mediafeature that makes no sense
+		}
+	}
 
-    public ViewMode(ApplContext ac, String modifier, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, modifier, expression, false);
-    }
+	public ViewMode(ApplContext ac, String modifier, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, modifier, expression, false);
+	}
 
-    // just in case someone wants to call it externally...
-    public void setModifier(ApplContext ac, String modifier)
-            throws InvalidParamException {
-        throw new InvalidParamException("nomodifiermedia",
-                getFeatureName(), ac);
-    }
+	// just in case someone wants to call it externally...
+	public void setModifier(ApplContext ac, String modifier)
+			throws InvalidParamException {
+		throw new InvalidParamException("nomodifiermedia",
+				getFeatureName(), ac);
+	}
 
-    /**
-     * Returns the value of this media feature.
-     */
+	/**
+	 * Returns the value of this media feature.
+	 */
 
-    public Object get() {
-        return value;
-    }
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Returns the name of this media feature.
-     */
-    public final String getFeatureName() {
-        return "view-mode";
-    }
+	/**
+	 * Returns the name of this media feature.
+	 */
+	public final String getFeatureName() {
+		return "view-mode";
+	}
 
-    /**
-     * Compares two media features for equality.
-     *
-     * @param other The other media features.
-     */
-    public boolean equals(MediaFeature other) {
-        try {
-            ViewMode mo = (ViewMode) other;
-            return (((value == null) && (mo.value == null)) || ((value != null) && value.equals(mo.value)));
-        } catch (ClassCastException cce) {
-            return false;
-        }
+	/**
+	 * Compares two media features for equality.
+	 *
+	 * @param other The other media features.
+	 */
+	public boolean equals(MediaFeature other) {
+		try {
+			ViewMode mo = (ViewMode) other;
+			return (((value == null) && (mo.value == null)) || ((value != null) && value.equals(mo.value)));
+		} catch (ClassCastException cce) {
+			return false;
+		}
 
-    }
+	}
 }
