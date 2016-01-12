@@ -967,8 +967,6 @@ Token w,h,n;
 
 void mediaquerylist(AtRuleMedia mediaRule) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
 }
 {
    mediaquery(mediaRule)
@@ -977,8 +975,6 @@ void mediaquerylist(AtRuleMedia mediaRule) :
 
 void mediaquery(AtRuleMedia mediaRule) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
   Token n;
   String mediarestrictor = null;
 }
@@ -995,8 +991,6 @@ void mediaquery(AtRuleMedia mediaRule) :
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
   CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
