@@ -1113,8 +1113,7 @@ StringBuilder sb = new StringBuilder();
      setValue(new CssRatio(), exp, operator, n, NUMBER);
   }
 
-  final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
+  final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {
     mediaquery(mediaRule);
     label_24:
     while (true) {
@@ -1145,9 +1144,7 @@ StringBuilder sb = new StringBuilder();
     }
   }
 
-  final public void mediaquery(AtRuleMedia mediaRule) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
-  Token n;
+  final public void mediaquery(AtRuleMedia mediaRule) throws ParseException {Token n;
   String mediarestrictor = null;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case MEDIARESTRICTOR:
@@ -1258,9 +1255,7 @@ mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac);
 
   }
 
-  final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
-  CssExpression val = null;
+  final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) throws ParseException {CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
     jj_consume_token(RPARAN);
@@ -5154,6 +5149,12 @@ n.image = Util.strip(n.image);
     finally { jj_save(4, xla); }
   }
 
+  private boolean jj_3R_136()
+ {
+    if (jj_scan_token(NUMBER)) return true;
+    return false;
+  }
+
   private boolean jj_3R_172()
  {
     Token xsp;
@@ -5730,12 +5731,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_173()
  {
     if (jj_3R_175()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_136()
- {
-    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
