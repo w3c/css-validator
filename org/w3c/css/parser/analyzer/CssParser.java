@@ -1110,8 +1110,7 @@ StringBuilder sb = new StringBuilder();
      setValue(new CssRatio(), exp, operator, n, NUMBER);
   }
 
-  final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
+  final public void mediaquerylist(AtRuleMedia mediaRule) throws ParseException {
     mediaquery(mediaRule);
     label_24:
     while (true) {
@@ -1142,9 +1141,7 @@ StringBuilder sb = new StringBuilder();
     }
   }
 
-  final public void mediaquery(AtRuleMedia mediaRule) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
-  Token n;
+  final public void mediaquery(AtRuleMedia mediaRule) throws ParseException {Token n;
   String mediarestrictor = null;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case MEDIARESTRICTOR:
@@ -1255,9 +1252,7 @@ mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac);
 
   }
 
-  final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) throws ParseException {CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
-  CssExpression val = null;
+  final public void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) throws ParseException {CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
     jj_consume_token(RPARAN);
@@ -5032,6 +5027,40 @@ n.image = Util.strip(n.image);
     finally { jj_save(4, xla); }
   }
 
+  private boolean jj_3R_166()
+ {
+    if (jj_3R_168()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_162()
+ {
+    if (jj_scan_token(FUNCTION)) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
+    }
+    xsp = jj_scanpos;
+    if (jj_3_5()) {
+    jj_scanpos = xsp;
+    if (jj_3R_167()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3R_157()
+ {
+    if (jj_scan_token(URL)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_156()
+ {
+    if (jj_3R_163()) return true;
+    return false;
+  }
+
   private boolean jj_3R_165()
  {
     if (jj_scan_token(PLUS)) return true;
@@ -5152,12 +5181,6 @@ n.image = Util.strip(n.image);
     return false;
   }
 
-  private boolean jj_3R_130()
- {
-    if (jj_scan_token(FREQ)) return true;
-    return false;
-  }
-
   private boolean jj_3R_134()
  {
     Token xsp;
@@ -5182,6 +5205,12 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
+    return false;
+  }
+
+  private boolean jj_3R_130()
+ {
+    if (jj_scan_token(FREQ)) return true;
     return false;
   }
 
@@ -5551,40 +5580,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_158()
  {
     if (jj_scan_token(UNICODERANGE)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_166()
- {
-    if (jj_3R_168()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_162()
- {
-    if (jj_scan_token(FUNCTION)) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
-    }
-    xsp = jj_scanpos;
-    if (jj_3_5()) {
-    jj_scanpos = xsp;
-    if (jj_3R_167()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3R_157()
- {
-    if (jj_scan_token(URL)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_156()
- {
-    if (jj_3R_163()) return true;
     return false;
   }
 
