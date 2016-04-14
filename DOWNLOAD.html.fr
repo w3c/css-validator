@@ -28,14 +28,16 @@
 <h2>Télécharger et installer le validateur CSS</h2>
 <h3 id="download">Télécharger le validateur CSS</h3>	
 
+<p>Le <a href="https://github.com/w3c/css-validator">validateur CSS</a> est disponible de trois façons différentes: depuis Git pour les développeurs qui souhaitent la toute dernière version, sous la forme d'une archive jar pour construire des applications et l'utilisation en ligne de commande, et (depuis 2009) sous la forme d'une archive war pour les applications côté serveur.</p>
+
 <h4 id="source">Télécharger le code source</h4>
-<p>Le <a href="https://github.com/w3c/css-validator">validateur CSS</a> est disponible en téléchargement par CVS.
-Suivez les <a href='http://dev.w3.org/cvsweb/'>instructions</a> pour accéder au serveur CVS public du W3C et sélectionnez
-2002/css-validator. Notez que la version en ligne du validateur CSS est en général plus ancienne que la version CVS,
-de sorte que les résultats et l'aspect peuvent varier légèrement.
-</p>	
+<p>Les <a href="https://github.com/w3c/css-validator">sources du Validateur CSS</a> peuvent être récupérées grace à Git.
+Notez que la version en ligne du validateur CSS est une distribution stable,
+en général plus ancienne que la version fournie par Git,
+de sorte que les résultats et leur comportement peuvent varier légèrement.</p> 
+
+	
 <h4>Télécharger un paquetage Java (jar)</h4>
-<!--<p>À faire... nous avons juste besoin d'un emplacement stable pour y placer régulièrement les archives jar.</p>-->
 <p><a href="http://www.w3.org/QA/Tools/css-validator/css-validator.jar">css-validator.jar</a></p>
 
 <h3>Guide d'installation</h3>
@@ -66,7 +68,7 @@ comme service en ligne. Ce guide couvre dans le détail seulement Tomcat et Jigs
 
 <h4>Installation du validateur CSS avec Tomcat</h4>
 <ol class="instructions">
-<li>Téléchargez la version CVS du validateur comme expliqué <a href="#source">précédemment</a> ;</li>
+<li>Téléchargez les sources Git comme expliqué <a href="#source">précédemment</a> ;</li>
 <li>Éditez le fichier <span class="file">[<span class="const">VALIDATOR_DIR</span>]build.xml</span> pour remplacer la valeur de la propriété servlet.lib 
 par le chemin vers le fichier <span class="file">servlet.jar</span>
 </li>
@@ -84,7 +86,7 @@ Copiez ou déplacez <span class="file">css-validator.war</span> dans le dossier 
 
 <h4>Installation sur le serveur Web Jigsaw</h4>
 <ol class="instructions">
-<li>Téléchargez d'abord la source comme décrit précédemment dans le dossier <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>
+<li>Téléchargez d'abord les sources Git comme décrit précédemment dans le dossier <span class="dir">[<span class="const">JIGSAW_DIR</span>]/WWW</span>
 et construisez la source avec <kbd>ant jigsaw</kbd> ;
 </li>
 <li>Configurez ensuite le répertoire racine du validateur (en général, c'est css-validator), afin qu'il puisse fonctionner
