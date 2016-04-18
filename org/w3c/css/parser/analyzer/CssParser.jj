@@ -463,7 +463,7 @@ SPECIAL_TOKEN :
   | < #STRING2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* "\'" >
   | < #INVALID1   : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* >
   | < #INVALID2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* >  
-  | < #_IDENT     : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
+  | < #_IDENT     : ( <_MINUS> )? <NMSTART> ( <NMCHAR> )* >
   | < #NAME       : ( <NMCHAR> )+ >
   | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
   | < #_STRING    : <STRING1> | <STRING2> >
@@ -498,6 +498,8 @@ TOKEN :
 {
   < LBRACE : <_W> "{" >
   | < PLUS      : <_W>  "+" >
+  | < #_MINUS    : "-" >
+  | < MINUS     : <_W> <_MINUS> >
   | < GREATER   : <_W> ">" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
@@ -532,7 +534,6 @@ TOKEN :
   | < SUFFIXMATCH : "$=" >
   | < SUBSTRINGMATCH : "*=" >
   | < EQ        : "=" >
-  | < MINUS     : "-" >
   | < SEMICOLON : ";" >
   | < DIV       : "/" >
   | < LBRACKET  : "[" >
@@ -1148,7 +1149,7 @@ CssSelectors keyframe_selector(CssSelectors next) :
       ident.set(convertIdent(n.image), ac);
       AtRuleKeyframes.checkSelectorValue(ident, ac);
       selector.addType(new TypeSelector(ident.toString()));
-    } | ( op=<PLUS> | op="-" )? n=<PERCENTAGE> {
+    } | ( op=<PLUS> | op=<MINUS> )? n=<PERCENTAGE> {
       CssPercentage p = new CssPercentage();
       if (op == null) {
         p.set(n.image, ac);
@@ -1492,8 +1493,7 @@ char combinator() :
 char unaryOperator() :
 {}
 {
-    // FIXME <MINUS> | <PLUS> ? warning as <PLUS> is <_W>? "+"
-    "-" { return '-'; }
+    <MINUS> { return '-'; }
     | <PLUS> { return '+'; }
 }
 
@@ -2452,7 +2452,7 @@ CssCheckableValue mathsum() :
   CssCheckableValue v2 = null;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() ( LOOKAHEAD(1) ( <S> )+ ( o="+" | o="-" ) ( <S> )+ v2=mathproduct() {
+   ( v1=mathproduct() ( ( o=<PLUS> | o=<MINUS> ) ( <S> )+ v2=mathproduct() {
                       // TODO add stuff, type checking etc...
                      }
                     )*
