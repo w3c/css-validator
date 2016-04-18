@@ -2333,6 +2333,7 @@ void term(CssExpression exp) :
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+    | func=mathcalc() { /* TODO */ }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2441,7 +2442,7 @@ CssCheckableValue mathcalc() :
 CssCheckableValue v;
 }
 {
-  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* ")" ) {
+  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() <LPARAN> ) {
     return v;
   }
 }
@@ -2452,7 +2453,11 @@ CssCheckableValue mathsum() :
   CssCheckableValue v2 = null;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() ( ( o=<PLUS> | o=<MINUS> ) ( <S> )+ v2=mathproduct() {
+   ( v1=mathproduct() ( ( o=<PLUS> | o=<MINUS> ) { 
+                        if (o.image.length() < 2) {
+	                   throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
+                        }
+                      } ( <S> )+ v2=mathproduct() {
                       // TODO add stuff, type checking etc...
                      }
                     )*
@@ -2467,30 +2472,28 @@ CssCheckableValue mathproduct() :
 }
 {
 
- ( v1=mathunit()  ( LOOKAHEAD(1) ( <S> )* (  ( o="*" ( <S> )* v2=mathunit() )
-                             | ( o="/" ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
-                          ) { /* TODO check */
+ ( v1=mathunit()  ( LOOKAHEAD(2) ( <S> )* 
+                    (  ( o="*" ( <S> )* v2=mathunit() )
+                       | ( o=<DIV> ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
+                    )
+                    
+                           { /* TODO check */
                               if ("/".equals(o.image)) {
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  if (BigDecimal.ZERO.equals(d)) {
-                                  // TODO throw divided by zero error
+			      	  CssNumber dv = (CssNumber) v2;
+                                  if (dv.isZero()) {
+                                      throw new ParseException(ac.getMsg().getString("error.divzero"));
                                   }
-                                  p.divide(d);
-                                  v1.setValue(p);
+				  // TODO change value...
                               } else {
                                   if ((v1.getType() != CssTypes.CSS_NUMBER) &&
                                       (v2.getType() != CssTypes.CSS_NUMBER)) {
-                                  // TODO one operand must be a number
+                                      throw new ParseException(ac.getMsg().getString("error.operandnumber"));
                                   }
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  p.multiply(d);
                                   if (v1.getType() == CssTypes.CSS_NUMBER) {
-                                     v2.setValue(p);
+  //                                   v2.setValue(p);
                                      v1 = v2;
                                   } else {
-                                     v1.setValue(p);
+  //                                 v1.setValue(p);
                                   }
                               }
                           }
@@ -2503,20 +2506,20 @@ CssCheckableValue mathunit() :
 CssCheckableValue v = null;
 }
 {
-( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
- | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
-     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
-     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
-     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
-     | ( "(" ( <S> )* v=mathsum() ( <S> )* ")" )
-     | v=mathcalc()
-   // | v=attr()
-     ) {
+ ( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
+    | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
+    | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); } 
+    | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+    | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+    | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
+    | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
+    | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
+    | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> )
+    | v=mathcalc()
+   // TODO | v=attr()
+ ) {
      return v;
-     }
+   }
 }
 
 

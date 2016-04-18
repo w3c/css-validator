@@ -412,3 +412,10 @@ error.grid: Only 0 and 1 are acceptable values for grid
 
 error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
 error.selectorname: Invalid selector name %s
+
+# calc
+
+parser.calcwhitespace: Whitespace is required on both sides of the '+' or '-' operators
+error.divzero: Division by zero
+error.operandnumber: One operand must be a number
+
