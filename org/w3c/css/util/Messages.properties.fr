@@ -437,3 +437,8 @@ error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (
 error.errortoken: Contenu inattendu "%s" ligne %s, le type de valeur attendu était parmi: %s (%s à été ignoré)
 error.selectorname: Selecteur invalide %s
 
+# calc
+
+parser.calcwhitespace: Au moins un espace est requis de chaque côté des opérateurs '+' et '-'
+error.divzero: Division par zéro
+error.operandnumber: Au moins une opérande doit être un nombre.
