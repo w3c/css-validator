@@ -441,4 +441,7 @@ error.selectorname: Selecteur invalide %s
 
 parser.calcwhitespace: Au moins un espace est requis de chaque côté des opérateurs '+' et '-'
 error.divzero: Division par zéro
-error.operandnumber: Au moins une opérande doit être un nombre.
+error.operandnumber: Au moins une opérande doit être un nombre
+error.divisortype: Le diviseur doit être un nombre
+error.incompatibletypes: Les types ne sont pas compatibles
+error.invalidtype: Type invalide
