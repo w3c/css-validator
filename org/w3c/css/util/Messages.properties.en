@@ -420,5 +420,5 @@ error.divzero: Division by zero
 error.operandnumber: One operand must be a number
 error.divisortype: The divisor must be a number
 error.incompatibletypes: The types are incompatible
-error.invalidtype: Invalid type
+error.invalidtype: Invalid type: %s
 
