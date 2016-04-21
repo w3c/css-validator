@@ -464,7 +464,7 @@ SPECIAL_TOKEN :
   | < #STRING2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* "\'" >
   | < #INVALID1   : "\"" ( ~[ "\n", "\r", "\f", "\\", "\"" ] | "\\" <NL> | <ESCAPE> )* >
   | < #INVALID2	  : "\'" ( ~[ "\n", "\r", "\f", "\\", "\'" ] | "\\" <NL> | <ESCAPE> )* >  
-  | < #_IDENT     : ( <_MINUS> )? <NMSTART> ( <NMCHAR> )* >
+  | < #_IDENT     : ( <MINUS> )? <NMSTART> ( <NMCHAR> )* >
   | < #NAME       : ( <NMCHAR> )+ >
   | < #NUM        : ( ["0"-"9"] )+ | ( ["0"-"9"] )* "." ( ["0"-"9"] )+ >
   | < #_STRING    : <STRING1> | <STRING2> >
@@ -499,8 +499,7 @@ TOKEN :
 {
   < LBRACE : <_W> "{" >
   | < PLUS      : <_W>  "+" >
-  | < #_MINUS    : "-" >
-  | < MINUS     : <_W> <_MINUS> >
+  | < MINUS     : "-" >
   | < GREATER   : <_W> ">" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
@@ -1494,6 +1493,7 @@ char combinator() :
 char unaryOperator() :
 {}
 {
+    // FIXME <MINUS> | <PLUS> ? warning as <PLUS> is <_W>? "+"
     <MINUS> { return '-'; }
     | <PLUS> { return '+'; }
 }
@@ -2461,13 +2461,19 @@ CssCheckableValue mathsum() :
   CssCheckableValue v2 = null;
   CssCalc c, nc; 
   boolean concat = false;
+  int nb_pre_sp;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() {  c = new CssCalc(ac, v1); } ( ( o=<PLUS> | o=<MINUS> ) { 
-                        if (o.image.length() < 2) {
+   ( v1=mathproduct() {  c = new CssCalc(ac, v1);
+                         nb_pre_sp = 0;
+                      }
+                      // special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
+                      ( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) { 
+                        if (o.image.length() < 2 && nb_pre_sp == 0) {
 	                   throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
                         }
                       } ( <S> )+ v2=mathproduct() {
+                          nb_pre_sp = 0;
                           if (concat) {
                               nc = new CssCalc(ac, c);
                               nc.addRightSide(o.image.trim(), v2);
