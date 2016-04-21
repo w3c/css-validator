@@ -37,6 +37,7 @@ import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
@@ -364,11 +365,11 @@ public abstract class CssParser {
 
 	if ( token == FUNCTION ) {
 	    if ( v.getType() == CssTypes.CSS_FUNCTION ) {
-            CssFunction f = (CssFunction) v;
-      	    if (f.getParameters().hasVendorExtensions()) {
-      	        expr.markVendorExtension();
+                CssFunction f = (CssFunction) v;
+      	        if (f.getParameters().hasVendorExtensions()) {
+      	            expr.markVendorExtension();
+                }
             }
-        }
 	}
 	if (n != null) {
 	    if (ac.getCssVersion() == CssVersion.CSS1 &&
@@ -498,6 +499,7 @@ TOKEN :
 {
   < LBRACE : <_W> "{" >
   | < PLUS      : <_W>  "+" >
+  | < MINUS     : "-" >
   | < GREATER   : <_W> ">" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
@@ -532,7 +534,6 @@ TOKEN :
   | < SUFFIXMATCH : "$=" >
   | < SUBSTRINGMATCH : "*=" >
   | < EQ        : "=" >
-  | < MINUS     : "-" >
   | < SEMICOLON : ";" >
   | < DIV       : "/" >
   | < LBRACKET  : "[" >
@@ -1148,7 +1149,7 @@ CssSelectors keyframe_selector(CssSelectors next) :
       ident.set(convertIdent(n.image), ac);
       AtRuleKeyframes.checkSelectorValue(ident, ac);
       selector.addType(new TypeSelector(ident.toString()));
-    } | ( op=<PLUS> | op="-" )? n=<PERCENTAGE> {
+    } | ( op=<PLUS> | op=<MINUS> )? n=<PERCENTAGE> {
       CssPercentage p = new CssPercentage();
       if (op == null) {
         p.set(n.image, ac);
@@ -1493,7 +1494,7 @@ char unaryOperator() :
 {}
 {
     // FIXME <MINUS> | <PLUS> ? warning as <PLUS> is <_W>? "+"
-    "-" { return '-'; }
+    <MINUS> { return '-'; }
     | <PLUS> { return '+'; }
 }
 
@@ -2333,6 +2334,7 @@ void term(CssExpression exp) :
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+    | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2439,10 +2441,17 @@ void mediaterm(CssExpression exp) :
 CssCheckableValue mathcalc() :
 {
 CssCheckableValue v;
+CssCalc c;
 }
 {
-  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* ")" ) {
-    return v;
+  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() <LPARAN> ) {
+    if (v.getRawType() != CssTypes.CSS_CALC) {
+       c = new CssCalc(v);
+    } else {
+       c = (CssCalc) v;
+    }
+    c.validate();
+    return c;
   }
 }
 
@@ -2450,13 +2459,32 @@ CssCheckableValue mathsum() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
+  CssCalc c, nc; 
+  boolean concat = false;
+  int nb_pre_sp;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() ( LOOKAHEAD(1) ( <S> )+ ( o="+" | o="-" ) ( <S> )+ v2=mathproduct() {
-                      // TODO add stuff, type checking etc...
+   ( v1=mathproduct() {  c = new CssCalc(ac, v1);
+                         nb_pre_sp = 0;
+                      }
+                      // special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
+                      ( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) { 
+                        if (o.image.length() < 2 && nb_pre_sp == 0) {
+	                   throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
+                        }
+                      } ( <S> )+ v2=mathproduct() {
+                          nb_pre_sp = 0;
+                          if (concat) {
+                              nc = new CssCalc(ac, c);
+                              nc.addRightSide(o.image.trim(), v2);
+                              c = nc;
+                          } else {
+                              c.addRightSide(o.image.trim(), v2);
+                              concat = true;
+                          }
                      }
                     )*
- ) { return v1; }
+ ) { return c; }
 }
 
 
@@ -2464,38 +2492,25 @@ CssCheckableValue mathproduct() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
+  CssCalc c, nc;
+  boolean concat = false;
 }
 {
-
- ( v1=mathunit()  ( LOOKAHEAD(1) ( <S> )* (  ( o="*" ( <S> )* v2=mathunit() )
-                             | ( o="/" ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
-                          ) { /* TODO check */
-                              if ("/".equals(o.image)) {
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  if (BigDecimal.ZERO.equals(d)) {
-                                  // TODO throw divided by zero error
-                                  }
-                                  p.divide(d);
-                                  v1.setValue(p);
-                              } else {
-                                  if ((v1.getType() != CssTypes.CSS_NUMBER) &&
-                                      (v2.getType() != CssTypes.CSS_NUMBER)) {
-                                  // TODO one operand must be a number
-                                  }
-                                  BigDecimal p = (BigDecimal) v1.get();
-                                  BigDecimal d = (BigDecimal) v2.get();
-                                  p.multiply(d);
-                                  if (v1.getType() == CssTypes.CSS_NUMBER) {
-                                     v2.setValue(p);
-                                     v1 = v2;
-                                  } else {
-                                     v1.setValue(p);
-                                  }
-                              }
+ ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
+                    (  ( o="*" ( <S> )* v2=mathunit() )
+                       | ( o=<DIV> ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
+                    ) {
+                          if (concat) {
+                              nc = new CssCalc(ac, c);
+                              nc.addRightSide(o.image, v2);
+                              c = nc;
+                          } else {
+                              c.addRightSide(o.image, v2);
+                              concat = true;
                           }
+                      }
                   )*
- ) { return v1; }
+ ) { return c; }
 }
 
 CssCheckableValue mathunit() :
@@ -2503,20 +2518,20 @@ CssCheckableValue mathunit() :
 CssCheckableValue v = null;
 }
 {
-( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
- | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
-     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
-     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
-     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
-     | ( "(" ( <S> )* v=mathsum() ( <S> )* ")" )
-     | v=mathcalc()
-   // | v=attr()
-     ) {
+ ( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
+    | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
+    | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); } 
+    | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+    | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
+    | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
+    | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
+    | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
+    | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
+    | v=mathcalc()
+   // TODO | v=attr()
+ ) {
      return v;
-     }
+   }
 }
 
 

@@ -10,9 +10,11 @@ package org.w3c.css.values;
  * Used by properties to verify the semantics
  */
 public interface CssOperator {
-  public static final char COMMA = ',';
-  public static final char MINUS = '-';
-  public static final char PLUS = '+';
-  public static final char SPACE = ' ';
-  public static final char EQUAL = '='; // used for vendor extensions
+	public static final char COMMA = ',';
+	public static final char MINUS = '-';
+	public static final char PLUS  = '+';
+	public static final char MUL   = '*';
+	public static final char DIV   = '/';
+	public static final char SPACE = ' ';
+	public static final char EQUAL = '='; // used for vendor extensions
 }
