@@ -37,6 +37,7 @@ import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
@@ -364,11 +365,11 @@ public abstract class CssParser {
 
 	if ( token == FUNCTION ) {
 	    if ( v.getType() == CssTypes.CSS_FUNCTION ) {
-            CssFunction f = (CssFunction) v;
-      	    if (f.getParameters().hasVendorExtensions()) {
-      	        expr.markVendorExtension();
+                CssFunction f = (CssFunction) v;
+      	        if (f.getParameters().hasVendorExtensions()) {
+      	            expr.markVendorExtension();
+                }
             }
-        }
 	}
 	if (n != null) {
 	    if (ac.getCssVersion() == CssVersion.CSS1 &&
@@ -2333,7 +2334,7 @@ void term(CssExpression exp) :
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
-    | func=mathcalc() { /* TODO */ }
+    | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2440,10 +2441,17 @@ void mediaterm(CssExpression exp) :
 CssCheckableValue mathcalc() :
 {
 CssCheckableValue v;
+CssCalc c;
 }
 {
   ( <FUNCTIONCALC>  ( <S> )* v=mathsum() <LPARAN> ) {
-    return v;
+    if (v.getRawType() != CssTypes.CSS_CALC) {
+       c = new CssCalc(v);
+    } else {
+       c = (CssCalc) v;
+    }
+    c.validate();
+    return c;
   }
 }
 
@@ -2451,17 +2459,26 @@ CssCheckableValue mathsum() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
+  CssCalc c, nc; 
+  boolean concat = false;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() ( ( o=<PLUS> | o=<MINUS> ) { 
+   ( v1=mathproduct() {  c = new CssCalc(ac, v1); } ( ( o=<PLUS> | o=<MINUS> ) { 
                         if (o.image.length() < 2) {
 	                   throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
                         }
                       } ( <S> )+ v2=mathproduct() {
-                      // TODO add stuff, type checking etc...
+                          if (concat) {
+                              nc = new CssCalc(ac, c);
+                              nc.addRightSide(o.image.trim(), v2);
+                              c = nc;
+                          } else {
+                              c.addRightSide(o.image.trim(), v2);
+                              concat = true;
+                          }
                      }
                     )*
- ) { return v1; }
+ ) { return c; }
 }
 
 
@@ -2469,36 +2486,25 @@ CssCheckableValue mathproduct() :
 { Token n,o;
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
+  CssCalc c, nc;
+  boolean concat = false;
 }
 {
-
- ( v1=mathunit()  ( LOOKAHEAD(2) ( <S> )* 
+ ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
                     (  ( o="*" ( <S> )* v2=mathunit() )
                        | ( o=<DIV> ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
-                    )
-                    
-                           { /* TODO check */
-                              if ("/".equals(o.image)) {
-			      	  CssNumber dv = (CssNumber) v2;
-                                  if (dv.isZero()) {
-                                      throw new ParseException(ac.getMsg().getString("error.divzero"));
-                                  }
-				  // TODO change value...
-                              } else {
-                                  if ((v1.getType() != CssTypes.CSS_NUMBER) &&
-                                      (v2.getType() != CssTypes.CSS_NUMBER)) {
-                                      throw new ParseException(ac.getMsg().getString("error.operandnumber"));
-                                  }
-                                  if (v1.getType() == CssTypes.CSS_NUMBER) {
-  //                                   v2.setValue(p);
-                                     v1 = v2;
-                                  } else {
-  //                                 v1.setValue(p);
-                                  }
-                              }
+                    ) {
+                          if (concat) {
+                              nc = new CssCalc(ac, c);
+                              nc.addRightSide(o.image, v2);
+                              c = nc;
+                          } else {
+                              c.addRightSide(o.image, v2);
+                              concat = true;
                           }
+                      }
                   )*
- ) { return v1; }
+ ) { return c; }
 }
 
 CssCheckableValue mathunit() :
@@ -2514,7 +2520,7 @@ CssCheckableValue v = null;
     | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
     | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
-    | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> )
+    | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
    // TODO | v=attr()
  ) {
