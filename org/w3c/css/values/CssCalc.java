@@ -1,8 +1,9 @@
-// $Id$
-// From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2011
+// @author Yves Lafon <ylafon@w3.org>
+//
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
 // Please first read the full copyright statement in file COPYRIGHT.html
+
 package org.w3c.css.values;
 
 import org.w3c.css.properties.css.CssProperty;
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
 /**
  * A CSS Cacl.
  *
- * @version $Revision$
+ * @spec https://www.w3.org/TR/2015/CR-css-values-3-20150611/#calc-notation
  */
 public class CssCalc extends CssCheckableValue {
 
