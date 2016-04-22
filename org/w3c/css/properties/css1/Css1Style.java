@@ -738,6 +738,7 @@ public class Css1Style extends CssStyle {
 		}
 		return cssZIndex;
 	}
+
 	/**
 	 * Get the white-space property
 	 */
@@ -1075,9 +1076,13 @@ class RelativeAndAbsolute {
 		switch (value.getType()) {
 			case CssTypes.CSS_PERCENTAGE:
 				// FIXME, it depends on the unit of the parent in the cascade.
-				CssPercentage percent = (CssPercentage) value;
-				if (!percent.isZero()) {
-					relative = true;
+				try {
+					CssPercentage percent = value.getPercentage();
+					if (!percent.isZero()) {
+						relative = true;
+					}
+				} catch (InvalidParamException ex) {
+					// let's consider it false then...
 				}
 				break;
 			case CssTypes.CSS_LENGTH:

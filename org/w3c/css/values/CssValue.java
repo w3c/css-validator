@@ -22,6 +22,10 @@ public abstract class CssValue {
 		return type;
 	}
 
+	public int getRawType() {
+		return getType();
+	}
+
 	/**
 	 * Set the value of this value.
 	 *

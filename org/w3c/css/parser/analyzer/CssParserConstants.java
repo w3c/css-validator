@@ -65,37 +65,37 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int PLUS = 27;
   /** RegularExpression Id. */
-  int GREATER = 28;
+  int MINUS = 28;
   /** RegularExpression Id. */
-  int COMMA = 29;
+  int GREATER = 29;
   /** RegularExpression Id. */
-  int TILDE = 30;
+  int COMMA = 30;
   /** RegularExpression Id. */
-  int AND = 31;
+  int TILDE = 31;
   /** RegularExpression Id. */
-  int MEDIARESTRICTOR = 32;
+  int AND = 32;
   /** RegularExpression Id. */
-  int STRING = 33;
+  int MEDIARESTRICTOR = 33;
   /** RegularExpression Id. */
-  int INVALID = 34;
+  int STRING = 34;
   /** RegularExpression Id. */
-  int IDENT = 35;
+  int INVALID = 35;
   /** RegularExpression Id. */
-  int HASHIDENT = 36;
+  int IDENT = 36;
   /** RegularExpression Id. */
-  int HASH = 37;
+  int HASHIDENT = 37;
   /** RegularExpression Id. */
-  int RBRACE = 38;
+  int HASH = 38;
   /** RegularExpression Id. */
-  int PREFIXMATCH = 39;
+  int RBRACE = 39;
   /** RegularExpression Id. */
-  int SUFFIXMATCH = 40;
+  int PREFIXMATCH = 40;
   /** RegularExpression Id. */
-  int SUBSTRINGMATCH = 41;
+  int SUFFIXMATCH = 41;
   /** RegularExpression Id. */
-  int EQ = 42;
+  int SUBSTRINGMATCH = 42;
   /** RegularExpression Id. */
-  int MINUS = 43;
+  int EQ = 43;
   /** RegularExpression Id. */
   int SEMICOLON = 44;
   /** RegularExpression Id. */
@@ -246,6 +246,7 @@ public interface CssParserConstants {
     "\"|=\"",
     "<LBRACE>",
     "<PLUS>",
+    "\"-\"",
     "<GREATER>",
     "<COMMA>",
     "<TILDE>",
@@ -261,7 +262,6 @@ public interface CssParserConstants {
     "\"$=\"",
     "\"*=\"",
     "\"=\"",
-    "\"-\"",
     "\";\"",
     "\"/\"",
     "\"[\"",
@@ -321,7 +321,6 @@ public interface CssParserConstants {
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
     "\"|\"",
-    "\"+\"",
   };
 
 }

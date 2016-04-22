@@ -27,7 +27,7 @@ public class CssSemitone extends CssCheckableValue {
 	protected String unit;
 
 	/**
-	 * Create a new CssVolume
+	 * Create a new CssSemitone
 	 */
 	public CssSemitone() {
 		value = BigDecimal.ZERO;
