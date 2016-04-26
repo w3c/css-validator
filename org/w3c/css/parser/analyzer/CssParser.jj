@@ -11,10 +11,10 @@ options {
     IGNORE_CASE  = true;
     STATIC = false;
     UNICODE_INPUT = true;
-    /**/
+    /*
           DEBUG_TOKEN_MANAGER = true; 
 	  DEBUG_PARSER = true;      
-    /**/
+    */
 }
 
 PARSER_BEGIN(CssParser)
@@ -2544,7 +2544,7 @@ CssExpression exp = null;
 {
   <FUNCTIONATTR> ( <S> )* exp=expr() <LPARAN> {
        v = new CssAttr();
-//     v.setValue(exp, ac);
+       v.setValue(exp, ac);
        return v;
   }
 }
