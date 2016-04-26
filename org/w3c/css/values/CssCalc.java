@@ -13,7 +13,7 @@ import org.w3c.css.util.InvalidParamException;
 import java.math.BigDecimal;
 
 /**
- * A CSS Cacl.
+ * A CSS calc().
  *
  * @spec https://www.w3.org/TR/2015/CR-css-values-3-20150611/#calc-notation
  */
