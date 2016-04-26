@@ -38,6 +38,7 @@ public class CssCalc extends CssCheckableValue {
 	CssValue val2 = null;
 	char operator;
 	boolean hasParen = false;
+	String _toString = null;
 
 
 	/**
@@ -87,10 +88,12 @@ public class CssCalc extends CssCheckableValue {
 			throw new InvalidParamException("unrecognized", val1, ac);
 		}
 		val1 = value;
+		_toString = null;
 		return this;
 	}
 
 	public CssCalc addRightSide(String oper, CssValue value) throws InvalidParamException {
+		_toString = null;
 		switch (oper) {
 			case "+":
 				operator = CssOperator.PLUS;
@@ -244,9 +247,12 @@ public class CssCalc extends CssCheckableValue {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("calc(").append(toStringUnprefixed()).append(')');
-		return sb.toString();
+		if (_toString == null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("calc(").append(toStringUnprefixed()).append(')');
+			_toString = sb.toString();
+		}
+		return _toString;
 	}
 
 
