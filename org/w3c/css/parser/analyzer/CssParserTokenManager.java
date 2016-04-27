@@ -16,6 +16,7 @@ import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
