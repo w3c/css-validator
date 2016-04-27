@@ -54,10 +54,14 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 				}
 				break;
 			case CssTypes.CSS_NUMBER:
+				// only 0 can be a length...
 				CssLength l = val.getLength();
+				l.checkPositiveness(ac, this);
+				value = val;
+				break;
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
-				CssCheckableValue p = val.getLength();
+				CssCheckableValue p = val.getCheckableValue();
 				p.checkPositiveness(ac, this);
 				value = val;
 				break;

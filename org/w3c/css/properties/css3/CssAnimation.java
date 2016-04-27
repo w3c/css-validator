@@ -9,11 +9,11 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -206,7 +206,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
 				case CssTypes.CSS_TIME:
 					if (v.duration == null) {
 						// we got a duration (first parsable time)
-						CssTime t = val.getTime();
+						CssCheckableValue t = val.getCheckableValue();
 						t.warnPositiveness(ac, this);
 						v.duration = val;
 						break;
