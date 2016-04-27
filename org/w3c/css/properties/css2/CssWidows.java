@@ -7,6 +7,7 @@ package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssNumber;
@@ -47,7 +48,7 @@ public class CssWidows extends org.w3c.css.properties.css.CssWidows {
 		setByUser();
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber number = val.getNumber();
+				CssCheckableValue number = val.getCheckableValue();
 				number.checkInteger(ac, this);
 				number.checkStrictPositiveness(ac, this);
 				value = val;

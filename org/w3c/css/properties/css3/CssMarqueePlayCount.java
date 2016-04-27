@@ -7,9 +7,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -49,7 +49,7 @@ public class CssMarqueePlayCount extends org.w3c.css.properties.css.CssMarqueePl
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber num = val.getNumber();
+				CssCheckableValue num = val.getCheckableValue();
 				num.checkInteger(ac, this);
 				num.checkPositiveness(ac, this);
 				value = num;

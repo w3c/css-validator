@@ -13,7 +13,6 @@ import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -194,7 +193,7 @@ public class CssAnimation extends org.w3c.css.properties.css.CssAnimation {
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
 					if (v.itercount == null) {
-						CssNumber num = val.getNumber();
+						CssCheckableValue num = val.getCheckableValue();
 						num.checkPositiveness(ac, this);
 						v.itercount = val;
 						break;

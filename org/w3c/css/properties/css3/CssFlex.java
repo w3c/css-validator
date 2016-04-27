@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
@@ -112,7 +113,7 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 							getPropertyName(), ac);
 				case CssTypes.CSS_NUMBER:
 					if (growVal == null) {
-						CssNumber num = val.getNumber();
+						CssCheckableValue num = val.getCheckableValue();
 						num.checkPositiveness(ac, this);
 						growVal = val;
 						gotNumber = true;
@@ -120,7 +121,7 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 					}
 					// we can get shrink only after grow
 					if (gotNumber && shrinkVal == null) {
-						CssNumber num = val.getNumber();
+						CssCheckableValue num = val.getCheckableValue();
 						num.checkPositiveness(ac, this);
 						shrinkVal = val;
 						break;
