@@ -74,11 +74,15 @@ public abstract class CssValue {
 		throw new ClassCastException("unknown");
 	}
 
-	public CssAngle getAngle() throws  InvalidParamException {
+	public CssAngle getAngle() throws InvalidParamException {
 		throw new ClassCastException("unknown");
 	}
 
-	public CssFrequency getFrequency() throws  InvalidParamException {
+	public CssFrequency getFrequency() throws InvalidParamException {
+		throw new ClassCastException("unknown");
+	}
+
+	public CssCheckableValue getCheckableValue() throws InvalidParamException {
 		throw new ClassCastException("unknown");
 	}
 }

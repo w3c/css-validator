@@ -6,10 +6,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -46,7 +45,6 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_IDENT:
-				CssIdent ident = (CssIdent) val;
 				if (inherit.equals(val)) {
 					value = inherit;
 				} else if (auto.equals(val)) {
@@ -56,15 +54,12 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 				}
 				break;
 			case CssTypes.CSS_NUMBER:
-			case CssTypes.CSS_LENGTH:
 				CssLength l = val.getLength();
-				l.checkPositiveness(ac, this);
-				value = val;
-				break;
+			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = val.getPercentage();
+				CssCheckableValue p = val.getLength();
 				p.checkPositiveness(ac, this);
-				value = p;
+				value = val;
 				break;
 			default:
 				throw new InvalidParamException("value", val, getPropertyName(), ac);
