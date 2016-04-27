@@ -2538,7 +2538,7 @@ CssCheckableValue v = null;
 
 CssValue attr() :
 {
-CssAttr v = null;
+CssValue v = null;
 CssExpression exp = null;
 }
 {
