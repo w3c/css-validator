@@ -8,9 +8,14 @@ package org.w3c.css.values;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+
+import static org.w3c.css.values.CssOperator.COMMA;
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * A CSS Attr.
@@ -18,6 +23,41 @@ import java.math.BigDecimal;
  * @spec https://www.w3.org/TR/2015/CR-css-values-3-20150611/#attr-notation
  */
 public class CssAttr extends CssCheckableValue {
+
+	public static HashMap<CssIdent, Integer> typeMap;
+
+	static {
+		/* @spec https://www.w3.org/TR/2015/CR-css-values-3-20150611/#typedef-type-or-unit */
+		typeMap = new HashMap<>();
+		typeMap.put(CssIdent.getIdent("color"), CssTypes.CSS_COLOR);
+		typeMap.put(CssIdent.getIdent("string"), CssTypes.CSS_STRING);
+		typeMap.put(CssIdent.getIdent("url"), CssTypes.CSS_URL);
+		typeMap.put(CssIdent.getIdent("integer"), CssTypes.CSS_NUMBER);
+		typeMap.put(CssIdent.getIdent("number"), CssTypes.CSS_NUMBER);
+		typeMap.put(CssIdent.getIdent("%"), CssTypes.CSS_PERCENTAGE);
+		// length
+		String[] _length_tokens = {"length", "em", "ex", "ch", "rem",
+				"vw", "vh", "vmin", "vmax",
+				"mm", "cm", "q", "in", "pt", "pc", "px"};
+		for (String s : _length_tokens) {
+			typeMap.put(CssIdent.getIdent(s), CssTypes.CSS_LENGTH);
+		}
+		// angle
+		String[] _angle_tokens = {"angle", "deg", "rad", "grad", "turn"};
+		for (String s : _angle_tokens) {
+			typeMap.put(CssIdent.getIdent(s), CssTypes.CSS_ANGLE);
+		}
+		// time
+		String[] _time_tokens = {"time", "ms", "s"};
+		for (String s : _time_tokens) {
+			typeMap.put(CssIdent.getIdent(s), CssTypes.CSS_TIME);
+		}
+		// frequency
+		String[] _frequency_tokens = {"frequency", "Hz", "kHz"};
+		for (String s : _frequency_tokens) {
+			typeMap.put(CssIdent.getIdent(s), CssTypes.CSS_FREQUENCY);
+		}
+	}
 
 	public static final int type = CssTypes.CSS_ATTR;
 
@@ -36,7 +76,7 @@ public class CssAttr extends CssCheckableValue {
 	int computed_type = CssTypes.CSS_UNKNOWN;
 	CssValue value = null;
 	CssValue value_type = null;
-	CssValue default_value = null;
+	CssValue fallback_value = null;
 	String _ts = null;
 
 
@@ -57,6 +97,66 @@ public class CssAttr extends CssCheckableValue {
 		// as we rely on the parsing a CssExpression
 	}
 
+	public void setValue(CssExpression exp, ApplContext ac)
+			throws InvalidParamException {
+
+		CssValue val;
+		char op;
+		int count = exp.getCount();
+		// for levels before CSS3, attr only got a single value
+		if (count > 3 || (count > 1 && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0)) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		val = exp.getValue();
+		op = exp.getOperator();
+
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					val.toString(), "attr()", ac);
+		}
+		value = val;
+		// by default we have a Css_String
+		computed_type = CssTypes.CSS_STRING;
+		exp.next();
+		// check the
+		if (!exp.end()) {
+			val = exp.getValue();
+			switch (op) {
+				case SPACE:
+					// first we must ensure that we didn't get the fallback value first
+					if (fallback_value != null) {
+						throw new InvalidParamException("unrecognize", ac);
+					}
+					// TODO add %
+					if (val.getType() == CssTypes.CSS_IDENT) {
+						computed_type = _checkType((CssIdent) val);
+						value_type = val;
+						break;
+					}
+					throw new InvalidParamException("value",
+							val.toString(), "attr()", ac);
+				case COMMA:
+					fallback_value = val;
+					break;
+				default:
+					throw new InvalidParamException("operator",
+							Character.toString(op),
+							ac);
+			}
+			op = exp.getOperator();
+
+		}
+	}
+
+	private int _checkType(CssIdent ident)
+			throws InvalidParamException {
+		Integer t = typeMap.get(ident);
+		if (t == null) {
+			throw new InvalidParamException("invalidtype", ident.toString(), "attr()", ac);
+		}
+		return t;
+	}
+
 
 	/**
 	 * Returns the value
@@ -74,8 +174,8 @@ public class CssAttr extends CssCheckableValue {
 			if (value_type != null) {
 				sb.append(' ').append(value_type);
 			}
-			if (default_value != null) {
-				sb.append(" , ").append(default_value);
+			if (fallback_value != null) {
+				sb.append(" , ").append(fallback_value);
 			}
 			sb.append(')');
 			_ts = sb.toString();
@@ -126,7 +226,7 @@ public class CssAttr extends CssCheckableValue {
 	 */
 	public boolean equals(Object value) {
 		return (value instanceof CssAttr &&
-				toString().equals(((CssAttr)value).toString()));
+				toString().equals(((CssAttr) value).toString()));
 	}
 
 	/**
