@@ -333,7 +333,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 							}
 							break;
 						case CssTypes.CSS_NUMBER:
-							aValue = aValue.getPercentage();
+							aValue = aValue.getLength();
 						case CssTypes.CSS_PERCENTAGE:
 						case CssTypes.CSS_LENGTH:
 							if (!got_ident) {
