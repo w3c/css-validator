@@ -101,11 +101,11 @@ public class CssSize extends org.w3c.css.properties.css.CssSize {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					vals.add(val);
 					// not in the spec, but size ought to be non-negative
-					val.getLength().checkPositiveness(ac, this);
+					val.getCheckableValue().checkPositiveness(ac, this);
 					break;
 				case CssTypes.CSS_IDENT:
 					CssIdent ident = (CssIdent) val;

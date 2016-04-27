@@ -59,7 +59,7 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				// zero is a valid length. otherwise it will fail.
-				val = val.getLength();
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				value = val;

@@ -9,7 +9,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -48,7 +47,7 @@ public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 				value = val;
 				break;
 			case CssTypes.CSS_LENGTH:
-				CssLength l = val.getLength();
+				CssCheckableValue l = val.getCheckableValue();
 				l.checkPositiveness(ac, this);
 				value = val;
 				break;

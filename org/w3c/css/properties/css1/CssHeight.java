@@ -6,11 +6,9 @@ package org.w3c.css.properties.css1;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -53,22 +51,12 @@ public class CssHeight extends org.w3c.css.properties.css.CssHeight {
 				}
 				break;
 			case CssTypes.CSS_NUMBER:
-				val = ((CssNumber) val).getLength();
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength l = (CssLength) val;
-				if (!l.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
-				value = l;
-				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = (CssPercentage) val;
-				if (!p.isPositive()) {
-					throw new InvalidParamException("negative-value",
-							val.toString(), ac);
-				}
-				value = p;
+				CssCheckableValue l = val.getCheckableValue();
+				l.checkPositiveness(ac, this);
+				value = val;
 				break;
 			default:
 				throw new InvalidParamException("value", val, getPropertyName(), ac);

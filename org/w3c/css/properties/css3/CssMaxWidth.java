@@ -7,9 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -44,14 +43,11 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength length = val.getLength();
-				length.checkPositiveness(ac, this);
-				value = val;
-				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage percentage = val.getPercentage();
-				percentage.checkPositiveness(ac, this);
+				CssCheckableValue length = val.getCheckableValue();
+				length.checkPositiveness(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:

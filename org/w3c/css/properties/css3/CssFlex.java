@@ -11,10 +11,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -131,17 +129,11 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 					// and we get a length, so val = 0
 					// otherwise it will either fail or flow to default:
 				case CssTypes.CSS_LENGTH:
-					if (basisVal == null) {
-						CssLength l = val.getLength();
-						l.checkPositiveness(ac, this);
-						basisVal = l;
-						break;
-					}
 				case CssTypes.CSS_PERCENTAGE:
 					if (basisVal == null) {
-						CssPercentage p = val.getPercentage();
-						p.checkPositiveness(ac, this);
-						basisVal = p;
+						CssCheckableValue l = val.getCheckableValue();
+						l.checkPositiveness(ac, this);
+						basisVal = val;
 						break;
 					}
 				default:

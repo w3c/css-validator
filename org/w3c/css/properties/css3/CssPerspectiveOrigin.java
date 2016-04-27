@@ -9,7 +9,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -127,9 +126,8 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
 		for (CssValue aValue : values) {
 			switch (aValue.getType()) {
 				case CssTypes.CSS_NUMBER:
+					aValue.getLength();
 				case CssTypes.CSS_LENGTH:
-					CssLength len = aValue.getLength();
-					break;
 				case CssTypes.CSS_PERCENTAGE:
 					break;
 				case CssTypes.CSS_IDENT:

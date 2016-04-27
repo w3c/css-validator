@@ -10,7 +10,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -74,7 +73,7 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					CssLength l = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					v.add(val);
@@ -163,14 +162,12 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 			throw new InvalidParamException("unrecognize", ac);
 		}
 		CssValue val;
-		char op;
 
 		val = expression.getValue();
-		op = expression.getOperator();
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssLength l = val.getLength();
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				expression.next();

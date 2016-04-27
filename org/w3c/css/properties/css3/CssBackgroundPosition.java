@@ -12,7 +12,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -172,7 +171,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 		for (CssValue aValue : v.value) {
 			switch (aValue.getType()) {
 				case CssTypes.CSS_NUMBER:
-					CssLength l = aValue.getLength();
+					aValue.getLength();
 				case CssTypes.CSS_LENGTH:
 					nb_length++;
 					break;
@@ -416,7 +415,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					CssLength l = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					nb_length++;
 					break;

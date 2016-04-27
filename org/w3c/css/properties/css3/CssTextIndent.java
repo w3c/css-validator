@@ -60,7 +60,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					if (sizeVal != null) {

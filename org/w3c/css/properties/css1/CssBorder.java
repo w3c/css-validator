@@ -16,10 +16,9 @@ import org.w3c.css.properties.css.CssBorderTopStyle;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -125,13 +124,10 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val = ((CssNumber) val).getLength();
+                    val.getLength();
                 case CssTypes.CSS_LENGTH:
-                    CssLength length = (CssLength) val;
-                    if (!length.isPositive()) {
-                        throw new InvalidParamException("negative-value", expression.getValue(),
-                                caller.getPropertyName(), ac);
-                    }
+					CssCheckableValue l = val.getCheckableValue();
+					l.checkPositiveness(ac, new CssBorder());
                     _width = val;
                     break;
 				case CssTypes.CSS_HASH_IDENT:

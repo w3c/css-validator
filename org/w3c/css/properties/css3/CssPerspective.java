@@ -10,8 +10,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -49,9 +49,10 @@ public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
 				// number might be a length, but it will fail the >0 test
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength length = val.getLength();
-				length.checkStrictPositiveness(ac, this);
+				CssCheckableValue l = val.getCheckableValue();
+				l.checkStrictPositiveness(ac, this);
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:

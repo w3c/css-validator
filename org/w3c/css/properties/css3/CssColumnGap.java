@@ -11,9 +11,9 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -52,8 +52,9 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength l = val.getLength();
+				CssCheckableValue l = val.getCheckableValue();
 				l.checkPositiveness(ac, this);
 				columngap = val;
 				break;
