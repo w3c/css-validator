@@ -54,7 +54,7 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					v.add(val);
 					break;

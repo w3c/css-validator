@@ -193,10 +193,10 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 			if (val.getType() == CssTypes.CSS_NUMBER) {
 				switch (type) {
 					case CssTypes.CSS_LENGTH:
-						val.getNumber().getLength();
+						val.getLength();
 						break;
 					case CssTypes.CSS_ANGLE:
-						val.getNumber().getAngle();
+						val.getAngle();
 					case CssTypes.CSS_NUMBER:
 						break;
 					default:

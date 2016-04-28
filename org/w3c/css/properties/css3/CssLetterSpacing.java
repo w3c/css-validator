@@ -53,7 +53,7 @@ public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacin
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					v.add(val);
 					break;

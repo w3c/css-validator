@@ -14,17 +14,17 @@ import java.math.BigDecimal;
 
 public abstract class CssCheckableValue extends CssValue {
 
-	abstract boolean isPositive();
+	abstract public boolean isPositive();
 
-	abstract void checkPositiveness(ApplContext ac, CssProperty property)
+	abstract public void checkPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
 
-	abstract boolean isStrictlyPositive();
+	abstract public boolean isStrictlyPositive();
 
-	abstract void checkStrictPositiveness(ApplContext ac, CssProperty property)
+	abstract public void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
 
-	abstract void warnPositiveness(ApplContext ac, CssProperty property);
+	abstract public void warnPositiveness(ApplContext ac, CssProperty property);
 
 	public boolean isInteger() {
 		return false;
@@ -32,7 +32,8 @@ public abstract class CssCheckableValue extends CssValue {
 
 	/**
 	 * check if the value is an integer
-	 * @param ac the validation context
+	 *
+	 * @param ac       the validation context
 	 * @param property the property the value is defined in
 	 * @throws InvalidParamException
 	 */
@@ -43,7 +44,17 @@ public abstract class CssCheckableValue extends CssValue {
 
 	/**
 	 * set the native value
+	 *
 	 * @param v the BigDecimal
 	 */
 	public abstract void setValue(BigDecimal v);
+
+	/**
+	 * Get this value as acheckable value
+	 *
+	 * @return
+	 */
+	public CssCheckableValue getCheckableValue() {
+		return this;
+	}
 }

@@ -7,9 +7,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -68,7 +68,7 @@ public class CssRestBefore extends org.w3c.css.properties.css.CssRestBefore {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_TIME:
-				CssTime t = val.getTime();
+				CssCheckableValue t = val.getCheckableValue();
 				t.checkPositiveness(ac, this);
 				value = val;
 				break;

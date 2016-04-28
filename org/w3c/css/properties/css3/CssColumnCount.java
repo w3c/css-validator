@@ -10,9 +10,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -44,7 +44,7 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
         setByUser();
         CssValue val = expression.getValue();
-        CssNumber num;
+        CssCheckableValue num;
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -52,7 +52,7 @@ public class CssColumnCount extends org.w3c.css.properties.css.CssColumnCount {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                num = val.getNumber();
+                num = val.getCheckableValue();
 				num.checkInteger(ac, this);
 				num.checkStrictPositiveness(ac, this);
                 value = val;

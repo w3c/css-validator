@@ -79,7 +79,7 @@ public class CssFloatDefer extends org.w3c.css.properties.css.CssFloatDefer {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getNumber().checkInteger(ac, this);
+				val.getCheckableValue().checkInteger(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:

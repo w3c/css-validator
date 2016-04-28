@@ -37,6 +37,7 @@ import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssIdent;
@@ -2335,6 +2336,7 @@ void term(CssExpression exp) :
     | n=<DIMEN> {
 	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
     | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+    | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
   | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2534,6 +2536,18 @@ CssCheckableValue v = null;
    }
 }
 
+CssValue attr() :
+{
+CssAttr v = null;
+CssExpression exp = null;
+}
+{
+  <FUNCTIONATTR> ( <S> )* exp=expr() <LPARAN> {
+       v = new CssAttr();
+       v.setValue(exp, ac);
+       return v;
+  }
+}
 
 /**
  * @exception ParseException exception during the parse

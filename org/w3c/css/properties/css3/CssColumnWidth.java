@@ -10,9 +10,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -54,13 +54,13 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val = val.getLength();
+				val.getLength();
 				// if we didn't fall in the first trap, there is another one :)
 				throw new InvalidParamException("strictly-positive",
 						expression.getValue(),
 						getPropertyName(), ac);
 			case CssTypes.CSS_LENGTH:
-				CssLength l = val.getLength();
+				CssCheckableValue l = val.getCheckableValue();
 				l.checkStrictPositiveness(ac, this);
 				value = val;
 				break;

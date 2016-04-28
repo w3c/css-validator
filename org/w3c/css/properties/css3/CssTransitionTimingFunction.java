@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
@@ -144,7 +145,7 @@ public class CssTransitionTimingFunction extends org.w3c.css.properties.css.CssT
 					caller.getPropertyName(), ac);
 		}
 		// we have a number, continue checks
-		CssNumber number = val.getNumber();
+		CssCheckableValue number = val.getCheckableValue();
 		// it must be a >0 integer
 		number.checkInteger(ac, caller);
 		number.checkStrictPositiveness(ac, caller);

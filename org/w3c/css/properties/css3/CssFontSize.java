@@ -7,10 +7,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -76,15 +75,12 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength l = val.getLength();
+			case CssTypes.CSS_PERCENTAGE:
+				CssCheckableValue l = val.getCheckableValue();
 				l.checkPositiveness(ac, this);
 				value = l;
-				break;
-			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = val.getPercentage();
-				p.checkPositiveness(ac, this);
-				value = p;
 				break;
 			case CssTypes.CSS_IDENT:
 				CssIdent ident = (CssIdent) val;

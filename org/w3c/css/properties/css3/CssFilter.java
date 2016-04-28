@@ -244,7 +244,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					// color should be last | no more than 3 length.
 					if (got_color || nb_length == 3) {

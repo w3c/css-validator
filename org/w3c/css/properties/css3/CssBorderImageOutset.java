@@ -7,9 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -51,13 +50,9 @@ public class CssBorderImageOutset extends org.w3c.css.properties.css.CssBorderIm
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					CssNumber num = val.getNumber();
-					num.checkPositiveness(ac, this);
-					valueList.add(val);
-					break;
 				case CssTypes.CSS_LENGTH:
-					CssLength length = val.getLength();
-					length.checkPositiveness(ac, this);
+					CssCheckableValue num = val.getCheckableValue();
+					num.checkPositiveness(ac, this);
 					valueList.add(val);
 					break;
 				case CssTypes.CSS_IDENT:
