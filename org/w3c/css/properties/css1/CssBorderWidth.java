@@ -8,10 +8,9 @@ package org.w3c.css.properties.css1;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -89,14 +88,11 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    val = ((CssNumber) val).getLength();
+                    val.getLength();
                 case CssTypes.CSS_LENGTH:
-                    CssLength length = (CssLength) val;
-                    if (!length.isPositive()) {
-                        throw new InvalidParamException("negative-value", expression.getValue(),
-                                getPropertyName(), ac);
-                    }
-                    res.add(length);
+					CssCheckableValue l = val.getCheckableValue();
+					l.checkPositiveness(ac, new CssBorderWidth());
+                    res.add(value);
                     break;
                 case CssTypes.CSS_IDENT:
                     if (inherit.equals(val)) {
@@ -171,14 +167,11 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                val = ((CssNumber) val).getLength();
+                val.getLength();
             case CssTypes.CSS_LENGTH:
-                CssLength length = (CssLength) val;
-                if (!length.isPositive()) {
-                    throw new InvalidParamException("negative-value", expression.getValue(),
-                            caller.getPropertyName(), ac);
-                }
-                retval = length;
+				CssCheckableValue l = val.getCheckableValue();
+				l.checkPositiveness(ac, new CssBorderWidth());
+                retval = val;
                 break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {

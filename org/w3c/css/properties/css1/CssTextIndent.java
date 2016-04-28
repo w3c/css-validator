@@ -45,7 +45,7 @@ public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val = ((CssNumber) val).getLength();
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
 				value = val;
 				break;

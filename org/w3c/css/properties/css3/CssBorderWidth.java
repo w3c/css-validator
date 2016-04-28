@@ -8,9 +8,9 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -93,8 +93,9 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
+					val.getLength();
                 case CssTypes.CSS_LENGTH:
-                    CssLength length = val.getLength();
+                    CssCheckableValue length = val.getCheckableValue();
 					length.checkPositiveness(ac, this);
                     res.add(length);
                     break;
@@ -172,8 +173,9 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
         CssValue val = expression.getValue();
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
+				val.getLength();
             case CssTypes.CSS_LENGTH:
-                CssLength length = val.getLength();
+                CssCheckableValue length = val.getCheckableValue();
 				length.checkPositiveness(ac, caller);
                 retval = length;
                 break;

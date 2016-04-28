@@ -10,10 +10,10 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -133,7 +133,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 					if (!length_ok) {
 						throw new InvalidParamException("value", val,
@@ -148,9 +148,9 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 							value.vertical_offset = val;
 							break;
 						case 3:
-							CssLength length = val.getLength();
+							CssCheckableValue length = val.getCheckableValue();
 							length.checkPositiveness(ac, this);
-							value.blur_radius = length;
+							value.blur_radius = val;
 							break;
 						case 4:
 							value.spread_distance = val;

@@ -7,10 +7,9 @@ package org.w3c.css.properties.css2;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -47,13 +46,9 @@ public class CssPauseBefore extends org.w3c.css.properties.css.CssPauseBefore {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_TIME:
-				CssTime t = val.getTime();
-				t.checkPositiveness(ac, this);
-				value = val;
-				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = val.getPercentage();
-				p.checkPositiveness(ac, this);
+				CssCheckableValue v = val.getCheckableValue();
+				v.checkPositiveness(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_IDENT:

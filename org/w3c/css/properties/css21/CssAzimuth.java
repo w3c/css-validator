@@ -11,7 +11,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -97,12 +96,12 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
                 // find out if we can create an angle out of that value
                 // (ie: equal 0)
                 // per http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#angles
-                val = ((CssNumber) val).getAngle();
+                val = val.getAngle();
             case CssTypes.CSS_ANGLE:
                 if (check && expression.getCount() > 1) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
-                angleValue = (CssAngle) val;
+                angleValue = val.getAngle();
                 // FIXME is the following really true? not per spec...
 //                if (!angleValue.isDegree()) {
 //                    throw new InvalidParamException("degree", ac);

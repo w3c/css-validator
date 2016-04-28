@@ -7,10 +7,10 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -174,7 +174,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
 						identl.add((CssIdent) val);
 						break;
 					case CssTypes.CSS_NUMBER:
-						CssNumber n = val.getNumber();
+						CssCheckableValue n = val.getCheckableValue();
 						n.checkStrictPositiveness(ac, this);
 						numVal = val;
 						break;

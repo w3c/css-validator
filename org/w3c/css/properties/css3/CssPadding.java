@@ -8,9 +8,8 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -73,14 +72,11 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
-					CssLength l = val.getLength();
-					l.checkPositiveness(ac, this);
-					v.add(val);
-					break;
 				case CssTypes.CSS_PERCENTAGE:
-					CssPercentage p = val.getPercentage();
-					p.checkPositiveness(ac, this);
+					CssCheckableValue l = val.getCheckableValue();
+					l.checkPositiveness(ac, this);
 					v.add(val);
 					break;
 				case CssTypes.CSS_IDENT:
@@ -170,14 +166,11 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
+				val.getLength();
 			case CssTypes.CSS_LENGTH:
-				CssLength l = val.getLength();
-				l.checkPositiveness(ac, caller);
-				expression.next();
-				return val;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = val.getPercentage();
-				p.checkPositiveness(ac, caller);
+				CssCheckableValue l = val.getCheckableValue();
+				l.checkPositiveness(ac, caller);
 				expression.next();
 				return val;
 			case CssTypes.CSS_IDENT:

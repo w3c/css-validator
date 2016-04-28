@@ -7,8 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -124,8 +124,8 @@ public class CssVoiceRange extends org.w3c.css.properties.css.CssVoiceRange {
 					throw new InvalidParamException("value", expression.toStringFromStart(),
 							getPropertyName(), ac);
 				}
-				CssFrequency frequency = numVal.getFrequency();
-				frequency.warnPositiveness(ac, this);
+				CssCheckableValue freq = numVal.getCheckableValue();
+				freq.warnPositiveness(ac, this);
 			}
 			ArrayList<CssValue> values = new ArrayList<CssValue>(2);
 			values.add(numVal);

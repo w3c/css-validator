@@ -7,9 +7,9 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -62,7 +62,7 @@ public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLette
 						got_number = true;
 					} else {
 						// the second integer must be an integer
-						CssNumber n = val.getNumber();
+						CssCheckableValue n = val.getCheckableValue();
 						n.checkInteger(ac, this);
 					}
 					v.add(val);

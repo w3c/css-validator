@@ -57,7 +57,7 @@ public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlig
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val = val.getLength();
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					if (got_shift) {

@@ -7,8 +7,8 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -55,8 +55,9 @@ public class CssBorderSpacing extends org.w3c.css.properties.css.CssBorderSpacin
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
+					val.getLength();
 				case CssTypes.CSS_LENGTH:
-					CssLength l = val.getLength();
+					CssCheckableValue l = val.getCheckableValue();
 					l.checkPositiveness(ac, this);
 					v.add(l);
 					break;
