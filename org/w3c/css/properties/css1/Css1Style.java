@@ -158,11 +158,6 @@ public class Css1Style extends CssStyle {
 	public CssListStyleType cssListStyleType;
 	public CssListStyle cssListStyle;
 
-	/**
-	 * content property
-	 */
-	public CssContentCSS2 cssContentCSS2;
-	public CssContent cssContent;
 
 	public String[] emptyArray = {};
 
@@ -797,27 +792,6 @@ public class Css1Style extends CssStyle {
 					style, selector);
 		}
 		return cssListStyle;
-	}
-
-	/**
-	 * Get the content property
-	 */
-	public final CssContent getContent() {
-		if (cssContent == null) {
-			cssContent =
-					(CssContent) style.CascadingOrder(new CssContent(),
-							style, selector);
-		}
-		return cssContent;
-	}
-
-	public final CssContentCSS2 getContentCSS2() {
-		if (cssContentCSS2 == null) {
-			cssContentCSS2 =
-					(CssContentCSS2) style.CascadingOrder(new CssContentCSS2(),
-							style, selector);
-		}
-		return cssContentCSS2;
 	}
 
 	/**

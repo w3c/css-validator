@@ -13,6 +13,7 @@ import org.w3c.css.properties.css.CssBorderSpacing;
 import org.w3c.css.properties.css.CssBottom;
 import org.w3c.css.properties.css.CssCaptionSide;
 import org.w3c.css.properties.css.CssClip;
+import org.w3c.css.properties.css.CssContent;
 import org.w3c.css.properties.css.CssCounterIncrement;
 import org.w3c.css.properties.css.CssCounterReset;
 import org.w3c.css.properties.css.CssCue;
@@ -103,6 +104,8 @@ public class Css2Style extends Css1Style {
 	public CssPageBreakInside cssPageBreakInside;
 	public CssMarks cssMarks;
 	public CssSize cssSize;
+
+	public CssContent cssContent;
 
 	/**
 	 * font properties
@@ -459,6 +462,15 @@ public class Css2Style extends Css1Style {
 		return cssMarkerOffset;
 	}
 
+	/**
+	 * Get the content property
+	 */
+	public final CssContent getContent(){
+		if (cssContent == null) {
+			cssContent = (CssContent) style.CascadingOrder(new CssContent(), style, selector);
+		}
+		return cssContent;
+	}
 
 	/**
 	 * Get the clip property
