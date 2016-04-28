@@ -121,7 +121,7 @@ public class CssTextShadow extends org.w3c.css.properties.css.CssTextShadow {
 			// color is last, so if we reach this, we are in error
 			if (val.getType() == CssTypes.CSS_NUMBER) {
 				// case of 0, a number and a length
-				val.getLength();
+				val = val.getLength();
 			}
 			if (val.getType() == CssTypes.CSS_LENGTH) {
 				values.add(val);
