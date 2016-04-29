@@ -616,7 +616,7 @@ TOKEN [IGNORE_CASE] :
   | < KEYFRAMES_SYM         : "@keyframes" >
   | < PREF_SYM              : "@preference" >
   | < COLOR_PROFILE         : "@color-profile" >
-  | < ATTOP	                : "@top" >
+  | < ATTOP	            : "@top" >
   | < ATRIGHT               : "@right" >
   | < ATBOTTOM              : "@bottom" >
   | < ATLEFT                : "@left" >
@@ -697,9 +697,8 @@ void parserUnit() :
     try {
 	// used as an error recovery for HTML tags in CSS pages
         ( ( n=<HTMLSTARTTAG> | n=<HTMLENDTAG> ) {
-	    addError (
-new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); 
-	}
+	        addError (new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image); 
+	    }
 	    )*
 	  ( charset() )* // * instead of ? to capture the reinit part
 	    ( <S> | <CDO> | <CDC> )*
@@ -707,10 +706,10 @@ new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.image);
 	    ( namespaceDeclaration() ( ignoreStatement() ) )*
 	    afterImportDeclaration()
 	    <EOF>
-	 } catch (TokenMgrError err) {
-   addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
-	     err.getMessage());
-    }
+        } catch (TokenMgrError err) {
+            addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
+	    err.getMessage());
+        }
 }
 
 void charset() :
@@ -743,7 +742,7 @@ void charset() :
 							 "parser.charsetcss1"));
 		}
 	        // stricter rule for CSS21 and soon for CSS3
-	     // if equal of above CSS21
+	        // if equal of above CSS21
 		if (version.compareTo(CssVersion.CSS21) >= 0) {
 		    // single space before
 		    // case sensitive
