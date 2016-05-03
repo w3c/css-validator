@@ -321,6 +321,7 @@ public interface CssParserConstants {
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
     "\"|\"",
+    "\"%\"",
   };
 
 }

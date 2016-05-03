@@ -90,6 +90,9 @@ private int jjMoveStringLiteralDfa0_0(){
    {
       case 36:
          return jjMoveStringLiteralDfa1_0(0x20000000000L, 0x0L);
+      case 37:
+         jjmatchedKind = 103;
+         return jjMoveNfa_0(7, 0);
       case 40:
          jjmatchedKind = 51;
          return jjMoveNfa_0(7, 0);
@@ -6271,7 +6274,7 @@ null, null, "\175", "\136\75", "\44\75", "\52\75", "\75", "\73", "\57", "\133",
 null, null, null, null, null, null, null, "\72\72", null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
 null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-null, "\174", };
+null, "\174", "\45", };
 protected Token jjFillToken()
 {
    final Token t;
@@ -6458,7 +6461,7 @@ public static final String[] lexStateNames = {
    "DEFAULT",
 };
 static final long[] jjtoToken = {
-   0xffffffffffe00001L, 0x7fe00fffffL, 
+   0xffffffffffe00001L, 0xffe00fffffL, 
 };
 static final long[] jjtoSkip = {
    0x2L, 0x0L, 

@@ -2538,10 +2538,17 @@ CssCheckableValue v = null;
 CssCheckableValue attr() :
 {
 CssAttr v = null;
+Token n = null;
 CssExpression exp = null;
 }
 {
-  <FUNCTIONATTR> ( <S> )* exp=expr() <LPARAN> {
+    <FUNCTIONATTR> ( <S> )* ( n=<IDENT> ( <S> )* {
+	    exp = new CssExpression();
+	    setValue(new CssIdent(), exp, ' ', n, IDENT);
+	} 
+	( ( n=<IDENT> | n="%" ) {
+	    setValue(new CssIdent(), exp, ' ', n, IDENT); 
+	}  ( <S> )* )? ( <COMMA> { exp.setOperator(','); } ( <S> )* term(exp) )? ) <LPARAN> {
        v = new CssAttr();
        v.setValue(exp, ac);
        return v;

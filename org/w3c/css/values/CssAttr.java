@@ -119,15 +119,14 @@ public class CssAttr extends CssCheckableValue {
 		computed_type = CssTypes.CSS_STRING;
 		exp.next();
 		// check the
-		if (!exp.end()) {
+		while (!exp.end()) {
 			val = exp.getValue();
 			switch (op) {
 				case SPACE:
 					// first we must ensure that we didn't get the fallback value first
-					if (fallback_value != null) {
+					if (fallback_value != null || value_type != null) {
 						throw new InvalidParamException("unrecognize", ac);
 					}
-					// TODO add %
 					if (val.getType() == CssTypes.CSS_IDENT) {
 						computed_type = _checkType((CssIdent) val);
 						value_type = val;
@@ -144,8 +143,9 @@ public class CssAttr extends CssCheckableValue {
 							ac);
 			}
 			op = exp.getOperator();
-
+			exp.next();
 		}
+		// TODO do type checking between the fallback value and the type
 	}
 
 	private int _checkType(CssIdent ident)
