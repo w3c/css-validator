@@ -2529,13 +2529,13 @@ CssCheckableValue v = null;
     | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
     | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
-   // TODO | v=attr()
+    | v=attr()
  ) {
      return v;
    }
 }
 
-CssValue attr() :
+CssCheckableValue attr() :
 {
 CssAttr v = null;
 CssExpression exp = null;
