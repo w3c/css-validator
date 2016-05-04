@@ -2445,7 +2445,7 @@ CssCheckableValue v;
 CssCalc c;
 }
 {
-  ( <FUNCTIONCALC>  ( <S> )* v=mathsum() <LPARAN> ) {
+    ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) {
     if (v.getRawType() != CssTypes.CSS_CALC) {
        c = new CssCalc(v);
     } else {
@@ -2465,27 +2465,27 @@ CssCheckableValue mathsum() :
   int nb_pre_sp;
 }
 {   // product [ S+ [ "+" | "-" ] S+ product ]*;
-   ( v1=mathproduct() {  c = new CssCalc(ac, v1);
-                         nb_pre_sp = 0;
-                      }
-                      // special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
-                      ( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) { 
-                        if (o.image.length() < 2 && nb_pre_sp == 0) {
-	                   throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
-                        }
-                      } ( <S> )+ v2=mathproduct() {
-                          nb_pre_sp = 0;
-                          if (concat) {
-                              nc = new CssCalc(ac, c);
-                              nc.addRightSide(o.image.trim(), v2);
-                              c = nc;
-                          } else {
-                              c.addRightSide(o.image.trim(), v2);
-                              concat = true;
-                          }
-                     }
-                    )*
- ) { return c; }
+    ( v1=mathproduct() {  c = new CssCalc(ac, v1);
+			  nb_pre_sp = 0;
+    }
+	// special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
+	( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) { 
+	    if (o.image.length() < 2 && nb_pre_sp == 0) {
+		throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
+	    }
+	} ( <S> )+ v2=mathproduct() {
+	    nb_pre_sp = 0;
+	    if (concat) {
+		nc = new CssCalc(ac, c);
+		nc.addRightSide(o.image.trim(), v2);
+		c = nc;
+	    } else {
+		c.addRightSide(o.image.trim(), v2);
+		concat = true;
+	    }
+	}
+	    )* 
+	) { return c; }
 }
 
 
