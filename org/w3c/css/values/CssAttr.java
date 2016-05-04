@@ -136,6 +136,31 @@ public class CssAttr extends CssCheckableValue {
 							val.toString(), "attr()", ac);
 				case COMMA:
 					fallback_value = val;
+					// we should have a computed_type by then.
+					// let's check the value.
+					if (fallback_value.getType() != computed_type) {
+						// deal with percentage and numbers
+						int fb_type = fallback_value.getType();
+						// only 0 can be something else than a plain number.
+						if (fb_type == CssTypes.CSS_NUMBER) {
+							// TODO check if zero in CssCheckableValue
+							if (true /*fallback_value.getCheckableValue().isZero()(*/) {
+								break;
+							}
+						}
+						if (fb_type == CssTypes.CSS_PERCENTAGE) {
+							if ((computed_type == CssTypes.CSS_LENGTH) ||
+									(computed_type == CssTypes.CSS_ANGLE) ||
+									(computed_type == CssTypes.CSS_FREQUENCY) ||
+									(computed_type == CssTypes.CSS_NUMBER) ||
+									(computed_type == CssTypes.CSS_TIME)) {
+								break;
+							}
+						}
+						// else, invalid type
+						throw new InvalidParamException("typevaluemismatch",
+								fallback_value, value_type, ac);
+					}
 					break;
 				default:
 					throw new InvalidParamException("operator",
@@ -145,7 +170,6 @@ public class CssAttr extends CssCheckableValue {
 			op = exp.getOperator();
 			exp.next();
 		}
-		// TODO do type checking between the fallback value and the type
 	}
 
 	private int _checkType(CssIdent ident)
@@ -175,7 +199,7 @@ public class CssAttr extends CssCheckableValue {
 				sb.append(' ').append(value_type);
 			}
 			if (fallback_value != null) {
-				sb.append(" , ").append(fallback_value);
+				sb.append(", ").append(fallback_value);
 			}
 			sb.append(')');
 			_ts = sb.toString();

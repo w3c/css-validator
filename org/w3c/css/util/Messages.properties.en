@@ -421,4 +421,5 @@ error.operandnumber: One operand must be a number
 error.divisortype: The divisor must be a number
 error.incompatibletypes: The types are incompatible
 error.invalidtype: Invalid type: %s
+error.typevaluemismatch: The value %s is incompatible with its type definition <%s>
 
