@@ -141,14 +141,9 @@ public class CssAttr extends CssCheckableValue {
 					if (fallback_value.getType() != computed_type) {
 						// deal with percentage and numbers
 						int fb_type = fallback_value.getType();
-						// only 0 can be something else than a plain number.
-						if (fb_type == CssTypes.CSS_NUMBER) {
-							// TODO check if zero in CssCheckableValue
-							if (true /*fallback_value.getCheckableValue().isZero()(*/) {
-								break;
-							}
-						}
-						if (fb_type == CssTypes.CSS_PERCENTAGE) {
+						if (fb_type == CssTypes.CSS_PERCENTAGE ||
+								// only 0 can be something else than a plain number.
+								((fb_type == CssTypes.CSS_NUMBER) && fallback_value.getCheckableValue().isZero() )) {
 							if ((computed_type == CssTypes.CSS_LENGTH) ||
 									(computed_type == CssTypes.CSS_ANGLE) ||
 									(computed_type == CssTypes.CSS_FREQUENCY) ||

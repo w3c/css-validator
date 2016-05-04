@@ -21,6 +21,8 @@ public abstract class CssCheckableValue extends CssValue {
 
 	abstract public boolean isStrictlyPositive();
 
+	abstract public boolean isZero();
+
 	abstract public void checkStrictPositiveness(ApplContext ac, CssProperty property)
 			throws InvalidParamException;
 
