@@ -124,13 +124,11 @@ public class CssCalc extends CssCheckableValue {
 		_computeResultingType(true);
 	}
 
-	private void _checkAcceptableType(int type, boolean end)
+	private void _checkAcceptableType(int type)
 			throws InvalidParamException {
 		//  <length>, <frequency>, <angle>, <time>, <number>, or <integer>
-		if (!end && type == CssTypes.CSS_PERCENTAGE) {
-			return;
-		}
-		if (type != CssTypes.CSS_LENGTH &&
+		if (type != CssTypes.CSS_PERCENTAGE &&
+				type != CssTypes.CSS_LENGTH &&
 				type != CssTypes.CSS_NUMBER &&
 				type != CssTypes.CSS_ANGLE &&
 				type != CssTypes.CSS_FREQUENCY &&
@@ -146,7 +144,7 @@ public class CssCalc extends CssCheckableValue {
 		if (val2 == null) {
 			// we only have val1 to check.
 			valtype = val1.getType();
-			_checkAcceptableType(valtype, end);
+			_checkAcceptableType(valtype);
 			computed_type = valtype;
 		} else {
 			// TODO sanity check... ensure that val1 is not null
@@ -155,11 +153,11 @@ public class CssCalc extends CssCheckableValue {
 					// one operator must be a number.
 					if (val1.getType() == CssTypes.CSS_NUMBER) {
 						valtype = val2.getType();
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else if (val2.getType() == CssTypes.CSS_NUMBER) {
 						valtype = val1.getType();
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else {
 						// none of them is a number...
@@ -175,7 +173,7 @@ public class CssCalc extends CssCheckableValue {
 						throw new InvalidParamException("divzero", toStringUnprefixed(), ac);
 					}
 					valtype = val1.getType();
-					_checkAcceptableType(valtype, end);
+					_checkAcceptableType(valtype);
 					computed_type = valtype;
 					break;
 				case CssOperator.PLUS:
@@ -183,23 +181,23 @@ public class CssCalc extends CssCheckableValue {
 					// the case for PLUS and MINUS
 					valtype = val1.getType();
 					if (valtype == val2.getType()) {
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					}
 					// if not the same type... one of them must be a percentage... or number zero
 					else if (valtype == CssTypes.CSS_PERCENTAGE) {
 						valtype = val2.getType();
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else if (val2.getType() == CssTypes.CSS_PERCENTAGE) {
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else if (valtype == CssTypes.CSS_NUMBER && val1.getNumber().isZero()) {
 						valtype = val2.getType();
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else if (val2.getType() == CssTypes.CSS_NUMBER && val2.getNumber().isZero()) {
-						_checkAcceptableType(valtype, end);
+						_checkAcceptableType(valtype);
 						computed_type = valtype;
 					} else {
 						throw new InvalidParamException("incompatibletypes", toStringUnprefixed(), ac);
@@ -208,7 +206,7 @@ public class CssCalc extends CssCheckableValue {
 				default:
 					// we have only one value.
 					valtype = val1.getType();
-					_checkAcceptableType(valtype, end);
+					_checkAcceptableType(valtype);
 					computed_type = valtype;
 			}
 		}
