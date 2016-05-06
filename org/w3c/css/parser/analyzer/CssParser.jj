@@ -40,6 +40,7 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
+import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssPercentage;
@@ -377,7 +378,7 @@ public abstract class CssParser {
 		                          (n.image).equals("inherit")) {
 		    incompatible_error = true;
 	    }	
-	    String val = (operator == ' ') ? n.image : operator+n.image;
+	    String val = addOperator(operator, n.image);
 
 	    if (n.kind == CssParserConstants.IDENT) {
 	        String s = convertIdent(val);
@@ -436,6 +437,10 @@ public abstract class CssParser {
           }
           CssErrorToken err = new CssErrorToken(e, skipped);
           ac.getFrame().addError(err);
+    }
+
+    private static String addOperator(char operator, String value) {
+	return (' ' == operator) ? value : operator+value;
     }
 }
 
@@ -2494,12 +2499,13 @@ CssCheckableValue mathproduct() :
   CssCheckableValue v1 = null;
   CssCheckableValue v2 = null;
   CssCalc c, nc;
+  char operator = ' ';
   boolean concat = false;
 }
 {
  ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
                     (  ( o="*" ( <S> )* v2=mathunit() )
-                       | ( o=<DIV> ( <S> )* n=<NUMBER> { v2 = new CssNumber(); v2.set(n.image, ac); } )
+                       | ( o=<DIV> ( <S> )* ( operator=unaryOperator() )? n=<NUMBER> { v2 = new CssNumber(); v2.set(addOperator(operator, n.image), ac); } )
                     ) {
                           if (concat) {
                               nc = new CssCalc(ac, c);
@@ -2517,20 +2523,22 @@ CssCheckableValue mathproduct() :
 CssCheckableValue mathunit() :
 { Token n;
 CssCheckableValue v = null;
+char operator = ' ';
 }
 {
- ( n=<NUMBER> { v = new CssNumber(); v.set(n.image, ac); }
-    | n=<PERCENTAGE> { v = new CssPercentage(); v.set(n.image, ac); }
-    | n=<RELFONTLENGTH> { v = new CssLength(); v.set(n.image, ac); } 
-    | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-    | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(n.image, ac); }
-    | n=<ANGLE> { v = new CssAngle(); v.set(n.image, ac); }
-    | n=<TIME> { v = new CssTime(); v.set(n.image, ac); }
-    | n=<FREQ> { v= new CssFrequency(); v.set(n.image, ac); }
+    ( ( operator=unaryOperator() )? ( n=<NUMBER> { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); }
+    | n=<PERCENTAGE> { v = new CssPercentage(); v.set(addOperator(operator, n.image), ac); }
+    | n=<RELFONTLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); } 
+    | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); }
+    | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); }
+    | n=<ANGLE> { v = new CssAngle(); v.set(addOperator(operator, n.image), ac); }
+    | n=<TIME> { v = new CssTime(); v.set(addOperator(operator, n.image), ac); }
+    | n=<FREQ> { v= new CssFrequency(); v.set(addOperator(operator, n.image), ac); }
+    )
     | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
     | v=attr()
- ) {
+) {
      return v;
    }
 }
@@ -2639,7 +2647,7 @@ void hashident(CssExpression exp) :
 {
     ( n=<HASHIDENT> | n=<HASH> ) { 
      n.image = Util.strip(n.image);
-     setValue(new org.w3c.css.values.CssHashIdent(), exp, ' ', n, HASH); 
+     setValue(new CssHashIdent(), exp, ' ', n, HASH); 
     }
 }
 
