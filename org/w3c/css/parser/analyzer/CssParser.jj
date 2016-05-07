@@ -2324,29 +2324,28 @@ void term(CssExpression exp) :
   CssValue func;
 }
 {
-  ( ( operator=unaryOperator() )?
-    ( n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
-    | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n, 
-				PERCENTAGE); }
-    | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
-    | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
-    | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
-    | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
-    | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
-    | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
-    | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
-    | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
-    | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
-    | n=<DIMEN> {
-	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
-    | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
-    | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
-    | func=function() { setValue(func, exp, operator, null, FUNCTION); }
-      ) ( <S> )* )
-  | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
-  | ( n=<DIV> ) { setValue(new CssSwitch(), exp, operator, n, DIV); }
-    | n=<IDENT> 
-    {
+    ( ( ( operator=unaryOperator() )?
+	( n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+        | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n, PERCENTAGE); }
+        | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
+        | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
+        | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
+        | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
+        | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
+        | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
+        | n=<RESOLUTION> { setValue(new CssResolution(), exp, operator, n, RESOLUTION); }
+        | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
+        | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
+        | n=<DIMEN> {
+	    addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+        ) 
+      )
+      | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=function() { setValue(func, exp, operator, null, FUNCTION); }
+        | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
+        | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
+        | n=<IDENT> {
 	/*
 	 * Common error :
 	 * H1 {
@@ -2354,30 +2353,29 @@ void term(CssExpression exp) :
 	 *   background : white
 	 * }
 	 */
-	Token t = getToken(1);
-	Token semicolon = new Token();
-	semicolon.kind = SEMICOLON;
-	semicolon.image = ";";
-	if (t.kind == COLON) {
-	    /* @@SEEME. (generate a warning?) */
-	    /* @@SEEME if expression is a single ident, 
-	       generate an error ? */
-	    addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
-		     (CssExpression) null);
-	    rejectToken(semicolon);
-	} else {
-	    setValue(new CssIdent(), exp, operator, n, IDENT);
-	}
-    }
-    | hashident(exp)
-    | n=<URL> { 
-	CssURL _u = new CssURL();
-	_u.set(n.image, ac, url);
-	exp.addValue(_u);
-      }
-    | n=<UNICODERANGE> { setValue(new CssUnicodeRange(), exp, operator, n, 
-				UNICODERANGE); }
-    ) ( <S> )* )
+ 	    Token t = getToken(1);
+	    Token semicolon = new Token();
+	    semicolon.kind = SEMICOLON;
+	    semicolon.image = ";";
+	    if (t.kind == COLON) {
+		/* @@SEEME. (generate a warning?) */
+		/* @@SEEME if expression is a single ident, 
+		   generate an error ? */
+		addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
+			 (CssExpression) null);
+		rejectToken(semicolon);
+	    } else {
+		setValue(new CssIdent(), exp, operator, n, IDENT);
+	    }
+        }
+        | hashident(exp)
+        | n=<URL> { 
+	    CssURL _u = new CssURL();
+	    _u.set(n.image, ac, url);
+	    exp.addValue(_u);
+            }
+        | n=<UNICODERANGE> { setValue(new CssUnicodeRange(), exp, operator, n, UNICODERANGE); }
+    ) ) ( <S> )* 
 }
 
 /**
