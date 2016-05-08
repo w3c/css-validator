@@ -96,10 +96,9 @@ import org.w3c.css.selectors.attributes.AttributeSubstr;
 import org.w3c.css.selectors.attributes.AttributeSuffix;
 
 /**
- * A CSS3 parser  
+ * A CSS parser  
  *
- * @author Philippe Le Hegaret and Sijtsche Smeman
- * @version $Revision$
+ * @author Philippe Le Hegaret, Sijtsche Smeman, Yves Lafon
  */
 public abstract class CssParser {
 
@@ -559,7 +558,7 @@ TOKEN :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* ")" >
+  < URL         : "url(" ( <S> )* ( <STRING> | <_URL>  ) ( <S> )* <LPARAN> >
 }
 
 <DEFAULT>
@@ -665,7 +664,7 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
     TOKEN :
 {
-    < FUNCTION : <IDENT> "(" >
+    < FUNCTION : <IDENT> <RPARAN> >
 }
 
 /* Quick and dirty way to catch HTML tags starting CSS documents 
@@ -1013,8 +1012,7 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
        }
        mediaFeatureName = convertIdent(n.image); }
     ( <S> )*
-    ( <COLON> ( <S> )* val=mediaexpr() )?
-    <LPARAN>  ( <S> )*  {
+    ( <COLON> ( <S> )* val=mediaexpr() )? <LPARAN>  ( <S> )*  {
         MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         mediaRule.addMediaFeature(mf, ac);
     }
@@ -1026,7 +1024,7 @@ void unused_production_generic_syntax() :
 
 }
 {
-    "(" ( <S> )* term(values) ")" {
+    <RPARAN> ( <S> )* term(values) <LPARAN> {
     }
 }
 
@@ -1035,7 +1033,7 @@ void definition() :
   CssExpression values = new CssExpression();
 }
 {
-    "[" ( <S> )* term(values) "]" {
+    <LBRACKET> ( <S> )* term(values) <RBRACKET> {
     }
 }
 
@@ -2164,7 +2162,7 @@ CssProperty mediadeclaration() :
 }
 {
 try {
-      string_property=property() (":" ( <S> )* 
+      string_property=property() ( <COLON> ( <S> )* 
       values=expr() ( important=prio() )? )?
     {
 	
@@ -2211,7 +2209,7 @@ CssProperty declaration() :
 }
 {
 try {
-     string_property=property() ":" ( <S> )* 
+     string_property=property() <COLON> ( <S> )* 
       values=expr() ( important=prio() )?
     {
 	try {
@@ -2567,7 +2565,7 @@ CssExpression exp = null;
 CssValue function() :
 {Token n,p = null,q = null;
  CssExpression exp;
- org.w3c.css.values.CssColor color = new org.w3c.css.values.CssColor();
+ CssColor color = new CssColor();
 }
 {
     n=<FUNCTION> ( <S> )*  ( LOOKAHEAD(2) exp=expr()
