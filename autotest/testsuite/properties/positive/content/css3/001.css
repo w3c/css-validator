@@ -16,5 +16,3 @@ m { content: normal }
 z { content: inherit }
 /* usual in CSS3 */
 y { content: initial } 
-/* from CSS3 UI, at risk feature */
-o { content: icon } 
