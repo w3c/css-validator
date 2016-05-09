@@ -43,7 +43,9 @@ public class CssMaxHeight extends org.w3c.css.properties.css.CssMaxHeight {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				value = val;
+				break;
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				CssCheckableValue length = val.getCheckableValue();

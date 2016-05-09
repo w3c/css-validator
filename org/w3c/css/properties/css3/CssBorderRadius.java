@@ -61,7 +61,9 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, this);
+					cur_radius.add(val);
+					break;
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					CssCheckableValue length = val.getCheckableValue();
@@ -192,7 +194,9 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, caller);
+					res.add(val);
+					break;
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					CssCheckableValue length = val.getCheckableValue();

@@ -76,6 +76,9 @@ public class CssVoiceVolume extends org.w3c.css.properties.css.CssVoiceVolume {
 			val = expression.getValue();
 			op = expression.getOperator();
 			switch (val.getType()) {
+				case CssTypes.CSS_NUMBER:
+					// only 0 can be a velue
+					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_VOLUME:
 					if (dbValue != null) {
 						throw new InvalidParamException("value",

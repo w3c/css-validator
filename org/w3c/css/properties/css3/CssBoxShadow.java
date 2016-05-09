@@ -133,7 +133,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 					if (!length_ok) {
 						throw new InvalidParamException("value", val,

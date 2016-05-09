@@ -65,7 +65,7 @@ public class CssInitialLetterWrap extends org.w3c.css.properties.css.CssInitialL
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				// check that the number is a length (ie: 0)
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				value = val;

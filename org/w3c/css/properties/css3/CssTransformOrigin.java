@@ -126,7 +126,7 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
 		for (CssValue aValue : values) {
 			switch (aValue.getType()) {
 				case CssTypes.CSS_NUMBER:
-					aValue.getLength();
+					aValue.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					break;

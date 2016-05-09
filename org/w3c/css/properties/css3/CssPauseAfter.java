@@ -67,6 +67,10 @@ public class CssPauseAfter extends org.w3c.css.properties.css.CssPauseAfter {
 		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				value = val;
+				break;
 			case CssTypes.CSS_TIME:
 				CssCheckableValue t = val.getCheckableValue();
 				t.checkPositiveness(ac, this);

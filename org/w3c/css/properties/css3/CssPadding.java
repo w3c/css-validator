@@ -72,7 +72,9 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, this);
+					v.add(val);
+					break;
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					CssCheckableValue l = val.getCheckableValue();
@@ -149,7 +151,7 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 		value = new CssValueList(v);
 	}
 
-		// for use by individual padding-* properties
+	// for use by individual padding-* properties
 
 	protected static CssValue checkValue(ApplContext ac,
 										 CssExpression expression,
@@ -166,7 +168,9 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, caller);
+				expression.next();
+				return val;
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				CssCheckableValue l = val.getCheckableValue();

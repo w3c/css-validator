@@ -98,7 +98,7 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
 			op = expression.getOperator();
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, caller);
 				case CssTypes.CSS_LENGTH:
 					break;
 				case CssTypes.CSS_IDENT:

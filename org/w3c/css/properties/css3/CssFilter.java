@@ -10,8 +10,6 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
-import org.w3c.css.values.CssNumber;
-import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -208,12 +206,8 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber n = (CssNumber) val;
-				n.checkPositiveness(ac, caller);
-				break;
 			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage p = (CssPercentage) val;
-				p.checkPositiveness(ac, caller);
+				val.getCheckableValue().checkPositiveness(ac, caller);
 				break;
 			default:
 				throw new InvalidParamException("value",
@@ -244,7 +238,7 @@ public class CssFilter extends org.w3c.css.properties.css.CssFilter {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, caller);
 				case CssTypes.CSS_LENGTH:
 					// color should be last | no more than 3 length.
 					if (got_color || nb_length == 3) {

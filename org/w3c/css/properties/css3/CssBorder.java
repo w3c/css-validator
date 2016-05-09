@@ -119,7 +119,10 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					CssCheckableValue number = val.getCheckableValue();
+					number.checkEqualsZero(ac, caller);
+					_width = val;
+					break;
 				case CssTypes.CSS_LENGTH:
 					CssCheckableValue length = val.getCheckableValue();
 					length.checkPositiveness(ac, caller);

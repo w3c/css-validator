@@ -73,7 +73,7 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
 					v.add(val);
@@ -167,7 +167,7 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, caller);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				expression.next();

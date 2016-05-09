@@ -54,7 +54,7 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
 				// if we didn't fall in the first trap, there is another one :)
 				throw new InvalidParamException("strictly-positive",
 						expression.getValue(),

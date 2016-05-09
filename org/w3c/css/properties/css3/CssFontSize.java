@@ -75,7 +75,7 @@ public class CssFontSize extends org.w3c.css.properties.css.CssFontSize {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				CssCheckableValue l = val.getCheckableValue();

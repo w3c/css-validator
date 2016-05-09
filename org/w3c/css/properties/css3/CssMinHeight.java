@@ -46,7 +46,9 @@ public class CssMinHeight extends org.w3c.css.properties.css.CssMinHeight {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				value = val;
+				break;
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				CssCheckableValue l = val.getCheckableValue();

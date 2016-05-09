@@ -60,7 +60,7 @@ public class CssFloatOffset extends org.w3c.css.properties.css.CssFloatOffset {
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				// only 0 can be a length
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				value = val;

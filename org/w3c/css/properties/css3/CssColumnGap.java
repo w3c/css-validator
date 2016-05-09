@@ -52,7 +52,9 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				columngap = val;
+				break;
 			case CssTypes.CSS_LENGTH:
 				CssCheckableValue l = val.getCheckableValue();
 				l.checkPositiveness(ac, this);

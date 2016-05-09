@@ -44,6 +44,8 @@ public class CssImageOrientation extends org.w3c.css.properties.css.CssImageOrie
 		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_ANGLE:
 				value = val;
 				break;

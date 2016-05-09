@@ -67,6 +67,9 @@ public class CssRestAfter extends org.w3c.css.properties.css.CssRestAfter {
 		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				value = val;
 			case CssTypes.CSS_TIME:
 				CssCheckableValue t = val.getCheckableValue();
 				t.checkPositiveness(ac, this);
