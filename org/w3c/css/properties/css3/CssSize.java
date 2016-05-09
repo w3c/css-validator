@@ -101,7 +101,7 @@ public class CssSize extends org.w3c.css.properties.css.CssSize {
 
 			switch (val.getType()) {
 				case CssTypes.CSS_NUMBER:
-					val.getLength();
+					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 					vals.add(val);
 					// not in the spec, but size ought to be non-negative

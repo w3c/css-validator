@@ -28,6 +28,11 @@ public abstract class CssCheckableValue extends CssValue {
 
 	abstract public void warnPositiveness(ApplContext ac, CssProperty property);
 
+	abstract public void checkEqualsZero(ApplContext ac, CssProperty property)
+		throws InvalidParamException;
+
+	abstract public void warnEqualsZero(ApplContext ac, CssProperty property);
+
 	public boolean isInteger() {
 		return false;
 	}

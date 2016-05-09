@@ -365,4 +365,37 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 			ac.getFrame().addWarning("greaterequal", s);
 		}
 	}
+
+
+	/**
+	 * check if the value is equal to zero
+	 *
+	 * TODO add better errormsg
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkEqualsZero(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isZero()) {
+			throw new InvalidParamException("zero",
+					toString(),
+					"number", ac);
+		}
+	}
+
+	/**
+	 * warn if the value is not zero
+	 *
+	 * TODO add better warnmsg
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 */
+	public void warnEqualsZero(ApplContext ac, CssProperty property) {
+		if (!isZero()) {
+			ac.getFrame().addWarning("zero", "number");
+		}
+	}
 }

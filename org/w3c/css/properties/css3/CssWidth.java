@@ -8,7 +8,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -55,13 +54,13 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 				break;
 			case CssTypes.CSS_NUMBER:
 				// only 0 can be a length...
-				CssLength l = val.getLength();
-				l.checkPositiveness(ac, this);
+				CssCheckableValue p = val.getCheckableValue();
+				p.checkEqualsZero(ac, this);
 				value = val;
 				break;
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
-				CssCheckableValue p = val.getCheckableValue();
+				p = val.getCheckableValue();
 				p.checkPositiveness(ac, this);
 				value = val;
 				break;

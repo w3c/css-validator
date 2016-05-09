@@ -284,6 +284,8 @@ error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360
 
 # used by org.w3c.css.values.CssNumber
 error.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
+warning.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
+warning.dynamic: Les valeurs dynamiques ne peuvent être vérifiées en tant que nombre sans unitè. Veuillez qualifier cette valeur 
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s n'est pas valide, seules les valeurs strictement supérieures à zéro sont autorisées.

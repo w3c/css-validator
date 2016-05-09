@@ -217,6 +217,34 @@ public class CssTime extends CssCheckableValue {
 		}
 	}
 
+	/**
+	 * check if the value is equal to zero
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkEqualsZero(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		if (!isZero()) {
+			throw new InvalidParamException("zero",
+					toString(),
+					"time", ac);
+		}
+	}
+
+	/**
+	 * warn if the value is not zero
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 */
+	public void warnEqualsZero(ApplContext ac, CssProperty property) {
+		if (!isZero()) {
+			ac.getFrame().addWarning("zero", "time");
+		}
+	}
+
 	public CssTime getTime() throws InvalidParamException {
 		return this;
 	}

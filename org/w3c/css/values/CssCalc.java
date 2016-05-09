@@ -435,4 +435,31 @@ public class CssCalc extends CssCheckableValue {
 		}
 		throw new ClassCastException("unknown");
 	}
+
+	/**
+	 * check if the value is equal to zero
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 * @throws InvalidParamException
+	 */
+	public void checkEqualsZero(ApplContext ac, CssProperty property)
+			throws InvalidParamException {
+		// we can't check so we only warn.
+		// TODO should we do that only for CSS_NUMBER type?
+		warnEqualsZero(ac, property);
+	}
+
+	/**
+	 * warn if the value is not zero
+	 *
+	 * @param ac       the validation context
+	 * @param property the property the value is defined in
+	 */
+	public void warnEqualsZero(ApplContext ac, CssProperty property) {
+	// TODO should we do that only for CSS_NUMBER type?
+		if (!isZero()) {
+			ac.getFrame().addWarning("dynamic", toString());
+		}
+	}
 }
