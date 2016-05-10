@@ -306,6 +306,7 @@ public class CssColor extends CssValue {
 				}
 				break;
 			case CSS3:
+			case CSS_2015:
 				// test RGB colors, RGBA colors (transparent), deprecated system colors
 				rgb = CssColorCSS3.getRGB(lower_s);
 				if (rgb != null) {
@@ -324,7 +325,7 @@ public class CssColor extends CssValue {
 				}
 				// inherit or current color will be handled in the property def
 				throw new InvalidParamException("value", s, "color", ac);
-			case CSS4:
+			case CSS:
 				// test RGB colors, RGBA colors (transparent), deprecated system colors
 				rgb = CssColorCSS4.getRGB(lower_s);
 				if (rgb != null) {
@@ -646,8 +647,8 @@ public class CssColor extends CssValue {
 
 	public void setHWBColor(CssExpression exp, ApplContext ac)
 			throws InvalidParamException {
-		// RGBA defined in CSS3 and onward
-		if (ac.getCssVersion().compareTo(CssVersion.CSS4) < 0) {
+		// HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
+		if (ac.getCssVersion().compareTo(CssVersion.CSS) < 0) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("hwb(").append(exp.toStringFromStart()).append(')');
 			throw new InvalidParamException("notversion", sb.toString(),
