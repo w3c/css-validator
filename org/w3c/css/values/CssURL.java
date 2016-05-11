@@ -49,103 +49,122 @@ import java.net.URL;
  */
 public class CssURL extends CssValue {
 
-    public static final int type = CssTypes.CSS_URL;
+	public static final int type = CssTypes.CSS_URL;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
-    String value;
-    String full = null;
+	String value;
+	String full = null;
 
-    URL base;
-    URL urlValue = null;
+	URL base;
+	URL urlValue = null;
 
-    /**
-     * Set the value of this URL.
-     *
-     * @param s  the string representation of the URL.
-     * @param ac For errors and warnings reports.
-     * @throws InvalidParamException The unit is incorrect
-     * @deprecated
-     */
-    public void set(String s, ApplContext ac)
-            throws InvalidParamException {
-        throw new InvalidParamException("Deprecated method invocation", ac);
-    }
+	/**
+	 * Set the value of this URL.
+	 *
+	 * @param s  the string representation of the URL.
+	 * @param ac For errors and warnings reports.
+	 * @throws InvalidParamException The unit is incorrect
+	 * @deprecated
+	 */
+	public void set(String s, ApplContext ac)
+			throws InvalidParamException {
+		throw new InvalidParamException("Deprecated method invocation", ac);
+	}
 
-    /**
-     * Set the value of this URL.
-     *
-     * @param s    the string representation of the URL.
-     * @param ac   For errors and warnings reports.
-     * @param base the base location of the style sheet
-     * @throws InvalidParamException The unit is incorrect
-     */
-    public void set(String s, ApplContext ac, URL base)
-            throws InvalidParamException {
-        String urlHeading = s.substring(0, 3).toLowerCase();
-        String urlname = s.substring(4, s.length() - 1).trim();
-        this.base = base;
+	/**
+	 * Set the value of this URL.
+	 *
+	 * @param s    the string representation of the URL.
+	 * @param ac   For errors and warnings reports.
+	 * @param base the base location of the style sheet
+	 * @throws InvalidParamException The unit is incorrect
+	 */
+	public void set(String s, ApplContext ac, URL base)
+			throws InvalidParamException {
+		String urlHeading = s.substring(0, 3).toLowerCase();
+		String urlname = s.substring(4, s.length() - 1).trim();
+		this.base = base;
 
-//	try {
-//	    CssString convert = new CssString();
-//	    convert.set(urlname, ac);
-//	    value = (String) convert.get();
-//	} catch (InvalidParamException e) {
-        value = urlname;
-        full = null;
-//	}
-        if (!urlHeading.startsWith("url"))
-            throw new InvalidParamException("url", s, ac);
-        // now add the URL to the list of seen URLs in the context
-        try {
-            ac.addLinkedURI(getURL());
-        } catch (MalformedURLException mex) {
-            // error? throw an exception
-            throw new InvalidParamException("url", s, ac);
-        }
-    }
+		value = urlname;
+		full = null;
+		if (!urlHeading.startsWith("url"))
+			throw new InvalidParamException("url", s, ac);
+		// special case for data url...
+		if (urlname.startsWith("data:")) {
+			// no more processing.
+			value = checkDataURL(urlname);
+			return;
+		}
+		// now add the URL to the list of seen URLs in the context
+		try {
+			ac.addLinkedURI(getURL());
+		} catch (MalformedURLException mex) {
+			// error? throw an exception
+			throw new InvalidParamException("url", s, ac);
+		}
+	}
 
-    /**
-     * Get the internal value.
-     */
-    public Object get() {
-        return value;
-    }
+	private String checkDataURL(String source) {
+		StringBuilder sb = new StringBuilder();
+		// here we just escape < and >, we might do more validation
+		// like base64 encoding checks, when necessary
+		for (char c : source.toCharArray()) {
+			switch (c) {
+				case '<':
+					sb.append("%3c");
+					break;
+				case '>':
+					sb.append("%3e");
+					break;
+				default:
+					sb.append(c);
+			}
+		}
+		return sb.toString();
+	}
 
-    /**
-     * Returns the URL
-     *
-     * @return the URL
-     * @throws java.net.MalformedURLException (self explanatory)
-     */
-    public URL getURL() throws MalformedURLException {
-        if (urlValue == null) {
-            urlValue = HTTPURL.getURL(base, value);
-        }
-        return urlValue;
-    }
+	/**
+	 * Get the internal value.
+	 */
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        if (full != null) {
-            return full;
-        }
-        StringBuilder sb = new StringBuilder("url(");
-        sb.append(value).append(')');
-        return full = sb.toString();
-    }
+	/**
+	 * Returns the URL
+	 *
+	 * @return the URL
+	 * @throws java.net.MalformedURLException (self explanatory)
+	 */
+	public URL getURL() throws MalformedURLException {
+		if (urlValue == null) {
+			urlValue = HTTPURL.getURL(base, value);
+		}
+		return urlValue;
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param url The other value.
-     */
-    public boolean equals(Object url) {
-        return (url instanceof CssURL && value.equals(((CssURL) url).value));
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		if (full != null) {
+			return full;
+		}
+		StringBuilder sb = new StringBuilder("url(");
+		sb.append(value).append(')');
+		return full = sb.toString();
+	}
+
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param url The other value.
+	 */
+	public boolean equals(Object url) {
+		return (url instanceof CssURL && value.equals(((CssURL) url).value));
+	}
 
 }
