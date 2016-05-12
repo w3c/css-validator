@@ -247,6 +247,7 @@ error.angle: زاویه ی معتبری نیست. مقدار بایستی ماب
 
 # org.w3c.css.values.CssNumber استفاده شده توسط
 error.zero: باشد. شما بایستی بعد از عددتان یک واحد بگذارید %s تنها 0 می تواند یک
+warning.zero: باشد. شما بایستی بعد از عددتان یک واحد بگذارید %s تنها 0 می تواند یک
 
 # org.w3c.css.parser.CssPropertyFactory استفاده شده توسط
 error.noexistence-at-all: وجود ندارد %s مشخصه ی

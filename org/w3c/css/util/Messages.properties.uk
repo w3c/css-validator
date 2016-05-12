@@ -250,6 +250,8 @@ error.angle: %s не є припустимим кутом. Значення по
 
 # used by org.w3c.css.values.CssNumber
 error.zero: лише 0 може бути %s. Ви повинні вказати після числа одиниці вимірювання
+warning.zero: лише 0 може бути %s. Ви повинні вказати після числа одиниці вимірювання
+
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: Невірне значення % s. Допускаються лише значення більше 0.
 

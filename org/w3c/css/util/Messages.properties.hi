@@ -252,6 +252,7 @@ error.angle: %s एक वैध कोण नहीं है. मूल्य 
 
 # used by org.w3c.css.values.CssNumber
 error.zero: केवल 0 ही एक %s हो सकता है. आप अपनी संख्या के बाद एक इकाई डाले 
+warning.zero: केवल 0 ही एक %s हो सकता है. आप अपनी संख्या के बाद एक इकाई डाले 
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: %s गुण मौजूद नहीं है

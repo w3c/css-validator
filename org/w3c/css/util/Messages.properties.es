@@ -260,6 +260,7 @@ error.angle: %s no es un ángulo válido. El valor debe estar comprendido entre 
 
 # used by org.w3c.css.values.CssNumber
 error.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás de la cifra
+warning.zero: Únicamente 0 puede ser un %s. Debe especificarse una unidad detrás de la cifra
 
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: La propiedad %s no existe

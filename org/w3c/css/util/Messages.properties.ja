@@ -246,6 +246,7 @@ error.rgb: %s は、3または6つの16進数の数字による正しい色の�
 
 # used by org.w3c.css.values.CssNumber
 error.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
+warning.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
 
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: プロパティ %s は存在しません

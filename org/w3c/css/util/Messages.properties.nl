@@ -259,6 +259,7 @@ error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 
 # gebruikt door org.w3c.css.values.CssNumber
 error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
+warning.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
 
 # gebruikt door org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Eigenschap %s bestaat niet

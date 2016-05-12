@@ -242,6 +242,7 @@ error.angle: %s ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 lieg
 
 # used by org.w3c.css.values.CssNumber
 error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
+warning.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s ist ungültig, es sind nur Werte größer 0 zulässig.

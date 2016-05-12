@@ -260,6 +260,7 @@ error.angle: %s é um ângulo inválido. O valor deve estar entre 0 e 360
 
 # used by org.w3c.css.values.CssNumber
 error.zero: somente 0 pode ser um(a) %s. Você deve declarar uma unidade de medida para o número
+warning.zero: somente 0 pode ser um(a) %s. Você deve declarar uma unidade de medida para o número
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s é um valor inválido. Somente valores maiores que 0 são permitidos.

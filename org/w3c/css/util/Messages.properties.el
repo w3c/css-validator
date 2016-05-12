@@ -256,6 +256,7 @@ error.angle: Το %s δεν αποτελεί μία έγκυρη γωνία. Η 
 
 # used by org.w3c.css.values.CssNumber
 error.zero: μόνο το 0 μπορεί να είναι ένα %s. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
+warning.zero: μόνο το 0 μπορεί να είναι ένα %s. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Η ιδιότητα %s δεν υπάρχει

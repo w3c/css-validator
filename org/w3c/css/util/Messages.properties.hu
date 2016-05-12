@@ -267,6 +267,7 @@ error.angle: %s is nem helyes szög. Az értéknek 0 és 360 között kell lenni
 
 # used by org.w3c.css.values.CssNumber
 error.zero: 0 csak %s lehet. Mértékegységet kell megadni a szám után
+warning.zero: 0 csak %s lehet. Mértékegységet kell megadni a szám után
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: A(z) %s tulajdonság nem létezik 

@@ -247,6 +247,7 @@ error.angle: %s není platný úhel. Hodnota musí být mezi 0 a 360
 
 # used by org.w3c.css.values.CssNumber
 error.zero: pouze 0 může být %s. Musíte vložit jednotku za číslo
+warning.zero: pouze 0 může být %s. Musíte vložit jednotku za číslo
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s is not valid, only values greater than 0 allowed. <!-- translation unavailable -->

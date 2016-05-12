@@ -252,6 +252,7 @@ error.angle: %s는 올바른 각도가 아닙니다. 0과 360사이의 값만 �
 
 # used by org.w3c.css.values.CssNumber
 error.zero: 오직 0만이 %s일 수 있습니다. 값 뒤에는 반드시 단위가 표현되어야 합니다
+warning.zero: 오직 0만이 %s일 수 있습니다. 값 뒤에는 반드시 단위가 표현되어야 합니다
 
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: %s는 유효하지 않습니다. 0보다 큰 값만이 허용됩니다.

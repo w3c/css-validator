@@ -251,6 +251,7 @@ error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
 
 # used by org.w3c.css.values.CssNumber
 error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
+warning.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
 
 # used by org.w3c.css.parser.CssPropertyFactory 
 error.noexistence-at-all: 属性 %s 不存在

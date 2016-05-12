@@ -259,6 +259,7 @@ error.angle: %s jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 3
 
 # użyte przez org.w3c.css.values.CssNumber
 error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
+warning.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
 
 # użyte przez org.w3c.css.parser.CssPropertyFactory 
 error.noexistence: WłaWłaściwość %s nie istnieje w %s, ale istnieje w %s

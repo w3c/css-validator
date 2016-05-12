@@ -259,6 +259,7 @@ error.angle: %s non è un angolo valido. Il valore dovrebbe essere fra 0 e 360
 
 # used by org.w3c.css.values.CssNumber
 error.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
+warning.zero: only 0 can be a %s. Devi mettere un'unità dopo il tuo numero
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: La proprietà %s non esiste
