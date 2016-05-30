@@ -1,6 +1,7 @@
-// $Id$
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University
+// Author: Yves Lafon <ylafon@w3.org>
+//
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -8,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -16,6 +18,13 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#width
  */
 public class CssWidth extends org.w3c.css.properties.css.CssWidth {
+
+	public static final CssIdent getAllowedIdent(CssIdent ident) {
+		if (auto.equals(ident)) {
+			return auto;
+		}
+		return null;
+	}
 
 	/**
 	 * Create a new CssWidth
