@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -16,9 +16,12 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex-flow
+ * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-flex-flow
  */
 public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
+
+	// TODO: remove the two private value option and use the
+	// CssValueList for value instead.
 
 	private CssFlexDirection flexDirection;
 	private CssFlexWrap flexWrap;

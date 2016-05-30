@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex-shrink
+ * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-flex-shrink
  */
 public class CssFlexShrink extends org.w3c.css.properties.css.CssFlexShrink {
 

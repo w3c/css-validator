@@ -1,8 +1,9 @@
-// $Id$
+//
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 // Updated September 14th 2000 Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang 1997-2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -15,9 +16,8 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#the-lsquo
- * @spec http://www.w3.org/TR/2012/CR-css3-flexbox-20120918/#flex-containers
+ * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#flex-containers
  * @spec http://www.w3.org/TR/2011/WD-css3-lists-20110524/#display-marker
- * <p/>
  */
 public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
