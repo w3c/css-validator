@@ -178,7 +178,7 @@ public class HTTPURL {
 
 		// Install the all-trusting trust manager
 		try {
-			SSLContext sc = SSLContext.getInstance("SSL");
+			SSLContext sc = SSLContext.getInstance("TLS");
 			sc.init(null, trustAllCerts, new java.security.SecureRandom());
 			uConn.setSSLSocketFactory(sc.getSocketFactory());
 		} catch (Exception e) {
@@ -258,9 +258,15 @@ public class HTTPURL {
 
 			httpURL.setInstanceFollowRedirects(false);
 			if (urlC instanceof HttpsURLConnection) {
-				setSSLVerifier((HttpsURLConnection) urlC);
+				try {
+					urlC.connect();
+				} catch (IOException ioex) {
+					setSSLVerifier((HttpsURLConnection) urlC);
+					urlC.connect();
+				}
+			} else {
+				urlC.connect();
 			}
-			urlC.connect();
 
 			try {
 				status = httpURL.getResponseCode();
