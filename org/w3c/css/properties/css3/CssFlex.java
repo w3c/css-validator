@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -20,9 +20,9 @@ import org.w3c.css.values.CssValueList;
 import java.math.BigDecimal;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-flex
+ * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-flex
  */
-public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
+public class CssFlex extends org.w3c.css.properties.css.CssFlex {
 
 	public CssIdent auto = CssIdent.getIdent("auto");
 
@@ -86,15 +86,6 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 						}
 						break;
 					}
-					if (auto.equals(ident)) {
-						value = auto;
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						break;
-					}
 					if (basisVal == null) {
 						basisVal = CssFlexBasis.getAllowedIdent(ident);
 						if (basisVal == null) {
@@ -124,19 +115,23 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 						shrinkVal = val;
 						break;
 					}
-					// we got too many number -> fail if not zero...
-					// which happens only of basisVal is null
-					// and we get a length, so val = 0
-					// otherwise it will either fail or flow to default:
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
+					//
+				default:
 					if (basisVal == null) {
-						CssCheckableValue l = val.getCheckableValue();
-						l.checkPositiveness(ac, this);
-						basisVal = val;
+						// check flexBasis
+						CssExpression e = new CssExpression();
+						e.addValue(val);
+						try {
+							CssFlexBasis b = new CssFlexBasis(ac, e, check);
+							basisVal = val;
+						} catch (InvalidParamException ex) {
+							throw new InvalidParamException("value",
+									val.toString(),
+									getPropertyName(), ac);
+						}
+						gotNumber = false;
 						break;
 					}
-				default:
 					throw new InvalidParamException("value",
 							val.toString(),
 							getPropertyName(), ac);
@@ -156,17 +151,26 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlexFlow {
 			flexGrow.value = inherit;
 			flexShrink.value = inherit;
 		} else if (value == none) {
-			flexBasis.value = CssFlexBasis.main_size;
+			flexBasis.value = CssWidth.auto;
 			CssNumber z = new CssNumber();
 			z.setValue(BigDecimal.ZERO);
 			flexGrow.value = z;
 			flexShrink.value = z;
-		} else if (value == auto) {
-			flexBasis.value = CssFlexBasis.main_size;
+		} else if (basisVal == auto && growVal == null && shrinkVal == null) {
+			flexBasis.value = CssWidth.auto;
 			CssNumber one = new CssNumber();
 			one.setValue(BigDecimal.ONE);
 			flexGrow.value = one;
 			flexShrink.value = one;
+			value = auto;
+		} else if (basisVal == null && shrinkVal == null) {
+			CssNumber one = new CssNumber();
+			one.setValue(BigDecimal.ONE);
+			flexShrink.value = one;
+			CssNumber z = new CssNumber();
+			z.setValue(BigDecimal.ZERO);
+			flexBasis.value = z;
+			value = growVal;
 		} else {
 			CssValueList v = new CssValueList();
 			if (growVal != null) {
