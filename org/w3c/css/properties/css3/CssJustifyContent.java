@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2014/WD-css-flexbox-1-20140925/#propdef-justify-content
+ * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-justify-content
  */
 public class CssJustifyContent extends org.w3c.css.properties.css.CssJustifyContent {
 
