@@ -502,6 +502,7 @@ public final class CssValidator extends HttpServlet {
 		String profile = "none";
 		String usermedium = "all";
 		String vendorExtensionAsWarnings = null;
+		String inputType = "none";
 
 		ServletInputStream in = req.getInputStream();
 
@@ -554,27 +555,40 @@ public final class CssValidator extends HttpServlet {
 			buf = new byte[count];
 			System.arraycopy(general, 0, buf, 0, count);
 			NVPair[] tmp = Codecs.mpFormDataDecode(buf, req.getContentType());
-			for (int i = 0; i < tmp.length; i++) {
-				if (tmp[i].getName().equals("file")) {
-					file = (FakeFile) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("text")) {
-					text = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("lang")) {
-					lang = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("output")) {
-					output = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("warning")) {
-					warning = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("error")) {
-					warning = (String) tmp[i].getValue();
-					//} else if (tmp[i].getName().equals("input")) {
-					//    XMLinput = ((String) tmp[i].floatValue()).equals("XML");
-				} else if (tmp[i].getName().equals("profile")) {
-					profile = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("usermedium")) {
-					usermedium = (String) tmp[i].getValue();
-				} else if (tmp[i].getName().equals("vextwarning")) {
-					vendorExtensionAsWarnings = (String) tmp[i].getValue();
+			for (NVPair pair : tmp) {
+				switch (pair.getName()) {
+					case "file":
+						file = (FakeFile) pair.getValue();
+						break;
+					case "text":
+						text = (String) pair.getValue();
+						break;
+					case "lang":
+						lang = (String) pair.getValue();
+						break;
+					case "output":
+						output = (String) pair.getValue();
+						break;
+					case "warning":
+						warning = (String) pair.getValue();
+						break;
+					case "error":
+						error = (String) pair.getValue();
+						break;
+					case "profile":
+						profile = (String) pair.getValue();
+						break;
+					case "usermedium":
+						usermedium = (String) pair.getValue();
+						break;
+					case "vextwarning":
+						vendorExtensionAsWarnings = (String) pair.getValue();
+						break;
+					case "type":
+						inputType = (String) pair.getValue();
+						break;
+					default:
+						// log extra parameters?
 				}
 			}
 		} catch (Exception e) {
@@ -661,7 +675,18 @@ public final class CssValidator extends HttpServlet {
 			Util.verbose("- End of " + fileName + " Data");
 			//quick test that works in most cases to determine wether it's
 			//HTML or CSS
-			isCSS = isCSS(text);
+			// TODO hardcode options using defined strings instead of in the code
+			switch (inputType) {
+				case "css":
+					isCSS = true;
+					break;
+				case "html":
+					isCSS = false;
+					break;
+				case "none":
+				default:
+					isCSS = isCSS(text);
+			}
 		}
 		fileName = "file://localhost/" + fileName;
 		try {
