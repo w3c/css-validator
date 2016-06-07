@@ -14,14 +14,29 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @version $Revision$
  * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#width
+ * @spec https://www.w3.org/TR/2016/WD-css-sizing-3-20160512/#width-height-keywords
  */
 public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (auto.equals(ident)) {
-			return auto;
+	public static final CssIdent[] allowed_values;
+
+	static {
+		// fill to fit-content from css-sizing
+		String[] _allowed_values = {"auto", "fill", "max-content", "min-content", "fit-content"};
+
+		allowed_values = new CssIdent[_allowed_values.length];
+		int i = 0;
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
+	}
+
+	public static CssIdent getAllowedIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
 		}
 		return null;
 	}
@@ -55,10 +70,13 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
 					value = inherit;
-				} else if (auto.equals(val)) {
-					value = auto;
 				} else {
-					throw new InvalidParamException("unrecognize", ac);
+					CssIdent id = getAllowedIdent((CssIdent) val);
+					if (id != null) {
+						value = id;
+					} else {
+						throw new InvalidParamException("unrecognize", ac);
+					}
 				}
 				break;
 			case CssTypes.CSS_NUMBER:
