@@ -32,6 +32,7 @@ import org.w3c.css.properties.css.CssBaselineShift;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBoxSizing;
+import org.w3c.css.properties.css.CssBoxSuppress;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
@@ -154,6 +155,8 @@ public class Css3Style extends ATSCStyle {
 	public CssSpeakAs cssSpeakAs;
 	public CssVoicePitch cssVoicePitch;
 	public CssVoiceRange cssVoiceRange;
+
+	public CssBoxSuppress cssBoxSuppress;
 
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
@@ -302,7 +305,7 @@ public class Css3Style extends ATSCStyle {
 	public CssFloodColor cssFloodColor;
 	public CssFloodOpacity cssFloodOpacity;
 	public CssLightingColor cssLightingColor;
-	
+
 	public CssFloatReference cssFloatReference;
 	public CssFloatOffset cssFloatOffset;
 	public CssFloatDefer cssFloatDefer;
@@ -349,6 +352,15 @@ public class Css3Style extends ATSCStyle {
 							new CssRubyOverhang(), style, selector);
 		}
 		return cssRubyOverhang;
+	}
+
+	public CssBoxSuppress getBoxSuppress() {
+		if (cssBoxSuppress == null) {
+			cssBoxSuppress =
+					(CssBoxSuppress) style.CascadingOrder(
+							new CssBoxSuppress(), style, selector);
+		}
+		return cssBoxSuppress;
 	}
 
 	public CssBoxSizing getBoxSizing() {
