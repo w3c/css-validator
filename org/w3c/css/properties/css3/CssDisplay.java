@@ -138,6 +138,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 				// let's check the values which can occur only once.
 				if (count == 1) {
 					if (inherit.equals(id_val)) {
+						id = inherit;
 						value = inherit;
 					} else if ((id = getMatchingIdentInArray(id_val, display_box)) != null) {
 						value = id;
