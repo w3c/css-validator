@@ -1,8 +1,9 @@
-// $Id$
+//
 // From Philippe Le Hegaret (Philippe.Le_Hegaret@sophia.inria.fr)
 // Updated September 14th 2000 Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// rewritten: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio, 1997-2010.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 1997-2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css;
 
@@ -12,17 +13,16 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS1
- * The 'display' property
- * using CSS21 values for now
  */
 public class CssDisplay extends CssProperty {
 
     private static final String propertyName = "display";
 
-    public CssIdent value;
+    public CssValue value;
     public static CssIdent inline;
 
     static {
