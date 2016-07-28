@@ -56,7 +56,7 @@ public class CssFillRule extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "box-sizing";
+		return "fill-rule";
 	}
 
 	/**
