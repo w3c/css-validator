@@ -51,18 +51,23 @@ import java.net.URL;
 public final class CssValidator extends HttpServlet {
 
 	final static String texthtml = "text/html";
-
 	final static String applxhtml = "application/xhtml+xml";
-
 	final static String textplain = "text/plain";
-
 	final static String textcss = "text/css";
-
 	final static String textunknwon = "text/unknown";
-
 	final static String soap12 = "application/soap+xml";
-
 	final static String json = "application/json";
+
+	final static String opt_file = "file";
+	final static String opt_text = "text";
+	final static String opt_lang = "lang";
+	final static String opt_output = "output";
+	final static String opt_warning = "warning";
+	final static String opt_error = "error";
+	final static String opt_profile = "profile";
+	final static String opt_usermedium = "usermedium";
+	final static String opt_vextwarning = "vextwarning";
+	final static String opt_type = "type";
 
 	public final static String server_name =
 			"Jigsaw/2.3.0 W3C_CSS_Validator_JFouffa/2.0 (See <http://validator.w3.org/services>)";
@@ -231,7 +236,7 @@ public final class CssValidator extends HttpServlet {
 
 		String lang = null;
 		try {
-			lang = req.getParameter("lang");
+			lang = req.getParameter(opt_lang);
 		} catch (Exception e) {
 			lang = null;
 		}
@@ -244,7 +249,7 @@ public final class CssValidator extends HttpServlet {
 		ApplContext ac = new ApplContext(lang);
 		ac.setLink(req.getQueryString());
 		ac.setContentEncoding(req.getHeader("Accept-Charset"));
-		String output = req.getParameter("output");
+		String output = req.getParameter(opt_output);
 
 		String uri = null;
 		try {
@@ -257,7 +262,7 @@ public final class CssValidator extends HttpServlet {
 		}
 		String text = null;
 		try {
-			text = req.getParameter("text");
+			text = req.getParameter(opt_text);
 		} catch (Exception ex) {
 			// pb in URI decoding (bad escaping, most probably)
 			// not sure it will work here, as it may be catched by the first
@@ -266,11 +271,11 @@ public final class CssValidator extends HttpServlet {
 					"Invalid escape sequence in URI"), false);
 		}
 
-		String warning = req.getParameter("warning");
-		String error = req.getParameter("error");
-		String profile = req.getParameter("profile");
-		String usermedium = req.getParameter("usermedium");
-		String type = req.getParameter("type");
+		String warning = req.getParameter(opt_warning);
+		String error = req.getParameter(opt_error);
+		String profile = req.getParameter(opt_profile);
+		String usermedium = req.getParameter(opt_usermedium);
+		String type = req.getParameter(opt_type);
 
 		InputStream in = req.getInputStream();
 
@@ -347,7 +352,7 @@ public final class CssValidator extends HttpServlet {
 		}
 
 		// Allow vendor extensions to just show up as warnings.
-		processVendorExtensionParameter(req.getParameter("vextwarning"), ac);
+		processVendorExtensionParameter(req.getParameter(opt_vextwarning), ac);
 
 		// debug mode
 		Util.verbose("\nServlet request ");
@@ -554,37 +559,36 @@ public final class CssValidator extends HttpServlet {
 		try {
 			buf = new byte[count];
 			System.arraycopy(general, 0, buf, 0, count);
-			NVPair[] tmp = Codecs.mpFormDataDecode(buf, req.getContentType());
-			for (NVPair pair : tmp) {
+			for (NVPair pair : Codecs.mpFormDataDecode(buf, req.getContentType())) {
 				switch (pair.getName()) {
-					case "file":
+					case opt_file:
 						file = (FakeFile) pair.getValue();
 						break;
-					case "text":
+					case opt_text:
 						text = (String) pair.getValue();
 						break;
-					case "lang":
+					case opt_lang:
 						lang = (String) pair.getValue();
 						break;
-					case "output":
+					case opt_output:
 						output = (String) pair.getValue();
 						break;
-					case "warning":
+					case opt_warning:
 						warning = (String) pair.getValue();
 						break;
-					case "error":
+					case opt_error:
 						error = (String) pair.getValue();
 						break;
-					case "profile":
+					case opt_profile:
 						profile = (String) pair.getValue();
 						break;
-					case "usermedium":
+					case opt_usermedium:
 						usermedium = (String) pair.getValue();
 						break;
-					case "vextwarning":
+					case opt_vextwarning:
 						vendorExtensionAsWarnings = (String) pair.getValue();
 						break;
-					case "type":
+					case opt_type:
 						inputType = (String) pair.getValue();
 						break;
 					default:
@@ -736,24 +740,30 @@ public final class CssValidator extends HttpServlet {
 			throw new IOException(ac.getMsg().getServletString("process") + " "
 					+ title);
 		}
+		String outformat;
 
 		// if the output parameter was a mime type, we convert it
 		// to an understandable value for the StyleReportFactory
-		if ("text/xml".equals(ac.getInput()) && texthtml.equals(output)) {
-			output = "xhtml";
-		} else if (texthtml.equals(output)) {
-			output = "html";
-		} else if (soap12.equals(output)) {
-			output = "soap12";
-		} else if (json.equals(output)) {
-			output = "json";
-		} else if (textplain.equals(output)) {
-			output = "text";
+		switch (output) {
+			case texthtml:
+				outformat = ("text/xml".equals(ac.getInput())) ? "xhtml" : "html";
+				break;
+			case soap12:
+				outformat = soap12;
+				break;
+			case json:
+				outformat = "json";
+				break;
+			case textplain:
+				outformat = "text";
+				break;
+			default:
+				outformat = output;
 		}
 		styleSheet.findConflicts(ac);
 
 		StyleReport style = StyleReportFactory.getStyleReport(ac, title,
-				styleSheet, output, warningLevel);
+				styleSheet, outformat, warningLevel);
 		if (!errorReport) {
 			style.desactivateError();
 		}
