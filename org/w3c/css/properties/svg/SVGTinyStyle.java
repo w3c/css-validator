@@ -8,11 +8,13 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssFillRule;
 import org.w3c.css.properties.css3.Css3Style;
 
 public class SVGTinyStyle extends Css3Style {
 
-    FillRule fillRule;
+	public CssFillRule cssFillRule;
+
     StrokeLinejoin strokeLinejoin;
     StrokeLineCap strokeLineCap;
     StrokeMiterLimit strokeMiterLimit;
@@ -22,15 +24,15 @@ public class SVGTinyStyle extends Css3Style {
     Stroke stroke;
     Fill fill;
 
-    public FillRule getFillRule() {
-	if (fillRule == null) {
-	    fillRule =
-		(FillRule) style.CascadingOrder (
-		    new FillRule(), style, selector);
+	public CssFillRule getFillRule() {
+		if (cssFillRule == null) {
+			cssFillRule =
+					(CssFillRule) style.CascadingOrder(new CssFillRule(),
+							style, selector);
+		}
+		return cssFillRule;
 	}
-	return fillRule;
-    }
-    
+
     public StrokeLinejoin getStrokeLinejoin() {
 	if (strokeLinejoin == null) {
 	    strokeLinejoin =
