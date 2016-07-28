@@ -9,44 +9,46 @@ package org.w3c.css.selectors;
  * Created: Sep 1, 2005 3:58:43 PM<br />
  */
 public class PseudoClassSelector implements Selector {
-    
-    String name;
 
-    /**
-     * Creates a new pseudo-class given its name
-     * @param name the name of this pseudo-class
-     */
-    public PseudoClassSelector(String name) {
-	this.name = name;
-    }
+	String name;
 
-    /**
-     * @see Selector#getName()
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Creates a new pseudo-class given its name
+	 *
+	 * @param name the name of this pseudo-class
+	 */
+	public PseudoClassSelector(String name) {
+		this.name = name;
+	}
 
-    /**
-     * Sets the name of this pseudo-class
-     * @param name The name to set.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * @see Selector#getName()
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * @see Selector#toString()
-     */
-    public String toString() {
-	return ":" + name;
-    }
+	/**
+	 * Sets the name of this pseudo-class
+	 *
+	 * @param name The name to set.
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * @see Selector#canApply(Selector)
-     */
-    public boolean canApply(Selector other) {
-	return false;
-    }
+	/**
+	 * @see Selector#toString()
+	 */
+	public String toString() {
+		return ":" + name;
+	}
+
+	/**
+	 * @see Selector#canApply(Selector)
+	 */
+	public boolean canApply(Selector other) {
+		return false;
+	}
 
 }
