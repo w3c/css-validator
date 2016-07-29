@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa" dir="ltr">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="fa" dir="rtl">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
@@ -55,6 +55,7 @@
         <option value="css2">سطح 2 CSS</option>
         <option value="css21">سطح 2.1 CSS</option>
         <option selected="selected" value="css3">سطح 3 CSS</option>
+        <option value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -144,6 +145,7 @@
         <option value="css2">سطح 2 CSS</option>
         <option value="css21">سطح 2.1 CSS</option>
         <option selected="selected" value="css3">سطح 3 CSS</option>
+        <option value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  
@@ -233,6 +235,7 @@
         <option value="css2">سطح 2 CSS</option>
         <option value="css21">سطح 2.1 CSS</option>
         <option selected="selected" value="css3">سطح 3 CSS</option>
+        <option value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">بیسیک SVG</option>
         <option value="svgtiny">SVG tiny</option>  
