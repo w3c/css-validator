@@ -175,8 +175,6 @@ public final class CssSelectors extends SelectorsList
 			return;
 		}
 
-		String spec = ac.getPropertyKey();
-
 		if (ac.getTreatVendorExtensionsAsWarnings()) {
 			if (ac.getCssVersion() != CssVersion.CSS1) {
 				if (pseudo.startsWith("-")) {
