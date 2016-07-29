@@ -9,13 +9,14 @@
 package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssFillRule;
+import org.w3c.css.properties.css.CssStrokeLinejoin;
 import org.w3c.css.properties.css3.Css3Style;
 
 public class SVGTinyStyle extends Css3Style {
 
 	public CssFillRule cssFillRule;
+	public CssStrokeLinejoin cssStrokeLinejoin;
 
-    StrokeLinejoin strokeLinejoin;
     StrokeLineCap strokeLineCap;
     StrokeMiterLimit strokeMiterLimit;
     StrokeWidth strokeWidth;
@@ -33,14 +34,14 @@ public class SVGTinyStyle extends Css3Style {
 		return cssFillRule;
 	}
 
-    public StrokeLinejoin getStrokeLinejoin() {
-	if (strokeLinejoin == null) {
-	    strokeLinejoin =
-		(StrokeLinejoin) style.CascadingOrder (
-		    new StrokeLinejoin(), style, selector);
+	public CssStrokeLinejoin getStrokeLinejoin() {
+		if (cssStrokeLinejoin == null) {
+			cssStrokeLinejoin =
+					(CssStrokeLinejoin) style.CascadingOrder(new CssStrokeLinejoin(),
+							style, selector);
+		}
+		return cssStrokeLinejoin;
 	}
-	return strokeLinejoin;
-    }
 
     public StrokeLineCap getStrokeLineCap() {
 	if (strokeLineCap == null) {
