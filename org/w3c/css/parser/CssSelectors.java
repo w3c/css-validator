@@ -189,7 +189,7 @@ public final class CssSelectors extends SelectorsList
 		}
 
 		// is it a pseudo-class?
-		String[] ps = PseudoFactory.getPseudoClass(spec);
+		String[] ps = PseudoFactory.getPseudoClass(ac.getCssVersion(), ac.getCssProfile());
 		if (ps != null) {
 			for (String p : ps) {
 				if (pseudo.equals(p)) {
