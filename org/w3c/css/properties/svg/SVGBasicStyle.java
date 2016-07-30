@@ -10,6 +10,7 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssColorInterpolation;
 import org.w3c.css.properties.css.CssColorRendering;
+import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssShapeRendering;
 import org.w3c.css.properties.css.CssStrokeOpacity;
@@ -22,7 +23,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	ClipRule clipRule;
 	EnableBackground enableBackground;
 	WritingModeSVG writingModeSVG;
-	FillOpacity fillOpacity;
 	Mask mask;
 	StopOpacity stopOpacity;
 	Kerning kerning;
@@ -38,6 +38,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssTextRendering cssTextRendering;
 	public CssImageRendering cssImageRendering;
 	public CssTextAnchor cssTextAnchor;
+	public CssFillOpacity cssFillOpacity;
 	public CssStrokeOpacity cssStrokeOpacity;
 	
 	public CssColorInterpolation getColorInterpolation() {
@@ -93,6 +94,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssTextAnchor;
 	}
+	
+	public CssFillOpacity getFillOpacity() {
+		if (cssFillOpacity == null) {
+			cssFillOpacity =
+					(CssFillOpacity) style.CascadingOrder(new CssFillOpacity(),
+							style, selector);
+		}
+		return cssFillOpacity;
+	}
 
 	public CssStrokeOpacity getStrokeOpacity() {
 		if (cssStrokeOpacity == null) {
@@ -138,15 +148,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new WritingModeSVG(), style, selector);
 		}
 		return writingModeSVG;
-	}
-
-	public FillOpacity getFillOpacity() {
-		if (fillOpacity == null) {
-			fillOpacity =
-					(FillOpacity) style.CascadingOrder(
-							new FillOpacity(), style, selector);
-		}
-		return fillOpacity;
 	}
 
 	public Mask getMask() {
