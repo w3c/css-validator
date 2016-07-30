@@ -56,7 +56,7 @@ public class CssStrokeOpacity extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "text-rendering";
+		return "stroke-opacity";
 	}
 
 	/**
