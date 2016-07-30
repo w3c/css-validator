@@ -8,11 +8,12 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssColorInterpolation;
+
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	ClipPath clipPath;
 	ClipRule clipRule;
-	ColorInterpolation colorInterpolation;
 	ColorRendering colorRendering;
 	EnableBackground enableBackground;
 	WritingModeSVG writingModeSVG;
@@ -30,6 +31,17 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	SolidColor solidColor;
 	ColorProfile colorProfile;
 	SolidOpacity solidOpacity;
+	
+	public CssColorInterpolation cssColorInterpolation;
+
+	public CssColorInterpolation getColorInterpolation() {
+		if (cssColorInterpolation == null) {
+			cssColorInterpolation =
+					(CssColorInterpolation) style.CascadingOrder(new CssColorInterpolation(),
+							style, selector);
+		}
+		return cssColorInterpolation;
+	}
 
 	public ClipPath getClipPath() {
 		if (clipPath == null) {
@@ -47,15 +59,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new ClipRule(), style, selector);
 		}
 		return clipRule;
-	}
-
-	public ColorInterpolation getColorInterpolation() {
-		if (colorInterpolation == null) {
-			colorInterpolation =
-					(ColorInterpolation) style.CascadingOrder(
-							new ColorInterpolation(), style, selector);
-		}
-		return colorInterpolation;
 	}
 
 	public ColorRendering getColorRendering() {
