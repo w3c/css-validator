@@ -10,108 +10,105 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssFillRule;
 import org.w3c.css.properties.css.CssStrokeLinejoin;
+import org.w3c.css.properties.css.CssStrokeWidth;
 import org.w3c.css.properties.css3.Css3Style;
 
 public class SVGTinyStyle extends Css3Style {
 
 	public CssFillRule cssFillRule;
 	public CssStrokeLinejoin cssStrokeLinejoin;
+	public CssStrokeWidth cssStrokeWidth;
 
-    StrokeLineCap strokeLineCap;
-    StrokeMiterLimit strokeMiterLimit;
-    StrokeWidth strokeWidth;
-    StrokeDashOffset strokeDashOffset;
-    StrokeDashArray strokeDashArray;
-    Stroke stroke;
-    Fill fill;
+	StrokeLineCap strokeLineCap;
+	StrokeMiterLimit strokeMiterLimit;
+	StrokeDashOffset strokeDashOffset;
+	StrokeDashArray strokeDashArray;
+	Stroke stroke;
+	Fill fill;
 
 	public CssFillRule getFillRule() {
 		if (cssFillRule == null) {
-			cssFillRule =
-					(CssFillRule) style.CascadingOrder(new CssFillRule(),
-							style, selector);
+			cssFillRule = (CssFillRule) style.CascadingOrder(new CssFillRule(),
+					style, selector);
 		}
 		return cssFillRule;
 	}
 
+	public CssStrokeWidth getStrokeWidth() {
+		if (cssStrokeWidth == null) {
+			cssStrokeWidth = (CssStrokeWidth) style.CascadingOrder(new CssStrokeWidth(),
+					style, selector);
+		}
+		return cssStrokeWidth;
+	}
+
 	public CssStrokeLinejoin getStrokeLinejoin() {
 		if (cssStrokeLinejoin == null) {
-			cssStrokeLinejoin =
-					(CssStrokeLinejoin) style.CascadingOrder(new CssStrokeLinejoin(),
-							style, selector);
+			cssStrokeLinejoin = (CssStrokeLinejoin) style.CascadingOrder(new CssStrokeLinejoin(),
+					style, selector);
 		}
 		return cssStrokeLinejoin;
 	}
 
-    public StrokeLineCap getStrokeLineCap() {
-	if (strokeLineCap == null) {
-	    strokeLineCap =
-		(StrokeLineCap) style.CascadingOrder (
-		    new StrokeLineCap(), style, selector);
+	public StrokeLineCap getStrokeLineCap() {
+		if (strokeLineCap == null) {
+			strokeLineCap =
+					(StrokeLineCap) style.CascadingOrder(
+							new StrokeLineCap(), style, selector);
+		}
+		return strokeLineCap;
 	}
-	return strokeLineCap;
-    }
 
-    public StrokeMiterLimit getStrokeMiterLimit() {
-	if (strokeMiterLimit == null) {
-	    strokeMiterLimit =
-		(StrokeMiterLimit) style.CascadingOrder (
-		    new StrokeMiterLimit(), style, selector);
+	public StrokeMiterLimit getStrokeMiterLimit() {
+		if (strokeMiterLimit == null) {
+			strokeMiterLimit =
+					(StrokeMiterLimit) style.CascadingOrder(
+							new StrokeMiterLimit(), style, selector);
+		}
+		return strokeMiterLimit;
 	}
-	return strokeMiterLimit;
-    }
 
-    public StrokeWidth getStrokeWidth() {
-	if (strokeWidth == null) {
-	    strokeWidth =
-		(StrokeWidth) style.CascadingOrder (
-		    new StrokeWidth(), style, selector);
+	public StrokeDashOffset getStrokeDashOffset() {
+		if (strokeDashOffset == null) {
+			strokeDashOffset =
+					(StrokeDashOffset) style.CascadingOrder(
+							new StrokeDashOffset(), style, selector);
+		}
+		return strokeDashOffset;
 	}
-	return strokeWidth;
-    }
 
-    public StrokeDashOffset getStrokeDashOffset() {
-	if (strokeDashOffset == null) {
-	    strokeDashOffset =
-		(StrokeDashOffset) style.CascadingOrder (
-		    new StrokeDashOffset(), style, selector);
+	public StrokeDashArray getStrokeDashArray() {
+		if (strokeDashArray == null) {
+			strokeDashArray =
+					(StrokeDashArray) style.CascadingOrder(
+							new StrokeDashArray(), style, selector);
+		}
+		return strokeDashArray;
 	}
-	return strokeDashOffset;
-    }
 
-    public StrokeDashArray getStrokeDashArray() {
-	if (strokeDashArray == null) {
-	    strokeDashArray =
-		(StrokeDashArray) style.CascadingOrder (
-		    new StrokeDashArray(), style, selector);
+	public Stroke getStroke() {
+		if (stroke == null) {
+			stroke =
+					(Stroke) style.CascadingOrder(
+							new Stroke(), style, selector);
+		}
+		return stroke;
 	}
-	return strokeDashArray;
-    }
 
-    public Stroke getStroke() {
-	if (stroke == null) {
-	    stroke =
-		(Stroke) style.CascadingOrder (
-		    new Stroke(), style, selector);
+	public Fill getFill() {
+		if (fill == null) {
+			fill =
+					(Fill) style.CascadingOrder(
+							new Fill(), style, selector);
+		}
+		return fill;
 	}
-	return stroke;
-    }
 
-    public Fill getFill() {
-	if (fill == null) {
-	    fill =
-		(Fill) style.CascadingOrder (
-		    new Fill(), style, selector);
+	/**
+	 * Returns the name of the actual selector
+	 */
+	public String getSelector() {
+		return (selector.getElement().toLowerCase());
 	}
-	return fill;
-    }
-
-    /**
-     * Returns the name of the actual selector
-     */
-    public String getSelector()
-    {
-	return (selector.getElement().toLowerCase());
-    }
 
 }
