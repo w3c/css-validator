@@ -9,12 +9,13 @@
 package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssColorInterpolation;
+import org.w3c.css.properties.css.CssColorRendering;
+import org.w3c.css.properties.css.CssShapeRendering;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	ClipPath clipPath;
 	ClipRule clipRule;
-	ColorRendering colorRendering;
 	EnableBackground enableBackground;
 	WritingModeSVG writingModeSVG;
 	FillOpacity fillOpacity;
@@ -23,7 +24,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	StopOpacity stopOpacity;
 	Kerning kerning;
 	PointerEvents pointerEvents;
-	ShapeRendering shapeRendering;
 	TextRendering textRendering;
 	TextAnchor textAnchor;
 	StrokeOpacity strokeOpacity;
@@ -33,6 +33,8 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	SolidOpacity solidOpacity;
 	
 	public CssColorInterpolation cssColorInterpolation;
+	public CssColorRendering cssColorRendering;
+	public CssShapeRendering cssShapeRendering;
 
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -41,6 +43,24 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							style, selector);
 		}
 		return cssColorInterpolation;
+	}
+
+	public CssColorRendering getColorRendering() {
+		if (cssColorRendering == null) {
+			cssColorRendering =
+					(CssColorRendering) style.CascadingOrder(new CssColorRendering(),
+							style, selector);
+		}
+		return cssColorRendering;
+	}
+
+	public CssShapeRendering getShapeRendering() {
+		if (cssShapeRendering == null) {
+			cssShapeRendering =
+					(CssShapeRendering) style.CascadingOrder(new CssShapeRendering(),
+							style, selector);
+		}
+		return cssShapeRendering;
 	}
 
 	public ClipPath getClipPath() {
@@ -59,15 +79,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new ClipRule(), style, selector);
 		}
 		return clipRule;
-	}
-
-	public ColorRendering getColorRendering() {
-		if (colorRendering == null) {
-			colorRendering =
-					(ColorRendering) style.CascadingOrder(
-							new ColorRendering(), style, selector);
-		}
-		return colorRendering;
 	}
 
 	public EnableBackground getEnableBackground() {
@@ -140,15 +151,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new PointerEvents(), style, selector);
 		}
 		return pointerEvents;
-	}
-
-	public ShapeRendering getShapeRendering() {
-		if (shapeRendering == null) {
-			shapeRendering =
-					(ShapeRendering) style.CascadingOrder(
-							new ShapeRendering(), style, selector);
-		}
-		return shapeRendering;
 	}
 
 	public TextRendering getTextRendering() {
