@@ -7,8 +7,9 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.values.CssCheckableValue;
+import org.w3c.css.util.Util;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -16,6 +17,19 @@ import org.w3c.css.values.CssValue;
  * @spec http://www.w3.org/TR/2011/REC-SVG11-20110816/painting.html#StrokeOpacityProperty
  */
 public class CssStrokeOpacity extends org.w3c.css.properties.css.CssStrokeOpacity {
+
+	/**
+	 * Brings all values back between 0 and 1
+	 *
+	 * @param opacity The value to be modified if necessary
+	 */
+	private float clampedValue(ApplContext ac, float opacity) {
+		if (opacity < 0.f || opacity > 1.f) {
+			ac.getFrame().addWarning("out-of-range", Util.displayFloat(opacity));
+			return ((opacity < 0.f) ? 0.f : 1.f);
+		}
+		return opacity;
+	}
 
 	/**
 	 * Create a new CssStrokeOpacity
@@ -46,14 +60,16 @@ public class CssStrokeOpacity extends org.w3c.css.properties.css.CssStrokeOpacit
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				// number between 0 and 1 (inclusive)
-				CssCheckableValue v = val.getCheckableValue();
-				v.warnPositiveness(ac, this);
-				// if it's a number we can check the <=1
+				// number 0..1
 				if (val.getRawType() == CssTypes.CSS_NUMBER) {
-					val.getNumber().warnLowerEqualThan(ac, 1., this);
+					// this will generate a warning if necessary
+					CssNumber number = val.getNumber();
+					number.setFloatValue(clampedValue(ac, number.getValue()));
+				} else {
+					// we can only check if >= 0 for now
+					val.getCheckableValue().warnPositiveness(ac, this);
 				}
-
+				break;
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
 					value = inherit;
