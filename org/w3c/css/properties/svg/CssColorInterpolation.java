@@ -38,14 +38,14 @@ public class CssColorInterpolation extends org.w3c.css.properties.css.CssColorIn
 	}
 
 	/**
-	 * Create a new CssColorInterpolationFilters
+	 * Create a new CssColorInterpolation
 	 */
 	public CssColorInterpolation() {
 		value = initial;
 	}
 
 	/**
-	 * Creates a new CssColorInterpolationFilters
+	 * Creates a new CssColorInterpolation
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
