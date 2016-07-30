@@ -14,6 +14,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec http://www.w3.org/TR/2011/REC-SVG11-20110816/text.html#AlignmentBaselineProperty
+ * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#alignment-baseline-property
  */
 public class CssAlignmentBaseline extends org.w3c.css.properties.css.CssAlignmentBaseline {
 
