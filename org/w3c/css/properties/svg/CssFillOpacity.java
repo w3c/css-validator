@@ -69,6 +69,7 @@ public class CssFillOpacity extends org.w3c.css.properties.css.CssFillOpacity {
 					// we can only check if >= 0 for now
 					val.getCheckableValue().warnPositiveness(ac, this);
 				}
+				value = val;
 				break;
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
