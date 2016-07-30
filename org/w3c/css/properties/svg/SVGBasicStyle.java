@@ -12,6 +12,7 @@ import org.w3c.css.properties.css.CssColorInterpolation;
 import org.w3c.css.properties.css.CssColorRendering;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssShapeRendering;
+import org.w3c.css.properties.css.CssTextAnchor;
 import org.w3c.css.properties.css.CssTextRendering;
 
 public class SVGBasicStyle extends SVGTinyStyle {
@@ -25,7 +26,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	StopOpacity stopOpacity;
 	Kerning kerning;
 	PointerEvents pointerEvents;
-	TextAnchor textAnchor;
 	StrokeOpacity strokeOpacity;
 	StopColor stopColor;
 	SolidColor solidColor;
@@ -37,6 +37,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssShapeRendering cssShapeRendering;
 	public CssTextRendering cssTextRendering;
 	public CssImageRendering cssImageRendering;
+	public CssTextAnchor cssTextAnchor;
 
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -81,6 +82,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							style, selector);
 		}
 		return cssTextRendering;
+	}
+
+	public CssTextAnchor getTextAnchor() {
+		if (cssTextAnchor == null) {
+			cssTextAnchor =
+					(CssTextAnchor) style.CascadingOrder(new CssTextAnchor(),
+							style, selector);
+		}
+		return cssTextAnchor;
 	}
 	
 	public ClipPath getClipPath() {
@@ -162,15 +172,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new PointerEvents(), style, selector);
 		}
 		return pointerEvents;
-	}
-
-	public TextAnchor getTextAnchor() {
-		if (textAnchor == null) {
-			textAnchor =
-					(TextAnchor) style.CascadingOrder(
-							new TextAnchor(), style, selector);
-		}
-		return textAnchor;
 	}
 
 	public StrokeOpacity getStrokeOpacity() {
