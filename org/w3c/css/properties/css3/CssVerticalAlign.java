@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#propdef-vertical-align
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-vertical-align
  */
 public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlign {
 

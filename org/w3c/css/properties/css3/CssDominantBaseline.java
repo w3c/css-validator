@@ -12,15 +12,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#dominant-baseline-property
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#dominant-baseline-property
  */
 public class CssDominantBaseline extends org.w3c.css.properties.css.CssDominantBaseline {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"auto", "text-bottom", "alphabetic", "central",
-				"mathematical", "hanging", "text-top", "hide"};
+		String[] _allowed_values = {"auto", "text-bottom", "alphabetic", "ideographic",
+				"middle", "central", "mathematical", "hanging", "text-top"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {

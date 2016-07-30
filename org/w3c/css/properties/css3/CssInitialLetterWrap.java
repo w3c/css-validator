@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#propdef-initial-letter-wrap
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-initial-letter-wrap
  */
 public class CssInitialLetterWrap extends org.w3c.css.properties.css.CssInitialLetterWrap {
 

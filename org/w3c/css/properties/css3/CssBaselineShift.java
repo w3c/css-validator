@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#baseline-shift-property
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#baseline-shift-property
  */
 
 public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShift {
@@ -59,7 +59,7 @@ public class CssBaselineShift extends org.w3c.css.properties.css.CssBaselineShif
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
 				// zero is a valid length. otherwise it will fail.
-				val.getLength();
+				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
 				value = val;

@@ -18,7 +18,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#propdef-initial-letter
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#propdef-initial-letter
  */
 public class CssInitialLetter extends org.w3c.css.properties.css.CssInitialLetter {
 

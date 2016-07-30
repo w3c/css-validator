@@ -12,15 +12,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/WD-css-inline-3-20150917/#alignment-baseline-property
+ * @spec http://www.w3.org/TR/2016/WD-css-inline-3-20160524/#alignment-baseline-property
  */
 public class CssAlignmentBaseline extends org.w3c.css.properties.css.CssAlignmentBaseline {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"baseline", "text-bottom", "alphabetic", "middle",
-				"central", "mathematical", "text-top", "bottom", "center", "top"};
+		String[] _allowed_values = {"baseline", "text-bottom", "alphabetic", "ideographic",
+				"middle", "central", "mathematical", "text-top", "bottom", "center", "top"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
