@@ -10,6 +10,7 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssColorInterpolation;
 import org.w3c.css.properties.css.CssColorRendering;
+import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssShapeRendering;
 import org.w3c.css.properties.css.CssTextRendering;
 
@@ -20,7 +21,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	EnableBackground enableBackground;
 	WritingModeSVG writingModeSVG;
 	FillOpacity fillOpacity;
-	ImageRendering imageRendering;
 	Mask mask;
 	StopOpacity stopOpacity;
 	Kerning kerning;
@@ -36,6 +36,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssColorRendering cssColorRendering;
 	public CssShapeRendering cssShapeRendering;
 	public CssTextRendering cssTextRendering;
+	public CssImageRendering cssImageRendering;
 
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -46,6 +47,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		return cssColorInterpolation;
 	}
 
+	public CssImageRendering getImageRendering() {
+		if (cssImageRendering == null) {
+			cssImageRendering =
+					(CssImageRendering) style.CascadingOrder(new CssImageRendering(),
+							style, selector);
+		}
+		return cssImageRendering;
+	}
+	
 	public CssColorRendering getColorRendering() {
 		if (cssColorRendering == null) {
 			cssColorRendering =
@@ -116,15 +126,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new FillOpacity(), style, selector);
 		}
 		return fillOpacity;
-	}
-
-	public ImageRendering getImageRendering() {
-		if (imageRendering == null) {
-			imageRendering =
-					(ImageRendering) style.CascadingOrder(
-							new ImageRendering(), style, selector);
-		}
-		return imageRendering;
 	}
 
 	public Mask getMask() {
