@@ -8,77 +8,80 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssMarker;
+import org.w3c.css.properties.css.CssMarkerEnd;
+import org.w3c.css.properties.css.CssMarkerMid;
+import org.w3c.css.properties.css.CssMarkerStart;
+
 public class SVGStyle extends SVGBasicStyle {
 
-    Marker marker;
-    MarkerStart markerStart;
-    MarkerEnd markerEnd;
-    MarkerMid markerMid;
-    ColorProfileSrc cpSrc;
-    ColorProfileName cpName;
-    CssRenderIntent cssRenderIntent;
+	ColorProfileSrc cpSrc;
+	ColorProfileName cpName;
+	CssRenderIntent cssRenderIntent;
 
-    public Marker getMarker() {
-	if (marker == null) {
-	    marker =
-		(Marker) style.CascadingOrder (
-			new Marker(), style, selector);
-	}
-	return marker;
-    }
+	public CssMarkerStart cssMarkerStart;
+	public CssMarkerMid cssMarkerMid;
+	public CssMarkerEnd cssMarkerEnd;
+	public CssMarker cssMarker;
 
-    public MarkerStart getMarkerStart() {
-	if (markerStart == null) {
-	    markerStart =
-		(MarkerStart) style.CascadingOrder (
-			new MarkerStart(), style, selector);
+	public CssMarkerStart getMarkerStart() {
+		if (cssMarkerStart == null) {
+			cssMarkerStart = (CssMarkerStart) style.CascadingOrder(new CssMarkerStart(),
+					style, selector);
+		}
+		return cssMarkerStart;
 	}
-	return markerStart;
-    }
 
-    public MarkerEnd getMarkerEnd() {
-	if (markerEnd == null) {
-	    markerEnd =
-		(MarkerEnd) style.CascadingOrder (
-			new MarkerEnd(), style, selector);
+	public CssMarkerMid getMarkerMid() {
+		if (cssMarkerMid == null) {
+			cssMarkerMid = (CssMarkerMid) style.CascadingOrder(new CssMarkerMid(),
+					style, selector);
+		}
+		return cssMarkerMid;
 	}
-	return markerEnd;
-    }
 
-    public MarkerMid getMarkerMid() {
-	if (markerMid == null) {
-	    markerMid =
-		(MarkerMid) style.CascadingOrder (
-			new MarkerMid(), style, selector);
+	public CssMarkerEnd getMarkerEnd() {
+		if (cssMarkerEnd == null) {
+			cssMarkerEnd = (CssMarkerEnd) style.CascadingOrder(new CssMarkerEnd(),
+					style, selector);
+		}
+		return cssMarkerEnd;
 	}
-	return markerMid;
-    }
 
-    public ColorProfileSrc getColorProfileSrc() {
-	if (cpSrc == null) {
-	    cpSrc =
-		(ColorProfileSrc) style.CascadingOrder (
-			new ColorProfileSrc(), style, selector);
+	public CssMarker getMarker() {
+		if (cssMarker == null) {
+			cssMarker = (CssMarker) style.CascadingOrder(new CssMarker(),
+					style, selector);
+		}
+		return cssMarker;
 	}
-	return cpSrc;
-    }
 
-    public ColorProfileName getColorProfileName() {
-	if (cpName == null) {
-	    cpName =
-		(ColorProfileName) style.CascadingOrder (
-			new ColorProfileName(), style, selector);
-	}
-	return cpName;
-    }
 
-    public CssRenderIntent getRenderIntent() {
-	if (cssRenderIntent == null) {
-	    cssRenderIntent =
-		(CssRenderIntent) style.CascadingOrder (
-			new CssRenderIntent(), style, selector);
+	public ColorProfileSrc getColorProfileSrc() {
+		if (cpSrc == null) {
+			cpSrc =
+					(ColorProfileSrc) style.CascadingOrder(
+							new ColorProfileSrc(), style, selector);
+		}
+		return cpSrc;
 	}
-	return cssRenderIntent;
-    }
+
+	public ColorProfileName getColorProfileName() {
+		if (cpName == null) {
+			cpName =
+					(ColorProfileName) style.CascadingOrder(
+							new ColorProfileName(), style, selector);
+		}
+		return cpName;
+	}
+
+	public CssRenderIntent getRenderIntent() {
+		if (cssRenderIntent == null) {
+			cssRenderIntent =
+					(CssRenderIntent) style.CascadingOrder(
+							new CssRenderIntent(), style, selector);
+		}
+		return cssRenderIntent;
+	}
 
 }
