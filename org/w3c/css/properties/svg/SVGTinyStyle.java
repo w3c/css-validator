@@ -13,6 +13,7 @@ import org.w3c.css.properties.css.CssStrokeDasharray;
 import org.w3c.css.properties.css.CssStrokeDashoffset;
 import org.w3c.css.properties.css.CssStrokeLinecap;
 import org.w3c.css.properties.css.CssStrokeLinejoin;
+import org.w3c.css.properties.css.CssStrokeMiterlimit;
 import org.w3c.css.properties.css.CssStrokeWidth;
 import org.w3c.css.properties.css3.Css3Style;
 
@@ -23,9 +24,9 @@ public class SVGTinyStyle extends Css3Style {
 	public CssStrokeDashoffset cssStrokeDashoffset;
 	public CssStrokeLinecap cssStrokeLinecap;
 	public CssStrokeLinejoin cssStrokeLinejoin;
+	public CssStrokeMiterlimit cssStrokeMiterlimit;
 	public CssStrokeWidth cssStrokeWidth;
 
-	StrokeMiterLimit strokeMiterLimit;
 	Stroke stroke;
 	Fill fill;
 
@@ -77,16 +78,16 @@ public class SVGTinyStyle extends Css3Style {
 		return cssStrokeDasharray;
 	}
 
-
-
-	public StrokeMiterLimit getStrokeMiterLimit() {
-		if (strokeMiterLimit == null) {
-			strokeMiterLimit =
-					(StrokeMiterLimit) style.CascadingOrder(
-							new StrokeMiterLimit(), style, selector);
+	public CssStrokeMiterlimit getStrokeMiterlimit() {
+		if (cssStrokeMiterlimit == null) {
+			cssStrokeMiterlimit = (CssStrokeMiterlimit) style.CascadingOrder(new CssStrokeMiterlimit(),
+					style, selector);
 		}
-		return strokeMiterLimit;
+		return cssStrokeMiterlimit;
 	}
+	
+
+
 
 	public Stroke getStroke() {
 		if (stroke == null) {
