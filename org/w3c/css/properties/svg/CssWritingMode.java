@@ -3,9 +3,10 @@
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css3;
+package org.w3c.css.properties.svg;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
@@ -13,15 +14,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-writing-modes-3-20151215/#propdef-writing-mode
+ * @spec hhttp://www.w3.org/TR/2011/REC-SVG11-20110816/text.html#WritingModeProperty
  */
 public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr",
-				"sideways-rl", "sideways-lr"};
+		String[] _allowed_values = {"lr-tb", "rl-tb", "tb-rl", "lr", "rl", "tb"};
 		allowed_values = new CssIdent[_allowed_values.length];
 		int i = 0;
 		for (String s : _allowed_values) {
@@ -66,15 +66,27 @@ public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 		op = expression.getOperator();
 
 		if (val.getType() == CssTypes.CSS_IDENT) {
+			boolean isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
 			CssIdent ident = (CssIdent) val;
 			if (inherit.equals(ident)) {
 				value = inherit;
 			} else {
 				value = getAllowedIdent(ident);
-				if (value == null) {
+				CssIdent css3ident = null;
+				if (isCss3) {
+					css3ident = org.w3c.css.properties.css3.CssWritingMode.getAllowedIdent(ident);
+				}
+				if (value == null && css3ident == null) {
 					throw new InvalidParamException("value",
 							val.toString(),
 							getPropertyName(), ac);
+				}
+				if (value == null) {
+					value = css3ident;
+				}
+				if (css3ident == null && isCss3) {
+					// Css3 and onward, the SVG values are deprecated, add a warning
+					ac.getFrame().addWarning("deprecated", getPropertyName());
 				}
 			}
 		} else {

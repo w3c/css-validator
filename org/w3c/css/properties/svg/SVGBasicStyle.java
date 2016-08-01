@@ -17,13 +17,13 @@ import org.w3c.css.properties.css.CssShapeRendering;
 import org.w3c.css.properties.css.CssStrokeOpacity;
 import org.w3c.css.properties.css.CssTextAnchor;
 import org.w3c.css.properties.css.CssTextRendering;
+import org.w3c.css.properties.css.CssWritingMode;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	ClipPath clipPath;
 	ClipRule clipRule;
 	EnableBackground enableBackground;
-	WritingModeSVG writingModeSVG;
 	Mask mask;
 	StopOpacity stopOpacity;
 	PointerEvents pointerEvents;
@@ -41,6 +41,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssFillOpacity cssFillOpacity;
 	public CssStrokeOpacity cssStrokeOpacity;
 	public CssKerning cssKerning;
+	public CssWritingMode cssWritingMode;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -122,6 +123,16 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssKerning;
 	}
+
+	public CssWritingMode getWritingMode() {
+		if (cssWritingMode == null) {
+			cssWritingMode =
+					(CssWritingMode) style.CascadingOrder(new CssWritingMode(),
+							style, selector);
+		}
+		return cssWritingMode;
+	}
+	
 	
 	
 	public ClipPath getClipPath() {
@@ -149,15 +160,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new EnableBackground(), style, selector);
 		}
 		return enableBackground;
-	}
-
-	public WritingModeSVG getWritingModeSVG() {
-		if (writingModeSVG == null) {
-			writingModeSVG =
-					(WritingModeSVG) style.CascadingOrder(
-							new WritingModeSVG(), style, selector);
-		}
-		return writingModeSVG;
 	}
 
 	public Mask getMask() {
