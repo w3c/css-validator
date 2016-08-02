@@ -15,6 +15,7 @@ import org.w3c.css.properties.css.CssColorRendering;
 import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssKerning;
+import org.w3c.css.properties.css.CssMask;
 import org.w3c.css.properties.css.CssShapeRendering;
 import org.w3c.css.properties.css.CssStrokeOpacity;
 import org.w3c.css.properties.css.CssTextAnchor;
@@ -24,7 +25,6 @@ import org.w3c.css.properties.css.CssWritingMode;
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	EnableBackground enableBackground;
-	Mask mask;
 	StopOpacity stopOpacity;
 	PointerEvents pointerEvents;
 	StopColor stopColor;
@@ -44,6 +44,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssWritingMode cssWritingMode;
 	public CssClipPath cssClipPath;
 	public CssClipRule cssClipRule;
+	public CssMask cssMask;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -152,7 +153,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssClipRule;
 	}
-	
+
+	public CssMask getMask() {
+		if (cssMask == null) {
+			cssMask =
+					(CssMask) style.CascadingOrder(new CssMask(),
+							style, selector);
+		}
+		return cssMask;
+	}
 
 
 
@@ -163,15 +172,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new EnableBackground(), style, selector);
 		}
 		return enableBackground;
-	}
-
-	public Mask getMask() {
-		if (mask == null) {
-			mask =
-					(Mask) style.CascadingOrder(
-							new Mask(), style, selector);
-		}
-		return mask;
 	}
 
 	public StopOpacity getStopOpacity() {
