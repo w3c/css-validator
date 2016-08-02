@@ -8,6 +8,7 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssClipPath;
 import org.w3c.css.properties.css.CssColorInterpolation;
 import org.w3c.css.properties.css.CssColorRendering;
 import org.w3c.css.properties.css.CssFillOpacity;
@@ -21,7 +22,6 @@ import org.w3c.css.properties.css.CssWritingMode;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
-	ClipPath clipPath;
 	ClipRule clipRule;
 	EnableBackground enableBackground;
 	Mask mask;
@@ -42,6 +42,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssStrokeOpacity cssStrokeOpacity;
 	public CssKerning cssKerning;
 	public CssWritingMode cssWritingMode;
+	public CssClipPath cssClipPath;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -132,17 +133,18 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssWritingMode;
 	}
-	
-	
-	
-	public ClipPath getClipPath() {
-		if (clipPath == null) {
-			clipPath =
-					(ClipPath) style.CascadingOrder(
-							new ClipPath(), style, selector);
+
+	public CssClipPath getClipPath() {
+		if (cssClipPath == null) {
+			cssClipPath =
+					(CssClipPath) style.CascadingOrder(new CssClipPath(),
+							style, selector);
 		}
-		return clipPath;
+		return cssClipPath;
 	}
+	
+	
+	
 
 	public ClipRule getClipRule() {
 		if (clipRule == null) {
