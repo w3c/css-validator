@@ -51,6 +51,7 @@ public class CssKerning extends org.w3c.css.properties.css.CssKerning {
 			case CssTypes.CSS_PERCENTAGE:
 			case CssTypes.CSS_LENGTH:
 				value = val;
+				break;
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
 					value = inherit;
