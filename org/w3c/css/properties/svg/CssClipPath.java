@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-SVG11-20110816/text.html#KerningProperty
+ * @spec http://www.w3.org/TR/2011/REC-SVG11-20110816/masking.html#ClipPathProperty
  */
 public class CssClipPath extends org.w3c.css.properties.css.CssKerning {
 
