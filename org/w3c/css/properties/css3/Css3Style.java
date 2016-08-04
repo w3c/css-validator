@@ -161,7 +161,6 @@ public class Css3Style extends ATSCStyle {
 	CssRubyPosition cssRubyPosition;
 	CssRubyAlign cssRubyAlign;
 	CssRubyOverhang cssRubyOverhang;
-	CssGlyphOrVert cssGlyphOrVert;
 	public CssAlignmentBaseline cssAlignmentBaseline;
 	CssAlignmentAdjust cssAlignmentAdjust;
 	public CssBaselineShift cssBaselineShift;
@@ -377,15 +376,6 @@ public class Css3Style extends ATSCStyle {
 							new CssResize(), style, selector);
 		}
 		return cssResize;
-	}
-
-	public CssGlyphOrVert getGlyphOrVert() {
-		if (cssGlyphOrVert == null) {
-			cssGlyphOrVert =
-					(CssGlyphOrVert) style.CascadingOrder(
-							new CssGlyphOrVert(), style, selector);
-		}
-		return cssGlyphOrVert;
 	}
 
 	public CssTextJustify getTextJustify() {

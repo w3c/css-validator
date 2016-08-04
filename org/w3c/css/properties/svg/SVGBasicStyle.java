@@ -15,6 +15,7 @@ import org.w3c.css.properties.css.CssColorProfile;
 import org.w3c.css.properties.css.CssColorRendering;
 import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssGlyphOrientationHorizontal;
+import org.w3c.css.properties.css.CssGlyphOrientationVertical;
 import org.w3c.css.properties.css.CssImageRendering;
 import org.w3c.css.properties.css.CssKerning;
 import org.w3c.css.properties.css.CssMask;
@@ -49,6 +50,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssStopOpacity cssStopOpacity;
 	public CssStopColor	cssStopColor;
 	public CssGlyphOrientationHorizontal cssGlyphOrientationHorizontal;
+	public CssGlyphOrientationVertical cssGlyphOrientationVertical;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -210,6 +212,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							style, selector);
 		}
 		return cssGlyphOrientationHorizontal;
+	}
+
+	public CssGlyphOrientationVertical getGlyphOrientationVertical() {
+		if (cssGlyphOrientationVertical == null) {
+			cssGlyphOrientationVertical =
+					(CssGlyphOrientationVertical) style.CascadingOrder(new CssGlyphOrientationVertical(),
+							style, selector);
+		}
+		return cssGlyphOrientationVertical;
 	}
 
 
