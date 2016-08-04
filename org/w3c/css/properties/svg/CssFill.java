@@ -159,6 +159,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 					}
 					if ("icc-color".equals(f.getName())) {
 						values.add(parseIccColor(ac, f, check));
+						break;
 					}
 				default:
 					throw new InvalidParamException("value",
