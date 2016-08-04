@@ -21,13 +21,13 @@ public class CssRenderingIntent extends CssProperty {
 	public CssValue value;
 
 	/**
-	 * Create a new CssStrokeDashoffset
+	 * Create a new CssRenderingIntent
 	 */
 	public CssRenderingIntent() {
 	}
 
 	/**
-	 * Creates a new CssStrokeDashoffset
+	 * Creates a new CssRenderingIntent
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
