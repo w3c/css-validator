@@ -13,6 +13,7 @@ import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Messages;
@@ -182,7 +183,15 @@ public class StyleSheetGenerator extends StyleReport {
 		context.put("charset", ac.getContentEncoding());
 		context.put("cssversion", ac.getCssVersionString());
 		context.put("css_profile", ac.getProfileString());
-		context.put("css", ac.getMsg().getString(ac.getCssVersionString()));
+		// we are currently not using profile in the templates
+		// so we compute here the version + profile in the $css variable.
+		// TODO evaluate which is better.
+		if (ac.getCssProfile() == CssProfile.EMPTY) {
+			context.put("css", ac.getMsg().getString(ac.getCssVersionString()));
+		} else {
+			context.put("css", ac.getMsg().getString(ac.getCssVersionString()) + " + " +
+					ac.getMsg().getString(ac.getCssProfile().toString()));
+		}
 		context.put("css_link", getURLProperty("@url-base_" + ac.getCssVersionString()));
 		context.put("is_valid", (errors.getErrorCount() == 0) ? "true" : "false");
 		context.put("fake_input", Boolean.valueOf(ac.isInputFake()));

@@ -8,107 +8,108 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssFill;
+import org.w3c.css.properties.css.CssFillRule;
+import org.w3c.css.properties.css.CssStroke;
+import org.w3c.css.properties.css.CssStrokeDasharray;
+import org.w3c.css.properties.css.CssStrokeDashoffset;
+import org.w3c.css.properties.css.CssStrokeLinecap;
+import org.w3c.css.properties.css.CssStrokeLinejoin;
+import org.w3c.css.properties.css.CssStrokeMiterlimit;
+import org.w3c.css.properties.css.CssStrokeWidth;
 import org.w3c.css.properties.css3.Css3Style;
 
 public class SVGTinyStyle extends Css3Style {
 
-    FillRule fillRule;
-    StrokeLinejoin strokeLinejoin;
-    StrokeLineCap strokeLineCap;
-    StrokeMiterLimit strokeMiterLimit;
-    StrokeWidth strokeWidth;
-    StrokeDashOffset strokeDashOffset;
-    StrokeDashArray strokeDashArray;
-    Stroke stroke;
-    Fill fill;
+	public CssFillRule cssFillRule;
+	public CssStrokeDasharray cssStrokeDasharray;
+	public CssStrokeDashoffset cssStrokeDashoffset;
+	public CssStrokeLinecap cssStrokeLinecap;
+	public CssStrokeLinejoin cssStrokeLinejoin;
+	public CssStrokeMiterlimit cssStrokeMiterlimit;
+	public CssStrokeWidth cssStrokeWidth;
+	public CssFill cssFill;
+	public CssStroke cssStroke;
 
-    public FillRule getFillRule() {
-	if (fillRule == null) {
-	    fillRule =
-		(FillRule) style.CascadingOrder (
-		    new FillRule(), style, selector);
-	}
-	return fillRule;
-    }
-    
-    public StrokeLinejoin getStrokeLinejoin() {
-	if (strokeLinejoin == null) {
-	    strokeLinejoin =
-		(StrokeLinejoin) style.CascadingOrder (
-		    new StrokeLinejoin(), style, selector);
-	}
-	return strokeLinejoin;
-    }
 
-    public StrokeLineCap getStrokeLineCap() {
-	if (strokeLineCap == null) {
-	    strokeLineCap =
-		(StrokeLineCap) style.CascadingOrder (
-		    new StrokeLineCap(), style, selector);
+	public CssFillRule getFillRule() {
+		if (cssFillRule == null) {
+			cssFillRule = (CssFillRule) style.CascadingOrder(new CssFillRule(),
+					style, selector);
+		}
+		return cssFillRule;
 	}
-	return strokeLineCap;
-    }
 
-    public StrokeMiterLimit getStrokeMiterLimit() {
-	if (strokeMiterLimit == null) {
-	    strokeMiterLimit =
-		(StrokeMiterLimit) style.CascadingOrder (
-		    new StrokeMiterLimit(), style, selector);
+	public CssStrokeWidth getStrokeWidth() {
+		if (cssStrokeWidth == null) {
+			cssStrokeWidth = (CssStrokeWidth) style.CascadingOrder(new CssStrokeWidth(),
+					style, selector);
+		}
+		return cssStrokeWidth;
 	}
-	return strokeMiterLimit;
-    }
 
-    public StrokeWidth getStrokeWidth() {
-	if (strokeWidth == null) {
-	    strokeWidth =
-		(StrokeWidth) style.CascadingOrder (
-		    new StrokeWidth(), style, selector);
+	public CssStrokeLinecap getStrokeLinecap() {
+		if (cssStrokeLinecap == null) {
+			cssStrokeLinecap = (CssStrokeLinecap) style.CascadingOrder(new CssStrokeLinecap(),
+					style, selector);
+		}
+		return cssStrokeLinecap;
 	}
-	return strokeWidth;
-    }
 
-    public StrokeDashOffset getStrokeDashOffset() {
-	if (strokeDashOffset == null) {
-	    strokeDashOffset =
-		(StrokeDashOffset) style.CascadingOrder (
-		    new StrokeDashOffset(), style, selector);
+	public CssStrokeLinejoin getStrokeLinejoin() {
+		if (cssStrokeLinejoin == null) {
+			cssStrokeLinejoin = (CssStrokeLinejoin) style.CascadingOrder(new CssStrokeLinejoin(),
+					style, selector);
+		}
+		return cssStrokeLinejoin;
 	}
-	return strokeDashOffset;
-    }
 
-    public StrokeDashArray getStrokeDashArray() {
-	if (strokeDashArray == null) {
-	    strokeDashArray =
-		(StrokeDashArray) style.CascadingOrder (
-		    new StrokeDashArray(), style, selector);
+	public CssStrokeDashoffset getStrokeDashoffset() {
+		if (cssStrokeDashoffset == null) {
+			cssStrokeDashoffset = (CssStrokeDashoffset) style.CascadingOrder(new CssStrokeDashoffset(),
+					style, selector);
+		}
+		return cssStrokeDashoffset;
 	}
-	return strokeDashArray;
-    }
 
-    public Stroke getStroke() {
-	if (stroke == null) {
-	    stroke =
-		(Stroke) style.CascadingOrder (
-		    new Stroke(), style, selector);
+	public CssStrokeDasharray getStrokeDasharray() {
+		if (cssStrokeDasharray == null) {
+			cssStrokeDasharray = (CssStrokeDasharray) style.CascadingOrder(new CssStrokeDasharray(),
+					style, selector);
+		}
+		return cssStrokeDasharray;
 	}
-	return stroke;
-    }
 
-    public Fill getFill() {
-	if (fill == null) {
-	    fill =
-		(Fill) style.CascadingOrder (
-		    new Fill(), style, selector);
+	public CssStrokeMiterlimit getStrokeMiterlimit() {
+		if (cssStrokeMiterlimit == null) {
+			cssStrokeMiterlimit = (CssStrokeMiterlimit) style.CascadingOrder(new CssStrokeMiterlimit(),
+					style, selector);
+		}
+		return cssStrokeMiterlimit;
 	}
-	return fill;
-    }
 
-    /**
-     * Returns the name of the actual selector
-     */
-    public String getSelector()
-    {
-	return (selector.getElement().toLowerCase());
-    }
+	public CssFill getFill() {
+		if (cssFill == null) {
+			cssFill = (CssFill) style.CascadingOrder(new CssFill(),
+					style, selector);
+		}
+		return cssFill;
+	}
+
+	public CssStroke getStroke() {
+		if (cssStroke == null) {
+			cssStroke = (CssStroke) style.CascadingOrder(new CssStroke(),
+					style, selector);
+		}
+		return cssStroke;
+	}
+
+
+	/**
+	 * Returns the name of the actual selector
+	 */
+	public String getSelector() {
+		return (selector.getElement().toLowerCase());
+	}
 
 }

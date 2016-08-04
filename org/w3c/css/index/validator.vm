@@ -15,6 +15,7 @@
         <option value="css2">$css2</option>
         <option value="css21">$css21</option>
         <option selected="selected" value="css3">$css3</option>
+        <option value="css3svg">$css3svg</option>
         <option value="svg">$svg</option>
         <option value="svgbasic">$svgbasic</option>
         <option value="svgtiny">$svgtiny</option>  

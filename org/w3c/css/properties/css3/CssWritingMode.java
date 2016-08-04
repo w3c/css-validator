@@ -1,185 +1,95 @@
 //
-// $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
-
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
+// Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> lr-tb || rl-tb || tb-rl || bt-rl || lr || rl || tb || inherit<BR>
- *  <EM>Initial:</EM>lr-tb<BR>
- *  <EM>Applies to:</EM>all elements<BR>
- *  <EM>Inherited:</EM>yes<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  This property sets the primary text advance direction
+ * @spec http://www.w3.org/TR/2015/CR-css-writing-modes-3-20151215/#propdef-writing-mode
  */
+public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 
-public class CssWritingMode extends CssProperty {
+	public static final CssIdent[] allowed_values;
 
-    CssValue mode;
-
-    static CssIdent lrtb = new CssIdent("lr-tb");
-    static CssIdent rltb = new CssIdent("rl-tb");
-    static CssIdent tbrl = new CssIdent("tb-rl");
-    static CssIdent tblr = new CssIdent("tb-lr");
-    static CssIdent lr = new CssIdent("lr");
-    static CssIdent rl = new CssIdent("rl");
-    static CssIdent tb = new CssIdent("tb");
-    static CssIdent ltr = new CssIdent("ltr");
-    static CssIdent rtl = new CssIdent("rtl");
-
-
-    /**
-     * Create a new CssWritingMode
-     */
-    public CssWritingMode() {
-	mode = lrtb;
-    }
-
-    /**
-     * Create a new CssWritingMode
-     */
-    public CssWritingMode(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
-
-	setByUser();
-	CssValue val = expression.getValue();
-
-	if (val.equals(lrtb)) {
-	    mode = lrtb;
-	    expression.next();
+	static {
+		String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr",
+				"sideways-rl", "sideways-lr"};
+		allowed_values = new CssIdent[_allowed_values.length];
+		int i = 0;
+		for (String s : _allowed_values) {
+			allowed_values[i++] = CssIdent.getIdent(s);
+		}
 	}
-	else if (val.equals(rltb)) {
-	    mode = rltb;
-	    expression.next();
-	}
-	else if (val.equals(tbrl)) {
-	    mode = tbrl;
-	    expression.next();
-	}
-	else if (val.equals(tblr)) {
-	    mode = tblr;
-	    expression.next();
-	}
-	else if (val.equals(lr)) {
-	    mode = lr;
-	    expression.next();
-	}
-	else if (val.equals(rl)) {
-	    mode = rl;
-	    expression.next();
-	}
-	else if (val.equals(tb)) {
-	    mode = tb;
-	    expression.next();
-	}
-	else if (val.equals(ltr)) {
-	    mode = ltr;
-	    expression.next();
-	}
-	else if (val.equals(rtl)) {
-	    mode = rtl;
-	    expression.next();
-	}
-	else if (val.equals(inherit)) {
-	    mode = inherit;
-	    expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
-    }
 
-    public CssWritingMode(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
-    }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssWritingMode != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssWritingMode = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style The style where the property is
-     * @param resolve if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getWritingMode();
+	public static CssIdent getAllowedIdent(CssIdent ident) {
+		for (CssIdent id : allowed_values) {
+			if (id.equals(ident)) {
+				return id;
+			}
+		}
+		return null;
 	}
-	else {
-	    return ((Css3Style) style).cssWritingMode;
+
+	/**
+	 * Create a new CssWritingMode
+	 */
+	public CssWritingMode() {
+		value = initial;
 	}
-    }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value The other property.
-     */
-    public boolean equals(CssProperty property) {
-	return (property instanceof CssWritingMode &&
-		mode.equals(((CssWritingMode) property).mode));
-    }
+	/**
+	 * Creates a new CssWritingMode
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Expressions are incorrect
+	 */
+	public CssWritingMode(ApplContext ac, CssExpression expression, boolean check)
+			throws InvalidParamException {
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		setByUser();
 
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-	return "writing-mode";
-    }
+		CssValue val;
+		char op;
 
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-	return mode;
-    }
+		val = expression.getValue();
+		op = expression.getOperator();
 
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-	return mode.equals(inherit);
-    }
+		if (val.getType() == CssTypes.CSS_IDENT) {
+			CssIdent ident = (CssIdent) val;
+			if (inherit.equals(ident)) {
+				value = inherit;
+			} else {
+				value = getAllowedIdent(ident);
+				if (value == null) {
+					throw new InvalidParamException("value",
+							val.toString(),
+							getPropertyName(), ac);
+				}
+			}
+		} else {
+			throw new InvalidParamException("value",
+					val.toString(),
+					getPropertyName(), ac);
+		}
+		expression.next();
 
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-	return mode.toString();
-    }
+	}
 
-    /**
-     * Is the value of this property a default value
-     * It is used by alle macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-	return mode == lrtb;
-    }
+	public CssWritingMode(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
 }
+

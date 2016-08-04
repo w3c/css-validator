@@ -11,6 +11,7 @@ import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastChild;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthLastOfType;
 import org.w3c.css.selectors.pseudofunctions.PseudoFunctionNthOfType;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
@@ -68,27 +69,32 @@ public class PseudoFactory {
 	};
 
 	/**
-	 * Returns the possible pseudo-classes for a profile
+	 * Returns the possible pseudo-classes for a version/profile pair
 	 *
+	 * @param version the CSS Level to get associated pseudo-classes definitions
 	 * @param profile the profile to get associated pseudo-classes
-	 * @return the possible pseudo-classes for the profile
+	 * @return the possible pseudo-classes for the version/profile
 	 */
-	public static String[] getPseudoClass(String profile) {
-		if (profile == null || profile.equals("css2") || profile.equals("css21")) {
-			return PSEUDOCLASS_CONSTANTSCSS2;
+	public static String[] getPseudoClass(CssVersion version, CssProfile profile) {
+		// TODO we might need some merging in some cases
+		// unused for now, but leaving the TODO to find it easily.
+		switch (profile) {
+			case TV:
+				return PSEUDOCLASS_CONSTANTSTV;
+			case MOBILE:
+				return PSEUDOCLASS_CONSTANTS_MOBILE;
 		}
-		if (profile.equals("css3")) {
-			return PSEUDOCLASS_CONSTANTSCSS3;
+		// not one of a specific version, let's match on CSS Version
+		switch (version) {
+			case CSS1:
+				return PSEUDOCLASS_CONSTANTSCSS1;
+			case CSS2:
+			case CSS21:
+				return PSEUDOCLASS_CONSTANTSCSS2;
+			case CSS3:
+				return PSEUDOCLASS_CONSTANTSCSS3;
 		}
-		if (profile.equals("css1")) {
-			return PSEUDOCLASS_CONSTANTSCSS1;
-		}
-		if (profile.equals("tv")) {
-			return PSEUDOCLASS_CONSTANTSTV;
-		}
-		if (profile.equals("mobile")) {
-			return PSEUDOCLASS_CONSTANTS_MOBILE;
-		}
+		// and the default
 		return null;
 	}
 

@@ -41,10 +41,15 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
 
 		switch (val.getType()) {
 			case CssTypes.CSS_NUMBER:
-				CssNumber number = val.getNumber();
-				// this will generate a warning if necessary
-				number.setFloatValue(clampedValue(ac, number.getValue()));
-				value = number;
+				if (val.getRawType() == CssTypes.CSS_NUMBER) {
+					// this will generate a warning if necessary
+					CssNumber number = val.getNumber();
+					number.setFloatValue(clampedValue(ac, number.getValue()));
+				} else {
+					// we can only check if >= 0 for now
+					val.getCheckableValue().warnPositiveness(ac, this);
+				}
+				value = val;
 				break;
 			case CssTypes.CSS_IDENT:
 				if (inherit.equals(val)) {
@@ -82,7 +87,7 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
 	 * the function <code>print</code>
 	 */
 	public boolean isDefault() {
-		if (value.getType() == CssTypes.CSS_NUMBER) {
+		if (value.getRawType() == CssTypes.CSS_NUMBER) {
 			try {
 				return (value.getNumber().getValue() == 1.f);
 			} catch (Exception ex) {
