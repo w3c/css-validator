@@ -11,6 +11,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.properties.css.CssClipPath;
 import org.w3c.css.properties.css.CssClipRule;
 import org.w3c.css.properties.css.CssColorInterpolation;
+import org.w3c.css.properties.css.CssColorProfile;
 import org.w3c.css.properties.css.CssColorRendering;
 import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssImageRendering;
@@ -29,7 +30,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	PointerEvents pointerEvents;
 	StopColor stopColor;
 	SolidColor solidColor;
-	ColorProfile colorProfile;
 	SolidOpacity solidOpacity;
 	
 	public CssColorInterpolation cssColorInterpolation;
@@ -45,6 +45,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssClipPath cssClipPath;
 	public CssClipRule cssClipRule;
 	public CssMask cssMask;
+	public CssColorProfile cssColorProfile;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -163,7 +164,17 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		return cssMask;
 	}
 
-
+	public CssColorProfile getColorProfile() {
+		if (cssColorProfile == null) {
+			cssColorProfile =
+					(CssColorProfile) style.CascadingOrder(new CssColorProfile(),
+							style, selector);
+		}
+		return cssColorProfile;
+	}
+	
+	
+	
 
 	public EnableBackground getEnableBackground() {
 		if (enableBackground == null) {
@@ -208,15 +219,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new SolidColor(), style, selector);
 		}
 		return solidColor;
-	}
-
-	public ColorProfile getColorProfileSVG() {
-		if (colorProfile == null) {
-			colorProfile =
-					(ColorProfile) style.CascadingOrder(
-							new ColorProfile(), style, selector);
-		}
-		return colorProfile;
 	}
 
 	public SolidOpacity getSolidOpacity() {
