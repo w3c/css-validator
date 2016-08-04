@@ -29,8 +29,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	EnableBackground enableBackground;
 	StopOpacity stopOpacity;
 	StopColor stopColor;
-	SolidColor solidColor;
-	SolidOpacity solidOpacity;
 	
 	public CssColorInterpolation cssColorInterpolation;
 	public CssColorRendering cssColorRendering;
@@ -211,24 +209,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new StopColor(), style, selector);
 		}
 		return stopColor;
-	}
-
-	public SolidColor getSolidColor() {
-		if (solidColor == null) {
-			solidColor =
-					(SolidColor) style.CascadingOrder(
-							new SolidColor(), style, selector);
-		}
-		return solidColor;
-	}
-
-	public SolidOpacity getSolidOpacity() {
-		if (solidOpacity == null) {
-			solidOpacity =
-					(SolidOpacity) style.CascadingOrder(
-							new SolidOpacity(), style, selector);
-		}
-		return solidOpacity;
 	}
 
 }
