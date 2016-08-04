@@ -21,13 +21,13 @@ public class CssName extends CssProperty {
 	public CssValue value;
 
 	/**
-	 * Create a new CssStrokeName
+	 * Create a new CssName
 	 */
 	public CssName() {
 	}
 
 	/**
-	 * Creates a new CssStrokeName
+	 * Creates a new CssName
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
