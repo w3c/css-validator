@@ -8,7 +8,9 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssFill;
 import org.w3c.css.properties.css.CssFillRule;
+import org.w3c.css.properties.css.CssStroke;
 import org.w3c.css.properties.css.CssStrokeDasharray;
 import org.w3c.css.properties.css.CssStrokeDashoffset;
 import org.w3c.css.properties.css.CssStrokeLinecap;
@@ -26,9 +28,9 @@ public class SVGTinyStyle extends Css3Style {
 	public CssStrokeLinejoin cssStrokeLinejoin;
 	public CssStrokeMiterlimit cssStrokeMiterlimit;
 	public CssStrokeWidth cssStrokeWidth;
+	public CssFill cssFill;
+	public CssStroke cssStroke;
 
-	Stroke stroke;
-	Fill fill;
 
 	public CssFillRule getFillRule() {
 		if (cssFillRule == null) {
@@ -85,27 +87,23 @@ public class SVGTinyStyle extends Css3Style {
 		}
 		return cssStrokeMiterlimit;
 	}
-	
 
-
-
-	public Stroke getStroke() {
-		if (stroke == null) {
-			stroke =
-					(Stroke) style.CascadingOrder(
-							new Stroke(), style, selector);
+	public CssFill getFill() {
+		if (cssFill == null) {
+			cssFill = (CssFill) style.CascadingOrder(new CssFill(),
+					style, selector);
 		}
-		return stroke;
+		return cssFill;
 	}
 
-	public Fill getFill() {
-		if (fill == null) {
-			fill =
-					(Fill) style.CascadingOrder(
-							new Fill(), style, selector);
+	public CssStroke getStroke() {
+		if (cssStroke == null) {
+			cssStroke = (CssStroke) style.CascadingOrder(new CssStroke(),
+					style, selector);
 		}
-		return fill;
+		return cssStroke;
 	}
+
 
 	/**
 	 * Returns the name of the actual selector
