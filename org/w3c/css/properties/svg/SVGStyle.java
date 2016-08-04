@@ -12,17 +12,21 @@ import org.w3c.css.properties.css.CssMarker;
 import org.w3c.css.properties.css.CssMarkerEnd;
 import org.w3c.css.properties.css.CssMarkerMid;
 import org.w3c.css.properties.css.CssMarkerStart;
+import org.w3c.css.properties.css.colorprofile.CssRenderingIntent;
 
 public class SVGStyle extends SVGBasicStyle {
 
+	public
 	ColorProfileSrc cpSrc;
 	ColorProfileName cpName;
-	CssRenderIntent cssRenderIntent;
 
 	public CssMarkerStart cssMarkerStart;
 	public CssMarkerMid cssMarkerMid;
 	public CssMarkerEnd cssMarkerEnd;
 	public CssMarker cssMarker;
+
+	// @color-profile
+	public CssRenderingIntent colorProfileCssRenderingIntent;
 
 	public CssMarkerStart getMarkerStart() {
 		if (cssMarkerStart == null) {
@@ -56,6 +60,16 @@ public class SVGStyle extends SVGBasicStyle {
 		return cssMarker;
 	}
 
+	// @color-profile
+
+	public CssRenderingIntent getColorProfileRenderingIntent() {
+		if (colorProfileCssRenderingIntent == null) {
+			colorProfileCssRenderingIntent = (CssRenderingIntent) style.CascadingOrder(new CssRenderingIntent(),
+					style, selector);
+		}
+		return colorProfileCssRenderingIntent;
+	}
+
 
 	public ColorProfileSrc getColorProfileSrc() {
 		if (cpSrc == null) {
@@ -75,13 +89,5 @@ public class SVGStyle extends SVGBasicStyle {
 		return cpName;
 	}
 
-	public CssRenderIntent getRenderIntent() {
-		if (cssRenderIntent == null) {
-			cssRenderIntent =
-					(CssRenderIntent) style.CascadingOrder(
-							new CssRenderIntent(), style, selector);
-		}
-		return cssRenderIntent;
-	}
 
 }
