@@ -56,7 +56,7 @@ public class CssGlyphOrientationVertical extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "glyph-orientation-horizontal";
+		return "glyph-orientation-vertical";
 	}
 
 	/**
