@@ -13,6 +13,7 @@ import org.w3c.css.properties.css.CssClipRule;
 import org.w3c.css.properties.css.CssColorInterpolation;
 import org.w3c.css.properties.css.CssColorProfile;
 import org.w3c.css.properties.css.CssColorRendering;
+import org.w3c.css.properties.css.CssEnableBackground;
 import org.w3c.css.properties.css.CssFillOpacity;
 import org.w3c.css.properties.css.CssGlyphOrientationHorizontal;
 import org.w3c.css.properties.css.CssGlyphOrientationVertical;
@@ -29,8 +30,6 @@ import org.w3c.css.properties.css.CssTextRendering;
 import org.w3c.css.properties.css.CssWritingMode;
 
 public class SVGBasicStyle extends SVGTinyStyle {
-
-	EnableBackground enableBackground;
 
 	public CssColorInterpolation cssColorInterpolation;
 	public CssColorRendering cssColorRendering;
@@ -51,6 +50,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssStopColor	cssStopColor;
 	public CssGlyphOrientationHorizontal cssGlyphOrientationHorizontal;
 	public CssGlyphOrientationVertical cssGlyphOrientationVertical;
+	public CssEnableBackground cssEnableBackground;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -223,14 +223,13 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		return cssGlyphOrientationVertical;
 	}
 
-
-	public EnableBackground getEnableBackground() {
-		if (enableBackground == null) {
-			enableBackground =
-					(EnableBackground) style.CascadingOrder(
-							new EnableBackground(), style, selector);
+	public CssEnableBackground getEnableBackground() {
+		if (cssEnableBackground == null) {
+			cssEnableBackground =
+					(CssEnableBackground) style.CascadingOrder(new CssEnableBackground(),
+							style, selector);
 		}
-		return enableBackground;
+		return cssEnableBackground;
 	}
 
 }
