@@ -19,6 +19,7 @@ import org.w3c.css.properties.css.CssKerning;
 import org.w3c.css.properties.css.CssMask;
 import org.w3c.css.properties.css.CssPointerEvents;
 import org.w3c.css.properties.css.CssShapeRendering;
+import org.w3c.css.properties.css.CssStopColor;
 import org.w3c.css.properties.css.CssStopOpacity;
 import org.w3c.css.properties.css.CssStrokeOpacity;
 import org.w3c.css.properties.css.CssTextAnchor;
@@ -28,8 +29,7 @@ import org.w3c.css.properties.css.CssWritingMode;
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	EnableBackground enableBackground;
-	StopColor stopColor;
-	
+
 	public CssColorInterpolation cssColorInterpolation;
 	public CssColorRendering cssColorRendering;
 	public CssShapeRendering cssShapeRendering;
@@ -46,6 +46,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssColorProfile cssColorProfile;
 	public CssPointerEvents cssPointerEvents;
 	public CssStopOpacity cssStopOpacity;
+	public CssStopColor	cssStopColor;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -190,9 +191,17 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssStopOpacity;
 	}
+
+	public CssStopColor getStopColor() {
+		if (cssStopColor == null) {
+			cssStopColor =
+					(CssStopColor) style.CascadingOrder(new CssStopColor(),
+							style, selector);
+		}
+		return cssStopColor;
+	}	
 	
-	
-	
+
 
 	public EnableBackground getEnableBackground() {
 		if (enableBackground == null) {
@@ -201,15 +210,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new EnableBackground(), style, selector);
 		}
 		return enableBackground;
-	}
-
-	public StopColor getStopColor() {
-		if (stopColor == null) {
-			stopColor =
-					(StopColor) style.CascadingOrder(
-							new StopColor(), style, selector);
-		}
-		return stopColor;
 	}
 
 }
