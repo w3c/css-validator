@@ -19,6 +19,7 @@ import org.w3c.css.properties.css.CssKerning;
 import org.w3c.css.properties.css.CssMask;
 import org.w3c.css.properties.css.CssPointerEvents;
 import org.w3c.css.properties.css.CssShapeRendering;
+import org.w3c.css.properties.css.CssStopOpacity;
 import org.w3c.css.properties.css.CssStrokeOpacity;
 import org.w3c.css.properties.css.CssTextAnchor;
 import org.w3c.css.properties.css.CssTextRendering;
@@ -27,7 +28,6 @@ import org.w3c.css.properties.css.CssWritingMode;
 public class SVGBasicStyle extends SVGTinyStyle {
 
 	EnableBackground enableBackground;
-	StopOpacity stopOpacity;
 	StopColor stopColor;
 	
 	public CssColorInterpolation cssColorInterpolation;
@@ -45,6 +45,7 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssMask cssMask;
 	public CssColorProfile cssColorProfile;
 	public CssPointerEvents cssPointerEvents;
+	public CssStopOpacity cssStopOpacity;
 	
 	public CssColorInterpolation getColorInterpolation() {
 		if (cssColorInterpolation == null) {
@@ -180,6 +181,15 @@ public class SVGBasicStyle extends SVGTinyStyle {
 		}
 		return cssPointerEvents;
 	}
+
+	public CssStopOpacity getStopOpacity() {
+		if (cssStopOpacity == null) {
+			cssStopOpacity =
+					(CssStopOpacity) style.CascadingOrder(new CssStopOpacity(),
+							style, selector);
+		}
+		return cssStopOpacity;
+	}
 	
 	
 	
@@ -191,15 +201,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							new EnableBackground(), style, selector);
 		}
 		return enableBackground;
-	}
-
-	public StopOpacity getStopOpacity() {
-		if (stopOpacity == null) {
-			stopOpacity =
-					(StopOpacity) style.CascadingOrder(
-							new StopOpacity(), style, selector);
-		}
-		return stopOpacity;
 	}
 
 	public StopColor getStopColor() {
