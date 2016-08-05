@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.zip.GZIPInputStream;
@@ -283,11 +284,18 @@ public class HTTPURL {
 				case HttpURLConnection.HTTP_MOVED_PERM:
 				case HttpURLConnection.HTTP_MOVED_TEMP:
 				case 307:
+				  String locationURL = httpURL.getHeaderField("Location");
+					URL u = getURL(locationURL);
 					try {
-						URL u = getURL(httpURL.getHeaderField("Location"));
+					  if(!new URI(locationURL).isAbsolute()) {
+						  u = getURL(url, locationURL);
+						}
+
 						return getConnection(u, ref, count + 1, ac);
+					} catch(Exception ex) {
+
 					} finally {
-						httpURL.disconnect();
+				    httpURL.disconnect();
 					}
 				case HttpURLConnection.HTTP_UNAUTHORIZED:
 					String realm = httpURL.getHeaderField("WWW-Authenticate");
