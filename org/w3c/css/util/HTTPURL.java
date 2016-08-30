@@ -283,8 +283,9 @@ public class HTTPURL {
 				case HttpURLConnection.HTTP_MOVED_PERM:
 				case HttpURLConnection.HTTP_MOVED_TEMP:
 				case 307:
+				case 308:
 					try {
-						URL u = getURL(httpURL.getHeaderField("Location"));
+						URL u = getURL(url, httpURL.getHeaderField("Location"));
 						return getConnection(u, ref, count + 1, ac);
 					} finally {
 						httpURL.disconnect();
