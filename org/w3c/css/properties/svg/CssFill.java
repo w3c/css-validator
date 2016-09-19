@@ -9,6 +9,7 @@ package org.w3c.css.properties.svg;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
@@ -131,6 +132,17 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 							break;
 					}
 					gotColor = true;
+					break;
+				case CssTypes.CSS_HASH_IDENT:
+					if (gotColor) {
+						throw new InvalidParamException("value",
+								val.toString(),
+								property.getPropertyName(), ac);
+					}
+					CssColor c = new CssColor();
+					c.setShortRGBColor(val.toString(), ac);
+					gotColor = true;
+					values.add(c);
 					break;
 				case CssTypes.CSS_COLOR:
 					if (gotColor) {
