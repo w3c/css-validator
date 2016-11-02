@@ -86,6 +86,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 									val.toString(),
 									property.getPropertyName(), ac);
 						}
+						break;
 					}
 					if (none.equals(val)) {
 						if ((expression.getCount() > 1 && !gotFuncIRI) || (expression.getCount() > 2 && gotFuncIRI)) {
@@ -94,6 +95,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 									property.getPropertyName(), ac);
 						}
 						values.add(none);
+						break;
 					}
 					if (currentColor.equals(val)) {
 						if ((expression.getCount() > 1 && !gotFuncIRI) || (expression.getCount() > 2 && gotFuncIRI)) {
@@ -102,6 +104,8 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
 									property.getPropertyName(), ac);
 						}
 						values.add(currentColor);
+						gotColor = true;
+						break;
 					}
 					if (expression.getCount() > 1) {
 						throw new InvalidParamException("value",
