@@ -44,8 +44,12 @@ public class CssStrokeWidth extends org.w3c.css.properties.css.CssStrokeWidth {
 		op = expression.getOperator();
 
 		switch (val.getType()) {
-			case CssTypes.CSS_PERCENTAGE:
 			case CssTypes.CSS_NUMBER:
+				val.getCheckableValue().checkEqualsZero(ac, this);
+				value = val;
+				break;
+			case CssTypes.CSS_PERCENTAGE:
+			case CssTypes.CSS_LENGTH:
 				val.getCheckableValue().checkPositiveness(ac, this);
 				value = val;
 				break;
