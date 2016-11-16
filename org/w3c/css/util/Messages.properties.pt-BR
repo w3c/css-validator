@@ -398,3 +398,4 @@ parser.calcwhitespace: Em ambos os lados dos operadores '+' e '-' deve ser deixa
 vendorext: Extensões proprietárias
 vext_default: Default
 vext_errors: Erros
+vext_warnings: Alertas
