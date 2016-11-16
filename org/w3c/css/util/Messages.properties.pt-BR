@@ -404,3 +404,4 @@ warning.deprecatedmedia: A mídia "%s" está em desuso
 warning.deprecatedproperty: A propriedade '%s' está em desuso
 warning.greaterequal: O valor %s será interpretado como %s
 warning.link-type: Deve ser declarado o atributo 'type' com valor 'text/css' para o elemento link
+warning.lowerequal: O valor %s será interpretado como %s
