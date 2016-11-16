@@ -394,3 +394,4 @@ error.nomodifiershortmedia: Funcionalidades de mídia sem valor declarado não a
 error.operandnumber: Um dos operadores deve ser um número.
 error.selectorname: Nome de seletor inválido %s
 error.typevaluemismatch: O valor %s é incompatível com o tipo para ele definido <%s>
+parser.calcwhitespace: Em ambos os lados dos operadores '+' e '-' deve ser deixado um espaço em branco.
