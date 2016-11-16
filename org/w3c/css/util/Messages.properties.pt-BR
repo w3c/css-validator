@@ -391,3 +391,4 @@ error.nomediafeature: Funcionalidades de mídia não são definidas neste nível
 error.nomediarestrictor: Restrições para mídia não são definidas neste nível das CSS.
 error.nomodifiermedia: A funcionalidade %s para mídia não suporta prefixos.
 error.nomodifiershortmedia: Funcionalidades de mídia sem valor declarado não admitem prefixos.
+error.operandnumber: Um dos operadores deve ser um número.
