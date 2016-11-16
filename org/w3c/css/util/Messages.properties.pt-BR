@@ -387,3 +387,4 @@ error.incompatibletypes: Os tipos são incompatíveis.
 error.invalidtype: Tipo inválido: %s
 error.lower: %s é um valor inválido, somente valores menores que %s são permitidos.
 error.lowerequal: %s é um valor inválido, somente valores menores ou iguais a %s são permitidos.
+error.nomediafeature: Funcionalidades de mídia não são definidas neste nível das CSS.
