@@ -384,3 +384,4 @@ error.greater: %s é um valor inválido, somente valores maiores que %s são per
 error.greaterequal: %s é um valor inválido, somente valores maiores ou iguais a %s são permitidos.
 error.grid: Somente os valores 0 e 1 são aceitáveis para grid
 error.incompatibletypes: Os tipos são incompatíveis.
+error.invalidtype: Tipo inválido: %s
