@@ -393,3 +393,4 @@ error.nomodifiermedia: A funcionalidade %s para mídia não suporta prefixos.
 error.nomodifiershortmedia: Funcionalidades de mídia sem valor declarado não admitem prefixos.
 error.operandnumber: Um dos operadores deve ser um número.
 error.selectorname: Nome de seletor inválido %s
+error.typevaluemismatch: O valor %s é incompatível com o tipo para ele definido <%s>
