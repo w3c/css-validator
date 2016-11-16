@@ -378,3 +378,4 @@ parser.import_not_allowed: Não é permitido o uso da diretiva @import após uma
 
 error.bg_order:  Em CSS3 ao definir valores para a propriedade background o valor 'bg_position' deve preceder o valor 'bg_size' se ambos estiverem presentes na declaração.
 
+error.divisortype: O divisor deve ser um número
