@@ -391,3 +391,28 @@ warning.deprecatedmedia: Media "%s" har nedgraderats
 error.nomodifiershortmedia: Prefix kan inte användas för mediafunktionaliteter utan värden
 error.nomodifiermedia: Mediafunktionalitet %s stöder inte prefix
 error.grid: Enbart 0 och 1 är giltiga värden för grid
+
+warning.vendor-ext-pseudo-element: %s är inte ett känt namn på ett leverantörsspecifikt pseudo-element
+warning.vendor-ext-pseudo-class: %s är inte ett känt namn på en leverantörsspecifik pseudo-klass
+warning.shape-separator: Ogiltig separator i formdefinition. Det måste vara ett kommatecken.
+warning.noexproperty: Egenskap %s finns inte
+warning.negative: negativt värde %s kommer att tolkas som 0
+warning.lowerequal: värde %s kommer att tolkas som %s
+warning.greaterequal: värde %s kommer att tolkas som %s
+warning.deprecatedproperty: Egenskapen '%s' ska inte längre användas
+warning.deprecated: Värdet '%s' ska inte längre användas
+parser.calcwhitespace: Det måste vara blanka tecken på båda sidorna om operatorerna '+' och '-'
+error.typevaluemismatch: Värdet %s stämmer inte överens med sin typdefinition <%s>
+error.selectorname: Ogiltigt selektornamn %s
+error.operandnumber: En operand måste vara ett tal
+error.nomediarestrictor: Mediabegränsning är inte definierat för denna CSS-nivå
+error.nomediafeature: Mediaegenskaper är inte definierade för denna CSS-nivå
+error.lowerequal: %s är inte ett giltigt värde, endast värden mindre än eller lika med %s tillåts.
+error.lower: %s är inte ett giltigt värde, endast värden strikt mindre än %s tillåts.
+error.invalidtype: Ogiltig typ: %s
+error.incompatibletypes: Typerna är inte kompatibla
+error.greaterequal: %s är inte ett giltigt värde, endast värden större än eller lika med %s tillåts.
+error.greater: %s är inte ett giltigt värde, endast värden strikt större än %s tillåts.
+error.errortoken: Oväntat innehåll "%s" på rad %s, förväntade något som %s (hoppar över %s)
+error.divzero: Division med noll
+error.divisortype: Divisorn måste vara ett tal
