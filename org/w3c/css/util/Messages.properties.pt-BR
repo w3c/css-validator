@@ -399,3 +399,4 @@ vendorext: Extensões proprietárias
 vext_default: Default
 vext_errors: Erros
 vext_warnings: Alertas
+warning.deprecated: O valor '%s' está em desuso
