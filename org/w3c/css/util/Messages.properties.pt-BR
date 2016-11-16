@@ -406,3 +406,4 @@ warning.greaterequal: O valor %s será interpretado como %s
 warning.link-type: Deve ser declarado o atributo 'type' com valor 'text/css' para o elemento link
 warning.lowerequal: O valor %s será interpretado como %s
 warning.negative: Valor negativo %s será interpretado como 0 (zero)
+warning.noexproperty: A propriedade %s não existe
