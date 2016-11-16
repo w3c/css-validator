@@ -407,3 +407,4 @@ warning.link-type: Deve ser declarado o atributo 'type' com valor 'text/css' par
 warning.lowerequal: O valor %s será interpretado como %s
 warning.negative: Valor negativo %s será interpretado como 0 (zero)
 warning.noexproperty: A propriedade %s não existe
+warning.shape-separator: Separador inválido. O separador deveria ser uma vírgula.
