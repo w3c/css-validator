@@ -401,3 +401,4 @@ vext_errors: Erros
 vext_warnings: Alertas
 warning.deprecated: O valor '%s' está em desuso
 warning.deprecatedmedia: A mídia "%s" está em desuso
+warning.deprecatedproperty: A propriedade '%s' está em desuso
