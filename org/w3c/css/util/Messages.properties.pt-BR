@@ -382,3 +382,4 @@ error.divisortype: O divisor deve ser um número
 error.divzero: Divisão por zero
 error.greater: %s é um valor inválido, somente valores maiores que %s são permitidos.
 error.greaterequal: %s é um valor inválido, somente valores maiores ou iguais a %s são permitidos.
+error.grid: Somente os valores 0 e 1 são aceitáveis para grid
