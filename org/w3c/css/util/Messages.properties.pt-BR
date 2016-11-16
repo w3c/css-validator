@@ -396,3 +396,4 @@ error.selectorname: Nome de seletor inválido %s
 error.typevaluemismatch: O valor %s é incompatível com o tipo para ele definido <%s>
 parser.calcwhitespace: Em ambos os lados dos operadores '+' e '-' deve ser deixado um espaço em branco.
 vendorext: Extensões proprietárias
+vext_default: Default
