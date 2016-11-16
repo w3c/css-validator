@@ -409,3 +409,4 @@ warning.negative: Valor negativo %s será interpretado como 0 (zero)
 warning.noexproperty: A propriedade %s não existe
 warning.shape-separator: Separador inválido. O separador deveria ser uma vírgula.
 error.errortoken: Conteúdo inesperado "%s" na linha %s, o esperado era um token %s (skipped %s) 
+warning.style-type: Deve ser declarado o atributo 'type' com valor 'text/css' para o elemento 'style'
