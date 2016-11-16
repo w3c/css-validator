@@ -397,3 +397,4 @@ error.typevaluemismatch: O valor %s é incompatível com o tipo para ele definid
 parser.calcwhitespace: Em ambos os lados dos operadores '+' e '-' deve ser deixado um espaço em branco.
 vendorext: Extensões proprietárias
 vext_default: Default
+vext_errors: Erros
