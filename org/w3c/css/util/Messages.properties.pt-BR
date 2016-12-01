@@ -412,3 +412,4 @@ error.errortoken: Conteúdo inesperado "%s" na linha %s, o esperado era um token
 warning.style-type: Deve ser declarado o atributo 'type' com valor 'text/css' para o elemento 'style'
 warning.vendor-ext-pseudo-class: %s não é reconhecida como uma pseudoclasse proprietária válida
 warning.vendor-ext-pseudo-element: %s não é reconhecido como um pseudoelemento  proprietário válido
+warning.vendor-extension: A propriedade  %s  é uma propriedade proprietária desconhecida
