@@ -14,6 +14,7 @@ css1: CSS nivå 1
 css2: CSS nivå 2
 css21: CSS nivå 2.1
 css3: CSS nivå 3
+css3svg: CSS nivå 3 + SVG
 svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
@@ -416,3 +417,5 @@ error.greater: %s är inte ett giltigt värde, endast värden strikt större än
 error.errortoken: Oväntat innehåll "%s" på rad %s, förväntade något som %s (hoppar över %s)
 error.divzero: Division med noll
 error.divisortype: Divisorn måste vara ett tal
+
+warning.dynamic: dynamiska värden kan inte kontrolleras då de anges utan måttenhet. Ange värden med enhet.
