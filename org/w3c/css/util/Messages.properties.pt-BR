@@ -14,6 +14,7 @@ css1: CSS nível 1
 css2: CSS nível 2
 css21: CSS nível 2.1
 css3: CSS nível 3
+css3svg: CSS nível 3 + SVG
 svg: SVG
 svgbasic: SVG Basic
 SVG_basic: SVG Basic
@@ -413,3 +414,5 @@ warning.style-type: Deve ser declarado o atributo 'type' com valor 'text/css' pa
 warning.vendor-ext-pseudo-class: %s não é reconhecida como uma pseudoclasse proprietária válida
 warning.vendor-ext-pseudo-element: %s não é reconhecido como um pseudoelemento  proprietário válido
 warning.vendor-extension: A propriedade  %s  é uma propriedade proprietária desconhecida
+
+warning.dynamic: Valores gerados dinâmicamente não podem ser checados se for especificada a unidade de medida. Por favor, especifique a unidade do valor.
