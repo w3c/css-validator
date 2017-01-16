@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -20,6 +21,9 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-column
  */
 public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
+
+	private CssGridRowStart _start;
+	private CssGridRowEnd _end;
 
 	/**
 	 * Create a new CssGridColumn
@@ -43,6 +47,9 @@ public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
 		char op;
 		exp = new CssExpression();
 		int nb_switch = 0;
+
+		_start = new CssGridRowStart();
+		_end = new CssGridRowEnd();
 
 		ArrayList<CssValue> values = new ArrayList<>();
 
@@ -71,11 +78,24 @@ public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
 		values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
 
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+		_start.value = values.get(0);
+		_end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
 	}
 
 	public CssGridColumn(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
+	}
+
+	/**
+	 * Add this property to the CssStyle.
+	 *
+	 * @param style The CssStyle
+	 */
+	public void addToStyle(ApplContext ac, CssStyle style) {
+		super.addToStyle(ac, style);
+		_start.addToStyle(ac, style);
+		_end.addToStyle(ac, style);
 	}
 
 }
