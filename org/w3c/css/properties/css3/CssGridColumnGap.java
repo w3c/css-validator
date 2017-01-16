@@ -15,7 +15,7 @@ import org.w3c.css.values.CssExpression;
 public class CssGridColumnGap extends org.w3c.css.properties.css.CssGridColumnGap {
 
 	/**
-	 * Create a new CssGridRowGap
+	 * Create a new CssGridColumnGap
 	 */
 	public CssGridColumnGap() {
 		value = initial;

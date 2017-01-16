@@ -72,6 +72,8 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGridColumnGap;
+import org.w3c.css.properties.css.CssGridGap;
 import org.w3c.css.properties.css.CssGridRowGap;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
@@ -146,6 +148,8 @@ import org.w3c.css.util.Warnings;
 public class Css3Style extends ATSCStyle {
 
 	public CssGridRowGap cssGridRowGap;
+	public CssGridColumnGap cssGridColumnGap;
+	public CssGridGap cssGridGap; 
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -318,7 +322,24 @@ public class Css3Style extends ATSCStyle {
 
 	}
 
+	public CssGridColumnGap getGridColumnGap() {
+		if (cssGridColumnGap == null) {
+			cssGridColumnGap =
+					(CssGridColumnGap) style.CascadingOrder(new CssGridColumnGap(),
+							style, selector);
+		}
+		return cssGridColumnGap;
+	}
 
+	public CssGridGap getGridGap() {
+		if (cssGridGap == null) {
+			cssGridGap =
+					(CssGridGap) style.CascadingOrder(new CssGridGap(),
+							style, selector);
+		}
+		return cssGridGap;
+	}
+	
 	public CssGridRowGap getGridRowGap() {
 		if (cssGridRowGap == null) {
 			cssGridRowGap =
