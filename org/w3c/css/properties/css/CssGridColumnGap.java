@@ -29,7 +29,7 @@ public class CssGridColumnGap extends CssProperty {
 	 * Creates a new CssGridColumnGap
 	 *
 	 * @param expression The expression for this property
-	 * @thColumns org.w3c.css.util.InvalidParamException
+	 * @throws org.w3c.css.util.InvalidParamException
 	 *          Expressions are incorrect
 	 */
 	public CssGridColumnGap(ApplContext ac, CssExpression expression, boolean check)
