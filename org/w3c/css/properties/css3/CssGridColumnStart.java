@@ -22,7 +22,7 @@ public class CssGridColumnStart extends org.w3c.css.properties.css.CssGridColumn
 	}
 
 	/**
-	 * Creates a new CssGridRowEnd
+	 * Creates a new CssGridRowStart
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
