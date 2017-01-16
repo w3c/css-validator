@@ -27,14 +27,14 @@ public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart 
 	public static CssIdent auto = CssIdent.getIdent("auto");
 
 	/**
-	 * Create a new CssGridRowGap
+	 * Create a new CssGridRowEnd
 	 */
 	public CssGridRowStart() {
 		value = initial;
 	}
 
 	/**
-	 * Creates a new CssGridRowGap
+	 * Creates a new CssGridRowEnd
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException

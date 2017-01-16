@@ -74,6 +74,7 @@ import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
 import org.w3c.css.properties.css.CssGridColumnGap;
 import org.w3c.css.properties.css.CssGridGap;
+import org.w3c.css.properties.css.CssGridRowEnd;
 import org.w3c.css.properties.css.CssGridRowGap;
 import org.w3c.css.properties.css.CssGridRowStart;
 import org.w3c.css.properties.css.CssHangingPunctuation;
@@ -152,6 +153,7 @@ public class Css3Style extends ATSCStyle {
 	public CssGridColumnGap cssGridColumnGap;
 	public CssGridGap cssGridGap; 
 	public CssGridRowStart cssGridRowStart;
+	public CssGridRowEnd cssGridRowEnd;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -358,6 +360,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssGridRowStart;
+	}
+
+	public CssGridRowEnd getGridRowEnd() {
+		if (cssGridRowEnd == null) {
+			cssGridRowEnd =
+					(CssGridRowEnd) style.CascadingOrder(new CssGridRowEnd(),
+							style, selector);
+		}
+		return cssGridRowEnd;
 	}
 	
 	public CssOpacity getOpacity() {
