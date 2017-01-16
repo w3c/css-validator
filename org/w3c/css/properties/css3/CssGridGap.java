@@ -60,6 +60,11 @@ public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
 				throw new InvalidParamException("operator",
 						((new Character(op)).toString()), ac);
 			}
+			// inherit can only be alone
+			if (inherit.equals(val)) {
+				throw new InvalidParamException("value", val.toString(),
+						getPropertyName(), ac);
+			}
 			val = CssGridRowGap.checkSyntax(ac, expression, false, this);
 			column.value = val;
 			ArrayList<CssValue> v = new ArrayList<>(2);
