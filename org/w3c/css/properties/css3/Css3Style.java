@@ -72,6 +72,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGridRowGap;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssIcon;
@@ -143,6 +144,8 @@ import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
 public class Css3Style extends ATSCStyle {
+
+	public CssGridRowGap cssGridRowGap;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -315,6 +318,16 @@ public class Css3Style extends ATSCStyle {
 
 	}
 
+
+	public CssGridRowGap getGridRowGap() {
+		if (cssGridRowGap == null) {
+			cssGridRowGap =
+					(CssGridRowGap) style.CascadingOrder(new CssGridRowGap(),
+							style, selector);
+		}
+		return cssGridRowGap;
+	}
+	
 	public CssOpacity getOpacity() {
 		if (cssOpacity == null) {
 			cssOpacity =
