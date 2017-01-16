@@ -30,6 +30,8 @@ public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
 	 */
 	public CssGridColumn() {
 		value = initial;
+		_start = new CssGridRowStart();
+		_end = new CssGridRowEnd();
 	}
 
 	/**
