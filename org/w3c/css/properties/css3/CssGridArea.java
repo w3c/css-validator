@@ -18,29 +18,35 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-row
+ * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-area
  */
-public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
+public class CssGridArea extends org.w3c.css.properties.css.CssGridArea {
 
-	private CssGridRowStart _start;
-	private CssGridRowEnd _end;
+	private CssGridRowStart _row_start;
+	private CssGridRowEnd _row_end;
+	private CssGridColumnStart _col_start;
+	private CssGridColumnEnd _col_end;
+
 	/**
-	 * Create a new CssGridRow
+	 * Create a new CssGridArea
 	 */
-	public CssGridRow() {
+	public CssGridArea() {
 		value = initial;
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
+		_row_start = new CssGridRowStart();
+		_row_end = new CssGridRowEnd();
+		_col_start = new CssGridColumnStart();
+		_col_end = new CssGridColumnEnd();
+
 	}
 
 	/**
-	 * Creates a new CssGridRow
+	 * Creates a new CssGridArea
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
 	 *          Expressions are incorrect
 	 */
-	public CssGridRow(ApplContext ac, CssExpression expression, boolean check)
+	public CssGridArea(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
 		CssExpression exp;
 
@@ -49,8 +55,10 @@ public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
 		exp = new CssExpression();
 		int nb_switch = 0;
 
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
+		_row_start = new CssGridRowStart();
+		_row_end = new CssGridRowEnd();
+		_col_start = new CssGridColumnStart();
+		_col_end = new CssGridColumnEnd();
 
 		ArrayList<CssValue> values = new ArrayList<>();
 
@@ -59,7 +67,7 @@ public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
 			op = expression.getOperator();
 
 			if (val.getType() == CssTypes.CSS_SWITCH) {
-				if (nb_switch > 0) {
+				if (nb_switch > 2) {
 					throw new InvalidParamException("value", val,
 							getPropertyName(), ac);
 				}
@@ -79,13 +87,17 @@ public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
 		values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
 
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		_start.value = values.get(0);
 		// the following is not entirely true (as we need to check that the value is
 		// a custom ident), but we just need to warn for a redefinition here.
-		_end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
+		_row_start.value = values.get(0);
+		_col_start.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
+		_row_end.value = (values.size() <= 3) ? CssGridRowStart.auto : values.get(4);
+		_col_end.value = (values.size() <= 5) ? CssGridRowStart.auto : values.get(6);
+
+
 	}
 
-	public CssGridRow(ApplContext ac, CssExpression expression)
+	public CssGridArea(ApplContext ac, CssExpression expression)
 			throws InvalidParamException {
 		this(ac, expression, false);
 	}
@@ -97,8 +109,11 @@ public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
 	 */
 	public void addToStyle(ApplContext ac, CssStyle style) {
 		super.addToStyle(ac, style);
-		_start.addToStyle(ac, style);
-		_end.addToStyle(ac, style);
+		_row_start.addToStyle(ac, style);
+		_row_end.addToStyle(ac, style);
+		_col_start.addToStyle(ac, style);
+		_col_end.addToStyle(ac, style);
 	}
+
 }
 

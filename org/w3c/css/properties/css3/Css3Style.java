@@ -72,6 +72,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGridArea;
 import org.w3c.css.properties.css.CssGridColumn;
 import org.w3c.css.properties.css.CssGridColumnEnd;
 import org.w3c.css.properties.css.CssGridColumnGap;
@@ -162,6 +163,7 @@ public class Css3Style extends ATSCStyle {
 	public CssGridColumnEnd cssGridColumnEnd;
 	public CssGridColumn cssGridColumn;
 	public CssGridRow cssGridRow;
+	public CssGridArea cssGridArea;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -413,6 +415,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssGridRow;
+	}
+
+	public CssGridArea getGridArea() {
+		if (cssGridArea == null) {
+			cssGridArea =
+					(CssGridArea) style.CascadingOrder(new CssGridArea(),
+							style, selector);
+		}
+		return cssGridArea;
 	}
 
 	public CssOpacity getOpacity() {
