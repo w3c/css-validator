@@ -83,6 +83,7 @@ import org.w3c.css.properties.css.CssGridRow;
 import org.w3c.css.properties.css.CssGridRowEnd;
 import org.w3c.css.properties.css.CssGridRowGap;
 import org.w3c.css.properties.css.CssGridRowStart;
+import org.w3c.css.properties.css.CssGridTemplateAreas;
 import org.w3c.css.properties.css.CssHangingPunctuation;
 import org.w3c.css.properties.css.CssHyphens;
 import org.w3c.css.properties.css.CssIcon;
@@ -166,6 +167,7 @@ public class Css3Style extends ATSCStyle {
 	public CssGridRow cssGridRow;
 	public CssGridArea cssGridArea;
 	public CssGridAutoFlow cssGridAutoFlow;
+	public CssGridTemplateAreas cssGridTemplateAreas;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -428,6 +430,15 @@ public class Css3Style extends ATSCStyle {
 		return cssGridArea;
 	}
 
+	public CssGridTemplateAreas getGridTemplateAreas() {
+		if (cssGridTemplateAreas == null) {
+			cssGridTemplateAreas =
+					(CssGridTemplateAreas) style.CascadingOrder(new CssGridTemplateAreas(),
+							style, selector);
+		}
+		return cssGridTemplateAreas;
+	}
+	
 	public CssGridAutoFlow getGridAutoFlow() {
 		if (cssGridAutoFlow == null) {
 			cssGridAutoFlow =
