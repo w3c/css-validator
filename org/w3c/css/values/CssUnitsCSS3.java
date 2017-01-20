@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 /**
  * @spec http://www.w3.org/TR/2012/CR-css3-values-20120828/
  * @spec http://www.w3.org/TR/2012/CR-css3-speech-20120320/
+ * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#typedef-flex
  */
 public class CssUnitsCSS3 {
 	private static final String[] relative_length_units = {
@@ -26,6 +27,9 @@ public class CssUnitsCSS3 {
 	public static final String[] angle_units = {
 			"deg", "grad", "rad", "turn"
 	};
+
+
+	public static final String flex_unit = "flex";
 
 	public static final String volume_unit = "db";
 
@@ -100,6 +104,15 @@ public class CssUnitsCSS3 {
 		length.unit = matchedUnit;
 	}
 
+	protected static void parseFlexibleLengthUnit(String unit, CssFlexibleLength length, ApplContext ac)
+			throws InvalidParamException {
+		if (flex_unit.equals(unit)) {
+			length.unit = flex_unit;
+			return;
+		}
+		throw new InvalidParamException("unit", unit, ac);
+	}
+
 	protected static void parseAngleUnit(String unit, CssAngle angle, ApplContext ac)
 			throws InvalidParamException {
 		String matchedUnit = null;
@@ -163,7 +176,7 @@ public class CssUnitsCSS3 {
 
 	protected static void parseVolumeUnit(String unit, CssVolume vol, ApplContext ac)
 			throws InvalidParamException {
-		if (volume_unit.equals(unit))  {
+		if (volume_unit.equals(unit)) {
 			vol.unit = volume_unit;
 			return;
 		}
@@ -172,7 +185,7 @@ public class CssUnitsCSS3 {
 
 	protected static void parseSemitoneUnit(String unit, CssSemitone semitone, ApplContext ac)
 			throws InvalidParamException {
-		if (semitone_unit.equals(unit))  {
+		if (semitone_unit.equals(unit)) {
 			semitone.unit = semitone_unit;
 			return;
 		}

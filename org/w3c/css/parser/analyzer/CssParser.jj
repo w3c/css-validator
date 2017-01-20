@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssString;
@@ -40,13 +41,13 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
+import org.w3c.css.values.CssFlexibleLength;
+import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
 import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssTime;
-import org.w3c.css.values.CssAngle;
 import org.w3c.css.values.CssSwitch;
 import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssUnicodeRange;
@@ -579,6 +580,7 @@ TOKEN [IGNORE_CASE] :
                    | <NUM> "pt"
                    | <NUM> "pc"
                    | <NUM> "px" >
+  | < FLEX       : <NUM> "fr" >
   | < ANGLE      : <NUM> ( "deg" | "grad" | "rad" | "turn" ) >
   | < SPL        : <NUM> "db" >
   | < ST         : <NUM> "st" >
@@ -2328,6 +2330,7 @@ void term(CssExpression exp) :
         | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
         | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
         | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
+        | n=<FLEX> { setValue(new CssFlexibleLength(), exp, operator, n, FLEX); }
         | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
         | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
         | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
@@ -2394,6 +2397,7 @@ void mediaterm(CssExpression exp) :
     | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
     | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
     | n=<ABSOLUTLENGTH> { setValue(new CssLength(), exp, operator, n, ABSOLUTLENGTH); }
+    | n=<FLEX> {  setValue(new CssFlexibleLength(), exp, operator, n, FLEX); }
     | n=<ANGLE> { setValue(new CssAngle(), exp, operator, n, ANGLE);}
     | n=<TIME> { setValue(new CssTime(), exp, operator, n, TIME); }
     | n=<FREQ> { setValue(new CssFrequency(), exp, operator, n, FREQ); }
@@ -2527,6 +2531,7 @@ char operator = ' ';
     | n=<RELFONTLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); } 
     | n=<RELVIEWLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); }
     | n=<ABSOLUTLENGTH> { v = new CssLength(); v.set(addOperator(operator, n.image), ac); }
+    | n=<FLEX> { v = new CssFlexibleLength(); v.set(addOperator(operator, n.image), ac); } 
     | n=<ANGLE> { v = new CssAngle(); v.set(addOperator(operator, n.image), ac); }
     | n=<TIME> { v = new CssTime(); v.set(addOperator(operator, n.image), ac); }
     | n=<FREQ> { v= new CssFrequency(); v.set(addOperator(operator, n.image), ac); }
