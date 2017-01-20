@@ -29,7 +29,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 	public static final String minmax = "minmax";
 	public static final String fit_content = "fit-content";
 
-	private enum ArgType {INFLEXIBLE_BREADTH, TRACK_BREADTH, FIXED_BREADTH}
+	protected enum ArgType {INFLEXIBLE_BREADTH, TRACK_BREADTH, FIXED_BREADTH}
 
 	static {
 		String[] _allowed_values = {"min-content", "max-content", "auto"};
@@ -117,7 +117,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
 
-	private static CssValue parseTrackBreadth(ApplContext ac, CssValue value,
+	protected static CssValue parseTrackBreadth(ApplContext ac, CssValue value,
 											  CssProperty caller)
 			throws InvalidParamException {
 		CssIdent ident;
@@ -143,7 +143,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 		}
 	}
 
-	private static CssValue parseInflexibleBreadth(ApplContext ac, CssValue value,
+	protected static CssValue parseInflexibleBreadth(ApplContext ac, CssValue value,
 												   CssProperty caller)
 			throws InvalidParamException {
 		CssIdent ident;
@@ -168,7 +168,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 		}
 	}
 
-	private static CssValue parseFixedBreadth(ApplContext ac, CssValue value,
+	protected static CssValue parseFixedBreadth(ApplContext ac, CssValue value,
 											  CssProperty caller)
 			throws InvalidParamException {
 		switch (value.getType()) {
