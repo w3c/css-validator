@@ -29,7 +29,7 @@ public class CssUnitsCSS3 {
 	};
 
 
-	public static final String flex_unit = "flex";
+	public static final String flex_unit = "fr";
 
 	public static final String volume_unit = "db";
 
