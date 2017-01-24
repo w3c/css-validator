@@ -76,37 +76,13 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 			val = expression.getValue();
 			op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("unrecognize", ac);
-						}
-						values.add(inherit);
-						break;
-					}
-				case CssTypes.CSS_NUMBER:
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-				case CssTypes.CSS_FLEX:
-					values.add(parseTrackBreadth(ac, val, this));
-					break;
-				case CssTypes.CSS_FUNCTION:
-					CssFunction function = (CssFunction) val;
-					String fname = function.getName().toLowerCase();
-					if (minmax.equals(fname)) {
-						values.add(parseMinmaxFunction(ac, function,
-								ArgType.INFLEXIBLE_BREADTH,
-								ArgType.TRACK_BREADTH, this));
-						break;
-					} else if (fit_content.equals(fname)) {
-						values.add(parseFitContent(ac, function, this));
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
+			if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
+				if (expression.getCount() > 1) {
+					throw new InvalidParamException("unrecognize", ac);
+				}
+				values.add(inherit);
+			} else {
+				values.add(parseTrackSize(ac, val, this));
 			}
 			if (op != SPACE) {
 				throw new InvalidParamException("operator", op,
@@ -117,8 +93,71 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
 
+	protected static CssValue parseTrackSize(ApplContext ac, CssValue value,
+											 CssProperty caller)
+			throws InvalidParamException {
+		switch (value.getType()) {
+			case CssTypes.CSS_IDENT:
+			case CssTypes.CSS_NUMBER:
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+			case CssTypes.CSS_FLEX:
+				return parseTrackBreadth(ac, value, caller);
+			case CssTypes.CSS_FUNCTION:
+				CssFunction function = (CssFunction) value;
+				String fname = function.getName().toLowerCase();
+				if (minmax.equals(fname)) {
+					return parseMinmaxFunction(ac, function,
+							ArgType.INFLEXIBLE_BREADTH,
+							ArgType.TRACK_BREADTH, caller);
+				} else if (fit_content.equals(fname)) {
+					return parseFitContent(ac, function, caller);
+				}
+			default:
+				throw new InvalidParamException("value",
+						value.toString(),
+						caller.getPropertyName(), ac);
+		}
+	}
+
+	protected static CssValue parseFixedSize(ApplContext ac, CssValue value,
+											 CssProperty caller)
+			throws InvalidParamException {
+		switch (value.getType()) {
+			case CssTypes.CSS_NUMBER:
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+				return parseFixedBreadth(ac, value, caller);
+			case CssTypes.CSS_FUNCTION:
+				CssFunction function = (CssFunction) value;
+				String fname = function.getName().toLowerCase();
+				if (minmax.equals(fname)) {
+					try {
+						return parseMinmaxFunction(ac, function,
+								ArgType.FIXED_BREADTH,
+								ArgType.TRACK_BREADTH, caller);
+					} catch (InvalidParamException ex) {
+						// we failed with the first option
+						// ignoer and try the second one.
+						function.getParameters().starts();
+					}
+					return parseMinmaxFunction(ac, function,
+							ArgType.INFLEXIBLE_BREADTH,
+							ArgType.FIXED_BREADTH, caller);
+
+				} else if (fit_content.equals(fname)) {
+					return parseFitContent(ac, function, caller);
+				}
+			default:
+				throw new InvalidParamException("value",
+						value.toString(),
+						caller.getPropertyName(), ac);
+		}
+
+	}
+
 	protected static CssValue parseTrackBreadth(ApplContext ac, CssValue value,
-											  CssProperty caller)
+												CssProperty caller)
 			throws InvalidParamException {
 		CssIdent ident;
 
@@ -144,7 +183,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 	}
 
 	protected static CssValue parseInflexibleBreadth(ApplContext ac, CssValue value,
-												   CssProperty caller)
+													 CssProperty caller)
 			throws InvalidParamException {
 		CssIdent ident;
 
@@ -169,7 +208,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 	}
 
 	protected static CssValue parseFixedBreadth(ApplContext ac, CssValue value,
-											  CssProperty caller)
+												CssProperty caller)
 			throws InvalidParamException {
 		switch (value.getType()) {
 			case CssTypes.CSS_NUMBER:
@@ -247,14 +286,12 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 												 CssProperty caller)
 			throws InvalidParamException {
 		CssExpression exp = func.getParameters();
-		CssExpression nex;
 		CssValue val;
 		char op;
 
 		if (exp.getCount() != 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
-		nex = new CssExpression();
 		val = exp.getValue();
 
 		switch (val.getType()) {

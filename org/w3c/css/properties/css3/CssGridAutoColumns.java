@@ -8,13 +8,13 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
+import static org.w3c.css.properties.css3.CssGridAutoRows.parseTrackSize;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
@@ -49,37 +49,13 @@ public class CssGridAutoColumns extends org.w3c.css.properties.css.CssGridAutoCo
 			val = expression.getValue();
 			op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("unrecognize", ac);
-						}
-						values.add(inherit);
-						break;
-					}
-				case CssTypes.CSS_NUMBER:
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-				case CssTypes.CSS_FLEX:
-					values.add(CssGridAutoRows.parseTrackBreadth(ac, val, this));
-					break;
-				case CssTypes.CSS_FUNCTION:
-					CssFunction function = (CssFunction) val;
-					String fname = function.getName().toLowerCase();
-					if (CssGridAutoRows.minmax.equals(fname)) {
-						values.add(CssGridAutoRows.parseMinmaxFunction(ac, function,
-								CssGridAutoRows.ArgType.INFLEXIBLE_BREADTH,
-								CssGridAutoRows.ArgType.TRACK_BREADTH, this));
-						break;
-					} else if (CssGridAutoRows.fit_content.equals(fname)) {
-						values.add(CssGridAutoRows.parseFitContent(ac, function, this));
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
+			if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
+				if (expression.getCount() > 1) {
+					throw new InvalidParamException("unrecognize", ac);
+				}
+				values.add(inherit);
+			} else {
+				values.add(parseTrackSize(ac, val, this));
 			}
 			if (op != SPACE) {
 				throw new InvalidParamException("operator", op,
