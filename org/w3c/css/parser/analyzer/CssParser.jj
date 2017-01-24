@@ -39,6 +39,7 @@ import org.w3c.css.values.CssURL;
 import org.w3c.css.values.CssLength;
 import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssAttr;
+import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssFlexibleLength;
@@ -1030,7 +1031,7 @@ void unused_production_generic_syntax() :
     }
 }
 
-void definition() :
+void unused_production_definition() :
 {
   CssExpression values = new CssExpression();
 }
@@ -2346,6 +2347,7 @@ void term(CssExpression exp) :
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
+        | ( n=<RBRACKET> | n=<LBRACKET> ) {  setValue(new CssBracket(), exp, operator, n, RBRACKET); }
         | n=<IDENT> {
 	/*
 	 * Common error :

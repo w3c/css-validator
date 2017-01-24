@@ -138,7 +138,7 @@ public class CssGridAutoRows extends org.w3c.css.properties.css.CssGridAutoRows 
 								ArgType.TRACK_BREADTH, caller);
 					} catch (InvalidParamException ex) {
 						// we failed with the first option
-						// ignoer and try the second one.
+						// ignore and try the second one.
 						function.getParameters().starts();
 					}
 					return parseMinmaxFunction(ac, function,
