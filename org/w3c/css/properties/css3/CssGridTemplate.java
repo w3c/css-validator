@@ -143,7 +143,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 				boolean got_slash = false;
 				CssExpression nex = new CssExpression();
 				boolean in_line_names = false;
-				int got_line_names = 0;
+				int got_line_names = 1;     // why 1? because we can have only 1 <list-name> first
 
 				while (!got_slash && !expression.end()) {
 					val = expression.getValue();
