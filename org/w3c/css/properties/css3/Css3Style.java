@@ -85,6 +85,7 @@ import org.w3c.css.properties.css.CssGridRow;
 import org.w3c.css.properties.css.CssGridRowEnd;
 import org.w3c.css.properties.css.CssGridRowGap;
 import org.w3c.css.properties.css.CssGridRowStart;
+import org.w3c.css.properties.css.CssGridTemplate;
 import org.w3c.css.properties.css.CssGridTemplateAreas;
 import org.w3c.css.properties.css.CssGridTemplateColumns;
 import org.w3c.css.properties.css.CssGridTemplateRows;
@@ -176,6 +177,7 @@ public class Css3Style extends ATSCStyle {
 	public CssGridAutoColumns cssGridAutoColumns;
 	public CssGridTemplateRows cssGridTemplateRows;
 	public CssGridTemplateColumns cssGridTemplateColumns;
+	public CssGridTemplate cssGridTemplate;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -490,6 +492,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssGridTemplateColumns;
+	}
+
+	public CssGridTemplate getGridTemplate() {
+		if (cssGridTemplate == null) {
+			cssGridTemplate =
+					(CssGridTemplate) style.CascadingOrder(new CssGridTemplate(),
+							style, selector);
+		}
+		return cssGridTemplate;
 	}
 	
 	public CssOpacity getOpacity() {
