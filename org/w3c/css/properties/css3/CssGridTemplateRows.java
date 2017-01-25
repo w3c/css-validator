@@ -87,26 +87,30 @@ public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTempl
 					expression.next();
 					break;
 				}
-				if (none.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("unrecognize", ac);
-					}
-					values.add(none);
-					expression.next();
-					break;
-				}
 			default:
-				expression.mark();
-				try {
-					values.add(parseTrackList(ac, expression, this));
-				} catch (InvalidParamException ex) {
-					// perhaps an AutoTrackList?
-					expression.reset();
-					values.add(parseAutoTrackList(ac, expression, this));
-				}
+				values.add(parseTemplateRows(ac, expression, this));
 		}
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 
+	}
+
+	protected static CssValue parseTemplateRows(ApplContext ac, CssExpression exp, CssProperty caller)
+			throws InvalidParamException {
+		if (exp.getCount() == 1) {
+			CssValue val = exp.getValue();
+			if (val.getType() == CssTypes.CSS_IDENT && none.equals((CssIdent) val)) {
+				exp.next();
+				return none;
+			}
+		}
+		exp.mark();
+		try {
+			return parseTrackList(ac, exp, caller);
+		} catch (InvalidParamException ex) {
+			// perhaps an AutoTrackList?
+			exp.reset();
+			return parseAutoTrackList(ac, exp, caller);
+		}
 	}
 
 	protected static CssValue parseTrackList(ApplContext ac, CssExpression exp, CssProperty caller)
@@ -181,6 +185,65 @@ public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTempl
 		return (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
 
+	protected static CssValue parseExplicitTrackList(ApplContext ac, CssExpression exp,
+													 CssProperty caller)
+			throws InvalidParamException {
+		ArrayList<CssValue> values = new ArrayList<>();
+		CssValue val;
+		char op;
+
+		boolean in_line_names = false;
+		boolean got_line_names = false;
+		boolean got_size = false;
+		while (!exp.end()) {
+			val = exp.getValue();
+			op = exp.getOperator();
+
+			switch (val.getType()) {
+				case CssTypes.CSS_BRACKET:
+					CssBracket bracket = (CssBracket) val;
+					if (bracket.isLeft()) {
+						if (in_line_names || got_line_names) {
+							throw new InvalidParamException("value",
+									val.toString(),
+									caller.getPropertyName(), ac);
+						}
+						in_line_names = true;
+					} else { // bracket.isRight() but it can't be anything else...
+						if (!in_line_names) {
+							throw new InvalidParamException("value",
+									val.toString(),
+									caller.getPropertyName(), ac);
+						}
+						got_line_names = true;
+						in_line_names = false;
+					}
+					values.add(val);
+					break;
+				case CssTypes.CSS_IDENT:
+					if (in_line_names) {
+						// todo check unreserved words
+						values.add(val);
+						break;
+					}
+				default:
+					// should be a tracksize, or fail.
+					values.add(parseTrackSize(ac, val, caller));
+					got_size = true;
+					got_line_names = false;
+
+			}
+			if (op != SPACE) {
+				throw new InvalidParamException("operator", op,
+						caller.getPropertyName(), ac);
+			}
+			exp.next();
+		}
+		if (values.isEmpty() || !got_size) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		return (values.size() == 1) ? values.get(0) : new CssValueList(values);
+	}
 
 	protected static CssValue parseAutoTrackList(ApplContext ac, CssExpression exp, CssProperty caller)
 			throws InvalidParamException {
