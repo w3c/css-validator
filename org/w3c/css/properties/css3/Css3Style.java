@@ -72,6 +72,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGrid;
 import org.w3c.css.properties.css.CssGridArea;
 import org.w3c.css.properties.css.CssGridAutoColumns;
 import org.w3c.css.properties.css.CssGridAutoFlow;
@@ -163,7 +164,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
-	public CssGridGap cssGridGap; 
+	public CssGridGap cssGridGap;
 	public CssGridRowStart cssGridRowStart;
 	public CssGridRowEnd cssGridRowEnd;
 	public CssGridColumnStart cssGridColumnStart;
@@ -178,6 +179,7 @@ public class Css3Style extends ATSCStyle {
 	public CssGridTemplateRows cssGridTemplateRows;
 	public CssGridTemplateColumns cssGridTemplateColumns;
 	public CssGridTemplate cssGridTemplate;
+	public CssGrid cssGrid;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -367,7 +369,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssGridGap;
 	}
-	
+
 	public CssGridRowGap getGridRowGap() {
 		if (cssGridRowGap == null) {
 			cssGridRowGap =
@@ -448,7 +450,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssGridTemplateAreas;
 	}
-	
+
 	public CssGridAutoFlow getGridAutoFlow() {
 		if (cssGridAutoFlow == null) {
 			cssGridAutoFlow =
@@ -502,7 +504,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssGridTemplate;
 	}
-	
+
+	public CssGrid getGrid() {
+		if (cssGrid == null) {
+			cssGrid =
+					(CssGrid) style.CascadingOrder(new CssGrid(),
+							style, selector);
+		}
+		return cssGrid;
+	}
+
 	public CssOpacity getOpacity() {
 		if (cssOpacity == null) {
 			cssOpacity =

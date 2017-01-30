@@ -54,7 +54,7 @@ public final class CssValidator extends HttpServlet {
 	final static String applxhtml = "application/xhtml+xml";
 	final static String textplain = "text/plain";
 	final static String textcss = "text/css";
-	final static String textunknwon = "text/unknown";
+	final static String textunknown = "text/unknown";
 	final static String soap12 = "application/soap+xml";
 	final static String json = "application/json";
 
