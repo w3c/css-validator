@@ -6,6 +6,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssBracket;
@@ -48,29 +49,40 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 	 */
 	public CssGridTemplate(ApplContext ac, CssExpression expression, boolean check)
 			throws InvalidParamException {
-		CssValue val = null;
-		CssValue v;
-		char op;
 
 		setByUser();
-
-		ArrayList<CssValue> values = new ArrayList<>();
-		ArrayList<CssValue> areaValues = new ArrayList<>();
-		ArrayList<CssValue> columnValues = new ArrayList<>();
-		ArrayList<CssValue> rowValues = new ArrayList<>();
 
 		cssGridTemplateAreas = new CssGridTemplateAreas();
 		cssGridTemplateColumns = new CssGridTemplateColumns();
 		cssGridTemplateRows = new CssGridTemplateRows();
 
 
+		value = parseGridTemplate(ac, expression, this, cssGridTemplateAreas,
+				cssGridTemplateColumns, cssGridTemplateRows);
+	}
+
+	protected static CssValue parseGridTemplate(ApplContext ac, CssExpression expression,
+												CssProperty caller,
+												CssGridTemplateAreas areas,
+												CssGridTemplateColumns columns,
+												CssGridTemplateRows rows)
+			throws InvalidParamException {
+		ArrayList<CssValue> values = new ArrayList<>();
+		ArrayList<CssValue> areaValues = new ArrayList<>();
+		ArrayList<CssValue> columnValues = new ArrayList<>();
+		ArrayList<CssValue> rowValues = new ArrayList<>();
+
+		CssValue val = null;
+		CssValue v;
+		char op;
+
 		if (expression.getCount() == 1) {
 			// can only be 'none' or 'inherit'
 			val = expression.getValue();
 			if (val.getType() != CssTypes.CSS_IDENT) {
 				throw new InvalidParamException("value",
-						value.toString(),
-						getPropertyName(), ac);
+						val.toString(),
+						caller.getPropertyName(), ac);
 			}
 			CssIdent id = (CssIdent) val;
 			if (none.equals(id)) {
@@ -85,8 +97,8 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 				rowValues.add(inherit);
 			} else {
 				throw new InvalidParamException("value",
-						value.toString(),
-						getPropertyName(), ac);
+						val.toString(),
+						caller.getPropertyName(), ac);
 			}
 			expression.next();
 		} else {
@@ -111,7 +123,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 					if (got_slash) {
 						if (op != SPACE) {
 							throw new InvalidParamException("operator", op,
-									getPropertyName(), ac);
+									caller.getPropertyName(), ac);
 						}
 					} else {
 						nex.addValue(val);
@@ -122,7 +134,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 				if (!got_slash) {
 					throw new InvalidParamException("unrecognize", ac);
 				}
-				v = CssGridTemplateRows.parseTemplateRows(ac, nex, this);
+				v = CssGridTemplateRows.parseTemplateRows(ac, nex, caller);
 				rowValues.add(v);
 				values.add(v);
 				values.add(val);
@@ -134,7 +146,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 					nex.setOperator(op);
 					expression.next();
 				}
-				v = CssGridTemplateRows.parseTemplateRows(ac, nex, this);
+				v = CssGridTemplateRows.parseTemplateRows(ac, nex, caller);
 				columnValues.add(v);
 				values.add(v);
 				areaValues.add(none);
@@ -153,8 +165,8 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 						case CssTypes.CSS_STRING:
 							if (in_line_names) {
 								throw new InvalidParamException("value",
-										value.toString(),
-										getPropertyName(), ac);
+										val.toString(),
+										caller.getPropertyName(), ac);
 							}
 							got_line_names = 0;
 							areaValues.add(val);
@@ -166,14 +178,14 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 								if (in_line_names || (got_line_names > 2)) {
 									throw new InvalidParamException("value",
 											val.toString(),
-											getPropertyName(), ac);
+											caller.getPropertyName(), ac);
 								}
 								in_line_names = true;
 							} else { // bracket.isRight() but it can't be anything else...
 								if (!in_line_names) {
 									throw new InvalidParamException("value",
 											val.toString(),
-											getPropertyName(), ac);
+											caller.getPropertyName(), ac);
 								}
 								got_line_names++;
 								in_line_names = false;
@@ -192,13 +204,13 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 								break;
 							}
 						default:
-							v = parseTrackSize(ac, val, this);
+							v = parseTrackSize(ac, val, caller);
 							values.add(v);
 							rowValues.add(v);
 					}
 					if (op != SPACE) {
 						throw new InvalidParamException("operator", op,
-								getPropertyName(), ac);
+								caller.getPropertyName(), ac);
 					}
 					expression.next();
 				}
@@ -210,7 +222,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 						nex.setOperator(op);
 						expression.next();
 					}
-					v = CssGridTemplateRows.parseExplicitTrackList(ac, nex, this);
+					v = CssGridTemplateRows.parseExplicitTrackList(ac, nex, caller);
 					columnValues.add(v);
 					values.add(v);
 				} else {
@@ -218,11 +230,16 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 				}
 			}
 		}
-
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		cssGridTemplateAreas.value = (areaValues.size() == 1) ? areaValues.get(0) : new CssValueList(areaValues);
-		cssGridTemplateColumns.value = (columnValues.size() == 1) ? columnValues.get(0) : new CssValueList(columnValues);
-		cssGridTemplateRows.value = (rowValues.size() == 1) ? rowValues.get(0) : new CssValueList(rowValues);
+		if (areas != null) {
+			areas.value = (areaValues.size() == 1) ? areaValues.get(0) : new CssValueList(areaValues);
+		}
+		if (columns != null) {
+			columns.value = (columnValues.size() == 1) ? columnValues.get(0) : new CssValueList(columnValues);
+		}
+		if (rows != null) {
+			rows.value = (rowValues.size() == 1) ? rowValues.get(0) : new CssValueList(rowValues);
+		}
+		return (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
 
 	public CssGridTemplate(ApplContext ac, CssExpression expression)
