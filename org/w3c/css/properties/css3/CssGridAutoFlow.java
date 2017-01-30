@@ -24,14 +24,14 @@ public class CssGridAutoFlow extends org.w3c.css.properties.css.CssGridAutoFlow 
 
 	public static final CssIdent[] allowed_values;
 	public static final CssIdent dense = CssIdent.getIdent("dense");
+	public static final CssIdent row;
+	public static final CssIdent column;
+
 
 	static {
-		String[] _allowed_values = {"row", "column"};
-		allowed_values = new CssIdent[_allowed_values.length];
-		int i = 0;
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
+		row = CssIdent.getIdent("row");
+		column = CssIdent.getIdent("column");
+		allowed_values = new CssIdent[]{row, column};
 	}
 
 	public static CssIdent getAllowedIdent(CssIdent ident) {
