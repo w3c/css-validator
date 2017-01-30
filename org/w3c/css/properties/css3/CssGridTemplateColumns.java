@@ -15,8 +15,8 @@ import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
-import static org.w3c.css.properties.css3.CssGridTemplateRows.parseAutoTrackList;
-import static org.w3c.css.properties.css3.CssGridTemplateRows.parseTrackList;
+import static org.w3c.css.properties.css3.CssGridTemplate.parseAutoTrackList;
+import static org.w3c.css.properties.css3.CssGridTemplate.parseTrackList;
 
 /**
  * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-template-columns

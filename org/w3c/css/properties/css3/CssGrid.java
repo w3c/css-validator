@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 import static org.w3c.css.properties.css3.CssGridTemplate.parseGridTemplate;
-import static org.w3c.css.properties.css3.CssGridTemplateRows.parseTemplateRows;
+import static org.w3c.css.properties.css3.CssGridTemplate.parseTemplateRows;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
