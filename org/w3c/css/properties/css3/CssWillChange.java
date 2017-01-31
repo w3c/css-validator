@@ -61,14 +61,14 @@ public class CssWillChange extends org.w3c.css.properties.css.CssWillChange {
 	}
 
 	/**
-	 * Create a new CssGridGap
+	 * Create a new CssWillChange
 	 */
 	public CssWillChange() {
 		value = initial;
 	}
 
 	/**
-	 * Creates a new CssGridGap
+	 * Creates a new CssWillChange
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
