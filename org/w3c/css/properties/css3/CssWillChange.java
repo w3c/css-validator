@@ -9,13 +9,13 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
-import static org.w3c.css.values.CssOperator.SPACE;
+import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
  * @spec https://www.w3.org/TR/2015/CR-css-will-change-1-20151203/#propdef-will-change
@@ -115,13 +115,13 @@ public class CssWillChange extends org.w3c.css.properties.css.CssWillChange {
 					values.add(id);
 				}
 			}
-			if (op != SPACE) {
+			if (op != COMMA && expression.getRemainingCount() > 1) {
 				throw new InvalidParamException("operator", op,
 						getPropertyName(), ac);
 			}
 			expression.next();
 		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
 	}
 
 	public CssWillChange(ApplContext ac, CssExpression expression)
