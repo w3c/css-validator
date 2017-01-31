@@ -154,6 +154,7 @@ import org.w3c.css.properties.css.CssVoiceRange;
 import org.w3c.css.properties.css.CssVoiceRate;
 import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
+import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -180,6 +181,8 @@ public class Css3Style extends ATSCStyle {
 	public CssGridTemplateColumns cssGridTemplateColumns;
 	public CssGridTemplate cssGridTemplate;
 	public CssGrid cssGrid;
+	
+	public CssWillChange cssWillChange;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -512,6 +515,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssGrid;
+	}
+
+	public CssWillChange getWillChange() {
+		if (cssWillChange == null) {
+			cssWillChange =
+					(CssWillChange) style.CascadingOrder(new CssWillChange(),
+							style, selector);
+		}
+		return cssWillChange;
 	}
 
 	public CssOpacity getOpacity() {

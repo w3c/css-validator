@@ -15,32 +15,47 @@ import java.util.HashMap;
  */
 public class CssIdent extends CssValue implements Comparable<CssIdent> {
 
-    public static HashMap<String, CssIdent> cachedValues;
+	public static HashMap<String, CssIdent> cachedValues;
 
-    static {
-        cachedValues = new HashMap<String, CssIdent>();
-        cachedValues.put("inherit", new CssIdent("inherit"));
-        cachedValues.put("initial", new CssIdent("initial"));
-        cachedValues.put("none", new CssIdent("none"));
-    }
+	public static CssIdent[] css_wide;
 
-    /**
-     * Get a cached CssIdent, useful for common values like "inherit"
-     *
-     * @param name, the ident name
-     * @return a CssIdent
-     */
-    public static CssIdent getIdent(String name) {
-        CssIdent val = cachedValues.get(name);
-        if (val != null) {
-            return val;
-        }
-        val = new CssIdent(name);
-        cachedValues.put(name, val);
-        return val;
-    }
+	static {
+		cachedValues = new HashMap<String, CssIdent>();
+		cachedValues.put("inherit", new CssIdent("inherit"));
+		cachedValues.put("initial", new CssIdent("initial"));
+		cachedValues.put("none", new CssIdent("none"));
+		css_wide = new CssIdent[3];
+		css_wide[0] = CssIdent.getIdent("inherit");
+		css_wide[1] = CssIdent.getIdent("initial");
+		css_wide[2] = CssIdent.getIdent("unset");
+	}
 
-    public static final int type = CssTypes.CSS_IDENT;
+	public static boolean isCssWide(CssIdent cssIdent) {
+		for (CssIdent id : css_wide) {
+			if (id.equals(cssIdent)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get a cached CssIdent, useful for common values like "inherit"
+	 *
+	 * @param name, the ident name
+	 * @return a CssIdent
+	 */
+	public static CssIdent getIdent(String name) {
+		CssIdent val = cachedValues.get(name);
+		if (val != null) {
+			return val;
+		}
+		val = new CssIdent(name);
+		cachedValues.put(name, val);
+		return val;
+	}
+
+	public static final int type = CssTypes.CSS_IDENT;
 
 	public int compareTo(CssIdent other) {
 		int hash, ohash;
@@ -52,81 +67,81 @@ public class CssIdent extends CssValue implements Comparable<CssIdent> {
 		return (hash < ohash) ? 1 : -1;
 	}
 
-    private int hashcode = 0;
+	private int hashcode = 0;
 
-    public final int getType() {
-        return type;
-    }
+	public final int getType() {
+		return type;
+	}
 
-    /**
-     * Create a new CssIdent
-     */
-    public CssIdent() {
-    }
+	/**
+	 * Create a new CssIdent
+	 */
+	public CssIdent() {
+	}
 
-    /**
-     * Create a new CssIdent
-     *
-     * @param s The identificator
-     */
-    public CssIdent(String s) {
-        value = s;
-    }
+	/**
+	 * Create a new CssIdent
+	 *
+	 * @param s The identificator
+	 */
+	public CssIdent(String s) {
+		value = s;
+	}
 
-    /**
-     * Set the value of this ident.
-     *
-     * @param s  the string representation of the identificator.
-     * @param ac For errors and warnings reports.
-     */
-    public void set(String s, ApplContext ac) {
-        value = s;
-        hashcode = 0;
-    }
+	/**
+	 * Set the value of this ident.
+	 *
+	 * @param s  the string representation of the identificator.
+	 * @param ac For errors and warnings reports.
+	 */
+	public void set(String s, ApplContext ac) {
+		value = s;
+		hashcode = 0;
+	}
 
-    /**
-     * Returns the internal value.
-     */
-    public Object get() {
-        return value;
-    }
+	/**
+	 * Returns the internal value.
+	 */
+	public Object get() {
+		return value;
+	}
 
-    /**
-     * Returns a string representation of the object.
-     */
-    public String toString() {
-        return value;
-    }
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public String toString() {
+		return value;
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param value The other value.
-     */
-    public boolean equals(Object value) {
-        return ((value instanceof CssIdent) && (value.hashCode()==hashCode()));
-    }
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param value The other value.
+	 */
+	public boolean equals(Object value) {
+		return ((value instanceof CssIdent) && (value.hashCode() == hashCode()));
+	}
 
-    /**
-     * Compares two values for equality.
-     *
-     * @param value The other value.
-     * @return true is the two values are matching
-     */
-    public boolean equals(CssIdent value) {
-        return (value.hashCode() == hashCode());
-    }
+	/**
+	 * Compares two values for equality.
+	 *
+	 * @param value The other value.
+	 * @return true is the two values are matching
+	 */
+	public boolean equals(CssIdent value) {
+		return (value.hashCode() == hashCode());
+	}
 
-    /**
-     * Returns a hashcode for this ident.
-     */
-    public int hashCode() {
-        // we cache, as we use toLowerCase and don't store the resulting string
-        if (hashcode == 0) {
-            hashcode = value.toLowerCase().hashCode();
-        }
-        return hashcode;
-    }
+	/**
+	 * Returns a hashcode for this ident.
+	 */
+	public int hashCode() {
+		// we cache, as we use toLowerCase and don't store the resulting string
+		if (hashcode == 0) {
+			hashcode = value.toLowerCase().hashCode();
+		}
+		return hashcode;
+	}
 
-    private String value;
+	private String value;
 }
