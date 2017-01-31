@@ -20,6 +20,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 /**
  * @spec https://www.w3.org/TR/2015/WD-css-display-3-20151015/#propdef-display
  * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#flex-containers
+ * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#valdef-display-subgrid
  */
 public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
@@ -35,7 +36,7 @@ public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
 	static {
 		String[] DISPLAY_OUTSIDE = {"block", "inline", "run-in"};
-		String[] DISPLAY_INSIDE = {"flow", "flow-root", "table", "flex", "grid", "ruby"};
+		String[] DISPLAY_INSIDE = {"flow", "flow-root", "table", "flex", "grid", "ruby", "subgrid"};
 		String[] DISPLAY_LISTITEM = {"list-item"};
 		String[] DISPLAY_INTERNAL = {"table-row-group", "table-header-group", "table-footer-group",
 				"table-row", "table-cell", "table-column-group", "table-column", "table-caption",
