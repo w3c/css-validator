@@ -8,7 +8,6 @@
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -17,106 +16,73 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-background-20120417/#box-decoration-break
+ * @spec https://www.w3.org/TR/2016/CR-css-break-3-20160114/#propdef-box-decoration-break
  */
 
 public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDecorationBreak {
 
-    public static CssIdent slice;
-    public static CssIdent clone;
+	public static CssIdent slice;
+	public static CssIdent clone;
 
-    CssIdent value;
+	static {
+		slice = CssIdent.getIdent("slice");
+		clone = CssIdent.getIdent("clone");
+	}
 
-    static {
-        slice = CssIdent.getIdent("slice");
-        clone = CssIdent.getIdent("clone");
-    }
+	/**
+	 * Create new CssBoxDecorationBreak
+	 */
+	public CssBoxDecorationBreak() {
+		value = slice;
+	}
 
-    /**
-     * Create new CssBoxDecorationBreak
-     */
-    public CssBoxDecorationBreak() {
-        value = slice;
-    }
+	/**
+	 * Create new CssBoxDecorationBreak
+	 *
+	 * @param expression The expression for this property
+	 * @throws org.w3c.css.util.InvalidParamException
+	 *          Values are incorrect
+	 */
+	public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
+								 boolean check) throws InvalidParamException {
+		setByUser();
+		CssValue val = expression.getValue();
 
-    /**
-     * Create new CssBoxDecorationBreak
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
-     */
-    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
-                                 boolean check) throws InvalidParamException {
-        setByUser();
-        CssValue val = expression.getValue();
+		if (check && expression.getCount() > 1) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
 
-        if (check && expression.getCount() > 1) {
-            throw new InvalidParamException("unrecognize", ac);
-        }
-
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else if (slice.equals(val)) {
-            value = slice;
-        } else if (clone.equals(val)) {
-            value = clone;
-        } else {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        expression.next();
-    }
+		if (val.getType() != CssTypes.CSS_IDENT) {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		// ident, so inherit, or allowed value
+		if (inherit.equals(val)) {
+			value = inherit;
+		} else if (slice.equals(val)) {
+			value = slice;
+		} else if (clone.equals(val)) {
+			value = clone;
+		} else {
+			throw new InvalidParamException("value",
+					expression.getValue(),
+					getPropertyName(), ac);
+		}
+		expression.next();
+	}
 
 
-    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, expression, false);
-    }
+	public CssBoxDecorationBreak(ApplContext ac, CssExpression expression)
+			throws InvalidParamException {
+		this(ac, expression, false);
+	}
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssBoxDecorationBreak &&
-                value.equals(((CssBoxDecorationBreak) property).value));
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return value.toString();
-    }
-
-    /**
-     * Is the value of this property a default value
-     * It is used by all macro for the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return slice == value;
-    }
+	/**
+	 * Is the value of this property a default value
+	 * It is used by all macro for the function <code>print</code>
+	 */
+	public boolean isDefault() {
+		return slice == value;
+	}
 }

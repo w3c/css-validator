@@ -15,37 +15,16 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import static org.w3c.css.properties.css3.CssBreakBefore.auto;
+import static org.w3c.css.properties.css3.CssBreakBefore.getMatchingIdent;
+
+
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-break-20120823/#break-after
+ * @spec https://www.w3.org/TR/2016/CR-css-break-3-20160114/#propdef-break-after
  */
 
 public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
 
-	static CssIdent auto;
-	private static CssIdent[] allowed_values;
-
-	static {
-		auto = CssIdent.getIdent("auto");
-		String id_values[] = {"auto", "avoid", "always", "page",
-				"left", "right", "recto", "verso",
-				"column", "region", "avoid-page", "avoid-column",
-				"avoid-region"};
-
-		allowed_values = new CssIdent[id_values.length];
-		int i = 0;
-		for (String s : id_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-	}
-
-	public static CssIdent getMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
 
 	/**
 	 * Create a new CssPageBreakAfter

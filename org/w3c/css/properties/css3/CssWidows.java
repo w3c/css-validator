@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-break-20120823/#widows
+ * @spec https://www.w3.org/TR/2016/CR-css-break-3-20160114/#propdef-widows
  */
 public class CssWidows extends org.w3c.css.properties.css.CssWidows {
 

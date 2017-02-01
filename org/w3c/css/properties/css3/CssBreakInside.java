@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-break-20120823/#break-inside
+ * @spec https://www.w3.org/TR/2016/CR-css-break-3-20160114/#propdef-break-inside
  */
 
 public class CssBreakInside extends org.w3c.css.properties.css.CssBreakInside {
