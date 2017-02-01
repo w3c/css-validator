@@ -99,6 +99,7 @@ import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
+import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
@@ -186,6 +187,7 @@ public class Css3Style extends ATSCStyle {
 	public CssWillChange cssWillChange;
 	
 	public CssMixBlendMode cssMixBlendMode;
+	public CssIsolation cssIsolation;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -538,6 +540,15 @@ public class Css3Style extends ATSCStyle {
 		return cssMixBlendMode;
 	}
 
+	public CssIsolation getIsolation() {
+		if (cssIsolation == null) {
+			cssIsolation =
+					(CssIsolation) style.CascadingOrder(new CssIsolation(),
+							style, selector);
+		}
+		return cssIsolation;
+	}
+	
 	public CssOpacity getOpacity() {
 		if (cssOpacity == null) {
 			cssOpacity =
