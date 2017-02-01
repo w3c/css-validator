@@ -25,6 +25,7 @@ import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
 import org.w3c.css.properties.css.CssBackfaceVisibility;
+import org.w3c.css.properties.css.CssBackgroundBlendMode;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
@@ -188,6 +189,7 @@ public class Css3Style extends ATSCStyle {
 	
 	public CssMixBlendMode cssMixBlendMode;
 	public CssIsolation cssIsolation;
+	public CssBackgroundBlendMode cssBackgroundBlendMode;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -547,6 +549,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssIsolation;
+	}
+
+	public CssBackgroundBlendMode getBackgroundBlendMode() {
+		if (cssBackgroundBlendMode == null) {
+			cssBackgroundBlendMode =
+					(CssBackgroundBlendMode) style.CascadingOrder(new CssBackgroundBlendMode(),
+							style, selector);
+		}
+		return cssBackgroundBlendMode;
 	}
 	
 	public CssOpacity getOpacity() {
