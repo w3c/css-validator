@@ -106,6 +106,7 @@ import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
+import org.w3c.css.properties.css.CssMixBlendMode;
 import org.w3c.css.properties.css.CssNavDown;
 import org.w3c.css.properties.css.CssNavLeft;
 import org.w3c.css.properties.css.CssNavRight;
@@ -183,6 +184,8 @@ public class Css3Style extends ATSCStyle {
 	public CssGrid cssGrid;
 	
 	public CssWillChange cssWillChange;
+	
+	public CssMixBlendMode cssMixBlendMode;
 
 	public CssVoiceBalance cssVoiceBalance;
 	public CssVoiceDuration cssVoiceDuration;
@@ -524,6 +527,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssWillChange;
+	}
+
+	public CssMixBlendMode getMixBlendMode() {
+		if (cssMixBlendMode == null) {
+			cssMixBlendMode =
+					(CssMixBlendMode) style.CascadingOrder(new CssMixBlendMode(),
+							style, selector);
+		}
+		return cssMixBlendMode;
 	}
 
 	public CssOpacity getOpacity() {
