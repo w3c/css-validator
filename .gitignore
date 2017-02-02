@@ -2,10 +2,13 @@
 .project
 .hg
 .hgignore
+.idea
 build
 lib
 tmp
+autotest/testsuite
 observer-response.xsd
 properties.zip
 variables.test
 *.class
+*.iml
