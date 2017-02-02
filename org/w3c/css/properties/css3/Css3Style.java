@@ -162,6 +162,7 @@ import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
+import org.w3c.css.properties.css.counterstyle.CssNegative;
 import org.w3c.css.properties.css.counterstyle.CssPad;
 import org.w3c.css.properties.css.counterstyle.CssPrefix;
 import org.w3c.css.properties.css.counterstyle.CssRange;
@@ -184,6 +185,7 @@ public class Css3Style extends ATSCStyle {
 	public CssRange counterStyleCssRange;
 	public CssPad counterStyleCssPad;
 	public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
+	public CssNegative counterStyleCssNegative;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -434,6 +436,13 @@ public class Css3Style extends ATSCStyle {
 			counterStyleCssAdditiveSymbols = (org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols(), style, selector);
 		}
 		return counterStyleCssAdditiveSymbols;
+	}
+
+	public org.w3c.css.properties.css.counterstyle.CssNegative getCounterStyleCssNegative() {
+		if (counterStyleCssNegative == null) {
+			counterStyleCssNegative = (org.w3c.css.properties.css.counterstyle.CssNegative) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssNegative(), style, selector);
+		}
+		return counterStyleCssNegative;
 	}
 	
 	public CssBorderImageSource getBorderImageSource() {
