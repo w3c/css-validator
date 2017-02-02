@@ -46,6 +46,7 @@ public class CssPrefix extends org.w3c.css.properties.css.counterstyle.CssPrefix
 		val = expression.getValue();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_URL:
 			case CssTypes.CSS_IMAGE:
 			case CssTypes.CSS_STRING:
 				value = val;
