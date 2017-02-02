@@ -173,47 +173,49 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int ATLEFT = 81;
   /** RegularExpression Id. */
-  int ATCOUNTER = 82;
+  int A_COUNTER = 82;
   /** RegularExpression Id. */
-  int PHONETIC_ALPHABET_SYM = 83;
+  int COUNTER_STYLE_SYM = 83;
   /** RegularExpression Id. */
-  int ATKEYWORD = 84;
+  int PHONETIC_ALPHABET_SYM = 84;
   /** RegularExpression Id. */
-  int RANGE0 = 85;
+  int ATKEYWORD = 85;
   /** RegularExpression Id. */
-  int RANGE1 = 86;
+  int RANGE0 = 86;
   /** RegularExpression Id. */
-  int RANGE2 = 87;
+  int RANGE1 = 87;
   /** RegularExpression Id. */
-  int RANGE3 = 88;
+  int RANGE2 = 88;
   /** RegularExpression Id. */
-  int RANGE4 = 89;
+  int RANGE3 = 89;
   /** RegularExpression Id. */
-  int RANGE5 = 90;
+  int RANGE4 = 90;
   /** RegularExpression Id. */
-  int RANGE6 = 91;
+  int RANGE5 = 91;
   /** RegularExpression Id. */
-  int RANGE = 92;
+  int RANGE6 = 92;
   /** RegularExpression Id. */
-  int UNI = 93;
+  int RANGE = 93;
   /** RegularExpression Id. */
-  int UNICODERANGE = 94;
+  int UNI = 94;
   /** RegularExpression Id. */
-  int CLASS = 95;
+  int UNICODERANGE = 95;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 96;
+  int CLASS = 96;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 97;
+  int FUNCTIONLANG = 97;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 98;
+  int FUNCTIONNOT = 98;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 99;
+  int FUNCTIONCALC = 99;
   /** RegularExpression Id. */
-  int FUNCTION = 100;
+  int FUNCTIONATTR = 100;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 101;
+  int FUNCTION = 101;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 102;
+  int HTMLSTARTTAG = 102;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 103;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -303,6 +305,7 @@ public interface CssParserConstants {
     "\"@bottom\"",
     "\"@left\"",
     "\"@counter\"",
+    "\"@counter-style\"",
     "\"@phonetic-alphabet\"",
     "<ATKEYWORD>",
     "<RANGE0>",
