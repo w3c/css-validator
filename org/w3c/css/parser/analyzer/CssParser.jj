@@ -64,6 +64,7 @@ import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
+import org.w3c.css.parser.AtRuleCounterStyle;
 import org.w3c.css.media.AtRuleMedia;
 import org.w3c.css.media.MediaFeature;
 import org.w3c.css.parser.AtRuleFontFace;
@@ -627,7 +628,8 @@ TOKEN [IGNORE_CASE] :
   | < ATRIGHT               : "@right" >
   | < ATBOTTOM              : "@bottom" >
   | < ATLEFT                : "@left" >
-  | < ATCOUNTER             : "@counter" >
+  | < A_COUNTER             : "@counter" >
+  | < COUNTER_STYLE_SYM     : "@counter-style" > 
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
   | < ATKEYWORD             : "@" <IDENT> >
 }
@@ -791,7 +793,7 @@ void afterImportDeclaration() :
 {String ret; }
 {
     ( ( ruleSet() | media() | page() | fontFace() | keyframes() | preference() |
-	colorprofile() | phoneticAlphabet() | ret=skipStatement() 
+	colorprofile() | counterstyle() | phoneticAlphabet() | ret=skipStatement() 
 	{ if ((ret == null) || (ret.length() == 0)) {
 		return; 
 	    }
@@ -1366,6 +1368,47 @@ void colorprofile() :
     }
 }
 
+void counterstyle() :
+{
+  Token n;
+  ArrayList<CssProperty> v;
+  AtRule old = getAtRule();
+  AtRuleCounterStyle csrule = new AtRuleCounterStyle();
+  setAtRule(csrule);
+  CssSelectors s = new CssSelectors(ac);;
+  CssVersion version = ac.getCssVersion();
+}
+{
+  try {
+    <COUNTER_STYLE_SYM> ( <S> )+ n=<IDENT> ( <S> )* {
+      csrule.setName(convertIdent(n.image));
+      if (version.compareTo(CssVersion.CSS3) < 0) {
+        skipStatement();
+        addError(new InvalidParamException("noatruleyet", "", ac),
+    			     getAtRule().toString());
+      } else {
+        newAtRule(getAtRule());
+      }
+    }
+    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* 
+      {
+         if (version.compareTo(CssVersion.CSS3) >= 0) {
+	    addProperty(v);
+	    endOfRule();
+	    endOfAtRule();
+	 }
+	 if (v == null) {
+	    ac.getFrame().addWarning("no-declaration");
+	 } else {
+	    handleRule(s, v);
+	 }
+      }
+  } catch (ParseException e) {
+    addError(e, skipStatement());
+  } finally {
+    setAtRule(old);
+  }
+}
 
 void preference() :
 {
