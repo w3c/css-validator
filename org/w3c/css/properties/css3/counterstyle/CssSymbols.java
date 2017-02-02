@@ -50,6 +50,7 @@ public class CssSymbols extends org.w3c.css.properties.css.counterstyle.CssSymbo
 			op = expression.getOperator();
 
 			switch (val.getType()) {
+				case CssTypes.CSS_URL:
 				case CssTypes.CSS_IMAGE:
 				case CssTypes.CSS_STRING:
 					values.add(val);
