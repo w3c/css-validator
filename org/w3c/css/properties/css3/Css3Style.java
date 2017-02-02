@@ -161,6 +161,7 @@ import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
+import org.w3c.css.properties.css.counterstyle.CssPrefix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.util.ApplContext;
@@ -174,6 +175,7 @@ public class Css3Style extends ATSCStyle {
 	public CssSystem counterStyleCssSystem;
 	public CssFallback counterStyleCssFallback;
 	public CssSymbols counterStyleCssSymbols;
+	public CssPrefix counterStyleCssPrefix;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -389,6 +391,13 @@ public class Css3Style extends ATSCStyle {
 			counterStyleCssSymbols = (org.w3c.css.properties.css.counterstyle.CssSymbols) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSymbols(), style, selector);
 		}
 		return counterStyleCssSymbols;
+	}
+
+	public org.w3c.css.properties.css.counterstyle.CssPrefix getCounterStyleCssPrefix() {
+		if (counterStyleCssPrefix == null) {
+			counterStyleCssPrefix = (org.w3c.css.properties.css.counterstyle.CssPrefix) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssPrefix(), style, selector);
+		}
+		return counterStyleCssPrefix;
 	}
 	
 	public CssBorderImageSource getBorderImageSource() {
