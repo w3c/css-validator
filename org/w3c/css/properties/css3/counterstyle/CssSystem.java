@@ -99,7 +99,7 @@ public class CssSystem extends org.w3c.css.properties.css.counterstyle.CssSystem
 									getPropertyName(), ac);
 						}
 					}
-				} else if (id_extends.equals(id)) {
+				} else if (id_extends.equals(ident)) {
 					values.add(id_extends);
 					// we must have two values
 					expression.next();
