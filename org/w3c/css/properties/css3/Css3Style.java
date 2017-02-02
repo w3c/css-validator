@@ -160,6 +160,7 @@ import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
 import org.w3c.css.properties.css.counterstyle.CssPad;
 import org.w3c.css.properties.css.counterstyle.CssPrefix;
@@ -182,6 +183,7 @@ public class Css3Style extends ATSCStyle {
 	public CssSuffix counterStyleCssSuffix;
 	public CssRange counterStyleCssRange;
 	public CssPad counterStyleCssPad;
+	public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -425,6 +427,13 @@ public class Css3Style extends ATSCStyle {
 			counterStyleCssPad = (org.w3c.css.properties.css.counterstyle.CssPad) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssPad(), style, selector);
 		}
 		return counterStyleCssPad;
+	}
+
+	public org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols getCounterStyleCssAdditiveSymbols() {
+		if (counterStyleCssAdditiveSymbols == null) {
+			counterStyleCssAdditiveSymbols = (org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols(), style, selector);
+		}
+		return counterStyleCssAdditiveSymbols;
 	}
 	
 	public CssBorderImageSource getBorderImageSource() {
