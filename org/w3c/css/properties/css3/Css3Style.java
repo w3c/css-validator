@@ -30,6 +30,7 @@ import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
+import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBoxSizing;
@@ -165,6 +166,8 @@ import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
 
 public class Css3Style extends ATSCStyle {
+
+	public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -354,9 +357,16 @@ public class Css3Style extends ATSCStyle {
 	public CssFloatOffset cssFloatOffset;
 	public CssFloatDefer cssFloatDefer;
 
-	public org.w3c.css.properties.css.CssBorderImageSource getBorderImageSource() {
+	public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {
+		if (counterStyleCssSpeakAs == null) {
+			counterStyleCssSpeakAs = (org.w3c.css.properties.css.counterstyle.CssSpeakAs) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSpeakAs(), style, selector);
+		}
+		return counterStyleCssSpeakAs;
+	}
+
+	public CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
-			cssBorder.borderImage.source = (org.w3c.css.properties.css.CssBorderImageSource) style.CascadingOrder(new org.w3c.css.properties.css.CssBorderImageSource(), style, selector);
+			cssBorder.borderImage.source = (CssBorderImageSource) style.CascadingOrder(new CssBorderImageSource(), style, selector);
 		}
 		return cssBorder.borderImage.source;
 
