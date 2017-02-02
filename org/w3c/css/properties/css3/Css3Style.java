@@ -162,6 +162,7 @@ import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
 import org.w3c.css.properties.css.counterstyle.CssPrefix;
+import org.w3c.css.properties.css.counterstyle.CssRange;
 import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
@@ -178,6 +179,7 @@ public class Css3Style extends ATSCStyle {
 	public CssSymbols counterStyleCssSymbols;
 	public CssPrefix counterStyleCssPrefix;
 	public CssSuffix counterStyleCssSuffix;
+	public CssRange counterStyleCssRange;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -407,6 +409,13 @@ public class Css3Style extends ATSCStyle {
 			counterStyleCssSuffix = (org.w3c.css.properties.css.counterstyle.CssSuffix) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSuffix(), style, selector);
 		}
 		return counterStyleCssSuffix;
+	}
+
+	public org.w3c.css.properties.css.counterstyle.CssRange getCounterStyleCssRange() {
+		if (counterStyleCssRange == null) {
+			counterStyleCssRange = (org.w3c.css.properties.css.counterstyle.CssRange) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssRange(), style, selector);
+		}
+		return counterStyleCssRange;
 	}
 	
 	public CssBorderImageSource getBorderImageSource() {
