@@ -160,6 +160,7 @@ import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.counterstyle.CssFallback;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -170,6 +171,7 @@ public class Css3Style extends ATSCStyle {
 
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
 	public CssSystem counterStyleCssSystem;
+	public CssFallback counterStyleCssFallback;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -371,6 +373,13 @@ public class Css3Style extends ATSCStyle {
 			counterStyleCssSystem = (org.w3c.css.properties.css.counterstyle.CssSystem) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSystem(), style, selector);
 		}
 		return counterStyleCssSystem;
+	}
+
+	public org.w3c.css.properties.css.counterstyle.CssFallback getCounterStyleCssFallback() {
+		if (counterStyleCssFallback == null) {
+			counterStyleCssFallback = (org.w3c.css.properties.css.counterstyle.CssFallback) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssFallback(), style, selector);
+		}
+		return counterStyleCssFallback;
 	}
 	
 	public CssBorderImageSource getBorderImageSource() {
