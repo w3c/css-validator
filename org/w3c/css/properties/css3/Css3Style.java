@@ -160,6 +160,7 @@ import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
 import org.w3c.css.properties.css.CssWordBreak;
+import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -168,6 +169,7 @@ import org.w3c.css.util.Warnings;
 public class Css3Style extends ATSCStyle {
 
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs counterStyleCssSpeakAs;
+	public CssSystem counterStyleCssSystem;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -364,6 +366,13 @@ public class Css3Style extends ATSCStyle {
 		return counterStyleCssSpeakAs;
 	}
 
+	public org.w3c.css.properties.css.counterstyle.CssSystem getCounterStyleCssSystem() {
+		if (counterStyleCssSystem == null) {
+			counterStyleCssSystem = (org.w3c.css.properties.css.counterstyle.CssSystem) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSystem(), style, selector);
+		}
+		return counterStyleCssSystem;
+	}
+	
 	public CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
 			cssBorder.borderImage.source = (CssBorderImageSource) style.CascadingOrder(new CssBorderImageSource(), style, selector);
