@@ -8,6 +8,7 @@ package org.w3c.css.properties.css3;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -80,6 +81,14 @@ public class CssListStyle extends org.w3c.css.properties.css.CssListStyle {
 								getPropertyName(), ac);
 					}
 					imageVal = val;
+					break;
+				case CssTypes.CSS_FUNCTION:
+					if (typeVal != null) {
+						// TODO duplicate value error
+						throw new InvalidParamException("value", none,
+								getPropertyName(), ac);
+					}
+					typeVal = CssListStyleType.parseSymbolsFunction(ac, (CssFunction) val, this);
 					break;
 				case CssTypes.CSS_STRING:
 					if (typeVal != null) {
