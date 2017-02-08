@@ -141,8 +141,8 @@ public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleTyp
 								getPropertyName(), ac);
 					}
 					value = id;
-					break;
 				}
+				break;
 			default:
 				throw new InvalidParamException("value",
 						val.toString(),
