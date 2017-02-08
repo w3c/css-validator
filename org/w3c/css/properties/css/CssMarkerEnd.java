@@ -56,7 +56,7 @@ public class CssMarkerEnd extends CssProperty {
 	 * Returns the name of this property
 	 */
 	public final String getPropertyName() {
-		return "marker-start";
+		return "marker-end";
 	}
 
 	/**
