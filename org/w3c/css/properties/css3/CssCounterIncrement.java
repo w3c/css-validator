@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang University, 2017.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -9,6 +9,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2003/WD-css3-content-20030514/#counter-increment
+ * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-counter-increment
  */
 public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIncrement {
 
@@ -66,8 +67,8 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
 						}
 						break;
 					}
-					// initial is reserved keyword
-					if (initial.equals(val)) {
+					// check for reserved keyword
+					if (CssIdent.isCssWide((CssIdent) val)) {
 						throw new InvalidParamException("value", val,
 								getPropertyName(), ac);
 					}
@@ -94,8 +95,7 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
 			}
 			expression.next();
 		}
-		// check it's not inherit or none
-		if (v.size() > 0) {
+		if (!v.isEmpty()) {
 			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
 		}
 	}
