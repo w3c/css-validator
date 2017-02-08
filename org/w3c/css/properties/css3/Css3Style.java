@@ -105,6 +105,7 @@ import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarkerSide;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
@@ -186,6 +187,8 @@ public class Css3Style extends ATSCStyle {
 	public CssPad counterStyleCssPad;
 	public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
 	public CssNegative counterStyleCssNegative;
+
+	public CssMarkerSide cssMarkerSide;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -451,6 +454,15 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssBorder.borderImage.source;
 
+	}
+
+	public CssMarkerSide getMarkerSide() {
+		if (cssMarkerSide == null) {
+			cssMarkerSide =
+					(CssMarkerSide) style.CascadingOrder(new CssMarkerSide(),
+							style, selector);
+		}
+		return cssMarkerSide;
 	}
 
 	public CssGridColumnGap getGridColumnGap() {
