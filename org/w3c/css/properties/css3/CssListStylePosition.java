@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang University, 2017.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-lists-20110524/#list-style-position
+ * @spec https://www.w3.org/TR/2014/WD-css-lists-3-20140320/#propdef-list-style-position
  */
 public class CssListStylePosition extends org.w3c.css.properties.css.CssListStylePosition {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"inside", "hanging", "outside"};
+		String[] _allowed_values = {"inside", "outside"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
@@ -74,10 +74,8 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 		setByUser();
 
 		CssValue val;
-		char op;
 
 		val = expression.getValue();
-		op = expression.getOperator();
 
 		if (val.getType() != CssTypes.CSS_IDENT) {
 			throw new InvalidParamException("value", val,
@@ -96,5 +94,4 @@ public class CssListStylePosition extends org.w3c.css.properties.css.CssListStyl
 		}
 		expression.next();
 	}
-
 }
