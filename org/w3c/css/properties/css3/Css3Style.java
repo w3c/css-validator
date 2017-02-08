@@ -50,6 +50,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssCounterSet;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
 import org.w3c.css.properties.css.CssFlex;
@@ -189,6 +190,7 @@ public class Css3Style extends ATSCStyle {
 	public CssNegative counterStyleCssNegative;
 
 	public CssMarkerSide cssMarkerSide;
+	public CssCounterSet cssCounterSet;
 
 	public CssGridRowGap cssGridRowGap;
 	public CssGridColumnGap cssGridColumnGap;
@@ -463,6 +465,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssMarkerSide;
+	}
+
+	public CssCounterSet getCounterSet() {
+		if (cssCounterSet == null) {
+			cssCounterSet =
+					(CssCounterSet) style.CascadingOrder(new CssCounterSet(),
+							style, selector);
+		}
+		return cssCounterSet;
 	}
 
 	public CssGridColumnGap getGridColumnGap() {
