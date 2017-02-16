@@ -9,14 +9,15 @@ most_important: Nejdůležitější
 no_warnings: Žádné varování
 profile: Profil
 no_special_profile: Žádný zvláštní profil
-css1: CSS level 1
-css2: CSS level 2
-css21: CSS level 2.1
-css3: CSS level 3
+css1: CSS Úroveň 1
+css2: CSS Úroveň 2
+css21: CSS Úroveň 2.1
+css3: CSS Úroveň 3
 svg: SVG
 svgbasic: SVG základní
 svgtiny: SVG malý
 mobile: Mobil
+css3svg: CSS Úroveň 3 + SVG
 ATSC_TV_profile: ATSC TV profil
 TV_profile: TV profil
 medium: Střední
@@ -345,3 +346,9 @@ warning.float-no-width: V (x)HTML+CSS, plovoucí prvky musí mít otevřenou š�
 
 parser.charsetcss1: pravidla @charset nelze použít v CSS1
 parser.attrcss1: Selektory s atributem jsou v CSS1 neplatné
+
+warning.noexproperty: Vlastnost %s neexistuje
+error.divisortype: Dělitel musí být číslo
+error.greater: %s není validní, povoleny jsou pouze hodnoty striktně větší než %s.
+error.bg_order: V CSS3 background definici se v případě výskytu obou vlastností musí 'bg_position' nacházet před / 'bg_size'
+
