@@ -51,11 +51,11 @@
     <td headers="header_profile_uri">
       <select id="profile_uri" name="profile">
         <option value="none">Žádný zvláštní profil</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option value="css21">CSS level 2.1</option>
-        <option selected="selected" value="css3">CSS level 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css1">CSS Úroveň 1</option>
+        <option value="css2">CSS Úroveň 2</option>
+        <option value="css21">CSS Úroveň 2.1</option>
+        <option selected="selected" value="css3">CSS Úroveň 3</option>
+        <option value="css3svg">CSS Úroveň 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  
@@ -141,11 +141,11 @@
     <td headers="header_profile_upload">
       <select id="profile_upload" name="profile">
         <option value="none">Žádný zvláštní profil</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option value="css21">CSS level 2.1</option>
-        <option selected="selected" value="css3">CSS level 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css1">CSS Úroveň 1</option>
+        <option value="css2">CSS Úroveň 2</option>
+        <option value="css21">CSS Úroveň 2.1</option>
+        <option selected="selected" value="css3">CSS Úroveň 3</option>
+        <option value="css3svg">CSS Úroveň 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  
@@ -231,11 +231,11 @@
     <td headers="header_profile_input">
       <select id="profile_input" name="profile">
         <option value="none">Žádný zvláštní profil</option>
-        <option value="css1">CSS level 1</option>
-        <option value="css2">CSS level 2</option>
-        <option value="css21">CSS level 2.1</option>
-        <option selected="selected" value="css3">CSS level 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css1">CSS Úroveň 1</option>
+        <option value="css2">CSS Úroveň 2</option>
+        <option value="css21">CSS Úroveň 2.1</option>
+        <option selected="selected" value="css3">CSS Úroveň 3</option>
+        <option value="css3svg">CSS Úroveň 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG základní</option>
         <option value="svgtiny">SVG malý</option>  
