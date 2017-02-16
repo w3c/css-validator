@@ -14,6 +14,7 @@ css1: CSS wersja 1
 css2: CSS wersja 2
 css21: CSS wersja 2.1
 css3: CSS wersja 3
+css3svg: CSS wersja 3 + SVG
 svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG tiny
@@ -369,3 +370,10 @@ parser.charsetcss1: Reguły @charset nie mogą być używane w CSS1
 parser.attrcss1: Selektory atrybutów są nieprawidłowe w CSS1
 parser.invalid_id_selector: Nieprawidłowy selektor ID
 parser.import_not_allowed: Wyrażenie @import nie może występować po żadnym z istniejących wyrażeń, z wyjątkiem @charset i @import.
+error.divisortype: Dzielnik musi być liczbą
+error.divzero: Dzielenie przez zero
+error.invalidtype: Niepoprawny typ: %s
+vext_warnings: Ostrzeżenia
+vext_errors: Błędy
+error.selectorname: Niepoprawna nazwa selektora %s
+warning.lowerequal: wartość %s będzie interpretowana jako %s
