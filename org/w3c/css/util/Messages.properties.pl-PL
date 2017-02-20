@@ -377,3 +377,13 @@ vext_warnings: Ostrzeżenia
 vext_errors: Błędy
 error.selectorname: Niepoprawna nazwa selektora %s
 warning.lowerequal: wartość %s będzie interpretowana jako %s
+
+error.incompatibletypes: Type są niekompatybilne
+error.operandnumber: Jeden argument musi być liczbą
+parser.calcwhitespace: Białe znaki są wymagane po obu stronach operatora '+' lub '-'
+warning.deprecated: Wartość '%s' jest przestarzała
+warning.negative: ujemna wartość %s będzie interpretowana jako 0
+warning.shape-separator: Niewłaściwy separator w definicji kształtu. Wymagany jest przecinek.
+warning.greaterequal: wartość %s będzie interpretowana jako %s
+error.bg_order: W definicji tła w CSS-ie 3 'bg_position' musi wystąpić przed / 'bg_size', jeśli oba są obecne
+
