@@ -21,7 +21,7 @@ import static org.w3c.css.properties.css3.CssGridTemplate.parseTemplateRows;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid
  */
 public class CssGrid extends org.w3c.css.properties.css.CssGrid {
 

@@ -18,7 +18,7 @@ import static org.w3c.css.properties.css3.CssGridAutoRows.parseTrackSize;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-auto-columns
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-auto-columns
  */
 public class CssGridAutoColumns extends org.w3c.css.properties.css.CssGridAutoColumns {
 

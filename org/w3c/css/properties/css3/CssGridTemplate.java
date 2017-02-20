@@ -26,7 +26,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-template
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template
  */
 public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate {
 
@@ -499,7 +499,7 @@ public class CssGridTemplate extends org.w3c.css.properties.css.CssGridTemplate 
 	}
 
 	/**
-	 * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#funcdef-repeat
+	 * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#funcdef-repeat
 	 */
 	protected static CssFunction parseRepeatFunction(ApplContext ac, CssFunction func,
 													 RepeatType type,

@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-template-rows
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template-rows
  */
 public class CssGridTemplateRows extends org.w3c.css.properties.css.CssGridTemplateRows {
 

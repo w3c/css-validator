@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-column-end
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-column-end
  */
 public class CssGridColumnEnd extends org.w3c.css.properties.css.CssGridColumnEnd {
 

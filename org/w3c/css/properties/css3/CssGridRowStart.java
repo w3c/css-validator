@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-row-start
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-row-start
  */
 public class CssGridRowStart extends org.w3c.css.properties.css.CssGridRowStart {
 

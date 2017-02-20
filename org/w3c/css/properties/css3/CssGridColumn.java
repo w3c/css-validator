@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-column
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-column
  */
 public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
 

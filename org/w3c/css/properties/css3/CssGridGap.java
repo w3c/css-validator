@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-gap
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-gap
  */
 public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
 

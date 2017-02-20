@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-area
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-area
  */
 public class CssGridArea extends org.w3c.css.properties.css.CssGridArea {
 

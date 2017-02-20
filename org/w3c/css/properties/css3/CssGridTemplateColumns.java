@@ -19,7 +19,7 @@ import static org.w3c.css.properties.css3.CssGridTemplate.parseAutoTrackList;
 import static org.w3c.css.properties.css3.CssGridTemplate.parseTrackList;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-template-columns
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-template-columns
  */
 public class CssGridTemplateColumns extends org.w3c.css.properties.css.CssGridTemplateColumns {
 

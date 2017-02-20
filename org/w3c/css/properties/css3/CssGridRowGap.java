@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#propdef-grid-row-gap
+ * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-row-gap
  */
 public class CssGridRowGap extends org.w3c.css.properties.css.CssGridRowGap {
 
