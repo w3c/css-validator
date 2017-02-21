@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170209/#propdef-scroll-snap-stop
+ * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170209/#propdef-scroll-snap-align
  */
-public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnapStop {
+public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnapAlign {
 
 	private static CssIdent[] allowed_values;
 
@@ -43,14 +43,14 @@ public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnap
 	}
 
 	/**
-	 * Create a new CssScrollSnapStop
+	 * Create a new CssScrollSnapAlign
 	 */
 	public CssScrollSnapAlign() {
 		value = initial;
 	}
 
 	/**
-	 * Creates a new CssScrollSnapStop
+	 * Creates a new CssScrollSnapAlign
 	 *
 	 * @param expression The expression for this property
 	 * @throws org.w3c.css.util.InvalidParamException
