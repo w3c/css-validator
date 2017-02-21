@@ -131,6 +131,7 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssScrollPadding;
 import org.w3c.css.properties.css.CssScrollPaddingBlock;
 import org.w3c.css.properties.css.CssScrollPaddingBlockEnd;
 import org.w3c.css.properties.css.CssScrollPaddingBlockStart;
@@ -223,6 +224,7 @@ public class Css3Style extends ATSCStyle {
 	public CssScrollPaddingBlockStart cssScrollPaddingBlockStart;
 	public CssScrollPaddingBlockEnd cssScrollPaddingBlockEnd;
 	public CssScrollPaddingBlock cssScrollPaddingBlock;
+	public CssScrollPadding cssScrollPadding;
 
 	public CssMarkerSide cssMarkerSide;
 	public CssCounterSet cssCounterSet;
@@ -824,6 +826,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssScrollPaddingBlock;
+	}
+
+	public CssScrollPadding getScrollPadding() {
+		if (cssScrollPadding == null) {
+			cssScrollPadding =
+					(CssScrollPadding) style.CascadingOrder(new CssScrollPadding(),
+							style, selector);
+		}
+		return cssScrollPadding;
 	}
 	
 	public CssWillChange getWillChange() {
