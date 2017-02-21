@@ -131,6 +131,7 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssScrollSnapMarginBlock;
 import org.w3c.css.properties.css.CssScrollSnapMarginBlockEnd;
 import org.w3c.css.properties.css.CssScrollSnapMarginBlockStart;
 import org.w3c.css.properties.css.CssScrollSnapMarginInlineEnd;
@@ -197,7 +198,8 @@ public class Css3Style extends ATSCStyle {
 	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
 	public CssScrollSnapMarginInlineStart cssScrollSnapMarginInlineStart;
 	public CssScrollSnapMarginInlineEnd cssScrollSnapMarginInlineEnd;
-	
+	public CssScrollSnapMarginBlock cssScrollSnapMarginBlock;
+
 	public CssMarkerSide cssMarkerSide;
 	public CssCounterSet cssCounterSet;
 
@@ -219,9 +221,9 @@ public class Css3Style extends ATSCStyle {
 	public CssGridTemplateColumns cssGridTemplateColumns;
 	public CssGridTemplate cssGridTemplate;
 	public CssGrid cssGrid;
-	
+
 	public CssWillChange cssWillChange;
-	
+
 	public CssMixBlendMode cssMixBlendMode;
 	public CssIsolation cssIsolation;
 	public CssBackgroundBlendMode cssBackgroundBlendMode;
@@ -458,7 +460,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return counterStyleCssNegative;
 	}
-	
+
 	public CssBorderImageSource getBorderImageSource() {
 		if (cssBorder.borderImage.source == null) {
 			cssBorder.borderImage.source = (CssBorderImageSource) style.CascadingOrder(new CssBorderImageSource(), style, selector);
@@ -682,7 +684,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssScrollSnapMarginInlineEnd;
 	}
-	
+
+	public CssScrollSnapMarginBlock getScrollSnapMarginBlock() {
+		if (cssScrollSnapMarginBlock == null) {
+			cssScrollSnapMarginBlock =
+					(CssScrollSnapMarginBlock) style.CascadingOrder(new CssScrollSnapMarginBlock(),
+							style, selector);
+		}
+		return cssScrollSnapMarginBlock;
+	}
+
 	public CssWillChange getWillChange() {
 		if (cssWillChange == null) {
 			cssWillChange =
@@ -718,7 +729,7 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssBackgroundBlendMode;
 	}
-	
+
 	public CssOpacity getOpacity() {
 		if (cssOpacity == null) {
 			cssOpacity =
