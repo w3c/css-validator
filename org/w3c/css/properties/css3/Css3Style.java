@@ -131,6 +131,7 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssScrollSnapMarginBlockEnd;
 import org.w3c.css.properties.css.CssScrollSnapMarginBlockStart;
 import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
@@ -191,6 +192,7 @@ public class Css3Style extends ATSCStyle {
 	public CssNegative counterStyleCssNegative;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
+	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
 	
 	public CssMarkerSide cssMarkerSide;
 	public CssCounterSet cssCounterSet;
@@ -650,6 +652,15 @@ public class Css3Style extends ATSCStyle {
 		return cssScrollSnapMarginBlockStart;
 	}
 
+	public CssScrollSnapMarginBlockEnd getScrollSnapMarginBlockEnd() {
+		if (cssScrollSnapMarginBlockEnd == null) {
+			cssScrollSnapMarginBlockEnd =
+					(CssScrollSnapMarginBlockEnd) style.CascadingOrder(new CssScrollSnapMarginBlockEnd(),
+							style, selector);
+		}
+		return cssScrollSnapMarginBlockEnd;
+	}
+	
 	public CssWillChange getWillChange() {
 		if (cssWillChange == null) {
 			cssWillChange =
