@@ -22,20 +22,21 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPadding {
 
-	private CssScrollPaddingInlineStart _longhand_inline_start;
-	private CssScrollPaddingInlineEnd _longhand_inline_end;
-	private CssScrollPaddingBlockStart _longhand_block_start;
-	private CssScrollPaddingBlockEnd _longhand_block_end;
+	private CssScrollPaddingTop _longhand_top;
+	private CssScrollPaddingRight _longhand_right;
+	private CssScrollPaddingBottom _longhand_bottom;
+	private CssScrollPaddingLeft _longhand_left;
+
 
 	/**
 	 * Create a new CssScrollPaddingInline
 	 */
 	public CssScrollPadding() {
 		value = initial;
-		_longhand_inline_start = new CssScrollPaddingInlineStart();
-		_longhand_inline_end = new CssScrollPaddingInlineEnd();
-		_longhand_block_start = new CssScrollPaddingBlockStart();
-		_longhand_block_end = new CssScrollPaddingBlockEnd();
+		_longhand_top = new CssScrollPaddingTop();
+		_longhand_right = new CssScrollPaddingRight();
+		_longhand_bottom = new CssScrollPaddingBottom();
+		_longhand_left = new CssScrollPaddingLeft();
 	}
 
 	/**
@@ -55,10 +56,11 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 			throw new InvalidParamException("unrecognize", ac);
 		}
 		ArrayList<CssValue> values = new ArrayList<>();
-		_longhand_inline_start = new CssScrollPaddingInlineStart();
-		_longhand_inline_end = new CssScrollPaddingInlineEnd();
-		_longhand_block_start = new CssScrollPaddingBlockStart();
-		_longhand_block_end = new CssScrollPaddingBlockEnd();
+		_longhand_top = new CssScrollPaddingTop();
+		_longhand_right = new CssScrollPaddingRight();
+		_longhand_bottom = new CssScrollPaddingBottom();
+		_longhand_left = new CssScrollPaddingLeft();
+
 
 		for (int i = 0; i < 4; i++) {
 			val = expression.getValue();
@@ -72,16 +74,16 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 					values.add(val);
 					switch (i) {
 						case 0:
-							_longhand_block_start.value = val;
+							_longhand_top.value = val;
 							break;
 						case 1:
-							_longhand_inline_start.value = val;
+							_longhand_right.value = val;
 							break;
 						case 2:
-							_longhand_block_end.value = val;
+							_longhand_bottom.value = val;
 							break;
 						case 3:
-							_longhand_inline_end.value = val;
+							_longhand_left.value = val;
 							break;
 						default:
 							// can't happen by design
@@ -95,10 +97,10 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 									getPropertyName(), ac);
 						}
 						values.add(val);
-						_longhand_block_start.value = inherit;
-						_longhand_inline_start.value = inherit;
-						_longhand_block_end.value = inherit;
-						_longhand_inline_end.value = inherit;
+						_longhand_top.value = inherit;
+						_longhand_right.value = inherit;
+						_longhand_bottom.value = inherit;
+						_longhand_left.value = inherit;
 						break;
 					}
 				default:
@@ -127,10 +129,10 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 	 */
 	public void addToStyle(ApplContext ac, CssStyle style) {
 		super.addToStyle(ac, style);
-		_longhand_block_start.addToStyle(ac, style);
-		_longhand_inline_start.addToStyle(ac, style);
-		_longhand_block_end.addToStyle(ac, style);
-		_longhand_inline_end.addToStyle(ac, style);
+		_longhand_top.addToStyle(ac, style);
+		_longhand_right.addToStyle(ac, style);
+		_longhand_bottom.addToStyle(ac, style);
+		_longhand_left.addToStyle(ac, style);
 
 	}
 }
