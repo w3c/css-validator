@@ -110,6 +110,10 @@ public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSna
 						getPropertyName(), ac);
 			}
 			expression.next();
+			if (expression.end()) {
+				// get out of the loop when end is reached prematurely
+				break;
+			}
 		}
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}

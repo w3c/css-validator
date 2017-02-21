@@ -113,6 +113,10 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 						getPropertyName(), ac);
 			}
 			expression.next();
+			if (expression.end()) {
+				// get out of the loop when end is reached prematurely
+				break;
+			}
 		}
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
