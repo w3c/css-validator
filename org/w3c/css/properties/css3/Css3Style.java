@@ -139,6 +139,7 @@ import org.w3c.css.properties.css.CssScrollSnapMarginInline;
 import org.w3c.css.properties.css.CssScrollSnapMarginInlineEnd;
 import org.w3c.css.properties.css.CssScrollSnapMarginInlineStart;
 import org.w3c.css.properties.css.CssScrollSnapMarginLeft;
+import org.w3c.css.properties.css.CssScrollSnapMarginRight;
 import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignLast;
@@ -205,6 +206,7 @@ public class Css3Style extends ATSCStyle {
 	public CssScrollSnapMarginInline cssScrollSnapMarginInline;
 	public CssScrollSnapMarginBottom cssScrollSnapMarginBottom;
 	public CssScrollSnapMarginLeft cssScrollSnapMarginLeft;
+	public CssScrollSnapMarginRight cssScrollSnapMarginRight;
 
 	public CssMarkerSide cssMarkerSide;
 	public CssCounterSet cssCounterSet;
@@ -727,6 +729,15 @@ public class Css3Style extends ATSCStyle {
 		return cssScrollSnapMarginLeft;
 	}
 
+	public CssScrollSnapMarginRight getScrollSnapMarginRight() {
+		if (cssScrollSnapMarginRight == null) {
+			cssScrollSnapMarginRight =
+					(CssScrollSnapMarginRight) style.CascadingOrder(new CssScrollSnapMarginRight(),
+							style, selector);
+		}
+		return cssScrollSnapMarginRight;
+	}
+	
 	public CssWillChange getWillChange() {
 		if (cssWillChange == null) {
 			cssWillChange =
