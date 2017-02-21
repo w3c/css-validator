@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio University ,Beihang University, 2017.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University, 2017.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css;
 
