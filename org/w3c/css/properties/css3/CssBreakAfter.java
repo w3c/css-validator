@@ -20,11 +20,10 @@ import static org.w3c.css.properties.css3.CssBreakBefore.getMatchingIdent;
 
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-break-3-20160114/#propdef-break-after
+ * @spec https://www.w3.org/TR/2017/CR-css-break-3-20170209/#propdef-break-after
  */
 
 public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
-
 
 	/**
 	 * Create a new CssPageBreakAfter
