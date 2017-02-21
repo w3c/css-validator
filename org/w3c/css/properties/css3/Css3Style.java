@@ -141,6 +141,7 @@ import org.w3c.css.properties.css.CssScrollPaddingInlineEnd;
 import org.w3c.css.properties.css.CssScrollPaddingInlineStart;
 import org.w3c.css.properties.css.CssScrollPaddingLeft;
 import org.w3c.css.properties.css.CssScrollPaddingRight;
+import org.w3c.css.properties.css.CssScrollPaddingTop;
 import org.w3c.css.properties.css.CssScrollSnapMargin;
 import org.w3c.css.properties.css.CssScrollSnapMarginBlock;
 import org.w3c.css.properties.css.CssScrollSnapMarginBlockEnd;
@@ -231,6 +232,7 @@ public class Css3Style extends ATSCStyle {
 	public CssScrollPaddingBottom cssScrollPaddingBottom;
 	public CssScrollPaddingLeft cssScrollPaddingLeft;
 	public CssScrollPaddingRight cssScrollPaddingRight;
+	public CssScrollPaddingTop cssScrollPaddingTop;
 
 	public CssMarkerSide cssMarkerSide;
 	public CssCounterSet cssCounterSet;
@@ -869,7 +871,16 @@ public class Css3Style extends ATSCStyle {
 		}
 		return cssScrollPaddingRight;
 	}
-	
+
+	public CssScrollPaddingTop getScrollPaddingTop() {
+		if (cssScrollPaddingTop == null) {
+			cssScrollPaddingTop =
+					(CssScrollPaddingTop) style.CascadingOrder(new CssScrollPaddingTop(),
+							style, selector);
+		}
+		return cssScrollPaddingTop;
+	}
+
 	public CssWillChange getWillChange() {
 		if (cssWillChange == null) {
 			cssWillChange =
