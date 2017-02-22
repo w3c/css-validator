@@ -60,7 +60,7 @@ public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSna
 		_longhand_right = new CssScrollSnapMarginRight();
 		_longhand_top = new CssScrollSnapMarginTop();
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4 && !expression.end(); i++) {
 			val = expression.getValue();
 			op = expression.getOperator();
 
@@ -110,10 +110,6 @@ public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSna
 						getPropertyName(), ac);
 			}
 			expression.next();
-			if (expression.end()) {
-				// get out of the loop when end is reached prematurely
-				break;
-			}
 		}
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}

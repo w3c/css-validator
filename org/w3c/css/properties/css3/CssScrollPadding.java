@@ -62,7 +62,7 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 		_longhand_left = new CssScrollPaddingLeft();
 
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4 && !expression.end(); i++) {
 			val = expression.getValue();
 			op = expression.getOperator();
 
@@ -113,10 +113,6 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 						getPropertyName(), ac);
 			}
 			expression.next();
-			if (expression.end()) {
-				// get out of the loop when end is reached prematurely
-				break;
-			}
 		}
 		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 	}
