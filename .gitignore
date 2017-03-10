@@ -12,3 +12,5 @@ properties.zip
 variables.test
 *.class
 *.iml
+*.jar
+*.war
