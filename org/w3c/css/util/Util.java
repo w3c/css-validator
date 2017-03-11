@@ -260,7 +260,7 @@ public final class Util {
 	}
 
 	/**
-	 * Returns <code>true</code> if the character is not a white space
+	 * Returns <code>true</code> if the character is a whitespace character
 	 *
 	 * @param c the character
 	 */
