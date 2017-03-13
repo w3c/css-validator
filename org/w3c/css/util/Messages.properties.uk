@@ -253,7 +253,7 @@ error.zero: лише 0 може бути %s. Ви повинні вказати 
 warning.zero: лише 0 може бути %s. Ви повинні вказати після числа одиниці вимірювання
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: Невірне значення % s. Допускаються лише значення більше 0.
+error.strictly-positive: Невірне значення %s. Допускаються лише значення більше 0.
 
 # used by org.w3c.css.parser.CssPropertyFactory
 error.noexistence-at-all: Властивість %s не існує
@@ -264,7 +264,7 @@ warning.noexistence-media: Властивість %s не існує для се
 warning.notforusermedium : Властивість %s не існує для вказаного користувачем середовища
 ##################
 warning.noothermedium : Властивості для інших середовищ можуть не функціонувати у вказаному користувачем середовищі
-warning.vendor-extension : Властивість% s є невідомим розширенням
+warning.vendor-extension : Властивість %s є невідомим розширенням
 # used by org.w3c.css.parser.AtRule*
 error.noatruleyet: Правила @rules, за виключенням @import, не підтримуються стандартом CSS1 %s
 # used by org.w3c.css.parser.analyzer.CssParser
