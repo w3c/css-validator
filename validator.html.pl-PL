@@ -99,7 +99,7 @@
     </td>
 
     <th id="header_vext_warning_uri">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Rozszerzenia Dostawców:</label>     
     </th>
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
@@ -189,7 +189,7 @@
     </td>
 
     <th id="header_vext_warning_upload">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Rozszerzenia Dostawców:</label>     
     </th>
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
@@ -288,7 +288,7 @@
     </td>
 
     <th id="header_vext_warning_input">
-      <label id="vext_warning_input">Vendor Extensions:</label>     
+      <label id="vext_warning_input">Rozszerzenia Dostawców:</label>     
     </th>
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">

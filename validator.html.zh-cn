@@ -55,7 +55,7 @@
         <option value="css2">CSS 版本 2</option>
         <option value="css21">CSS 版本 2.1</option>
         <option selected="selected" value="css3">CSS 版本 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3svg">CSS 版本 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -104,8 +104,8 @@
     <td headers="header_vext_warning_uri">
       <select id="vext_warning_uri" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="true">警告</option>
+        <option value="false">错误</option>
       </select>
     </td>
 
@@ -145,7 +145,7 @@
         <option value="css2">CSS 版本 2</option>
         <option value="css21">CSS 版本 2.1</option>
         <option selected="selected" value="css3">CSS 版本 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3svg">CSS 版本 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -194,8 +194,8 @@
     <td headers="header_vext_warning_upload">
       <select id="vext_warning_upload" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="true">警告</option>
+        <option value="false">错误</option>
       </select>
     </td>
 
@@ -235,7 +235,7 @@
         <option value="css2">CSS 版本 2</option>
         <option value="css21">CSS 版本 2.1</option>
         <option selected="selected" value="css3">CSS 版本 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3svg">CSS 版本 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Basic</option>
         <option value="svgtiny">SVG Tiny</option>  
@@ -293,8 +293,8 @@
     <td headers="header_vext_warning_input">
       <select id="vext_warning_input" name="vextwarning">
         <option value="">Default</option>
-        <option value="true">Warnings</option>
-        <option value="false">Errors</option>
+        <option value="true">警告</option>
+        <option value="false">错误</option>
       </select>
     </td>
 
