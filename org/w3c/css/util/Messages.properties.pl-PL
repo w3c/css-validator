@@ -387,3 +387,13 @@ warning.shape-separator: Niewłaściwy separator w definicji kształtu. Wymagany
 warning.greaterequal: wartość %s będzie interpretowana jako %s
 error.bg_order: W definicji tła w CSS-ie 3 'bg_position' musi wystąpić przed / 'bg_size', jeśli oba są obecne
 
+warning.deprecatedproperty: Własność %s jest przestarzała
+error.strictly-positive: %s jest niepoprawny, dozwolone są jedynie wartości większe od 0.
+error.typevaluemismatch: Wartość %s jest niekompatybilna z zadeklarowanym typem <%s>
+vendorext: Rozszerzenia Dostawców
+warning.deprecatedmedia: Medium "%s" jest przestarzałe
+warning.noexproperty: Właściwość %s nie istnieje
+error.errortoken: Nieoczekiwana zawartość "%s" w wierszu %s, oczekiwano tokena %s (pominięto %s)
+warning.vendor-ext-pseudo-element: %s jest nieznanym przedrostkiem pseudo-elementu
+warning.vendor-ext-pseudo-class: %s jest nieznanym przedrostkiem pseudo-klasy
+
