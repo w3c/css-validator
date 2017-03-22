@@ -397,3 +397,8 @@ error.errortoken: Nieoczekiwana zawartość "%s" w wierszu %s, oczekiwano tokena
 warning.vendor-ext-pseudo-element: %s jest nieznanym przedrostkiem pseudo-elementu
 warning.vendor-ext-pseudo-class: %s jest nieznanym przedrostkiem pseudo-klasy
 
+error.lower: %s jest nieprawidłową wartością, dozwolone są tylko wartości ściśle niższe niż %s.
+error.lowerequal: %s jest nieprawidłową wartością, dozwolone są tylko wartości niższe bądź równe %s.
+error.greater: %s jest nieprawidłową wartością, dozwolone są tylko wartości ściśle większe niż %s.
+error.greaterequal: %s jest niedozwoloną wartością, dozwolone są tylko wartości wyższe bądź równe %s.
+
