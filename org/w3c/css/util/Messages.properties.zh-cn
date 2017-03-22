@@ -14,6 +14,7 @@ css1: CSS 版本 1
 css2: CSS 版本 2
 css21: CSS 版本 2.1
 css3: CSS 版本 3
+css3svg: CSS 版本 3 + SVG
 svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
@@ -376,3 +377,14 @@ parser.attrcss1: 属性选择符在 CSS1 中无效
 parser.invalid_id_selector: 无效的 ID 选择符
 parser.import_not_allowed: @import 不可以出现在除 @charset 和 @import 以外的任何有效语句之后。
 
+error.divzero: 除数为零
+error.greater: %s 无效，只允许严格大于 %s 的值。
+error.greaterequal: %s 无效，只允许大于或等于 %s 的值。
+error.incompatibletypes: 类型不兼容
+error.lower: %s 无效，只允许严格低于 %s 的值。
+error.lowerequal: %s 无效，只允许小于或等于 %s 的值。
+error.operandnumber: 一个操作数必须是数字
+error.selectorname: 无效的选择器名称 %s
+error.strictly-positive: %s 无效，只允许大于0的值。
+vext_errors: 错误
+vext_warnings: 警告
