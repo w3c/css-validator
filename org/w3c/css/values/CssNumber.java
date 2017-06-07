@@ -167,7 +167,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * Returns a percentage.
-	 * Only zero can be a percentage.
+	 * Only zero can be a length.
 	 *
 	 * @throws InvalidParamException The value is not zero
 	 */
@@ -182,7 +182,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * Returns a time.
-	 * Only zero can be a time.
+	 * Only zero can be a length.
 	 *
 	 * @throws InvalidParamException The value is not zero
 	 */
@@ -195,8 +195,8 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 	}
 
 	/**
-	 * Returns an angle.
-	 * Only zero can be an angle.
+	 * Returns a angle.
+	 * Only zero can be a length.
 	 *
 	 * @throws InvalidParamException The value is not zero
 	 */
@@ -210,7 +210,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
 
 	/**
 	 * Returns a frequency.
-	 * Only zero can be a frequency.
+	 * Only zero can be a length.
 	 *
 	 * @throws InvalidParamException The value is not zero
 	 */
