@@ -388,3 +388,7 @@ error.selectorname: 无效的选择器名称 %s
 error.strictly-positive: %s 无效，只允许大于0的值。
 vext_errors: 错误
 vext_warnings: 警告
+
+error.divisortype: 除数必须为数字
+error.invalidtype: %s 类型无效
+error.typevaluemismatch: 值 %s 与其类型定义 %s 不兼容
