@@ -153,7 +153,7 @@ public class TranslationTableGenerator {
                     if (language.get("name").equals(default_lang)) {
                         vc.put(property_name, property_translated);
                     } else {
-                        URI mail_translation = new URI("mailto", "w3c-translators@w3.org?Subject=[" + property_name + "] CSS Validator Translation&body=Property:\n  " + property_name + "\n\nText in English:\n  " + ac_default.getMsg().getString(property_name) + "\n\nLanguage:\n  " + language.get("name") + "\n\nTranslation:\n\n\n-- Help translate the CSS Validator:\nhttp://qa-dev.w3.org:8001/css-validator/translations.html", "");
+                        URI mail_translation = new URI("mailto", "w3c-translators@w3.org?Subject=[" + property_name + "] CSS Validator Translation&body=Property:\n  " + property_name + "\n\nText in English:\n  " + ac_default.getMsg().getString(property_name) + "\n\nLanguage:\n  " + language.get("name") + "\n\nTranslation:\n\n\n-- Help translate the CSS Validator:\nhttps://jigsaw.w3.org/css-validator/translations.html", "");
                         if (property_translated == null) {
                             translations_table.append("<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\"").append(StringEscapeUtils.escapeHtml(mail_translation.toASCIIString())).append("\">✘</a></td>\n");
                         } else if (property_translated.matches(".*translation unavailable.*")) {
