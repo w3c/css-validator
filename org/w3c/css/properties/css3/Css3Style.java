@@ -50,6 +50,7 @@ import org.w3c.css.properties.css.CssColumnRuleWidth;
 import org.w3c.css.properties.css.CssColumnSpan;
 import org.w3c.css.properties.css.CssColumnWidth;
 import org.w3c.css.properties.css.CssColumns;
+import org.w3c.css.properties.css.CssContain;
 import org.w3c.css.properties.css.CssCounterSet;
 import org.w3c.css.properties.css.CssDominantBaseline;
 import org.w3c.css.properties.css.CssFilter;
@@ -263,6 +264,8 @@ public class Css3Style extends ATSCStyle {
 	public CssGrid cssGrid;
 
 	public CssWillChange cssWillChange;
+	
+	public CssContain cssContain;
 
 	public CssMixBlendMode cssMixBlendMode;
 	public CssIsolation cssIsolation;
@@ -921,6 +924,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssWillChange;
+	}
+
+	public CssContain getContain() {
+		if (cssContain == null) {
+			cssContain =
+					(CssContain) style.CascadingOrder(new CssContain(),
+							style, selector);
+		}
+		return cssContain;
 	}
 
 	public CssMixBlendMode getMixBlendMode() {
