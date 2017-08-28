@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170209/#propdef-scroll-padding-inline
+ * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding-inline
  */
 public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScrollPaddingInline {
 
@@ -59,6 +59,7 @@ public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScroll
 				val.getCheckableValue().checkEqualsZero(ac, this);
 			case CssTypes.CSS_LENGTH:
 			case CssTypes.CSS_PERCENTAGE:
+				val.getCheckableValue().checkPositiveness(ac, this);
 				values.add(val);
 				_longhand_start.value = val;
 				break;
@@ -91,6 +92,7 @@ public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScroll
 					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
+					val.getCheckableValue().checkPositiveness(ac, this);
 					values.add(val);
 					_longhand_end.value = val;
 					break;

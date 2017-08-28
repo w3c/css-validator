@@ -6,6 +6,7 @@
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170209/#propdef-scroll-snap-margin
+ * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding
  */
 public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPadding {
 
@@ -71,6 +72,7 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 					val.getCheckableValue().checkEqualsZero(ac, this);
 				case CssTypes.CSS_LENGTH:
 				case CssTypes.CSS_PERCENTAGE:
+					val.getCheckableValue().checkPositiveness(ac, this);
 					values.add(val);
 					switch (i) {
 						case 0:
@@ -134,6 +136,30 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
 		_longhand_bottom.addToStyle(ac, style);
 		_longhand_left.addToStyle(ac, style);
 
+	}
+
+	protected static CssValue checkPaddingValue(ApplContext ac, CssExpression expression, CssProperty caller)
+			throws InvalidParamException {
+		CssValue val = expression.getValue();
+
+		switch (val.getType()) {
+			case CssTypes.CSS_NUMBER:
+				val.getCheckableValue().checkEqualsZero(ac, caller);
+			case CssTypes.CSS_LENGTH:
+			case CssTypes.CSS_PERCENTAGE:
+				val.getCheckableValue().checkPositiveness(ac, caller);
+				expression.next();
+				return val;
+			case CssTypes.CSS_IDENT:
+				if (inherit.equals(val)) {
+					expression.next();
+					return inherit;
+				}
+			default:
+				throw new InvalidParamException("value",
+						expression.getValue(),
+						caller.getPropertyName(), ac);
+		}
 	}
 }
 
