@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170209/#propdef-scroll-snap-margin-inline
+ * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-inline
  */
 public class CssScrollSnapMarginInline extends org.w3c.css.properties.css.CssScrollSnapMarginInline {
 
