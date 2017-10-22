@@ -851,6 +851,10 @@ public final class CssValidator extends HttpServlet {
 			res.setHeader("charset", Utf8Properties.ENCODING);
 		}
 		res.setHeader("Vary", "Accept-Language");
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		res.setHeader("Access-Control-Allow-Headers", "content-type,accept-charset");
+		res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS");
+		res.setHeader("Access-Control-Max-Age", "600");
 	}
 
 	private void handleError(HttpServletResponse res, ApplContext ac,
