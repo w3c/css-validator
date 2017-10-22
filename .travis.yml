@@ -2,7 +2,7 @@ sudo: false
 language: java
 jdk:
   - openjdk7
-  - oraclejdk7
+  - oraclejdk8
 git:
   submodules: false
 script: ant build
