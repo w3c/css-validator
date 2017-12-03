@@ -102,7 +102,6 @@ http://localhost:8001/css-validator/validator.html</li>
 Download the css-validator.jar jar archive (or build it with <kbd>ant jar</kbd>) and run it as :<br />
 <kbd>java -jar css-validator.jar http://www.w3.org/</kbd>.
 </p>
-<p>Note : the css-validator.jar file must be located at the exact same level as the lib/ folder to work properly.</p>
 </div>
    <ul class="navbar"  id="menu">
 	<li><strong><a href="./" title="Home page for the W3C CSS Validation Service">Home</a></strong> <span class="hideme">|</span></li>

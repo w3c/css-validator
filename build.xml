@@ -119,6 +119,7 @@
   <target name="jar" depends="build" description="Creates the lib archive">
     <delete file="${jar.file}"/>
     <jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
+      <zipgroupfileset dir="lib" includes="*.jar"/>
       <include name="org/**"/>
       <manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
