@@ -86,7 +86,8 @@
   <target name="build" description="Builds the validator" depends="prepare">
     <mkdir dir="./build"/>
     <javac classpathref="build.class.path" destdir="./build" encoding="UTF-8"
-           debug="yes" includes="org/w3c/**" srcdir="." source="1.7" target="1.7"/>
+           debug="yes" includes="org/w3c/**" srcdir="." source="1.7" target="1.7"
+           includeantruntime="false"/>
     <copy todir="./build">
       <fileset dir="./">
         <include name="org/**"/>
