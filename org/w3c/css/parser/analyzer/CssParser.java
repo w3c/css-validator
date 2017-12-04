@@ -547,7 +547,8 @@ addError (new ParseException(ac.getMsg().getString("generator.dontmixhtml")), n.
       afterImportDeclaration();
       jj_consume_token(0);
     } catch (TokenMgrError err) {
-addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
+addError (new ParseException(ac.getMsg().getString("generator.unrecognize"),
+            err.getLine(), err.getColumn()),
             err.getMessage());
     }
   }
@@ -5294,14 +5295,6 @@ n.image = Util.strip(n.image);
     finally { jj_save(4, xla); }
   }
 
-  private boolean jj_3R_138()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_177()) jj_scanpos = xsp;
-    return false;
-  }
-
   private boolean jj_3R_126()
  {
     if (jj_scan_token(S)) return true;
@@ -5908,6 +5901,14 @@ n.image = Util.strip(n.image);
       xsp = jj_scanpos;
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
+    return false;
+  }
+
+  private boolean jj_3R_138()
+ {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_177()) jj_scanpos = xsp;
     return false;
   }
 

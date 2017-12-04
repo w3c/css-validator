@@ -716,7 +716,8 @@ void parserUnit() :
 	    afterImportDeclaration()
 	    <EOF>
         } catch (TokenMgrError err) {
-            addError (new ParseException(ac.getMsg().getString("generator.unrecognize")),
+            addError (new ParseException(ac.getMsg().getString("generator.unrecognize"),
+            err.getLine(), err.getColumn()),
 	    err.getMessage());
         }
 }
