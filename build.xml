@@ -128,6 +128,16 @@
     </jar>
   </target>
 
+  <target name="jar-without-dependencies" depends="build" description="Creates the lib archive without dependency jars">
+    <delete file="${jar.file}"/>
+    <jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
+      <include name="org/**"/>
+      <manifest>
+        <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
+      </manifest>
+    </jar>
+  </target>
+
   <target name="war" depends="build" description="Creates the webapp module">
     <delete file="${war.file}"/>
     <war warfile="${war.file}" webxml="web.xml" basedir="." includes="*html*,favicon.ico,images/**,style/**,scripts/**,tabtastic/**" excludes="html,css-validator.*">
