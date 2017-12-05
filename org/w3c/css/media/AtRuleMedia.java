@@ -96,9 +96,14 @@ public abstract class AtRuleMedia extends AtRule {
             case CSS21:
                 return new org.w3c.css.media.css21.AtRuleMedia();
             case CSS3:
+            case CSS:
+            case CSS_2015:
                 return new org.w3c.css.media.css3.AtRuleMedia();
+            default:
+                throw new IllegalArgumentException(
+                    "AtRuleMedia.getInstance called with unhandled"
+                        + " CssVersion \"" + version.toString() + "\".");
         }
-        return null;
     }
 }
 
