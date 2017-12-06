@@ -9,7 +9,6 @@
 package org.w3c.css.util;
 
 
-import org.apache.velocity.io.UnicodeInputStream;
 import org.w3c.css.parser.Frame;
 import org.w3c.www.http.HttpAcceptCharset;
 import org.w3c.www.http.HttpAcceptCharsetList;

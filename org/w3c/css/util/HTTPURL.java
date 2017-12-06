@@ -8,7 +8,6 @@
  */
 package org.w3c.css.util;
 
-import org.apache.velocity.io.UnicodeInputStream;
 import org.w3c.css.servlet.CssValidator;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
