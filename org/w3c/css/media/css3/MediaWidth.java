@@ -42,6 +42,10 @@ public class MediaWidth extends MediaFeature {
 
             CssValue val = expression.getValue();
 
+            if (val == null) {
+                return;
+            }
+
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                     // a bit stupid as the only value would be 0...
