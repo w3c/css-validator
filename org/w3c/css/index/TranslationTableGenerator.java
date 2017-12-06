@@ -6,7 +6,7 @@
  */
 package org.w3c.css.index;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -144,7 +144,7 @@ public class TranslationTableGenerator {
                 ++num_properties;
                 String property_name = String.valueOf(properties_iterator.next());
                 translations_table.append("<tr><th scope=\"row\" class=\"property_name\">").append(property_name);
-                translations_table.append("<p>").append(StringEscapeUtils.escapeHtml(ac_default.getMsg().getString(property_name)));
+                translations_table.append("<p>").append(StringEscapeUtils.escapeHtml4(ac_default.getMsg().getString(property_name)));
                 translations_table.append("</p></th>");
                 for (int i = 0; i < Messages.languages_name.size(); ++i) {
                     HashMap<String, String> language = languages.get(i);
@@ -155,11 +155,11 @@ public class TranslationTableGenerator {
                     } else {
                         URI mail_translation = new URI("mailto", "w3c-translators@w3.org?Subject=[" + property_name + "] CSS Validator Translation&body=Property:\n  " + property_name + "\n\nText in English:\n  " + ac_default.getMsg().getString(property_name) + "\n\nLanguage:\n  " + language.get("name") + "\n\nTranslation:\n\n\n-- Help translate the CSS Validator:\nhttps://jigsaw.w3.org/css-validator/translations.html", "");
                         if (property_translated == null) {
-                            translations_table.append("<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\"").append(StringEscapeUtils.escapeHtml(mail_translation.toASCIIString())).append("\">✘</a></td>\n");
+                            translations_table.append("<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\"").append(StringEscapeUtils.escapeHtml4(mail_translation.toASCIIString())).append("\">✘</a></td>\n");
                         } else if (property_translated.matches(".*translation unavailable.*")) {
-                            translations_table.append("<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\"").append(StringEscapeUtils.escapeHtml(mail_translation.toASCIIString())).append("\">✘</a></td>\n");
+                            translations_table.append("<td class=\"table_translation_missing\"><a title=\"submit a missing translation\" href=\"").append(StringEscapeUtils.escapeHtml4(mail_translation.toASCIIString())).append("\">✘</a></td>\n");
                         } else {
-                            translations_table.append("<td class=\"table_translation_ok\"><span title=\"").append(StringEscapeUtils.escapeHtml(property_translated)).append("\">✔</span></td>\n");
+                            translations_table.append("<td class=\"table_translation_ok\"><span title=\"").append(StringEscapeUtils.escapeHtml4(property_translated)).append("\">✔</span></td>\n");
                             int completed = Integer.parseInt(translation_completeness.get(language.get("name")).toString());
                             completed++;
                             translation_completeness.put(language.get("name"), completed);
