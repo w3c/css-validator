@@ -351,7 +351,7 @@ generator.doc:  <!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # used by the parser
-parser.semi-colon: attempt to find a semi-colon before the property name. add it
+parser.semi-colon: Missing a semicolon before the property name %s
 
 parser.unknown-dimension: Unknown dimension
 

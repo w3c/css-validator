@@ -4166,7 +4166,8 @@ setValue(new CssBracket(), exp, operator, n, RBRACKET);
                 /* @@SEEME. (generate a warning?) */
                 /* @@SEEME if expression is a single ident, 
 		   generate an error ? */
-                addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
+                addError(new ParseException(String.format(
+                    ac.getMsg().getString("parser.semi-colon"), n)),
                          (CssExpression) null);
                 rejectToken(semicolon);
             } else {
@@ -4385,7 +4386,8 @@ setValue(new CssString(), exp, operator, n, STRING);
             /* @@SEEME. (generate a warning?) */
             /* @@SEEME if expression is a single ident,
 	       generate an error ? */
-            addError(new ParseException(ac.getMsg().getString("parser.semi-colon")),
+            addError(new ParseException(String.format(
+                ac.getMsg().getString("parser.semi-colon"), n)),
                      (CssExpression) null);
             rejectToken(semicolon);
         } else {
