@@ -202,7 +202,7 @@ warning.relative: L'utilisation d'unités relatives pour la propriété \
 %s rend la feuille de style plus robuste
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Désolé mais la règle-arobase %s n'est pas implementée
+error.at-rule: La règle-arobase %s n'est pas reconnue
 
 # used by all properties and values
 error.operator: %s n'est pas un opérateur correct
