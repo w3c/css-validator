@@ -297,6 +297,7 @@ public class StyleSheetGenerator extends StyleReport {
 						produceParseException((CssParseException) ex, h);
 					} else if (ex instanceof InvalidParamException) {
 						h.put("ClassName", "invalidparam");
+						h.put("ErrorMsg", queryReplace((String) h.get("ErrorMsg")));
 					} else if (ex instanceof IOException) {
 						String stringError = ex.toString();
 						// int index = stringError.indexOf(':');
@@ -477,8 +478,10 @@ public class StyleSheetGenerator extends StyleReport {
 	 * @return the string s with html character escaped
 	 */
 	private String queryReplace(String s) {
+		if (!"xhtml.properties".equals(this.template_file)) {
+			return s;
+		}
 		if (s != null) {
-			/*
 			int len = s.length();
             StringBuilder ret = new StringBuilder(len + 16);
             char c;
@@ -500,13 +503,17 @@ public class StyleSheetGenerator extends StyleReport {
                     case '>':
                         ret.append("&gt;");
                         break;
+                    case '\u201C':
+                        ret.append("<code>");
+                        break;
+                    case '\u201D':
+                        ret.append("</code>");
+                        break;
                     default:
                         ret.append(c);
                 }
             }
             return ret.toString();
-            */
-			return s;
 		}
 		return "[empty string]";
 	}
