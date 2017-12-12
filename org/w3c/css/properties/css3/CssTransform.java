@@ -224,6 +224,9 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 		if (expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
 		}
+		if (expression.getCount() == 0) {
+			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+		}
 		CssValue val;
 		val = expression.getValue();
 		// special case, 0 can be a length or an angle...
@@ -252,6 +255,9 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 			throws InvalidParamException {
 		if (expression.getCount() > 2) {
 			throw new InvalidParamException("unrecognize", ac);
+		}
+		if (expression.getCount() == 0) {
+			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
 		}
 		CssValue val;
 		char op;
@@ -282,6 +288,9 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 			throws InvalidParamException {
 		if (expression.getCount() > 1) {
 			throw new InvalidParamException("unrecognize", ac);
+		}
+		if (expression.getCount() == 0) {
+			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
 		}
 		CssValue val;
 		val = expression.getValue();
