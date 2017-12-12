@@ -175,7 +175,7 @@ warning.marker: Marker-offset属性对标有’display: marker’的元素有效
 warning.relative: 在属性 %s 使用相对单位令样式表更加棒
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: 对不起，'@规则' %s 不能应用
+error.at-rule: 无法识别 '@规则' %s
 
 # used by all properties and values
 error.operator: %s 是一个错误的运算符
