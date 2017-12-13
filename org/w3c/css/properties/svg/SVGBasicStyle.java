@@ -27,7 +27,6 @@ import org.w3c.css.properties.css.CssStopOpacity;
 import org.w3c.css.properties.css.CssStrokeOpacity;
 import org.w3c.css.properties.css.CssTextAnchor;
 import org.w3c.css.properties.css.CssTextRendering;
-import org.w3c.css.properties.css.CssWritingMode;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
@@ -40,7 +39,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 	public CssFillOpacity cssFillOpacity;
 	public CssStrokeOpacity cssStrokeOpacity;
 	public CssKerning cssKerning;
-	public CssWritingMode cssWritingMode;
 	public CssClipPath cssClipPath;
 	public CssClipRule cssClipRule;
 	public CssMask cssMask;
@@ -131,15 +129,6 @@ public class SVGBasicStyle extends SVGTinyStyle {
 							style, selector);
 		}
 		return cssKerning;
-	}
-
-	public CssWritingMode getWritingMode() {
-		if (cssWritingMode == null) {
-			cssWritingMode =
-					(CssWritingMode) style.CascadingOrder(new CssWritingMode(),
-							style, selector);
-		}
-		return cssWritingMode;
 	}
 
 	public CssClipPath getClipPath() {

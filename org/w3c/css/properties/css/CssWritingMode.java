@@ -6,15 +6,15 @@
 package org.w3c.css.properties.css;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.svg.SVGBasicStyle;
-import org.w3c.css.properties.svg.SVGTinyStyle;
+import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since SVG
+ * @since SVG OBSOLETED
+ * @since CSS3
  */
 public class CssWritingMode extends CssProperty {
 
@@ -81,7 +81,7 @@ public class CssWritingMode extends CssProperty {
 	 * @param style The CssStyle
 	 */
 	public void addToStyle(ApplContext ac, CssStyle style) {
-		SVGBasicStyle s = (SVGBasicStyle) style;
+		Css3Style s = (Css3Style) style;
 		if (s.cssWritingMode != null) {
 			style.addRedefinitionWarning(ac, this);
 		}
@@ -108,9 +108,9 @@ public class CssWritingMode extends CssProperty {
 	 */
 	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
 		if (resolve) {
-			return ((SVGBasicStyle) style).getWritingMode();
+			return ((Css3Style) style).getWritingMode();
 		} else {
-			return ((SVGBasicStyle) style).cssWritingMode;
+			return ((Css3Style) style).cssWritingMode;
 		}
 	}
 }

@@ -187,6 +187,7 @@ import org.w3c.css.properties.css.CssVoiceRate;
 import org.w3c.css.properties.css.CssVoiceStress;
 import org.w3c.css.properties.css.CssVoiceVolume;
 import org.w3c.css.properties.css.CssWillChange;
+import org.w3c.css.properties.css.CssWritingMode;
 import org.w3c.css.properties.css.CssWordBreak;
 import org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols;
 import org.w3c.css.properties.css.counterstyle.CssFallback;
@@ -214,6 +215,8 @@ public class Css3Style extends ATSCStyle {
 	public CssPad counterStyleCssPad;
 	public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
 	public CssNegative counterStyleCssNegative;
+
+	public CssWritingMode cssWritingMode;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
 	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
@@ -433,6 +436,15 @@ public class Css3Style extends ATSCStyle {
 	public CssFloatReference cssFloatReference;
 	public CssFloatOffset cssFloatOffset;
 	public CssFloatDefer cssFloatDefer;
+
+	public CssWritingMode getWritingMode() {
+		if (cssWritingMode == null) {
+			cssWritingMode =
+					(CssWritingMode) style.CascadingOrder(new CssWritingMode(),
+							style, selector);
+		}
+		return cssWritingMode;
+	}
 
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {
 		if (counterStyleCssSpeakAs == null) {
