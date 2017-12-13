@@ -92,7 +92,7 @@ public class CssValidator {
         try {
             style.getParams(args);
             style.ac = new ApplContext((String) style.params.get("lang"));
-            System.out.println(style.params);
+            System.err.println(style.params);
         } catch (Exception e) {
             System.out.println("Usage: java org.w3c.css.css.CssValidator " +
                     " [OPTIONS] | [URL]*");
