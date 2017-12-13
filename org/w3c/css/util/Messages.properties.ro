@@ -125,7 +125,6 @@ warning.redefinition: Redefinition of %s
 # used by xml parser 
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 warning.link-type: Ar trebui sa adaugi elementului 'link' un atribut 'type' cu valoarea 'text/css'
-warning.style-type: Ar trebui sa adaugi elementului 'style' atributul 'type' cu valoarea 'text/css'
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Aceeasi culoare pentru %s si %s

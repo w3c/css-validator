@@ -135,7 +135,6 @@ warning.redefinition: Erneute Definition von %s
 # used by xml parser
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 warning.link-type: Sie sollten dem 'link' Element  das Attribut 'type' mit einem Wert von 'text/css' hinzufügen.
-warning.style-type: Sie sollten dem 'style' Element  das Attribut 'type' mit einem Wert von 'text/css' hinzufügen.
 
 # used by org.w3c.css.properties.Css1Style
 warning.same-colors: Gleiche Farbe für %s und %s

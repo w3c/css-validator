@@ -367,5 +367,4 @@ vext_warnings: Предупреждения
 
 warning.deprecatedmedia: Среда "%s" устарела.
 warning.link-type: Вы должны добавить атрибут 'type' со значением 'text/css' к элементу 'link'
-warning.style-type: Вы должны добавить атрибут 'type' со значением 'text/css' к элементу 'style'
 warning.vendor-extension: Свойство %s - неизвестное расширение поставщика

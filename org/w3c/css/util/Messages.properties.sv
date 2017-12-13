@@ -386,7 +386,6 @@ vext_errors: Fel
 vext_warnings: Varningar
 
 warning.link-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'link'-elementet
-warning.style-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'style'-elementet
 
 warning.deprecatedmedia: Media "%s" har nedgraderats
 error.nomodifiershortmedia: Prefix kan inte användas för mediafunktionaliteter utan värden

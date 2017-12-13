@@ -374,7 +374,6 @@ vext_default: डिफ़ॉल्ट
 vext_errors: त्रुटियाँ
 vext_warnings: चेतावनी
 warning.link-type: आप 'text/css' के एक मूल्य के साथ एक 'type' विशेषता 'link' तत्व जोड़ने चाहिए
-warning.style-type: आप 'text/css' के एक मूल्य के साथ 'style' तत्व के लिए एक 'type' विशेषता जोड़ने चाहिए
 warning.vendor-extension: संपत्ति %s एक अज्ञात विक्रेता एक्सटेंशन है
 
 error.nomodifiershortmedia: अमूल्य मीडिया सुविधाओं  के साथ कोई  उपसर्ग की अनुमति नहीं दी जाती है
