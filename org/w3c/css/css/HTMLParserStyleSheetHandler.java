@@ -348,16 +348,6 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
 
                 if (type == null) {
                     // By default we consider that it is CSS for HTML content
-                    // and raise a warning about the missing type attribute.
-                    // (per HTML5 spec)
-                    if (!isHTML5) {
-                        int line = (locator != null ? locator.getLineNumber() : -1);
-                        Warning w = new Warning(baseURI.toString(), line,
-                                "style-type", 0, ac);
-                        Warnings warnings = new Warnings(ac.getWarningLevel());
-                        warnings.addWarning(w);
-                        styleSheetParser.notifyWarnings(warnings);
-                    }
                     text.setLength(0);
                     inStyle = true;
                 } else {
