@@ -186,25 +186,20 @@ public class CssValidator {
                               String title, StyleSheet styleSheet,
                               String output, int warningLevel,
                               boolean errorReport) throws Exception {
-
         if (styleSheet == null) {
             throw new IOException(ac.getMsg().getServletString("process") + " "
                     + title);
         }
-
         styleSheet.findConflicts(ac);
-
         StyleReport style = StyleReportFactory.getStyleReport(ac, title,
                 styleSheet,
                 output,
                 warningLevel);
-
         if (!errorReport) {
             style.desactivateError();
         }
-
+        style.print(out);
         return styleSheet.getErrors().getErrorCount();
-
     }
 
     public void handleCSSStyleSheet(ApplContext ac, Reader reader, URL docref) {
