@@ -148,6 +148,22 @@
     </war>
   </target>
 
+  <target name="autotest" depends="jar">
+    <fail message="&#xa0;${line.separator}${line.separator}
+  Usage: ant autotest -Dtestfile=testsuite/xml/FILENAME.xml">
+      <condition>
+        <not>
+          <isset property="testfile"/>
+        </not>
+      </condition>
+    </fail>
+    <javac srcdir="autotest" classpath="css-validator.jar"
+      includeantruntime="false"/>
+    <java classname="autotest.AutoTest" classpath="css-validator.jar">
+      <arg value="${testfile}"/>
+    </java>
+  </target>
+
   <target name="clean" description="Cleans up generated files">
     <delete file="${jar.file}"/>
     <delete file="${war.file}"/>

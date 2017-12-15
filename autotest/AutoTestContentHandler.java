@@ -37,8 +37,7 @@ import java.net.URL;
  */
 public class AutoTestContentHandler implements ContentHandler {
 
-	//public static final String VALIDATOR = "http://jigsaw.w3.org/css-validator/validator?";
-	public static final String VALIDATOR = "http://qa-dev.w3.org:8001/css-validator/validator?";
+	public static final String VALIDATOR = "http://jigsaw.w3.org/css-validator/validator?";
 	public static final String PARAMS = "&output=soap12";
 	public static final int TESTSUITE = "testsuite".hashCode();
 	public static final int TEST = "test".hashCode();
@@ -264,12 +263,13 @@ public class AutoTestContentHandler implements ContentHandler {
 			System.err.println(urlString);
 			String validURL = createValidURL(urlString);
 			if (isFile) {
-				URL fileURL = AutoTestContentHandler.class
-						.getResource(urlString);
 				InputStream content;
 				String text = "";
 				try {
-					content = fileURL.openStream();
+					content = //
+						AutoTestContentHandler.class //
+						.getClassLoader()
+						.getResourceAsStream(urlString);
 					byte[] textBytes = new byte[content.available()];
 					content.read(textBytes, 0, textBytes.length);
 					text = createValidURL(new String(textBytes));
