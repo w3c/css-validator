@@ -164,6 +164,10 @@
     </java>
   </target>
 
+  <target name="javacc">
+    <ant antfile="build.xml" dir="javacc"/>
+  </target>
+
   <target name="clean" description="Cleans up generated files">
     <delete file="${jar.file}"/>
     <delete file="${war.file}"/>
