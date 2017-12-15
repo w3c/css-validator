@@ -44,6 +44,30 @@ public class TokenMgrError extends Error
   int errorCode;
 
   /**
+   * Line number of the error.
+   */
+  int errorLine;
+
+  /**
+   * Column number of the error.
+   */
+  int errorColumn;
+
+  /**
+   * Gets the line number of the error.
+   */
+  public int getLine() {
+    return this.errorLine;
+  }
+
+  /**
+   * Gets the column number of the error.
+   */
+  public int getColumn() {
+    return this.errorColumn;
+  }
+
+  /**
    * Replaces unprintable characters by their escaped (or unicode escaped)
    * equivalents in the given string
    */
@@ -142,6 +166,8 @@ public class TokenMgrError extends Error
   /** Full Constructor. */
   public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, int curChar, int reason) {
     this(LexicalErr(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), reason);
+    this.errorLine = errorLine;
+    this.errorColumn = errorColumn;
   }
 }
 /* JavaCC - OriginalChecksum=71ef0692844cb226bd1fcd5a89d517eb (do not edit this line) */

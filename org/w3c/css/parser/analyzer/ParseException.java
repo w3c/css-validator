@@ -40,6 +40,8 @@ public class ParseException extends Exception {
     currentToken = currentTokenVal;
     expectedTokenSequences = expectedTokenSequencesVal;
     tokenImage = tokenImageVal;
+    this.errorLine = -1;
+    this.errorColumn = -1;
   }
 
   /**
@@ -54,13 +56,47 @@ public class ParseException extends Exception {
 
   public ParseException() {
     super();
+    this.errorLine = -1;
+    this.errorColumn = -1;
   }
 
   /** Constructor with message. */
   public ParseException(String message) {
     super(message);
+    this.errorLine = -1;
+    this.errorColumn = -1;
   }
 
+  /** Constructor with message, line number, and column number */
+  public ParseException(String message, int errorLine, int errorColumn) {
+    super(message);
+    this.errorLine = errorLine;
+    this.errorColumn = errorColumn;
+  }
+
+  /**
+   * Line number of the error.
+   */
+  int errorLine;
+
+  /**
+   * Column number of the error.
+   */
+  int errorColumn;
+
+  /**
+   * Gets the line number of the error.
+   */
+  public int getLine() {
+    return this.errorLine;
+  }
+
+  /**
+   * Gets the column number of the error.
+   */
+  public int getColumn() {
+    return this.errorColumn;
+  }
 
   /**
    * This is the last token that has been consumed successfully.  If
