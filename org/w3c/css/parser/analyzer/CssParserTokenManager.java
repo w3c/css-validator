@@ -77,7 +77,7 @@ import org.w3c.css.selectors.attributes.AttributeSubstr;
 import org.w3c.css.selectors.attributes.AttributeSuffix;
 
 /** Token Manager. */
-@SuppressWarnings("unused")public class CssParserTokenManager implements CssParserConstants {
+public class CssParserTokenManager implements CssParserConstants {
 
   /** Debug output. */
   public  java.io.PrintStream debugStream = System.out;
@@ -6131,7 +6131,7 @@ private int jjMoveNfa_0(int startState, int curPos)
                      kind = 96;
                   { jjCheckNAddTwoStates(678, 679); }
                   break;
-               default : if (i1 == 0 || l1 == 0 || i2 == 0 || l2 == 0) break; else break;
+               default : if (i1 == 0 || l1 == 0 || i2 == 0 ||  l2 == 0) break; else break;
             }
          } while(i != startsAt);
       }
@@ -6166,6 +6166,41 @@ private int jjMoveNfa_0(int startState, int curPos)
       jjmatchedKind = strKind;
 
    return toRet;
+}
+
+/** Token literal values. */
+public static final String[] jjstrLiteralImages = {
+"", null, null, null, null, null, null, null, null, null, null, null, null, 
+null, null, null, null, null, null, null, null, null, "\74\41\55\55", "\55\55\76", 
+null, "\174\75", null, null, "\55", null, null, null, null, null, null, null, null, 
+null, null, "\175", "\136\75", "\44\75", "\52\75", "\75", "\73", "\57", "\133", 
+"\135", "\52", "\56", "\51", "\50", "\72", null, null, null, null, null, null, null, 
+null, null, null, null, null, null, null, null, "\72\72", null, null, null, null, 
+null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
+null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
+null, null, null, "\174", "\45", };
+protected Token jjFillToken()
+{
+   final Token t;
+   final String curTokenImage;
+   final int beginLine;
+   final int endLine;
+   final int beginColumn;
+   final int endColumn;
+   String im = jjstrLiteralImages[jjmatchedKind];
+   curTokenImage = (im == null) ? input_stream.GetImage() : im;
+   beginLine = input_stream.getBeginLine();
+   beginColumn = input_stream.getBeginColumn();
+   endLine = input_stream.getEndLine();
+   endColumn = input_stream.getEndColumn();
+   t = Token.newToken(jjmatchedKind, curTokenImage);
+
+   t.beginLine = beginLine;
+   t.endLine = endLine;
+   t.beginColumn = beginColumn;
+   t.endColumn = endColumn;
+
+   return t;
 }
 static final int[] jjnextStates = {
    700, 701, 702, 564, 703, 704, 705, 567, 706, 707, 708, 570, 709, 710, 711, 573, 
@@ -6305,41 +6340,6 @@ private static final boolean jjCanMove_1(int hiByte, int i1, int i2, long l1, lo
    }
 }
 
-/** Token literal values. */
-public static final String[] jjstrLiteralImages = {
-"", null, null, null, null, null, null, null, null, null, null, null, null, 
-null, null, null, null, null, null, null, null, null, "\74\41\55\55", "\55\55\76", 
-null, "\174\75", null, null, "\55", null, null, null, null, null, null, null, null, 
-null, null, "\175", "\136\75", "\44\75", "\52\75", "\75", "\73", "\57", "\133", 
-"\135", "\52", "\56", "\51", "\50", "\72", null, null, null, null, null, null, null, 
-null, null, null, null, null, null, null, null, "\72\72", null, null, null, null, 
-null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-null, null, null, "\174", "\45", };
-protected Token jjFillToken()
-{
-   final Token t;
-   final String curTokenImage;
-   final int beginLine;
-   final int endLine;
-   final int beginColumn;
-   final int endColumn;
-   String im = jjstrLiteralImages[jjmatchedKind];
-   curTokenImage = (im == null) ? input_stream.GetImage() : im;
-   beginLine = input_stream.getBeginLine();
-   beginColumn = input_stream.getBeginColumn();
-   endLine = input_stream.getEndLine();
-   endColumn = input_stream.getEndColumn();
-   t = Token.newToken(jjmatchedKind, curTokenImage);
-
-   t.beginLine = beginLine;
-   t.endLine = endLine;
-   t.beginColumn = beginColumn;
-   t.endColumn = endColumn;
-
-   return t;
-}
-
 int curLexState = 0;
 int defaultLexState = 0;
 int jjnewStateCnt;
@@ -6361,7 +6361,7 @@ public Token getNextToken()
    {
       curChar = input_stream.BeginToken();
    }
-   catch(java.io.IOException e)
+   catch(Exception e)
    {
       jjmatchedKind = 0;
       jjmatchedPos = -1;
@@ -6422,6 +6422,31 @@ public Token getNextToken()
   }
 }
 
+void SkipLexicalActions(Token matchedToken)
+{
+   switch(jjmatchedKind)
+   {
+      default :
+         break;
+   }
+}
+void MoreLexicalActions()
+{
+   jjimageLen += (lengthOfMatch = jjmatchedPos + 1);
+   switch(jjmatchedKind)
+   {
+      default :
+         break;
+   }
+}
+void TokenLexicalActions(Token matchedToken)
+{
+   switch(jjmatchedKind)
+   {
+      default :
+         break;
+   }
+}
 private void jjCheckNAdd(int state)
 {
    if (jjrounds[state] != jjround)
@@ -6465,9 +6490,14 @@ private void jjCheckNAddStates(int start, int end)
   }
 
   /** Reinitialise parser. */
+  
   public void ReInit(SimpleCharStream stream)
   {
-    jjmatchedPos = jjnewStateCnt = 0;
+
+
+    jjmatchedPos =
+    jjnewStateCnt =
+    0;
     curLexState = defaultLexState;
     input_stream = stream;
     ReInitRounds();
@@ -6483,6 +6513,7 @@ private void jjCheckNAddStates(int start, int end)
 
   /** Reinitialise parser. */
   public void ReInit(SimpleCharStream stream, int lexState)
+  
   {
     ReInit(stream);
     SwitchTo(lexState);
@@ -6497,9 +6528,19 @@ private void jjCheckNAddStates(int start, int end)
       curLexState = lexState;
   }
 
+
 /** Lexer state names. */
 public static final String[] lexStateNames = {
    "DEFAULT",
+};
+
+/** Lex State array. */
+public static final int[] jjnewLexState = {
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, 
 };
 static final long[] jjtoToken = {
    0xffffffffffe00001L, 0x3ff803fffffL, 
@@ -6510,11 +6551,16 @@ static final long[] jjtoSkip = {
 static final long[] jjtoSpecial = {
    0x2L, 0x0L, 
 };
+static final long[] jjtoMore = {
+   0x0L, 0x0L, 
+};
     protected SimpleCharStream  input_stream;
 
     private final int[] jjrounds = new int[775];
     private final int[] jjstateSet = new int[2 * 775];
-
-    
-    protected char curChar;
+    private final StringBuilder jjimage = new StringBuilder();
+    private StringBuilder image = jjimage;
+    private int jjimageLen;
+    private int lengthOfMatch;
+    protected int curChar;
 }
