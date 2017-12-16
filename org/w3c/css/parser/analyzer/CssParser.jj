@@ -1500,12 +1500,25 @@ void atRuleDeclaration() :
 {
     n=<ATKEYWORD>
 	{
-	    //ac.getFrame().addWarning("at-rule", token.toString());
-	    ac.getFrame().addError(
-		          new CssError(new InvalidParamException("at-rule", 
-								 token, ac)));
+		if (n.toString().charAt(1) == '-') {
+			if (ac.getTreatVendorExtensionsAsWarnings()) {
+				ac.getFrame() //
+					.addWarning("at-rule", //
+						n.toString());
+			} else {
+				addAtRuleError();
+			}
+		} else {
+			addAtRuleError();
+		}
 	    skipStatement();
 	}
+}
+
+JAVACODE
+void addAtRuleError() { //
+	ac.getFrame().addError(new CssError(new InvalidParamException( //
+				"at-rule", token, ac)));
 }
 
 /**
