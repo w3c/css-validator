@@ -186,6 +186,7 @@ warning.relative: Using relative units gives more robust stylesheets in property
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Unrecognized at-rule %s
+warning.at-rule: Unrecognized at-rule %s
 
 # used by all properties and values
 error.operator: %s is an incorrect operator
