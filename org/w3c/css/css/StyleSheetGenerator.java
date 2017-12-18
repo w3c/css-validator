@@ -5,6 +5,8 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.apache.velocity.tools.ToolManager;
 import org.w3c.css.error.ErrorReportHTML;
 import org.w3c.css.parser.CssError;
@@ -83,17 +85,10 @@ public class StyleSheetGenerator extends StyleReport {
 		}
 
 		try {
-			Velocity.setProperty(Velocity.RESOURCE_LOADER, "file");
-			Velocity.addProperty(Velocity.RESOURCE_LOADER, "jar");
-			Velocity.setProperty("jar." + Velocity.RESOURCE_LOADER + ".class",
-					"org.apache.velocity.runtime.resource.loader.JarResourceLoader");
-			URL path = StyleSheetGenerator.class.getResource("/");
-			if (path != null) {
-				Velocity.addProperty("file." + Velocity.RESOURCE_LOADER +
-						".path", path.getFile());
-				Velocity.setProperty("jar." + Velocity.RESOURCE_LOADER + ".path",
-						"jar:" + path + "css-validator.jar");
-			}
+			Velocity.setProperty(RuntimeConstants.RESOURCE_LOADER,
+				"classpath");
+			Velocity.setProperty("classpath.resource.loader.class",
+				ClasspathResourceLoader.class.getName());
 			Velocity.init();
 			velocityToolManager = new ToolManager();
 			velocityToolManager.configure("org/w3c/css/css/velocity-tools.xml");

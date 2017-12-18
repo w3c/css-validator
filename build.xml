@@ -116,14 +116,13 @@
       windowtitle="W3C CSS Validator API"/>
   </target>
 
-  <target name="jar" depends="build" description="Creates the lib archive">
+  <target name="jar" depends="build" description="Creates the lib archive with all dependency jars included">
     <delete file="${jar.file}"/>
     <jar jarfile="${jar.file}" basedir="build" excludes="org/**/*.java">
       <zipgroupfileset dir="lib" includes="*.jar"/>
       <include name="org/**"/>
       <manifest>
         <attribute name="Main-Class" value="org.w3c.css.css.CssValidator"/>
-        <attribute name="Class-path" value=". lib/commons-beanutils-1.9.2.jar lib/commons-collections-3.2.1.jar lib/commons-digester-1.8.1.jar lib/commons-text-1.1.jar lib/commons-logging-1.1.1.jar lib/jigsaw-2.2.6.jar lib/tagsoup-1.2.1.jar lib/velocity-1.7.jar lib/velocity-tools-generic-2.0.jar lib/xercesImpl-2.11.0.jar lib/xml-apis-1.4.01.jar lib/htmlparser-1.4.1.jar"/>
       </manifest>
     </jar>
   </target>
