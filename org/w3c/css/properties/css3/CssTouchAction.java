@@ -4,11 +4,6 @@
 
 package org.w3c.css.properties.css3;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -17,177 +12,188 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
+
 /**
- * <P>
- * <EM>Value:</EM> auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y |
- * pan-up | pan-down ] || pinch-zoom ] | manipulation<BR>
- * <EM>Initial:</EM> auto<BR>
- * <EM>Applies to:</EM> all elements except: non-replaced inline elements, table
- * rows, row groups, table columns, and column groups.<BR>
- * <EM>Inherited:</EM> no<BR>
- * <EM>Percentages:</EM> no<BR>
- * <EM>Media:</EM> :visual
- * <P>
- * The touch-action CSS property determines whether touch input <EM>MAY</EM>
- * trigger default behavior supplied by user agent.<BR>
- * This includes, but is not limited to, behaviors such as panning or zooming.
+ * @spec https://www.w3.org/TR/2016/WD-pointerevents2-20160719/#the-touch-action-css-property
+ * @spec https://compat.spec.whatwg.org/#touch-action
  */
 
-public class CssTouchAction extends CssProperty {
+public class CssTouchAction extends org.w3c.css.properties.css.CssTouchAction {
 
-    CssValue touchaction;
+    public static final CssIdent[] allowed_vertical_values;
+    public static final CssIdent[] allowed_horizontal_values;
+    public static final CssIdent[] allowed_values;
+    public static final CssIdent pinch_zoom;
 
-    /* See https://w3c.github.io/pointerevents/#the-touch-action-css-property
-     * and https://compat.spec.whatwg.org/#touch-action (for `pinch-zoom`). */
+    static {
+        String[] _allowed_vertical_values = {"pan-x", "pan-left", "pan-right"};
+        allowed_vertical_values = new CssIdent[_allowed_vertical_values.length];
+        int i = 0;
+        for (String s : _allowed_vertical_values) {
+            allowed_vertical_values[i++] = CssIdent.getIdent(s);
+        }
+        String[] _allowed_horizontal_values = {"pan-y", "pan-up", "pan-down"};
+        allowed_horizontal_values = new CssIdent[_allowed_horizontal_values.length];
+        i = 0;
+        for (String s : _allowed_horizontal_values) {
+            allowed_horizontal_values[i++] = CssIdent.getIdent(s);
+        }
+        String[] _allowed_values = {"auto", "none", "manipulation"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        pinch_zoom = CssIdent.getIdent("pinch-zoom");
+    }
 
-    CssIdent auto = new CssIdent("auto");
-    CssIdent none = new CssIdent("none");
-    CssIdent panX = new CssIdent("pan-x");
-    CssIdent panLeft = new CssIdent("pan-left");
-    CssIdent panRight = new CssIdent("pan-right");
-    CssIdent panY = new CssIdent("pan-y");
-    CssIdent panUp = new CssIdent("pan-up");
-    CssIdent panDown = new CssIdent("pan-down");
-    CssIdent pinchZoom = new CssIdent("pinch-zoom");
-    CssIdent manipulation = new CssIdent("manipulation");
+    public static CssIdent getAllowedHorizontalIdent(CssIdent ident) {
+        for (CssIdent id : allowed_horizontal_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getAllowedVerticalIdent(CssIdent ident) {
+        for (CssIdent id : allowed_vertical_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssTouchAction
      */
     public CssTouchAction() {
-        touchaction = new CssValueList(
-                new ArrayList<CssValue>(Arrays.asList(auto)));
+        value = initial;
     }
 
     /**
      * Create a new CssTouchAction
      *
-     * @param expression
-     *            The expression for this property
-     * @exception InvalidParamException
-     *                Incorrect value
+     * @param expression The expression for this property
+     * @throws InvalidParamException Incorrect value
      */
     public CssTouchAction(ApplContext ac, CssExpression expression,
-            boolean check) throws InvalidParamException {
+                          boolean check) throws InvalidParamException {
+
         CssValue val;
-        ArrayList<CssValue> values = new ArrayList<CssValue>();
-        boolean gotHorizontal = false;
-        boolean gotVertical = false;
-        boolean gotPinchZoom = false;
+        char op;
+        CssIdent id, ident;
+        boolean got_vertical = false;
+        boolean got_horizontal = false;
+        boolean got_pinch_zoom = false;
 
         setByUser();
 
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+
+        ArrayList<CssValue> values = new ArrayList<>();
+
         while (!expression.end()) {
             val = expression.getValue();
+            op = expression.getOperator();
 
-            if (val.getType() != CssTypes.CSS_IDENT) {
-                throw new InvalidParamException("value", val, getPropertyName(),
-                        ac);
-            } else if (val.equals(auto) || val.equals(none)
-                    || val.equals(manipulation)) {
-                if (expression.getCount() > 1) {
-                    throw new InvalidParamException("unrecognize", ac);
-                }
-            } else if (val.equals(panX) //
-                    || val.equals(panLeft) //
-                    || val.equals(panRight)) {
-                if (gotHorizontal) {
-                    throw new InvalidParamException("unrecognize", ac);
-                }
-                gotHorizontal = true;
-            } else if (val.equals(panY) //
-                    || val.equals(panUp) //
-                    || val.equals(panDown)) {
-                if (gotVertical) {
-                    throw new InvalidParamException("unrecognize", ac);
-                }
-                gotVertical = true;
-            } else if (val.equals(pinchZoom)) {
-                if (gotPinchZoom) {
-                    throw new InvalidParamException("unrecognize", ac);
-                }
-                gotPinchZoom = true;
-            } else {
-                throw new InvalidParamException("value", val.toString(),
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
                         getPropertyName(), ac);
             }
-            values.add(val);
-            expression.next();
+
+            if (val.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            id = (CssIdent) val;
+            if (id.equals(inherit)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(inherit);
+                expression.next();
+                continue;
+            }
+            // check for single values first.
+            ident = getAllowedIdent(id);
+            if (ident != null) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(ident);
+                expression.next();
+                continue;
+            }
+            // then for the possible double values
+            ident = getAllowedHorizontalIdent(id);
+            if (ident != null) {
+                if (got_horizontal) {
+                    // we already got one
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                got_horizontal = true;
+                values.add(ident);
+                expression.next();
+                continue;
+            }
+            ident = getAllowedVerticalIdent(id);
+            if (ident != null) {
+                if (got_vertical) {
+                    // we already got one
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                got_vertical = true;
+                values.add(ident);
+                expression.next();
+                continue;
+            }
+            if (pinch_zoom.equals(id)) {
+                if (got_pinch_zoom) {
+                    // we already got one
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                got_pinch_zoom = true;
+                values.add(pinch_zoom);
+                expression.next();
+                continue;
+            }
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
+
         }
-        touchaction = new CssValueList(values);
+        // no need to check for single values as it was done earlier.
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
     public CssTouchAction(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
-
-    /**
-     * Add this property to the CssStyle
-     *
-     * @param style
-     *            The CssStyle
-     */
-    public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssTouchAction != null)
-            style.addRedefinitionWarning(ac, this);
-        ((Css3Style) style).cssTouchAction = this;
-    }
-
-    /**
-     * Get this property in the style.
-     *
-     * @param style
-     *            The style where the property is
-     * @param resolve
-     *            if true, resolve the style to find this property
-     */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css3Style) style).getAlignmentAdjust();
-        } else {
-            return ((Css3Style) style).cssTouchAction;
-        }
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param value
-     *            The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssTouchAction
-                && touchaction.equals(((CssTouchAction) property).touchaction));
-    }
-
-    /**
-     * Returns the name of this property
-     */
-    public String getPropertyName() {
-        return "touch-action";
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return touchaction;
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return touchaction.toString();
-    }
-
-    /**
-     * Is the value of this property a default value It is used by all macro for
-     * the function <code>print</code>
-     */
-    public boolean isDefault() {
-        return "auto".equals(touchaction.toString());
-    }
-
 }

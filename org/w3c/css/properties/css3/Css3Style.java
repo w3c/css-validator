@@ -171,6 +171,7 @@ import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
+import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
 import org.w3c.css.properties.css.CssTransformOrigin;
 import org.w3c.css.properties.css.CssTransformStyle;
@@ -217,6 +218,7 @@ public class Css3Style extends ATSCStyle {
 	public CssNegative counterStyleCssNegative;
 
 	public CssWritingMode cssWritingMode;
+    public CssTouchAction cssTouchAction;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
 	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
@@ -269,7 +271,6 @@ public class Css3Style extends ATSCStyle {
 	public CssWillChange cssWillChange;
 	
 	public CssContain cssContain;
-	public CssTouchAction cssTouchAction;
 
 	public CssMixBlendMode cssMixBlendMode;
 	public CssIsolation cssIsolation;
@@ -447,6 +448,15 @@ public class Css3Style extends ATSCStyle {
 		return cssWritingMode;
 	}
 
+    public CssTouchAction getTouchAction() {
+        if (cssTouchAction == null) {
+            cssTouchAction =
+                    (CssTouchAction) style.CascadingOrder(new CssTouchAction(),
+                            style, selector);
+        }
+        return cssTouchAction;
+    }
+    
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {
 		if (counterStyleCssSpeakAs == null) {
 			counterStyleCssSpeakAs = (org.w3c.css.properties.css.counterstyle.CssSpeakAs) style.CascadingOrder(new org.w3c.css.properties.css.counterstyle.CssSpeakAs(), style, selector);
@@ -946,14 +956,6 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssContain;
-	}
-
-	public final CssTouchAction getTouchAction() {
-		if (cssTouchAction == null) {
-			cssTouchAction = (CssTouchAction) style //
-			.CascadingOrder(new CssFloatOffset(), style, selector);
-		}
-		return cssTouchAction;
 	}
 
 	public CssMixBlendMode getMixBlendMode() {
