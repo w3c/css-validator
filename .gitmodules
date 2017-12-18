@@ -1,6 +1,3 @@
-[submodule "autotest/testsuite"]
-	path = autotest/testsuite
-	url = https://github.com/w3c/css-validator-testsuite.git
 [submodule "testsuite"]
 	path = testsuite
 	url = https://github.com/w3c/css-validator-testsuite.git
