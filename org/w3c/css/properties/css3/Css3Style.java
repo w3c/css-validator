@@ -269,6 +269,7 @@ public class Css3Style extends ATSCStyle {
 	public CssWillChange cssWillChange;
 	
 	public CssContain cssContain;
+	public CssTouchAction cssTouchAction;
 
 	public CssMixBlendMode cssMixBlendMode;
 	public CssIsolation cssIsolation;
@@ -945,6 +946,14 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssContain;
+	}
+
+	public final CssTouchAction getTouchAction() {
+		if (cssTouchAction == null) {
+			cssTouchAction = (CssTouchAction) style //
+			.CascadingOrder(new CssFloatOffset(), style, selector);
+		}
+		return cssTouchAction;
 	}
 
 	public CssMixBlendMode getMixBlendMode() {
