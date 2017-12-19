@@ -5,14 +5,18 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import static org.w3c.css.values.CssOperator.SPACE;
+
 /**
- * @spec http://www.w3.org/TR/2011/REC-SVG11-20110816/masking.html#ClipPathProperty
+ * @spec https://www.w3.org/TR/2014/CR-css-masking-1-20140826/#the-clip-path
  */
 public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
 
@@ -38,12 +42,21 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
 		setByUser();
 
 		CssValue val;
-		char op;
 
 		val = expression.getValue();
-		op = expression.getOperator();
 
 		switch (val.getType()) {
+			case CssTypes.CSS_FUNCTION:
+				CssFunction func = (CssFunction) val;
+				String funcname = func.getName().toLowerCase();
+				if (funcname.equals("inset")) {
+					checkInset(ac, func.getParameters(), this);
+				} else {
+					throw new InvalidParamException("value", val,
+							getPropertyName(), ac);
+				}
+				value = val;
+				break;
 			case CssTypes.CSS_URL:
 				value = val;
 				break;
@@ -69,5 +82,32 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
 		this(ac, expression, false);
 	}
 
+	static void checkInset(ApplContext ac, CssExpression expression,
+						   CssProperty caller) throws InvalidParamException {
+		if (expression.getCount() > 4) {
+			throw new InvalidParamException("unrecognize", ac);
+		}
+		CssValue val;
+		char op;
+		for (int i = 0; i < 4; i++) {
+			val = expression.getValue();
+			op = expression.getOperator();
+			if (op != SPACE) {
+				throw new InvalidParamException("inset-separator",
+						((new Character(op)).toString()), ac);
+			}
+			switch (val.getType()) {
+				case CssTypes.CSS_LENGTH:
+					break;
+				case CssTypes.CSS_PERCENTAGE:
+					break;
+				default:
+					throw new InvalidParamException("value",
+							val.toString(),
+							caller.getPropertyName(), ac);
+			}
+			expression.next();
+		}
+	}
 }
 

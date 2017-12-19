@@ -232,6 +232,9 @@ error.shape: Invalid shape definition rect(<top>,<right>,<bottom>,<left>)
 error.shape-separator: Invalid separator in shape definition. It must be a comma.
 warning.shape-separator: Invalid separator in shape definition. It must be a comma.
 
+# used by org.w3c.svg.properties.CssClipPath
+error.inset-separator: Invalid separator \u201C%s\u201D in \u201Cinset\u201D definition (must be a space)
+
 # used by org.w3c.css.properties.CssContent
 error.attr: Invalid attr definition attr(X)
 error.function: Invalid function definition 
