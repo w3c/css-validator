@@ -3,4 +3,4 @@
 	url = https://github.com/w3c/css-validator-testsuite.git
 [submodule "javacc"]
 	path = javacc
-	url = git@github.com:javacc/javacc.git
+	url = https://github.com/javacc/javacc.git
