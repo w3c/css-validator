@@ -64,6 +64,7 @@ import org.w3c.css.properties.css.CssVisibility;
 import org.w3c.css.properties.css.CssVoiceFamily;
 import org.w3c.css.properties.css.CssVolume;
 import org.w3c.css.properties.css.CssWidows;
+import org.w3c.css.properties.css.fontface.CssSrc;
 import org.w3c.css.properties.css1.Css1Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Warning;
@@ -76,6 +77,11 @@ import org.w3c.css.values.CssIdent;
 public class Css2Style extends Css1Style {
 
 	static final CssIdent marker = CssIdent.getIdent("marker");
+    /**
+     * font-face
+     */
+    public CssSrc fontFaceCssSrc;
+
 	/**
 	 * aural properties
 	 */
@@ -156,6 +162,14 @@ public class Css2Style extends Css1Style {
 	public CssOrphans cssOrphans;
 	public CssWidows cssWidows;
 
+
+    public CssSrc getFontFaceCssSrc() {
+        if (fontFaceCssSrc == null) {
+            fontFaceCssSrc = (CssSrc) style.CascadingOrder(new CssSrc(),
+                    style, selector);
+        }
+        return fontFaceCssSrc;
+    }
 	/**
 	 * Get the azimuth
 	 */
