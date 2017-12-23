@@ -6064,7 +6064,14 @@ n.image = Util.strip(n.image);
 	 }
 	 token = oldToken;
 	 jj_kind = kind;
-	 throw generateParseException();
+	 if (kind == LBRACE) {
+	   if (ac.getTreatCssHacksAsWarnings()) {
+		ac.getFrame().addWarning("css-hack", skipStatement());
+	   } else {
+		addError(generateParseException(), skipStatement());
+	   }
+	 }
+	 return token;
   }
 
   @SuppressWarnings("serial")
