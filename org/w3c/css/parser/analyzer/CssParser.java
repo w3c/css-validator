@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.net.URL;
 import java.math.BigDecimal;
@@ -6043,6 +6044,11 @@ n.image = Util.strip(n.image);
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
+	 if (kind == IMPORTANT_SYM && !"!important".equals(token.next.image)) {
+	   throw new ParseException( //
+		 ac.getMsg().getString("parser.important_malformed", //
+		   new ArrayList<String>(Arrays.asList(token.next.image))));
+	 }
 	 Token oldToken;
 	 if ((oldToken = token).next != null) token = token.next;
 	 else token = token.next = token_source.getNextToken();
