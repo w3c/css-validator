@@ -462,7 +462,7 @@ SPECIAL_TOKEN :
     TOKEN [IGNORE_CASE] : /* basic tokens */
 { 
     < #H          : ["0"-"9", "a"-"f"] > 
-  | < #NONASCII   : ["\200"-"\377"] >
+  | < #NONASCII   : ["\u0080"-"\uFFFF"] >
   | < #UNICODE    : "\\" <H> ( <H> )? ( <H> )? ( <H> )? ( <H> )? ( <H> )?
 	            ( "\r\n" | [ " ", "\t" , "\n" , "\r", "\f" ] )? >
   | < #ESCAPE     : <UNICODE> | ( "\\" ~[ "\r", "\n", "\f", "0"-"9", "a"-"f" ] ) >
