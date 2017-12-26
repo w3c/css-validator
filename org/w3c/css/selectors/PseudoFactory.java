@@ -51,7 +51,8 @@ public class PseudoFactory {
 	};
 
 	private static final String[] PSEUDOELEMENT_CONSTANTSCSS3 = {
-			"first-line", "first-letter", "before", "after", "marker"
+			"first-line", "first-letter", "before", "after", "marker",
+			"selection", "placeholder", "backdrop"
 	};
 
 	private static final String[] PSEUDOELEMENT_CONSTANTSCSS2 = {
