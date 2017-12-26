@@ -20,7 +20,8 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"normal", "keep-all", "break-all"};
+		String[] _allowed_values = {"normal", "keep-all", "break-all",
+			"break-word"};
 		allowed_values = new CssIdent[_allowed_values.length];
 		int i = 0;
 		for (String s : _allowed_values) {
