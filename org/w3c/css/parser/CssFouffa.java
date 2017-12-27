@@ -24,6 +24,7 @@ import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
+import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Warnings;
 import org.w3c.css.values.CssExpression;
 
@@ -610,7 +611,12 @@ public final class CssFouffa extends CssParser {
         try {
             mf = properties.createMediaFeature(ac, rule, feature, expression);
         } catch (InvalidParamException e) {
-            throw e;
+            mf = null;
+            if (e instanceof WarningParamException) {
+                ac.getFrame().addWarning(e.getMessage(), feature);
+            } else {
+                ac.getFrame().addError(new CssError(e));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             if (Util.onDebug) {
@@ -619,6 +625,9 @@ public final class CssFouffa extends CssParser {
             throw new InvalidParamException(e.toString(), ac);
         }
 
+        if (mf == null) {
+            return mf;
+        }
         mf.setOrigin(origin);
         // set informations for errors and warnings
         mf.setInfo(ac.getFrame().getLine(), ac.getFrame().getSourceFile());

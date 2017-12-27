@@ -1341,7 +1341,9 @@ mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac);
       jj_consume_token(S);
     }
 MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
-        mediaRule.addMediaFeature(mf, ac);
+        if (mf != null) {
+            mediaRule.addMediaFeature(mf, ac);
+        }
   }
 
   final public void unused_production_generic_syntax() throws ParseException {CssExpression values = new CssExpression();
