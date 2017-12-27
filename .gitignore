@@ -1,3 +1,4 @@
+.ant-targets-build.xml
 .classpath
 .project
 .hg
@@ -6,6 +7,7 @@
 build
 lib
 tmp
+autotest/results/results.html
 autotest/testsuite
 observer-response.xsd
 properties.zip
