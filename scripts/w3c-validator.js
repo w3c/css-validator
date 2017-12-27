@@ -16,6 +16,30 @@ var W3C = {
 		W3C.Submits = $$('input[type=submit]');
 		W3C.Forms = $$('form');
 		
+		W3C.URI = $('uri');
+		W3C.URI.required = true;
+		W3C.URI.addEventListener("change",
+			function() { this.setCustomValidity('') }, false);
+		W3C.URI.Msg = $$('.instructions')[0].textContent
+			.replace(":", "");
+		W3C.URI.addEventListener("invalid",
+			function() { this.setCustomValidity(W3C.URI.Msg) });
+		W3C.File = $('file');
+		W3C.File.required = true;
+		W3C.File.addEventListener("change",
+			function() { this.setCustomValidity('') }, false);
+		W3C.File.Msg = $$('.instructions')[1].textContent
+			.replace(":", "");
+		W3C.File.addEventListener("invalid",
+			function() { this.setCustomValidity(W3C.File.Msg) });
+		W3C.Textarea = $$('textarea')[0];
+		W3C.Textarea.required = true;
+		W3C.Textarea.addEventListener("change",
+			function() { this.setCustomValidity('') });
+		W3C.Textarea.Msg = $$('.instructions')[2].textContent
+			.replace(":", "");
+		W3C.Textarea.addEventListener("invalid",
+			function() { this.setCustomValidity(W3C.Textarea.Msg) });
 		W3C.Submits.each(function(submit, i){
 			var value = submit.value;
 			submit.setStyle('display', 'none');
@@ -23,7 +47,10 @@ var W3C = {
 			var span = new Element('span').set('text', value).inject(link);
 			link.injectAfter(submit).addEvent('click', function(event){
 				new Event(event).stop();
-				W3C.Forms[i].submit();
+				if (W3C.Forms[i].reportValidity()) {
+					W3C.Forms[i].submit();
+				}
+
 			});
 		});
 		
