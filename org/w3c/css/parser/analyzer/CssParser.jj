@@ -2399,7 +2399,13 @@ void term(CssExpression exp) :
         | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
         | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
         | n=<DIMEN> {
-	    addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+	    if ("0\\0".equals(n.image) //
+		&& ac.getTreatVendorExtensionsAsWarnings()) {
+		ac.getFrame().addWarning("vendor-extension", n.image);
+	    } else {
+		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+	    }
+        }
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
@@ -2467,7 +2473,13 @@ void mediaterm(CssExpression exp) :
     | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
-	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+	    if ("0\\0".equals(n.image) //
+		&& ac.getTreatVendorExtensionsAsWarnings()) {
+		ac.getFrame().addWarning("vendor-extension", n.image);
+	    } else {
+		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+	    }
+    }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
