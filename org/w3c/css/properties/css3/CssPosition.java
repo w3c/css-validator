@@ -21,7 +21,7 @@ public class CssPosition extends org.w3c.css.properties.css.CssPosition {
 
 	static {
 		String[] _allowed_values = {"static", "relative", "absolute",
-				"center", "page", "fixed"};
+				"center", "page", "fixed", "sticky"};
 		int i = 0;
 		allowed_values = new CssIdent[_allowed_values.length];
 		for (String s : _allowed_values) {
