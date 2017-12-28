@@ -48,6 +48,7 @@ import java.net.URL;
  *
  * @version $Revision$
  */
+@SuppressWarnings("serial")
 public final class CssValidator extends HttpServlet {
 
 	final static String texthtml = "text/html";
