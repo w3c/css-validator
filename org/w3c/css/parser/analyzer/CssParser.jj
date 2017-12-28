@@ -794,7 +794,8 @@ void afterImportDeclaration() :
 {String ret; }
 {
     ( ( ruleSet() | media() | page() | fontFace() | keyframes() | preference() |
-	colorprofile() | counterstyle() | phoneticAlphabet() | ret=skipStatement() 
+	colorprofile() | counterstyle() | phoneticAlphabet() |
+	atRuleDeclaration() | ret=skipStatement()
 	{ if ((ret == null) || (ret.length() == 0)) {
 		return; 
 	    }
@@ -820,7 +821,7 @@ void afterImportDeclaration() :
 void ignoreStatement() :
 {}
 {
-    ( ( <CDO> | <CDC> | atRuleDeclaration() ) ( <S> )* )*
+    ( ( <CDO> | <CDC> ) ( <S> )* )*
 }
 
 void namespaceDeclaration() :
