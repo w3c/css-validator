@@ -590,6 +590,7 @@ TOKEN [IGNORE_CASE] :
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> ( "Hz" | "kHz" ) >
   | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "dppx" ) >
+  | < DIMEN_9    : <NUM> <NMSTART> ( <NMCHAR> )* "\\9" >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
@@ -2457,6 +2458,13 @@ void term(CssExpression exp) :
                        .getString("warning.css-hack"), n.image.trim()));
            }
          }
+        | n=<DIMEN_9> {
+	    if (ac.getTreatVendorExtensionsAsWarnings()) {
+		ac.getFrame().addWarning("vendor-extension", n.image);
+	    } else {
+		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+	    }
+        }
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
@@ -2540,6 +2548,13 @@ void mediaterm(CssExpression exp) :
                    .getString("warning.css-hack"), n.image.trim()));
        }
      }
+    | n=<DIMEN_9> {
+	    if (ac.getTreatVendorExtensionsAsWarnings()) {
+		ac.getFrame().addWarning("vendor-extension", n.image);
+	    } else {
+		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+	    }
+    }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
