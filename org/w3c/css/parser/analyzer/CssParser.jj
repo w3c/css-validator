@@ -597,7 +597,7 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {  
-    < IMPORTANT_SYM : "!" ( <_W> )* "important" >
+    < IMPORTANT_SYM : "!" ( <_W> )* ( ["a"-"z", "0"-"9"] )* >
 }
 
 <DEFAULT>
