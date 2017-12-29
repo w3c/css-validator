@@ -24,6 +24,7 @@ import org.w3c.css.properties.css.CssAnimationIterationCount;
 import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
+import org.w3c.css.properties.css.CssAppearance;
 import org.w3c.css.properties.css.CssBackfaceVisibility;
 import org.w3c.css.properties.css.CssBackgroundBlendMode;
 import org.w3c.css.properties.css.CssBackgroundClip;
@@ -219,6 +220,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssWritingMode cssWritingMode;
 	public CssTouchAction cssTouchAction;
+	public CssAppearance cssAppearance;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
 	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
@@ -454,6 +456,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssTouchAction;
+	}
+
+	public CssAppearance getAppearance() {
+		if (cssAppearance == null) {
+			cssAppearance =
+					(CssAppearance) style.CascadingOrder(new CssAppearance(),
+							style, selector);
+		}
+		return cssAppearance;
 	}
 
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {
