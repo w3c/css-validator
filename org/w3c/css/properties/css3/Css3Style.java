@@ -424,7 +424,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineStackingShift cssLineStackingShift;
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
-	CssAppearance cssAppearance;
 	CssRubySpan cssRubySpan;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
@@ -1415,15 +1414,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextHeight(), style, selector);
 		}
 		return cssTextHeight;
-	}
-
-	public CssAppearance getAppearance() {
-		if (cssAppearance == null) {
-			cssAppearance =
-					(CssAppearance) style.CascadingOrder(
-							new CssAppearance(), style, selector);
-		}
-		return cssAppearance;
 	}
 
 	public CssIcon getIcon() {
