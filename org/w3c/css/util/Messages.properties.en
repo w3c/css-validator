@@ -299,7 +299,7 @@ warning.noexistence: Property \u201C%s\u201D doesn't exist in \u201C%s\u201D but
 warning.noexistence-media: Property \u201C%s\u201D doesn't exist for media \u201C%s\u201D
 warning.notforusermedium : Property \u201C%s\u201D doesn't exist for this usermedium
 warning.noothermedium : Properties for other media might not work for usermedium
-warning.vendor-extension : Property \u201C%s\u201D is an unknown vendor extension
+warning.vendor-extension : \u201C%s\u201D is an unknown vendor extension
 warning.vendor-ext-pseudo-class : \u201C%s\u201D is an unknown vendor extended pseudo-class
 warning.vendor-ext-pseudo-element : \u201C%s\u201D is an unknown vendor extended pseudo-element
 
