@@ -532,6 +532,7 @@ TOKEN :
   | <IDENT     : <_IDENT> >
   | <HASHIDENT : "#" <_IDENT> >
   | <HASH      : "#" <NAME> >
+  | <PROGID    : "progid:DXImageTransform.Microsoft." ( ["a"-"z"] )+ ( ~[")"] )+ ")" >
 }
 
 <DEFAULT>
@@ -2358,7 +2359,11 @@ CssExpression expr() :
   CssExpression values = new CssExpression();
 }
 {
+  try {
   term(values) ( operator(values) term(values) )*
+    } catch (WarningParamException e) {
+      ac.getFrame().addWarning(e.getMessage(), e.getMessageArgs());
+    }
   { return values; }
 }
 
@@ -2398,6 +2403,14 @@ void term(CssExpression exp) :
         | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
         | n=<DIMEN> {
 	    addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+        | n=<PROGID> {
+	    if (ac.getTreatVendorExtensionsAsWarnings()) {
+		throw new WarningParamException("vendor-extension", n.image);
+	    } else {
+		throw new ParseException(String.format(ac.getMsg()
+			.getString("warning.vendor-extension"), n.image));
+	    }
+        }
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
