@@ -32,6 +32,21 @@ import java.util.StringTokenizer;
  */
 public class CssPropertyFactory implements Cloneable {
 
+	private static final String[] NONSTANDARD_PROPERTIES = //
+		{"zoom"};
+
+	private static boolean isNonstandardProperty(String property) {
+		if (property.charAt(0) == '-' || property.charAt(0) == '_') {
+				return true;
+		}
+		for (String s : NONSTANDARD_PROPERTIES) {
+			if (s.equals(property)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	// all recognized properties are here.
 	private Utf8Properties properties;
 
@@ -284,7 +299,6 @@ public class CssPropertyFactory implements Cloneable {
 	}
 
 	private boolean isVendorExtension(String property) {
-		return property.length() > 0 &&
-				(property.charAt(0) == '-' || property.charAt(0) == '_');
+		return property.length() > 0 && isNonstandardProperty(property);
 	}
 }
