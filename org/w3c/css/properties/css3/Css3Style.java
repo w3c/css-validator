@@ -24,6 +24,7 @@ import org.w3c.css.properties.css.CssAnimationIterationCount;
 import org.w3c.css.properties.css.CssAnimationName;
 import org.w3c.css.properties.css.CssAnimationPlayState;
 import org.w3c.css.properties.css.CssAnimationTimingFunction;
+import org.w3c.css.properties.css.CssAppearance;
 import org.w3c.css.properties.css.CssBackfaceVisibility;
 import org.w3c.css.properties.css.CssBackgroundBlendMode;
 import org.w3c.css.properties.css.CssBackgroundClip;
@@ -220,6 +221,7 @@ public class Css3Style extends ATSCStyle {
 
 	public CssWritingMode cssWritingMode;
 	public CssTouchAction cssTouchAction;
+	public CssAppearance cssAppearance;
 	public CssUserSelect cssUserSelect;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
@@ -426,7 +428,6 @@ public class Css3Style extends ATSCStyle {
 	CssLineStackingShift cssLineStackingShift;
 	CssLineStackingStrategy cssLineStackingStrategy;
 	CssTextHeight cssTextHeight;
-	CssAppearance cssAppearance;
 	CssRubySpan cssRubySpan;
 	CssCrop cssCrop;
 	CssFitPosition cssFitPosition;
@@ -459,6 +460,15 @@ public class Css3Style extends ATSCStyle {
 		return cssTouchAction;
 	}
 
+	public CssAppearance getAppearance() {
+		if (cssAppearance == null) {
+			cssAppearance =
+					(CssAppearance) style.CascadingOrder(new CssAppearance(),
+							style, selector);
+		}
+		return cssAppearance;
+  }
+  
 	public CssUserSelect getUserSelect() {
 		if (cssUserSelect == null) {
 			cssUserSelect =
@@ -1426,15 +1436,6 @@ public class Css3Style extends ATSCStyle {
 							new CssTextHeight(), style, selector);
 		}
 		return cssTextHeight;
-	}
-
-	public CssAppearance getAppearance() {
-		if (cssAppearance == null) {
-			cssAppearance =
-					(CssAppearance) style.CascadingOrder(
-							new CssAppearance(), style, selector);
-		}
-		return cssAppearance;
 	}
 
 	public CssIcon getIcon() {
