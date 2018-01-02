@@ -255,3 +255,14 @@ p.backtop a:link, p.backtop a:hover, p.backtop a:visited {
         text-decoration: none;
 }
 
+.error code, .warning code,
+.unrecognized, .exp, .skippedString, .codeContext {
+        border: 1px dashed #999;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+}
+
+.unrecognized, .exp, .skippedString, .codeContext {
+        font-family: monospace;
+}
