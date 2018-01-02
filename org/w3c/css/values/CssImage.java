@@ -298,6 +298,12 @@ public class CssImage extends CssValue {
 							((new Character(op)).toString()), ac);
 				}
 			}
+			if (top.equals(ident) || bottom.equals(ident)
+				|| left.equals(ident) || right.equals(ident)) {
+					throw new InvalidParamException( //
+						"linear-gradient-missing-to",
+						"to " + ident, ident, ac);
+			}
 		}
 		// now we a list of at least two color stops.
 		ArrayList<CssValue> stops = parseColorStops(exp, ac);

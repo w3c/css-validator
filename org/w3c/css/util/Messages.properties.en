@@ -275,6 +275,9 @@ error.zero: only \u201C0\u201D can be a \u201C%s\u201D. You must put a unit afte
 warning.zero:  only \u201C0\u201D can be a \u201C%s\u201D. You must put a unit after your number
 warning.dynamic: dynamic values cannot be checked as an unitless number. Please qualify it with an unit.
 
+# used by org.w3c.css.values.CssImage
+error.linear-gradient-missing-to: The first argument to the \u201Clinear-gradient\u201D function should be \u201C%s\u201D, not \u201C%s\u201D
+
 #used by org.w3c.css.properties.CssColumnCount
 error.strictly-positive: \u201C%s\u201D is not valid, only values greater than /u201C0/u201D allowed.
 
