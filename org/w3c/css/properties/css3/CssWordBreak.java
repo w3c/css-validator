@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#word-break0
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#word-break-property
  */
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
