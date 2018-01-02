@@ -120,31 +120,31 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Redefinition of %s
+warning.redefinition: Redefinition of \u201C%s\u201D
 
 # used by xml parser 
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 warning.link-type: Ar trebui sa adaugi elementului 'link' un atribut 'type' cu valoarea 'text/css'
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Aceeasi culoare pentru %s si %s
+warning.same-colors: Aceeasi culoare pentru \u201C%s\u201D si \u201C%s\u201D
 warning.no-color: Nu aveti o culoare stabilita(sau culoarea este setata pe transparent) dar ati stabilit o culoare de fundal. Aveti in vedere daca aceasta cascada de culori pastreaza textul lizibil.
 warning.no-background-color: Nu aveti o culoare de fundat stabilita(sau culoarea de fundal este transparenta) dar aveti stabilita o culoare. Aveti in vedere daca aceasta cascada de culori pastreaza textul lizibil.
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Chiar daca numele culorilor nu sunt sensibile la capitalizare, este recomandat sa folositi capitalizare combinata pentru a face mai lizibile numele culorilor: %s
-warning.no-generic-family: %s: Esti incurajat sa oferi o familie generica ca o ultima alternativa 
+#warning.color.mixed-capitalization: Chiar daca numele culorilor nu sunt sensibile la capitalizare, este recomandat sa folositi capitalizare combinata pentru a face mai lizibile numele culorilor: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Esti incurajat sa oferi o familie generica ca o ultima alternativa 
 warning.with-space: Numele de familie ce contin spatii goale ar trebui citate. Daca citarea este omisa, orice spatiu gol inainte si dupa nume sunt ignorate si orice secventa de caractere goale din nume sunt convertite intr-un singur spatiu.
 warning.no-padding: Esti incurajat sa ai o arie de padding cu o culoare de fundal.
-warning.same-colors2: Aceleasi culori pentru culoare si culoare de fundal in doua contexte %s si %s
-warning.relative-absolute: Ai cateva lungimi absolute si relative in %s. Asta nu este o foaie de stil robusta.
+warning.same-colors2: Aceleasi culori pentru culoare si culoare de fundal in doua contexte \u201C%s\u201D si \u201C%s\u201D
+warning.relative-absolute: Ai cateva lungimi absolute si relative in \u201C%s\u201D. Asta nu este o foaie de stil robusta.
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s nu este un element HTML
+warning.unknown-html: \u201C%s\u201D nu este un element HTML
 warning.html-inside: Elementul HTML nu poate fi in interiorul altui element 
 warning.body-inside: Elemntul BODY nu poate fi in interiorul altui element decat HTML
-warning.pseudo-classes: Ancora pseudo-class %s nu are efect asupra elementelor, decat al 'A'
+warning.pseudo-classes: Ancora pseudo-class \u201C%s\u201D nu are efect asupra elementelor, decat al 'A'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s nu se poate gasi in interiorul unui element
+warning.noinside: \u201C%s\u201D nu se poate gasi in interiorul unui element
 warning.withblock: Ai grija. pseudo-elementele pot fi atasate doar unui element block-level
 warning.block-level: Aceasta proprietate se aplica elementelor block-level.
 
@@ -155,31 +155,31 @@ warning.no-declaration: Fara declaratii in regula
 warning.unsupported-import: Foile de stil importate nu sunt verificate in introducerea directa a codului sau in incarcarea fisierului
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s este in afara 
+warning.out-of-range: \u201C%s\u201D este in afara 
 error.invalid-color: Functie RGB invalida
 
 warning.marker: Proprietatea marker-offset se aplica la elemente ce contin 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: Folosirea unitatilor relative ofera foi de stil mai robuste in proprietatea %s
+warning.relative: Folosirea unitatilor relative ofera foi de stil mai robuste in proprietatea \u201C%s\u201D
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Scuza, regula %s nu este implementataq.
+error.at-rule: Scuza, regula \u201C%s\u201D nu este implementataq.
 
 # used by all properties and values
-error.operator: %s este un operator incorect
-error.negative-value: valorile negative %s nu sunt permise
-error.few-value: prea putine valori pentru %s
+error.operator: \u201C%s\u201D este un operator incorect
+error.negative-value: valorile negative \u201C%s\u201D nu sunt permise
+error.few-value: prea putine valori pentru \u201C%s\u201D
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s is not a %s value
+error.value: \u201C%s\u201D is not a \u201C%s\u201D value
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s nu este un nume de grup corect. Foloseste un identificator valid
+error.groupname: \u201C%s\u201D nu este un nume de grup corect. Foloseste un identificator valid
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s nu are setata proprietatea toggle-group 
+error.nogroup: \u201C%s\u201D nu are setata proprietatea toggle-group 
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Valorile trebuie sa fie cuprinse intre -360 si 360 si sa fie divizibile cu 90
@@ -188,17 +188,17 @@ error.anglevalue: Valorile trebuie sa fie cuprinse intre -360 si 360 si sa fie d
 error.percentage: Era asteptata o valoare procentuala
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: valoarea %s se aplica doar la XSL
+warning.xsl: valoarea \u201C%s\u201D se aplica doar la XSL
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: medialist ar trebui sa inceapa cu 'media :' %s
-error.nocomb: Combinatorul %s intre selectori nu este permis in acest profil sau versiune
+warning.medialist: medialist ar trebui sa inceapa cu 'media :' \u201C%s\u201D
+error.nocomb: Combinatorul \u201C%s\u201D intre selectori nu este permis in acest profil sau versiune
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: decat sa folosesti 'direction' pentru elemente block-level folosezte proprietatea 'writing-mode' CSS3
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s apare de doua ori
+error.same-value: \u201C%s\u201D apare de doua ori
 
 error.generic-family.quote: Numele de familie generice sunt cuvinte cheie si, de aceea, nu trebuie citate.
 
@@ -217,7 +217,7 @@ error.format: Definirea formatului invalida format(<string>[,<string>]*)
 error.local: Definirea locala a formatului invalida local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s este o unitate incorecta
+error.unit: \u201C%s\u201D este o unitate incorecta
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: Positia trebuie descrisa in grade.
@@ -235,43 +235,43 @@ error.integer: Acest numar trebuie sa fie intreg.
 error.comma: Lipseste separatorul virgula.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s este un procentaj incorect
+error.percent: \u201C%s\u201D este un procentaj incorect
 
 # used by org.w3c.css.values.CssString
-error.string: %s este un sir incorect
+error.string: \u201C%s\u201D este un sir incorect
 
 # used by org.w3c.css.values.CssURL
-error.url: %s este un URL incorect
+error.url: \u201C%s\u201D este un URL incorect
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s nu este o culoare valida. Numere cu 3 sau 6 hexizecimale
-error.angle: %s nu este un unghi valid. Valorile trebuie sa fie intre 0 si 360
+error.rgb: \u201C%s\u201D nu este o culoare valida. Numere cu 3 sau 6 hexizecimale
+error.angle: \u201C%s\u201D nu este un unghi valid. Valorile trebuie sa fie intre 0 si 360
 
 # used by org.w3c.css.values.CssNumber
-error.zero: numai 0 poate fi un %s. Trebuie sa pui o unitate dupa numar
-warning.zero: numai 0 poate fi un %s. Trebuie sa pui o unitate dupa numar
+error.zero: numai 0 poate fi un \u201C%s\u201D. Trebuie sa pui o unitate dupa numar
+warning.zero: numai 0 poate fi un \u201C%s\u201D. Trebuie sa pui o unitate dupa numar
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: %s nu este valid, numai valori mai mari decat 0 sunt acceptate
+error.strictly-positive: \u201C%s\u201D nu este valid, numai valori mai mari decat 0 sunt acceptate
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Proprietatea %s nu exista
-error.noexistence-media: Proprietatea %s nu exista pentru media %s
-error.noexistence: Proprietatea %s nu exista in %s dar exista in %s
-warning.noexistence: Proprietatea %s nu exista in %s dar exista in %s
-warning.noexistence-media: Proprietatea %s nu exista pentru media %s
-warning.notforusermedium : Proprietatea %s nu exista pentru acest mediu de utilizare
+error.noexistence-at-all: Proprietatea \u201C%s\u201D nu exista
+error.noexistence-media: Proprietatea \u201C%s\u201D nu exista pentru media \u201C%s\u201D
+error.noexistence: Proprietatea \u201C%s\u201D nu exista in \u201C%s\u201D dar exista in \u201C%s\u201D
+warning.noexistence: Proprietatea \u201C%s\u201D nu exista in \u201C%s\u201D dar exista in \u201C%s\u201D
+warning.noexistence-media: Proprietatea \u201C%s\u201D nu exista pentru media \u201C%s\u201D
+warning.notforusermedium : Proprietatea \u201C%s\u201D nu exista pentru acest mediu de utilizare
 warning.noothermedium : Proprietatile pentru ale medii ar putea sa nu functioneze pentru acest mediu de utilizare
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet: Other @rules than @import are not supported by CSS1 %s
+error.noatruleyet: Other @rules than @import are not supported by CSS1 \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1: Valoarea %s nu exista pentru CSS1
-warning.pseudo: pseudo-element necunoscut sau pseudo-clasa %s in profilul predefinit (%s)
-warning.nocomb: Combinatorul %s intre selectori nu este permis in acest profil (%s)
+error.notforcss1: Valoarea \u201C%s\u201D nu exista pentru CSS1
+warning.pseudo: pseudo-element necunoscut sau pseudo-clasa \u201C%s\u201D in profilul predefinit (\u201C%s\u201D)
+warning.nocomb: Combinatorul \u201C%s\u201D intre selectori nu este permis in acest profil (\u201C%s\u201D)
 warning.charsetspecial: Acest profil are o sintaxa specifica pentru @charset: \
 @charset urmat de exact un spatiu, urmat de numele codificarii\
 in citate, urmat imediat de punct si virgula.
-warning.notversion: %s nu poate fi folosit cu aceasta versiune de CSS: %s
+warning.notversion: \u201C%s\u201D nu poate fi folosit cu aceasta versiune de CSS: \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Prea multe valori sau valorile nu sunt recunoscute
@@ -284,21 +284,21 @@ generator.dontmixhtml: Parse Error. Foile de stil nu ar trebui sa includa sintax
 error.unknown: Eroare necunoscuta
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: pseudo-elementul :%s nu poate apare in contextul %s
-error.pseudo-class: pseudo-clasa .%s nu poate aparea in acest context HTML %s
-error.pseudo: pseudo-element sau pseudo-clasa %s necunoscuta
-error.id: ID selectorul #%s este invalid ! Numai un selector ID poate fi specificat intr-un selector simplu: %s.
-error.space: Daca atributul selectorului ~= este folosit, cuvantul din valoarea %s nu trebuie sa contina spatii.
-error.todo : Ne pare rau, trasatura %s nu a fost implementata inca.
-error.incompatible: %s si %s sunt incompatibile
-warning.incompatible: %s si %s sunt incompatibile
-error.notformobile: %s nu pot fi folosite cu profile mobile
-error.notforatsc: %s nu poate fi folosit cu profil ATSC
-error.notfortv: %s nu poate fi folosit cu profil TV 
-error.notversion: %s nu poate fi folosit cu aceasta versiune de CSS: %s
+error.pseudo-element: pseudo-elementul :\u201C%s\u201D nu poate apare in contextul \u201C%s\u201D
+error.pseudo-class: pseudo-clasa .\u201C%s\u201D nu poate aparea in acest context HTML \u201C%s\u201D
+error.pseudo: pseudo-element sau pseudo-clasa \u201C%s\u201D necunoscuta
+error.id: ID selectorul #\u201C%s\u201D este invalid ! Numai un selector ID poate fi specificat intr-un selector simplu: \u201C%s\u201D.
+error.space: Daca atributul selectorului ~= este folosit, cuvantul din valoarea \u201C%s\u201D nu trebuie sa contina spatii.
+error.todo : Ne pare rau, trasatura \u201C%s\u201D nu a fost implementata inca.
+error.incompatible: \u201C%s\u201D si \u201C%s\u201D sunt incompatibile
+warning.incompatible: \u201C%s\u201D si \u201C%s\u201D sunt incompatibile
+error.notformobile: \u201C%s\u201D nu pot fi folosite cu profile mobile
+error.notforatsc: \u201C%s\u201D nu poate fi folosit cu profil ATSC
+error.notfortv: \u201C%s\u201D nu poate fi folosit cu profil TV 
+error.notversion: \u201C%s\u201D nu poate fi folosit cu aceasta versiune de CSS: \u201C%s\u201D
 
-error.media: medie nerecunoscuta %s 
-error.page: pseudo nume de pagina nerecunoscute %s
+error.media: medie nerecunoscuta \u201C%s\u201D 
+error.page: pseudo nume de pagina nerecunoscute \u201C%s\u201D
 
 error.unrecognized.link: element de link sau foi de stil PI xml nerecunoscute.
 
@@ -323,7 +323,7 @@ parser.unknown-dimension: Dimensiune necunoscuta
 
 parser.old_class: In CSS1, numele unei clase poate sa inceapa cu o cifra (".55ft"), \
 numai daca nu a fost o dimensiune (".55in"). In CSS2, aceste clase sunt analizate ca dimensiuni necunoscute (pentru a permite adaugarea in viitor a unor noi unitati.) \
-Pentru a face ".%s" o clasa valida, CSS2 cere ca prima cifra sa fie lasata ".\3%s"
+Pentru a face ".\u201C%s\u201D" o clasa valida, CSS2 cere ca prima cifra sa fie lasata ".\3\u201C%s\u201D"
 
 parser.old_id: In CSS1, un nume de id ar putea incepe cu o cifra ("#55ft"), \
 numai daca nu a fost o dimensiune ("#55in"). In CSS2, aceste id-uri sunt analizate ca dimensiuni necunoscute (pentru a permite adaugarea in viitor a unor noi unitati.)
@@ -350,10 +350,10 @@ numai daca nu a fost o dimensiune (".55in"). In CSS2, aceste clase sunt analizat
 servlet.invalid-request: Ai trimis o cerere invalida.
 servlet.process: Obiectul nu poate fi procesat.
 
-warning.atsc: %s s-ar putea sa nu fie suportat de mediul atsc-tv
-error.onlyATSC: %s este o functie doar pentru mediul atsc-tv 
+warning.atsc: \u201C%s\u201D s-ar putea sa nu fie suportat de mediul atsc-tv
+error.onlyATSC: \u201C%s\u201D este o functie doar pentru mediul atsc-tv 
 
-warning.otherprofile: proprietatea %s nu exista pentru acest profil, dar este validatat conform unui alt profil
+warning.otherprofile: proprietatea \u201C%s\u201D nu exista pentru acest profil, dar este validatat conform unui alt profil
 
 warning.float-no-width: In (x)HTML+CSS, elemetele flotante trebuie sa ai o latime declarata. Numai elementele cu latime intrinseca (html, img, input, textarea, select, or object) nu sunt afectate
 
@@ -365,4 +365,4 @@ parser.import_not_allowed: @import nu sunt permise dupa nici o comanda valida de
 
 error.bg_order: In definirea fundalui din CSS3, 'bg_position' trebuie sa se afle inainte de  / 'bg_size' daca ambele sunt prezente
 
-warning.vendor-extension: Proprietatea %s reprezinta o extensie vendor necunoscuta
+warning.vendor-extension: Proprietatea \u201C%s\u201D reprezinta o extensie vendor necunoscuta

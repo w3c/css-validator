@@ -130,36 +130,36 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Erneute Definition von %s
+warning.redefinition: Erneute Definition von \u201C%s\u201D
 
 # used by xml parser
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 warning.link-type: Sie sollten dem 'link' Element  das Attribut 'type' mit einem Wert von 'text/css' hinzufügen.
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Gleiche Farbe für %s und %s
+warning.same-colors: Gleiche Farbe für \u201C%s\u201D und \u201C%s\u201D
 warning.no-color: Sie haben keine Vordergrundfarbe zu der Hintergrundfarbe angegeben
 warning.no-background-color: Sie haben keine Hintergrundfarbe zu der Vordergrundfarbe angegeben
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: %s
-warning.no-generic-family: %s: Es wird empfohlen, daß Sie eine generische Familie als letzte Alternative angeben
+#warning.color.mixed-capitalization: Obwohl bei Farbnamen die Groß-/Kleinschreibung irrelevant ist, wird empfohlen die gemischte Schreibweise zu verwenden, um die Namen besser lesbar zu machen: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Es wird empfohlen, daß Sie eine generische Familie als letzte Alternative angeben
 warning.with-space: Namen von Schriftfamilien, die Leerzeichen enthalten, sollten in (doppelte) Anführungszeichen eingeschlossen werden.  Ohne Anführungszeichen werden alle Leerraumzeichen (Leerzeichen, Tabulatoren, etc.) vor und nach dem Namen ignoriert, und jede Sequenz von Leerraumzeichen innerhalb des Namens wird durch ein einzelnes Leerzeichen ersetzt.
 warning.no-padding: Es wird empfohlen, eine freie Umgebung (padding) mit der Hintergrundfarbe zu haben
-warning.same-colors2: Die gleichen Farben für den Vordergrund und den Hintergrund in den zwei Kontexten %s und %s
-warning.relative-absolute: Sie haben einige absolute und relative Längen in %s. Das Stylesheet wird dadurch weniger robust.
+warning.same-colors2: Die gleichen Farben für den Vordergrund und den Hintergrund in den zwei Kontexten \u201C%s\u201D und \u201C%s\u201D
+warning.relative-absolute: Sie haben einige absolute und relative Längen in \u201C%s\u201D. Das Stylesheet wird dadurch weniger robust.
 
 warning.direction: anstatt 'direction' für Blockelemente zu verwenden nutzen Sie besser die neue CSS3 Eigenschaft 'writing-mode'
-warning.medialist: die Medienliste sollte mit 'media :' beginnen %s
+warning.medialist: die Medienliste sollte mit 'media :' beginnen \u201C%s\u201D
 
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s ist kein HTML-Element
+warning.unknown-html: \u201C%s\u201D ist kein HTML-Element
 warning.html-inside: Das HTML-Element kann nicht innerhalb eines anderen Elements vorkommen
 warning.body-inside: Das BODY-Element darf nur direkt innerhalb des HTML-Elements vorkommen
-warning.pseudo-classes: Die Anker-Pseudoklasse %s hat keinen Effekt auf andere Elemente als 'A'
+warning.pseudo-classes: Die Anker-Pseudoklasse \u201C%s\u201D hat keinen Effekt auf andere Elemente als 'A'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s kann nicht innerhalb eines Inline-Elements vorkommen
+warning.noinside: \u201C%s\u201D kann nicht innerhalb eines Inline-Elements vorkommen
 warning.withblock: Vorsicht: Pseudoelemente können nur an Elemente auf Block-Level angebunden werden.
 warning.block-level: Diese Eigenschaft gilt für Elemente auf Block-Level.
 
@@ -170,28 +170,28 @@ warning.no-declaration: Keine Deklaration in der Regel
 warning.unsupported-import: Importierte Style Sheets werden bei den Modi Direkteingabe und Datei-Upload nicht überprüft
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s ist außerhalb des Wertebereichs
+warning.out-of-range: \u201C%s\u201D ist außerhalb des Wertebereichs
 error.invalid-color: Ungültige RGB-Funktion
 
 warning.marker: Die 'marker-offset'-Eigenschaft gilt für Elemente mit 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft %s führt zu robusteren Stylesheets
+warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft \u201C%s\u201D führt zu robusteren Stylesheets
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Leider ist die At-Regel %s nicht implementiert.
+error.at-rule: Leider ist die At-Regel \u201C%s\u201D nicht implementiert.
 
 # used by all properties and values
-error.operator: %s ist kein ungültiger Operator
-error.negative-value: %s negative Werte sind nicht erlaubt
-error.few-value: zu wenige Werte für die Eigenschaft %s
+error.operator: \u201C%s\u201D ist kein ungültiger Operator
+error.negative-value: \u201C%s\u201D negative Werte sind nicht erlaubt
+error.few-value: zu wenige Werte für die Eigenschaft \u201C%s\u201D
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s ist kein %s-Wert
+error.value: \u201C%s\u201D ist kein \u201C%s\u201D-Wert
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s kommt zweimal vor
+error.same-value: \u201C%s\u201D kommt zweimal vor
 
 error.generic-family.quote: Namen von generischen Schriftfamilien sind Schlüsselwörter und dürfen deshalb nicht in Anführungszeichen eingeschlossen werden.
 
@@ -209,7 +209,7 @@ error.format: Ungültige Formatdefinition format(<string>[,<string>]*)
 error.local: Ungültige Formatdefinition local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s ist keine gültige Einheit
+error.unit: \u201C%s\u201D ist keine gültige Einheit
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: Die Position muß mit Gradangaben beschrieben werden.
@@ -227,31 +227,31 @@ error.integer: Diese Nummer sollte eine ganze Zahle sein.
 error.comma: Fehlender Komma-Separator.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s ist eine unkorrekte Prozentangabe
+error.percent: \u201C%s\u201D ist eine unkorrekte Prozentangabe
 
 # used by org.w3c.css.values.CssString
-error.string: %s ist kein gültiger String
+error.string: \u201C%s\u201D ist kein gültiger String
 
 # used by org.w3c.css.values.CssURL
-error.url: %s ist kein gültiger URL
+error.url: \u201C%s\u201D ist kein gültiger URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s ist keine gültige Farbe mit 3 oder 6 Hexadezimalzahlen
-error.angle: %s ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 liegen.
+error.rgb: \u201C%s\u201D ist keine gültige Farbe mit 3 oder 6 Hexadezimalzahlen
+error.angle: \u201C%s\u201D ist kein gültiger Winkelwert. Wert muß zwischen 0 und 360 liegen.
 
 # used by org.w3c.css.values.CssNumber
-error.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
-warning.zero: nur 0 kann ein %s sein.  Nach der Zahl muß eine Einheit stehen.
+error.zero: nur 0 kann ein \u201C%s\u201D sein.  Nach der Zahl muß eine Einheit stehen.
+warning.zero: nur 0 kann ein \u201C%s\u201D sein.  Nach der Zahl muß eine Einheit stehen.
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: %s ist ungültig, es sind nur Werte größer 0 zulässig.
+error.strictly-positive: \u201C%s\u201D ist ungültig, es sind nur Werte größer 0 zulässig.
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Die Eigenschaft %s existiert nicht
-warning.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
-error.noexistence: Die Eigenschaft %s existiert nicht in %s, aber in %s
-warning.noexistence: Die Eigenschaft %s existiert nicht in %s, aber in %s
-error.noexistence-media: Die Eigenschaft %s existiert nicht für das Medium %s
+error.noexistence-at-all: Die Eigenschaft \u201C%s\u201D existiert nicht
+warning.noexistence-media: Die Eigenschaft \u201C%s\u201D existiert nicht für das Medium \u201C%s\u201D
+error.noexistence: Die Eigenschaft \u201C%s\u201D existiert nicht in \u201C%s\u201D, aber in \u201C%s\u201D
+warning.noexistence: Die Eigenschaft \u201C%s\u201D existiert nicht in \u201C%s\u201D, aber in \u201C%s\u201D
+error.noexistence-media: Die Eigenschaft \u201C%s\u201D existiert nicht für das Medium \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Zu viele Werte oder die Werte werden nicht erkannt
@@ -261,18 +261,18 @@ generator.unrecognize: Einlese-Fehler
 generator.dontmixhtml: Einlese-Fehler. Style Sheets sollte keine HTML-Syntax.
 
 # used by org.w3c.css.parser.CssSelectors 
-error.pseudo-element: Das Pseudoelement %s kann hier nicht in dem Kontext %s vorkommen
-error.pseudo-class: Die Pseudoklasse .%s kann hier nicht in dem HTML-Kontext %s vorkommen
-error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse: %s
-warning.pseudo: Unbekanntes Pseudoelement oder unbekannte Pseudoklasse %s im Standard Profile (%s)
-error.id: ID-Selektor #%s ist ungültig!  Nur ein ID-Selektor kann in einem einfachen Selektor angegeben werden: %s.
-error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert %s keine Leerzeichen enthalten.
-error.todo : Leider ist das Feature %s noch nicht implementiert.
-error.incompatible: %s und %s sind inkompatibel
-warning.incompatible: %s und %s sind inkompatibel
+error.pseudo-element: Das Pseudoelement \u201C%s\u201D kann hier nicht in dem Kontext \u201C%s\u201D vorkommen
+error.pseudo-class: Die Pseudoklasse .\u201C%s\u201D kann hier nicht in dem HTML-Kontext \u201C%s\u201D vorkommen
+error.pseudo: Unbekanntes Pseudoelement oder Pseudoklasse: \u201C%s\u201D
+warning.pseudo: Unbekanntes Pseudoelement oder unbekannte Pseudoklasse \u201C%s\u201D im Standard Profile (\u201C%s\u201D)
+error.id: ID-Selektor #\u201C%s\u201D ist ungültig!  Nur ein ID-Selektor kann in einem einfachen Selektor angegeben werden: \u201C%s\u201D.
+error.space: Wenn der Attributselektor ~= verwendet wird, darf der Wert \u201C%s\u201D keine Leerzeichen enthalten.
+error.todo : Leider ist das Feature \u201C%s\u201D noch nicht implementiert.
+error.incompatible: \u201C%s\u201D und \u201C%s\u201D sind inkompatibel
+warning.incompatible: \u201C%s\u201D und \u201C%s\u201D sind inkompatibel
 
-error.media: unbekanntes Medium %s 
-error.page: unbekannte Pseudo-benannte Seite %s
+error.media: unbekanntes Medium \u201C%s\u201D 
+error.page: unbekannte Pseudo-benannte Seite \u201C%s\u201D
 
 
 # used by StyleSheetGeneratorHTML
@@ -330,36 +330,36 @@ unbekannte Dimensionen gelesen (um zukünftige Erweiterungen durch weitere Einhe
 servlet.invalid-request: Sie haben eine ungültige Anfrage gesendet.
 servlet.process: Kann das Objekt nicht ausführen
 
-error.groupname : %s ist kein gültiger Gruppen-Name. Bitte benutzen Sie einen 
+error.groupname : \u201C%s\u201D ist kein gültiger Gruppen-Name. Bitte benutzen Sie einen 
 gültigen Wert.
 
-error.notforcss1 : Die Variable %s ist in CSS1 nicht vorhanden
-error.notforatsc: %s kann nicht mit dem ATSC Profil genutzt werden
-error.onlyATSC: %s diese Funktion ist nur für atsc-tv Medien verfügbar
-error.notfortv: %s kann nicht mit dem TV Profil genutzt werden
-error.notversion: %s kann nicht mit dieser Version von CSS verwendet werden : %s
-warning.notversion: %s kann nicht mit dieser CSS Version verwendet werden: %s
-error.nogroup : Die Variable %s wurde durch toggle-group nicht gesetzt
+error.notforcss1 : Die Variable \u201C%s\u201D ist in CSS1 nicht vorhanden
+error.notforatsc: \u201C%s\u201D kann nicht mit dem ATSC Profil genutzt werden
+error.onlyATSC: \u201C%s\u201D diese Funktion ist nur für atsc-tv Medien verfügbar
+error.notfortv: \u201C%s\u201D kann nicht mit dem TV Profil genutzt werden
+error.notversion: \u201C%s\u201D kann nicht mit dieser Version von CSS verwendet werden : \u201C%s\u201D
+warning.notversion: \u201C%s\u201D kann nicht mit dieser CSS Version verwendet werden: \u201C%s\u201D
+error.nogroup : Die Variable \u201C%s\u201D wurde durch toggle-group nicht gesetzt
 error.anglevalue : Der Wert muss durch 90 teilbar sein und zwischen -360 und 360 (Grad) liegen
 error.percentage : Es wurde ein Prozent-Wert erwartet
 error.noothermedium : Eigenschaften anderer Endgeräte könnten für das aktuelle Endgerä nicht funktionieren
 warning.noothermedium: Eigenschaften für andere Medien werden möglicherweise mit dem gewählten Medium nicht funktionieren
-error.notforusermedium : Die Eigenschaft %s existiert nicht für dieses Endgeräte-Profil
-warning.notforusermedium: die Eigenschaft %s existiert nicht für das gewählte Medium
+error.notforusermedium : Die Eigenschaft \u201C%s\u201D existiert nicht für dieses Endgeräte-Profil
+warning.notforusermedium: die Eigenschaft \u201C%s\u201D existiert nicht für das gewählte Medium
 error.noatruleyet : Andere At-Regeln als @import werden von CSS1 nicht unterstützt.
 error.notformobile : Dieser Befehl funktioniert im Mobil-Profil nicht
 
-warning.atsc : %s ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
-warning.vendor-extension: Die Eigenschaft %s ist eine unbekannte Erweiterung des Herstellers.
+warning.atsc : \u201C%s\u201D ist unter Umständen nicht im Funktionsumfang von atsc-tv enthalten.
+warning.vendor-extension: Die Eigenschaft \u201C%s\u201D ist eine unbekannte Erweiterung des Herstellers.
 
 error.unrecognized.link: Nicht erkanntes Linkelement oder xml-stylesheet PI.
 
-warning.otherprofile : Die Eigenschaft %s existiert in der angegebenen Version von CSS nicht, ist aber in einer anderen Version vorhanden und valide 
+warning.otherprofile : Die Eigenschaft \u201C%s\u201D existiert in der angegebenen Version von CSS nicht, ist aber in einer anderen Version vorhanden und valide 
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Die Kombination %s von Selektoren ist in diesem Profil oder dieser Version nicht erlaubt.
-warning.nocomb: die Kombinator %s zwischen Selektoren ist in diesem Profil (%s) nicht erlaubt
-warning.xsl: der Wert %s funktioniert nur mit XSL
+error.nocomb: Die Kombination \u201C%s\u201D von Selektoren ist in diesem Profil oder dieser Version nicht erlaubt.
+warning.nocomb: die Kombinator \u201C%s\u201D zwischen Selektoren ist in diesem Profil (\u201C%s\u201D) nicht erlaubt
+warning.xsl: der Wert \u201C%s\u201D funktioniert nur mit XSL
 error.function: Invalide Funktionsdefinition
 error.unknown: Unbekannter Fehler
 generator.dontmixhtml: Syntax Fehler. Style sheets dürfen keine HTML Syntax enthalten.

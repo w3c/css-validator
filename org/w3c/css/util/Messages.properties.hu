@@ -134,33 +134,33 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: %s újradefiniálása
+warning.redefinition: \u201C%s\u201D újradefiniálása
 
 
 # used by xml parser 
 warning.style-inside-comment: Ne tegye a stílus szabályokat HTML megjegyzésekbe, mert a felhasználó rendszere eltávolíthatja
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Ugyanolyan színű %s és %s
+warning.same-colors: Ugyanolyan színű \u201C%s\u201D és \u201C%s\u201D
 warning.no-color: Nem állított be színt (vagy a színt átlátszóra állította), de meghatározta a háttér színét. Győződjön meg róla, hogy az egymáson lévő színektől olvasható-e a szöveg.
 warning.no-background-color: Nem állított be háttérszínt (vagy a színt átlátszóra állította), de meghatározta a színt. Győződjön meg róla, hogy az egymáson lévő színektől olvasható-e a szöveg.
 
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Bár a szín neveknél számít a kis-/nagybetűs írásmód, javasolt a vegyes használat, hogy a nevek könnyen kivehetők legyenek: %s
-warning.no-generic-family: %s: Javasoljuk, hogy végső megoldásként általános családokat használjon
+#warning.color.mixed-capitalization: Bár a szín neveknél számít a kis-/nagybetűs írásmód, javasolt a vegyes használat, hogy a nevek könnyen kivehetők legyenek: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Javasoljuk, hogy végső megoldásként általános családokat használjon
 warning.with-space: A térköz karaktert tartalmazó családneveket idézőjelbe kell tenni. Ha idézőjelet használ, egyik térköz karakter sem lesz figyelembe véve a név előtt vagy mögött, és a névben egymás után lévő térköz karaktereket egy szóközzel helyettesítjük. 
 
 warning.no-padding: Javasoljuk, hogy a padding területhez használjon háttérszínt
-warning.same-colors2: Ugyanaz a szín és a háttérszín két kontextusban: %s és %s
-warning.relative-absolute: %s tartalmaz abszolút és relatív hosszértéket is. Ez nem egy robusztus stíluslap.
+warning.same-colors2: Ugyanaz a szín és a háttérszín két kontextusban: \u201C%s\u201D és \u201C%s\u201D
+warning.relative-absolute: \u201C%s\u201D tartalmaz abszolút és relatív hosszértéket is. Ez nem egy robusztus stíluslap.
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s nem egy HTML elem
+warning.unknown-html: \u201C%s\u201D nem egy HTML elem
 warning.html-inside: A HTML elem nem lehet másik elemen belül
 warning.body-inside: A BODY elem a HTML-t kivéve nem lehet másik elemen belül
-warning.pseudo-classes: A(z) %s horgony pseudo-osztály az 'A' elemen kívül másra nincs hatással
+warning.pseudo-classes: A(z) \u201C%s\u201D horgony pseudo-osztály az 'A' elemen kívül másra nincs hatással
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s nem lehet egy gyökérelemen belül
+warning.noinside: \u201C%s\u201D nem lehet egy gyökérelemen belül
 warning.withblock: Figyelem. A pseudo-elemeket csak blokkszintű elemhez lehet csatolni
 warning.block-level: Ez a tulajdonság blokkszintű elemre vonatkozik
 
@@ -171,33 +171,33 @@ warning.no-declaration: Nincs deklaráció a szabályban
 warning.unsupported-import: Az importált stíluslapok nem kerülnek ellenőrzésre közvetlen bevitel és file feltöltés esetén
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s a tartományon kívül esik
+warning.out-of-range: \u201C%s\u201D a tartományon kívül esik
 error.invalid-color: Hibás RGB funkció
 
 warning.marker: A marker-offset tulajdonságok csak 'display: marker'-t tartalmazó elemekre vonatkoznak
 
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: A relatív egységek használata robusztusabb stíluslapot eredményez a %s tulajdonságnál
+warning.relative: A relatív egységek használata robusztusabb stíluslapot eredményez a \u201C%s\u201D tulajdonságnál
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Sajnáljuk, a %s at-rule nincs végrehajtva.
+error.at-rule: Sajnáljuk, a \u201C%s\u201D at-rule nincs végrehajtva.
 
 # used by all properties and values
-error.operator: %s helytelen operátor
-error.negative-value: %s negatív értékek nem megengedettek
-error.few-value: túl kevés érték a %s tulajdonsághoz
+error.operator: \u201C%s\u201D helytelen operátor
+error.negative-value: \u201C%s\u201D negatív értékek nem megengedettek
+error.few-value: túl kevés érték a \u201C%s\u201D tulajdonsághoz
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s nem egy %s érték
+error.value: \u201C%s\u201D nem egy \u201C%s\u201D érték
 
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s nem egy helyes csoport név. Használjon érvényes azonosítót
+error.groupname: \u201C%s\u201D nem egy helyes csoport név. Használjon érvényes azonosítót
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s nem lett beállítva a kapcsoló-csoport tulajdonságban
+error.nogroup: \u201C%s\u201D nem lett beállítva a kapcsoló-csoport tulajdonságban
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Az értéknek -360 és 360 közöttinek, és 90-nel oszthatónak kell lennie
@@ -206,17 +206,17 @@ error.anglevalue: Az értéknek -360 és 360 közöttinek, és 90-nel oszthatón
 error.percentage: százalékérték szükséges
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: a %s érték csak XSL-re érvényes
+warning.xsl: a \u201C%s\u201D érték csak XSL-re érvényes
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: a médialista 'media :' %s
-error.nocomb: A szelektorok közti %s kombinátor nem megengedett ebben a profilban vagy verzióban
+warning.medialist: a médialista 'media :' \u201C%s\u201D
+error.nocomb: A szelektorok közti \u201C%s\u201D kombinátor nem megengedett ebben a profilban vagy verzióban
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: a blokk-szintű elemekhez a 'direction' helyett használja az új CSS3 'writing-mode' tulajdonságot
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s kétszer szerepel
+error.same-value: \u201C%s\u201D kétszer szerepel
 
 error.generic-family.quote: Az alapvető családnevek kulcsszavak, ezért nem tehetők idézőjelbe.
 
@@ -235,7 +235,7 @@ error.format: Helytelen format definíció format(<string>[,<string>]*)
 error.local: Helytelen format definíció local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s helytelen egység
+error.unit: \u201C%s\u201D helytelen egység
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: A pozíciót szögekben kell megadni
@@ -253,39 +253,39 @@ error.integer: A számnak egésznek kell lennie.
 error.comma: Hiányzik az elválasztó vessző.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s helytelen százalék
+error.percent: \u201C%s\u201D helytelen százalék
 
 # used by org.w3c.css.values.CssString
-error.string: %s helytelen szöveg
+error.string: \u201C%s\u201D helytelen szöveg
 
 # used by org.w3c.css.values.CssURL
-error.url: %s helytelen URL
+error.url: \u201C%s\u201D helytelen URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s nem helyes, 3 vagy 6 hexadecimális számjegyből álló szám
-error.angle: %s is nem helyes szög. Az értéknek 0 és 360 között kell lennie
+error.rgb: \u201C%s\u201D nem helyes, 3 vagy 6 hexadecimális számjegyből álló szám
+error.angle: \u201C%s\u201D is nem helyes szög. Az értéknek 0 és 360 között kell lennie
 
 # used by org.w3c.css.values.CssNumber
-error.zero: 0 csak %s lehet. Mértékegységet kell megadni a szám után
-warning.zero: 0 csak %s lehet. Mértékegységet kell megadni a szám után
+error.zero: 0 csak \u201C%s\u201D lehet. Mértékegységet kell megadni a szám után
+warning.zero: 0 csak \u201C%s\u201D lehet. Mértékegységet kell megadni a szám után
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: A(z) %s tulajdonság nem létezik 
-error.noexistence-media: A(z) %s tulajdonság nem létezik a %s médiához
-error.noexistence: A(z) %s nem létezik %s -ban/-ben, de létezik %s -ban/-ben 
-warning.noexistence: A(z) %s nem létezik %s -ban/-ben, de létezik %s -ban/-ben
-warning.noexistence-media: A(z) %s tulajdonság nem létezik a %s médiához
-warning.notforusermedium : A(z) %s tulajdonság nem létezik ehhez a felhasználói médiumhoz
+error.noexistence-at-all: A(z) \u201C%s\u201D tulajdonság nem létezik 
+error.noexistence-media: A(z) \u201C%s\u201D tulajdonság nem létezik a \u201C%s\u201D médiához
+error.noexistence: A(z) \u201C%s\u201D nem létezik \u201C%s\u201D -ban/-ben, de létezik \u201C%s\u201D -ban/-ben 
+warning.noexistence: A(z) \u201C%s\u201D nem létezik \u201C%s\u201D -ban/-ben, de létezik \u201C%s\u201D -ban/-ben
+warning.noexistence-media: A(z) \u201C%s\u201D tulajdonság nem létezik a \u201C%s\u201D médiához
+warning.notforusermedium : A(z) \u201C%s\u201D tulajdonság nem létezik ehhez a felhasználói médiumhoz
 warning.noothermedium : Más média tulajdonságai nem minden esetben működnek a felhasználói médiumhoz
 
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet: A @import az egyetlen támogatott @rule a CSS1-ben %s
+error.noatruleyet: A @import az egyetlen támogatott @rule a CSS1-ben \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1: A(z) %s érték nem létezik a CSS1-ben
-warning.pseudo: A(z) %s ismeretlen pseudo-elem vagy pseudo-class az alapértelmezett profilban (%s)
-warning.nocomb: A szelektorok közti %s kombinátor nem megengedett ebben a profilban (%s)
+error.notforcss1: A(z) \u201C%s\u201D érték nem létezik a CSS1-ben
+warning.pseudo: A(z) \u201C%s\u201D ismeretlen pseudo-elem vagy pseudo-class az alapértelmezett profilban (\u201C%s\u201D)
+warning.nocomb: A szelektorok közti \u201C%s\u201D kombinátor nem megengedett ebben a profilban (\u201C%s\u201D)
 warning.charsetspecial: Ennek a profilnak egyedi szintaxisa van az @charset-re vonatkozóan: @charset után pontosan egy szóköznek kell álnia, melyet a kódolás neve követ idézőjelben, mely után közvetlenül pontosvesszőt kell tenni.
-warning.notversion: %s nem használható a CSS ezen verziójával : %s
+warning.notversion: \u201C%s\u201D nem használható a CSS ezen verziójával : \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Túl sok érték vagy nem felismerhető értékek
@@ -298,21 +298,21 @@ generator.dontmixhtml: Elemzési hiba. A stíluslapok nem tartalmazhatnak HTML s
 error.unknown: Ismeretlen hiba
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: A :%s pseudo-elem nem szerepelhet itt a %s kontextusban
-error.pseudo-class: A .%s pseudo-osztály nem szerepelhet itt a %s HTML kontextusban
-error.pseudo: Ismeretlen pseudo-elem vagy pseudo-osztály %s
-error.id: A #%s ID szelektor érvénytelen! Csak egy ID szelektor határozható meg egy egyszerű szelektorban: %s.
-error.space: Ha a ~= attribútum szelektort használja, a %s értékben szereplő szó nem tartalmazhat szóközöket.
-error.todo : Sajnos a %s szolgáltatás még nem használható.
-error.incompatible: %s és %s nem kompatibilisek
-warning.incompatible: %s és %s nem kompatibilisek
-error.notformobile: %s nem használható a mobil profillal
-error.notforatsc: %s nem használható az ATSC profillal
-error.notfortv: %s nem használható a TV profillal
-error.notversion: %s nem használható a CSS ezen verziójával : %s
+error.pseudo-element: A :\u201C%s\u201D pseudo-elem nem szerepelhet itt a \u201C%s\u201D kontextusban
+error.pseudo-class: A .\u201C%s\u201D pseudo-osztály nem szerepelhet itt a \u201C%s\u201D HTML kontextusban
+error.pseudo: Ismeretlen pseudo-elem vagy pseudo-osztály \u201C%s\u201D
+error.id: A #\u201C%s\u201D ID szelektor érvénytelen! Csak egy ID szelektor határozható meg egy egyszerű szelektorban: \u201C%s\u201D.
+error.space: Ha a ~= attribútum szelektort használja, a \u201C%s\u201D értékben szereplő szó nem tartalmazhat szóközöket.
+error.todo : Sajnos a \u201C%s\u201D szolgáltatás még nem használható.
+error.incompatible: \u201C%s\u201D és \u201C%s\u201D nem kompatibilisek
+warning.incompatible: \u201C%s\u201D és \u201C%s\u201D nem kompatibilisek
+error.notformobile: \u201C%s\u201D nem használható a mobil profillal
+error.notforatsc: \u201C%s\u201D nem használható az ATSC profillal
+error.notfortv: \u201C%s\u201D nem használható a TV profillal
+error.notversion: \u201C%s\u201D nem használható a CSS ezen verziójával : \u201C%s\u201D
 
-error.media: ismeretlen média %s
-error.page: ismeretlen pseudo elnevezésű oldal %s
+error.media: ismeretlen média \u201C%s\u201D
+error.page: ismeretlen pseudo elnevezésű oldal \u201C%s\u201D
 
 error.unrecognized.link: Ismeretlen hivatkozás elem vagy xml-stíluslap PI.
 
@@ -334,7 +334,7 @@ parser.semi-colon: kísérlet pontosvessző keresésére a tulajdonság neve el�
 
 parser.unknown-dimension: Ismeretlen méret
 
-parser.old_class: A CSS1-ben, az osztály nevét számjeggyel kell kezdeni (".55ft"), kivéve, ha az méret (".55in"). A CSS2-ben az ilyen osztályok ismeretlen méretként kerülnek elemzésre (hogy később új mértékegységeket lehessen hozzáadni). Hogy ".%s" érvényes osztály legyen, a CSS2-ben az első számjegyet escape karakterként kell megadni ".\3%s"
+parser.old_class: A CSS1-ben, az osztály nevét számjeggyel kell kezdeni (".55ft"), kivéve, ha az méret (".55in"). A CSS2-ben az ilyen osztályok ismeretlen méretként kerülnek elemzésre (hogy később új mértékegységeket lehessen hozzáadni). Hogy ".\u201C%s\u201D" érvényes osztály legyen, a CSS2-ben az első számjegyet escape karakterként kell megadni ".\3\u201C%s\u201D"
 
 parser.old_id: A CSS1-ben, egy id név kezdődhetett számjeggyel ("#55ft"), ha az nem méret volt ("#55in"). A CSS2-ben az ilyen id-k ismeretlen méretként kerülnek elemzésre (hogy később új mértékegységeket lehessen hozzáadni)
 
@@ -354,10 +354,10 @@ warning.old_class: A CSS1-ben, egy osztály neve kezdődhet számjeggyel ("#55ft
 servlet.invalid-request: Érvénytelen kérést küldött.
 servlet.process: Nem lehet feldolgozni az objektumot
 
-warning.atsc: %s nem biztos, hogy támogatottt az atsc-tv médiumon
-error.onlyATSC: %s this function is only for the atsc-tv medium
+warning.atsc: \u201C%s\u201D nem biztos, hogy támogatottt az atsc-tv médiumon
+error.onlyATSC: \u201C%s\u201D this function is only for the atsc-tv medium
 
-warning.otherprofile: A(z) %s tulajdonság nem létezik ehhez a profilhoz, de egy másik profilnak megfelelően érvényesítve lesz
+warning.otherprofile: A(z) \u201C%s\u201D tulajdonság nem létezik ehhez a profilhoz, de egy másik profilnak megfelelően érvényesítve lesz
 
 warning.float-no-width: A (x)HTML+CSS-ben, a lebegő elemek szélességét deklarálni kell. Csak valódi szélességgel rendelkező elemek (html, img, input, textarea, select, or object) nincsenek érintve
 

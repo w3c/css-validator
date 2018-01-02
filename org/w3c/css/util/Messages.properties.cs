@@ -121,29 +121,29 @@ output-encoding-name: utf-8
 # Můžete změnit úroveň varování takto (příklad) :
 # warning.redefinition.level: 5
 #  úroveň je číslo mezi 0 a 9 (všechny ostatní hodnoty jsou ignorovány)
-warning.redefinition: Redefinice %s
+warning.redefinition: Redefinice \u201C\u201C%s\u201D\u201D
 
 # použito syntaktickým analyzátorem xml 
 warning.style-inside-comment: Nevkládejte pravidla stylu do komentáře HTML, protože mohou být odstraněny zástupcem uživatele
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Stejná barva pro %s a %s
+warning.same-colors: Stejná barva pro \u201C\u201C%s\u201D\u201D a \u201C\u201C%s\u201D\u201D
 warning.no-color: Nemáte žádnou sadu barev (nebo je barva nastavena na  průhlednou), ale nastavte si barvu pozadí. Ujistěte se, že řazení do kaskády barev ponechává text čitelným.
 warning.no-background-color: Nemáte žádnou sadu barev (nebo je barva nastavena na průhlednou), ale nastavte si sadu bareve. Ujistěte se, že řazení do kaskády barev ponechává text čitelným.
-#warning.color.mixed-capitalization: Přestože jsou názvy barev necitlivé na velká a malá písmena, doporučuje se používat různé styly psaní, aby názvy byly čitelnější: %s
-warning.no-generic-family: %s: Jako poslední možnost vám doporučujeme generický soubor
+#warning.color.mixed-capitalization: Přestože jsou názvy barev necitlivé na velká a malá písmena, doporučuje se používat různé styly psaní, aby názvy byly čitelnější: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Jako poslední možnost vám doporučujeme generický soubor
 warning.with-space: Názvy obsahující bílé znaky by měly být uvedeny. Je-li uvedení vynechané, jakékoli bílé znaky před a po  názvu jsou ignorovány a jakákoli sekvence znaků uvnitř názvu je převedena  do jedné mezery. 
 warning.no-padding: Doporučuje se, abyste do oblasti doplnili barvu pozadí
-warning.same-colors2: Stejné barvy pro barvu a barvu pozadí ve dvou kontextech %s a %s
-warning.relative-absolute: Máte nějaké absolutní a relativní délky v %s. Toto není robustní tabulka stylů.
+warning.same-colors2: Stejné barvy pro barvu a barvu pozadí ve dvou kontextech \u201C%s\u201D a \u201C%s\u201D
+warning.relative-absolute: Máte nějaké absolutní a relativní délky v \u201C%s\u201D. Toto není robustní tabulka stylů.
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s není prvek HTML
+warning.unknown-html: \u201C%s\u201D není prvek HTML
 warning.html-inside:prvek HTML nemůže být v jiném prvku
 warning.body-inside: TĚLO prvku nemůže být v jiném prvku vyjma HTML
-warning.pseudo-classes: Ukotvení pseudo-třídy %s nemá žádný účinek na prvky jiné než 'A'
+warning.pseudo-classes: Ukotvení pseudo-třídy \u201C%s\u201D nemá žádný účinek na prvky jiné než 'A'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s nemůže být v lineárním prvku
+warning.noinside: \u201C%s\u201D nemůže být v lineárním prvku
 warning.withblock: Pozor. Pseudo-prvky lze pouze připojit k úrovni prvku
 warning.block-level: Tato vlastnost se vztahuje na úroveň prvku.
 
@@ -154,31 +154,31 @@ warning.no-declaration: Žádné prohlášení v pravidlu
 warning.unsupported-import: importované tabulky stylů nejsou zkontrolovány v režimech přímého vložení a nahrání souboru
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s je mimo rozsah
+warning.out-of-range: \u201C%s\u201D je mimo rozsah
 error.invalid-color: neplatná funkce RGB
 
 warning.marker: Vlastnost indexu se vztahuje na prvky s 'zobrazit:index'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: Použití relativních jednotek dává robustnější tabulky tylů ve vlastnosti %s
+warning.relative: Použití relativních jednotek dává robustnější tabulky tylů ve vlastnosti \u201C%s\u201D
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Litujeme, pravidlo %s není implementováno.
+error.at-rule: Litujeme, pravidlo \u201C%s\u201D není implementováno.
 
 # used by all properties and values
-error.operator: %s je nesprávný operátor
-error.negative-value: %s negativní hodnoty nejsou povoleny
-error.few-value: příliš málo hodnot pro vlastnost %s
+error.operator: \u201C%s\u201D je nesprávný operátor
+error.negative-value: \u201C%s\u201D negativní hodnoty nejsou povoleny
+error.few-value: příliš málo hodnot pro vlastnost \u201C%s\u201D
 
 # pozor, nejprve hodnoty
 # Nemůžete napsat něco jako toto: Pro barvu, modrá je nesprávná hodnota
-error.value: %s není hodnota %s 
+error.value: \u201C%s\u201D není hodnota \u201C%s\u201D 
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s není správný název skupiny. Použijte platný identifikátor
+error.groupname: \u201C%s\u201D není správný název skupiny. Použijte platný identifikátor
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s nebylo nastaveno přepnutím vlastnosti
+error.nogroup: \u201C%s\u201D nebylo nastaveno přepnutím vlastnosti
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Hodnota musí být mezi -360 a 360 a  dělitelná 90
@@ -187,17 +187,17 @@ error.anglevalue: Hodnota musí být mezi -360 a 360 a  dělitelná 90
 error.percentage: očekávaná procentuální hodnota
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: value %s se vztahuje pouze na XSL
+warning.xsl: value \u201C%s\u201D se vztahuje pouze na XSL
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: seznam médií by měl začínat 'médium :' %s
-error.nocomb: Kombinační %s mezi selektory není v tomto profilu nebo verzi povoleno
+warning.medialist: seznam médií by měl začínat 'médium :' \u201C%s\u201D
+error.nocomb: Kombinační \u201C%s\u201D mezi selektory není v tomto profilu nebo verzi povoleno
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: místo použití 'směr' pro úroveň prvku použijte novou vlastnost CSS3 'režim psaní' 
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s se zobrazuje dvakrát
+error.same-value: \u201C%s\u201D se zobrazuje dvakrát
 
 error.generic-family.quote: Generické názvy jsou klíčová slova a tudíž nesmí být v uvozovkách.
 
@@ -216,7 +216,7 @@ error.format: Neplatný formát definice formátu(<string>[,<string>]*)
 error.local: Neplatný formát definice (<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s je nesprávná jednotka.
+error.unit: \u201C%s\u201D je nesprávná jednotka.
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: Pozice musí být popsaná pomocí stupňů.
@@ -234,41 +234,41 @@ error.integer: Toto číslo by mělo být celé číslo
 error.comma: Chybí čárka
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s je nesprávné procento
+error.percent: \u201C%s\u201D je nesprávné procento
 
 # used by org.w3c.css.values.CssString
-error.string: %s je nesprávný řetězec
+error.string: \u201C%s\u201D je nesprávný řetězec
 
 # used by org.w3c.css.values.CssURL
-error.url: %s je nesprávná URL
+error.url: \u201C%s\u201D je nesprávná URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s není platná barva 3 nebo 6 hexidecimálních čísel
-error.angle: %s není platný úhel. Hodnota musí být mezi 0 a 360
+error.rgb: \u201C%s\u201D není platná barva 3 nebo 6 hexidecimálních čísel
+error.angle: \u201C%s\u201D není platný úhel. Hodnota musí být mezi 0 a 360
 
 # used by org.w3c.css.values.CssNumber
-error.zero: pouze 0 může být %s. Musíte vložit jednotku za číslo
-warning.zero: pouze 0 může být %s. Musíte vložit jednotku za číslo
+error.zero: pouze 0 může být \u201C%s\u201D. Musíte vložit jednotku za číslo
+warning.zero: pouze 0 může být \u201C%s\u201D. Musíte vložit jednotku za číslo
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: %s is not valid, only values greater than 0 allowed. <!-- translation unavailable -->
+error.strictly-positive: \u201C%s\u201D is not valid, only values greater than 0 allowed. <!-- translation unavailable -->
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Vlastnost %s neexistuje
-error.noexistence-media: Vlastnost %s neexistuje pro média %s
-error.noexistence: Vlastnost %s neexistuje v %s ale existuje v %s
-warning.noexistence: Vlastnost  %s neexistuje v %s ale existuje v %s
-warning.noexistence-media: Vlastnost  %s neexistuje pro média %s
-warning.notforusermedium : Vlastnost %s neexistuje pro toto uživatelské médium
+error.noexistence-at-all: Vlastnost \u201C%s\u201D neexistuje
+error.noexistence-media: Vlastnost \u201C%s\u201D neexistuje pro média \u201C%s\u201D
+error.noexistence: Vlastnost \u201C%s\u201D neexistuje v \u201C%s\u201D ale existuje v \u201C%s\u201D
+warning.noexistence: Vlastnost  \u201C%s\u201D neexistuje v \u201C%s\u201D ale existuje v \u201C%s\u201D
+warning.noexistence-media: Vlastnost  \u201C%s\u201D neexistuje pro média \u201C%s\u201D
+warning.notforusermedium : Vlastnost \u201C%s\u201D neexistuje pro toto uživatelské médium
 warning.noothermedium : Vlastnosti pro toto medium nemusí fungovat pro uživatelské médium
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet: Jiná @pravidla než @import nejsou CSS1 podporována %s
+error.noatruleyet: Jiná @pravidla než @import nejsou CSS1 podporována \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1: Hodnota %s pro CSS1 neexistuje
-warning.pseudo: Neznámý pseudo-prvek nebo pseudo-třída %s v tomto profilu (%s)
-warning.nocomb: Kombinator %s mezi voliči není v tomto profilu povolen (%s)
+error.notforcss1: Hodnota \u201C%s\u201D pro CSS1 neexistuje
+warning.pseudo: Neznámý pseudo-prvek nebo pseudo-třída \u201C%s\u201D v tomto profilu (\u201C%s\u201D)
+warning.nocomb: Kombinator \u201C%s\u201D mezi voliči není v tomto profilu povolen (\u201C%s\u201D)
 warning.charsetspecial: Tento profil má velice specifickou syntax pro @charset: @charset následuje přesně jeden prostor, po němž následuje název kódování v uvozovkách, které bezprostředně následuje středník.
-warning.notversion: %s nelze použít s touto verzí CSS : %s
+warning.notversion: \u201C%s\u201D nelze použít s touto verzí CSS : \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Příliš mnoho hodnot nebo hodnoty, které nejsou rozpoznány.
@@ -281,21 +281,21 @@ generator.dontmixhtml: Chyba při analýze. Styly by neměly obsahovat HTML synt
 error.unknown: Neznámá chyba
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudo-prvek :%s nemůže se zobrazit v kontextu %s
-error.pseudo-class: Pseudo-třída .%s se nemůže zobrazit v HTML %s
-error.pseudo: Neznámý pseudo-prvek nebo pseudo-třída %s
-error.id: ID selector  #%s je neplatný! Pouze jeden ID selektor může být určen v jednoduchém selektoru: %s.
-error.space: Pokud se atribut ~= používá, slovo v hodnotě %s nesmí obsahovat mezery.
-error.todo : Omlouváme se, %s není dosud implementován.
-error.incompatible: %s a %s jsou nekompatibilní
-warning.incompatible: %s a %s jsou nekompatibilní
-error.notformobile: %s nelze použít s mobilním profilem
-error.notforatsc: %s nelze použít s ATSC profilem
-error.notfortv: %s nelze použít s TV profilem
-error.notversion: %s nelze použít s verzí CSS : %s
+error.pseudo-element: Pseudo-prvek :\u201C%s\u201D nemůže se zobrazit v kontextu \u201C%s\u201D
+error.pseudo-class: Pseudo-třída .\u201C%s\u201D se nemůže zobrazit v HTML \u201C%s\u201D
+error.pseudo: Neznámý pseudo-prvek nebo pseudo-třída \u201C%s\u201D
+error.id: ID selector  #\u201C%s\u201D je neplatný! Pouze jeden ID selektor může být určen v jednoduchém selektoru: \u201C%s\u201D.
+error.space: Pokud se atribut ~= používá, slovo v hodnotě \u201C%s\u201D nesmí obsahovat mezery.
+error.todo : Omlouváme se, \u201C%s\u201D není dosud implementován.
+error.incompatible: \u201C%s\u201D a \u201C%s\u201D jsou nekompatibilní
+warning.incompatible: \u201C%s\u201D a \u201C%s\u201D jsou nekompatibilní
+error.notformobile: \u201C%s\u201D nelze použít s mobilním profilem
+error.notforatsc: \u201C%s\u201D nelze použít s ATSC profilem
+error.notfortv: \u201C%s\u201D nelze použít s TV profilem
+error.notversion: \u201C%s\u201D nelze použít s verzí CSS : \u201C%s\u201D
 
-error.media: nerozpoznané médium %s 
-error.page: nerozpoznaná pseudo-pojmenovaná stránka %s
+error.media: nerozpoznané médium \u201C%s\u201D 
+error.page: nerozpoznaná pseudo-pojmenovaná stránka \u201C%s\u201D
 
 error.unrecognized.link: Nerozpoznaný prvek odkazu nebo tabulky stylů xml PI.
 
@@ -317,7 +317,7 @@ parser.semi-colon: pokuste se najít před názvem vlastnosti dvojtečku. přide
 
 parser.unknown-dimension: Neznámý rozměr
 
-parser.old_class: V CSS1 by měl název třídy začínat číslicí  (".55ft"), pokud nejde o rozměr (".55in"). V CSS2 jsou takové třídy odděleny jako neznámé rozměry (aby bylo možné budoucí doplnění nových jednotek) Abyste  z".%s" vytvořili platnou třídu, CSS2 vyžaduje aby byla první číslice vynechaná ".\3%s"
+parser.old_class: V CSS1 by měl název třídy začínat číslicí  (".55ft"), pokud nejde o rozměr (".55in"). V CSS2 jsou takové třídy odděleny jako neznámé rozměry (aby bylo možné budoucí doplnění nových jednotek) Abyste  z".\u201C%s\u201D" vytvořili platnou třídu, CSS2 vyžaduje aby byla první číslice vynechaná ".\3\u201C%s\u201D"
 
 parser.old_id: V CSS1 může id začínat číslicí  ("#55ft"), pokud nejde o rozměr ("#55in"). V CSS2 jsou taková id oddělena jako neznámé rozměry (aby bylo možné budoucí doplnění nových jednotek).
 
@@ -337,18 +337,18 @@ warning.old_class: V CSS1 může název třídy začínat číslicí ("#55ft"), 
 servlet.invalid-request: Odeslali jste neplatnou žádost.
 servlet.process: Nemůže zpracovat objekt
 
-warning.atsc: %s nemusí být  podporována médiem atsc-tv
-error.onlyATSC: %s tato funkce je pouze pro medium  atsc-tv
+warning.atsc: \u201C%s\u201D nemusí být  podporována médiem atsc-tv
+error.onlyATSC: \u201C%s\u201D tato funkce je pouze pro medium  atsc-tv
 
-warning.otherprofile: Pro tento profil neexistuje vlastnost %s, ale je ověřena v souladu s  jiným profilem.
+warning.otherprofile: Pro tento profil neexistuje vlastnost \u201C%s\u201D, ale je ověřena v souladu s  jiným profilem.
 
 warning.float-no-width: V (x)HTML+CSS, plovoucí prvky musí mít otevřenou šířku. Netýká se to pouze prvků s vnitřní šířkou (html, img, input, textarea, select nebo object)
 
 parser.charsetcss1: pravidla @charset nelze použít v CSS1
 parser.attrcss1: Selektory s atributem jsou v CSS1 neplatné
 
-warning.noexproperty: Vlastnost %s neexistuje
+warning.noexproperty: Vlastnost \u201C%s\u201D neexistuje
 error.divisortype: Dělitel musí být číslo
-error.greater: %s není validní, povoleny jsou pouze hodnoty striktně větší než %s.
+error.greater: \u201C%s\u201D není validní, povoleny jsou pouze hodnoty striktně větší než \u201C%s\u201D.
 error.bg_order: V CSS3 background definici se v případě výskytu obou vlastností musí 'bg_position' nacházet před / 'bg_size'
 

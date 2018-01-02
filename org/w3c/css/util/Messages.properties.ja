@@ -131,38 +131,38 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: %s が再定義されています
+warning.redefinition: \u201C%s\u201D が再定義されています
 
 # used by xml parser
 warning.style-inside-comment: ユーザエージェントによって削除される可能性があるので、スタイルルールはHTMLコメントの中に記述しないでください
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: %s と %s は同じ色です
+warning.same-colors: \u201C%s\u201D と \u201C%s\u201D は同じ色です
 warning.no-color: 指定された背景色(background-color)に対応する前面色(color)が指定されていません
 warning.no-background-color: 指定された前面色(color)に対応する背景色(background-color)が指定されていません
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: 色の名前に大文字／小文字の区別はありませんが、\
-名前をより区別しやすくするため、大文字を混ぜて使う事が推奨されます: %s
-warning.no-generic-family: %s: 一般フォントファミリー名\
+名前をより区別しやすくするため、大文字を混ぜて使う事が推奨されます: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: 一般フォントファミリー名\
 (generic font family)を最後の選択肢として付け加えておく事を推奨します
 warning.with-space: 空白文字を含むフォントファミリー名は引用符で囲む必要が\
 あります。引用符を省略した場合、名前の前後の空白文字は無視され、また\
 名前の途中に含まれる連続した空白文字は全て一つの空白文字に変換されます
 warning.no-padding: 背景色(background-color)を持った padding 領域を持たせる事を推奨します
-warning.same-colors2: 二つのコンテキスト %s と %s で、同じ色が前面色\
+warning.same-colors2: 二つのコンテキスト \u201C%s\u201D と \u201C%s\u201D で、同じ色が前面色\
 (color) と背景色 (background-color) に使われています
-warning.relative-absolute: %s における長さ指定について、\
+warning.relative-absolute: \u201C%s\u201D における長さ指定について、\
 絶対値指定と相対値指定がともに用いられています。\
 これはあまり堅牢(robust)なスタイルシートではありません
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s はHTMLの要素ではありません
+warning.unknown-html: \u201C%s\u201D はHTMLの要素ではありません
 warning.html-inside: HTML 要素は他の要素中に含むことはできません
 warning.body-inside: BODY 要素は HTML 要素以外の他の要素中に含む事はできません
-warning.pseudo-classes: アンカー(Anchor) 疑似クラス %s は、'A' 要素以外の他の要素には効果がありません
+warning.pseudo-classes: アンカー(Anchor) 疑似クラス \u201C%s\u201D は、'A' 要素以外の他の要素には効果がありません
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s はインライン要素中に含むことはできません
+warning.noinside: \u201C%s\u201D はインライン要素中に含むことはできません
 warning.withblock: 注意して下さい - 疑似要素はブロックレベル要素にのみ付ける事ができます
 warning.block-level: このプロパティはブロックレベル要素に適用されます
 
@@ -173,28 +173,28 @@ warning.no-declaration: 宣言(declarations)がルール中に存在しません
 warning.unsupported-import: @importでインポートされるスタイルシートは直接入力やファイルアップロードでは検証されません。
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s は指定可能範囲を越えています
+warning.out-of-range: \u201C%s\u201D は指定可能範囲を越えています
 error.invalid-color: 正しい RGB 関数の指定ではありません
 
 warning.marker: marker-offset プロパティは、'display: marker' 要素にのみ適用されます
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: %s プロパティに相対指定の単位を使うことで、より強固なスタイルシートを作る事ができます
+warning.relative: \u201C%s\u201D プロパティに相対指定の単位を使うことで、より強固なスタイルシートを作る事ができます
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: 申し訳ありませんが、at-rule %s はまだ実装されていません。
+error.at-rule: 申し訳ありませんが、at-rule \u201C%s\u201D はまだ実装されていません。
 
 # used by all properties and values
-error.operator: %s は正しい演算子 (operator) ではありません
-error.negative-value: %s に負の値は使えません
-error.few-value: %s プロパティの値が少なすぎます
+error.operator: \u201C%s\u201D は正しい演算子 (operator) ではありません
+error.negative-value: \u201C%s\u201D に負の値は使えません
+error.few-value: \u201C%s\u201D プロパティの値が少なすぎます
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s は %s で利用できる値ではありません
+error.value: \u201C%s\u201D は \u201C%s\u201D で利用できる値ではありません
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s は二回出現しました
+error.same-value: \u201C%s\u201D は二回出現しました
 
 error.generic-family.quote: 一般フォントファミリー名(Generic font family)\
 はキーワードなので、引用符で囲む事はできません
@@ -214,7 +214,7 @@ error.format: フォーマット定義が間違っています format(<string>[,
 error.local: フォーマット定義が間違っています local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s は正しい単位ではありません
+error.unit: \u201C%s\u201D は正しい単位ではありません
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: position は degrees で指定する必要があります。
@@ -233,27 +233,27 @@ error.integer: この数字は整数である必要があります
 error.comma: カンマ(,)区切り文字がありません
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s は正しいパーセント指定ではありません
+error.percent: \u201C%s\u201D は正しいパーセント指定ではありません
 
 # used by org.w3c.css.values.CssString
-error.string: %s は正しい文字列ではありません
+error.string: \u201C%s\u201D は正しい文字列ではありません
 
 # used by org.w3c.css.values.CssURL
-error.url: %s は正しいURLではありません
+error.url: \u201C%s\u201D は正しいURLではありません
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s は、3または6つの16進数の数字による正しい色の指定ではありません
+error.rgb: \u201C%s\u201D は、3または6つの16進数の数字による正しい色の指定ではありません
 
 # used by org.w3c.css.values.CssNumber
-error.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
-warning.zero: %s には 0 だけが使えます。数字の後には単位を入れる必要があります
+error.zero: \u201C%s\u201D には 0 だけが使えます。数字の後には単位を入れる必要があります
+warning.zero: \u201C%s\u201D には 0 だけが使えます。数字の後には単位を入れる必要があります
 
 # used by org.w3c.css.parser.CssPropertyFactory 
-error.noexistence-at-all: プロパティ %s は存在しません
-error.noexistence-media: プロパティ %s はメディア %s には存在しません
-error.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
-warning.noexistence: プロパティ %s は %s に存在しませんが、%s に存在します
-warning.noexistence-media: プロパティ %s はメディア %s には存在しません
+error.noexistence-at-all: プロパティ \u201C%s\u201D は存在しません
+error.noexistence-media: プロパティ \u201C%s\u201D はメディア \u201C%s\u201D には存在しません
+error.noexistence: プロパティ \u201C%s\u201D は \u201C%s\u201D に存在しませんが、\u201C%s\u201D に存在します
+warning.noexistence: プロパティ \u201C%s\u201D は \u201C%s\u201D に存在しませんが、\u201C%s\u201D に存在します
+warning.noexistence-media: プロパティ \u201C%s\u201D はメディア \u201C%s\u201D には存在しません
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: 値が多すぎるか、もしくは値が解析できません
@@ -263,20 +263,20 @@ generator.unrecognize: 文法解析エラーが発生しました
 generator.dontmixhtml: 文法解析エラーが発生しました. スタイルシートのHTML構文が含まれてはならない。
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: 疑似要素 %s はコンテキスト %s 中のこの場所では使えません
-error.pseudo-class: 疑似クラス .%s は HTMLコンテキスト %s 中のこの場所では使えません
-error.pseudo: %sは未知の疑似要素または疑似クラスです
-warning.pseudo: 未知の疑似要素または疑似クラス %s がデフォルトプロファイル (%s) にあります
-error.id: ID セレクタ #%s は間違っています!\
-単純セレクタ (simple selector) %s には一つのIDセレクタしか指定できません
+error.pseudo-element: 疑似要素 \u201C%s\u201D はコンテキスト \u201C%s\u201D 中のこの場所では使えません
+error.pseudo-class: 疑似クラス .\u201C%s\u201D は HTMLコンテキスト \u201C%s\u201D 中のこの場所では使えません
+error.pseudo: \u201C%s\u201Dは未知の疑似要素または疑似クラスです
+warning.pseudo: 未知の疑似要素または疑似クラス \u201C%s\u201D がデフォルトプロファイル (\u201C%s\u201D) にあります
+error.id: ID セレクタ #\u201C%s\u201D は間違っています!\
+単純セレクタ (simple selector) \u201C%s\u201D には一つのIDセレクタしか指定できません
 error.space: 属性セレクタ (attribute selector) ~= が用いられている場合、\
-値 %s の中の語は空白文字を含む事はできません
-error.todo : 申し訳ありませんが、feature %s はまだ実装されていません
-error.incompatible: %s と %s は互換性がありません
-warning.incompatible: %s と %s は互換性がありません
+値 \u201C%s\u201D の中の語は空白文字を含む事はできません
+error.todo : 申し訳ありませんが、feature \u201C%s\u201D はまだ実装されていません
+error.incompatible: \u201C%s\u201D と \u201C%s\u201D は互換性がありません
+warning.incompatible: \u201C%s\u201D と \u201C%s\u201D は互換性がありません
 
-error.media: 認識できないメディア %s が指定されています
-error.page: 認識できない疑似名前付きページ(psuedo named page) %s が指定されています
+error.media: 認識できないメディア \u201C%s\u201D が指定されています
+error.page: 認識できない疑似名前付きページ(psuedo named page) \u201C%s\u201D が指定されています
 
 
 # used by StyleSheetGeneratorHTML
@@ -324,30 +324,30 @@ servlet.process: 指定されたオブジェクトは処理できません
 error.unrecognized.link: 認識できないリンク要素またはxml-stylesheet PIです。
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: セレクタ間の結合子 %s はこのプロファイルまたはバージョンでは利用できません
-warning.nocomb: セレクタ間の結合子 %s はこのプロファイルまたはバージョンでは利用できません
-error.angle: %s は正しい角度ではありません。値は 0 から 360 の間である必要があります
+error.nocomb: セレクタ間の結合子 \u201C%s\u201D はこのプロファイルまたはバージョンでは利用できません
+warning.nocomb: セレクタ間の結合子 \u201C%s\u201D はこのプロファイルまたはバージョンでは利用できません
+error.angle: \u201C%s\u201D は正しい角度ではありません。値は 0 から 360 の間である必要があります
 error.anglevalue: 値は -360 から 360 の間で、かつ 90 で割り切れる必要があります
 error.function: 正しくない関数定義です
-error.groupname: %s は正しくないgroupnameです。正しい identifier を使ってください
-error.noatruleyet: @import 以外の @rules は CSS1 %s ではサポートされていません
-error.nogroup: %s は toggle-group プロパティによって指定されていません
-error.notforatsc: %s は ATSC プロファイルでは利用できません
-error.notforcss1: 値 %s は CSS1 には存在しません
-error.notformobile: %s は mobile プロファイルでは利用できません
-error.notfortv: %s は TV プロファイルでは利用できません
-error.notversion: %s は CSS : %s バージョンでは利用できません
-error.onlyATSC: %s この関数は atsc-tv メディアでしか利用できません
-warning.atsc: %s は atsc-tv メディアでサポートされていない可能性があります
+error.groupname: \u201C%s\u201D は正しくないgroupnameです。正しい identifier を使ってください
+error.noatruleyet: @import 以外の @rules は CSS1 \u201C%s\u201D ではサポートされていません
+error.nogroup: \u201C%s\u201D は toggle-group プロパティによって指定されていません
+error.notforatsc: \u201C%s\u201D は ATSC プロファイルでは利用できません
+error.notforcss1: 値 \u201C%s\u201D は CSS1 には存在しません
+error.notformobile: \u201C%s\u201D は mobile プロファイルでは利用できません
+error.notfortv: \u201C%s\u201D は TV プロファイルでは利用できません
+error.notversion: \u201C%s\u201D は CSS : \u201C%s\u201D バージョンでは利用できません
+error.onlyATSC: \u201C%s\u201D この関数は atsc-tv メディアでしか利用できません
+warning.atsc: \u201C%s\u201D は atsc-tv メディアでサポートされていない可能性があります
 error.percentage: パーセンテージ値が必要です
 error.unknown: 不明なエラー
 warning.direction: ブロックレベル要素には'direction'ではなく新しいCSS3の'writing-mode'プロパティを用いてください
-warning.medialist:  メディアリストは 'media :' %s で始まるべきです
+warning.medialist:  メディアリストは 'media :' \u201C%s\u201D で始まるべきです
 warning.noothermedium: 他のメディア用のプロパティは usermedium では動作しない可能性があります
-warning.notforusermedium: プロパティ %s はこの usermedium には存在しません
-warning.notversion: %s はこの CSS : %s バージョンでは利用できません
-warning.otherprofile: プロパティ %s はこのプロファイルには存在しませんが、他のプロファイルでは正当です
-warning.xsl: 値 %s は XSL にのみ適用可能です
+warning.notforusermedium: プロパティ \u201C%s\u201D はこの usermedium には存在しません
+warning.notversion: \u201C%s\u201D はこの CSS : \u201C%s\u201D バージョンでは利用できません
+warning.otherprofile: プロパティ \u201C%s\u201D はこのプロファイルには存在しませんが、他のプロファイルでは正当です
+warning.xsl: 値 \u201C%s\u201D は XSL にのみ適用可能です
 
 parser.unknown-dimension: 不明なディメンション
 generator.dontmixhtml: パースエラーが発生しました。スタイルシートにHTMLシンタックスが含まれています。

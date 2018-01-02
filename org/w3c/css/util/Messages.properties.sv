@@ -128,32 +128,32 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 # level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Omdefiniering av %s
+warning.redefinition: Omdefiniering av \u201C%s\u201D
 
 # used by xml parser 
 warning.style-inside-comment: Lägg inte stilregler inom HTML-kommentarer, eftersom de kan tas bort av användaragenten
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Samma färg för %s och %s
+warning.same-colors: Samma färg för \u201C%s\u201D och \u201C%s\u201D
 warning.no-color: Du har inte angett color (eller color anges som genomskinlig) men du har angett en background-color. Försäkra dig om att färgkaskader inte gör texten oläslig.
 warning.no-background-color: Du har inte angett background-color (eller background-color är angiven som genomskinlig) men du har angett color. Försäkra dig om att färgkaskader inte gär texten oläsbar.
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
-warning.no-generic-family: %s: Du borde erbjuda en generisk familj som sista alternativ
+#warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Du borde erbjuda en generisk familj som sista alternativ
 warning.with-space: Familjenamn som innehåller vita tecken skall anges inom citationstecken. Om citationstecken \
 utlämnas, så kommer inledande och avslutande vita tecken att ignoreras, och sekvenser av vita \
 tecken inom namnet att omvandlas till ett blanktecken. 
 warning.no-padding: Du bör ha ett utfyllnadsområde med bakgrundsfärg
-warning.same-colors2: Samma färg för color och background-color i två kontext %s och %s
-warning.relative-absolute: Du har använt både absolut och relativ längd i %s. Detta är inte en robust formatmall.
+warning.same-colors2: Samma färg för color och background-color i två kontext \u201C%s\u201D och \u201C%s\u201D
+warning.relative-absolute: Du har använt både absolut och relativ längd i \u201C%s\u201D. Detta är inte en robust formatmall.
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s är inte ett HTML-element
+warning.unknown-html: \u201C%s\u201D är inte ett HTML-element
 warning.html-inside: HTML-element kan inte förekomma inom ett annat element
 warning.body-inside: BODY-element kan inte vara inom ett annat element, förutom HTML
-warning.pseudo-classes: Anchor-pseudoklassen %s har ingen effekt på element andra än 'A'
+warning.pseudo-classes: Anchor-pseudoklassen \u201C%s\u201D har ingen effekt på element andra än 'A'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s kan inte förekomma inom ett inline-element
+warning.noinside: \u201C%s\u201D kan inte förekomma inom ett inline-element
 warning.withblock: Var försiktig. Pseudoelement kan bara knytas till blocknivåelement
 warning.block-level: Denna egenskap har effekt för blocknivåelement.
 
@@ -164,31 +164,31 @@ warning.no-declaration: Ingen deklaration i regeln
 warning.unsupported-import: Importerade formatmallar granskas inte vid direkt inmatning eller vid filuppladdning
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s ligger utanför giltigt värdeområde
+warning.out-of-range: \u201C%s\u201D ligger utanför giltigt värdeområde
 error.invalid-color: Ogiltig RGB-funktion
 
 warning.marker: Egenskapen marker-offset är bara tillämpbar på element med 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: Relativa enheter ger mer robusta formatmallar i egenskap %s
+warning.relative: Relativa enheter ger mer robusta formatmallar i egenskap \u201C%s\u201D
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Tyvärr, at-regeln %s är inte implementerad.
+error.at-rule: Tyvärr, at-regeln \u201C%s\u201D är inte implementerad.
 
 # used by all properties and values
-error.operator: %s är en ogiltig operator
-error.negative-value: %s negativa värden är inte tillåtna
-error.few-value: alltför få värden för egenskap %s
+error.operator: \u201C%s\u201D är en ogiltig operator
+error.negative-value: \u201C%s\u201D negativa värden är inte tillåtna
+error.few-value: alltför få värden för egenskap \u201C%s\u201D
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s är inte ett %s-värde
+error.value: \u201C%s\u201D är inte ett \u201C%s\u201D-värde
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s är inte ett giltigt gruppnamn. Använd en giltig identifierare
+error.groupname: \u201C%s\u201D är inte ett giltigt gruppnamn. Använd en giltig identifierare
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s har inte satts av egenskapen toggle-group
+error.nogroup: \u201C%s\u201D har inte satts av egenskapen toggle-group
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Värdet måste vara mellan -360 och 360, och vara delbart med 90
@@ -197,17 +197,17 @@ error.anglevalue: Värdet måste vara mellan -360 och 360, och vara delbart med 
 error.percentage: procentvärde förväntades
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: värde %s är bara användbart för XSL
+warning.xsl: värde \u201C%s\u201D är bara användbart för XSL
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: medialista skall börja med 'media :' %s
-error.nocomb: Kombinator %s mellan selektorer kan inte användas i denna profil eller version
+warning.medialist: medialista skall börja med 'media :' \u201C%s\u201D
+error.nocomb: Kombinator \u201C%s\u201D mellan selektorer kan inte användas i denna profil eller version
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: istället för att använda 'direction' för blocknivåelement, använd den nya CSS3-egenskapen 'writing-mode'
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s förekommer två gånger
+error.same-value: \u201C%s\u201D förekommer två gånger
 
 error.generic-family.quote: Generiska familjenamn är nyckelord, och får därför inte anges inom citationstecken.
 
@@ -226,7 +226,7 @@ error.format: Ogiltig format-definition format(<string>[,<string>]*)
 error.local: Ogiltig formatdefinition local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s är en ogiltig enhet
+error.unit: \u201C%s\u201D är en ogiltig enhet
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: Position måste anges i grader.
@@ -244,44 +244,44 @@ error.integer: Detta tal måste vara ett heltal.
 error.comma: Kommatecken saknas.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s är en ogiltig procentsats
+error.percent: \u201C%s\u201D är en ogiltig procentsats
 
 # used by org.w3c.css.values.CssString
-error.string: %s är en ogiltig sträng
+error.string: \u201C%s\u201D är en ogiltig sträng
 
 # used by org.w3c.css.values.CssURL
-error.url: %s är en ogiltig URL
+error.url: \u201C%s\u201D är en ogiltig URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s är inte en giltig färgangivelse som 3- eller 6-siffrigt hexadecimaltal
-error.angle: %s är inte en giltig vinkel. Värdet måste vara mellan 0 och 360
+error.rgb: \u201C%s\u201D är inte en giltig färgangivelse som 3- eller 6-siffrigt hexadecimaltal
+error.angle: \u201C%s\u201D är inte en giltig vinkel. Värdet måste vara mellan 0 och 360
 
 # used by org.w3c.css.values.CssNumber
-error.zero: endast 0 kan vara en %s. Du måste ange en enhet efter ditt tal
-warning.zero: endast 0 kan vara en %s. Du måste ange en enhet efter ditt tal
+error.zero: endast 0 kan vara en \u201C%s\u201D. Du måste ange en enhet efter ditt tal
+warning.zero: endast 0 kan vara en \u201C%s\u201D. Du måste ange en enhet efter ditt tal
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: %s är inte giltigt, endast värden större än 0 tillåts
+error.strictly-positive: \u201C%s\u201D är inte giltigt, endast värden större än 0 tillåts
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Egenskap %s finns inte
-error.noexistence-media: Egenskap %s finns inte för medium %s
-error.noexistence: Egenskap %s finns inte för %s men finns för %s
-warning.noexistence: Egenskap %s finns inte för %s men finns för %s
-warning.noexistence-media: Egenskap %s finns inte för medium %s
-warning.notforusermedium : Egenskap %s finns inte för detta usermedium
+error.noexistence-at-all: Egenskap \u201C%s\u201D finns inte
+error.noexistence-media: Egenskap \u201C%s\u201D finns inte för medium \u201C%s\u201D
+error.noexistence: Egenskap \u201C%s\u201D finns inte för \u201C%s\u201D men finns för \u201C%s\u201D
+warning.noexistence: Egenskap \u201C%s\u201D finns inte för \u201C%s\u201D men finns för \u201C%s\u201D
+warning.noexistence-media: Egenskap \u201C%s\u201D finns inte för medium \u201C%s\u201D
+warning.notforusermedium : Egenskap \u201C%s\u201D finns inte för detta usermedium
 warning.noothermedium : Egenskaper för andra media kanske inte fungerar för user-medium
-warning.vendor-extension : Egenskap %s är inte en känd leverantörsutvidgning
+warning.vendor-extension : Egenskap \u201C%s\u201D är inte en känd leverantörsutvidgning
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet: Andra @-regler än @import stöds inte av CSS1 %s
+error.noatruleyet: Andra @-regler än @import stöds inte av CSS1 \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1: Värde %s finns inte i CSS1
-warning.pseudo: Okänt pseudoelement eller pseudoklass %s i default-profilen (%s)
-warning.nocomb: Kombinator %s mellan selektorer tillåts inte i denna profil (%s)
+error.notforcss1: Värde \u201C%s\u201D finns inte i CSS1
+warning.pseudo: Okänt pseudoelement eller pseudoklass \u201C%s\u201D i default-profilen (\u201C%s\u201D)
+warning.nocomb: Kombinator \u201C%s\u201D mellan selektorer tillåts inte i denna profil (\u201C%s\u201D)
 warning.charsetspecial: Denna profil har en mycket speciell syntax för @charset: \
 @charset följt av exakt ett blanktecken, följt av kodnamnet \
 inom citationstecken, omedelbart följt av ett semikolon.
-warning.notversion: %s kan inte användas med denna version av CSS: %s
+warning.notversion: \u201C%s\u201D kan inte användas med denna version av CSS: \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Alltför många värden eller värden kan kännas igen
@@ -293,21 +293,21 @@ generator.unrecognize: Parsningsfel
 error.unknown: Okänt fel
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudoelement %s kan inte förekomma här i kontextet %s
-error.pseudo-class: Pseudoklass .%s kan inte förekomma här i HTML-kontextet %s
-error.pseudo: Okänt pseudoelement eller pseudoklass %s
-error.id: ID-selektor #%s ogiltig ! Endast en ID-selektor kan anges i en enkel selektor: %s.
-error.space: Om attributselektor ~= används, så får ordet i värdet %s inte innehålla blanktecken.
-error.todo : Tyvärr är funktionalitet %s ännu inte implementerad.
-error.incompatible: %s och %s är inkompatibla
-warning.incompatible: %s och %s är inkompatibla
-error.notformobile: %s kan inte användas med mobil profil
-error.notforatsc: %s kan inte användas med ATSC-profil
-error.notfortv: %s kan inte användas med TV-profil
-error.notversion: %s kan inte användas med denna version av CSS : %s
+error.pseudo-element: Pseudoelement \u201C%s\u201D kan inte förekomma här i kontextet \u201C%s\u201D
+error.pseudo-class: Pseudoklass .\u201C%s\u201D kan inte förekomma här i HTML-kontextet \u201C%s\u201D
+error.pseudo: Okänt pseudoelement eller pseudoklass \u201C%s\u201D
+error.id: ID-selektor #\u201C%s\u201D ogiltig ! Endast en ID-selektor kan anges i en enkel selektor: \u201C%s\u201D.
+error.space: Om attributselektor ~= används, så får ordet i värdet \u201C%s\u201D inte innehålla blanktecken.
+error.todo : Tyvärr är funktionalitet \u201C%s\u201D ännu inte implementerad.
+error.incompatible: \u201C%s\u201D och \u201C%s\u201D är inkompatibla
+warning.incompatible: \u201C%s\u201D och \u201C%s\u201D är inkompatibla
+error.notformobile: \u201C%s\u201D kan inte användas med mobil profil
+error.notforatsc: \u201C%s\u201D kan inte användas med ATSC-profil
+error.notfortv: \u201C%s\u201D kan inte användas med TV-profil
+error.notversion: \u201C%s\u201D kan inte användas med denna version av CSS : \u201C%s\u201D
 
-error.media: icke igenkänt medium %s
-error.page: icke igenkänd pseudonamnsida %s
+error.media: icke igenkänt medium \u201C%s\u201D
+error.page: icke igenkänd pseudonamnsida \u201C%s\u201D
 
 error.unrecognized.link: Icke igenkänt länkelement eller xml-formatmall PI.
 
@@ -331,7 +331,7 @@ parser.semi-colon: försök att hitta ett semikolon före egenskapsnamn. Lägger
 parser.old_class: I CSS1 kan ett klassnamn börja med en siffra (".55ft"), \
 om det inte är en dimension (".55in"). I CSS2 parsas sådana klasser som \
 okända dimensioner (för att göra det möjligt att i framtiden lägga till nya enheter) \
-För att göra ".%s" till en giltig klass så kräver CSS2 att den första siffran särmarkeras ".\3%s"
+För att göra ".\u201C%s\u201D" till en giltig klass så kräver CSS2 att den första siffran särmarkeras ".\3\u201C%s\u201D"
 
 parser.old_id: I CSS1 kan ett id-namn börja med en siffra ("#55ft"), \
 om det inte är en dimension ("#55in"). I CSS2 parsas sådana id:ar som \
@@ -362,10 +362,10 @@ okända dimensioner (för att göra det möjligt att i framtiden läga till nya 
 servlet.invalid-request: Du har sänt en ogiltig begäran.
 servlet.process: Kan inte bearbeta objektet
 
-warning.atsc: %s kanske inte stöds av medium atsc-tv
-error.onlyATSC: %s denna funktion enbart avsedd för medium atsc-tv
+warning.atsc: \u201C%s\u201D kanske inte stöds av medium atsc-tv
+error.onlyATSC: \u201C%s\u201D denna funktion enbart avsedd för medium atsc-tv
 
-warning.otherprofile: egenskap %s finns inte i denna profil, men valideras mot annan profil
+warning.otherprofile: egenskap \u201C%s\u201D finns inte i denna profil, men valideras mot annan profil
 
 parser.unknown-dimension: Okänd dimension
 generator.dontmixhtml: Parsningsfel: Formatmallar bör inte innehålla HTML-syntax.
@@ -387,33 +387,33 @@ vext_warnings: Varningar
 
 warning.link-type: Du bör addera ett 'type'-attribut med värde 'text/css' till 'link'-elementet
 
-warning.deprecatedmedia: Media "%s" har nedgraderats
+warning.deprecatedmedia: Media "\u201C%s\u201D" har nedgraderats
 error.nomodifiershortmedia: Prefix kan inte användas för mediafunktionaliteter utan värden
-error.nomodifiermedia: Mediafunktionalitet %s stöder inte prefix
+error.nomodifiermedia: Mediafunktionalitet \u201C%s\u201D stöder inte prefix
 error.grid: Enbart 0 och 1 är giltiga värden för grid
 
-warning.vendor-ext-pseudo-element: %s är inte ett känt namn på ett leverantörsspecifikt pseudo-element
-warning.vendor-ext-pseudo-class: %s är inte ett känt namn på en leverantörsspecifik pseudo-klass
+warning.vendor-ext-pseudo-element: \u201C%s\u201D är inte ett känt namn på ett leverantörsspecifikt pseudo-element
+warning.vendor-ext-pseudo-class: \u201C%s\u201D är inte ett känt namn på en leverantörsspecifik pseudo-klass
 warning.shape-separator: Ogiltig separator i formdefinition. Det måste vara ett kommatecken.
-warning.noexproperty: Egenskap %s finns inte
-warning.negative: negativt värde %s kommer att tolkas som 0
-warning.lowerequal: värde %s kommer att tolkas som %s
-warning.greaterequal: värde %s kommer att tolkas som %s
-warning.deprecatedproperty: Egenskapen '%s' ska inte längre användas
-warning.deprecated: Värdet '%s' ska inte längre användas
+warning.noexproperty: Egenskap \u201C%s\u201D finns inte
+warning.negative: negativt värde \u201C%s\u201D kommer att tolkas som 0
+warning.lowerequal: värde \u201C%s\u201D kommer att tolkas som \u201C%s\u201D
+warning.greaterequal: värde \u201C%s\u201D kommer att tolkas som \u201C%s\u201D
+warning.deprecatedproperty: Egenskapen '\u201C%s\u201D' ska inte längre användas
+warning.deprecated: Värdet '\u201C%s\u201D' ska inte längre användas
 parser.calcwhitespace: Det måste vara blanka tecken på båda sidorna om operatorerna '+' och '-'
-error.typevaluemismatch: Värdet %s stämmer inte överens med sin typdefinition <%s>
-error.selectorname: Ogiltigt selektornamn %s
+error.typevaluemismatch: Värdet \u201C%s\u201D stämmer inte överens med sin typdefinition <\u201C%s\u201D>
+error.selectorname: Ogiltigt selektornamn \u201C%s\u201D
 error.operandnumber: En operand måste vara ett tal
 error.nomediarestrictor: Mediabegränsning är inte definierat för denna CSS-nivå
 error.nomediafeature: Mediaegenskaper är inte definierade för denna CSS-nivå
-error.lowerequal: %s är inte ett giltigt värde, endast värden mindre än eller lika med %s tillåts.
-error.lower: %s är inte ett giltigt värde, endast värden strikt mindre än %s tillåts.
-error.invalidtype: Ogiltig typ: %s
+error.lowerequal: \u201C%s\u201D är inte ett giltigt värde, endast värden mindre än eller lika med \u201C%s\u201D tillåts.
+error.lower: \u201C%s\u201D är inte ett giltigt värde, endast värden strikt mindre än \u201C%s\u201D tillåts.
+error.invalidtype: Ogiltig typ: \u201C%s\u201D
 error.incompatibletypes: Typerna är inte kompatibla
-error.greaterequal: %s är inte ett giltigt värde, endast värden större än eller lika med %s tillåts.
-error.greater: %s är inte ett giltigt värde, endast värden strikt större än %s tillåts.
-error.errortoken: Oväntat innehåll "%s" på rad %s, förväntade något som %s (hoppar över %s)
+error.greaterequal: \u201C%s\u201D är inte ett giltigt värde, endast värden större än eller lika med \u201C%s\u201D tillåts.
+error.greater: \u201C%s\u201D är inte ett giltigt värde, endast värden strikt större än \u201C%s\u201D tillåts.
+error.errortoken: Oväntat innehåll "\u201C%s\u201D" på rad \u201C%s\u201D, förväntade något som \u201C%s\u201D (hoppar över \u201C%s\u201D)
 error.divzero: Division med noll
 error.divisortype: Divisorn måste vara ett tal
 

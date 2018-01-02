@@ -129,34 +129,34 @@ output-encoding-name: utf-8
 # U kunt zo het niveau van waarschuwing aanpassen (voorbeeld) :
 # warning.redefinition.level: 5
 # level is een integer tussen 0 en 9 (alle andere waarden worden genegeerd)
-warning.redefinition: Herdefinitie van %s
+warning.redefinition: Herdefinitie van \u201C%s\u201D
 
 # used by xml parser
 warning.style-inside-comment: Plaats geen style regels in HTML commentaar, \
 deze kunnen worden verwijderd door het programma van de gebruiker
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Dezelfde kleuren voor %s en %s
+warning.same-colors: Dezelfde kleuren voor \u201C%s\u201D en \u201C%s\u201D
 warning.no-color: Je hebt geen tekstkleur opgegeven (of de kleur is transparant) maar je hebt wel een achtergrondkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houdt.
 warning.no-background-color: Je hebt geen achtergrondkleur opgegeven (of de achtergrondkleur is transparant) maar je hebt wel een tekstkleur opgegeven. Zorg ervoor dat het opgeven van tekst- en achtergrondkleuren de tekst leesbaar houdt.
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: %s
-warning.no-generic-family: %s: Het is beter een algemene font-family op te geven als laatste alternatief
+#warning.color.mixed-capitalization: Alhoewel namen van kleuren case-insensitive zijn is het beter om de gemengde  schrijfwijze te hanteren om de namen beter leesbaar te maken: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Het is beter een algemene font-family op te geven als laatste alternatief
 warning.with-space: Familienamen die spaties bevatten moeten tussen aanhalingstekens worden geplaatst. \
 Als quotes worden weggelaten wordt elke tussenruimte voor en achter de naam genegeerd en elke groep \
 whitespace-tekens in de naam wordt omgezet naar een spatie.
 warning.no-padding: Het is beter een padding te gebruiken met een achtergrondkleur
-warning.same-colors2: Dezelfde kleur en achtergrondkleur in twee contexten %s en %s
-warning.relative-absolute: U hebt absolute en relatieve lengtes in %s. Dit is geen robuuste style sheet.
+warning.same-colors2: Dezelfde kleur en achtergrondkleur in twee contexten \u201C%s\u201D en \u201C%s\u201D
+warning.relative-absolute: U hebt absolute en relatieve lengtes in \u201C%s\u201D. Dit is geen robuuste style sheet.
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s is geen HTML Element
+warning.unknown-html: \u201C%s\u201D is geen HTML Element
 warning.html-inside: HTML element kan niet binnen een ander element voorkomen
 warning.body-inside: BODY element kan niet binnen een ander element dan HTML voorkomen
-warning.pseudo-classes: Anker pseudo-class %s heeft geen effect op andere elementen dan 'A'
+warning.pseudo-classes: Anker pseudo-class \u201C%s\u201D heeft geen effect op andere elementen dan 'A'
 
 # niet gebruikt door org.w3c.css.properties.CssSelectors op dit moment
-warning.noinside: %s kan niet voorkomen binnen een inline element
+warning.noinside: \u201C%s\u201D kan niet voorkomen binnen een inline element
 warning.withblock: Wees voorzichtig. Pseudo-elementen kunnen alleen worden gekoppeld aan een block-level element
 warning.block-level: Deze eigenschap is van toepassing op block-level elementen.
 
@@ -167,31 +167,31 @@ warning.no-declaration: Geen declaraties in de regel
 warning.unsupported-import: De geïmporteerde style sheets worden niet gecontroleerd bij het direct invoeren of uploaden van een style sheet
 
 # gebruikt door org.w3c.css.values.CssColor
-warning.out-of-range: %s valt buiten het bereik
+warning.out-of-range: \u201C%s\u201D valt buiten het bereik
 error.invalid-color: Ongeldige RGB functie
 
 warning.marker: De marker-offset eigenschap is van toepassing op elementen met 'display: marker'
 
 # gebruikt door org.w3c.css.properties.ACssStyle
-warning.relative: Het gebruik van relatieve maten geeft robuustere stylesheets bij de eigenschap %s
+warning.relative: Het gebruik van relatieve maten geeft robuustere stylesheets bij de eigenschap \u201C%s\u201D
 
 # gebruikt door org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Sorry, de at-regel %s is niet geimplementeerd.
+error.at-rule: Sorry, de at-regel \u201C%s\u201D is niet geimplementeerd.
 
 # gebruikt voor alle eigenschappen en waarden
-error.operator: %s is een incorrecte operator
-error.negative-value: %s negatieve waarden zijn niet toegestaan
-error.few-value: te weinig waarden voor de eigenschap %s
+error.operator: \u201C%s\u201D is een incorrecte operator
+error.negative-value: \u201C%s\u201D negatieve waarden zijn niet toegestaan
+error.few-value: te weinig waarden voor de eigenschap \u201C%s\u201D
 
 # gebruikt door org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s is geen correcte groepnaam. Gebruik een geldige identifier
+error.groupname: \u201C%s\u201D is geen correcte groepnaam. Gebruik een geldige identifier
 
 # gebruikt door org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s is niet geinitialiseerd door een toggle-group eigenschap
+error.nogroup: \u201C%s\u201D is niet geinitialiseerd door een toggle-group eigenschap
 
-error.notforatsc: %s kan niet gebruikt worden met het ATSC profiel
-error.notfortv: %s kan niet gebruikt worden met het TV profiel
-error.notversion: %s kan niet worden gebruikt met deze versie van CSS : %s
+error.notforatsc: \u201C%s\u201D kan niet gebruikt worden met het ATSC profiel
+error.notfortv: \u201C%s\u201D kan niet gebruikt worden met het TV profiel
+error.notversion: \u201C%s\u201D kan niet worden gebruikt met deze versie van CSS : \u201C%s\u201D
 
 # gebruikt door org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Waarde moet tussen -360 en 360 zijn en deelbaar zijn door 90
@@ -204,10 +204,10 @@ warning.direction: het is beter voor block-level elementen de CSS3 eigenschap 'w
 
 # wees voorzichtig, waarden komen eerst
 # U kunt niet zoiets als dit schrijven: Voor de kleur is blauw een incorrecte waarde
-error.value: %s geen %s waarde
+error.value: \u201C%s\u201D geen \u201C%s\u201D waarde
 
 # gebruikt door org.w3c.css.properties.CssTextDecoration
-error.same-value: %s komt tweemaal voor
+error.same-value: \u201C%s\u201D komt tweemaal voor
 
 error.generic-family.quote: Generieke familienamen zijn sleutelwoorden en moeten daarom tussen aanhalingstekens worden geplaatst
 
@@ -225,7 +225,7 @@ error.format: Ongeldige format definitie format(<string>[,<string>]*)
 error.local: Ongeldige format definitie local(<string>|<ident>+)
 
 # gebruikt door org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s is een incorrecte unit
+error.unit: \u201C%s\u201D is een incorrecte unit
 
 error.unknown: Onbekende error
 
@@ -245,30 +245,30 @@ error.integer: Dit getal moet een integer zijn.
 error.comma: Ontbrekende komma als scheidingsteken.
 
 # gebruikt door org.w3c.css.values.CssPercentage
-error.percent: %s is een incorrect percentage
+error.percent: \u201C%s\u201D is een incorrect percentage
 
 # gebruikt door org.w3c.css.values.CssString
-error.string: %s is een incorrecte string
+error.string: \u201C%s\u201D is een incorrecte string
 
 # gebruikt door org.w3c.css.values.CssURL
-error.url: %s is geen incorrecte URL
+error.url: \u201C%s\u201D is geen incorrecte URL
 
 # gebruikt door org.w3c.css.values.CssColor
-error.rgb: %s is geen geldige kleur 3 of 6 hexadecimale getallens
-error.angle: %s is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
+error.rgb: \u201C%s\u201D is geen geldige kleur 3 of 6 hexadecimale getallens
+error.angle: \u201C%s\u201D is geen geldige hoek. De waarde moet tussen 0 en 360 liggen
 
 # gebruikt door org.w3c.css.values.CssNumber
-error.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
-warning.zero: alleen 0 kan een %s zijn. U moet een maat achter uw getal plaatsen
+error.zero: alleen 0 kan een \u201C%s\u201D zijn. U moet een maat achter uw getal plaatsen
+warning.zero: alleen 0 kan een \u201C%s\u201D zijn. U moet een maat achter uw getal plaatsen
 
 # gebruikt door org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Eigenschap %s bestaat niet
+error.noexistence-at-all: Eigenschap \u201C%s\u201D bestaat niet
 
-error.noexistence: Eigenschap %s bestaat niet in %s maar wel in %s
-warning.noexistence: Eigenschap %s bestaat niet in %s maar wel in %s
+error.noexistence: Eigenschap \u201C%s\u201D bestaat niet in \u201C%s\u201D maar wel in \u201C%s\u201D
+warning.noexistence: Eigenschap \u201C%s\u201D bestaat niet in \u201C%s\u201D maar wel in \u201C%s\u201D
 
-error.noexistence-media: Eigenschap %s bestaat niet voor media %s
-warning.noexistence-media: Eigenschap %s bestaat niet voor media %s
+error.noexistence-media: Eigenschap \u201C%s\u201D bestaat niet voor media \u201C%s\u201D
+warning.noexistence-media: Eigenschap \u201C%s\u201D bestaat niet voor media \u201C%s\u201D
 
 # gebruikt door org.w3c.css.parser.CssFouffa
 error.unrecognize: Te veel waarden of teveel onbekende waarden
@@ -278,17 +278,17 @@ generator.unrecognize: Parse Error
 generator.dontmixhtml: Parse Error. Style sheets mogen geen HTML syntax.
 
 # gebruikt door org.w3c.css.parser.CssSelectors
-error.pseudo-element: Het pseudo-element %s kan niet in deze context voorkomen %s
-error.pseudo-class: De pseudo-class .%s kan niet in deze HTML context voorkomen %s
-error.pseudo: Onbekend pseudo-element of pseudo-class %s
-error.id: ID selector #%s is ongeldig ! Slechts een ID selector kan worden gespecificeerd in een eenvoudige selector: %s.
-error.space: Als de attribuut selector ~= wordt gebruikt mag het woord in de waarde %s geen spaties bevatten.
-error.todo : Sorry de feature %s is nog niet geimplementeerd.
-error.incompatible: %s en %s zijn incompatible
-warning.incompatible: %s en %s zijn incompatible
+error.pseudo-element: Het pseudo-element \u201C%s\u201D kan niet in deze context voorkomen \u201C%s\u201D
+error.pseudo-class: De pseudo-class .\u201C%s\u201D kan niet in deze HTML context voorkomen \u201C%s\u201D
+error.pseudo: Onbekend pseudo-element of pseudo-class \u201C%s\u201D
+error.id: ID selector #\u201C%s\u201D is ongeldig ! Slechts een ID selector kan worden gespecificeerd in een eenvoudige selector: \u201C%s\u201D.
+error.space: Als de attribuut selector ~= wordt gebruikt mag het woord in de waarde \u201C%s\u201D geen spaties bevatten.
+error.todo : Sorry de feature \u201C%s\u201D is nog niet geimplementeerd.
+error.incompatible: \u201C%s\u201D en \u201C%s\u201D zijn incompatible
+warning.incompatible: \u201C%s\u201D en \u201C%s\u201D zijn incompatible
 
-error.media: onbekende media %s 
-error.page: onbekende pseudo genaamde pagina %s
+error.media: onbekende media \u201C%s\u201D 
+error.page: onbekende pseudo genaamde pagina \u201C%s\u201D
 
 
 # gebruikt door StyleSheetGeneratorHTML
@@ -343,28 +343,28 @@ onbekende dimensies (dit maakt het mogelijk later nieuwe units toe te voegen)
 servlet.invalid-request: U hebt een ongeldig verzoek ingediend.
 servlet.process: Kan het object niet verwerken
 
-error.notforcss1 : Waarde %s bestaat niet voor CSS1
+error.notforcss1 : Waarde \u201C%s\u201D bestaat niet voor CSS1
 warning.noothermedium : Eigenschappen voor andere media werken mogelijk niet voor dit gebruikersmedium
-warning.notforusermedium : Eigenschap %s bestaat niet voor dit gebruikersmedium
+warning.notforusermedium : Eigenschap \u201C%s\u201D bestaat niet voor dit gebruikersmedium
 error.noatruleyet : Andere @regels dan @import worden niet ondersteund door CSS1 %
-error.notformobile : %s kan niet worden gebruikt voor het mobile profiel
-warning.atsc : %s wordt mogelijk niet ondersteund door het medium atsc-tv
+error.notformobile : \u201C%s\u201D kan niet worden gebruikt voor het mobile profiel
+warning.atsc : \u201C%s\u201D wordt mogelijk niet ondersteund door het medium atsc-tv
 error.onlyATSC : deze functie is alleen voor @media atsc-tv
 
 error.unrecognized.link: Onherkenbaar link element of xml-stylesheet PI.
 
-warning.otherprofile : property %s bestaat niet in dit profiel, maar is gevalideerd conform een ander profiel
+warning.otherprofile : property \u201C%s\u201D bestaat niet in dit profiel, maar is gevalideerd conform een ander profiel
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Combinator %s tussen de selectors is niet toegestaan in dit profiel of versie
+error.nocomb: Combinator \u201C%s\u201D tussen de selectors is niet toegestaan in dit profiel of versie
 
 error.function: Ongeldige functie definitie
 warning.charsetspecial: Dit profiel heeft een specifieke syntax voor @charset: @charset, gevolgd door een spatie, gevolgd door de naam van de encoding tussen quotes, direct gevolgd door een puntkomma.
-warning.medialist: De medialijst moet starten met 'media :' %s
-warning.nocomb: Combinatieteken %s tussen selectors is niet toegestaan binnen dit profiel (%s)
-warning.notversion: %s kan niet gebruikt worden in deze CSS-versie: %s
-warning.pseudo: Onbekend pseudo-element of pseudo-class %s in het standaard profiel (%s)
-warning.xsl: waarde %s is alleen geldig voor XSL
+warning.medialist: De medialijst moet starten met 'media :' \u201C%s\u201D
+warning.nocomb: Combinatieteken \u201C%s\u201D tussen selectors is niet toegestaan binnen dit profiel (\u201C%s\u201D)
+warning.notversion: \u201C%s\u201D kan niet gebruikt worden in deze CSS-versie: \u201C%s\u201D
+warning.pseudo: Onbekend pseudo-element of pseudo-class \u201C%s\u201D in het standaard profiel (\u201C%s\u201D)
+warning.xsl: waarde \u201C%s\u201D is alleen geldig voor XSL
 
 warning.float-no-width: In (x)HTML+CSS moet de breedte van floated elementen gedeclareerd zijn. Alleen elementen met een intrinsieke breedte (html, img, input, textarea, select, of object) worden hierdoor niet beïnvloed
 parser.charsetcss1: De @charset regels zijn niet compatibel met CSS1

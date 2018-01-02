@@ -126,32 +126,32 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Επαναπροσδιορισμός του %s
+warning.redefinition: Επαναπροσδιορισμός του \u201C%s\u201D
 
 # used by xml parser 
 warning.style-inside-comment: Μη βάζετε κανόνες στιλ μέσα σε σχόλια στο αρχείο HTML γιατί θα αφαιρεθούν από το λογισμικό
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: Ίδιο χρώμα για %s και %s
+warning.same-colors: Ίδιο χρώμα για \u201C%s\u201D και \u201C%s\u201D
 warning.no-color: Δεν έχετε ορισμό για χρώμα (ή το χρώμα είναι ορισμένο στο διάφανο) αλλά έχετε ορίσει ένα διάφανο φόντο. Βεβαιωθείτε ότι η διαδοχή των χρωμάτων κάνει ευανάγνωστα τα γράμματα.
 warning.no-background-color: Δεν έχετε ορισμό για φόντο (ή το χρώμα είναι ορισμένο στο διάφανο) αλλά έχετε ορίσει ένα χρώμα. Βεβαιωθείτε ότι η διαδοχή των χρωμάτων κάνει ευανάγνωστα τα γράμματα.
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Αν η ονομασία των χρωμάτων δεν κάνει διάκριση πεζών κεφαλαίων, προτείνεται η χρήση κεφαλαίων για να είναι πιο ευανάγνωστα τα ονόματα: %s
-warning.no-generic-family: %s: Προτείνεται η χρήση μίας γενικής οικογένειας γραμματοσειράς ως τελευταία εναλλακτική
+#warning.color.mixed-capitalization: Αν η ονομασία των χρωμάτων δεν κάνει διάκριση πεζών κεφαλαίων, προτείνεται η χρήση κεφαλαίων για να είναι πιο ευανάγνωστα τα ονόματα: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Προτείνεται η χρήση μίας γενικής οικογένειας γραμματοσειράς ως τελευταία εναλλακτική
 warning.with-space: Οι οικογένειες γραμματοσειρών που περιέχουν κενά, πρέπει να εισάγονται μέσα σε εισαγωγικά. Εάν δεν βάζετε εισαγωγικά, οποιοδήποτε κενοί  \
 χαρακτήρες πριν και μετά το όνομα αγνοούνται και οποιαδήποτε συνεχόμενη σειρά κενών χαρακτήρων \
 μετατρέπεται σε ένα μόνο κενό. 
 warning.no-padding: Προτείνεται να έχετε μία περιοχή με γέμισμα φόντου
-warning.same-colors2: Ίδια χρώματα για χρώμα και για χρώμα φόντου σε δύο περιεχόμενα %s και %s
-warning.relative-absolute: Έχετε απόλυτα και αναφορικά μήκοι στο %s. Δεν πρόκειται για ένα στιβαρό style sheet.
+warning.same-colors2: Ίδια χρώματα για χρώμα και για χρώμα φόντου σε δύο περιεχόμενα \u201C%s\u201D και \u201C%s\u201D
+warning.relative-absolute: Έχετε απόλυτα και αναφορικά μήκοι στο \u201C%s\u201D. Δεν πρόκειται για ένα στιβαρό style sheet.
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: Το %s δεν αποτελεί ένα Στοιχείο HTML
+warning.unknown-html: Το \u201C%s\u201D δεν αποτελεί ένα Στοιχείο HTML
 warning.html-inside: Το στοιχείο HTML δεν μπορεί να είναι μέσα σε άνα άλλο στοιχείο
 warning.body-inside: Το στοιχείο BODY δεν μπορεί να είναι μέσα σε άνα άλλο στοιχείο εκτός από το HTML
-warning.pseudo-classes: Η ψευδοκλάση Anchor %s δεν έχει κανένα αποτέλεσμα σε στοιχεία άλλα εκτός από τα 'A'
+warning.pseudo-classes: Η ψευδοκλάση Anchor \u201C%s\u201D δεν έχει κανένα αποτέλεσμα σε στοιχεία άλλα εκτός από τα 'A'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: Το %s δεν μπορεί να βρίσκεται μέσα σε ένα εσωτερικό στοιχείο
+warning.noinside: Το \u201C%s\u201D δεν μπορεί να βρίσκεται μέσα σε ένα εσωτερικό στοιχείο
 warning.withblock: Προσοχή. Τα ψευδό-στοιχεία μπορούν να είναι συνημμένα μόνο σε ένα στοιχείο block-level
 warning.block-level: Η ιδιότητα αυτή εφαρμόζεται σε στοιχεία block-level.
 
@@ -162,31 +162,31 @@ warning.no-declaration: Καμία διακήρυξη για τον κανόνα
 warning.unsupported-import: Τα εισαγώμενα style sheet δεν ελέγχονται στην κατάσταση άμεσης εισαγωγής και μεταφοράς αρχείου
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: Το %s είναι εκτός εύρους
+warning.out-of-range: Το \u201C%s\u201D είναι εκτός εύρους
 error.invalid-color: Μη έγκυρη λειτουργία RGB
 
 warning.marker: Η ιδιότητα marker-offset εφαρμόζεται σε στοιχεία με 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: Η χρήση αναφορικών κανόνων παρέχει περισσότερο στιβαρά stylesheet στην ιδιότητα %s
+warning.relative: Η χρήση αναφορικών κανόνων παρέχει περισσότερο στιβαρά stylesheet στην ιδιότητα \u201C%s\u201D
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Συγνώμη, ο κανόνας %s δεν εφαρμόζεται.
+error.at-rule: Συγνώμη, ο κανόνας \u201C%s\u201D δεν εφαρμόζεται.
 
 # used by all properties and values
-error.operator: Το %s είναι ένας λανθασμένος τελεστής
-error.negative-value: Οι αρνητικές τιμές %s δεν επιτρέπονται
-error.few-value: πολύ λίγες τιμές για την ιδιότητα %s
+error.operator: Το \u201C%s\u201D είναι ένας λανθασμένος τελεστής
+error.negative-value: Οι αρνητικές τιμές \u201C%s\u201D δεν επιτρέπονται
+error.few-value: πολύ λίγες τιμές για την ιδιότητα \u201C%s\u201D
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: Το %s δεν είναι μία τιμή %s
+error.value: Το \u201C%s\u201D δεν είναι μία τιμή \u201C%s\u201D
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: Το %s δεν αποτελεί μία σωστή ονομασία ομάδας. Χρησιμοποιήστε έναν έγκυρο προσδιορισμό
+error.groupname: Το \u201C%s\u201D δεν αποτελεί μία σωστή ονομασία ομάδας. Χρησιμοποιήστε έναν έγκυρο προσδιορισμό
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: Το %s δεν έχει οριστεί από την ιδιότητα toggle-group property
+error.nogroup: Το \u201C%s\u201D δεν έχει οριστεί από την ιδιότητα toggle-group property
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Η τιμή πρέπει να κυμαίνεται ανάμεσα στο -360 και 360 και να μπορεί να διαιρείται με το 90
@@ -195,17 +195,17 @@ error.anglevalue: Η τιμή πρέπει να κυμαίνεται ανάμε�
 error.percentage: αναμένεται ποσοστιαία τιμή
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: η τιμή %s εφαρμόζεται μόνο στο XSL
+warning.xsl: η τιμή \u201C%s\u201D εφαρμόζεται μόνο στο XSL
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: το μέσο πρέπει να ξεκινάει με 'media :' %s
-error.nocomb: Ο συνδυασμός %s ανάμεσα σε επιλογείς δεν επιτρέπεται στο προφίλ ή έκδοση
+warning.medialist: το μέσο πρέπει να ξεκινάει με 'media :' \u201C%s\u201D
+error.nocomb: Ο συνδυασμός \u201C%s\u201D ανάμεσα σε επιλογείς δεν επιτρέπεται στο προφίλ ή έκδοση
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: αντί να χρησιμοποιήσετε το 'direction' για στοιχεία block-level χρησιμοποιήστε τη νέα ιδιότητα του CSS3 'writing-mode'
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: το %s εμφανίζεται δύο φορές
+error.same-value: το \u201C%s\u201D εμφανίζεται δύο φορές
 
 error.generic-family.quote: Οι γενικές ονομασίες οικογενειών γραμματοσειρών είναι δεσμευμένες λέξεις και επομένως δεν πρέπει να μπαίνουν σε εισαγωγικά.
 
@@ -224,7 +224,7 @@ error.format: Μη έγκυρος προσδιορισμός μορφοποίη�
 error.local: Μη έγκυρος προσδιορισμός μορφοποίησης local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: το %s αποτελεί μία λανθασμένη μονάδα
+error.unit: το \u201C%s\u201D αποτελεί μία λανθασμένη μονάδα
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: Η θέση πρέπει να περιγράφεται σε μοίρες.
@@ -242,40 +242,40 @@ error.integer: Ο αριθμός αυτός πρέπει να είναι ακέ�
 error.comma: Λείπει το κόμμα.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: Το %s αποτελεί ένα λανθασμένο ποσοστό
+error.percent: Το \u201C%s\u201D αποτελεί ένα λανθασμένο ποσοστό
 
 # used by org.w3c.css.values.CssString
-error.string: Το %s αποτελεί μία λανθασμένη συμβολοσειρά
+error.string: Το \u201C%s\u201D αποτελεί μία λανθασμένη συμβολοσειρά
 
 # used by org.w3c.css.values.CssURL
-error.url: Το %s αποτελεί ένα λανθασμένο URL
+error.url: Το \u201C%s\u201D αποτελεί ένα λανθασμένο URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: Το %s δεν αποτελεί ένα έγκυρο χρώμα 3 ή 6 δεκαεξαδικών αριθμών
-error.angle: Το %s δεν αποτελεί μία έγκυρη γωνία. Η τιμή πρέπει να είναι ανάμεσα στο 0 και 360
+error.rgb: Το \u201C%s\u201D δεν αποτελεί ένα έγκυρο χρώμα 3 ή 6 δεκαεξαδικών αριθμών
+error.angle: Το \u201C%s\u201D δεν αποτελεί μία έγκυρη γωνία. Η τιμή πρέπει να είναι ανάμεσα στο 0 και 360
 
 # used by org.w3c.css.values.CssNumber
-error.zero: μόνο το 0 μπορεί να είναι ένα %s. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
-warning.zero: μόνο το 0 μπορεί να είναι ένα %s. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
+error.zero: μόνο το 0 μπορεί να είναι ένα \u201C%s\u201D. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
+warning.zero: μόνο το 0 μπορεί να είναι ένα \u201C%s\u201D. Πρέπει να τοποθετήσετε μία μονάδα μετά τον αριθμό
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: Η ιδιότητα %s δεν υπάρχει
-error.noexistence-media: Η ιδιότητα %s δεν υπάρχει για το μέσο %s
-error.noexistence: Η ιδιότητα %s δεν υπάρχει στο %s αλλά υπάρχει στο %s
-warning.noexistence: Η ιδιότητα %s δεν υπάρχει στο %s αλλά υπάρχει στο %s
-warning.noexistence-media: Η ιδιότητα %s δεν υπάρχει για το μέσο %s
-warning.notforusermedium : Η ιδιότητα %s δεν υπάρχει γι' αυτό το μέσο
+error.noexistence-at-all: Η ιδιότητα \u201C%s\u201D δεν υπάρχει
+error.noexistence-media: Η ιδιότητα \u201C%s\u201D δεν υπάρχει για το μέσο \u201C%s\u201D
+error.noexistence: Η ιδιότητα \u201C%s\u201D δεν υπάρχει στο \u201C%s\u201D αλλά υπάρχει στο \u201C%s\u201D
+warning.noexistence: Η ιδιότητα \u201C%s\u201D δεν υπάρχει στο \u201C%s\u201D αλλά υπάρχει στο \u201C%s\u201D
+warning.noexistence-media: Η ιδιότητα \u201C%s\u201D δεν υπάρχει για το μέσο \u201C%s\u201D
+warning.notforusermedium : Η ιδιότητα \u201C%s\u201D δεν υπάρχει γι' αυτό το μέσο
 warning.noothermedium : Οι ιδιότητες για άλλα μέσα μπορεί να μη λειτουργούν για το μέσο
 # used by org.w3c.css.parser.AtRule*
-error.noatruleyet: Άλλοι κανόνες @rules από το @import δεν υποστηρίζονται από το CSS1 %s
+error.noatruleyet: Άλλοι κανόνες @rules από το @import δεν υποστηρίζονται από το CSS1 \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-error.notforcss1: Η τιμή %s δεν υπάρχει για το CSS1
-warning.pseudo: Άγνωστο ψευδο-στοιχείο ή ψευδο-κλάση %s στο προεπιλεγμένο προφίλ (%s)
-warning.nocomb: Συνδυασμός %s ανάμεσα σε επιλεγείς δεν επιτρέπεται σε αυτό το προφίλ (%s)
+error.notforcss1: Η τιμή \u201C%s\u201D δεν υπάρχει για το CSS1
+warning.pseudo: Άγνωστο ψευδο-στοιχείο ή ψευδο-κλάση \u201C%s\u201D στο προεπιλεγμένο προφίλ (\u201C%s\u201D)
+warning.nocomb: Συνδυασμός \u201C%s\u201D ανάμεσα σε επιλεγείς δεν επιτρέπεται σε αυτό το προφίλ (\u201C%s\u201D)
 warning.charsetspecial: Το προφίλ αυτό έχει μία πολύ συγκεκριμένη σύνταξη για το @charset: \
 το @charset ακολουθείται από ένα κενό, το οποίο ακολουθείται από το όνομα της κωδικοποίησης \
 μέσα σε εισαγωγικά, και ακολουθείται αμέσως από semicolon.
-warning.notversion: Το %s δεν μπορεί να χρησιμοποιηθεί με αυτή την έκδοση του CSS : %s
+warning.notversion: Το \u201C%s\u201D δεν μπορεί να χρησιμοποιηθεί με αυτή την έκδοση του CSS : \u201C%s\u201D
 
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Πάρα πολλές τιμές ή οι τιμές δεν αναγνωρίζονται
@@ -288,21 +288,21 @@ generator.dontmixhtml: Σφάλμα Ανάλυσης. Τα Style sheet δεν π
 error.unknown: Άγνωστο σφάλμα
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Το ψευδο-στοιχείο: %s δεν μπορεί να εμφανίζεται εδώ στο κείμενο %s
-error.pseudo-class: η ψευδο-κλάση .%s δεν μπορεί να εμφανίζεται στο κείμενο HTML %s
-error.pseudo: Άγνωστο ψευδο-στοιχείο ή ψευδο-κλάση %s
-error.id: Ο επιλογέας ID #%s δεν είναι έγκυρος ! Μόνο ένας επιλογέας ID μπορεί να προσδιορίζεται σε έναν απλό επιλογέα: %s.
-error.space: Εάν χρησιμοποιείται ο επιλογέας χαρακτηριστικού ~=, tη λέξη στην τιμή %s δεν πρέπει να περιέχει κενά.
-error.todo : Συγνώμη το χαρακτηριστικό %s δεν υλοποιείται ακόμη.
-error.incompatible: τα %s και %s δεν είναι συμβατά
-warning.incompatible: τα %s και %s δεν είναι συμβατά
-error.notformobile: το %s δεν μπορεί να χρησιμοποιηθεί με κινητό προφίλ
-error.notforatsc: το %s δεν μπορεί να χρησιμοποιηθεί με προφίλ ATSC
-error.notfortv: το %s δεν μπορεί να χρησιμοποιηθεί με προφίλ TV
-error.notversion: to %s δεν μπορεί να χρησιμοποιηθεί με αυτή την έκδοση του CSS : %s
+error.pseudo-element: Το ψευδο-στοιχείο: \u201C%s\u201D δεν μπορεί να εμφανίζεται εδώ στο κείμενο \u201C%s\u201D
+error.pseudo-class: η ψευδο-κλάση .\u201C%s\u201D δεν μπορεί να εμφανίζεται στο κείμενο HTML \u201C%s\u201D
+error.pseudo: Άγνωστο ψευδο-στοιχείο ή ψευδο-κλάση \u201C%s\u201D
+error.id: Ο επιλογέας ID #\u201C%s\u201D δεν είναι έγκυρος ! Μόνο ένας επιλογέας ID μπορεί να προσδιορίζεται σε έναν απλό επιλογέα: \u201C%s\u201D.
+error.space: Εάν χρησιμοποιείται ο επιλογέας χαρακτηριστικού ~=, tη λέξη στην τιμή \u201C%s\u201D δεν πρέπει να περιέχει κενά.
+error.todo : Συγνώμη το χαρακτηριστικό \u201C%s\u201D δεν υλοποιείται ακόμη.
+error.incompatible: τα \u201C%s\u201D και \u201C%s\u201D δεν είναι συμβατά
+warning.incompatible: τα \u201C%s\u201D και \u201C%s\u201D δεν είναι συμβατά
+error.notformobile: το \u201C%s\u201D δεν μπορεί να χρησιμοποιηθεί με κινητό προφίλ
+error.notforatsc: το \u201C%s\u201D δεν μπορεί να χρησιμοποιηθεί με προφίλ ATSC
+error.notfortv: το \u201C%s\u201D δεν μπορεί να χρησιμοποιηθεί με προφίλ TV
+error.notversion: to \u201C%s\u201D δεν μπορεί να χρησιμοποιηθεί με αυτή την έκδοση του CSS : \u201C%s\u201D
 
-error.media: μη αναγνωρίσιμο μέσο %s 
-error.page: μη αναγνωρίσιμο σελίδας με ψευδώνυμο %s
+error.media: μη αναγνωρίσιμο μέσο \u201C%s\u201D 
+error.page: μη αναγνωρίσιμο σελίδας με ψευδώνυμο \u201C%s\u201D
 
 error.unrecognized.link: Μη αναγνωρίσιμο στοιχείο σύνδεσμου ή xml-stylesheet PI.
 
@@ -328,7 +328,7 @@ parser.unknown-dimension: Άγνωστη διάσταση
 parser.old_class: Στο CSS1, η ονομασία κλάσης πρέπει να ξεκινάει με ένα ψηφίο (".55ft"), \
 εκτός και εάν ήταν διάσταση (".55in"). Στο CSS2, τέτοιες κλάσεις πρέπει να αναλύονται ως \
 άγνωστες διαστάσεις (για να επιτρέπουν τη μελλοντική πρόσθεση νέων μονάδων) \
-Για να γίνει το ".%s" μία έγκυρη κλάση, το CSS2 απαιτεί τη διαφυγή του πρώτου ψηφίου ".\3%s"
+Για να γίνει το ".\u201C%s\u201D" μία έγκυρη κλάση, το CSS2 απαιτεί τη διαφυγή του πρώτου ψηφίου ".\3\u201C%s\u201D"
 
 parser.old_id: Στο CSS1, η ονομασία id πρέπει να ξεκινάει με ένα ψηφίο ("#55ft"), \
 εκτός και εάν ήταν διάσταση ("#55in"). Στο CSS2, τέτοια id πρέπει να αναλύονται ως \
@@ -359,10 +359,10 @@ warning.old_class:  Στο CSS1, η ονομασία κλάσης μπορεί �
 servlet.invalid-request: Στείλατε ένα μη έγκυρο αίτημα.
 servlet.process: Το αντικείμενο δεν επεξεργάζεται
 
-warning.atsc: Το %s μπορεί να μην υποστηρίζεται από το μέσο atsc-tv
-error.onlyATSC: %s η λειτουργία αυτή υποστηρίζεται μόνο για το μέσο atsc-tv
+warning.atsc: Το \u201C%s\u201D μπορεί να μην υποστηρίζεται από το μέσο atsc-tv
+error.onlyATSC: \u201C%s\u201D η λειτουργία αυτή υποστηρίζεται μόνο για το μέσο atsc-tv
 
-warning.otherprofile: η ιδιότητα %s δεν υπάρχει σ' αυτό το προφίλ, αλλά μπορεί να ελεγχθεί η εγκυρότητα του με βάση ένα άλλο προφίλ
+warning.otherprofile: η ιδιότητα \u201C%s\u201D δεν υπάρχει σ' αυτό το προφίλ, αλλά μπορεί να ελεγχθεί η εγκυρότητα του με βάση ένα άλλο προφίλ
 
 warning.float-no-width: Στο (x)HTML+CSS, τα πλωτά στοιχεία (floated elements) χρειάζεται να έχουν ορισμένο πλάτος. Μόνο τα στοιχεία με φυσικό πλάτος δεν επηρεάζονται (html, img, input, textarea, select, ή object)
 

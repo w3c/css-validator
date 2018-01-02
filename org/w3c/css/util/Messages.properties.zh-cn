@@ -129,34 +129,34 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: 重定义了 %s
+warning.redefinition: 重定义了 \u201C%s\u201D
 
 # used by xml parser
 warning.style-inside-comment: 不要把样式表的规则放入HTML注释中，以避免被用户代理删掉。
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: 一样的颜色对于 %s 和 %s
+warning.same-colors: 一样的颜色对于 \u201C%s\u201D 和 \u201C%s\u201D
 warning.no-color: 你没有为你的背景色设置(前景)颜色
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: %s
+#warning.color.mixed-capitalization: Although color names are case-insensitive, it is recommended to use the mixed capitalization, to make the names more legible: \u201C%s\u201D
 warning.no-background-color: 你没有为你的(前景)颜色设置背景色
-warning.no-generic-family: %s: 建议你指定一个种类族科作为最后的选择
+warning.no-generic-family: \u201C%s\u201D: 建议你指定一个种类族科作为最后的选择
 error.generic-family.quote: 总族名称是保留字，所以不能被引用。
 warning.with-space: 包含空白的族科名称应该包含于蔻蔻中。如果省略了，任何 \
 名字前或后的空白符号都会被忽略而名字中所有连续的空白 \
 符号会被转换为单一个空格。
 warning.no-padding: 建议你使用有背景色的浮白区域(padding area)
-warning.same-colors2: 颜色和背景颜色使用了相同的颜色 %s 和 %s
-warning.relative-absolute: 你在 %s 使用了一些绝对和相对长度。这不是棒的样式表
+warning.same-colors2: 颜色和背景颜色使用了相同的颜色 \u201C%s\u201D 和 \u201C%s\u201D
+warning.relative-absolute: 你在 \u201C%s\u201D 使用了一些绝对和相对长度。这不是棒的样式表
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s 不是HTML元素
+warning.unknown-html: \u201C%s\u201D 不是HTML元素
 warning.html-inside: HTML 元素不能嵌在其它元素中
 warning.body-inside: BODY 元素不能嵌在除了HTML元素的其它元素中
-warning.pseudo-classes: 定位锚伪类 %s 除了对'A'外，在元素上没有效果
+warning.pseudo-classes: 定位锚伪类 \u201C%s\u201D 除了对'A'外，在元素上没有效果
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s 不能嵌在内联元素中
+warning.noinside: \u201C%s\u201D 不能嵌在内联元素中
 warning.withblock: 请小心。伪元素只能附于块级元素上
 warning.block-level: 这个属性应用于块级元素
 
@@ -167,39 +167,39 @@ warning.no-declaration: 在规则中没有声明
 warning.unsupported-import: 通过直接输入及文件上传模式导入的样式表未经检查
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s 超出范围
+warning.out-of-range: \u201C%s\u201D 超出范围
 error.invalid-color: 无效的 RGB 函数
 warning.marker: Marker-offset属性对标有’display: marker’的元素有效。
 
 # used by org.w3c.css.properties.ACssStyle
-warning.relative: 在属性 %s 使用相对单位令样式表更加棒
+warning.relative: 在属性 \u201C%s\u201D 使用相对单位令样式表更加棒
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: 无法识别 '@规则' %s
+error.at-rule: 无法识别 '@规则' \u201C%s\u201D
 
 # used by all properties and values
-error.operator: %s 是一个错误的运算符
-error.negative-value: %s 不允许使用负值
-error.few-value: 属性 %s 的值太小
+error.operator: \u201C%s\u201D 是一个错误的运算符
+error.negative-value: \u201C%s\u201D 不允许使用负值
+error.few-value: 属性 \u201C%s\u201D 的值太小
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s 不是一个 %s 值
+error.value: \u201C%s\u201D 不是一个 \u201C%s\u201D 值
 
 #used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s 不是正确的组名称. 请使用合法的标识符
+error.groupname: \u201C%s\u201D 不是正确的组名称. 请使用合法的标识符
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s 没有在 toggle-group 属性中指定
+error.nogroup: \u201C%s\u201D 没有在 toggle-group 属性中指定
 
 #used by org.w3c.css.properties3.CssTextKashidaSpace
 error.percentage: 预期是百分比数值
 
 #used by org.w3c.css.properties.CssTextAlign
-warning.xsl: 值 %s 仅在XSL中生效
+warning.xsl: 值 \u201C%s\u201D 仅在XSL中生效
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s 重复出现
+error.same-value: \u201C%s\u201D 重复出现
 
 # used by org.w3c.css.properties.CssClip
 error.shape: 无效的形状定义 rect(<top>,<right>,<bottom>,<left>)
@@ -218,10 +218,10 @@ error.local: 无效的格式定义 local(<string>|<ident>+)
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: 值必须介于 -360 和 360 之间，并且能被 90 整除
 
-error.angle: %s 不是有效的角度数值。值应该介于 0 和 360 之间
+error.angle: \u201C%s\u201D 不是有效的角度数值。值应该介于 0 和 360 之间
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s 是错误的单位
+error.unit: \u201C%s\u201D 是错误的单位
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: 位置必须描述为有效的角度范围
@@ -239,36 +239,36 @@ error.integer: This number should be an integer.
 error.comma: 缺少逗号分隔符
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s 是错误的百分比
+error.percent: \u201C%s\u201D 是错误的百分比
 
 # used by org.w3c.css.values.CssString
-error.string: %s 是错误的字符串
+error.string: \u201C%s\u201D 是错误的字符串
 
 # used by org.w3c.css.values.CssURL
-error.url: %s 是错误的URL
+error.url: \u201C%s\u201D 是错误的URL
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s 不是有效的3或6伪十六进制数字的颜色
+error.rgb: \u201C%s\u201D 不是有效的3或6伪十六进制数字的颜色
 
 # used by org.w3c.css.values.CssNumber
-error.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
-warning.zero: 只有0可以成为 %s. 你必须在你的数字后加入单位
+error.zero: 只有0可以成为 \u201C%s\u201D. 你必须在你的数字后加入单位
+warning.zero: 只有0可以成为 \u201C%s\u201D. 你必须在你的数字后加入单位
 
 # used by org.w3c.css.parser.CssPropertyFactory 
-error.noexistence-at-all: 属性 %s 不存在
-error.noexistence-media: 媒体 %s 的属性 %s 不存在
-error.noexistence: 属性 %s 不存在于 %s , 但存在于 %s
-warning.noexistence: 属性 %s 不存在于 %s , 但存在于 %s
-warning.noexistence-media: 媒体 %s 的属性 %s 不存在
-error.notforcss1: 值 %s 不存在 CSS1 里
+error.noexistence-at-all: 属性 \u201C%s\u201D 不存在
+error.noexistence-media: 媒体 \u201C%s\u201D 的属性 \u201C%s\u201D 不存在
+error.noexistence: 属性 \u201C%s\u201D 不存在于 \u201C%s\u201D , 但存在于 \u201C%s\u201D
+warning.noexistence: 属性 \u201C%s\u201D 不存在于 \u201C%s\u201D , 但存在于 \u201C%s\u201D
+warning.noexistence-media: 媒体 \u201C%s\u201D 的属性 \u201C%s\u201D 不存在
+error.notforcss1: 值 \u201C%s\u201D 不存在 CSS1 里
 warning.notforusermedium : 属性在该usermedium中不存在
 warning.noothermedium : 其他媒介中的属性在usermedium中未必正常工作
-error.noatruleyet: CSS1 没有支援 @import 以外的 @rule %s
+error.noatruleyet: CSS1 没有支援 @import 以外的 @rule \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
-warning.pseudo: 未知的伪元素或伪类 %s 出现在默认配置 (%s) 中
-warning.nocomb: 选择子之间的连接子 %s 不允许使用在该配置 (%s) 中
+warning.pseudo: 未知的伪元素或伪类 \u201C%s\u201D 出现在默认配置 (\u201C%s\u201D) 中
+warning.nocomb: 选择子之间的连接子 \u201C%s\u201D 不允许使用在该配置 (\u201C%s\u201D) 中
 warning.charsetspecial: 该配置的 @charset 具有特定的语法规则: 后边紧随一个空格, 之后紧随引号引起的编码名称, 最后跟一个分号.
-warning.notversion: %s 不能用于该版本的CSS : %s
+warning.notversion: \u201C%s\u201D 不能用于该版本的CSS : \u201C%s\u201D
 
 
 
@@ -277,20 +277,20 @@ error.unrecognize: 太多值不能识别
 error.unknown: 未知错误
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: 伪元素%s 不能在次处的上下文 %s 中出现
-error.pseudo-class: 伪类 .%s 不能在此处的HTML上下文 %s 中出现
-error.pseudo: 不识别的伪元素或伪类 %s
-error.id: ID选择符 #%s 无效！只有一个ID选择符可以被指定到普通选择符: %s.
-error.space: 如果使用了属性选择符 ~= ，在值 %s 中的字必须不包含空格
-error.todo : 抱歉，特性 %s 还不能支持
-error.incompatible: %s 和 %s 不兼容
-warning.incompatible: %s 和 %s 不兼容
-error.notforatsc: %s 不能在 ATSC 配置中使用
-error.notformobile: %s 不能在 mobile 配置中使用
-error.notfortv: %s 不能在 TV 配置中使用
-error.notversion: %s 在这个 CSS 版本无法使用: %s
-error.media: 不能识别的媒体 %s 
-error.page: 不能职别的伪命名页 %s
+error.pseudo-element: 伪元素\u201C%s\u201D 不能在次处的上下文 \u201C%s\u201D 中出现
+error.pseudo-class: 伪类 .\u201C%s\u201D 不能在此处的HTML上下文 \u201C%s\u201D 中出现
+error.pseudo: 不识别的伪元素或伪类 \u201C%s\u201D
+error.id: ID选择符 #\u201C%s\u201D 无效！只有一个ID选择符可以被指定到普通选择符: \u201C%s\u201D.
+error.space: 如果使用了属性选择符 ~= ，在值 \u201C%s\u201D 中的字必须不包含空格
+error.todo : 抱歉，特性 \u201C%s\u201D 还不能支持
+error.incompatible: \u201C%s\u201D 和 \u201C%s\u201D 不兼容
+warning.incompatible: \u201C%s\u201D 和 \u201C%s\u201D 不兼容
+error.notforatsc: \u201C%s\u201D 不能在 ATSC 配置中使用
+error.notformobile: \u201C%s\u201D 不能在 mobile 配置中使用
+error.notfortv: \u201C%s\u201D 不能在 TV 配置中使用
+error.notversion: \u201C%s\u201D 在这个 CSS 版本无法使用: \u201C%s\u201D
+error.media: 不能识别的媒体 \u201C%s\u201D 
+error.page: 不能职别的伪命名页 \u201C%s\u201D
 
 
 # used by StyleSheetGeneratorHTML
@@ -309,7 +309,7 @@ generator.doc:<!-- removed this confusing message olivier 2006-12-14 -->
 
 
 # used by the parser
-parser.semi-colon: 在属性名称 %s 之前缺少分号
+parser.semi-colon: 在属性名称 \u201C%s\u201D 之前缺少分号
 
 parser.unknown-dimension: 未知因素
 
@@ -358,18 +358,18 @@ servlet.process: 不能对对象进行处理
 error.unrecognized.link: 不可识别的链接元素或者XML样式 PI.
 
 #used by org.w3c.css.parser.analyzer.CssParser
-warning.medialist: 媒介列表应以 'media :' %s 开始
-error.nocomb: 在现有版本或者配置中，不允许在选择子之间使用连接子 %s 
+warning.medialist: 媒介列表应以 'media :' \u201C%s\u201D 开始
+error.nocomb: 在现有版本或者配置中，不允许在选择子之间使用连接子 \u201C%s\u201D 
 
 #used by org.w3c.css.properties.CssDirection
 warning.direction: 不应该在块级别的元素中使用 'direction' , 应使用新的 CSS3 属性 'writing-mode'
 
 
-warning.atsc: %s 也许没有被 atsc-tv 媒介所支持
-error.onlyATSC: %s 该函式只能在 atsc-tv 媒介中使用
+warning.atsc: \u201C%s\u201D 也许没有被 atsc-tv 媒介所支持
+error.onlyATSC: \u201C%s\u201D 该函式只能在 atsc-tv 媒介中使用
 
 
-warning.otherprofile: 属性 %s 不存在于该配置中, 但在另一个配置中有效
+warning.otherprofile: 属性 \u201C%s\u201D 不存在于该配置中, 但在另一个配置中有效
 
 warning.float-no-width: 在 (x)HTML+CSS 框架下，浮动元素需要声明宽度。具有固有宽度的元素 (html, img, input, textarea, select 或 object) 不受影响
 parser.charsetcss1: @charset 条件不能在 CSS1 中使用
@@ -378,17 +378,17 @@ parser.invalid_id_selector: 无效的 ID 选择符
 parser.import_not_allowed: @import 不可以出现在除 @charset 和 @import 以外的任何有效语句之后。
 
 error.divzero: 除数为零
-error.greater: %s 无效，只允许严格大于 %s 的值。
-error.greaterequal: %s 无效，只允许大于或等于 %s 的值。
+error.greater: \u201C%s\u201D 无效，只允许严格大于 \u201C%s\u201D 的值。
+error.greaterequal: \u201C%s\u201D 无效，只允许大于或等于 \u201C%s\u201D 的值。
 error.incompatibletypes: 类型不兼容
-error.lower: %s 无效，只允许严格低于 %s 的值。
-error.lowerequal: %s 无效，只允许小于或等于 %s 的值。
+error.lower: \u201C%s\u201D 无效，只允许严格低于 \u201C%s\u201D 的值。
+error.lowerequal: \u201C%s\u201D 无效，只允许小于或等于 \u201C%s\u201D 的值。
 error.operandnumber: 一个操作数必须是数字
-error.selectorname: 无效的选择器名称 %s
-error.strictly-positive: %s 无效，只允许大于0的值。
+error.selectorname: 无效的选择器名称 \u201C%s\u201D
+error.strictly-positive: \u201C%s\u201D 无效，只允许大于0的值。
 vext_errors: 错误
 vext_warnings: 警告
 
 error.divisortype: 除数必须为数字
-error.invalidtype: %s 类型无效
-error.typevaluemismatch: 值 %s 与其类型定义 %s 不兼容
+error.invalidtype: \u201C%s\u201D 类型无效
+error.typevaluemismatch: 值 \u201C%s\u201D 与其类型定义 \u201C%s\u201D 不兼容

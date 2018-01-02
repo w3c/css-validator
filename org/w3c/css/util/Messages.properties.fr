@@ -135,22 +135,22 @@ output-encoding-name: utf-8
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)
-warning.redefinition: Redéfinition de la propriété %s
+warning.redefinition: Redéfinition de la propriété \u201C%s\u201D
 
 # used by xml parser
 warning.style-inside-comment: Ne mettez pas de règles de style à l'intérieur de commentaires HTML car l'application cliente peut les supprimer
 warning.link-type: Vous devriez ajouter un attribut 'type' ayant pour valeur 'text/css' à l'élément 'link'
 
 # used by org.w3c.css.properties.Css1Style
-warning.same-colors: %s et %s sont de la même couleur
+warning.same-colors: \u201C%s\u201D et \u201C%s\u201D sont de la même couleur
 warning.no-color: Vous n'avez pas de couleur définie avec votre \
 couleur de fond
 warning.no-background-color: Vous n'avez pas de couleur de fond définie \
 avec votre couleur
 #warning.color.mixed-capitalization is now obsolete
 #warning.color.mixed-capitalization: Bien que les noms de couleurs ne dépendent pas de la casse,\
-il est recommandé d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: %s
-warning.no-generic-family: %s: Vous êtes encouragés à proposer une famille \
+il est recommandé d'utiliser la capitalisation mixte pour rendre les noms plus lisibles: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Vous êtes encouragés à proposer une famille \
 générique comme dernier choix
 warning.with-space: Les noms de familles contenant des espaces doivent être mis entre \
 guillemets. Si les guillemets sont omis, tous les espaces avant et après \
@@ -159,18 +159,18 @@ remplacée par un seul espace.
 warning.no-padding: Il est recommandé d'avoir une zone de remplissage lors de \
 l'utilisation d'une couleur de fond
 warning.same-colors2: La même couleur est utilisée en tant que couleur et couleur de \
-fond dans les deux contextes %s et %s
-warning.relative-absolute: Vous avez des longueurs absolues et relatives dans %s, votre feuille de \
+fond dans les deux contextes \u201C%s\u201D et \u201C%s\u201D
+warning.relative-absolute: Vous avez des longueurs absolues et relatives dans \u201C%s\u201D, votre feuille de \
 style n'est pas très robuste.
 
 # used by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s n'est pas un élément 'HTML'
+warning.unknown-html: \u201C%s\u201D n'est pas un élément 'HTML'
 warning.html-inside: L'élément 'html' ne peut être dans un autre élément
 warning.body-inside: L'élément 'body' ne peut être dans un élément autre que 'html'
-warning.pseudo-es: La «pseudo-classe» "anchor" %s n'a pas d'effets sur d'autres éléments que 'a'
+warning.pseudo-es: La «pseudo-classe» "anchor" \u201C%s\u201D n'a pas d'effets sur d'autres éléments que 'a'
 
 # not used by org.w3c.css.properties.CssSelectors for the moment
-warning.noinside: %s ne peut exister a l'intérieur d'un element en-ligne
+warning.noinside: \u201C%s\u201D ne peut exister a l'intérieur d'un element en-ligne
 warning.withblock: Attention, les «pseudo-éléments» ne peuvent être attachés qu'à \
 des éléments de type "bloc".
 warning.block-level: Cette propriété ne s'applique qu'aux éléments de type \
@@ -183,40 +183,40 @@ warning.no-declaration: Pas de déclarations dans cette règle
 warning.unsupported-import: En mode «chargement de fichier» et «saisie directe», le validateur ne vérifie pas les feuilles de style importées.
 
 # used by org.w3c.css.values.CssColor
-warning.out-of-range: %s est hors-limites
+warning.out-of-range: \u201C%s\u201D est hors-limites
 error.invalid-color: Cette fonction RVB est invalide
 
 # used for clipping negative values
-warning.negative: La valeur négative %s sera considérée comme étant 0
-warning.lowerequal: La valeur %s sera considérée comme étant %s
-warning.greaterequal: La valeur %s sera considérée comme étant %s
+warning.negative: La valeur négative \u201C%s\u201D sera considérée comme étant 0
+warning.lowerequal: La valeur \u201C%s\u201D sera considérée comme étant \u201C%s\u201D
+warning.greaterequal: La valeur \u201C%s\u201D sera considérée comme étant \u201C%s\u201D
 
-warning.noexproperty: La propriété %s n'existe pas
+warning.noexproperty: La propriété \u201C%s\u201D n'existe pas
 
 warning.marker: La propriété "marker-offset" ne s'applique que sur des\
  éléments contenant 'display: marker'
 
 # used by org.w3c.css.properties.ACssStyle
 warning.relative: L'utilisation d'unités relatives pour la propriété \
-%s rend la feuille de style plus robuste
+\u201C%s\u201D rend la feuille de style plus robuste
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: La règle-arobase %s n'est pas reconnue
+error.at-rule: La règle-arobase \u201C%s\u201D n'est pas reconnue
 
 # used by all properties and values
-error.operator: %s n'est pas un opérateur correct
-error.negative-value: Les valeurs négatives de %s ne sont pas autorisées
-error.few-value: Il n'y a pas assez de valeurs pour la propriété %s
+error.operator: \u201C%s\u201D n'est pas un opérateur correct
+error.negative-value: Les valeurs négatives de \u201C%s\u201D ne sont pas autorisées
+error.few-value: Il n'y a pas assez de valeurs pour la propriété \u201C%s\u201D
 
 # be careful here, values comes first
 # You can't write something like this : For the color, blue is an incorrect value
-error.value: %s n'est pas une valeur de %s
+error.value: \u201C%s\u201D n'est pas une valeur de \u201C%s\u201D
 
 # used by org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s n'est pas un nom de groupe correct. Utilisez un bon identifiant
+error.groupname: \u201C%s\u201D n'est pas un nom de groupe correct. Utilisez un bon identifiant
 
 #used by org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s n'a pas été initialisé par toggle-group
+error.nogroup: \u201C%s\u201D n'a pas été initialisé par toggle-group
 
 #used by org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: La valeur doit être entre -360 et 360 et divisable par 90
@@ -228,7 +228,7 @@ error.percentage: La valeur doit être un pourcentage
 warning.direction: au lieu de 'direction' pour les éléments block-level il vaut mieux utiliser 'writing-mode' qui est nouveau dans CSS3
 
 # used by org.w3c.css.properties.CssTextDecoration
-error.same-value: %s apparait deux fois
+error.same-value: \u201C%s\u201D apparait deux fois
 
 error.generic-family.quote: Les noms de familles génériques sont des mots-clefs, \
 ils doivent donc être sans guillemets.
@@ -249,7 +249,7 @@ error.format: Définition de format non valide format(<string>[,<string>]*)
 error.local: Définition de format non valide local(<string>|<ident>+)
 
 # used by org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s n'est pas une unité valable.
+error.unit: \u201C%s\u201D n'est pas une unité valable.
 
 # used by org.w3c.css.aural.ACssAzimuth
 error.degree: La position doit être décrite en degrés
@@ -270,42 +270,42 @@ error.integer: Ce nombre doit être entier.
 error.comma: Le séparateur 'virgule' est manquant.
 
 # used by org.w3c.css.values.CssPercentage
-error.percent: %s est une valeur de pourcentage incorrecte
+error.percent: \u201C%s\u201D est une valeur de pourcentage incorrecte
 
 # used by org.w3c.css.values.CssString
-error.string: %s n'est pas une chaine de caractère correcte
+error.string: \u201C%s\u201D n'est pas une chaine de caractère correcte
 
 # used by org.w3c.css.values.CssURL
-error.url: %s n'est pas une URL correcte.
+error.url: \u201C%s\u201D n'est pas une URL correcte.
 
 # used by org.w3c.css.values.CssColor
-error.rgb: %s n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexadécimaux).
-error.angle: %s n'est pas une angle valide. La valeur doit être entre 0 et 360 
+error.rgb: \u201C%s\u201D n'est pas une couleur valide (qui doit contenir 3 ou 6 chiffres hexadécimaux).
+error.angle: \u201C%s\u201D n'est pas une angle valide. La valeur doit être entre 0 et 360 
 
 # used by org.w3c.css.values.CssNumber
-error.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
-warning.zero: Seul 0 peut être %s. Vous devez ajouter une unité après votre nombre
+error.zero: Seul 0 peut être \u201C%s\u201D. Vous devez ajouter une unité après votre nombre
+warning.zero: Seul 0 peut être \u201C%s\u201D. Vous devez ajouter une unité après votre nombre
 warning.dynamic: Les valeurs dynamiques ne peuvent être vérifiées en tant que nombre sans unitè. Veuillez qualifier cette valeur 
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: %s n'est pas valide, seules les valeurs strictement supérieures à zéro sont autorisées.
+error.strictly-positive: \u201C%s\u201D n'est pas valide, seules les valeurs strictement supérieures à zéro sont autorisées.
 
-error.lowerequal: %s n'est pas valide, seules les valeurs inférieures ou égales à %s sont autorisées.
-error.lower: %s n'est pas valide, seules les valeurs strictement inférieures à %s sont autorisées.
+error.lowerequal: \u201C%s\u201D n'est pas valide, seules les valeurs inférieures ou égales à \u201C%s\u201D sont autorisées.
+error.lower: \u201C%s\u201D n'est pas valide, seules les valeurs strictement inférieures à \u201C%s\u201D sont autorisées.
 
-error.greaterequal: %s n'est pas valide, seules les valeurs supérieures ou égales à %s sont autorisées.
-error.greater: %s n'est pas valide, seules les valeurs strictement supérieures à %s sont autorisées.
+error.greaterequal: \u201C%s\u201D n'est pas valide, seules les valeurs supérieures ou égales à \u201C%s\u201D sont autorisées.
+error.greater: \u201C%s\u201D n'est pas valide, seules les valeurs strictement supérieures à \u201C%s\u201D sont autorisées.
 
 # used by org.w3c.css.css.StyleSheetGeneratorHTML2
 error.unknown: Erreur inconnue
 
 # used by org.w3c.css.parser.CssPropertyFactory
-error.noexistence-at-all: La propriété %s n'existe pas
-error.noexistence-media: La propriété %s n'existe pas pour le media %s
-error.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
-warning.noexistence: La propriété %s n'existe pas en %s. mais existe en %s
-warning.noexistence-media: La propriété %s n'existe pas pour le media %s
-warning.medialist: La liste de media (medialist) doit commencer par 'media :' %s
+error.noexistence-at-all: La propriété \u201C%s\u201D n'existe pas
+error.noexistence-media: La propriété \u201C%s\u201D n'existe pas pour le media \u201C%s\u201D
+error.noexistence: La propriété \u201C%s\u201D n'existe pas en \u201C%s\u201D. mais existe en \u201C%s\u201D
+warning.noexistence: La propriété \u201C%s\u201D n'existe pas en \u201C%s\u201D. mais existe en \u201C%s\u201D
+warning.noexistence-media: La propriété \u201C%s\u201D n'existe pas pour le media \u201C%s\u201D
+warning.medialist: La liste de media (medialist) doit commencer par 'media :' \u201C%s\u201D
 # used by org.w3c.css.parser.CssFouffa
 error.unrecognize: Trop de valeurs, ou valeurs non reconnues
 
@@ -314,21 +314,21 @@ generator.unrecognize: Erreur lors de l'analyse grammaticale.
 generator.dontmixhtml: Erreur de Syntaxe: une feuille de style ne peut inclure de fragments de HTML.
 
 # used by org.w3c.css.parser.CssSelectors
-error.pseudo-element: Le pseudo-élément %s ne peut apparaître dans le contexte %s
-error.pseudo-class: La pseudo-classe .%s ne peut apparaître dans le contexte HTML %s
-warning.pseudo-classes: La pseudo-class d'ancre %s n'a d'effet que sur l'element 'A'
-error.pseudo: Pseudo-élément ou pseudo-classe %s inconnu(e)
+error.pseudo-element: Le pseudo-élément \u201C%s\u201D ne peut apparaître dans le contexte \u201C%s\u201D
+error.pseudo-class: La pseudo-classe .\u201C%s\u201D ne peut apparaître dans le contexte HTML \u201C%s\u201D
+warning.pseudo-classes: La pseudo-class d'ancre \u201C%s\u201D n'a d'effet que sur l'element 'A'
+error.pseudo: Pseudo-élément ou pseudo-classe \u201C%s\u201D inconnu(e)
 error.id: Le sélécteur d'identificateur n'est pas valide! \
-Un selecteur simple: %s ne peut avoir qu'un seul sélécteur d'identificateur
+Un selecteur simple: \u201C%s\u201D ne peut avoir qu'un seul sélécteur d'identificateur
 error.space: Si le sélécteur d'attribut ~= est utilisé, alors le mot de la \
-valeur %s ne doit pas contenir d'espaces.
+valeur \u201C%s\u201D ne doit pas contenir d'espaces.
 error.todo : Désolé, mais cette fonctionnalité n'est pas encore disponible.
-error.incompatible: %s et %s ne sont pas compatibles.
-warning.incompatible: %s et %s ne sont pas compatibles.
+error.incompatible: \u201C%s\u201D et \u201C%s\u201D ne sont pas compatibles.
+warning.incompatible: \u201C%s\u201D et \u201C%s\u201D ne sont pas compatibles.
 
-error.media: media %s non reconnu 
-error.page: Page pseudo-nommée %s non reconnue
-warning.xsl: %s ne s'applique qu'aux feuilles de style XSL
+error.media: media \u201C%s\u201D non reconnu 
+error.page: Page pseudo-nommée \u201C%s\u201D non reconnue
+warning.xsl: \u201C%s\u201D ne s'applique qu'aux feuilles de style XSL
 
 # used by StyleSheetGeneratorHTML
 generator.context: Contexte
@@ -351,8 +351,8 @@ parser.unknown-dimension: Dimension inconnue
 parser.old_class: En CSS1, il était possible d'avoir un nom de classe \
 commençant par un chiffre (".55xx") sauf s'il s'agissait d'une dimension \
 (".55cm"). En CSS2, de tels noms sont analysés comme étant des dimensions \
-inconnues, pour permettre l'ajout de nouvelles unités). Pour que "%s" soit \
-un nom de classe CSS2 valide, le premier chiffre doit être échappé "%s"
+inconnues, pour permettre l'ajout de nouvelles unités). Pour que "\u201C%s\u201D" soit \
+un nom de classe CSS2 valide, le premier chiffre doit être échappé "\u201C%s\u201D"
 
 parser.old_id: En CSS1, il était possible d'avoir un nom d'id \
 commençant par un chiffre ("#55xx") sauf s'il s'agissait d'une dimension \
@@ -388,37 +388,37 @@ inconnues, pour permettre l'ajout de nouvelles unités).
 servlet.invalid-request: Vous avez envoyé une requète erronée.
 servlet.process: Impossible de travailler sur l'objet.
 
-error.notforcss1 : La valeur %s n'existe pas dans le cadre de CSS1
-warning.pseudo: Le pseudo-element ou pseudo-class %s est inconnu dans le profil par défaut (%s)
-warning.nocomb: La combinaison de selecteurs %s n'est pas autorisée pour ce profil CSS (%s)
+error.notforcss1 : La valeur \u201C%s\u201D n'existe pas dans le cadre de CSS1
+warning.pseudo: Le pseudo-element ou pseudo-class \u201C%s\u201D est inconnu dans le profil par défaut (\u201C%s\u201D)
+warning.nocomb: La combinaison de selecteurs \u201C%s\u201D n'est pas autorisée pour ce profil CSS (\u201C%s\u201D)
 warning.charsetspecial: Ce profil possède une syntaxe très particulière pour @charset: \
 @charset doit être immédiatement suivi d'un espace, puis le nom de l'encodage \
 entre guillemets, suivi immédiatement d'un point-virgule..
-warning.notversion: %s ne peut être utilisé dans cette version de CSS : %s
+warning.notversion: \u201C%s\u201D ne peut être utilisé dans cette version de CSS : \u201C%s\u201D
 
 warning.noothermedium : Certaines propriétés relatives à d'autres media peuvent ne pas s'appliquer à ce medium
-warning.notforusermedium : La propriété %s n'existe pas pour ce medium d'utilisateur
-warning.vendor-extension : La propriété %s est une extension propriétaire inconnue
-warning.vendor-ext-pseudo-class : La pseudo-classe %s est une extension propriétaire inconnue
-warning.vendor-ext-pseudo-element : Le pseudo-élément %s est une extension propriétaire inconnue
-error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 : %s
-error.notformobile : %s ne peut pas être utilisé pour le profile mobile
-error.notforatsc: %s ne peut pas être utilisé pour le profil ATSC
-error.notfortv: %s ne peut pas être utilisé pour le profil TV
-error.notversion: %s ne peut pas être utilisé pour cette version CSS: %s
+warning.notforusermedium : La propriété \u201C%s\u201D n'existe pas pour ce medium d'utilisateur
+warning.vendor-extension : La propriété \u201C%s\u201D est une extension propriétaire inconnue
+warning.vendor-ext-pseudo-class : La pseudo-classe \u201C%s\u201D est une extension propriétaire inconnue
+warning.vendor-ext-pseudo-element : Le pseudo-élément \u201C%s\u201D est une extension propriétaire inconnue
+error.noatruleyet : Excepté @import, les règles @ ne sont pas supportés en CSS1 : \u201C%s\u201D
+error.notformobile : \u201C%s\u201D ne peut pas être utilisé pour le profile mobile
+error.notforatsc: \u201C%s\u201D ne peut pas être utilisé pour le profil ATSC
+error.notfortv: \u201C%s\u201D ne peut pas être utilisé pour le profil TV
+error.notversion: \u201C%s\u201D ne peut pas être utilisé pour cette version CSS: \u201C%s\u201D
 
-warning.atsc : il se peut que %s ne soit pas supporté par atsc-tv
+warning.atsc : il se peut que \u201C%s\u201D ne soit pas supporté par atsc-tv
 error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
 
 error.unrecognized.link: La balise link ou l'instruction de traitement\
  xml-stylesheet ne sont pas reconnues.
 
-warning.otherprofile: propriété %s n'existe pas dans ce profile mais est validée conforme à un autre profile
-warning.deprecated: La valeur '%s' est déconseillée
-warning.deprecatedproperty: La propriété '%s' est déconseillée
+warning.otherprofile: propriété \u201C%s\u201D n'existe pas dans ce profile mais est validée conforme à un autre profile
+warning.deprecated: La valeur '\u201C%s\u201D' est déconseillée
+warning.deprecatedproperty: La propriété '\u201C%s\u201D' est déconseillée
 
 #used by org.w3c.css.parser.analyzer.CssParser
-error.nocomb: Le Combinateur de sélecteurs %s n'est pas admis dans ce profile ou cette version
+error.nocomb: Le Combinateur de sélecteurs \u201C%s\u201D n'est pas admis dans ce profile ou cette version
 
 warning.float-no-width: En (x)HTML+CSS, les éléments flottants doivent avoir leur largeur déclarée. Seul les éléments ayant une largeur intrinsèque (html, img, input, textarea, select, or object) ne sont pas sujets à cette règle
 parser.charsetcss1: la règle @charset ne doit pas être utilisée en CSS1
@@ -428,16 +428,16 @@ parser.import_not_allowed: @import n'est pas autorisé s'il apparaît après tou
 
 error.bg_order: Dans la définition de CSS3 background, 'bg_position' doit apparaître avant / 'bg_size' si les deux sont présent
 
-warning.deprecatedmedia: L'utilisation du media "%s" est déconseillée
+warning.deprecatedmedia: L'utilisation du media "\u201C%s\u201D" est déconseillée
 error.nomediarestrictor: Les limitations de media ne sont pas définies dans ce niveau de CSS
 error.nomediafeature: Les propriétés de media ne sont pas définies dans ce niveau de CSS
 error.nomodifiershortmedia: Les préfixes sont interdits pour les propriétés de media n'ayant pas de valeur
-error.nomodifiermedia: La propriété de media %s n'autorise pas l'utilisation de préfixes
+error.nomodifiermedia: La propriété de media \u201C%s\u201D n'autorise pas l'utilisation de préfixes
 error.grid: Seuls 0 et 1 sont des valeurs possibles pour 'grid'
 
-error.errortoken: Unexpected content "%s" at line %s, expecting on token of %s (skipped %s)
-error.errortoken: Contenu inattendu "%s" ligne %s, le type de valeur attendu était parmi: %s (%s à été ignoré)
-error.selectorname: Selecteur invalide %s
+error.errortoken: Unexpected content "\u201C%s\u201D" at line \u201C%s\u201D, expecting on token of \u201C%s\u201D (skipped \u201C%s\u201D)
+error.errortoken: Contenu inattendu "\u201C%s\u201D" ligne \u201C%s\u201D, le type de valeur attendu était parmi: \u201C%s\u201D (\u201C%s\u201D à été ignoré)
+error.selectorname: Selecteur invalide \u201C%s\u201D
 
 # calc
 
@@ -446,5 +446,5 @@ error.divzero: Division par zéro
 error.operandnumber: Au moins une opérande doit être un nombre
 error.divisortype: Le diviseur doit être un nombre
 error.incompatibletypes: Les types ne sont pas compatibles
-error.invalidtype: Type invalide: %s
-error.typevaluemismatch: La valeur %s est incompatible avec sa définition de type <%s>
+error.invalidtype: Type invalide: \u201C%s\u201D
+error.typevaluemismatch: La valeur \u201C%s\u201D est incompatible avec sa définition de type <\u201C%s\u201D>

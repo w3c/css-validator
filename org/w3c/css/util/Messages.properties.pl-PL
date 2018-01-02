@@ -130,32 +130,32 @@ output-encoding-name: utf-8
 # Można zmienić poziom ostrzeżeń w następujšcy sposób (przykład) :
 # warning.redefinition.level: 5
 #  poziom jest liczbš pomiędzy 0 i 9 (wszystkie inne wartoci sš ignorowane)
-warning.redefinition: Redefiniowanie %s
+warning.redefinition: Redefiniowanie \u201C%s\u201D
 
 # used by xml parser
 warning.style-inside-comment: Do not put style rules inside HTML comments as they may be removed by user agent
 
 # użyte przez org.w3c.css.properties.Css1Style
-warning.same-colors: Takie same kolory dla %s i %s
+warning.same-colors: Takie same kolory dla \u201C%s\u201D i \u201C%s\u201D
 warning.no-color: Brak koloru w background-color
 warning.no-background-color: Brak background-color with your color
 #warning.color.mixed-capitalization is now obsolete
-#warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: %s
-warning.no-generic-family: %s: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostatecznoci
+#warning.color.mixed-capitalization: Chociaż nazwy kolorów nie sš wrażliwe na wielkoć czcionki, zaleca się aby używać kombinacji małej i dużej czcionki, co uczyni nazwy bardziej czytelnymi: \u201C%s\u201D
+warning.no-generic-family: \u201C%s\u201D: Zaleca się aby rodziny czcionek rodzajowych były stosowane w ostatecznoci
 warning.with-space: nazwy rodzin czcionek zawierajšce białe znaki powinny być w cudzysłowiu. Jeli pominie się cudzysłów, białe znaki \
 przed i po nazwie sš ignorowane oraz cišg białych znaków wewnštrz nazwy \
 jest przekształcony w jednš spację. 
 warning.no-padding: Zaleca się aby mieć padding z kolorem tła
-warning.same-colors2: Takie same kolory dla color i background-color w dwóch miejscach %s i %s
-warning.relative-absolute: Istniejš długoci absolutne i relatywne w %s. To nie jest mocny arkusz stylów.
+warning.same-colors2: Takie same kolory dla color i background-color w dwóch miejscach \u201C%s\u201D i \u201C%s\u201D
+warning.relative-absolute: Istniejš długoci absolutne i relatywne w \u201C%s\u201D. To nie jest mocny arkusz stylów.
  by org.w3c.css.properties.CssSelectors
-warning.unknown-html: %s nie jest elementem HTML
+warning.unknown-html: \u201C%s\u201D nie jest elementem HTML
 warning.html-inside: Element HTML nie może znajdować się wewnštrz innego elementu
 warning.body-inside: Element BODY nie może być wewnštrz innego elementu z wyjštkiem HTML
-warning.pseudo-classes: Anchor pseudo-class %s nie działa na inne elementy poza 'A'
+warning.pseudo-classes: Anchor pseudo-class \u201C%s\u201D nie działa na inne elementy poza 'A'
 
 # nie użyte przez org.w3c.css.properties.CssSelectors na czas obecny
-warning.noinside: %s nie może być wewnštrz elementu inline 
+warning.noinside: \u201C%s\u201D nie może być wewnštrz elementu inline 
 warning.withblock: Uwaga. Pseudo-elementy mogš być dołšczone jedynie do elementu block-level 
 warning.block-level: Właciwoć tš stosuje się jedynie do elementów block-level.
 
@@ -166,31 +166,31 @@ warning.no-declaration: No declarations in the rule
 warning.unsupported-import: Imported style sheets are not checked in direct input and file upload modes
 
 # użyte przez org.w3c.css.values.CssColor
-warning.out-of-range: %s is out of range
+warning.out-of-range: \u201C%s\u201D is out of range
 error.invalid-color: Invalid RGB function
 
 warning.marker: Właciwoć marker-offset stosuje się do elementów z 'display: marker'
 
 # użyte przez org.w3c.css.properties.ACssStyle
-warning.relative: Zastosowanie jednostek relatywnych we właciwoci %s daje w rezultacie silniejszy arkusz stylów
+warning.relative: Zastosowanie jednostek relatywnych we właciwoci \u201C%s\u201D daje w rezultacie silniejszy arkusz stylów
 
 # użyte przez org.w3c.css.css.StyleSheetParser i org.w3c.css.css.StyleSheetXMLParser
-error.at-rule: Niestety ale at-rule %s jest nie wdrożony.
+error.at-rule: Niestety ale at-rule \u201C%s\u201D jest nie wdrożony.
 
 # użyte przez wszystkie właciwoci i wartoci
-error.operator: %s jest niepoprawnym operatorem
-error.negative-value: Wartoci negatywne %s sš niedozwolone
-error.few-value: Zbyt mało wartoci dla właciwoci %s
+error.operator: \u201C%s\u201D jest niepoprawnym operatorem
+error.negative-value: Wartoci negatywne \u201C%s\u201D sš niedozwolone
+error.few-value: Zbyt mało wartoci dla właciwoci \u201C%s\u201D
 
 # Uwaga! Wartoci sš pierwsze
 # Można napisać co takiego : Dla color, blue nie jest wartociš poprawnš 
-error.value: %s nie jest wartociš %s 
+error.value: \u201C%s\u201D nie jest wartociš \u201C%s\u201D 
 
 #użyte przez org.w3c.css.properties3.CssToggleGroup
-error.groupname: %s nie jest poprawnš groupname. Zastosuj poprawny identyfikator
+error.groupname: \u201C%s\u201D nie jest poprawnš groupname. Zastosuj poprawny identyfikator
 
 #użyte przez org.w3c.css.properties3.CssGroupReset
-error.nogroup: %s nie jest ustalona przez właciwoć toggle-group
+error.nogroup: \u201C%s\u201D nie jest ustalona przez właciwoć toggle-group
 
 #użyte przez org.w3c.css.properties3.CssGlyphOrVert
 error.anglevalue: Wartoć powinna być pomiędzy -360 i 360 oraz podzielna przez 90
@@ -199,17 +199,17 @@ error.anglevalue: Wartoć powinna być pomiędzy -360 i 360 oraz podzielna prz
 error.percentage: Oczekuje się wartoci procentowej
 
 #użyte przez org.w3c.css.properties.CssTextAlign
-warning.xsl: Wartoć %s stosuje się jedynie w XSL
+warning.xsl: Wartoć \u201C%s\u201D stosuje się jedynie w XSL
 
 #użyte przez org.w3c.css.parser.analyzer.CssParser
-warning.medialist : medialist powinna zaczšć się z 'media :' %s
-error.nocomb: Kombinator %s pomiędzy selektorami nie jest dozwolony w tym profilu lub wersji
+warning.medialist : medialist powinna zaczšć się z 'media :' \u201C%s\u201D
+error.nocomb: Kombinator \u201C%s\u201D pomiędzy selektorami nie jest dozwolony w tym profilu lub wersji
 
 #użyte przez org.w3c.css.properties.CssDirection
 warning.direction: Zamiast stosować 'direction' dla elemetów block-level, zastosuj nowš własnoć CSS3 'writing-mode' 
 
 # użyte przez org.w3c.css.properties.CssTextDecoration
-error.same-value: %s pojawia się dwukrotnie
+error.same-value: \u201C%s\u201D pojawia się dwukrotnie
 
 error.generic-family.quote: Nazwy rodzin rodzajowych sš słowami kluczowymi i nie mogš być cytowane.
 
@@ -228,7 +228,7 @@ error.format: Niepoprawna definicja format, format(<string>[,<string>]*)
 error.local: Niepoprawna definicja, local(<string>|<ident>+)
 
 # użyte przez org.w3c.css.values.CssAngle, org.w3c.css.values.CssFrequency, org.w3c.css.values.CssTime, org.w3c.css.values.CssLength
-error.unit: %s nie jest poprawnš jednostkš
+error.unit: \u201C%s\u201D nie jest poprawnš jednostkš
 
 # użyte przez org.w3c.css.aural.ACssAzimuth
 error.degree: Pozycja musi być wyrażona w stopniach.
@@ -246,38 +246,38 @@ error.integer: Liczba ta musi być liczbš całkowitš.
 error.comma: Brak przecinka jako separatora.
 
 # użyte przez org.w3c.css.values.CssPercentage
-error.percent: %s jest niepoprawnš wartociš procentowš
+error.percent: \u201C%s\u201D jest niepoprawnš wartociš procentowš
 
 # użyte przez org.w3c.css.values.CssString
-error.string: %s jest niepoprawnym cišgiem
+error.string: \u201C%s\u201D jest niepoprawnym cišgiem
 
 # użyte przez org.w3c.css.values.CssURL
-error.url: %s jest niepoprawnym URL
+error.url: \u201C%s\u201D jest niepoprawnym URL
 
 # użyte przez org.w3c.css.values.CssColor
-error.rgb: %s nie jest prawidłowym numerem koloru 3 lub 6 hexadecimals 
-error.angle: %s jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 360
+error.rgb: \u201C%s\u201D nie jest prawidłowym numerem koloru 3 lub 6 hexadecimals 
+error.angle: \u201C%s\u201D jest niepoprawnym kštem. Wartoć powinna być pomiędzy 0 i 360
 
 # użyte przez org.w3c.css.values.CssNumber
-error.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
-warning.zero: Jedynie 0 może być %s. Musisz wstawić jednostkę po numerze
+error.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po numerze
+warning.zero: Jedynie 0 może być \u201C%s\u201D. Musisz wstawić jednostkę po numerze
 
 # użyte przez org.w3c.css.parser.CssPropertyFactory 
-error.noexistence: WłaWłaściwość %s nie istnieje w %s, ale istnieje w %s
-warning.noexistence: Właściwość %s nie istnieje w %s, ale istnieje w %s
-error.noexistence-media: Właciwoć %s nie istnieje dla media %s
-error.noexistence-at-all: Właściwość %s nie istnieje
-warning.noexistence-media: Właciwoć %s nie istnieje dla media %s
-warning.notforusermedium : Właciwoć %s nie istnieje dla tego usermedium
+error.noexistence: WłaWłaściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
+warning.noexistence: Właściwość \u201C%s\u201D nie istnieje w \u201C%s\u201D, ale istnieje w \u201C%s\u201D
+error.noexistence-media: Właciwoć \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
+error.noexistence-at-all: Właściwość \u201C%s\u201D nie istnieje
+warning.noexistence-media: Właciwoć \u201C%s\u201D nie istnieje dla media \u201C%s\u201D
+warning.notforusermedium : Właciwoć \u201C%s\u201D nie istnieje dla tego usermedium
 warning.noothermedium : Właciwoć dla innych mediów może nie działać dla usermedium
 # użyte przez org.w3c.css.parser.AtRule*
-error.noatruleyet : Inne @rules poza @import nie sš wspierane przez CSS1 %s
+error.noatruleyet : Inne @rules poza @import nie sš wspierane przez CSS1 \u201C%s\u201D
 # użyte przez org.w3c.css.parser.analyzer.CssParser
-error.notforcss1 : Wartoć %s nie istnieje w CSS1
-warning.pseudo: Nieznany pesudo-element lub pseudo-klasa %s w domyślnym profilu (%s)
-warning.nocomb: Kombinator %s pomiędzy selektorami nie jest dozwolony w tym profilu (%s)
+error.notforcss1 : Wartoć \u201C%s\u201D nie istnieje w CSS1
+warning.pseudo: Nieznany pesudo-element lub pseudo-klasa \u201C%s\u201D w domyślnym profilu (\u201C%s\u201D)
+warning.nocomb: Kombinator \u201C%s\u201D pomiędzy selektorami nie jest dozwolony w tym profilu (\u201C%s\u201D)
 warning.charsetspecial: Ten profil ma ściśle określoną składnię dla reguły @charset: @charset, dokładnie jedna spacja, nazwa kodowania w cudzysłowie, średnik.
-warning.notversion: %s nie może zostać użyty z tą wersją CSS: %s
+warning.notversion: \u201C%s\u201D nie może zostać użyty z tą wersją CSS: \u201C%s\u201D
 
 # użyte przez org.w3c.css.parser.CssFouffa
 error.unrecognize: Zbyt dużo wartoci lub wartoci nie rozpoznane
@@ -290,21 +290,21 @@ generator.dontmixhtml: Błąd parsowania: Arkusz styli nie powinien zawierać sk
 error.unknown: Unknown error
 
 # użyte przez org.w3c.css.parser.CssSelectors
-error.pseudo-element: Pseudo-element %s nie może pojawić się w następujšcym kontekcie %s
-error.pseudo-class: Pseudo-class .%s nie może pojawić się w następujšcym kontekcie HTML %s
-error.pseudo: Niznany pseudo-element lub pseudo-class %s
-error.id: Selektor ID #%s jest niepoprawny ! Tylko jeden selektor ID może być okrelony w selektorze prostym: %s.
-error.space: Jeli stosuje się selektor atrybutu ~=, wyraz w wartoci %s nie powinien zawierać spacji.
-error.todo : Niestety, ale funkcja %s nie została jeszcze wdrożona.
-error.incompatible: %s i %s sš niekompatybilne
-warning.incompatible: %s i %s sš niekompatybilne
-error.notformobile : %s nie może być zastosowany w profilu mobilnym
-error.notforatsc : %s nie może być zastosowany w profilu ATSC
-error.notfortv : %s nie może być zastosowany w profilu TV
-error.notversion : %s nie może być zastosowany w tej wersji CSS : %s
+error.pseudo-element: Pseudo-element \u201C%s\u201D nie może pojawić się w następujšcym kontekcie \u201C%s\u201D
+error.pseudo-class: Pseudo-class .\u201C%s\u201D nie może pojawić się w następujšcym kontekcie HTML \u201C%s\u201D
+error.pseudo: Niznany pseudo-element lub pseudo-class \u201C%s\u201D
+error.id: Selektor ID #\u201C%s\u201D jest niepoprawny ! Tylko jeden selektor ID może być okrelony w selektorze prostym: \u201C%s\u201D.
+error.space: Jeli stosuje się selektor atrybutu ~=, wyraz w wartoci \u201C%s\u201D nie powinien zawierać spacji.
+error.todo : Niestety, ale funkcja \u201C%s\u201D nie została jeszcze wdrożona.
+error.incompatible: \u201C%s\u201D i \u201C%s\u201D sš niekompatybilne
+warning.incompatible: \u201C%s\u201D i \u201C%s\u201D sš niekompatybilne
+error.notformobile : \u201C%s\u201D nie może być zastosowany w profilu mobilnym
+error.notforatsc : \u201C%s\u201D nie może być zastosowany w profilu ATSC
+error.notfortv : \u201C%s\u201D nie może być zastosowany w profilu TV
+error.notversion : \u201C%s\u201D nie może być zastosowany w tej wersji CSS : \u201C%s\u201D
 
-error.media: nierozpoznane media %s 
-error.page: nierozpoznana pseudo named page %s
+error.media: nierozpoznane media \u201C%s\u201D 
+error.page: nierozpoznana pseudo named page \u201C%s\u201D
 
 error.unrecognized.link: Nierozpoznany link element lub xml-stylesheet PI.
 
@@ -360,10 +360,10 @@ nieznane wymiary (aby pozwolić na póniejsze dodawanie jednostek)
 servlet.invalid-request: Wysłałe niewłaciwe polecenie.
 servlet.process: Nie można przetworzyć obiektu
 
-warning.atsc : %s może nie być wspieranym przez medium atsc-tv
-error.onlyATSC : %s ta funkcja jest jedynie dla medium atsc-tv
+warning.atsc : \u201C%s\u201D może nie być wspieranym przez medium atsc-tv
+error.onlyATSC : \u201C%s\u201D ta funkcja jest jedynie dla medium atsc-tv
 
-warning.otherprofile : właciwoć %s nie istnieje dla tego profilu, ale wykazuje zgodnoć z innym profilem
+warning.otherprofile : właciwoć \u201C%s\u201D nie istnieje dla tego profilu, ale wykazuje zgodnoć z innym profilem
 
 warning.float-no-width: W (x)HTML+CSS elementy pływające muszą mieć określoną szerokość. Nie dotyczy to tylko elementów z szerokością przypisaną domyślnie (html, img, input, textarea, select i object)
 parser.charsetcss1: Reguły @charset nie mogą być używane w CSS1
@@ -372,33 +372,33 @@ parser.invalid_id_selector: Nieprawidłowy selektor ID
 parser.import_not_allowed: Wyrażenie @import nie może występować po żadnym z istniejących wyrażeń, z wyjątkiem @charset i @import.
 error.divisortype: Dzielnik musi być liczbą
 error.divzero: Dzielenie przez zero
-error.invalidtype: Niepoprawny typ: %s
+error.invalidtype: Niepoprawny typ: \u201C%s\u201D
 vext_warnings: Ostrzeżenia
 vext_errors: Błędy
-error.selectorname: Niepoprawna nazwa selektora %s
-warning.lowerequal: wartość %s będzie interpretowana jako %s
+error.selectorname: Niepoprawna nazwa selektora \u201C%s\u201D
+warning.lowerequal: wartość \u201C%s\u201D będzie interpretowana jako \u201C%s\u201D
 
 error.incompatibletypes: Type są niekompatybilne
 error.operandnumber: Jeden argument musi być liczbą
 parser.calcwhitespace: Białe znaki są wymagane po obu stronach operatora '+' lub '-'
-warning.deprecated: Wartość '%s' jest przestarzała
-warning.negative: ujemna wartość %s będzie interpretowana jako 0
+warning.deprecated: Wartość '\u201C%s\u201D' jest przestarzała
+warning.negative: ujemna wartość \u201C%s\u201D będzie interpretowana jako 0
 warning.shape-separator: Niewłaściwy separator w definicji kształtu. Wymagany jest przecinek.
-warning.greaterequal: wartość %s będzie interpretowana jako %s
+warning.greaterequal: wartość \u201C%s\u201D będzie interpretowana jako \u201C%s\u201D
 error.bg_order: W definicji tła w CSS-ie 3 'bg_position' musi wystąpić przed / 'bg_size', jeśli oba są obecne
 
-warning.deprecatedproperty: Własność %s jest przestarzała
-error.strictly-positive: %s jest niepoprawny, dozwolone są jedynie wartości większe od 0.
-error.typevaluemismatch: Wartość %s jest niekompatybilna z zadeklarowanym typem <%s>
+warning.deprecatedproperty: Własność \u201C%s\u201D jest przestarzała
+error.strictly-positive: \u201C%s\u201D jest niepoprawny, dozwolone są jedynie wartości większe od 0.
+error.typevaluemismatch: Wartość \u201C%s\u201D jest niekompatybilna z zadeklarowanym typem <\u201C%s\u201D>
 vendorext: Rozszerzenia Dostawców
-warning.deprecatedmedia: Medium "%s" jest przestarzałe
-warning.noexproperty: Właściwość %s nie istnieje
-error.errortoken: Nieoczekiwana zawartość "%s" w wierszu %s, oczekiwano tokena %s (pominięto %s)
-warning.vendor-ext-pseudo-element: %s jest nieznanym przedrostkiem pseudo-elementu
-warning.vendor-ext-pseudo-class: %s jest nieznanym przedrostkiem pseudo-klasy
+warning.deprecatedmedia: Medium "\u201C%s\u201D" jest przestarzałe
+warning.noexproperty: Właściwość \u201C%s\u201D nie istnieje
+error.errortoken: Nieoczekiwana zawartość "\u201C%s\u201D" w wierszu \u201C%s\u201D, oczekiwano tokena \u201C%s\u201D (pominięto \u201C%s\u201D)
+warning.vendor-ext-pseudo-element: \u201C%s\u201D jest nieznanym przedrostkiem pseudo-elementu
+warning.vendor-ext-pseudo-class: \u201C%s\u201D jest nieznanym przedrostkiem pseudo-klasy
 
-error.lower: %s jest nieprawidłową wartością, dozwolone są tylko wartości ściśle niższe niż %s.
-error.lowerequal: %s jest nieprawidłową wartością, dozwolone są tylko wartości niższe bądź równe %s.
-error.greater: %s jest nieprawidłową wartością, dozwolone są tylko wartości ściśle większe niż %s.
-error.greaterequal: %s jest niedozwoloną wartością, dozwolone są tylko wartości wyższe bądź równe %s.
+error.lower: \u201C%s\u201D jest nieprawidłową wartością, dozwolone są tylko wartości ściśle niższe niż \u201C%s\u201D.
+error.lowerequal: \u201C%s\u201D jest nieprawidłową wartością, dozwolone są tylko wartości niższe bądź równe \u201C%s\u201D.
+error.greater: \u201C%s\u201D jest nieprawidłową wartością, dozwolone są tylko wartości ściśle większe niż \u201C%s\u201D.
+error.greaterequal: \u201C%s\u201D jest niedozwoloną wartością, dozwolone są tylko wartości wyższe bądź równe \u201C%s\u201D.
 
