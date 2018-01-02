@@ -27,6 +27,9 @@ public class PseudoFactory {
 			"checked", "indeterminate", "root", "last-child",
 			"first-of-type", "last-of-type", "only-of-type",
 			"only-child", "empty",
+			"fullscreen", "default", "valid", "invalid", "in-range",
+			"out-of-range", "required", "optional", "read-only",
+			"read-write", "defined", "placeholder-shown"
 	};
 
 	private static final String[] PSEUDOCLASS_CONSTANTSCSS2 = {
