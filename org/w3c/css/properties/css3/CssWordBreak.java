@@ -13,14 +13,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#word-break0
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#word-break-property
  */
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
 	public static final CssIdent[] allowed_values;
 
 	static {
-		String[] _allowed_values = {"normal", "keep-all", "break-all"};
+		String[] _allowed_values = {"normal", "keep-all", "break-all",
+			"break-word"};
 		allowed_values = new CssIdent[_allowed_values.length];
 		int i = 0;
 		for (String s : _allowed_values) {

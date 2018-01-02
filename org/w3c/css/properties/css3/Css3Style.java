@@ -181,6 +181,7 @@ import org.w3c.css.properties.css.CssTransitionDelay;
 import org.w3c.css.properties.css.CssTransitionDuration;
 import org.w3c.css.properties.css.CssTransitionProperty;
 import org.w3c.css.properties.css.CssTransitionTimingFunction;
+import org.w3c.css.properties.css.CssUserSelect;
 import org.w3c.css.properties.css.CssVoiceBalance;
 import org.w3c.css.properties.css.CssVoiceDuration;
 import org.w3c.css.properties.css.CssVoicePitch;
@@ -221,6 +222,7 @@ public class Css3Style extends ATSCStyle {
 	public CssWritingMode cssWritingMode;
 	public CssTouchAction cssTouchAction;
 	public CssAppearance cssAppearance;
+	public CssUserSelect cssUserSelect;
 
 	public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
 	public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
@@ -465,6 +467,15 @@ public class Css3Style extends ATSCStyle {
 							style, selector);
 		}
 		return cssAppearance;
+  }
+  
+	public CssUserSelect getUserSelect() {
+		if (cssUserSelect == null) {
+			cssUserSelect =
+					(CssUserSelect) style.CascadingOrder(new CssUserSelect(),
+							style, selector);
+		}
+		return cssUserSelect;
 	}
 
 	public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {

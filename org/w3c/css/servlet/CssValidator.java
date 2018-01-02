@@ -614,16 +614,6 @@ public final class CssValidator extends HttpServlet {
 		if (output == null) {
 			output = texthtml;
 		}
-		if ((file == null || file.getSize() == 0) &&
-				(text == null || text.isEmpty())) {
-			// res.sendError(res.SC_BAD_REQUEST,
-			// "You have send an invalid request");
-			handleError(res, ac, output, "No file",
-					new IOException(ac.getMsg().getServletString(
-							"invalid-request")),
-					false);
-			return;
-		}
 
 		// set the warning output
 		if (warning != null) {
@@ -666,13 +656,16 @@ public final class CssValidator extends HttpServlet {
 		InputStream is = null;
 		boolean isCSS = false;
 
-		if (file != null && file.getSize() != 0) {
+		if (file != null) {
+			isCSS = file.getContentType().equals(textcss);
+			if (file.getSize() == 0) {
+				file.write("\n".getBytes(), 0, 1);
+				isCSS = true;
+			}
 			ac.setFakeFile(file);
 			fileName = file.getName();
 			Util.verbose("File : " + fileName);
-			// another way to get file type...
-			isCSS = file.getContentType().equals(textcss);
-		} else if (text != null) {
+		} else {
 			ac.setFakeText(text);
 			fileName = "TextArea";
 			Util.verbose("- " + fileName + " Data -");

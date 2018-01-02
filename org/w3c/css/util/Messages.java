@@ -188,6 +188,31 @@ public class Messages {
 		return "[empty string]";
 	}
 
+	/**
+	 * Replace curly quotes with HTML code tags
+	 */
+	static public String replaceCurlyQuotesWithHtmlCodeTags(String orig) {
+		if (orig != null) {
+			int len = orig.length();
+			StringBuilder ret = new StringBuilder(len + 16);
+			char c;
+			for (int i = 0; i < len; i++) {
+				switch (c = orig.charAt(i)) {
+					case '\u201C':
+						ret.append("<code>");
+						break;
+					case '\u201D':
+						ret.append("</code>");
+						break;
+					default:
+						ret.append(c);
+				}
+			}
+			return ret.toString();
+		}
+		return "[empty string]";
+	}
+
 	public String getString(String message, ArrayList<String> params) {
 		if ((params == null) || params.size() == 0) {
 			return getString(message);
