@@ -322,6 +322,7 @@ error.unknown: Unknown error
 
 # used by org.w3c.css.parser.CssSelectors
 error.pseudo-element: The pseudo-element \u201C%s\u201D can't appear here in the context \u201C%s\u201D
+error.pseudo-element-not-last: The selector \u201C%s\u201D can't appear after the pseudo-element selector \u201C%s\u201D
 error.pseudo-class: The pseudo-class .\u201C%s\u201D can't appear here in the HTML context \u201C%s\u201D
 error.pseudo: Unknown pseudo-element or pseudo-class \u201C%s\u201D
 error.id: ID selector #%s is invalid ! Only one ID selector can be specified in a simple selector: %s.

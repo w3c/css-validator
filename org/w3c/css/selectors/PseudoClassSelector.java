@@ -4,6 +4,8 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.selectors;
 
+import java.util.Arrays;
+
 /**
  * PseudoClass<br />
  * Created: Sep 1, 2005 3:58:43 PM<br />
@@ -11,6 +13,10 @@ package org.w3c.css.selectors;
 public class PseudoClassSelector implements Selector {
 
 	String name;
+
+	private static final String[] USER_ACTION_CLASSES = {
+		"hover", "active", "focus"
+	};
 
 	/**
 	 * Creates a new pseudo-class given its name
@@ -49,6 +55,10 @@ public class PseudoClassSelector implements Selector {
 	 */
 	public boolean canApply(Selector other) {
 		return false;
+	}
+
+	public boolean isUserAction() {
+		return Arrays.asList(USER_ACTION_CLASSES).contains(this.name);
 	}
 
 }
