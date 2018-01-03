@@ -215,6 +215,9 @@ error.value: \u201C%s\u201D n'est pas une valeur de \u201C%s\u201D
 # used by org.w3c.css.properties3.CssToggleGroup
 error.groupname: \u201C%s\u201D n'est pas un nom de groupe correct. Utilisez un bon identifiant
 
+# used by org.w3c.css.properties.svg.CssPointerEvents
+warning.value-unofficial: \u201C%s\u201D n'est définie dans aucune spécification comme étant une valeur autorisée pour \u201C%s\u201D, mais elle est implémentée dans plusieurs navigateurs
+
 #used by org.w3c.css.properties3.CssGroupReset
 error.nogroup: \u201C%s\u201D n'a pas été initialisé par toggle-group
 
