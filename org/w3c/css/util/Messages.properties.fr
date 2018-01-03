@@ -230,6 +230,9 @@ warning.direction: au lieu de 'direction' pour les éléments block-level il vau
 # used by org.w3c.css.properties.CssTextDecoration
 error.same-value: \u201C%s\u201D apparait deux fois
 
+# used by org.w3c.css.values.CssImage
+error.linear-gradient-missing-to: Le premier paramètre de la fonction \u201Clinear-gradient\u201D doit être \u201C%s\u201D, et non pas \u201C%s\u201D
+
 error.generic-family.quote: Les noms de familles génériques sont des mots-clefs, \
 ils doivent donc être sans guillemets.
 
