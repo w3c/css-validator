@@ -19,6 +19,8 @@ public class CssPointerEvents extends org.w3c.css.properties.css.CssPointerEvent
 
 	public static final CssIdent[] allowed_values;
 
+	public static final CssIdent auto = CssIdent.getIdent("auto");
+
 	static {
 		String[] _allowed_values = {"visiblePainted", "visibleFill", "visibleStroke",
 				"visible", "painted", "fill", "stroke", "all", "none"};
@@ -69,6 +71,10 @@ public class CssPointerEvents extends org.w3c.css.properties.css.CssPointerEvent
 			CssIdent ident = (CssIdent) val;
 			if (inherit.equals(ident)) {
 				value = inherit;
+			} else if (auto.equals(ident)) {
+				value = auto;
+				ac.getFrame().addWarning("value-unofficial", //
+					new String[]{"auto","pointer-events"});
 			} else {
 				value = getAllowedValue(ident);
 				if (value == null) {

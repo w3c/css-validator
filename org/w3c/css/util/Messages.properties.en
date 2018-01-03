@@ -197,6 +197,9 @@ error.few-value: too few values for the property \u201C%s\u201D
 # You can't write something like this : For the color, blue is an incorrect value
 error.value: \u201C%s\u201D is not a \u201C%s\u201D value
 
+# used by org.w3c.css.properties.svg.CssPointerEvents
+warning.value-unofficial: \u201C%s\u201D is not defined by any specification as an allowed value for \u201C%s\u201D, but is supported in multiple browsers
+
 #used by org.w3c.css.properties3.CssToggleGroup
 error.groupname: \u201C%s\u201D is not a correct groupname. Use a valid identifier
 
