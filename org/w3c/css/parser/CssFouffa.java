@@ -610,23 +610,18 @@ public final class CssFouffa extends CssParser {
 
         try {
             mf = properties.createMediaFeature(ac, rule, feature, expression);
+        } catch (WarningParamException w) {
+            ac.getFrame().addWarning(w.getMessage(), feature);
+            return null;
         } catch (InvalidParamException e) {
-            mf = null;
-            if (e instanceof WarningParamException) {
-                ac.getFrame().addWarning(e.getMessage(), feature);
-            } else {
-                ac.getFrame().addError(new CssError(e));
-            }
+            ac.getFrame().addError(new CssError(e));
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             if (Util.onDebug) {
                 e.printStackTrace();
             }
             throw new InvalidParamException(e.toString(), ac);
-        }
-
-        if (mf == null) {
-            return mf;
         }
         mf.setOrigin(origin);
         // set informations for errors and warnings
@@ -655,6 +650,7 @@ public final class CssFouffa extends CssParser {
      * @param context The current context
      * @see org.w3c.css.parser.CssFouffa#addListener
      */
+
     public void parseDeclarations(CssSelectors context) {
         // here we have an example for reusing the parser.
         try {
