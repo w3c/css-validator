@@ -180,6 +180,7 @@ warning.relative: Die Verwendung von relativen Einheiten bei der Eigenschaft \u2
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Leider ist die At-Regel \u201C%s\u201D nicht implementiert.
+warning.at-rule: Leider ist die At-Regel \u201C%s\u201D nicht implementiert.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D ist kein ungültiger Operator

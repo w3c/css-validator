@@ -172,6 +172,7 @@ warning.relative: Η χρήση αναφορικών κανόνων παρέχε
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Συγνώμη, ο κανόνας \u201C%s\u201D δεν εφαρμόζεται.
+warning.at-rule: Συγνώμη, ο κανόνας \u201C%s\u201D δεν εφαρμόζεται.
 
 # used by all properties and values
 error.operator: Το \u201C%s\u201D είναι ένας λανθασμένος τελεστής

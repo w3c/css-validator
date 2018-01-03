@@ -168,6 +168,7 @@ warning.relative: \u201C%s\u201D के गुणों में रिश्�
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: क्षमा करें, at-rule \u201C%s\u201D लागू नहीं है.
+warning.at-rule: क्षमा करें, at-rule \u201C%s\u201D लागू नहीं है.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D एक गलत ऑपरेटर है

@@ -177,6 +177,7 @@ warning.relative: Usar unidade de medida relativa torna a estilização mais rob
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Lamento, a at-rule \u201C%s\u201D não está implementada.
+warning.at-rule: Lamento, a at-rule \u201C%s\u201D não está implementada.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D é um operador incorreto

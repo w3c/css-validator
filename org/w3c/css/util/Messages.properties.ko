@@ -167,6 +167,7 @@ warning.relative: 속성 \u201C%s\u201D 에서는 상대값을 사용하는 것�
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: 죄송합니다. \u201C%s\u201D에 대한 at-rule은 구현되지 않았습니다
+warning.at-rule: 죄송합니다. \u201C%s\u201D에 대한 at-rule은 구현되지 않았습니다
 
 # used by all properties and values
 error.operator: \u201C%s\u201D는 올바른 연산자가 아닙니다

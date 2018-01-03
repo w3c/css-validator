@@ -176,6 +176,7 @@ warning.relative: 在属性 \u201C%s\u201D 使用相对单位令样式表更加�
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: 无法识别 '@规则' \u201C%s\u201D
+warning.at-rule: 无法识别 '@规则' \u201C%s\u201D
 
 # used by all properties and values
 error.operator: \u201C%s\u201D 是一个错误的运算符

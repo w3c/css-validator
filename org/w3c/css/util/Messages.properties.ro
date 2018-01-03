@@ -165,6 +165,7 @@ warning.relative: Folosirea unitatilor relative ofera foi de stil mai robuste in
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Scuza, regula \u201C%s\u201D nu este implementataq.
+warning.at-rule: Scuza, regula \u201C%s\u201D nu este implementataq.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D este un operator incorect

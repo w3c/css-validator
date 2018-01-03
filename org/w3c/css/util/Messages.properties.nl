@@ -177,6 +177,7 @@ warning.relative: Het gebruik van relatieve maten geeft robuustere stylesheets b
 
 # gebruikt door org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Sorry, de at-regel \u201C%s\u201D is niet geimplementeerd.
+warning.at-rule: Sorry, de at-regel \u201C%s\u201D is niet geimplementeerd.
 
 # gebruikt voor alle eigenschappen en waarden
 error.operator: \u201C%s\u201D is een incorrecte operator

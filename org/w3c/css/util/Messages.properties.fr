@@ -202,6 +202,7 @@ warning.relative: L'utilisation d'unités relatives pour la propriété \
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: La règle-arobase \u201C%s\u201D n'est pas reconnue
+warning.at-rule: La règle-arobase \u201C%s\u201D n'est pas reconnue
 
 # used by all properties and values
 error.operator: \u201C%s\u201D n'est pas un opérateur correct

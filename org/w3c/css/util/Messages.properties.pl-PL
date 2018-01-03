@@ -176,6 +176,7 @@ warning.relative: Zastosowanie jednostek relatywnych we właciwoci \u201C%s\
 
 # użyte przez org.w3c.css.css.StyleSheetParser i org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Niestety ale at-rule \u201C%s\u201D jest nie wdrożony.
+warning.at-rule: Niestety ale at-rule \u201C%s\u201D jest nie wdrożony.
 
 # użyte przez wszystkie właciwoci i wartoci
 error.operator: \u201C%s\u201D jest niepoprawnym operatorem

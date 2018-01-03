@@ -176,6 +176,7 @@ warning.relative: Utilizar unidades relativas da lugar a hojas de estilo más ro
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Lo lamentamos, la regla-arroba \u201C%s\u201D no está implementada.
+warning.at-rule: Lo lamentamos, la regla-arroba \u201C%s\u201D no está implementada.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D es un operador incorrecto

@@ -182,6 +182,7 @@ warning.relative: A relatív egységek használata robusztusabb stíluslapot ere
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Sajnáljuk, a \u201C%s\u201D at-rule nincs végrehajtva.
+warning.at-rule: Sajnáljuk, a \u201C%s\u201D at-rule nincs végrehajtva.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D helytelen operátor

@@ -164,6 +164,7 @@ warning.relative: Použití relativních jednotek dává robustnější tabulky 
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Litujeme, pravidlo \u201C%s\u201D není implementováno.
+warning.at-rule: Litujeme, pravidlo \u201C%s\u201D není implementováno.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D je nesprávný operátor

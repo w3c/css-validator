@@ -174,6 +174,7 @@ warning.relative: L'uso di unità relative garantisce maggior robustezza al fogl
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Spiacente, at-rule \u201C%s\u201D non è implementata.
+warning.at-rule: Spiacente, at-rule \u201C%s\u201D non è implementata.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D è un operatore non valido

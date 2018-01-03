@@ -183,6 +183,7 @@ warning.relative: \u201C%s\u201D プロパティに相対指定の単位を使�
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: 申し訳ありませんが、at-rule \u201C%s\u201D はまだ実装されていません。
+warning.at-rule: 申し訳ありませんが、at-rule \u201C%s\u201D はまだ実装されていません。
 
 # used by all properties and values
 error.operator: \u201C%s\u201D は正しい演算子 (operator) ではありません

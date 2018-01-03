@@ -166,6 +166,7 @@ warning.relative: Використання відносних одиниць в�
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Вибачте, але правило \u201C%s\u201D не є реалізованим.
+warning.at-rule: Вибачте, але правило \u201C%s\u201D не є реалізованим.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D — некоректний оператор

@@ -174,6 +174,7 @@ warning.relative: Relativa enheter ger mer robusta formatmallar i egenskap \u201
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Tyvärr, at-regeln \u201C%s\u201D är inte implementerad.
+warning.at-rule: Tyvärr, at-regeln \u201C%s\u201D är inte implementerad.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D är en ogiltig operator

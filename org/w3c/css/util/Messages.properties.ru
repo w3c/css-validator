@@ -168,6 +168,7 @@ warning.relative: Использование относительных един
 
 # used by org.w3c.css.css.StyleSheetParser and org.w3c.css.css.StyleSheetXMLParser
 error.at-rule: Извините, но правило \u201C%s\u201D не реализовано.
+warning.at-rule: Извините, но правило \u201C%s\u201D не реализовано.
 
 # used by all properties and values
 error.operator: \u201C%s\u201D — некорректный оператор

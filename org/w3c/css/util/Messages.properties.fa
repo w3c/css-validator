@@ -163,6 +163,7 @@ warning.relative: بدست می آید \u201C%s\u201D با کاربرد واحد
 
 # org.w3c.css.css.StyleSheetParser و org.w3c.css.css.StyleSheetXMLParser استفاده شده توسط
 error.at-rule: .نمی تواند از ویژگی درخواست شده پشتیبانی نماید at-rule \u201C%s\u201D ،با تاسف
+warning.at-rule: .نمی تواند از ویژگی درخواست شده پشتیبانی نماید at-rule \u201C%s\u201D ،با تاسف
 
 # استفاده شده توسط تمامی مشخصات و مقادیر
 error.operator: اپراتور نادرستی می باشد \u201C%s\u201D
