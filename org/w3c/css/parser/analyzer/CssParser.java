@@ -4102,8 +4102,8 @@ setValue(new CssVolume(), exp, operator, n, SPL);
       case DIMEN:{
         n = jj_consume_token(DIMEN);
 if ("0\\0".equals(n.image) //
-                && ac.getTreatVendorExtensionsAsWarnings()) {
-                ac.getFrame().addWarning("vendor-extension", n.image);
+                && ac.getTreatCssHacksAsWarnings()) {
+                ac.getFrame().addWarning("css-hack", n.image);
             } else {
                 addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
             }
@@ -4353,8 +4353,8 @@ setValue(new CssVolume(), exp, operator, n, SPL);
       case DIMEN:{
         n = jj_consume_token(DIMEN);
 if ("0\\0".equals(n.image) //
-                && ac.getTreatVendorExtensionsAsWarnings()) {
-                ac.getFrame().addWarning("vendor-extension", n.image);
+                && ac.getTreatCssHacksAsWarnings()) {
+                ac.getFrame().addWarning("css-hack", n.image);
             } else {
                 addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
             }
