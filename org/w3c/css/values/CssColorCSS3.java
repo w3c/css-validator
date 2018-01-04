@@ -7,7 +7,7 @@ package org.w3c.css.values;
 import java.util.HashMap;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-css3-color-20110607/
+ * @spec https://www.w3.org/TR/2016/WD-css-color-4-20160705/
  */
 public class CssColorCSS3 {
     protected static final HashMap<String, RGB> definedRGBColorsCSS3;
@@ -34,7 +34,7 @@ public class CssColorCSS3 {
 
     static {
         trans = new RGBA(0,0,0,0.f);
-        // http://www.w3.org/TR/2011/REC-css3-color-20110607/#svg-color
+        // https://www.w3.org/TR/2016/WD-css-color-4-20160705/#named-colors
         definedRGBColorsCSS3 = new HashMap<String, RGB>();
 
         definedRGBColorsCSS3.put("aliceblue", new RGB(240, 248, 255));
@@ -156,6 +156,7 @@ public class CssColorCSS3 {
         definedRGBColorsCSS3.put("plum", new RGB(221, 160, 221));
         definedRGBColorsCSS3.put("powderblue", new RGB(176, 224, 230));
         definedRGBColorsCSS3.put("purple", new RGB(128, 0, 128));
+        definedRGBColorsCSS3.put("rebeccapurple", new RGB(102, 51, 153));
         definedRGBColorsCSS3.put("red", new RGB(255, 0, 0));
         definedRGBColorsCSS3.put("rosybrown", new RGB(188, 143, 143));
         definedRGBColorsCSS3.put("royalblue", new RGB(65, 105, 225));
