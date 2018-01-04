@@ -54,8 +54,8 @@
         <option value="css1">CSS versión 1</option>
         <option value="css2">CSS versión 2</option>
         <option value="css21">CSS versión 2.1</option>
-        <option selected="selected" value="css3">CSS versión 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">CSS versión 3</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
@@ -144,8 +144,8 @@
         <option value="css1">CSS versión 1</option>
         <option value="css2">CSS versión 2</option>
         <option value="css21">CSS versión 2.1</option>
-        <option selected="selected" value="css3">CSS versión 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">CSS versión 3</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
@@ -234,8 +234,8 @@
         <option value="css1">CSS versión 1</option>
         <option value="css2">CSS versión 2</option>
         <option value="css21">CSS versión 2.1</option>
-        <option selected="selected" value="css3">CSS versión 3</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">CSS versión 3</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">SVG Básico</option>
         <option value="svgtiny">SVG Reducido</option>  
