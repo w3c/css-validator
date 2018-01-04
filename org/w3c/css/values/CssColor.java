@@ -307,6 +307,7 @@ public class CssColor extends CssValue {
 				break;
 			case CSS3:
 			case CSS_2015:
+			case CSS:
 				// test RGB colors, RGBA colors (transparent), deprecated system colors
 				rgb = CssColorCSS3.getRGB(lower_s);
 				if (rgb != null) {
@@ -319,25 +320,6 @@ public class CssColor extends CssValue {
 					break;
 				}
 				color = CssColorCSS3.getSystem(lower_s);
-				if (color != null) {
-					ac.getFrame().addWarning("deprecated", s);
-					break;
-				}
-				// inherit or current color will be handled in the property def
-				throw new InvalidParamException("value", s, "color", ac);
-			case CSS:
-				// test RGB colors, RGBA colors (transparent), deprecated system colors
-				rgb = CssColorCSS4.getRGB(lower_s);
-				if (rgb != null) {
-					color = lower_s;
-					break;
-				}
-				rgba = CssColorCSS4.getRGBA(lower_s);
-				if (rgba != null) {
-					color = lower_s;
-					break;
-				}
-				color = CssColorCSS4.getSystem(lower_s);
 				if (color != null) {
 					ac.getFrame().addWarning("deprecated", s);
 					break;
