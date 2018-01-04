@@ -10,7 +10,6 @@
 package org.w3c.css.css;
 
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
 import org.w3c.tools.resources.ProtocolException;
@@ -67,6 +66,8 @@ public class CssValidator {
         ac.setCssVersionAndProfile(profile);
         ac.setMedium(medium);
         ac.setTreatVendorExtensionsAsWarnings(vextwarning);
+        // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
+        ac.setTreatCssHacksAsWarnings(vextwarning);
         ac.setWarningLevel(warninglevel);
         ac.setFollowlinks(followlinks);
     }
@@ -81,6 +82,8 @@ public class CssValidator {
 
         String vextwarn = params.get("vextwarning");
         ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
+        // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
+        ac.setTreatCssHacksAsWarnings("true".equalsIgnoreCase(vextwarn));
     }
 
     public static void main(String args[])
