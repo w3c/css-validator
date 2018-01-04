@@ -24,6 +24,7 @@ import org.w3c.css.values.CssIdent;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
@@ -107,20 +108,9 @@ public class CssPropertyFactory implements Cloneable {
 		String classname;
 		int dashpos = feature.indexOf('-');
 		feature = feature.toLowerCase();
-
 		if (dashpos != -1) {
 			if (dashpos == 0) {
-				// vendor media?
-				try {
-					AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
-					// I don't know this property
-					// TODO get the latest media it applies to
-					throw new InvalidParamException("noexistence-media", feature,
-							atRuleMedia.getCurrentMedia(), ac);
-				} catch (ClassCastException cce) {
-					// I don't know this property
-					throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
-				}
+				throw vendorMediaException(ac, atRule, feature);
 			}
 			modifier = feature.substring(0, dashpos);
 			// clash between feature name and modifier...
@@ -135,16 +125,7 @@ public class CssPropertyFactory implements Cloneable {
 
 		classname = properties.getProperty("mediafeature" + "." + feature.toLowerCase());
 		if (classname == null) {
-			try {
-				AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
-				// I don't know this property
-				// TODO get the latest media it applies to
-				throw new InvalidParamException("noexistence-media", feature,
-						atRuleMedia.getCurrentMedia(), ac);
-			} catch (ClassCastException cce) {
-				// I don't know this property
-				throw new InvalidParamException("noexistence", feature, "not media @rule", ac);
-			}
+			throw vendorMediaException(ac, atRule, feature);
 		}
 
 		try {
@@ -164,6 +145,27 @@ public class CssPropertyFactory implements Cloneable {
 			// catch InvalidParamException
 			Exception ex = (Exception) e.getTargetException();
 			throw ex;
+		}
+	}
+
+	private Exception vendorMediaException(ApplContext ac, AtRule atRule,
+		String feature) throws Exception {
+		// I don't know this property
+		// TODO get the latest media it applies to
+		try {
+			AtRuleMedia atRuleMedia = (AtRuleMedia) atRule;
+			if (ac.getTreatVendorExtensionsAsWarnings()) {
+				throw new WarningParamException("vendor-extension",
+					feature);
+			} else {
+				throw new InvalidParamException(
+					"noexistence-media", feature,
+					atRuleMedia.getCurrentMedia(), ac);
+			}
+		} catch (ClassCastException cce) {
+			// I don't know this property
+			throw new InvalidParamException("noexistence", feature,
+				"not media @rule", ac);
 		}
 	}
 
