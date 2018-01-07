@@ -1,10 +1,13 @@
---- CssParser.java
-+++ CssParser.java
-@@ -6134,7 +6135,14 @@ n.image = Util.strip(n.image);
+--- CssParser.java	2018-01-08 07:34:31.629378071 +0900
++++ CssParser.java	2018-01-08 07:34:08.613652761 +0900
+@@ -6134,7 +6134,17 @@
  	 }
  	 token = oldToken;
  	 jj_kind = kind;
 -	 throw generateParseException();
++	 if (kind == COLON) {
++		throw generateParseException();
++	 }
 +	 if (kind == LBRACE) {
 +	   if (ac.getTreatCssHacksAsWarnings()) {
 +		ac.getFrame().addWarning("css-hack", skipStatement());
