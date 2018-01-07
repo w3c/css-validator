@@ -6134,6 +6134,9 @@ n.image = Util.strip(n.image);
 	 }
 	 token = oldToken;
 	 jj_kind = kind;
+	 if (kind == COLON) {
+		throw generateParseException();
+	 }
 	 if (kind == LBRACE) {
 	   if (ac.getTreatCssHacksAsWarnings()) {
 		ac.getFrame().addWarning("css-hack", skipStatement());
@@ -6341,4 +6344,5 @@ n.image = Util.strip(n.image);
 	 int arg;
 	 JJCalls next;
   }
+
 }
