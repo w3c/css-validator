@@ -54,8 +54,8 @@
         <option value="css1">Επίπεδο 1 CSS</option>
         <option value="css2">Επίπεδο 2 CSS</option>
         <option value="css21">Επίπεδο 2.1 CSS</option>
-        <option selected="selected" value="css3">Επίπεδο 3 CSS</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">Επίπεδο 3 CSS</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">Βασικό SVG</option>
         <option value="svgtiny">μικρό SVG</option>  
@@ -144,8 +144,8 @@
         <option value="css1">Επίπεδο 1 CSS</option>
         <option value="css2">Επίπεδο 2 CSS</option>
         <option value="css21">Επίπεδο 2.1 CSS</option>
-        <option selected="selected" value="css3">Επίπεδο 3 CSS</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">Επίπεδο 3 CSS</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">Βασικό SVG</option>
         <option value="svgtiny">μικρό SVG</option>  
@@ -234,8 +234,8 @@
         <option value="css1">Επίπεδο 1 CSS</option>
         <option value="css2">Επίπεδο 2 CSS</option>
         <option value="css21">Επίπεδο 2.1 CSS</option>
-        <option selected="selected" value="css3">Επίπεδο 3 CSS</option>
-        <option value="css3svg">CSS Level 3 + SVG</option>
+        <option value="css3">Επίπεδο 3 CSS</option>
+        <option selected="selected" value="css3svg">CSS Level 3 + SVG</option>
         <option value="svg">SVG</option>
         <option value="svgbasic">Βασικό SVG</option>
         <option value="svgtiny">μικρό SVG</option>  

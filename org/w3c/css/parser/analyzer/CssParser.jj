@@ -599,6 +599,7 @@ TOKEN [IGNORE_CASE] :
 TOKEN [IGNORE_CASE] :
 {  
     < IMPORTANT_SYM : "!" ( <_W> )* "important" >
+  | < IMPORTANT_NOT : "!" ( <_W> )* "ie" ( [ "7", "9" ] )? >
 }
 
 <DEFAULT>
@@ -1022,7 +1023,9 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
     ( <S> )*
     ( <COLON> ( <S> )* val=mediaexpr() )? <LPARAN>  ( <S> )*  {
         MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
-        mediaRule.addMediaFeature(mf, ac);
+        if (mf != null) {
+            mediaRule.addMediaFeature(mf, ac);
+        }
     }
 }
 
@@ -2402,15 +2405,30 @@ void term(CssExpression exp) :
         | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
         | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
         | n=<DIMEN> {
-	    addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+            String dimen = n.image.trim();
+            if ("0\\0".equals(dimen) //
+                && ac.getTreatCssHacksAsWarnings()) {
+                ac.getFrame().addWarning("css-hack", dimen);
+            } else {
+                addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), dimen);
+            }
+	  }
         | n=<PROGID> {
-	    if (ac.getTreatVendorExtensionsAsWarnings()) {
-		throw new WarningParamException("vendor-extension", n.image);
-	    } else {
-		throw new ParseException(String.format(ac.getMsg()
-			.getString("warning.vendor-extension"), n.image));
-	    }
-        }
+             if (ac.getTreatVendorExtensionsAsWarnings()) {
+                 throw new WarningParamException("vendor-extension", n.image);
+             } else {
+                 throw new ParseException(String.format(ac.getMsg()
+                         .getString("warning.vendor-extension"), n.image));
+             }
+          }
+        | n=<IMPORTANT_NOT> {
+           if (ac.getTreatCssHacksAsWarnings()) {
+               throw new WarningParamException("css-hack", n.image.trim());
+           } else {
+               throw new ParseException(String.format(ac.getMsg()
+                       .getString("warning.css-hack"), n.image.trim()));
+           }
+         }
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
@@ -2478,7 +2496,22 @@ void mediaterm(CssExpression exp) :
     | n=<ST> { setValue(new CssSemitone(), exp, operator, n, ST); }
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
-	  addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image); }
+          String dimen = n.image.trim();
+          if ("0\\0".equals(dimen) //
+              && ac.getTreatCssHacksAsWarnings()) {
+              ac.getFrame().addWarning("css-hack", dimen);
+          } else {
+              addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), dimen);
+          }
+      }
+    | n=<IMPORTANT_NOT> {
+       if (ac.getTreatCssHacksAsWarnings()) {
+           throw new WarningParamException("css-hack", n.image.trim());
+       } else {
+           throw new ParseException(String.format(ac.getMsg()
+                   .getString("warning.css-hack"), n.image.trim()));
+       }
+     }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }
       ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }

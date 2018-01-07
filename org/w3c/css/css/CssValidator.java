@@ -10,7 +10,6 @@
 package org.w3c.css.css;
 
 import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.HTTPURL;
 import org.w3c.css.util.Util;
 import org.w3c.tools.resources.ProtocolException;
@@ -54,12 +53,12 @@ public class CssValidator {
      */
     public CssValidator() {
         params = new HashMap<String, String>();
-        params.put("profile", CssVersion.getDefault().toString());
+        params.put("profile", "css3svg");
         params.put("medium", "all");
         params.put("output", "text");
         params.put("lang", "en");
         params.put("warning", "2");
-        params.put("vextwarning", "false");
+        params.put("vextwarning", "true");
     }
 
     public CssValidator(String profile, String medium, String lang, int warninglevel, boolean vextwarning, boolean followlinks) {
@@ -67,6 +66,8 @@ public class CssValidator {
         ac.setCssVersionAndProfile(profile);
         ac.setMedium(medium);
         ac.setTreatVendorExtensionsAsWarnings(vextwarning);
+        // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
+        ac.setTreatCssHacksAsWarnings(vextwarning);
         ac.setWarningLevel(warninglevel);
         ac.setFollowlinks(followlinks);
     }
@@ -81,6 +82,8 @@ public class CssValidator {
 
         String vextwarn = params.get("vextwarning");
         ac.setTreatVendorExtensionsAsWarnings("true".equalsIgnoreCase(vextwarn));
+        // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
+        ac.setTreatCssHacksAsWarnings("true".equalsIgnoreCase(vextwarn));
     }
 
     public static void main(String args[])
@@ -103,7 +106,7 @@ public class CssValidator {
             System.out.println("\t-profile PROFILE, --profile=PROFILE");
             System.out.println("\t\tChecks the Stylesheet against PROFILE");
             System.out.println("\t\tPossible values for PROFILE are css1, " +
-                    "css2, css21, css3 (default), css3svg, svg, svgbasic, svgtiny, " +
+                    "css2, css21, css3, css3svg (default), svg, svgbasic, svgtiny, " +
                     "atsc-tv, mobile, tv");
             System.out.println("\t-medium MEDIUM, --medium=MEDIUM");
             System.out.println("\t\tChecks the Stylesheet using the medium MEDIUM");

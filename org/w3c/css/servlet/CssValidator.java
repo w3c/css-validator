@@ -178,8 +178,9 @@ public final class CssValidator extends HttpServlet {
 			vendorExtensionParameter =
 					getServletConfig().getInitParameter("vendorExtensionsAsWarnings");
 		}
-		context.setTreatVendorExtensionsAsWarnings(
-				Boolean.valueOf(vendorExtensionParameter));
+		context.setTreatVendorExtensionsAsWarnings(Boolean.valueOf(vendorExtensionParameter));
+        // TODO for now we use the same parameter for both vendor extensions and CSS Hacks.
+        context.setTreatCssHacksAsWarnings(Boolean.valueOf(vendorExtensionParameter));
 	}
 
 	/**
