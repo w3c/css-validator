@@ -1,18 +1,25 @@
 --- CssParser.java
 +++ CssParser.java
-@@ -6134,7 +6135,14 @@ n.image = Util.strip(n.image);
- 	 }
- 	 token = oldToken;
- 	 jj_kind = kind;
--	 throw generateParseException();
-+	 if (kind == LBRACE) {
-+	   if (ac.getTreatCssHacksAsWarnings()) {
-+		ac.getFrame().addWarning("css-hack", skipStatement());
-+	   } else {
-+		addError(generateParseException(), skipStatement());
-+	   }
-+	 }
-+	 return token;
-   }
- 
-   @SuppressWarnings("serial")
+***************
+*** 6134,6140 ****
+  	 }
+  	 token = oldToken;
+  	 jj_kind = kind;
+! 	 throw generateParseException();
+    }
+  
+    @SuppressWarnings("serial")
+--- 6134,6146 ----
+  	 }
+  	 token = oldToken;
+  	 jj_kind = kind;
+! 	 if (kind == LBRACE) {
+! 	   if (ac.getTreatCssHacksAsWarnings()) {
+! 		ac.getFrame().addWarning("css-hack", skipStatement());
+! 		return token;
+! 	   } 
+! 	 }
+! 	throw generateParseException();
+    }
+  
+    @SuppressWarnings("serial")
