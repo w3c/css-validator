@@ -1,6 +1,6 @@
 --- CssParser.java
 +++ CssParser.java
-@@ -6064,7 +6064,14 @@ n.image = Util.strip(n.image);
+@@ -6113,7 +6114,14 @@ n.image = Util.strip(n.image);
  	 }
  	 token = oldToken;
  	 jj_kind = kind;
