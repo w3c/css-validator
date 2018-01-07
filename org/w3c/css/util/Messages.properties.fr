@@ -415,6 +415,8 @@ error.notforatsc: \u201C%s\u201D ne peut pas être utilisé pour le profil ATSC
 error.notfortv: \u201C%s\u201D ne peut pas être utilisé pour le profil TV
 error.notversion: \u201C%s\u201D ne peut pas être utilisé pour cette version CSS: \u201C%s\u201D
 
+warning.css-hack : \u201C%s\u201D est un hack CSS
+
 warning.atsc : il se peut que \u201C%s\u201D ne soit pas supporté par atsc-tv
 error.onlyATSC : cette fonction est seulement pour le @media atsc-tv
 

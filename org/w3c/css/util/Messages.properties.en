@@ -302,6 +302,9 @@ warning.noothermedium : Properties for other media might not work for usermedium
 warning.vendor-extension : Property \u201C%s\u201D is an unknown vendor extension
 warning.vendor-ext-pseudo-class : \u201C%s\u201D is an unknown vendor extended pseudo-class
 warning.vendor-ext-pseudo-element : \u201C%s\u201D is an unknown vendor extended pseudo-element
+
+warning.css-hack : \u201C%s\u201D is a CSS hack
+
 # used by org.w3c.css.parser.AtRule*
 error.noatruleyet: Other @rules than @import are not supported by CSS1 \u201C%s\u201D
 # used by org.w3c.css.parser.analyzer.CssParser
