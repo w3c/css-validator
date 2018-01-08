@@ -4,5 +4,4 @@ CssParser.java: CssParser.jj .FORCE
 	cat CssParser.java \
 	  | sed 's/^}/  }/g; $$d' > C && mv -f C CssParser.java && \
 	  echo '}' >> CssParser.java
-	patch < patch.star-property-hack
 .FORCE:
