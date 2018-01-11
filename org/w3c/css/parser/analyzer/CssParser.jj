@@ -1570,10 +1570,34 @@ char unaryOperator() :
  * @exception ParseException exception during the parse
  */
 String property() :
-{Token n; }
+{Token n;
+ Token hack= null; }
 {
-    n=<IDENT> ( <S> )* { currentProperty = convertIdent(n.image); 
-			 return currentProperty; }
+ // ( hack? ident | hackedIdent ) ( <S> )*
+    ( (hack=<[ "!", "$", "%", "&", "/", "`", "?",  "<", "|" ]> | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
+    n=<IDENT>) ( <S> )* {
+                 currentProperty = convertIdent(n.image);
+                 if (hack != null && !"".equals(hack)) {
+                   String hackp = hack.image+currentProperty;
+                   if (ac.getTreatCssHacksAsWarnings()) {
+                     ac.getFrame().addWarning("css-hack", hackp);
+                     return null;
+                   } else {
+                     throw new ParseException(String.format(ac.getMsg().getString("warning.css-hack"), hackp));
+                   }
+                }
+                return currentProperty;
+               }
+  | ( n=<HASHIDENT> | n=<CLASS> | n=<ATKEYWORD> ) {
+         if (ac.getTreatCssHacksAsWarnings()) {
+                              ac.getFrame().addWarning("css-hack", n.image);
+                              // should we continue and validate the content, or skip ?
+                              currentProperty = convertIdent(n.image).substring(1);
+                              return null;
+         }
+        throw new ParseException(String.format(ac.getMsg().getString("warning.css-hack"), n.image));
+     }
+   ( <S> )*
 }
 
 /**
@@ -2232,7 +2256,9 @@ try {
     {
 	
 	try {
-	
+            if ( string_property == null) { // hack return code
+                return null;
+            }
 	    setImportant(important);
 	
 	    if (incompatible_error) {
@@ -2278,7 +2304,9 @@ try {
       values=expr() ( important=prio() )?
     {
 	try {
-	
+            if (string_property == null) {
+              return null;
+            }
 	    setImportant(important);
 	
 	    if (incompatible_error) {
