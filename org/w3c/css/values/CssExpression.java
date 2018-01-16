@@ -21,6 +21,7 @@ public class CssExpression implements CssOperator {
 	private int mark = -1;
 
 	private boolean vendor_extension = false;
+	private boolean css_hack = false;
 
 	public boolean hasVendorExtensions() {
 		return vendor_extension;
@@ -28,6 +29,14 @@ public class CssExpression implements CssOperator {
 
 	public void markVendorExtension() {
 		vendor_extension = true;
+	}
+
+	public boolean hasCssHack() {
+		return css_hack;
+	}
+
+	public void markCssHack() {
+		css_hack = true;
 	}
 
 	/**

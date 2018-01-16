@@ -2435,8 +2435,8 @@ void term(CssExpression exp) :
         | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
         | n=<DIMEN> {
             String dimen = n.image.trim();
-            if ("0\\0".equals(dimen) //
-                && ac.getTreatCssHacksAsWarnings()) {
+            if ("0\\0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
+		exp.markCssHack();
                 ac.getFrame().addWarning("css-hack", dimen);
             } else {
                 addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), dimen);
@@ -2459,8 +2459,9 @@ void term(CssExpression exp) :
            }
          }
         | n=<DIMEN_9> {
-	    if (ac.getTreatVendorExtensionsAsWarnings()) {
-		ac.getFrame().addWarning("vendor-extension", n.image);
+	    if (ac.getTreatCssHacksAsWarnings()) {
+		ac.getFrame().addWarning("css-hack", n.image.trim());
+		exp.markCssHack();
 	    } else {
 		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
 	    }
@@ -2533,8 +2534,8 @@ void mediaterm(CssExpression exp) :
     | n=<SPL> { setValue(new CssVolume(), exp, operator, n, SPL); }
     | n=<DIMEN> {
           String dimen = n.image.trim();
-          if ("0\\0".equals(dimen) //
-              && ac.getTreatCssHacksAsWarnings()) {
+          if ("0\\0".equals(dimen) && ac.getTreatCssHacksAsWarnings()) {
+              exp.markCssHack();
               ac.getFrame().addWarning("css-hack", dimen);
           } else {
               addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), dimen);
@@ -2549,10 +2550,11 @@ void mediaterm(CssExpression exp) :
        }
      }
     | n=<DIMEN_9> {
-	    if (ac.getTreatVendorExtensionsAsWarnings()) {
-		ac.getFrame().addWarning("vendor-extension", n.image);
+	    if (ac.getTreatCssHacksAsWarnings()) {
+                exp.markCssHack();
+		ac.getFrame().addWarning("css-hack", n.image.trim());
 	    } else {
-		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
+		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image.trim());
 	    }
     }
     | func=function() { setValue(func, exp, operator, null, FUNCTION); }

@@ -554,7 +554,7 @@ public final class CssFouffa extends CssParser {
      * rather than a fatal error?
      */
     private boolean allowBackslash9Hack() {
-        return this.ac.getTreatVendorExtensionsAsWarnings();
+        return this.ac.getTreatCssHacksAsWarnings();
     }
 
     /**
@@ -578,8 +578,8 @@ public final class CssFouffa extends CssParser {
 
         final CssValue lastValue = expression.getLastValue();
 
-        if (allowBackslash9Hack() && lastValue.hasBackslash9Hack()) {
-            expression.markVendorExtension();
+        if (allowBackslash9Hack() && lastValue != null && lastValue.hasBackslash9Hack()) {
+            expression.markCssHack();
         }
 
         try {
