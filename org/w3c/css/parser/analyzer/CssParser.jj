@@ -373,6 +373,9 @@ public abstract class CssParser {
       	        if (f.getParameters().hasVendorExtensions()) {
       	            expr.markVendorExtension();
                 }
+                if (f.getParameters().hasCssHack()) {
+                    expr.markCssHack();
+                }
             }
 	}
 	if (n != null) {
