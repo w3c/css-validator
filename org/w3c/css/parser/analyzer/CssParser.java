@@ -354,6 +354,9 @@ public abstract class CssParser implements CssParserConstants {
                 if (f.getParameters().hasVendorExtensions()) {
                     expr.markVendorExtension();
                 }
+                if (f.getParameters().hasCssHack()) {
+                    expr.markCssHack();
+                }
             }
         }
         if (n != null) {
@@ -5573,12 +5576,6 @@ n.image = Util.strip(n.image);
     finally { jj_save(4, xla); }
   }
 
-  private boolean jj_3R_186()
- {
-    if (jj_3R_128()) return true;
-    return false;
-  }
-
   private boolean jj_3R_169()
  {
     if (jj_scan_token(IMPORTANT_NOT)) return true;
@@ -5635,6 +5632,17 @@ n.image = Util.strip(n.image);
     return false;
   }
 
+  private boolean jj_3R_122()
+ {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(36)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(49)) return true;
+    }
+    return false;
+  }
+
   private boolean jj_3_2()
  {
     if (jj_scan_token(NUMBER)) return true;
@@ -5644,17 +5652,6 @@ n.image = Util.strip(n.image);
       if (jj_scan_token(21)) { jj_scanpos = xsp; break; }
     }
     if (jj_scan_token(DIV)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_122()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(36)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(49)) return true;
-    }
     return false;
   }
 
@@ -6214,6 +6211,12 @@ n.image = Util.strip(n.image);
  {
     if (jj_3R_126()) return true;
     if (jj_scan_token(LPARAN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_186()
+ {
+    if (jj_3R_128()) return true;
     return false;
   }
 
