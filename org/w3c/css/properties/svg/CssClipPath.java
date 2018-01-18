@@ -90,7 +90,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                         String funcname = func.getName().toLowerCase();
                         switch (funcname) {
                             case "inset":
-                                checkInset(ac, func.getParameters(), this);
+                                checkInsetFunction(ac, func.getParameters(), this);
                                 break;
                             case "circle":
                             case "ellipse":
@@ -148,8 +148,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
         this(ac, expression, false);
     }
 
-    static void checkInset(ApplContext ac, CssExpression expression,
-                           CssProperty caller) throws InvalidParamException {
+    static void checkInsetFunction(ApplContext ac, CssExpression expression,
+                                   CssProperty caller) throws InvalidParamException {
         CssValue val;
         char op;
         int nb_shape_arg = 0;
