@@ -7,6 +7,7 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.properties.css3.CssBackgroundClip;
+import org.w3c.css.properties.css3.CssBackgroundPosition;
 import org.w3c.css.properties.css3.CssBorderRadius;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -27,7 +28,10 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
 
     public static final CssIdent[] geometry_box_allowed_values;
+    public static final CssIdent[] shape_radius_allowed_values;
+
     public static final CssIdent inset_round;
+    public static final CssIdent at_position;
 
     static {
         String[] _allowed_values = {"margin-box", "fill-box", "stroke-box", "view-box"};
@@ -36,7 +40,14 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
         for (int i = 0; i < geometry_box_allowed_values.length; i++) {
             geometry_box_allowed_values[i] = CssIdent.getIdent(_allowed_values[i]);
         }
+
+        String[] _shape_radius_values = {"closest-side", "farthest-side"};
+        shape_radius_allowed_values = new CssIdent[_shape_radius_values.length];
+        for (int i = 0; i < _shape_radius_values.length; i++) {
+            shape_radius_allowed_values[i] = CssIdent.getIdent(_shape_radius_values[i]);
+        }
         inset_round = CssIdent.getIdent("round");
+        at_position = CssIdent.getIdent("at");
     }
 
     public static final CssIdent getGeometryBoxAllowedValue(CssIdent ident) {
@@ -53,6 +64,16 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
         }
         return null;
     }
+
+    public static final CssIdent getShapeRadiusAllowedValue(CssIdent ident) {
+        for (CssIdent id : shape_radius_allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Create a new CssClipPath
@@ -93,6 +114,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                                 checkInsetFunction(ac, func.getParameters(), this);
                                 break;
                             case "circle":
+                                checkCircleFunction(ac, func.getParameters(), this);
+                                break;
                             case "ellipse":
                             case "polygon":
                                 // not yet implemented
@@ -148,8 +171,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
         this(ac, expression, false);
     }
 
-    static void checkInsetFunction(ApplContext ac, CssExpression expression,
-                                   CssProperty caller) throws InvalidParamException {
+    protected static void checkInsetFunction(ApplContext ac, CssExpression expression,
+                                             CssProperty caller) throws InvalidParamException {
         CssValue val;
         char op;
         int nb_shape_arg = 0;
@@ -169,21 +192,86 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                     }
                     break;
                 case CssTypes.CSS_IDENT:
-                     if (inset_round.equals((CssIdent)val)) {
-                         // the remainder must be a border-radius
-                         CssExpression nex = new CssExpression();
-                         expression.next();
-                         while (!expression.end()) {
-                             nex.addValue(expression.getValue());
-                             nex.setOperator(expression.getOperator());
-                             expression.next();
-                         }
-                         if (nex.getCount() == 0) {
-                             throw new InvalidParamException("unrecognize", ac);
-                         }
-                         CssBorderRadius.checkBorderCornerRadius(ac, caller, nex, true);
-                         break;
-                     }
+                    if (inset_round.equals((CssIdent) val)) {
+                        // the remainder must be a border-radius
+                        CssExpression nex = new CssExpression();
+                        expression.next();
+                        while (!expression.end()) {
+                            nex.addValue(expression.getValue());
+                            nex.setOperator(expression.getOperator());
+                            expression.next();
+                        }
+                        if (nex.getCount() == 0) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        CssBorderRadius.checkBorderCornerRadius(ac, caller, nex, true);
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("inset-separator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+    }
+
+    protected static void checkCircleFunction(ApplContext ac, CssExpression expression,
+                                              CssProperty caller) throws InvalidParamException {
+        CssValue val;
+        char op;
+        boolean gotRadius = false;
+
+        if (expression == null || expression.getCount() == 0) {
+            // no expression allowed by grammar
+            return;
+        }
+
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, caller);
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    if (gotRadius) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    val.getCheckableValue().checkPositiveness(ac, caller);
+                    gotRadius = true;
+                    break;
+                case CssTypes.CSS_IDENT:
+                    CssIdent ident = (CssIdent) val;
+                    CssIdent id = getShapeRadiusAllowedValue(ident);
+                    if (id != null) {
+                        if (gotRadius) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        gotRadius = true;
+                        break;
+                    }
+
+                    if (at_position.equals(ident)) {
+                        // the remainder must be a position
+                        CssExpression nex = new CssExpression();
+                        expression.next();
+                        while (!expression.end()) {
+                            nex.addValue(expression.getValue());
+                            nex.setOperator(expression.getOperator());
+                            expression.next();
+                        }
+                        if (nex.getCount() == 0) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        CssBackgroundPosition.checkSyntax(nex, ac, caller.getPropertyName());
+                        break;
+                    }
                 default:
                     throw new InvalidParamException("value",
                             val.toString(),
