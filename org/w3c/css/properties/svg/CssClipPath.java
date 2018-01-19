@@ -20,10 +20,13 @@ import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
+import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec https://www.w3.org/TR/2014/CR-css-masking-1-20140826/#the-clip-path
+ * @spec https://www.w3.org/TR/2014/CR-css-shapes-1-20140320/#basic-shape-functions
+ * NOTE that ultimately, all function parsing should be moved to a specific directory
  */
 public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
 
@@ -120,7 +123,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                                 checkEllipseFunction(ac, func.getParameters(), this);
                                 break;
                             case "polygon":
-                                // not yet implemented
+                                checkPolygonFunction(ac, func.getParameters(), this);
+                                break;
                             default:
                                 throw new InvalidParamException("value", val,
                                         getPropertyName(), ac);
@@ -280,7 +284,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                             caller.getPropertyName(), ac);
             }
             if (op != SPACE) {
-                throw new InvalidParamException("inset-separator",
+                throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
             expression.next();
@@ -345,11 +349,83 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                             caller.getPropertyName(), ac);
             }
             if (op != SPACE) {
-                throw new InvalidParamException("inset-separator",
+                throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
             expression.next();
         }
     }
+
+    protected static void checkPolygonFunction(ApplContext ac, CssExpression expression,
+                                               CssProperty caller) throws InvalidParamException {
+        CssValue val;
+        char op;
+        int nbShapeArgs = 0;
+        int nbPoints = 0;
+        boolean gotFillRule = false;
+
+        if (expression == null || expression.getCount() == 0) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, caller);
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    if (nbShapeArgs >= 2) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    nbShapeArgs++;
+                    break;
+                case CssTypes.CSS_IDENT:
+                    // can only happen at the beginning.
+                    if (!gotFillRule && nbPoints == 0 && nbShapeArgs == 0) {
+                        CssIdent ident = (CssIdent) val;
+                        CssIdent id = CssFillRule.getAllowedIdent(ident);
+                        if (id != null) {
+                            gotFillRule = true;
+                            break;
+                        }
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            // we need a COMMA after a possible fill-rule, and after two shape-args
+            if (gotFillRule && nbPoints == 0 && nbShapeArgs == 0) {
+                if (op != COMMA) {
+                    throw new InvalidParamException("operator",
+                            ((new Character(op)).toString()), ac);
+                }
+            } else if (nbShapeArgs == 2) {
+                if (expression.getRemainingCount() > 1) {
+                    // we don't need a COMMA at the end, so we check only before.
+                    if (op != COMMA) {
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                }
+                nbPoints++;
+                nbShapeArgs = 0;
+            } else {
+                if (op != SPACE) {
+                    throw new InvalidParamException("operator",
+                            ((new Character(op)).toString()), ac);
+                }
+            }
+            expression.next();
+        }
+        // we always needs two shape args, can't finish with only one
+        if (nbShapeArgs == 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+    }
+
 }
 
