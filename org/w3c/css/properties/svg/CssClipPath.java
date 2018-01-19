@@ -117,6 +117,8 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                                 checkCircleFunction(ac, func.getParameters(), this);
                                 break;
                             case "ellipse":
+                                checkEllipseFunction(ac, func.getParameters(), this);
+                                break;
                             case "polygon":
                                 // not yet implemented
                             default:
@@ -254,6 +256,71 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                             throw new InvalidParamException("unrecognize", ac);
                         }
                         gotRadius = true;
+                        break;
+                    }
+
+                    if (at_position.equals(ident)) {
+                        // the remainder must be a position
+                        CssExpression nex = new CssExpression();
+                        expression.next();
+                        while (!expression.end()) {
+                            nex.addValue(expression.getValue());
+                            nex.setOperator(expression.getOperator());
+                            expression.next();
+                        }
+                        if (nex.getCount() == 0) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        CssBackgroundPosition.checkSyntax(nex, ac, caller.getPropertyName());
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("inset-separator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+    }
+
+    protected static void checkEllipseFunction(ApplContext ac, CssExpression expression,
+                                               CssProperty caller) throws InvalidParamException {
+        CssValue val;
+        char op;
+        int nbRadius = 0;
+
+        if (expression == null || expression.getCount() == 0) {
+            // no expression allowed by grammar
+            return;
+        }
+
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, caller);
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    if (nbRadius >= 2) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    val.getCheckableValue().checkPositiveness(ac, caller);
+                    nbRadius++;
+                    break;
+                case CssTypes.CSS_IDENT:
+                    CssIdent ident = (CssIdent) val;
+                    CssIdent id = getShapeRadiusAllowedValue(ident);
+                    if (id != null) {
+                        if (nbRadius >= 2) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        nbRadius++;
                         break;
                     }
 
