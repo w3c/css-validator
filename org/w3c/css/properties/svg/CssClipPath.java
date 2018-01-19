@@ -219,7 +219,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                             caller.getPropertyName(), ac);
             }
             if (op != SPACE) {
-                throw new InvalidParamException("inset-separator",
+                throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
             expression.next();
