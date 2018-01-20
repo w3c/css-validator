@@ -177,7 +177,7 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
 	 * Check the border-*-radius and returns a value.
 	 * It makes sense to do it only once for all the corners, so by having the code here.
 	 */
-	protected static CssValue checkBorderCornerRadius(ApplContext ac, CssProperty caller,
+	public static CssValue checkBorderCornerRadius(ApplContext ac, CssProperty caller,
 													  CssExpression expression, boolean check)
 			throws InvalidParamException {
 
