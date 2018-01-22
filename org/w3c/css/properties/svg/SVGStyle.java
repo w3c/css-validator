@@ -12,79 +12,89 @@ import org.w3c.css.properties.css.CssMarker;
 import org.w3c.css.properties.css.CssMarkerEnd;
 import org.w3c.css.properties.css.CssMarkerMid;
 import org.w3c.css.properties.css.CssMarkerStart;
+import org.w3c.css.properties.css.CssMaskClip;
 import org.w3c.css.properties.css.colorprofile.CssName;
 import org.w3c.css.properties.css.colorprofile.CssRenderingIntent;
 import org.w3c.css.properties.css.colorprofile.CssSrc;
 
 public class SVGStyle extends SVGBasicStyle {
 
-	public CssMarkerStart cssMarkerStart;
-	public CssMarkerMid cssMarkerMid;
-	public CssMarkerEnd cssMarkerEnd;
-	public CssMarker cssMarker;
+    public CssMarkerStart cssMarkerStart;
+    public CssMarkerMid cssMarkerMid;
+    public CssMarkerEnd cssMarkerEnd;
+    public CssMarker cssMarker;
 
-	// @color-profile
-	public CssRenderingIntent colorProfileCssRenderingIntent;
-	public CssName colorProfileCssName;
-	public CssSrc  colorProfileCssSrc;
+    // @color-profile
+    public CssRenderingIntent colorProfileCssRenderingIntent;
+    public CssName colorProfileCssName;
+    public CssSrc colorProfileCssSrc;
 
-	
-	
-	public CssMarkerStart getMarkerStart() {
-		if (cssMarkerStart == null) {
-			cssMarkerStart = (CssMarkerStart) style.CascadingOrder(new CssMarkerStart(),
-					style, selector);
-		}
-		return cssMarkerStart;
-	}
+    public CssMaskClip cssMaskClip;
 
-	public CssMarkerMid getMarkerMid() {
-		if (cssMarkerMid == null) {
-			cssMarkerMid = (CssMarkerMid) style.CascadingOrder(new CssMarkerMid(),
-					style, selector);
-		}
-		return cssMarkerMid;
-	}
 
-	public CssMarkerEnd getMarkerEnd() {
-		if (cssMarkerEnd == null) {
-			cssMarkerEnd = (CssMarkerEnd) style.CascadingOrder(new CssMarkerEnd(),
-					style, selector);
-		}
-		return cssMarkerEnd;
-	}
+    public CssMaskClip getMaskClip() {
+        if (cssMaskClip == null) {
+            cssMaskClip = (CssMaskClip) style.CascadingOrder(new CssMaskClip(),
+                    style, selector);
+        }
+        return cssMaskClip;
+    }
 
-	public CssMarker getMarker() {
-		if (cssMarker == null) {
-			cssMarker = (CssMarker) style.CascadingOrder(new CssMarker(),
-					style, selector);
-		}
-		return cssMarker;
-	}
+    public CssMarkerStart getMarkerStart() {
+        if (cssMarkerStart == null) {
+            cssMarkerStart = (CssMarkerStart) style.CascadingOrder(new CssMarkerStart(),
+                    style, selector);
+        }
+        return cssMarkerStart;
+    }
 
-	// @color-profile
+    public CssMarkerMid getMarkerMid() {
+        if (cssMarkerMid == null) {
+            cssMarkerMid = (CssMarkerMid) style.CascadingOrder(new CssMarkerMid(),
+                    style, selector);
+        }
+        return cssMarkerMid;
+    }
 
-	public CssRenderingIntent getColorProfileRenderingIntent() {
-		if (colorProfileCssRenderingIntent == null) {
-			colorProfileCssRenderingIntent = (CssRenderingIntent) style.CascadingOrder(new CssRenderingIntent(),
-					style, selector);
-		}
-		return colorProfileCssRenderingIntent;
-	}
+    public CssMarkerEnd getMarkerEnd() {
+        if (cssMarkerEnd == null) {
+            cssMarkerEnd = (CssMarkerEnd) style.CascadingOrder(new CssMarkerEnd(),
+                    style, selector);
+        }
+        return cssMarkerEnd;
+    }
 
-	public CssName getColorProfileName() {
-		if (colorProfileCssName == null) {
-			colorProfileCssName = (CssName) style.CascadingOrder(new CssName(),
-					style, selector);
-		}
-		return colorProfileCssName;
-	}
+    public CssMarker getMarker() {
+        if (cssMarker == null) {
+            cssMarker = (CssMarker) style.CascadingOrder(new CssMarker(),
+                    style, selector);
+        }
+        return cssMarker;
+    }
 
-	public CssSrc getColorProfileSrc() {
-		if (colorProfileCssSrc == null) {
-			colorProfileCssSrc = (CssSrc) style.CascadingOrder(new CssSrc(),
-					style, selector);
-		}
-		return colorProfileCssSrc;
-	}
+    // @color-profile
+
+    public CssRenderingIntent getColorProfileRenderingIntent() {
+        if (colorProfileCssRenderingIntent == null) {
+            colorProfileCssRenderingIntent = (CssRenderingIntent) style.CascadingOrder(new CssRenderingIntent(),
+                    style, selector);
+        }
+        return colorProfileCssRenderingIntent;
+    }
+
+    public CssName getColorProfileName() {
+        if (colorProfileCssName == null) {
+            colorProfileCssName = (CssName) style.CascadingOrder(new CssName(),
+                    style, selector);
+        }
+        return colorProfileCssName;
+    }
+
+    public CssSrc getColorProfileSrc() {
+        if (colorProfileCssSrc == null) {
+            colorProfileCssSrc = (CssSrc) style.CascadingOrder(new CssSrc(),
+                    style, selector);
+        }
+        return colorProfileCssSrc;
+    }
 }
