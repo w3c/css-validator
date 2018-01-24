@@ -13,6 +13,7 @@ import org.w3c.css.properties.css.CssMarkerEnd;
 import org.w3c.css.properties.css.CssMarkerMid;
 import org.w3c.css.properties.css.CssMarkerStart;
 import org.w3c.css.properties.css.CssMaskClip;
+import org.w3c.css.properties.css.CssMaskComposite;
 import org.w3c.css.properties.css.CssMaskOrigin;
 import org.w3c.css.properties.css.colorprofile.CssName;
 import org.w3c.css.properties.css.colorprofile.CssRenderingIntent;
@@ -31,6 +32,7 @@ public class SVGStyle extends SVGBasicStyle {
     public CssSrc colorProfileCssSrc;
 
     public CssMaskClip cssMaskClip;
+    public CssMaskComposite cssMaskComposite;
     public CssMaskOrigin cssMaskOrigin;
 
 
@@ -40,6 +42,14 @@ public class SVGStyle extends SVGBasicStyle {
                     style, selector);
         }
         return cssMaskOrigin;
+    }
+
+    public CssMaskComposite getMaskComposite() {
+        if (cssMaskComposite == null) {
+            cssMaskComposite = (CssMaskComposite) style.CascadingOrder(new CssMaskComposite(),
+                    style, selector);
+        }
+        return cssMaskComposite;
     }
 
     public CssMaskClip getMaskClip() {
