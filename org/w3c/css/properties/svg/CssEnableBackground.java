@@ -21,96 +21,96 @@ import java.util.ArrayList;
  */
 public class CssEnableBackground extends org.w3c.css.properties.css.CssEnableBackground {
 
-	public CssIdent id_new = CssIdent.getIdent("new");
-	public CssIdent accumulate = CssIdent.getIdent("accumulate");
+    public CssIdent id_new = CssIdent.getIdent("new");
+    public CssIdent accumulate = CssIdent.getIdent("accumulate");
 
-	/**
-	 * Create a new CssEnableBackground
-	 */
-	public CssEnableBackground() {
-		value = initial;
-	}
+    /**
+     * Create a new CssEnableBackground
+     */
+    public CssEnableBackground() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssEnableBackground
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssEnableBackground(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssEnableBackground
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssEnableBackground(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		int nbCoord = 0;
-		boolean got_new = false;
+        CssValue val;
+        char op;
+        int nbCoord = 0;
+        boolean got_new = false;
 
-		ArrayList<CssValue> values = new ArrayList<>();
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        ArrayList<CssValue> values = new ArrayList<>();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					nbCoord++;
-					if (!got_new || nbCoord > 4) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					// <x> <y> <width> <height> where <width> and <height> >= 0
-					if (nbCoord > 2) {
-						val.getCheckableValue().checkPositiveness(ac, this);
-					}
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						value = inherit;
-						break;
-					}
-					if (accumulate.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						value = accumulate;
-						break;
-					}
-					if (id_new.equals(val) && !got_new) {
-						values.add(id_new);
-						got_new = true;
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			// both space and commas can happen...
-			if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (!values.isEmpty()) {
-			value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    nbCoord++;
+                    if (!got_new || nbCoord > 4) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    // <x> <y> <width> <height> where <width> and <height> >= 0
+                    if (nbCoord > 2) {
+                        val.getCheckableValue().checkPositiveness(ac, this);
+                    }
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        value = inherit;
+                        break;
+                    }
+                    if (accumulate.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        value = accumulate;
+                        break;
+                    }
+                    if (id_new.equals(val) && !got_new) {
+                        values.add(id_new);
+                        got_new = true;
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            // both space and commas can happen...
+            if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (!values.isEmpty()) {
+            value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        }
+    }
 
-	public CssEnableBackground(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssEnableBackground(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

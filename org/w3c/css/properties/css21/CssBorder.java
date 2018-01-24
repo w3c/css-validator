@@ -127,11 +127,11 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                     }
                     _width = val;
                     break;
-				case CssTypes.CSS_HASH_IDENT:
-					org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-					c.setShortRGBColor(val.toString(), ac);
-					_color = c;
-					break;
+                case CssTypes.CSS_HASH_IDENT:
+                    org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+                    c.setShortRGBColor(val.toString(), ac);
+                    _color = c;
+                    break;
                 case CssTypes.CSS_COLOR:
                     _color = val;
                     break;
@@ -176,6 +176,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
         }
         return new SideValues(_width, _style, _color);
     }
+
     // small wrapper to return values...
     protected static class SideValues {
         CssValue width;

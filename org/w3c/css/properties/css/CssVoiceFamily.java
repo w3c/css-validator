@@ -18,9 +18,9 @@ import org.w3c.css.values.CssValue;
 public class CssVoiceFamily extends CssProperty {
 
     public CssValue value;
-	public boolean hasGenericVoiceFamily = false;
+    public boolean hasGenericVoiceFamily = false;
 
-	/**
+    /**
      * Create a new CssVoiceFamily
      */
     public CssVoiceFamily() {

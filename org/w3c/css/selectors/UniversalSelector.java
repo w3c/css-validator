@@ -13,31 +13,31 @@ public class UniversalSelector implements Selector {
     String prefix = null;
 
     public UniversalSelector(String prefix) {
-	this.prefix = prefix;
+        this.prefix = prefix;
     }
 
     /**
      * @see Selector#toString()
      */
     public String toString() {
-	if (prefix != null) {
-	    return prefix+"|*";
-	}
-	return "*";
+        if (prefix != null) {
+            return prefix + "|*";
+        }
+        return "*";
     }
 
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return true;
+        return true;
     }
 
     /**
      * @see Selector#getName()
      */
     public String getName() {
-	return "*";
+        return "*";
     }
 
 }

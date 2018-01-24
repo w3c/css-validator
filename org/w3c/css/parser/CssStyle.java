@@ -63,14 +63,14 @@ public class CssStyle {
         warnings.addWarning(new Warning(property, "redefinition", 2, ac));
     }
 
-	/**
-	 * Add a warning to this style.
-	 *
-	 * @param warn The Warning.
-	 */
-	public final void addWarning(ApplContext ac, Warning warn) {
-		warnings.addWarning(warn);
-	}
+    /**
+     * Add a warning to this style.
+     *
+     * @param warn The Warning.
+     */
+    public final void addWarning(ApplContext ac, Warning warn) {
+        warnings.addWarning(warn);
+    }
 
     /**
      * Add a property to this style

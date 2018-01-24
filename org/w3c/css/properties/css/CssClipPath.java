@@ -17,100 +17,100 @@ import org.w3c.css.values.CssValue;
  */
 public class CssClipPath extends CssProperty {
 
-	public CssValue value;
+    public CssValue value;
 
-	/**
-	 * Create a new CssClipPath
-	 */
-	public CssClipPath() {
-	}
+    /**
+     * Create a new CssClipPath
+     */
+    public CssClipPath() {
+    }
 
-	/**
-	 * Creates a new CssClipPath
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssClipPath(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		throw new InvalidParamException("value",
-				expression.getValue().toString(),
-				getPropertyName(), ac);
-	}
+    /**
+     * Creates a new CssClipPath
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssClipPath(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        throw new InvalidParamException("value",
+                expression.getValue().toString(),
+                getPropertyName(), ac);
+    }
 
-	public CssClipPath(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssClipPath(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
-
-
-	/**
-	 * Returns the name of this property
-	 */
-	public final String getPropertyName() {
-		return "clip-path";
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 * e.g. his value is equals to inherit
-	 */
-	public boolean isSoftlyInherited() {
-		return value.equals(inherit);
-	}
-
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		return value.toString();
-	}
-
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		SVGBasicStyle s = (SVGBasicStyle) style;
-		if (s.cssClipPath != null) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		s.cssClipPath = this;
-	}
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return value;
+    }
 
 
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssClipPath &&
-				value.equals(((CssClipPath) property).value));
-	}
+    /**
+     * Returns the name of this property
+     */
+    public final String getPropertyName() {
+        return "clip-path";
+    }
+
+    /**
+     * Returns true if this property is "softly" inherited
+     * e.g. his value is equals to inherit
+     */
+    public boolean isSoftlyInherited() {
+        return value.equals(inherit);
+    }
+
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        return value.toString();
+    }
+
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        SVGBasicStyle s = (SVGBasicStyle) style;
+        if (s.cssClipPath != null) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        s.cssClipPath = this;
+    }
 
 
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style   The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((SVGBasicStyle) style).getClipPath();
-		} else {
-			return ((SVGBasicStyle) style).cssClipPath;
-		}
-	}
+    /**
+     * Compares two properties for equality.
+     *
+     * @param property The other property.
+     */
+    public boolean equals(CssProperty property) {
+        return (property instanceof CssClipPath &&
+                value.equals(((CssClipPath) property).value));
+    }
+
+
+    /**
+     * Get this property in the style.
+     *
+     * @param style   The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+        if (resolve) {
+            return ((SVGBasicStyle) style).getClipPath();
+        } else {
+            return ((SVGBasicStyle) style).cssClipPath;
+        }
+    }
 }
 

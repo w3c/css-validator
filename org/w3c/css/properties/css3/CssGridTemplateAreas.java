@@ -22,70 +22,70 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssGridTemplateAreas extends org.w3c.css.properties.css.CssGridTemplateAreas {
 
-	/**
-	 * Create a new CssGridTemplateAreas
-	 */
-	public CssGridTemplateAreas() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGridTemplateAreas
+     */
+    public CssGridTemplateAreas() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGridTemplateAreas
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridTemplateAreas(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssValue val;
-		char op;
+    /**
+     * Creates a new CssGridTemplateAreas
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridTemplateAreas(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssValue val;
+        char op;
 
-		ArrayList<CssValue> values = new ArrayList<>();
-		CssIdent ident;
+        ArrayList<CssValue> values = new ArrayList<>();
+        CssIdent ident;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_STRING:
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("unrecognize", ac);
-						}
-						values.add(inherit);
-						break;
-					}
-					if (none.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("unrecognize", ac);
-						}
-						values.add(none);
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+            switch (val.getType()) {
+                case CssTypes.CSS_STRING:
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        values.add(inherit);
+                        break;
+                    }
+                    if (none.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        values.add(none);
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 
-	}
+    }
 
-	public CssGridTemplateAreas(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridTemplateAreas(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -38,116 +38,114 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      * Create a new CssFitPosition
      */
     public CssFitPosition() {
-	fitpos = "0% 0%";
+        fitpos = "0% 0%";
     }
 
     /**
      * Create a new CssFitPosition
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssFitPosition(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                          boolean check) throws InvalidParamException {
 
-	this.ac = ac;
-	setByUser(); // tell this property is set by the user
-	CssValue val = expression.getValue();
-	char op = expression.getOperator();
+        this.ac = ac;
+        setByUser(); // tell this property is set by the user
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
 
-	if (op == SPACE) {
+        if (op == SPACE) {
 
-	    val = expression.getValue();
+            val = expression.getValue();
 
-	    if (val != null) {
+            if (val != null) {
 
-		if (val instanceof CssIdent) {
-		    if (val.equals(top)) {
-			fitpos += " " + val.toString();
-		    } else if (val.equals(center)) {
-			fitpos += " " + val.toString();
-		    } else if (val.equals(bottom)) {
-			fitpos += " " + val.toString();
-		    } else if (val.equals(initial)) {
-			fitpos += " " + val.toString();
-		    } else {
-			throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-		    }
+                if (val instanceof CssIdent) {
+                    if (val.equals(top)) {
+                        fitpos += " " + val.toString();
+                    } else if (val.equals(center)) {
+                        fitpos += " " + val.toString();
+                    } else if (val.equals(bottom)) {
+                        fitpos += " " + val.toString();
+                    } else if (val.equals(initial)) {
+                        fitpos += " " + val.toString();
+                    } else {
+                        throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+                    }
 
-		    expression.next();
-		    op = expression.getOperator();
-		    val = expression.getValue();
+                    expression.next();
+                    op = expression.getOperator();
+                    val = expression.getValue();
 
-		    if (val != null && val instanceof CssIdent) {
-			if (val.equals(left)) {
-			    fitpos += " " + val.toString();
-			} else if (val.equals(center)) {
-			    fitpos += " " + val.toString();
-			} else if (val.equals(right)) {
-			    fitpos += " " + val.toString();
-			} else {
-			    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-			}
-		    }
+                    if (val != null && val instanceof CssIdent) {
+                        if (val.equals(left)) {
+                            fitpos += " " + val.toString();
+                        } else if (val.equals(center)) {
+                            fitpos += " " + val.toString();
+                        } else if (val.equals(right)) {
+                            fitpos += " " + val.toString();
+                        } else {
+                            throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+                        }
+                    }
 
-		    expression.next();
+                    expression.next();
 
-		} else if (val instanceof CssLength) {
-		    fitpos += " " + val.toString();
+                } else if (val instanceof CssLength) {
+                    fitpos += " " + val.toString();
 
-		    expression.next();
-		    op = expression.getOperator();
-		    val = expression.getValue();
+                    expression.next();
+                    op = expression.getOperator();
+                    val = expression.getValue();
 
-		    if (val != null && val instanceof CssLength) {
-			fitpos += " " + val.toString();
-			expression.next();
-		    } else if (val instanceof CssPercentage) {
-			fitpos += " " + val.toString();
-			expression.next();
-		    }
+                    if (val != null && val instanceof CssLength) {
+                        fitpos += " " + val.toString();
+                        expression.next();
+                    } else if (val instanceof CssPercentage) {
+                        fitpos += " " + val.toString();
+                        expression.next();
+                    }
 
-		} else if (val instanceof CssPercentage) {
-		    fitpos += " " + val.toString();
+                } else if (val instanceof CssPercentage) {
+                    fitpos += " " + val.toString();
 
-		    expression.next();
-		    op = expression.getOperator();
-		    val = expression.getValue();
+                    expression.next();
+                    op = expression.getOperator();
+                    val = expression.getValue();
 
-		    if (val != null && val instanceof CssLength) {
-			fitpos += " " + val.toString();
-			expression.next();
-		    } else if (val instanceof CssPercentage) {
-			fitpos += " " + val.toString();
-			expression.next();
-		    }
+                    if (val != null && val instanceof CssLength) {
+                        fitpos += " " + val.toString();
+                        expression.next();
+                    } else if (val instanceof CssPercentage) {
+                        fitpos += " " + val.toString();
+                        expression.next();
+                    }
 
-		} else {
-		    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-		}
-	    }
+                } else {
+                    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+                }
+            }
 
-	}
-	else if (val instanceof CssIdent) {
-	    if (val.equals(inherit)) {
-		fitpos = "inherit";
-		expression.next();
-	    } else if (val.equals(auto)) {
-		fitpos = "auto";
-		expression.next();
-	    } else if (val.equals(initial)) {
-		fitpos = "initial";
-		expression.next();
-	    }
-	}
-	else {
-	    throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
-	}
+        } else if (val instanceof CssIdent) {
+            if (val.equals(inherit)) {
+                fitpos = "inherit";
+                expression.next();
+            } else if (val.equals(auto)) {
+                fitpos = "auto";
+                expression.next();
+            } else if (val.equals(initial)) {
+                fitpos = "initial";
+                expression.next();
+            }
+        } else {
+            throw new InvalidParamException("value", val.toString(), getPropertyName(), ac);
+        }
     }
 
     public CssFitPosition(ApplContext ac, CssExpression expression)
-    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -156,11 +154,10 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      * @param opac The value to be modified if necessary
      */
     private float clampedValue(ApplContext ac, float opac) {
-	if (opac < 0 || opac > 1) {
-	    ac.getFrame().addWarning("out-of-range", Util.displayFloat(opac));
-	    return ((opac<0)?0:1);
-	}
-	else return(opac);
+        if (opac < 0 || opac > 1) {
+            ac.getFrame().addWarning("out-of-range", Util.displayFloat(opac));
+            return ((opac < 0) ? 0 : 1);
+        } else return (opac);
     }
 
     /**
@@ -169,23 +166,23 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssFitPosition != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssFitPosition = this;
+        if (((Css3Style) style).cssFitPosition != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssFitPosition = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getFitPosition();
-	} else {
-	    return ((Css3Style) style).cssFitPosition;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getFitPosition();
+        } else {
+            return ((Css3Style) style).cssFitPosition;
+        }
     }
 
     /**
@@ -194,36 +191,36 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFitPosition &&
-		fitpos.equals( ((CssFitPosition) property).fitpos));
+        return (property instanceof CssFitPosition &&
+                fitpos.equals(((CssFitPosition) property).fitpos));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "fit-position";
+        return "fit-position";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return fitpos;
+        return fitpos;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return fitpos.equals("inherit");
+        return fitpos.equals("inherit");
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return fitpos;
+        return fitpos;
     }
 
     /**
@@ -231,7 +228,7 @@ public class CssFitPosition extends CssProperty implements CssOperator {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return fitpos.equals("0% 0%");
+        return fitpos.equals("0% 0%");
     }
 
 }

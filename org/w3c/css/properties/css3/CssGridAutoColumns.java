@@ -22,54 +22,54 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssGridAutoColumns extends org.w3c.css.properties.css.CssGridAutoColumns {
 
-	/**
-	 * Create a new CssGridAutoColumns
-	 */
-	public CssGridAutoColumns() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGridAutoColumns
+     */
+    public CssGridAutoColumns() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGridAutoColumns
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridAutoColumns(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssGridAutoColumns
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridAutoColumns(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
-				if (expression.getCount() > 1) {
-					throw new InvalidParamException("unrecognize", ac);
-				}
-				values.add(inherit);
-			} else {
-				values.add(parseTrackSize(ac, val, this));
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+            if (val.getType() == CssTypes.CSS_IDENT && inherit.equals(val)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("unrecognize", ac);
+                }
+                values.add(inherit);
+            } else {
+                values.add(parseTrackSize(ac, val, this));
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssGridAutoColumns(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridAutoColumns(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

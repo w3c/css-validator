@@ -26,53 +26,53 @@ public class Slope extends CssProperty {
      * Create a new Slope
      */
     public Slope() {
-	// nothing to do
+        // nothing to do
     }
 
     /**
      * Creates a new Slope
      *
      * @param expression the unicode em
-     * @exception InvalidParamException values are incorrect
+     * @throws InvalidParamException values are incorrect
      */
     public Slope(ApplContext ac, CssExpression expression, boolean check)
-    	throws InvalidParamException {
-	CssValue val = expression.getValue();
-	setByUser();
+            throws InvalidParamException {
+        CssValue val = expression.getValue();
+        setByUser();
 
-	if (val instanceof CssNumber) {
-	    value = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        if (val instanceof CssNumber) {
+            value = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public Slope(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the current value
      */
     public Object get() {
-	return value;
+        return value;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return value.toString();
+        return value.toString();
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "slope";
+        return "slope";
     }
 
     /**
@@ -81,25 +81,25 @@ public class Slope extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	Css2Style style0 = (Css2Style) style;
-	if (style0.slope != null) {
-	    style0.addRedefinitionWarning(ac, this);
-	}
-	style0.slope = this;
+        Css2Style style0 = (Css2Style) style;
+        if (style0.slope != null) {
+            style0.addRedefinitionWarning(ac, this);
+        }
+        style0.slope = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css2Style) style).getSlope();
-	} else {
-	    return ((Css2Style) style).slope;
-	}
+        if (resolve) {
+            return ((Css2Style) style).getSlope();
+        } else {
+            return ((Css2Style) style).slope;
+        }
     }
 
     /**
@@ -108,8 +108,8 @@ public class Slope extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	// @@TODO
-	return false;
+        // @@TODO
+        return false;
     }
 
     /**
@@ -117,7 +117,7 @@ public class Slope extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

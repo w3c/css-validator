@@ -23,98 +23,98 @@ import java.util.ArrayList;
  */
 public class CssSrc extends org.w3c.css.properties.css.colorprofile.CssSrc {
 
-	public static CssIdent sRGB = CssIdent.getIdent("sRGB");
+    public static CssIdent sRGB = CssIdent.getIdent("sRGB");
 
-	/**
-	 * Create a new CssSrc
-	 */
-	public CssSrc() {
-		value = initial;
-	}
+    /**
+     * Create a new CssSrc
+     */
+    public CssSrc() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssSrc
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssSrc(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val;
-		char op;
+    /**
+     * Creates a new CssSrc
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssSrc(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val;
+        char op;
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		ArrayList<CssValue> values = new ArrayList<>();
-		boolean gotIRI = false;
-		boolean gotLocal = false;
+        ArrayList<CssValue> values = new ArrayList<>();
+        boolean gotIRI = false;
+        boolean gotLocal = false;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_URL:
-					if (gotIRI) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					gotIRI = true;
-					values.add(val);
-					break;
-				case CssTypes.CSS_FUNCTION:
-					if (gotLocal || gotIRI) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					parseLocal((CssFunction) val, ac);
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (sRGB.equals(val) && values.isEmpty()) {
-						value = sRGB;
-						// hack to avoid getting other values.
-						gotIRI = gotLocal = true;
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							expression.getValue(),
-							getPropertyName(), ac);
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (!values.isEmpty()) {
-			value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		}
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_URL:
+                    if (gotIRI) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    gotIRI = true;
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_FUNCTION:
+                    if (gotLocal || gotIRI) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    parseLocal((CssFunction) val, ac);
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (sRGB.equals(val) && values.isEmpty()) {
+                        value = sRGB;
+                        // hack to avoid getting other values.
+                        gotIRI = gotLocal = true;
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (!values.isEmpty()) {
+            value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        }
+    }
 
-	private void parseLocal(CssFunction f, ApplContext ac) throws InvalidParamException {
-		if (!"local".equals(f.getName())) {
-			throw new InvalidParamException("value", f, getPropertyName(), ac);
-		}
-		CssExpression exp = f.getParameters();
-		if (exp.getCount() == 1) {
-			if (exp.getValue().getType() == CssTypes.CSS_STRING) {
-				return;
-			}
-		}
-		// else fail...
-		throw new InvalidParamException("value", f, getPropertyName(), ac);
-	}
+    private void parseLocal(CssFunction f, ApplContext ac) throws InvalidParamException {
+        if (!"local".equals(f.getName())) {
+            throw new InvalidParamException("value", f, getPropertyName(), ac);
+        }
+        CssExpression exp = f.getParameters();
+        if (exp.getCount() == 1) {
+            if (exp.getValue().getType() == CssTypes.CSS_STRING) {
+                return;
+            }
+        }
+        // else fail...
+        throw new InvalidParamException("value", f, getPropertyName(), ac);
+    }
 
-	public CssSrc(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssSrc(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

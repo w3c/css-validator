@@ -8,8 +8,8 @@
 package org.w3c.css.css;
 
 /**
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public interface StyleSheetOrigin {
 

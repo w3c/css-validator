@@ -27,45 +27,45 @@ public class CssTextHeight extends CssProperty {
     static CssIdent auto = new CssIdent("auto");
 
     private static String[] values = {
-	"auto", "font-size", "text-size", "max-size", "inherit", "initial"
+            "auto", "font-size", "text-size", "max-size", "inherit", "initial"
     };
 
     /**
      * Create a new CssTextHeight
      */
     public CssTextHeight() {
-		textheight = auto;
+        textheight = auto;
     }
 
     /**
      * Create a new CssTextHeight
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssTextHeight(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                         boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	int i = 0;
-	for (; i < values.length; i++) {
-	    if (val.toString().equals(values[i])) {
-		textheight = val;
-		expression.next();
-		break;
-	    }
-	}
-	if (i == values.length) {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        int i = 0;
+        for (; i < values.length; i++) {
+            if (val.toString().equals(values[i])) {
+                textheight = val;
+                expression.next();
+                break;
+            }
+        }
+        if (i == values.length) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssTextHeight(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -74,24 +74,23 @@ public class CssTextHeight extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssTextHeight != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssTextHeight = this;
+        if (((Css3Style) style).cssTextHeight != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssTextHeight = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getTextHeight();
-	}
-	else {
-	    return ((Css3Style) style).cssTextHeight;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getTextHeight();
+        } else {
+            return ((Css3Style) style).cssTextHeight;
+        }
     }
 
     /**
@@ -100,36 +99,36 @@ public class CssTextHeight extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssTextHeight &&
-		textheight.equals(((CssTextHeight) property).textheight));
+        return (property instanceof CssTextHeight &&
+                textheight.equals(((CssTextHeight) property).textheight));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "text-height";
+        return "text-height";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return textheight;
+        return textheight;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return textheight.equals(inherit);
+        return textheight.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return textheight.toString();
+        return textheight.toString();
     }
 
     /**
@@ -137,7 +136,7 @@ public class CssTextHeight extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return (textheight == auto);
+        return (textheight == auto);
     }
 
 }

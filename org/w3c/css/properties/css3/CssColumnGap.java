@@ -23,101 +23,101 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
 
-	CssValue columngap;
+    CssValue columngap;
 
-	static CssIdent normal;
+    static CssIdent normal;
 
-	static {
-		normal = CssIdent.getIdent("normal");
-	}
+    static {
+        normal = CssIdent.getIdent("normal");
+    }
 
-	/**
-	 * Create a new CssColumnGap
-	 */
-	public CssColumnGap() {
-		columngap = initial;
-	}
+    /**
+     * Create a new CssColumnGap
+     */
+    public CssColumnGap() {
+        columngap = initial;
+    }
 
-	/**
-	 * Create a new CssColumnGap
-	 */
-	public CssColumnGap(ApplContext ac, CssExpression expression,
-						boolean check) throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Create a new CssColumnGap
+     */
+    public CssColumnGap(ApplContext ac, CssExpression expression,
+                        boolean check) throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-				columngap = val;
-				break;
-			case CssTypes.CSS_LENGTH:
-				CssCheckableValue l = val.getCheckableValue();
-				l.checkPositiveness(ac, this);
-				columngap = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (normal.equals(val)) {
-					columngap = normal;
-					break;
-				}
-				if (inherit.equals(val)) {
-					columngap = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+                columngap = val;
+                break;
+            case CssTypes.CSS_LENGTH:
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkPositiveness(ac, this);
+                columngap = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (normal.equals(val)) {
+                    columngap = normal;
+                    break;
+                }
+                if (inherit.equals(val)) {
+                    columngap = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssColumnGap(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssColumnGap(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssColumnGap &&
-				columngap.equals(((CssColumnGap) property).columngap));
-	}
+    /**
+     * Compares two properties for equality.
+     *
+     * @param property The other property.
+     */
+    public boolean equals(CssProperty property) {
+        return (property instanceof CssColumnGap &&
+                columngap.equals(((CssColumnGap) property).columngap));
+    }
 
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return columngap;
-	}
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return columngap;
+    }
 
-	/**
-	 * Returns true if this property is "softly" inherited
-	 */
-	public boolean isSoftlyInherited() {
-		return (inherit == columngap);
-	}
+    /**
+     * Returns true if this property is "softly" inherited
+     */
+    public boolean isSoftlyInherited() {
+        return (inherit == columngap);
+    }
 
-	/**
-	 * Returns a string representation of the object
-	 */
-	public String toString() {
-		return columngap.toString();
-	}
+    /**
+     * Returns a string representation of the object
+     */
+    public String toString() {
+        return columngap.toString();
+    }
 
-	/**
-	 * Is the value of this property a default value
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return (columngap == initial);
-	}
+    /**
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return (columngap == initial);
+    }
 
 }

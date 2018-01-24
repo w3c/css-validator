@@ -21,106 +21,106 @@ import java.util.ArrayList;
  */
 public class CssFontSynthesis extends org.w3c.css.properties.css.CssFontSynthesis {
 
-	public static final CssIdent style;
-	public static final CssIdent weight;
+    public static final CssIdent style;
+    public static final CssIdent weight;
 
-	static {
-		style = CssIdent.getIdent("style");
-		weight = CssIdent.getIdent("weight");
-	}
+    static {
+        style = CssIdent.getIdent("style");
+        weight = CssIdent.getIdent("weight");
+    }
 
-	/**
-	 * Create a new CssFontSynthesis
-	 */
-	public CssFontSynthesis() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFontSynthesis
+     */
+    public CssFontSynthesis() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssFontSynthesis
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFontSynthesis(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
+    /**
+     * Creates a new CssFontSynthesis
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFontSynthesis(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent ident = (CssIdent) val;
-			if (inherit.equals(ident)) {
-				value = inherit;
-			} else if (none.equals(ident)) {
-				value = none;
-			} else if (weight.equals(ident)) {
-				if (expression.getCount() > 1) {
-					if (op != CssOperator.SPACE) {
-						throw new InvalidParamException("operator",
-								((new Character(op)).toString()), ac);
-					}
-					expression.next();
-					val = expression.getValue();
-					if (!style.equals(val)) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-					v.add(style);
-					v.add(weight);
-					value = new CssValueList(v);
-				} else {
-					value = weight;
-				}
-			} else if (style.equals(ident)) {
-				if (expression.getCount() > 1) {
-					if (op != CssOperator.SPACE) {
-						throw new InvalidParamException("operator",
-								((new Character(op)).toString()), ac);
-					}
-					expression.next();
-					val = expression.getValue();
-					if (!weight.equals(val)) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-					v.add(style);
-					v.add(weight);
-					value = new CssValueList(v);
-				} else {
-					value = style;
-				}
-			} else {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-		} else {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            CssIdent ident = (CssIdent) val;
+            if (inherit.equals(ident)) {
+                value = inherit;
+            } else if (none.equals(ident)) {
+                value = none;
+            } else if (weight.equals(ident)) {
+                if (expression.getCount() > 1) {
+                    if (op != CssOperator.SPACE) {
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                    expression.next();
+                    val = expression.getValue();
+                    if (!style.equals(val)) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    ArrayList<CssValue> v = new ArrayList<CssValue>(2);
+                    v.add(style);
+                    v.add(weight);
+                    value = new CssValueList(v);
+                } else {
+                    value = weight;
+                }
+            } else if (style.equals(ident)) {
+                if (expression.getCount() > 1) {
+                    if (op != CssOperator.SPACE) {
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                    expression.next();
+                    val = expression.getValue();
+                    if (!weight.equals(val)) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    ArrayList<CssValue> v = new ArrayList<CssValue>(2);
+                    v.add(style);
+                    v.add(weight);
+                    value = new CssValueList(v);
+                } else {
+                    value = style;
+                }
+            } else {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+        } else {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssFontSynthesis(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFontSynthesis(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

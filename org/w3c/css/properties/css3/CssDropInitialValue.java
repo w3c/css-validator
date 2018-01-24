@@ -31,38 +31,36 @@ public class CssDropInitialValue extends CssProperty {
      * Create a new CssDropInitialValue
      */
     public CssDropInitialValue() {
-		dropvalue = initial;
+        dropvalue = initial;
     }
 
     /**
      * Create a new CssDropInitialValue
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssDropInitialValue(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                               boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	if (val.equals(initial)) {
-		dropvalue = initial;
-		expression.next();
-	}
-	else if (val instanceof CssNumber) {
-		dropvalue = val;
-		expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        if (val.equals(initial)) {
+            dropvalue = initial;
+            expression.next();
+        } else if (val instanceof CssNumber) {
+            dropvalue = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssDropInitialValue(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -71,24 +69,23 @@ public class CssDropInitialValue extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssDropInitialValue != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssDropInitialValue = this;
+        if (((Css3Style) style).cssDropInitialValue != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssDropInitialValue = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getDropInitialValue();
-	}
-	else {
-	    return ((Css3Style) style).cssDropInitialValue;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getDropInitialValue();
+        } else {
+            return ((Css3Style) style).cssDropInitialValue;
+        }
     }
 
     /**
@@ -97,36 +94,36 @@ public class CssDropInitialValue extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssDropInitialValue &&
-		dropvalue.equals(((CssDropInitialValue) property).dropvalue));
+        return (property instanceof CssDropInitialValue &&
+                dropvalue.equals(((CssDropInitialValue) property).dropvalue));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "drop-initial-value";
+        return "drop-initial-value";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return dropvalue;
+        return dropvalue;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return dropvalue.equals(inherit);
+        return dropvalue.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return dropvalue.toString();
+        return dropvalue.toString();
     }
 
     /**
@@ -134,7 +131,7 @@ public class CssDropInitialValue extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return dropvalue == initial;
+        return dropvalue == initial;
     }
 
 }

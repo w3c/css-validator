@@ -46,7 +46,7 @@ public class MediaResolution extends MediaFeature {
 
                 if (valnum.getFloatValue() < 0.f) {
                     throw new InvalidParamException("negative-value",
-                                val.toString(), ac);
+                            val.toString(), ac);
                 }
                 value = valnum;
             } else {

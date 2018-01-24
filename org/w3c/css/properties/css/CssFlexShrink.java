@@ -17,100 +17,100 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFlexShrink extends CssProperty {
 
-	public CssValue value;
+    public CssValue value;
 
-	/**
-	 * Create a new CssFlexShrink
-	 */
-	public CssFlexShrink() {
-	}
+    /**
+     * Create a new CssFlexShrink
+     */
+    public CssFlexShrink() {
+    }
 
-	/**
-	 * Creates a new CssFlexShrink
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFlexShrink(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		throw new InvalidParamException("value",
-				expression.getValue().toString(),
-				getPropertyName(), ac);
-	}
+    /**
+     * Creates a new CssFlexShrink
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFlexShrink(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        throw new InvalidParamException("value",
+                expression.getValue().toString(),
+                getPropertyName(), ac);
+    }
 
-	public CssFlexShrink(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFlexShrink(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
-
-
-	/**
-	 * Returns the name of this property
-	 */
-	public final String getPropertyName() {
-		return "flex-shrink";
-	}
-
-	/**
-	 * Returns true if this property is "softly" inherited
-	 * e.g. his value is equals to inherit
-	 */
-	public boolean isSoftlyInherited() {
-		return value.equals(inherit);
-	}
-
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		return value.toString();
-	}
-
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		Css3Style s = (Css3Style) style;
-		if (s.cssFlexShrink != null) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		s.cssFlexShrink = this;
-	}
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return value;
+    }
 
 
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssFlexShrink &&
-				value.equals(((CssFlexShrink) property).value));
-	}
+    /**
+     * Returns the name of this property
+     */
+    public final String getPropertyName() {
+        return "flex-shrink";
+    }
+
+    /**
+     * Returns true if this property is "softly" inherited
+     * e.g. his value is equals to inherit
+     */
+    public boolean isSoftlyInherited() {
+        return value.equals(inherit);
+    }
+
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        return value.toString();
+    }
+
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        Css3Style s = (Css3Style) style;
+        if (s.cssFlexShrink != null) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        s.cssFlexShrink = this;
+    }
 
 
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style   The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css3Style) style).getFlexShrink();
-		} else {
-			return ((Css3Style) style).cssFlexShrink;
-		}
-	}
+    /**
+     * Compares two properties for equality.
+     *
+     * @param property The other property.
+     */
+    public boolean equals(CssProperty property) {
+        return (property instanceof CssFlexShrink &&
+                value.equals(((CssFlexShrink) property).value));
+    }
+
+
+    /**
+     * Get this property in the style.
+     *
+     * @param style   The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+        if (resolve) {
+            return ((Css3Style) style).getFlexShrink();
+        } else {
+            return ((Css3Style) style).cssFlexShrink;
+        }
+    }
 }
 

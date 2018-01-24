@@ -53,7 +53,7 @@ public class CssOpacity extends CssProperty {
     public void addToStyle(ApplContext ac, CssStyle style) {
         if (((Css3Style) style).cssOpacity != null) {
             style.addRedefinitionWarning(ac, this);
-		}
+        }
         ((Css3Style) style).cssOpacity = this;
     }
 
@@ -77,7 +77,7 @@ public class CssOpacity extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssOpacity) && ((CssOpacity)property).value.equals(value);
+        return (property instanceof CssOpacity) && ((CssOpacity) property).value.equals(value);
     }
 
     /**

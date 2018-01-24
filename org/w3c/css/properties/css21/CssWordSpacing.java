@@ -15,8 +15,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec  http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#propdef-word-spacing
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/text.html#propdef-word-spacing
  */
 public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 
@@ -33,7 +33,8 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
      * Create a new CssWordSpacing with an expression
      *
      * @param expression The expression
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssWordSpacing(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {

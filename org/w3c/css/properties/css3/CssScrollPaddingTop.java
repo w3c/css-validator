@@ -14,36 +14,36 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssScrollPaddingTop extends org.w3c.css.properties.css.CssScrollPaddingTop {
 
-	/**
-	 * Create a new CssScrollPaddingTop
-	 */
-	public CssScrollPaddingTop() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollPaddingTop
+     */
+    public CssScrollPaddingTop() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollPaddingTop
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollPaddingTop(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollPaddingTop
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollPaddingTop(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		value = CssScrollPadding.checkPaddingValue(ac, expression, this);
+        value = CssScrollPadding.checkPaddingValue(ac, expression, this);
 
-	}
+    }
 
-	public CssScrollPaddingTop(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollPaddingTop(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

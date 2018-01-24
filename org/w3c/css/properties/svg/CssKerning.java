@@ -17,62 +17,63 @@ import org.w3c.css.values.CssValue;
  */
 public class CssKerning extends org.w3c.css.properties.css.CssKerning {
 
-	CssIdent auto = CssIdent.getIdent("auto");
-	/**
-	 * Create a new CssKerning
-	 */
-	public CssKerning() {
-		value = initial;
-	}
+    CssIdent auto = CssIdent.getIdent("auto");
 
-	/**
-	 * Creates a new CssKerning
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssKerning(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Create a new CssKerning
+     */
+    public CssKerning() {
+        value = initial;
+    }
 
-		CssValue val;
-		char op;
+    /**
+     * Creates a new CssKerning
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssKerning(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        CssValue val;
+        char op;
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				// unitless numbers can be a length in SVG!!!
-			case CssTypes.CSS_PERCENTAGE:
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				if (auto.equals(val)) {
-					value = auto;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        val = expression.getValue();
+        op = expression.getOperator();
 
-	public CssKerning(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // unitless numbers can be a length in SVG!!!
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                if (auto.equals(val)) {
+                    value = auto;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
+
+    public CssKerning(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

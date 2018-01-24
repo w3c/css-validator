@@ -14,11 +14,11 @@ import org.w3c.css.util.ApplContext;
  */
 public class AttributeStart extends AttributeSelector {
 
-private String value;
+    private String value;
 
     public AttributeStart(String name, String value) {
-	setName(name);
-	this.value = value;
+        setName(name);
+        this.value = value;
     }
 
     /**
@@ -36,27 +36,27 @@ private String value;
     }
 
     public boolean canApply(Selector other) {
-	return true;
+        return true;
     }
 
     public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append('[').append(getName()).append("^=\"").append(value).append("\"]");
-		return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append('[').append(getName()).append("^=\"").append(value).append("\"]");
+        return sb.toString();
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {
-	String name = getName();
-	if (name.equals(attr.getName())) {
-	    // attribute exact knows how to match, delegate...
-	    if (attr instanceof AttributeExact) {
-		((AttributeExact) attr).applyAttribute(ac, this);
-	    } else if (attr instanceof AttributeBegin) {
-		((AttributeBegin) attr).applyAttribute(ac, this);
-	    } else if (attr instanceof AttributeOneOf) {
-		((AttributeOneOf) attr).applyAttribute(ac, this);
-	    }
-	}
+        String name = getName();
+        if (name.equals(attr.getName())) {
+            // attribute exact knows how to match, delegate...
+            if (attr instanceof AttributeExact) {
+                ((AttributeExact) attr).applyAttribute(ac, this);
+            } else if (attr instanceof AttributeBegin) {
+                ((AttributeBegin) attr).applyAttribute(ac, this);
+            } else if (attr instanceof AttributeOneOf) {
+                ((AttributeOneOf) attr).applyAttribute(ac, this);
+            }
+        }
     }
 
 }

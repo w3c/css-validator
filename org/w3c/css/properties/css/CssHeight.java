@@ -81,7 +81,7 @@ public class CssHeight extends CssProperty {
         Css1Style style0 = (Css1Style) style;
         if (style0.cssHeight != null) {
             style0.addRedefinitionWarning(ac, this);
-		}
+        }
         style0.cssHeight = this;
     }
 
@@ -105,7 +105,7 @@ public class CssHeight extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssHeight) && ((CssHeight)property).value.equals(value);
+        return (property instanceof CssHeight) && ((CssHeight) property).value.equals(value);
     }
 
     /**

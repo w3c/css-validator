@@ -28,7 +28,7 @@ public class CssFilter extends CssProperty {
      * Create a new CssFilter
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssFilter(ApplContext ac, CssExpression expression, boolean check) throws InvalidParamException {
         throw new InvalidParamException("unrecognize", ac);
@@ -82,7 +82,7 @@ public class CssFilter extends CssProperty {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssFilter &&
-            value.equals( ((CssFilter) property).value));
+                value.equals(((CssFilter) property).value));
     }
 
     /**
@@ -100,7 +100,7 @@ public class CssFilter extends CssProperty {
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve If true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {

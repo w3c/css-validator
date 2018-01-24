@@ -24,183 +24,183 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssListStyleType extends org.w3c.css.properties.css.CssListStyleType {
 
-	public static final CssIdent[] allowed_values;
+    public static final CssIdent[] allowed_values;
 
-	public static CssIdent[] symbols_type;
+    public static CssIdent[] symbols_type;
 
-	static {
-		String[] _allowed_values = {"none", "decimal", "decimal-leading-zero",
-				"arabic-indic", "armenian", "upper-armenian", "lower-armenian",
-				"bengali", "cambodian", "khmer", "cjk-decimal", "devanagari",
-				"georgian", "gujarati", "gurmukhi", "hebrew", "kannada", "lao",
-				"malayalam", "mongolian", "myanmar", "oriya", "persian",
-				"lower-roman", "upper-roman", "tamil", "telugu", "thai",
-				"tibetan", "lower-alpha", "lower-latin", "upper-alpha",
-				"upper-latin", "cjk-earthly-branch", "cjk-heavenly-stem",
-				"lower-greek", "hiragana", "hiragana-iroha", "katakana",
-				"katakana-iroha", "disc", "circle", "square", "disclosure-open",
-				"disclosure-closed", "japanese-informal", "japanese-formal",
-				"korean-hangul-formal", "korean-hanja-informal",
-				"korean-hanja-formal", "simp-chinese-informal", "simp-chinese-formal",
-				"trad-chinese-informal", "trad-chinese-formal", "ethiopic-numeric"};
-		int i = 0;
-		allowed_values = new CssIdent[_allowed_values.length];
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-		Arrays.sort(allowed_values);
+    static {
+        String[] _allowed_values = {"none", "decimal", "decimal-leading-zero",
+                "arabic-indic", "armenian", "upper-armenian", "lower-armenian",
+                "bengali", "cambodian", "khmer", "cjk-decimal", "devanagari",
+                "georgian", "gujarati", "gurmukhi", "hebrew", "kannada", "lao",
+                "malayalam", "mongolian", "myanmar", "oriya", "persian",
+                "lower-roman", "upper-roman", "tamil", "telugu", "thai",
+                "tibetan", "lower-alpha", "lower-latin", "upper-alpha",
+                "upper-latin", "cjk-earthly-branch", "cjk-heavenly-stem",
+                "lower-greek", "hiragana", "hiragana-iroha", "katakana",
+                "katakana-iroha", "disc", "circle", "square", "disclosure-open",
+                "disclosure-closed", "japanese-informal", "japanese-formal",
+                "korean-hangul-formal", "korean-hanja-informal",
+                "korean-hanja-formal", "simp-chinese-informal", "simp-chinese-formal",
+                "trad-chinese-informal", "trad-chinese-formal", "ethiopic-numeric"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        Arrays.sort(allowed_values);
 
-		String[] _allowed_symbols_type_values = {"cyclic", "numeric",
-				"alphabetic", "symbolic", "fixed"};
-		symbols_type = new CssIdent[_allowed_symbols_type_values.length];
-		i = 0;
-		for (String s : _allowed_symbols_type_values) {
-			symbols_type[i++] = CssIdent.getIdent(s);
-		}
-	}
+        String[] _allowed_symbols_type_values = {"cyclic", "numeric",
+                "alphabetic", "symbolic", "fixed"};
+        symbols_type = new CssIdent[_allowed_symbols_type_values.length];
+        i = 0;
+        for (String s : _allowed_symbols_type_values) {
+            symbols_type[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		int idx = Arrays.binarySearch(allowed_values, ident);
-		return (idx < 0) ? null : allowed_values[idx];
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        int idx = Arrays.binarySearch(allowed_values, ident);
+        return (idx < 0) ? null : allowed_values[idx];
+    }
 
-	public static CssIdent getSymbolsFunctionAllowedIdent(CssIdent ident) {
-		for (CssIdent id : symbols_type) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getSymbolsFunctionAllowedIdent(CssIdent ident) {
+        for (CssIdent id : symbols_type) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssListStyleType
-	 */
-	public CssListStyleType() {
-		value = initial;
-	}
+    /**
+     * Create a new CssListStyleType
+     */
+    public CssListStyleType() {
+        value = initial;
+    }
 
 
-	/**
-	 * Set the value of the property<br/>
-	 * Does not check the number of values
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssListStyleType(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Set the value of the property<br/>
+     * Does not check the number of values
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssListStyleType(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param expression The expression for this property
-	 * @param check      set it to true to check the number of values
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssListStyleType(ApplContext ac, CssExpression expression,
-							boolean check) throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssListStyleType(ApplContext ac, CssExpression expression,
+                            boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
+        CssValue val;
 
-		val = expression.getValue();
+        val = expression.getValue();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_FUNCTION:
-				value = parseSymbolsFunction(ac, (CssFunction) val, this);
-				break;
-			case CssTypes.CSS_STRING:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				CssIdent id = (CssIdent) val;
-				if (none.equals(id)) {
-					value = none;
-					break;
-				}
-				if (inherit.equals(id)) {
-					value = inherit;
-					break;
-				}
-				value = getAllowedIdent(id);
-				if (value == null) {
-					// it's still acceptable
-					// but the name should be listed in a
-					// @counter-style rule
-					if (CssIdent.isCssWide(id)) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					value = id;
-				}
-				break;
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_FUNCTION:
+                value = parseSymbolsFunction(ac, (CssFunction) val, this);
+                break;
+            case CssTypes.CSS_STRING:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent id = (CssIdent) val;
+                if (none.equals(id)) {
+                    value = none;
+                    break;
+                }
+                if (inherit.equals(id)) {
+                    value = inherit;
+                    break;
+                }
+                value = getAllowedIdent(id);
+                if (value == null) {
+                    // it's still acceptable
+                    // but the name should be listed in a
+                    // @counter-style rule
+                    if (CssIdent.isCssWide(id)) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    value = id;
+                }
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	/**
-	 * @spec https://www.w3.org/TR/2015/CR-css-counter-styles-3-20150611/#funcdef-symbols
-	 */
-	protected static CssFunction parseSymbolsFunction(ApplContext ac, CssFunction function,
-													  CssProperty caller)
-			throws InvalidParamException {
-		CssExpression exp = function.getParameters();
-		CssValue val;
-		char op;
-		boolean got_symbol = false;
+    /**
+     * @spec https://www.w3.org/TR/2015/CR-css-counter-styles-3-20150611/#funcdef-symbols
+     */
+    protected static CssFunction parseSymbolsFunction(ApplContext ac, CssFunction function,
+                                                      CssProperty caller)
+            throws InvalidParamException {
+        CssExpression exp = function.getParameters();
+        CssValue val;
+        char op;
+        boolean got_symbol = false;
 
-		if (!"symbols".equals(function.getName())) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		while (!exp.end()) {
-			val = exp.getValue();
-			op = exp.getOperator();
+        if (!"symbols".equals(function.getName())) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        while (!exp.end()) {
+            val = exp.getValue();
+            op = exp.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (got_symbol) {
-						throw new InvalidParamException("value", val,
-								caller.getPropertyName(), ac);
-					}
-					CssIdent ident = getSymbolsFunctionAllowedIdent((CssIdent) val);
-					if (ident == null) {
-						throw new InvalidParamException("value", val,
-								caller.getPropertyName(), ac);
-					}
-					// we are not storing values
-					break;
-				case CssTypes.CSS_URL:
-				case CssTypes.CSS_IMAGE:
-				case CssTypes.CSS_STRING:
-					got_symbol = true;
-					break;
-				default:
-					throw new InvalidParamException("value", val,
-							caller.getPropertyName(), ac);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						caller.getPropertyName(), ac);
-			}
-			exp.next();
-		}
-		if (!got_symbol) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		return function;
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (got_symbol) {
+                        throw new InvalidParamException("value", val,
+                                caller.getPropertyName(), ac);
+                    }
+                    CssIdent ident = getSymbolsFunctionAllowedIdent((CssIdent) val);
+                    if (ident == null) {
+                        throw new InvalidParamException("value", val,
+                                caller.getPropertyName(), ac);
+                    }
+                    // we are not storing values
+                    break;
+                case CssTypes.CSS_URL:
+                case CssTypes.CSS_IMAGE:
+                case CssTypes.CSS_STRING:
+                    got_symbol = true;
+                    break;
+                default:
+                    throw new InvalidParamException("value", val,
+                            caller.getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        caller.getPropertyName(), ac);
+            }
+            exp.next();
+        }
+        if (!got_symbol) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        return function;
+    }
 
 }

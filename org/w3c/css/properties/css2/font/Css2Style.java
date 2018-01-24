@@ -18,8 +18,8 @@ public class Css2Style extends org.w3c.css.properties.paged.Css2Style {
     FontVariant fontVariant;
     FontWeight fontWeight;
     FontStretch fontStretch;
-    FontSize    fontSize;
-    UnicodeRange    unicodeRange;
+    FontSize fontSize;
+    UnicodeRange unicodeRange;
     UnitsPerEm unitsPerEm;
     Src src;
     Panose1 panose1;

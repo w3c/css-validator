@@ -16,11 +16,11 @@ import org.w3c.css.properties.css.CssProperty;
  */
 public abstract class FontProperty extends CssProperty {
 
-  /**
-   * Returns true if the property is inherited
-   */
-  public boolean Inherited() {
-    return false;
-  }
+    /**
+     * Returns true if the property is inherited
+     */
+    public boolean Inherited() {
+        return false;
+    }
 
 }

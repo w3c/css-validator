@@ -36,7 +36,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -539,7 +543,8 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
 
     /**
      * Parse an HTML document, given as an InputStream
-     * @param is the inputstream of the document
+     *
+     * @param is     the inputstream of the document
      * @param docref the String version of the URI of the document
      * @throws IOException
      * @throws SAXException
@@ -553,24 +558,25 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
         }
     }
 
-	/**
-	 * Parse an HTML document, given as a Reader
-	 *
-	 * @param reader the Reader of the document
-	 * @throws IOException
-	 * @throws SAXException
-	 */
-	public void parse(Reader reader) throws IOException, SAXException {
-		InputSource inputSource = new InputSource(reader);
-		try {
-			parse(inputSource, null);
-		} finally {
-			reader.close();
-		}
-	}
+    /**
+     * Parse an HTML document, given as a Reader
+     *
+     * @param reader the Reader of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(Reader reader) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(reader);
+        try {
+            parse(inputSource, null);
+        } finally {
+            reader.close();
+        }
+    }
 
     /**
      * Parse an HTML document, given as a Reader
+     *
      * @param reader the Reader of the document
      * @param docref the String version of the URI of the document
      * @throws IOException
@@ -596,7 +602,7 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
 //            xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
             xmlParser.setFeature("http://xml.org/sax/features/validation", false);
             /*
-	      xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
+          xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
 	      false);
 	      xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
 	      false);

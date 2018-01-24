@@ -60,7 +60,7 @@ public abstract class AtRuleMedia extends AtRule {
 
     public String getCurrentMedia() {
         if (!allMedia.isEmpty()) {
-            return allMedia.get(allMedia.size()-1).media;
+            return allMedia.get(allMedia.size() - 1).media;
         }
         return null;
     }
@@ -101,8 +101,8 @@ public abstract class AtRuleMedia extends AtRule {
                 return new org.w3c.css.media.css3.AtRuleMedia();
             default:
                 throw new IllegalArgumentException(
-                    "AtRuleMedia.getInstance called with unhandled"
-                        + " CssVersion \"" + version.toString() + "\".");
+                        "AtRuleMedia.getInstance called with unhandled"
+                                + " CssVersion \"" + version.toString() + "\".");
         }
     }
 }

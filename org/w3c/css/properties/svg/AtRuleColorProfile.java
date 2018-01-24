@@ -19,46 +19,46 @@ public class AtRuleColorProfile extends AtRule {
      * Create a new AtRuleColorProfile
      */
     public AtRuleColorProfile() {
-	hash = ++internal;
+        hash = ++internal;
     }
 
     /**
      * Returns the at rule keyword
      */
     public String keyword() {
-	return "color-profile";
+        return "color-profile";
     }
 
     /**
      * The second must be exactly the same as this one
      */
     public boolean canApply(AtRule atRule) {
-	return (atRule instanceof AtRuleColorProfile);
+        return (atRule instanceof AtRuleColorProfile);
     }
 
     /**
      * Return true if other is an instance of AtRuleColorProfile
      */
     public boolean equals(Object other) {
-	return (other instanceof AtRuleColorProfile);
+        return (other instanceof AtRuleColorProfile);
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-	return (atRule instanceof AtRuleColorProfile);
+        return (atRule instanceof AtRuleColorProfile);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return "@" + keyword();
+        return "@" + keyword();
     }
 
     public int hashCode() {
-	return hash;
+        return hash;
     }
 
 }

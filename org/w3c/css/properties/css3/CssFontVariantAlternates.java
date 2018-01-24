@@ -22,222 +22,222 @@ import java.util.ArrayList;
  */
 public class CssFontVariantAlternates extends org.w3c.css.properties.css.CssFontVariantAlternates {
 
-	public static final CssIdent normal;
-	public static final CssIdent historicalForms;
+    public static final CssIdent normal;
+    public static final CssIdent historicalForms;
 
-	static {
-		normal = CssIdent.getIdent("normal");
-		historicalForms = CssIdent.getIdent("historical-forms");
-	}
+    static {
+        normal = CssIdent.getIdent("normal");
+        historicalForms = CssIdent.getIdent("historical-forms");
+    }
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (historicalForms.equals(ident)) {
-			return historicalForms;
-		}
-		return null;
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        if (historicalForms.equals(ident)) {
+            return historicalForms;
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssFontVariantAlternates
-	 */
-	public CssFontVariantAlternates() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFontVariantAlternates
+     */
+    public CssFontVariantAlternates() {
+        value = initial;
+    }
 
-	// here we just check that we got identifiers, comma separated for
-	// the multipleValues case
+    // here we just check that we got identifiers, comma separated for
+    // the multipleValues case
 
-	private void checkFuncExpression(ApplContext ac, CssExpression expression,
-									 boolean multipleValues)
-			throws InvalidParamException {
-		CssValue val;
-		char op;
-		if (expression.getCount() == 0 || (!multipleValues && expression.getCount() > 1)) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+    private void checkFuncExpression(ApplContext ac, CssExpression expression,
+                                     boolean multipleValues)
+            throws InvalidParamException {
+        CssValue val;
+        char op;
+        if (expression.getCount() == 0 || (!multipleValues && expression.getCount() > 1)) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() != CssTypes.CSS_IDENT) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-			expression.next();
-			if (expression.getRemainingCount() > 0) {
-				if (op != CssOperator.COMMA) {
-					throw new InvalidParamException("operator",
-							((new Character(op)).toString()), ac);
-				}
-			}
-		}
-	}
+            if (val.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            expression.next();
+            if (expression.getRemainingCount() > 0) {
+                if (op != CssOperator.COMMA) {
+                    throw new InvalidParamException("operator",
+                            ((new Character(op)).toString()), ac);
+                }
+            }
+        }
+    }
 
-	/**
-	 * Creates a new CssFontVariantAlternates
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFontVariantAlternates(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 7) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssFontVariantAlternates
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFontVariantAlternates(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 7) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		CssFunction stylistic = null;
-		CssIdent histValue = null;
-		CssFunction styleSet = null;
-		CssFunction charVariant = null;
-		CssFunction swash = null;
-		CssFunction ornaments = null;
-		CssFunction annotation = null;
-		boolean match;
+        CssFunction stylistic = null;
+        CssIdent histValue = null;
+        CssFunction styleSet = null;
+        CssFunction charVariant = null;
+        CssFunction swash = null;
+        CssFunction ornaments = null;
+        CssFunction annotation = null;
+        boolean match;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					CssIdent ident = (CssIdent) val;
-					if (inherit.equals(ident)) {
-						if (expression.getCount() != 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						value = inherit;
-					} else if (normal.equals(ident)) {
-						if (expression.getCount() != 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						value = normal;
-					} else {
-						// no inherit, nor normal, test the up-to-(now one) values
-						match = false;
-						if (histValue == null) {
-							if (historicalForms.equals(ident)) {
-								histValue = historicalForms;
-								value = histValue;
-								match = true;
-							}
-						}
-						if (!match) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-					}
-					break;
-				case CssTypes.CSS_FUNCTION:
-					match = false;
-					CssFunction func = (CssFunction) val;
-					String funcname = func.getName().toLowerCase();
-					if (stylistic == null) {
-						if ("stylistic".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), false);
-							stylistic = func;
-							value = stylistic;
-							match = true;
-						}
-					}
-					if (!match && styleSet == null) {
-						if ("styleset".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), true);
-							styleSet = func;
-							value = styleSet;
-							match = true;
-						}
-					}
-					if (!match && charVariant == null) {
-						if ("character-variant".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), true);
-							charVariant = func;
-							value = charVariant;
-							match = true;
-						}
-					}
-					if (!match && swash == null) {
-						if ("swash".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), false);
-							swash = func;
-							value = swash;
-							match = true;
-						}
-					}
-					if (!match && ornaments == null) {
-						if ("ornaments".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), false);
-							ornaments = func;
-							value = ornaments;
-							match = true;
-						}
-					}
-					if (!match && annotation == null) {
-						if ("annotation".equals(funcname)) {
-							checkFuncExpression(ac, func.getParameters(), false);
-							annotation = func;
-							value = annotation;
-							match = true;
-						}
-					}
-					if (match) {
-						break;
-					}
-					// let if fail
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		// now set the right value
-		if (expression.getCount() > 1) {
-			// do this to keep the same order for comparisons
-			ArrayList<CssValue> v = new ArrayList<CssValue>();
-			if (stylistic != null) {
-				v.add(stylistic);
-			}
-			if (histValue != null) {
-				v.add(histValue);
-			}
-			if (styleSet != null) {
-				v.add(styleSet);
-			}
-			if (charVariant != null) {
-				v.add(charVariant);
-			}
-			if (swash != null) {
-				v.add(swash);
-			}
-			if (ornaments != null) {
-				v.add(ornaments);
-			}
-			if (annotation != null) {
-				v.add(annotation);
-			}
-			value = new CssValueList(v);
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    CssIdent ident = (CssIdent) val;
+                    if (inherit.equals(ident)) {
+                        if (expression.getCount() != 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        value = inherit;
+                    } else if (normal.equals(ident)) {
+                        if (expression.getCount() != 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        value = normal;
+                    } else {
+                        // no inherit, nor normal, test the up-to-(now one) values
+                        match = false;
+                        if (histValue == null) {
+                            if (historicalForms.equals(ident)) {
+                                histValue = historicalForms;
+                                value = histValue;
+                                match = true;
+                            }
+                        }
+                        if (!match) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                    }
+                    break;
+                case CssTypes.CSS_FUNCTION:
+                    match = false;
+                    CssFunction func = (CssFunction) val;
+                    String funcname = func.getName().toLowerCase();
+                    if (stylistic == null) {
+                        if ("stylistic".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), false);
+                            stylistic = func;
+                            value = stylistic;
+                            match = true;
+                        }
+                    }
+                    if (!match && styleSet == null) {
+                        if ("styleset".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), true);
+                            styleSet = func;
+                            value = styleSet;
+                            match = true;
+                        }
+                    }
+                    if (!match && charVariant == null) {
+                        if ("character-variant".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), true);
+                            charVariant = func;
+                            value = charVariant;
+                            match = true;
+                        }
+                    }
+                    if (!match && swash == null) {
+                        if ("swash".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), false);
+                            swash = func;
+                            value = swash;
+                            match = true;
+                        }
+                    }
+                    if (!match && ornaments == null) {
+                        if ("ornaments".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), false);
+                            ornaments = func;
+                            value = ornaments;
+                            match = true;
+                        }
+                    }
+                    if (!match && annotation == null) {
+                        if ("annotation".equals(funcname)) {
+                            checkFuncExpression(ac, func.getParameters(), false);
+                            annotation = func;
+                            value = annotation;
+                            match = true;
+                        }
+                    }
+                    if (match) {
+                        break;
+                    }
+                    // let if fail
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        // now set the right value
+        if (expression.getCount() > 1) {
+            // do this to keep the same order for comparisons
+            ArrayList<CssValue> v = new ArrayList<CssValue>();
+            if (stylistic != null) {
+                v.add(stylistic);
+            }
+            if (histValue != null) {
+                v.add(histValue);
+            }
+            if (styleSet != null) {
+                v.add(styleSet);
+            }
+            if (charVariant != null) {
+                v.add(charVariant);
+            }
+            if (swash != null) {
+                v.add(swash);
+            }
+            if (ornaments != null) {
+                v.add(ornaments);
+            }
+            if (annotation != null) {
+                v.add(annotation);
+            }
+            value = new CssValueList(v);
+        }
+    }
 
-	public CssFontVariantAlternates(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFontVariantAlternates(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -23,15 +23,15 @@ public class CssHashIdent extends CssValue implements Comparable<CssHashIdent> {
 
     public static final int type = CssTypes.CSS_HASH_IDENT;
 
-	public int compareTo(CssHashIdent other) {
-		int hash, ohash;
-		hash = hashCode();
-		ohash = other.hashCode();
-		if (hash == ohash) {
-			return 0;
-		}
-		return (hash < ohash) ? 1 : -1;
-	}
+    public int compareTo(CssHashIdent other) {
+        int hash, ohash;
+        hash = hashCode();
+        ohash = other.hashCode();
+        if (hash == ohash) {
+            return 0;
+        }
+        return (hash < ohash) ? 1 : -1;
+    }
 
     private int hashcode = 0;
 
@@ -85,7 +85,7 @@ public class CssHashIdent extends CssValue implements Comparable<CssHashIdent> {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-        return ((value instanceof CssHashIdent) && (value.hashCode()==hashCode()));
+        return ((value instanceof CssHashIdent) && (value.hashCode() == hashCode()));
     }
 
     /**

@@ -21,68 +21,68 @@ import org.w3c.css.values.CssValue;
 
 public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDecorationBreak {
 
-	public static CssIdent slice;
-	public static CssIdent clone;
+    public static CssIdent slice;
+    public static CssIdent clone;
 
-	static {
-		slice = CssIdent.getIdent("slice");
-		clone = CssIdent.getIdent("clone");
-	}
+    static {
+        slice = CssIdent.getIdent("slice");
+        clone = CssIdent.getIdent("clone");
+    }
 
-	/**
-	 * Create new CssBoxDecorationBreak
-	 */
-	public CssBoxDecorationBreak() {
-		value = slice;
-	}
+    /**
+     * Create new CssBoxDecorationBreak
+     */
+    public CssBoxDecorationBreak() {
+        value = slice;
+    }
 
-	/**
-	 * Create new CssBoxDecorationBreak
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Values are incorrect
-	 */
-	public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
-								 boolean check) throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Create new CssBoxDecorationBreak
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
+     */
+    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression,
+                                 boolean check) throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
-		}
-		// ident, so inherit, or allowed value
-		if (inherit.equals(val)) {
-			value = inherit;
-		} else if (slice.equals(val)) {
-			value = slice;
-		} else if (clone.equals(val)) {
-			value = clone;
-		} else {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        // ident, so inherit, or allowed value
+        if (inherit.equals(val)) {
+            value = inherit;
+        } else if (slice.equals(val)) {
+            value = slice;
+        } else if (clone.equals(val)) {
+            value = clone;
+        } else {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
 
-	public CssBoxDecorationBreak(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBoxDecorationBreak(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Is the value of this property a default value
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return slice == value;
-	}
+    /**
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return slice == value;
+    }
 }

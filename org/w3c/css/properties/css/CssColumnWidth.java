@@ -23,7 +23,7 @@ public class CssColumnWidth extends CssProperty {
 
     private static final String propertyName = "column-width";
 
-	public CssValue value;
+    public CssValue value;
 
     /**
      * Create a new CssColumnWidth
@@ -41,7 +41,7 @@ public class CssColumnWidth extends CssProperty {
                           boolean check) throws InvalidParamException {
 
 
-                throw new InvalidParamException("unrecognize", ac);
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssColumnWidth(ApplContext ac, CssExpression expression)

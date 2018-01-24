@@ -16,58 +16,58 @@ import org.w3c.css.values.CssValue;
  */
 public class CssGlyphOrientationHorizontal extends org.w3c.css.properties.css.CssGlyphOrientationHorizontal {
 
-	/**
-	 * Create a new CssGlyphOrientationHorizontal
-	 */
-	public CssGlyphOrientationHorizontal() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGlyphOrientationHorizontal
+     */
+    public CssGlyphOrientationHorizontal() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGlyphOrientationHorizontal
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGlyphOrientationHorizontal(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssGlyphOrientationHorizontal
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGlyphOrientationHorizontal(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_ANGLE:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_ANGLE:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssGlyphOrientationHorizontal(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGlyphOrientationHorizontal(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

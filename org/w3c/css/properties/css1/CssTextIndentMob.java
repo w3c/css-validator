@@ -16,28 +16,29 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssValue;
 
 /**
- *   <H4>
- *     &nbsp;&nbsp; 'text-indent'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> &lt;length&gt; | &lt;percentage&gt;<BR>
- *   <EM>Initial:</EM> 0<BR>
- *   <EM>Applies to:</EM> block-level elements<BR>
- *   <EM>Inherited:</EM> yes<BR>
- *   <EM>Percentage values:</EM> refer to parent element's width<BR>
- *   <P>
- *   The property specifies the indentation that appears before the first formatted
- *   line. The value of 'text-indent' may be negative, but there may be
- *   implementation-specific limits. An indentation is not inserted in the middle
- *   of an element that was broken by another (such as 'BR' in HTML).
- *   <P>
- *   Example:
- *   <PRE>
- *   P { text-indent: 3em }
+ * <H4>
+ * &nbsp;&nbsp; 'text-indent'
+ * </H4>
+ * <p/>
+ * <EM>Value:</EM> &lt;length&gt; | &lt;percentage&gt;<BR>
+ * <EM>Initial:</EM> 0<BR>
+ * <EM>Applies to:</EM> block-level elements<BR>
+ * <EM>Inherited:</EM> yes<BR>
+ * <EM>Percentage values:</EM> refer to parent element's width<BR>
+ * <p/>
+ * The property specifies the indentation that appears before the first formatted
+ * line. The value of 'text-indent' may be negative, but there may be
+ * implementation-specific limits. An indentation is not inserted in the middle
+ * of an element that was broken by another (such as 'BR' in HTML).
+ * <p/>
+ * Example:
+ * <PRE>
+ * P { text-indent: 3em }
  * </PRE>
+ *
  * @version $Revision$
  */
-public class CssTextIndentMob extends CssProperty  {
+public class CssTextIndentMob extends CssProperty {
 
     CssValue value = new CssLength();
 
@@ -51,50 +52,50 @@ public class CssTextIndentMob extends CssProperty  {
      * Create a new CssTextIndentMob
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssTextIndentMob(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                            boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-	setByUser();
+        setByUser();
 
-	if (val.equals(inherit)) {
-	    value = inherit;
-	} else if (val instanceof CssLength ) {
-	    value = val;
-	} else if (val instanceof CssNumber) {
-	    value = ((CssNumber) val).getLength();
-	} else {
-	    throw new InvalidParamException("value", val.toString(),
-					    getPropertyName(), ac);
-	}
+        if (val.equals(inherit)) {
+            value = inherit;
+        } else if (val instanceof CssLength) {
+            value = val;
+        } else if (val instanceof CssNumber) {
+            value = ((CssNumber) val).getLength();
+        } else {
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
+        }
 
-	expression.next();
+        expression.next();
     }
 
     public CssTextIndentMob(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return value;
+        return value;
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "text-indent";
+        return "text-indent";
     }
 
     /**
@@ -102,14 +103,14 @@ public class CssTextIndentMob extends CssProperty  {
      * e.g. his value equals inherit
      */
     public boolean isSoftlyInherited() {
-	return value == inherit;
+        return value == inherit;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return value.toString();
+        return value.toString();
     }
 
     /**
@@ -118,24 +119,24 @@ public class CssTextIndentMob extends CssProperty  {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	Css1Style style0 = (Css1Style) style;
-	if (style0.cssTextIndentMob != null)
-	    style0.addRedefinitionWarning(ac, this);
-	style0.cssTextIndentMob = this;
+        Css1Style style0 = (Css1Style) style;
+        if (style0.cssTextIndentMob != null)
+            style0.addRedefinitionWarning(ac, this);
+        style0.cssTextIndentMob = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css1Style) style).getTextIndentMob();
-	} else {
-	    return ((Css1Style) style).cssTextIndentMob;
-	}
+        if (resolve) {
+            return ((Css1Style) style).getTextIndentMob();
+        } else {
+            return ((Css1Style) style).cssTextIndentMob;
+        }
     }
 
     /**
@@ -144,7 +145,7 @@ public class CssTextIndentMob extends CssProperty  {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssTextIndentMob &&
-		value.equals(((CssTextIndentMob) property).value));
+        return (property instanceof CssTextIndentMob &&
+                value.equals(((CssTextIndentMob) property).value));
     }
 }

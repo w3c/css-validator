@@ -17,67 +17,67 @@ import org.w3c.css.values.CssValue;
  */
 public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor {
 
-	public static final CssIdent invert = CssIdent.getIdent("invert");
+    public static final CssIdent invert = CssIdent.getIdent("invert");
 
-	public static final CssIdent getMatchingIdent(CssIdent ident) {
-		if (invert.equals(ident)) {
-			return ident;
-		}
-		return null;
-	}
+    public static final CssIdent getMatchingIdent(CssIdent ident) {
+        if (invert.equals(ident)) {
+            return ident;
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssOutlineColor
-	 */
-	public CssOutlineColor() {
-	}
+    /**
+     * Create a new CssOutlineColor
+     */
+    public CssOutlineColor() {
+    }
 
-	/**
-	 * Creates a new CssOutlineColor
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssOutlineColor(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssOutlineColor
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssOutlineColor(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
-		CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-		ac.getFrame().addWarning("atsc", expression.toString());
+        ac.getFrame().addWarning("atsc", expression.toString());
 
-		switch (val.getType()) {
-			case CssTypes.CSS_COLOR:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (invert.equals(val)) {
-					value = invert;
-					break;
-				}
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				// else, we must parse the ident as a color value
-				value = new org.w3c.css.values.CssColor(ac,
-						(String) val.get());
-				break;
-			default:
-				throw new InvalidParamException("value", val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_COLOR:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (invert.equals(val)) {
+                    value = invert;
+                    break;
+                }
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                // else, we must parse the ident as a color value
+                value = new org.w3c.css.values.CssColor(ac,
+                        (String) val.get());
+                break;
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssOutlineColor(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOutlineColor(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

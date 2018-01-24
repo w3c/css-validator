@@ -14,34 +14,34 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssScrollPaddingBlockEnd extends org.w3c.css.properties.css.CssScrollPaddingBlockEnd {
 
-	/**
-	 * Create a new CssScrollPaddingBlockEnd
-	 */
-	public CssScrollPaddingBlockEnd() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollPaddingBlockEnd
+     */
+    public CssScrollPaddingBlockEnd() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollPaddingBlockEnd
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollPaddingBlockEnd(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollPaddingBlockEnd
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollPaddingBlockEnd(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		value = CssScrollPadding.checkPaddingValue(ac, expression, this);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        value = CssScrollPadding.checkPaddingValue(ac, expression, this);
+    }
 
-	public CssScrollPaddingBlockEnd(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollPaddingBlockEnd(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -13,8 +13,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS1
  * @version $Revision$
+ * @since CSS1
  */
 public class CssFontSize extends CssProperty {
 
@@ -81,11 +81,11 @@ public class CssFontSize extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-		CssFont cssFont = ((Css1Style) style).cssFont;
-		if (cssFont.fontSize != null)
-			style.addRedefinitionWarning(ac, this);
-		cssFont.fontSize = this;
-	}
+        CssFont cssFont = ((Css1Style) style).cssFont;
+        if (cssFont.fontSize != null)
+            style.addRedefinitionWarning(ac, this);
+        cssFont.fontSize = this;
+    }
 
 
     /**
@@ -106,11 +106,11 @@ public class CssFontSize extends CssProperty {
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css1Style) style).getFontSize();
-		} else {
-			return ((Css1Style) style).cssFont.fontSize;
-		}
+        if (resolve) {
+            return ((Css1Style) style).getFontSize();
+        } else {
+            return ((Css1Style) style).cssFont.fontSize;
+        }
     }
 }
 

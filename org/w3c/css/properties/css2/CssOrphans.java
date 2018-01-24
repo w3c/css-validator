@@ -20,68 +20,68 @@ import org.w3c.css.values.CssValue;
  */
 public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
 
-	public static final CssNumber def = new CssNumber(2);
+    public static final CssNumber def = new CssNumber(2);
 
-	/**
-	 * Create a new CssOrphans
-	 */
-	public CssOrphans() {
-	}
+    /**
+     * Create a new CssOrphans
+     */
+    public CssOrphans() {
+    }
 
-	/**
-	 * Create a new CssOrphans
-	 *
-	 * @param ac         The context
-	 * @param expression The expression for this property
-	 * @param check      true will test the number of parameters
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssOrphans(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
+    /**
+     * Create a new CssOrphans
+     *
+     * @param ac         The context
+     * @param expression The expression for this property
+     * @param check      true will test the number of parameters
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssOrphans(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-		setByUser();
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				CssCheckableValue number = val.getCheckableValue();
-				number.checkInteger(ac, this);
-				number.checkStrictPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				CssIdent ide = (CssIdent) val;
-				if (inherit.equals(ide)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        setByUser();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                CssCheckableValue number = val.getCheckableValue();
+                number.checkInteger(ac, this);
+                number.checkStrictPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent ide = (CssIdent) val;
+                if (inherit.equals(ide)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	/**
-	 * Create a new CssOrphans
-	 *
-	 * @param ac,        the Context
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssOrphans(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Create a new CssOrphans
+     *
+     * @param ac,        the Context
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssOrphans(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	public boolean isDefault() {
-		return (def.equals(value));
-	}
+    public boolean isDefault() {
+        return (def.equals(value));
+    }
 
 }

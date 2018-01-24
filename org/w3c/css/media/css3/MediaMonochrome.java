@@ -49,7 +49,7 @@ public class MediaMonochrome extends MediaFeature {
                 }
                 if (!valnum.isPositive()) {
                     throw new InvalidParamException("negative-value",
-                                val.toString(), ac);
+                            val.toString(), ac);
                 }
                 value = valnum;
             } else {

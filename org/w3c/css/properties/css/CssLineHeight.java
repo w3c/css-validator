@@ -13,8 +13,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS1
  * @version $Revision$
+ * @since CSS1
  */
 public class CssLineHeight extends CssProperty {
 
@@ -76,31 +76,31 @@ public class CssLineHeight extends CssProperty {
     }
 
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		CssFont cssFont = ((Css1Style) style).cssFont;
-		if (cssFont.lineHeight != null)
-			style.addRedefinitionWarning(ac, this);
-		cssFont.lineHeight = this;
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        CssFont cssFont = ((Css1Style) style).cssFont;
+        if (cssFont.lineHeight != null)
+            style.addRedefinitionWarning(ac, this);
+        cssFont.lineHeight = this;
+    }
 
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css1Style) style).getLineHeight();
-		} else {
-			return ((Css1Style) style).cssFont.lineHeight;
-		}
-	}
+    /**
+     * Get this property in the style.
+     *
+     * @param style   The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+        if (resolve) {
+            return ((Css1Style) style).getLineHeight();
+        } else {
+            return ((Css1Style) style).cssFont.lineHeight;
+        }
+    }
 
     /**
      * Compares two properties for equality.

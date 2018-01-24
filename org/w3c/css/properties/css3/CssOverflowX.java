@@ -15,29 +15,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssOverflowX extends org.w3c.css.properties.css.CssOverflowX {
 
-	/**
-	 * Create a new CssOverflowX
-	 */
-	public CssOverflowX() {
-	}
+    /**
+     * Create a new CssOverflowX
+     */
+    public CssOverflowX() {
+    }
 
-	/**
-	 * Creates a new CssOverflowX
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssOverflowX(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		value = CssOverflow.checkOverflowAxis(ac, expression, check, this);
-	}
+    /**
+     * Creates a new CssOverflowX
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssOverflowX(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        value = CssOverflow.checkOverflowAxis(ac, expression, check, this);
+    }
 
-	public CssOverflowX(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOverflowX(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 
 }

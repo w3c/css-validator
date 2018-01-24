@@ -54,7 +54,7 @@ public class CssUserSelect extends org.w3c.css.properties.css.CssUserSelect {
      * @throws InvalidParamException Incorrect value
      */
     public CssUserSelect(ApplContext ac, CssExpression expression,
-            boolean check) throws InvalidParamException {
+                         boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);

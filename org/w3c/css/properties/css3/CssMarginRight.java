@@ -14,37 +14,37 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssMarginRight extends org.w3c.css.properties.css.CssMarginRight {
 
-	/**
-	 * Create a new CssMarginRight
-	 */
-	public CssMarginRight() {
-		value = initial;
-	}
+    /**
+     * Create a new CssMarginRight
+     */
+    public CssMarginRight() {
+        value = initial;
+    }
 
-	/**
-	 * Set the value of the property<br/>
-	 * Does not check the number of values
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssMarginRight(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Set the value of the property<br/>
+     * Does not check the number of values
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssMarginRight(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param expression The expression for this property
-	 * @param check      set it to true to check the number of values
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssMarginRight(ApplContext ac, CssExpression expression,
-						  boolean check) throws InvalidParamException {
-		setByUser();
-		value = CssMargin.checkValue(ac, expression, check, this);
-	}
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssMarginRight(ApplContext ac, CssExpression expression,
+                          boolean check) throws InvalidParamException {
+        setByUser();
+        value = CssMargin.checkValue(ac, expression, check, this);
+    }
 }

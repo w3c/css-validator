@@ -40,7 +40,8 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
      * @param ac         the context
      * @param expression The expression for this property
      * @param check      boolean
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
     public CssBackgroundImage(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
@@ -55,7 +56,7 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
             val = expression.getValue();
             op = expression.getOperator();
             switch (val.getType()) {
-				case CssTypes.CSS_URL:
+                case CssTypes.CSS_URL:
                 case CssTypes.CSS_IMAGE:
                     values.add(val);
                     break;

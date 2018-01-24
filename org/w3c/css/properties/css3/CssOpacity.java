@@ -21,80 +21,80 @@ import org.w3c.css.values.CssValue;
 
 public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
 
-	/**
-	 * Create a new CssOpacity
-	 */
-	public CssOpacity() {
-		value = initial;
-	}
+    /**
+     * Create a new CssOpacity
+     */
+    public CssOpacity() {
+        value = initial;
+    }
 
-	/**
-	 * Create a new CssOpacity
-	 *
-	 * @param expression The expression for this property
-	 * @throws InvalidParamException Values are incorrect
-	 */
-	public CssOpacity(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser(); // tell this property is set by the user
-		CssValue val = expression.getValue();
+    /**
+     * Create a new CssOpacity
+     *
+     * @param expression The expression for this property
+     * @throws InvalidParamException Values are incorrect
+     */
+    public CssOpacity(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser(); // tell this property is set by the user
+        CssValue val = expression.getValue();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				if (val.getRawType() == CssTypes.CSS_NUMBER) {
-					// this will generate a warning if necessary
-					CssNumber number = val.getNumber();
-					number.setFloatValue(clampedValue(ac, number.getValue()));
-				} else {
-					// we can only check if >= 0 for now
-					val.getCheckableValue().warnPositiveness(ac, this);
-				}
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				// let it flow through the exception
-			default:
-				throw new InvalidParamException("value", val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    // this will generate a warning if necessary
+                    CssNumber number = val.getNumber();
+                    number.setFloatValue(clampedValue(ac, number.getValue()));
+                } else {
+                    // we can only check if >= 0 for now
+                    val.getCheckableValue().warnPositiveness(ac, this);
+                }
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                // let it flow through the exception
+            default:
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssOpacity(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOpacity(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Brings all values back between 0 and 1
-	 *
-	 * @param opacity The value to be modified if necessary
-	 */
-	private float clampedValue(ApplContext ac, float opacity) {
-		if (opacity < 0.f || opacity > 1.f) {
-			ac.getFrame().addWarning("out-of-range", Util.displayFloat(opacity));
-			return ((opacity < 0.f) ? 0.f : 1.f);
-		}
-		return opacity;
-	}
+    /**
+     * Brings all values back between 0 and 1
+     *
+     * @param opacity The value to be modified if necessary
+     */
+    private float clampedValue(ApplContext ac, float opacity) {
+        if (opacity < 0.f || opacity > 1.f) {
+            ac.getFrame().addWarning("out-of-range", Util.displayFloat(opacity));
+            return ((opacity < 0.f) ? 0.f : 1.f);
+        }
+        return opacity;
+    }
 
-	/**
-	 * Is the value of this property a default value It is used by all macro for
-	 * the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		if (value.getRawType() == CssTypes.CSS_NUMBER) {
-			try {
-				return (value.getNumber().getValue() == 1.f);
-			} catch (Exception ex) {
-				return false;
-			}
-		}
-		return (value == initial);
-	}
+    /**
+     * Is the value of this property a default value It is used by all macro for
+     * the function <code>print</code>
+     */
+    public boolean isDefault() {
+        if (value.getRawType() == CssTypes.CSS_NUMBER) {
+            try {
+                return (value.getNumber().getValue() == 1.f);
+            } catch (Exception ex) {
+                return false;
+            }
+        }
+        return (value == initial);
+    }
 
 }

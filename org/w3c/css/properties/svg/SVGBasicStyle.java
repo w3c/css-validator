@@ -30,195 +30,195 @@ import org.w3c.css.properties.css.CssTextRendering;
 
 public class SVGBasicStyle extends SVGTinyStyle {
 
-	public CssColorInterpolation cssColorInterpolation;
-	public CssColorRendering cssColorRendering;
-	public CssShapeRendering cssShapeRendering;
-	public CssTextRendering cssTextRendering;
-	public CssImageRendering cssImageRendering;
-	public CssTextAnchor cssTextAnchor;
-	public CssFillOpacity cssFillOpacity;
-	public CssStrokeOpacity cssStrokeOpacity;
-	public CssKerning cssKerning;
-	public CssClipPath cssClipPath;
-	public CssClipRule cssClipRule;
-	public CssMask cssMask;
-	public CssColorProfile cssColorProfile;
-	public CssPointerEvents cssPointerEvents;
-	public CssStopOpacity cssStopOpacity;
-	public CssStopColor	cssStopColor;
-	public CssGlyphOrientationHorizontal cssGlyphOrientationHorizontal;
-	public CssGlyphOrientationVertical cssGlyphOrientationVertical;
-	public CssEnableBackground cssEnableBackground;
-	
-	public CssColorInterpolation getColorInterpolation() {
-		if (cssColorInterpolation == null) {
-			cssColorInterpolation =
-					(CssColorInterpolation) style.CascadingOrder(new CssColorInterpolation(),
-							style, selector);
-		}
-		return cssColorInterpolation;
-	}
+    public CssColorInterpolation cssColorInterpolation;
+    public CssColorRendering cssColorRendering;
+    public CssShapeRendering cssShapeRendering;
+    public CssTextRendering cssTextRendering;
+    public CssImageRendering cssImageRendering;
+    public CssTextAnchor cssTextAnchor;
+    public CssFillOpacity cssFillOpacity;
+    public CssStrokeOpacity cssStrokeOpacity;
+    public CssKerning cssKerning;
+    public CssClipPath cssClipPath;
+    public CssClipRule cssClipRule;
+    public CssMask cssMask;
+    public CssColorProfile cssColorProfile;
+    public CssPointerEvents cssPointerEvents;
+    public CssStopOpacity cssStopOpacity;
+    public CssStopColor cssStopColor;
+    public CssGlyphOrientationHorizontal cssGlyphOrientationHorizontal;
+    public CssGlyphOrientationVertical cssGlyphOrientationVertical;
+    public CssEnableBackground cssEnableBackground;
 
-	public CssImageRendering getImageRendering() {
-		if (cssImageRendering == null) {
-			cssImageRendering =
-					(CssImageRendering) style.CascadingOrder(new CssImageRendering(),
-							style, selector);
-		}
-		return cssImageRendering;
-	}
-	
-	public CssColorRendering getColorRendering() {
-		if (cssColorRendering == null) {
-			cssColorRendering =
-					(CssColorRendering) style.CascadingOrder(new CssColorRendering(),
-							style, selector);
-		}
-		return cssColorRendering;
-	}
+    public CssColorInterpolation getColorInterpolation() {
+        if (cssColorInterpolation == null) {
+            cssColorInterpolation =
+                    (CssColorInterpolation) style.CascadingOrder(new CssColorInterpolation(),
+                            style, selector);
+        }
+        return cssColorInterpolation;
+    }
 
-	public CssShapeRendering getShapeRendering() {
-		if (cssShapeRendering == null) {
-			cssShapeRendering =
-					(CssShapeRendering) style.CascadingOrder(new CssShapeRendering(),
-							style, selector);
-		}
-		return cssShapeRendering;
-	}
+    public CssImageRendering getImageRendering() {
+        if (cssImageRendering == null) {
+            cssImageRendering =
+                    (CssImageRendering) style.CascadingOrder(new CssImageRendering(),
+                            style, selector);
+        }
+        return cssImageRendering;
+    }
 
-	public CssTextRendering getTextRendering() {
-		if (cssTextRendering == null) {
-			cssTextRendering =
-					(CssTextRendering) style.CascadingOrder(new CssTextRendering(),
-							style, selector);
-		}
-		return cssTextRendering;
-	}
+    public CssColorRendering getColorRendering() {
+        if (cssColorRendering == null) {
+            cssColorRendering =
+                    (CssColorRendering) style.CascadingOrder(new CssColorRendering(),
+                            style, selector);
+        }
+        return cssColorRendering;
+    }
 
-	public CssTextAnchor getTextAnchor() {
-		if (cssTextAnchor == null) {
-			cssTextAnchor =
-					(CssTextAnchor) style.CascadingOrder(new CssTextAnchor(),
-							style, selector);
-		}
-		return cssTextAnchor;
-	}
-	
-	public CssFillOpacity getFillOpacity() {
-		if (cssFillOpacity == null) {
-			cssFillOpacity =
-					(CssFillOpacity) style.CascadingOrder(new CssFillOpacity(),
-							style, selector);
-		}
-		return cssFillOpacity;
-	}
+    public CssShapeRendering getShapeRendering() {
+        if (cssShapeRendering == null) {
+            cssShapeRendering =
+                    (CssShapeRendering) style.CascadingOrder(new CssShapeRendering(),
+                            style, selector);
+        }
+        return cssShapeRendering;
+    }
 
-	public CssStrokeOpacity getStrokeOpacity() {
-		if (cssStrokeOpacity == null) {
-			cssStrokeOpacity =
-					(CssStrokeOpacity) style.CascadingOrder(new CssStrokeOpacity(),
-							style, selector);
-		}
-		return cssStrokeOpacity;
-	}
+    public CssTextRendering getTextRendering() {
+        if (cssTextRendering == null) {
+            cssTextRendering =
+                    (CssTextRendering) style.CascadingOrder(new CssTextRendering(),
+                            style, selector);
+        }
+        return cssTextRendering;
+    }
 
-	public CssKerning getKerning() {
-		if (cssKerning == null) {
-			cssKerning =
-					(CssKerning) style.CascadingOrder(new CssKerning(),
-							style, selector);
-		}
-		return cssKerning;
-	}
+    public CssTextAnchor getTextAnchor() {
+        if (cssTextAnchor == null) {
+            cssTextAnchor =
+                    (CssTextAnchor) style.CascadingOrder(new CssTextAnchor(),
+                            style, selector);
+        }
+        return cssTextAnchor;
+    }
 
-	public CssClipPath getClipPath() {
-		if (cssClipPath == null) {
-			cssClipPath =
-					(CssClipPath) style.CascadingOrder(new CssClipPath(),
-							style, selector);
-		}
-		return cssClipPath;
-	}
+    public CssFillOpacity getFillOpacity() {
+        if (cssFillOpacity == null) {
+            cssFillOpacity =
+                    (CssFillOpacity) style.CascadingOrder(new CssFillOpacity(),
+                            style, selector);
+        }
+        return cssFillOpacity;
+    }
 
-	public CssClipRule getClipRule() {
-		if (cssClipRule == null) {
-			cssClipRule =
-					(CssClipRule) style.CascadingOrder(new CssClipRule(),
-							style, selector);
-		}
-		return cssClipRule;
-	}
+    public CssStrokeOpacity getStrokeOpacity() {
+        if (cssStrokeOpacity == null) {
+            cssStrokeOpacity =
+                    (CssStrokeOpacity) style.CascadingOrder(new CssStrokeOpacity(),
+                            style, selector);
+        }
+        return cssStrokeOpacity;
+    }
 
-	public CssMask getMask() {
-		if (cssMask == null) {
-			cssMask =
-					(CssMask) style.CascadingOrder(new CssMask(),
-							style, selector);
-		}
-		return cssMask;
-	}
+    public CssKerning getKerning() {
+        if (cssKerning == null) {
+            cssKerning =
+                    (CssKerning) style.CascadingOrder(new CssKerning(),
+                            style, selector);
+        }
+        return cssKerning;
+    }
 
-	public CssColorProfile getColorProfile() {
-		if (cssColorProfile == null) {
-			cssColorProfile =
-					(CssColorProfile) style.CascadingOrder(new CssColorProfile(),
-							style, selector);
-		}
-		return cssColorProfile;
-	}
+    public CssClipPath getClipPath() {
+        if (cssClipPath == null) {
+            cssClipPath =
+                    (CssClipPath) style.CascadingOrder(new CssClipPath(),
+                            style, selector);
+        }
+        return cssClipPath;
+    }
 
-	public CssPointerEvents getPointerEvents() {
-		if (cssPointerEvents == null) {
-			cssPointerEvents =
-					(CssPointerEvents) style.CascadingOrder(new CssPointerEvents(),
-							style, selector);
-		}
-		return cssPointerEvents;
-	}
+    public CssClipRule getClipRule() {
+        if (cssClipRule == null) {
+            cssClipRule =
+                    (CssClipRule) style.CascadingOrder(new CssClipRule(),
+                            style, selector);
+        }
+        return cssClipRule;
+    }
 
-	public CssStopOpacity getStopOpacity() {
-		if (cssStopOpacity == null) {
-			cssStopOpacity =
-					(CssStopOpacity) style.CascadingOrder(new CssStopOpacity(),
-							style, selector);
-		}
-		return cssStopOpacity;
-	}
+    public CssMask getMask() {
+        if (cssMask == null) {
+            cssMask =
+                    (CssMask) style.CascadingOrder(new CssMask(),
+                            style, selector);
+        }
+        return cssMask;
+    }
 
-	public CssStopColor getStopColor() {
-		if (cssStopColor == null) {
-			cssStopColor =
-					(CssStopColor) style.CascadingOrder(new CssStopColor(),
-							style, selector);
-		}
-		return cssStopColor;
-	}
+    public CssColorProfile getColorProfile() {
+        if (cssColorProfile == null) {
+            cssColorProfile =
+                    (CssColorProfile) style.CascadingOrder(new CssColorProfile(),
+                            style, selector);
+        }
+        return cssColorProfile;
+    }
 
-	public CssGlyphOrientationHorizontal getGlyphOrientationHorizontal() {
-		if (cssGlyphOrientationHorizontal == null) {
-			cssGlyphOrientationHorizontal =
-					(CssGlyphOrientationHorizontal) style.CascadingOrder(new CssGlyphOrientationHorizontal(),
-							style, selector);
-		}
-		return cssGlyphOrientationHorizontal;
-	}
+    public CssPointerEvents getPointerEvents() {
+        if (cssPointerEvents == null) {
+            cssPointerEvents =
+                    (CssPointerEvents) style.CascadingOrder(new CssPointerEvents(),
+                            style, selector);
+        }
+        return cssPointerEvents;
+    }
 
-	public CssGlyphOrientationVertical getGlyphOrientationVertical() {
-		if (cssGlyphOrientationVertical == null) {
-			cssGlyphOrientationVertical =
-					(CssGlyphOrientationVertical) style.CascadingOrder(new CssGlyphOrientationVertical(),
-							style, selector);
-		}
-		return cssGlyphOrientationVertical;
-	}
+    public CssStopOpacity getStopOpacity() {
+        if (cssStopOpacity == null) {
+            cssStopOpacity =
+                    (CssStopOpacity) style.CascadingOrder(new CssStopOpacity(),
+                            style, selector);
+        }
+        return cssStopOpacity;
+    }
 
-	public CssEnableBackground getEnableBackground() {
-		if (cssEnableBackground == null) {
-			cssEnableBackground =
-					(CssEnableBackground) style.CascadingOrder(new CssEnableBackground(),
-							style, selector);
-		}
-		return cssEnableBackground;
-	}
+    public CssStopColor getStopColor() {
+        if (cssStopColor == null) {
+            cssStopColor =
+                    (CssStopColor) style.CascadingOrder(new CssStopColor(),
+                            style, selector);
+        }
+        return cssStopColor;
+    }
+
+    public CssGlyphOrientationHorizontal getGlyphOrientationHorizontal() {
+        if (cssGlyphOrientationHorizontal == null) {
+            cssGlyphOrientationHorizontal =
+                    (CssGlyphOrientationHorizontal) style.CascadingOrder(new CssGlyphOrientationHorizontal(),
+                            style, selector);
+        }
+        return cssGlyphOrientationHorizontal;
+    }
+
+    public CssGlyphOrientationVertical getGlyphOrientationVertical() {
+        if (cssGlyphOrientationVertical == null) {
+            cssGlyphOrientationVertical =
+                    (CssGlyphOrientationVertical) style.CascadingOrder(new CssGlyphOrientationVertical(),
+                            style, selector);
+        }
+        return cssGlyphOrientationVertical;
+    }
+
+    public CssEnableBackground getEnableBackground() {
+        if (cssEnableBackground == null) {
+            cssEnableBackground =
+                    (CssEnableBackground) style.CascadingOrder(new CssEnableBackground(),
+                            style, selector);
+        }
+        return cssEnableBackground;
+    }
 
 }

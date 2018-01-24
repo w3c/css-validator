@@ -26,60 +26,60 @@ public class CapHeightATSC extends CssProperty {
      * Create a new CapHeightATSC
      */
     public CapHeightATSC() {
-	// nothing to do
+        // nothing to do
     }
 
     /**
      * Creates a new CapHeightATSC
      *
      * @param expression the unicode em
-     * @exception InvalidParamException values are incorrect
+     * @throws InvalidParamException values are incorrect
      */
     public CapHeightATSC(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                         boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() >1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = expression.getValue();
-	setByUser();
+        CssValue val = expression.getValue();
+        setByUser();
 
-	ac.getFrame().addWarning("atsc", val.toString());
+        ac.getFrame().addWarning("atsc", val.toString());
 
-	if (val instanceof CssNumber) {
-	    value = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        if (val instanceof CssNumber) {
+            value = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CapHeightATSC(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the current value
      */
     public Object get() {
-	return value;
+        return value;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return value.toString();
+        return value.toString();
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "cap-height";
+        return "cap-height";
     }
 
     /**
@@ -88,25 +88,25 @@ public class CapHeightATSC extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	ATSCStyle style0 = (ATSCStyle) style;
-	if (style0.capHeightATSC != null) {
-	    style0.addRedefinitionWarning(ac, this);
-	}
-	style0.capHeightATSC = this;
+        ATSCStyle style0 = (ATSCStyle) style;
+        if (style0.capHeightATSC != null) {
+            style0.addRedefinitionWarning(ac, this);
+        }
+        style0.capHeightATSC = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getCapHeightATSC();
-	} else {
-	    return ((ATSCStyle) style).capHeightATSC;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getCapHeightATSC();
+        } else {
+            return ((ATSCStyle) style).capHeightATSC;
+        }
     }
 
     /**
@@ -115,8 +115,8 @@ public class CapHeightATSC extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	// @@TODO
-	return false;
+        // @@TODO
+        return false;
     }
 
     /**
@@ -124,7 +124,7 @@ public class CapHeightATSC extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

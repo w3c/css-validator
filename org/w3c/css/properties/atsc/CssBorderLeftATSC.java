@@ -18,34 +18,34 @@ import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssValue;
 
 /**
- *   <H4>
- *     &nbsp;&nbsp; 'border-left'
- *   </H4>
- *   <P>
- *   <EM>Value:</EM> &lt;border-left-width&gt; || &lt;border-style&gt; ||
- *   &lt;color&gt;<BR>
- *   <EM>Initial:</EM> not defined for shorthand properties<BR>
- *   <EM>Applies to:</EM> all elements<BR>
- *   <EM>Inherited:</EM> no<BR>
- *   <EM>Percentage values:</EM> N/A<BR>
- *   <P>
- *   This is a shorthand property for setting the width, style and color of an
- *   element's left border.
- *   <PRE>
- *   H1 { border-bottom: thick solid red }
+ * <H4>
+ * &nbsp;&nbsp; 'border-left'
+ * </H4>
+ * <p/>
+ * <EM>Value:</EM> &lt;border-left-width&gt; || &lt;border-style&gt; ||
+ * &lt;color&gt;<BR>
+ * <EM>Initial:</EM> not defined for shorthand properties<BR>
+ * <EM>Applies to:</EM> all elements<BR>
+ * <EM>Inherited:</EM> no<BR>
+ * <EM>Percentage values:</EM> N/A<BR>
+ * <p/>
+ * This is a shorthand property for setting the width, style and color of an
+ * element's left border.
+ * <PRE>
+ * H1 { border-bottom: thick solid red }
  * </PRE>
- *   <P>
- *   The above rule will set the width, style and color of the border below the
- *   H1 element. Omitted values will be set to their initial values:
- *   <PRE>
- *   H1 { border-bottom: thick solid }
+ * <p/>
+ * The above rule will set the width, style and color of the border below the
+ * H1 element. Omitted values will be set to their initial values:
+ * <PRE>
+ * H1 { border-bottom: thick solid }
  * </PRE>
- *   <P>
- *   Since the color value is omitted in the example above, the border color will
- *   be the same as the 'color' value of the element itself.
- *   <P>
- *   Note that while the 'border-style' property accepts up to four values, this
- *   property only accepts one style value.
+ * <p/>
+ * Since the color value is omitted in the example above, the border color will
+ * be the same as the 'color' value of the element itself.
+ * <p/>
+ * Note that while the 'border-style' property accepts up to four values, this
+ * property only accepts one style value.
  *
  * @version $Revision$
  */
@@ -65,136 +65,136 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * Create a new CssBorderLeftATSC
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException The expression is incorrect
+     * @throws InvalidParamException The expression is incorrect
      */
     public CssBorderLeftATSC(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                             boolean check) throws InvalidParamException {
 
-	CssValue val = null;
-	char op = SPACE;
-	boolean find = true;
+        CssValue val = null;
+        char op = SPACE;
+        boolean find = true;
 
-	if(check && expression.getCount() > 3) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	boolean manyValues = (expression.getCount() > 1);
+        boolean manyValues = (expression.getCount() > 1);
 
-	setByUser();
+        setByUser();
 
-	while (find) {
-	    find = false;
-	    val = expression.getValue();
-	    op = expression.getOperator();
-	    if (val == null)
-		break;
+        while (find) {
+            find = false;
+            val = expression.getValue();
+            op = expression.getOperator();
+            if (val == null)
+                break;
 
-	    // if there are many values, we can't have inherit as one of them
-	    if(manyValues && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", null, null, ac);
-	    }
+            // if there are many values, we can't have inherit as one of them
+            if (manyValues && val.equals(inherit)) {
+                throw new InvalidParamException("unrecognize", null, null, ac);
+            }
 
-	    if (op != SPACE)
-		throw new InvalidParamException("operator",
-						((new Character(op)).toString()),
-						ac);
-	    if (width == null) {
-		try {
-		    width = new CssBorderLeftWidthATSC(ac, expression);
-		    find = true;
-		} catch(InvalidParamException e){
-		    // nothing to do, style will test this value
-		}
-	    }
-	    if (!find && style == null) {
-		try {
-		    style = new CssBorderLeftStyleATSC(ac, expression);
-		    find = true;
-		} catch(InvalidParamException e){
-		    // nothing to do, color will test this value
-		}
-	    }
-	    if (!find && color == null) {
-		// throws an exception if the value is not valid
-		color = new CssBorderLeftColorATSC(ac, expression);
-		find = true;
-	    }
-	}
+            if (op != SPACE)
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()),
+                        ac);
+            if (width == null) {
+                try {
+                    width = new CssBorderLeftWidthATSC(ac, expression);
+                    find = true;
+                } catch (InvalidParamException e) {
+                    // nothing to do, style will test this value
+                }
+            }
+            if (!find && style == null) {
+                try {
+                    style = new CssBorderLeftStyleATSC(ac, expression);
+                    find = true;
+                } catch (InvalidParamException e) {
+                    // nothing to do, color will test this value
+                }
+            }
+            if (!find && color == null) {
+                // throws an exception if the value is not valid
+                color = new CssBorderLeftColorATSC(ac, expression);
+                find = true;
+            }
+        }
     }
 
     public CssBorderLeftATSC(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return width;
+        return width;
     }
 
     /**
      * Returns the color property
      */
     public CssValue getColor() {
-	if (color != null) {
-	    return color.getColor();
-	} else {
-	    return null;
-	}
+        if (color != null) {
+            return color.getColor();
+        } else {
+            return null;
+        }
     }
 
     /**
      * Returns the width property
      */
     public CssValue getWidth() {
-	if (width != null) {
-	    return width.getValue();
-	} else {
-	    return null;
-	}
+        if (width != null) {
+            return width.getValue();
+        } else {
+            return null;
+        }
     }
 
     /**
      * Returns the style property
      */
     public String getStyle() {
-	if (style != null) {
-	    return style.getStyle();
-	} else {
-	    return null;
-	}
+        if (style != null) {
+            return style.getStyle();
+        } else {
+            return null;
+        }
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "";
-	if(width != null) {
-	    ret += width;
-	}
-	if(style != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += style;
-	}
-	if(color != null) {
-	    if(!ret.equals("")) {
-		ret += " ";
-	    }
-	    ret += color;
-	}
-	return ret;
+        String ret = "";
+        if (width != null) {
+            ret += width;
+        }
+        if (style != null) {
+            if (!ret.equals("")) {
+                ret += " ";
+            }
+            ret += style;
+        }
+        if (color != null) {
+            if (!ret.equals("")) {
+                ret += " ";
+            }
+            ret += color;
+        }
+        return ret;
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "border-left";
+        return "border-left";
     }
 
     /**
@@ -202,15 +202,15 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * Overrides this method for a macro
      */
     public void setImportant() {
-	if(width != null) {
-	    width.setImportant();
-	}
-	if(style != null) {
-	    style.setImportant();
-	}
-	if(color != null) {
-	    color.setImportant();
-	}
+        if (width != null) {
+            width.setImportant();
+        }
+        if (style != null) {
+            style.setImportant();
+        }
+        if (color != null) {
+            color.setImportant();
+        }
     }
 
     /**
@@ -218,9 +218,9 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * Overrides this method for a macro
      */
     public boolean getImportant() {
-	return ((width == null || width.getImportant()) &&
-		(style == null || style.getImportant()) &&
-		(color == null || color.getImportant()));
+        return ((width == null || width.getImportant()) &&
+                (style == null || style.getImportant()) &&
+                (color == null || color.getImportant()));
     }
 
 
@@ -232,16 +232,16 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * @see org.w3c.css.css.StyleSheetParser#handleRule
      */
     public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (width != null) {
-	    width.setSelectors(selector);
-	}
-	if (style != null) {
-	    style.setSelectors(selector);
-	}
-	if (color != null) {
-	    color.setSelectors(selector);
-	}
+        super.setSelectors(selector);
+        if (width != null) {
+            width.setSelectors(selector);
+        }
+        if (style != null) {
+            style.setSelectors(selector);
+        }
+        if (color != null) {
+            color.setSelectors(selector);
+        }
     }
 
     /**
@@ -250,49 +250,49 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if(width != null) {
-	    width.addToStyle(ac, style);
-	}
-	if(this.style != null) {
-	    this.style.addToStyle(ac, style);
-	}
-	if(color != null) {
-	    color.addToStyle(ac, style);
-	}
+        if (width != null) {
+            width.addToStyle(ac, style);
+        }
+        if (this.style != null) {
+            this.style.addToStyle(ac, style);
+        }
+        if (color != null) {
+            color.addToStyle(ac, style);
+        }
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getBorderLeftATSC();
-	} else {
-	    return ((ATSCStyle) style).cssBorderATSC.getLeft();
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getBorderLeftATSC();
+        } else {
+            return ((ATSCStyle) style).cssBorderATSC.getLeft();
+        }
     }
 
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
-     * @param line The line number where this property is defined
+     * @param line   The line number where this property is defined
      * @param source The source file where this property is defined
      */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);
-	if(width != null) {
-	    width.setInfo(line, source);
-	}
-	if(style != null) {
-	    style.setInfo(line, source);
-	}
-	if(color != null) {
-	    color.setInfo(line, source);
-	}
+        super.setInfo(line, source);
+        if (width != null) {
+            width.setInfo(line, source);
+        }
+        if (style != null) {
+            style.setInfo(line, source);
+        }
+        if (color != null) {
+            color.setInfo(line, source);
+        }
     }
 
     /**
@@ -301,21 +301,21 @@ public class CssBorderLeftATSC extends CssProperty implements CssOperator {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	if (property instanceof CssBorderLeftATSC) {
-	    CssBorderLeftATSC left = (CssBorderLeftATSC) property;
-	    return (width.equals(left.width) && style.equals(left.style)
-		    && color.equals(left.color));
-	} else {
-	    return false;
-	}
+        if (property instanceof CssBorderLeftATSC) {
+            CssBorderLeftATSC left = (CssBorderLeftATSC) property;
+            return (width.equals(left.width) && style.equals(left.style)
+                    && color.equals(left.color));
+        } else {
+            return false;
+        }
     }
 
     void check() {
-	if ((style != null)
-	    && (style.face.value == 0)) {
-	    if (width != null) {
-		width.face.value = new CssLength();
-	    }
-	}
+        if ((style != null)
+                && (style.face.value == 0)) {
+            if (width != null) {
+                width.face.value = new CssLength();
+            }
+        }
     }
 }

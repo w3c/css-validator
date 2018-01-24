@@ -13,6 +13,7 @@ public class PseudoFunctionSelector implements Selector {
     private String name;
     private Object param;
     private String representation = null;
+
     /**
      * Creates a new empty function selector
      */
@@ -29,6 +30,7 @@ public class PseudoFunctionSelector implements Selector {
 
     /**
      * Sets the name of this pseudo-function
+     *
      * @param name The name to set.
      */
     public void setName(String name) {
@@ -37,6 +39,7 @@ public class PseudoFunctionSelector implements Selector {
 
     /**
      * Returns the parameter of this pseudo-function.
+     *
      * @return the parameter of this pseudo-function.
      */
     public Object getParam() {
@@ -45,6 +48,7 @@ public class PseudoFunctionSelector implements Selector {
 
     /**
      * Sets the parameter of this pseudo-function
+     *
      * @param param The param to set.
      */
     public void setParam(Object param) {
@@ -53,32 +57,33 @@ public class PseudoFunctionSelector implements Selector {
 
     /**
      * Returns the specifictiy of this pseudo-function
+     *
      * @return
      */
     public int getSpecificity() {
-	return 0;
+        return 0;
     }
 
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+        return false;
     }
 
     /**
      * @see Selector#toString()
      */
     public String toString() {
-	if (representation == null) {
-	    StringBuilder sb = new StringBuilder();
-	    sb.append(':');
-	    sb.append(name);
-	    sb.append('(');
-	    sb.append(param);
-	    sb.append(')');
-	    representation = sb.toString();
-	}
-	return representation;
+        if (representation == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(':');
+            sb.append(name);
+            sb.append('(');
+            sb.append(param);
+            sb.append(')');
+            representation = sb.toString();
+        }
+        return representation;
     }
 }

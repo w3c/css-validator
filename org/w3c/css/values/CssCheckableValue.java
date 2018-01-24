@@ -14,54 +14,54 @@ import java.math.BigDecimal;
 
 public abstract class CssCheckableValue extends CssValue {
 
-	abstract public boolean isPositive();
+    abstract public boolean isPositive();
 
-	abstract public void checkPositiveness(ApplContext ac, CssProperty property)
-			throws InvalidParamException;
+    abstract public void checkPositiveness(ApplContext ac, CssProperty property)
+            throws InvalidParamException;
 
-	abstract public boolean isStrictlyPositive();
+    abstract public boolean isStrictlyPositive();
 
-	abstract public boolean isZero();
+    abstract public boolean isZero();
 
-	abstract public void checkStrictPositiveness(ApplContext ac, CssProperty property)
-			throws InvalidParamException;
+    abstract public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+            throws InvalidParamException;
 
-	abstract public void warnPositiveness(ApplContext ac, CssProperty property);
+    abstract public void warnPositiveness(ApplContext ac, CssProperty property);
 
-	abstract public void checkEqualsZero(ApplContext ac, CssProperty property)
-		throws InvalidParamException;
+    abstract public void checkEqualsZero(ApplContext ac, CssProperty property)
+            throws InvalidParamException;
 
-	abstract public void warnEqualsZero(ApplContext ac, CssProperty property);
+    abstract public void warnEqualsZero(ApplContext ac, CssProperty property);
 
-	public boolean isInteger() {
-		return false;
-	}
+    public boolean isInteger() {
+        return false;
+    }
 
-	/**
-	 * check if the value is an integer
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkInteger(ApplContext ac, CssProperty property)
-			throws InvalidParamException {
-	}
+    /**
+     * check if the value is an integer
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkInteger(ApplContext ac, CssProperty property)
+            throws InvalidParamException {
+    }
 
 
-	/**
-	 * set the native value
-	 *
-	 * @param v the BigDecimal
-	 */
-	public abstract void setValue(BigDecimal v);
+    /**
+     * set the native value
+     *
+     * @param v the BigDecimal
+     */
+    public abstract void setValue(BigDecimal v);
 
-	/**
-	 * Get this value as acheckable value
-	 *
-	 * @return
-	 */
-	public CssCheckableValue getCheckableValue() {
-		return this;
-	}
+    /**
+     * Get this value as acheckable value
+     *
+     * @return
+     */
+    public CssCheckableValue getCheckableValue() {
+        return this;
+    }
 }

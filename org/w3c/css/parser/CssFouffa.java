@@ -27,7 +27,6 @@ import org.w3c.css.util.Util;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Warnings;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
 
 import java.io.FileNotFoundException;

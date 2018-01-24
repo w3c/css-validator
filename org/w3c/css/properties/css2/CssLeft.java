@@ -15,29 +15,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssLeft extends org.w3c.css.properties.css.CssLeft {
 
-	/**
-	 * Create a new CssLeft
-	 */
-	public CssLeft() {
-	}
+    /**
+     * Create a new CssLeft
+     */
+    public CssLeft() {
+    }
 
-	/**
-	 * Creates a new CssLeft
-	 * @see org.w3c.css.properties.css2.CssTop
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssLeft(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssTop.checkValue(ac, expression, check, this);
+    /**
+     * Creates a new CssLeft
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     * @see org.w3c.css.properties.css2.CssTop
+     */
+    public CssLeft(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssTop.checkValue(ac, expression, check, this);
 
-	}
+    }
 
-	public CssLeft(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssLeft(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

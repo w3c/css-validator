@@ -33,43 +33,43 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
      */
     public CssMaxWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		// same as CSS2 but with a warning.
-		ac.getFrame().addWarning("atsc", expression.toString());
+        // same as CSS2 but with a warning.
+        ac.getFrame().addWarning("atsc", expression.toString());
 
-		CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-		setByUser();
+        setByUser();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-			case CssTypes.CSS_LENGTH:
-				CssLength length = val.getLength();
-				length.checkPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_PERCENTAGE:
-				CssPercentage percentage = val.getPercentage();
-				percentage.checkPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				if (none.equals(val)) {
-					value = none;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_LENGTH:
+                CssLength length = val.getLength();
+                length.checkPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                CssPercentage percentage = val.getPercentage();
+                percentage.checkPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                if (none.equals(val)) {
+                    value = none;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
     }
 
     public CssMaxWidth(ApplContext ac, CssExpression expression)

@@ -14,27 +14,27 @@ package org.w3c.css.properties.paged;
  */
 public class Css2Style extends org.w3c.css.properties.css2.Css2Style {
 
-	Page page;
-	PageATSC pageATSC;
+    Page page;
+    PageATSC pageATSC;
 
-	/**
-	 * Get the page property
-	 */
-	public final Page getPage() {
-		if (page == null) {
-			page =
-					(Page) style.CascadingOrder(new Page(),
-							style, selector);
-		}
-		return page;
-	}
+    /**
+     * Get the page property
+     */
+    public final Page getPage() {
+        if (page == null) {
+            page =
+                    (Page) style.CascadingOrder(new Page(),
+                            style, selector);
+        }
+        return page;
+    }
 
-	public final PageATSC getPageATSC() {
-		if (pageATSC == null) {
-			pageATSC =
-					(PageATSC) style.CascadingOrder(new PageATSC(),
-							style, selector);
-		}
-		return pageATSC;
-	}
+    public final PageATSC getPageATSC() {
+        if (pageATSC == null) {
+            pageATSC =
+                    (PageATSC) style.CascadingOrder(new PageATSC(),
+                            style, selector);
+        }
+        return pageATSC;
+    }
 }

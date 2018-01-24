@@ -45,11 +45,11 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
         CssValue val = expression.getValue();
         setByUser();
         switch (val.getType()) {
-			case CssTypes.CSS_HASH_IDENT:
-				org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-				c.setShortRGBColor(val.toString(), ac);
-				color = c;
-				break;
+            case CssTypes.CSS_HASH_IDENT:
+                org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+                c.setShortRGBColor(val.toString(), ac);
+                color = c;
+                break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     inherited = true;
@@ -61,11 +61,11 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
             // so, no need for a CSS_FUNCTION case
             case CssTypes.CSS_COLOR:
                 try {
-                   color = (org.w3c.css.values.CssColor) val;
+                    color = (org.w3c.css.values.CssColor) val;
                 } catch (ClassCastException ex) {
                     // as we checked the type, it can't happen
                     throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
+                            getPropertyName(), ac);
                 }
                 break;
             default:

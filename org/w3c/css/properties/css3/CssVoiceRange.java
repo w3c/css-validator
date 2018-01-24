@@ -23,123 +23,123 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssVoiceRange extends org.w3c.css.properties.css.CssVoiceRange {
 
-	public static final CssIdent[] allowed_values;
-	public static final CssIdent absolute;
+    public static final CssIdent[] allowed_values;
+    public static final CssIdent absolute;
 
-	static {
-		String[] _allowed_values = {"x-low", "low", "medium", "high", "x-high"};
-		int i = 0;
-		allowed_values = new CssIdent[_allowed_values.length];
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-		absolute = CssIdent.getIdent("absolute");
-	}
+    static {
+        String[] _allowed_values = {"x-low", "low", "medium", "high", "x-high"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        absolute = CssIdent.getIdent("absolute");
+    }
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssVoiceRange
-	 */
-	public CssVoiceRange() {
-		value = initial;
-	}
+    /**
+     * Create a new CssVoiceRange
+     */
+    public CssVoiceRange() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssVoiceRange
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssVoiceRange(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssVoiceRange
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssVoiceRange(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
-		CssValue identVal = null;
-		CssValue numVal = null;
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        CssValue val;
+        char op;
+        CssValue identVal = null;
+        CssValue numVal = null;
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					// 0 can be a frequency
-					val.getCheckableValue().checkEqualsZero(ac, this);
-				case CssTypes.CSS_FREQUENCY:
-				case CssTypes.CSS_SEMITONE:
-				case CssTypes.CSS_PERCENTAGE:
-					if (numVal != null) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					numVal = val;
-					value = val;
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value", inherit,
-									getPropertyName(), ac);
-						}
-						value = inherit;
-						break;
-					}
-					if (identVal == null) {
-						CssIdent id = (CssIdent) val;
-						if (absolute.equals(id)) {
-							identVal = absolute;
-							value = absolute;
-							break;
-						}
-						identVal = getAllowedIdent(id);
-						if (identVal != null) {
-							value = val;
-							break;
-						}
-						// unrecognized... let it fail
-					}
-				default:
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (expression.getCount() > 1) {
-			if (identVal == absolute) {
-				if (numVal.getType() != CssTypes.CSS_FREQUENCY) {
-					throw new InvalidParamException("value", expression.toStringFromStart(),
-							getPropertyName(), ac);
-				}
-				CssCheckableValue freq = numVal.getCheckableValue();
-				freq.warnPositiveness(ac, this);
-			}
-			ArrayList<CssValue> values = new ArrayList<CssValue>(2);
-			values.add(numVal);
-			values.add(identVal);
-			value = new CssValueList(values);
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    // 0 can be a frequency
+                    val.getCheckableValue().checkEqualsZero(ac, this);
+                case CssTypes.CSS_FREQUENCY:
+                case CssTypes.CSS_SEMITONE:
+                case CssTypes.CSS_PERCENTAGE:
+                    if (numVal != null) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    numVal = val;
+                    value = val;
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", inherit,
+                                    getPropertyName(), ac);
+                        }
+                        value = inherit;
+                        break;
+                    }
+                    if (identVal == null) {
+                        CssIdent id = (CssIdent) val;
+                        if (absolute.equals(id)) {
+                            identVal = absolute;
+                            value = absolute;
+                            break;
+                        }
+                        identVal = getAllowedIdent(id);
+                        if (identVal != null) {
+                            value = val;
+                            break;
+                        }
+                        // unrecognized... let it fail
+                    }
+                default:
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (expression.getCount() > 1) {
+            if (identVal == absolute) {
+                if (numVal.getType() != CssTypes.CSS_FREQUENCY) {
+                    throw new InvalidParamException("value", expression.toStringFromStart(),
+                            getPropertyName(), ac);
+                }
+                CssCheckableValue freq = numVal.getCheckableValue();
+                freq.warnPositiveness(ac, this);
+            }
+            ArrayList<CssValue> values = new ArrayList<CssValue>(2);
+            values.add(numVal);
+            values.add(identVal);
+            value = new CssValueList(values);
+        }
+    }
 
-	public CssVoiceRange(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssVoiceRange(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

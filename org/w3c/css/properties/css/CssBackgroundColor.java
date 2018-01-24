@@ -35,7 +35,7 @@ public class CssBackgroundColor extends CssProperty {
      */
     public CssBackgroundColor(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
-            throw new InvalidParamException("unrecognize", ac);
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssBackgroundColor(ApplContext ac, CssExpression expression)
@@ -54,6 +54,7 @@ public class CssBackgroundColor extends CssProperty {
     public void set(CssValue col) {
         value = col;
     }
+
     /**
      * Returns the color
      */

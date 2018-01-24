@@ -15,48 +15,48 @@ import org.w3c.css.values.CssValue;
  */
 public class CssTextEmphasisColor extends org.w3c.css.properties.css.CssTextEmphasisColor {
 
-	/**
-	 * Create a new CssTextEmphasisColor
-	 */
-	public CssTextEmphasisColor() {
-		value = initial;
-	}
+    /**
+     * Create a new CssTextEmphasisColor
+     */
+    public CssTextEmphasisColor() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssTextEmphasisColor
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTextEmphasisColor(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Creates a new CssTextEmphasisColor
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTextEmphasisColor(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		if (inherit.equals(val)) {
-			value = inherit;
-			expression.next();
-		} else {
-			try {
-				CssColor tcolor = new CssColor(ac, expression, check);
-				value = tcolor.color;
-			} catch (InvalidParamException e) {
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-			}
-		}
-	}
+        if (inherit.equals(val)) {
+            value = inherit;
+            expression.next();
+        } else {
+            try {
+                CssColor tcolor = new CssColor(ac, expression, check);
+                value = tcolor.color;
+            } catch (InvalidParamException e) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        }
+    }
 
-	public CssTextEmphasisColor(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTextEmphasisColor(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -15,29 +15,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssBottom extends org.w3c.css.properties.css.CssBottom {
 
-	/**
-	 * Create a new CssBottom
-	 */
-	public CssBottom() {
-	}
+    /**
+     * Create a new CssBottom
+     */
+    public CssBottom() {
+    }
 
-	/**
-	 * Creates a new CssBottom
-	 * @see CssTop
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssBottom(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssTop.checkValue(ac, expression, check, this);
+    /**
+     * Creates a new CssBottom
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     * @see CssTop
+     */
+    public CssBottom(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssTop.checkValue(ac, expression, check, this);
 
-	}
+    }
 
-	public CssBottom(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBottom(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

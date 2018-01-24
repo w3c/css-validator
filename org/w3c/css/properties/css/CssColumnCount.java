@@ -55,7 +55,7 @@ public class CssColumnCount extends CssProperty {
     public void addToStyle(ApplContext ac, CssStyle style) {
         if (((Css3Style) style).cssColumnCount != null) {
             style.addRedefinitionWarning(ac, this);
-		}
+        }
         ((Css3Style) style).cssColumnCount = this;
     }
 

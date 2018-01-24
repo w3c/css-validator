@@ -41,9 +41,10 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
 
     CssValue url = null;
 
-	protected static boolean checkMatchingIdent(CssIdent ident){
-		return none.equals(ident);
-	}
+    protected static boolean checkMatchingIdent(CssIdent ident) {
+        return none.equals(ident);
+    }
+
     /**
      * Create a new CssBackgroundImage
      */

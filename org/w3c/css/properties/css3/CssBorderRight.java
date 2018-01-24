@@ -28,7 +28,8 @@ public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorderRight(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -40,7 +41,8 @@ public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorderRight(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {

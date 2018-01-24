@@ -19,15 +19,15 @@ import org.w3c.css.values.CssString;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> &lt;integer&gt; || &lt;identifier&gt; ||
- *   &lt;identifier&gt;  &lt;integer&gt; <BR>
- *  <EM>Inherited:</EM>no<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  This property is used to effect explicit directional navigation control by
- *  associating specific styled elements with directional navigation events.
+ * <p/>
+ * <EM>Value:</EM> &lt;integer&gt; || &lt;identifier&gt; ||
+ * &lt;identifier&gt;  &lt;integer&gt; <BR>
+ * <EM>Inherited:</EM>no<BR>
+ * <EM>Percentages:</EM>no<BR>
+ * <EM>Media:</EM>:visual
+ * <p/>
+ * This property is used to effect explicit directional navigation control by
+ * associating specific styled elements with directional navigation events.
  */
 public class ATSCNavUp extends CssProperty {
 
@@ -36,43 +36,44 @@ public class ATSCNavUp extends CssProperty {
     CssIdent auto = new CssIdent("auto");
 
     public ATSCNavUp() {
-	// nothing to do
+        // nothing to do
     }
 
     /**
      * Create a new ATSCNavUp
+     *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
-    public ATSCNavUp (ApplContext ac, CssExpression expression, boolean check)
-	throws InvalidParamException {
+    public ATSCNavUp(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	this.ac = ac;
-	setByUser(); // tell this property is set by the user
-	CssValue val = expression.getValue();
+        this.ac = ac;
+        setByUser(); // tell this property is set by the user
+        CssValue val = expression.getValue();
 
-	if (val instanceof CssNumber) {
-	    navup = val;
-	    expression.next();
-	} else if (val instanceof CssString) {
-	    navup = val;
-	    expression.next();
-	} else if (val.equals(auto)) {
-	    navup = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", val.toString(),
-		    getPropertyName(), ac);
-	}
+        if (val instanceof CssNumber) {
+            navup = val;
+            expression.next();
+        } else if (val instanceof CssString) {
+            navup = val;
+            expression.next();
+        } else if (val.equals(auto)) {
+            navup = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
+        }
     }
 
     public ATSCNavUp(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -81,23 +82,23 @@ public class ATSCNavUp extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	 if (((ATSCStyle) style).navup != null)
-	     style.addRedefinitionWarning(ac, this);
-	 ((ATSCStyle) style).navup = this;
+        if (((ATSCStyle) style).navup != null)
+            style.addRedefinitionWarning(ac, this);
+        ((ATSCStyle) style).navup = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getNavUp();
-	} else {
-	    return ((ATSCStyle) style).navup;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getNavUp();
+        } else {
+            return ((ATSCStyle) style).navup;
+        }
     }
 
     /**
@@ -106,36 +107,36 @@ public class ATSCNavUp extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCNavUp &&
-                navup.equals( ((ATSCNavUp) property).navup));
+        return (property instanceof ATSCNavUp &&
+                navup.equals(((ATSCNavUp) property).navup));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "atsc-nav-up";
+        return "atsc-nav-up";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return navup;
+        return navup;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return false;
+        return false;
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return navup.toString();
+        return navup.toString();
     }
 
     /**
@@ -143,7 +144,7 @@ public class ATSCNavUp extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

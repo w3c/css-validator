@@ -29,129 +29,129 @@ public class CssBorderATSC extends CssProperty {
      * Create a new CssBorderFaceATSC
      */
     public CssBorderATSC() {
-	top = new CssBorderTopATSC();
-	right = new CssBorderRightATSC();
-	bottom = new CssBorderBottomATSC();
-	left = new CssBorderLeftATSC();
+        top = new CssBorderTopATSC();
+        right = new CssBorderRightATSC();
+        bottom = new CssBorderBottomATSC();
+        left = new CssBorderLeftATSC();
     }
 
     /**
      * Create a new CssBorderFaceATSC
      *
      * @param value The value for this property
-     * @exception InvalidParamException The value is incorrect
+     * @throws InvalidParamException The value is incorrect
      */
     public CssBorderATSC(ApplContext ac, CssExpression value, boolean check)
-    	throws InvalidParamException {
+            throws InvalidParamException {
 
-	if(check && value.getCount() > 3) {
-	     throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && value.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	CssValue val = value.getValue();
+        CssValue val = value.getValue();
 
-	setByUser();
+        setByUser();
 
-	top = new CssBorderTopATSC(ac, value);
+        top = new CssBorderTopATSC(ac, value);
 
-	if (val == value.getValue()) {
-	    throw new InvalidParamException("value",
-					    value.getValue(),
-					    getPropertyName(), ac);
-	}
-	right = new CssBorderRightATSC();
-	bottom = new CssBorderBottomATSC();
-	left = new CssBorderLeftATSC();
+        if (val == value.getValue()) {
+            throw new InvalidParamException("value",
+                    value.getValue(),
+                    getPropertyName(), ac);
+        }
+        right = new CssBorderRightATSC();
+        bottom = new CssBorderBottomATSC();
+        left = new CssBorderLeftATSC();
 
-	CssBorderTopWidthATSC w = top.width;
-	CssBorderTopStyleATSC s = top.style;
-	CssBorderTopColorATSC c = top.color;
+        CssBorderTopWidthATSC w = top.width;
+        CssBorderTopStyleATSC s = top.style;
+        CssBorderTopColorATSC c = top.color;
 
-	if(w != null) {
-	    right.width  =
-		new CssBorderRightWidthATSC((CssBorderFaceWidthATSC) w.get());
-	    left.width =
-		new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) w.get());
-	    bottom.width =
-		new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) w.get());
-	}
-	if(s != null) {
-	    right.style =
-		new CssBorderRightStyleATSC((CssBorderFaceStyleATSC) s.get());
-	    left.style =
-		new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) s.get());
-	    bottom.style =
-		new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) s.get());
-	}
-	if(c != null) {
-	    right.color =
-		new CssBorderRightColorATSC((CssBorderFaceColorATSC) c.get());
-	    left.color =
-		new CssBorderLeftColorATSC((CssBorderFaceColorATSC) c.get());
-	    bottom.color =
-		new CssBorderBottomColorATSC((CssBorderFaceColorATSC) c.get());
-	}
+        if (w != null) {
+            right.width =
+                    new CssBorderRightWidthATSC((CssBorderFaceWidthATSC) w.get());
+            left.width =
+                    new CssBorderLeftWidthATSC((CssBorderFaceWidthATSC) w.get());
+            bottom.width =
+                    new CssBorderBottomWidthATSC((CssBorderFaceWidthATSC) w.get());
+        }
+        if (s != null) {
+            right.style =
+                    new CssBorderRightStyleATSC((CssBorderFaceStyleATSC) s.get());
+            left.style =
+                    new CssBorderLeftStyleATSC((CssBorderFaceStyleATSC) s.get());
+            bottom.style =
+                    new CssBorderBottomStyleATSC((CssBorderFaceStyleATSC) s.get());
+        }
+        if (c != null) {
+            right.color =
+                    new CssBorderRightColorATSC((CssBorderFaceColorATSC) c.get());
+            left.color =
+                    new CssBorderLeftColorATSC((CssBorderFaceColorATSC) c.get());
+            bottom.color =
+                    new CssBorderBottomColorATSC((CssBorderFaceColorATSC) c.get());
+        }
     }
 
     public CssBorderATSC(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return top.get();
+        return top.get();
     }
 
     /**
      * Returns the top property
      */
     public CssBorderTopATSC getTop() {
-	return top;
+        return top;
     }
 
     /**
      * Returns the right property
      */
     public CssBorderRightATSC getRight() {
-	return right;
+        return right;
     }
 
     /**
      * Returns the bottom property
      */
     public CssBorderBottomATSC getBottom() {
-	return bottom;
+        return bottom;
     }
 
     /**
      * Returns the left property
      */
     public CssBorderLeftATSC getLeft() {
-	return left;
+        return left;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	if(top != null) {
-	    return top.toString();
-	}
-	return "";
+        if (top != null) {
+            return top.toString();
+        }
+        return "";
     }
 
     public boolean equals(CssProperty property) {
-	return false; // FIXME
+        return false; // FIXME
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "border";
+        return "border";
     }
 
     /**
@@ -159,18 +159,18 @@ public class CssBorderATSC extends CssProperty {
      * Overrides this method for a macro
      */
     public void setImportant() {
-	if(top != null) {
-	    top.setImportant();
-	}
-	if(right != null) {
-	    right.setImportant();
-	}
-	if(left != null) {
-	    left.setImportant();
-	}
-	if(bottom != null) {
-	    bottom.setImportant();
-	}
+        if (top != null) {
+            top.setImportant();
+        }
+        if (right != null) {
+            right.setImportant();
+        }
+        if (left != null) {
+            left.setImportant();
+        }
+        if (bottom != null) {
+            bottom.setImportant();
+        }
     }
 
     /**
@@ -178,10 +178,10 @@ public class CssBorderATSC extends CssProperty {
      * Overrides this method for a macro
      */
     public boolean getImportant() {
-	return (top.getImportant() &&
-		right.getImportant() &&
-		left.getImportant() &&
-		bottom.getImportant());
+        return (top.getImportant() &&
+                right.getImportant() &&
+                left.getImportant() &&
+                bottom.getImportant());
     }
 
     /**
@@ -192,19 +192,19 @@ public class CssBorderATSC extends CssProperty {
      * @see org.w3c.css.css.StyleSheetParser#handleRule
      */
     public void setSelectors(CssSelectors selector) {
-	super.setSelectors(selector);
-	if (top != null) {
-	    top.setSelectors(selector);
-	}
-	if (right != null) {
-	    right.setSelectors(selector);
-	}
-	if (bottom != null) {
-	    bottom.setSelectors(selector);
-	}
-	if (left != null) {
-	    left.setSelectors(selector);
-	}
+        super.setSelectors(selector);
+        if (top != null) {
+            top.setSelectors(selector);
+        }
+        if (right != null) {
+            right.setSelectors(selector);
+        }
+        if (bottom != null) {
+            bottom.setSelectors(selector);
+        }
+        if (left != null) {
+            left.setSelectors(selector);
+        }
     }
 
     /**
@@ -213,69 +213,69 @@ public class CssBorderATSC extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if(top != null) {
-	    top.addToStyle(ac, style);
-	}
-	if(right != null) {
-	    right.addToStyle(ac, style);
-	}
-	if(left != null) {
-	    left.addToStyle(ac, style);
-	}
-	if(bottom != null) {
-	    bottom.addToStyle(ac, style);
-	}
+        if (top != null) {
+            top.addToStyle(ac, style);
+        }
+        if (right != null) {
+            right.addToStyle(ac, style);
+        }
+        if (left != null) {
+            left.addToStyle(ac, style);
+        }
+        if (bottom != null) {
+            bottom.addToStyle(ac, style);
+        }
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getBorderATSC();
-	} else {
-	    return ((ATSCStyle) style).cssBorderATSC;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getBorderATSC();
+        } else {
+            return ((ATSCStyle) style).cssBorderATSC;
+        }
     }
 
     /**
      * Update the source file and the line.
      * Overrides this method for a macro
      *
-     * @param line The line number where this property is defined
+     * @param line   The line number where this property is defined
      * @param source The source file where this property is defined
      */
     public void setInfo(int line, String source) {
-	super.setInfo(line, source);
-	if(top != null) {
-	    top.setInfo(line, source);
-	}
-	if(right != null) {
-	    right.setInfo(line, source);
-	}
-	if(left != null) {
-	    left.setInfo(line, source);
-	}
-	if(bottom != null) {
-	    bottom.setInfo(line, source);
-	}
+        super.setInfo(line, source);
+        if (top != null) {
+            top.setInfo(line, source);
+        }
+        if (right != null) {
+            right.setInfo(line, source);
+        }
+        if (left != null) {
+            left.setInfo(line, source);
+        }
+        if (bottom != null) {
+            bottom.setInfo(line, source);
+        }
     }
 
     void check() {
-	if(top != null) {
-	    top.check();
-	}
-	if(bottom != null) {
-	    bottom.check();
-	}
-	if(right != null) {
-	    right.check();
-	}
-	if(left != null) {
-	    left.check();
-	}
+        if (top != null) {
+            top.check();
+        }
+        if (bottom != null) {
+            bottom.check();
+        }
+        if (right != null) {
+            right.check();
+        }
+        if (left != null) {
+            left.check();
+        }
     }
 }

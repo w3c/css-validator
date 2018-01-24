@@ -16,9 +16,9 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 
 /**
- * @since CSS3
  * @see CssColumnWidth
  * @see CssColumnCount
+ * @since CSS3
  */
 
 public class CssColumns extends CssProperty {

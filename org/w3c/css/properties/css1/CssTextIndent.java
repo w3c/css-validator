@@ -8,7 +8,6 @@ package org.w3c.css.properties.css1;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -17,53 +16,53 @@ import org.w3c.css.values.CssValue;
  */
 public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 
-	/**
-	 * Create a new CssTextIndent
-	 */
-	public CssTextIndent() {
-	}
+    /**
+     * Create a new CssTextIndent
+     */
+    public CssTextIndent() {
+    }
 
-	/**
-	 * Creates a new CssTextIndent
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTextIndent(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssTextIndent
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTextIndent(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getLength();
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_PERCENTAGE:
-				value = val;
-				break;
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue().toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getLength();
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                value = val;
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue().toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssTextIndent(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTextIndent(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

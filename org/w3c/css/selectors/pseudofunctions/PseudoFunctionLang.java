@@ -13,8 +13,8 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
 public class PseudoFunctionLang extends PseudoFunctionSelector {
 
     public PseudoFunctionLang(String name, String lang) {
-	setName(name);
-	setParam(lang);
+        setName(name);
+        setParam(lang);
     }
 
 }

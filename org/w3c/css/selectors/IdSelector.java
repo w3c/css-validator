@@ -14,10 +14,11 @@ public class IdSelector implements Selector {
 
     /**
      * Creates a new id selector given its name
+     *
      * @param name
      */
     public IdSelector(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     /**
@@ -29,6 +30,7 @@ public class IdSelector implements Selector {
 
     /**
      * Sets the name of this id selector
+     *
      * @param name The name to set.
      */
     public void setName(String name) {
@@ -39,14 +41,14 @@ public class IdSelector implements Selector {
      * @see Selector#toString()
      */
     public String toString() {
-	return '#' + name;
+        return '#' + name;
     }
 
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+        return false;
     }
 
 }

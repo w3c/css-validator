@@ -58,7 +58,7 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
      * Create a new CssAzimuth
      */
     public CssAzimuth() {
-		identValue = initial;
+        identValue = initial;
     }
 
     // check if the ident is in the allowed values
@@ -91,10 +91,10 @@ public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
 
         setByUser();
 
-		// same as CSS21 plus a warning
-		ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
+        // same as CSS21 plus a warning
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
-		switch (val.getType()) {
+        switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 // find out if we can create an angle out of that value
                 // (ie: equal 0)

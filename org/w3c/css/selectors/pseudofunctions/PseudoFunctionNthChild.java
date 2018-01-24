@@ -13,8 +13,8 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
 public class PseudoFunctionNthChild extends PseudoFunctionSelector {
 
     public PseudoFunctionNthChild(String name, String value) {
-	setName(name);
-	setParam(value);
+        setName(name);
+        setParam(value);
     }
 
 }

@@ -15,6 +15,7 @@ import org.w3c.css.values.CssExpression;
 
 /**
  * Be careful, this is not a CSS1 property !
+ *
  * @version $Revision$
  */
 public class CssBorderLeftStyleATSC extends CssProperty {
@@ -25,7 +26,7 @@ public class CssBorderLeftStyleATSC extends CssProperty {
      * Create a new CssBorderLeftStyleATSC
      */
     public CssBorderLeftStyleATSC() {
-	face = new CssBorderFaceStyleATSC();
+        face = new CssBorderFaceStyleATSC();
     }
 
     /**
@@ -34,59 +35,59 @@ public class CssBorderLeftStyleATSC extends CssProperty {
      * @param another The another side.
      */
     public CssBorderLeftStyleATSC(CssBorderFaceStyleATSC another) {
-	setByUser();
+        setByUser();
 
-	face = another;
+        face = another;
     }
 
     /**
      * Create a new CssBorderLeftStyleATSC
      *
      * @param expression The expression for this property.
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBorderLeftStyleATSC(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                  boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	setByUser();
-	face = new CssBorderFaceStyleATSC(ac, expression);
+        setByUser();
+        face = new CssBorderFaceStyleATSC(ac, expression);
     }
 
     public CssBorderLeftStyleATSC(ApplContext ac, CssExpression expression)
-    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return face;
+        return face;
     }
 
     /**
      * Returns the value
      */
     public String getStyle() {
-	return face.getStyle();
+        return face.getStyle();
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return face.toString();
+        return face.toString();
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "border-left-style";
+        return "border-left-style";
     }
 
     /**
@@ -95,24 +96,24 @@ public class CssBorderLeftStyleATSC extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	CssBorderLeftATSC left = ((ATSCStyle) style).cssBorderATSC.left;
-	if (left.style != null)
-	    style.addRedefinitionWarning(ac, this);
-	left.style = this;
+        CssBorderLeftATSC left = ((ATSCStyle) style).cssBorderATSC.left;
+        if (left.style != null)
+            style.addRedefinitionWarning(ac, this);
+        left.style = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getBorderLeftStyleATSC();
-	} else {
-	    return ((ATSCStyle) style).cssBorderATSC.getLeft().style;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getBorderLeftStyleATSC();
+        } else {
+            return ((ATSCStyle) style).cssBorderATSC.getLeft().style;
+        }
     }
 
     /**
@@ -121,7 +122,7 @@ public class CssBorderLeftStyleATSC extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssBorderLeftStyleATSC && face.equals(((CssBorderLeftStyleATSC) property).face));
+        return (property instanceof CssBorderLeftStyleATSC && face.equals(((CssBorderLeftStyleATSC) property).face));
     }
 
 }

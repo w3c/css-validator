@@ -13,7 +13,7 @@ public class CssColorCSS3 {
     protected static final HashMap<String, RGB> definedRGBColorsCSS3;
     private static final RGBA trans;
 
-	static final CssIdent currentColor = CssIdent.getIdent("currentColor");
+    static final CssIdent currentColor = CssIdent.getIdent("currentColor");
 
     public static RGB getRGB(String ident) {
         return definedRGBColorsCSS3.get(ident);
@@ -33,7 +33,7 @@ public class CssColorCSS3 {
     }
 
     static {
-        trans = new RGBA(0,0,0,0.f);
+        trans = new RGBA(0, 0, 0, 0.f);
         // https://www.w3.org/TR/2016/WD-css-color-4-20160705/#named-colors
         definedRGBColorsCSS3 = new HashMap<String, RGB>();
 

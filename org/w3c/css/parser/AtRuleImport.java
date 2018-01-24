@@ -14,35 +14,35 @@ import org.w3c.css.media.AtRuleMedia;
 /**
  * This class manages all imports
  *
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public class AtRuleImport extends AtRule {
 
-    boolean     is_url   = false;
-    String      linkname = null;
-    AtRuleMedia media    = null;
+    boolean is_url = false;
+    String linkname = null;
+    AtRuleMedia media = null;
 
     public String keyword() {
-	return "import";
+        return "import";
     }
 
     public boolean isEmpty() {
-	return true;
+        return true;
     }
 
     /**
      * The second must be exactly the same of this one
      */
     public boolean canApply(AtRule atRule) {
-	return false;
+        return false;
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-	return false;
+        return false;
     }
 
 
@@ -50,32 +50,32 @@ public class AtRuleImport extends AtRule {
      * Returns a string representation of the object.
      */
     public String toString() {
-	StringBuilder ret  = new StringBuilder();
+        StringBuilder ret = new StringBuilder();
 
-	ret.append('@');
-	ret.append(keyword());
-	ret.append(' ');
-	if (is_url) {
-	    ret.append("url(\'");
-	    ret.append(linkname);
-	    ret.append("\')");
-	} else {
-	    ret.append('\"');
-	    ret.append(linkname);
-	    ret.append('\"');
-	} 
-	if (media != null && !media.isEmpty()) {
-	    ret.append(' ');
-	    ret.append(media.getValueString());
-	}
-	ret.append(';');
-	return ret.toString();
+        ret.append('@');
+        ret.append(keyword());
+        ret.append(' ');
+        if (is_url) {
+            ret.append("url(\'");
+            ret.append(linkname);
+            ret.append("\')");
+        } else {
+            ret.append('\"');
+            ret.append(linkname);
+            ret.append('\"');
+        }
+        if (media != null && !media.isEmpty()) {
+            ret.append(' ');
+            ret.append(media.getValueString());
+        }
+        ret.append(';');
+        return ret.toString();
     }
 
     public AtRuleImport(String linkname, boolean is_url, AtRuleMedia media) {
-	this.media    = media;
-	this.linkname = linkname;
-	this.is_url   = is_url; 
+        this.media = media;
+        this.linkname = linkname;
+        this.is_url = is_url;
     }
 }
 

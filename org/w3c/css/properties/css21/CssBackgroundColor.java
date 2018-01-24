@@ -43,11 +43,11 @@ public class CssBackgroundColor extends org.w3c.css.properties.css.CssBackground
         CssValue val = expression.getValue();
 
         switch (val.getType()) {
-			case CssTypes.CSS_HASH_IDENT:
-				org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-				c.setShortRGBColor(val.toString(), ac);
-				setColor(c);
-				break;
+            case CssTypes.CSS_HASH_IDENT:
+                org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+                c.setShortRGBColor(val.toString(), ac);
+                setColor(c);
+                break;
             case CssTypes.CSS_COLOR:
                 setColor(val);
                 break;

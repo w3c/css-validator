@@ -63,7 +63,7 @@ public final class DocumentParser {
                 style.setType("text/html");
             }
         } else if (mediatype.toString().endsWith("+xml") ||
-                (mediatype.match(MimeType.APPLICATION_XML) ==  MimeType.MATCH_SPECIFIC_SUBTYPE)) {
+                (mediatype.match(MimeType.APPLICATION_XML) == MimeType.MATCH_SPECIFIC_SUBTYPE)) {
             XMLStyleSheetHandler xmlhandler = new XMLStyleSheetHandler(htmlURL, ac);
             xmlhandler.parse(reader);
             style = xmlhandler.getStyleSheet();

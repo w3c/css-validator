@@ -34,7 +34,8 @@ public class CssPageBreakInside extends CssProperty {
      * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssPageBreakInside(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -48,7 +49,8 @@ public class CssPageBreakInside extends CssProperty {
      *
      * @param ac,        the Context
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssPageBreakInside(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

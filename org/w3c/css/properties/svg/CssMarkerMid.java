@@ -14,29 +14,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssMarkerMid extends org.w3c.css.properties.css.CssMarkerMid {
 
-	/**
-	 * Create a new CssMarkerMid
-	 */
-	public CssMarkerMid() {
-		value = initial;
-	}
+    /**
+     * Create a new CssMarkerMid
+     */
+    public CssMarkerMid() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssMarkerMid
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssMarkerMid(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssMarker.checkMarkerValue(this, ac, expression, check);
-	}
+    /**
+     * Creates a new CssMarkerMid
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssMarkerMid(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssMarker.checkMarkerValue(this, ac, expression, check);
+    }
 
-	public CssMarkerMid(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssMarkerMid(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

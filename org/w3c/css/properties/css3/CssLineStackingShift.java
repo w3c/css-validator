@@ -32,42 +32,39 @@ public class CssLineStackingShift extends CssProperty {
      * Create a new CssLineStackingShift
      */
     public CssLineStackingShift() {
-		linestackingshift = considershifts;
+        linestackingshift = considershifts;
     }
 
     /**
      * Create a new CssLineStackingShift
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssLineStackingShift(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	if (val.equals(initial)) {
-		linestackingshift = initial;
-		expression.next();
-	}
-	else if (val.equals(considershifts)) {
-		linestackingshift = considershifts;
-		expression.next();
-	}
-	else if (val.equals(disregardshifts)) {
-		linestackingshift = disregardshifts;
-		expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        if (val.equals(initial)) {
+            linestackingshift = initial;
+            expression.next();
+        } else if (val.equals(considershifts)) {
+            linestackingshift = considershifts;
+            expression.next();
+        } else if (val.equals(disregardshifts)) {
+            linestackingshift = disregardshifts;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssLineStackingShift(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -76,24 +73,23 @@ public class CssLineStackingShift extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssLineStackingShift != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssLineStackingShift = this;
+        if (((Css3Style) style).cssLineStackingShift != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssLineStackingShift = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getLineStackingShift();
-	}
-	else {
-	    return ((Css3Style) style).cssLineStackingShift;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getLineStackingShift();
+        } else {
+            return ((Css3Style) style).cssLineStackingShift;
+        }
     }
 
     /**
@@ -102,36 +98,36 @@ public class CssLineStackingShift extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssLineStackingShift &&
-		linestackingshift.equals(((CssLineStackingShift) property).linestackingshift));
+        return (property instanceof CssLineStackingShift &&
+                linestackingshift.equals(((CssLineStackingShift) property).linestackingshift));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "line-stacking-shift";
+        return "line-stacking-shift";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return linestackingshift;
+        return linestackingshift;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return linestackingshift.equals(inherit);
+        return linestackingshift.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return linestackingshift.toString();
+        return linestackingshift.toString();
     }
 
     /**
@@ -139,7 +135,7 @@ public class CssLineStackingShift extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return linestackingshift == considershifts;
+        return linestackingshift == considershifts;
     }
 
 }

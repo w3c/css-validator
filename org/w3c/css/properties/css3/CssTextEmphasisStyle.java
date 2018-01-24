@@ -22,177 +22,177 @@ import java.util.ArrayList;
  */
 public class CssTextEmphasisStyle extends org.w3c.css.properties.css.CssTextEmphasisStyle {
 
-	public static final CssIdent[] shapeStyle;
-	public static final CssIdent[] shapeForm;
+    public static final CssIdent[] shapeStyle;
+    public static final CssIdent[] shapeForm;
 
-	static {
-		String[] _shapeStyle = {"filled", "open"};
-		String[] _shapeForm = {"dot", "circle", "double-circle", "triangle", "sesame"};
+    static {
+        String[] _shapeStyle = {"filled", "open"};
+        String[] _shapeForm = {"dot", "circle", "double-circle", "triangle", "sesame"};
 
-		shapeStyle = new CssIdent[_shapeStyle.length];
-		int i = 0;
-		for (String s : _shapeStyle) {
-			shapeStyle[i++] = CssIdent.getIdent(s);
-		}
-		shapeForm = new CssIdent[_shapeForm.length];
-		i = 0;
-		for (String s : _shapeForm) {
-			shapeForm[i++] = CssIdent.getIdent(s);
-		}
-	}
+        shapeStyle = new CssIdent[_shapeStyle.length];
+        int i = 0;
+        for (String s : _shapeStyle) {
+            shapeStyle[i++] = CssIdent.getIdent(s);
+        }
+        shapeForm = new CssIdent[_shapeForm.length];
+        i = 0;
+        for (String s : _shapeForm) {
+            shapeForm[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static final CssIdent getShapeStyle(CssIdent ident) {
-		for (CssIdent id : shapeStyle) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static final CssIdent getShapeStyle(CssIdent ident) {
+        for (CssIdent id : shapeStyle) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	public static final CssIdent getShapeForm(CssIdent ident) {
-		for (CssIdent id : shapeForm) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static final CssIdent getShapeForm(CssIdent ident) {
+        for (CssIdent id : shapeForm) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	public static final CssIdent getAllowedValue(CssIdent ident) {
-		if (none.equals(ident)) {
-			return none;
-		}
-		CssIdent v = getShapeStyle(ident);
-		if (v == null) {
-			v = getShapeForm(ident);
-		}
-		return v;
-	}
+    public static final CssIdent getAllowedValue(CssIdent ident) {
+        if (none.equals(ident)) {
+            return none;
+        }
+        CssIdent v = getShapeStyle(ident);
+        if (v == null) {
+            v = getShapeForm(ident);
+        }
+        return v;
+    }
 
-	/**
-	 * Create a new CssTextEmphasisStyle
-	 */
-	public CssTextEmphasisStyle() {
-		value = initial;
-	}
+    /**
+     * Create a new CssTextEmphasisStyle
+     */
+    public CssTextEmphasisStyle() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssTextEmphasisStyle
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTextEmphasisStyle(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssTextEmphasisStyle
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTextEmphasisStyle(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		CssIdent styleValue = null;
-		CssIdent formValue = null;
+        CssIdent styleValue = null;
+        CssIdent formValue = null;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_STRING:
-				CssString s = (CssString) val;
-				// limit of 1 character + two surrounding quotes
-				// TODO might be a warning only
-				if (s.toString().length() != 3) {
-					throw new InvalidParamException("value",
-							s, getPropertyName(), ac);
-				}
-				if (check && expression.getCount() != 1) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
-				value = s;
-				break;
-			case CssTypes.CSS_IDENT:
-				CssIdent ident = (CssIdent) val;
-				if (inherit.equals(ident)) {
-					value = inherit;
-					if (check && expression.getCount() != 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-				} else if (none.equals(ident)) {
-					value = none;
-					if (check && expression.getCount() != 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-				} else {
-					boolean match = false;
-					int nbgot = 0;
-					do {
-						match = false;
-						if (styleValue == null) {
-							styleValue = getShapeStyle(ident);
-							match = (styleValue != null);
-						}
-						if (!match && formValue == null) {
-							formValue = getShapeForm(ident);
-							match = (formValue != null);
-						}
-						if (!match) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						nbgot++;
-						if (expression.getRemainingCount() == 1 || (nbgot == 2)) {
-							// if we have both, exit
-							// (needed only if check == false...
-							break;
-						}
-						if (op != CssOperator.SPACE) {
-							throw new InvalidParamException("operator",
-									((new Character(op)).toString()), ac);
-						}
-						expression.next();
-						val = expression.getValue();
-						op = expression.getOperator();
-						if (val.getType() != CssTypes.CSS_IDENT) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						ident = (CssIdent) val;
-					} while (!expression.end());
-					// now construct the value
-					if (formValue != null && styleValue != null) {
-						ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-						v.add(styleValue);
-						v.add(formValue);
-						value = new CssValueList(v);
-					} else {
-						value = (formValue == null) ? styleValue : formValue;
-					}
-				}
-				break;
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_STRING:
+                CssString s = (CssString) val;
+                // limit of 1 character + two surrounding quotes
+                // TODO might be a warning only
+                if (s.toString().length() != 3) {
+                    throw new InvalidParamException("value",
+                            s, getPropertyName(), ac);
+                }
+                if (check && expression.getCount() != 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                value = s;
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent ident = (CssIdent) val;
+                if (inherit.equals(ident)) {
+                    value = inherit;
+                    if (check && expression.getCount() != 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                } else if (none.equals(ident)) {
+                    value = none;
+                    if (check && expression.getCount() != 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                } else {
+                    boolean match = false;
+                    int nbgot = 0;
+                    do {
+                        match = false;
+                        if (styleValue == null) {
+                            styleValue = getShapeStyle(ident);
+                            match = (styleValue != null);
+                        }
+                        if (!match && formValue == null) {
+                            formValue = getShapeForm(ident);
+                            match = (formValue != null);
+                        }
+                        if (!match) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        nbgot++;
+                        if (expression.getRemainingCount() == 1 || (nbgot == 2)) {
+                            // if we have both, exit
+                            // (needed only if check == false...
+                            break;
+                        }
+                        if (op != CssOperator.SPACE) {
+                            throw new InvalidParamException("operator",
+                                    ((new Character(op)).toString()), ac);
+                        }
+                        expression.next();
+                        val = expression.getValue();
+                        op = expression.getOperator();
+                        if (val.getType() != CssTypes.CSS_IDENT) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        ident = (CssIdent) val;
+                    } while (!expression.end());
+                    // now construct the value
+                    if (formValue != null && styleValue != null) {
+                        ArrayList<CssValue> v = new ArrayList<CssValue>(2);
+                        v.add(styleValue);
+                        v.add(formValue);
+                        value = new CssValueList(v);
+                    } else {
+                        value = (formValue == null) ? styleValue : formValue;
+                    }
+                }
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssTextEmphasisStyle(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTextEmphasisStyle(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 
 }

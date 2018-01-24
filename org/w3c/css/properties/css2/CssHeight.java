@@ -30,7 +30,8 @@ public class CssHeight extends org.w3c.css.properties.css.CssHeight {
      * Create a new CssHeight.
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
     public CssHeight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -62,7 +63,7 @@ public class CssHeight extends org.w3c.css.properties.css.CssHeight {
                     throw new InvalidParamException("negative-value",
                             val.toString(), ac);
                 }
-				value = l;
+                value = l;
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 CssPercentage p = (CssPercentage) val;
@@ -70,7 +71,7 @@ public class CssHeight extends org.w3c.css.properties.css.CssHeight {
                     throw new InvalidParamException("negative-value",
                             val.toString(), ac);
                 }
-				value = p;
+                value = p;
                 break;
             default:
                 throw new InvalidParamException("value", val, getPropertyName(), ac);

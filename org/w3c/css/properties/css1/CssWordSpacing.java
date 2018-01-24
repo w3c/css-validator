@@ -15,8 +15,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec  http://www.w3.org/TR/2008/REC-CSS1-20080411/#word-spacing
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS1-20080411/#word-spacing
  */
 public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 

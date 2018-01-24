@@ -20,77 +20,77 @@ import java.util.ArrayList;
  */
 public class CssStrokeDasharray extends org.w3c.css.properties.css.CssStrokeDasharray {
 
-	/**
-	 * Create a new CssStrokeDasharray
-	 */
-	public CssStrokeDasharray() {
-		value = initial;
-	}
+    /**
+     * Create a new CssStrokeDasharray
+     */
+    public CssStrokeDasharray() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssStrokeDasharray
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssStrokeDasharray(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssStrokeDasharray
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssStrokeDasharray(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		ArrayList<CssValue> values = new ArrayList<>();
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        ArrayList<CssValue> values = new ArrayList<>();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					// only 0 can be a length
-					val.getCheckableValue().checkEqualsZero(ac, this);
-				case CssTypes.CSS_PERCENTAGE:
-				case CssTypes.CSS_LENGTH:
-					// we need >=0 values
-					val.getCheckableValue().checkPositiveness(ac, this);
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					if (inherit.equals(val)) {
-						value = inherit;
-						break;
-					}
-					if (none.equals(val)) {
-						value = none;
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			// both space and commas can happen...
-			if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (!values.isEmpty()) {
-			value = new CssValueList(values);
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    // only 0 can be a length
+                    val.getCheckableValue().checkEqualsZero(ac, this);
+                case CssTypes.CSS_PERCENTAGE:
+                case CssTypes.CSS_LENGTH:
+                    // we need >=0 values
+                    val.getCheckableValue().checkPositiveness(ac, this);
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    if (inherit.equals(val)) {
+                        value = inherit;
+                        break;
+                    }
+                    if (none.equals(val)) {
+                        value = none;
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            // both space and commas can happen...
+            if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (!values.isEmpty()) {
+            value = new CssValueList(values);
+        }
+    }
 
-	public CssStrokeDasharray(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssStrokeDasharray(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -23,70 +23,70 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssBackgroundBlendMode extends org.w3c.css.properties.css.CssBackgroundBlendMode {
 
-	/**
-	 * Create a new CssBackgroundBlendMode
-	 */
-	public CssBackgroundBlendMode() {
-		value = initial;
-	}
+    /**
+     * Create a new CssBackgroundBlendMode
+     */
+    public CssBackgroundBlendMode() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssBackgroundBlendMode
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssBackgroundBlendMode(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssBackgroundBlendMode
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssBackgroundBlendMode(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		CssIdent ident, id;
-		char op;
+        CssValue val;
+        CssIdent ident, id;
+        char op;
 
-		ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() == CssTypes.CSS_IDENT) {
-				ident = (CssIdent) val;
-				if (inherit.equals(ident)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					values.add(inherit);
-				} else {
-					id = CssMixBlendMode.getAllowedIdent(ident);
-					if (id == null) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					values.add(id);
-				}
-			} else {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-			expression.next();
-			if (op != COMMA && !expression.end()) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
-	}
+            if (val.getType() == CssTypes.CSS_IDENT) {
+                ident = (CssIdent) val;
+                if (inherit.equals(ident)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(inherit);
+                } else {
+                    id = CssMixBlendMode.getAllowedIdent(ident);
+                    if (id == null) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(id);
+                }
+            } else {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            expression.next();
+            if (op != COMMA && !expression.end()) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+    }
 
-	public CssBackgroundBlendMode(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBackgroundBlendMode(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

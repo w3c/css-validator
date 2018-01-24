@@ -30,10 +30,11 @@ public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
     /**
      * Create a new CssZIndex
      *
-     * @param ac    The context
+     * @param ac         The context
      * @param expression The expression for this property
      * @param check      true will test the number of parameters
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssZIndex(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -52,8 +53,8 @@ public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
                     break;
                 }
                 throw new InvalidParamException("integer",
-                    val.toString(),
-                    getPropertyName(), ac);
+                        val.toString(),
+                        getPropertyName(), ac);
             case CssTypes.CSS_IDENT:
                 CssIdent ide = (CssIdent) val;
                 if (inherit.equals(ide)) {
@@ -73,9 +74,10 @@ public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
     /**
      * Create a new CssZIndex
      *
-     * @param ac, the Context
+     * @param ac,        the Context
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssZIndex(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

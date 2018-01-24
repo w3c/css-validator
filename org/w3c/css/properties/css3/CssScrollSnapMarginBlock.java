@@ -22,100 +22,100 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssScrollSnapMarginBlock extends org.w3c.css.properties.css.CssScrollSnapMarginBlock {
 
-	private CssScrollSnapMarginBlockStart _longhand_start;
-	private CssScrollSnapMarginBlockEnd _longhand_end;
+    private CssScrollSnapMarginBlockStart _longhand_start;
+    private CssScrollSnapMarginBlockEnd _longhand_end;
 
-	/**
-	 * Create a new CssScrollSnapMarginBlock
-	 */
-	public CssScrollSnapMarginBlock() {
-		value = initial;
-		_longhand_end = new CssScrollSnapMarginBlockEnd();
-		_longhand_start = new CssScrollSnapMarginBlockStart();
-	}
+    /**
+     * Create a new CssScrollSnapMarginBlock
+     */
+    public CssScrollSnapMarginBlock() {
+        value = initial;
+        _longhand_end = new CssScrollSnapMarginBlockEnd();
+        _longhand_start = new CssScrollSnapMarginBlockStart();
+    }
 
-	/**
-	 * Creates a new CssScrollSnapMarginBlock
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
-		char op = expression.getOperator();
+    /**
+     * Creates a new CssScrollSnapMarginBlock
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		ArrayList<CssValue> values = new ArrayList<>();
-		_longhand_end = new CssScrollSnapMarginBlockEnd();
-		_longhand_start = new CssScrollSnapMarginBlockStart();
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        ArrayList<CssValue> values = new ArrayList<>();
+        _longhand_end = new CssScrollSnapMarginBlockEnd();
+        _longhand_start = new CssScrollSnapMarginBlockStart();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_LENGTH:
-				values.add(val);
-				_longhand_start.value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					values.add(val);
-					_longhand_start.value = inherit;
-					_longhand_end.value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-		if (!expression.end()) {
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			val = expression.getValue();
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					val.getCheckableValue().checkEqualsZero(ac, this);
-				case CssTypes.CSS_LENGTH:
-					values.add(val);
-					_longhand_end.value = val;
-					break;
-				default:
-					throw new InvalidParamException("value",
-							expression.getValue(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+                values.add(val);
+                _longhand_start.value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(val);
+                    _longhand_start.value = inherit;
+                    _longhand_end.value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+        if (!expression.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            val = expression.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, this);
+                case CssTypes.CSS_LENGTH:
+                    values.add(val);
+                    _longhand_end.value = val;
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		_longhand_start.addToStyle(ac, style);
-		_longhand_end.addToStyle(ac, style);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        _longhand_start.addToStyle(ac, style);
+        _longhand_end.addToStyle(ac, style);
+    }
 }
 

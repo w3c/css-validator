@@ -14,29 +14,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssGridColumnGap extends org.w3c.css.properties.css.CssGridColumnGap {
 
-	/**
-	 * Create a new CssGridColumnGap
-	 */
-	public CssGridColumnGap() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGridColumnGap
+     */
+    public CssGridColumnGap() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGridColumnGap
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridColumnGap(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssGridRowGap.checkSyntax(ac, expression, check, this);
-	}
+    /**
+     * Creates a new CssGridColumnGap
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridColumnGap(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssGridRowGap.checkSyntax(ac, expression, check, this);
+    }
 
-	public CssGridColumnGap(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridColumnGap(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -60,6 +60,7 @@ public final class Warnings {
 
     /**
      * Get the number of warnings
+     *
      * @return the number of warnings
      */
     public final int getWarningCount() {
@@ -67,8 +68,9 @@ public final class Warnings {
     }
 
     /**
-     * Get the number of ignored warnings 
+     * Get the number of ignored warnings
      * (not corresponding to the warning level)
+     *
      * @return the number of ignored warnings
      */
     public final int getIgnoredWarningCount() {

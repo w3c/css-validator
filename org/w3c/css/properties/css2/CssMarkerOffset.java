@@ -17,7 +17,8 @@ import org.w3c.css.values.CssValue;
  */
 public class CssMarkerOffset extends org.w3c.css.properties.css.CssMarkerOffset {
 
-	public static final CssIdent auto = CssIdent.getIdent("auto");
+    public static final CssIdent auto = CssIdent.getIdent("auto");
+
     /**
      * Create a new CssMarkerOffset
      */
@@ -33,36 +34,36 @@ public class CssMarkerOffset extends org.w3c.css.properties.css.CssMarkerOffset 
      */
     public CssMarkerOffset(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-		setByUser();
+        setByUser();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val = val.getLength();
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				if (auto.equals(val)) {
-					value = auto;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val = val.getLength();
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                if (auto.equals(val)) {
+                    value = auto;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
 
-	}
+    }
 
     public CssMarkerOffset(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

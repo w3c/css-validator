@@ -27,10 +27,11 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
      * Create a new CssDirection
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssDirection(ApplContext ac, CssExpression expression,
-						boolean check) throws InvalidParamException {
+                        boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -38,14 +39,14 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
 
         CssValue val = expression.getValue();
 
-		// same as CSS2plus a warning
-		ac.getFrame().addWarning("atsc", val.toString());
+        // same as CSS2plus a warning
+        ac.getFrame().addWarning("atsc", val.toString());
 
-		setByUser();
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value", expression.getValue(),
-					getPropertyName(), ac);
-		}
+        setByUser();
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
         if (val.equals(inherit)) {
             value = inherit;
         } else if (val.equals(ltr)) {
@@ -56,7 +57,7 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-		expression.next();
+        expression.next();
     }
 
     public CssDirection(ApplContext ac, CssExpression expression)

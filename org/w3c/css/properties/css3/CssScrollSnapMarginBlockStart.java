@@ -16,52 +16,52 @@ import org.w3c.css.values.CssValue;
  */
 public class CssScrollSnapMarginBlockStart extends org.w3c.css.properties.css.CssScrollSnapMarginBlockStart {
 
-	/**
-	 * Create a new CssScrollSnapMarginBlockStart
-	 */
-	public CssScrollSnapMarginBlockStart() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollSnapMarginBlockStart
+     */
+    public CssScrollSnapMarginBlockStart() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollSnapMarginBlockStart
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Creates a new CssScrollSnapMarginBlockStart
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

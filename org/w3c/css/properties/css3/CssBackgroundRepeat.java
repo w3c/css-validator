@@ -24,179 +24,179 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
 
-	public final static CssIdent repeat;
-	private static CssIdent[] allowed_simple_values;
-	private static CssIdent[] allowed_double_values;
+    public final static CssIdent repeat;
+    private static CssIdent[] allowed_simple_values;
+    private static CssIdent[] allowed_double_values;
 
-	static {
-		String[] REPEAT = {"repeat", "space", "round", "no-repeat"};
+    static {
+        String[] REPEAT = {"repeat", "space", "round", "no-repeat"};
 
-		allowed_simple_values = new CssIdent[2];
+        allowed_simple_values = new CssIdent[2];
 
-		allowed_simple_values[0] = CssIdent.getIdent("repeat-x");
-		allowed_simple_values[1] = CssIdent.getIdent("repeat-y");
+        allowed_simple_values[0] = CssIdent.getIdent("repeat-x");
+        allowed_simple_values[1] = CssIdent.getIdent("repeat-y");
 
-		allowed_double_values = new CssIdent[REPEAT.length];
+        allowed_double_values = new CssIdent[REPEAT.length];
 
-		int i = 0;
-		for (String aREPEAT : REPEAT) {
-			allowed_double_values[i++] = CssIdent.getIdent(aREPEAT);
-		}
-		repeat = CssIdent.getIdent("repeat");
-	}
+        int i = 0;
+        for (String aREPEAT : REPEAT) {
+            allowed_double_values[i++] = CssIdent.getIdent(aREPEAT);
+        }
+        repeat = CssIdent.getIdent("repeat");
+    }
 
-	public static boolean isMatchingIdent(CssIdent ident) {
-		return (getMatchingIdent(ident) != null);
-	}
+    public static boolean isMatchingIdent(CssIdent ident) {
+        return (getMatchingIdent(ident) != null);
+    }
 
-	public static CssIdent getMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_simple_values) {
-			if (id.equals(ident)) {
-				return ident;
-			}
-		}
-		for (CssIdent id : allowed_double_values) {
-			if (id.equals(ident)) {
-				return ident;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_simple_values) {
+            if (id.equals(ident)) {
+                return ident;
+            }
+        }
+        for (CssIdent id : allowed_double_values) {
+            if (id.equals(ident)) {
+                return ident;
+            }
+        }
+        return null;
+    }
 
-	public static CssIdent getSimpleValue(CssIdent ident) {
-		for (CssIdent id : allowed_simple_values) {
-			if (id.equals(ident)) {
-				return ident;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getSimpleValue(CssIdent ident) {
+        for (CssIdent id : allowed_simple_values) {
+            if (id.equals(ident)) {
+                return ident;
+            }
+        }
+        return null;
+    }
 
-	public static CssIdent getDoubleValue(CssIdent ident) {
-		for (CssIdent id : allowed_double_values) {
-			if (id.equals(ident)) {
-				return ident;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getDoubleValue(CssIdent ident) {
+        for (CssIdent id : allowed_double_values) {
+            if (id.equals(ident)) {
+                return ident;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssBackgroundRepeat
-	 */
-	public CssBackgroundRepeat() {
-		value = repeat;
-	}
+    /**
+     * Create a new CssBackgroundRepeat
+     */
+    public CssBackgroundRepeat() {
+        value = repeat;
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param ac         the context
-	 * @param expression The expression for this property
-	 * @param check      is length checking needed
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
-							   boolean check) throws InvalidParamException {
+    /**
+     * Set the value of the property
+     *
+     * @param ac         the context
+     * @param expression The expression for this property
+     * @param check      is length checking needed
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+                               boolean check) throws InvalidParamException {
 
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
-		boolean is_complete = true;
-		CssValue val;
-		CssValueList vl = null;
-		char op;
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        boolean is_complete = true;
+        CssValue val;
+        CssValueList vl = null;
+        char op;
 
-		setByUser();
+        setByUser();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			// not an ident? fail
-			if (val.getType() != CssTypes.CSS_IDENT) {
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-			}
+            // not an ident? fail
+            if (val.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+            }
 
-			CssIdent id_val = (CssIdent) val;
-			if (inherit.equals(id_val)) {
-				// if we got inherit after other values, fail
-				// if we got more than one value... fail
-				if ((values.size() > 0) || (expression.getCount() > 1)) {
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-				}
-				values.add(inherit);
-			} else {
-				CssIdent new_val;
-				// check values that must be alone
-				new_val = getSimpleValue(id_val);
-				if (new_val != null) {
-					// if we already have a double value... it's an error
-					if (!is_complete) {
-						throw new InvalidParamException("value",
-								val, getPropertyName(), ac);
-					}
-					values.add(new_val);
-					is_complete = true;
-				} else {
-					// the the one that may come in pairs
-					new_val = getDoubleValue(id_val);
-					// not an allowed value !
-					if (new_val == null) {
-						throw new InvalidParamException("value",
-								val, getPropertyName(), ac);
-					}
-					if (is_complete) {
-						vl = new CssValueList();
-						vl.add(new_val);
-					} else {
-						vl.add(new_val);
-						values.add(vl);
-					}
-					is_complete = !is_complete;
-				}
-			}
+            CssIdent id_val = (CssIdent) val;
+            if (inherit.equals(id_val)) {
+                // if we got inherit after other values, fail
+                // if we got more than one value... fail
+                if ((values.size() > 0) || (expression.getCount() > 1)) {
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+                }
+                values.add(inherit);
+            } else {
+                CssIdent new_val;
+                // check values that must be alone
+                new_val = getSimpleValue(id_val);
+                if (new_val != null) {
+                    // if we already have a double value... it's an error
+                    if (!is_complete) {
+                        throw new InvalidParamException("value",
+                                val, getPropertyName(), ac);
+                    }
+                    values.add(new_val);
+                    is_complete = true;
+                } else {
+                    // the the one that may come in pairs
+                    new_val = getDoubleValue(id_val);
+                    // not an allowed value !
+                    if (new_val == null) {
+                        throw new InvalidParamException("value",
+                                val, getPropertyName(), ac);
+                    }
+                    if (is_complete) {
+                        vl = new CssValueList();
+                        vl.add(new_val);
+                    } else {
+                        vl.add(new_val);
+                        values.add(vl);
+                    }
+                    is_complete = !is_complete;
+                }
+            }
 
-			expression.next();
-			if (!expression.end()) {
-				// incomplete value followed by a comma... it's complete!
-				if (!is_complete && (op == COMMA)) {
-					values.add(vl);
-					is_complete = true;
-				}
-				// complete values are separated by a comma, otherwise space
-				if ((is_complete && (op != COMMA)) ||
-						(!is_complete && (op != SPACE))) {
-					throw new InvalidParamException("operator",
-							((new Character(op)).toString()), ac);
-				}
-			}
-		}
-		// if we reach the end in a value that can come in pair
-		if (!is_complete) {
-			values.add(vl);
-		}
-		if (values.size() == 1) {
-			value = values.get(0);
-		} else {
-			value = new CssLayerList(values);
-		}
-	}
+            expression.next();
+            if (!expression.end()) {
+                // incomplete value followed by a comma... it's complete!
+                if (!is_complete && (op == COMMA)) {
+                    values.add(vl);
+                    is_complete = true;
+                }
+                // complete values are separated by a comma, otherwise space
+                if ((is_complete && (op != COMMA)) ||
+                        (!is_complete && (op != SPACE))) {
+                    throw new InvalidParamException("operator",
+                            ((new Character(op)).toString()), ac);
+                }
+            }
+        }
+        // if we reach the end in a value that can come in pair
+        if (!is_complete) {
+            values.add(vl);
+        }
+        if (values.size() == 1) {
+            value = values.get(0);
+        } else {
+            value = new CssLayerList(values);
+        }
+    }
 
 
-	public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Is the value of this property is a default value.
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return (repeat == value);
-	}
+    /**
+     * Is the value of this property is a default value.
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return (repeat == value);
+    }
 
 }
 

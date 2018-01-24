@@ -25,61 +25,61 @@ import static org.w3c.css.properties.css3.CssBreakBefore.getMatchingIdent;
 
 public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
 
-	/**
-	 * Create a new CssPageBreakAfter
-	 */
-	public CssBreakAfter() {
-		value = initial;
-	}
+    /**
+     * Create a new CssPageBreakAfter
+     */
+    public CssBreakAfter() {
+        value = initial;
+    }
 
-	/**
-	 * Create a new CssPageBreakAfter
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Incorrect value
-	 */
-	public CssBreakAfter(ApplContext ac, CssExpression expression,
-						 boolean check) throws InvalidParamException {
+    /**
+     * Create a new CssPageBreakAfter
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect value
+     */
+    public CssBreakAfter(ApplContext ac, CssExpression expression,
+                         boolean check) throws InvalidParamException {
 
-		setByUser();
-		CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
-		}
-		// ident, so inherit, or allowed value
-		if (inherit.equals(val)) {
-			value = inherit;
-		} else {
-			val = getMatchingIdent((CssIdent) val);
-			if (val == null) {
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-			}
-			value = val;
-		}
-		expression.next();
-	}
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        // ident, so inherit, or allowed value
+        if (inherit.equals(val)) {
+            value = inherit;
+        } else {
+            val = getMatchingIdent((CssIdent) val);
+            if (val == null) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+            value = val;
+        }
+        expression.next();
+    }
 
-	public CssBreakAfter(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBreakAfter(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Is the value of this property a default value
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return (auto == value);
-	}
+    /**
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return (auto == value);
+    }
 
 }

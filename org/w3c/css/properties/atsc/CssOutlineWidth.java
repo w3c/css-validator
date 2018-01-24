@@ -16,33 +16,33 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssOutlineWidth extends org.w3c.css.properties.css.CssOutlineWidth {
 
-	/**
-	 * Create a new CssOutlineWidth
-	 */
-	public CssOutlineWidth() {
-	}
+    /**
+     * Create a new CssOutlineWidth
+     */
+    public CssOutlineWidth() {
+    }
 
-	/**
-	 * Creates a new CssOutlineWidth
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssOutlineWidth(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssOutlineWidth
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssOutlineWidth(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		ac.getFrame().addWarning("atsc", expression.toString());
+        ac.getFrame().addWarning("atsc", expression.toString());
 
-		// here we delegate to BorderWidth implementation
-		value = CssBorderWidth.checkBorderSideWidth(ac, this, expression, check);
-	}
+        // here we delegate to BorderWidth implementation
+        value = CssBorderWidth.checkBorderSideWidth(ac, this, expression, check);
+    }
 
-	public CssOutlineWidth(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOutlineWidth(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

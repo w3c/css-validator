@@ -39,10 +39,10 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
         CssValue val = expression.getValue();
 
         setByUser();
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value", expression.getValue(),
-					getPropertyName(), ac);
-		}
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
         if (val.equals(inherit)) {
             value = inherit;
         } else if (val.equals(ltr)) {
@@ -53,7 +53,7 @@ public class CssDirection extends org.w3c.css.properties.css.CssDirection {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
-		expression.next();
+        expression.next();
     }
 
     public CssDirection(ApplContext ac, CssExpression expression)

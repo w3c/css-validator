@@ -22,134 +22,134 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssPlayDuring extends org.w3c.css.properties.css.CssPlayDuring {
 
-	public static final CssIdent auto, mix, repeat;
+    public static final CssIdent auto, mix, repeat;
 
-	static {
-		auto = CssIdent.getIdent("auto");
-		mix = CssIdent.getIdent("mix");
-		repeat = CssIdent.getIdent("repeat");
-	}
+    static {
+        auto = CssIdent.getIdent("auto");
+        mix = CssIdent.getIdent("mix");
+        repeat = CssIdent.getIdent("repeat");
+    }
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (auto.equals(ident)) {
-			return auto;
-		}
-		if (none.equals(ident)) {
-			return none;
-		}
-		return null;
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        if (auto.equals(ident)) {
+            return auto;
+        }
+        if (none.equals(ident)) {
+            return none;
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssPlayDuring
-	 */
-	public CssPlayDuring() {
-	}
+    /**
+     * Create a new CssPlayDuring
+     */
+    public CssPlayDuring() {
+    }
 
-	/**
-	 * Creates a new CssPlayDuring
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssPlayDuring(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 3) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssPlayDuring
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssPlayDuring(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val, repeatVal, mixVal;
-		char op;
+        CssValue val, repeatVal, mixVal;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_URL:
-				value = val;
-				if (expression.getRemainingCount() > 1) {
-					expression.next();
-					if (op != SPACE) {
-						throw new InvalidParamException("operator",
-								((new Character(op)).toString()), ac);
-					}
-					val = expression.getValue();
-					op = expression.getOperator();
-					if (val.getType() != CssTypes.CSS_IDENT) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					repeatVal = null;
-					mixVal = null;
-					if (repeat.equals(val)) {
-						repeatVal = repeat;
-					} else if (mix.equals(val)) {
-						mixVal = mix;
-					} else {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					// and now the second value...
-					if (expression.getRemainingCount() > 1) {
-						expression.next();
-						if (op != SPACE) {
-							throw new InvalidParamException("operator",
-									((new Character(op)).toString()), ac);
-						}
-						val = expression.getValue();
-						if (val.getType() != CssTypes.CSS_IDENT) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						if (repeatVal == null && repeat.equals(val)) {
-							repeatVal = repeat;
-						} else if (mixVal == null && mix.equals(val)) {
-							mixVal = mix;
-						} else {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-					}
-					ArrayList<CssValue> values = new ArrayList<CssValue>(4);
-					values.add(value);
-					if (mixVal != null) {
-						values.add(mixVal);
-					}
-					if (repeatVal != null) {
-						values.add(repeatVal);
-					}
-					value = new CssValueList(values);
-				}
-				break;
-			case CssTypes.CSS_IDENT:
-				if (expression.getCount() == 1) {
-					CssIdent id = (CssIdent) val;
-					if (inherit.equals(id)) {
-						value = inherit;
-						break;
-					}
-					value = getAllowedIdent(id);
-					if (value != null) {
-						break;
-					}
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+                value = val;
+                if (expression.getRemainingCount() > 1) {
+                    expression.next();
+                    if (op != SPACE) {
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                    val = expression.getValue();
+                    op = expression.getOperator();
+                    if (val.getType() != CssTypes.CSS_IDENT) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    repeatVal = null;
+                    mixVal = null;
+                    if (repeat.equals(val)) {
+                        repeatVal = repeat;
+                    } else if (mix.equals(val)) {
+                        mixVal = mix;
+                    } else {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    // and now the second value...
+                    if (expression.getRemainingCount() > 1) {
+                        expression.next();
+                        if (op != SPACE) {
+                            throw new InvalidParamException("operator",
+                                    ((new Character(op)).toString()), ac);
+                        }
+                        val = expression.getValue();
+                        if (val.getType() != CssTypes.CSS_IDENT) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        if (repeatVal == null && repeat.equals(val)) {
+                            repeatVal = repeat;
+                        } else if (mixVal == null && mix.equals(val)) {
+                            mixVal = mix;
+                        } else {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                    }
+                    ArrayList<CssValue> values = new ArrayList<CssValue>(4);
+                    values.add(value);
+                    if (mixVal != null) {
+                        values.add(mixVal);
+                    }
+                    if (repeatVal != null) {
+                        values.add(repeatVal);
+                    }
+                    value = new CssValueList(values);
+                }
+                break;
+            case CssTypes.CSS_IDENT:
+                if (expression.getCount() == 1) {
+                    CssIdent id = (CssIdent) val;
+                    if (inherit.equals(id)) {
+                        value = inherit;
+                        break;
+                    }
+                    value = getAllowedIdent(id);
+                    if (value != null) {
+                        break;
+                    }
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssPlayDuring(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssPlayDuring(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

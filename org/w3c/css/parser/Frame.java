@@ -80,17 +80,17 @@ public class Frame {
                 warningMessage, 0, ac));
     }
 
-	/**
-	 * Adds a warning to this frame.
-	 *
-	 * @param warningMessage the warning message
-	 *                       (see org.w3c.css.util.Messages.properties).
-	 * @see org.w3c.css.util.Warning
-	 */
-	public void addWarning(String warningMessage, int level) {
-		warnings.addWarning(new Warning(getSourceFile(), getLine(),
-				warningMessage, level, ac));
-	}
+    /**
+     * Adds a warning to this frame.
+     *
+     * @param warningMessage the warning message
+     *                       (see org.w3c.css.util.Messages.properties).
+     * @see org.w3c.css.util.Warning
+     */
+    public void addWarning(String warningMessage, int level) {
+        warnings.addWarning(new Warning(getSourceFile(), getLine(),
+                warningMessage, level, ac));
+    }
 
     /**
      * Adds a warning to this frame with a message.

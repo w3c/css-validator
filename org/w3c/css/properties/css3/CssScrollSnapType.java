@@ -22,133 +22,133 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssScrollSnapType extends org.w3c.css.properties.css.CssScrollSnapType {
 
-	private static CssIdent[] allowed_axis_values;
-	private static CssIdent[] allowed_strictness_values;
+    private static CssIdent[] allowed_axis_values;
+    private static CssIdent[] allowed_strictness_values;
 
-	static {
-		String axis_values[] = {"x", "y", "block", "inline", "both"};
-		allowed_axis_values = new CssIdent[axis_values.length];
-		int i = 0;
-		for (String s : axis_values) {
-			allowed_axis_values[i++] = CssIdent.getIdent(s);
-		}
-		String strictness_values[] = {"mandatory", "proximity"};
-		allowed_strictness_values = new CssIdent[strictness_values.length];
-		i = 0;
-		for (String s : strictness_values) {
-			allowed_strictness_values[i++] = CssIdent.getIdent(s);
-		}
-	}
+    static {
+        String axis_values[] = {"x", "y", "block", "inline", "both"};
+        allowed_axis_values = new CssIdent[axis_values.length];
+        int i = 0;
+        for (String s : axis_values) {
+            allowed_axis_values[i++] = CssIdent.getIdent(s);
+        }
+        String strictness_values[] = {"mandatory", "proximity"};
+        allowed_strictness_values = new CssIdent[strictness_values.length];
+        i = 0;
+        for (String s : strictness_values) {
+            allowed_strictness_values[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static CssIdent getMatchingAxisIdent(CssIdent ident) {
-		for (CssIdent id : allowed_axis_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getMatchingAxisIdent(CssIdent ident) {
+        for (CssIdent id : allowed_axis_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	public static CssIdent getMatchingStrictnesssIdent(CssIdent ident) {
-		for (CssIdent id : allowed_strictness_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getMatchingStrictnesssIdent(CssIdent ident) {
+        for (CssIdent id : allowed_strictness_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssScrollSnapType
-	 */
-	public CssScrollSnapType() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollSnapType
+     */
+    public CssScrollSnapType() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollSnapType
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollSnapType(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollSnapType
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollSnapType(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
-		char op = expression.getOperator();
-		ArrayList<CssValue> values = new ArrayList<>();
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					values.add(inherit);
-					break;
-				}
-				// 'none' is a strictness value, but can only appear alone
-				if (none.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					values.add(none);
-					break;
-				}
-				CssIdent ident = getMatchingAxisIdent((CssIdent) val);
-				if (ident != null) {
-					values.add(ident);
-					break;
-				}
-				// unrecognized... fail.
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-		if (!expression.end()) {
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			val = expression.getValue();
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						values.add(inherit);
-						break;
-					}
-					CssIdent ident = getMatchingStrictnesssIdent((CssIdent) val);
-					if (ident != null) {
-						values.add(ident);
-						break;
-					}
-					// unrecognized... fail.
-				default:
-					throw new InvalidParamException("value",
-							expression.getValue(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(inherit);
+                    break;
+                }
+                // 'none' is a strictness value, but can only appear alone
+                if (none.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(none);
+                    break;
+                }
+                CssIdent ident = getMatchingAxisIdent((CssIdent) val);
+                if (ident != null) {
+                    values.add(ident);
+                    break;
+                }
+                // unrecognized... fail.
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+        if (!expression.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            val = expression.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        values.add(inherit);
+                        break;
+                    }
+                    CssIdent ident = getMatchingStrictnesssIdent((CssIdent) val);
+                    if (ident != null) {
+                        values.add(ident);
+                        break;
+                    }
+                    // unrecognized... fail.
+                default:
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssScrollSnapType(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollSnapType(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -14,35 +14,35 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssScrollPaddingRight extends org.w3c.css.properties.css.CssScrollPaddingRight {
 
-	/**
-	 * Create a new CssScrollPaddingRight
-	 */
-	public CssScrollPaddingRight() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollPaddingRight
+     */
+    public CssScrollPaddingRight() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollPaddingRight
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollPaddingRight(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollPaddingRight
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollPaddingRight(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		value = CssScrollPadding.checkPaddingValue(ac, expression, this);
-	}
+        value = CssScrollPadding.checkPaddingValue(ac, expression, this);
+    }
 
-	public CssScrollPaddingRight(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollPaddingRight(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -8,8 +8,8 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
 /**
- * @since CSS3
  * @spec http://www.w3.org/TR/2012/WD-css3-background-20120214/
+ * @since CSS3
  */
 public class CssSwitch extends CssValue {
 
@@ -35,7 +35,8 @@ public class CssSwitch extends CssValue {
      *
      * @param s  the string representation of the switch .
      * @param ac For errors and warnings reports.
-     * @throws org.w3c.css.util.InvalidParamException (incorrect format)
+     * @throws org.w3c.css.util.InvalidParamException
+     *          (incorrect format)
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
         String _spec = s;

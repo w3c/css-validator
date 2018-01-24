@@ -34,10 +34,11 @@ public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRule
     /**
      * Create a new CssColumnRuleStyle
      *
-     * @param ac the context
+     * @param ac         the context
      * @param expression The expression for this property
-     * @param check if check on length is required
-     * @throws org.w3c.css.util.InvalidParamException Incorrect value
+     * @param check      if check on length is required
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect value
      */
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {

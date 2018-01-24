@@ -37,245 +37,245 @@ import java.math.BigDecimal;
  */
 public class CssPercentage extends CssCheckableValue {
 
-	public static final int type = CssTypes.CSS_PERCENTAGE;
+    public static final int type = CssTypes.CSS_PERCENTAGE;
 
-	public final int getType() {
-		return type;
-	}
+    public final int getType() {
+        return type;
+    }
 
-	private BigDecimal defaultValue = BigDecimal.ZERO;
-	private BigDecimal value;
+    private BigDecimal defaultValue = BigDecimal.ZERO;
+    private BigDecimal value;
 
-	/**
-	 * Create a new CssPercentage
-	 */
-	public CssPercentage() {
-		this.value = defaultValue;
-	}
+    /**
+     * Create a new CssPercentage
+     */
+    public CssPercentage() {
+        this.value = defaultValue;
+    }
 
-	/**
-	 * Create a new CssPercentage with a number
-	 *
-	 * @param value The value.
-	 */
-	public CssPercentage(int value) {
-		this(new BigDecimal(value));
-	}
+    /**
+     * Create a new CssPercentage with a number
+     *
+     * @param value The value.
+     */
+    public CssPercentage(int value) {
+        this(new BigDecimal(value));
+    }
 
-	/**
-	 * Create a new CssPercentage with a float
-	 *
-	 * @param value the float value.
-	 */
-	public CssPercentage(float value) {
-		this(new BigDecimal(value));
-	}
+    /**
+     * Create a new CssPercentage with a float
+     *
+     * @param value the float value.
+     */
+    public CssPercentage(float value) {
+        this(new BigDecimal(value));
+    }
 
-	/**
-	 * Create a new CssPercentage with a Float value.
-	 *
-	 * @param value the Float object.
-	 */
-	public CssPercentage(BigDecimal value) {
-		this.value = value;
-	}
+    /**
+     * Create a new CssPercentage with a Float value.
+     *
+     * @param value the Float object.
+     */
+    public CssPercentage(BigDecimal value) {
+        this.value = value;
+    }
 
-	/**
-	 * Set the value of this percentage.
-	 *
-	 * @param s  the string representation of the percentage.
-	 * @param ac For errors and warnings reports.
-	 * @throws InvalidParamException The unit is incorrect
-	 */
-	public void set(String s, ApplContext ac) throws InvalidParamException {
-		int slength = s.length();
-		if (s.charAt(slength - 1) != '%') {
-			throw new InvalidParamException("percentage", s, ac);
-		}
-		this.value = new BigDecimal(s.substring(0, slength - 1));
-	}
+    /**
+     * Set the value of this percentage.
+     *
+     * @param s  the string representation of the percentage.
+     * @param ac For errors and warnings reports.
+     * @throws InvalidParamException The unit is incorrect
+     */
+    public void set(String s, ApplContext ac) throws InvalidParamException {
+        int slength = s.length();
+        if (s.charAt(slength - 1) != '%') {
+            throw new InvalidParamException("percentage", s, ac);
+        }
+        this.value = new BigDecimal(s.substring(0, slength - 1));
+    }
 
-	/**
-	 * set the native value
-	 *
-	 * @param v the BigDecimal
-	 */
-	public void setValue(BigDecimal v) {
-		value = v;
-	}
+    /**
+     * set the native value
+     *
+     * @param v the BigDecimal
+     */
+    public void setValue(BigDecimal v) {
+        value = v;
+    }
 
-	/**
-	 * Returns the current value
-	 */
-	public Object get() {
-		// TODO FIXME
-		return new Float(value.floatValue());
-	}
+    /**
+     * Returns the current value
+     */
+    public Object get() {
+        // TODO FIXME
+        return new Float(value.floatValue());
+    }
 
-	/**
-	 * Returns the real value
-	 */
-	public BigDecimal getValue() {
-		return value;
-	}
+    /**
+     * Returns the real value
+     */
+    public BigDecimal getValue() {
+        return value;
+    }
 
-	/**
-	 * Returns true is the value is positive of null
-	 *
-	 * @return a boolean
-	 */
-	public boolean isPositive() {
-		return (value.signum() >= 0);
-	}
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isPositive() {
+        return (value.signum() >= 0);
+    }
 
-	/**
-	 * Returns true is the value is positive of null
-	 *
-	 * @return a boolean
-	 */
-	public boolean isStrictlyPositive() {
-		return (value.signum() == 1);
-	}
+    /**
+     * Returns true is the value is positive of null
+     *
+     * @return a boolean
+     */
+    public boolean isStrictlyPositive() {
+        return (value.signum() == 1);
+    }
 
-	/**
-	 * Returns true is the value is zero
-	 *
-	 * @return a boolean
-	 */
-	public boolean isZero() {
-		return (BigDecimal.ZERO.compareTo(value) == 0);
-	}
+    /**
+     * Returns true is the value is zero
+     *
+     * @return a boolean
+     */
+    public boolean isZero() {
+        return (BigDecimal.ZERO.compareTo(value) == 0);
+    }
 
-	/**
-	 * Returns the value as a float
-	 */
-	public float floatValue() {
-		return value.floatValue();
-	}
+    /**
+     * Returns the value as a float
+     */
+    public float floatValue() {
+        return value.floatValue();
+    }
 
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(value.toPlainString()).append('%');
-		return sb.toString();
-	}
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(value.toPlainString()).append('%');
+        return sb.toString();
+    }
 
-	/**
-	 * Compares two values for equality.
-	 *
-	 * @param val The other value.
-	 */
-	public boolean equals(Object val) {
-		return ((val instanceof CssPercentage)
-				&& value.equals(((CssPercentage) val).value));
-	}
+    /**
+     * Compares two values for equality.
+     *
+     * @param val The other value.
+     */
+    public boolean equals(Object val) {
+        return ((val instanceof CssPercentage)
+                && value.equals(((CssPercentage) val).value));
+    }
 
-	public CssPercentage getPercentage() throws InvalidParamException {
-		return this;
-	}
+    public CssPercentage getPercentage() throws InvalidParamException {
+        return this;
+    }
 
-	/**
-	 * check if the value is positive or null
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkPositiveness(ApplContext ac, CssProperty property)
-			throws InvalidParamException {
-		if (!isPositive()) {
-			throw new InvalidParamException("negative-value",
-					toString(), property.getPropertyName(), ac);
-		}
-	}
+    /**
+     * check if the value is positive or null
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkPositiveness(ApplContext ac, CssProperty property)
+            throws InvalidParamException {
+        if (!isPositive()) {
+            throw new InvalidParamException("negative-value",
+                    toString(), property.getPropertyName(), ac);
+        }
+    }
 
-	/**
-	 * check if the value is strictly positive
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkStrictPositiveness(ApplContext ac, CssProperty property)
-			throws InvalidParamException {
-		if (!isStrictlyPositive()) {
-			throw new InvalidParamException("strictly-positive",
-					toString(), property.getPropertyName(), ac);
-		}
-	}
+    /**
+     * check if the value is strictly positive
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+            throws InvalidParamException {
+        if (!isStrictlyPositive()) {
+            throw new InvalidParamException("strictly-positive",
+                    toString(), property.getPropertyName(), ac);
+        }
+    }
 
-	/**
-	 * warn if the value is not positive or null
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 */
-	public void warnPositiveness(ApplContext ac, CssProperty property) {
-		if (!isPositive()) {
-			ac.getFrame().addWarning("negative", toString());
-		}
-	}
+    /**
+     * warn if the value is not positive or null
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     */
+    public void warnPositiveness(ApplContext ac, CssProperty property) {
+        if (!isPositive()) {
+            ac.getFrame().addWarning("negative", toString());
+        }
+    }
 
-	/**
-	 * check if the value is lower or equal than...
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkLowerEqualThan(ApplContext ac, double d, CssProperty property)
-			throws InvalidParamException {
-		BigDecimal other = BigDecimal.valueOf(d);
-		if (value.compareTo(other) > 0) {
-			throw new InvalidParamException("lowerequal",
-					toString(), other.toPlainString(), ac);
-		}
-	}
+    /**
+     * check if the value is lower or equal than...
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkLowerEqualThan(ApplContext ac, double d, CssProperty property)
+            throws InvalidParamException {
+        BigDecimal other = BigDecimal.valueOf(d);
+        if (value.compareTo(other) > 0) {
+            throw new InvalidParamException("lowerequal",
+                    toString(), other.toPlainString(), ac);
+        }
+    }
 
-	/**
-	 * check if the value is lower or equal than...
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void warnLowerEqualThan(ApplContext ac, double d, CssProperty property) {
-		BigDecimal other = BigDecimal.valueOf(d);
-		if (value.compareTo(other) > 0) {
-			String[] s = new String[2];
-			s[0] = toString();
-			s[1] = other.toPlainString() + '%';
-			ac.getFrame().addWarning("lowerequal", s);
-		}
-	}
+    /**
+     * check if the value is lower or equal than...
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void warnLowerEqualThan(ApplContext ac, double d, CssProperty property) {
+        BigDecimal other = BigDecimal.valueOf(d);
+        if (value.compareTo(other) > 0) {
+            String[] s = new String[2];
+            s[0] = toString();
+            s[1] = other.toPlainString() + '%';
+            ac.getFrame().addWarning("lowerequal", s);
+        }
+    }
 
-	/**
-	 * check if the value is equal to zero
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 * @throws InvalidParamException
-	 */
-	public void checkEqualsZero(ApplContext ac, CssProperty property)
-			throws InvalidParamException {
-		if (!isZero()) {
-			throw new InvalidParamException("zero",
-					toString(),
-					"percentage", ac);
-		}
-	}
+    /**
+     * check if the value is equal to zero
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkEqualsZero(ApplContext ac, CssProperty property)
+            throws InvalidParamException {
+        if (!isZero()) {
+            throw new InvalidParamException("zero",
+                    toString(),
+                    "percentage", ac);
+        }
+    }
 
-	/**
-	 * warn if the value is not zero
-	 *
-	 * @param ac       the validation context
-	 * @param property the property the value is defined in
-	 */
-	public void warnEqualsZero(ApplContext ac, CssProperty property) {
-		if (!isZero()) {
-			ac.getFrame().addWarning("zero", "percentage");
-		}
-	}
+    /**
+     * warn if the value is not zero
+     *
+     * @param ac       the validation context
+     * @param property the property the value is defined in
+     */
+    public void warnEqualsZero(ApplContext ac, CssProperty property) {
+        if (!isZero()) {
+            ac.getFrame().addWarning("zero", "percentage");
+        }
+    }
 }

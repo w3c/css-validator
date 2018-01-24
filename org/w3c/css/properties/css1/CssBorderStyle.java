@@ -150,23 +150,23 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
         }
     }
 
-	/**
-	 * Add this property to the CssStyle
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
-		cssBorder.borderStyle.byUser = byUser;
-		if (cssBorder.borderStyle.shorthand) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		cssBorder.borderStyle.value = value;
-		cssBorder.borderStyle.top = top;
-		cssBorder.borderStyle.left = left;
-		cssBorder.borderStyle.right = right;
-		cssBorder.borderStyle.bottom = bottom;
-		cssBorder.borderStyle.shorthand = shorthand;
-	}
+    /**
+     * Add this property to the CssStyle
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
+        cssBorder.borderStyle.byUser = byUser;
+        if (cssBorder.borderStyle.shorthand) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        cssBorder.borderStyle.value = value;
+        cssBorder.borderStyle.top = top;
+        cssBorder.borderStyle.left = left;
+        cssBorder.borderStyle.right = right;
+        cssBorder.borderStyle.bottom = bottom;
+        cssBorder.borderStyle.shorthand = shorthand;
+    }
 
 }

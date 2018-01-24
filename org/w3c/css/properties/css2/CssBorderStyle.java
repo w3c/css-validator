@@ -152,7 +152,7 @@ public class CssBorderStyle extends org.w3c.css.properties.css.CssBorderStyle {
      * It makes sense to do it only once for all the sides, so by having the code here.
      */
     public static CssValue checkBorderSideStyle(ApplContext ac, CssProperty caller, CssExpression expression,
-                                                   boolean check) throws InvalidParamException {
+                                                boolean check) throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }

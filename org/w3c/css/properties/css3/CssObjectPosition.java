@@ -14,32 +14,32 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssObjectPosition extends org.w3c.css.properties.css.CssObjectPosition {
 
-	/**
-	 * Create a new CssObjectPosition
-	 */
-	public CssObjectPosition() {
-		value = initial;
-	}
+    /**
+     * Create a new CssObjectPosition
+     */
+    public CssObjectPosition() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssObjectPosition
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssObjectPosition(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 4) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
-		value = CssBackgroundPosition.checkSyntax(expression, ac, getPropertyName());
-	}
+    /**
+     * Creates a new CssObjectPosition
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssObjectPosition(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 4) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
+        value = CssBackgroundPosition.checkSyntax(expression, ac, getPropertyName());
+    }
 
-	public CssObjectPosition(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssObjectPosition(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

@@ -15,29 +15,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssRight extends org.w3c.css.properties.css.CssRight {
 
-	/**
-	 * Create a new CssRight
-	 */
-	public CssRight() {
-	}
+    /**
+     * Create a new CssRight
+     */
+    public CssRight() {
+    }
 
-	/**
-	 * Creates a new CssRight
-	 * @see org.w3c.css.properties.css21.CssTop
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssRight(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssTop.checkValue(ac, expression, check, this);
+    /**
+     * Creates a new CssRight
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     * @see org.w3c.css.properties.css21.CssTop
+     */
+    public CssRight(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssTop.checkValue(ac, expression, check, this);
 
-	}
+    }
 
-	public CssRight(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssRight(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

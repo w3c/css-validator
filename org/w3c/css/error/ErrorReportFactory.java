@@ -16,15 +16,15 @@ public class ErrorReportFactory {
      * output"
      */
     public static ErrorReport getErrorReport(ApplContext ac, String title,
-   					     String output, Exception e,
-   					     boolean validURI) {
-   	if ((output == null) || (output.equals("html"))
-   	    || (output.equals("xhtml"))) {
-   	    return new ErrorReportHTML(ac, title, output, e);
-   	}
-   	if (output.equals("soap12")) {
-   	    return new ErrorReportSOAP12(ac, title, output, e, validURI);
-   	}
-   	return new ErrorReportHTML(ac, title, output, e);
+                                             String output, Exception e,
+                                             boolean validURI) {
+        if ((output == null) || (output.equals("html"))
+                || (output.equals("xhtml"))) {
+            return new ErrorReportHTML(ac, title, output, e);
+        }
+        if (output.equals("soap12")) {
+            return new ErrorReportSOAP12(ac, title, output, e, validURI);
+        }
+        return new ErrorReportHTML(ac, title, output, e);
     }
 }

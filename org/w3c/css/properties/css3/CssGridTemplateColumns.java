@@ -23,67 +23,67 @@ import static org.w3c.css.properties.css3.CssGridTemplate.parseTrackList;
  */
 public class CssGridTemplateColumns extends org.w3c.css.properties.css.CssGridTemplateColumns {
 
-	/**
-	 * Create a new CssGridTemplateColumns
-	 */
-	public CssGridTemplateColumns() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGridTemplateColumns
+     */
+    public CssGridTemplateColumns() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGridTemplateColumns
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridTemplateColumns(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssValue val;
-		char op;
+    /**
+     * Creates a new CssGridTemplateColumns
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridTemplateColumns(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssValue val;
+        char op;
 
-		ArrayList<CssValue> values = new ArrayList<>();
-		CssIdent ident;
+        ArrayList<CssValue> values = new ArrayList<>();
+        CssIdent ident;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("unrecognize", ac);
-					}
-					values.add(inherit);
-					expression.next();
-					break;
-				}
-				if (none.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("unrecognize", ac);
-					}
-					values.add(none);
-					expression.next();
-					break;
-				}
-			default:
-				expression.mark();
-				try {
-					values.add(parseTrackList(ac, expression, this));
-				} catch (InvalidParamException ex) {
-					// perhaps an AutoTrackList?
-					expression.reset();
-					values.add(parseAutoTrackList(ac, expression, this));
-				}
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    values.add(inherit);
+                    expression.next();
+                    break;
+                }
+                if (none.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    values.add(none);
+                    expression.next();
+                    break;
+                }
+            default:
+                expression.mark();
+                try {
+                    values.add(parseTrackList(ac, expression, this));
+                } catch (InvalidParamException ex) {
+                    // perhaps an AutoTrackList?
+                    expression.reset();
+                    values.add(parseAutoTrackList(ac, expression, this));
+                }
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
 
-	}
+    }
 
-	public CssGridTemplateColumns(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridTemplateColumns(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -13,8 +13,8 @@ import org.w3c.css.selectors.PseudoFunctionSelector;
 public class PseudoFunctionNthOfType extends PseudoFunctionSelector {
 
     public PseudoFunctionNthOfType(String name, String value) {
-	setName(name);
-	setParam(value);
+        setName(name);
+        setParam(value);
     }
 
 }

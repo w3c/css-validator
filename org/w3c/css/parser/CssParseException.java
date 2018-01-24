@@ -177,16 +177,16 @@ public class CssParseException extends ParseException {
         return exp;
     }
 
-	public String getErrorType() {
-		if (parseException == null) {
-			return null;
-		}
-		if (parseException instanceof InvalidParamException) {
-			return ((InvalidParamException) parseException).getErrorType();
-		}
-		if (parseException instanceof ParseException) {
-			return CssError.parserError;
-		}
-		return parseException.getClass().toString();
-	}
+    public String getErrorType() {
+        if (parseException == null) {
+            return null;
+        }
+        if (parseException instanceof InvalidParamException) {
+            return ((InvalidParamException) parseException).getErrorType();
+        }
+        if (parseException instanceof ParseException) {
+            return CssError.parserError;
+        }
+        return parseException.getClass().toString();
+    }
 }

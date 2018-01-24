@@ -128,8 +128,8 @@ public class SelectorsList {
             Selector last = selectors.get(selectors.size() - 1);
             if (last instanceof PseudoElementSelector
                     && !(selector instanceof PseudoClassSelector
-                            && ((PseudoClassSelector) selector)
-                                    .isUserAction())) {
+                    && ((PseudoClassSelector) selector)
+                    .isUserAction())) {
                 throw new InvalidParamException("pseudo-element-not-last",
                         selector, last, ac);
             }

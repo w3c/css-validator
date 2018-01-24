@@ -54,7 +54,7 @@ public class CssAppearance extends org.w3c.css.properties.css.CssAppearance {
      * @throws InvalidParamException Incorrect value
      */
     public CssAppearance(ApplContext ac, CssExpression expression,
-            boolean check) throws InvalidParamException {
+                         boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);

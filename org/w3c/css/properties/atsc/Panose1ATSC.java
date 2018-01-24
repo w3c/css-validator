@@ -27,82 +27,82 @@ public class Panose1ATSC extends CssProperty {
      * Create a new Panose1ATSC
      */
     public Panose1ATSC() {
-	// nothing to do
+        // nothing to do
     }
 
     /**
      * Creates a new Panose1ATSC
      *
      * @param expression the unicode em
-     * @exception InvalidParamException values are incorrect
+     * @throws InvalidParamException values are incorrect
      */
     public Panose1ATSC(ApplContext ac, CssExpression expression, boolean check)
-    	throws InvalidParamException {
-	CssValue val;
-	char op;
-	int i = 0;
-	setByUser();
+            throws InvalidParamException {
+        CssValue val;
+        char op;
+        int i = 0;
+        setByUser();
 
-	boolean manyValues = expression.getCount() > 1;
+        boolean manyValues = expression.getCount() > 1;
 
-	{
-	    val = expression.getValue();
-	    ac.getFrame().addWarning("atsc", val.toString());
-	}
+        {
+            val = expression.getValue();
+            ac.getFrame().addWarning("atsc", val.toString());
+        }
 
-	do {
-	    val = expression.getValue();
-	    op = expression.getOperator();
+        do {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-	    if(manyValues && val.equals(inherit)) {
-		throw new InvalidParamException("unrecognize", ac);
-	    }
+            if (manyValues && val.equals(inherit)) {
+                throw new InvalidParamException("unrecognize", ac);
+            }
 
-	    if (val instanceof CssNumber) {
-		value[i++] = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-	    }
-	} while (!expression.end()
-		 && (op == CssOperator.SPACE)
-		 && (i < 10));
+            if (val instanceof CssNumber) {
+                value[i++] = val;
+                expression.next();
+            } else {
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        } while (!expression.end()
+                && (op == CssOperator.SPACE)
+                && (i < 10));
 
-	if (i != 10) {
-	    throw new InvalidParamException("few-value",
-					    getPropertyName(), ac);
-	}
+        if (i != 10) {
+            throw new InvalidParamException("few-value",
+                    getPropertyName(), ac);
+        }
     }
 
     public Panose1ATSC(ApplContext ac, CssExpression expression)
-	throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the current value
      */
     public Object get() {
-	return value[0];
+        return value[0];
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	String ret = "";
-	for (int i = 0; i < 10; i++) {
-	    ret += " " + value[i];
-	}
-	return ret.substring(1);
+        String ret = "";
+        for (int i = 0; i < 10; i++) {
+            ret += " " + value[i];
+        }
+        return ret.substring(1);
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "panose-1";
+        return "panose-1";
     }
 
     /**
@@ -111,25 +111,25 @@ public class Panose1ATSC extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	ATSCStyle style0 = (ATSCStyle) style;
-	if (style0.panose1ATSC != null) {
-	    style0.addRedefinitionWarning(ac, this);
-	}
-	style0.panose1ATSC = this;
+        ATSCStyle style0 = (ATSCStyle) style;
+        if (style0.panose1ATSC != null) {
+            style0.addRedefinitionWarning(ac, this);
+        }
+        style0.panose1ATSC = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getPanose1ATSC();
-	} else {
-	    return ((ATSCStyle) style).panose1ATSC;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getPanose1ATSC();
+        } else {
+            return ((ATSCStyle) style).panose1ATSC;
+        }
     }
 
     /**
@@ -138,8 +138,8 @@ public class Panose1ATSC extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	// @@TODO
-	return false;
+        // @@TODO
+        return false;
     }
 
     /**
@@ -147,7 +147,7 @@ public class Panose1ATSC extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

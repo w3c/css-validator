@@ -32,14 +32,15 @@ public class CssBoxShadow extends CssProperty {
     /**
      * Create a new CssBoxShadow
      *
-     * @param ac the context
+     * @param ac         the context
      * @param expression The expression for this property
-     * @param check if length check is needed
-     * @throws org.w3c.css.util.InvalidParamException Incorrect value
+     * @param check      if length check is needed
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect value
      */
     public CssBoxShadow(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
-            throw new InvalidParamException("unrecognize", ac);
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssBoxShadow(ApplContext ac, CssExpression expression)
@@ -55,7 +56,7 @@ public class CssBoxShadow extends CssProperty {
     public void addToStyle(ApplContext ac, CssStyle style) {
         if (((Css3Style) style).cssBoxShadow != null) {
             style.addRedefinitionWarning(ac, this);
-		}
+        }
         ((Css3Style) style).cssBoxShadow = this;
     }
 

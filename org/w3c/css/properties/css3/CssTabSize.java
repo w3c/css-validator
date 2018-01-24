@@ -17,56 +17,56 @@ import org.w3c.css.values.CssValue;
  */
 public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 
-	/**
-	 * Create a new CssTabSize
-	 */
-	public CssTabSize() {
-		value = initial;
-	}
+    /**
+     * Create a new CssTabSize
+     */
+    public CssTabSize() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssTabSize
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTabSize(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Creates a new CssTabSize
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTabSize(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				CssCheckableValue number = val.getCheckableValue();
-				number.checkInteger(ac, this);
-				number.checkPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_LENGTH:
-				CssCheckableValue l = val.getCheckableValue();
-				l.checkPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val, getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                CssCheckableValue number = val.getCheckableValue();
+                number.checkInteger(ac, this);
+                number.checkPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_LENGTH:
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val, getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssTabSize(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTabSize(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

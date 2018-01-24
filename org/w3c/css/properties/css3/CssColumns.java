@@ -21,7 +21,6 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#columns
- *
  * @see org.w3c.css.properties.css3.CssColumnWidth
  * @see org.w3c.css.properties.css3.CssColumnCount
  */
@@ -43,10 +42,11 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
     /**
      * Create a new CssColumns
      *
-     * @param ac the context
+     * @param ac         the context
      * @param expression The expression for this property
-     * @param check if checking is enforced
-     * @throws org.w3c.css.util.InvalidParamException Incorrect values
+     * @param check      if checking is enforced
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect values
      */
     public CssColumns(ApplContext ac, CssExpression expression,
                       boolean check) throws InvalidParamException {
@@ -179,6 +179,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
     public boolean isSoftlyInherited() {
         return (inherit == value);
     }
+
     /**
      * Returns a string representation of the object
      */

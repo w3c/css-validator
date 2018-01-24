@@ -30,7 +30,8 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
      * Create a new CssWidth.
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Values are incorrect
      */
     public CssWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -62,7 +63,7 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
                     throw new InvalidParamException("negative-value",
                             val.toString(), ac);
                 }
-				value = lenVal;
+                value = lenVal;
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 CssPercentage perVal = (CssPercentage) val;
@@ -70,7 +71,7 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
                     throw new InvalidParamException("negative-value",
                             val.toString(), ac);
                 }
-				value = perVal;
+                value = perVal;
                 break;
             default:
                 throw new InvalidParamException("value", val, getPropertyName(), ac);

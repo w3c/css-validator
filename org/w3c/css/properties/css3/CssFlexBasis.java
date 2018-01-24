@@ -18,73 +18,73 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFlexBasis extends org.w3c.css.properties.css.CssFlexBasis {
 
-	public static final CssIdent content = CssIdent.getIdent("content");
+    public static final CssIdent content = CssIdent.getIdent("content");
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		if (content.equals(ident)) {
-			return content;
-		}
-		return CssWidth.getAllowedIdent(ident);
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        if (content.equals(ident)) {
+            return content;
+        }
+        return CssWidth.getAllowedIdent(ident);
+    }
 
-	/**
-	 * Create a new CssFlexBasis
-	 */
-	public CssFlexBasis() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFlexBasis
+     */
+    public CssFlexBasis() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssFlexBasis
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFlexBasis(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssFlexBasis
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFlexBasis(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-		setByUser();
+        setByUser();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				} else if (content.equals(val)) {
-					value = content;
-					break;
-				}
-			default:
-				// content or else CssWidth
-				CssExpression e = new CssExpression();
-				e.addValue(val);
-				try {
-					CssWidth cssWidth = new CssWidth(ac, e, check);
-					value = cssWidth.value;
-				} catch (InvalidParamException ex) {
-					throw new InvalidParamException("value", val, getPropertyName(), ac);
-				}
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                } else if (content.equals(val)) {
+                    value = content;
+                    break;
+                }
+            default:
+                // content or else CssWidth
+                CssExpression e = new CssExpression();
+                e.addValue(val);
+                try {
+                    CssWidth cssWidth = new CssWidth(ac, e, check);
+                    value = cssWidth.value;
+                } catch (InvalidParamException ex) {
+                    throw new InvalidParamException("value", val, getPropertyName(), ac);
+                }
+        }
+        expression.next();
+    }
 
-	public CssFlexBasis(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFlexBasis(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Is the value of this property is a default value.
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return ((value == content) || (value == initial));
-	}
+    /**
+     * Is the value of this property is a default value.
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return ((value == content) || (value == initial));
+    }
 }
 

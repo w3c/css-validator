@@ -37,7 +37,7 @@ public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
      *          Incorrect value
      */
     public CssPerspective(ApplContext ac, CssExpression expression,
-						  boolean check) throws InvalidParamException {
+                          boolean check) throws InvalidParamException {
 
         setByUser();
         CssValue val = expression.getValue();
@@ -48,11 +48,11 @@ public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-				// number might be a length, but it will fail the >0 test
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_LENGTH:
-				CssCheckableValue l = val.getCheckableValue();
-				l.checkStrictPositiveness(ac, this);
+                // number might be a length, but it will fail the >0 test
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkStrictPositiveness(ac, this);
                 value = val;
                 break;
             case CssTypes.CSS_IDENT:

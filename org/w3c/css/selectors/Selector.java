@@ -13,18 +13,21 @@ public interface Selector {
 
     /**
      * Returns a String representation of this Selector
-     * @return  the String representation of this Selector
+     *
+     * @return the String representation of this Selector
      */
     public String toString();
 
     /**
      * Returns the name of this selector
+     *
      * @return
      */
     public String getName();
 
     /**
      * Returns <code>true</code> if a selector can be applied to this selector
+     *
      * @param other
      * @return
      */

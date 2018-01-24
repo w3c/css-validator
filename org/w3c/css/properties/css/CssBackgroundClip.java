@@ -38,7 +38,7 @@ public class CssBackgroundClip extends CssProperty {
      */
     public CssBackgroundClip(ApplContext ac, CssExpression expression,
                              boolean check) throws InvalidParamException {
-                    throw new InvalidParamException("unrecognized", ac);
+        throw new InvalidParamException("unrecognized", ac);
 
     }
 
@@ -47,7 +47,7 @@ public class CssBackgroundClip extends CssProperty {
         this(ac, expression, false);
     }
 
-    
+
     /**
      * Add this property to the CssStyle
      *

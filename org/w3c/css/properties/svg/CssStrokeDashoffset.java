@@ -17,58 +17,58 @@ import org.w3c.css.values.CssValue;
 public class CssStrokeDashoffset extends org.w3c.css.properties.css.CssStrokeDashoffset {
 
 
-	/**
-	 * Create a new CssStrokeDashoffset
-	 */
-	public CssStrokeDashoffset() {
-		value = initial;
-	}
+    /**
+     * Create a new CssStrokeDashoffset
+     */
+    public CssStrokeDashoffset() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssStrokeDashoffset
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssStrokeDashoffset(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssStrokeDashoffset
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssStrokeDashoffset(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				// only 0 can be a length
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_PERCENTAGE:
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // only 0 can be a length
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssStrokeDashoffset(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssStrokeDashoffset(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

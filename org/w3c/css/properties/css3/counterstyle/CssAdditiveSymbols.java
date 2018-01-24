@@ -25,106 +25,106 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssAdditiveSymbols extends org.w3c.css.properties.css.counterstyle.CssAdditiveSymbols {
 
 
-	/**
-	 * Create a new CssAdditiveSymbols
-	 */
-	public CssAdditiveSymbols() {
-		value = initial;  // this is wrong...
-	}
+    /**
+     * Create a new CssAdditiveSymbols
+     */
+    public CssAdditiveSymbols() {
+        value = initial;  // this is wrong...
+    }
 
-	/**
-	 * Creates a new CssAdditiveSymbols
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssAdditiveSymbols(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssValue val;
-		char op = SPACE;
-		ArrayList<CssValue> values = new ArrayList<>();
-		ArrayList<CssValue> additive;
-		boolean gotint, gotsymbol;
-		setByUser();
+    /**
+     * Creates a new CssAdditiveSymbols
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssAdditiveSymbols(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssValue val;
+        char op = SPACE;
+        ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> additive;
+        boolean gotint, gotsymbol;
+        setByUser();
 
 
-		if (expression.getCount() % 2 == 1) {
-			// we need an odd number here
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		while (!expression.end()) {
-			additive = new ArrayList<>();
-			gotsymbol = false;
-			gotint = false;
-			for (int i = 0; i < 2; i++) {
-				val = expression.getValue();
-				op = expression.getOperator();
-				switch (val.getType()) {
-					case CssTypes.CSS_URL:
-					case CssTypes.CSS_IMAGE:
-					case CssTypes.CSS_STRING:
-						if (gotsymbol) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						additive.add(val);
-						gotsymbol = true;
-						break;
-					case CssTypes.CSS_IDENT:
-						if (CssIdent.isCssWide((CssIdent) val)) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						if (gotsymbol) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						additive.add(val);
-						gotsymbol = true;
-						break;
-					case CssTypes.CSS_NUMBER:
-						val.getCheckableValue().checkInteger(ac, this);
-						if (gotint) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						additive.add(val);
-						gotint = true;
-						break;
-					default:
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-				}
-				if (i == 0 && op != SPACE) {
-					throw new InvalidParamException("operator", op,
-							getPropertyName(), ac);
-				}
-				expression.next();
-			}
-			values.add(new CssValueList(additive));
-			if (op != COMMA && !expression.end()) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
+        if (expression.getCount() % 2 == 1) {
+            // we need an odd number here
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        while (!expression.end()) {
+            additive = new ArrayList<>();
+            gotsymbol = false;
+            gotint = false;
+            for (int i = 0; i < 2; i++) {
+                val = expression.getValue();
+                op = expression.getOperator();
+                switch (val.getType()) {
+                    case CssTypes.CSS_URL:
+                    case CssTypes.CSS_IMAGE:
+                    case CssTypes.CSS_STRING:
+                        if (gotsymbol) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        additive.add(val);
+                        gotsymbol = true;
+                        break;
+                    case CssTypes.CSS_IDENT:
+                        if (CssIdent.isCssWide((CssIdent) val)) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        if (gotsymbol) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        additive.add(val);
+                        gotsymbol = true;
+                        break;
+                    case CssTypes.CSS_NUMBER:
+                        val.getCheckableValue().checkInteger(ac, this);
+                        if (gotint) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        additive.add(val);
+                        gotint = true;
+                        break;
+                    default:
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                }
+                if (i == 0 && op != SPACE) {
+                    throw new InvalidParamException("operator", op,
+                            getPropertyName(), ac);
+                }
+                expression.next();
+            }
+            values.add(new CssValueList(additive));
+            if (op != COMMA && !expression.end()) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
 
-		}
-		if (values.isEmpty()) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+        }
+        if (values.isEmpty()) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
 
-	}
+    }
 
-	public CssAdditiveSymbols(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssAdditiveSymbols(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

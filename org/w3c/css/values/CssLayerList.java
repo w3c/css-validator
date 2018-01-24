@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 /**
  * A comma separated value list.
- *
  */
 public class CssLayerList extends CssValue {
 
@@ -48,8 +47,8 @@ public class CssLayerList extends CssValue {
     /**
      * Set the value of this string.
      *
-     * @param s the ArrayList of CSS values
-     * @param ac  For errors and warnings reports.
+     * @param s  the ArrayList of CSS values
+     * @param ac For errors and warnings reports.
      * @throws org.w3c.css.util.InvalidParamException
      *          The unit is incorrect
      */
@@ -82,7 +81,7 @@ public class CssLayerList extends CssValue {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
-        for (CssValue aCssValue: value) {
+        for (CssValue aCssValue : value) {
             if (!first) {
                 sb.append(", ");
             } else {

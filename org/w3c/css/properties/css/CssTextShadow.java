@@ -80,12 +80,12 @@ public class CssTextShadow extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-		Css2Style s = (Css2Style) style;
-		if (s.cssTextShadow != null) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		s.cssTextShadow = this;
-	}
+        Css2Style s = (Css2Style) style;
+        if (s.cssTextShadow != null) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        s.cssTextShadow = this;
+    }
 
 
     /**
@@ -106,11 +106,11 @@ public class CssTextShadow extends CssProperty {
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css2Style) style).getTextShadow();
-		} else {
-			return ((Css2Style) style).cssTextShadow;
-		}
+        if (resolve) {
+            return ((Css2Style) style).getTextShadow();
+        } else {
+            return ((Css2Style) style).cssTextShadow;
+        }
     }
 }
 

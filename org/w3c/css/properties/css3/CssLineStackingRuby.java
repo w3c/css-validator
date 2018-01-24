@@ -32,42 +32,39 @@ public class CssLineStackingRuby extends CssProperty {
      * Create a new CssLineStackingRuby
      */
     public CssLineStackingRuby() {
-		linestackingruby = excluderuby;
+        linestackingruby = excluderuby;
     }
 
     /**
      * Create a new CssLineStackingRuby
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssLineStackingRuby(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                               boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	if (val.equals(initial)) {
-		linestackingruby = initial;
-		expression.next();
-	}
-	else if (val.equals(excluderuby)) {
-		linestackingruby = excluderuby;
-		expression.next();
-	}
-	else if (val.equals(includeruby)) {
-		linestackingruby = includeruby;
-		expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        if (val.equals(initial)) {
+            linestackingruby = initial;
+            expression.next();
+        } else if (val.equals(excluderuby)) {
+            linestackingruby = excluderuby;
+            expression.next();
+        } else if (val.equals(includeruby)) {
+            linestackingruby = includeruby;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssLineStackingRuby(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -76,24 +73,23 @@ public class CssLineStackingRuby extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssLineStackingRuby != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssLineStackingRuby = this;
+        if (((Css3Style) style).cssLineStackingRuby != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssLineStackingRuby = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getLineStackingRuby();
-	}
-	else {
-	    return ((Css3Style) style).cssLineStackingRuby;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getLineStackingRuby();
+        } else {
+            return ((Css3Style) style).cssLineStackingRuby;
+        }
     }
 
     /**
@@ -102,36 +98,36 @@ public class CssLineStackingRuby extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssLineStackingRuby &&
-		linestackingruby.equals(((CssLineStackingRuby) property).linestackingruby));
+        return (property instanceof CssLineStackingRuby &&
+                linestackingruby.equals(((CssLineStackingRuby) property).linestackingruby));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "line-stacking-ruby";
+        return "line-stacking-ruby";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return linestackingruby;
+        return linestackingruby;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return linestackingruby.equals(inherit);
+        return linestackingruby.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return linestackingruby.toString();
+        return linestackingruby.toString();
     }
 
     /**
@@ -139,7 +135,7 @@ public class CssLineStackingRuby extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return linestackingruby == excluderuby;
+        return linestackingruby == excluderuby;
     }
 
 }

@@ -15,11 +15,11 @@ import org.w3c.css.util.ApplContext;
 public class AttributeAny extends AttributeSelector {
 
     public AttributeAny(String name) {
-	super(name);
+        super(name);
     }
 
     public boolean canApply(Selector other) {
-	return true;
+        return true;
     }
 
     public void applyAttribute(ApplContext ac, AttributeSelector attr) {

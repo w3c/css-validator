@@ -74,10 +74,10 @@ public class Utf8Properties<K, V> extends Properties {
      * Characters can be written with their unicode escape sequence.
      *
      * @param inStream the input stream.
-     * @throws IOException if an error occurred when reading from the
-     *                     input stream.
+     * @throws IOException              if an error occurred when reading from the
+     *                                  input stream.
      * @throws IllegalArgumentException if the input stream contains a
-     * malformed Unicode escape sequence.
+     *                                  malformed Unicode escape sequence.
      * @see java.util.Properties#load(java.io.InputStream)
      */
     public synchronized void load(InputStream inStream) throws IOException {
@@ -100,7 +100,7 @@ public class Utf8Properties<K, V> extends Properties {
                 if (!property.equals("")) {
                     int endOfKey = 0;
                     // calculates the ending index of the key
-					int l = property.length();
+                    int l = property.length();
                     while (endOfKey < l && (keyValueSeparators.indexOf(property.charAt(endOfKey)) == -1)) {
                         endOfKey++;
                     }

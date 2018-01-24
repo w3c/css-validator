@@ -14,35 +14,35 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssScrollPaddingInlineStart extends org.w3c.css.properties.css.CssScrollPaddingInlineStart {
 
-	/**
-	 * Create a new CssScrollPaddingInlineStart
-	 */
-	public CssScrollPaddingInlineStart() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollPaddingInlineStart
+     */
+    public CssScrollPaddingInlineStart() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollPaddingInlineStart
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollPaddingInlineStart(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollPaddingInlineStart
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollPaddingInlineStart(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		value = CssScrollPadding.checkPaddingValue(ac, expression, this);
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        value = CssScrollPadding.checkPaddingValue(ac, expression, this);
 
-	}
+    }
 
-	public CssScrollPaddingInlineStart(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollPaddingInlineStart(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

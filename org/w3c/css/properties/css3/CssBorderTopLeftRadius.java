@@ -28,10 +28,10 @@ public class CssBorderTopLeftRadius extends org.w3c.css.properties.css.CssBorder
      * Create new CssBorderTopLeftRadius
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBorderTopLeftRadius(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                  boolean check) throws InvalidParamException {
         setByUser();
         value = CssBorderRadius.checkBorderCornerRadius(ac, this, expression, check);
         if (value.getType() == CssTypes.CSS_VALUE_LIST) {

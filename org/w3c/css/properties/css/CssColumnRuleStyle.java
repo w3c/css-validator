@@ -36,14 +36,14 @@ public class CssColumnRuleStyle extends CssProperty {
     /**
      * Create a new CssColumnRuleStyle
      *
-     * @param ac the context
+     * @param ac         the context
      * @param expression The expression for this property
-     * @param check if check on length is required
+     * @param check      if check on length is required
      * @throws InvalidParamException Incorrect value
      */
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression,
                               boolean check) throws InvalidParamException {
-            throw new InvalidParamException("unrecognize", ac);
+        throw new InvalidParamException("unrecognize", ac);
     }
 
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression)

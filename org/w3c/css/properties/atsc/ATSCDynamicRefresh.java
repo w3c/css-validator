@@ -28,48 +28,49 @@ public class ATSCDynamicRefresh extends CssProperty {
     /**
      * Create a new ATSCDynamicRefresh
      */
-    public ATSCDynamicRefresh () {
-	//nothing to do
+    public ATSCDynamicRefresh() {
+        //nothing to do
     }
 
     /**
      * Create a new ATSCDynamicRefresh
+     *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
-    public ATSCDynamicRefresh (ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+    public ATSCDynamicRefresh(ApplContext ac, CssExpression expression,
+                              boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-	this.ac = ac;
-	setByUser(); // tell this property is set by the user
-	CssValue val = expression.getValue();
-	if (val instanceof CssNumber) {
-	    if (((CssNumber) val).getValue() > 0 &&
-		    ((CssNumber) val).getValue() < 32767 &&
-		    ((CssNumber) val).isInteger()) {
+        this.ac = ac;
+        setByUser(); // tell this property is set by the user
+        CssValue val = expression.getValue();
+        if (val instanceof CssNumber) {
+            if (((CssNumber) val).getValue() > 0 &&
+                    ((CssNumber) val).getValue() < 32767 &&
+                    ((CssNumber) val).isInteger()) {
 
-		dynamicRefresh = val;
-		expression.next();
-	    } else {
-		throw new InvalidParamException("value", val.toString(),
-			getPropertyName(), ac);
-	    }
-	} else if (val.equals(auto) || val.equals(none) || val.equals(inherit)) {
-	    dynamicRefresh = val;
-	    expression.next();
-	} else {
-	    throw new InvalidParamException("value", val.toString(),
-		    getPropertyName(), ac);
-	}
+                dynamicRefresh = val;
+                expression.next();
+            } else {
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+            }
+        } else if (val.equals(auto) || val.equals(none) || val.equals(inherit)) {
+            dynamicRefresh = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", val.toString(),
+                    getPropertyName(), ac);
+        }
     }
 
     public ATSCDynamicRefresh(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -78,23 +79,23 @@ public class ATSCDynamicRefresh extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	 if (((ATSCStyle) style).dynamicRefresh != null)
-	     style.addRedefinitionWarning(ac, this);
-	 ((ATSCStyle) style).dynamicRefresh = this;
+        if (((ATSCStyle) style).dynamicRefresh != null)
+            style.addRedefinitionWarning(ac, this);
+        ((ATSCStyle) style).dynamicRefresh = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((ATSCStyle) style).getDynamicRefresh();
-	} else {
-	    return ((ATSCStyle) style).dynamicRefresh;
-	}
+        if (resolve) {
+            return ((ATSCStyle) style).getDynamicRefresh();
+        } else {
+            return ((ATSCStyle) style).dynamicRefresh;
+        }
     }
 
     /**
@@ -103,36 +104,36 @@ public class ATSCDynamicRefresh extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof ATSCDynamicRefresh &&
-                dynamicRefresh.equals( ((ATSCDynamicRefresh) property).dynamicRefresh));
+        return (property instanceof ATSCDynamicRefresh &&
+                dynamicRefresh.equals(((ATSCDynamicRefresh) property).dynamicRefresh));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "atsc-dynamic-refresh";
+        return "atsc-dynamic-refresh";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return dynamicRefresh;
+        return dynamicRefresh;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return false;
+        return false;
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return dynamicRefresh.toString();
+        return dynamicRefresh.toString();
     }
 
     /**
@@ -140,7 +141,7 @@ public class ATSCDynamicRefresh extends CssProperty {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return false;
+        return false;
     }
 
 }

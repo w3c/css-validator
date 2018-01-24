@@ -22,71 +22,71 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssBorderSpacing extends org.w3c.css.properties.css.CssBorderSpacing {
 
-	/**
-	 * Create a new CssBorderSpacing
-	 */
-	public CssBorderSpacing() {
-	}
+    /**
+     * Create a new CssBorderSpacing
+     */
+    public CssBorderSpacing() {
+    }
 
-	/**
-	 * Creates a new CssBorderSpacing
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssBorderSpacing(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssBorderSpacing
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssBorderSpacing(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		// same as CSS2plus a warning
-		ac.getFrame().addWarning("atsc", expression.toStringFromStart());
+        // same as CSS2plus a warning
+        ac.getFrame().addWarning("atsc", expression.toStringFromStart());
 
-		ArrayList<CssValue> v = new ArrayList<CssValue>();
-		int i = 0;
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
+        int i = 0;
 
-		while (!expression.end() && i < 2) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-				case CssTypes.CSS_LENGTH:
-					CssLength l = val.getLength();
-					l.checkPositiveness(ac, this);
-					v.add(l);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val) && expression.getCount() == 1) {
-						value = inherit;
-						break;
-					}
-					// unrecognized ident => fail
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-			i++;
-		}
-		if (value != inherit) {
-			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
-		}
-	}
+        while (!expression.end() && i < 2) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_LENGTH:
+                    CssLength l = val.getLength();
+                    l.checkPositiveness(ac, this);
+                    v.add(l);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val) && expression.getCount() == 1) {
+                        value = inherit;
+                        break;
+                    }
+                    // unrecognized ident => fail
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+            i++;
+        }
+        if (value != inherit) {
+            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
+        }
+    }
 
-	public CssBorderSpacing(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBorderSpacing(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

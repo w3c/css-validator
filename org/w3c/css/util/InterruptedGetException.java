@@ -15,11 +15,11 @@ import java.io.IOException;
  */
 public class InterruptedGetException extends IOException {
 
-	public long bytesTransferred = 0;
-	public long bytesExpected = 0;
+    public long bytesTransferred = 0;
+    public long bytesExpected = 0;
 
-	public InterruptedGetException(String message) {
-		super(message);
-	}
+    public InterruptedGetException(String message) {
+        super(message);
+    }
 
 }

@@ -43,8 +43,8 @@ import java.io.IOException;
 /**
  * This class collects various encoders and decoders.
  *
- * @version 0.2 (bug fix 2)  23/03/1997
  * @author Ronald Tschal&auml;r
+ * @version 0.2 (bug fix 2)  23/03/1997
  */
 
 public class Codecs {
@@ -361,7 +361,7 @@ public class Codecs {
                 pbeg = hdr.indexOf(';', vend + 1);    // get ';'
                 if (pbeg == -1) return null;
             } else {
-                pbeg = vend+1;
+                pbeg = vend + 1;
             }
             while (pbeg < len - 1
                     && (Util.isWhiteSpace(hdr.charAt(pbeg)) || (hdr.charAt(pbeg) == ';'))) {

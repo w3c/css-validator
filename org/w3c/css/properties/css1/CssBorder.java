@@ -126,15 +126,15 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                 case CssTypes.CSS_NUMBER:
                     val.getLength();
                 case CssTypes.CSS_LENGTH:
-					CssCheckableValue l = val.getCheckableValue();
-					l.checkPositiveness(ac, new CssBorder());
+                    CssCheckableValue l = val.getCheckableValue();
+                    l.checkPositiveness(ac, new CssBorder());
                     _width = val;
                     break;
-				case CssTypes.CSS_HASH_IDENT:
-					org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-					c.setShortRGBColor(val.toString(), ac);
-					_color = c;
-					break;
+                case CssTypes.CSS_HASH_IDENT:
+                    org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+                    c.setShortRGBColor(val.toString(), ac);
+                    _color = c;
+                    break;
                 case CssTypes.CSS_COLOR:
                     _color = val;
                     break;

@@ -13,32 +13,58 @@ package org.w3c.css.parser;
  */
 public interface CssSelectorsConstant {
 
-    /** [lang="fr"] */
+    /**
+     * [lang="fr"]
+     */
     public static final int ATTRIBUTE_EXACT = ' ';
-    /** [lang~="fr"] */
+    /**
+     * [lang~="fr"]
+     */
     public static final int ATTRIBUTE_ONE_OF = '~';
-    /** class selector == like [lang~="fr"] */
+    /**
+     * class selector == like [lang~="fr"]
+     */
     public static final int ATTRIBUTE_CLASS_SEL = '.';
-    /** [lang|="fr"] */
+    /**
+     * [lang|="fr"]
+     */
     public static final int ATTRIBUTE_BEGIN = '|';
-    /** [lang] */
+    /**
+     * [lang]
+     */
     public static final int ATTRIBUTE_ANY = -1;
-    /** [foo^="bar"] */
+    /**
+     * [foo^="bar"]
+     */
     public static final int ATTRIBUTE_START = '^';
-    /** [foo$="bar"] */
+    /**
+     * [foo$="bar"]
+     */
     public static final int ATTRIBUTE_SUFFIX = '$';
-    /** [foo*="bar"] */
+    /**
+     * [foo*="bar"]
+     */
     public static final int ATTRIBUTE_SUBSTR = '*';
 
-    /** Maximun of ATTRIBUTE_ONE_OF */
+    /**
+     * Maximun of ATTRIBUTE_ONE_OF
+     */
     public static final int ATTRIBUTE_LENGTH = 10;
 
-    /** descendant connector  */
+    /**
+     * descendant connector
+     */
     public static final char DESCENDANT = ' ';
-    /** child connector */
+    /**
+     * child connector
+     */
     public static final char CHILD = '>';
-    /** adjacent sibling connector */
+    /**
+     * adjacent sibling connector
+     */
     public static final char ADJACENT_SIBLING = '+';
-    /** general sibling connector */
+    /**
+     * general sibling connector
+     */
     public static final char GENERAL_SIBLING = '~';
 }

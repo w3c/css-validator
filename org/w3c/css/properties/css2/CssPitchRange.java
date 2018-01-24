@@ -32,35 +32,35 @@ public class CssPitchRange extends org.w3c.css.properties.css.CssPitchRange {
      */
     public CssPitchRange(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				CssNumber n = val.getNumber();
-				n.checkPositiveness(ac, this);
-				n.checkLowerEqualThan(ac, 100, this);
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                CssNumber n = val.getNumber();
+                n.checkPositiveness(ac, this);
+                n.checkLowerEqualThan(ac, 100, this);
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
 
     }
 

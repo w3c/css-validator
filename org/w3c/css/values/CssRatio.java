@@ -11,8 +11,8 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
 /**
- * @since CSS3
  * @spec http://www.w3.org/TR/2010/CR-css3-mediaqueries-20100727/#values
+ * @since CSS3
  */
 public class CssRatio extends CssValue {
 
@@ -39,7 +39,8 @@ public class CssRatio extends CssValue {
      *
      * @param s  the string representation of the ratio.
      * @param ac For errors and warnings reports.
-     * @throws org.w3c.css.util.InvalidParamException (incorrect format)
+     * @throws org.w3c.css.util.InvalidParamException
+     *          (incorrect format)
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
         String sw, sh;
@@ -100,9 +101,9 @@ public class CssRatio extends CssValue {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append((isWInt) ? Integer.toString((int)w): Util.displayFloat(w));
+        sb.append((isWInt) ? Integer.toString((int) w) : Util.displayFloat(w));
         sb.append('/');
-        sb.append((isHInt) ? Integer.toString((int)h): Util.displayFloat(h));
+        sb.append((isHInt) ? Integer.toString((int) h) : Util.displayFloat(h));
         return sb.toString();
     }
 

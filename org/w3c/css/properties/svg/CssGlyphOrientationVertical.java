@@ -17,64 +17,64 @@ import org.w3c.css.values.CssValue;
  */
 public class CssGlyphOrientationVertical extends org.w3c.css.properties.css.CssGlyphOrientationVertical {
 
-	public CssIdent auto = CssIdent.getIdent("auto");
+    public CssIdent auto = CssIdent.getIdent("auto");
 
-	/**
-	 * Create a new CssGlyphOrientationVertical
-	 */
-	public CssGlyphOrientationVertical() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGlyphOrientationVertical
+     */
+    public CssGlyphOrientationVertical() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGlyphOrientationVertical
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGlyphOrientationVertical(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssGlyphOrientationVertical
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGlyphOrientationVertical(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_ANGLE:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				if (auto.equals(val)) {
-					value = auto;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_ANGLE:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                if (auto.equals(val)) {
+                    value = auto;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssGlyphOrientationVertical(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGlyphOrientationVertical(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

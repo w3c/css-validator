@@ -90,8 +90,8 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
                 case CssTypes.CSS_NUMBER:
                     val.getLength();
                 case CssTypes.CSS_LENGTH:
-					CssCheckableValue l = val.getCheckableValue();
-					l.checkPositiveness(ac, new CssBorderWidth());
+                    CssCheckableValue l = val.getCheckableValue();
+                    l.checkPositiveness(ac, new CssBorderWidth());
                     res.add(value);
                     break;
                 case CssTypes.CSS_IDENT:
@@ -169,8 +169,8 @@ public class CssBorderWidth extends org.w3c.css.properties.css.CssBorderWidth {
             case CssTypes.CSS_NUMBER:
                 val.getLength();
             case CssTypes.CSS_LENGTH:
-				CssCheckableValue l = val.getCheckableValue();
-				l.checkPositiveness(ac, new CssBorderWidth());
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkPositiveness(ac, new CssBorderWidth());
                 retval = val;
                 break;
             case CssTypes.CSS_IDENT:

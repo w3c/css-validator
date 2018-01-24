@@ -16,45 +16,45 @@ import org.w3c.css.values.CssIdent;
  */
 public class CssNavLeft extends org.w3c.css.properties.css.CssNavLeft {
 
-	public static final CssIdent auto = CssIdent.getIdent("auto");
+    public static final CssIdent auto = CssIdent.getIdent("auto");
 
-	/**
-	 * Create a new CssNavLeft
-	 */
-	public CssNavLeft() {
-		value = initial;
-	}
+    /**
+     * Create a new CssNavLeft
+     */
+    public CssNavLeft() {
+        value = initial;
+    }
 
-	/**
-	 * Create a new CssNavLeft
-	 *
-	 * @param ac         The context
-	 * @param expression The expression for this property
-	 * @param check      true will test the number of parameters
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssNavLeft(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
+    /**
+     * Create a new CssNavLeft
+     *
+     * @param ac         The context
+     * @param expression The expression for this property
+     * @param check      true will test the number of parameters
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssNavLeft(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
-		setByUser();
-		value = CssNavUp.checkValues(ac, expression, check, this);
-	}
+        setByUser();
+        value = CssNavUp.checkValues(ac, expression, check, this);
+    }
 
-	/**
-	 * Create a new CssNavLeft
-	 *
-	 * @param ac,        the Context
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssNavLeft(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Create a new CssNavLeft
+     *
+     * @param ac,        the Context
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssNavLeft(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	public boolean isDefault() {
-		return (auto == value) || (value == initial);
-	}
+    public boolean isDefault() {
+        return (auto == value) || (value == initial);
+    }
 }

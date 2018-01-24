@@ -18,68 +18,68 @@ import org.w3c.css.values.CssValue;
  */
 public class CssVoiceDuration extends org.w3c.css.properties.css.CssVoiceDuration {
 
-	public static final CssIdent auto;
+    public static final CssIdent auto;
 
-	static {
-		auto = CssIdent.getIdent("auto");
-	}
+    static {
+        auto = CssIdent.getIdent("auto");
+    }
 
-	/**
-	 * Create a new CssVoiceDuration
-	 */
-	public CssVoiceDuration() {
-		value = initial;
-	}
+    /**
+     * Create a new CssVoiceDuration
+     */
+    public CssVoiceDuration() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssVoiceDuration
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssVoiceDuration(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssVoiceDuration
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssVoiceDuration(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-				break;
-			case CssTypes.CSS_TIME:
-				CssCheckableValue t = val.getCheckableValue();
-				t.checkPositiveness(ac, this);
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-				if (auto.equals(val)) {
-					value = auto;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+                break;
+            case CssTypes.CSS_TIME:
+                CssCheckableValue t = val.getCheckableValue();
+                t.checkPositiveness(ac, this);
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+                if (auto.equals(val)) {
+                    value = auto;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssVoiceDuration(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssVoiceDuration(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

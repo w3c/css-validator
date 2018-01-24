@@ -32,42 +32,39 @@ public class CssInlineBoxAlign extends CssProperty {
      * Create a new CssInlineBoxAlign
      */
     public CssInlineBoxAlign() {
-		inlineboxalign = initial;
+        inlineboxalign = initial;
     }
 
     /**
      * Create a new CssInlineBoxAlign
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssInlineBoxAlign(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                             boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	if (val.equals(initial)) {
-	    inlineboxalign = initial;
-	    expression.next();
-	}
-	else if (val.equals(last)) {
-	    inlineboxalign = last;
-	    expression.next();
-	}
-	else if (val instanceof CssNumber) {
-	    inlineboxalign = val;
-	    expression.next();
-	}
-	else {
-	    throw new InvalidParamException("value", expression.getValue(),
-		    getPropertyName(), ac);
-	}
+        if (val.equals(initial)) {
+            inlineboxalign = initial;
+            expression.next();
+        } else if (val.equals(last)) {
+            inlineboxalign = last;
+            expression.next();
+        } else if (val instanceof CssNumber) {
+            inlineboxalign = val;
+            expression.next();
+        } else {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssInlineBoxAlign(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -76,24 +73,23 @@ public class CssInlineBoxAlign extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssInlineBoxAlign != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssInlineBoxAlign = this;
+        if (((Css3Style) style).cssInlineBoxAlign != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssInlineBoxAlign = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getInlineBoxAlign();
-	}
-	else {
-	    return ((Css3Style) style).cssInlineBoxAlign;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getInlineBoxAlign();
+        } else {
+            return ((Css3Style) style).cssInlineBoxAlign;
+        }
     }
 
     /**
@@ -102,36 +98,36 @@ public class CssInlineBoxAlign extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssInlineBoxAlign &&
-		inlineboxalign.equals(((CssInlineBoxAlign) property).inlineboxalign));
+        return (property instanceof CssInlineBoxAlign &&
+                inlineboxalign.equals(((CssInlineBoxAlign) property).inlineboxalign));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "inline-box-align";
+        return "inline-box-align";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return inlineboxalign;
+        return inlineboxalign;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return inlineboxalign.equals(inherit);
+        return inlineboxalign.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return inlineboxalign.toString();
+        return inlineboxalign.toString();
     }
 
     /**
@@ -139,7 +135,7 @@ public class CssInlineBoxAlign extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return inlineboxalign == initial;
+        return inlineboxalign == initial;
     }
 
 }

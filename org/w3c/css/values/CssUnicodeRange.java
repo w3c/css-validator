@@ -15,9 +15,9 @@ import org.w3c.css.util.ApplContext;
 public class CssUnicodeRange extends CssValue {
 
     public static final int type = CssTypes.CSS_UNICODE_RANGE;
-    
+
     public final int getType() {
-	return type;
+        return type;
     }
 
     String value;
@@ -32,31 +32,31 @@ public class CssUnicodeRange extends CssValue {
      * Create a new CssUnicodeRange
      */
     public CssUnicodeRange(String value) {
-	this.value = value;
+        this.value = value;
     }
 
     /**
      * Set the value of this frequency.
      *
-     * @param s     the string representation of the frequency.
+     * @param s  the string representation of the frequency.
      * @param ac For errors and warnings reports.
      */
     public void set(String s, ApplContext ac) {
-	value = s;
+        value = s;
     }
 
     /**
      * Returns the value
      */
     public Object get() {
-	return value;
+        return value;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return value;
+        return value;
     }
 
     /**
@@ -65,8 +65,8 @@ public class CssUnicodeRange extends CssValue {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-	return ((value != null) && (value instanceof CssUnicodeRange)
-		&& this.value.equals(((CssUnicodeRange) value).value));
+        return ((value != null) && (value instanceof CssUnicodeRange)
+                && this.value.equals(((CssUnicodeRange) value).value));
     }
 
 }

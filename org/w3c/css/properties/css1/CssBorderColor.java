@@ -68,11 +68,11 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
             op = expression.getOperator();
 
             switch (val.getType()) {
-				case CssTypes.CSS_HASH_IDENT:
-					org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-					c.setShortRGBColor(val.toString(), ac);
-					res.add(c);
-					break;
+                case CssTypes.CSS_HASH_IDENT:
+                    org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
+                    c.setShortRGBColor(val.toString(), ac);
+                    res.add(c);
+                    break;
                 case CssTypes.CSS_COLOR:
                     res.add(val);
                     break;
@@ -81,7 +81,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
                         res.add(inherit);
                         break;
                     }
-                    res.add(new org.w3c.css.values.CssColor(ac, (String)val.get()));
+                    res.add(new org.w3c.css.values.CssColor(ac, (String) val.get()));
                     break;
                 default:
                     throw new InvalidParamException("unrecognize", ac);
@@ -100,7 +100,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         value = (res.size() == 1) ? res.get(0) : new CssValueList(res);
 
         // now assign the computed values...
-		// as the property des not exist, we use the defined superclass
+        // as the property des not exist, we use the defined superclass
         top = new CssBorderTopColor();
         right = new CssBorderRightColor();
         bottom = new CssBorderBottomColor();
@@ -131,22 +131,22 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
         }
     }
 
-	/**
-	 * Add this property to the CssStyle
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
-		cssBorder.borderColor.byUser = byUser;
-		if (cssBorder.borderColor.shorthand) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		cssBorder.borderColor.value = value;
-		cssBorder.borderColor.top = top;
-		cssBorder.borderColor.left = left;
-		cssBorder.borderColor.right = right;
-		cssBorder.borderColor.bottom = bottom;
-		cssBorder.borderColor.shorthand = shorthand;
-	}
+    /**
+     * Add this property to the CssStyle
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        org.w3c.css.properties.css.CssBorder cssBorder = ((Css1Style) style).cssBorder;
+        cssBorder.borderColor.byUser = byUser;
+        if (cssBorder.borderColor.shorthand) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        cssBorder.borderColor.value = value;
+        cssBorder.borderColor.top = top;
+        cssBorder.borderColor.left = left;
+        cssBorder.borderColor.right = right;
+        cssBorder.borderColor.bottom = bottom;
+        cssBorder.borderColor.shorthand = shorthand;
+    }
 }

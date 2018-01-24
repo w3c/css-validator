@@ -24,365 +24,365 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 
-	// 2d functions
-	static final String matrix = "matrix";
-	static final String translate = "translate";
-	static final String translateX = "translatex"; // lowercase translateX
-	static final String translateY = "translatey"; // lowercase translateY
-	static final String scale = "scale";
-	static final String scaleX = "scalex";  // lowercase scaleX
-	static final String scaleY = "scaley";  // lowercase scaleY
-	static final String rotate = "rotate";
-	static final String skew = "skew";
-	static final String skewX = "skewx";  // lowercase skewX
-	static final String skewY = "skewy";  // lowercase skewY
+    // 2d functions
+    static final String matrix = "matrix";
+    static final String translate = "translate";
+    static final String translateX = "translatex"; // lowercase translateX
+    static final String translateY = "translatey"; // lowercase translateY
+    static final String scale = "scale";
+    static final String scaleX = "scalex";  // lowercase scaleX
+    static final String scaleY = "scaley";  // lowercase scaleY
+    static final String rotate = "rotate";
+    static final String skew = "skew";
+    static final String skewX = "skewx";  // lowercase skewX
+    static final String skewY = "skewy";  // lowercase skewY
 
-	// 3d functions
-	static final String matrix3d = "matrix3d";
-	static final String translate3d = "translate3d";
-	static final String translateZ = "translatez"; // lowercase translateZ
-	static final String scale3d = "scale3d";
-	static final String scaleZ = "scalez";   // lowercalse scaleZ
-	static final String rotate3d = "rotate3d";
-	static final String rotateX = "rotatex"; // lowercase rotateX
-	static final String rotateY = "rotatey"; // lowercase rotateY
-	static final String rotateZ = "rotatez"; // lowercase rotateZ
-	static final String perspective = "perspective";
+    // 3d functions
+    static final String matrix3d = "matrix3d";
+    static final String translate3d = "translate3d";
+    static final String translateZ = "translatez"; // lowercase translateZ
+    static final String scale3d = "scale3d";
+    static final String scaleZ = "scalez";   // lowercalse scaleZ
+    static final String rotate3d = "rotate3d";
+    static final String rotateX = "rotatex"; // lowercase rotateX
+    static final String rotateY = "rotatey"; // lowercase rotateY
+    static final String rotateZ = "rotatez"; // lowercase rotateZ
+    static final String perspective = "perspective";
 
-	/**
-	 * Create a new CssTransform
-	 */
-	public CssTransform() {
-		value = initial;
-	}
+    /**
+     * Create a new CssTransform
+     */
+    public CssTransform() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssTransform
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTransform(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssTransform
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTransform(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
-		boolean singleVal = false;
-		CssValue sValue = null;
+        CssValue val;
+        char op;
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        boolean singleVal = false;
+        CssValue sValue = null;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_FUNCTION:
-					parseFunctionValues(ac, val, this);
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						singleVal = true;
-						sValue = inherit;
-						values.add(inherit);
-						break;
-					} else if (none.equals(val)) {
-						singleVal = true;
-						sValue = none;
-						values.add(none);
-						break;
-					}
-					// if not recognized, let it fail
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != SPACE)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		if (singleVal && values.size() > 1) {
-			throw new InvalidParamException("value",
-					sValue.toString(),
-					getPropertyName(), ac);
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_FUNCTION:
+                    parseFunctionValues(ac, val, this);
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        singleVal = true;
+                        sValue = inherit;
+                        values.add(inherit);
+                        break;
+                    } else if (none.equals(val)) {
+                        singleVal = true;
+                        sValue = none;
+                        values.add(none);
+                        break;
+                    }
+                    // if not recognized, let it fail
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != SPACE)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        if (singleVal && values.size() > 1) {
+            throw new InvalidParamException("value",
+                    sValue.toString(),
+                    getPropertyName(), ac);
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssTransform(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTransform(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	protected static void parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
-			throws InvalidParamException {
-		CssFunction function = (CssFunction) func;
-		String fname = function.getName().toLowerCase();
-		// waiting for jdk7 for the string-based switch/case
+    protected static void parseFunctionValues(ApplContext ac, CssValue func, CssProperty caller)
+            throws InvalidParamException {
+        CssFunction function = (CssFunction) func;
+        String fname = function.getName().toLowerCase();
+        // waiting for jdk7 for the string-based switch/case
 
-		// 2d functions
-		if (matrix.equals(fname)) {
-			parseExactlyNX(ac, function.getParameters(), 6, CssTypes.CSS_NUMBER, caller);
-		} else if (translate.equals(fname)) {
-			parseTranslateFunction(ac, function.getParameters(), caller);
-		} else if (translateX.equals(fname) || translateY.equals(fname)) {
-			parseTranslateAxisFunction(ac, function.getParameters(), caller);
-		} else if (scale.equals(fname)) {
-			parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_NUMBER, caller);
-		} else if (scaleX.equals(fname) || scaleY.equals(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
-		} else if (rotate.equals(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-		} else if (skew.equals(fname)) {
-			parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_ANGLE, caller);
-		} else if (skewX.equals(fname) || skewY.equals(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-			/* after this line, 3d functions */
-		} else if (matrix3d.equals(fname)) {
-			parseExactlyNX(ac, function.getParameters(), 16, CssTypes.CSS_NUMBER, caller);
-		} else if (translate3d.equals(fname)) {
-			parseTranslate3dFunction(ac, function.getParameters(), caller);
-		} else if (translateZ.endsWith(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
-		} else if (scale3d.equals(fname)) {
-			parseExactlyNX(ac, function.getParameters(), 3, CssTypes.CSS_NUMBER, caller);
-		} else if (scaleZ.equals(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
-		} else if (rotate3d.equals(fname)) {
-			parseRotate3dFunction(ac, function.getParameters(), caller);
-		} else if (rotateX.equals(fname) || rotateY.equals(fname) || rotateZ.equals(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-		} else if (perspective.endsWith(fname)) {
-			parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
-		} else {
-			// unrecognized function
-			throw new InvalidParamException("value",
-					func.toString(),
-					caller.getPropertyName(), ac);
-		}
+        // 2d functions
+        if (matrix.equals(fname)) {
+            parseExactlyNX(ac, function.getParameters(), 6, CssTypes.CSS_NUMBER, caller);
+        } else if (translate.equals(fname)) {
+            parseTranslateFunction(ac, function.getParameters(), caller);
+        } else if (translateX.equals(fname) || translateY.equals(fname)) {
+            parseTranslateAxisFunction(ac, function.getParameters(), caller);
+        } else if (scale.equals(fname)) {
+            parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_NUMBER, caller);
+        } else if (scaleX.equals(fname) || scaleY.equals(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
+        } else if (rotate.equals(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+        } else if (skew.equals(fname)) {
+            parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_ANGLE, caller);
+        } else if (skewX.equals(fname) || skewY.equals(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+            /* after this line, 3d functions */
+        } else if (matrix3d.equals(fname)) {
+            parseExactlyNX(ac, function.getParameters(), 16, CssTypes.CSS_NUMBER, caller);
+        } else if (translate3d.equals(fname)) {
+            parseTranslate3dFunction(ac, function.getParameters(), caller);
+        } else if (translateZ.endsWith(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
+        } else if (scale3d.equals(fname)) {
+            parseExactlyNX(ac, function.getParameters(), 3, CssTypes.CSS_NUMBER, caller);
+        } else if (scaleZ.equals(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
+        } else if (rotate3d.equals(fname)) {
+            parseRotate3dFunction(ac, function.getParameters(), caller);
+        } else if (rotateX.equals(fname) || rotateY.equals(fname) || rotateZ.equals(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+        } else if (perspective.endsWith(fname)) {
+            parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
+        } else {
+            // unrecognized function
+            throw new InvalidParamException("value",
+                    func.toString(),
+                    caller.getPropertyName(), ac);
+        }
 
-	}
+    }
 
-	private static void parseExactlyNX(ApplContext ac, CssExpression expression,
-									   int n, int type, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() < n) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		parseAtMostX(ac, expression, n, CssTypes.CSS_NUMBER, caller);
+    private static void parseExactlyNX(ApplContext ac, CssExpression expression,
+                                       int n, int type, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() < n) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        parseAtMostX(ac, expression, n, CssTypes.CSS_NUMBER, caller);
 
-	}
+    }
 
-	// parse at most n values of type (CssTypes.XXX)
-	private static void parseAtMostX(ApplContext ac, CssExpression expression,
-									 int atMost, int type, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() > atMost) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		CssValue val;
-		char op;
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			// special case, 0 can be a length or an angle...
-			if (val.getType() == CssTypes.CSS_NUMBER) {
-				switch (type) {
-					case CssTypes.CSS_LENGTH:
-						val.getLength();
-						break;
-					case CssTypes.CSS_ANGLE:
-						val.getAngle();
-					case CssTypes.CSS_NUMBER:
-						break;
-					default:
-						throw new InvalidParamException("value",
-								val.toString(),
-								caller.getPropertyName(), ac);
-				}
-			} else if (val.getType() != type) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						caller.getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != COMMA)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-	}
+    // parse at most n values of type (CssTypes.XXX)
+    private static void parseAtMostX(ApplContext ac, CssExpression expression,
+                                     int atMost, int type, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > atMost) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val;
+        char op;
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            // special case, 0 can be a length or an angle...
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                switch (type) {
+                    case CssTypes.CSS_LENGTH:
+                        val.getLength();
+                        break;
+                    case CssTypes.CSS_ANGLE:
+                        val.getAngle();
+                    case CssTypes.CSS_NUMBER:
+                        break;
+                    default:
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                caller.getPropertyName(), ac);
+                }
+            } else if (val.getType() != type) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+    }
 
-	// parse one value of type (CssTypes.XXX)
-	private static void parseOneX(ApplContext ac, CssExpression expression,
-								  int type, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		if (expression.getCount() == 0) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		CssValue val;
-		val = expression.getValue();
-		// special case, 0 can be a length or an angle...
-		if (val.getType() == CssTypes.CSS_NUMBER) {
-			if (type == CssTypes.CSS_LENGTH || type == CssTypes.CSS_ANGLE) {
-				// if not zero, it will fail
-				if (val.getNumber().isZero()) {
-					expression.next();
-					return;
-				}
-			}
-		}
-		if (val.getType() != type) {
-			throw new InvalidParamException("value",
-					val.toString(),
-					caller.getPropertyName(), ac);
-		}
-		expression.next();
-	}
+    // parse one value of type (CssTypes.XXX)
+    private static void parseOneX(ApplContext ac, CssExpression expression,
+                                  int type, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        CssValue val;
+        val = expression.getValue();
+        // special case, 0 can be a length or an angle...
+        if (val.getType() == CssTypes.CSS_NUMBER) {
+            if (type == CssTypes.CSS_LENGTH || type == CssTypes.CSS_ANGLE) {
+                // if not zero, it will fail
+                if (val.getNumber().isZero()) {
+                    expression.next();
+                    return;
+                }
+            }
+        }
+        if (val.getType() != type) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	// special cases
+    // special cases
 
 
-	// http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translate-function
-	private static void parseTranslateFunction(ApplContext ac, CssExpression expression, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		if (expression.getCount() == 0) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		CssValue val;
-		char op;
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					val.getLength();
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-					break;
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							caller.getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != COMMA)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-	}
+    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translate-function
+    private static void parseTranslateFunction(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        CssValue val;
+        char op;
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getLength();
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+    }
 
-	// http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translateX-function
-	private static void parseTranslateAxisFunction(ApplContext ac, CssExpression expression, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		if (expression.getCount() == 0) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		CssValue val;
-		val = expression.getValue();
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getLength();
-			case CssTypes.CSS_LENGTH:
-			case CssTypes.CSS_PERCENTAGE:
-				break;
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						caller.getPropertyName(), ac);
-		}
-		expression.next();
-	}
+    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translateX-function
+    private static void parseTranslateAxisFunction(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        CssValue val;
+        val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getLength();
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        caller.getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	// http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translate3d-function
-	private static void parseTranslate3dFunction(ApplContext ac, CssExpression expression, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() < 3) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		if (expression.getCount() > 3) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		CssValue val;
-		char op;
-		for (int i = 0; i < 2; i++) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					val.getLength();
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-					break;
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							caller.getPropertyName(), ac);
-			}
-			expression.next();
-			if (op != COMMA) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		val = expression.getValue();
-		if (val.getType() == CssTypes.CSS_NUMBER) {
-			val.getLength();
-		} else if (val.getType() != CssTypes.CSS_LENGTH) {
-			throw new InvalidParamException("value",
-					val.toString(),
-					caller.getPropertyName(), ac);
-		}
-		expression.next();
-	}
+    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translate3d-function
+    private static void parseTranslate3dFunction(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() < 3) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        if (expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val;
+        char op;
+        for (int i = 0; i < 2; i++) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getLength();
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (op != COMMA) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        val = expression.getValue();
+        if (val.getType() == CssTypes.CSS_NUMBER) {
+            val.getLength();
+        } else if (val.getType() != CssTypes.CSS_LENGTH) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	// http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#rotate3d-function
-	private static void parseRotate3dFunction(ApplContext ac, CssExpression expression, CssProperty caller)
-			throws InvalidParamException {
-		if (expression.getCount() < 4) {
-			throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
-		}
-		if (expression.getCount() > 4) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		CssValue val;
-		char op;
-		for (int i = 0; i < 3; i++) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			if (val.getType() != CssTypes.CSS_NUMBER) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						caller.getPropertyName(), ac);
-			}
-			expression.next();
-			if (op != COMMA) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		val = expression.getValue();
-		if (val.getType() != CssTypes.CSS_ANGLE) {
-			throw new InvalidParamException("value",
-					val.toString(),
-					caller.getPropertyName(), ac);
-		}
-		expression.next();
-	}
+    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#rotate3d-function
+    private static void parseRotate3dFunction(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        if (expression.getCount() < 4) {
+            throw new InvalidParamException("few-value", caller.getPropertyName(), ac);
+        }
+        if (expression.getCount() > 4) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val;
+        char op;
+        for (int i = 0; i < 3; i++) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            if (val.getType() != CssTypes.CSS_NUMBER) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        caller.getPropertyName(), ac);
+            }
+            expression.next();
+            if (op != COMMA) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        val = expression.getValue();
+        if (val.getType() != CssTypes.CSS_ANGLE) {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        expression.next();
+    }
 }
 
 

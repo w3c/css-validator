@@ -9,8 +9,8 @@ package org.w3c.css.values;
 import java.util.HashMap;
 
 /**
- @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/syndata.html#color-units
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2008/REC-CSS2-20080411/syndata.html#color-units
  */
 public class CssColorCSS2 {
 

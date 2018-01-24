@@ -22,112 +22,112 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssWillChange extends org.w3c.css.properties.css.CssWillChange {
 
-	public static final CssIdent[] allowed_values;
-	public static final CssIdent[] excluded_values;
-	public static final CssIdent auto = CssIdent.getIdent("auto");
+    public static final CssIdent[] allowed_values;
+    public static final CssIdent[] excluded_values;
+    public static final CssIdent auto = CssIdent.getIdent("auto");
 
-	static {
-		String[] _allowed_values = {"scroll-position", "contents"};
-		allowed_values = new CssIdent[_allowed_values.length];
-		int i = 0;
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-		String[] _excluded_values = {"will-change", "none", "all", "auto",
-				"scroll-position", "contents"};
-		i = 0;
-		excluded_values = new CssIdent[_excluded_values.length];
-		for (String s : _excluded_values) {
-			excluded_values[i++] = CssIdent.getIdent(s);
-		}
-	}
+    static {
+        String[] _allowed_values = {"scroll-position", "contents"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+        String[] _excluded_values = {"will-change", "none", "all", "auto",
+                "scroll-position", "contents"};
+        i = 0;
+        excluded_values = new CssIdent[_excluded_values.length];
+        for (String s : _excluded_values) {
+            excluded_values[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static CssIdent getAllowedIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	public static boolean isExcludedIdent(CssIdent ident) {
-		for (CssIdent id : excluded_values) {
-			if (id.equals(ident)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public static boolean isExcludedIdent(CssIdent ident) {
+        for (CssIdent id : excluded_values) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	/**
-	 * Create a new CssWillChange
-	 */
-	public CssWillChange() {
-		value = initial;
-	}
+    /**
+     * Create a new CssWillChange
+     */
+    public CssWillChange() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssWillChange
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssWillChange(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssValue val;
-		char op;
-		CssIdent id, ident;
+    /**
+     * Creates a new CssWillChange
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssWillChange(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssValue val;
+        char op;
+        CssIdent id, ident;
 
-		setByUser();
+        setByUser();
 
-		ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() != CssTypes.CSS_IDENT) {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-			id = (CssIdent) val;
-			if (auto.equals(id)) {
-				if (expression.getCount() > 1) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
-				values.add(auto);
-			} else {
-				ident = getAllowedIdent(id);
-				if (ident != null) {
-					values.add(ident);
-				} else {
-					// custom-ident
-					if (CssIdent.isCssWide(id) || isExcludedIdent(id)) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					values.add(id);
-				}
-			}
-			if (op != COMMA && expression.getRemainingCount() > 1) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
-	}
+            if (val.getType() != CssTypes.CSS_IDENT) {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            id = (CssIdent) val;
+            if (auto.equals(id)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                values.add(auto);
+            } else {
+                ident = getAllowedIdent(id);
+                if (ident != null) {
+                    values.add(ident);
+                } else {
+                    // custom-ident
+                    if (CssIdent.isCssWide(id) || isExcludedIdent(id)) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(id);
+                }
+            }
+            if (op != COMMA && expression.getRemainingCount() > 1) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+    }
 
-	public CssWillChange(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssWillChange(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 
 

@@ -27,7 +27,7 @@ public class CssBorderFaceWidthATSC {
      * Create a new CssBorderFaceWidthATSC
      */
     public CssBorderFaceWidthATSC() {
-	value = medium;
+        value = medium;
     }
 
     /**
@@ -36,65 +36,65 @@ public class CssBorderFaceWidthATSC {
      * @param another The another side.
      */
     public CssBorderFaceWidthATSC(CssBorderFaceWidthATSC another) {
-	value = another.value;
+        value = another.value;
     }
 
     /**
      * Create a new CssBorderFaceWidth
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Values are incorrect
+     * @throws InvalidParamException Values are incorrect
      */
     public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                  boolean check) throws InvalidParamException {
 
-	if(check && expression.getCount() > 1) {
-	    throw new InvalidParamException("unrecognize", ac);
-	}
-
-	CssValue val = expression.getValue();
-
-	if (val instanceof CssLength) {
-        CssLength l = (CssLength) val;
-        if (l.isPositive()) {
-		this.value = val;
-        } else {
-		throw new InvalidParamException("negative-value", val.toString(), ac);
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
         }
-	} else if (val instanceof CssNumber) {
-	    value = ((CssNumber) val).getLength();
-	} else if (val.equals(thin)) {
-	    value = thin;
-	} else if (val.equals(medium)) {
-	    value = medium;
-	} else if (val.equals(thick)) {
-	    value = thick;
-	} else if (val.equals(CssProperty.inherit)) {
-	    value = CssProperty.inherit;
-	} else {
-	    throw new InvalidParamException("value", val.toString(), "width", ac);
-	}
 
-	expression.next();
+        CssValue val = expression.getValue();
+
+        if (val instanceof CssLength) {
+            CssLength l = (CssLength) val;
+            if (l.isPositive()) {
+                this.value = val;
+            } else {
+                throw new InvalidParamException("negative-value", val.toString(), ac);
+            }
+        } else if (val instanceof CssNumber) {
+            value = ((CssNumber) val).getLength();
+        } else if (val.equals(thin)) {
+            value = thin;
+        } else if (val.equals(medium)) {
+            value = medium;
+        } else if (val.equals(thick)) {
+            value = thick;
+        } else if (val.equals(CssProperty.inherit)) {
+            value = CssProperty.inherit;
+        } else {
+            throw new InvalidParamException("value", val.toString(), "width", ac);
+        }
+
+        expression.next();
     }
 
     public CssBorderFaceWidthATSC(ApplContext ac, CssExpression expression)
-    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
      * Returns the internal value
      */
     public CssValue getValue() {
-	return value;
+        return value;
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return value.toString();
+        return value.toString();
     }
 
     /**
@@ -103,7 +103,7 @@ public class CssBorderFaceWidthATSC {
      * @param value The another side.
      */
     public boolean equals(CssBorderFaceWidthATSC another) {
-	return value.equals(another.value);
+        return value.equals(another.value);
     }
 
     private static CssIdent thin = new CssIdent("thin");

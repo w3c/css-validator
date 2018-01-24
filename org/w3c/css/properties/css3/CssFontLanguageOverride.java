@@ -21,17 +21,17 @@ import java.util.Arrays;
  */
 public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontLanguageOverride {
 
-	public static final CssIdent normal;
+    public static final CssIdent normal;
 
-	static {
-		normal = CssIdent.getIdent("normal");
-	}
+    static {
+        normal = CssIdent.getIdent("normal");
+    }
 
     /**
      * Create a new CssFontLanguageOverride
      */
     public CssFontLanguageOverride() {
-		value = initial;
+        value = initial;
     }
 
     /**
@@ -43,54 +43,54 @@ public class CssFontLanguageOverride extends org.w3c.css.properties.css.CssFontL
      */
     public CssFontLanguageOverride(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_STRING:
-				CssString s = (CssString) val;
-				// limit of 3 characters + two surrounding quotes
-				if (s.toString().length() != 5) {
-					throw new InvalidParamException("value",
-							expression.getValue().toString(),
-							getPropertyName(), ac);
-				}
-				// we extract the 3 letters from the quotes...
-				String tag = s.toString().substring(1,4).toUpperCase();
-				// valid values are specified here.
-				int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
-				if (idx < 0) {
-					// TODO specific error code
-					throw new InvalidParamException("value",
-							expression.getValue().toString(),
-							getPropertyName(), ac);
-				}
-				value = s;
-				break;
-			case CssTypes.CSS_IDENT:
-				CssIdent ident = (CssIdent) val;
-				if (inherit.equals(ident)) {
-					value = inherit;
-					break;
-				}
-				if (normal.equals(ident)){
-					value = normal;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue().toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_STRING:
+                CssString s = (CssString) val;
+                // limit of 3 characters + two surrounding quotes
+                if (s.toString().length() != 5) {
+                    throw new InvalidParamException("value",
+                            expression.getValue().toString(),
+                            getPropertyName(), ac);
+                }
+                // we extract the 3 letters from the quotes...
+                String tag = s.toString().substring(1, 4).toUpperCase();
+                // valid values are specified here.
+                int idx = Arrays.binarySearch(OpenTypeLanguageSystemTag.tags, tag);
+                if (idx < 0) {
+                    // TODO specific error code
+                    throw new InvalidParamException("value",
+                            expression.getValue().toString(),
+                            getPropertyName(), ac);
+                }
+                value = s;
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent ident = (CssIdent) val;
+                if (inherit.equals(ident)) {
+                    value = inherit;
+                    break;
+                }
+                if (normal.equals(ident)) {
+                    value = normal;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue().toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
     }
 
     public CssFontLanguageOverride(ApplContext ac, CssExpression expression)

@@ -17,65 +17,65 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
 
-	public static final CssIdent normal = CssIdent.getIdent("normal");
-	public static final CssIdent smallCaps = CssIdent.getIdent("small-caps");
+    public static final CssIdent normal = CssIdent.getIdent("normal");
+    public static final CssIdent smallCaps = CssIdent.getIdent("small-caps");
 
-	public static final CssIdent getAllowedFontVariant(CssIdent ident) {
-		if (smallCaps.equals(ident)) {
-			return smallCaps;
-		}
-		if (normal.equals(ident)) {
-			return normal;
-		}
-		return null;
-	}
+    public static final CssIdent getAllowedFontVariant(CssIdent ident) {
+        if (smallCaps.equals(ident)) {
+            return smallCaps;
+        }
+        if (normal.equals(ident)) {
+            return normal;
+        }
+        return null;
+    }
 
-	/**
-	 * Creates a new CssFontVariant
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFontVariant(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssFontVariant
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFontVariant(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent ident = (CssIdent) val;
-			if (inherit.equals(ident)) {
-				value = inherit;
-			} else {
-				value = getAllowedFontVariant(ident);
-				if (value == null) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
-			}
-		} else {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            CssIdent ident = (CssIdent) val;
+            if (inherit.equals(ident)) {
+                value = inherit;
+            } else {
+                value = getAllowedFontVariant(ident);
+                if (value == null) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+            }
+        } else {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssFontVariant(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFontVariant(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	public CssFontVariant() {
-	}
+    public CssFontVariant() {
+    }
 }
 

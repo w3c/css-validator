@@ -16,14 +16,31 @@ package org.w3c.css.css;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.Errors;
 import org.w3c.css.parser.analyzer.TokenMgrError;
-import org.w3c.css.util.*;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
+import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+import org.w3c.css.util.Warning;
+import org.w3c.css.util.Warnings;
 import org.w3c.css.util.xml.XMLCatalog;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
-import org.xml.sax.*;
+import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -552,21 +569,22 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
         }
     }
 
-	/**
-	 * Parse an HTML document, given as a Reader
-	 * @param reader the Reader of the document
-	 * @param docref the String version of the URI of the document
-	 * @throws IOException
-	 * @throws SAXException
-	 */
-	public void parse(Reader reader, String docref) throws IOException, SAXException {
-		InputSource inputSource = new InputSource(reader);
-		try {
-			parse(inputSource, docref);
-		} finally {
-			reader.close();
-		}
-	}
+    /**
+     * Parse an HTML document, given as a Reader
+     *
+     * @param reader the Reader of the document
+     * @param docref the String version of the URI of the document
+     * @throws IOException
+     * @throws SAXException
+     */
+    public void parse(Reader reader, String docref) throws IOException, SAXException {
+        InputSource inputSource = new InputSource(reader);
+        try {
+            parse(inputSource, docref);
+        } finally {
+            reader.close();
+        }
+    }
 
     void parse(URL url) throws Exception {
         InputSource source = new InputSource();
@@ -579,7 +597,7 @@ public class TagSoupStyleSheetHandler implements ContentHandler, LexicalHandler,
             xmlParser.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
             xmlParser.setFeature("http://xml.org/sax/features/validation", false);
             /*
-	      xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
+          xmlParser.setFeature("http://xml.org/sax/features/external-parameter-entities",
 	      false);
 	      xmlParser.setFeature("http://xml.org/sax/features/external-general-entities",
 	      false);

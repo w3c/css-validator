@@ -21,99 +21,99 @@ import java.util.ArrayList;
  */
 public class CssVerticalAlign extends org.w3c.css.properties.css.CssVerticalAlign {
 
-	/**
-	 * Create a new CssVerticalAlign
-	 */
-	public CssVerticalAlign() {
-		value = initial;
-	}
+    /**
+     * Create a new CssVerticalAlign
+     */
+    public CssVerticalAlign() {
+        value = initial;
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param expression The expression for this property
-	 * @param check      set it to true to check the number of values
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssVerticalAlign(ApplContext ac, CssExpression expression,
-							boolean check) throws InvalidParamException {
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssVerticalAlign(ApplContext ac, CssExpression expression,
+                            boolean check) throws InvalidParamException {
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		ArrayList<CssValue> v = new ArrayList<>(2);
-		setByUser();
-		char op;
-		CssValue val;
-		CssIdent res;
-		boolean got_shift = false;
-		boolean got_alignment = false;
+        ArrayList<CssValue> v = new ArrayList<>(2);
+        setByUser();
+        char op;
+        CssValue val;
+        CssIdent res;
+        boolean got_shift = false;
+        boolean got_alignment = false;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					val.getCheckableValue().checkEqualsZero(ac, this);
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-					if (got_shift) {
-						throw new InvalidParamException("value", expression.getValue(),
-								getPropertyName(), ac);
-					}
-					got_shift = true;
-					v.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					CssIdent id = (CssIdent) val;
-					if (inherit.equals(id)) {
-						// inherit can only be alone
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value", expression.getValue(),
-									getPropertyName(), ac);
-						}
-						value = inherit;
-						break;
-					}
-					if (!got_shift) {
-						res = CssBaselineShift.getAllowedIdent(id);
-						if (res != null) {
-							v.add(res);
-							got_shift = true;
-							break;
-						}
-					}
-					if (!got_alignment) {
-						res = CssAlignmentBaseline.getAllowedIdent(id);
-						if (res != null) {
-							got_alignment = true;
-							v.add(res);
-							break;
-						}
-					}
-					// failed...
-				default:
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (value != inherit) {
-			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, this);
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    if (got_shift) {
+                        throw new InvalidParamException("value", expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    got_shift = true;
+                    v.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    CssIdent id = (CssIdent) val;
+                    if (inherit.equals(id)) {
+                        // inherit can only be alone
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", expression.getValue(),
+                                    getPropertyName(), ac);
+                        }
+                        value = inherit;
+                        break;
+                    }
+                    if (!got_shift) {
+                        res = CssBaselineShift.getAllowedIdent(id);
+                        if (res != null) {
+                            v.add(res);
+                            got_shift = true;
+                            break;
+                        }
+                    }
+                    if (!got_alignment) {
+                        res = CssAlignmentBaseline.getAllowedIdent(id);
+                        if (res != null) {
+                            got_alignment = true;
+                            v.add(res);
+                            break;
+                        }
+                    }
+                    // failed...
+                default:
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (value != inherit) {
+            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
+        }
+    }
 
-	public CssVerticalAlign(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssVerticalAlign(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 
 }

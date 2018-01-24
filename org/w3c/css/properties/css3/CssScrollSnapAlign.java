@@ -22,102 +22,102 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssScrollSnapAlign extends org.w3c.css.properties.css.CssScrollSnapAlign {
 
-	private static CssIdent[] allowed_values;
+    private static CssIdent[] allowed_values;
 
-	static {
-		String id_values[] = {"none", "start", "end", "center"};
-		allowed_values = new CssIdent[id_values.length];
-		int i = 0;
-		for (String s : id_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-	}
+    static {
+        String id_values[] = {"none", "start", "end", "center"};
+        allowed_values = new CssIdent[id_values.length];
+        int i = 0;
+        for (String s : id_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static CssIdent getMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssScrollSnapAlign
-	 */
-	public CssScrollSnapAlign() {
-		value = initial;
-	}
+    /**
+     * Create a new CssScrollSnapAlign
+     */
+    public CssScrollSnapAlign() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssScrollSnapAlign
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollSnapAlign(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssScrollSnapAlign
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollSnapAlign(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
-		char op = expression.getOperator();
-		ArrayList<CssValue> values = new ArrayList<>();
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					values.add(inherit);
-					break;
-				}
-				CssIdent ident = getMatchingIdent((CssIdent) val);
-				if (ident != null) {
-					values.add(ident);
-					break;
-				}
-				// unrecognized... fail.
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-		if (!expression.end()) {
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			val = expression.getValue();
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						values.add(inherit);
-						break;
-					}
-					CssIdent ident = getMatchingIdent((CssIdent) val);
-					if (ident != null) {
-						values.add(ident);
-						break;
-					}
-					// unrecognized... fail.
-				default:
-					throw new InvalidParamException("value",
-							expression.getValue(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    values.add(inherit);
+                    break;
+                }
+                CssIdent ident = getMatchingIdent((CssIdent) val);
+                if (ident != null) {
+                    values.add(ident);
+                    break;
+                }
+                // unrecognized... fail.
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+        if (!expression.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            val = expression.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        values.add(inherit);
+                        break;
+                    }
+                    CssIdent ident = getMatchingIdent((CssIdent) val);
+                    if (ident != null) {
+                        values.add(ident);
+                        break;
+                    }
+                    // unrecognized... fail.
+                default:
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssScrollSnapAlign(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollSnapAlign(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

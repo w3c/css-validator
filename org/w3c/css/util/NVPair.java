@@ -39,74 +39,81 @@
 package org.w3c.css.util;
 
 /**
-  * This class holds a Name/Value pair of strings. It's used for form-data
-  * and various internal things.
-  *
-  * @version	0.2 (bug fix 2)  23/03/1997
-  * @author	Ronald Tschal&auml;r
-  */
+ * This class holds a Name/Value pair of strings. It's used for form-data
+ * and various internal things.
+ *
+ * @version 0.2 (bug fix 2)  23/03/1997
+ * @author Ronald Tschal&auml;r
+ */
 
 public class NVPair {
-  /** the name */
-  String name;
+    /**
+     * the name
+     */
+    String name;
 
-  /** the value */
-  Object value;
+    /**
+     * the value
+     */
+    Object value;
 
-  // Constructors
+    // Constructors
 
-  /**
-    * Creates an empty name/value pair.
-    */
-  NVPair() {
-    this("", "");
-  }
+    /**
+     * Creates an empty name/value pair.
+     */
+    NVPair() {
+        this("", "");
+    }
 
-  /**
-    * Creates a copy of a given name/value pair.
-    * @param p the name/value pair to copy
-    */
-  public NVPair(NVPair p) {
-    this(p.name, p.value);
-  }
+    /**
+     * Creates a copy of a given name/value pair.
+     *
+     * @param p the name/value pair to copy
+     */
+    public NVPair(NVPair p) {
+        this(p.name, p.value);
+    }
 
-  /**
-    * Creates a new name/value pair and initializes it to the
-    * specified name and value.
-    * @param name  the name
-    * @param value the value
-    */
-  public NVPair(String name, Object value) {
-    this.name  = name;
-    this.value = value;
-  }
+    /**
+     * Creates a new name/value pair and initializes it to the
+     * specified name and value.
+     *
+     * @param name  the name
+     * @param value the value
+     */
+    public NVPair(String name, Object value) {
+        this.name = name;
+        this.value = value;
+    }
 
-  // Methods
+    // Methods
 
-  /**
-    * get the name
-    *
-    * @return the name
-    */
-  public final String getName() {
-    return name;
-  }
+    /**
+     * get the name
+     *
+     * @return the name
+     */
+    public final String getName() {
+        return name;
+    }
 
-  /**
-    * get the value
-    *
-    * @return the value
-    */
-  public final Object getValue() {
-    return value;
-  }
+    /**
+     * get the value
+     *
+     * @return the value
+     */
+    public final Object getValue() {
+        return value;
+    }
 
-  /**
-    * produces a string containing the name and value of this instance.
-    * @return a string containing the class name and the name and value
-    */
-  public String toString() {
-    return getClass().getName() + "[name=" + name + ",value=" + value + "]";
-  }
+    /**
+     * produces a string containing the name and value of this instance.
+     *
+     * @return a string containing the class name and the name and value
+     */
+    public String toString() {
+        return getClass().getName() + "[name=" + name + ",value=" + value + "]";
+    }
 }
 

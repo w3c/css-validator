@@ -22,83 +22,84 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssGridRow extends org.w3c.css.properties.css.CssGridRow {
 
-	private CssGridRowStart _start;
-	private CssGridRowEnd _end;
-	/**
-	 * Create a new CssGridRow
-	 */
-	public CssGridRow() {
-		value = initial;
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
-	}
+    private CssGridRowStart _start;
+    private CssGridRowEnd _end;
 
-	/**
-	 * Creates a new CssGridRow
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridRow(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssExpression exp;
+    /**
+     * Create a new CssGridRow
+     */
+    public CssGridRow() {
+        value = initial;
+        _start = new CssGridRowStart();
+        _end = new CssGridRowEnd();
+    }
 
-		CssValue val;
-		char op;
-		exp = new CssExpression();
-		int nb_switch = 0;
+    /**
+     * Creates a new CssGridRow
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridRow(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssExpression exp;
 
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
+        CssValue val;
+        char op;
+        exp = new CssExpression();
+        int nb_switch = 0;
 
-		ArrayList<CssValue> values = new ArrayList<>();
+        _start = new CssGridRowStart();
+        _end = new CssGridRowEnd();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-			if (val.getType() == CssTypes.CSS_SWITCH) {
-				if (nb_switch > 0) {
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-				}
-				values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
-				values.add(val);
-				exp = new CssExpression();
-				nb_switch++;
-			} else {
-				exp.addValue(val);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		_start.value = values.get(0);
-		// the following is not entirely true (as we need to check that the value is
-		// a custom ident), but we just need to warn for a redefinition here.
-		_end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
-	}
+            if (val.getType() == CssTypes.CSS_SWITCH) {
+                if (nb_switch > 0) {
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+                }
+                values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
+                values.add(val);
+                exp = new CssExpression();
+                nb_switch++;
+            } else {
+                exp.addValue(val);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
 
-	public CssGridRow(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        _start.value = values.get(0);
+        // the following is not entirely true (as we need to check that the value is
+        // a custom ident), but we just need to warn for a redefinition here.
+        _end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		_start.addToStyle(ac, style);
-		_end.addToStyle(ac, style);
-	}
+    public CssGridRow(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
+
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        _start.addToStyle(ac, style);
+        _end.addToStyle(ac, style);
+    }
 }
 

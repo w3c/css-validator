@@ -13,8 +13,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS3
  * @version $Revision$
+ * @since CSS3
  */
 public class CssFontLanguageOverride extends CssProperty {
 
@@ -81,12 +81,12 @@ public class CssFontLanguageOverride extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-		Css3Style s = (Css3Style) style;
-		if (s.cssFontLanguageOverride != null) {
-			style.addRedefinitionWarning(ac, this);
-		}
-		s.cssFontLanguageOverride = this;
-	}
+        Css3Style s = (Css3Style) style;
+        if (s.cssFontLanguageOverride != null) {
+            style.addRedefinitionWarning(ac, this);
+        }
+        s.cssFontLanguageOverride = this;
+    }
 
 
     /**
@@ -107,11 +107,11 @@ public class CssFontLanguageOverride extends CssProperty {
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css3Style) style).getFontLanguageOverride();
-		} else {
-			return ((Css3Style) style).cssFontLanguageOverride;
-		}
+        if (resolve) {
+            return ((Css3Style) style).getFontLanguageOverride();
+        } else {
+            return ((Css3Style) style).cssFontLanguageOverride;
+        }
     }
 }
 

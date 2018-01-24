@@ -16,36 +16,36 @@ import org.w3c.css.values.CssIdent;
  */
 public class CssStroke extends org.w3c.css.properties.css.CssStroke {
 
-	public static final CssIdent currentColor;
+    public static final CssIdent currentColor;
 
-	static {
-		currentColor = CssIdent.getIdent("currentColor");
-	}
+    static {
+        currentColor = CssIdent.getIdent("currentColor");
+    }
 
 
-	/**
-	 * Create a new CssStroke
-	 */
-	public CssStroke() {
-		value = initial;
-	}
+    /**
+     * Create a new CssStroke
+     */
+    public CssStroke() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssStroke
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssStroke(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssFill.parsePaint(ac, expression, check, this);
-	}
+    /**
+     * Creates a new CssStroke
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssStroke(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssFill.parsePaint(ac, expression, check, this);
+    }
 
-	public CssStroke(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssStroke(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -53,7 +53,7 @@ public class SVGStyle extends SVGBasicStyle {
         }
         return cssMaskImage;
     }
-    
+
     public CssMaskComposite getMaskComposite() {
         if (cssMaskComposite == null) {
             cssMaskComposite = (CssMaskComposite) style.CascadingOrder(new CssMaskComposite(),

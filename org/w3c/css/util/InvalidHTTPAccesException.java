@@ -24,66 +24,66 @@ package org.w3c.css.util;
  */
 public class InvalidHTTPAccesException extends InvalidAccesException {
 
-	// HTTP reason
-	int status;
+    // HTTP reason
+    int status;
 
-	// HTTP requested uri
-	String uri;
+    // HTTP requested uri
+    String uri;
 
-	// message
-	String message;
+    // message
+    String message;
 
-	// additional informations
-	Utf8Properties informations;
+    // additional informations
+    Utf8Properties informations;
 
-	/**
-	 * Creates a new InvalidHTTPAccesException
-	 */
-	public InvalidHTTPAccesException(int status, String uri, String message,
-									 Utf8Properties informations) {
-		super(message);
-		this.status = status;
-		this.uri = uri;
-		this.message = message;
-		this.informations = informations;
-	}
+    /**
+     * Creates a new InvalidHTTPAccesException
+     */
+    public InvalidHTTPAccesException(int status, String uri, String message,
+                                     Utf8Properties informations) {
+        super(message);
+        this.status = status;
+        this.uri = uri;
+        this.message = message;
+        this.informations = informations;
+    }
 
-	/**
-	 * Creates a new InvalidHTTPAccesException
-	 */
-	public InvalidHTTPAccesException(int status, String uri, String message) {
-		this(status, uri, message, null);
-	}
+    /**
+     * Creates a new InvalidHTTPAccesException
+     */
+    public InvalidHTTPAccesException(int status, String uri, String message) {
+        this(status, uri, message, null);
+    }
 
-	/**
-	 * Returns the HTTP reason of the failure NOT_FOUND, UNAUTHORIZED, ...
-	 */
-	public int getHTTPReason() {
-		return status;
-	}
+    /**
+     * Returns the HTTP reason of the failure NOT_FOUND, UNAUTHORIZED, ...
+     */
+    public int getHTTPReason() {
+        return status;
+    }
 
-	/**
-	 * Get the requested URI
-	 */
-	public String getURI() {
-		return uri;
-	}
+    /**
+     * Get the requested URI
+     */
+    public String getURI() {
+        return uri;
+    }
 
-	/**
-	 * Get the error message The message can come from the server or from the
-	 * application.
-	 */
-	public String getMessage() {
-		return message;
-	}
+    /**
+     * Get the error message The message can come from the server or from the
+     * application.
+     */
+    public String getMessage() {
+        return message;
+    }
 
-	/**
-	 * Returns some additionals HTTP information. These informations are useful
-	 * if you want to reply to the client For example, if the HTTP reason is
-	 * UNAUTHORIZED, it will contain the header WWW-Authenticate and
-	 * Authentication-Info.
-	 */
-	public Utf8Properties getInformations() {
-		return informations;
-	}
+    /**
+     * Returns some additionals HTTP information. These informations are useful
+     * if you want to reply to the client For example, if the HTTP reason is
+     * UNAUTHORIZED, it will contain the header WWW-Authenticate and
+     * Authentication-Info.
+     */
+    public Utf8Properties getInformations() {
+        return informations;
+    }
 }

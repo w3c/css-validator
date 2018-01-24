@@ -22,167 +22,167 @@ import java.util.Arrays;
  */
 public class CssFontVariantEastAsian extends org.w3c.css.properties.css.CssFontVariantEastAsian {
 
-	public static final CssIdent[] eastAsianVariantValues;
-	public static final CssIdent[] eastAsianWidthValues;
+    public static final CssIdent[] eastAsianVariantValues;
+    public static final CssIdent[] eastAsianWidthValues;
 
-	public static final CssIdent normal, ruby;
+    public static final CssIdent normal, ruby;
 
-	static {
-		normal = CssIdent.getIdent("normal");
-		ruby = CssIdent.getIdent("ruby");
+    static {
+        normal = CssIdent.getIdent("normal");
+        ruby = CssIdent.getIdent("ruby");
 
-		String[] _eastAsianVariantValues = {"jis78", "jis83", "jis90", "jis04",
-				"simplified", "traditional"};
-		String[] _eastAsianWidthValues = {"full-width", "proportional-width"};
+        String[] _eastAsianVariantValues = {"jis78", "jis83", "jis90", "jis04",
+                "simplified", "traditional"};
+        String[] _eastAsianWidthValues = {"full-width", "proportional-width"};
 
-		eastAsianVariantValues = new CssIdent[_eastAsianVariantValues.length];
-		for (int i = 0; i < eastAsianVariantValues.length; i++) {
-			eastAsianVariantValues[i] = CssIdent.getIdent(_eastAsianVariantValues[i]);
-		}
-		Arrays.sort(eastAsianVariantValues);
-		eastAsianWidthValues = new CssIdent[_eastAsianWidthValues.length];
-		for (int i = 0; i < eastAsianWidthValues.length; i++) {
-			eastAsianWidthValues[i] = CssIdent.getIdent(_eastAsianWidthValues[i]);
-		}
-		Arrays.sort(eastAsianWidthValues);
-	}
+        eastAsianVariantValues = new CssIdent[_eastAsianVariantValues.length];
+        for (int i = 0; i < eastAsianVariantValues.length; i++) {
+            eastAsianVariantValues[i] = CssIdent.getIdent(_eastAsianVariantValues[i]);
+        }
+        Arrays.sort(eastAsianVariantValues);
+        eastAsianWidthValues = new CssIdent[_eastAsianWidthValues.length];
+        for (int i = 0; i < eastAsianWidthValues.length; i++) {
+            eastAsianWidthValues[i] = CssIdent.getIdent(_eastAsianWidthValues[i]);
+        }
+        Arrays.sort(eastAsianWidthValues);
+    }
 
-	public static final CssIdent getEastAsianVariantValue(CssIdent ident) {
-		int idx = Arrays.binarySearch(eastAsianVariantValues, ident);
-		if (idx >= 0) {
-			return eastAsianVariantValues[idx];
-		}
-		return null;
-	}
+    public static final CssIdent getEastAsianVariantValue(CssIdent ident) {
+        int idx = Arrays.binarySearch(eastAsianVariantValues, ident);
+        if (idx >= 0) {
+            return eastAsianVariantValues[idx];
+        }
+        return null;
+    }
 
-	public static final CssIdent getEastAsianWidthValue(CssIdent ident) {
-		for (CssIdent id : eastAsianWidthValues) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static final CssIdent getEastAsianWidthValue(CssIdent ident) {
+        for (CssIdent id : eastAsianWidthValues) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	public static final CssIdent getAllowedValue(CssIdent ident) {
-		if (ruby.equals(ident)) {
-			return ruby;
-		}
-		CssIdent id = getEastAsianWidthValue(ident);
-		if (id == null) {
-			id = getEastAsianVariantValue(ident);
-		}
-		return id;
-	}
+    public static final CssIdent getAllowedValue(CssIdent ident) {
+        if (ruby.equals(ident)) {
+            return ruby;
+        }
+        CssIdent id = getEastAsianWidthValue(ident);
+        if (id == null) {
+            id = getEastAsianVariantValue(ident);
+        }
+        return id;
+    }
 
-	/**
-	 * Create a new CssFontVariantEastAsian
-	 */
-	public CssFontVariantEastAsian() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFontVariantEastAsian
+     */
+    public CssFontVariantEastAsian() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssFontVariantEastAsian
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 3) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssFontVariantEastAsian
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFontVariantEastAsian(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		CssIdent varValue = null;
-		CssIdent widValue = null;
-		CssIdent rubValue = null;
-		boolean match;
+        CssIdent varValue = null;
+        CssIdent widValue = null;
+        CssIdent rubValue = null;
+        boolean match;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() == CssTypes.CSS_IDENT) {
-				CssIdent ident = (CssIdent) val;
-				if (inherit.equals(ident)) {
-					if (expression.getCount() != 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					value = inherit;
-				} else if (normal.equals(ident)) {
-					if (expression.getCount() != 1) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-					value = normal;
-				} else {
-					// no inherit, nor normal, test the up-to-three values
-					match = false;
-					if (varValue == null) {
-						varValue = getEastAsianVariantValue(ident);
-						value = varValue;
-						match = (varValue != null);
-					}
+            if (val.getType() == CssTypes.CSS_IDENT) {
+                CssIdent ident = (CssIdent) val;
+                if (inherit.equals(ident)) {
+                    if (expression.getCount() != 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    value = inherit;
+                } else if (normal.equals(ident)) {
+                    if (expression.getCount() != 1) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    value = normal;
+                } else {
+                    // no inherit, nor normal, test the up-to-three values
+                    match = false;
+                    if (varValue == null) {
+                        varValue = getEastAsianVariantValue(ident);
+                        value = varValue;
+                        match = (varValue != null);
+                    }
 
-					if (!match && (widValue == null)) {
-						widValue = getEastAsianWidthValue(ident);
-						value = widValue;
-						match = (widValue != null);
-					}
-					if (!match && (rubValue == null)) {
-						match = ruby.equals(ident);
-						if (match) {
-							rubValue = ruby;
-							value = ruby;
-						}
-					}
-					if (!match) {
-						throw new InvalidParamException("value",
-								val.toString(),
-								getPropertyName(), ac);
-					}
-				}
-			} else {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (expression.getCount() > 1) {
-			// do this to keep the same order for comparisons
-			ArrayList<CssValue> v = new ArrayList<CssValue>();
-			if (varValue != null) {
-				v.add(varValue);
-			}
-			if (widValue != null) {
-				v.add(widValue);
-			}
-			if (rubValue != null) {
-				v.add(rubValue);
-			}
-			value = new CssValueList(v);
-		}
-	}
+                    if (!match && (widValue == null)) {
+                        widValue = getEastAsianWidthValue(ident);
+                        value = widValue;
+                        match = (widValue != null);
+                    }
+                    if (!match && (rubValue == null)) {
+                        match = ruby.equals(ident);
+                        if (match) {
+                            rubValue = ruby;
+                            value = ruby;
+                        }
+                    }
+                    if (!match) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                }
+            } else {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (expression.getCount() > 1) {
+            // do this to keep the same order for comparisons
+            ArrayList<CssValue> v = new ArrayList<CssValue>();
+            if (varValue != null) {
+                v.add(varValue);
+            }
+            if (widValue != null) {
+                v.add(widValue);
+            }
+            if (rubValue != null) {
+                v.add(rubValue);
+            }
+            value = new CssValueList(v);
+        }
+    }
 
-	public CssFontVariantEastAsian(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFontVariantEastAsian(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

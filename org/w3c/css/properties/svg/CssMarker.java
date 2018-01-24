@@ -17,66 +17,66 @@ import org.w3c.css.values.CssValue;
  */
 public class CssMarker extends org.w3c.css.properties.css.CssMarkerStart {
 
-	/**
-	 * Create a new CssMarkerStart
-	 */
-	public CssMarker() {
-		value = initial;
-	}
+    /**
+     * Create a new CssMarkerStart
+     */
+    public CssMarker() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssMarkerStart
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssMarker(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
+    /**
+     * Creates a new CssMarkerStart
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssMarker(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
 
-		value = checkMarkerValue(this, ac, expression, check);
-	}
+        value = checkMarkerValue(this, ac, expression, check);
+    }
 
-	protected static CssValue checkMarkerValue(CssProperty property, ApplContext ac,
-											   CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		property.setByUser();
+    protected static CssValue checkMarkerValue(CssProperty property, ApplContext ac,
+                                               CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        property.setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_URL:
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					val = inherit;
-					break;
-				}
-				if (none.equals(val)) {
-					val = none;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						property.getPropertyName(), ac);
-		}
-		expression.next();
-		return val;
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    val = inherit;
+                    break;
+                }
+                if (none.equals(val)) {
+                    val = none;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        property.getPropertyName(), ac);
+        }
+        expression.next();
+        return val;
+    }
 
 
-	public CssMarker(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssMarker(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

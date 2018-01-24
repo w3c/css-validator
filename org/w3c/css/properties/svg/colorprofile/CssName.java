@@ -17,48 +17,48 @@ import org.w3c.css.values.CssValue;
  */
 public class CssName extends org.w3c.css.properties.css.colorprofile.CssName {
 
-	/**
-	 * Create a new CssName
-	 */
-	public CssName() {
-		value = initial;
-	}
+    /**
+     * Create a new CssName
+     */
+    public CssName() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssName
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssName(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
+    /**
+     * Creates a new CssName
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssName(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value",
-					expression.getValue(),
-					getPropertyName(), ac);
-		}
-		// ident, so inherit, or allowed value
-		if (inherit.equals(val)) {
-			// TODO - we might forbid come values
-			// like inherit, initial and other reserved names
-			value = inherit;
-		} else {
-			value = val;
-		}
-		expression.next();
-	}
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value",
+                    expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        // ident, so inherit, or allowed value
+        if (inherit.equals(val)) {
+            // TODO - we might forbid come values
+            // like inherit, initial and other reserved names
+            value = inherit;
+        } else {
+            value = val;
+        }
+        expression.next();
+    }
 
-	public CssName(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssName(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

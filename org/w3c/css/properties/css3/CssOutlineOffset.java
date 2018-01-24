@@ -16,50 +16,50 @@ import org.w3c.css.values.CssValue;
  */
 public class CssOutlineOffset extends org.w3c.css.properties.css.CssOutlineOffset {
 
-	/**
-	 * Create a new CssOutlineOffset
-	 */
-	public CssOutlineOffset() {
-	}
+    /**
+     * Create a new CssOutlineOffset
+     */
+    public CssOutlineOffset() {
+    }
 
-	/**
-	 * Creates a new CssOutlineOffset
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssOutlineOffset(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssOutlineOffset
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssOutlineOffset(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
+        CssValue val = expression.getValue();
 
-		setByUser();
+        setByUser();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getLength();
-			case CssTypes.CSS_LENGTH:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getLength();
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 
-	public CssOutlineOffset(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOutlineOffset(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

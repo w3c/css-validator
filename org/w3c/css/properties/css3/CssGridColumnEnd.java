@@ -14,29 +14,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssGridColumnEnd extends org.w3c.css.properties.css.CssGridColumnEnd {
 
-	/**
-	 * Create a new CssGridColumnEnd
-	 */
-	public CssGridColumnEnd() {
-		value = initial;
-	}
+    /**
+     * Create a new CssGridColumnEnd
+     */
+    public CssGridColumnEnd() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssGridRowEnd
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridColumnEnd(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssGridRowStart.checkGridLine(ac, expression, check, this);
-	}
+    /**
+     * Creates a new CssGridRowEnd
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridColumnEnd(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssGridRowStart.checkGridLine(ac, expression, check, this);
+    }
 
-	public CssGridColumnEnd(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridColumnEnd(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

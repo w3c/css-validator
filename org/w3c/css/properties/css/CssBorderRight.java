@@ -24,6 +24,7 @@ public class CssBorderRight extends CssProperty {
     // and @since CSS2
     public CssBorderRightColor _color;
     public CssBorderRightStyle _style;
+
     /**
      * Create a new CssBorderRight
      */
@@ -35,7 +36,8 @@ public class CssBorderRight extends CssProperty {
      * Does not check the number of values
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorderRight(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
@@ -47,14 +49,14 @@ public class CssBorderRight extends CssProperty {
      *
      * @param expression The expression for this property
      * @param check      set it to true to check the number of values
-     * @throws org.w3c.css.util.InvalidParamException The expression is incorrect
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
      */
     public CssBorderRight(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
         throw new InvalidParamException("unrecognize", ac);
 
     }
-
 
 
     /**
@@ -77,7 +79,6 @@ public class CssBorderRight extends CssProperty {
     public String toString() {
         return value.toString();
     }
-
 
 
     /**

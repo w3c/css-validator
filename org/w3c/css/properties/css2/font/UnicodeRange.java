@@ -77,7 +77,7 @@ public class UnicodeRange extends CssProperty {
             sb.append(val.toString());
             sb.append(", ");
         }
-        sb.setLength(sb.length()-2);
+        sb.setLength(sb.length() - 2);
         return sb.toString();
     }
 

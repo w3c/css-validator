@@ -14,15 +14,17 @@ public class TypeSelector implements Selector {
     String name;
 
     public TypeSelector(String prefix, String type) {
-	this.prefix = prefix;
-	this.name = type;
+        this.prefix = prefix;
+        this.name = type;
     }
+
     /**
      * Creates a new TypeSelector which name name is type
+     *
      * @param type the name of this type selector
      */
     public TypeSelector(String type) {
-	this(null, type);
+        this(null, type);
     }
 
     /**
@@ -34,6 +36,7 @@ public class TypeSelector implements Selector {
 
     /**
      * Sets the name of this selector
+     *
      * @param type The name to set.
      */
     public void setName(String type) {
@@ -44,20 +47,20 @@ public class TypeSelector implements Selector {
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+        return false;
     }
 
     /**
      * @see Selector#toString()
      */
     public String toString() {
-	if (prefix != null) {
-	    StringBuilder sb = new StringBuilder(prefix);
-	    sb.append('|');
-	    sb.append(name);
-	    return sb.toString();
-	}
-	return name;
+        if (prefix != null) {
+            StringBuilder sb = new StringBuilder(prefix);
+            sb.append('|');
+            sb.append(name);
+            return sb.toString();
+        }
+        return name;
     }
 
 }

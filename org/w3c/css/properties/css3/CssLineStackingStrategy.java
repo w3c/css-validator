@@ -27,46 +27,46 @@ public class CssLineStackingStrategy extends CssProperty {
     static CssIdent inlinelineheight = new CssIdent("inline-line-height");
 
     private static String[] values = {
-	"inline-line-height", "block-line-height", "max-height", "grid-height",
-	"inherit", "initial"
+            "inline-line-height", "block-line-height", "max-height", "grid-height",
+            "inherit", "initial"
     };
 
     /**
      * Create a new CssLineStackingStrategy
      */
     public CssLineStackingStrategy() {
-		strategy = inlinelineheight;
+        strategy = inlinelineheight;
     }
 
     /**
      * Create a new CssLineStackingStrategy
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssLineStackingStrategy(ApplContext ac, CssExpression expression,
-	    boolean check) throws InvalidParamException {
+                                   boolean check) throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	int i = 0;
-	for (; i < values.length; i++) {
-	    if (val.toString().equals(values[i])) {
-		strategy = val;
-		expression.next();
-		break;
-	    }
-	}
-	if (i == values.length) {
-	    throw new InvalidParamException("value", val,
-					    getPropertyName(), ac);
-	}
+        int i = 0;
+        for (; i < values.length; i++) {
+            if (val.toString().equals(values[i])) {
+                strategy = val;
+                expression.next();
+                break;
+            }
+        }
+        if (i == values.length) {
+            throw new InvalidParamException("value", val,
+                    getPropertyName(), ac);
+        }
     }
 
     public CssLineStackingStrategy(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -75,24 +75,23 @@ public class CssLineStackingStrategy extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssLineStackingStrategy != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssLineStackingStrategy = this;
+        if (((Css3Style) style).cssLineStackingStrategy != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssLineStackingStrategy = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getLineStackingStrategy();
-	}
-	else {
-	    return ((Css3Style) style).cssLineStackingStrategy;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getLineStackingStrategy();
+        } else {
+            return ((Css3Style) style).cssLineStackingStrategy;
+        }
     }
 
     /**
@@ -101,36 +100,36 @@ public class CssLineStackingStrategy extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssLineStackingStrategy &&
-		strategy.equals(((CssLineStackingStrategy) property).strategy));
+        return (property instanceof CssLineStackingStrategy &&
+                strategy.equals(((CssLineStackingStrategy) property).strategy));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "line-stacking-strategy";
+        return "line-stacking-strategy";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return strategy;
+        return strategy;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return strategy.equals(inherit);
+        return strategy.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return strategy.toString();
+        return strategy.toString();
     }
 
     /**
@@ -138,7 +137,7 @@ public class CssLineStackingStrategy extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return (strategy == inlinelineheight);
+        return (strategy == inlinelineheight);
     }
 
 }

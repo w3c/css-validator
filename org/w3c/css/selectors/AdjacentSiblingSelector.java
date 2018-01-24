@@ -14,21 +14,21 @@ public class AdjacentSiblingSelector implements Selector {
      * @see Selector#toString()
      */
     public String toString() {
-	return " + ";
+        return " + ";
     }
 
     /**
      * @see Selector#getName()
      */
     public String getName() {
-	return "+";
+        return "+";
     }
 
     /**
      * @see Selector#canApply(Selector)
      */
     public boolean canApply(Selector other) {
-	return false;
+        return false;
     }
 
 }

@@ -19,83 +19,83 @@ import org.w3c.css.values.CssValue;
  */
 public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroundRepeat {
 
-	private static CssIdent[] allowed_values;
+    private static CssIdent[] allowed_values;
 
-	static {
-		String[] REPEAT = {"repeat", "repeat-x", "repeat-y", "no-repeat"};
+    static {
+        String[] REPEAT = {"repeat", "repeat-x", "repeat-y", "no-repeat"};
 
-		allowed_values = new CssIdent[REPEAT.length];
-		int i = 0;
-		for (String aREPEAT : REPEAT) {
-			allowed_values[i++] = CssIdent.getIdent(aREPEAT);
-		}
-	}
+        allowed_values = new CssIdent[REPEAT.length];
+        int i = 0;
+        for (String aREPEAT : REPEAT) {
+            allowed_values[i++] = CssIdent.getIdent(aREPEAT);
+        }
+    }
 
-	public static boolean checkMatchingIdent(CssIdent ident) {
-		return (getMatchingIdent(ident) != null);
-	}
+    public static boolean checkMatchingIdent(CssIdent ident) {
+        return (getMatchingIdent(ident) != null);
+    }
 
-	protected static CssIdent getMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    protected static CssIdent getMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
 
-	/**
-	 * Create a new CssBackgroundRepeat
-	 */
-	public CssBackgroundRepeat() {
-		value = repeat;
-	}
+    /**
+     * Create a new CssBackgroundRepeat
+     */
+    public CssBackgroundRepeat() {
+        value = repeat;
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param expression The expression for this property
-	 * @throws InvalidParamException The expression is incorrect
-	 */
-	public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
-							   boolean check) throws InvalidParamException {
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @throws InvalidParamException The expression is incorrect
+     */
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
+                               boolean check) throws InvalidParamException {
 
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		CssValue val = expression.getValue();
-		setByUser();
+        CssValue val = expression.getValue();
+        setByUser();
 
-		if (val.getType() != CssTypes.CSS_IDENT) {
-			throw new InvalidParamException("value", expression.getValue(),
-					getPropertyName(), ac);
-		}
-		if (inherit.equals(val)) {
-			value = inherit;
-		} else {
-			value = getMatchingIdent((CssIdent) val);
-			if (value == null) {
-				throw new InvalidParamException("value", expression.getValue(),
-						getPropertyName(), ac);
-			}
-		}
-		expression.next();
-	}
+        if (val.getType() != CssTypes.CSS_IDENT) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
+        if (inherit.equals(val)) {
+            value = inherit;
+        } else {
+            value = getMatchingIdent((CssIdent) val);
+            if (value == null) {
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        }
+        expression.next();
+    }
 
-	public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Is the value of this property is a default value.
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return (repeat == value);
-	}
+    /**
+     * Is the value of this property is a default value.
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return (repeat == value);
+    }
 }
 
 

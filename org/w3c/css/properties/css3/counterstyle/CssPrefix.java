@@ -18,58 +18,58 @@ import org.w3c.css.values.CssValue;
  */
 public class CssPrefix extends org.w3c.css.properties.css.counterstyle.CssPrefix {
 
-	public static final CssString empty = new CssString("");
+    public static final CssString empty = new CssString("");
 
-	/**
-	 * Create a new CssPrefix
-	 */
-	public CssPrefix() {
-		value = empty;
-	}
+    /**
+     * Create a new CssPrefix
+     */
+    public CssPrefix() {
+        value = empty;
+    }
 
-	/**
-	 * Creates a new CssPrefix
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssPrefix(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		CssValue val;
+    /**
+     * Creates a new CssPrefix
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssPrefix(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val;
 
-		setByUser();
+        setByUser();
 
-		val = expression.getValue();
+        val = expression.getValue();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_URL:
-			case CssTypes.CSS_IMAGE:
-			case CssTypes.CSS_STRING:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (!CssIdent.isCssWide((CssIdent) val)) {
-					value = val;
-					break;
-				}
-				// reserved keyword, fail
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+            case CssTypes.CSS_IMAGE:
+            case CssTypes.CSS_STRING:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (!CssIdent.isCssWide((CssIdent) val)) {
+                    value = val;
+                    break;
+                }
+                // reserved keyword, fail
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
 
-	}
+    }
 
-	public CssPrefix(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssPrefix(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

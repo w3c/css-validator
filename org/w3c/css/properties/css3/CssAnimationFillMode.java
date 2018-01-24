@@ -22,90 +22,90 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssAnimationFillMode extends org.w3c.css.properties.css.CssAnimationFillMode {
 
-	public static final CssIdent[] allowed_values;
+    public static final CssIdent[] allowed_values;
 
-	static {
-		String[] _allowed_values = {"none", "forwards", "backwards", "both"};
-		allowed_values = new CssIdent[_allowed_values.length];
-		int i = 0;
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-	}
+    static {
+        String[] _allowed_values = {"none", "forwards", "backwards", "both"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static CssIdent getAllowedIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Create a new CssAnimationFillMode
-	 */
-	public CssAnimationFillMode() {
-		value = initial;
-	}
+    /**
+     * Create a new CssAnimationFillMode
+     */
+    public CssAnimationFillMode() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssAnimationFillMode
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssAnimationFillMode(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssAnimationFillMode
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssAnimationFillMode(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
-		boolean singleVal = false;
-		CssValue sValue = null;
+        CssValue val;
+        char op;
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        boolean singleVal = false;
+        CssValue sValue = null;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						singleVal = true;
-						sValue = inherit;
-						values.add(inherit);
-						break;
-					} else {
-						CssIdent ident = getAllowedIdent((CssIdent) val);
-						if (ident != null) {
-							values.add(ident);
-							break;
-						}
-					}
-					// let it fail
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != COMMA)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		if (singleVal && values.size() > 1) {
-			throw new InvalidParamException("value",
-					sValue.toString(),
-					getPropertyName(), ac);
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        singleVal = true;
+                        sValue = inherit;
+                        values.add(inherit);
+                        break;
+                    } else {
+                        CssIdent ident = getAllowedIdent((CssIdent) val);
+                        if (ident != null) {
+                            values.add(ident);
+                            break;
+                        }
+                    }
+                    // let it fail
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        if (singleVal && values.size() > 1) {
+            throw new InvalidParamException("value",
+                    sValue.toString(),
+                    getPropertyName(), ac);
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+    }
 
-	public CssAnimationFillMode(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssAnimationFillMode(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

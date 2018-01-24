@@ -17,65 +17,65 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFloatOffset extends org.w3c.css.properties.css.CssFloatOffset {
 
-	/**
-	 * Create a new CssFloatOffset
-	 */
-	public CssFloatOffset() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFloatOffset
+     */
+    public CssFloatOffset() {
+        value = initial;
+    }
 
 
-	/**
-	 * Set the value of the property<br/>
-	 * Does not check the number of values
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssFloatOffset(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Set the value of the property<br/>
+     * Does not check the number of values
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssFloatOffset(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Set the value of the property
-	 *
-	 * @param expression The expression for this property
-	 * @param check      set it to true to check the number of values
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssFloatOffset(ApplContext ac, CssExpression expression,
-						  boolean check) throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Set the value of the property
+     *
+     * @param expression The expression for this property
+     * @param check      set it to true to check the number of values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssFloatOffset(ApplContext ac, CssExpression expression,
+                          boolean check) throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
+        CssValue val;
 
-		val = expression.getValue();
+        val = expression.getValue();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				// only 0 can be a length
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_LENGTH:
-			case CssTypes.CSS_PERCENTAGE:
-				value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				CssIdent id = (CssIdent) val;
-				if (inherit.equals(id)) {
-					value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // only 0 can be a length
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent id = (CssIdent) val;
+                if (inherit.equals(id)) {
+                    value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+    }
 }

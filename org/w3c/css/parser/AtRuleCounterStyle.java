@@ -7,52 +7,52 @@ package org.w3c.css.parser;
 
 public class AtRuleCounterStyle extends AtRule {
 
-	String name = null;
+    String name = null;
 
-	public String keyword() {
-		return "counter-style";
-	}
+    public String keyword() {
+        return "counter-style";
+    }
 
-	public boolean isEmpty() {
-		return false;
-	}
+    public boolean isEmpty() {
+        return false;
+    }
 
-	/**
-	 * The second must be exactly the same of this one
-	 */
-	public boolean canApply(AtRule atRule) {
-		return false;
-	}
+    /**
+     * The second must be exactly the same of this one
+     */
+    public boolean canApply(AtRule atRule) {
+        return false;
+    }
 
-	/**
-	 * The second must only match this one
-	 */
-	public boolean canMatch(AtRule atRule) {
-		return false;
-	}
+    /**
+     * The second must only match this one
+     */
+    public boolean canMatch(AtRule atRule) {
+        return false;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		StringBuilder ret = new StringBuilder();
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
 
-		ret.append('@');
-		ret.append(keyword());
-		ret.append(' ');
-		ret.append(name);
-		return ret.toString();
-	}
+        ret.append('@');
+        ret.append(keyword());
+        ret.append(' ');
+        ret.append(name);
+        return ret.toString();
+    }
 
-	public AtRuleCounterStyle(String name) {
-		this.name = name;
-	}
+    public AtRuleCounterStyle(String name) {
+        this.name = name;
+    }
 
-	public AtRuleCounterStyle() {
-	}
+    public AtRuleCounterStyle() {
+    }
 }
 

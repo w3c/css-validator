@@ -15,8 +15,8 @@ import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 /**
- * @since CSS3
  * @version $Revision$
+ * @since CSS3
  */
 public class CssBorderBottomRightRadius extends CssProperty {
 

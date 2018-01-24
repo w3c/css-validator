@@ -21,7 +21,7 @@ public class Warning implements Comparable<Warning> {
     int line = 0;
     CssSelectors selector;
     String warningMessage;
-	String warningType = null;
+    String warningType = null;
 
     /**
      * Create a new Warning with message parameters.
@@ -38,7 +38,7 @@ public class Warning implements Comparable<Warning> {
         this.sourceFile = sourceFile;
         this.hashSource = sourceFile.hashCode() % 100;
         this.line = line;
-		this.warningType = warningMessage;
+        this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, messages, ac);
         this.level = getLevel(warningMessage, level, ac);
     }
@@ -73,7 +73,7 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
-		this.warningType = warningMessage;
+        this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, new String[]{message1,
                 message2}, ac);
         this.level = getLevel(warningMessage, level, ac);
@@ -95,7 +95,7 @@ public class Warning implements Comparable<Warning> {
         if (sourceFile != null) {
             this.hashSource = sourceFile.hashCode() % 100;
         }
-		this.warningType = warningMessage;
+        this.warningType = warningMessage;
         this.warningMessage = warn(warningMessage, messages, ac);
         this.level = getLevel(warningMessage, level, ac);
         this.line = property.getLine();
@@ -183,12 +183,12 @@ public class Warning implements Comparable<Warning> {
         return warningMessage;
     }
 
-	/**
-	 * Get the warning type
-	 */
-	public String getType() {
-		return warningType;
-	}
+    /**
+     * Get the warning type
+     */
+    public String getType() {
+        return warningType;
+    }
 
     /**
      * Get the message.
@@ -242,10 +242,10 @@ public class Warning implements Comparable<Warning> {
                     if (idx < args.length) {
                         sb.append(args[idx++]);
                     } else {
-                         // TODO report error
-                        System.err.println("*** WARNING ISSUE: "+warning);
-                        System.err.println("*** WARNING ISSUE: "+ac.getMsg().getWarningString(warning));
-                        System.err.println("*** WARNING ISSUE: got "+args.length+" args entries");
+                        // TODO report error
+                        System.err.println("*** WARNING ISSUE: " + warning);
+                        System.err.println("*** WARNING ISSUE: " + ac.getMsg().getWarningString(warning));
+                        System.err.println("*** WARNING ISSUE: got " + args.length + " args entries");
                     }
                     sb.append(msg_parts[i]);
                 }

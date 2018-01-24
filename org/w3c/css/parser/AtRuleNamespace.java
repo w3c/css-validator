@@ -12,36 +12,36 @@ package org.w3c.css.parser;
 /**
  * This class manages all imports
  *
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public class AtRuleNamespace extends AtRule {
 
-    boolean     is_default   = false;
-    boolean     is_url       = false;
-    String      prefix       = null;
-    String      nsname       = null;
+    boolean is_default = false;
+    boolean is_url = false;
+    String prefix = null;
+    String nsname = null;
 
     public String keyword() {
-	return "namespace";
+        return "namespace";
     }
 
     public boolean isEmpty() {
-	return true;
+        return true;
     }
 
     /**
      * The second must be exactly the same of this one
      */
     public boolean canApply(AtRule atRule) {
-	return false;
+        return false;
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-	return false;
+        return false;
     }
 
 
@@ -49,27 +49,27 @@ public class AtRuleNamespace extends AtRule {
      * Returns a string representation of the object.
      */
     public String toString() {
-	StringBuilder ret  = new StringBuilder();
+        StringBuilder ret = new StringBuilder();
 
-	ret.append('@');
-	ret.append(keyword());
-	ret.append(' ');
-	if (!is_default) {
-	    ret.append(prefix);
-	    ret.append(' ');
-	}
-	ret.append((is_url) ? "url(\"" : '\"');
-	ret.append(nsname);
-	ret.append((is_url) ? "\")" : '\"');
-	ret.append(';');
-	return ret.toString();
+        ret.append('@');
+        ret.append(keyword());
+        ret.append(' ');
+        if (!is_default) {
+            ret.append(prefix);
+            ret.append(' ');
+        }
+        ret.append((is_url) ? "url(\"" : '\"');
+        ret.append(nsname);
+        ret.append((is_url) ? "\")" : '\"');
+        ret.append(';');
+        return ret.toString();
     }
 
     public AtRuleNamespace(String prefix, String nsname, boolean is_url) {
-	this.prefix = prefix;
-	is_default = (prefix == null);
-	this.nsname = nsname;
-	this.is_url   = is_url; 
+        this.prefix = prefix;
+        is_default = (prefix == null);
+        this.nsname = nsname;
+        this.is_url = is_url;
     }
 }
 

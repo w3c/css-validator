@@ -11,40 +11,40 @@ package org.w3c.css.properties.css;
  */
 public interface CssBackgroundConstants {
     // TODO REMOVE (and clear other background classes)
-  static String[] REPEAT = { "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" };
-    
-  static String[] ATTACHMENT = { "scroll", "fixed", "inherit" };
-  static String[] ATTACHMENTMOB = { "scroll", "inherit" };
-    
-  static String[] POSITION = { "top", "center", "bottom", "left", "right", "inherit" };
+    static String[] REPEAT = {"repeat", "repeat-x", "repeat-y", "no-repeat", "inherit"};
 
-  /**
-   * The top position
-   */
-  static int POSITION_TOP = 0;
+    static String[] ATTACHMENT = {"scroll", "fixed", "inherit"};
+    static String[] ATTACHMENTMOB = {"scroll", "inherit"};
 
-  /**
-   * The center position
-   */
-  static int POSITION_CENTER = 1;
+    static String[] POSITION = {"top", "center", "bottom", "left", "right", "inherit"};
 
-  /**
-   * The bottom position
-   */
-  static int POSITION_BOTTOM = 2;
+    /**
+     * The top position
+     */
+    static int POSITION_TOP = 0;
 
-  /**
-   * The left position
-   */
-  static int POSITION_LEFT = 3;
+    /**
+     * The center position
+     */
+    static int POSITION_CENTER = 1;
 
-  /**
-   * The right position
-   */
-  static int POSITION_RIGHT = 4;
+    /**
+     * The bottom position
+     */
+    static int POSITION_BOTTOM = 2;
 
-  /**
-   * Inherit
-   */
-  static int POSITION_INHERIT = 5;
+    /**
+     * The left position
+     */
+    static int POSITION_LEFT = 3;
+
+    /**
+     * The right position
+     */
+    static int POSITION_RIGHT = 4;
+
+    /**
+     * Inherit
+     */
+    static int POSITION_INHERIT = 5;
 }

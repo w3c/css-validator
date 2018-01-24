@@ -16,45 +16,45 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFloodOpacity extends org.w3c.css.properties.css.CssFloodOpacity {
 
-	/**
-	 * Create a new CssFloodOpacity
-	 */
-	public CssFloodOpacity() {
-		value = initial;
-	}
+    /**
+     * Create a new CssFloodOpacity
+     */
+    public CssFloodOpacity() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssFloodOpacity
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFloodOpacity(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssFloodOpacity
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFloodOpacity(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
-		CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-			case CssTypes.CSS_PERCENTAGE:
-				value = val;
-				break;
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_PERCENTAGE:
+                value = val;
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+    }
 
-	public CssFloodOpacity(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFloodOpacity(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

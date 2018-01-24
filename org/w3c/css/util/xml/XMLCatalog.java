@@ -13,8 +13,6 @@
  */
 package org.w3c.css.util.xml;
 
-import java.net.URL;
-
 import org.w3c.css.util.Utf8Properties;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -22,103 +20,105 @@ import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
+import java.net.URL;
+
 /**
- * @version $Revision$
  * @author Philippe Le Hegaret
+ * @version $Revision$
  */
 public class XMLCatalog extends Utf8Properties implements ContentHandler {
 
-	URL baseURI;
+    URL baseURI;
 
-	/**
-	 * Creates a new XMLCatalog
-	 */
-	public XMLCatalog() {
-		try {
-			baseURI = XMLCatalog.class.getResource("catalog.xml");
-			parse(baseURI.toString());
-		} catch (Exception e) {
-			System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
-					+ "couldn't load catalog.xml");
-			System.err.println("  " + e.getMessage());
-		}
-	}
+    /**
+     * Creates a new XMLCatalog
+     */
+    public XMLCatalog() {
+        try {
+            baseURI = XMLCatalog.class.getResource("catalog.xml");
+            parse(baseURI.toString());
+        } catch (Exception e) {
+            System.err.println("org.w3c.css.css.XMLStyleSheetHandler: "
+                    + "couldn't load catalog.xml");
+            System.err.println("  " + e.getMessage());
+        }
+    }
 
-	public void setDocumentLocator(Locator locator) {
-	}
+    public void setDocumentLocator(Locator locator) {
+    }
 
-	public void startDocument() throws SAXException {
-	}
+    public void startDocument() throws SAXException {
+    }
 
-	public void endDocument() throws SAXException {
-	}
+    public void endDocument() throws SAXException {
+    }
 
-	public void startPrefixMapping(String prefix, String uri)
-			throws SAXException {
-	}
+    public void startPrefixMapping(String prefix, String uri)
+            throws SAXException {
+    }
 
-	public void endPrefixMapping(String prefix) throws SAXException {
-	}
+    public void endPrefixMapping(String prefix) throws SAXException {
+    }
 
-	public void startElement(String namespaceURI, String localName,
-			String qName, Attributes atts) throws SAXException {
-		if ("system".equals(qName)) {
-			String systemId = atts.getValue("systemId");
-			String uri = atts.getValue("uri");
-			if ((systemId != null) && (uri != null)) {
-				try {
-					setProperty(systemId, (new URL(baseURI, uri)).toString());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		} else if ("public".equals(qName)) {
-			String publicId = atts.getValue("publicId");
-			String uri = atts.getValue("uri");
-			if ((publicId != null) && (uri != null)) {
-				try {
-					setProperty(publicId, (new URL(baseURI, uri)).toString());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+    public void startElement(String namespaceURI, String localName,
+                             String qName, Attributes atts) throws SAXException {
+        if ("system".equals(qName)) {
+            String systemId = atts.getValue("systemId");
+            String uri = atts.getValue("uri");
+            if ((systemId != null) && (uri != null)) {
+                try {
+                    setProperty(systemId, (new URL(baseURI, uri)).toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if ("public".equals(qName)) {
+            String publicId = atts.getValue("publicId");
+            String uri = atts.getValue("uri");
+            if ((publicId != null) && (uri != null)) {
+                try {
+                    setProperty(publicId, (new URL(baseURI, uri)).toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-	public void endElement(String namespaceURI, String localName, String qName)
-			throws SAXException {
-	}
+    public void endElement(String namespaceURI, String localName, String qName)
+            throws SAXException {
+    }
 
-	public void characters(char ch[], int start, int length)
-			throws SAXException {
-	}
+    public void characters(char ch[], int start, int length)
+            throws SAXException {
+    }
 
-	public void ignorableWhitespace(char ch[], int start, int length)
-			throws SAXException {
-	}
+    public void ignorableWhitespace(char ch[], int start, int length)
+            throws SAXException {
+    }
 
-	public void processingInstruction(String target, String data)
-			throws SAXException {
-	}
+    public void processingInstruction(String target, String data)
+            throws SAXException {
+    }
 
-	public void skippedEntity(String name) throws SAXException {
-	}
+    public void skippedEntity(String name) throws SAXException {
+    }
 
-	void parse(String urlString) throws Exception {
-		org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
+    void parse(String urlString) throws Exception {
+        org.xml.sax.XMLReader xmlParser = new org.apache.xerces.parsers.SAXParser();
 
-		try {
-			xmlParser.setFeature(
-					"http://xml.org/sax/features/namespace-prefixes", true);
+        try {
+            xmlParser.setFeature(
+                    "http://xml.org/sax/features/namespace-prefixes", true);
 
-			xmlParser.setFeature("http://xml.org/sax/features/validation",
-					false);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		xmlParser.setContentHandler(this);
-		InputSource source = new InputSource();
-		source.setSystemId(urlString);
-		xmlParser.parse(source);
-	}
+            xmlParser.setFeature("http://xml.org/sax/features/validation",
+                    false);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        xmlParser.setContentHandler(this);
+        InputSource source = new InputSource();
+        source.setSystemId(urlString);
+        xmlParser.parse(source);
+    }
 }

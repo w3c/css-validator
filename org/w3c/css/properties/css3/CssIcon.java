@@ -23,73 +23,73 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssIcon extends org.w3c.css.properties.css.CssIcon {
 
-	public static final CssIdent auto = CssIdent.getIdent("auto");
+    public static final CssIdent auto = CssIdent.getIdent("auto");
 
-	/**
-	 * Create a new CssIcon
-	 */
-	public CssIcon() {
-		value = initial;
-	}
+    /**
+     * Create a new CssIcon
+     */
+    public CssIcon() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssIcon
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssIcon(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssIcon
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssIcon(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
+        CssValue val;
+        char op;
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_URL:
-					values.add(val);
-					break;
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									inherit.toString(),
-									getPropertyName(), ac);
-						}
-						values.add(inherit);
-						break;
-					}
-					if (auto.equals(val)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									auto.toString(),
-									getPropertyName(), ac);
-						}
-						values.add(auto);
-						break;
-					}
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != COMMA)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_URL:
+                    values.add(val);
+                    break;
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    inherit.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        values.add(inherit);
+                        break;
+                    }
+                    if (auto.equals(val)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    auto.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        values.add(auto);
+                        break;
+                    }
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+    }
 
-	public CssIcon(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssIcon(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

@@ -13,8 +13,8 @@ package org.w3c.css.parser;
 /**
  * This class manages all media defines by CSS2
  *
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public class AtRuleFontFace extends AtRule {
     static int internal = 0;
@@ -24,7 +24,7 @@ public class AtRuleFontFace extends AtRule {
      * Create a new AtRuleFontFace
      */
     public AtRuleFontFace() {
-       hash = ++internal;
+        hash = ++internal;
     }
 
 
@@ -32,39 +32,39 @@ public class AtRuleFontFace extends AtRule {
      * Returns the at rule keyword
      */
     public String keyword() {
-	return "font-face";
+        return "font-face";
     }
 
     /**
      * The second must be exactly the same of this one
      */
     public boolean canApply(AtRule atRule) {
-	return (atRule instanceof AtRuleFontFace);
+        return (atRule instanceof AtRuleFontFace);
     }
 
     /**
      * Return true if other is an instance of AtRUleFontFace
      */
     public boolean equals(Object other) {
-	return (other instanceof AtRuleFontFace);
+        return (other instanceof AtRuleFontFace);
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-	return (atRule instanceof AtRuleFontFace);
+        return (atRule instanceof AtRuleFontFace);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-	return "@" + keyword();
+        return "@" + keyword();
     }
 
     public int hashCode() {
-	return hash;
+        return hash;
     }
 
 }

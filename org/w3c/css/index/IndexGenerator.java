@@ -29,7 +29,6 @@ import java.util.Iterator;
 
 /**
  * @author julien
- * 
  */
 public class IndexGenerator {
 
@@ -50,14 +49,15 @@ public class IndexGenerator {
 
     /**
      * This method generates the index in every possible language we have the translation
-     * @see org.w3c.css.util.Messages
+     *
      * @param servlet, if this method is called from the servlet,
-     * the path is a bit different and need to be changed.
+     *                 the path is a bit different and need to be changed.
+     * @see org.w3c.css.util.Messages
      */
     public static synchronized void generatesIndex(boolean servlet) {
         if (done)
             return;
-		
+
         String default_lang = "en";
         String k, name, path;
         ApplContext ac_default = new ApplContext(default_lang);
@@ -65,10 +65,10 @@ public class IndexGenerator {
         Iterator it;
 
         // Getting the differents languages informations (for the lang choice)
-        HashMap<String,String>[] languages = new HashMap[Messages.languages_name.size()];
+        HashMap<String, String>[] languages = new HashMap[Messages.languages_name.size()];
         for (int i = 0; i < Messages.languages_name.size(); ++i) {
             name = String.valueOf(Messages.languages_name.get(i));
-            HashMap<String,String> l = new HashMap<String,String>();
+            HashMap<String, String> l = new HashMap<String, String>();
             l.put("name", name);
             l.put("real", ((Utf8Properties) Messages.languages.get(name)).getProperty("language_name"));
             languages[i] = l;
@@ -91,8 +91,8 @@ public class IndexGenerator {
             Velocity.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path);
             Velocity.addProperty(Velocity.FILE_RESOURCE_LOADER_PATH, path + "../../../../");
             Velocity.setProperty(Velocity.RUNTIME_LOG,
-                                 "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
-			
+                    "velocity-" + new SimpleDateFormat("yyyy-MM-dd_HHmm").format(new Date()) + ".log");
+
             Velocity.setProperty(Velocity.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.AvalonLogChute");
             Velocity.init();
             if (!new File(path + template_name).exists()) {

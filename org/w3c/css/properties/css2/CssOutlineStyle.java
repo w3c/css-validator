@@ -16,37 +16,37 @@ import org.w3c.css.values.CssIdent;
  */
 public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle {
 
-	static final CssIdent hidden = CssIdent.getIdent("hidden");
+    static final CssIdent hidden = CssIdent.getIdent("hidden");
 
-	/**
-	 * Create a new CssOutlineStyle
-	 */
-	public CssOutlineStyle() {
-	}
+    /**
+     * Create a new CssOutlineStyle
+     */
+    public CssOutlineStyle() {
+    }
 
-	/**
-	 * Creates a new CssOutlineStyle
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssOutlineStyle(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		// here we delegate to BorderStyle implementation
-		value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
-		// but hidden is not a valid value...
-		if (hidden.equals(value)) {
-			throw new InvalidParamException("value", hidden,
-					getPropertyName(), ac);
-		}
-	}
+    /**
+     * Creates a new CssOutlineStyle
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssOutlineStyle(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        // here we delegate to BorderStyle implementation
+        value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
+        // but hidden is not a valid value...
+        if (hidden.equals(value)) {
+            throw new InvalidParamException("value", hidden,
+                    getPropertyName(), ac);
+        }
+    }
 
-	public CssOutlineStyle(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssOutlineStyle(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

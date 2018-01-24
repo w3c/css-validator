@@ -22,76 +22,76 @@ import static org.w3c.css.values.CssOperator.COMMA;
  */
 public class CssAnimationName extends org.w3c.css.properties.css.CssAnimationName {
 
-	/**
-	 * Create a new CssAnimationName
-	 */
-	public CssAnimationName() {
-		value = initial;
-	}
+    /**
+     * Create a new CssAnimationName
+     */
+    public CssAnimationName() {
+        value = initial;
+    }
 
-	public static CssIdent getAllowedIdent(ApplContext ac, CssIdent ident) {
-		if (none.equals(ident)) {
-			return none;
-		}
-		// here we are not matching @keyframes to raise a warning
-		// it might be done in findConflict
-		// TODO @keyframe check
-		return ident;
-	}
+    public static CssIdent getAllowedIdent(ApplContext ac, CssIdent ident) {
+        if (none.equals(ident)) {
+            return none;
+        }
+        // here we are not matching @keyframes to raise a warning
+        // it might be done in findConflict
+        // TODO @keyframe check
+        return ident;
+    }
 
-	/**
-	 * Creates a new CssAnimationName
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssAnimationName(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssAnimationName
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssAnimationName(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		ArrayList<CssValue> values = new ArrayList<CssValue>();
-		boolean singleVal = false;
-		CssValue sValue = null;
+        CssValue val;
+        char op;
+        ArrayList<CssValue> values = new ArrayList<CssValue>();
+        boolean singleVal = false;
+        CssValue sValue = null;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						singleVal = true;
-						sValue = inherit;
-						values.add(inherit);
-					} else {
-						CssIdent ident = getAllowedIdent(ac, (CssIdent) val);
-						values.add(ident);
-					}
-					break;
-				default:
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-			if (!expression.end() && (op != COMMA)) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		if (singleVal && values.size() > 1) {
-			throw new InvalidParamException("value",
-					sValue.toString(),
-					getPropertyName(), ac);
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        singleVal = true;
+                        sValue = inherit;
+                        values.add(inherit);
+                    } else {
+                        CssIdent ident = getAllowedIdent(ac, (CssIdent) val);
+                        values.add(ident);
+                    }
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+            if (!expression.end() && (op != COMMA)) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        if (singleVal && values.size() > 1) {
+            throw new InvalidParamException("value",
+                    sValue.toString(),
+                    getPropertyName(), ac);
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);
+    }
 
-	public CssAnimationName(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssAnimationName(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 }
 

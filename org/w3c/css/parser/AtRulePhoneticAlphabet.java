@@ -13,9 +13,8 @@ package org.w3c.css.parser;
 import org.w3c.css.util.ApplContext;
 
 /**
- *
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public class AtRulePhoneticAlphabet extends AtRule {
     static int internal = 0;
@@ -26,7 +25,7 @@ public class AtRulePhoneticAlphabet extends AtRule {
      * Create a new AtRulePhoneticAlphabet
      */
     public AtRulePhoneticAlphabet() {
-       hash = ++internal;
+        hash = ++internal;
     }
 
 
@@ -34,47 +33,47 @@ public class AtRulePhoneticAlphabet extends AtRule {
      * Returns the at rule keyword
      */
     public String keyword() {
-		return "phonetic-alphabet";
+        return "phonetic-alphabet";
     }
 
     public void addAlphabet(String alphabet, ApplContext ac) {
-		this.alphabet = alphabet;
-	}
+        this.alphabet = alphabet;
+    }
 
     /**
      * The second must be exactly the same of this one
      */
     public boolean canApply(AtRule atRule) {
-		return (atRule instanceof AtRulePhoneticAlphabet);
+        return (atRule instanceof AtRulePhoneticAlphabet);
     }
 
     /**
      * Return true if other is an instance of AtRUlePhoneticAlphabet
      */
     public boolean equals(Object other) {
-		return (other instanceof AtRulePhoneticAlphabet);
+        return (other instanceof AtRulePhoneticAlphabet);
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-		return (atRule instanceof AtRulePhoneticAlphabet);
+        return (atRule instanceof AtRulePhoneticAlphabet);
     }
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
-		return "@" + keyword() + " " + alphabet;
+        return "@" + keyword() + " " + alphabet;
     }
 
     public int hashCode() {
-		return hash;
+        return hash;
     }
 
-	public boolean isEmpty() {
-		return true;
-	}
+    public boolean isEmpty() {
+        return true;
+    }
 
 }

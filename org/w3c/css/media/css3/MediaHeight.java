@@ -88,7 +88,7 @@ public class MediaHeight extends MediaFeature {
         return "height";
     }
 
-   /**
+    /**
      * Compares two media features for equality.
      *
      * @param other The other media features.

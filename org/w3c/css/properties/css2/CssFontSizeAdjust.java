@@ -17,62 +17,62 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFontSizeAdjust extends org.w3c.css.properties.css.CssFontSizeAdjust {
 
-	/**
-	 * Create a new CssFontSizeAdjust
-	 */
-	public CssFontSizeAdjust() {
-	}
+    /**
+     * Create a new CssFontSizeAdjust
+     */
+    public CssFontSizeAdjust() {
+    }
 
-	/**
-	 * Creates a new CssFontSizeAdjust
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFontSizeAdjust(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssFontSizeAdjust
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFontSizeAdjust(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_IDENT:
-				CssIdent id = (CssIdent) val;
-				if (inherit.equals(id)) {
-					value = inherit;
-				} else if (none.equals(id)) {
-					value = none;
-				} else {
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
-				break;
-			case CssTypes.CSS_NUMBER:
-				value = val;
-				break;
-			default:
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-		}
-		expression.next();
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                CssIdent id = (CssIdent) val;
+                if (inherit.equals(id)) {
+                    value = inherit;
+                } else if (none.equals(id)) {
+                    value = none;
+                } else {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+                break;
+            case CssTypes.CSS_NUMBER:
+                value = val;
+                break;
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
 
-	}
+    }
 
-	public CssFontSizeAdjust(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFontSizeAdjust(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

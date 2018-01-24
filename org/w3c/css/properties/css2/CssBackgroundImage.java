@@ -56,9 +56,9 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
     /**
      * Creates a new CssBackgroundImage
      *
-     * @param ac  The context
+     * @param ac         The context
      * @param expression The expression for this property
-     * @param check if count check must be performed
+     * @param check      if count check must be performed
      * @throws InvalidParamException Values are incorrect
      */
     public CssBackgroundImage(ApplContext ac, CssExpression expression,

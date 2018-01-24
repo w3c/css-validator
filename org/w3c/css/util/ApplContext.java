@@ -294,7 +294,9 @@ public class ApplContext {
 
     /**
      * Change the behaviour of error reporting for vendor extensions.
+     *
      * @param treatVendorExtensionsAsWarnings
+     *
      */
     public void setTreatVendorExtensionsAsWarnings(
             boolean treatVendorExtensionsAsWarnings) {
@@ -306,7 +308,8 @@ public class ApplContext {
     }
 
     /**
-     *  Change the behaviour of error reporting for CSS Hacks.
+     * Change the behaviour of error reporting for CSS Hacks.
+     *
      * @param treatCssHacksAsWarnings
      */
     public void setTreatCssHacksAsWarnings(boolean treatCssHacksAsWarnings) {

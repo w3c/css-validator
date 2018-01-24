@@ -18,31 +18,31 @@ import org.w3c.css.values.CssValue;
  */
 public class CssEmptyCells extends org.w3c.css.properties.css.CssEmptyCells {
 
-	public static final CssIdent[] allowed_values;
+    public static final CssIdent[] allowed_values;
 
-	static {
-		String[] _allowed_values = {"show", "hide"};
-		int i = 0;
-		allowed_values = new CssIdent[_allowed_values.length];
-		for (String s : _allowed_values) {
-			allowed_values[i++] = CssIdent.getIdent(s);
-		}
-	}
+    static {
+        String[] _allowed_values = {"show", "hide"};
+        int i = 0;
+        allowed_values = new CssIdent[_allowed_values.length];
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
 
-	public static final CssIdent getAllowedIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static final CssIdent getAllowedIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
-	/**
+    /**
      * Create a new CssEmptyCells
      */
     public CssEmptyCells() {
-		value = initial;
+        value = initial;
     }
 
     /**
@@ -54,35 +54,35 @@ public class CssEmptyCells extends org.w3c.css.properties.css.CssEmptyCells {
      */
     public CssEmptyCells(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent id = (CssIdent) val;
-			if (inherit.equals(id)) {
-				value = inherit;
-			} else {
-				value = getAllowedIdent(id);
-				if (value == null) {
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				}
-			}
-		} else {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
-		}
-		expression.next();
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            CssIdent id = (CssIdent) val;
+            if (inherit.equals(id)) {
+                value = inherit;
+            } else {
+                value = getAllowedIdent(id);
+                if (value == null) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
+            }
+        } else {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
     }
 
     public CssEmptyCells(ApplContext ac, CssExpression expression)

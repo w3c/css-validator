@@ -17,7 +17,7 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS3
-*/
+ */
 
 public class CssBackgroundOrigin extends CssProperty {
 

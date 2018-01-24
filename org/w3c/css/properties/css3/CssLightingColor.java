@@ -15,50 +15,50 @@ import org.w3c.css.values.CssValue;
  */
 public class CssLightingColor extends org.w3c.css.properties.css.CssLightingColor {
 
-	/**
-	 * Create a new CssLightingColor
-	 */
-	public CssLightingColor() {
-		value = initial;
-	}
+    /**
+     * Create a new CssLightingColor
+     */
+    public CssLightingColor() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssLightingColor
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssLightingColor(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
+    /**
+     * Creates a new CssLightingColor
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssLightingColor(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
 
-		setByUser();
-		CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-		if (inherit.equals(val)) {
-			value = inherit;
-			expression.next();
-		} else {
-			try {
-				CssColor tcolor = new CssColor(ac, expression, check);
-				// instead of using getColor, we get the value directly
-				// as we can have idents
-				value = tcolor.color;
-			} catch (InvalidParamException e) {
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-			}
-		}
-	}
+        if (inherit.equals(val)) {
+            value = inherit;
+            expression.next();
+        } else {
+            try {
+                CssColor tcolor = new CssColor(ac, expression, check);
+                // instead of using getColor, we get the value directly
+                // as we can have idents
+                value = tcolor.color;
+            } catch (InvalidParamException e) {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+        }
+    }
 
-	public CssLightingColor(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssLightingColor(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

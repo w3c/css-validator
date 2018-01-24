@@ -18,118 +18,118 @@ import org.w3c.css.values.CssValue;
  */
 public class CssSize extends CssProperty {
 
-	public static final String propertyName = "size";
+    public static final String propertyName = "size";
 
-	public CssValue value;
+    public CssValue value;
 
-	/**
-	 * Create a new CssSize
-	 */
-	public CssSize() {
-	}
+    /**
+     * Create a new CssSize
+     */
+    public CssSize() {
+    }
 
-	/**
-	 * Create a new CssSize
-	 *
-	 * @param ac         The context
-	 * @param expression The expression for this property
-	 * @param check      true will test the number of parameters
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssSize(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		throw new InvalidParamException("value", expression.getValue(),
-				getPropertyName(), ac);
+    /**
+     * Create a new CssSize
+     *
+     * @param ac         The context
+     * @param expression The expression for this property
+     * @param check      true will test the number of parameters
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssSize(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        throw new InvalidParamException("value", expression.getValue(),
+                getPropertyName(), ac);
 
-	}
+    }
 
-	/**
-	 * Create a new CssSize
-	 *
-	 * @param ac,        the Context
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          The expression is incorrect
-	 */
-	public CssSize(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    /**
+     * Create a new CssSize
+     *
+     * @param ac,        the Context
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          The expression is incorrect
+     */
+    public CssSize(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Returns the value of this property
-	 */
-	public Object get() {
-		return value;
-	}
+    /**
+     * Returns the value of this property
+     */
+    public Object get() {
+        return value;
+    }
 
-	/**
-	 * Returns the name of this property
-	 */
-	public final String getPropertyName() {
-		return propertyName;
-	}
+    /**
+     * Returns the name of this property
+     */
+    public final String getPropertyName() {
+        return propertyName;
+    }
 
-	/**
-	 * Returns true if this property is "softly" inherited
-	 * e.g. his value equals inherit
-	 */
-	public boolean isSoftlyInherited() {
-		return (value == inherit);
-	}
+    /**
+     * Returns true if this property is "softly" inherited
+     * e.g. his value equals inherit
+     */
+    public boolean isSoftlyInherited() {
+        return (value == inherit);
+    }
 
-	/**
-	 * Returns a string representation of the object.
-	 */
-	public String toString() {
-		return value.toString();
-	}
+    /**
+     * Returns a string representation of the object.
+     */
+    public String toString() {
+        return value.toString();
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		Css2Style style0 = (Css2Style) style;
-		if (style0.cssSize != null) {
-			style0.addRedefinitionWarning(ac, this);
-		}
-		style0.cssSize = this;
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        Css2Style style0 = (Css2Style) style;
+        if (style0.cssSize != null) {
+            style0.addRedefinitionWarning(ac, this);
+        }
+        style0.cssSize = this;
+    }
 
-	/**
-	 * Get this property in the style.
-	 *
-	 * @param style   The style where the property is
-	 * @param resolve if true, resolve the style to find this property
-	 */
-	public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-		if (resolve) {
-			return ((Css2Style) style).getSize();
-		} else {
-			return ((Css2Style) style).cssSize;
-		}
-	}
+    /**
+     * Get this property in the style.
+     *
+     * @param style   The style where the property is
+     * @param resolve if true, resolve the style to find this property
+     */
+    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
+        if (resolve) {
+            return ((Css2Style) style).getSize();
+        } else {
+            return ((Css2Style) style).cssSize;
+        }
+    }
 
-	/**
-	 * Compares two properties for equality.
-	 *
-	 * @param property The other property.
-	 * @return boolean
-	 */
-	public boolean equals(CssProperty property) {
-		return (property instanceof CssSize &&
-				value.equals(((CssSize) property).value));
-	}
+    /**
+     * Compares two properties for equality.
+     *
+     * @param property The other property.
+     * @return boolean
+     */
+    public boolean equals(CssProperty property) {
+        return (property instanceof CssSize &&
+                value.equals(((CssSize) property).value));
+    }
 
-	/**
-	 * Is the value of this property is a default value.
-	 * It is used by all macro for the function <code>print</code>
-	 */
-	public boolean isDefault() {
-		return false;
-	}
+    /**
+     * Is the value of this property is a default value.
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return false;
+    }
 
 }

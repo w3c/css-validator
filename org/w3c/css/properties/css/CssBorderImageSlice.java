@@ -14,8 +14,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS3
  * @version $Revision$
+ * @since CSS3
  */
 public class CssBorderImageSlice extends CssProperty {
 

@@ -22,123 +22,123 @@ import java.util.ArrayList;
  */
 public class CssTextEmphasis extends org.w3c.css.properties.css.CssTextEmphasis {
 
-	CssTextEmphasisColor colorValue = new CssTextEmphasisColor();
-	CssTextEmphasisStyle styleValue = new CssTextEmphasisStyle();
+    CssTextEmphasisColor colorValue = new CssTextEmphasisColor();
+    CssTextEmphasisStyle styleValue = new CssTextEmphasisStyle();
 
-	/**
-	 * Create a new CssTextEmphasis
-	 */
-	public CssTextEmphasis() {
-		value = initial;
-	}
+    /**
+     * Create a new CssTextEmphasis
+     */
+    public CssTextEmphasis() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssTextEmphasis
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssTextEmphasis(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 3) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
-		CssValue color = null;
-		CssExpression styleExp = null;
+    /**
+     * Creates a new CssTextEmphasis
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssTextEmphasis(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
+        CssValue color = null;
+        CssExpression styleExp = null;
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_STRING:
-					if (styleExp == null) {
-						styleExp = new CssExpression();
-					}
-					styleExp.addValue(val);
-					expression.next();
-					break;
-				case CssTypes.CSS_IDENT:
-					CssIdent ident = (CssIdent) val;
-					if (inherit.equals(ident)) {
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value", val,
-									getPropertyName(), ac);
-						}
-						value = inherit;
-						expression.next();
-						return;
-					}
-					CssIdent id = CssTextEmphasisStyle.getAllowedValue(ident);
-					if (id != null) {
-						if (styleExp == null) {
-							styleExp = new CssExpression();
-						}
-						styleExp.addValue(val);
-						expression.next();
-						break;
-					}
-					// or else, it should be a color...
-				default:
-					// we can't have two colors
-					if (color != null) {
-						throw new InvalidParamException("value",
-								val, getPropertyName(), ac);
-					}
-					CssColor c = new CssColor(ac, expression, false);
-					color = c.getColor();
-					// color can be first or last
-					if (styleExp != null && expression.getRemainingCount() != 0) {
-						if (color != null) {
-							throw new InvalidParamException("value",
-									val, getPropertyName(), ac);
-						}
-					}
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-		}
-		// parse the style exp
-		if (styleExp != null) {
-			styleValue = new CssTextEmphasisStyle(ac, styleExp, check);
-			value = styleValue.value;
-		}
-		if (color != null) {
-			colorValue.value = color;
-			if (styleExp == null) {
-				value = color;
-			} else {
-				ArrayList<CssValue> v = new ArrayList<CssValue>(2);
-				v.add(styleValue.value);
-				v.add(color);
-				value = new CssValueList(v);
-			}
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_STRING:
+                    if (styleExp == null) {
+                        styleExp = new CssExpression();
+                    }
+                    styleExp.addValue(val);
+                    expression.next();
+                    break;
+                case CssTypes.CSS_IDENT:
+                    CssIdent ident = (CssIdent) val;
+                    if (inherit.equals(ident)) {
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        value = inherit;
+                        expression.next();
+                        return;
+                    }
+                    CssIdent id = CssTextEmphasisStyle.getAllowedValue(ident);
+                    if (id != null) {
+                        if (styleExp == null) {
+                            styleExp = new CssExpression();
+                        }
+                        styleExp.addValue(val);
+                        expression.next();
+                        break;
+                    }
+                    // or else, it should be a color...
+                default:
+                    // we can't have two colors
+                    if (color != null) {
+                        throw new InvalidParamException("value",
+                                val, getPropertyName(), ac);
+                    }
+                    CssColor c = new CssColor(ac, expression, false);
+                    color = c.getColor();
+                    // color can be first or last
+                    if (styleExp != null && expression.getRemainingCount() != 0) {
+                        if (color != null) {
+                            throw new InvalidParamException("value",
+                                    val, getPropertyName(), ac);
+                        }
+                    }
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+        }
+        // parse the style exp
+        if (styleExp != null) {
+            styleValue = new CssTextEmphasisStyle(ac, styleExp, check);
+            value = styleValue.value;
+        }
+        if (color != null) {
+            colorValue.value = color;
+            if (styleExp == null) {
+                value = color;
+            } else {
+                ArrayList<CssValue> v = new ArrayList<CssValue>(2);
+                v.add(styleValue.value);
+                v.add(color);
+                value = new CssValueList(v);
+            }
+        }
+    }
 
-	public CssTextEmphasis(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssTextEmphasis(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		// and the individual...
-		colorValue.addToStyle(ac, style);
-		styleValue.addToStyle(ac, style);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        // and the individual...
+        colorValue.addToStyle(ac, style);
+        styleValue.addToStyle(ac, style);
+    }
 }
 

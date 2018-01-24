@@ -24,187 +24,187 @@ import java.math.BigDecimal;
  */
 public class CssFlex extends org.w3c.css.properties.css.CssFlex {
 
-	public CssIdent auto = CssIdent.getIdent("auto");
+    public CssIdent auto = CssIdent.getIdent("auto");
 
-	private CssFlexGrow flexGrow;
-	private CssFlexShrink flexShrink;
-	private CssFlexBasis flexBasis;
+    private CssFlexGrow flexGrow;
+    private CssFlexShrink flexShrink;
+    private CssFlexBasis flexBasis;
 
-	/**
-	 * Create a new CssFlexFlow
-	 */
-	public CssFlex() {
-		value = initial;
-		flexGrow = new CssFlexGrow();
-		flexShrink = new CssFlexShrink();
-		flexBasis = new CssFlexBasis();
-	}
+    /**
+     * Create a new CssFlexFlow
+     */
+    public CssFlex() {
+        value = initial;
+        flexGrow = new CssFlexGrow();
+        flexShrink = new CssFlexShrink();
+        flexBasis = new CssFlexBasis();
+    }
 
-	/**
-	 * Creates a new CssFlexFlow
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssFlex(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		if (check && expression.getCount() > 3) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+    /**
+     * Creates a new CssFlexFlow
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssFlex(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        if (check && expression.getCount() > 3) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue growVal = null;
-		CssValue shrinkVal = null;
-		CssValue basisVal = null;
-		CssValue val;
-		char op;
-		boolean gotNumber = false;
+        CssValue growVal = null;
+        CssValue shrinkVal = null;
+        CssValue basisVal = null;
+        CssValue val;
+        char op;
+        boolean gotNumber = false;
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					CssIdent ident = (CssIdent) val;
-					if (inherit.equals(ident)) {
-						value = inherit;
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						break;
-					}
-					if (none.equals(ident)) {
-						value = none;
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						break;
-					}
-					if (basisVal == null) {
-						basisVal = CssFlexBasis.getAllowedIdent(ident);
-						if (basisVal == null) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						gotNumber = false;
-						break;
-					}
-					// unrecognized token...
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-				case CssTypes.CSS_NUMBER:
-					if (growVal == null) {
-						CssCheckableValue num = val.getCheckableValue();
-						num.checkPositiveness(ac, this);
-						growVal = val;
-						gotNumber = true;
-						break;
-					}
-					// we can get shrink only after grow
-					if (gotNumber && shrinkVal == null) {
-						CssCheckableValue num = val.getCheckableValue();
-						num.checkPositiveness(ac, this);
-						shrinkVal = val;
-						break;
-					}
-					//
-				default:
-					if (basisVal == null) {
-						// check flexBasis
-						CssExpression e = new CssExpression();
-						e.addValue(val);
-						try {
-							CssFlexBasis b = new CssFlexBasis(ac, e, check);
-							basisVal = val;
-						} catch (InvalidParamException ex) {
-							throw new InvalidParamException("value",
-									val.toString(),
-									getPropertyName(), ac);
-						}
-						gotNumber = false;
-						break;
-					}
-					throw new InvalidParamException("value",
-							val.toString(),
-							getPropertyName(), ac);
-			}
-			if (op != CssOperator.SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		// for addToStyle, redefinitions and equality check
-		flexBasis = new CssFlexBasis();
-		flexGrow = new CssFlexGrow();
-		flexShrink = new CssFlexShrink();
-		if (value == inherit) {
-			flexBasis.value = inherit;
-			flexGrow.value = inherit;
-			flexShrink.value = inherit;
-		} else if (value == none) {
-			flexBasis.value = CssWidth.auto;
-			CssNumber z = new CssNumber();
-			z.setValue(BigDecimal.ZERO);
-			flexGrow.value = z;
-			flexShrink.value = z;
-		} else if (basisVal == auto && growVal == null && shrinkVal == null) {
-			flexBasis.value = CssWidth.auto;
-			CssNumber one = new CssNumber();
-			one.setValue(BigDecimal.ONE);
-			flexGrow.value = one;
-			flexShrink.value = one;
-			value = auto;
-		} else if (basisVal == null && shrinkVal == null) {
-			CssNumber one = new CssNumber();
-			one.setValue(BigDecimal.ONE);
-			flexShrink.value = one;
-			CssNumber z = new CssNumber();
-			z.setValue(BigDecimal.ZERO);
-			flexBasis.value = z;
-			value = growVal;
-		} else {
-			CssValueList v = new CssValueList();
-			if (growVal != null) {
-				v.add(growVal);
-				flexGrow.value = growVal;
-				if (shrinkVal != null) {
-					v.add(shrinkVal);
-					flexShrink.value = shrinkVal;
-				}
-			}
-			if (basisVal != null) {
-				v.add(basisVal);
-				flexBasis.value = basisVal;
-			}
-			value = v;
-		}
-	}
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    CssIdent ident = (CssIdent) val;
+                    if (inherit.equals(ident)) {
+                        value = inherit;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        break;
+                    }
+                    if (none.equals(ident)) {
+                        value = none;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        break;
+                    }
+                    if (basisVal == null) {
+                        basisVal = CssFlexBasis.getAllowedIdent(ident);
+                        if (basisVal == null) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        gotNumber = false;
+                        break;
+                    }
+                    // unrecognized token...
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                case CssTypes.CSS_NUMBER:
+                    if (growVal == null) {
+                        CssCheckableValue num = val.getCheckableValue();
+                        num.checkPositiveness(ac, this);
+                        growVal = val;
+                        gotNumber = true;
+                        break;
+                    }
+                    // we can get shrink only after grow
+                    if (gotNumber && shrinkVal == null) {
+                        CssCheckableValue num = val.getCheckableValue();
+                        num.checkPositiveness(ac, this);
+                        shrinkVal = val;
+                        break;
+                    }
+                    //
+                default:
+                    if (basisVal == null) {
+                        // check flexBasis
+                        CssExpression e = new CssExpression();
+                        e.addValue(val);
+                        try {
+                            CssFlexBasis b = new CssFlexBasis(ac, e, check);
+                            basisVal = val;
+                        } catch (InvalidParamException ex) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    getPropertyName(), ac);
+                        }
+                        gotNumber = false;
+                        break;
+                    }
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+            }
+            if (op != CssOperator.SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        // for addToStyle, redefinitions and equality check
+        flexBasis = new CssFlexBasis();
+        flexGrow = new CssFlexGrow();
+        flexShrink = new CssFlexShrink();
+        if (value == inherit) {
+            flexBasis.value = inherit;
+            flexGrow.value = inherit;
+            flexShrink.value = inherit;
+        } else if (value == none) {
+            flexBasis.value = CssWidth.auto;
+            CssNumber z = new CssNumber();
+            z.setValue(BigDecimal.ZERO);
+            flexGrow.value = z;
+            flexShrink.value = z;
+        } else if (basisVal == auto && growVal == null && shrinkVal == null) {
+            flexBasis.value = CssWidth.auto;
+            CssNumber one = new CssNumber();
+            one.setValue(BigDecimal.ONE);
+            flexGrow.value = one;
+            flexShrink.value = one;
+            value = auto;
+        } else if (basisVal == null && shrinkVal == null) {
+            CssNumber one = new CssNumber();
+            one.setValue(BigDecimal.ONE);
+            flexShrink.value = one;
+            CssNumber z = new CssNumber();
+            z.setValue(BigDecimal.ZERO);
+            flexBasis.value = z;
+            value = growVal;
+        } else {
+            CssValueList v = new CssValueList();
+            if (growVal != null) {
+                v.add(growVal);
+                flexGrow.value = growVal;
+                if (shrinkVal != null) {
+                    v.add(shrinkVal);
+                    flexShrink.value = shrinkVal;
+                }
+            }
+            if (basisVal != null) {
+                v.add(basisVal);
+                flexBasis.value = basisVal;
+            }
+            value = v;
+        }
+    }
 
 
-	public CssFlex(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssFlex(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		flexBasis.addToStyle(ac, style);
-		flexGrow.addToStyle(ac, style);
-		flexShrink.addToStyle(ac, style);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        flexBasis.addToStyle(ac, style);
+        flexGrow.addToStyle(ac, style);
+        flexShrink.addToStyle(ac, style);
+    }
 }
 

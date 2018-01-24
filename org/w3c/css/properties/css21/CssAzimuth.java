@@ -16,9 +16,8 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-azimuth
- *
  * @version $Revision$
+ * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-azimuth
  */
 public class CssAzimuth extends org.w3c.css.properties.css.CssAzimuth {
 

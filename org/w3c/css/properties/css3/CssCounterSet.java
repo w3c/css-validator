@@ -23,87 +23,87 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssCounterSet extends org.w3c.css.properties.css.CssCounterSet {
 
-	/**
-	 * Create a new CssCounterSet
-	 */
-	public CssCounterSet() {
-		value = initial;
-	}
+    /**
+     * Create a new CssCounterSet
+     */
+    public CssCounterSet() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssCounterSet
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssCounterSet(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
+    /**
+     * Creates a new CssCounterSet
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssCounterSet(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
 
-		CssValue val;
-		char op;
-		boolean intallowed = false;
-		ArrayList<CssValue> v = new ArrayList<CssValue>();
+        CssValue val;
+        char op;
+        boolean intallowed = false;
+        ArrayList<CssValue> v = new ArrayList<CssValue>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
-			switch (val.getType()) {
-				case CssTypes.CSS_IDENT:
-					if (inherit.equals(val)) {
-						value = inherit;
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value", val,
-									getPropertyName(), ac);
-						}
-						break;
-					}
-					if (none.equals(val)) {
-						value = none;
-						if (expression.getCount() > 1) {
-							throw new InvalidParamException("value", val,
-									getPropertyName(), ac);
-						}
-						break;
-					}
-					// check for reserved keyword
-					if (CssIdent.isCssWide((CssIdent) val)) {
-						throw new InvalidParamException("value", val,
-								getPropertyName(), ac);
-					}
-					v.add(val);
-					intallowed = true;
-					break;
-				case CssTypes.CSS_NUMBER:
-					if (intallowed) {
-						// we allow int only after an ident
-						intallowed = false;
-						CssCheckableValue n = val.getCheckableValue();
-						n.checkInteger(ac, this);
-						v.add(val);
-						break;
-					}
-					// if int wasn't allowed, let it fail
-				default:
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator",
-						((new Character(op)).toString()), ac);
-			}
-			expression.next();
-		}
-		if (!v.isEmpty()) {
-			value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
-		}
-	}
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    if (inherit.equals(val)) {
+                        value = inherit;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        break;
+                    }
+                    if (none.equals(val)) {
+                        value = none;
+                        if (expression.getCount() > 1) {
+                            throw new InvalidParamException("value", val,
+                                    getPropertyName(), ac);
+                        }
+                        break;
+                    }
+                    // check for reserved keyword
+                    if (CssIdent.isCssWide((CssIdent) val)) {
+                        throw new InvalidParamException("value", val,
+                                getPropertyName(), ac);
+                    }
+                    v.add(val);
+                    intallowed = true;
+                    break;
+                case CssTypes.CSS_NUMBER:
+                    if (intallowed) {
+                        // we allow int only after an ident
+                        intallowed = false;
+                        CssCheckableValue n = val.getCheckableValue();
+                        n.checkInteger(ac, this);
+                        v.add(val);
+                        break;
+                    }
+                    // if int wasn't allowed, let it fail
+                default:
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator",
+                        ((new Character(op)).toString()), ac);
+            }
+            expression.next();
+        }
+        if (!v.isEmpty()) {
+            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
+        }
+    }
 
-	public CssCounterSet(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssCounterSet(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 

@@ -18,54 +18,55 @@ import java.io.InputStream;
 
 
 /**
+ * @author Philippe Le Hegaret
  * @version $Revision$
- * @author  Philippe Le Hegaret
  */
 public class CommentSkipperInputStream extends InputStream {
 
     int previous;
     InputStream in;
+
     /**
      * Creates a new CommentSkipperInputStream
      */
     public CommentSkipperInputStream(InputStream input) {
-	in = input;
+        in = input;
     }
 
 
     public int read() throws IOException {
-	int c;
-	if (previous != 0) {
-	    c = previous;
-	    previous = 0;
-	    return c;
-	}
+        int c;
+        if (previous != 0) {
+            c = previous;
+            previous = 0;
+            return c;
+        }
 
-	c = in.read();
+        c = in.read();
 
-	if (c != '/') {
-	    return c;
-	}
-	previous = in.read();
+        if (c != '/') {
+            return c;
+        }
+        previous = in.read();
 
-	if (previous != '*') {
-	    return c;
-	}
-	previous = 0;
-	do {
-	    do {
-		c = in.read();
-	    } while ((c != -1) && (c != '*'));
-	    c = in.read();
-	} while ((c != -1) && (c != '/'));
-	if (c == '/') {
-	    return read();
-	} else {
-	    return -1;
-	}
+        if (previous != '*') {
+            return c;
+        }
+        previous = 0;
+        do {
+            do {
+                c = in.read();
+            } while ((c != -1) && (c != '*'));
+            c = in.read();
+        } while ((c != -1) && (c != '/'));
+        if (c == '/') {
+            return read();
+        } else {
+            return -1;
+        }
     }
 
     public void close() throws IOException {
-	in.close();
+        in.close();
     }
 }

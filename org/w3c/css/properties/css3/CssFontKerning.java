@@ -17,19 +17,19 @@ import org.w3c.css.values.CssValue;
  */
 public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
 
-	public static final CssIdent normal;
-	public static final CssIdent auto;
+    public static final CssIdent normal;
+    public static final CssIdent auto;
 
-	static {
-		auto = CssIdent.getIdent("auto");
-		normal = CssIdent.getIdent("normal");
-	}
+    static {
+        auto = CssIdent.getIdent("auto");
+        normal = CssIdent.getIdent("normal");
+    }
 
-	/**
+    /**
      * Create a new CssFontKerning
      */
     public CssFontKerning() {
-		value = initial;
+        value = initial;
     }
 
     /**
@@ -41,38 +41,38 @@ public class CssFontKerning extends org.w3c.css.properties.css.CssFontKerning {
      */
     public CssFontKerning(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-		if (check && expression.getCount() > 1) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		setByUser();
+        if (check && expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        setByUser();
 
-		CssValue val;
-		char op;
+        CssValue val;
+        char op;
 
-		val = expression.getValue();
-		op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-		if (val.getType() == CssTypes.CSS_IDENT) {
-			CssIdent ident = (CssIdent) val;
-			if (inherit.equals(ident)) {
-				value = inherit;
-			} else if (normal.equals(ident)) {
-				value = normal;
-			} else if (auto.equals(ident)) {
-				value = auto;
-			} else if (none.equals(ident)) {
-				value = none;
-			} else {
-				throw new InvalidParamException("value",
-						val.toString(),
-						getPropertyName(), ac);
-			}
-		} else {
-			throw new InvalidParamException("value",
-					val.toString(),
-					getPropertyName(), ac);
-		}
-		expression.next();
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            CssIdent ident = (CssIdent) val;
+            if (inherit.equals(ident)) {
+                value = inherit;
+            } else if (normal.equals(ident)) {
+                value = normal;
+            } else if (auto.equals(ident)) {
+                value = auto;
+            } else if (none.equals(ident)) {
+                value = none;
+            } else {
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        getPropertyName(), ac);
+            }
+        } else {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
+        }
+        expression.next();
     }
 
     public CssFontKerning(ApplContext ac, CssExpression expression)

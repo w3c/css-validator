@@ -20,46 +20,46 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgroundPosition {
 
-	public static CssIdent[] allowed_values;
-	public static CssIdent center, top, bottom, left, right;
-	private static CssPercentage defaultPercent0, defaultPercent50;
-	private static CssPercentage defaultPercent100;
+    public static CssIdent[] allowed_values;
+    public static CssIdent center, top, bottom, left, right;
+    private static CssPercentage defaultPercent0, defaultPercent50;
+    private static CssPercentage defaultPercent100;
 
-	static {
-		top = CssIdent.getIdent("top");
-		bottom = CssIdent.getIdent("bottom");
-		left = CssIdent.getIdent("left");
-		right = CssIdent.getIdent("right");
-		center = CssIdent.getIdent("center");
-		allowed_values = new CssIdent[5];
-		allowed_values[0] = top;
-		allowed_values[1] = bottom;
-		allowed_values[2] = left;
-		allowed_values[3] = right;
-		allowed_values[4] = center;
+    static {
+        top = CssIdent.getIdent("top");
+        bottom = CssIdent.getIdent("bottom");
+        left = CssIdent.getIdent("left");
+        right = CssIdent.getIdent("right");
+        center = CssIdent.getIdent("center");
+        allowed_values = new CssIdent[5];
+        allowed_values[0] = top;
+        allowed_values[1] = bottom;
+        allowed_values[2] = left;
+        allowed_values[3] = right;
+        allowed_values[4] = center;
 
-		defaultPercent0 = new CssPercentage(0);
-		defaultPercent50 = new CssPercentage(50);
-		defaultPercent100 = new CssPercentage(100);
-	}
+        defaultPercent0 = new CssPercentage(0);
+        defaultPercent50 = new CssPercentage(50);
+        defaultPercent100 = new CssPercentage(100);
+    }
 
-	public static boolean checkMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public static boolean checkMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public static CssIdent getMatchingIdent(CssIdent ident) {
-		for (CssIdent id : allowed_values) {
-			if (id.equals(ident)) {
-				return id;
-			}
-		}
-		return null;
-	}
+    public static CssIdent getMatchingIdent(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
      * Create a new CssBackgroundPosition
@@ -217,7 +217,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                         // and second vertical
                         CssValue val0 = v.value.get(0);
                         if (val0.getType() == CssTypes.CSS_IDENT) {
-                            ident = getMatchingIdent((CssIdent)val0);
+                            ident = getMatchingIdent((CssIdent) val0);
                             if (ident == null) {
                                 throw new InvalidParamException("unrecognize",
                                         ident, getPropertyName(), ac);
@@ -235,20 +235,20 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                             }
                             v.val_vertical = v.vertical;
                         } else {
-							CssValue value1 = v.value.get(1);
-							if (value1.getType() != CssTypes.CSS_IDENT) {
-								throw new InvalidParamException("unrecognize",
-										value1, getPropertyName(), ac);
-							}
-							ident = getMatchingIdent((CssIdent) value1);
-							if (ident == null) {
-								throw new InvalidParamException("unrecognize",
-										ident, getPropertyName(), ac);
-							}
-							if (isHorizontal(ident)) {
-								throw new InvalidParamException("incompatible",
-										val0, value1, ac);
-							}
+                            CssValue value1 = v.value.get(1);
+                            if (value1.getType() != CssTypes.CSS_IDENT) {
+                                throw new InvalidParamException("unrecognize",
+                                        value1, getPropertyName(), ac);
+                            }
+                            ident = getMatchingIdent((CssIdent) value1);
+                            if (ident == null) {
+                                throw new InvalidParamException("unrecognize",
+                                        ident, getPropertyName(), ac);
+                            }
+                            if (isHorizontal(ident)) {
+                                throw new InvalidParamException("incompatible",
+                                        val0, value1, ac);
+                            }
                             v.vertical = ident;
                             v.val_vertical = identToPercent(ident);
                             // and the first value

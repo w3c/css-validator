@@ -108,6 +108,7 @@ public class RGBA {
 
     /**
      * Create a new RGBA with default values
+     *
      * @param r the red channel
      * @param g the green channel
      * @param b the blue channel
@@ -126,7 +127,7 @@ public class RGBA {
      * @param g the green channel
      * @param b the blue channel
      * @param a the alpha channel
-     * Create a new RGBA with default values
+     *          Create a new RGBA with default values
      */
     public RGBA(float r, float g, float b, float a) {
         this.fr = r;

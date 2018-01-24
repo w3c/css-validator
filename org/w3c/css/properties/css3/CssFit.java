@@ -17,17 +17,17 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssValue;
 
 /**
- *  <P>
- *  <EM>Value:</EM> fill | hidden | meet | slice <BR>
- *  <EM>Initial:</EM>hidden<BR>
- *  <EM>Applies to:</EM>replaced elements<BR>
- *  <EM>Inherited:</EM>yes<BR>
- *  <EM>Percentages:</EM>no<BR>
- *  <EM>Media:</EM>:visual
- *  <P>
- *  This property gives a hint for how to scale a replaced element if neither its
- *  'width' nor its 'height' property is 'auto'. Not all replaced objects can be
- *  scaled, but images typically can.
+ * <p/>
+ * <EM>Value:</EM> fill | hidden | meet | slice <BR>
+ * <EM>Initial:</EM>hidden<BR>
+ * <EM>Applies to:</EM>replaced elements<BR>
+ * <EM>Inherited:</EM>yes<BR>
+ * <EM>Percentages:</EM>no<BR>
+ * <EM>Media:</EM>:visual
+ * <p/>
+ * This property gives a hint for how to scale a replaced element if neither its
+ * 'width' nor its 'height' property is 'auto'. Not all replaced objects can be
+ * scaled, but images typically can.
  */
 
 public class CssFit extends CssProperty {
@@ -37,45 +37,45 @@ public class CssFit extends CssProperty {
     static CssIdent hidden = new CssIdent("hidden");
 
     private static String[] values = {
-	"fill", "hidden", "meet", "slice", "initial", "inherit"
+            "fill", "hidden", "meet", "slice", "initial", "inherit"
     };
 
     /**
      * Create a new CssFit
      */
     public CssFit() {
-	fit = hidden;
+        fit = hidden;
     }
 
     /**
      * Create a new CssFit
      *
      * @param expression The expression for this property
-     * @exception InvalidParamException Incorrect value
+     * @throws InvalidParamException Incorrect value
      */
     public CssFit(ApplContext ac, CssExpression expression, boolean check)
-    	throws InvalidParamException {
+            throws InvalidParamException {
 
-	setByUser();
-	CssValue val = expression.getValue();
+        setByUser();
+        CssValue val = expression.getValue();
 
-	int i = 0;
-	for (; i < values.length; i++) {
-	    if (val.toString().equals(values[i])) {
-		fit = val;
-		expression.next();
-		break;
-	    }
-	}
-	if (i == values.length) {
-	    throw new InvalidParamException("value", expression.getValue(),
-					    getPropertyName(), ac);
-	}
+        int i = 0;
+        for (; i < values.length; i++) {
+            if (val.toString().equals(values[i])) {
+                fit = val;
+                expression.next();
+                break;
+            }
+        }
+        if (i == values.length) {
+            throw new InvalidParamException("value", expression.getValue(),
+                    getPropertyName(), ac);
+        }
     }
 
     public CssFit(ApplContext ac, CssExpression expression)
-	    throws InvalidParamException {
-	this(ac, expression, false);
+            throws InvalidParamException {
+        this(ac, expression, false);
     }
 
     /**
@@ -84,24 +84,23 @@ public class CssFit extends CssProperty {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-	if (((Css3Style) style).cssFit != null)
-	    style.addRedefinitionWarning(ac, this);
-	((Css3Style) style).cssFit = this;
+        if (((Css3Style) style).cssFit != null)
+            style.addRedefinitionWarning(ac, this);
+        ((Css3Style) style).cssFit = this;
     }
 
     /**
      * Get this property in the style.
      *
-     * @param style The style where the property is
+     * @param style   The style where the property is
      * @param resolve if true, resolve the style to find this property
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-	if (resolve) {
-	    return ((Css3Style) style).getFit();
-	}
-	else {
-	    return ((Css3Style) style).cssFit;
-	}
+        if (resolve) {
+            return ((Css3Style) style).getFit();
+        } else {
+            return ((Css3Style) style).cssFit;
+        }
     }
 
     /**
@@ -110,36 +109,36 @@ public class CssFit extends CssProperty {
      * @param value The other property.
      */
     public boolean equals(CssProperty property) {
-	return (property instanceof CssFit &&
-		fit.equals(((CssFit) property).fit));
+        return (property instanceof CssFit &&
+                fit.equals(((CssFit) property).fit));
     }
 
     /**
      * Returns the name of this property
      */
     public String getPropertyName() {
-	return "fit";
+        return "fit";
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-	return fit;
+        return fit;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-	return fit.equals(inherit);
+        return fit.equals(inherit);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-	return fit.toString();
+        return fit.toString();
     }
 
     /**
@@ -147,7 +146,7 @@ public class CssFit extends CssProperty {
      * It is used by alle macro for the function <code>print</code>
      */
     public boolean isDefault() {
-	return (fit == hidden);
+        return (fit == hidden);
     }
 
 }

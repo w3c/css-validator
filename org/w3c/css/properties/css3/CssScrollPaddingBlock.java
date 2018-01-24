@@ -22,104 +22,104 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollPaddingBlock {
 
-	private CssScrollPaddingBlockStart _longhand_start;
-	private CssScrollPaddingBlockEnd _longhand_end;
+    private CssScrollPaddingBlockStart _longhand_start;
+    private CssScrollPaddingBlockEnd _longhand_end;
 
-	/**
-	 * Create a new CssScrollPaddingBlock
-	 */
-	public CssScrollPaddingBlock() {
-		value = initial;
-		_longhand_end = new CssScrollPaddingBlockEnd();
-		_longhand_start = new CssScrollPaddingBlockStart();
-	}
+    /**
+     * Create a new CssScrollPaddingBlock
+     */
+    public CssScrollPaddingBlock() {
+        value = initial;
+        _longhand_end = new CssScrollPaddingBlockEnd();
+        _longhand_start = new CssScrollPaddingBlockStart();
+    }
 
-	/**
-	 * Creates a new CssScrollPaddingBlock
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssScrollPaddingBlock(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		setByUser();
-		CssValue val = expression.getValue();
-		char op = expression.getOperator();
+    /**
+     * Creates a new CssScrollPaddingBlock
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssScrollPaddingBlock(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        setByUser();
+        CssValue val = expression.getValue();
+        char op = expression.getOperator();
 
-		if (check && expression.getCount() > 2) {
-			throw new InvalidParamException("unrecognize", ac);
-		}
-		ArrayList<CssValue> values = new ArrayList<>();
-		_longhand_end = new CssScrollPaddingBlockEnd();
-		_longhand_start = new CssScrollPaddingBlockStart();
+        if (check && expression.getCount() > 2) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        ArrayList<CssValue> values = new ArrayList<>();
+        _longhand_end = new CssScrollPaddingBlockEnd();
+        _longhand_start = new CssScrollPaddingBlockStart();
 
-		switch (val.getType()) {
-			case CssTypes.CSS_NUMBER:
-				val.getCheckableValue().checkEqualsZero(ac, this);
-			case CssTypes.CSS_LENGTH:
-			case CssTypes.CSS_PERCENTAGE:
-				val.getCheckableValue().checkPositiveness(ac, this);
-				values.add(val);
-				_longhand_start.value = val;
-				break;
-			case CssTypes.CSS_IDENT:
-				if (inherit.equals(val)) {
-					if (expression.getCount() > 1) {
-						throw new InvalidParamException("value",
-								expression.getValue(),
-								getPropertyName(), ac);
-					}
-					values.add(val);
-					_longhand_start.value = inherit;
-					_longhand_end.value = inherit;
-					break;
-				}
-			default:
-				throw new InvalidParamException("value",
-						expression.getValue(),
-						getPropertyName(), ac);
-		}
-		expression.next();
-		if (!expression.end()) {
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			val = expression.getValue();
-			switch (val.getType()) {
-				case CssTypes.CSS_NUMBER:
-					val.getCheckableValue().checkEqualsZero(ac, this);
-				case CssTypes.CSS_LENGTH:
-				case CssTypes.CSS_PERCENTAGE:
-					val.getCheckableValue().checkPositiveness(ac, this);
-					values.add(val);
-					_longhand_end.value = val;
-					break;
-				default:
-					throw new InvalidParamException("value",
-							expression.getValue(),
-							getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-	}
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                val.getCheckableValue().checkPositiveness(ac, this);
+                values.add(val);
+                _longhand_start.value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                expression.getValue(),
+                                getPropertyName(), ac);
+                    }
+                    values.add(val);
+                    _longhand_start.value = inherit;
+                    _longhand_end.value = inherit;
+                    break;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+        }
+        expression.next();
+        if (!expression.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            val = expression.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getCheckableValue().checkEqualsZero(ac, this);
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    val.getCheckableValue().checkPositiveness(ac, this);
+                    values.add(val);
+                    _longhand_end.value = val;
+                    break;
+                default:
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
 
-	public CssScrollPaddingBlock(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssScrollPaddingBlock(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		_longhand_start.addToStyle(ac, style);
-		_longhand_end.addToStyle(ac, style);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        _longhand_start.addToStyle(ac, style);
+        _longhand_end.addToStyle(ac, style);
+    }
 }
 

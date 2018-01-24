@@ -22,83 +22,83 @@ import static org.w3c.css.values.CssOperator.SPACE;
  */
 public class CssGridColumn extends org.w3c.css.properties.css.CssGridColumn {
 
-	private CssGridRowStart _start;
-	private CssGridRowEnd _end;
+    private CssGridRowStart _start;
+    private CssGridRowEnd _end;
 
-	/**
-	 * Create a new CssGridColumn
-	 */
-	public CssGridColumn() {
-		value = initial;
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
-	}
+    /**
+     * Create a new CssGridColumn
+     */
+    public CssGridColumn() {
+        value = initial;
+        _start = new CssGridRowStart();
+        _end = new CssGridRowEnd();
+    }
 
-	/**
-	 * Creates a new CssGridColumn
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssGridColumn(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		CssExpression exp;
+    /**
+     * Creates a new CssGridColumn
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssGridColumn(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        CssExpression exp;
 
-		CssValue val;
-		char op;
-		exp = new CssExpression();
-		int nb_switch = 0;
+        CssValue val;
+        char op;
+        exp = new CssExpression();
+        int nb_switch = 0;
 
-		_start = new CssGridRowStart();
-		_end = new CssGridRowEnd();
+        _start = new CssGridRowStart();
+        _end = new CssGridRowEnd();
 
-		ArrayList<CssValue> values = new ArrayList<>();
+        ArrayList<CssValue> values = new ArrayList<>();
 
-		while (!expression.end()) {
-			val = expression.getValue();
-			op = expression.getOperator();
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
 
-			if (val.getType() == CssTypes.CSS_SWITCH) {
-				if (nb_switch > 0) {
-					throw new InvalidParamException("value", val,
-							getPropertyName(), ac);
-				}
-				values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
-				values.add(val);
-				exp = new CssExpression();
-				nb_switch++;
-			} else {
-				exp.addValue(val);
-			}
-			if (op != SPACE) {
-				throw new InvalidParamException("operator", op,
-						getPropertyName(), ac);
-			}
-			expression.next();
-		}
-		values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
+            if (val.getType() == CssTypes.CSS_SWITCH) {
+                if (nb_switch > 0) {
+                    throw new InvalidParamException("value", val,
+                            getPropertyName(), ac);
+                }
+                values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
+                values.add(val);
+                exp = new CssExpression();
+                nb_switch++;
+            } else {
+                exp.addValue(val);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
+        }
+        values.add(CssGridRowStart.checkGridLine(ac, exp, check, this));
 
-		value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
-		_start.value = values.get(0);
-		_end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
-	}
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+        _start.value = values.get(0);
+        _end.value = (values.size() == 1) ? CssGridRowStart.auto : values.get(2);
+    }
 
-	public CssGridColumn(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssGridColumn(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
-	/**
-	 * Add this property to the CssStyle.
-	 *
-	 * @param style The CssStyle
-	 */
-	public void addToStyle(ApplContext ac, CssStyle style) {
-		super.addToStyle(ac, style);
-		_start.addToStyle(ac, style);
-		_end.addToStyle(ac, style);
-	}
+    /**
+     * Add this property to the CssStyle.
+     *
+     * @param style The CssStyle
+     */
+    public void addToStyle(ApplContext ac, CssStyle style) {
+        super.addToStyle(ac, style);
+        _start.addToStyle(ac, style);
+        _end.addToStyle(ac, style);
+    }
 
 }
 

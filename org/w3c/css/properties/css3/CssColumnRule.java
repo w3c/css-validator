@@ -40,7 +40,8 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
      * Create a new CssColumnRule
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException Incorrect values
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Incorrect values
      */
     public CssColumnRule(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
@@ -63,7 +64,7 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
                         ac);
             }
             switch (val.getType()) {
-				case CssTypes.CSS_HASH_IDENT:
+                case CssTypes.CSS_HASH_IDENT:
                 case CssTypes.CSS_FUNCTION:
                 case CssTypes.CSS_COLOR:
                     if (rule_color != null) {

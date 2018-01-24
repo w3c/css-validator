@@ -13,8 +13,8 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssValue;
 
 /**
- * @since CSS2
  * @version $Revision$
+ * @since CSS2
  */
 public class CssStress extends CssProperty {
 

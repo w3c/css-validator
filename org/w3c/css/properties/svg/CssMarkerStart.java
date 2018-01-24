@@ -14,29 +14,29 @@ import org.w3c.css.values.CssExpression;
  */
 public class CssMarkerStart extends org.w3c.css.properties.css.CssMarkerStart {
 
-	/**
-	 * Create a new CssMarkerStart
-	 */
-	public CssMarkerStart() {
-		value = initial;
-	}
+    /**
+     * Create a new CssMarkerStart
+     */
+    public CssMarkerStart() {
+        value = initial;
+    }
 
-	/**
-	 * Creates a new CssMarkerStart
-	 *
-	 * @param expression The expression for this property
-	 * @throws org.w3c.css.util.InvalidParamException
-	 *          Expressions are incorrect
-	 */
-	public CssMarkerStart(ApplContext ac, CssExpression expression, boolean check)
-			throws InvalidParamException {
-		value = CssMarker.checkMarkerValue(this, ac, expression, check);
-	}
+    /**
+     * Creates a new CssMarkerStart
+     *
+     * @param expression The expression for this property
+     * @throws org.w3c.css.util.InvalidParamException
+     *          Expressions are incorrect
+     */
+    public CssMarkerStart(ApplContext ac, CssExpression expression, boolean check)
+            throws InvalidParamException {
+        value = CssMarker.checkMarkerValue(this, ac, expression, check);
+    }
 
-	public CssMarkerStart(ApplContext ac, CssExpression expression)
-			throws InvalidParamException {
-		this(ac, expression, false);
-	}
+    public CssMarkerStart(ApplContext ac, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, expression, false);
+    }
 
 }
 
