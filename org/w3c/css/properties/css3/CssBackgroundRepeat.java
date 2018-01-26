@@ -108,7 +108,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
     }
 
 
-    public CssValue checkBackgroundRepeat(ApplContext ac, CssExpression expression, CssProperty caller)
+    public static CssValue checkBackgroundRepeat(ApplContext ac, CssExpression expression, CssProperty caller)
             throws InvalidParamException {
         ArrayList<CssValue> values = new ArrayList<CssValue>();
         boolean is_complete = true;
