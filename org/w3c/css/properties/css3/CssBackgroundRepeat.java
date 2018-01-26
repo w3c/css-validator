@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -52,12 +53,12 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
     public static CssIdent getMatchingIdent(CssIdent ident) {
         for (CssIdent id : allowed_simple_values) {
             if (id.equals(ident)) {
-                return ident;
+                return id;
             }
         }
         for (CssIdent id : allowed_double_values) {
             if (id.equals(ident)) {
-                return ident;
+                return id;
             }
         }
         return null;
@@ -66,7 +67,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
     public static CssIdent getSimpleValue(CssIdent ident) {
         for (CssIdent id : allowed_simple_values) {
             if (id.equals(ident)) {
-                return ident;
+                return id;
             }
         }
         return null;
@@ -75,7 +76,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
     public static CssIdent getDoubleValue(CssIdent ident) {
         for (CssIdent id : allowed_double_values) {
             if (id.equals(ident)) {
-                return ident;
+                return id;
             }
         }
         return null;
@@ -98,15 +99,22 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
      *          The expression is incorrect
      */
     public CssBackgroundRepeat(ApplContext ac, CssExpression expression,
-                               boolean check) throws InvalidParamException {
+                               boolean check)
+            throws InvalidParamException {
 
+        setByUser();
+
+        value = checkBackgroundRepeat(ac, expression, this);
+    }
+
+
+    public CssValue checkBackgroundRepeat(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
         ArrayList<CssValue> values = new ArrayList<CssValue>();
         boolean is_complete = true;
         CssValue val;
         CssValueList vl = null;
         char op;
-
-        setByUser();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -115,7 +123,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
             // not an ident? fail
             if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
             }
 
             CssIdent id_val = (CssIdent) val;
@@ -124,9 +132,9 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
                 // if we got more than one value... fail
                 if ((values.size() > 0) || (expression.getCount() > 1)) {
                     throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
+                            caller.getPropertyName(), ac);
                 }
-                values.add(inherit);
+                return inherit;
             } else {
                 CssIdent new_val;
                 // check values that must be alone
@@ -135,7 +143,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
                     // if we already have a double value... it's an error
                     if (!is_complete) {
                         throw new InvalidParamException("value",
-                                val, getPropertyName(), ac);
+                                val, caller.getPropertyName(), ac);
                     }
                     values.add(new_val);
                     is_complete = true;
@@ -145,7 +153,7 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
                     // not an allowed value !
                     if (new_val == null) {
                         throw new InvalidParamException("value",
-                                val, getPropertyName(), ac);
+                                val, caller.getPropertyName(), ac);
                     }
                     if (is_complete) {
                         vl = new CssValueList();
@@ -177,13 +185,8 @@ public class CssBackgroundRepeat extends org.w3c.css.properties.css.CssBackgroun
         if (!is_complete) {
             values.add(vl);
         }
-        if (values.size() == 1) {
-            value = values.get(0);
-        } else {
-            value = new CssLayerList(values);
-        }
+        return (values.size() == 1) ? values.get(0) : new CssLayerList(values);
     }
-
 
     public CssBackgroundRepeat(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
