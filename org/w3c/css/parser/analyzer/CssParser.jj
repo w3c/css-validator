@@ -333,6 +333,34 @@ public abstract class CssParser {
     }
 
     /**
+     * Returns the beginLine in the style sheet
+     */
+    public final int getBeginLine() {
+	return token.beginLine;
+    }
+
+    /**
+     * Returns the beginColumn in the style sheet
+     */
+    public final int getBeginColumn() {
+	return token.beginColumn;
+    }
+
+    /**
+     * Returns the endLine in the style sheet
+     */
+    public final int getEndLine() {
+	return token.endLine;
+    }
+
+    /**
+     * Returns the endColumn in the style sheet
+     */
+    public final int getEndColumn() {
+	return token.endColumn;
+    }
+
+    /**
      * Set the URL of the style sheet.
      *
      * @param url The URL for the style sheet
@@ -412,7 +440,8 @@ public abstract class CssParser {
 	ex.setSkippedString(skippedText);
 	ex.setProperty(currentProperty);
 	ex.setContexts(currentContext);
-	CssError error = new CssError(getSourceFile(), getLine(), ex);
+	CssError error = new CssError(getSourceFile(), getBeginLine(),
+		getBeginColumn(), getEndLine(), getEndColumn(), ex);
 	ac.getFrame().addError(error);
     }
     
@@ -430,7 +459,8 @@ public abstract class CssParser {
 	ex.setExp(exp);
 	ex.setProperty(currentProperty);
 	ex.setContexts(currentContext);
-	CssError error = new CssError(getSourceFile(), getLine(), ex);
+	CssError error = new CssError(getSourceFile(), getBeginLine(),
+		getBeginColumn(), getEndLine(), getEndColumn(), ex);
 	ac.getFrame().addError(error);
 	//	}
     }
