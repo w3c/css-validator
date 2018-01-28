@@ -46,40 +46,12 @@ public class CssParseException extends ParseException {
     private boolean error;
 
     /**
-     * Line number of the error.
-     */
-    int errorLine;
-
-    /**
-     * Column number of the error.
-     */
-    int errorColumn;
-
-    /**
-     * Gets the line number of the error.
-     */
-    public int getLine() {
-        return this.errorLine;
-    }
-
-    /**
-     * Gets the column number of the error.
-     */
-    public int getColumn() {
-        return this.errorColumn;
-    }
-
-    /**
      * Create a new CssParseException
      */
     public CssParseException(Exception exc) {
-        this.errorLine = -1;
-        this.errorColumn = -1;
         parseException = exc;
         if (parseException instanceof ParseException) {
             ParseException e = (ParseException) exc;
-            this.errorLine = e.getLine();
-            this.errorColumn = e.getColumn();
             error = (e.currentToken != null
                     && e.expectedTokenSequences != null
                     && e.tokenImage != null);
