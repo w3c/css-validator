@@ -2385,6 +2385,10 @@ try {
         }
         return null;
     }
+ } catch (TokenMgrError e) {
+     addError (new ParseException(
+         ac.getMsg().getString("generator.unrecognize")), e.getMessage());
+     return null;
  } catch (NumberFormatException e) {
      skipAfterExpression(e);
      return null;
