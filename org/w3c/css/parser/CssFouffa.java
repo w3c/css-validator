@@ -669,7 +669,7 @@ public final class CssFouffa extends CssParser {
     public void parseDeclarations(CssSelectors context) {
         // here we have an example for reusing the parser.
         try {
-            ArrayList<CssProperty> properties = declarations();
+            ArrayList<CssProperty> properties = attributeDeclarations();
 
             if (properties != null && properties.size() != 0) {
                 handleRule(context, properties);

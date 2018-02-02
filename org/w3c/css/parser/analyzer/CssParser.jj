@@ -1747,6 +1747,18 @@ ArrayList<CssProperty> declarations() :
 	}
 }
 
+/** 
+ * Used only when HTML is parsed, as otherwise parsing <S>* is missed 
+ */
+ArrayList<CssProperty> attributeDeclarations() :
+{ ArrayList<CssProperty> p = null;
+}
+{
+    ( <S> )* p=declarations() {
+      return p;
+    }
+}
+
 /**
  * @exception ParseException exception during the parse
  */
