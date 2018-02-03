@@ -1754,8 +1754,12 @@ ArrayList<CssProperty> attributeDeclarations() :
 { ArrayList<CssProperty> p = null;
 }
 {
-    ( <S> )* p=declarations() {
-      return p;
+    try {
+        ( <S> )* p=declarations() {
+          return p;
+        }
+    } catch (TokenMgrError tokenerror) {
+        throw new ParseException(ac.getMsg().getString("generator.unrecognize"));
     }
 }
 
