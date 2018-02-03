@@ -47,10 +47,13 @@ var W3C = {
 			var span = new Element('span').set('text', value).inject(link);
 			link.injectAfter(submit).addEvent('click', function(event){
 				new Event(event).stop();
-				if (W3C.Forms[i].reportValidity()) {
+				if ('reportValidity' in document.createElement('form')) {
+					if (W3C.Forms[i].reportValidity()) {
+						W3C.Forms[i].submit();
+					}
+				} else {
 					W3C.Forms[i].submit();
 				}
-
 			});
 		});
 		
