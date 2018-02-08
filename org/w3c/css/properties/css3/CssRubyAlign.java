@@ -16,6 +16,9 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+/**
+ * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-align
+ */
 public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
 
     public static final CssIdent[] allowed_values;
