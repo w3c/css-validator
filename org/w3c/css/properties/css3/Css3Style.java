@@ -300,7 +300,6 @@ public class Css3Style extends ATSCStyle {
     public CssAlignmentBaseline cssAlignmentBaseline;
     public CssBaselineShift cssBaselineShift;
     public CssDominantBaseline cssDominantBaseline;
-    CssFit cssFit;
     public CssInitialLetter cssInitialLetter;
     public CssInitialLetterAlign cssInitialLetterAlign;
     public CssInitialLetterWrap cssInitialLetterWrap;
@@ -421,7 +420,6 @@ public class Css3Style extends ATSCStyle {
     CssLineStackingShift cssLineStackingShift;
     CssLineStackingStrategy cssLineStackingStrategy;
     CssRubySpan cssRubySpan;
-    CssFitPosition cssFitPosition;
 
     public CssFilter cssFilter;
     public CssColorInterpolationFilters cssColorInterpolationFilters;
@@ -1150,15 +1148,6 @@ public class Css3Style extends ATSCStyle {
         return cssWordBreak;
     }
 
-    public CssFit getFit() {
-        if (cssFit == null) {
-            cssFit =
-                    (CssFit) style.CascadingOrder(
-                            new CssFit(), style, selector);
-        }
-        return cssFit;
-    }
-
     public CssColumns getColumns() {
         if (cssColumns == null) {
             cssColumns =
@@ -1446,15 +1435,6 @@ public class Css3Style extends ATSCStyle {
                             new CssRubySpan(), style, selector);
         }
         return cssRubySpan;
-    }
-
-    public CssFitPosition getFitPosition() {
-        if (cssFitPosition == null) {
-            cssFitPosition =
-                    (CssFitPosition) style.CascadingOrder(
-                            new CssFitPosition(), style, selector);
-        }
-        return cssFitPosition;
     }
 
     public CssMarqueeDirection getMarqueeDirection() {
