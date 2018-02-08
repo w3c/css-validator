@@ -415,12 +415,6 @@ public class Css3Style extends ATSCStyle {
     public CssImageOrientation cssImageOrientation;
     public CssImageResolution cssImageResolution;
 
-    CssDropInitialAfterAdjust cssDropInitialAfterAdjust;
-    CssDropInitialAfterAlign cssDropInitialAfterAlign;
-    CssDropInitialBeforeAdjust cssDropInitialBeforeAdjust;
-    CssDropInitialBeforeAlign cssDropInitialBeforeAlign;
-    CssDropInitialSize cssDropInitialSize;
-    CssDropInitialValue cssDropInitialValue;
     CssInlineBoxAlign cssInlineBoxAlign;
     CssLineStacking cssLineStacking;
     CssLineStackingRuby cssLineStackingRuby;
@@ -1316,60 +1310,6 @@ public class Css3Style extends ATSCStyle {
                             new CssColumnRule(), style, selector);
         }
         return cssColumnRule;
-    }
-
-    public CssDropInitialAfterAdjust getDropInitialAfterAdjust() {
-        if (cssDropInitialAfterAdjust == null) {
-            cssDropInitialAfterAdjust =
-                    (CssDropInitialAfterAdjust) style.CascadingOrder(
-                            new CssDropInitialAfterAdjust(), style, selector);
-        }
-        return cssDropInitialAfterAdjust;
-    }
-
-    public CssDropInitialAfterAlign getDropInitialAfterAlign() {
-        if (cssDropInitialAfterAlign == null) {
-            cssDropInitialAfterAlign =
-                    (CssDropInitialAfterAlign) style.CascadingOrder(
-                            new CssDropInitialAfterAlign(), style, selector);
-        }
-        return cssDropInitialAfterAlign;
-    }
-
-    public CssDropInitialBeforeAdjust getDropInitialBeforeAdjust() {
-        if (cssDropInitialBeforeAdjust == null) {
-            cssDropInitialBeforeAdjust =
-                    (CssDropInitialBeforeAdjust) style.CascadingOrder(
-                            new CssDropInitialBeforeAdjust(), style, selector);
-        }
-        return cssDropInitialBeforeAdjust;
-    }
-
-    public CssDropInitialBeforeAlign getDropInitialBeforeAlign() {
-        if (cssDropInitialBeforeAlign == null) {
-            cssDropInitialBeforeAlign =
-                    (CssDropInitialBeforeAlign) style.CascadingOrder(
-                            new CssDropInitialBeforeAlign(), style, selector);
-        }
-        return cssDropInitialBeforeAlign;
-    }
-
-    public CssDropInitialSize getDropInitialSize() {
-        if (cssDropInitialSize == null) {
-            cssDropInitialSize =
-                    (CssDropInitialSize) style.CascadingOrder(
-                            new CssDropInitialSize(), style, selector);
-        }
-        return cssDropInitialSize;
-    }
-
-    public CssDropInitialValue getDropInitialValue() {
-        if (cssDropInitialValue == null) {
-            cssDropInitialValue =
-                    (CssDropInitialValue) style.CascadingOrder(
-                            new CssDropInitialValue(), style, selector);
-        }
-        return cssDropInitialValue;
     }
 
     public CssInlineBoxAlign getInlineBoxAlign() {
