@@ -135,6 +135,7 @@ import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
+import org.w3c.css.properties.css.CssRubyPosition;
 import org.w3c.css.properties.css.CssScrollPadding;
 import org.w3c.css.properties.css.CssScrollPaddingBlock;
 import org.w3c.css.properties.css.CssScrollPaddingBlockEnd;
@@ -296,7 +297,7 @@ public class Css3Style extends ATSCStyle {
 
     public CssBoxSuppress cssBoxSuppress;
 
-    CssRubyPosition cssRubyPosition;
+    public CssRubyPosition cssRubyPosition;
     public CssRubyAlign cssRubyAlign;
     public CssRubyMerge cssRubyMerge;
     CssRubyOverhang cssRubyOverhang;
