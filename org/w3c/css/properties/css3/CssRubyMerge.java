@@ -1,8 +1,5 @@
 //
-// $Id$
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
-//
-// rewritten 2018 by Yves Lafon <ylafon@w3.org>
+// Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2018.
 // Please first read the full copyright statement in file COPYRIGHT.html
@@ -17,14 +14,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-align
+ * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-ruby-merge
  */
-public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
+public class CssRubyMerge extends org.w3c.css.properties.css.CssRubyMerge {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"start", "center", "space-between", "space-around"};
+        String[] _allowed_values = {"separate", "collapse", "auto"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -42,20 +39,20 @@ public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
     }
 
     /**
-     * Create new CssRubyAlign
+     * Create new CssRubyMerge
      */
-    public CssRubyAlign() {
+    public CssRubyMerge() {
         value = initial;
     }
 
     /**
-     * Create new CssRubyAlign
+     * Create new CssRubyMerge
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Values are incorrect
      */
-    public CssRubyAlign(ApplContext ac, CssExpression expression,
+    public CssRubyMerge(ApplContext ac, CssExpression expression,
                         boolean check) throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -64,26 +61,28 @@ public class CssRubyAlign extends org.w3c.css.properties.css.CssRubyAlign {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            value = getAllowedIdent((CssIdent) val);
-            if (value == null) {
-                throw new InvalidParamException("value",
-                        expression.getValue(),
-                        getPropertyName(), ac);
+        if (val.getType() == CssTypes.CSS_IDENT) {
+            CssIdent ident = (CssIdent) val;
+            if (inherit.equals(ident)) {
+                value = inherit;
+            } else {
+                value = getAllowedIdent(ident);
+                if (value == null) {
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
+                }
             }
+        } else {
+            throw new InvalidParamException("value",
+                    val.toString(),
+                    getPropertyName(), ac);
         }
         expression.next();
     }
 
 
-    public CssRubyAlign(ApplContext ac, CssExpression expression)
+    public CssRubyMerge(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

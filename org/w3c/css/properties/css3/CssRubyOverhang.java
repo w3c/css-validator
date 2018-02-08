@@ -24,6 +24,7 @@ import org.w3c.css.values.CssValue;
  * <EM>Inherited:</EM>yes<BR>
  * <EM>Percentages:</EM>no<BR>
  * <EM>Media:</EM>:visual
+ * @deprecated
  */
 
 public class CssRubyOverhang extends CssProperty {
@@ -53,6 +54,9 @@ public class CssRubyOverhang extends CssProperty {
                            boolean check) throws InvalidParamException {
 
         setByUser();
+
+        ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
+
         CssValue val = expression.getValue();
 
         if (val.equals(auto)) {
@@ -74,6 +78,7 @@ public class CssRubyOverhang extends CssProperty {
             throw new InvalidParamException("value", expression.getValue(),
                     getPropertyName(), ac);
         }
+
     }
 
     public CssRubyOverhang(ApplContext ac, CssExpression expression)

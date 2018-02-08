@@ -133,6 +133,9 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssRubyAlign;
+import org.w3c.css.properties.css.CssRubyMerge;
+import org.w3c.css.properties.css.CssRubyPosition;
 import org.w3c.css.properties.css.CssScrollPadding;
 import org.w3c.css.properties.css.CssScrollPaddingBlock;
 import org.w3c.css.properties.css.CssScrollPaddingBlockEnd;
@@ -294,8 +297,9 @@ public class Css3Style extends ATSCStyle {
 
     public CssBoxSuppress cssBoxSuppress;
 
-    CssRubyPosition cssRubyPosition;
-    CssRubyAlign cssRubyAlign;
+    public CssRubyPosition cssRubyPosition;
+    public CssRubyAlign cssRubyAlign;
+    public CssRubyMerge cssRubyMerge;
     CssRubyOverhang cssRubyOverhang;
     public CssAlignmentBaseline cssAlignmentBaseline;
     public CssBaselineShift cssBaselineShift;
@@ -1015,6 +1019,15 @@ public class Css3Style extends ATSCStyle {
                             new CssRubyAlign(), style, selector);
         }
         return cssRubyAlign;
+    }
+
+    public CssRubyMerge getRubyMerge() {
+        if (cssRubyMerge == null) {
+            cssRubyMerge =
+                    (CssRubyMerge) style.CascadingOrder(
+                            new CssRubyMerge(), style, selector);
+        }
+        return cssRubyMerge;
     }
 
     public CssRubyOverhang getRubyOverhang() {
