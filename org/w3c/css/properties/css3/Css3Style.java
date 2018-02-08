@@ -298,7 +298,6 @@ public class Css3Style extends ATSCStyle {
     CssRubyAlign cssRubyAlign;
     CssRubyOverhang cssRubyOverhang;
     public CssAlignmentBaseline cssAlignmentBaseline;
-    CssAlignmentAdjust cssAlignmentAdjust;
     public CssBaselineShift cssBaselineShift;
     public CssDominantBaseline cssDominantBaseline;
     CssFit cssFit;
@@ -1101,15 +1100,6 @@ public class Css3Style extends ATSCStyle {
                             new CssAlignmentBaseline(), style, selector);
         }
         return cssAlignmentBaseline;
-    }
-
-    public CssAlignmentAdjust getAlignmentAdjust() {
-        if (cssAlignmentAdjust == null) {
-            cssAlignmentAdjust =
-                    (CssAlignmentAdjust) style.CascadingOrder(
-                            new CssAlignmentAdjust(), style, selector);
-        }
-        return cssAlignmentAdjust;
     }
 
     public CssBaselineShift getBaselineShift() {
