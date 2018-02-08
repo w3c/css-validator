@@ -414,10 +414,6 @@ public class Css3Style extends ATSCStyle {
     public CssImageOrientation cssImageOrientation;
     public CssImageResolution cssImageResolution;
 
-    CssLineStacking cssLineStacking;
-    CssLineStackingRuby cssLineStackingRuby;
-    CssLineStackingShift cssLineStackingShift;
-    CssLineStackingStrategy cssLineStackingStrategy;
     CssRubySpan cssRubySpan;
 
     public CssFilter cssFilter;
@@ -1298,42 +1294,6 @@ public class Css3Style extends ATSCStyle {
                             new CssColumnRule(), style, selector);
         }
         return cssColumnRule;
-    }
-
-    public CssLineStacking getLineStacking() {
-        if (cssLineStacking == null) {
-            cssLineStacking =
-                    (CssLineStacking) style.CascadingOrder(
-                            new CssLineStacking(), style, selector);
-        }
-        return cssLineStacking;
-    }
-
-    public CssLineStackingRuby getLineStackingRuby() {
-        if (cssLineStackingRuby == null) {
-            cssLineStackingRuby =
-                    (CssLineStackingRuby) style.CascadingOrder(
-                            new CssLineStackingRuby(), style, selector);
-        }
-        return cssLineStackingRuby;
-    }
-
-    public CssLineStackingShift getLineStackingShift() {
-        if (cssLineStackingShift == null) {
-            cssLineStackingShift =
-                    (CssLineStackingShift) style.CascadingOrder(
-                            new CssLineStackingShift(), style, selector);
-        }
-        return cssLineStackingShift;
-    }
-
-    public CssLineStackingStrategy getLineStackingStrategy() {
-        if (cssLineStackingStrategy == null) {
-            cssLineStackingStrategy =
-                    (CssLineStackingStrategy) style.CascadingOrder(
-                            new CssLineStackingStrategy(), style, selector);
-        }
-        return cssLineStackingStrategy;
     }
 
     public CssIcon getIcon() {
