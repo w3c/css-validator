@@ -21,6 +21,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @spec https://www.w3.org/TR/2015/WD-css-display-3-20151015/#propdef-display
  * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#flex-containers
  * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#valdef-display-subgrid
+ * @spec https://www.w3.org/TR/2014/WD-css-ruby-1-20140805/#propdef-display
  */
 public class CssDisplay extends org.w3c.css.properties.css.CssDisplay {
 
