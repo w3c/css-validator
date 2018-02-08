@@ -414,7 +414,6 @@ public class Css3Style extends ATSCStyle {
     public CssImageOrientation cssImageOrientation;
     public CssImageResolution cssImageResolution;
 
-    CssInlineBoxAlign cssInlineBoxAlign;
     CssLineStacking cssLineStacking;
     CssLineStackingRuby cssLineStackingRuby;
     CssLineStackingShift cssLineStackingShift;
@@ -1299,15 +1298,6 @@ public class Css3Style extends ATSCStyle {
                             new CssColumnRule(), style, selector);
         }
         return cssColumnRule;
-    }
-
-    public CssInlineBoxAlign getInlineBoxAlign() {
-        if (cssInlineBoxAlign == null) {
-            cssInlineBoxAlign =
-                    (CssInlineBoxAlign) style.CascadingOrder(
-                            new CssInlineBoxAlign(), style, selector);
-        }
-        return cssInlineBoxAlign;
     }
 
     public CssLineStacking getLineStacking() {
