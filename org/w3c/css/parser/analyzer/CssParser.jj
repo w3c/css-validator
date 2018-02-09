@@ -1125,7 +1125,9 @@ void page() :
 	if (!isCss1) {
 	    skipStatement();
 	    removeThisAtRule();
-	    ac.getFrame().addError(new CssError(ie));
+	    ac.getFrame()
+	        .addError(new CssError(getSourceFile(), getBeginLine(),
+	            getBeginColumn(), getEndLine(), getEndColumn(), ie));
 	}
     } catch (ParseException e) {
 	if (!isCss1) {
@@ -1210,7 +1212,9 @@ CssSelectors keyframe_selector(CssSelectors next) :
 	    return selector;
 	}
 	} catch (InvalidParamException ie) {
-      	ac.getFrame().addError(new CssError(ie));
+      	ac.getFrame()
+      	    .addError(new CssError(getSourceFile(), getBeginLine(),
+      	        getBeginColumn(), getEndLine(), getEndColumn(), ie));
       	Token t = getToken(1);
       	StringBuilder s = new StringBuilder();
       	s.append(getToken(0).image);
@@ -1555,8 +1559,10 @@ void atRuleDeclaration() :
 
 JAVACODE
 void addAtRuleError() { //
-	ac.getFrame().addError(new CssError(new InvalidParamException( //
-				"at-rule", token, ac)));
+	ac.getFrame()
+	    .addError(new CssError(getSourceFile(), getBeginLine(),
+	        getBeginColumn(), getEndLine(), getEndColumn(),
+	            new InvalidParamException("at-rule", token, ac)));
 }
 
 /**
@@ -1816,7 +1822,9 @@ CssSelectors selector() :
     catch (InvalidParamException ie) {    
 	//	skipStatement();
 	//	removeThisRule();
-	ac.getFrame().addError(new CssError(ie));
+	ac.getFrame()
+	   .addError(new CssError(getSourceFile(), getBeginLine(),
+	       getBeginColumn(), getEndLine(), getEndColumn(), ie));
 	Token t = getToken(1);
 	StringBuilder s = new StringBuilder();
 	s.append(getToken(0).image);
@@ -1902,7 +1910,9 @@ void _class(CssSelectors s) :
 	    //           CssSelectors.ATTRIBUTE_CLASS_SEL);
 	} catch (InvalidParamException e) {
 	    //	    removeThisRule();
-	     ac.getFrame().addError(new CssError(e));
+	     ac.getFrame()
+	        .addError(new CssError(getSourceFile(), getBeginLine(),
+	            getBeginColumn(), getEndLine(), getEndColumn(), e));
 	    throw new ParseException(e.getMessage());
 	}
     } 
@@ -2003,11 +2013,11 @@ void element_name(CssSelectors s) :
 		StringBuilder sb = new StringBuilder("namespace \"");
 		if (n != null) sb.append(n.toString());
 		sb.append("\"");
-		ac.getFrame().addError(new CssError(new 
-					  InvalidParamException("notversion",
-								"namespace",
-							    ac.getCssVersionString(),
-								ac)));
+		ac.getFrame()
+		   .addError(new CssError(getSourceFile(), getBeginLine(),
+		       getBeginColumn(), getEndLine(), getEndColumn(),
+		           new InvalidParamException("notversion",
+			       "namespace", ac.getCssVersionString(), ac)));
 		removeThisRule();
 	    } else if (n!=null) {
 		prefix = convertIdent(n.image);
@@ -2032,8 +2042,11 @@ void element_name(CssSelectors s) :
 	    //          s.setElement(null);
             s.addUniversal(new UniversalSelector(prefix));
         } else {
-	    ac.getFrame().addError(new CssError(new InvalidParamException("notversion",
-									  "*", ac.getCssVersionString(), ac)));
+	    ac.getFrame()
+	       .addError(new CssError(getSourceFile(), getBeginLine(),
+	           getBeginColumn(), getEndLine(), getEndColumn(),
+	               new InvalidParamException("notversion", "*",
+	                   ac.getCssVersionString(), ac)));
 	}
     }
 	)
@@ -2080,7 +2093,9 @@ void attrib(CssSelectors s) :
 	      p = new ParseException(ac.getMsg().getString("parser.attrcss1")+
 				     reason.toString());
 	      cp = new CssParseException(p);
-	      ac.getFrame().addError(new CssError(cp));
+	      ac.getFrame()
+	         .addError(new CssError(getSourceFile(), getBeginLine(),
+	             getBeginColumn(), getEndLine(), getEndColumn(), cp));
 	      removeThisRule();
 	  }
 	  if (selectorType == CssSelectors.ATTRIBUTE_ANY) {
@@ -2089,7 +2104,9 @@ void attrib(CssSelectors s) :
 //                s.addAttribute(att.image.toLowerCase(), null, selectorType);
               } catch (InvalidParamException e) {
 	          removeThisRule();
-	          ac.getFrame().addError(new CssError(e));
+	          ac.getFrame()
+	             .addError(new CssError(getSourceFile(), getBeginLine(),
+	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
               }
 	  } else {
 	      AttributeSelector attribute;
@@ -2129,7 +2146,9 @@ void attrib(CssSelectors s) :
 //			     selectorType);
 	      } catch (InvalidParamException e) {
 	     	  removeThisRule();
-	          ac.getFrame().addError(new CssError(e));
+	          ac.getFrame()
+	             .addError(new CssError(getSourceFile(), getBeginLine(),
+	                 getBeginColumn(), getEndLine(), getEndColumn(), e));
       	      } 
 	  }
       }
@@ -2191,7 +2210,9 @@ CssExpression param = null;
 		    s.addPseudoClass(convertIdent(n.image).toLowerCase());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
-		    ac.getFrame().addError(new CssError(e));
+	            ac.getFrame()
+	               .addError(new CssError(getSourceFile(), getBeginLine(),
+	                   getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    } )
 		  // FXIXME rewrite to make :lang( use a special case
@@ -2202,7 +2223,9 @@ CssExpression param = null;
 				   convertIdent(language.image));
 		} catch(InvalidParamException e) {
 			removeThisRule();
-			ac.getFrame().addError(new CssError(e));
+			ac.getFrame()
+			   .addError(new CssError(getSourceFile(), getBeginLine(),
+			       getBeginColumn(), getEndLine(), getEndColumn(), e));
 		}
 	    }
 	    | ( n=<FUNCTION> ( <S> )* param=expression() ) {
@@ -2213,7 +2236,9 @@ CssExpression param = null;
 				   param.toString());
 		} catch(InvalidParamException e) {
 		    removeThisRule();
-		    ac.getFrame().addError(new CssError(e));
+	            ac.getFrame()
+	               .addError(new CssError(getSourceFile(), getBeginLine(),
+	                   getBeginColumn(), getEndLine(), getEndColumn(), e));
 		} 
 	    }
 	    ) <LPARAN>
@@ -2269,7 +2294,9 @@ void hash(CssSelectors s) :
 		      s.addId(new IdSelector(n.image));      
 		      ac.getFrame().addWarning("old_id");              
 		  } catch (InvalidParamException e) {
-		      ac.getFrame().addError(new CssError(e));
+	              ac.getFrame()
+	                 .addError(new CssError(getSourceFile(), getBeginLine(),
+	                     getBeginColumn(), getEndLine(), getEndColumn(), e));
 		      removeThisRule();
 		  }
 	      }
@@ -2279,7 +2306,9 @@ void hash(CssSelectors s) :
 	  try {
 	      s.addId(new IdSelector(n.image));             
 	  } catch (InvalidParamException e) {
-	      ac.getFrame().addError(new CssError(e));
+	      ac.getFrame()
+	         .addError(new CssError(getSourceFile(), getBeginLine(),
+	             getBeginColumn(), getEndLine(), getEndColumn(), e));
 	      removeThisRule();
 	  }
       }

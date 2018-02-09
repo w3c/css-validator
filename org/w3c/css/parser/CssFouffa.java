@@ -430,7 +430,10 @@ public final class CssFouffa extends CssParser {
             importedURL = HTTPURL.getURL(url, file);
         } catch (MalformedURLException mue) {
             if (!Util.noErrorTrace) {
-                ac.getFrame().addError(new CssError(mue));
+                ac.getFrame()
+                        .addError(new CssError(getSourceFile(), getBeginLine(),
+                                getBeginColumn(), getEndLine(), getEndColumn(),
+                                mue));
             }
             return;
         }
@@ -462,15 +465,17 @@ public final class CssFouffa extends CssParser {
                 // check that we didn't already got this URL, or that the
                 // number of imports is not exploding
                 if (visited.contains(surl)) {
-                    CssError cerr = new CssError(new Exception("Import loop" +
-                            " detected in " +
-                            surl));
+                    CssError cerr = new CssError(getSourceFile(),
+                            getBeginLine(), getBeginColumn(), getEndLine(),
+                            getEndColumn(), new Exception(
+                                    "Import loop" + " detected in " + surl));
                     ac.getFrame().addError(cerr);
                     return;
                 } else if (visited.size() > 42) {
-                    CssError cerr = new CssError(new Exception("Maximum number" +
-                            " of imports " +
-                            "reached"));
+                    CssError cerr = new CssError(getSourceFile(),
+                            getBeginLine(), getBeginColumn(), getEndLine(),
+                            getEndColumn(), new Exception("Maximum number"
+                                    + " of imports " + "reached"));
                     ac.getFrame().addError(cerr);
                     return;
                 }
@@ -522,7 +527,10 @@ public final class CssFouffa extends CssParser {
             }
         } catch (Exception e) {
             if (!Util.noErrorTrace) {
-                ac.getFrame().addError(new CssError(e));
+                ac.getFrame()
+                        .addError(new CssError(getSourceFile(), getBeginLine(),
+                                getBeginColumn(), getEndLine(), getEndColumn(),
+                                e));
             }
         }
     }
@@ -543,7 +551,10 @@ public final class CssFouffa extends CssParser {
             if (!Util.noErrorTrace) {
                 // only @import <string>; or @import <url>; are valids in CSS1
                 ParseException error = new ParseException("at-rules are not implemented in CSS1");
-                ac.getFrame().addError(new CssError(error));
+                ac.getFrame()
+                        .addError(new CssError(getSourceFile(), getBeginLine(),
+                                getBeginColumn(), getEndLine(), getEndColumn(),
+                                error));
             }
         }
     }
@@ -629,7 +640,8 @@ public final class CssFouffa extends CssParser {
             ac.getFrame().addWarning(w.getMessage(), feature);
             return null;
         } catch (InvalidParamException e) {
-            ac.getFrame().addError(new CssError(e));
+            ac.getFrame().addError(new CssError(getSourceFile(), getBeginLine(),
+                    getBeginColumn(), getEndLine(), getEndColumn(), e));
             return null;
         } catch (Exception e) {
             e.printStackTrace();
@@ -680,7 +692,8 @@ public final class CssFouffa extends CssParser {
                 ex.skippedString = "";
                 ex.property = currentProperty;
                 ex.contexts = currentContext;
-                CssError error = new CssError(getSourceFile(), getLine(), ex);
+                CssError error = new CssError(getSourceFile(), getBeginLine(),
+                        getBeginColumn(), getEndLine(), getEndColumn(), ex);
                 ac.getFrame().addError(error);
             }
         }
@@ -737,7 +750,8 @@ public final class CssFouffa extends CssParser {
             Exception ex = new Exception("Conflicting charset definition " +
                     "between network and @charset " +
                     originalCharset + " and " + charset);
-            CssError cerr = new CssError(ex);
+            CssError cerr = new CssError(getSourceFile(), getBeginLine(),
+                    getBeginColumn(), getEndLine(), getEndColumn(), ex);
             ac.getFrame().addError(cerr);
         }
     }
