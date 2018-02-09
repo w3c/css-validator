@@ -43,7 +43,7 @@
         <available file="lib/xml-apis-1.4.01.jar"/>
         <available file="lib/tagsoup-1.2.1.jar"/>
         <available file="lib/servlet-api-2.5-6.0.0.jar"/>
-        <available file="lib/htmlparser-1.4.1.jar"/>
+        <available file="lib/htmlparser-1.4.9.jar"/>
         <available file="lib/velocity-tools-generic-2.0.jar"/>
       </and>
     </condition>
@@ -67,7 +67,7 @@
     <get dest="tmp/xml-apis-1.4.01.jar" src="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" usetimestamp="true"/>
     <get dest="tmp/tagsoup-1.2.1.jar" src="http://central.maven.org/maven2/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar" usetimestamp="true"/>
     <get dest="tmp/servlet-api-2.5-6.0.0.jar" src="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.0/servlet-api-2.5-6.0.0.jar" usetimestamp="true"/>
-    <get dest="tmp/htmlparser-1.4.1.jar" src="https://repo1.maven.org/maven2/nu/validator/htmlparser/1.4.1/htmlparser-1.4.1.jar" usetimestamp="true"/>
+    <get dest="tmp/htmlparser-1.4.9.jar" src="https://repo1.maven.org/maven2/nu/validator/htmlparser/1.4.9/htmlparser-1.4.9.jar" usetimestamp="true"/>
 
 
     <copy file="tmp/servlet-api-2.5-6.0.0.jar" tofile="lib/servlet-api-2.5-6.0.0.jar"/>
@@ -83,7 +83,7 @@
     <copy file="tmp/xercesImpl-2.11.0.jar" tofile="lib/xercesImpl-2.11.0.jar"/>
     <copy file="tmp/xml-apis-1.4.01.jar" tofile="lib/xml-apis-1.4.01.jar"/>
     <copy file="tmp/tagsoup-1.2.1.jar" tofile="lib/tagsoup-1.2.1.jar"/>
-    <copy file="tmp/htmlparser-1.4.1.jar" tofile="lib/htmlparser-1.4.1.jar"/>
+    <copy file="tmp/htmlparser-1.4.9.jar" tofile="lib/htmlparser-1.4.9.jar"/>
   </target>
 
   <target name="build" description="Builds the validator" depends="prepare">
