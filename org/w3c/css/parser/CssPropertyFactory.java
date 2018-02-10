@@ -178,16 +178,8 @@ public class CssPropertyFactory implements Cloneable {
             if (isVendorExtension(property)) {
                 throw new WarningParamException("vendor-extension", property);
             }
-            if (expression.hasVendorExtensions()) {
-                throw new WarningParamException("vendor-extension", expression.toStringFromStart());
-            }
         }
 
-        if (ac.getTreatCssHacksAsWarnings()) {
-            if (expression.hasCssHack()) {
-                throw new WarningParamException("css-hack", expression.toStringFromStart());
-            }
-        }
         try {
             atRuleMedia = (AtRuleMedia) atRule;
             // TODO FIXME in fact, it should use a vector of media instead of extracting
