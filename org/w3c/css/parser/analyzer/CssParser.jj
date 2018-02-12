@@ -622,9 +622,8 @@ TOKEN [IGNORE_CASE] :
   | < ST         : <NUM> "st" >
   | < TIME       : <NUM> ( "ms" | "s" ) >
   | < FREQ       : <NUM> ( "Hz" | "kHz" ) >
-  | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "dppx" ) >
+  | < RESOLUTION : <NUM> ( "dpi" | "dpcm" | "dppx" | "x") >
   | < DIMEN_9    : <NUM> <NMSTART> ( <NMCHAR> )* "\\9" >
-  | < DIMEN_X    : <NUM> "x" >
   | < DIMEN      : <NUM> <NMSTART> ( <NMCHAR> )* >
   | < PERCENTAGE : <NUM> "%" >
   | < NUMBER     : <NUM> >
@@ -2544,14 +2543,6 @@ void term(CssExpression exp) :
 		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
 	    }
         }
-        | n=<DIMEN_X> {
-	    if (ac.getTreatVendorExtensionsAsWarnings()) {
-		ac.getFrame().addWarning("vendor-extension", n.image.trim());
-		exp.markVendorExtension();
-	    } else {
-		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image);
-	    }
-        }
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
@@ -2639,14 +2630,6 @@ void mediaterm(CssExpression exp) :
 	    if (ac.getTreatCssHacksAsWarnings()) {
                 exp.markCssHack();
 		ac.getFrame().addWarning("css-hack", n.image.trim());
-	    } else {
-		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image.trim());
-	    }
-    }
-    | n=<DIMEN_X> {
-	    if (ac.getTreatVendorExtensionsAsWarnings()) {
-		ac.getFrame().addWarning("vendor-extension", n.image.trim());
-		exp.markVendorExtension();
 	    } else {
 		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image.trim());
 	    }

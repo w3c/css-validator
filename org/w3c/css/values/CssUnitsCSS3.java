@@ -14,6 +14,8 @@ import java.math.BigDecimal;
  * @spec http://www.w3.org/TR/2012/CR-css3-values-20120828/
  * @spec http://www.w3.org/TR/2012/CR-css3-speech-20120320/
  * @spec https://www.w3.org/TR/2016/CR-css-grid-1-20160929/#typedef-flex
+ * @spec https://github.com/w3c/csswg-drafts/blob/642e0f0b369c95619e6398788a943301656a89b8/css-values-4/Overview.bs
+ *       (for dimension 'x')
  */
 public class CssUnitsCSS3 {
     private static final String[] relative_length_units = {
@@ -68,7 +70,7 @@ public class CssUnitsCSS3 {
     }
 
     public static final String[] resolution_units = {
-            "dpi", "dpcm", "dppx"
+            "dpi", "dpcm", "dppx", "x"
     };
 
     protected static String getRelativeLengthUnit(String unit) {
