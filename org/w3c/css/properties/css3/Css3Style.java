@@ -300,6 +300,7 @@ public class Css3Style extends ATSCStyle {
     public CssRubyPosition cssRubyPosition;
     public CssRubyAlign cssRubyAlign;
     public CssRubyMerge cssRubyMerge;
+    @Deprecated
     CssRubyOverhang cssRubyOverhang;
     public CssAlignmentBaseline cssAlignmentBaseline;
     public CssBaselineShift cssBaselineShift;
@@ -1030,6 +1031,7 @@ public class Css3Style extends ATSCStyle {
         return cssRubyMerge;
     }
 
+    @Deprecated
     public CssRubyOverhang getRubyOverhang() {
         if (cssRubyOverhang == null) {
             cssRubyOverhang =
