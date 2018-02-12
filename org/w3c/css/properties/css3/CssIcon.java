@@ -19,9 +19,8 @@ import static org.w3c.css.values.CssOperator.COMMA;
 
 /**
  * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#icon
- * @deprecated
  */
-public class CssIcon extends org.w3c.css.properties.css.CssIcon {
+@Deprecated public class CssIcon extends org.w3c.css.properties.css.CssIcon {
 
     public static final CssIdent auto = CssIdent.getIdent("auto");
 
