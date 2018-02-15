@@ -979,7 +979,9 @@ AtRuleMedia media() :
 		        newAtRule(getAtRule());
 		    }
 	    }
-	<LBRACE> ( <S> )* ( ruleSet() )* <RBRACE> ( <S> )*
+	<LBRACE> ( <S> )* ( ruleSet()  | media() | page() | fontFace() |
+	     keyframes() | preference() | colorprofile() | counterstyle() |
+	     phoneticAlphabet() | atRuleDeclaration() )* <RBRACE> ( <S> )*
 	     {
 		     if (!isCss1) {
 		         endOfAtRule();
