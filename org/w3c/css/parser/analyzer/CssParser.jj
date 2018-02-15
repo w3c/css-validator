@@ -578,6 +578,12 @@ TOKEN :
 <DEFAULT>
 TOKEN :
 {
+    <CUSTOM_PROPERTY_NAME : <MINUS> <MINUS> <NMSTART> ( <NMCHAR> )* >
+}
+
+<DEFAULT>
+TOKEN :
+{
   < RBRACE : "}">
   | < PREFIXMATCH : "^=" >
   | < SUFFIXMATCH : "$=" >
@@ -735,6 +741,7 @@ TOKEN [IGNORE_CASE] :
     | <FUNCTIONMAX   : "max("   >
     | <FUNCTIONCLAMP : "clamp(" >
     | <FUNCTIONATTR  : "attr("  >
+    | <FUNCTIONVAR   : "var(" >
 }
 
 <DEFAULT>
@@ -1890,7 +1897,7 @@ String property() :
 {
  // ( hack? ident | hackedIdent ) ( <S> )*
     ( (hack="!" | hack="$" | hack="%" |  hack="&" | hack="`" | hack="?" | hack="<" | hack="|" | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
-    n=ident()) ( <S> )* {
+    n=ident() | n=<CUSTOM_PROPERTY_NAME>) ( <S> )* {
                  currentProperty = convertIdent(n.image);
                  if (hack != null && !"".equals(hack)) {
                    String hackp = hack.image+currentProperty;
@@ -2738,7 +2745,7 @@ CssExpression expr() :
 }
 {
   try {
-  term(values) ( operator(values) term(values) )*
+  term(values) ( LOOKAHEAD(2) operator(values) term(values) )*
     } catch (WarningParamException e) {
       ac.getFrame().addWarning(e.getMessage(), e.getMessageArgs());
     }
@@ -2866,6 +2873,7 @@ void term(CssExpression exp) :
         | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
+        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
@@ -2900,7 +2908,7 @@ void term(CssExpression exp) :
 	    exp.addValue(_u);
             }
         | n=<UNICODERANGE> { setValue(new CssUnicodeRange(), exp, operator, n, UNICODERANGE); }
-    ) ) ( <S> )* 
+    ) ) ( LOOKAHEAD(2) <S> )*
 }
 
 /**
@@ -3166,6 +3174,7 @@ char operator = ' ';
     | v=mathmin()
     | v=mathclamp()
     | v=attr()
+    | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN>
 ) {
      return v;
    }
