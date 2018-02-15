@@ -1553,7 +1553,10 @@ void atRuleDeclaration() :
 				addAtRuleError();
 			}
 		} else {
-			addAtRuleError();
+			if (!n.toString().startsWith("@supports")
+				&& !n.toString().startsWith("@viewport")) {
+				addAtRuleError();
+			}
 		}
 	    skipStatement();
 	}
