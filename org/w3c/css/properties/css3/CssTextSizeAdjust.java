@@ -54,7 +54,7 @@ public class CssTextSizeAdjust extends org.w3c.css.properties.css.CssTextSizeAdj
      * @throws InvalidParamException Incorrect value
      */
     public CssTextSizeAdjust(ApplContext ac, CssExpression expression,
-                         boolean check) throws InvalidParamException {
+                             boolean check) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -78,6 +78,8 @@ public class CssTextSizeAdjust extends org.w3c.css.properties.css.CssTextSizeAdj
                                 getPropertyName(), ac);
                     }
                 }
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
             case CssTypes.CSS_PERCENTAGE:
                 value = val;
                 break;
