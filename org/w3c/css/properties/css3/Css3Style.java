@@ -136,6 +136,7 @@ import org.w3c.css.properties.css.CssRestBefore;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
+import org.w3c.css.properties.css.CssScrollBehavior;
 import org.w3c.css.properties.css.CssScrollPadding;
 import org.w3c.css.properties.css.CssScrollPaddingBlock;
 import org.w3c.css.properties.css.CssScrollPaddingBlockEnd;
@@ -226,6 +227,7 @@ public class Css3Style extends ATSCStyle {
     public CssTouchAction cssTouchAction;
     public CssAppearance cssAppearance;
     public CssUserSelect cssUserSelect;
+    public CssScrollBehavior cssScrollBehavior;
 
     public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
     public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
@@ -465,6 +467,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssUserSelect;
+    }
+
+    public CssScrollBehavior getScrollBehavior() {
+        if (cssScrollBehavior == null) {
+            cssScrollBehavior =
+                    (CssScrollBehavior) style.CascadingOrder(new CssScrollBehavior(),
+                            style, selector);
+        }
+        return cssScrollBehavior;
     }
 
     public org.w3c.css.properties.css.counterstyle.CssSpeakAs getCounterStyleCssSpeakAs() {
