@@ -175,6 +175,7 @@ import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
 import org.w3c.css.properties.css.CssTextOverflow;
+import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
@@ -355,6 +356,7 @@ public class Css3Style extends ATSCStyle {
     public CssTextEmphasisColor cssTextEmphasisColor;
     public CssTextEmphasisPosition cssTextEmphasisPosition;
     public CssTextEmphasisStyle cssTextEmphasisStyle;
+    public CssTextSizeAdjust cssTextSizeAdjust;
     public CssTextUnderlinePosition cssTextUnderlinePosition;
     public CssHangingPunctuation cssHangingPunctuation;
     public CssTabSize cssTabSize;
@@ -1699,6 +1701,15 @@ public class Css3Style extends ATSCStyle {
                             new CssTextEmphasisStyle(), style, selector);
         }
         return cssTextEmphasisStyle;
+    }
+
+    public CssTextSizeAdjust getTextSizeAdjust() {
+        if (cssTextSizeAdjust == null) {
+            cssTextSizeAdjust =
+                    (CssTextSizeAdjust) style.CascadingOrder(
+                            new CssTextSizeAdjust(), style, selector);
+        }
+        return cssTextSizeAdjust;
     }
 
     public CssTextUnderlinePosition getTextUnderlinePosition() {
