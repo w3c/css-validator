@@ -351,8 +351,7 @@ generator.doc-html: <!-- removed this confusing message olivier 2006-12-14 -->
 generator.doc: <!-- removed this confusing message olivier 2006-12-14 -->
 
 # used by the parser
-parser.semi-colon: impossible de trouver un point-virgule avant le nom de la \
-propriété, ajoutez-le.
+parser.semi-colon: Il manque un point-virgule avant la propriété \u201C%s\u201D
 
 parser.unknown-dimension: Dimension inconnue
 
