@@ -29,6 +29,8 @@ import org.w3c.css.properties.css.CssBackfaceVisibility;
 import org.w3c.css.properties.css.CssBackgroundBlendMode;
 import org.w3c.css.properties.css.CssBackgroundClip;
 import org.w3c.css.properties.css.CssBackgroundOrigin;
+import org.w3c.css.properties.css.CssBackgroundPositionX;
+import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
 import org.w3c.css.properties.css.CssBorderImageSource;
@@ -223,6 +225,9 @@ public class Css3Style extends ATSCStyle {
     public CssPad counterStyleCssPad;
     public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
     public CssNegative counterStyleCssNegative;
+
+    public CssBackgroundPositionX cssBackgroundPositionX;
+    public CssBackgroundPositionY cssBackgroundPositionY;
 
     public CssWritingMode cssWritingMode;
     public CssTouchAction cssTouchAction;
@@ -435,6 +440,24 @@ public class Css3Style extends ATSCStyle {
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
 
+    public CssBackgroundPositionY getBackgroundPositionY() {
+        if (cssBackgroundPositionY == null) {
+            cssBackgroundPositionY =
+                    (CssBackgroundPositionY) style.CascadingOrder(new CssBackgroundPositionY(),
+                            style, selector);
+        }
+        return cssBackgroundPositionY;
+    }
+
+    public CssBackgroundPositionX getBackgroundPositionX() {
+        if (cssBackgroundPositionX == null) {
+            cssBackgroundPositionX =
+                    (CssBackgroundPositionX) style.CascadingOrder(new CssBackgroundPositionX(),
+                            style, selector);
+        }
+        return cssBackgroundPositionX;
+    }
+    
     public CssWritingMode getWritingMode() {
         if (cssWritingMode == null) {
             cssWritingMode =
