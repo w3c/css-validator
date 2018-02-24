@@ -698,7 +698,7 @@ TOKEN [IGNORE_CASE] :
 {
     < FUNCTIONLANG  : "lang(" >
     | <FUNCTIONNOT  : ":not(" >
-    | <FUNCTIONCALC : "calc(" >
+    | <FUNCTIONCALC : "calc(" | "-moz-calc(" | "-webkit-calc(" >
     | <FUNCTIONATTR : "attr(" >
 }
 
@@ -2678,9 +2678,21 @@ CssCheckableValue mathcalc() :
 {
 CssCheckableValue v;
 CssCalc c;
+Token n;
 }
 {
-    ( <FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) {
+    ( n=<FUNCTIONCALC>  ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) {
+    String funcname = n.image.toLowerCase();
+    if (funcname.charAt(0) == '-') {
+        if (ac.getTreatVendorExtensionsAsWarnings()) {
+            ac.getFrame().addWarning("vendor-extension",
+                    funcname.substring(0, funcname.length() - 1));
+        } else {
+            addError(new ParseException(ac.getMsg()
+                    .getString("warning.vendor-extension")),
+                funcname);
+        }
+    }
     if (v.getRawType() != CssTypes.CSS_CALC) {
        c = new CssCalc(v);
     } else {
