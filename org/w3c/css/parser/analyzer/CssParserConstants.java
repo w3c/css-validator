@@ -330,7 +330,7 @@ public interface CssParserConstants {
     "<CLASS>",
     "\"lang(\"",
     "\":not(\"",
-    "\"calc(\"",
+    "<FUNCTIONCALC>",
     "\"attr(\"",
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
