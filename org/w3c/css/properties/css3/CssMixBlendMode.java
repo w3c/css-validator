@@ -21,7 +21,7 @@ public class CssMixBlendMode extends org.w3c.css.properties.css.CssMixBlendMode 
 
     static {
         String[] _allowed_values = {"normal", "multiply", "screen", "overlay",
-                "darken", "lighten", "color-dodge |color-burn", "hard-light",
+                "darken", "lighten", "color-dodge", "color-burn", "hard-light",
                 "soft-light", "difference", "exclusion", "hue", "saturation",
                 "color", "luminosity"};
         allowed_values = new CssIdent[_allowed_values.length];
