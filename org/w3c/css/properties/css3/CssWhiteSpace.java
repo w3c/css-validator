@@ -1,4 +1,4 @@
-// $Id$
+// Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
@@ -12,8 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @version $Revision$
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#white-space0
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#white-space-property
  */
 public class CssWhiteSpace extends org.w3c.css.properties.css.CssWhiteSpace {
 

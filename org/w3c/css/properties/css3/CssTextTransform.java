@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-transform0
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#text-transform-property
  */
 public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
 

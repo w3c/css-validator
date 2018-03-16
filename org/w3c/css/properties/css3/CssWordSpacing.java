@@ -1,4 +1,5 @@
-// $Id$
+//
+// Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, INRIA and Keio University, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
@@ -16,7 +17,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#word-spacing0
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#word-spacing-property
  */
 public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 

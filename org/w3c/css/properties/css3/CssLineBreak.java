@@ -1,4 +1,4 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#line-break1
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#line-break-property
  */
 public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"auto", "loose", "normal", "strict"};
+        String id_values[] = {"auto", "loose", "normal", "strict", "anywhere"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {

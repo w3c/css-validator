@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#tab-size1
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#tab-size-property
  */
 public class CssTabSize extends org.w3c.css.properties.css.CssTabSize {
 
