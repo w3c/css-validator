@@ -166,6 +166,7 @@ import org.w3c.css.properties.css.CssScrollSnapStop;
 import org.w3c.css.properties.css.CssScrollSnapType;
 import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
+import org.w3c.css.properties.css.CssTextAlignAll;
 import org.w3c.css.properties.css.CssTextAlignLast;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
@@ -351,6 +352,7 @@ public class Css3Style extends ATSCStyle {
     public CssWordBreak cssWordBreak;
     public CssHyphens cssHyphens;
     public CssLineBreak cssLineBreak;
+    public CssTextAlignAll cssTextAlignAll;
     public CssTextAlignLast cssTextAlignLast;
     public CssTextJustify cssTextJustify;
     public CssTextDecorationColor cssTextDecorationColor;
@@ -457,7 +459,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssBackgroundPositionX;
     }
-    
+
     public CssWritingMode getWritingMode() {
         if (cssWritingMode == null) {
             cssWritingMode =
@@ -1111,6 +1113,15 @@ public class Css3Style extends ATSCStyle {
                             new CssTextJustify(), style, selector);
         }
         return cssTextJustify;
+    }
+
+    public CssTextAlignAll getTextAlignAll() {
+        if (cssTextAlignAll == null) {
+            cssTextAlignAll =
+                    (CssTextAlignAll) style.CascadingOrder(
+                            new CssTextAlignAll(), style, selector);
+        }
+        return cssTextAlignAll;
     }
 
     public CssTextAlignLast getTextAlignLast() {

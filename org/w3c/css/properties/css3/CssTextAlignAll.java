@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2018.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,15 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#text-align-last-property
+ * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#propdef-text-align-all
  */
-public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLast {
+public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll {
 
     private static CssIdent[] allowed_values;
-       //
+
     static {
-        String id_values[] = {"auto", "start", "end",
-                "left", "right", "center", "justify"};
+        String id_values[] = {"start", "end", "left", "right", "center", "justify", "match-parent"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -29,7 +28,7 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
         }
     }
 
-    public static CssIdent getMatchingIdent(CssIdent ident) {
+    public static CssIdent getAllowedIdent(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -39,20 +38,20 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
     }
 
     /**
-     * Create a new CssTextAlignLast
+     * Create a new CssTextAlignAll
      */
-    public CssTextAlignLast() {
+    public CssTextAlignAll() {
         value = initial;
     }
 
     /**
-     * Creates a new CssTextAlignLast
+     * Creates a new CssTextAlignAll
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssTextAlignLast(ApplContext ac, CssExpression expression, boolean check)
+    public CssTextAlignAll(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -66,25 +65,22 @@ public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLas
                     expression.getValue(),
                     getPropertyName(), ac);
         }
-        // ident, so inherit, or allowed value
         if (inherit.equals(val)) {
             value = inherit;
         } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+            value = getAllowedIdent((CssIdent) val);
+            if (value == null) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
-            value = val;
         }
         expression.next();
     }
 
-    public CssTextAlignLast(ApplContext ac, CssExpression expression)
+    public CssTextAlignAll(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
-
 }
 
