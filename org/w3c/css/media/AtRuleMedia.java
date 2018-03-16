@@ -51,7 +51,7 @@ public abstract class AtRuleMedia extends AtRule {
 
 
     public boolean isEmpty() {
-        return allMedia.isEmpty();
+        return false;
     }
 
     public ArrayList<Media> getMediaList() {

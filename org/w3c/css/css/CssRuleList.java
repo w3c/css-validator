@@ -47,7 +47,7 @@ public class CssRuleList {
     }
 
     public boolean isEmpty() {
-        return rulelist.isEmpty();
+        return atRule.isEmpty() /*&& rulelist.isEmpty() */;
     }
 
     public String toString() {

@@ -56,10 +56,6 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
         return false;
     }
 
-    public boolean isEmpty() {
-        return true;
-    }
-
     public String getValueString() {
         return null;
     }

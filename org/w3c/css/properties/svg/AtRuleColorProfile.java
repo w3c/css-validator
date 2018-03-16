@@ -9,7 +9,6 @@ package org.w3c.css.properties.svg;
 
 import org.w3c.css.parser.AtRule;
 
-
 public class AtRuleColorProfile extends AtRule {
 
     static int internal = 0;
@@ -61,4 +60,8 @@ public class AtRuleColorProfile extends AtRule {
         return hash;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }

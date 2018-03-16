@@ -8,7 +8,7 @@
 
 package org.w3c.css.parser;
 
-
+@Deprecated
 public class AtRulePreference extends AtRule {
 
     static int internal = 0;
@@ -60,4 +60,8 @@ public class AtRulePreference extends AtRule {
         return hash;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }

@@ -220,7 +220,7 @@ public class StyleSheet {
         CssRuleList rulelist = new CssRuleList();
         rulelist.addAtRule(atRule);
         atRuleList.add(rulelist);
-        indent = "   ";
+        indent += "   ";
     }
 
     public void endOfAtRule() {
@@ -230,7 +230,11 @@ public class StyleSheet {
         }
         important = false;
         selectortext = "";
-        indent = "";
+        if (indent.length() >= 3) {
+            indent = indent.substring(3);
+        } else {
+            // raise a warning? This should never happen.
+        }
         doNotAddAtRule = false;
     }
 

@@ -67,4 +67,7 @@ public class AtRuleFontFace extends AtRule {
         return hash;
     }
 
+    public boolean isEmpty() {
+        return false;
+    }
 }

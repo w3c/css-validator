@@ -31,9 +31,7 @@ public abstract class AtRule {
      */
     public abstract boolean canMatch(AtRule atRule);
 
-    public boolean isEmpty() {
-        return false;
-    }
+    public abstract boolean isEmpty();
 
     public String lookupPrefix() {
         return keyword();

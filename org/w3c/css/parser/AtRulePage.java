@@ -170,4 +170,8 @@ public class AtRulePage extends AtRule {
         return ret.toString();
     }
 
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }

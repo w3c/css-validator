@@ -70,10 +70,6 @@ public class AtRuleMedia extends org.w3c.css.media.AtRuleMedia {
                 feature.toString(), ac);
     }
 
-    public boolean isEmpty() {
-        return allMedia.isEmpty();
-    }
-
     /**
      * The second must be exactly the same as this one
      * so we check that each one match each other
