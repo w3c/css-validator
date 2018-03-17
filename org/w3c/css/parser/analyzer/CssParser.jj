@@ -2415,7 +2415,14 @@ try {
                                          warningException.getMessageArgs());
             } else {
                 values.starts();
-                addError(e, (CssExpression) values);
+                if (values.hasCssHack() || values.hasVendorExtensions()) {
+                    if ("createProperty"
+                            .equals(e.getStackTrace()[0].getMethodName())) {
+                        addError(e, (CssExpression) values);
+                    }
+                } else {
+                    addError(e, (CssExpression) values);
+                }
             }
         }
         return null;
@@ -2864,6 +2871,14 @@ CssValue function() :
 	    f.set(n.image.substring(0, n.image.length() - 1), exp);
 	    if (funcname.charAt(0) == '-') {
 	        exp.markVendorExtension();
+	        if (ac.getTreatVendorExtensionsAsWarnings()) {
+	            ac.getFrame().addWarning("vendor-extension",
+	                    funcname.substring(0, funcname.length() - 1));
+	        } else {
+	            addError(new ParseException(ac.getMsg()
+	                    .getString("warning.vendor-extension")),
+	                funcname);
+	        }
 	    }
 	    return f;
 	}
