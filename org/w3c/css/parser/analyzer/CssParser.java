@@ -2412,7 +2412,10 @@ if (n.toString().charAt(1) == '-') {
                                 addAtRuleError();
                         }
                 } else {
-                        addAtRuleError();
+                        if (!n.toString().startsWith("@supports")
+                                && !n.toString().startsWith("@viewport")) {
+                                addAtRuleError();
+                        }
                 }
             skipStatement();
   }
@@ -5743,37 +5746,6 @@ n.image = Util.strip(n.image);
     finally { jj_save(4, xla); }
   }
 
-  private boolean jj_3R_175()
- {
-    if (jj_scan_token(STRING)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_154()
- {
-    if (jj_scan_token(PLUS)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_174()
- {
-    if (jj_3R_183()) return true;
-    return false;
-  }
-
-  private boolean jj_3_5()
- {
-    if (jj_3R_127()) return true;
-    if (jj_scan_token(LPARAN)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_173()
- {
-    if (jj_3R_152()) return true;
-    return false;
-  }
-
   private boolean jj_3R_172()
  {
     if (jj_3R_151()) return true;
@@ -6384,6 +6356,37 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_176()
  {
     if (jj_scan_token(DIV)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_175()
+ {
+    if (jj_scan_token(STRING)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_154()
+ {
+    if (jj_scan_token(PLUS)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_174()
+ {
+    if (jj_3R_183()) return true;
+    return false;
+  }
+
+  private boolean jj_3_5()
+ {
+    if (jj_3R_127()) return true;
+    if (jj_scan_token(LPARAN)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_173()
+ {
+    if (jj_3R_152()) return true;
     return false;
   }
 
