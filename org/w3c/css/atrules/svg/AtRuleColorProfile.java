@@ -5,19 +5,19 @@
 // (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
+package org.w3c.css.atrules.svg;
 
-package org.w3c.css.parser;
+import org.w3c.css.parser.AtRule;
 
-@Deprecated
-public class AtRulePreference extends AtRule {
+public class AtRuleColorProfile extends AtRule {
 
     static int internal = 0;
     int hash;
 
     /**
-     * Create a new AtRulePreference
+     * Create a new AtRuleColorProfile
      */
-    public AtRulePreference() {
+    public AtRuleColorProfile() {
         hash = ++internal;
     }
 
@@ -25,28 +25,28 @@ public class AtRulePreference extends AtRule {
      * Returns the at rule keyword
      */
     public String keyword() {
-        return "preference";
+        return "color-profile";
     }
 
     /**
      * The second must be exactly the same as this one
      */
     public boolean canApply(AtRule atRule) {
-        return (atRule instanceof AtRuleFontFace);
+        return (atRule instanceof AtRuleColorProfile);
     }
 
     /**
-     * Return true if other is an instance of AtRulePreference
+     * Return true if other is an instance of AtRuleColorProfile
      */
     public boolean equals(Object other) {
-        return (other instanceof AtRulePreference);
+        return (other instanceof AtRuleColorProfile);
     }
 
     /**
      * The second must only match this one
      */
     public boolean canMatch(AtRule atRule) {
-        return (atRule instanceof AtRulePreference);
+        return (atRule instanceof AtRuleColorProfile);
     }
 
     /**

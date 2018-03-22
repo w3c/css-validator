@@ -3,8 +3,9 @@
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.parser;
+package org.w3c.css.atrules.css;
 
+import org.w3c.css.parser.AtRule;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssIdent;

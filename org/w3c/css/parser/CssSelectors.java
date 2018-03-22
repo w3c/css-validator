@@ -7,6 +7,8 @@
 
 package org.w3c.css.parser;
 
+import org.w3c.css.atrules.css.AtRuleFontFace;
+import org.w3c.css.atrules.css.AtRulePage;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;

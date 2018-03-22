@@ -8,7 +8,9 @@
  * AtRuleFontFace.java
  * $Id$
  */
-package org.w3c.css.parser;
+package org.w3c.css.atrules.css;
+
+import org.w3c.css.parser.AtRule;
 
 /**
  * This class manages all media defines by CSS2

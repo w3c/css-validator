@@ -9,7 +9,7 @@ package org.w3c.css.css;
 
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRulePage;
+import org.w3c.css.atrules.css.AtRulePage;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssFouffa;
 import org.w3c.css.parser.CssParseException;

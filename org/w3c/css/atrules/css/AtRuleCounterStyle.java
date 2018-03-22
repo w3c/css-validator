@@ -3,7 +3,9 @@
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio, Beihang University, 2017.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.parser;
+package org.w3c.css.atrules.css;
+
+import org.w3c.css.parser.AtRule;
 
 public class AtRuleCounterStyle extends AtRule {
 

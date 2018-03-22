@@ -11,6 +11,7 @@
 package org.w3c.css.parser;
 
 import org.w3c.css.atrules.css.AtRuleImport;
+import org.w3c.css.atrules.css.AtRuleNamespace;
 import org.w3c.css.css.StyleSheetOrigin;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.MediaFeature;
