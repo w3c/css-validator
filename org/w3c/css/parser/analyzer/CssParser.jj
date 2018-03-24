@@ -64,15 +64,17 @@ import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
 import org.w3c.css.parser.CssParseException;
 import org.w3c.css.parser.AtRule;
-import org.w3c.css.parser.AtRuleCounterStyle;
-import org.w3c.css.media.AtRuleMedia;
-import org.w3c.css.media.MediaFeature;
-import org.w3c.css.parser.AtRuleFontFace;
-import org.w3c.css.parser.AtRuleKeyframes;
-import org.w3c.css.parser.AtRulePage;
-import org.w3c.css.parser.AtRulePreference;
-import org.w3c.css.parser.AtRulePhoneticAlphabet;
-import org.w3c.css.properties.svg.AtRuleColorProfile;
+import org.w3c.css.atrules.svg.AtRuleColorProfile;
+import org.w3c.css.atrules.css.AtRuleCounterStyle;
+import org.w3c.css.atrules.css.AtRuleFontFace;
+import org.w3c.css.atrules.css.AtRuleKeyframes;
+import org.w3c.css.atrules.css.AtRuleMedia;
+import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.atrules.css.AtRulePage;
+import org.w3c.css.atrules.css.AtRulePhoneticAlphabet;
+import org.w3c.css.atrules.css.AtRulePreference;
+import org.w3c.css.atrules.css.AtRuleSupports;
+import org.w3c.css.atrules.css.supports.SupportsFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
@@ -550,11 +552,13 @@ TOKEN :
 TOKEN [IGNORE_CASE] :
 {
     < AND : "and" > 
+  | < OR  : "or"  >
 }  
 
 TOKEN [IGNORE_CASE] :
 {
-    < MEDIARESTRICTOR : "only" | "not" >
+    < ONLY : "only" >
+  |  < NOT : "not" >
 }
 
 <DEFAULT>
@@ -667,6 +671,7 @@ TOKEN [IGNORE_CASE] :
   | < A_COUNTER             : "@counter" >
   | < COUNTER_STYLE_SYM     : "@counter-style" > 
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
+  | < SUPPORTS_SYM          : "@supports" >
   | < ATKEYWORD             : "@" <IDENT> >
 }
 
@@ -825,12 +830,17 @@ void charset() :
     }
 }
 
+void at_rules() : {
+}
+{
+  ( media() | page() | fontFace() | keyframes() | preference() |
+    colorprofile() | counterstyle() | phoneticAlphabet() | supports() | atRuleDeclaration() )
+}
+
 void afterImportDeclaration() :
 {String ret; }
 {
-    ( ( ruleSet() | media() | page() | fontFace() | keyframes() | preference() |
-	colorprofile() | counterstyle() | phoneticAlphabet() |
-	atRuleDeclaration() | ret=skipStatement()
+    ( ( ruleSet() | at_rules() | ret=skipStatement()
 	{ if ((ret == null) || (ret.length() == 0)) {
 		return; 
 	    }
@@ -979,9 +989,7 @@ AtRuleMedia media() :
 		        newAtRule(getAtRule());
 		    }
 	    }
-	<LBRACE> ( <S> )* ( ruleSet()  | media() | page() | fontFace() |
-	     keyframes() | preference() | colorprofile() | counterstyle() |
-	     phoneticAlphabet() | atRuleDeclaration() )* <RBRACE> ( <S> )*
+	<LBRACE> ( <S> )* ( ruleSet()  | at_rules() )* <RBRACE> ( <S> )*
 	     {
 		     if (!isCss1) {
 		         endOfAtRule();
@@ -1014,8 +1022,6 @@ Token w,h,n;
 
 void mediaquerylist(AtRuleMedia mediaRule) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
 }
 {
    mediaquery(mediaRule)
@@ -1024,26 +1030,22 @@ void mediaquerylist(AtRuleMedia mediaRule) :
 
 void mediaquery(AtRuleMedia mediaRule) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
   Token n;
   String mediarestrictor = null;
 }
 {
-   ( ( (n=<MEDIARESTRICTOR> {
+    ( ( ( ( n=<NOT> | n=<ONLY> ) {
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
    n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-   (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
-   (mediaexpression(mediaRule, true) (<AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+   ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
+   (mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
    }
 }
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
 {
-  CssVersion v = ac.getCssVersion();
-  boolean isCss1 =  (v == CssVersion.CSS1);
   CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
@@ -1062,6 +1064,107 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
             mediaRule.addMediaFeature(mf, ac);
         }
     }
+}
+
+/**
+ * @exception ParseException exception during the parse
+ */
+void supports() :
+{
+    AtRule old = getAtRule();
+    AtRuleSupports newRule = new AtRuleSupports();
+    setAtRule(newRule);
+    Token n;
+    CssProperty p = null;
+    CssVersion version = ac.getCssVersion();
+    boolean isCss1 =  (version == CssVersion.CSS1);
+    SupportsFeature sf;
+}
+{
+    try {
+	n = <SUPPORTS_SYM> ( <S> )* {
+            if (version.compareTo(CssVersion.CSS3) < 0) {
+                skipStatement();
+                addError(new InvalidParamException("noatruleyet", "", ac),
+    		  	     getAtRule().toString());
+            }
+        }
+        //
+        // handle supports rules
+        //
+	sf=supports_condition(newRule) { newRule.addFeature(sf, ac); newAtRule(getAtRule()); }
+        <LBRACE> ( <S> )* ( ruleSet()  | at_rules() )* <RBRACE> ( <S> )*
+        {
+      	     if (!isCss1) {
+       	         endOfAtRule();
+       	     }
+        }
+    } catch (ParseException e) {
+          if (!isCss1) {
+              addError(e, skipStatement());
+          }
+          newRule = null;
+      } finally {
+          setAtRule(old);
+      }
+}
+ 
+SupportsFeature supports_condition(AtRuleSupports supportsRule):
+{
+    Token t;
+    SupportsFeature f = null;
+    SupportsFeature nf, mf;
+    boolean got_multi = false;
+}
+{
+    ( <NOT> ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
+    |  ( nf=supports_condition_in_parens(supportsRule) ( ( <AND> ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+		                                           if (f == null) {
+							       f = new SupportsFeature();
+							       f.addFeature(nf);
+							   }
+							   mf.setAnd(true);
+							   f.addFeature(mf);		    
+                                                       } )+ 
+						      | ( <OR> ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+							   if (f == null) {
+							       f = new SupportsFeature();
+							       f.addFeature(nf);
+							   }
+							   mf.setOr(true);
+							   f.addFeature(mf);	
+						       } )+ )?
+    ) {
+	if (f == null) {
+	    return nf;
+	}
+	return f;
+    }
+}
+
+SupportsFeature supports_condition_in_parens(AtRuleSupports supportsRule):
+{
+    CssProperty p;
+    SupportsFeature f = new SupportsFeature();
+    SupportsFeature nf;
+}
+{
+    ( <RPARAN>  ( <S> )* 
+      ( LOOKAHEAD(3) nf=supports_condition(supportsRule) { f.addFeature(nf); }
+	| p=declaration() { f.setProperty(p); }
+      )
+      <LPARAN> ( <S> )*
+    ) {
+	return f;
+    }
+	//   | general_enclosed(supportsRule)
+     
+}
+void general_enclosed(AtRuleSupports supportsRule):
+{
+}
+{
+    ( <FUNCTION> | <RPARAN> ) ( <S> )*  ( <IDENT> )* <LPARAN> ( <S> )*
 }
 
 void unused_production_generic_syntax() :

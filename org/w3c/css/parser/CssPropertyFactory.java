@@ -7,9 +7,9 @@
 
 package org.w3c.css.parser;
 
-import org.w3c.css.media.AtRuleMedia;
-import org.w3c.css.media.Media;
-import org.w3c.css.media.MediaFeature;
+import org.w3c.css.atrules.css.AtRuleMedia;
+import org.w3c.css.atrules.css.media.Media;
+import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.properties.PropertiesLoader;
 import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
