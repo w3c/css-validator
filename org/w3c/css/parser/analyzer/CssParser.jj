@@ -1117,7 +1117,7 @@ SupportsFeature supports_condition(AtRuleSupports supportsRule):
     boolean got_multi = false;
 }
 {
-    ( <NOT> ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); } )
+    ( <NOT> ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
     |  ( nf=supports_condition_in_parens(supportsRule) ( ( <AND> ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
 		                                           if (f == null) {
 							       f = new SupportsFeature();
