@@ -57,7 +57,7 @@ public class CssMinZoom extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "zoom";
+        return "min-zoom";
     }
 
     /**
