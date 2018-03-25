@@ -191,43 +191,45 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int SUPPORTS_SYM = 90;
   /** RegularExpression Id. */
-  int ATKEYWORD = 91;
+  int VIEWPORT_SYM = 91;
   /** RegularExpression Id. */
-  int RANGE0 = 92;
+  int ATKEYWORD = 92;
   /** RegularExpression Id. */
-  int RANGE1 = 93;
+  int RANGE0 = 93;
   /** RegularExpression Id. */
-  int RANGE2 = 94;
+  int RANGE1 = 94;
   /** RegularExpression Id. */
-  int RANGE3 = 95;
+  int RANGE2 = 95;
   /** RegularExpression Id. */
-  int RANGE4 = 96;
+  int RANGE3 = 96;
   /** RegularExpression Id. */
-  int RANGE5 = 97;
+  int RANGE4 = 97;
   /** RegularExpression Id. */
-  int RANGE6 = 98;
+  int RANGE5 = 98;
   /** RegularExpression Id. */
-  int RANGE = 99;
+  int RANGE6 = 99;
   /** RegularExpression Id. */
-  int UNI = 100;
+  int RANGE = 100;
   /** RegularExpression Id. */
-  int UNICODERANGE = 101;
+  int UNI = 101;
   /** RegularExpression Id. */
-  int CLASS = 102;
+  int UNICODERANGE = 102;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 103;
+  int CLASS = 103;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 104;
+  int FUNCTIONLANG = 104;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 105;
+  int FUNCTIONNOT = 105;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 106;
+  int FUNCTIONCALC = 106;
   /** RegularExpression Id. */
-  int FUNCTION = 107;
+  int FUNCTIONATTR = 107;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 108;
+  int FUNCTION = 108;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 109;
+  int HTMLSTARTTAG = 109;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 110;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -325,6 +327,7 @@ public interface CssParserConstants {
     "\"@counter-style\"",
     "\"@phonetic-alphabet\"",
     "\"@supports\"",
+    "\"@viewport\"",
     "<ATKEYWORD>",
     "<RANGE0>",
     "<RANGE1>",
@@ -344,7 +347,7 @@ public interface CssParserConstants {
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
-    "<token of kind 110>",
+    "<token of kind 111>",
     "\"|\"",
     "\"%\"",
   };
