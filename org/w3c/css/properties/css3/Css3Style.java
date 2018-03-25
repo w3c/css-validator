@@ -209,6 +209,11 @@ import org.w3c.css.properties.css.counterstyle.CssRange;
 import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
+import org.w3c.css.properties.css.viewport.CssMaxZoom;
+import org.w3c.css.properties.css.viewport.CssMinZoom;
+import org.w3c.css.properties.css.viewport.CssOrientation;
+import org.w3c.css.properties.css.viewport.CssUserZoom;
+import org.w3c.css.properties.css.viewport.CssZoom;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -226,6 +231,18 @@ public class Css3Style extends ATSCStyle {
     public CssPad counterStyleCssPad;
     public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
     public CssNegative counterStyleCssNegative;
+
+    public org.w3c.css.properties.css.viewport.CssMinWidth viewportCssMinWidth;
+    public org.w3c.css.properties.css.viewport.CssMaxWidth viewportCssMaxWidth;
+    public org.w3c.css.properties.css.viewport.CssMinHeight viewportCssMinHeight;
+    public org.w3c.css.properties.css.viewport.CssMaxHeight viewportCssMaxHeight;
+    public CssZoom viewportCssZoom;
+    public CssMinZoom viewportCssMinZoom;
+    public CssMaxZoom viewportCssMaxZoom;
+    public CssUserZoom viewportCssUserZoom;
+    public CssOrientation viewportCssOrientation;
+    public org.w3c.css.properties.css.viewport.CssHeight viewportCssHeight;
+    public org.w3c.css.properties.css.viewport.CssWidth viewportCssWidth;
 
     public CssBackgroundPositionX cssBackgroundPositionX;
     public CssBackgroundPositionY cssBackgroundPositionY;
@@ -442,6 +459,105 @@ public class Css3Style extends ATSCStyle {
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
 
+    public org.w3c.css.properties.css.viewport.CssWidth getViewportWidth() {
+        if (viewportCssWidth == null) {
+            viewportCssWidth =
+                    (org.w3c.css.properties.css.viewport.CssWidth) style.CascadingOrder(new org.w3c.css.properties.css.viewport.CssWidth(),
+                            style, selector);
+        }
+        return viewportCssWidth;
+    }
+    
+    public org.w3c.css.properties.css.viewport.CssHeight getViewportHeight() {
+        if (viewportCssHeight == null) {
+            viewportCssHeight =
+                    (org.w3c.css.properties.css.viewport.CssHeight) style.CascadingOrder(new org.w3c.css.properties.css.viewport.CssHeight(),
+                            style, selector);
+        }
+        return viewportCssHeight;
+    }
+    
+    public CssOrientation getViewportOrientation() {
+        if (viewportCssOrientation == null) {
+            viewportCssOrientation =
+                    (org.w3c.css.properties.css.viewport.CssOrientation) style.CascadingOrder(new CssOrientation(),
+                            style, selector);
+        }
+        return viewportCssOrientation;
+    }
+    
+    public CssUserZoom getViewportUserZoom() {
+        if (viewportCssUserZoom == null) {
+            viewportCssUserZoom =
+                    (org.w3c.css.properties.css.viewport.CssUserZoom) style.CascadingOrder(new CssUserZoom(),
+                            style, selector);
+        }
+        return viewportCssUserZoom;
+    }
+    
+    public CssMaxZoom getViewportMaxZoom() {
+        if (viewportCssMaxZoom == null) {
+            viewportCssMaxZoom =
+                    (org.w3c.css.properties.css.viewport.CssMaxZoom) style.CascadingOrder(new CssMaxZoom(),
+                            style, selector);
+        }
+        return viewportCssMaxZoom;
+    }
+    
+    public CssMinZoom getViewportMinZoom() {
+        if (viewportCssMinZoom == null) {
+            viewportCssMinZoom =
+                    (org.w3c.css.properties.css.viewport.CssMinZoom) style.CascadingOrder(new CssMinZoom(),
+                            style, selector);
+        }
+        return viewportCssMinZoom;
+    }
+
+    public CssZoom getViewportZoom() {
+        if (viewportCssZoom == null) {
+            viewportCssZoom =
+                    (org.w3c.css.properties.css.viewport.CssZoom) style.CascadingOrder(new CssZoom(),
+                            style, selector);
+        }
+        return viewportCssZoom;
+    }
+    
+    public org.w3c.css.properties.css.viewport.CssMaxHeight getViewportMaxHeight() {
+        if (viewportCssMaxHeight == null) {
+            viewportCssMaxHeight =
+                    (org.w3c.css.properties.css.viewport.CssMaxHeight) style.CascadingOrder(new CssMaxHeight(),
+                            style, selector);
+        }
+        return viewportCssMaxHeight;
+    }
+    
+    public org.w3c.css.properties.css.viewport.CssMinHeight getViewportMinHeight() {
+        if (viewportCssMinHeight == null) {
+            viewportCssMinHeight =
+                    (org.w3c.css.properties.css.viewport.CssMinHeight) style.CascadingOrder(new CssMinHeight(),
+                            style, selector);
+        }
+        return viewportCssMinHeight;
+    }
+
+    public org.w3c.css.properties.css.viewport.CssMaxWidth getViewportMaxWidth() {
+        if (viewportCssMaxWidth == null) {
+            viewportCssMaxWidth =
+                    (org.w3c.css.properties.css.viewport.CssMaxWidth) style.CascadingOrder(new CssMaxWidth(),
+                            style, selector);
+        }
+        return viewportCssMaxWidth;
+    }
+
+    public org.w3c.css.properties.css.viewport.CssMinWidth getViewportMinWidth() {
+        if (viewportCssMinWidth == null) {
+            viewportCssMinWidth =
+                    (org.w3c.css.properties.css.viewport.CssMinWidth) style.CascadingOrder(new CssMinWidth(),
+                            style, selector);
+        }
+        return viewportCssMinWidth;
+    }
+    
     public CssBackgroundPositionY getBackgroundPositionY() {
         if (cssBackgroundPositionY == null) {
             cssBackgroundPositionY =
