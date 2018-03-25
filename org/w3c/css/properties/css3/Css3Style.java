@@ -211,6 +211,7 @@ import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
+import org.w3c.css.properties.css.viewport.CssUserZoom;
 import org.w3c.css.properties.css.viewport.CssZoom;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
@@ -237,6 +238,7 @@ public class Css3Style extends ATSCStyle {
     public CssZoom viewportCssZoom;
     public CssMinZoom viewportCssMinZoom;
     public CssMaxZoom viewportCssMaxZoom;
+    public CssUserZoom viewportCssUserZoom;
 
     public CssBackgroundPositionX cssBackgroundPositionX;
     public CssBackgroundPositionY cssBackgroundPositionY;
@@ -453,6 +455,15 @@ public class Css3Style extends ATSCStyle {
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
 
+    public CssUserZoom getViewportUserZoom() {
+        if (viewportCssUserZoom == null) {
+            viewportCssUserZoom =
+                    (org.w3c.css.properties.css.viewport.CssUserZoom) style.CascadingOrder(new CssUserZoom(),
+                            style, selector);
+        }
+        return viewportCssUserZoom;
+    }
+    
     public CssMaxZoom getViewportMaxZoom() {
         if (viewportCssMaxZoom == null) {
             viewportCssMaxZoom =
