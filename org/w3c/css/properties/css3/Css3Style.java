@@ -229,6 +229,7 @@ public class Css3Style extends ATSCStyle {
 
     public org.w3c.css.properties.css.viewport.CssMinWidth viewportCssMinWidth;
     public org.w3c.css.properties.css.viewport.CssMaxWidth viewportCssMaxWidth;
+    public org.w3c.css.properties.css.viewport.CssMinHeight viewportCssMinHeight;
 
     public CssBackgroundPositionX cssBackgroundPositionX;
     public CssBackgroundPositionY cssBackgroundPositionY;
@@ -444,6 +445,15 @@ public class Css3Style extends ATSCStyle {
     public CssFloatReference cssFloatReference;
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
+
+    public org.w3c.css.properties.css.viewport.CssMinHeight getViewportMinHeight() {
+        if (viewportCssMinHeight == null) {
+            viewportCssMinHeight =
+                    (org.w3c.css.properties.css.viewport.CssMinHeight) style.CascadingOrder(new CssMinHeight(),
+                            style, selector);
+        }
+        return viewportCssMinHeight;
+    }
 
     public org.w3c.css.properties.css.viewport.CssMaxWidth getViewportMaxWidth() {
         if (viewportCssMaxWidth == null) {
