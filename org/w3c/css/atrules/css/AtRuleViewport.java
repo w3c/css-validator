@@ -77,5 +77,23 @@ public class AtRuleViewport extends AtRule {
                         caller.getPropertyName(), ac);
         }
     }
+
+    public static CssValue checkViewportZoom(CssValue v, CssProperty caller, ApplContext ac)
+            throws InvalidParamException {
+        switch (v.getType()) {
+            case CssTypes.CSS_NUMBER:
+            case CssTypes.CSS_PERCENTAGE:
+                v.getCheckableValue().checkPositiveness(ac, caller);
+                return v;
+            case CssTypes.CSS_IDENT:
+                if (auto.equals(v)) {
+                    return auto;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        v.toString(),
+                        caller.getPropertyName(), ac);
+        }
+    }
 }
 
