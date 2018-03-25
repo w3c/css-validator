@@ -75,6 +75,7 @@ import org.w3c.css.atrules.css.AtRulePhoneticAlphabet;
 import org.w3c.css.atrules.css.AtRulePreference;
 import org.w3c.css.atrules.css.AtRuleSupports;
 import org.w3c.css.atrules.css.supports.SupportsFeature;
+import org.w3c.css.atrules.css.AtRuleViewport;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssProfile;
 import org.w3c.css.util.CssVersion;
@@ -672,6 +673,7 @@ TOKEN [IGNORE_CASE] :
   | < COUNTER_STYLE_SYM     : "@counter-style" > 
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
   | < SUPPORTS_SYM          : "@supports" >
+  | < VIEWPORT_SYM          : "@viewport" >
   | < ATKEYWORD             : "@" <IDENT> >
 }
 
@@ -830,17 +832,17 @@ void charset() :
     }
 }
 
-void at_rules() : {
+void nested_at_rules() : {
 }
 {
-  ( media() | page() | fontFace() | keyframes() | preference() |
-    colorprofile() | counterstyle() | phoneticAlphabet() | supports() | atRuleDeclaration() )
+  ( media() | page() | fontFace() | keyframes() | preference() | viewport()
+    | colorprofile() | counterstyle() | phoneticAlphabet() | supports() | atRuleDeclaration() )
 }
 
 void afterImportDeclaration() :
 {String ret; }
 {
-    ( ( ruleSet() | at_rules() | ret=skipStatement()
+    ( ( ruleSet() | nested_at_rules() | ret=skipStatement()
 	{ if ((ret == null) || (ret.length() == 0)) {
 		return; 
 	    }
@@ -989,7 +991,7 @@ AtRuleMedia media() :
 		        newAtRule(getAtRule());
 		    }
 	    }
-	<LBRACE> ( <S> )* ( ruleSet()  | at_rules() )* <RBRACE> ( <S> )*
+	<LBRACE> ( <S> )* ( ruleSet()  | nested_at_rules() )* <RBRACE> ( <S> )*
 	     {
 		     if (!isCss1) {
 		         endOfAtRule();
@@ -1093,7 +1095,7 @@ void supports() :
         // handle supports rules
         //
 	sf=supports_condition(newRule) { newRule.addFeature(sf, ac); newAtRule(getAtRule()); }
-        <LBRACE> ( <S> )* ( ruleSet()  | at_rules() )* <RBRACE> ( <S> )*
+        <LBRACE> ( <S> )* ( ruleSet()  | nested_at_rules() )* <RBRACE> ( <S> )*
         {
       	     if (!isCss1) {
        	         endOfAtRule();
@@ -1509,6 +1511,52 @@ void colorprofile() :
     }
     catch (ParseException e) {
 	if (isSVG) {
+            addError(e, skipStatement());
+	}
+    } finally {
+	setAtRule(old);
+    }
+}
+
+void viewport() :
+{
+    ArrayList<CssProperty> v;
+    AtRule old = getAtRule();
+    setAtRule(new AtRuleViewport());
+    CssSelectors s = new CssSelectors(ac);
+    s.setAtRule(getAtRule());
+    CssVersion version = ac.getCssVersion();
+}
+{
+    try {
+	<VIEWPORT_SYM> ( <S> )*
+	    {
+                if (version.compareTo(CssVersion.CSS3) < 0) {
+		    skipStatement();
+                    addError(new InvalidParamException("noatruleyet", "", ac),
+			     getAtRule().toString());
+		} else {
+		    newAtRule(getAtRule());
+		}
+
+	    }
+	<LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )*
+	     {
+                if (version.compareTo(CssVersion.CSS3) >= 0) {
+		     addProperty(v);
+		     endOfRule();
+		     endOfAtRule();
+		 }
+
+		 if (v == null) {
+		     ac.getFrame().addWarning("no-declaration");
+		 } else {
+		     handleRule(s, v);  
+		 }
+	     }
+    }
+    catch (ParseException e) {
+	if (version.compareTo(CssVersion.CSS3) < 0) {
             addError(e, skipStatement());
 	}
     } finally {
