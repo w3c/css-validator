@@ -209,6 +209,7 @@ import org.w3c.css.properties.css.counterstyle.CssRange;
 import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
+import org.w3c.css.properties.css.viewport.CssMinWidth;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
@@ -226,6 +227,8 @@ public class Css3Style extends ATSCStyle {
     public CssPad counterStyleCssPad;
     public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
     public CssNegative counterStyleCssNegative;
+
+    public org.w3c.css.properties.css.viewport.CssMinWidth viewportCssMinWidth;
 
     public CssBackgroundPositionX cssBackgroundPositionX;
     public CssBackgroundPositionY cssBackgroundPositionY;
@@ -441,6 +444,15 @@ public class Css3Style extends ATSCStyle {
     public CssFloatReference cssFloatReference;
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
+
+    public org.w3c.css.properties.css.viewport.CssMinWidth getViewportMinWidth() {
+        if (viewportCssMinWidth == null) {
+            viewportCssMinWidth =
+                    (org.w3c.css.properties.css.viewport.CssMinWidth) style.CascadingOrder(new CssMinWidth(),
+                            style, selector);
+        }
+        return viewportCssMinWidth;
+    }
 
     public CssBackgroundPositionY getBackgroundPositionY() {
         if (cssBackgroundPositionY == null) {

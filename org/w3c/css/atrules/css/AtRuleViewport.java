@@ -6,8 +6,20 @@
 package org.w3c.css.atrules.css;
 
 import org.w3c.css.parser.AtRule;
+import org.w3c.css.properties.css.CssProperty;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssTypes;
+import org.w3c.css.values.CssValue;
 
 public class AtRuleViewport extends AtRule {
+
+    static CssIdent auto;
+
+    static {
+        auto = CssIdent.getIdent("auto");
+    }
 
     public String keyword() {
         return "viewport";
@@ -43,6 +55,27 @@ public class AtRuleViewport extends AtRule {
     }
 
     public AtRuleViewport() {
+    }
+
+    public static CssValue checkViewportLenght(CssValue v, CssProperty caller, ApplContext ac)
+            throws InvalidParamException {
+        switch (v.getType()) {
+            case CssTypes.CSS_NUMBER:
+                v.getCheckableValue().checkEqualsZero(ac, caller);
+                return v;
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                v.getCheckableValue().checkPositiveness(ac, caller);
+                return v;
+            case CssTypes.CSS_IDENT:
+                if (auto.equals(v)) {
+                    return auto;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        v.toString(),
+                        caller.getPropertyName(), ac);
+        }
     }
 }
 
