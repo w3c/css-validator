@@ -282,7 +282,7 @@ warning.dynamic: dynamic values cannot be checked as an unitless number. Please 
 error.linear-gradient-missing-to: The first argument to the \u201Clinear-gradient\u201D function should be \u201C%s\u201D, not \u201C%s\u201D
 
 #used by org.w3c.css.properties.CssColumnCount
-error.strictly-positive: \u201C%s\u201D is not valid, only values greater than /u201C0/u201D allowed.
+error.strictly-positive: \u201C%s\u201D is not valid, only values greater than \u201C0\u201D allowed.
 
 error.greaterequal: \u201C%s\u201D is not valid, only values greater than or equal to \u201C%s\u201D are allowed.
 error.lowerequal: \u201C%s\u201D is not valid, only values lower than or equal to \u201C%s\u201D are allowed.
@@ -421,7 +421,7 @@ error.nomediarestrictor: Mediarestrictor not defined in this CSS level
 error.nomediafeature: Media features are not defined in this CSS level
 error.nomodifiershortmedia: No prefixes are allowed for media features with no value
 error.nomodifiermedia: The media feature \u201C%s\u201D does not support prefixes
-error.grid: Only /u201C0/u201D and /u201C1/u201D are acceptable values for grid
+error.grid: Only \u201C0\u201D and \u201C1\u201D are acceptable values for grid
 
 error.errortoken: Unexpected content \u201C%s\u201D at line \u201C%s\u201D, expecting on token of \u201C%s\u201D (skipped \u201C%s\u201D)
 error.selectorname: Invalid selector name \u201C%s\u201D
