@@ -132,6 +132,8 @@ content-type: text/html; charset=utf-8
 content-language: fr
 output-encoding-name: utf-8
 
+error.conflicting-charset: Les définitions de jeu de caractères provenant d'HTTP et de @charset \u201C%s\u201D et \u201C%s\u201D se contredisent
+
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)

@@ -130,6 +130,8 @@ content-type: text/html; charset=utf-8
 content-language: en
 output-encoding-name: utf-8
 
+error.conflicting-charset: Conflicting charset definition between network and @charset \u201C%s\u201D and \u201C%s\u201D charset
+
 # You can change the level warning like this (example) :
 # warning.redefinition.level: 5
 #  level is an integer between 0 and 9 (all others values are ignored)

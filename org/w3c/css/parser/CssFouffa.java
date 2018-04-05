@@ -749,9 +749,10 @@ public final class CssFouffa extends CssParser {
             } catch (IOException ioex) {
             }
         } else if (c.compareTo(originalCharset) != 0) {
-            Exception ex = new Exception("Conflicting charset definition " +
-                    "between network and @charset " +
-                    originalCharset + " and " + charset);
+            String charsets[] = new String[2];
+            charsets[0] = originalCharset.toString();
+            charsets[1] = charset;
+            InvalidParamException ex = new InvalidParamException("conflicting-charset", charsets, ac);
             CssError cerr = new CssError(getSourceFile(), getBeginLine(),
                     getBeginColumn(), getEndLine(), getEndColumn(), ex);
             ac.getFrame().addError(cerr);
