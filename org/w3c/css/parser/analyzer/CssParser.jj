@@ -970,13 +970,19 @@ AtRuleMedia media() :
     Token n;
     CssProperty p = null;
     boolean isCss1 =  (ac.getCssVersion() == CssVersion.CSS1);
+    boolean emptyList = true;
+    int begl = 0, begc = 0, endl = 0, endc = 0;
 }
 {
     try {
-	n=<MEDIA_SYM> ( <S> )*
-        mediaquerylist(newRule)
+	n=<MEDIA_SYM> {
+	    begl = getBeginLine();
+            begc = getBeginColumn();
+        } ( <S> )*
+	( mediaquerylist(newRule)
 	    {
 		    String media = getAtRule().toString();
+		    emptyList = false;
 		    if (ac.getMedium() != null &&
 		        !(media.equals(ac.getMedium())) &&
 		        !(ac.getMedium().equals("all"))) {
@@ -991,7 +997,8 @@ AtRuleMedia media() :
 		        newAtRule(getAtRule());
 		    }
 	    }
-	<LBRACE> ( <S> )* ( ruleSet()  | nested_at_rules() )* <RBRACE> ( <S> )*
+	)?
+	    <LBRACE> { endl = getEndLine() ; endc = getEndColumn() ; } ( <S> )* ( ruleSet()  | nested_at_rules() )* <RBRACE> ( <S> )*
 	     {
 		     if (!isCss1) {
 		         endOfAtRule();
@@ -1002,9 +1009,13 @@ AtRuleMedia media() :
 	        addError(e, skipStatement());
 	    }
 	    newRule = null;
-	} finally {
-	    setAtRule(old);
-	    return newRule;
+    } finally {
+	if (emptyList && ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+	    ac.getFrame().addError(new CssError(getSourceFile(), begl, begc, endl, endc,	        
+						new InvalidParamException("emptymedia", ac)));
+	}
+        setAtRule(old);
+	return newRule;
     }
 }
 

@@ -459,3 +459,5 @@ error.divisortype: Le diviseur doit être un nombre
 error.incompatibletypes: Les types ne sont pas compatibles
 error.invalidtype: Type invalide: \u201C%s\u201D
 error.typevaluemismatch: La valeur \u201C%s\u201D est incompatible avec sa définition de type <\u201C%s\u201D>
+
+error.emptymedia: En CSS2, l'indication du type de media dans la règle @media est ogligatoire

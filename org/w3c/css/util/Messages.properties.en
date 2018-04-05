@@ -438,3 +438,4 @@ error.incompatibletypes: The types are incompatible
 error.invalidtype: Invalid type: \u201C%s\u201D
 error.typevaluemismatch: The value \u201C%s\u201D is incompatible with its type definition <\u201C%s\u201D>
 
+error.emptymedia: In CSS2, the media type in @media is mandatory
