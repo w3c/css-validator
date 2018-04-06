@@ -11,10 +11,10 @@
 package org.w3c.css.parser;
 
 import org.w3c.css.atrules.css.AtRuleImport;
-import org.w3c.css.atrules.css.AtRuleNamespace;
-import org.w3c.css.css.StyleSheetOrigin;
 import org.w3c.css.atrules.css.AtRuleMedia;
+import org.w3c.css.atrules.css.AtRuleNamespace;
 import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.css.StyleSheetOrigin;
 import org.w3c.css.parser.analyzer.CssParser;
 import org.w3c.css.parser.analyzer.CssParserTokenManager;
 import org.w3c.css.parser.analyzer.ParseException;
@@ -470,14 +470,14 @@ public final class CssFouffa extends CssParser {
                     CssError cerr = new CssError(getSourceFile(),
                             getBeginLine(), getBeginColumn(), getEndLine(),
                             getEndColumn(), new Exception(
-                                    "Import loop" + " detected in " + surl));
+                            "Import loop" + " detected in " + surl));
                     ac.getFrame().addError(cerr);
                     return;
                 } else if (visited.size() > 42) {
                     CssError cerr = new CssError(getSourceFile(),
                             getBeginLine(), getBeginColumn(), getEndLine(),
                             getEndColumn(), new Exception("Maximum number"
-                                    + " of imports " + "reached"));
+                            + " of imports " + "reached"));
                     ac.getFrame().addError(cerr);
                     return;
                 }
@@ -749,10 +749,8 @@ public final class CssFouffa extends CssParser {
             } catch (IOException ioex) {
             }
         } else if (c.compareTo(originalCharset) != 0) {
-            String charsets[] = new String[2];
-            charsets[0] = originalCharset.toString();
-            charsets[1] = charset;
-            InvalidParamException ex = new InvalidParamException("conflicting-charset", charsets, ac);
+            InvalidParamException ex = new InvalidParamException("conflicting-charset",
+                    new String[]{originalCharset.toString(), charset}, ac);
             CssError cerr = new CssError(getSourceFile(), getBeginLine(),
                     getBeginColumn(), getEndLine(), getEndColumn(), ex);
             ac.getFrame().addError(cerr);
