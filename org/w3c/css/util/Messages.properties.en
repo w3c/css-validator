@@ -297,6 +297,7 @@ error.greater: \u201C%s\u201D is not valid, only values strictly greater than \u
 error.noexistence-at-all: Property \u201C%s\u201D doesn't exist
 error.noexistence-media: Feature \u201C%s\u201D doesn't exist for media \u201C%s\u201D
 error.noexistence: Property \u201C%s\u201D doesn't exist in \u201C%s\u201D but exists in \u201C%s\u201D
+error.noexistence-typo: Property \u201C%s\u201D doesn't exist. The closest matching property name is \u201C%s\u201D
 warning.noexistence: Property \u201C%s\u201D doesn't exist in \u201C%s\u201D but exists in \u201C%s\u201D
 warning.noexistence-media: Property \u201C%s\u201D doesn't exist for media \u201C%s\u201D
 warning.notforusermedium : Property \u201C%s\u201D doesn't exist for this usermedium
