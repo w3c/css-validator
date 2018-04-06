@@ -81,6 +81,10 @@ public abstract class AtRuleMedia extends AtRule {
         return false;
     }
 
+    public String lookupPrefix() {
+        return "";
+
+    }
     /**
      * Use to display the value part of the @media rule
      * used where the value is used, like as an option in @import
