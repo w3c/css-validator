@@ -312,6 +312,7 @@ error.unknown: Erreur inconnue
 error.noexistence-at-all: La propriété \u201C%s\u201D n'existe pas
 error.noexistence-media: La propriété \u201C%s\u201D n'existe pas pour le media \u201C%s\u201D
 error.noexistence: La propriété \u201C%s\u201D n'existe pas en \u201C%s\u201D. mais existe en \u201C%s\u201D
+error.noexistence-typo: La propriété \u201C%s\u201D n'existe pas. Le nom de propriété le plus proche est \u201C%s\u201D
 warning.noexistence: La propriété \u201C%s\u201D n'existe pas en \u201C%s\u201D. mais existe en \u201C%s\u201D
 warning.noexistence-media: La propriété \u201C%s\u201D n'existe pas pour le media \u201C%s\u201D
 warning.medialist: La liste de media (medialist) doit commencer par 'media :' \u201C%s\u201D

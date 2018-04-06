@@ -7,6 +7,7 @@
 
 package org.w3c.css.parser;
 
+import org.apache.commons.lang.StringUtils;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.atrules.css.media.MediaFeature;
@@ -24,6 +25,7 @@ import org.w3c.css.values.CssIdent;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -235,7 +237,13 @@ public class CssPropertyFactory implements Cloneable {
                     throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
                 }
             } else {
-                throw new InvalidParamException("noexistence-at-all", property, ac);
+                String possibleName = findClosestPropertyName(atRule, ac, property);
+                if (possibleName != null) {
+                    throw new InvalidParamException("noexistence-typo", new String[]{property, possibleName}, ac);
+
+                } else {
+                    throw new InvalidParamException("noexistence-at-all", property, ac);
+                }
             }
         }
 
@@ -281,7 +289,7 @@ public class CssPropertyFactory implements Cloneable {
         String className;
         String prefix = atRule.lookupPrefix();
 
-        if (prefix.isEmpty() || (atRule instanceof AtRuleMedia)) {
+        if (prefix.isEmpty()) {
             className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
             // a list of media has been specified
             if (className != null && media != null && !media.equals("all")) {
@@ -303,6 +311,35 @@ public class CssPropertyFactory implements Cloneable {
             className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(sb.toString());
         }
         return className;
+    }
+
+    private String findClosestPropertyName(AtRule atRule, ApplContext ac, String property) {
+        int mindist = 100000;
+        int dist;
+        Set<String> propertyList = PropertiesLoader.getProfile(ac.getPropertyKey()).keySet();
+        String bestFit = null;
+        String prefix = atRule.lookupPrefix();
+        if (!prefix.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append('@').append(atRule.keyword()).append('.').append(property);
+            property = sb.toString();
+        }
+        for (String s : propertyList) {
+            dist = StringUtils.getLevenshteinDistance(property, s);
+            if (dist >= 0 && dist < mindist) {
+                bestFit = s;
+                mindist = dist;
+                // as we didn't have a match, 1 is the best we can get.
+                if (mindist == 1) {
+                    return bestFit;
+                }
+            }
+        }
+        // arbitraty limit
+        if (mindist <= 2) {
+            return bestFit;
+        }
+        return null;
     }
 
     private boolean isVendorExtension(String property) {
