@@ -174,20 +174,12 @@ public class CssPropertyFactory implements Cloneable {
         AtRuleMedia atRuleMedia;
         String media = null;
 
-        if (ac.getTreatVendorExtensionsAsWarnings()) {
-            if (isVendorExtension(property)) {
-                throw new WarningParamException("vendor-extension", property);
-            }
-            if (expression.hasVendorExtensions()) {
-                throw new WarningParamException("vendor-extension", expression.toStringFromStart());
-            }
+        // if the property name indicates a vendor extension, exit without checking
+        // if we need to raise only a warning.
+        if (ac.getTreatVendorExtensionsAsWarnings() && isVendorExtension(property)) {
+            throw new WarningParamException("vendor-extension", property);
         }
 
-        if (ac.getTreatCssHacksAsWarnings()) {
-            if (expression.hasCssHack()) {
-                throw new WarningParamException("css-hack", expression.toStringFromStart());
-            }
-        }
         try {
             atRuleMedia = (AtRuleMedia) atRule;
             // TODO FIXME in fact, it should use a vector of media instead of extracting
@@ -245,6 +237,15 @@ public class CssPropertyFactory implements Cloneable {
             } else {
                 throw new InvalidParamException("noexistence-at-all", property, ac);
             }
+        }
+
+        // we have a property name, check about vendor extension or hack in the expression
+        if (ac.getTreatVendorExtensionsAsWarnings() && expression.hasVendorExtensions()) {
+            throw new WarningParamException("vendor-extension", expression.toStringFromStart());
+        }
+
+        if (ac.getTreatCssHacksAsWarnings() && expression.hasCssHack()) {
+            throw new WarningParamException("css-hack", expression.toStringFromStart());
         }
 
         CssIdent initial = CssIdent.getIdent("initial");
