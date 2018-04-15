@@ -24,6 +24,7 @@ public class Messages {
 
     public static final ConcurrentHashMap<String, Utf8Properties<String, String>> languages;
     public static final ArrayList<String> languages_name;
+    public Utf8Properties<String, String> default_properties = null;
 
     /**
      * Creates a new Messages
@@ -80,8 +81,9 @@ public class Messages {
                 }
             }
         }
+        default_properties = languages.get("en");
         if (properties == null) {
-            properties = languages.get("en");
+            properties = default_properties;
         }
     }
 
@@ -89,7 +91,11 @@ public class Messages {
      * Get a property.
      */
     public String getString(String message) {
-        return properties.getProperty(message);
+        String s = properties.getProperty(message);
+        if (s != null) {
+            return s;
+        }
+        return default_properties.getProperty(message);
     }
 
     /**
