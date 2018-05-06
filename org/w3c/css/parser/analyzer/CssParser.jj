@@ -3137,7 +3137,10 @@ CssCheckableValue mathproduct() :
 {
  ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
                     (  ( o="*" ( <S> )* v2=mathunit() )
-                       | ( o=<DIV> ( <S> )* ( operator=unaryOperator() )? n=<NUMBER> { v2 = new CssNumber(); v2.set(addOperator(operator, n.image), ac); } )
+                       |
+                       ( o=<DIV> ( <S> )* ( operator=unaryOperator() )? ( n=<NUMBER> { v2 = new CssNumber(); v2.set(addOperator(operator, n.image), ac); }
+                       | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> )
+                       )
                     ) {
                           if (concat) {
                               nc = new CssCalc(ac, c);
