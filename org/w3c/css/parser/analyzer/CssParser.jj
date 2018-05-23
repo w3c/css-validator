@@ -2798,8 +2798,9 @@ void mediaterm(CssExpression exp) :
 		addError(new ParseException(ac.getMsg().getString("parser.unknown-dimension")), n.image.trim());
 	    }
     }
-    | func=function() { setValue(func, exp, operator, null, FUNCTION); }
-      ) ( <S> )* )
+   | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+     ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
    | n=<IDENT>
     {
