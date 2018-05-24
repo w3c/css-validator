@@ -48,11 +48,9 @@ public class MediaGrid extends MediaFeature {
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
             if (val.getType() == CssTypes.CSS_NUMBER) {
+                val.getCheckableValue().checkInteger(ac, this);
+                // FIXME TODO, calc() case.
                 CssNumber valnum = (CssNumber) val;
-                if (!valnum.isInteger()) {
-                    throw new InvalidParamException("integer",
-                            val.toString(), ac);
-                }
                 int gridval = valnum.getInt();
                 if (gridval != 0 && gridval != 1) {
                     throw new InvalidParamException("grid",

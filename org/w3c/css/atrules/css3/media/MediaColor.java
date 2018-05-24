@@ -9,7 +9,6 @@ import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -42,16 +41,9 @@ public class MediaColor extends MediaFeature {
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
             if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssNumber valnum = (CssNumber) val;
-                if (!valnum.isInteger()) {
-                    throw new InvalidParamException("integer",
-                            val.toString(), ac);
-                }
-                if (!valnum.isPositive()) {
-                    throw new InvalidParamException("negative-value",
-                            val.toString(), ac);
-                }
-                value = valnum;
+                val.getCheckableValue().checkInteger(ac, this);
+                val.getCheckableValue().checkPositiveness(ac, this);
+                value = val;
             } else {
                 throw new InvalidParamException("unrecognize", ac);
             }
