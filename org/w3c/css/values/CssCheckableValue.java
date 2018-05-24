@@ -234,14 +234,37 @@ public abstract class CssCheckableValue extends CssValue {
     /**
      * check if the value is an integer
      *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkInteger(ApplContext ac, String callername)
+            throws InvalidParamException {
+    }
+
+    /**
+     * check if the value is an integer
+     *
      * @param ac       the validation context
      * @param property the property the value is defined in
      * @throws InvalidParamException
      */
     public void checkInteger(ApplContext ac, CssProperty property)
             throws InvalidParamException {
+        checkInteger(ac, property.getPropertyName());
     }
 
+    /**
+     * check if the value is an integer
+     *
+     * @param ac           the validation context
+     * @param mediafeature the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkInteger(ApplContext ac, MediaFeature mediafeature)
+            throws InvalidParamException {
+        checkPositiveness(ac, mediafeature.getFeatureName());
+    }
 
     /**
      * set the native value

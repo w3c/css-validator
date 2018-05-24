@@ -331,4 +331,19 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
     public void warnEqualsZero(ApplContext ac, String callername) {
         warnEqualsZero(ac, new String[]{"unit", callername});
     }
+
+    /**
+     * check if the value is an integer
+     *
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
+     * @throws InvalidParamException
+     */
+    public void checkInteger(ApplContext ac, String callername)
+            throws InvalidParamException {
+        if (!isInteger()) {
+            throw new InvalidParamException("integer",
+                    toString(), callername, ac);
+        }
+    }
 }
