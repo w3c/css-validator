@@ -58,29 +58,6 @@ public class Warning implements Comparable<Warning> {
     }
 
     /**
-     * Create a new Warning with a property and insert two messages inside.
-     *
-     * @param property       The property where the warning came
-     * @param warningMessage The warning message to find in the properties file
-     * @param level          the warning level
-     * @param message1       the first message to add
-     * @param message2       the second message to add
-     * @see org.w3c.css.util.Messages
-     */
-    public Warning(CssProperty property, String warningMessage, int level,
-                   String message1, String message2, ApplContext ac, int i) {
-        this.sourceFile = property.getSourceFile();
-        if (sourceFile != null) {
-            this.hashSource = sourceFile.hashCode() % 100;
-        }
-        this.warningType = warningMessage;
-        this.warningMessage = warn(warningMessage, new String[]{message1,
-                message2}, ac);
-        this.level = getLevel(warningMessage, level, ac);
-        this.line = property.getLine();
-    }
-
-    /**
      * Create a new Warning with a property and insert n message(s) inside.
      *
      * @param property       The property where the warning came

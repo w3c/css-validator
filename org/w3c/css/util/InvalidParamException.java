@@ -25,11 +25,11 @@ public class InvalidParamException extends ParseException {
     /**
      * Create a new InvalidParamException with an error message.
      *
-     * @param message the error message
+     * @param error the error message
      */
-    public InvalidParamException(String message, ApplContext ac) {
-        super(ac.getMsg().getErrorString((message != null) ? message : ""));
-        errorType = message;
+    public InvalidParamException(String error, ApplContext ac) {
+        super(ac.getMsg().getErrorString((error != null) ? error : ""));
+        errorType = error;
     }
 
     /**
@@ -39,7 +39,7 @@ public class InvalidParamException extends ParseException {
      * @param message a message to add
      */
     public InvalidParamException(String error, Object message, ApplContext ac) {
-        super(processError(error, (message != null) ? message : null, ac));
+        super(processError(error, new String[] {(message != null) ? message.toString() : null}, ac));
         errorType = error;
     }
 
@@ -63,9 +63,9 @@ public class InvalidParamException extends ParseException {
      */
     public InvalidParamException(String error, Object message1,
                                  Object message2, ApplContext ac) {
-        super(processError(error,
+        super(processError(error, new String[]{
                 (message1 != null) ? message1.toString() : null,
-                (message2 != null) ? message2.toString() : null,
+                (message2 != null) ? message2.toString() : null},
                 ac));
         errorType = error;
     }
@@ -102,15 +102,5 @@ public class InvalidParamException extends ParseException {
         return sb.toString();
     }
 
-    private static String processError(String error, Object args, ApplContext ac) {
-        String sa[] = {args.toString()};
-        return processError(error, sa, ac);
-    }
-
-    private static String processError(String error, String arg1,
-                                       String arg2, ApplContext ac) {
-        String sa[] = {arg1, arg2};
-        return processError(error, sa, ac);
-    }
 
 } // InvalidParamException

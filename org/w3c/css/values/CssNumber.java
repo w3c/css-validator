@@ -244,63 +244,6 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
     }
 
     /**
-     * check if the value is positive or null
-     *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
-     * @throws InvalidParamException
-     */
-    public void checkPositiveness(ApplContext ac, CssProperty property)
-            throws InvalidParamException {
-        if (!isPositive()) {
-            throw new InvalidParamException("negative-value",
-                    toString(), property.getPropertyName(), ac);
-        }
-    }
-
-    /**
-     * check if the value is strictly positive
-     *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
-     * @throws InvalidParamException
-     */
-    public void checkStrictPositiveness(ApplContext ac, CssProperty property)
-            throws InvalidParamException {
-        if (!isStrictlyPositive()) {
-            throw new InvalidParamException("strictly-positive",
-                    toString(), property.getPropertyName(), ac);
-        }
-    }
-
-    /**
-     * check if the value is an integer
-     *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
-     * @throws InvalidParamException
-     */
-    public void checkInteger(ApplContext ac, CssProperty property)
-            throws InvalidParamException {
-        if (!isInteger()) {
-            throw new InvalidParamException("integer",
-                    toString(), property.getPropertyName(), ac);
-        }
-    }
-
-    /**
-     * warn if the value is not positive or null
-     *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
-     */
-    public void warnPositiveness(ApplContext ac, CssProperty property) {
-        if (!isPositive()) {
-            ac.getFrame().addWarning("negative", toString());
-        }
-    }
-
-    /**
      * check if the value is lower or equal than...
      *
      * @param ac       the validation context
@@ -370,27 +313,22 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
     /**
      * check if the value is equal to zero
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the String value of the object it is defined in
      * @throws InvalidParamException
      */
-    public void checkEqualsZero(ApplContext ac, CssProperty property)
+    public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        if (!isZero()) {
-            throw new InvalidParamException("zero",
-                    "unit", toString(), ac);
-        }
+        checkEqualsZero(ac, new String[]{toString(), "unit", callername});
     }
 
     /**
      * warn if the value is not zero
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the String value of the object it is defined in
      */
-    public void warnEqualsZero(ApplContext ac, CssProperty property) {
-        if (!isZero()) {
-            ac.getFrame().addWarning("zero", "unit");
-        }
+    public void warnEqualsZero(ApplContext ac, String callername) {
+        warnEqualsZero(ac, new String[]{"unit", callername});
     }
 }
