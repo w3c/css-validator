@@ -218,7 +218,7 @@ public class CssPercentage extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "percentage", callername});
+        checkEqualsZero(ac, new String[]{"percentage", toString(), callername});
     }
 
     /**

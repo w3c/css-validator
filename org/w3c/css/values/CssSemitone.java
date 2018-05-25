@@ -165,7 +165,7 @@ public class CssSemitone extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "semitone", callername});
+        checkEqualsZero(ac, new String[]{"semitone", toString(), callername});
     }
 
     /**

@@ -165,7 +165,7 @@ public class CssVolume extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "volume", callername});
+        checkEqualsZero(ac, new String[]{"volume", toString(), callername});
     }
 
     /**

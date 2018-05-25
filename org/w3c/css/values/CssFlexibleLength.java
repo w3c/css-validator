@@ -170,7 +170,7 @@ public class CssFlexibleLength extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "length", callername});
+        checkEqualsZero(ac, new String[]{"length", toString(), callername});
     }
 
     /**

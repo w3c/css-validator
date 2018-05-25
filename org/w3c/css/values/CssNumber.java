@@ -319,7 +319,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "unit", callername});
+        checkEqualsZero(ac, new String[]{"unit", toString(), callername});
     }
 
     /**
@@ -343,7 +343,7 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
             throws InvalidParamException {
         if (!isInteger()) {
             throw new InvalidParamException("integer",
-                    toString(), callername, ac);
+                    new String[]{toString(), callername}, ac);
         }
     }
 }

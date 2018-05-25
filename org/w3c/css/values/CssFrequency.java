@@ -190,7 +190,7 @@ public class CssFrequency extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "frequency", callername});
+        checkEqualsZero(ac, new String[]{"frequency", toString(), callername});
     }
 
     /**

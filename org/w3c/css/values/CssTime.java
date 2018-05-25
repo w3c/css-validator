@@ -183,7 +183,7 @@ public class CssTime extends CssCheckableValue {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "time", callername});
+        checkEqualsZero(ac, new String[]{"time", toString(), callername});
     }
 
     /**

@@ -211,7 +211,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
      */
     public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
-        checkEqualsZero(ac, new String[]{toString(), "angle", callername});
+        checkEqualsZero(ac, new String[]{"angle", toString(), callername});
     }
 
     /**
