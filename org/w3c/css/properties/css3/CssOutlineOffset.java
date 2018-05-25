@@ -20,6 +20,7 @@ public class CssOutlineOffset extends org.w3c.css.properties.css.CssOutlineOffse
      * Create a new CssOutlineOffset
      */
     public CssOutlineOffset() {
+        value = initial;
     }
 
     /**
