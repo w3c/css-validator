@@ -19,6 +19,7 @@ public class CssOverflowY extends org.w3c.css.properties.css.CssOverflowY {
      * Create a new CssOverflowY
      */
     public CssOverflowY() {
+        value = initial;
     }
 
     /**

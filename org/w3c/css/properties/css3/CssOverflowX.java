@@ -19,6 +19,7 @@ public class CssOverflowX extends org.w3c.css.properties.css.CssOverflowX {
      * Create a new CssOverflowX
      */
     public CssOverflowX() {
+        value = initial;
     }
 
     /**
