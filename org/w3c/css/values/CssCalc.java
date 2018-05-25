@@ -6,7 +6,6 @@
 
 package org.w3c.css.values;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
@@ -303,61 +302,61 @@ public class CssCalc extends CssCheckableValue {
     /**
      * check if the value is positive or null
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
      *
      */
-    public void checkPositiveness(ApplContext ac, CssProperty property)
+    public void checkPositiveness(ApplContext ac, String callername)
             throws InvalidParamException {
         // TODO do our best...
         if (false /*!isPositive()*/) {
             throw new InvalidParamException("negative-value",
-                    toString(), property.getPropertyName(), ac);
+                    toString(), callername, ac);
         }
     }
 
     /**
      * check if the value is strictly positive
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
      *
      */
-    public void checkStrictPositiveness(ApplContext ac, CssProperty property)
+    public void checkStrictPositiveness(ApplContext ac, String callername)
             throws InvalidParamException {
         // TODO do our best...
         if (false/*!isStrictlyPositive()*/) {
             throw new InvalidParamException("strictly-positive",
-                    toString(), property.getPropertyName(), ac);
+                    toString(), callername, ac);
         }
     }
 
     /**
      * check if the value is an integer
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
      *
      */
-    public void checkInteger(ApplContext ac, CssProperty property)
+    public void checkInteger(ApplContext ac, String callername)
             throws InvalidParamException {
         // TODO do our best...
         if (false/*!isInteger()*/) {
             throw new InvalidParamException("integer",
-                    toString(), property.getPropertyName(), ac);
+                    toString(), callername, ac);
         }
     }
 
     /**
      * warn if the value is not positive or null
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      */
-    public void warnPositiveness(ApplContext ac, CssProperty property) {
+    public void warnPositiveness(ApplContext ac, String callername) {
         // TODO do our best...
         if (false/*!isPositive()*/) {
             ac.getFrame().addWarning("negative", toString());
@@ -439,24 +438,24 @@ public class CssCalc extends CssCheckableValue {
     /**
      * check if the value is equal to zero
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      * @throws InvalidParamException
      */
-    public void checkEqualsZero(ApplContext ac, CssProperty property)
+    public void checkEqualsZero(ApplContext ac, String callername)
             throws InvalidParamException {
         // we can't check so we only warn.
         // TODO should we do that only for CSS_NUMBER type?
-        warnEqualsZero(ac, property);
+        warnEqualsZero(ac, callername);
     }
 
     /**
      * warn if the value is not zero
      *
-     * @param ac       the validation context
-     * @param property the property the value is defined in
+     * @param ac         the validation context
+     * @param callername the property the value is defined in
      */
-    public void warnEqualsZero(ApplContext ac, CssProperty property) {
+    public void warnEqualsZero(ApplContext ac, String callername) {
         // TODO should we do that only for CSS_NUMBER type?
         if (!isZero()) {
             ac.getFrame().addWarning("dynamic", toString());
