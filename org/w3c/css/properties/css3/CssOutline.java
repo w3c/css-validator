@@ -170,10 +170,10 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
             } else if (styleValue != null) {
                 value = styleValue;
                 _style.value = styleValue;
-            } else {
+            } else if (colorValue != null) {
                 value = colorValue;
                 _color.value = colorValue;
-            }
+            }  // else value is inherit
         } else {
             ArrayList<CssValue> values = new ArrayList<CssValue>(4);
             if (widthValue != null) {
