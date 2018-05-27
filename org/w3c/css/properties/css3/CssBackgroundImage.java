@@ -32,6 +32,7 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
      * Create a new CssBackgroundImage
      */
     public CssBackgroundImage() {
+        value = initial;
     }
 
     /**
