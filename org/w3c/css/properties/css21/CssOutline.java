@@ -141,7 +141,7 @@ public class CssOutline extends org.w3c.css.properties.css.CssOutline {
                 value = _width.value;
             } else if (_style.value != null) {
                 value = _style.value;
-            } else {
+            } else if (_color.value != null) {
                 value = _color.value;
             }
         } else {
