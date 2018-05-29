@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-writing-modes-20120501/#direction
+ * @spec https://www.w3.org/TR/2018/CR-css-writing-modes-3-20180524/#propdef-direction
  */
 public class CssDirection extends org.w3c.css.properties.css.CssDirection {
 
