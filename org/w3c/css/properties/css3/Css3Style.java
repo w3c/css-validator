@@ -178,6 +178,7 @@ import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
+import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
@@ -461,6 +462,7 @@ public class Css3Style extends ATSCStyle {
     public CssFloatDefer cssFloatDefer;
 
     public CssTextCombineUpright cssTextCombineUpright;
+    public CssTextOrientation cssTextOrientation;
 
     public CssTextCombineUpright getTextCombineUpright() {
         if (cssTextCombineUpright == null) {
@@ -469,6 +471,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssTextCombineUpright;
+    }
+
+    public CssTextOrientation getTextOrientation() {
+        if (cssTextOrientation == null) {
+            cssTextOrientation =
+                    (CssTextOrientation) style.CascadingOrder(new CssTextOrientation(),
+                            style, selector);
+        }
+        return cssTextOrientation;
     }
 
     public org.w3c.css.properties.css.viewport.CssWidth getViewportWidth() {
