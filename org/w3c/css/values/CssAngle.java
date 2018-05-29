@@ -78,6 +78,15 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
     }
 
     /**
+     * set the native value
+     *
+     * @param s, the unit
+     */
+    public void setUnit(String s) {
+        unit = s;
+    }
+
+    /**
      * Set the value of this angle.
      *
      * @param s  The string representation of the angle
