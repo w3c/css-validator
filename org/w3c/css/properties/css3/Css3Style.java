@@ -168,6 +168,7 @@ import org.w3c.css.properties.css.CssSpeakAs;
 import org.w3c.css.properties.css.CssTabSize;
 import org.w3c.css.properties.css.CssTextAlignAll;
 import org.w3c.css.properties.css.CssTextAlignLast;
+import org.w3c.css.properties.css.CssTextCombineUpright;
 import org.w3c.css.properties.css.CssTextDecorationColor;
 import org.w3c.css.properties.css.CssTextDecorationLine;
 import org.w3c.css.properties.css.CssTextDecorationSkip;
@@ -177,6 +178,7 @@ import org.w3c.css.properties.css.CssTextEmphasisColor;
 import org.w3c.css.properties.css.CssTextEmphasisPosition;
 import org.w3c.css.properties.css.CssTextEmphasisStyle;
 import org.w3c.css.properties.css.CssTextJustify;
+import org.w3c.css.properties.css.CssTextOrientation;
 import org.w3c.css.properties.css.CssTextOverflow;
 import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
@@ -459,6 +461,27 @@ public class Css3Style extends ATSCStyle {
     public CssFloatOffset cssFloatOffset;
     public CssFloatDefer cssFloatDefer;
 
+    public CssTextCombineUpright cssTextCombineUpright;
+    public CssTextOrientation cssTextOrientation;
+
+    public CssTextCombineUpright getTextCombineUpright() {
+        if (cssTextCombineUpright == null) {
+            cssTextCombineUpright =
+                    (CssTextCombineUpright) style.CascadingOrder(new CssTextCombineUpright(),
+                            style, selector);
+        }
+        return cssTextCombineUpright;
+    }
+
+    public CssTextOrientation getTextOrientation() {
+        if (cssTextOrientation == null) {
+            cssTextOrientation =
+                    (CssTextOrientation) style.CascadingOrder(new CssTextOrientation(),
+                            style, selector);
+        }
+        return cssTextOrientation;
+    }
+
     public org.w3c.css.properties.css.viewport.CssWidth getViewportWidth() {
         if (viewportCssWidth == null) {
             viewportCssWidth =
@@ -467,7 +490,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssWidth;
     }
-    
+
     public org.w3c.css.properties.css.viewport.CssHeight getViewportHeight() {
         if (viewportCssHeight == null) {
             viewportCssHeight =
@@ -476,7 +499,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssHeight;
     }
-    
+
     public CssOrientation getViewportOrientation() {
         if (viewportCssOrientation == null) {
             viewportCssOrientation =
@@ -485,7 +508,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssOrientation;
     }
-    
+
     public CssUserZoom getViewportUserZoom() {
         if (viewportCssUserZoom == null) {
             viewportCssUserZoom =
@@ -494,7 +517,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssUserZoom;
     }
-    
+
     public CssMaxZoom getViewportMaxZoom() {
         if (viewportCssMaxZoom == null) {
             viewportCssMaxZoom =
@@ -503,7 +526,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssMaxZoom;
     }
-    
+
     public CssMinZoom getViewportMinZoom() {
         if (viewportCssMinZoom == null) {
             viewportCssMinZoom =
@@ -521,7 +544,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssZoom;
     }
-    
+
     public org.w3c.css.properties.css.viewport.CssMaxHeight getViewportMaxHeight() {
         if (viewportCssMaxHeight == null) {
             viewportCssMaxHeight =
@@ -530,7 +553,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssMaxHeight;
     }
-    
+
     public org.w3c.css.properties.css.viewport.CssMinHeight getViewportMinHeight() {
         if (viewportCssMinHeight == null) {
             viewportCssMinHeight =
@@ -557,7 +580,7 @@ public class Css3Style extends ATSCStyle {
         }
         return viewportCssMinWidth;
     }
-    
+
     public CssBackgroundPositionY getBackgroundPositionY() {
         if (cssBackgroundPositionY == null) {
             cssBackgroundPositionY =

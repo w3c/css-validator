@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-writing-modes-3-20151215/#propdef-writing-mode
+ * @spec https://www.w3.org/TR/2018/CR-css-writing-modes-4-20180524/#propdef-writing-mode
  */
 public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 
