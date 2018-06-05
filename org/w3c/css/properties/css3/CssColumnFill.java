@@ -16,22 +16,23 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
-import java.util.ArrayList;
-
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#filling-columns
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-fill
  */
 
 public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
 
-    CssIdent value;
+    private static CssIdent[] allowed_values;
 
-    private static ArrayList<CssIdent> allowed_values;
 
     static {
-        allowed_values = new ArrayList<CssIdent>(2);
-        allowed_values.add(CssIdent.getIdent("balance"));
-        allowed_values.add(CssIdent.getIdent("auto"));
+        String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr",
+                "sideways-rl", "sideways-lr"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
     }
 
     static public CssIdent getAllowedValue(CssIdent ident) {
@@ -84,7 +85,7 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
                         expression.getValue(),
                         getPropertyName(), ac);
             }
-            value = (CssIdent) val;
+            value = val;
         }
         expression.next();
     }
