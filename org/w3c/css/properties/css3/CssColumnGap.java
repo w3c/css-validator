@@ -1,10 +1,9 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
-// COPYRIGHT (c) 1995-2010 World Wide Web Consortium, (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css3;
 
@@ -18,12 +17,10 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-gap
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-gap
  */
 
 public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
-
-    CssValue columngap;
 
     static CssIdent normal;
 
@@ -35,7 +32,7 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
      * Create a new CssColumnGap
      */
     public CssColumnGap() {
-        columngap = initial;
+        value = initial;
     }
 
     /**
@@ -53,20 +50,22 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 val.getCheckableValue().checkEqualsZero(ac, this);
-                columngap = val;
+                value = val;
                 break;
+            case CssTypes.CSS_PERCENTAGE:
+                // warning percentage is at risk
             case CssTypes.CSS_LENGTH:
                 CssCheckableValue l = val.getCheckableValue();
                 l.checkPositiveness(ac, this);
-                columngap = val;
+                value = val;
                 break;
             case CssTypes.CSS_IDENT:
                 if (normal.equals(val)) {
-                    columngap = normal;
+                    value = normal;
                     break;
                 }
                 if (inherit.equals(val)) {
-                    columngap = inherit;
+                    value = inherit;
                     break;
                 }
             default:
@@ -88,28 +87,28 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnGap &&
-                columngap.equals(((CssColumnGap) property).columngap));
+                value.equals(((CssColumnGap) property).value));
     }
 
     /**
      * Returns the value of this property
      */
     public Object get() {
-        return columngap;
+        return value;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-        return (inherit == columngap);
+        return (inherit == value);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-        return columngap.toString();
+        return value.toString();
     }
 
     /**
@@ -117,7 +116,7 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
      * It is used by all macro for the function <code>print</code>
      */
     public boolean isDefault() {
-        return (columngap == initial);
+        return (value == initial);
     }
 
 }
