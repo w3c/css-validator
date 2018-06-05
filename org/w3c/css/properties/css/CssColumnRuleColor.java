@@ -1,10 +1,9 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// (c) COPYRIGHT 1995-2018  World Wide Web Consortium (MIT, ERCIM, Keio, Beihang)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
 
@@ -23,7 +22,7 @@ public class CssColumnRuleColor extends CssProperty {
 
     private static final String propertyName = "column-rule-color";
 
-    CssValue color;
+    public CssValue value;
 
     /**
      * Create a new CssColumnRuleColor
@@ -80,7 +79,7 @@ public class CssColumnRuleColor extends CssProperty {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnRuleColor &&
-                color.equals(((CssColumnRuleColor) property).color));
+                value.equals(((CssColumnRuleColor) property).value));
     }
 
     /**
@@ -94,21 +93,21 @@ public class CssColumnRuleColor extends CssProperty {
      * Returns the value of this property
      */
     public Object get() {
-        return color;
+        return value;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-        return inherit == color;
+        return inherit == value;
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-        return color.toString();
+        return value.toString();
     }
 
     /**
