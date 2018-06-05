@@ -71,6 +71,7 @@ public class ApplContext {
     int warningLevel = 0;
     boolean treatVendorExtensionsAsWarnings = false;
     boolean treatCssHacksAsWarnings = false;
+    boolean suggestPropertyName = true;
 
     private String propertyKey = null;
 
@@ -314,6 +315,14 @@ public class ApplContext {
      */
     public void setTreatCssHacksAsWarnings(boolean treatCssHacksAsWarnings) {
         this.treatCssHacksAsWarnings = treatCssHacksAsWarnings;
+    }
+
+    public boolean getSuggestPropertyName() {
+        return suggestPropertyName;
+    }
+
+    public void setSuggestPropertyName(boolean b) {
+        suggestPropertyName = b;
     }
 
     /**

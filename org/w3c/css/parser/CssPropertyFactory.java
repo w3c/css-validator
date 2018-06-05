@@ -237,13 +237,14 @@ public class CssPropertyFactory implements Cloneable {
                     throw new InvalidParamException("noexistence", new String[]{property, ac.getMsg().getString(ac.getPropertyKey()), pfsOk.toString()}, ac);
                 }
             } else {
-                String possibleName = findClosestPropertyName(atRule, ac, property);
-                if (possibleName != null) {
-                    throw new InvalidParamException("noexistence-typo", new String[]{property, possibleName}, ac);
+                if (ac.getSuggestPropertyName()) {
+                    String possibleName = findClosestPropertyName(atRule, ac, property);
+                    if (possibleName != null) {
+                        throw new InvalidParamException("noexistence-typo", new String[]{property, possibleName}, ac);
 
-                } else {
-                    throw new InvalidParamException("noexistence-at-all", property, ac);
+                    }
                 }
+                throw new InvalidParamException("noexistence-at-all", property, ac);
             }
         }
 
