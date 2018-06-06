@@ -2,9 +2,8 @@
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
 
