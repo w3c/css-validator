@@ -1,14 +1,12 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -24,10 +22,8 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
 
     private static CssIdent[] allowed_values;
 
-
     static {
-        String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr",
-                "sideways-rl", "sideways-lr"};
+        String[] _allowed_values = {"auto", "balance", "balance-all"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -93,37 +89,6 @@ public class CssColumnFill extends org.w3c.css.properties.css.CssColumnFill {
     public CssColumnFill(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return (property instanceof CssColumnFill &&
-                value.equals(((CssColumnFill) property).value));
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        return value;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        return value.toString();
     }
 
     /**
