@@ -1,10 +1,10 @@
 //
-// $Id$
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
+// Rewritten Yves lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2000  World Wide Web Consortium (MIT, INRIA, Keio University)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
+
 
 package org.w3c.css.properties.css;
 
@@ -21,7 +21,7 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnRuleWidth extends CssProperty {
 
-    CssValue value;
+    public CssValue value;
 
     /**
      * Create a new CssColumnRuleWidth
@@ -74,7 +74,7 @@ public class CssColumnRuleWidth extends CssProperty {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnRuleWidth &&
