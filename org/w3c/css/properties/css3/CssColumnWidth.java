@@ -18,7 +18,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec 1
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-width
  * @spec https://www.w3.org/TR/2018/WD-css-sizing-3-20180304/#column-sizing
  */
 
