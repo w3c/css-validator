@@ -1,12 +1,9 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
-// Rewritten Yves lafon <ylafon@w3.org>
+// Rewritten Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium
-// (MIT, ERCIM, Keio University)
-//
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
 
@@ -15,7 +12,7 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * @since CSS3
@@ -25,7 +22,7 @@ public class CssColumnRuleStyle extends CssProperty {
 
     private static final String propertyName = "column-rule-style";
 
-    CssIdent value;
+    public CssValue value;
 
     /**
      * Create a new CssColumnRuleStyle
