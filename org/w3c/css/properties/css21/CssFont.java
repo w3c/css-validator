@@ -88,9 +88,9 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                     ident = getSystemFont((CssIdent) val);
                     if (ident != null) {
                         if (expression.getCount() != 1) {
-                            throw new InvalidParamException("value",
-                                    val.toString(),
-                                    getPropertyName(), ac);
+                            throw new InvalidParamException(
+                                    "system-font-keyword-not-sole-value",
+                                    val.toString(), val.toString(), ac);
                         }
                         value = ident;
                         break;

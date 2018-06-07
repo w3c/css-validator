@@ -253,6 +253,9 @@ error.function: Définition non valide de fonction
 error.counter: Définition de compteur non valide counter(<identifier>[,<list-style-type>]?)
 error.counters: Définition de compteurs non valide counters(<identifier>,<string>[,<list-style-type>]?)
 
+# used by org.w3c.css.properties.css*.CssFont
+error.system-font-keyword-not-sole-value: Aucune autre valeur ne doit être utilisée avec \u201C%s\u201D. Cette valeur doit être unique; par exemple, \u201Cp { font: %s; }\u201D
+
 # used by org.w3c.css.font.Src
 error.format: Définition de format non valide format(<string>[,<string>]*)
 error.local: Définition de format non valide local(<string>|<ident>+)

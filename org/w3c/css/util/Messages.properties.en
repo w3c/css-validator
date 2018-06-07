@@ -240,6 +240,9 @@ error.function: Invalid function definition
 error.counter: Invalid counter definition counter(<identifier>[,<list-style-type>]?)
 error.counters: Invalid counters definition counters(<identifier>,<string>[,<list-style-type>]?)
 
+# used by org.w3c.css.properties.css*.CssFont
+error.system-font-keyword-not-sole-value: No other property values should be used with \u201C%s\u201D. It should be the sole value; e.g., \u201Cp { font: %s; }\u201D
+
 # used by org.w3c.css.font.Src
 error.format: Invalid format definition format(<string>[,<string>]*)
 error.local: Invalid format definition local(<string>|<ident>+)
