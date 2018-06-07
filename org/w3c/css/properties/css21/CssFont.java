@@ -163,14 +163,21 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                     }
                     // still nothing? It must be a font-family then...
                     // let the fun begin ;)
-                    fontFamily = new CssFontFamily(ac, expression, check);
-                    state = 2;
-                    // expression.next is called, so continue instead
-                    // of next
-                    continue;
+                    if (state == 1) {
+                        fontFamily = new CssFontFamily(ac, expression, check);
+                        state = 2;
+                        // expression.next is called, so continue instead
+                        // of next
+                        continue;
+                    }
+                    // unrecognized
+                    throw new InvalidParamException("value",
+                            val.toString(),
+                            getPropertyName(), ac);
                 case CssTypes.CSS_SWITCH:
                     // sanity check, it must happen only after a fontSize
-                    if (fontSize == null || state != 1) {
+                    // and we should not have two of them.
+                    if (fontSize == null || state != 1 || lineHeight != null) {
                         throw new InvalidParamException("value",
                                 val.toString(),
                                 getPropertyName(), ac);
@@ -216,11 +223,15 @@ public class CssFont extends org.w3c.css.properties.css.CssFont {
                             val.toString(),
                             getPropertyName(), ac);
                 case CssTypes.CSS_STRING:
-                    fontFamily = new CssFontFamily(ac, expression, check);
-                    state = 2;
-                    // expression.next is called, so continue instead
-                    // of next
-                    continue;
+                    // font-family can happen only after 'font-size' and possible '/ line-height'
+                    // in both cases state is 1
+                    if (state == 1) {
+                        fontFamily = new CssFontFamily(ac, expression, check);
+                        state = 2;
+                        // expression.next is called, so continue instead
+                        // of next
+                        continue;
+                    }
                 default:
                     throw new InvalidParamException("value",
                             val.toString(),
