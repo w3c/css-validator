@@ -1,10 +1,9 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
 // COPYRIGHT (c) 1995-2010 World Wide Web Consortium, (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
 
@@ -23,7 +22,7 @@ public class CssColumnGap extends CssProperty {
 
     private static final String propertyName = "column-gap";
 
-    CssValue columngap;
+    public CssValue value;
 
     /**
      * Create a new CssColumnGap
@@ -78,7 +77,7 @@ public class CssColumnGap extends CssProperty {
      */
     public boolean equals(CssProperty property) {
         return (property instanceof CssColumnGap &&
-                columngap.equals(((CssColumnGap) property).columngap));
+                value.equals(((CssColumnGap) property).value));
     }
 
     /**
@@ -92,21 +91,21 @@ public class CssColumnGap extends CssProperty {
      * Returns the value of this property
      */
     public Object get() {
-        return columngap;
+        return value;
     }
 
     /**
      * Returns true if this property is "softly" inherited
      */
     public boolean isSoftlyInherited() {
-        return (inherit == columngap);
+        return (inherit == value);
     }
 
     /**
      * Returns a string representation of the object
      */
     public String toString() {
-        return columngap.toString();
+        return value.toString();
     }
 
     /**

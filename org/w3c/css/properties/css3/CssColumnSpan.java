@@ -19,13 +19,11 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-span
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-span
  */
 
 public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
 
-    CssValue value;
-    ApplContext ac;
 
     static CssIdent all;
 
@@ -50,7 +48,6 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
      */
     public CssColumnSpan(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
-        this.ac = ac;
         setByUser(); // tell this property is set by the user
         CssValue val = expression.getValue();
 
@@ -65,7 +62,7 @@ public class CssColumnSpan extends org.w3c.css.properties.css.CssColumnSpan {
                     break;
                 }
                 if (none.equals(val)) {
-                    value = all;
+                    value = none;
                     break;
                 }
                 if (inherit.equals(val)) {

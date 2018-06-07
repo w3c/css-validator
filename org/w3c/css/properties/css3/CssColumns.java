@@ -1,35 +1,35 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
-import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#columns
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-columns
  * @see org.w3c.css.properties.css3.CssColumnWidth
  * @see org.w3c.css.properties.css3.CssColumnCount
  */
 
 public class CssColumns extends org.w3c.css.properties.css.CssColumns {
 
-    private static final String propertyName = "columns";
+    public static final CssIdent auto = CssIdent.getIdent("auto");
 
-    CssIdent value = null;
     CssColumnWidth width = null;
     CssColumnCount count = null;
 
@@ -37,6 +37,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
      * Create a new CssColumns
      */
     public CssColumns() {
+        value = initial;
     }
 
     /**
@@ -52,6 +53,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                       boolean check) throws InvalidParamException {
 
         CssValue val;
+        ArrayList<CssValue> values = new ArrayList<>();
         char op;
         int nb_val = expression.getCount();
         int nb_auto = 0;
@@ -75,12 +77,15 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                         throw new InvalidParamException("unrecognize", ac);
                     }
                     count = new CssColumnCount(ac, expression);
+                    values.add(val);
                     break;
+                case CssTypes.CSS_FUNCTION:
                 case CssTypes.CSS_LENGTH:
                     if (width != null) {
                         throw new InvalidParamException("unrecognize", ac);
                     }
                     width = new CssColumnWidth(ac, expression);
+                    values.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
                     if (inherit.equals((CssIdent) val)) {
@@ -91,11 +96,19 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
                         expression.next();
                         break;
                     }
-                    if (CssColumnCount.auto.equals((CssIdent) val)) {
+                    if (auto.equals((CssIdent) val)) {
                         nb_auto++;
+                        values.add(auto);
                         expression.next();
                         break;
                     }
+                    // otherwise it should be a width.
+                    if (width != null) {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                    width = new CssColumnWidth(ac, expression);
+                    values.add(val);
+                    break;
                 default:
                     throw new InvalidParamException("value",
                             expression.getValue(),
@@ -103,18 +116,24 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
             }
         }
         if (nb_val == 1) {
-            if (nb_auto == 1) {
-                value = CssIdent.getIdent("auto");
+            if (value != inherit) {
+                value = values.get(0);
             }
         } else {
+            value = new CssValueList(values);
+            // fill the other values.
             if (nb_auto == 2) {
                 count = new CssColumnCount();
+                count.value = auto;
                 width = new CssColumnWidth();
+                width.value = auto;
             } else if (nb_auto == 1) {
                 if (count != null) {
                     width = new CssColumnWidth();
+                    width.value = auto;
                 } else {
                     count = new CssColumnCount();
+                    count.value = auto;
                 }
             }
         }
@@ -131,9 +150,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
      * @param style The CssStyle
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
-        if (((Css3Style) style).cssColumns != null)
-            style.addRedefinitionWarning(ac, this);
-        ((Css3Style) style).cssColumns = this;
+        super.addToStyle(ac, style);
         if (count != null) {
             count.addToStyle(ac, style);
         }
@@ -143,62 +160,12 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
     }
 
     /**
-     * Get this property in the style.
-     *
-     * @param style   The style where the property is
-     * @param resolve if true, resolve the style to find this property
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
      */
-    public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
-        if (resolve) {
-            return ((Css3Style) style).getColumns();
-        } else {
-            return ((Css3Style) style).cssColumns;
-        }
+
+    public boolean isDefault() {
+        return (value == initial);
     }
 
-    /**
-     * Compares two properties for equality.
-     *
-     * @param property The other property.
-     */
-    public boolean equals(CssProperty property) {
-        return false;
-    }
-
-    /**
-     * Returns the value of this property
-     */
-    public Object get() {
-        // TODO must use a compound value, like in background properties
-        return value;
-    }
-
-    /**
-     * Returns true if this property is "softly" inherited
-     */
-    public boolean isSoftlyInherited() {
-        return (inherit == value);
-    }
-
-    /**
-     * Returns a string representation of the object
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        if (value != null) {
-            return value.toString();
-        }
-        if (count != null) {
-            sb.append(count);
-            first = false;
-        }
-        if (width != null) {
-            if (!first) {
-                sb.append(' ');
-            }
-            sb.append(width);
-        }
-        return sb.toString();
-    }
 }

@@ -23,7 +23,7 @@ import org.w3c.css.values.CssValue;
 
 public class CssColumnSpan extends CssProperty {
 
-    CssValue value;
+    public CssValue value;
 
     /**
      * Create a new CssColumnSpan

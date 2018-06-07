@@ -1,10 +1,9 @@
-// $Id$
+//
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2010 Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2010  World Wide Web Consortium (MIT, ERCIM and Keio)
-// Please first read the full copyright statement at
-// http://www.w3.org/Consortium/Legal/copyright-software-19980720
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM and Keio)
+// Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css;
 
@@ -13,7 +12,7 @@ import org.w3c.css.properties.css3.Css3Style;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssValue;
 
 /**
  * @see CssColumnWidth
@@ -25,9 +24,7 @@ public class CssColumns extends CssProperty {
 
     private static final String propertyName = "columns";
 
-    CssIdent value = null;
-    CssColumnWidth width = null;
-    CssColumnCount count = null;
+    public CssValue value;
 
     /**
      * Create a new CssColumns
@@ -62,12 +59,6 @@ public class CssColumns extends CssProperty {
         if (((Css3Style) style).cssColumns != null)
             style.addRedefinitionWarning(ac, this);
         ((Css3Style) style).cssColumns = this;
-        if (count != null) {
-            count.addToStyle(ac, style);
-        }
-        if (width != null) {
-            width.addToStyle(ac, style);
-        }
     }
 
     /**
@@ -90,7 +81,8 @@ public class CssColumns extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return false;
+        return (property instanceof CssColumnCount &&
+                value.equals(((CssColumnCount) property).value));
     }
 
     /**
@@ -104,7 +96,6 @@ public class CssColumns extends CssProperty {
      * Returns the value of this property
      */
     public Object get() {
-        // TODO must use a compound value, like in background properties
         return value;
     }
 

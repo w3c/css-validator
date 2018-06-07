@@ -7,17 +7,19 @@
 
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2011/CR-css3-multicol-20110412/#column-width
- * @spec https://www.w3.org/TR/2016/WD-css-sizing-3-20160512/#column-sizing
+ * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-width
+ * @spec https://www.w3.org/TR/2018/WD-css-sizing-3-20180304/#column-sizing
  */
 
 public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
@@ -25,8 +27,8 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
     public static final CssIdent[] allowed_values;
 
     static {
-        // fill to fit-content from css-sizing
-        String[] _allowed_values = {"auto", "fill", "max-content", "min-content", "fit-content"};
+        // max|min-content from css-sizing
+        String[] _allowed_values = {"auto", "max-content", "min-content"};
 
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
@@ -71,14 +73,17 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 val.getCheckableValue().checkEqualsZero(ac, this);
-                // if we didn't fall in the first trap, there is another one :)
-                throw new InvalidParamException("strictly-positive",
-                        expression.getValue(),
-                        getPropertyName(), ac);
             case CssTypes.CSS_LENGTH:
                 CssCheckableValue l = val.getCheckableValue();
-                l.checkStrictPositiveness(ac, this);
+                l.checkPositiveness(ac, this);
+                // warn for 1px clamping
+                if (l.isZero()) {
+                    ac.getFrame().addWarning("greaterequal", new String[]{l.toString(), "1px"});
+                }
                 value = val;
+                break;
+            case CssTypes.CSS_FUNCTION:
+                value = parseFitContentFunction(ac, (CssFunction) val, this);
                 break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
@@ -112,6 +117,36 @@ public class CssColumnWidth extends org.w3c.css.properties.css.CssColumnWidth {
 
     public boolean isDefault() {
         return (value == initial);
+    }
+
+    /**
+     * @spec https://www.w3.org/TR/2018/WD-css-sizing-3-20180304/#valdef-column-width-fit-content-length-percentage
+     */
+    protected static CssFunction parseFitContentFunction(ApplContext ac, CssFunction function,
+                                                         CssProperty caller)
+            throws InvalidParamException {
+
+        CssExpression exp = function.getParameters();
+        CssValue val;
+
+        if (!"fit-content".equals(function.getName())) {
+            throw new InvalidParamException("function", ac);
+        }
+        if (exp.getCount() > 1) {
+            throw new InvalidParamException("function", ac);
+        }
+        val = exp.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, caller);
+            case CssTypes.CSS_PERCENTAGE:
+            case CssTypes.CSS_LENGTH:
+                break;
+            default:
+                throw new InvalidParamException("value", val,
+                        caller.getPropertyName(), ac);
+        }
+        return function;
     }
 
 }
