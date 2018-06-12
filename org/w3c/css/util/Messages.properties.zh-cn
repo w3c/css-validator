@@ -393,3 +393,8 @@ vext_warnings: 警告
 error.divisortype: 除数必须为数字
 error.invalidtype: \u201C%s\u201D 类型无效
 error.typevaluemismatch: 值 \u201C%s\u201D 与其类型定义 \u201C%s\u201D 不兼容
+
+error.linear-gradient-missing-to: \u201Clinear-gradient\u201D 函数的第一个参数应该是 \u201C%s\u201D，而不是 \u201C%s\u201D
+error.pseudo-element-not-last: 选择器 \u201C%s\u201D 不能出现在伪元素选择器 \u201C%s\u201D 之后
+warning.negative: 负值 \u201C%s\u201D 将被解释为\u201C0\u201D
+warning.noexproperty: 属性 \u201C%s\u201D 不存在
