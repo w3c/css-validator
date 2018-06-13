@@ -149,7 +149,7 @@ public class TranslationTableGenerator {
                 for (int i = 0; i < Messages.languages_name.size(); ++i) {
                     HashMap<String, String> language = languages.get(i);
                     ApplContext translation = translations.get(language.get("name"));
-                    String property_translated = translation.getMsg().getString(property_name);
+                    String property_translated = translation.getMsg().getStringStrict(property_name);
                     if (language.get("name").equals(default_lang)) {
                         vc.put(property_name, property_translated);
                     } else {

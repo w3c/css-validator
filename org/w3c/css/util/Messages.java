@@ -99,6 +99,13 @@ public class Messages {
     }
 
     /**
+     * Get a property but not its default when not found
+     */
+    public String getStringStrict(String message) {
+        return properties.getProperty(message);
+    }
+
+    /**
      * Get a warning property.
      *
      * @param message the warning property.
