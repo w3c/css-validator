@@ -38,6 +38,9 @@ public class MediaColor extends MediaFeature {
             if (expression.getCount() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
             }
+            if (expression.getCount() == 0) {
+                throw new InvalidParamException("few-value", getFeatureName(), ac);
+            }
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
             if (val.getType() == CssTypes.CSS_NUMBER) {

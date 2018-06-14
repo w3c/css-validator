@@ -35,8 +35,11 @@ public class MediaDeviceAspectRatio extends MediaFeature {
             throws InvalidParamException {
 
         if (expression != null) {
-            if (expression.getCount() != 1) {
+            if (expression.getCount() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
+            }
+            if (expression.getCount() == 0) {
+                throw new InvalidParamException("few-value", getFeatureName(), ac);
             }
             CssValue val = expression.getValue();
 

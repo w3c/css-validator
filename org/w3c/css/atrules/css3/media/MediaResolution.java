@@ -39,9 +39,12 @@ public class MediaResolution extends MediaFeature {
             if (expression.getCount() > 1) {
                 throw new InvalidParamException("unrecognize", ac);
             }
+            if (expression.getCount() == 0) {
+                throw new InvalidParamException("few-value", getFeatureName(), ac);
+            }
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
-            if (val != null && val.getType() == CssTypes.CSS_RESOLUTION) {
+            if (val.getType() == CssTypes.CSS_RESOLUTION) {
                 CssResolution valnum = (CssResolution) val;
 
                 if (valnum.getFloatValue() < 0.f) {

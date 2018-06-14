@@ -56,7 +56,9 @@ public class ViewMode extends MediaFeature {
 			if (expression.getCount() > 1) {
 				throw new InvalidParamException("unrecognize", ac);
 			}
-
+            if (expression.getCount() == 0) {
+                throw new InvalidParamException("few-value", getFeatureName(), ac);
+            }
 			CssValue val = expression.getValue();
 
 			switch (val.getType()) {
