@@ -41,7 +41,7 @@ public class MediaResolution extends MediaFeature {
             }
             CssValue val = expression.getValue();
             // it must be a >=0 integer only
-            if (val.getType() == CssTypes.CSS_RESOLUTION) {
+            if (val != null && val.getType() == CssTypes.CSS_RESOLUTION) {
                 CssResolution valnum = (CssResolution) val;
 
                 if (valnum.getFloatValue() < 0.f) {
