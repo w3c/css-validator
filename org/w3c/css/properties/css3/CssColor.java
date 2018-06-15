@@ -119,9 +119,9 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
      * Returns the color
      */
     public org.w3c.css.values.CssColor getColor() {
-        if (inherit.equals(color) || currentColor.equals(color)) {
+        if (inherit.equals(color)) {
             /*
-			 System.err.println("[ERROR] org.w3c.css.properties.CssColor");
+             System.err.println("[ERROR] org.w3c.css.properties.CssColor");
              System.err.println("[ERROR] value is inherited");
            */
             return null;
