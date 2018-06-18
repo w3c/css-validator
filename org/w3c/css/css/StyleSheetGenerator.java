@@ -434,7 +434,8 @@ public class StyleSheetGenerator extends StyleReport {
             } else if (v == CssVersion.CSS1) {
                 lnk = getURLProperty("@url-base_css2");
             } else {
-                lnk = context.get("css_link").toString();
+                Object _lnk = context.get("cs_link");
+                lnk = (_lnk == null) ? "[error]" : _lnk.toString();
             }
             // this would be replaced by :
             // ht_error.put("link_value_parse_error",
