@@ -306,9 +306,11 @@ public final class Util {
      *
      * @param s String to be escaped
      * @return escaped String
-     * @throws NullPointerException if s is null.
      */
     public static String escapeHTML(String s) {
+        if (s == null) {
+            return null;
+        }
         int length = s.length();
         int newLength = length;
         boolean someCharacterEscaped = false;
