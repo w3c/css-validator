@@ -32,6 +32,14 @@ public class CssColorCSS3 {
         return CssColorCSS2.definedSystemColorsCSS2.get(ident);
     }
 
+    // special case for currentColor and possible ident-only defined colors.
+    public static String getIdentColor(String ident) {
+        if ("currentColor".equalsIgnoreCase(ident)) {
+            return currentColor.toString();
+        }
+        return null;
+    }
+
     static {
         trans = new RGBA(0, 0, 0, 0.f);
         // https://www.w3.org/TR/2016/WD-css-color-4-20160705/#named-colors

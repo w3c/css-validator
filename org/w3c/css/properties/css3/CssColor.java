@@ -56,8 +56,6 @@ public class CssColor extends org.w3c.css.properties.css.CssColor {
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     color = inherit;
-                } else if (currentColor.equals(val)) {
-                    color = currentColor;
                 } else {
                     color = new org.w3c.css.values.CssColor(ac, (String) val.get());
                 }

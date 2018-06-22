@@ -324,6 +324,11 @@ public class CssColor extends CssValue {
                     ac.getFrame().addWarning("deprecated", s);
                     break;
                 }
+                color = CssColorCSS3.getIdentColor(lower_s);
+                if (color != null) {
+                    break;
+                }
+
                 // inherit or current color will be handled in the property def
                 throw new InvalidParamException("value", s, "color", ac);
             default:
