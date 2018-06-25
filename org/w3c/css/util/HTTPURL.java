@@ -286,6 +286,10 @@ public class HTTPURL {
                     try {
                         URL u = getURL(url, httpURL.getHeaderField("Location"));
                         return getConnection(u, ref, count + 1, ac);
+                    } catch (Exception ex) {
+                        // usually a NPE when Location is absent on a redirect.
+                        // in any case, we will count this as non existent result.
+                        throw new FileNotFoundException(url + ":" + " Error in "+status);
                     } finally {
                         httpURL.disconnect();
                     }
