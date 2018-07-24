@@ -6,6 +6,7 @@
 
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
@@ -68,13 +69,27 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
      */
     public CssBackgroundSize(ApplContext ac, CssExpression expression,
                              boolean check) throws InvalidParamException {
+
+        setByUser();
+
+        value = checkBackgroundSize(ac, expression, this);
+    }
+
+    public static CssValue checkBackgroundSize(ApplContext ac, CssExpression ex,
+                                               CssProperty caller)
+            throws InvalidParamException {
+        return checkBackgroundSize(ac, ex, caller.getPropertyName());
+
+    }
+
+    public static CssValue checkBackgroundSize(ApplContext ac, CssExpression expression,
+                                               String caller) throws InvalidParamException {
         ArrayList<CssValue> values = new ArrayList<CssValue>();
         char op;
         CssValue val;
         CssValueList vl = null;
         boolean is_complete = true;
 
-        setByUser();
 
         while (!expression.end()) {
             val = expression.getValue();
@@ -85,7 +100,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
                 case CssTypes.CSS_LENGTH:
                 case CssTypes.CSS_PERCENTAGE:
                     CssCheckableValue l = val.getCheckableValue();
-                    l.checkPositiveness(ac, this);
+                    l.checkPositiveness(ac, caller);
                     if (is_complete) {
                         vl = new CssValueList();
                         vl.add(val);
@@ -101,7 +116,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
                         // if we got more than one value... fail
                         if ((values.size() > 0) || (expression.getCount() > 1)) {
                             throw new InvalidParamException("value", val,
-                                    getPropertyName(), ac);
+                                    caller, ac);
                         }
                         values.add(inherit);
                         break;
@@ -126,7 +141,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
                     }
                 default:
                     throw new InvalidParamException("value", val,
-                            getPropertyName(), ac);
+                            caller, ac);
 
             }
             expression.next();
@@ -149,12 +164,11 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
             values.add(vl);
         }
         if (values.size() == 1) {
-            value = values.get(0);
+            return values.get(0);
         } else {
-            value = new CssLayerList(values);
+            return new CssLayerList(values);
         }
     }
-
 
     public CssBackgroundSize(ApplContext ac, CssExpression expression)
             throws InvalidParamException {

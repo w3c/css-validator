@@ -19,6 +19,7 @@ import org.w3c.css.properties.css.CssMaskMode;
 import org.w3c.css.properties.css.CssMaskOrigin;
 import org.w3c.css.properties.css.CssMaskPosition;
 import org.w3c.css.properties.css.CssMaskRepeat;
+import org.w3c.css.properties.css.CssMaskSize;
 import org.w3c.css.properties.css.CssMaskType;
 import org.w3c.css.properties.css.colorprofile.CssName;
 import org.w3c.css.properties.css.colorprofile.CssRenderingIntent;
@@ -43,6 +44,7 @@ public class SVGStyle extends SVGBasicStyle {
     public CssMaskOrigin cssMaskOrigin;
     public CssMaskPosition cssMaskPosition;
     public CssMaskRepeat cssMaskRepeat;
+    public CssMaskSize cssMaskSize;
     public CssMaskType cssMaskType;
 
     public CssMaskType getMaskType() {
@@ -53,6 +55,14 @@ public class SVGStyle extends SVGBasicStyle {
         return cssMaskType;
     }
 
+    public CssMaskSize getMaskSize() {
+        if (cssMaskSize == null) {
+            cssMaskSize = (CssMaskSize) style.CascadingOrder(new CssMaskSize(),
+                    style, selector);
+        }
+        return cssMaskSize;
+    }
+    
     public CssMaskPosition getMaskPosition() {
         if (cssMaskPosition == null) {
             cssMaskPosition = (CssMaskPosition) style.CascadingOrder(new CssMaskPosition(),
