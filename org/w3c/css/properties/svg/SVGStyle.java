@@ -15,6 +15,7 @@ import org.w3c.css.properties.css.CssMarkerStart;
 import org.w3c.css.properties.css.CssMaskBorderMode;
 import org.w3c.css.properties.css.CssMaskBorderSlice;
 import org.w3c.css.properties.css.CssMaskBorderSource;
+import org.w3c.css.properties.css.CssMaskBorderWidth;
 import org.w3c.css.properties.css.CssMaskClip;
 import org.w3c.css.properties.css.CssMaskComposite;
 import org.w3c.css.properties.css.CssMaskImage;
@@ -53,7 +54,16 @@ public class SVGStyle extends SVGBasicStyle {
     public CssMaskBorderSource cssMaskBorderSource;
     public CssMaskBorderMode cssMaskBorderMode;
     public CssMaskBorderSlice cssMaskBorderSlice;
+    public CssMaskBorderWidth cssMaskBorderWidth;
 
+    public CssMaskBorderWidth getMaskBorderWidth() {
+        if (cssMaskBorderWidth == null) {
+            cssMaskBorderWidth = (CssMaskBorderWidth) style.CascadingOrder(new CssMaskBorderWidth(),
+                    style, selector);
+        }
+        return cssMaskBorderWidth;
+    }
+    
     public CssMaskBorderSource getMaskBorderSource() {
         if (cssMaskBorderSource == null) {
             cssMaskBorderSource = (CssMaskBorderSource) style.CascadingOrder(new CssMaskBorderSource(),
