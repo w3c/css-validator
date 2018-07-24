@@ -8,6 +8,7 @@
 
 package org.w3c.css.properties.svg;
 
+import org.w3c.css.properties.css.CssMaskBorderSource;
 import org.w3c.css.properties.css.CssMarker;
 import org.w3c.css.properties.css.CssMarkerEnd;
 import org.w3c.css.properties.css.CssMarkerMid;
@@ -46,6 +47,16 @@ public class SVGStyle extends SVGBasicStyle {
     public CssMaskRepeat cssMaskRepeat;
     public CssMaskSize cssMaskSize;
     public CssMaskType cssMaskType;
+    
+    public CssMaskBorderSource cssMaskBorderSource;
+
+    public CssMaskBorderSource getMaskBorderSource() {
+        if (cssMaskBorderSource == null) {
+            cssMaskBorderSource = (CssMaskBorderSource) style.CascadingOrder(new CssMaskBorderSource(),
+                    style, selector);
+        }
+        return cssMaskBorderSource;
+    }
 
     public CssMaskType getMaskType() {
         if (cssMaskType == null) {
