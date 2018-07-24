@@ -275,7 +275,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                         if (nex.getCount() == 0) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        CssBackgroundPosition.checkSyntax(nex, ac, caller.getPropertyName());
+                        CssBackgroundPosition.checkSyntax(ac, nex, caller.getPropertyName());
                         break;
                     }
                 default:
@@ -340,7 +340,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                         if (nex.getCount() == 0) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        CssBackgroundPosition.checkSyntax(nex, ac, caller.getPropertyName());
+                        CssBackgroundPosition.checkSyntax(ac, nex, caller.getPropertyName());
                         break;
                     }
                 default:

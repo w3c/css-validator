@@ -7,6 +7,7 @@
 
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -400,7 +401,14 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
         return (top.equals(ident) || bottom.equals(ident));
     }
 
-    public static CssValue checkSyntax(CssExpression expression, ApplContext ac, String caller)
+    public static CssValue checkBackgroundPosition(ApplContext ac, CssExpression expression,
+                                                   CssProperty caller)
+        throws InvalidParamException {
+        return checkSyntax(ac, expression, caller.getPropertyName());
+    }
+
+
+    public static CssValue checkSyntax(ApplContext ac, CssExpression expression, String caller)
             throws InvalidParamException {
         ArrayList<CssValue> v = new ArrayList<CssValue>();
         int nb_values = expression.getCount();

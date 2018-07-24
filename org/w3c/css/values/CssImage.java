@@ -606,7 +606,7 @@ public class CssImage extends CssValue {
             throws InvalidParamException {
         switch (ac.getCssVersion()) {
             case CSS3:
-                return CssBackgroundPosition.checkSyntax(expression, ac, name);
+                return CssBackgroundPosition.checkSyntax(ac, expression, name);
             default:
                 StringBuilder sb = new StringBuilder();
                 sb.append(name).append('(').append(expression.toStringFromStart()).append(')');

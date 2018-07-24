@@ -34,7 +34,7 @@ public class CssObjectPosition extends org.w3c.css.properties.css.CssObjectPosit
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
-        value = CssBackgroundPosition.checkSyntax(expression, ac, getPropertyName());
+        value = CssBackgroundPosition.checkSyntax(ac, expression, getPropertyName());
     }
 
     public CssObjectPosition(ApplContext ac, CssExpression expression)
