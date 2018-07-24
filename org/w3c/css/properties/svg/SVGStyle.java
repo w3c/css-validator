@@ -13,6 +13,7 @@ import org.w3c.css.properties.css.CssMarkerEnd;
 import org.w3c.css.properties.css.CssMarkerMid;
 import org.w3c.css.properties.css.CssMarkerStart;
 import org.w3c.css.properties.css.CssMaskBorderMode;
+import org.w3c.css.properties.css.CssMaskBorderSlice;
 import org.w3c.css.properties.css.CssMaskBorderSource;
 import org.w3c.css.properties.css.CssMaskClip;
 import org.w3c.css.properties.css.CssMaskComposite;
@@ -51,6 +52,7 @@ public class SVGStyle extends SVGBasicStyle {
 
     public CssMaskBorderSource cssMaskBorderSource;
     public CssMaskBorderMode cssMaskBorderMode;
+    public CssMaskBorderSlice cssMaskBorderSlice;
 
     public CssMaskBorderSource getMaskBorderSource() {
         if (cssMaskBorderSource == null) {
@@ -60,6 +62,14 @@ public class SVGStyle extends SVGBasicStyle {
         return cssMaskBorderSource;
     }
 
+    public CssMaskBorderSlice getMaskBorderSlice() {
+        if (cssMaskBorderSlice == null) {
+            cssMaskBorderSlice = (CssMaskBorderSlice) style.CascadingOrder(new CssMaskBorderSlice(),
+                    style, selector);
+        }
+        return cssMaskBorderSlice;
+    }
+    
     public CssMaskBorderMode getMaskBorderMode() {
         if (cssMaskBorderMode == null) {
             cssMaskBorderMode = (CssMaskBorderMode) style.CascadingOrder(new CssMaskBorderMode(),
