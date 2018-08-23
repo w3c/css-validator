@@ -46,8 +46,6 @@ public class CssStrokeDashoffset extends org.w3c.css.properties.css.CssStrokeDas
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                // only 0 can be a length
-                val.getCheckableValue().checkEqualsZero(ac, this);
             case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_LENGTH:
                 value = val;
