@@ -48,8 +48,6 @@ public class CssStrokeDasharray extends org.w3c.css.properties.css.CssStrokeDash
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    // only 0 can be a length
-                    val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_PERCENTAGE:
                 case CssTypes.CSS_LENGTH:
                     // we need >=0 values
