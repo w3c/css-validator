@@ -109,6 +109,7 @@ import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
+import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarkerSide;
@@ -468,8 +469,18 @@ public class Css3Style extends ATSCStyle {
 
     public CssRowGap cssRowGap;
     public CssGap cssGap;
+    public CssJustifySelf cssJustifySelf;
 
 
+    public CssJustifySelf getJustifySelf() {
+        if (cssJustifySelf == null) {
+            cssJustifySelf =
+                    (CssJustifySelf) style.CascadingOrder(new CssJustifySelf(),
+                            style, selector);
+        }
+        return cssJustifySelf;
+    }
+    
     public CssGap getGap() {
         if (cssGap == null) {
             cssGap =
