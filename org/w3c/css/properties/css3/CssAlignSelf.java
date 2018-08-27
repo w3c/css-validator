@@ -83,14 +83,14 @@ public class CssAlignSelf extends org.w3c.css.properties.css.CssAlignSelf {
         }
         setByUser();
 
-        value = parseJustifyContent(ac, expression, this);
+        value = parseAlignSelf(ac, expression, this);
         if (!expression.end()) {
             throw new InvalidParamException("unrecognize", ac);
         }
     }
 
-    public static CssValue parseJustifyContent(ApplContext ac, CssExpression expression,
-                                               CssProperty caller)
+    public static CssValue parseAlignSelf(ApplContext ac, CssExpression expression,
+                                          CssProperty caller)
             throws InvalidParamException {
         CssValue val, value;
         ArrayList<CssValue> values = new ArrayList<>();

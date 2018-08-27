@@ -64,14 +64,14 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
         }
         setByUser();
 
-        value = parseJustifyContent(ac, expression, this);
+        value = parseJustifySelf(ac, expression, this);
         if (!expression.end()) {
             throw new InvalidParamException("unrecognize", ac);
         }
     }
 
-    public static CssValue parseJustifyContent(ApplContext ac, CssExpression expression,
-                                               CssProperty caller)
+    public static CssValue parseJustifySelf(ApplContext ac, CssExpression expression,
+                                            CssProperty caller)
             throws InvalidParamException {
         CssValue val, value;
         ArrayList<CssValue> values = new ArrayList<>();
