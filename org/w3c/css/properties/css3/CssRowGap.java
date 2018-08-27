@@ -1,12 +1,12 @@
 //
-// From Sijtsche de Jong (sy.de.jong@let.rug.nl)
-// Rewritten 2010 Yves Lafon <ylafon@w3.org>
+// Author: Yves Lafon <ylafon@w3.org>
 //
-// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang)
+// COPYRIGHT (c) 2018 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang)
 // Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
@@ -16,11 +16,10 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/WD-css-multicol-1-20180528/#propdef-column-gap
- * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-column-gap
+ * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-row-gap
  */
 
-public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
+public class CssRowGap extends org.w3c.css.properties.css.CssColumnGap {
 
     static CssIdent normal;
 
@@ -31,50 +30,55 @@ public class CssColumnGap extends org.w3c.css.properties.css.CssColumnGap {
     /**
      * Create a new CssColumnGap
      */
-    public CssColumnGap() {
+    public CssRowGap() {
         value = initial;
     }
 
     /**
      * Create a new CssColumnGap
      */
-    public CssColumnGap(ApplContext ac, CssExpression expression,
-                        boolean check) throws InvalidParamException {
+    public CssRowGap(ApplContext ac, CssExpression expression,
+                     boolean check) throws InvalidParamException {
         setByUser();
-        CssValue val = expression.getValue();
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
+        value = checkSyntax(ac, expression, this);
+    }
+
+    public static CssValue checkSyntax(ApplContext ac, CssExpression expression, CssProperty caller)
+            throws InvalidParamException {
+        CssValue val = expression.getValue();
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
-                value = val;
+                val.getCheckableValue().checkEqualsZero(ac, caller);
                 break;
             case CssTypes.CSS_PERCENTAGE:
             case CssTypes.CSS_LENGTH:
                 CssCheckableValue l = val.getCheckableValue();
-                l.checkPositiveness(ac, this);
-                value = val;
+                l.checkPositiveness(ac, caller);
                 break;
             case CssTypes.CSS_IDENT:
                 if (normal.equals(val)) {
-                    value = normal;
+                    val = normal;
                     break;
                 }
                 if (inherit.equals(val)) {
-                    value = inherit;
+                    val = inherit;
                     break;
                 }
             default:
                 throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
+                        caller.getPropertyName(), ac);
         }
         expression.next();
+        return val;
+
     }
 
-    public CssColumnGap(ApplContext ac, CssExpression expression)
+    public CssRowGap(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -135,6 +135,7 @@ import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssRowGap;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
@@ -464,6 +465,17 @@ public class Css3Style extends ATSCStyle {
     public CssTextCombineUpright cssTextCombineUpright;
     public CssTextOrientation cssTextOrientation;
 
+    public CssRowGap cssRowGap;
+
+    public CssRowGap getRowGap() {
+        if (cssRowGap == null) {
+            cssRowGap =
+                    (CssRowGap) style.CascadingOrder(new CssRowGap(),
+                            style, selector);
+        }
+        return cssRowGap;
+    }
+    
     public CssTextCombineUpright getTextCombineUpright() {
         if (cssTextCombineUpright == null) {
             cssTextCombineUpright =
