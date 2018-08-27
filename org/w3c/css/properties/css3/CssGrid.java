@@ -37,8 +37,6 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
     private CssGridAutoColumns cssGridAutoColumns;
     private CssGridAutoFlow cssGridAutoFlow;
     private CssGridAutoRows cssGridAutoRows;
-    private CssGridColumnGap cssGridColumnGap;
-    private CssGridRowGap cssGridRowGap;
 
     /**
      * Create a new CssGridArea
@@ -51,8 +49,6 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
         cssGridAutoColumns = new CssGridAutoColumns();
         cssGridAutoFlow = new CssGridAutoFlow();
         cssGridAutoRows = new CssGridAutoRows();
-        cssGridColumnGap = new CssGridColumnGap();
-        cssGridRowGap = new CssGridRowGap();
     }
 
     /**
@@ -75,8 +71,6 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
         cssGridAutoColumns = new CssGridAutoColumns();
         cssGridAutoFlow = new CssGridAutoFlow();
         cssGridAutoRows = new CssGridAutoRows();
-        cssGridColumnGap = new CssGridColumnGap();
-        cssGridRowGap = new CssGridRowGap();
 
         ArrayList<CssValue> values = new ArrayList<>();
         ArrayList<CssValue> autoFlowValues = new ArrayList<>();
@@ -336,8 +330,6 @@ public class CssGrid extends org.w3c.css.properties.css.CssGrid {
         cssGridAutoColumns.addToStyle(ac, style);
         cssGridAutoFlow.addToStyle(ac, style);
         cssGridAutoRows.addToStyle(ac, style);
-        cssGridColumnGap.addToStyle(ac, style);
-        cssGridRowGap.addToStyle(ac, style);
     }
 
 }

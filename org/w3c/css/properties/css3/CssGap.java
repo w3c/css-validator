@@ -51,7 +51,7 @@ public class CssGap extends org.w3c.css.properties.css.CssGap {
         columnGap = new CssColumnGap();
         rowGap = new CssRowGap();
 
-        val = CssGridRowGap.checkSyntax(ac, expression, false, this);
+        val = CssRowGap.checkSyntax(ac, expression, this);
         rowGap.value = val;
         if (!expression.end()) {
             if (op != SPACE) {
@@ -63,7 +63,7 @@ public class CssGap extends org.w3c.css.properties.css.CssGap {
                 throw new InvalidParamException("value", val.toString(),
                         getPropertyName(), ac);
             }
-            val = CssGridRowGap.checkSyntax(ac, expression, false, this);
+            val = CssRowGap.checkSyntax(ac, expression, this);
             // same for value #2
             if (inherit.equals(val)) {
                 throw new InvalidParamException("value", val.toString(),
