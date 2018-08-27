@@ -79,6 +79,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGap;
 import org.w3c.css.properties.css.CssGrid;
 import org.w3c.css.properties.css.CssGridArea;
 import org.w3c.css.properties.css.CssGridAutoColumns;
@@ -466,7 +467,18 @@ public class Css3Style extends ATSCStyle {
     public CssTextOrientation cssTextOrientation;
 
     public CssRowGap cssRowGap;
+    public CssGap cssGap;
 
+
+    public CssGap getGap() {
+        if (cssGap == null) {
+            cssGap =
+                    (CssGap) style.CascadingOrder(new CssGap(),
+                            style, selector);
+        }
+        return cssGap;
+    }
+    
     public CssRowGap getRowGap() {
         if (cssRowGap == null) {
             cssRowGap =
