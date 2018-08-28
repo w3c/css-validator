@@ -9,7 +9,6 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssFunction;
-import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssLayerList;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
@@ -24,27 +23,6 @@ import static org.w3c.css.values.CssOperator.SPACE;
  * @spec https://www.w3.org/TR/2013/CR-css-fonts-3-20131003/#descdef-src
  */
 public class CssSrc extends org.w3c.css.properties.css.fontface.CssSrc {
-
-    public static final CssIdent[] allowed_values;
-
-    static {
-        String[] _allowed_values = {"flex-start", "flex-end", "center", "space-between",
-                "space-around", "stretch"};
-        allowed_values = new CssIdent[_allowed_values.length];
-        int i = 0;
-        for (String s : _allowed_values) {
-            allowed_values[i++] = CssIdent.getIdent(s);
-        }
-    }
-
-    public static CssIdent getAllowedIdent(CssIdent ident) {
-        for (CssIdent id : allowed_values) {
-            if (id.equals(ident)) {
-                return id;
-            }
-        }
-        return null;
-    }
 
     /**
      * Create a new CssSrc

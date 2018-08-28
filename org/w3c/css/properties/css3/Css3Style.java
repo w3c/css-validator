@@ -218,6 +218,7 @@ import org.w3c.css.properties.css.counterstyle.CssRange;
 import org.w3c.css.properties.css.counterstyle.CssSuffix;
 import org.w3c.css.properties.css.counterstyle.CssSymbols;
 import org.w3c.css.properties.css.counterstyle.CssSystem;
+import org.w3c.css.properties.css.fontface.CssFontDisplay;
 import org.w3c.css.properties.css.viewport.CssMaxZoom;
 import org.w3c.css.properties.css.viewport.CssMinZoom;
 import org.w3c.css.properties.css.viewport.CssOrientation;
@@ -479,6 +480,17 @@ public class Css3Style extends ATSCStyle {
     public CssJustifyItems cssJustifyItems;
     public CssPlaceItems cssPlaceItems;
 
+    public CssFontDisplay fontFaceCssFontDisplay;
+
+
+    public CssFontDisplay getFontFaceCssFontDisplay() {
+        if (fontFaceCssFontDisplay == null) {
+            fontFaceCssFontDisplay =
+                    (CssFontDisplay) style.CascadingOrder(new CssFontDisplay(),
+                            style, selector);
+        }
+        return fontFaceCssFontDisplay;
+    }
 
     public CssPlaceItems getPlaceItems() {
         if (cssPlaceItems == null) {
@@ -488,7 +500,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPlaceItems;
     }
-    
+
     public CssJustifyItems getJustifyItems() {
         if (cssJustifyItems == null) {
             cssJustifyItems =
@@ -497,7 +509,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssJustifyItems;
     }
-    
+
     public CssPlaceContent getPlaceContent() {
         if (cssPlaceContent == null) {
             cssPlaceContent =
@@ -506,7 +518,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPlaceContent;
     }
-    
+
     public CssPlaceSelf getPlaceSelf() {
         if (cssPlaceSelf == null) {
             cssPlaceSelf =
@@ -515,7 +527,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssPlaceSelf;
     }
-    
+
     public CssJustifySelf getJustifySelf() {
         if (cssJustifySelf == null) {
             cssJustifySelf =
@@ -524,7 +536,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssJustifySelf;
     }
-    
+
     public CssGap getGap() {
         if (cssGap == null) {
             cssGap =
@@ -533,7 +545,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssGap;
     }
-    
+
     public CssRowGap getRowGap() {
         if (cssRowGap == null) {
             cssRowGap =
@@ -542,7 +554,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssRowGap;
     }
-    
+
     public CssTextCombineUpright getTextCombineUpright() {
         if (cssTextCombineUpright == null) {
             cssTextCombineUpright =
