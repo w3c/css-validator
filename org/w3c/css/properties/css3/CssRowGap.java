@@ -19,7 +19,7 @@ import org.w3c.css.values.CssValue;
  * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-row-gap
  */
 
-public class CssRowGap extends org.w3c.css.properties.css.CssColumnGap {
+public class CssRowGap extends org.w3c.css.properties.css.CssRowGap {
 
     static CssIdent normal;
 
