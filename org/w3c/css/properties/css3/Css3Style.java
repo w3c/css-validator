@@ -79,6 +79,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssGap;
 import org.w3c.css.properties.css.CssGrid;
 import org.w3c.css.properties.css.CssGridArea;
 import org.w3c.css.properties.css.CssGridAutoColumns;
@@ -108,6 +109,8 @@ import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
+import org.w3c.css.properties.css.CssJustifyItems;
+import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarkerSide;
@@ -131,10 +134,14 @@ import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
+import org.w3c.css.properties.css.CssPlaceContent;
+import org.w3c.css.properties.css.CssPlaceItems;
+import org.w3c.css.properties.css.CssPlaceSelf;
 import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
 import org.w3c.css.properties.css.CssRestAfter;
 import org.w3c.css.properties.css.CssRestBefore;
+import org.w3c.css.properties.css.CssRowGap;
 import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
@@ -464,6 +471,78 @@ public class Css3Style extends ATSCStyle {
     public CssTextCombineUpright cssTextCombineUpright;
     public CssTextOrientation cssTextOrientation;
 
+    public CssRowGap cssRowGap;
+    public CssGap cssGap;
+    public CssJustifySelf cssJustifySelf;
+    public CssPlaceSelf cssPlaceSelf;
+    public CssPlaceContent cssPlaceContent;
+    public CssJustifyItems cssJustifyItems;
+    public CssPlaceItems cssPlaceItems;
+
+
+    public CssPlaceItems getPlaceItems() {
+        if (cssPlaceItems == null) {
+            cssPlaceItems =
+                    (CssPlaceItems) style.CascadingOrder(new CssPlaceItems(),
+                            style, selector);
+        }
+        return cssPlaceItems;
+    }
+    
+    public CssJustifyItems getJustifyItems() {
+        if (cssJustifyItems == null) {
+            cssJustifyItems =
+                    (CssJustifyItems) style.CascadingOrder(new CssJustifyItems(),
+                            style, selector);
+        }
+        return cssJustifyItems;
+    }
+    
+    public CssPlaceContent getPlaceContent() {
+        if (cssPlaceContent == null) {
+            cssPlaceContent =
+                    (CssPlaceContent) style.CascadingOrder(new CssPlaceContent(),
+                            style, selector);
+        }
+        return cssPlaceContent;
+    }
+    
+    public CssPlaceSelf getPlaceSelf() {
+        if (cssPlaceSelf == null) {
+            cssPlaceSelf =
+                    (CssPlaceSelf) style.CascadingOrder(new CssPlaceSelf(),
+                            style, selector);
+        }
+        return cssPlaceSelf;
+    }
+    
+    public CssJustifySelf getJustifySelf() {
+        if (cssJustifySelf == null) {
+            cssJustifySelf =
+                    (CssJustifySelf) style.CascadingOrder(new CssJustifySelf(),
+                            style, selector);
+        }
+        return cssJustifySelf;
+    }
+    
+    public CssGap getGap() {
+        if (cssGap == null) {
+            cssGap =
+                    (CssGap) style.CascadingOrder(new CssGap(),
+                            style, selector);
+        }
+        return cssGap;
+    }
+    
+    public CssRowGap getRowGap() {
+        if (cssRowGap == null) {
+            cssRowGap =
+                    (CssRowGap) style.CascadingOrder(new CssRowGap(),
+                            style, selector);
+        }
+        return cssRowGap;
+    }
+    
     public CssTextCombineUpright getTextCombineUpright() {
         if (cssTextCombineUpright == null) {
             cssTextCombineUpright =

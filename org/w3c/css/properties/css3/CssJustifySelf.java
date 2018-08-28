@@ -19,62 +19,59 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-align-items
- * replaced by
- * https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-align-items
+ * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#justify-self-property
  */
-public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
+public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
 
-    public static final CssIdent[] single_align_items_values;
+    public static final CssIdent[] self_position_extras;
 
     static {
-        String[] _single_values = {"normal", "stretch"};
-        single_align_items_values = new CssIdent[_single_values.length];
+        String[] _self_position_extra_values = {"left", "right"};
+        self_position_extras = new CssIdent[_self_position_extra_values.length];
         int i = 0;
-        for (String s : _single_values) {
-            single_align_items_values[i++] = CssIdent.getIdent(s);
+        for (String s : _self_position_extra_values) {
+            self_position_extras[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getSingleAlignItemsValue(CssIdent ident) {
-        for (CssIdent id : single_align_items_values) {
+    public static CssIdent getSelfPositionAddExtras(CssIdent ident) {
+        for (CssIdent id : self_position_extras) {
             if (id.equals(ident)) {
                 return id;
             }
         }
-        return null;
+        return CssAlignSelf.getSelfPosition(ident);
     }
 
     /**
-     * Create a new CssAlignItems
+     * Create a new CssAlignSelf
      */
-    public CssAlignItems() {
+    public CssJustifySelf() {
         value = initial;
     }
 
     /**
-     * Creates a new CssAlignItems
+     * Creates a new CssAlignSelf
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssAlignItems(ApplContext ac, CssExpression expression, boolean check)
+    public CssJustifySelf(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
 
-        value = parseAlignItems(ac, expression, this);
+        value = parseJustifySelf(ac, expression, this);
         if (!expression.end()) {
             throw new InvalidParamException("unrecognize", ac);
         }
-
     }
 
-    public static CssValue parseAlignItems(ApplContext ac, CssExpression expression,
-                                           CssProperty caller)
+    public static CssValue parseJustifySelf(ApplContext ac, CssExpression expression,
+                                            CssProperty caller)
             throws InvalidParamException {
         CssValue val, value;
         ArrayList<CssValue> values = new ArrayList<>();
@@ -93,7 +90,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                 expression.next();
                 return inherit;
             }
-            value = getSingleAlignItemsValue(ident);
+            value = CssAlignSelf.getSingleAlignSelfValue(ident);
             if (value != null) {
                 expression.next();
                 return value;
@@ -103,7 +100,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                 expression.next();
                 return CssAlignContent.baseline;
             }
-            value = CssAlignSelf.getSelfPosition(ident);
+            value = getSelfPositionAddExtras(ident);
             if (value != null) {
                 expression.next();
                 return value;
@@ -145,7 +142,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
                 }
-                value = CssAlignSelf.getSelfPosition((CssIdent) val);
+                value = getSelfPositionAddExtras((CssIdent) val);
                 if (value == null) {
                     throw new InvalidParamException("value", val.toString(),
                             caller.getPropertyName(), ac);
@@ -161,7 +158,8 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                 caller.getPropertyName(), ac);
     }
 
-    public CssAlignItems(ApplContext ac, CssExpression expression)
+
+    public CssJustifySelf(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -1,8 +1,9 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2016.
+// COPYRIGHT (c) 1995-2018 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang)
 // Please first read the full copyright statement in file COPYRIGHT.html
+
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.parser.CssStyle;
@@ -17,31 +18,28 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-grid-1-20170209/#propdef-grid-gap
+ * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-gap
  */
-public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
 
-    private CssGridColumnGap column;
-    private CssGridRowGap row;
+public class CssGap extends org.w3c.css.properties.css.CssGap {
+
+    private CssColumnGap columnGap;
+    private CssRowGap rowGap;
 
     /**
-     * Create a new CssGridGap
+     * Create a new CssGap
      */
-    public CssGridGap() {
+    public CssGap() {
         value = initial;
-        column = new CssGridColumnGap();
-        row = new CssGridRowGap();
+        columnGap = new CssColumnGap();
+        rowGap = new CssRowGap();
     }
 
     /**
-     * Creates a new CssGridGap
-     *
-     * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * Create a new CssGap
      */
-    public CssGridGap(ApplContext ac, CssExpression expression, boolean check)
-            throws InvalidParamException {
+    public CssGap(ApplContext ac, CssExpression expression,
+                  boolean check) throws InvalidParamException {
         if (check && expression.getCount() > 2) {
             throw new InvalidParamException("unrecognize", ac);
         }
@@ -50,11 +48,11 @@ public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
         // get the separator now in case we need it.
         char op = expression.getOperator();
         // create the values we will fill
-        column = new CssGridColumnGap();
-        row = new CssGridRowGap();
+        columnGap = new CssColumnGap();
+        rowGap = new CssRowGap();
 
-        val = CssGridRowGap.checkSyntax(ac, expression, false, this);
-        row.value = val;
+        val = CssRowGap.checkSyntax(ac, expression, this);
+        rowGap.value = val;
         if (!expression.end()) {
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
@@ -65,21 +63,35 @@ public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
                 throw new InvalidParamException("value", val.toString(),
                         getPropertyName(), ac);
             }
-            val = CssGridRowGap.checkSyntax(ac, expression, false, this);
-            column.value = val;
+            val = CssRowGap.checkSyntax(ac, expression, this);
+            // same for value #2
+            if (inherit.equals(val)) {
+                throw new InvalidParamException("value", val.toString(),
+                        getPropertyName(), ac);
+            }
+            columnGap.value = val;
             ArrayList<CssValue> v = new ArrayList<>(2);
-            v.add(row.value);
-            v.add(column.value);
+            v.add(rowGap.value);
+            v.add(columnGap.value);
             value = new CssValueList(v);
         } else {
             value = val;
-            row.value = val;
+            columnGap.value = val;
         }
+
     }
 
-    public CssGridGap(ApplContext ac, CssExpression expression)
+    public CssGap(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
+    }
+
+    /**
+     * Is the value of this property a default value
+     * It is used by all macro for the function <code>print</code>
+     */
+    public boolean isDefault() {
+        return (value == initial);
     }
 
     /**
@@ -89,8 +101,7 @@ public class CssGridGap extends org.w3c.css.properties.css.CssGridGap {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
         super.addToStyle(ac, style);
-        column.addToStyle(ac, style);
-        row.addToStyle(ac, style);
+        columnGap.addToStyle(ac, style);
+        rowGap.addToStyle(ac, style);
     }
 }
-
