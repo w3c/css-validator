@@ -135,6 +135,7 @@ import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssPlaceContent;
+import org.w3c.css.properties.css.CssPlaceItems;
 import org.w3c.css.properties.css.CssPlaceSelf;
 import org.w3c.css.properties.css.CssResize;
 import org.w3c.css.properties.css.CssRest;
@@ -476,7 +477,18 @@ public class Css3Style extends ATSCStyle {
     public CssPlaceSelf cssPlaceSelf;
     public CssPlaceContent cssPlaceContent;
     public CssJustifyItems cssJustifyItems;
+    public CssPlaceItems cssPlaceItems;
 
+
+    public CssPlaceItems getPlaceItems() {
+        if (cssPlaceItems == null) {
+            cssPlaceItems =
+                    (CssPlaceItems) style.CascadingOrder(new CssPlaceItems(),
+                            style, selector);
+        }
+        return cssPlaceItems;
+    }
+    
     public CssJustifyItems getJustifyItems() {
         if (cssJustifyItems == null) {
             cssJustifyItems =
