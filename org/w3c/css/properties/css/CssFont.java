@@ -89,7 +89,7 @@ public class CssFont extends CssProperty {
         boolean first = true;
         StringBuilder sb = new StringBuilder();
         if (fontStyle != null) {
-            sb.append(fontSize);
+            sb.append(fontStyle);
             first = false;
         }
         if (fontVariant != null) {
