@@ -36,4 +36,8 @@ public abstract class AtRule {
     public String lookupPrefix() {
         return keyword();
     }
+
+    public boolean isPropertyLookupStrict() {
+        return true;
+    }
 }

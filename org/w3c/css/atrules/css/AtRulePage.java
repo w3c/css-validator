@@ -175,4 +175,9 @@ public class AtRulePage extends AtRule {
     public boolean isEmpty() {
         return false;
     }
+
+    @Override
+    public boolean isPropertyLookupStrict() {
+        return false;
+    }
 }

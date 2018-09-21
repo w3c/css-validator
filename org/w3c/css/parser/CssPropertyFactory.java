@@ -290,26 +290,29 @@ public class CssPropertyFactory implements Cloneable {
         String className;
         String prefix = atRule.lookupPrefix();
 
-        if (prefix.isEmpty()) {
-            className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
-            // a list of media has been specified
-            if (className != null && media != null && !media.equals("all")) {
-                String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
-                if (propMedia == null) {
-                    return className;
-                }
-                ArrayList<String> list = getMediaList(media);
-                for (String medium : list) {
-                    if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
-                        ac.getFrame().addWarning("noexistence-media", new String[]{property, medium + " (" + propMedia + ")"});
-                    }
-                }
-            }
-        } else {
+        if (!prefix.isEmpty()) {
             StringBuilder sb = new StringBuilder();
             // construct the property key
             sb.append('@').append(atRule.keyword()).append('.').append(property);
             className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(sb.toString());
+            if (className != null || atRule.isPropertyLookupStrict()) {
+                return className;
+            }
+        }
+        // either prefix is empty, or it's a fallback if not the rule is not strict wrt lookup
+        className = PropertiesLoader.getProfile(ac.getPropertyKey()).getProperty(property);
+        // a list of media has been specified
+        if (className != null && media != null && !media.equals("all")) {
+            String propMedia = PropertiesLoader.mediaProperties.getProperty(property);
+            if (propMedia == null) {
+                return className;
+            }
+            ArrayList<String> list = getMediaList(media);
+            for (String medium : list) {
+                if (propMedia.indexOf(medium.toLowerCase()) == -1 && !propMedia.equals("all")) {
+                    ac.getFrame().addWarning("noexistence-media", new String[]{property, medium + " (" + propMedia + ")"});
+                }
+            }
         }
         return className;
     }
