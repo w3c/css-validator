@@ -55,20 +55,22 @@ public class PropertiesLoader {
 
         URL url = null;
 
-        // the url of the properties file of the selected profile
+        // the url of the properties file of the selected profiles
         if (profilePath != null) {
-            url = PropertiesLoader.class.getResource(profilePath);
-        }
+            String[] profilePathes = profilePath.split(",");
+            for (String p : profilePathes) {
+                url = PropertiesLoader.class.getResource(p);
+                f = url.openStream();
+                // we load the properties
+                result.load(f);
+                f.close();
+            }
+            // we add the profile to the profiles Hashtable
+            allProps.put(new String(profile), result);
 
-        f = url.openStream();
-
-        // we load the properties
-        result.load(f);
-        // we add the profile to the profiles Hashtable
-        allProps.put(new String(profile), result);
-
-        if (Util.onDebug) {
-            System.out.println(profile + " profile loaded");
+            if (Util.onDebug) {
+                System.out.println(profile + " profile loaded");
+            }
         }
         return result;
     }
