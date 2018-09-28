@@ -1,9 +1,9 @@
 // $Id$
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University 2014.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University 2018.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css3;
+package org.w3c.css.properties.css3.page;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -18,9 +18,11 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2011/WD-css3-gcpm-20111129/#marks
+ * @spec https://drafts.csswg.org/css-page-3/
+ * @spec https://github.com/w3c/csswg-drafts/blob/8dbce74efa894eb8c7183440bd312316cb1ce449/css-page-3/Overview.bs
+ *
  */
-public class CssMarks extends org.w3c.css.properties.css.CssMarks {
+public class CssMarks extends org.w3c.css.properties.css.page.CssMarks {
 
     public static final CssIdent[] allowed_values;
 
@@ -66,9 +68,6 @@ public class CssMarks extends org.w3c.css.properties.css.CssMarks {
         CssValue val;
         char op;
 
-        val = expression.getValue();
-        op = expression.getOperator();
-
         ArrayList<CssValue> vals = new ArrayList<>();
 
         while (!expression.end()) {
@@ -89,7 +88,6 @@ public class CssMarks extends org.w3c.css.properties.css.CssMarks {
                         break;
                     }
                     // now we go to other values...
-                    CssIdent id = (CssIdent) val;
                     CssValue v = getAllowedIdent((CssIdent) val);
                     if (v != null) {
                         vals.add(v);

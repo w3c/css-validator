@@ -242,6 +242,8 @@ public class Css3Style extends ATSCStyle {
     public CssAdditiveSymbols counterStyleCssAdditiveSymbols;
     public CssNegative counterStyleCssNegative;
 
+    public org.w3c.css.properties.css.page.CssMarks pageCssMarks;
+
     public org.w3c.css.properties.css.viewport.CssMinWidth viewportCssMinWidth;
     public org.w3c.css.properties.css.viewport.CssMaxWidth viewportCssMaxWidth;
     public org.w3c.css.properties.css.viewport.CssMinHeight viewportCssMinHeight;
@@ -482,6 +484,14 @@ public class Css3Style extends ATSCStyle {
 
     public CssFontDisplay fontFaceCssFontDisplay;
 
+    public org.w3c.css.properties.css.page.CssMarks getPageCssMarks() {
+        if (pageCssMarks == null) {
+            pageCssMarks =
+                    (org.w3c.css.properties.css.page.CssMarks) style.CascadingOrder(new org.w3c.css.properties.css.page.CssMarks(),
+                            style, selector);
+        }
+        return pageCssMarks;
+    }
 
     public CssFontDisplay getFontFaceCssFontDisplay() {
         if (fontFaceCssFontDisplay == null) {
