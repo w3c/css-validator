@@ -65,7 +65,7 @@
     <get dest="tmp/velocity-tools-generic-2.0.jar" src="http://www.apache.org/dist/velocity/tools/2.0/velocity-tools-generic-2.0.jar" usetimestamp="true"/>
     <get dest="tmp/xercesImpl-2.11.0.jar" src="https://repo1.maven.org/maven2/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar" usetimestamp="true"/>
     <get dest="tmp/xml-apis-1.4.01.jar" src="https://repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar" usetimestamp="true"/>
-    <get dest="tmp/tagsoup-1.2.1.jar" src="http://central.maven.org/maven2/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar" usetimestamp="true"/>
+    <get dest="tmp/tagsoup-1.2.1.jar" src="https://repo1.maven.org/maven2/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar" usetimestamp="true"/>
     <get dest="tmp/servlet-api-2.5-6.0.1.jar" src="http://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-6.0.1/servlet-api-2.5-6.0.1.jar" usetimestamp="true"/>
     <get dest="tmp/htmlparser-1.4.9.jar" src="https://repo1.maven.org/maven2/nu/validator/htmlparser/1.4.9/htmlparser-1.4.9.jar" usetimestamp="true"/>
 
