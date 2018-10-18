@@ -1,4 +1,4 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University 2018.
@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://drafts.csswg.org/css-page-3/
- * @spec https://github.com/w3c/csswg-drafts/blob/8dbce74efa894eb8c7183440bd312316cb1ce449/css-page-3/Overview.bs
- *
+ * @spec https://www.w3.org/TR/2018/WD-css-page-3-20181018/#descdef-page-marks
  */
 public class CssMarks extends org.w3c.css.properties.css.page.CssMarks {
 
