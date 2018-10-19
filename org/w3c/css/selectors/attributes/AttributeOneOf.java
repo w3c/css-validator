@@ -133,23 +133,6 @@ public class AttributeOneOf extends AttributeSelector {
                     ac.getFrame().addWarning("incompatible",
                             new String[]{toString(), attr.toString()});
                 }
-            } else if (attr instanceof AttributeOneOf) {
-                AttributeOneOf otherattr = (AttributeOneOf) attr;
-                String[] othervalues = otherattr.values;
-                int j;
-                if (othervalues == null) {
-                    othervalues = otherattr.computeValues();
-                }
-                ok = false;
-                for (i = 0; !ok && i < values.length; i++) {
-                    for (j = 0; !ok && j < othervalues.length; j++) {
-                        ok = values[i].equals(othervalues[j]);
-                    }
-                }
-                if (!ok) {
-                    ac.getFrame().addWarning("incompatible",
-                            new String[]{toString(), attr.toString()});
-                }
             }
         }
     }
