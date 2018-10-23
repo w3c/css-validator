@@ -51,6 +51,7 @@ public class AtRulePage extends org.w3c.css.atrules.css.AtRulePage {
                 }
             }
         } else {
+            pseudos.add(pseudo);
             return this;
         }
         // failed...
