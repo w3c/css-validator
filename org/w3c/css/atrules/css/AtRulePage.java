@@ -12,24 +12,23 @@ package org.w3c.css.atrules.css;
 
 import org.w3c.css.parser.AtRule;
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+
+import java.util.ArrayList;
 
 
 /**
  * This class manages all media defines by CSS2
  *
- * @author Philippe Le H�garet
+ * @author Philippe Le Hégaret
  * @version $Revision$
  */
-public class AtRulePage extends AtRule {
+public abstract class AtRulePage extends AtRule {
 
-    static final String[] pseudo = {
-            ":left", ":right", ":first"
-    };
+    public ArrayList<String> names = null;
 
-    String name;
-
-    String ident;
+    public ArrayList<ArrayList<String>> pseudos = null;
 
     /**
      * Returns the at rule keyword
@@ -43,31 +42,9 @@ public class AtRulePage extends AtRule {
      * name will be a pseudo name :first, :left, :right
      * or a random name without semi-colon at the beginning
      */
-    public AtRulePage setName(String name, ApplContext ac)
-            throws InvalidParamException {
-        if (name.charAt(0) == ':') {
-            for (int i = 0; i < pseudo.length; i++) {
-                if (name.equals(pseudo[i])) {
-                    this.name = pseudo[i];
-                    return this;
-                }
-            }
-            throw new InvalidParamException("page", name, ac);
-        } else {
-            this.name = name;
-        }
+    public abstract AtRulePage addSelector(String name, ArrayList<String> pseudo, ApplContext ac)
+            throws InvalidParamException;
 
-        return this;
-    }
-
-    public AtRulePage setIdent(String ident) {
-        this.ident = ident;
-        return this;
-    }
-
-    public String getIdent() {
-        return ident;
-    }
 
     /**
      * Return true if atRule is exactly the same as current
@@ -80,19 +57,19 @@ public class AtRulePage extends AtRule {
             // not an AtRulePage, fail
             return false;
         }
-        if ((name != null) && (other.name != null)) {
-            if (!name.equals(other.name)) {
+        if ((names != null) && (other.names != null)) {
+            if (!names.equals(other.names)) {
                 return false;
             }
         } else {
-            if ((name != null) || (other.name != null)) {
+            if ((names != null) || (other.names != null)) {
                 return false;
             }
         }
-        if ((ident != null) && (other.ident != null)) {
-            return ident.equals(((AtRulePage) atRule).ident);
+        if ((pseudos != null) && (other.pseudos != null)) {
+            return pseudos.equals(other.pseudos);
         } else {
-            if ((ident != null) || (other.ident != null)) {
+            if ((pseudos != null) || (other.pseudos != null)) {
                 return false;
             }
         }
@@ -110,19 +87,19 @@ public class AtRulePage extends AtRule {
             // not an AtRulePage, fail
             return false;
         }
-        if ((name != null) && (other.name != null)) {
-            if (!name.equals(other.name)) {
+        if ((names != null) && (other.names != null)) {
+            if (!names.equals(other.names)) {
                 return false;
             }
         } else {
-            if ((name != null) || (other.name != null)) {
+            if ((names != null) || (other.names != null)) {
                 return false;
             }
         }
-        if ((ident != null) && (other.ident != null)) {
-            return ident.equals(((AtRulePage) atRule).ident);
+        if ((pseudos != null) && (other.pseudos != null)) {
+            return pseudos.equals(other.pseudos);
         } else {
-            if ((ident != null) || (other.ident != null)) {
+            if ((pseudos != null) || (other.pseudos != null)) {
                 return false;
             }
         }
@@ -140,18 +117,13 @@ public class AtRulePage extends AtRule {
             // not an AtRulePage, fail
             return false;
         }
-        if ((name != null) && !name.equals(atRulePage.name)) {
+        if ((names != null) && !names.equals(atRulePage.names)) {
             return false;
         }
-        if ((ident != null) && !ident.equals(atRulePage.ident)) {
+        if ((pseudos != null) && !pseudos.equals(atRulePage.pseudos)) {
             return false;
         }
         return true;
-    }
-
-
-    public String getName() {
-        return name;
     }
 
     /**
@@ -160,13 +132,23 @@ public class AtRulePage extends AtRule {
     public String toString() {
         StringBuilder ret = new StringBuilder();
         ret.append('@').append(keyword());
-        if (ident != null) {
-            ret.append(' ').append(ident);
-            if (name != null) {
-                ret.append(name);
+        if (names != null) {
+            int l = names.size();
+            for (int i = 0; i < l; i++) {
+                if (i != 0) {
+                    ret.append(',');
+                }
+                ret.append(' ');
+                if (names.get(i) != null) {
+                    ret.append(names.get(i));
+                }
+                ArrayList<String> p = pseudos.get(i);
+                if (p != null) {
+                    for (String pp : p) {
+                        ret.append(pp);
+                    }
+                }
             }
-        } else if (name != null) {
-            ret.append(' ').append(name);
         }
         return ret.toString();
     }
@@ -174,5 +156,21 @@ public class AtRulePage extends AtRule {
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+    public static final AtRulePage getInstance(CssVersion version) {
+        switch (version) {
+            case CSS2:
+            case CSS21:
+                return new org.w3c.css.atrules.css2.AtRulePage();
+            case CSS3:
+            case CSS:
+            case CSS_2015:
+                return new org.w3c.css.atrules.css3.AtRulePage();
+            default:
+                throw new IllegalArgumentException(
+                        "AtRulePage.getInstance called with unhandled"
+                                + " CssVersion \"" + version.toString() + "\".");
+        }
     }
 }

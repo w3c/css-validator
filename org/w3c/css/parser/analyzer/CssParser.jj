@@ -1226,7 +1226,7 @@ void page() :
     ArrayList<CssProperty>       collectv = new ArrayList<CssProperty>()        ;
     CssSelectors s        = new CssSelectors(ac);
     AtRule       old      = getAtRule()         ;
-    AtRulePage   newRule  = new AtRulePage()    ;
+    AtRulePage   newRule  = AtRulePage.getInstance(ac.getCssVersion());
     setAtRule(newRule);
     s.setAtRule(getAtRule());
     boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
@@ -1234,11 +1234,13 @@ void page() :
 {
     try {
 	<PAGE_SYM> ( <S> )*
+	    ( page_selector_list(newRule) )?
             // FIXME <CSS3> ?
-            ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
-	      ( <S> )* )?
+	    //           ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
+	    //  ( <S> )* )?
             // </CSS3>
-	    ( pseudo_page(newRule) )? <LBRACE> ( <S> )* ( v=pageContent() 
+	    //	    ( pseudo_page(newRule) )?
+	    <LBRACE> ( <S> )* ( v=pageContent() 
 		{ 
 		    collectv = v;
 		}
@@ -1307,19 +1309,34 @@ ArrayList<CssProperty> prefAtRule() :
     }
 }
 
-void pseudo_page(AtRulePage page) :
-{ Token n; }
+void page_selector_list(AtRulePage pageRule) :
 {
-    ":" n=<IDENT> ( <S> )*
-    { 
-	try {
-	    page.setName(":" + convertIdent(n.image), ac); 
-	} catch (InvalidParamException e) {
-	    throw new InvalidParamException("pseudo", n.image, ac );
-	    /*CssError error = new CssError(getSourceFile(), getLine(), e);
-	      ac.getFrame().addError(error);	*/
-	}
+    Token n = null;
+    Token p = null;
+    Token o = null;
+    boolean gotFirst = false;
+    String ns = null;
+    ArrayList<String> ps = null;
+}
+{
+    (
+     ( ( n=<IDENT> { ns = convertIdent(n.image); }  ) ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+	pageRule.addSelector(ns, ps, ac);
+	ns = null; ps = null;
     }
+     | ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+	pageRule.addSelector(null, ps, ac);
+	ps = null;
+    } ) ( <S> ) *
+    ( <COMMA> ( <S> )* (
+			( ( n=<IDENT> { ns = convertIdent(n.image); }  ) ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+	pageRule.addSelector(ns, ps, ac);
+	ns = null; ps = null;
+    }
+    | ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+	pageRule.addSelector(null, ps, ac);
+	ps = null;
+    } ) ( <S> )* )*
 }
 
 /**
