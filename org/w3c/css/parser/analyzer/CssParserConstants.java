@@ -159,77 +159,101 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int CHARSET_SYM = 74;
   /** RegularExpression Id. */
-  int IMPORT_SYM = 75;
+  int PAGE_SYM = 75;
   /** RegularExpression Id. */
-  int NAMESPACE_SYM = 76;
+  int PAGE_TOP_LEFT_CORNER = 76;
   /** RegularExpression Id. */
-  int MEDIA_SYM = 77;
+  int PAGE_TOP_LEFT = 77;
   /** RegularExpression Id. */
-  int PAGE_SYM = 78;
+  int PAGE_TOP_CENTER = 78;
   /** RegularExpression Id. */
-  int FONT_FACE_SYM = 79;
+  int PAGE_TOP_RIGHT = 79;
   /** RegularExpression Id. */
-  int KEYFRAMES_SYM = 80;
+  int PAGE_TOP_RIGHT_CORNER = 80;
   /** RegularExpression Id. */
-  int PREF_SYM = 81;
+  int PAGE_BOTTOM_LEFT_CORNER = 81;
   /** RegularExpression Id. */
-  int COLOR_PROFILE = 82;
+  int PAGE_BOTTOM_LEFT = 82;
   /** RegularExpression Id. */
-  int ATTOP = 83;
+  int PAGE_BOTTOM_CENTER = 83;
   /** RegularExpression Id. */
-  int ATRIGHT = 84;
+  int PAGE_BOTTOM_RIGHT = 84;
   /** RegularExpression Id. */
-  int ATBOTTOM = 85;
+  int PAGE_BOTTOM_RIGHT_CORNER = 85;
   /** RegularExpression Id. */
-  int ATLEFT = 86;
+  int PAGE_LEFT_TOP = 86;
   /** RegularExpression Id. */
-  int A_COUNTER = 87;
+  int PAGE_LEFT_MIDDLE = 87;
   /** RegularExpression Id. */
-  int COUNTER_STYLE_SYM = 88;
+  int PAGE_LEFT_BOTTOM = 88;
   /** RegularExpression Id. */
-  int PHONETIC_ALPHABET_SYM = 89;
+  int PAGE_RIGHT_TOP = 89;
   /** RegularExpression Id. */
-  int SUPPORTS_SYM = 90;
+  int PAGE_RIGHT_MIDDLE = 90;
   /** RegularExpression Id. */
-  int VIEWPORT_SYM = 91;
+  int PAGE_RIGHT_BOTTOM = 91;
   /** RegularExpression Id. */
-  int ATKEYWORD = 92;
+  int IMPORT_SYM = 92;
   /** RegularExpression Id. */
-  int RANGE0 = 93;
+  int NAMESPACE_SYM = 93;
   /** RegularExpression Id. */
-  int RANGE1 = 94;
+  int MEDIA_SYM = 94;
   /** RegularExpression Id. */
-  int RANGE2 = 95;
+  int FONT_FACE_SYM = 95;
   /** RegularExpression Id. */
-  int RANGE3 = 96;
+  int KEYFRAMES_SYM = 96;
   /** RegularExpression Id. */
-  int RANGE4 = 97;
+  int PREF_SYM = 97;
   /** RegularExpression Id. */
-  int RANGE5 = 98;
+  int COLOR_PROFILE = 98;
   /** RegularExpression Id. */
-  int RANGE6 = 99;
+  int A_COUNTER = 99;
   /** RegularExpression Id. */
-  int RANGE = 100;
+  int COUNTER_STYLE_SYM = 100;
   /** RegularExpression Id. */
-  int UNI = 101;
+  int PHONETIC_ALPHABET_SYM = 101;
   /** RegularExpression Id. */
-  int UNICODERANGE = 102;
+  int SUPPORTS_SYM = 102;
   /** RegularExpression Id. */
-  int CLASS = 103;
+  int VIEWPORT_SYM = 103;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 104;
+  int ATKEYWORD = 104;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 105;
+  int RANGE0 = 105;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 106;
+  int RANGE1 = 106;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 107;
+  int RANGE2 = 107;
   /** RegularExpression Id. */
-  int FUNCTION = 108;
+  int RANGE3 = 108;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 109;
+  int RANGE4 = 109;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 110;
+  int RANGE5 = 110;
+  /** RegularExpression Id. */
+  int RANGE6 = 111;
+  /** RegularExpression Id. */
+  int RANGE = 112;
+  /** RegularExpression Id. */
+  int UNI = 113;
+  /** RegularExpression Id. */
+  int UNICODERANGE = 114;
+  /** RegularExpression Id. */
+  int CLASS = 115;
+  /** RegularExpression Id. */
+  int FUNCTIONLANG = 116;
+  /** RegularExpression Id. */
+  int FUNCTIONNOT = 117;
+  /** RegularExpression Id. */
+  int FUNCTIONCALC = 118;
+  /** RegularExpression Id. */
+  int FUNCTIONATTR = 119;
+  /** RegularExpression Id. */
+  int FUNCTION = 120;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 121;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 122;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -311,18 +335,30 @@ public interface CssParserConstants {
     "<IMPORTANT_NOT>",
     "\"::\"",
     "\"@charset\"",
+    "\"@page\"",
+    "\"@top-left-corner\"",
+    "\"@top-left\"",
+    "\"@top-center\"",
+    "\"@top-right\"",
+    "\"@top-right-corner\"",
+    "\"@bottom-left-corner\"",
+    "\"@bottom-left\"",
+    "\"@bottom-center\"",
+    "\"@bottom-right\"",
+    "\"@bottom-right-corner\"",
+    "\"@left-top\"",
+    "\"@left-middle\"",
+    "\"@left-bottom\"",
+    "\"@right-top\"",
+    "\"@right-middle\"",
+    "\"@right-bottom\"",
     "\"@import\"",
     "\"@namespace\"",
     "\"@media\"",
-    "\"@page\"",
     "\"@font-face\"",
     "\"@keyframes\"",
     "\"@preference\"",
     "\"@color-profile\"",
-    "\"@top\"",
-    "\"@right\"",
-    "\"@bottom\"",
-    "\"@left\"",
     "\"@counter\"",
     "\"@counter-style\"",
     "\"@phonetic-alphabet\"",
@@ -347,7 +383,7 @@ public interface CssParserConstants {
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
-    "<token of kind 111>",
+    "<token of kind 123>",
     "\"|\"",
     "\"%\"",
   };
