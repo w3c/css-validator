@@ -656,19 +656,36 @@ TOKEN :
 
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
+{
+    < PAGE_SYM                 : "@page"                >
+  | < PAGE_TOP_LEFT_CORNER     : "@top-left-corner"     >
+  | < PAGE_TOP_LEFT            : "@top-left"            >
+  | < PAGE_TOP_CENTER          : "@top-center"          >
+  | < PAGE_TOP_RIGHT           : "@top-right"           >
+  | < PAGE_TOP_RIGHT_CORNER    : "@top-right-corner"    >
+  | < PAGE_BOTTOM_LEFT_CORNER  : "@bottom-left-corner"  >
+  | < PAGE_BOTTOM_LEFT         : "@bottom-left"         >
+  | < PAGE_BOTTOM_CENTER       : "@bottom-center"       >
+  | < PAGE_BOTTOM_RIGHT        : "@bottom-right"        >
+  | < PAGE_BOTTOM_RIGHT_CORNER : "@bottom-right-corner" >
+  | < PAGE_LEFT_TOP            : "@left-top"            >
+  | < PAGE_LEFT_MIDDLE         : "@left-middle"         >
+  | < PAGE_LEFT_BOTTOM         : "@left-bottom"         >
+  | < PAGE_RIGHT_TOP           : "@right-top"           >
+  | < PAGE_RIGHT_MIDDLE        : "@right-middle"        >
+  | < PAGE_RIGHT_BOTTOM        : "@right-bottom"        >
+}
+
+<DEFAULT>
+TOKEN [IGNORE_CASE] :
 { 
     < IMPORT_SYM            : "@import">
   | < NAMESPACE_SYM         : "@namespace">
   | < MEDIA_SYM             : "@media" >
-  | < PAGE_SYM              : "@page"  >
   | < FONT_FACE_SYM         : "@font-face" >
   | < KEYFRAMES_SYM         : "@keyframes" >
   | < PREF_SYM              : "@preference" >
   | < COLOR_PROFILE         : "@color-profile" >
-  | < ATTOP	            : "@top" >
-  | < ATRIGHT               : "@right" >
-  | < ATBOTTOM              : "@bottom" >
-  | < ATLEFT                : "@left" >
   | < A_COUNTER             : "@counter" >
   | < COUNTER_STYLE_SYM     : "@counter-style" > 
   | < PHONETIC_ALPHABET_SYM : "@phonetic-alphabet" >
@@ -1275,7 +1292,12 @@ ArrayList<CssProperty> prefAtRule() :
 }
 {
     try {
-        (n=<ATTOP> | n=<ATBOTTOM> | n=<ATLEFT> | n=<ATRIGHT> ) ( <S> )*
+	( n=<PAGE_TOP_LEFT_CORNER> | n=<PAGE_TOP_LEFT> | n=<PAGE_TOP_CENTER>
+	  | n=<PAGE_TOP_RIGHT> | n=<PAGE_TOP_RIGHT_CORNER> | n=<PAGE_BOTTOM_LEFT_CORNER>
+	  | n=<PAGE_BOTTOM_LEFT> | n=<PAGE_BOTTOM_CENTER> | n=<PAGE_BOTTOM_RIGHT>
+	  | n=<PAGE_BOTTOM_RIGHT_CORNER> | n=<PAGE_LEFT_TOP> | n=<PAGE_LEFT_MIDDLE>
+	  | n=<PAGE_LEFT_BOTTOM> | n=<PAGE_RIGHT_TOP> | n=<PAGE_RIGHT_MIDDLE>
+	  | n=<PAGE_RIGHT_BOTTOM> ) ( <S> )*
 	    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* 
 	    {
 		return v;
