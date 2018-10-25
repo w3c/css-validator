@@ -1318,6 +1318,7 @@ ArrayList<CssProperty> prefAtRule() :
 			ac.getFrame().addWarning("no-declaration");
 		    } else {
 			addProperty(v);
+			handleRule(s, v);
 		    }
 		    endOfRule();
 		    endOfAtRule();
