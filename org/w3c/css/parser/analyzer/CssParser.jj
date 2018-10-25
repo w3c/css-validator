@@ -1281,7 +1281,7 @@ ArrayList<CssProperty> pageContent() :
 	                  }
        }
      )* {
-	   if ( allv == null ) {
+	 if ( allv.isEmpty() ) {
 	       if (!gotContent) ac.getFrame().addWarning("no-declaration");
 	   } else {
 	       addProperty(allv);
