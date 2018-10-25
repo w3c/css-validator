@@ -2076,7 +2076,7 @@ if ( v != null ) {
                              allv.addAll(v);
                           }
     }
-if ( allv == null ) {
+if ( allv.isEmpty() ) {
                if (!gotContent) ac.getFrame().addWarning("no-declaration");
            } else {
                addProperty(allv);
