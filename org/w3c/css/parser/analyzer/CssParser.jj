@@ -1233,29 +1233,14 @@ void page() :
 }
 {
     try {
-	<PAGE_SYM> ( <S> )*
+	<PAGE_SYM> { if (!isCss1) newAtRule(newRule);
+	} ( <S> )*
 	    ( page_selector_list(newRule) )?
-            // FIXME <CSS3> ?
-	    //           ( n=<IDENT> { newRule.setIdent(convertIdent(n.image)); } 
-	    //  ( <S> )* )?
-            // </CSS3>
-	    //	    ( pseudo_page(newRule) )?
-	    <LBRACE> ( <S> )* ( v=pageContent() 
-		{ 
-		    collectv = v;
-		}
-							  ) <RBRACE> ( <S> )*
+	    <LBRACE> ( <S> )* ( v=pageContent() ) <RBRACE> ( <S> )*
 	    {
 		if (!isCss1) {
-		    newAtRule(getAtRule());
-		    addProperty(collectv);
 		    endOfRule();
 		    endOfAtRule();
-		}
-		if (v == null) {
-		    ac.getFrame().addWarning("no-declaration");
-		} else {
-		    handleRule(s, collectv);
 		}
 	    }
     } catch (InvalidParamException ie) {
@@ -1279,33 +1264,72 @@ void page() :
 ArrayList<CssProperty> pageContent() :
 { CssProperty prop;
     ArrayList<CssProperty> v = new ArrayList<CssProperty>();
+    ArrayList<CssProperty> allv = new ArrayList<CssProperty>();
+    CssSelectors s        = new CssSelectors(ac);
+    boolean gotContent = false;
 }
 {
-    // <CSS3> ?? FIXME
-    v=prefAtRule() { return v;}
-    // </CSS3>
-    |
-    v=declarations() { return v;} /* FIXME moved here as it can match empty string */
+     v=declarations() {
+	 if ( v != null ) {
+	     gotContent = true;
+	     allv.addAll(v);
+	 }
+     }
+     ( prefAtRule() { gotContent = true; }
+       v=declarations() { if ( v != null ) {
+			     allv.addAll(v);
+	                  }
+       }
+     )* {
+	   if ( allv == null ) {
+	       if (!gotContent) ac.getFrame().addWarning("no-declaration");
+	   } else {
+	       addProperty(allv);
+	       handleRule(s, allv);
+	   }
+	   return allv;
+    }
 }
 
 ArrayList<CssProperty> prefAtRule() :
 { Token n; 
     ArrayList<CssProperty> v;
+    AtRulePage newRule = AtRulePage.getInstance(ac.getCssVersion());
+    AtRule       old      = getAtRule();
+    CssSelectors s = new CssSelectors(ac);
+
 }
 {
+    // This only happen in CSS3 and beyond.
     try {
 	( n=<PAGE_TOP_LEFT_CORNER> | n=<PAGE_TOP_LEFT> | n=<PAGE_TOP_CENTER>
 	  | n=<PAGE_TOP_RIGHT> | n=<PAGE_TOP_RIGHT_CORNER> | n=<PAGE_BOTTOM_LEFT_CORNER>
 	  | n=<PAGE_BOTTOM_LEFT> | n=<PAGE_BOTTOM_CENTER> | n=<PAGE_BOTTOM_RIGHT>
 	  | n=<PAGE_BOTTOM_RIGHT_CORNER> | n=<PAGE_LEFT_TOP> | n=<PAGE_LEFT_MIDDLE>
 	  | n=<PAGE_LEFT_BOTTOM> | n=<PAGE_RIGHT_TOP> | n=<PAGE_RIGHT_MIDDLE>
-	  | n=<PAGE_RIGHT_BOTTOM> ) ( <S> )*
-	    <LBRACE> ( <S> )* v=declarations() <RBRACE> ( <S> )* 
+	  | n=<PAGE_RIGHT_BOTTOM> ) { ((org.w3c.css.atrules.css3.AtRulePage) newRule).setKeyword(convertIdent(n.image).substring(1));
+	    setAtRule(newRule);
+            s.setAtRule(getAtRule());
+	    newAtRule(getAtRule());
+
+	                            } ( <S> )*
+		   <LBRACE> ( <S> )* v=declarations() <RBRACE> {
+	            if ( v == null ) {
+			ac.getFrame().addWarning("no-declaration");
+		    } else {
+			addProperty(v);
+		    }
+		    endOfRule();
+		    endOfAtRule();
+	} ( <S> )* 
 	    {
+		// FIXME
 		return v;
 	    }
     } catch (ParseException e) {
 	addError(e, skipStatement());
+    } finally {
+	setAtRule(old);
     }
 }
 
