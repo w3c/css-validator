@@ -21,6 +21,8 @@ public class AtRulePage extends org.w3c.css.atrules.css.AtRulePage {
             ":left", ":right", ":first", ":blank"
     };
 
+    private String keyword = "page";
+
     /*
   * Sets the name of the page
   * name will be a pseudo name :first, :left, :right
@@ -53,5 +55,16 @@ public class AtRulePage extends org.w3c.css.atrules.css.AtRulePage {
         }
         pseudos.add(pseudo);
         return this;
+    }
+
+    public void setKeyword(String k) {
+        keyword = k;
+    }
+
+    /**
+     * Returns the at rule keyword
+     */
+    public String effectiveKeyword() {
+        return keyword;
     }
 }

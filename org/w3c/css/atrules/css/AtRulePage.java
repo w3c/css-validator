@@ -33,8 +33,12 @@ public abstract class AtRulePage extends AtRule {
     /**
      * Returns the at rule keyword
      */
-    public String keyword() {
+    public final String keyword() {
         return "page";
+    }
+
+    public String effectiveKeyword() {
+        return keyword();
     }
 
     /**
@@ -131,7 +135,7 @@ public abstract class AtRulePage extends AtRule {
      */
     public String toString() {
         StringBuilder ret = new StringBuilder();
-        ret.append('@').append(keyword());
+        ret.append('@').append(effectiveKeyword());
         if (names != null) {
             int l = names.size();
             for (int i = 0; i < l; i++) {
