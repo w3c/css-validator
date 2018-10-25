@@ -13,14 +13,12 @@ import java.util.ArrayList;
 public class CssRuleList {
 
     AtRule atRule;
-    String atRuleString;
     ArrayList<CssStyleRule> rulelist;
     public String pseudopage;
     String indent;
 
     public CssRuleList() {
         atRule = null;
-        atRuleString = new String();
         rulelist = new ArrayList<CssStyleRule>();
         indent = new String();
     }
@@ -35,15 +33,14 @@ public class CssRuleList {
 
     public void addAtRule(AtRule atRule) {
         this.atRule = atRule;
-        atRuleString = atRule.toString();
     }
 
     public String getAtRule() {
-        return atRuleString;
+        return (atRule != null) ? atRule.toString() : "";
     }
 
     public String getAtRuleEscaped() {
-        return Messages.escapeString(atRuleString);
+        return Messages.escapeString(atRule.toString());
     }
 
     public boolean isEmpty() {
@@ -51,6 +48,7 @@ public class CssRuleList {
     }
 
     public String toString() {
+        String atRuleString = atRule.toString();
         StringBuilder ret = new StringBuilder();
         if (null != atRule && atRule.isEmpty()) {
             if (atRuleString.length() != 0) {
