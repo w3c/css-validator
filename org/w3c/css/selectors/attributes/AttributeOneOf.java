@@ -92,47 +92,6 @@ public class AttributeOneOf extends AttributeSelector {
                     ac.getFrame().addWarning("incompatible",
                             new String[]{toString(), attr.toString()});
                 }
-            } else if (attr instanceof AttributeBegin) {
-                val = ((AttributeBegin) attr).getValue();
-                ok = false;
-                String pval = val + '-';
-                for (i = 0; !ok && i < values.length; i++) {
-                    ok = values[i].equals(val) || values[i].startsWith(pval);
-                }
-                if (!ok) {
-                    ac.getFrame().addWarning("incompatible",
-                            new String[]{toString(), attr.toString()});
-                }
-            } else if (attr instanceof AttributeStart) {
-                val = ((AttributeStart) attr).getValue();
-                ok = false;
-                for (i = 0; !ok && i < values.length; i++) {
-                    ok = values[i].startsWith(val);
-                }
-                if (!ok) {
-                    ac.getFrame().addWarning("incompatible",
-                            new String[]{toString(), attr.toString()});
-                }
-            } else if (attr instanceof AttributeSubstr) {
-                val = ((AttributeSubstr) attr).getValue();
-                ok = false;
-                for (i = 0; !ok && i < values.length; i++) {
-                    ok = (values[i].indexOf(val) >= 0);
-                }
-                if (!ok) {
-                    ac.getFrame().addWarning("incompatible",
-                            new String[]{toString(), attr.toString()});
-                }
-            } else if (attr instanceof AttributeSuffix) {
-                val = ((AttributeSuffix) attr).getValue();
-                ok = false;
-                for (i = 0; !ok && i < values.length; i++) {
-                    ok = values[i].endsWith(val);
-                }
-                if (!ok) {
-                    ac.getFrame().addWarning("incompatible",
-                            new String[]{toString(), attr.toString()});
-                }
             }
         }
     }
