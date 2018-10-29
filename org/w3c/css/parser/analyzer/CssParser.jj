@@ -1221,9 +1221,8 @@ void unused_production_definition() :
  */
 void page() :
 {
-    ArrayList<CssProperty> v                              ;
     Token        n        = null                ;
-    ArrayList<CssProperty>       collectv = new ArrayList<CssProperty>()        ;
+    ArrayList<CssProperty>       collectv = new ArrayList<CssProperty>();
     CssSelectors s        = new CssSelectors(ac);
     AtRule       old      = getAtRule()         ;
     AtRulePage   newRule  = AtRulePage.getInstance(ac.getCssVersion());
@@ -1236,7 +1235,7 @@ void page() :
 	<PAGE_SYM> { if (!isCss1) newAtRule(newRule);
 	} ( <S> )*
 	    ( page_selector_list(newRule) )?
-	    <LBRACE> ( <S> )* ( v=pageContent() ) <RBRACE> ( <S> )*
+	    <LBRACE> ( <S> )* ( pageContent() ) <RBRACE> ( <S> )*
 	    {
 		if (!isCss1) {
 		    endOfRule();
@@ -1261,9 +1260,9 @@ void page() :
     }
 }
 
-ArrayList<CssProperty> pageContent() :
+void pageContent() :
 { CssProperty prop;
-    ArrayList<CssProperty> v = new ArrayList<CssProperty>();
+    ArrayList<CssProperty> v = null;
     ArrayList<CssProperty> allv = new ArrayList<CssProperty>();
     CssSelectors s        = new CssSelectors(ac);
     boolean gotContent = false;
@@ -1287,7 +1286,6 @@ ArrayList<CssProperty> pageContent() :
 	       addProperty(allv);
 	       handleRule(s, allv);
 	   }
-	   return allv;
     }
 }
 
