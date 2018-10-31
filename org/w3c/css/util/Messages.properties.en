@@ -339,6 +339,7 @@ error.pseudo-class: The pseudo-class .\u201C%s\u201D can't appear here in the HT
 error.pseudo: Unknown pseudo-element or pseudo-class \u201C%s\u201D
 error.id: ID selector #%s is invalid ! Only one ID selector can be specified in a simple selector: %s.
 error.space: If the attribute selector ~= is used, the word in the value \u201C%s\u201D must not contain spaces.
+warning.space: If the attribute selector ~= is used, the word in the value \u201C%s\u201D should not contain spaces.
 error.todo : Sorry the feature \u201C%s\u201D is not implemented yet.
 error.incompatible: \u201C%s\u201D and \u201C%s\u201D are incompatible
 warning.incompatible: \u201C%s\u201D and \u201C%s\u201D are incompatible

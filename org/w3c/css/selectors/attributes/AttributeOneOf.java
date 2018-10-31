@@ -23,6 +23,14 @@ public class AttributeOneOf extends AttributeSelector {
         this.values = null;
     }
 
+    public AttributeOneOf(ApplContext ac, String name, String value) {
+        this(name, value);
+        if (value.indexOf(' ') >= 0) {
+            ac.getFrame().addWarning("space", toString());
+
+        }
+    }
+
     /**
      * @return Returns the value.
      */

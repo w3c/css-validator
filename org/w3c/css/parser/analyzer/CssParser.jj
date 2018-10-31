@@ -2338,32 +2338,25 @@ void attrib(CssSelectors s) :
 	      AttributeSelector attribute;
               switch(selectorType) {
               case CssSelectors.ATTRIBUTE_BEGIN:
-        	  attribute = new AttributeBegin(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeBegin(att.image.toLowerCase(), val.image);
         	  break;
               case CssSelectors.ATTRIBUTE_EXACT:
-        	  attribute = new AttributeExact(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
         	  break;
               case CssSelectors.ATTRIBUTE_ONE_OF:
-        	  attribute = new AttributeOneOf(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeOneOf(ac, att.image.toLowerCase(), val.image);
         	  break;
               case CssSelectors.ATTRIBUTE_START:
-        	  attribute = new AttributeStart(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeStart(att.image.toLowerCase(), val.image);
         	  break;
               case CssSelectors.ATTRIBUTE_SUBSTR:
-        	  attribute = new AttributeSubstr(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeSubstr(att.image.toLowerCase(), val.image);
         	  break;
               case CssSelectors.ATTRIBUTE_SUFFIX:
-        	  attribute = new AttributeSuffix(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeSuffix(att.image.toLowerCase(), val.image);
         	  break;
               default:
-        	  attribute = new AttributeExact(att.image.toLowerCase(),
-        		  val.image);
+        	  attribute = new AttributeExact(att.image.toLowerCase(), val.image);
               	  break;
               }
 	      try {
