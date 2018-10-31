@@ -335,6 +335,7 @@ error.pseudo: Pseudo-élément ou pseudo-classe \u201C%s\u201D inconnu(e)
 error.id: Le sélécteur d'identificateur n'est pas valide! \
 Un selecteur simple: \u201C%s\u201D ne peut avoir qu'un seul sélécteur d'identificateur
 error.space: Si le sélécteur d'attribut ~= est utilisé, sa valeur \u201C%s\u201D ne doit pas contenir d'espaces.
+warning.space: Si le sélécteur d'attribut ~= est utilisé, sa valeur \u201C%s\u201D ne doit pas contenir d'espaces.
 error.todo : Désolé, mais cette fonctionnalité n'est pas encore disponible.
 error.incompatible: \u201C%s\u201D et \u201C%s\u201D ne sont pas compatibles.
 warning.incompatible: \u201C%s\u201D et \u201C%s\u201D ne sont pas compatibles.
