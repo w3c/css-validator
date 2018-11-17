@@ -93,7 +93,7 @@ public class CssURL extends CssValue {
         if (!urlHeading.startsWith("url"))
             throw new InvalidParamException("url", s, ac);
         // special case for data url...
-        if (urlname.startsWith("data:")) {
+        if (urlname.contains("data:")) {
             // no more processing.
             value = checkDataURL(urlname);
             return;
