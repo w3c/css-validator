@@ -88,14 +88,13 @@ public class CssURL extends CssValue {
         String urlname = s.substring(4, s.length() - 1).trim();
         this.base = base;
 
-        value = urlname;
+        value = filterURLData(urlname);
         full = null;
         if (!urlHeading.startsWith("url"))
             throw new InvalidParamException("url", s, ac);
         // special case for data url...
         if (urlname.contains("data:")) {
             // no more processing.
-            value = checkDataURL(urlname);
             return;
         }
         // now add the URL to the list of seen URLs in the context
@@ -107,7 +106,7 @@ public class CssURL extends CssValue {
         }
     }
 
-    private String checkDataURL(String source) {
+    private String filterURLData(String source) {
         StringBuilder sb = new StringBuilder();
         // here we just escape < and >, we might do more validation
         // like base64 encoding checks, when necessary
