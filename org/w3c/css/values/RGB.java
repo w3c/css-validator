@@ -1,16 +1,9 @@
-/*
- * Copyright (c) 2001 World Wide Web Consortium,
- * (Massachusetts Institute of Technology, Institut National de
- * Recherche en Informatique et en Automatique, Keio University). All
- * Rights Reserved. This program is distributed under the W3C's Software
- * Intellectual Property License. This program is distributed in the
- * hope that it will be useful, but WITHOUT ANY WARRANTY; without even
- * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- * PURPOSE.
- * See W3C License http://www.w3.org/Consortium/Legal/ for more details.
- *
- * $Id$
- */
+//
+// Rewritten in 2018: Yves Lafon <ylafon@w3.org>
+//
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University 2001-2018.
+// Please first read the full copyright statement in file COPYRIGHT.html
+//
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
@@ -56,13 +49,12 @@ public class RGB {
                     nb.setIntValue(0);
                     nv = nb;
                 }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssNumber nb = new CssNumber();
-                        nb.setIntValue(100);
-                        nv = nb;
+                        CssPercentage np = new CssPercentage(100);
+                        nv = np;
                     }
                 }
             }
@@ -101,13 +93,12 @@ public class RGB {
                     nb.setIntValue(0);
                     nv = nb;
                 }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssNumber nb = new CssNumber();
-                        nb.setIntValue(100);
-                        nv = nb;
+                        CssPercentage np = new CssPercentage(100);
+                        nv = np;
                     }
                 }
             }
@@ -147,13 +138,12 @@ public class RGB {
                     nb.setIntValue(0);
                     nv = nb;
                 }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssNumber nb = new CssNumber();
-                        nb.setIntValue(100);
-                        nv = nb;
+                        CssPercentage np = new CssPercentage(100);
+                        nv = np;
                     }
                 }
             }
@@ -174,7 +164,6 @@ public class RGB {
     public final void setPercent(boolean percent) {
         this.percent = percent;
     }
-
 
     /**
      * Create a new RGB
@@ -218,15 +207,9 @@ public class RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder(functionname).append('(');
-            if (isPercent()) {
-                sb.append(vr).append("%, ");
-                sb.append(vg).append("%, ");
-                sb.append(vb).append("%)");
-            } else {
-                sb.append(vr).append(", ");
-                sb.append(vg).append(", ");
-                sb.append(vb).append(')');
-            }
+            sb.append(vr).append(", ");
+            sb.append(vg).append(", ");
+            sb.append(vb).append(')');
             output = sb.toString();
         }
         return output;
