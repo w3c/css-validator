@@ -42,11 +42,26 @@ public class RGBA extends RGB {
                 }
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     float p = ((CssNumber) val).getValue();
-                    if (p > 255.) {
+                    if (p > 1.) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         CssNumber nb = new CssNumber();
-                        nb.setIntValue(255);
+                        nb.setIntValue(1);
                         nv = nb;
+                    }
+                }
+            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                // This starts with CSS Color 4
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        nv = new CssPercentage(100);
                     }
                 }
             }
