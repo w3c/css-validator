@@ -18,9 +18,8 @@ public class RGB {
 
     CssValue vr, vg, vb;
 
-    public final void setRed(ApplContext ac, CssValue val)
+    public final CssValue filterValue(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        CssValue nv = val;
         output = null;
         if (val.getRawType() == CssTypes.CSS_CALC) {
             // TODO add warning about uncheckability
@@ -31,7 +30,7 @@ public class RGB {
                 if (!v.warnPositiveness(ac, "RGB")) {
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
-                    nv = nb;
+                    return nb;
                 }
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     float p = ((CssNumber) val).getValue();
@@ -39,7 +38,7 @@ public class RGB {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(255);
-                        nv = nb;
+                        return nb;
                     }
                 }
             } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
@@ -47,108 +46,34 @@ public class RGB {
                 if (!v.warnPositiveness(ac, "RGB")) {
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
-                    nv = nb;
+                    return nb;
                 }
                 if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
                     float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssPercentage np = new CssPercentage(100);
-                        nv = np;
+                        return new CssPercentage(100);
                     }
                 }
             }
         }
-        vr = nv;
+        return val;
+    }
+
+    public final void setRed(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        vr = filterValue(ac, val);
     }
 
     public final void setGreen(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        CssValue nv = val;
-        output = null;
-        if (val.getRawType() == CssTypes.CSS_CALC) {
-            // TODO add warning about uncheckability
-            // might need to extend...
-        } else {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGB")) {
-                    CssNumber nb = new CssNumber();
-                    nb.setIntValue(0);
-                    nv = nb;
-                }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
-                    if (p > 255.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssNumber nb = new CssNumber();
-                        nb.setIntValue(255);
-                        nv = nb;
-                    }
-                }
-            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGB")) {
-                    CssNumber nb = new CssNumber();
-                    nb.setIntValue(0);
-                    nv = nb;
-                }
-                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
-                    float p = ((CssPercentage) val).floatValue();
-                    if (p > 100.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssPercentage np = new CssPercentage(100);
-                        nv = np;
-                    }
-                }
-            }
-        }
-        vg = nv;
+        vg = filterValue(ac, val);
     }
 
 
     public final void setBlue(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        CssValue nv = val;
-        output = null;
-        if (val.getRawType() == CssTypes.CSS_CALC) {
-            // TODO add warning about uncheckability
-            // might need to extend...
-        } else {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGB")) {
-                    CssNumber nb = new CssNumber();
-                    nb.setIntValue(0);
-                    nv = nb;
-                }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
-                    if (p > 255.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssNumber nb = new CssNumber();
-                        nb.setIntValue(255);
-                        nv = nb;
-                    }
-                }
-            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGB")) {
-                    CssNumber nb = new CssNumber();
-                    nb.setIntValue(0);
-                    nv = nb;
-                }
-                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
-                    float p = ((CssPercentage) val).floatValue();
-                    if (p > 100.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-                        CssPercentage np = new CssPercentage(100);
-                        nv = np;
-                    }
-                }
-            }
-        }
-        vb = nv;
+        vb = filterValue(ac, val);
     }
 
     /**
