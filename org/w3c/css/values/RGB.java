@@ -18,6 +18,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
 public class RGB {
+    static final String functionname = "rgb";
 
     private String output = null;
     private boolean percent = false;
@@ -45,6 +46,22 @@ public class RGB {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(255);
+                        nv = nb;
+                    }
+                }
+            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(100);
                         nv = nb;
                     }
                 }
@@ -77,6 +94,22 @@ public class RGB {
                         nv = nb;
                     }
                 }
+            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(100);
+                        nv = nb;
+                    }
+                }
             }
         }
         vg = nv;
@@ -104,6 +137,22 @@ public class RGB {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(255);
+                        nv = nb;
+                    }
+                }
+            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(100);
                         nv = nb;
                     }
                 }
@@ -168,7 +217,7 @@ public class RGB {
      */
     public String toString() {
         if (output == null) {
-            StringBuilder sb = new StringBuilder("rgb(");
+            StringBuilder sb = new StringBuilder(functionname).append('(');
             if (isPercent()) {
                 sb.append(vr).append("%, ");
                 sb.append(vg).append("%, ");
