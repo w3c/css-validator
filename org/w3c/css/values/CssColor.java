@@ -461,11 +461,15 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            rgba.setAlpha(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME rgba
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // starting with CSS Color 4, percentages are allowed
+            case CssTypes.CSS_PERCENTAGE:
+                rgba.setAlpha(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("rgb", val, ac); // FIXME rgba
         }
         exp.next();
         if (exp.getValue() != null) {
