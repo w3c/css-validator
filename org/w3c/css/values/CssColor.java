@@ -113,14 +113,12 @@ public class CssColor extends CssValue {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                CssNumber number = (CssNumber) val;
-                rgb.setRed(clippedIntValue(number.getInt(), ac));
                 rgb.setPercent(false);
+                rgb.setRed(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setRed(clippedPercentValue(percent.floatValue(), ac));
                 rgb.setPercent(true);
+                rgb.setRed(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -139,15 +137,13 @@ public class CssColor extends CssValue {
                 if (rgb.isPercent()) {
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgb.setGreen(clippedIntValue(number.getInt(), ac));
+                rgb.setGreen(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgb.isPercent()) {
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setGreen(clippedPercentValue(percent.floatValue(), ac));
+                rgb.setGreen(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -166,15 +162,13 @@ public class CssColor extends CssValue {
                 if (rgb.isPercent()) {
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgb.setBlue(clippedIntValue(number.getInt(), ac));
+                rgb.setBlue(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgb.isPercent()) {
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setBlue(clippedPercentValue(percent.floatValue(), ac));
+                rgb.setBlue(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -248,7 +242,8 @@ public class CssColor extends CssValue {
 
         color = null;
         rgb = new RGB(r, g, b);
-        rgb.output = s;
+        // we force the specific display of it
+        rgb.setRepresentationString(s);
     }
 
     protected boolean computeIdentColor(HashMap<String, Object> definitions,

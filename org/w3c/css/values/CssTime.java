@@ -192,8 +192,8 @@ public class CssTime extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the String value of the object it is defined in
      */
-    public void warnEqualsZero(ApplContext ac, String callername) {
-        warnEqualsZero(ac, new String[]{"time", callername});
+    public boolean warnEqualsZero(ApplContext ac, String callername) {
+        return warnEqualsZero(ac, new String[]{"time", callername});
     }
 
     public CssTime getTime() throws InvalidParamException {

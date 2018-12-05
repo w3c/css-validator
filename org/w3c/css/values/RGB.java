@@ -13,13 +13,104 @@
  */
 package org.w3c.css.values;
 
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Util;
+
 public class RGB {
 
-    String output = null;
-    int r, g, b;
-    float fr, fg, fb;
+    private String output = null;
+    private boolean percent = false;
 
-    boolean percent = false;
+    CssValue vr, vg, vb;
+
+    public final void setRed(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        CssValue nv = val;
+        output = null;
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 255.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(255);
+                        nv = nb;
+                    }
+                }
+            }
+        }
+        vr = nv;
+    }
+
+    public final void setGreen(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        CssValue nv = val;
+        output = null;
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 255.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(255);
+                        nv = nb;
+                    }
+                }
+            }
+        }
+        vg = nv;
+    }
+
+
+    public final void setBlue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        CssValue nv = val;
+        output = null;
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    nv = nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 255.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(255);
+                        nv = nb;
+                    }
+                }
+            }
+        }
+        vb = nv;
+    }
 
     /**
      * @return Returns the percent.
@@ -35,29 +126,6 @@ public class RGB {
         this.percent = percent;
     }
 
-    public final void setRed(int r) {
-        this.r = r;
-    }
-
-    public final void setRed(float fr) {
-        this.fr = fr;
-    }
-
-    public final void setGreen(int g) {
-        this.g = g;
-    }
-
-    public final void setGreen(float fg) {
-        this.fg = fg;
-    }
-
-    public final void setBlue(int b) {
-        this.b = b;
-    }
-
-    public final void setBlue(float fb) {
-        this.fb = fb;
-    }
 
     /**
      * Create a new RGB
@@ -73,35 +141,26 @@ public class RGB {
      * @param b the blue channel, an <EM>int</EM>
      */
     public RGB(int r, int g, int b) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-    }
-
-    public RGB(float fr, float fg, float fb) {
-        this.fr = fr;
-        this.fg = fg;
-        this.fb = fb;
-        percent = true;
+        CssNumber n = new CssNumber();
+        n.setIntValue(r);
+        vr = n;
+        n = new CssNumber();
+        n.setIntValue(g);
+        vg = n;
+        n = new CssNumber();
+        n.setIntValue(b);
+        vb = n;
     }
 
     public boolean equals(RGB other) {
         if (other != null) {
-            if (percent) {
-                if (other.percent) {
-                    return ((fr == other.fr) &&
-                            (fg == other.fg) &&
-                            (fb == other.fb));
-                }
-            } else {
-                if (!other.percent) {
-                    return ((r == other.r) &&
-                            (g == other.g) &&
-                            (b == other.b));
-                }
-            }
+            return (vr.equals(other.vr) && vg.equals(other.vg) && vb.equals(other.vb));
         }
         return false;
+    }
+
+    protected void setRepresentationString(String s) {
+        output = s;
     }
 
     /**
@@ -111,13 +170,13 @@ public class RGB {
         if (output == null) {
             StringBuilder sb = new StringBuilder("rgb(");
             if (isPercent()) {
-                sb.append(fr).append("%, ");
-                sb.append(fg).append("%, ");
-                sb.append(fb).append("%)");
+                sb.append(vr).append("%, ");
+                sb.append(vg).append("%, ");
+                sb.append(vb).append("%)");
             } else {
-                sb.append(r).append(", ");
-                sb.append(g).append(", ");
-                sb.append(b).append(')');
+                sb.append(vr).append(", ");
+                sb.append(vg).append(", ");
+                sb.append(vb).append(')');
             }
             output = sb.toString();
         }
