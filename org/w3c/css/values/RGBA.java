@@ -101,16 +101,9 @@ public class RGBA extends RGB {
         if (output == null) {
             StringBuilder sb = new StringBuilder();
             sb.append(fname).append('(');
-            if (isPercent()) {
-                sb.append(vr).append("%, ");
-                sb.append(vg).append("%, ");
-                sb.append(vb).append("%, ");
-            } else {
-                sb.append(vr).append(", ");
-                sb.append(vg).append(", ");
-                sb.append(vb).append(", ");
-
-            }
+            sb.append(vr).append(", ");
+            sb.append(vg).append(", ");
+            sb.append(vb).append(", ");
             sb.append(va).append(')');
             output = sb.toString();
         }
