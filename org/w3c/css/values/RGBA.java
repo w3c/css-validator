@@ -15,7 +15,6 @@ package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 
 public class RGBA extends RGB {
     static final String functionname = "rgba";
@@ -35,7 +34,8 @@ public class RGBA extends RGB {
         } else {
             if (val.getType() == CssTypes.CSS_NUMBER) {
                 CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGBA")) {
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
                     nv = nb;
@@ -43,7 +43,7 @@ public class RGBA extends RGB {
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     float p = ((CssNumber) val).getValue();
                     if (p > 1.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        ac.getFrame().addWarning("out-of-range", val.toString());
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(1);
                         nv = nb;
@@ -52,7 +52,8 @@ public class RGBA extends RGB {
             } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
                 // This starts with CSS Color 4
                 CssCheckableValue v = val.getCheckableValue();
-                if (!v.warnPositiveness(ac, "RGB")) {
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
                     nv = nb;
@@ -60,7 +61,7 @@ public class RGBA extends RGB {
                 if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
                     float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
-                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        ac.getFrame().addWarning("out-of-range", val.toString());
                         nv = new CssPercentage(100);
                     }
                 }
