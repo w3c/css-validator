@@ -16,6 +16,8 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
+import java.math.BigDecimal;
+
 public class RGBA extends RGB {
     static final String functionname = "rgba";
 
@@ -24,10 +26,8 @@ public class RGBA extends RGB {
 
     CssValue va;
 
-    public final void setAlpha(ApplContext ac, CssValue val)
+    public static final CssValue filterAlpha(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        CssValue nv = val;
-        output = null;
         if (val.getRawType() == CssTypes.CSS_CALC) {
             // TODO add warning about uncheckability
             // might need to extend...
@@ -38,15 +38,15 @@ public class RGBA extends RGB {
                     ac.getFrame().addWarning("out-of-range", val.toString());
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
-                    nv = nb;
+                    return nb;
                 }
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    float p = ((CssNumber) val).getValue();
-                    if (p > 1.) {
+                    BigDecimal pp = ((CssNumber) val).value;
+                    if (pp.compareTo(BigDecimal.ONE) >= 0) {
                         ac.getFrame().addWarning("out-of-range", val.toString());
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(1);
-                        nv = nb;
+                        return nb;
                     }
                 }
             } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
@@ -56,20 +56,25 @@ public class RGBA extends RGB {
                     ac.getFrame().addWarning("out-of-range", val.toString());
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
-                    nv = nb;
+                    return nb;
                 }
                 if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
                     float p = ((CssPercentage) val).floatValue();
                     if (p > 100.) {
                         ac.getFrame().addWarning("out-of-range", val.toString());
-                        nv = new CssPercentage(100);
+                        return new CssPercentage(100);
                     }
                 }
             }
         }
-        va = nv;
+        return val;
     }
 
+    public final void setAlpha(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        va = filterAlpha(ac, val);
+    }
 
     public boolean equals(RGBA other) {
         if (other != null) {

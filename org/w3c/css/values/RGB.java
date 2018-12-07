@@ -18,9 +18,8 @@ public class RGB {
 
     CssValue vr, vg, vb;
 
-    public final CssValue filterValue(ApplContext ac, CssValue val)
+    public static final CssValue filterValue(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        output = null;
         if (val.getRawType() == CssTypes.CSS_CALC) {
             // TODO add warning about uncheckability
             // might need to extend...
@@ -62,17 +61,20 @@ public class RGB {
 
     public final void setRed(ApplContext ac, CssValue val)
             throws InvalidParamException {
+        output = null;
         vr = filterValue(ac, val);
     }
 
     public final void setGreen(ApplContext ac, CssValue val)
             throws InvalidParamException {
+        output = null;
         vg = filterValue(ac, val);
     }
 
 
     public final void setBlue(ApplContext ac, CssValue val)
             throws InvalidParamException {
+        output = null;
         vb = filterValue(ac, val);
     }
 
