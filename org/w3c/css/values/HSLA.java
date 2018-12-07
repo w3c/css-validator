@@ -13,51 +13,22 @@
  */
 package org.w3c.css.values;
 
-import org.w3c.css.util.Util;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
-public class HSLA {
-    String output = null;
-    float fh;
-    float fs;
-    float fl;
-    float fa;
+public class HSLA extends HSL {
+    CssValue va;
 
     /**
-     * Create a new HSL
+     * Create a new HSLA
      */
     public HSLA() {
     }
 
-    public void setHue(float hue) {
-        this.fh = (float) ((((double) hue % 360.0) + 360.0) % 360.0);
-    }
-
-    public void setHue(CssNumber hue) {
-        setHue(hue.getValue());
-    }
-
-    public void setSaturation(float sat) {
-        this.fs = sat;
-    }
-
-    public void setSaturation(CssNumber sat) {
-        setSaturation(sat.getValue());
-    }
-
-    public void setLightness(float light) {
-        this.fl = light;
-    }
-
-    public void setLightness(CssNumber light) {
-        setLightness(light.getValue());
-    }
-
-    public void setAlpha(float alpha) {
-        this.fa = alpha;
-    }
-
-    public void setAlpha(CssNumber alpha) {
-        setAlpha(alpha.getValue());
+    public void setAlpha(ApplContext ac, CssValue alpha)
+            throws InvalidParamException {
+        output = null;
+        va = RGBA.filterAlpha(ac, alpha);
     }
 
     /**
@@ -65,13 +36,14 @@ public class HSLA {
      */
     public String toString() {
         if (output == null) {
-            StringBuilder sb = new StringBuilder("hsla(");
-            sb.append(Util.displayFloat(fh)).append(", ");
-            sb.append(Util.displayFloat(fs)).append("%, ");
-            sb.append(Util.displayFloat(fl)).append("%, ");
-            sb.append(Util.displayFloat(fa)).append(')');
+            StringBuilder sb = new StringBuilder("hsl(");
+            sb.append(vh).append(", ");
+            sb.append(vs).append(", ");
+            sb.append(vl).append(", ");
+            sb.append(va).append(")");
             output = sb.toString();
         }
         return output;
+
     }
 }

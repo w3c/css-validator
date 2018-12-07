@@ -499,7 +499,7 @@ public class CssColor extends CssValue {
         switch (val.getType()) {
             case CssTypes.CSS_ANGLE:
             case CssTypes.CSS_NUMBER:
-               hsl.setHue(ac, val);
+                hsl.setHue(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -564,11 +564,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsla.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hsla.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
         }
 
         // S
@@ -580,8 +582,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsla.setSaturation(clippedPercentValue(percent.floatValue(), ac));
+            hsla.setSaturation(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -596,8 +597,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsla.setLightness(clippedPercentValue(percent.floatValue(), ac));
+            hsla.setLightness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -610,12 +610,15 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsla.setAlpha(clippedAlphaValue(number.getValue(), ac));
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // starting with CSS Color 4
+            case CssTypes.CSS_PERCENTAGE:
+                hsla.setAlpha(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("rgb", val, ac); // FIXME rgba
         }
         // extra values?
         exp.next();
