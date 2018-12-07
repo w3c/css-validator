@@ -42,7 +42,7 @@ public class RGBA extends RGB {
                 }
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     BigDecimal pp = ((CssNumber) val).value;
-                    if (pp.compareTo(BigDecimal.ONE) >= 0) {
+                    if (pp.compareTo(BigDecimal.ONE) > 0) {
                         ac.getFrame().addWarning("out-of-range", val.toString());
                         CssNumber nb = new CssNumber();
                         nb.setIntValue(1);
