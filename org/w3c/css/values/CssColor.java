@@ -463,7 +463,7 @@ public class CssColor extends CssValue {
         }
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                // starting with CSS Color 4, percentages are allowed
+                // starting with CSS Color 4
             case CssTypes.CSS_PERCENTAGE:
                 rgba.setAlpha(ac, val);
                 break;
@@ -496,11 +496,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsl.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+               hsl.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
         }
 
         // S
@@ -511,9 +513,9 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
+        // todo is (0 number) allowed ?
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsl.setSaturation(clippedPercentValue(percent.floatValue(), ac));
+            hsl.setSaturation(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -529,8 +531,7 @@ public class CssColor extends CssValue {
         }
 
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsl.setLightness(clippedPercentValue(percent.floatValue(), ac));
+            hsl.setLightness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl

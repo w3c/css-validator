@@ -37,7 +37,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
         return type;
     }
 
-    private static final BigDecimal deg360;
+    protected static final BigDecimal deg360;
 
     static {
         deg360 = BigDecimal.valueOf(360);
@@ -165,12 +165,21 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
                 unit.equals(((CssAngle) value).unit));
     }
 
-    private BigDecimal normalize(BigDecimal degree) {
+    private BigDecimal normalize(BigDecimal value) {
+        BigDecimal degree = value.multiply(factor);
+        if ((degree.compareTo(BigDecimal.ZERO) >= 0) && (degree.compareTo(deg360) <= 0)) {
+            // no need to normalize
+            return value;
+        }
         degree = degree.remainder(deg360);
         if (degree.compareTo(BigDecimal.ZERO) < 0) {
             degree.add(deg360);
         }
-        return degree;
+        return degree.divide(factor, 9, BigDecimal.ROUND_HALF_DOWN).stripTrailingZeros();
+    }
+
+    public void normalizeValue() {
+        value = normalize(value);
     }
 
     public CssAngle getAngle() {
@@ -180,7 +189,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
     //@@FIXME I should return the remainder for all ...
 
     public float getDegree() {
-        return normalize(value.multiply(factor)).floatValue();
+        return normalize(value).floatValue();
     }
 
     /**
@@ -189,7 +198,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
      * @return a boolean
      */
     public boolean isPositive() {
-        return (normalize(value).signum() >= 0);
+        return (value.signum() >= 0);
     }
 
     /**
@@ -198,7 +207,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
      * @return a boolean
      */
     public boolean isStrictlyPositive() {
-        return (normalize(value).signum() == 1);
+        return (value.signum() == 1);
     }
 
     /**

@@ -13,13 +13,15 @@
  */
 package org.w3c.css.values;
 
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
+
+import java.math.BigDecimal;
 
 public class HSL {
     String output = null;
-    float fh;
-    float fs;
-    float fl;
+    CssValue vh, vs, vl;
 
     /**
      * Create a new HSL
@@ -27,28 +29,90 @@ public class HSL {
     public HSL() {
     }
 
-    public void setHue(float hue) {
-        this.fh = (float) ((((double) hue % 360.0) + 360.0) % 360.0);
+    public final CssValue filterValue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.warnPositiveness(ac, "RGB")) {
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    return nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        return new CssPercentage(100);
+                    }
+                }
+            }
+        }
+        return val;
     }
 
-    public void setHue(CssNumber hue) {
-        setHue(hue.getValue());
+    public final void setHue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                // numbers are treated as degrees
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
+                    if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                        float p = ((CssNumber) val).getValue();
+                        CssNumber nb = new CssNumber();
+                        nb.setFloatValue((float) ((((double) p % 360.0) + 360.0) % 360.0));
+                        vh = nb;
+                        return;
+                    }
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    float p = ((CssNumber) val).getValue();
+                    if (p > 360.) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                        CssNumber nb = new CssNumber();
+                        nb.setFloatValue((float) ((((double) p % 360.0) + 360.0) % 360.0));
+                        vh = nb;
+                        return;
+                    }
+                }
+            } else if (val.getType() == CssTypes.CSS_ANGLE) {
+                // since css-color-4
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
+                }
+                if (val.getRawType() == CssTypes.CSS_ANGLE) {
+                    CssAngle a = (CssAngle) val;
+                    float p = a.getValue();
+                    if (p > a.deg360.divide(a.factor, 2, BigDecimal.ROUND_HALF_DOWN).floatValue()) {
+                        ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
+                    }
+                    // if a proper angle we normalize it after checking everything.
+                    a.normalizeValue();
+                }
+            }
+        }
+        vh = val;
     }
 
-    public void setSaturation(float sat) {
-        this.fs = sat;
+    public final void setSaturation(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        vs = filterValue(ac, val);
     }
 
-    public void setSaturation(CssNumber sat) {
-        setSaturation(sat.getValue());
-    }
-
-    public void setLightness(float light) {
-        this.fl = light;
-    }
-
-    public void setLightness(CssNumber light) {
-        setLightness(light.getValue());
+    public final void setLightness(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        vl = filterValue(ac, val);
     }
 
     /**
@@ -57,9 +121,9 @@ public class HSL {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder("hsl(");
-            sb.append(Util.displayFloat(fh)).append(", ");
-            sb.append(Util.displayFloat(fs)).append("%, ");
-            sb.append(Util.displayFloat(fl)).append("%)");
+            sb.append(vh).append(", ");
+            sb.append(vs).append(", ");
+            sb.append(vl).append(")");
             output = sb.toString();
         }
         return output;
