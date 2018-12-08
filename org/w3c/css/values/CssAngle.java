@@ -189,7 +189,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
     //@@FIXME I should return the remainder for all ...
 
     public float getDegree() {
-        return normalize(value).floatValue();
+        return normalize(value).multiply(factor).floatValue();
     }
 
     /**
