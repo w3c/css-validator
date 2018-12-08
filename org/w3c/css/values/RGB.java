@@ -7,6 +7,7 @@
 package org.w3c.css.values;
 
 import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
@@ -25,7 +26,14 @@ public class RGB {
             // might need to extend...
         } else {
             if (val.getType() == CssTypes.CSS_NUMBER) {
+                boolean isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
                 CssCheckableValue v = val.getCheckableValue();
+                // in CSS2, numbers can only be integers
+                if (!isCss3) {
+                    if (!v.isInteger()) {
+                        throw new InvalidParamException("rgb", val, ac);
+                    }
+                }
                 if (!v.warnPositiveness(ac, "RGB")) {
                     CssNumber nb = new CssNumber();
                     nb.setIntValue(0);
