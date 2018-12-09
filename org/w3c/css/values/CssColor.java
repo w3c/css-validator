@@ -647,11 +647,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hwb.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hwb.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
         }
 
         // W
@@ -663,13 +665,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            if (percent.floatValue() <= 100f && percent.getValue().signum() >= 0) {
-                hwb.setWhiteness(percent.floatValue());
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
-            }
+            hwb.setWhiteness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hwb
@@ -684,29 +680,25 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            if (percent.floatValue() <= 100f && percent.getValue().signum() >= 0) {
-                hwb.setBlackness(percent.floatValue());
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
-            }
+            hwb.setBlackness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hwb
         }
-        hwb.normalizeHW();
+        hwb.normalize();
 
         // A
         exp.next();
         val = exp.getValue();
         if (val != null) {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssNumber number = (CssNumber) val;
-                hwb.setAlpha(clippedAlphaValue(number.getValue(), ac));
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    hwb.setAlpha(ac, val);
+                    break;
+                default:
+                    exp.starts();
+                    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
             }
         }
         // extra values?

@@ -29,9 +29,8 @@ public class HSL {
     public HSL() {
     }
 
-    public final CssValue filterValue(ApplContext ac, CssValue val)
+    public static final CssValue filterValue(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        output = null;
         if (val.getRawType() == CssTypes.CSS_CALC) {
             // TODO add warning about uncheckability
             // might need to extend...
@@ -55,9 +54,8 @@ public class HSL {
         return val;
     }
 
-    public final void setHue(ApplContext ac, CssValue val)
+    public final static CssValue filterHue(ApplContext ac, CssValue val)
             throws InvalidParamException {
-        output = null;
         if (val.getRawType() == CssTypes.CSS_CALC) {
             // TODO add warning about uncheckability
             // might need to extend...
@@ -71,8 +69,7 @@ public class HSL {
                         float p = ((CssNumber) val).getValue();
                         CssNumber nb = new CssNumber();
                         nb.setFloatValue((float) ((((double) p % 360.0) + 360.0) % 360.0));
-                        vh = nb;
-                        return;
+                        return nb;
                     }
                 }
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
@@ -81,8 +78,7 @@ public class HSL {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                         CssNumber nb = new CssNumber();
                         nb.setFloatValue((float) ((((double) p % 360.0) + 360.0) % 360.0));
-                        vh = nb;
-                        return;
+                        return nb;
                     }
                 }
             } else if (val.getType() == CssTypes.CSS_ANGLE) {
@@ -102,16 +98,25 @@ public class HSL {
                 }
             }
         }
-        vh = val;
+        return val;
+    }
+
+    public final void setHue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        vh = filterHue(ac, val);
+
     }
 
     public final void setSaturation(ApplContext ac, CssValue val)
             throws InvalidParamException {
+        output = null;
         vs = filterValue(ac, val);
     }
 
     public final void setLightness(ApplContext ac, CssValue val)
             throws InvalidParamException {
+        output = null;
         vl = filterValue(ac, val);
     }
 

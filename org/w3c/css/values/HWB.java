@@ -13,15 +13,18 @@
  */
 package org.w3c.css.values;
 
-import org.w3c.css.util.Util;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
+
+import java.math.BigDecimal;
 
 public class HWB {
     String output = null;
-    float fh;
-    float fw = 100.f;
-    float fb = 100.f;
-    float fa = 100.f;
     boolean faSet = false;
+
+    CssValue vh, vw, vb, va;
+
+    static final BigDecimal s100 = new BigDecimal(100);
 
     /**
      * Create a new HWB
@@ -29,44 +32,72 @@ public class HWB {
     public HWB() {
     }
 
-    public void setHue(float hue) {
-        this.fh = (float) ((((double) hue % 360.0) + 360.0) % 360.0);
-    }
 
-    public void setHue(CssNumber hue) {
-        setHue(hue.getValue());
-    }
-
-    public void setWhiteness(float sat) {
-        this.fw = sat;
-    }
-
-    public void setWhiteness(CssNumber sat) {
-        setWhiteness(sat.getValue());
-    }
-
-    public void setBlackness(float light) {
-        this.fb = light;
-    }
-
-    public void setBlackness(CssNumber light) {
-        setBlackness(light.getValue());
-    }
-
-    public void setAlpha(float alpha) {
-        this.fa = alpha;
-        this.faSet = true;
-    }
-
-    public void setAlpha(CssNumber alpha) {
-        setAlpha(alpha.getValue());
-    }
-
-    public void normalizeHW() {
-        if (fw + fb > 100.f) {
-
+    public static final CssValue filterValue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                CssCheckableValue v = val.getCheckableValue();
+                v.checkPositiveness(ac, "RGB");
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
+                    if (p > 100.) {
+                        throw new InvalidParamException("range", val, ac);
+                    }
+                }
+            }
         }
+        return val;
+    }
 
+    public final void setHue(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        vh = HSL.filterHue(ac, val);
+    }
+
+    public final void setWhiteness(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        vw = filterValue(ac, val);
+    }
+
+    public final void setBlackness(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        vb = filterValue(ac, val);
+    }
+
+    public final void setAlpha(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        faSet = true;
+        vb = RGBA.filterAlpha(ac, val);
+    }
+
+    public void normalize() {
+        if (vw == null || vb == null) {
+            return;
+        }
+        if (vw.getRawType() == CssTypes.CSS_PERCENTAGE &&
+                vb.getRawType() == CssTypes.CSS_PERCENTAGE) {
+            CssPercentage pw, pb;
+            BigDecimal w, b, s;
+            pw = (CssPercentage) vw;
+            pb = (CssPercentage) vb;
+            w = pw.getValue();
+            b = pb.getValue();
+            s = w.add(b);
+            if (s.compareTo(s100) != 0) {
+                w = w.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
+                b = b.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
+                pw.setValue(w);
+                pb.setValue(b);
+            }
+        }
     }
 
     /**
@@ -74,14 +105,15 @@ public class HWB {
      */
     public String toString() {
         if (output == null) {
+            normalize();
             StringBuilder sb = new StringBuilder("hwb(");
-            sb.append(Util.displayFloat(fh)).append(", ");
-            sb.append(Util.displayFloat(fw)).append("%, ");
-            sb.append(Util.displayFloat(fb));
+            sb.append(vh).append(", ");
+            sb.append(vw).append(", ");
+            sb.append(vb);
             if (faSet) {
-                sb.append("%)");
+                sb.append(")");
             } else {
-                sb.append("%, ").append(Util.displayFloat(fa)).append(')');
+                sb.append(", ").append(va).append(')');
             }
             output = sb.toString();
         }
