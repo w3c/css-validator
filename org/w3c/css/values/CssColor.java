@@ -631,7 +631,7 @@ public class CssColor extends CssValue {
     public void setHWBColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS) < 0) {
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
             StringBuilder sb = new StringBuilder();
             sb.append("hwb(").append(exp.toStringFromStart()).append(')');
             throw new InvalidParamException("notversion", sb.toString(),
@@ -675,7 +675,7 @@ public class CssColor extends CssValue {
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || op != COMMA) {
+        if (val == null || (op != COMMA && exp.getRemainingCount() > 1)) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }

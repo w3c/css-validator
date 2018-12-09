@@ -75,7 +75,7 @@ public class HWB {
             throws InvalidParamException {
         output = null;
         faSet = true;
-        vb = RGBA.filterAlpha(ac, val);
+        va = RGBA.filterAlpha(ac, val);
     }
 
     public void normalize() {
@@ -110,7 +110,7 @@ public class HWB {
             sb.append(vh).append(", ");
             sb.append(vw).append(", ");
             sb.append(vb);
-            if (faSet) {
+            if (!faSet) {
                 sb.append(")");
             } else {
                 sb.append(", ").append(va).append(')');
