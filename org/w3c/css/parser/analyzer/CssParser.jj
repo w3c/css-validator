@@ -3048,6 +3048,9 @@ CssValue function() :
 	} else if (funcname.equals("hsla(")) {
 	    color.setHSLAColor(exp, ac);
 	    return color;
+        } else if (funcname.equals("hwb(")) {
+            color.setHWBColor(exp, ac);
+            return color;
 	} else if (funcname.equals("image(")) {
 	    CssImage img = new CssImage();
 	    img.setImageList(exp, ac);
