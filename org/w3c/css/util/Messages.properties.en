@@ -257,7 +257,7 @@ error.degree: Position must be described in terms of degrees.
 error.elevation.range: Specifies the elevation as an angle, between \u201C-90deg\u201D and \u201C90deg'.
 
 # used by org.w3c.css.aural.ACssPitchRange
-error.range: The value is out of range.This value must be between \u201C0\u201D and \u201C100'.
+error.range: The value is out of range.This value must be between \u201C0\u201D and \u201C100\u201D'.
 
 # used by org.w3c.css.properties.CssTextShadow
 error.two-lengths: A shadow offset is specified with two <length> values (A blur radius may optionally be specified after the shadow offset.)
