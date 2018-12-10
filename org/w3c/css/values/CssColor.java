@@ -113,14 +113,12 @@ public class CssColor extends CssValue {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                CssNumber number = (CssNumber) val;
-                rgb.setRed(clippedIntValue(number.getInt(), ac));
                 rgb.setPercent(false);
+                rgb.setRed(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setRed(clippedPercentValue(percent.floatValue(), ac));
                 rgb.setPercent(true);
+                rgb.setRed(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -139,15 +137,13 @@ public class CssColor extends CssValue {
                 if (rgb.isPercent()) {
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgb.setGreen(clippedIntValue(number.getInt(), ac));
+                rgb.setGreen(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgb.isPercent()) {
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setGreen(clippedPercentValue(percent.floatValue(), ac));
+                rgb.setGreen(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -166,15 +162,13 @@ public class CssColor extends CssValue {
                 if (rgb.isPercent()) {
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgb.setBlue(clippedIntValue(number.getInt(), ac));
+                rgb.setBlue(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgb.isPercent()) {
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgb.setBlue(clippedPercentValue(percent.floatValue(), ac));
+                rgb.setBlue(ac, val);
                 break;
             default:
                 throw new InvalidParamException("rgb", val, ac);
@@ -248,7 +242,8 @@ public class CssColor extends CssValue {
 
         color = null;
         rgb = new RGB(r, g, b);
-        rgb.output = s;
+        // we force the specific display of it
+        rgb.setRepresentationString(s);
     }
 
     protected boolean computeIdentColor(HashMap<String, Object> definitions,
@@ -395,13 +390,11 @@ public class CssColor extends CssValue {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                CssNumber number = (CssNumber) val;
-                rgba.setRed(clippedIntValue(number.getInt(), ac));
+                rgba.setRed(ac, val);
                 rgba.setPercent(false);
                 break;
             case CssTypes.CSS_PERCENTAGE:
-                CssPercentage percent = (CssPercentage) val;
-                rgba.setRed(clippedPercentValue(percent.floatValue(), ac));
+                rgba.setRed(ac, val);
                 rgba.setPercent(true);
                 break;
             default:
@@ -421,16 +414,14 @@ public class CssColor extends CssValue {
                     exp.starts();
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgba.setGreen(clippedIntValue(number.getInt(), ac));
+                rgba.setGreen(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgba.isPercent()) {
                     exp.starts();
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgba.setGreen(clippedPercentValue(percent.floatValue(), ac));
+                rgba.setGreen(ac, val);
                 break;
             default:
                 exp.starts();
@@ -451,16 +442,14 @@ public class CssColor extends CssValue {
                     exp.starts();
                     throw new InvalidParamException("percent", val, ac);
                 }
-                CssNumber number = (CssNumber) val;
-                rgba.setBlue(clippedIntValue(number.getInt(), ac));
+                rgba.setBlue(ac, val);
                 break;
             case CssTypes.CSS_PERCENTAGE:
                 if (!rgba.isPercent()) {
                     exp.starts();
                     throw new InvalidParamException("integer", val, ac);
                 }
-                CssPercentage percent = (CssPercentage) val;
-                rgba.setBlue(clippedPercentValue(percent.floatValue(), ac));
+                rgba.setBlue(ac, val);
                 break;
             default:
                 exp.starts();
@@ -472,12 +461,15 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            rgba.setAlpha(clippedAlphaValue(number.getValue(), ac));
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME rgba
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // starting with CSS Color 4
+            case CssTypes.CSS_PERCENTAGE:
+                rgba.setAlpha(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("rgb", val, ac); // FIXME rgba
         }
         exp.next();
         if (exp.getValue() != null) {
@@ -504,11 +496,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsl.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hsl.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
         }
 
         // S
@@ -519,9 +513,9 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
+        // todo is (0 number) allowed ?
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsl.setSaturation(clippedPercentValue(percent.floatValue(), ac));
+            hsl.setSaturation(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -537,8 +531,7 @@ public class CssColor extends CssValue {
         }
 
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsl.setLightness(clippedPercentValue(percent.floatValue(), ac));
+            hsl.setLightness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -571,11 +564,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsla.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hsla.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
         }
 
         // S
@@ -587,8 +582,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsla.setSaturation(clippedPercentValue(percent.floatValue(), ac));
+            hsla.setSaturation(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -603,8 +597,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            hsla.setLightness(clippedPercentValue(percent.floatValue(), ac));
+            hsla.setLightness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hsl
@@ -617,12 +610,15 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hsla.setAlpha(clippedAlphaValue(number.getValue(), ac));
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // starting with CSS Color 4
+            case CssTypes.CSS_PERCENTAGE:
+                hsla.setAlpha(ac, val);
+                break;
+            default:
+                exp.starts();
+                throw new InvalidParamException("rgb", val, ac); // FIXME rgba
         }
         // extra values?
         exp.next();
@@ -635,7 +631,7 @@ public class CssColor extends CssValue {
     public void setHWBColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
-        if (ac.getCssVersion().compareTo(CssVersion.CSS) < 0) {
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
             StringBuilder sb = new StringBuilder();
             sb.append("hwb(").append(exp.toStringFromStart()).append(')');
             throw new InvalidParamException("notversion", sb.toString(),
@@ -651,11 +647,13 @@ public class CssColor extends CssValue {
         if (val == null || op != COMMA) {
             throw new InvalidParamException("invalid-color", ac);
         }
-        if (val.getType() == CssTypes.CSS_NUMBER) {
-            CssNumber number = (CssNumber) val;
-            hwb.setHue(angleValue(number.getValue(), ac));
-        } else {
-            throw new InvalidParamException("rgb", val, ac); // FIXME hwb
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hwb.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
         }
 
         // W
@@ -667,13 +665,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            if (percent.floatValue() <= 100f && percent.getValue().signum() >= 0) {
-                hwb.setWhiteness(percent.floatValue());
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
-            }
+            hwb.setWhiteness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hwb
@@ -683,34 +675,30 @@ public class CssColor extends CssValue {
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || op != COMMA) {
+        if (val == null || (op != COMMA && exp.getRemainingCount() > 1)) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
         if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            CssPercentage percent = (CssPercentage) val;
-            if (percent.floatValue() <= 100f && percent.getValue().signum() >= 0) {
-                hwb.setBlackness(percent.floatValue());
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hwb
-            }
+            hwb.setBlackness(ac, val);
         } else {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME hwb
         }
-        hwb.normalizeHW();
+        hwb.normalize();
 
         // A
         exp.next();
         val = exp.getValue();
         if (val != null) {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssNumber number = (CssNumber) val;
-                hwb.setAlpha(clippedAlphaValue(number.getValue(), ac));
-            } else {
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    hwb.setAlpha(ac, val);
+                    break;
+                default:
+                    exp.starts();
+                    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
             }
         }
         // extra values?

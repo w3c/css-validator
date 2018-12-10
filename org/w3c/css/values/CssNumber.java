@@ -328,8 +328,8 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
      * @param ac         the validation context
      * @param callername the String value of the object it is defined in
      */
-    public void warnEqualsZero(ApplContext ac, String callername) {
-        warnEqualsZero(ac, new String[]{"unit", callername});
+    public boolean warnEqualsZero(ApplContext ac, String callername) {
+        return warnEqualsZero(ac, new String[]{"unit", callername});
     }
 
     /**

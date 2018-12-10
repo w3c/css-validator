@@ -356,11 +356,13 @@ public class CssCalc extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      */
-    public void warnPositiveness(ApplContext ac, String callername) {
+    public boolean warnPositiveness(ApplContext ac, String callername) {
         // TODO do our best...
         if (false/*!isPositive()*/) {
             ac.getFrame().addWarning("negative", toString());
+            return false;
         }
+        return true;
     }
 
     public CssLength getLength() throws InvalidParamException {
@@ -455,10 +457,12 @@ public class CssCalc extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      */
-    public void warnEqualsZero(ApplContext ac, String callername) {
+    public boolean warnEqualsZero(ApplContext ac, String callername) {
         // TODO should we do that only for CSS_NUMBER type?
         if (!isZero()) {
             ac.getFrame().addWarning("dynamic", toString());
+            return false;
         }
+        return true;
     }
 }

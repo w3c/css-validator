@@ -107,10 +107,12 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      */
-    public void warnPositiveness(ApplContext ac, String callername) {
+    public boolean warnPositiveness(ApplContext ac, String callername) {
         if (!isPositive()) {
             ac.getFrame().addWarning("negative", new String[]{toString(), callername});
+            return false;
         }
+        return true;
     }
 
     /**
@@ -119,8 +121,8 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac       the validation context
      * @param property the property the value is defined in
      */
-    public void warnPositiveness(ApplContext ac, CssProperty property) {
-        warnPositiveness(ac, property.getPropertyName());
+    public boolean warnPositiveness(ApplContext ac, CssProperty property) {
+        return warnPositiveness(ac, property.getPropertyName());
     }
 
     /**
@@ -129,8 +131,8 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac           the validation context
      * @param mediafeature the property the value is defined in
      */
-    public void warnPositiveness(ApplContext ac, MediaFeature mediafeature) {
-        warnPositiveness(ac, mediafeature.getFeatureName());
+    public boolean warnPositiveness(ApplContext ac, MediaFeature mediafeature) {
+        return warnPositiveness(ac, mediafeature.getFeatureName());
     }
 
 
@@ -191,10 +193,12 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac       the validation context
      * @param messages an array of Strings
      */
-    public void warnEqualsZero(ApplContext ac, String[] messages) {
+    public boolean warnEqualsZero(ApplContext ac, String[] messages) {
         if (!isZero()) {
             ac.getFrame().addWarning("zero", messages);
+            return false;
         }
+        return true;
     }
 
     /**
@@ -203,8 +207,8 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac         the validation context
      * @param callername the String value of the object it is defined in
      */
-    public void warnEqualsZero(ApplContext ac, String callername) {
-        warnEqualsZero(ac, new String[]{callername});
+    public boolean warnEqualsZero(ApplContext ac, String callername) {
+        return warnEqualsZero(ac, new String[]{callername});
     }
 
     /**
@@ -213,8 +217,8 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac       the validation context
      * @param property the property the value is defined in
      */
-    public void warnEqualsZero(ApplContext ac, CssProperty property) {
-        warnEqualsZero(ac, property.getPropertyName());
+    public boolean warnEqualsZero(ApplContext ac, CssProperty property) {
+        return warnEqualsZero(ac, property.getPropertyName());
     }
 
     /**
@@ -223,8 +227,8 @@ public abstract class CssCheckableValue extends CssValue {
      * @param ac           the validation context
      * @param mediafeature the property the value is defined in
      */
-    public void warnEqualsZero(ApplContext ac, MediaFeature mediafeature) {
-        warnEqualsZero(ac, mediafeature.getFeatureName());
+    public boolean warnEqualsZero(ApplContext ac, MediaFeature mediafeature) {
+        return warnEqualsZero(ac, mediafeature.getFeatureName());
     }
 
     public boolean isInteger() {

@@ -13,80 +13,72 @@
  */
 package org.w3c.css.values;
 
-import org.w3c.css.util.Util;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 
-public class RGBA {
+import java.math.BigDecimal;
+
+public class RGBA extends RGB {
     static final String functionname = "rgba";
 
+    private String output = null;
     String fname;
-    String output = null;
-    int r, g, b;
-    float fr, fg, fb, a;
 
-    boolean percent = false;
+    CssValue va;
 
-    /**
-     * @return Returns the percent.
-     */
-    public boolean isPercent() {
-        return percent;
+    public static final CssValue filterAlpha(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        if (val.getRawType() == CssTypes.CSS_CALC) {
+            // TODO add warning about uncheckability
+            // might need to extend...
+        } else {
+            if (val.getType() == CssTypes.CSS_NUMBER) {
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    return nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                    BigDecimal pp = ((CssNumber) val).value;
+                    if (pp.compareTo(BigDecimal.ONE) > 0) {
+                        ac.getFrame().addWarning("out-of-range", val.toString());
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(1);
+                        return nb;
+                    }
+                }
+            } else if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+                // This starts with CSS Color 4
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    return nb;
+                }
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", val.toString());
+                        return new CssPercentage(100);
+                    }
+                }
+            }
+        }
+        return val;
     }
 
-    /**
-     * @param percent The percent to set.
-     */
-    public void setPercent(boolean percent) {
-        this.percent = percent;
-    }
-
-    public final void setRed(int r) {
-        this.r = r;
-        this.fr = r;
-    }
-
-    public final void setRed(float fr) {
-        this.fr = fr;
-    }
-
-    public final void setGreen(int g) {
-        this.g = g;
-        this.fg = g;
-    }
-
-    public final void setGreen(float fg) {
-        this.fg = fg;
-    }
-
-    public final void setBlue(int b) {
-        this.b = b;
-        this.fb = b;
-    }
-
-    public final void setBlue(float fb) {
-        this.fb = fb;
-    }
-
-    public final void setAlpha(float a) {
-        this.a = a;
+    public final void setAlpha(ApplContext ac, CssValue val)
+            throws InvalidParamException {
+        output = null;
+        va = filterAlpha(ac, val);
     }
 
     public boolean equals(RGBA other) {
         if (other != null) {
-            if (percent) {
-                if (other.percent) {
-                    return ((fr == other.fr) &&
-                            (fg == other.fg) &&
-                            (fb == other.fb) &&
-                            (a == other.a));
-                }
-            } else {
-                if (!other.percent) {
-                    return ((r == other.r) &&
-                            (g == other.g) &&
-                            (b == other.b) &&
-                            (a == other.a));
-                }
-            }
+            return super.equals(other) && va.equals(other.va);
         }
         return false;
     }
@@ -115,26 +107,11 @@ public class RGBA {
      * @param a the alpha channel
      */
     public RGBA(int r, int g, int b, float a) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
-        this.percent = false;
-    }
-
-    /**
-     * @param r the red channel
-     * @param g the green channel
-     * @param b the blue channel
-     * @param a the alpha channel
-     *          Create a new RGBA with default values
-     */
-    public RGBA(float r, float g, float b, float a) {
-        this.fr = r;
-        this.fg = g;
-        this.fb = b;
-        this.a = a;
-        this.percent = true;
+        super(r, g, b);
+        CssNumber n = new CssNumber();
+        n.setFloatValue(a);
+        va = n;
+        setPercent(false);
     }
 
 
@@ -145,16 +122,10 @@ public class RGBA {
         if (output == null) {
             StringBuilder sb = new StringBuilder();
             sb.append(fname).append('(');
-            if (isPercent()) {
-                sb.append(Util.displayFloat(fr)).append("%, ");
-                sb.append(Util.displayFloat(fg)).append("%, ");
-                sb.append(Util.displayFloat(fb)).append("%, ");
-            } else {
-                sb.append(r).append(", ");
-                sb.append(g).append(", ");
-                sb.append(b).append(", ");
-            }
-            sb.append(Util.displayFloat(a)).append(')');
+            sb.append(vr).append(", ");
+            sb.append(vg).append(", ");
+            sb.append(vb).append(", ");
+            sb.append(va).append(')');
             output = sb.toString();
         }
         return output;
