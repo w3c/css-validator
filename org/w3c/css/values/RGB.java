@@ -16,6 +16,7 @@ public class RGB {
 
     private String output = null;
     private boolean percent = false;
+    boolean isCss3 = false;
 
     CssValue vr, vg, vb;
 
@@ -70,6 +71,7 @@ public class RGB {
     public final void setRed(ApplContext ac, CssValue val)
             throws InvalidParamException {
         output = null;
+        isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
         vr = filterValue(ac, val);
     }
 
@@ -142,9 +144,13 @@ public class RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder(functionname).append('(');
-            sb.append(vr).append(", ");
-            sb.append(vg).append(", ");
-            sb.append(vb).append(')');
+            if (isCss3) {
+                sb.append(vr).append(' ').append(vg).append(' ').append(vb).append(')');
+            } else {
+                sb.append(vr).append(", ");
+                sb.append(vg).append(", ");
+                sb.append(vb).append(')');
+            }
             output = sb.toString();
         }
         return output;

@@ -121,11 +121,19 @@ public class RGBA extends RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder();
-            sb.append(fname).append('(');
-            sb.append(vr).append(", ");
-            sb.append(vg).append(", ");
-            sb.append(vb).append(", ");
-            sb.append(va).append(')');
+            if (isCss3) {
+                sb.append(RGB.functionname).append('(');
+                sb.append(vr).append(' ');
+                sb.append(vg).append(' ');
+                sb.append(vb).append(" / ");
+                sb.append(va).append(')');
+            } else {
+                sb.append(fname).append('(');
+                sb.append(vr).append(", ");
+                sb.append(vg).append(", ");
+                sb.append(vb).append(", ");
+                sb.append(va).append(')');
+            }
             output = sb.toString();
         }
         return output;
