@@ -114,6 +114,20 @@ public class RGBA extends RGB {
         setPercent(false);
     }
 
+    /**
+     * Create a new RGBA with default values
+     *
+     * @param isCss3 a boolean toggling the output of RGB
+     * @param r      the red channel, an <EM>int</EM>
+     * @param g      the green channel, an <EM>int</EM>
+     * @param b      the blue channel, an <EM>int</EM>
+     * @param a      the alpha channel, an <EM>float</EM>
+     */
+    public RGBA(boolean isCss3, int r, int g, int b, float a) {
+        this(r, g, b, a);
+        this.isCss3 = isCss3;
+    }
+
 
     /**
      * Returns a string representation of the object.

@@ -127,6 +127,19 @@ public class RGB {
         vb = n;
     }
 
+    /**
+     * Create a new RGB with default values
+     *
+     * @param isCss3 a boolean toggling the output of RGB
+     * @param r the red channel, an <EM>int</EM>
+     * @param g the green channel, an <EM>int</EM>
+     * @param b the blue channel, an <EM>int</EM>
+     */
+    public RGB(boolean isCss3, int r, int g, int b) {
+        this(r, g, b);
+        this.isCss3 = isCss3;
+    }
+
     public boolean equals(RGB other) {
         if (other != null) {
             return (vr.equals(other.vr) && vg.equals(other.vg) && vb.equals(other.vb));
