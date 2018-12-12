@@ -138,9 +138,11 @@ public class RGBA extends RGB {
             if (isCss3) {
                 sb.append(RGB.functionname).append('(');
                 sb.append(vr).append(' ');
-                sb.append(vg).append(' ');
-                sb.append(vb).append(" / ");
-                sb.append(va).append(')');
+                sb.append(vg).append(' ').append(vb);
+                if (va != null) {
+                    sb.append(" / ").append(va);
+                }
+                sb.append(')');
             } else {
                 sb.append(fname).append('(');
                 sb.append(vr).append(", ");
