@@ -273,33 +273,48 @@ public class CssColor extends CssValue {
         }
         exp.next();
 
+        // check for optional alpha channel
         if (!exp.end()) {
-            if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            // now we need an alpha.
-            val = exp.getValue();
-            op = exp.getOperator();
+            // care for old syntax
+            if (op == COMMA && !separator_space) {
+                val = exp.getValue();
+                switch (val.getType()) {
+                    case CssTypes.CSS_NUMBER:
+                    case CssTypes.CSS_PERCENTAGE:
+                        rgba.setAlpha(ac, val);
+                        break;
+                    default:
+                        throw new InvalidParamException("rgb", val, ac);
+                }
+            } else {
+                // otherwise modern syntax
+                if (op != SPACE) {
+                    throw new InvalidParamException("invalid-color", ac);
+                }
+                // now we need an alpha.
+                val = exp.getValue();
+                op = exp.getOperator();
 
-            if (val.getType() != CssTypes.CSS_SWITCH) {
-                throw new InvalidParamException("rgb", val, ac);
-            }
-            if (op != SPACE) {
-                throw new InvalidParamException("invalid-color", ac);
-            }
-            exp.next();
-            // now we get the alpha value
-            if (exp.end()) {
-                throw new InvalidParamException("rgb", exp.getValue(), ac);
-            }
-            val = exp.getValue();
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                case CssTypes.CSS_PERCENTAGE:
-                    rgba.setAlpha(ac, val);
-                    break;
-                default:
+                if (val.getType() != CssTypes.CSS_SWITCH) {
                     throw new InvalidParamException("rgb", val, ac);
+                }
+                if (op != SPACE) {
+                    throw new InvalidParamException("invalid-color", ac);
+                }
+                exp.next();
+                // now we get the alpha value
+                if (exp.end()) {
+                    throw new InvalidParamException("rgb", exp.getValue(), ac);
+                }
+                val = exp.getValue();
+                switch (val.getType()) {
+                    case CssTypes.CSS_NUMBER:
+                    case CssTypes.CSS_PERCENTAGE:
+                        rgba.setAlpha(ac, val);
+                        break;
+                    default:
+                        throw new InvalidParamException("rgb", val, ac);
+                }
             }
             exp.next();
 
@@ -501,7 +516,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("notversion", sb.toString(),
                     ac.getCssVersionString(), ac);
         }
-        setModernRGBColor(exp,ac);
+        setModernRGBColor(exp, ac);
     }
 
     // use only for atsc profile, superseded by setModernRGBColor
