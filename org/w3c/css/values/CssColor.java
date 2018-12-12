@@ -31,7 +31,6 @@ public class CssColor extends CssValue {
     RGB rgb = null;
     RGBA rgba = null;
     HSL hsl = null;
-    HSLA hsla = null;
     HWB hwb = null;
 
     /**
@@ -89,8 +88,6 @@ public class CssColor extends CssValue {
             return rgba.toString();
         } else if (hsl != null) {
             return hsl.toString();
-        } else if (hsla != null) {
-            return hsla.toString();
         } else {
             return hwb.toString();
         }
@@ -325,6 +322,128 @@ public class CssColor extends CssValue {
     }
 
     /**
+     * Parse a HSL color.
+     * format hsl( <percentage>{3} [ / <alpha-value> ]? ) |
+     * hsl( <number>{3} [ / <alpha-value> ]? )
+     */
+    public void setHSLColor(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        // HSL defined in CSS3 and onward
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("hsl(").append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+        }
+
+        CssValue val = exp.getValue();
+        char op = exp.getOperator();
+        color = null;
+        hsl = new HSL();
+        boolean separator_space = (op == SPACE);
+
+        if (val == null || (!separator_space && (op != COMMA))) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        // H
+        switch (val.getType()) {
+            case CssTypes.CSS_ANGLE:
+            case CssTypes.CSS_NUMBER:
+                hsl.setHue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        }
+
+        exp.next();
+        val = exp.getValue();
+        op = exp.getOperator();
+
+        if (val == null || (separator_space && (op != SPACE)) ||
+                (!separator_space && (op != COMMA))) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        // S
+        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+            hsl.setSaturation(ac, val);
+        } else {
+            exp.starts();
+            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        }
+
+        exp.next();
+        val = exp.getValue();
+        op = exp.getOperator();
+
+        if (val == null) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        // L
+
+        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
+            hsl.setLightness(ac, val);
+        } else {
+            exp.starts();
+            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+        }
+
+        exp.next();
+
+        // check for optional alpha channel
+        if (!exp.end()) {
+            // care for old syntax
+            if (op == COMMA && !separator_space) {
+                val = exp.getValue();
+                switch (val.getType()) {
+                    case CssTypes.CSS_NUMBER:
+                    case CssTypes.CSS_PERCENTAGE:
+                        hsl.setAlpha(ac, val);
+                        break;
+                    default:
+                        throw new InvalidParamException("rgb", val, ac);
+                }
+            } else {
+                // otherwise modern syntax
+                if (op != SPACE) {
+                    throw new InvalidParamException("invalid-color", ac);
+                }
+                // now we need an alpha.
+                val = exp.getValue();
+                op = exp.getOperator();
+
+                if (val.getType() != CssTypes.CSS_SWITCH) {
+                    throw new InvalidParamException("rgb", val, ac);
+                }
+                if (op != SPACE) {
+                    throw new InvalidParamException("invalid-color", ac);
+                }
+                exp.next();
+                // now we get the alpha value
+                if (exp.end()) {
+                    throw new InvalidParamException("rgb", exp.getValue(), ac);
+                }
+                val = exp.getValue();
+                switch (val.getType()) {
+                    case CssTypes.CSS_NUMBER:
+                    case CssTypes.CSS_PERCENTAGE:
+                        hsl.setAlpha(ac, val);
+                        break;
+                    default:
+                        throw new InvalidParamException("rgb", val, ac);
+                }
+            }
+            exp.next();
+
+            if (!exp.end()) {
+                throw new InvalidParamException("rgb", exp.getValue(), ac);
+            }
+        }
+    }
+
+    /**
      * Parse a RGB color.
      * format #(3-6)<hexnum>
      */
@@ -494,8 +613,6 @@ public class CssColor extends CssValue {
             return rgba.equals(otherColor.rgba);
         } else if ((hsl != null) && (otherColor.hsl != null)) {
             return hsl.equals(otherColor.hsl);
-        } else if ((hsla != null) && (otherColor.hsla != null)) {
-            return hsla.equals(otherColor.hsla);
         }
         return false;
     }
@@ -619,156 +736,6 @@ public class CssColor extends CssValue {
         if (exp.getValue() != null) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
-        }
-    }
-
-    public void setHSLColor(CssExpression exp, ApplContext ac)
-            throws InvalidParamException {
-        // HSL defined in CSS3 and onward
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("hsl(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-        color = null;
-        hsl = new HSL();
-
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // H
-        if (val == null || op != COMMA) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_NUMBER:
-                hsl.setHue(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        // S
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null || op != COMMA) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        // todo is (0 number) allowed ?
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsl.setSaturation(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        // L
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsl.setLightness(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        exp.next();
-        if (exp.getValue() != null) {
-            exp.starts();
-            throw new InvalidParamException("rgb", exp.getValue(), ac);
-        }
-    }
-
-
-    public void setHSLAColor(CssExpression exp, ApplContext ac)
-            throws InvalidParamException {
-        // RGBA defined in CSS3 and onward
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("hsla(").append(exp.toStringFromStart()).append(')');
-            throw new InvalidParamException("notversion", sb.toString(),
-                    ac.getCssVersionString(), ac);
-        }
-
-        color = null;
-        hsla = new HSLA();
-
-        CssValue val = exp.getValue();
-        char op = exp.getOperator();
-        // H
-        if (val == null || op != COMMA) {
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_ANGLE:
-            case CssTypes.CSS_NUMBER:
-                hsla.setHue(ac, val);
-                break;
-            default:
-                throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        // S
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null || op != COMMA) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsla.setSaturation(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        // L
-        exp.next();
-        val = exp.getValue();
-        op = exp.getOperator();
-        if (val == null || op != COMMA) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        if (val.getType() == CssTypes.CSS_PERCENTAGE) {
-            hsla.setLightness(ac, val);
-        } else {
-            exp.starts();
-            throw new InvalidParamException("rgb", val, ac); // FIXME hsl
-        }
-
-        // A
-        exp.next();
-        val = exp.getValue();
-        if (val == null) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
-        }
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                // starting with CSS Color 4
-            case CssTypes.CSS_PERCENTAGE:
-                hsla.setAlpha(ac, val);
-                break;
-            default:
-                exp.starts();
-                throw new InvalidParamException("rgb", val, ac); // FIXME rgba
-        }
-        // extra values?
-        exp.next();
-        if (exp.getValue() != null) {
-            exp.starts();
-            throw new InvalidParamException("rgb", exp.getValue(), ac);
         }
     }
 

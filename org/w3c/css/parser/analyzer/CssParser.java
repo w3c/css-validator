@@ -6106,7 +6106,7 @@ String funcname = n.image.toLowerCase();
             color.setHSLColor(exp, ac);
             {if ("" != null) return color;}
         } else if (funcname.equals("hsla(")) {
-            color.setHSLAColor(exp, ac);
+            color.setHSLColor(exp, ac);
             {if ("" != null) return color;}
         } else if (funcname.equals("hwb(")) {
             color.setHWBColor(exp, ac);
