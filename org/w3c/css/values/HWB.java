@@ -92,8 +92,8 @@ public class HWB {
             b = pb.getValue();
             s = w.add(b);
             if (s.compareTo(s100) != 0) {
-                w = w.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
-                b = b.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
+                w = w.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
+                b = b.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
                 pw.setValue(w);
                 pb.setValue(b);
             }
