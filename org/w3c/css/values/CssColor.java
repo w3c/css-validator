@@ -10,11 +10,11 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
 
 import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * @version $Revision$
@@ -96,11 +96,22 @@ public class CssColor extends CssValue {
         }
     }
 
+
+    public void setRGBColor(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        boolean isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
+        if (!isCss3) {
+            setLegacyRGBColor(exp, ac);
+        } else {
+            setModernRGBColor(exp, ac);
+        }
+    }
+
     /**
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
      */
-    public void setRGBColor(CssExpression exp, ApplContext ac)
+    public void setLegacyRGBColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
@@ -177,6 +188,124 @@ public class CssColor extends CssValue {
         exp.next();
         if (exp.getValue() != null) {
             throw new InvalidParamException("rgb", exp.getValue(), ac);
+        }
+    }
+
+    /**
+     * Parse a RGB color.
+     * format rgb( <percentage>{3} [ / <alpha-value> ]? ) |
+     * rgb( <number>{3} [ / <alpha-value> ]? )
+     */
+    public void setModernRGBColor(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        CssValue val = exp.getValue();
+        char op = exp.getOperator();
+        color = null;
+        rgba = new RGBA("rgb");
+        boolean separator_space = (op == SPACE);
+
+        if (val == null || (!separator_space && (op != COMMA))) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                rgba.setPercent(false);
+                rgba.setRed(ac, val);
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                rgba.setPercent(true);
+                rgba.setRed(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac);
+        }
+
+        exp.next();
+        val = exp.getValue();
+        op = exp.getOperator();
+
+        if (val == null || (separator_space && (op != SPACE)) ||
+                (!separator_space && (op != COMMA))) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                if (rgba.isPercent()) {
+                    throw new InvalidParamException("percent", val, ac);
+                }
+                rgba.setGreen(ac, val);
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                if (!rgba.isPercent()) {
+                    throw new InvalidParamException("integer", val, ac);
+                }
+                rgba.setGreen(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac);
+        }
+
+        exp.next();
+        val = exp.getValue();
+        op = exp.getOperator();
+
+        if (val == null) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                if (rgba.isPercent()) {
+                    throw new InvalidParamException("percent", val, ac);
+                }
+                rgba.setBlue(ac, val);
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                if (!rgba.isPercent()) {
+                    throw new InvalidParamException("integer", val, ac);
+                }
+                rgba.setBlue(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac);
+        }
+        exp.next();
+
+        if (!exp.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            // now we need an alpha.
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val.getType() != CssTypes.CSS_SWITCH) {
+                throw new InvalidParamException("rgb", val, ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            exp.next();
+            // now we get the alpha value
+            if (exp.end()) {
+                throw new InvalidParamException("rgb", exp.getValue(), ac);
+            }
+            val = exp.getValue();
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    rgba.setAlpha(ac, val);
+                    break;
+                default:
+                    throw new InvalidParamException("rgb", val, ac);
+            }
+            exp.next();
+
+            if (!exp.end()) {
+                throw new InvalidParamException("rgb", exp.getValue(), ac);
+            }
         }
     }
 
@@ -372,10 +501,10 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("notversion", sb.toString(),
                     ac.getCssVersionString(), ac);
         }
-        rgba = new RGBA();
-        __setRGBAColor(rgba, exp, ac);
+        setModernRGBColor(exp,ac);
     }
 
+    // use only for atsc profile, superseded by setModernRGBColor
     private void __setRGBAColor(RGBA rgba, CssExpression exp, ApplContext ac)
             throws InvalidParamException {
         CssValue val;
@@ -707,37 +836,6 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("rgb", exp.getValue(), ac);
         }
-    }
-
-    private int clippedIntValue(int rgb, ApplContext ac) {
-        if (rgb < 0 || rgb > 255) {
-            ac.getFrame().addWarning("out-of-range", Util.displayFloat(rgb));
-            return (rgb < 0) ? 0 : 255;
-        }
-        return rgb;
-    }
-
-    private float clippedPercentValue(float p, ApplContext ac) {
-        if (p < 0. || p > 100.) {
-            ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-            return (p < 0.) ? (float) 0 : (float) 100;
-        }
-        return p;
-    }
-
-    private float clippedAlphaValue(float p, ApplContext ac) {
-        if (p < 0. || p > 1.) {
-            ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-            return (float) ((p < 0.) ? 0. : 1.);
-        }
-        return p;
-    }
-
-    private float angleValue(float p, ApplContext ac) {
-        if (p < 0.0 || p >= 360.0) {
-            ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
-        }
-        return p;
     }
 
 }
