@@ -91,9 +91,14 @@ public class CssColor extends CssValue {
             return rgba.toString();
         } else if (hsl != null) {
             return hsl.toString();
-        } else {
+        } else if (hwb != null) {
             return hwb.toString();
+        } else if (lab != null) {
+            return lab.toString();
+        } else if (lch != null) {
+            return lch.toString();
         }
+        return "*invalid*";
     }
 
 
@@ -869,7 +874,7 @@ public class CssColor extends CssValue {
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || (op != SPACE && exp.getRemainingCount() > 1)) {
+        if (val == null) {
             exp.starts();
             throw new InvalidParamException("invalid-color", ac);
         }
@@ -879,12 +884,17 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME lab
         }
-        hwb.normalize();
 
-        // Alpha
         exp.next();
-        val = exp.getValue();
-        if (val != null) {
+        if (!exp.end()) {
+            if (op != COMMA) {
+                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            }
+            // Alpha
+            val = exp.getValue();
+            if (val == null) {
+                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+            }
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_PERCENTAGE:
@@ -894,12 +904,12 @@ public class CssColor extends CssValue {
                     exp.starts();
                     throw new InvalidParamException("rgb", val, ac); // FIXME lab
             }
+            exp.next();
         }
         // extra values?
-        exp.next();
-        if (exp.getValue() != null) {
+        if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.getValue(), ac);
+            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
         }
     }
 
@@ -949,9 +959,8 @@ public class CssColor extends CssValue {
         exp.next();
         val = exp.getValue();
         op = exp.getOperator();
-        if (val == null || (op != SPACE && exp.getRemainingCount() > 1)) {
-            exp.starts();
-            throw new InvalidParamException("invalid-color", ac);
+        if (val == null) {
+            throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
         }
         if (val.getType() == CssTypes.CSS_NUMBER) {
             lch.setH(ac, val);
@@ -959,12 +968,17 @@ public class CssColor extends CssValue {
             exp.starts();
             throw new InvalidParamException("rgb", val, ac); // FIXME lch
         }
-        hwb.normalize();
 
-        // Alpha
         exp.next();
-        val = exp.getValue();
-        if (val != null) {
+        if (!exp.end()) {
+            if (op != COMMA) {
+                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            }
+            // Alpha
+            val = exp.getValue();
+            if (val == null) {
+                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+            }
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_PERCENTAGE:
@@ -974,12 +988,12 @@ public class CssColor extends CssValue {
                     exp.starts();
                     throw new InvalidParamException("rgb", val, ac); // FIXME lch
             }
+            exp.next();
         }
         // extra values?
-        exp.next();
-        if (exp.getValue() != null) {
+        if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.getValue(), ac);
+            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
         }
     }
 
