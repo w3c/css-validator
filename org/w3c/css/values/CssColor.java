@@ -904,7 +904,7 @@ public class CssColor extends CssValue {
     }
 
 
-    public void setlchColor(CssExpression exp, ApplContext ac)
+    public void setLCHColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
