@@ -9,15 +9,13 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
-import java.math.BigDecimal;
-
 public class LAB {
     String output = null;
     CssValue vl, va, vb, alpha;
     boolean faSet = false;
 
     /**
-     * Create a new HSL
+     * Create a new LAB
      */
     public LAB() {
     }
@@ -36,6 +34,8 @@ public class LAB {
                     nb.setIntValue(0);
                     return nb;
                 }
+                /*
+                // L value is not clamped for now, but maybe in the future.
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     BigDecimal pp = ((CssNumber) val).value;
                     if (pp.compareTo(HWB.s100) > 0) {
@@ -45,6 +45,7 @@ public class LAB {
                         return nb;
                     }
                 }
+                */
             }
         }
         return val;

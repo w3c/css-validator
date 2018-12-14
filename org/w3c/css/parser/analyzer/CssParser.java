@@ -6111,6 +6111,12 @@ String funcname = n.image.toLowerCase();
         } else if (funcname.equals("hwb(")) {
             color.setHWBColor(exp, ac);
             {if ("" != null) return color;}
+        } else if (funcname.equals("lab(")) {
+            color.setLABColor(exp, ac);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("lch(")) {
+            color.setLCHColor(exp, ac);
+            {if ("" != null) return color;}
         } else if (funcname.equals("image(")) {
             CssImage img = new CssImage();
             img.setImageList(exp, ac);
@@ -7035,6 +7041,17 @@ n.image = Util.strip(n.image);
     return false;
   }
 
+  private boolean jj_3R_214()
+ {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(39)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(40)) return true;
+    }
+    return false;
+  }
+
   private boolean jj_3R_195()
  {
     if (jj_scan_token(ST)) return true;
@@ -7071,17 +7088,6 @@ n.image = Util.strip(n.image);
     return false;
   }
 
-  private boolean jj_3R_214()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(39)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(40)) return true;
-    }
-    return false;
-  }
-
   private boolean jj_3R_189()
  {
     if (jj_scan_token(ABSOLUTLENGTH)) return true;
@@ -7115,6 +7121,12 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_184()
  {
     if (jj_3R_165()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_217()
+ {
+    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 
@@ -7191,12 +7203,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_169()
  {
     if (jj_3R_212()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_217()
- {
-    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 
