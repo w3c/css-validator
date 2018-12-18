@@ -109,6 +109,10 @@ public class CssNumber extends CssCheckableValue implements CssValueFloat {
         return value.floatValue();
     }
 
+    public BigDecimal getBigDecimalValue() {
+        return value;
+    }
+
     public int getInt() throws InvalidParamException {
         if (isInt) {
             try {

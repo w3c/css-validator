@@ -9,14 +9,17 @@ package org.w3c.css.properties.css3;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
-import org.w3c.css.util.Util;
+import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssPercentage;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
+import java.math.BigDecimal;
+
 /**
- * @spec http://www.w3.org/TR/2011/REC-css3-color-20110607/#opacity
+ * @spec https://www.w3.org/TR/2016/WD-css-color-4-20160705/#propdef-opacity
  */
 
 public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
@@ -42,12 +45,47 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    // this will generate a warning if necessary
-                    CssNumber number = val.getNumber();
-                    number.setFloatValue(clampedValue(ac, number.getValue()));
+                    CssCheckableValue v = val.getCheckableValue();
+                    if (!v.isPositive()) {
+                        ac.getFrame().addWarning("out-of-range", val.toString());
+                        CssNumber nb = new CssNumber();
+                        nb.setIntValue(0);
+                        value = nb;
+                        break;
+                    }
+                    if (val.getRawType() == CssTypes.CSS_NUMBER) {
+                        BigDecimal pp = ((CssNumber) val).getBigDecimalValue();
+                        if (pp.compareTo(BigDecimal.ONE) > 0) {
+                            ac.getFrame().addWarning("out-of-range", val.toString());
+                            CssNumber nb = new CssNumber();
+                            nb.setIntValue(1);
+                            value = nb;
+                            break;
+                        }
+                    }
                 } else {
                     // we can only check if >= 0 for now
                     val.getCheckableValue().warnPositiveness(ac, this);
+                }
+                value = val;
+                break;
+            case CssTypes.CSS_PERCENTAGE:
+                // This starts with CSS Color 4
+                CssCheckableValue v = val.getCheckableValue();
+                if (!v.isPositive()) {
+                    ac.getFrame().addWarning("out-of-range", val.toString());
+                    CssNumber nb = new CssNumber();
+                    nb.setIntValue(0);
+                    value = nb;
+                    break;
+                }
+                if (val.getRawType() == CssTypes.CSS_PERCENTAGE) {
+                    float p = ((CssPercentage) val).floatValue();
+                    if (p > 100.) {
+                        ac.getFrame().addWarning("out-of-range", val.toString());
+                        value = new CssPercentage(100);
+                        break;
+                    }
                 }
                 value = val;
                 break;
@@ -67,19 +105,6 @@ public class CssOpacity extends org.w3c.css.properties.css.CssOpacity {
     public CssOpacity(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
-    }
-
-    /**
-     * Brings all values back between 0 and 1
-     *
-     * @param opacity The value to be modified if necessary
-     */
-    private float clampedValue(ApplContext ac, float opacity) {
-        if (opacity < 0.f || opacity > 1.f) {
-            ac.getFrame().addWarning("out-of-range", Util.displayFloat(opacity));
-            return ((opacity < 0.f) ? 0.f : 1.f);
-        }
-        return opacity;
     }
 
     /**
