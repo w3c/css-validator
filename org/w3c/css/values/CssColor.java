@@ -11,6 +11,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import static org.w3c.css.values.CssOperator.COMMA;
@@ -913,6 +914,68 @@ public class CssColor extends CssValue {
         }
     }
 
+    public void setGrayColor(CssExpression exp, ApplContext ac)
+            throws InvalidParamException {
+        // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("gray(").append(exp.toStringFromStart()).append(')');
+            throw new InvalidParamException("notversion", sb.toString(),
+                    ac.getCssVersionString(), ac);
+        }
+
+        color = null;
+        lab = new LAB();
+        lab.setGray(true);
+        CssValue val = exp.getValue();
+        char op = exp.getOperator();
+        // L
+        if (val == null) {
+            throw new InvalidParamException("invalid-color", ac);
+        }
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                lab.setL(ac, val);
+                break;
+            default:
+                throw new InvalidParamException("rgb", val, ac); // FIXME gray
+        }
+
+        // A
+        CssNumber n = new CssNumber();
+        n.setValue(BigDecimal.ZERO);
+        lab.setA(ac, n);
+        // B
+        lab.setB(ac, n);
+
+        exp.next();
+        if (!exp.end()) {
+            if (op != COMMA) {
+                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            }
+            // Alpha
+            val = exp.getValue();
+            if (val == null) {
+                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+            }
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                case CssTypes.CSS_PERCENTAGE:
+                    lab.setAlpha(ac, val);
+                    break;
+                default:
+                    exp.starts();
+                    throw new InvalidParamException("rgb", val, ac); // FIXME gray
+            }
+            exp.next();
+        }
+        // extra values?
+        if (!exp.end()) {
+            exp.starts();
+            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
+        }
+    }
+
 
     public void setLCHColor(CssExpression exp, ApplContext ac)
             throws InvalidParamException {
@@ -996,6 +1059,7 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
         }
     }
+
 
 }
 

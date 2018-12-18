@@ -3054,6 +3054,9 @@ CssValue function() :
         } else if (funcname.equals("lab(")) {
             color.setLABColor(exp, ac);
             return color;
+        } else if (funcname.equals("gray(")) {
+            color.setGrayColor(exp, ac);
+            return color;
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(exp, ac);
             return color;
