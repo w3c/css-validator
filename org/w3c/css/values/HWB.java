@@ -91,7 +91,7 @@ public class HWB {
             w = pw.getValue();
             b = pb.getValue();
             s = w.add(b);
-            if (s.compareTo(s100) != 0) {
+            if (s.compareTo(s100) > 0) {
                 w = w.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
                 b = b.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
                 pw.setValue(w);
@@ -107,8 +107,8 @@ public class HWB {
         if (output == null) {
             normalize();
             StringBuilder sb = new StringBuilder("hwb(");
-            sb.append(vh).append(", ");
-            sb.append(vw).append(", ");
+            sb.append(vh).append(' ');
+            sb.append(vw).append(' ');
             sb.append(vb);
             if (!faSet) {
                 sb.append(')');
