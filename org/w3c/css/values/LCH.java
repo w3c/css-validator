@@ -102,13 +102,13 @@ public class LCH {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder("lch(");
-            sb.append(vl).append(" ");
-            sb.append(vc).append(" ");
+            sb.append(vl).append(' ');
+            sb.append(vc).append(' ');
             sb.append(vh);
             if (faSet) {
-                sb.append(", ").append(alpha);
+                sb.append(" / ").append(alpha);
             }
-            sb.append(")");
+            sb.append(')');
             output = sb.toString();
         }
         return output;

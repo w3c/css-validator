@@ -111,9 +111,9 @@ public class HWB {
             sb.append(vw).append(", ");
             sb.append(vb);
             if (!faSet) {
-                sb.append(")");
+                sb.append(')');
             } else {
-                sb.append(", ").append(va).append(')');
+                sb.append(" / ").append(va).append(')');
             }
             output = sb.toString();
         }

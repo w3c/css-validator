@@ -94,7 +94,7 @@ public class LAB {
                 sb = new StringBuilder("gray(");
                 sb.append(vl);
                 if (faSet) {
-                    sb.append(", ").append(alpha);
+                    sb.append(" / ").append(alpha);
                 }
                 sb.append(')');
             } else {
@@ -103,7 +103,7 @@ public class LAB {
                 sb.append(va).append(' ');
                 sb.append(vb);
                 if (faSet) {
-                    sb.append(", ").append(alpha);
+                    sb.append(" / ").append(alpha);
                 }
                 sb.append(')');
             }

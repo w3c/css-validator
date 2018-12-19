@@ -809,8 +809,26 @@ public class CssColor extends CssValue {
 
         // A
         exp.next();
-        val = exp.getValue();
-        if (val != null) {
+        if (!exp.end()) {
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            // now we need an alpha.
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val.getType() != CssTypes.CSS_SWITCH) {
+                throw new InvalidParamException("rgb", val, ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            exp.next();
+            // now we get the alpha value
+            val = exp.getValue();
+            if (val == null) {
+                throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
+            }
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                 case CssTypes.CSS_PERCENTAGE:
@@ -818,14 +836,14 @@ public class CssColor extends CssValue {
                     break;
                 default:
                     exp.starts();
-                    throw new InvalidParamException("rgb", val, ac); // FIXME hsl
+                    throw new InvalidParamException("rgb", val, ac); // FIXME hwb
             }
+            exp.next();
         }
         // extra values?
-        exp.next();
-        if (exp.getValue() != null) {
+        if (!exp.end()) {
             exp.starts();
-            throw new InvalidParamException("rgb", exp.getValue(), ac);
+            throw new InvalidParamException("rgb", exp.toStringFromStart(), ac);
         }
     }
 
@@ -888,10 +906,21 @@ public class CssColor extends CssValue {
 
         exp.next();
         if (!exp.end()) {
-            if (op != COMMA) {
-                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
             }
-            // Alpha
+            // now we need an alpha.
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val.getType() != CssTypes.CSS_SWITCH) {
+                throw new InvalidParamException("rgb", val, ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            exp.next();
+            // now we get the alpha value
             val = exp.getValue();
             if (val == null) {
                 throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
@@ -950,10 +979,21 @@ public class CssColor extends CssValue {
 
         exp.next();
         if (!exp.end()) {
-            if (op != COMMA) {
-                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
             }
-            // Alpha
+            // now we need an alpha.
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val.getType() != CssTypes.CSS_SWITCH) {
+                throw new InvalidParamException("rgb", val, ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            exp.next();
+            // now we get the alpha value
             val = exp.getValue();
             if (val == null) {
                 throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
@@ -1034,10 +1074,21 @@ public class CssColor extends CssValue {
 
         exp.next();
         if (!exp.end()) {
-            if (op != COMMA) {
-                throw new InvalidParamException("operator", exp.toStringFromStart(), ac);
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
             }
-            // Alpha
+            // now we need an alpha.
+            val = exp.getValue();
+            op = exp.getOperator();
+
+            if (val.getType() != CssTypes.CSS_SWITCH) {
+                throw new InvalidParamException("rgb", val, ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("invalid-color", ac);
+            }
+            exp.next();
+            // now we get the alpha value
             val = exp.getValue();
             if (val == null) {
                 throw new InvalidParamException("invalid-color", exp.toStringFromStart(), ac);
