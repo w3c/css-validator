@@ -1220,6 +1220,8 @@ public class CssColor extends CssValue {
                         exp.starts();
                         throw new InvalidParamException("rgb", val, ac); // FIXME lch
                 }
+                // need to check if we get a comma after this.
+                op = exp.getOperator();
                 exp.next();
             }
             if (op == COMMA) {
