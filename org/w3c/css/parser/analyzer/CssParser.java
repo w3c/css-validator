@@ -6116,6 +6116,9 @@ String funcname = n.image.toLowerCase();
         } else if (funcname.equals("lch(")) {
             color.setLCHColor(ac, exp);
             {if ("" != null) return color;}
+        } else if (funcname.equals("device-cmyk(")) {
+            color.setDeviceCMYKColor(ac, exp);
+            {if ("" != null) return color;}
         } else if (funcname.equals("image(")) {
             CssImage img = new CssImage();
             img.setImageList(exp, ac);
@@ -7099,6 +7102,12 @@ n.image = Util.strip(n.image);
     return false;
   }
 
+  private boolean jj_3R_217()
+ {
+    if (jj_scan_token(IDENT)) return true;
+    return false;
+  }
+
   private boolean jj_3R_187()
  {
     if (jj_scan_token(RELFONTLENGTH)) return true;
@@ -7114,12 +7123,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_185()
  {
     if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_217()
- {
-    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 
