@@ -128,6 +128,9 @@ public class RGBA extends RGB {
         this.isCss3 = isCss3;
     }
 
+    protected void setRepresentationString(String s) {
+        output = s;
+    }
 
     /**
      * Returns a string representation of the object.

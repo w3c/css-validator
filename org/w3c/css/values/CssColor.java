@@ -51,7 +51,7 @@ public class CssColor extends CssValue {
      */
     public CssColor(ApplContext ac, String s) throws InvalidParamException {
         //	setIdentColor(s.toLowerCase(), ac);
-        setIdentColor(s, ac);
+        setIdentColor(ac, s);
     }
 
     /**
@@ -62,9 +62,9 @@ public class CssColor extends CssValue {
      */
     public void set(String s, ApplContext ac) throws InvalidParamException {
         if (s.charAt(0) == '#') {
-            setShortRGBColor(s.toLowerCase(), ac);
+            setShortRGBColor(ac, s.toLowerCase());
         } else {
-            setIdentColor(s, ac);
+            setIdentColor(ac, s);
         }
     }
 
@@ -103,13 +103,13 @@ public class CssColor extends CssValue {
     }
 
 
-    public void setRGBColor(CssExpression exp, ApplContext ac)
+    public void setRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         boolean isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
         if (!isCss3) {
-            setLegacyRGBColor(exp, ac);
+            setLegacyRGBColor(ac, exp);
         } else {
-            setModernRGBColor(exp, ac);
+            setModernRGBColor(ac, exp);
         }
     }
 
@@ -117,7 +117,7 @@ public class CssColor extends CssValue {
      * Parse a RGB color.
      * format rgb(<num>%?, <num>%?, <num>%?)
      */
-    public void setLegacyRGBColor(CssExpression exp, ApplContext ac)
+    public void setLegacyRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
@@ -202,7 +202,7 @@ public class CssColor extends CssValue {
      * format rgb( <percentage>{3} [ / <alpha-value> ]? ) |
      * rgb( <number>{3} [ / <alpha-value> ]? )
      */
-    public void setModernRGBColor(CssExpression exp, ApplContext ac)
+    public void setModernRGBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
@@ -335,7 +335,7 @@ public class CssColor extends CssValue {
      * format hsl( <percentage>{3} [ / <alpha-value> ]? ) |
      * hsl( <number>{3} [ / <alpha-value> ]? )
      */
-    public void setHSLColor(CssExpression exp, ApplContext ac)
+    public void setHSLColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // HSL defined in CSS3 and onward
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -456,66 +456,77 @@ public class CssColor extends CssValue {
      * Parse a RGB color.
      * format #(3-6)<hexnum>
      */
-    public void setShortRGBColor(String s, ApplContext ac)
+    public void setShortRGBColor(ApplContext ac, String s)
             throws InvalidParamException {
         int r;
         int g;
         int b;
+        int a;
         int v;
         int idx;
         boolean islong;
+        boolean hasAlpha = false;
+        boolean isCss3;
 
-        v = s.length();
-        islong = (v == 7);
-        if (v != 4 && !islong) {
-            throw new InvalidParamException("rgb", s, ac);
-        }
+        isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
         idx = 1;
-        r = Character.digit(s.charAt(idx++), 16);
-        if (r < 0) {
-            throw new InvalidParamException("rgb", s, ac);
-        }
-        if (islong) {
-            v = Character.digit(s.charAt(idx++), 16);
-            if (v < 0) {
+        a = 0;
+        switch (s.length()) {
+            case 5:
+                a = Character.digit(s.charAt(4), 16);
+                if (!isCss3 || a < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                hasAlpha = true;
+            case 4:
+                r = Character.digit(s.charAt(idx++), 16);
+                g = Character.digit(s.charAt(idx++), 16);
+                b = Character.digit(s.charAt(idx++), 16);
+                if (r < 0 || g < 0 || b < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                break;
+            case 9:
+                a = Character.digit(s.charAt(7), 16);
+                v = Character.digit(s.charAt(8), 16);
+                if (!isCss3 || a < 0 || v < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                a = (a << 4) + v;
+                hasAlpha = true;
+            case 7:
+                r = Character.digit(s.charAt(idx++), 16);
+                v = Character.digit(s.charAt(idx++), 16);
+                if (r < 0 || v < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                r = (r << 4) + v;
+                g = Character.digit(s.charAt(idx++), 16);
+                v = Character.digit(s.charAt(idx++), 16);
+                if (g < 0 || v < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                g = (g << 4) + v;
+                b = Character.digit(s.charAt(idx++), 16);
+                v = Character.digit(s.charAt(idx++), 16);
+                if (b < 0 || v < 0) {
+                    throw new InvalidParamException("rgb", s, ac);
+                }
+                b = (b << 4) + v;
+                break;
+            default:
                 throw new InvalidParamException("rgb", s, ac);
-            }
-            r = (r << 4) + v;
-        } else {
-            r |= (r << 4);
         }
-        g = Character.digit(s.charAt(idx++), 16);
-        if (g < 0) {
-            throw new InvalidParamException("rgb", s, ac);
-        }
-        if (islong) {
-            v = Character.digit(s.charAt(idx++), 16);
-            if (v < 0) {
-                throw new InvalidParamException("rgb", s, ac);
-            }
-            g = (g << 4) + v;
-        } else {
-            g |= (g << 4);
-        }
-        b = Character.digit(s.charAt(idx), 16);
-        if (b < 0) {
-            throw new InvalidParamException("rgb", s, ac);
-        }
-        if (islong) {
-            v = Character.digit(s.charAt(++idx), 16);
-            if (v < 0) {
-                throw new InvalidParamException("rgb", s, ac);
-            }
-            b = (b << 4) + v;
-        } else {
-            b |= (b << 4);
-        }
-
 
         color = null;
-        rgb = new RGB(r, g, b);
-        // we force the specific display of it
-        rgb.setRepresentationString(s);
+        if (hasAlpha) {
+            rgba = new RGBA(isCss3, r, g, b, a);
+            rgba.setRepresentationString(s);
+        } else {
+            rgb = new RGB(isCss3, r, g, b);
+            // we force the specific display of it
+            rgb.setRepresentationString(s);
+        }
     }
 
     protected boolean computeIdentColor(HashMap<String, Object> definitions,
@@ -539,7 +550,7 @@ public class CssColor extends CssValue {
     /**
      * Parse an ident color.
      */
-    protected void setIdentColor(String s, ApplContext ac)
+    protected void setIdentColor(ApplContext ac, String s)
             throws InvalidParamException {
         String lower_s = s.toLowerCase();
         switch (ac.getCssVersion()) {
@@ -626,14 +637,14 @@ public class CssColor extends CssValue {
         return false;
     }
 
-    public void setATSCRGBAColor(CssExpression exp, ApplContext ac)
+    public void setATSCRGBAColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         rgba = new RGBA("atsc-rgba");
-        __setRGBAColor(rgba, exp, ac);
+        __setRGBAColor(ac, exp, rgba);
 
     }
 
-    public void setRGBAColor(CssExpression exp, ApplContext ac)
+    public void setRGBAColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // RGBA defined in CSS3 and onward
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -642,11 +653,11 @@ public class CssColor extends CssValue {
             throw new InvalidParamException("notversion", sb.toString(),
                     ac.getCssVersionString(), ac);
         }
-        setModernRGBColor(exp, ac);
+        setModernRGBColor(ac, exp);
     }
 
     // use only for atsc profile, superseded by setModernRGBColor
-    private void __setRGBAColor(RGBA rgba, CssExpression exp, ApplContext ac)
+    private void __setRGBAColor(ApplContext ac, CssExpression exp, RGBA rgba)
             throws InvalidParamException {
         CssValue val;
         char op;
@@ -748,7 +759,7 @@ public class CssColor extends CssValue {
         }
     }
 
-    public void setHWBColor(CssExpression exp, ApplContext ac)
+    public void setHWBColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -848,7 +859,7 @@ public class CssColor extends CssValue {
     }
 
 
-    public void setLABColor(CssExpression exp, ApplContext ac)
+    public void setLABColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -943,7 +954,7 @@ public class CssColor extends CssValue {
         }
     }
 
-    public void setGrayColor(CssExpression exp, ApplContext ac)
+    public void setGrayColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {
@@ -1017,7 +1028,7 @@ public class CssColor extends CssValue {
     }
 
 
-    public void setLCHColor(CssExpression exp, ApplContext ac)
+    public void setLCHColor(ApplContext ac, CssExpression exp)
             throws InvalidParamException {
         // HWB defined in CSSColor Level 4 and onward, currently used in the CSS level
         if (ac.getCssVersion().compareTo(CssVersion.CSS3) < 0) {

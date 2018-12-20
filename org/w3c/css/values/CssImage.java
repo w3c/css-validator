@@ -140,7 +140,7 @@ public class CssImage extends CssValue {
                     break;
                 case CssTypes.CSS_HASH_IDENT:
                     c = new CssColor();
-                    c.setShortRGBColor(val.toString(), ac);
+                    c.setShortRGBColor(ac, val.toString());
                     v.add(c);
                     gotcolor = true;
                     break;
@@ -155,7 +155,7 @@ public class CssImage extends CssValue {
                         break;
                     }
                     c = new CssColor();
-                    c.setIdentColor(val.toString(), ac);
+                    c.setIdentColor(ac, val.toString());
                     v.add(c);
                     gotcolor = true;
                     break;
@@ -551,7 +551,7 @@ public class CssImage extends CssValue {
             switch (val.getType()) {
                 case CssTypes.CSS_HASH_IDENT:
                     stopcol = new CssColor();
-                    stopcol.setShortRGBColor(val.toString(), ac);
+                    stopcol.setShortRGBColor(ac, val.toString());
                     stopcolv = stopcol;
                     break;
                 case CssTypes.CSS_IDENT:
@@ -560,7 +560,7 @@ public class CssImage extends CssValue {
                         break;
                     }
                     stopcol = new CssColor();
-                    stopcol.setIdentColor(val.toString(), ac);
+                    stopcol.setIdentColor(ac, val.toString());
                     stopcolv = stopcol;
                     break;
                 case CssTypes.CSS_COLOR:

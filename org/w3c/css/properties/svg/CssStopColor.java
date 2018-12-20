@@ -127,7 +127,7 @@ public class CssStopColor extends org.w3c.css.properties.css.CssStopColor {
                                 property.getPropertyName(), ac);
                     }
                     CssColor c = new CssColor();
-                    c.setShortRGBColor(val.toString(), ac);
+                    c.setShortRGBColor(ac, val.toString());
                     gotColor = true;
                     values.add(c);
                     break;
