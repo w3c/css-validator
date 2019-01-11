@@ -9,15 +9,14 @@ package org.w3c.css.values;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
-import java.math.BigDecimal;
-
 public class LAB {
     String output = null;
     CssValue vl, va, vb, alpha;
     boolean faSet = false;
+    boolean isGray = false;
 
     /**
-     * Create a new HSL
+     * Create a new LAB
      */
     public LAB() {
     }
@@ -36,6 +35,8 @@ public class LAB {
                     nb.setIntValue(0);
                     return nb;
                 }
+                /*
+                // L value is not clamped for now, but maybe in the future.
                 if (val.getRawType() == CssTypes.CSS_NUMBER) {
                     BigDecimal pp = ((CssNumber) val).value;
                     if (pp.compareTo(HWB.s100) > 0) {
@@ -45,6 +46,7 @@ public class LAB {
                         return nb;
                     }
                 }
+                */
             }
         }
         return val;
@@ -76,20 +78,35 @@ public class LAB {
         alpha = RGBA.filterAlpha(ac, val);
     }
 
+    public final boolean setGray(boolean isGray) {
+        this.isGray = isGray;
+        return isGray;
+    }
+
 
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
         if (output == null) {
-            StringBuilder sb = new StringBuilder("lab(");
-            sb.append(vl).append(" ");
-            sb.append(va).append(" ");
-            sb.append(vb);
-            if (faSet) {
-                sb.append(", ").append(alpha);
+            StringBuilder sb;
+            if (isGray) {
+                sb = new StringBuilder("gray(");
+                sb.append(vl);
+                if (faSet) {
+                    sb.append(" / ").append(alpha);
+                }
+                sb.append(')');
+            } else {
+                sb = new StringBuilder("lab(");
+                sb.append(vl).append(' ');
+                sb.append(va).append(' ');
+                sb.append(vb);
+                if (faSet) {
+                    sb.append(" / ").append(alpha);
+                }
+                sb.append(')');
             }
-            sb.append(")");
             output = sb.toString();
         }
         return output;

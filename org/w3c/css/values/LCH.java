@@ -17,37 +17,9 @@ public class LCH {
     boolean faSet = false;
 
     /**
-     * Create a new HSL
+     * Create a new LCH
      */
     public LCH() {
-    }
-
-    public static final CssValue filterL(ApplContext ac, CssValue val)
-            throws InvalidParamException {
-        if (val.getRawType() == CssTypes.CSS_CALC) {
-            // TODO add warning about uncheckability
-            // might need to extend...
-        } else {
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                CssCheckableValue v = val.getCheckableValue();
-                if (!v.isPositive()) {
-                    ac.getFrame().addWarning("out-of-range", val.toString());
-                    CssNumber nb = new CssNumber();
-                    nb.setIntValue(0);
-                    return nb;
-                }
-                if (val.getRawType() == CssTypes.CSS_NUMBER) {
-                    BigDecimal pp = ((CssNumber) val).value;
-                    if (pp.compareTo(HWB.s100) > 0) {
-                        ac.getFrame().addWarning("out-of-range", val.toString());
-                        CssNumber nb = new CssNumber();
-                        nb.setValue(HWB.s100);
-                        return nb;
-                    }
-                }
-            }
-        }
-        return val;
     }
 
     public static final CssValue filterC(ApplContext ac, CssValue val)
@@ -100,7 +72,7 @@ public class LCH {
     public final void setL(ApplContext ac, CssValue val)
             throws InvalidParamException {
         output = null;
-        vl = filterL(ac, val);
+        vl = LAB.filterL(ac, val);
 
     }
 
@@ -130,13 +102,13 @@ public class LCH {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder("lch(");
-            sb.append(vl).append(" ");
-            sb.append(vc).append(" ");
+            sb.append(vl).append(' ');
+            sb.append(vc).append(' ');
             sb.append(vh);
             if (faSet) {
-                sb.append(", ").append(alpha);
+                sb.append(" / ").append(alpha);
             }
-            sb.append(")");
+            sb.append(')');
             output = sb.toString();
         }
         return output;

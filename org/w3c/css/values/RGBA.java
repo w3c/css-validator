@@ -114,6 +114,23 @@ public class RGBA extends RGB {
         setPercent(false);
     }
 
+    /**
+     * Create a new RGBA with default values
+     *
+     * @param isCss3 a boolean toggling the output of RGB
+     * @param r      the red channel, an <EM>int</EM>
+     * @param g      the green channel, an <EM>int</EM>
+     * @param b      the blue channel, an <EM>int</EM>
+     * @param a      the alpha channel, an <EM>float</EM>
+     */
+    public RGBA(boolean isCss3, int r, int g, int b, float a) {
+        this(r, g, b, a);
+        this.isCss3 = isCss3;
+    }
+
+    protected void setRepresentationString(String s) {
+        output = s;
+    }
 
     /**
      * Returns a string representation of the object.
@@ -121,11 +138,21 @@ public class RGBA extends RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder();
-            sb.append(fname).append('(');
-            sb.append(vr).append(", ");
-            sb.append(vg).append(", ");
-            sb.append(vb).append(", ");
-            sb.append(va).append(')');
+            if (isCss3) {
+                sb.append(RGB.functionname).append('(');
+                sb.append(vr).append(' ');
+                sb.append(vg).append(' ').append(vb);
+                if (va != null) {
+                    sb.append(" / ").append(va);
+                }
+                sb.append(')');
+            } else {
+                sb.append(fname).append('(');
+                sb.append(vr).append(", ");
+                sb.append(vg).append(", ");
+                sb.append(vb).append(", ");
+                sb.append(va).append(')');
+            }
             output = sb.toString();
         }
         return output;

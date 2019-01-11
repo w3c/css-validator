@@ -21,7 +21,9 @@ import java.math.BigDecimal;
 
 public class HSL {
     String output = null;
-    CssValue vh, vs, vl;
+    CssValue vh, vs, vl, va;
+
+    static final String functionname = "hsl";
 
     /**
      * Create a new HSL
@@ -120,15 +122,25 @@ public class HSL {
         vl = filterValue(ac, val);
     }
 
+
+    public void setAlpha(ApplContext ac, CssValue alpha)
+            throws InvalidParamException {
+        output = null;
+        va = RGBA.filterAlpha(ac, alpha);
+    }
+
     /**
      * Returns a string representation of the object.
      */
     public String toString() {
         if (output == null) {
-            StringBuilder sb = new StringBuilder("hsl(");
-            sb.append(vh).append(", ");
-            sb.append(vs).append(", ");
-            sb.append(vl).append(")");
+            StringBuilder sb = new StringBuilder(functionname);
+            sb.append('(').append(vh).append(' ');
+            sb.append(vs).append(' ').append(vl);
+            if (va != null) {
+                sb.append(" / ").append(va);
+            }
+            sb.append(')');
             output = sb.toString();
         }
         return output;

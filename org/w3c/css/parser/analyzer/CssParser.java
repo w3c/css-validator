@@ -6,9 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.net.URL;
-import java.math.BigDecimal;
 
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssOperator;
@@ -39,7 +37,6 @@ import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.parser.Frame;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
@@ -63,7 +60,6 @@ import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
-import org.w3c.css.util.Messages;
 
 import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
@@ -6097,19 +6093,31 @@ v = new CssAttr();
       jj_consume_token(LPARAN);
 String funcname = n.image.toLowerCase();
         if (funcname.equals("rgb(")) {
-            color.setRGBColor(exp, ac);
+            color.setRGBColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("rgba(")) {
-            color.setRGBAColor(exp, ac);
+            color.setRGBAColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("hsl(")) {
-            color.setHSLColor(exp, ac);
+            color.setHSLColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("hsla(")) {
-            color.setHSLAColor(exp, ac);
+            color.setHSLColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("hwb(")) {
-            color.setHWBColor(exp, ac);
+            color.setHWBColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("lab(")) {
+            color.setLABColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("gray(")) {
+            color.setGrayColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("lch(")) {
+            color.setLCHColor(ac, exp);
+            {if ("" != null) return color;}
+        } else if (funcname.equals("device-cmyk(")) {
+            color.setDeviceCMYKColor(ac, exp);
             {if ("" != null) return color;}
         } else if (funcname.equals("image(")) {
             CssImage img = new CssImage();
@@ -6133,7 +6141,7 @@ String funcname = n.image.toLowerCase();
             {if ("" != null) return img;}
         } else if (funcname.equals("atsc-rgba(")) {
             if (getAtRule().toString().equals("@media atsc-tv")) {
-                color.setATSCRGBAColor(exp, ac);
+                color.setATSCRGBAColor(ac, exp);
                 {if ("" != null) return color;}
             } else {
                 addError(new InvalidParamException("onlyATSC", "", ac),
@@ -6975,15 +6983,15 @@ n.image = Util.strip(n.image);
     return false;
   }
 
-  private boolean jj_3R_211()
- {
-    if (jj_scan_token(COMMA)) return true;
-    return false;
-  }
-
   private boolean jj_3R_199()
  {
     if (jj_scan_token(IMPORTANT_NOT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_211()
+ {
+    if (jj_scan_token(COMMA)) return true;
     return false;
   }
 
@@ -7020,6 +7028,17 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_216()
  {
     if (jj_3R_220()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_214()
+ {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(39)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(40)) return true;
+    }
     return false;
   }
 
@@ -7071,17 +7090,6 @@ n.image = Util.strip(n.image);
     return false;
   }
 
-  private boolean jj_3R_214()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(39)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(40)) return true;
-    }
-    return false;
-  }
-
   private boolean jj_3R_189()
  {
     if (jj_scan_token(ABSOLUTLENGTH)) return true;
@@ -7091,6 +7099,12 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_188()
  {
     if (jj_scan_token(RELVIEWLENGTH)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_217()
+ {
+    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 
@@ -7191,12 +7205,6 @@ n.image = Util.strip(n.image);
   private boolean jj_3R_169()
  {
     if (jj_3R_212()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_217()
- {
-    if (jj_scan_token(IDENT)) return true;
     return false;
   }
 

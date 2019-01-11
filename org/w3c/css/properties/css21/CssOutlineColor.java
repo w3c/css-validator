@@ -51,7 +51,7 @@ public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor 
         switch (val.getType()) {
             case CssTypes.CSS_HASH_IDENT:
                 org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                c.setShortRGBColor(val.toString(), ac);
+                c.setShortRGBColor(ac, val.toString());
                 value = c;
                 break;
             case CssTypes.CSS_COLOR:

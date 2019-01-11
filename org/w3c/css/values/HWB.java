@@ -91,9 +91,9 @@ public class HWB {
             w = pw.getValue();
             b = pb.getValue();
             s = w.add(b);
-            if (s.compareTo(s100) != 0) {
-                w = w.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
-                b = b.divide(s, BigDecimal.ROUND_HALF_UP).multiply(s100);
+            if (s.compareTo(s100) > 0) {
+                w = w.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
+                b = b.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
                 pw.setValue(w);
                 pb.setValue(b);
             }
@@ -107,13 +107,13 @@ public class HWB {
         if (output == null) {
             normalize();
             StringBuilder sb = new StringBuilder("hwb(");
-            sb.append(vh).append(", ");
-            sb.append(vw).append(", ");
+            sb.append(vh).append(' ');
+            sb.append(vw).append(' ');
             sb.append(vb);
             if (!faSet) {
-                sb.append(")");
+                sb.append(')');
             } else {
-                sb.append(", ").append(va).append(')');
+                sb.append(" / ").append(va).append(')');
             }
             output = sb.toString();
         }

@@ -130,7 +130,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
                     break;
                 case CssTypes.CSS_HASH_IDENT:
                     org.w3c.css.values.CssColor c = new org.w3c.css.values.CssColor();
-                    c.setShortRGBColor(val.toString(), ac);
+                    c.setShortRGBColor(ac, val.toString());
                     _color = c;
                     break;
                 case CssTypes.CSS_COLOR:

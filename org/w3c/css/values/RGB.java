@@ -16,6 +16,7 @@ public class RGB {
 
     private String output = null;
     private boolean percent = false;
+    boolean isCss3 = false;
 
     CssValue vr, vg, vb;
 
@@ -70,6 +71,7 @@ public class RGB {
     public final void setRed(ApplContext ac, CssValue val)
             throws InvalidParamException {
         output = null;
+        isCss3 = (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0);
         vr = filterValue(ac, val);
     }
 
@@ -125,6 +127,19 @@ public class RGB {
         vb = n;
     }
 
+    /**
+     * Create a new RGB with default values
+     *
+     * @param isCss3 a boolean toggling the output of RGB
+     * @param r the red channel, an <EM>int</EM>
+     * @param g the green channel, an <EM>int</EM>
+     * @param b the blue channel, an <EM>int</EM>
+     */
+    public RGB(boolean isCss3, int r, int g, int b) {
+        this(r, g, b);
+        this.isCss3 = isCss3;
+    }
+
     public boolean equals(RGB other) {
         if (other != null) {
             return (vr.equals(other.vr) && vg.equals(other.vg) && vb.equals(other.vb));
@@ -142,9 +157,13 @@ public class RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder(functionname).append('(');
-            sb.append(vr).append(", ");
-            sb.append(vg).append(", ");
-            sb.append(vb).append(')');
+            if (isCss3) {
+                sb.append(vr).append(' ').append(vg).append(' ').append(vb).append(')');
+            } else {
+                sb.append(vr).append(", ");
+                sb.append(vg).append(", ");
+                sb.append(vb).append(')');
+            }
             output = sb.toString();
         }
         return output;

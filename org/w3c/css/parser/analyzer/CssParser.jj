@@ -25,9 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.net.URL;
-import java.math.BigDecimal;
 
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssOperator;
@@ -58,7 +56,6 @@ import org.w3c.css.values.CssSemitone;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssVolume;
 import org.w3c.css.properties.css.CssProperty;
-import org.w3c.css.parser.Frame;
 import org.w3c.css.parser.CssError;
 import org.w3c.css.parser.CssErrorToken;
 import org.w3c.css.parser.CssSelectors;
@@ -82,7 +79,6 @@ import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.WarningParamException;
 import org.w3c.css.util.Util;
-import org.w3c.css.util.Messages;
 
 import org.w3c.css.selectors.AdjacentSiblingSelector;
 import org.w3c.css.selectors.AttributeSelector;
@@ -3037,19 +3033,31 @@ CssValue function() :
     ")" { 
 	String funcname = n.image.toLowerCase();
 	if (funcname.equals("rgb(")) {
-	    color.setRGBColor(exp, ac);
+	    color.setRGBColor(ac, exp);
 	    return color;
 	} else if (funcname.equals("rgba(")) {
-	    color.setRGBAColor(exp, ac);
+	    color.setRGBAColor(ac, exp);
 	    return color;
 	} else if (funcname.equals("hsl(")) {
-	    color.setHSLColor(exp, ac);
+	    color.setHSLColor(ac, exp);
 	    return color;
 	} else if (funcname.equals("hsla(")) {
-	    color.setHSLAColor(exp, ac);
+	    color.setHSLColor(ac, exp);
 	    return color;
         } else if (funcname.equals("hwb(")) {
-            color.setHWBColor(exp, ac);
+            color.setHWBColor(ac, exp);
+            return color;
+        } else if (funcname.equals("lab(")) {
+            color.setLABColor(ac, exp);
+            return color;
+        } else if (funcname.equals("gray(")) {
+            color.setGrayColor(ac, exp);
+            return color;
+        } else if (funcname.equals("lch(")) {
+            color.setLCHColor(ac, exp);
+            return color;
+        } else if (funcname.equals("device-cmyk(")) {
+            color.setDeviceCMYKColor(ac, exp);
             return color;
 	} else if (funcname.equals("image(")) {
 	    CssImage img = new CssImage();
@@ -3073,7 +3081,7 @@ CssValue function() :
             return img;
 	} else if (funcname.equals("atsc-rgba(")) {
 	    if (getAtRule().toString().equals("@media atsc-tv")) {
-	        color.setATSCRGBAColor(exp, ac);
+	        color.setATSCRGBAColor(ac, exp);
 	        return color;
 	    } else {
 		addError(new InvalidParamException("onlyATSC", "", ac),
