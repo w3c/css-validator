@@ -83,6 +83,13 @@ public class LAB {
         return isGray;
     }
 
+    public boolean equals(LAB other) {
+        if (other != null) {
+            return (vl.equals(other.vl) && va.equals(other.va) && vb.equals(other.vb) &&
+                    ((alpha == null && other.alpha == null) || (alpha != null && alpha.equals(other.alpha))));
+        }
+        return false;
+    }
 
     /**
      * Returns a string representation of the object.

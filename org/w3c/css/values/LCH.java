@@ -95,6 +95,13 @@ public class LCH {
         alpha = RGBA.filterAlpha(ac, val);
     }
 
+    public boolean equals(LCH other) {
+        if (other != null) {
+            return (vl.equals(other.vl) && vc.equals(other.vc) && vh.equals(other.vh) &&
+                    ((alpha == null && other.alpha == null) || (alpha != null && alpha.equals(other.alpha))));
+        }
+        return false;
+    }
 
     /**
      * Returns a string representation of the object.

@@ -100,6 +100,14 @@ public class HWB {
         }
     }
 
+    public boolean equals(HWB other) {
+        if (other != null) {
+            return (vh.equals(other.vh) && vw.equals(other.vw) && vb.equals(other.vb) &&
+                    ((va == null && other.va == null) || (va != null && va.equals(other.va))));
+        }
+        return false;
+    }
+
     /**
      * Returns a string representation of the object.
      */
