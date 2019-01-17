@@ -78,7 +78,7 @@ public class RGBA extends RGB {
 
     public boolean equals(RGBA other) {
         if (other != null) {
-            return super.equals(other) && va.equals(other.va);
+            return super.equals(other) && ((va == null && other.va == null) || (va != null && va.equals(other.va)));
         }
         return false;
     }
