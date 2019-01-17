@@ -104,6 +104,14 @@ public class DeviceCMYK {
         }
     }
 
+    public boolean equals(DeviceCMYK other) {
+        if (other != null) {
+            return (vc.equals(other.vc) && vm.equals(other.vm) && vy.equals(other.vy) && vk.equals(other.vk) &&
+                    ((alpha == null && other.alpha == null) || (alpha != null && alpha.equals(other.alpha))));
+        }
+        return false;
+    }
+
     /**
      * Returns a string representation of the object.
      */
