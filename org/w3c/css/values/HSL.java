@@ -129,6 +129,14 @@ public class HSL {
         va = RGBA.filterAlpha(ac, alpha);
     }
 
+    public boolean equals(HSL other) {
+        if (other != null) {
+            return (vh.equals(other.vh) && vs.equals(other.vs) && vl.equals(other.vl) &&
+                    ((va == null && other.va == null) || (va != null && va.equals(other.va))));
+        }
+        return false;
+    }
+
     /**
      * Returns a string representation of the object.
      */
