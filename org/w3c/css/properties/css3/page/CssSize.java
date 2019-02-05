@@ -1,9 +1,9 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang University 2014.
 // Please first read the full copyright statement in file COPYRIGHT.html
-package org.w3c.css.properties.css3;
+package org.w3c.css.properties.css3.page;
 
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2013/WD-css3-page-20130314/#page-size-prop
+ * @spec https://www.w3.org/TR/2018/WD-css-page-3-20181018/#page-size-prop
  */
 public class CssSize extends org.w3c.css.properties.css.CssSize {
 
