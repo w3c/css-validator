@@ -10,6 +10,7 @@ import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-padding
  */
 public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPadding {
 
@@ -28,6 +29,7 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
     private CssScrollPaddingBottom _longhand_bottom;
     private CssScrollPaddingLeft _longhand_left;
 
+    protected static CssIdent auto = CssIdent.getIdent("auto");
 
     /**
      * Create a new CssScrollPaddingInline
@@ -74,22 +76,7 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
                 case CssTypes.CSS_PERCENTAGE:
                     val.getCheckableValue().checkPositiveness(ac, this);
                     values.add(val);
-                    switch (i) {
-                        case 0:
-                            _longhand_top.value = val;
-                            break;
-                        case 1:
-                            _longhand_right.value = val;
-                            break;
-                        case 2:
-                            _longhand_bottom.value = val;
-                            break;
-                        case 3:
-                            _longhand_left.value = val;
-                            break;
-                        default:
-                            // can't happen by design
-                    }
+                    setValue(i, val);
                     break;
                 case CssTypes.CSS_IDENT:
                     if (inherit.equals(val)) {
@@ -105,6 +92,11 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
                         _longhand_left.value = inherit;
                         break;
                     }
+                    if (auto.equals(val)) {
+                        values.add(val);
+                        setValue(i, val);
+                        break;
+                    }
                 default:
                     throw new InvalidParamException("value",
                             expression.getValue(),
@@ -117,6 +109,25 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
             expression.next();
         }
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
+    }
+
+    private void setValue(int index, CssValue value) {
+        switch (index) {
+            case 0:
+                _longhand_top.value = value;
+                break;
+            case 1:
+                _longhand_right.value = value;
+                break;
+            case 2:
+                _longhand_bottom.value = value;
+                break;
+            case 3:
+                _longhand_left.value = value;
+                break;
+            default:
+                // can't happen by design
+        }
     }
 
     public CssScrollPadding(ApplContext ac, CssExpression expression)
@@ -154,6 +165,10 @@ public class CssScrollPadding extends org.w3c.css.properties.css.CssScrollPaddin
                 if (inherit.equals(val)) {
                     expression.next();
                     return inherit;
+                }
+                if (auto.equals(val)) {
+                    expression.next();
+                    return auto;
                 }
             default:
                 throw new InvalidParamException("value",

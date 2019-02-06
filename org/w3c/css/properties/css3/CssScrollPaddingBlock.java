@@ -9,6 +9,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -18,12 +19,15 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec ttps://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding-block
+ * @spec ttps://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-padding-block
  */
 public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollPaddingBlock {
 
     private CssScrollPaddingBlockStart _longhand_start;
     private CssScrollPaddingBlockEnd _longhand_end;
+
+    protected static final CssIdent auto = CssIdent.getIdent("auto");
+
 
     /**
      * Create a new CssScrollPaddingBlock
@@ -75,6 +79,11 @@ public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollP
                     _longhand_end.value = inherit;
                     break;
                 }
+                if (auto.equals(val)) {
+                    values.add(auto);
+                    _longhand_start.value = auto;
+                    break;
+                }
             default:
                 throw new InvalidParamException("value",
                         expression.getValue(),
@@ -96,6 +105,12 @@ public class CssScrollPaddingBlock extends org.w3c.css.properties.css.CssScrollP
                     values.add(val);
                     _longhand_end.value = val;
                     break;
+                case CssTypes.CSS_IDENT:
+                    if (auto.equals(val)) {
+                        values.add(auto);
+                        _longhand_end.value = auto;
+                        break;
+                    }
                 default:
                     throw new InvalidParamException("value",
                             expression.getValue(),

@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding-inline-end
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-padding-inline-end
  */
 public class CssScrollPaddingInlineEnd extends org.w3c.css.properties.css.CssScrollPaddingInlineEnd {
 

@@ -9,6 +9,7 @@ import org.w3c.css.parser.CssStyle;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
@@ -18,12 +19,14 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-padding-inline
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-padding-inline
  */
 public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScrollPaddingInline {
 
     private CssScrollPaddingInlineStart _longhand_start;
     private CssScrollPaddingInlineEnd _longhand_end;
+
+    protected static final CssIdent auto = CssIdent.getIdent("auto");
 
     /**
      * Create a new CssScrollPaddingInline
@@ -70,9 +73,14 @@ public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScroll
                                 expression.getValue(),
                                 getPropertyName(), ac);
                     }
-                    values.add(val);
+                    values.add(inherit);
                     _longhand_start.value = inherit;
                     _longhand_end.value = inherit;
+                    break;
+                }
+                if (auto.equals(val)) {
+                    values.add(auto);
+                    _longhand_start.value = auto;
                     break;
                 }
             default:
@@ -96,6 +104,12 @@ public class CssScrollPaddingInline extends org.w3c.css.properties.css.CssScroll
                     values.add(val);
                     _longhand_end.value = val;
                     break;
+                case CssTypes.CSS_IDENT:
+                    if (auto.equals(val)) {
+                        values.add(auto);
+                        _longhand_end.value = auto;
+                        break;
+                    }
                 default:
                     throw new InvalidParamException("value",
                             expression.getValue(),
