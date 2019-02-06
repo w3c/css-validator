@@ -12,25 +12,25 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-inline-end
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-block-end
  */
-public class CssScrollSnapMarginInlineEnd extends org.w3c.css.properties.css.CssScrollSnapMarginInlineEnd {
+public class CssScrollMarginBlockEnd extends org.w3c.css.properties.css.CssScrollMarginBlockEnd {
 
     /**
-     * Create a new CssScrollSnapMarginInlineEnd
+     * Create a new CssScrollSnapMarginBlockEnd
      */
-    public CssScrollSnapMarginInlineEnd() {
+    public CssScrollMarginBlockEnd() {
         value = initial;
     }
 
     /**
-     * Creates a new CssScrollSnapMarginInlineEnd
+     * Creates a new CssScrollSnapMarginBlockEnd
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginInlineEnd(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginBlockEnd(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -58,7 +58,7 @@ public class CssScrollSnapMarginInlineEnd extends org.w3c.css.properties.css.Css
         expression.next();
     }
 
-    public CssScrollSnapMarginInlineEnd(ApplContext ac, CssExpression expression)
+    public CssScrollMarginBlockEnd(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

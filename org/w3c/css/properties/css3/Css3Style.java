@@ -146,6 +146,17 @@ import org.w3c.css.properties.css.CssRubyAlign;
 import org.w3c.css.properties.css.CssRubyMerge;
 import org.w3c.css.properties.css.CssRubyPosition;
 import org.w3c.css.properties.css.CssScrollBehavior;
+import org.w3c.css.properties.css.CssScrollMargin;
+import org.w3c.css.properties.css.CssScrollMarginBlock;
+import org.w3c.css.properties.css.CssScrollMarginBlockEnd;
+import org.w3c.css.properties.css.CssScrollMarginBlockStart;
+import org.w3c.css.properties.css.CssScrollMarginBottom;
+import org.w3c.css.properties.css.CssScrollMarginInline;
+import org.w3c.css.properties.css.CssScrollMarginInlineEnd;
+import org.w3c.css.properties.css.CssScrollMarginInlineStart;
+import org.w3c.css.properties.css.CssScrollMarginLeft;
+import org.w3c.css.properties.css.CssScrollMarginRight;
+import org.w3c.css.properties.css.CssScrollMarginTop;
 import org.w3c.css.properties.css.CssScrollPadding;
 import org.w3c.css.properties.css.CssScrollPaddingBlock;
 import org.w3c.css.properties.css.CssScrollPaddingBlockEnd;
@@ -158,17 +169,6 @@ import org.w3c.css.properties.css.CssScrollPaddingLeft;
 import org.w3c.css.properties.css.CssScrollPaddingRight;
 import org.w3c.css.properties.css.CssScrollPaddingTop;
 import org.w3c.css.properties.css.CssScrollSnapAlign;
-import org.w3c.css.properties.css.CssScrollSnapMargin;
-import org.w3c.css.properties.css.CssScrollSnapMarginBlock;
-import org.w3c.css.properties.css.CssScrollSnapMarginBlockEnd;
-import org.w3c.css.properties.css.CssScrollSnapMarginBlockStart;
-import org.w3c.css.properties.css.CssScrollSnapMarginBottom;
-import org.w3c.css.properties.css.CssScrollSnapMarginInline;
-import org.w3c.css.properties.css.CssScrollSnapMarginInlineEnd;
-import org.w3c.css.properties.css.CssScrollSnapMarginInlineStart;
-import org.w3c.css.properties.css.CssScrollSnapMarginLeft;
-import org.w3c.css.properties.css.CssScrollSnapMarginRight;
-import org.w3c.css.properties.css.CssScrollSnapMarginTop;
 import org.w3c.css.properties.css.CssScrollSnapStop;
 import org.w3c.css.properties.css.CssScrollSnapType;
 import org.w3c.css.properties.css.CssSpeakAs;
@@ -265,17 +265,17 @@ public class Css3Style extends ATSCStyle {
     public CssUserSelect cssUserSelect;
     public CssScrollBehavior cssScrollBehavior;
 
-    public CssScrollSnapMarginBlockStart cssScrollSnapMarginBlockStart;
-    public CssScrollSnapMarginBlockEnd cssScrollSnapMarginBlockEnd;
-    public CssScrollSnapMarginInlineStart cssScrollSnapMarginInlineStart;
-    public CssScrollSnapMarginInlineEnd cssScrollSnapMarginInlineEnd;
-    public CssScrollSnapMarginBlock cssScrollSnapMarginBlock;
-    public CssScrollSnapMarginInline cssScrollSnapMarginInline;
-    public CssScrollSnapMarginBottom cssScrollSnapMarginBottom;
-    public CssScrollSnapMarginLeft cssScrollSnapMarginLeft;
-    public CssScrollSnapMarginRight cssScrollSnapMarginRight;
-    public CssScrollSnapMarginTop cssScrollSnapMarginTop;
-    public CssScrollSnapMargin cssScrollSnapMargin;
+    public CssScrollMarginBlockStart cssScrollMarginBlockStart;
+    public CssScrollMarginBlockEnd cssScrollMarginBlockEnd;
+    public CssScrollMarginInlineStart cssScrollMarginInlineStart;
+    public CssScrollMarginInlineEnd cssScrollMarginInlineEnd;
+    public CssScrollMarginBlock cssScrollMarginBlock;
+    public CssScrollMarginInline cssScrollMarginInline;
+    public CssScrollMarginBottom cssScrollMarginBottom;
+    public CssScrollMarginLeft cssScrollMarginLeft;
+    public CssScrollMarginRight cssScrollMarginRight;
+    public CssScrollMarginTop cssScrollMarginTop;
+    public CssScrollMargin cssScrollMargin;
     public CssScrollPaddingInlineStart cssScrollPaddingInlineStart;
     public CssScrollPaddingInlineEnd cssScrollPaddingInlineEnd;
     public CssScrollPaddingInline cssScrollPaddingInline;
@@ -1003,103 +1003,103 @@ public class Css3Style extends ATSCStyle {
         return cssGrid;
     }
 
-    public CssScrollSnapMarginBlockStart getScrollSnapMarginBlockStart() {
-        if (cssScrollSnapMarginBlockStart == null) {
-            cssScrollSnapMarginBlockStart =
-                    (CssScrollSnapMarginBlockStart) style.CascadingOrder(new CssScrollSnapMarginBlockStart(),
+    public CssScrollMarginBlockStart getScrollMarginBlockStart() {
+        if (cssScrollMarginBlockStart == null) {
+            cssScrollMarginBlockStart =
+                    (CssScrollMarginBlockStart) style.CascadingOrder(new CssScrollMarginBlockStart(),
                             style, selector);
         }
-        return cssScrollSnapMarginBlockStart;
+        return cssScrollMarginBlockStart;
     }
 
-    public CssScrollSnapMarginBlockEnd getScrollSnapMarginBlockEnd() {
-        if (cssScrollSnapMarginBlockEnd == null) {
-            cssScrollSnapMarginBlockEnd =
-                    (CssScrollSnapMarginBlockEnd) style.CascadingOrder(new CssScrollSnapMarginBlockEnd(),
+    public CssScrollMarginBlockEnd getScrollMarginBlockEnd() {
+        if (cssScrollMarginBlockEnd == null) {
+            cssScrollMarginBlockEnd =
+                    (CssScrollMarginBlockEnd) style.CascadingOrder(new CssScrollMarginBlockEnd(),
                             style, selector);
         }
-        return cssScrollSnapMarginBlockEnd;
+        return cssScrollMarginBlockEnd;
     }
 
-    public CssScrollSnapMarginInlineStart getScrollSnapMarginInlineStart() {
-        if (cssScrollSnapMarginInlineStart == null) {
-            cssScrollSnapMarginInlineStart =
-                    (CssScrollSnapMarginInlineStart) style.CascadingOrder(new CssScrollSnapMarginInlineStart(),
+    public CssScrollMarginInlineStart getScrollMarginInlineStart() {
+        if (cssScrollMarginInlineStart == null) {
+            cssScrollMarginInlineStart =
+                    (CssScrollMarginInlineStart) style.CascadingOrder(new CssScrollMarginInlineStart(),
                             style, selector);
         }
-        return cssScrollSnapMarginInlineStart;
+        return cssScrollMarginInlineStart;
     }
 
-    public CssScrollSnapMarginInlineEnd getScrollSnapMarginInlineEnd() {
-        if (cssScrollSnapMarginInlineEnd == null) {
-            cssScrollSnapMarginInlineEnd =
-                    (CssScrollSnapMarginInlineEnd) style.CascadingOrder(new CssScrollSnapMarginInlineEnd(),
+    public CssScrollMarginInlineEnd getScrollMarginInlineEnd() {
+        if (cssScrollMarginInlineEnd == null) {
+            cssScrollMarginInlineEnd =
+                    (CssScrollMarginInlineEnd) style.CascadingOrder(new CssScrollMarginInlineEnd(),
                             style, selector);
         }
-        return cssScrollSnapMarginInlineEnd;
+        return cssScrollMarginInlineEnd;
     }
 
-    public CssScrollSnapMarginBlock getScrollSnapMarginBlock() {
-        if (cssScrollSnapMarginBlock == null) {
-            cssScrollSnapMarginBlock =
-                    (CssScrollSnapMarginBlock) style.CascadingOrder(new CssScrollSnapMarginBlock(),
+    public CssScrollMarginBlock getScrollMarginBlock() {
+        if (cssScrollMarginBlock == null) {
+            cssScrollMarginBlock =
+                    (CssScrollMarginBlock) style.CascadingOrder(new org.w3c.css.properties.css.CssScrollMarginBlock(),
                             style, selector);
         }
-        return cssScrollSnapMarginBlock;
+        return cssScrollMarginBlock;
     }
 
-    public CssScrollSnapMarginInline getScrollSnapMarginInline() {
-        if (cssScrollSnapMarginInline == null) {
-            cssScrollSnapMarginInline =
-                    (CssScrollSnapMarginInline) style.CascadingOrder(new CssScrollSnapMarginInline(),
+    public CssScrollMarginInline getScrollMarginInline() {
+        if (cssScrollMarginInline == null) {
+            cssScrollMarginInline =
+                    (CssScrollMarginInline) style.CascadingOrder(new CssScrollMarginInline(),
                             style, selector);
         }
-        return cssScrollSnapMarginInline;
+        return cssScrollMarginInline;
     }
 
-    public CssScrollSnapMarginBottom getScrollSnapMarginBottom() {
-        if (cssScrollSnapMarginBottom == null) {
-            cssScrollSnapMarginBottom =
-                    (CssScrollSnapMarginBottom) style.CascadingOrder(new CssScrollSnapMarginBottom(),
+    public CssScrollMarginBottom getScrollMarginBottom() {
+        if (cssScrollMarginBottom == null) {
+            cssScrollMarginBottom =
+                    (CssScrollMarginBottom) style.CascadingOrder(new CssScrollMarginBottom(),
                             style, selector);
         }
-        return cssScrollSnapMarginBottom;
+        return cssScrollMarginBottom;
     }
 
-    public CssScrollSnapMarginLeft getScrollSnapMarginLeft() {
-        if (cssScrollSnapMarginLeft == null) {
-            cssScrollSnapMarginLeft =
-                    (CssScrollSnapMarginLeft) style.CascadingOrder(new CssScrollSnapMarginLeft(),
+    public CssScrollMarginLeft getScrollMarginLeft() {
+        if (cssScrollMarginLeft == null) {
+            cssScrollMarginLeft =
+                    (CssScrollMarginLeft) style.CascadingOrder(new CssScrollMarginLeft(),
                             style, selector);
         }
-        return cssScrollSnapMarginLeft;
+        return cssScrollMarginLeft;
     }
 
-    public CssScrollSnapMarginRight getScrollSnapMarginRight() {
-        if (cssScrollSnapMarginRight == null) {
-            cssScrollSnapMarginRight =
-                    (CssScrollSnapMarginRight) style.CascadingOrder(new CssScrollSnapMarginRight(),
+    public CssScrollMarginRight getScrollMarginRight() {
+        if (cssScrollMarginRight == null) {
+            cssScrollMarginRight =
+                    (CssScrollMarginRight) style.CascadingOrder(new CssScrollMarginRight(),
                             style, selector);
         }
-        return cssScrollSnapMarginRight;
+        return cssScrollMarginRight;
     }
 
-    public CssScrollSnapMarginTop getScrollSnapMarginTop() {
-        if (cssScrollSnapMarginTop == null) {
-            cssScrollSnapMarginTop =
-                    (CssScrollSnapMarginTop) style.CascadingOrder(new CssScrollSnapMarginTop(),
+    public CssScrollMarginTop getScrollMarginTop() {
+        if (cssScrollMarginTop == null) {
+            cssScrollMarginTop =
+                    (CssScrollMarginTop) style.CascadingOrder(new CssScrollMarginTop(),
                             style, selector);
         }
-        return cssScrollSnapMarginTop;
+        return cssScrollMarginTop;
     }
 
-    public CssScrollSnapMargin getScrollSnapMargin() {
-        if (cssScrollSnapMargin == null) {
-            cssScrollSnapMargin =
-                    (CssScrollSnapMargin) style.CascadingOrder(new CssScrollSnapMargin(),
+    public CssScrollMargin getScrollMargin() {
+        if (cssScrollMargin == null) {
+            cssScrollMargin =
+                    (CssScrollMargin) style.CascadingOrder(new CssScrollMargin(),
                             style, selector);
         }
-        return cssScrollSnapMargin;
+        return cssScrollMargin;
     }
 
     public CssScrollPaddingInlineStart getScrollPaddingInlineStart() {

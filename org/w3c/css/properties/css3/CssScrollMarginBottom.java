@@ -12,25 +12,25 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-left
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-bottom
  */
-public class CssScrollSnapMarginLeft extends org.w3c.css.properties.css.CssScrollSnapMarginLeft {
+public class CssScrollMarginBottom extends org.w3c.css.properties.css.CssScrollMarginBottom {
 
     /**
-     * Create a new CssScrollSnapMarginLeft
+     * Create a new CssScrollSnapMarginBottom
      */
-    public CssScrollSnapMarginLeft() {
+    public CssScrollMarginBottom() {
         value = initial;
     }
 
     /**
-     * Creates a new CssScrollSnapMarginLeft
+     * Creates a new CssScrollSnapMarginBottom
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginLeft(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginBottom(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -58,7 +58,7 @@ public class CssScrollSnapMarginLeft extends org.w3c.css.properties.css.CssScrol
         expression.next();
     }
 
-    public CssScrollSnapMarginLeft(ApplContext ac, CssExpression expression)
+    public CssScrollMarginBottom(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -15,31 +15,31 @@ import org.w3c.css.values.CssValue;
 /**
  * @since CSS3
  */
-public class CssScrollSnapMarginBlockEnd extends CssProperty {
+public class CssScrollMarginTop extends CssProperty {
 
     public CssValue value;
 
     /**
-     * Create a new CssScrollSnapMarginBlockEnd
+     * Create a new CssScrollMarginTop
      */
-    public CssScrollSnapMarginBlockEnd() {
+    public CssScrollMarginTop() {
     }
 
     /**
-     * Creates a new CssScrollSnapMarginBlockEnd
+     * Creates a new CssScrollMarginTop
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginBlockEnd(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginTop(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         throw new InvalidParamException("value",
                 expression.getValue().toString(),
                 getPropertyName(), ac);
     }
 
-    public CssScrollSnapMarginBlockEnd(ApplContext ac, CssExpression expression)
+    public CssScrollMarginTop(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
@@ -56,7 +56,7 @@ public class CssScrollSnapMarginBlockEnd extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "scroll-snap-margin-block-end";
+        return "scroll-margin-top";
     }
 
     /**
@@ -81,10 +81,10 @@ public class CssScrollSnapMarginBlockEnd extends CssProperty {
      */
     public void addToStyle(ApplContext ac, CssStyle style) {
         Css3Style s = (Css3Style) style;
-        if (s.cssScrollSnapMarginBlockEnd != null) {
+        if (s.cssScrollMarginTop != null) {
             style.addRedefinitionWarning(ac, this);
         }
-        s.cssScrollSnapMarginBlockEnd = this;
+        s.cssScrollMarginTop = this;
     }
 
 
@@ -94,8 +94,8 @@ public class CssScrollSnapMarginBlockEnd extends CssProperty {
      * @param property The other property.
      */
     public boolean equals(CssProperty property) {
-        return (property instanceof CssScrollSnapMarginBlockEnd &&
-                value.equals(((CssScrollSnapMarginBlockEnd) property).value));
+        return (property instanceof CssScrollMarginTop &&
+                value.equals(((CssScrollMarginTop) property).value));
     }
 
 
@@ -107,9 +107,9 @@ public class CssScrollSnapMarginBlockEnd extends CssProperty {
      */
     public CssProperty getPropertyInStyle(CssStyle style, boolean resolve) {
         if (resolve) {
-            return ((Css3Style) style).getScrollSnapMarginBlockEnd();
+            return ((Css3Style) style).getScrollMarginTop();
         } else {
-            return ((Css3Style) style).cssScrollSnapMarginBlockEnd;
+            return ((Css3Style) style).cssScrollMarginTop;
         }
     }
 }

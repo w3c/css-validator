@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-block
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-block
  */
-public class CssScrollSnapMarginBlock extends org.w3c.css.properties.css.CssScrollSnapMarginBlock {
+public class CssScrollMarginBlock extends org.w3c.css.properties.css.CssScrollMarginBlock {
 
-    private CssScrollSnapMarginBlockStart _longhand_start;
-    private CssScrollSnapMarginBlockEnd _longhand_end;
+    private CssScrollMarginBlockStart _longhand_start;
+    private CssScrollMarginBlockEnd _longhand_end;
 
     /**
      * Create a new CssScrollSnapMarginBlock
      */
-    public CssScrollSnapMarginBlock() {
+    public CssScrollMarginBlock() {
         value = initial;
-        _longhand_end = new CssScrollSnapMarginBlockEnd();
-        _longhand_start = new CssScrollSnapMarginBlockStart();
+        _longhand_end = new CssScrollMarginBlockEnd();
+        _longhand_start = new CssScrollMarginBlockStart();
     }
 
     /**
@@ -41,7 +41,7 @@ public class CssScrollSnapMarginBlock extends org.w3c.css.properties.css.CssScro
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginBlock(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -51,8 +51,8 @@ public class CssScrollSnapMarginBlock extends org.w3c.css.properties.css.CssScro
             throw new InvalidParamException("unrecognize", ac);
         }
         ArrayList<CssValue> values = new ArrayList<>();
-        _longhand_end = new CssScrollSnapMarginBlockEnd();
-        _longhand_start = new CssScrollSnapMarginBlockStart();
+        _longhand_end = new CssScrollMarginBlockEnd();
+        _longhand_start = new CssScrollMarginBlockStart();
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
@@ -102,7 +102,7 @@ public class CssScrollSnapMarginBlock extends org.w3c.css.properties.css.CssScro
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssScrollSnapMarginBlock(ApplContext ac, CssExpression expression)
+    public CssScrollMarginBlock(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -12,14 +12,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-block-start
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-block-start
  */
-public class CssScrollSnapMarginBlockStart extends org.w3c.css.properties.css.CssScrollSnapMarginBlockStart {
+public class CssScrollMarginBlockStart extends org.w3c.css.properties.css.CssScrollMarginBlockStart {
 
     /**
      * Create a new CssScrollSnapMarginBlockStart
      */
-    public CssScrollSnapMarginBlockStart() {
+    public CssScrollMarginBlockStart() {
         value = initial;
     }
 
@@ -30,7 +30,7 @@ public class CssScrollSnapMarginBlockStart extends org.w3c.css.properties.css.Cs
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginBlockStart(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -58,7 +58,7 @@ public class CssScrollSnapMarginBlockStart extends org.w3c.css.properties.css.Cs
         expression.next();
     }
 
-    public CssScrollSnapMarginBlockStart(ApplContext ac, CssExpression expression)
+    public CssScrollMarginBlockStart(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

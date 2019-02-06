@@ -12,25 +12,25 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-bottom
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-inline-start
  */
-public class CssScrollSnapMarginBottom extends org.w3c.css.properties.css.CssScrollSnapMarginBottom {
+public class CssScrollMarginInlineStart extends org.w3c.css.properties.css.CssScrollMarginInlineStart {
 
     /**
-     * Create a new CssScrollSnapMarginBottom
+     * Create a new CssScrollSnapMarginInlineStart
      */
-    public CssScrollSnapMarginBottom() {
+    public CssScrollMarginInlineStart() {
         value = initial;
     }
 
     /**
-     * Creates a new CssScrollSnapMarginBottom
+     * Creates a new CssScrollSnapMarginInlineStart
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginBottom(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginInlineStart(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -58,7 +58,7 @@ public class CssScrollSnapMarginBottom extends org.w3c.css.properties.css.CssScr
         expression.next();
     }
 
-    public CssScrollSnapMarginBottom(ApplContext ac, CssExpression expression)
+    public CssScrollMarginInlineStart(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

@@ -18,34 +18,34 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin
  */
-public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSnapMargin {
+public class CssScrollMargin extends org.w3c.css.properties.css.CssScrollMargin {
 
-    private CssScrollSnapMarginTop _longhand_top;
-    private CssScrollSnapMarginBottom _longhand_bottom;
-    private CssScrollSnapMarginLeft _longhand_left;
-    private CssScrollSnapMarginRight _longhand_right;
+    private CssScrollMarginTop _longhand_top;
+    private CssScrollMarginBottom _longhand_bottom;
+    private CssScrollMarginLeft _longhand_left;
+    private CssScrollMarginRight _longhand_right;
 
     /**
-     * Create a new CssScrollSnapMarginInline
+     * Create a new CssScrollMargin
      */
-    public CssScrollSnapMargin() {
+    public CssScrollMargin() {
         value = initial;
-        _longhand_bottom = new CssScrollSnapMarginBottom();
-        _longhand_left = new CssScrollSnapMarginLeft();
-        _longhand_right = new CssScrollSnapMarginRight();
-        _longhand_top = new CssScrollSnapMarginTop();
+        _longhand_bottom = new CssScrollMarginBottom();
+        _longhand_left = new CssScrollMarginLeft();
+        _longhand_right = new CssScrollMarginRight();
+        _longhand_top = new CssScrollMarginTop();
     }
 
     /**
-     * Creates a new CssScrollSnapMarginInline
+     * Creates a new CssScrollMargin
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMargin(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMargin(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val;
@@ -55,10 +55,10 @@ public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSna
             throw new InvalidParamException("unrecognize", ac);
         }
         ArrayList<CssValue> values = new ArrayList<>();
-        _longhand_bottom = new CssScrollSnapMarginBottom();
-        _longhand_left = new CssScrollSnapMarginLeft();
-        _longhand_right = new CssScrollSnapMarginRight();
-        _longhand_top = new CssScrollSnapMarginTop();
+        _longhand_bottom = new CssScrollMarginBottom();
+        _longhand_left = new CssScrollMarginLeft();
+        _longhand_right = new CssScrollMarginRight();
+        _longhand_top = new CssScrollMarginTop();
 
         for (int i = 0; i < 4 && !expression.end(); i++) {
             val = expression.getValue();
@@ -114,7 +114,7 @@ public class CssScrollSnapMargin extends org.w3c.css.properties.css.CssScrollSna
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssScrollSnapMargin(ApplContext ac, CssExpression expression)
+    public CssScrollMargin(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }

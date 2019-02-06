@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-scroll-snap-1-20170824/#propdef-scroll-snap-margin-inline
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-inline
  */
-public class CssScrollSnapMarginInline extends org.w3c.css.properties.css.CssScrollSnapMarginInline {
+public class CssScrollMarginInline extends org.w3c.css.properties.css.CssScrollMarginInline {
 
-    private CssScrollSnapMarginInlineStart _longhand_start;
-    private CssScrollSnapMarginInlineEnd _longhand_end;
+    private CssScrollMarginInlineStart _longhand_start;
+    private CssScrollMarginInlineEnd _longhand_end;
 
     /**
      * Create a new CssScrollSnapMarginInline
      */
-    public CssScrollSnapMarginInline() {
+    public CssScrollMarginInline() {
         value = initial;
-        _longhand_end = new CssScrollSnapMarginInlineEnd();
-        _longhand_start = new CssScrollSnapMarginInlineStart();
+        _longhand_end = new CssScrollMarginInlineEnd();
+        _longhand_start = new CssScrollMarginInlineStart();
     }
 
     /**
@@ -41,7 +41,7 @@ public class CssScrollSnapMarginInline extends org.w3c.css.properties.css.CssScr
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssScrollSnapMarginInline(ApplContext ac, CssExpression expression, boolean check)
+    public CssScrollMarginInline(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -51,8 +51,8 @@ public class CssScrollSnapMarginInline extends org.w3c.css.properties.css.CssScr
             throw new InvalidParamException("unrecognize", ac);
         }
         ArrayList<CssValue> values = new ArrayList<>();
-        _longhand_end = new CssScrollSnapMarginInlineEnd();
-        _longhand_start = new CssScrollSnapMarginInlineStart();
+        _longhand_end = new CssScrollMarginInlineEnd();
+        _longhand_start = new CssScrollMarginInlineStart();
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
@@ -102,7 +102,7 @@ public class CssScrollSnapMarginInline extends org.w3c.css.properties.css.CssScr
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
-    public CssScrollSnapMarginInline(ApplContext ac, CssExpression expression)
+    public CssScrollMarginInline(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
