@@ -2,7 +2,7 @@
 // From Sijtsche de Jong (sy.de.jong@let.rug.nl)
 // Rewritten 2012 by Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT 1995-2012  World Wide Web Consortium (MIT, ERCIM, Keio University)
+// (c) COPYRIGHT 1995-2012  World Wide Web Consortium (MIT, ERCIM, Keio University, Beihang)
 // Please first read the full copyright statement at
 // http://www.w3.org/Consortium/Legal/copyright-software-19980720
 
@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-break-3-20170209/#propdef-box-decoration-break
+ * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-box-decoration-break
  */
 
 public class CssBoxDecorationBreak extends org.w3c.css.properties.css.CssBoxDecorationBreak {

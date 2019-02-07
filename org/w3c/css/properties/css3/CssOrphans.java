@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-break-3-20170209/#propdef-orphans
+ * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-break-inside
  */
 public class CssOrphans extends org.w3c.css.properties.css.CssOrphans {
 

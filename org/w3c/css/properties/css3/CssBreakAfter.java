@@ -20,7 +20,7 @@ import static org.w3c.css.properties.css3.CssBreakBefore.getMatchingIdent;
 
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-break-3-20170209/#propdef-break-after
+ * @spec https://www.w3.org/TR/2018/CR-css-break-3-20181204/#propdef-break-after
  */
 
 public class CssBreakAfter extends org.w3c.css.properties.css.CssBreakAfter {
