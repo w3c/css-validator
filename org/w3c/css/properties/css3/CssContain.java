@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-css-contain-1-20170808/#propdef-contain
+ * @spec https://www.w3.org/TR/2018/CR-css-contain-1-20181108/#propdef-contain
  */
 public class CssContain extends org.w3c.css.properties.css.CssContain {
 
