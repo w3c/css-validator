@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-positioning-20120207/#z-index
+ * @spec https://www.w3.org/TR/2016/WD-css-position-3-20160517/#propdef-z-index
  */
 public class CssZIndex extends org.w3c.css.properties.css.CssZIndex {
 
