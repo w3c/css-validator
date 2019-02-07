@@ -20,7 +20,7 @@ import org.w3c.css.values.CssValueList;
 import java.math.BigDecimal;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-flex
+ * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-flex
  */
 public class CssFlex extends org.w3c.css.properties.css.CssFlex {
 

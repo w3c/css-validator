@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-align-self
+ * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-align-self
  * replaced by
  * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#align-self-property
  */

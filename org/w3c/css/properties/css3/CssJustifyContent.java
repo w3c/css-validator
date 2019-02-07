@@ -20,7 +20,7 @@ import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
  * original
- * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-justify-content
+ * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-justify-content
  * replaced by
  * @spec https://www.w3.org/TR/2018/WD-css-align-3-20180423/#propdef-justify-content
  */

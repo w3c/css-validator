@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2016/CR-css-flexbox-1-20160526/#propdef-flex-shrink
+ * @spec https://www.w3.org/TR/2018/CR-css-flexbox-1-20181119/#propdef-flex-shrink
  */
 public class CssFlexShrink extends org.w3c.css.properties.css.CssFlexShrink {
 
