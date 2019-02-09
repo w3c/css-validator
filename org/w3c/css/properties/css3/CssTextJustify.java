@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,15 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-text-20120814/#text-justify0
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#text-justify-property
  */
 public class CssTextJustify extends org.w3c.css.properties.css.CssTextJustify {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"auto", "none", "inter-word", "inter-ideograph",
-                "inter-cluster", "distribute", "kashida"};
+        String id_values[] = {"auto", "none", "inter-word", "inter-character"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
