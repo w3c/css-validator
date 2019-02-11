@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -11,26 +11,36 @@ import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
+import org.w3c.css.values.CssValueList;
+
+import java.util.ArrayList;
+
+import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#text-transform-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#text-transform-property
  */
 public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
 
-    private static CssIdent[] allowed_values;
+    private static CssIdent[] allowed_action_values;
+    private static CssIdent none, fullWidth, fullSizeKana;
+
 
     static {
-        String id_values[] = {"none", "capitalize", "uppercase",
-                "lowercase", "full-width"};
-        allowed_values = new CssIdent[id_values.length];
+        none = CssIdent.getIdent("none");
+        fullWidth = CssIdent.getIdent("full-width");
+        fullSizeKana = CssIdent.getIdent("full-size-kana");
+
+        String id_values[] = {"capitalize", "uppercase", "lowercase"};
+        allowed_action_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
-            allowed_values[i++] = CssIdent.getIdent(s);
+            allowed_action_values[i++] = CssIdent.getIdent(s);
         }
     }
 
-    public static CssIdent getMatchingIdent(CssIdent ident) {
-        for (CssIdent id : allowed_values) {
+    public static CssIdent getMatchingActionIdent(CssIdent ident) {
+        for (CssIdent id : allowed_action_values) {
             if (id.equals(ident)) {
                 return id;
             }
@@ -56,29 +66,68 @@ public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransfor
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
+        char op;
+        ArrayList<CssValue> values = new ArrayList<>();
+        boolean got_action = false;
+        boolean got_full_width = false;
+        boolean got_full_size_kana = false;
 
-        if (check && expression.getCount() > 1) {
+        if (check && expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        if (val.getType() != CssTypes.CSS_IDENT) {
-            throw new InvalidParamException("value",
-                    expression.getValue(),
-                    getPropertyName(), ac);
-        }
-        // ident, so inherit, or allowed value
-        if (inherit.equals(val)) {
-            value = inherit;
-        } else {
-            val = getMatchingIdent((CssIdent) val);
-            if (val == null) {
+        while (!expression.end()) {
+            val = expression.getValue();
+            op = expression.getOperator();
+
+            if (val.getType() != CssTypes.CSS_IDENT) {
                 throw new InvalidParamException("value",
                         expression.getValue(),
                         getPropertyName(), ac);
             }
-            value = val;
+            // ident, so inherit, or allowed value
+            if (inherit.equals(val)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(inherit);
+            } else if (none.equals(val)) {
+                if (expression.getCount() > 1) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                values.add(none);
+            } else if (fullWidth.equals(val) && !got_full_width) {
+                got_full_width = true;
+                values.add(fullWidth);
+            } else if (fullSizeKana.equals(val) && !got_full_size_kana) {
+                got_full_size_kana = true;
+                values.add(fullSizeKana);
+            } else if (!got_action) {
+                got_action = true;
+                val = getMatchingActionIdent((CssIdent) val);
+                if (val == null) {
+                    throw new InvalidParamException("value",
+                            expression.getValue(),
+                            getPropertyName(), ac);
+                }
+                got_action = true;
+                values.add(val);
+            } else {
+                throw new InvalidParamException("value",
+                        expression.getValue(),
+                        getPropertyName(), ac);
+            }
+            if (op != SPACE) {
+                throw new InvalidParamException("operator", op,
+                        getPropertyName(), ac);
+            }
+            expression.next();
         }
-        expression.next();
+        value = (values.size() == 1) ? values.get(0) : new CssValueList(values);
     }
 
     public CssTextTransform(ApplContext ac, CssExpression expression)
