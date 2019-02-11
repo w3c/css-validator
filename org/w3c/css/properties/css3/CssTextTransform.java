@@ -23,11 +23,10 @@ import static org.w3c.css.values.CssOperator.SPACE;
 public class CssTextTransform extends org.w3c.css.properties.css.CssTextTransform {
 
     private static CssIdent[] allowed_action_values;
-    private static CssIdent none, fullWidth, fullSizeKana;
+    private static CssIdent fullWidth, fullSizeKana;
 
 
     static {
-        none = CssIdent.getIdent("none");
         fullWidth = CssIdent.getIdent("full-width");
         fullSizeKana = CssIdent.getIdent("full-size-kana");
 
