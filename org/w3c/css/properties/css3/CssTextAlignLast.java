@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM and Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,15 +13,16 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#text-align-last-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-align-last
  */
 public class CssTextAlignLast extends org.w3c.css.properties.css.CssTextAlignLast {
 
     private static CssIdent[] allowed_values;
-       //
+
+    //
     static {
         String id_values[] = {"auto", "start", "end",
-                "left", "right", "center", "justify"};
+                "left", "right", "center", "justify", "match-parent"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
