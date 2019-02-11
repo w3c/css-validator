@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -16,7 +16,7 @@ import org.w3c.css.values.CssValueList;
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#text-indent-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-indent
  */
 public class CssTextIndent extends org.w3c.css.properties.css.CssTextIndent {
 
