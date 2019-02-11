@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio University, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#line-break-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-line-break
  */
 public class CssLineBreak extends org.w3c.css.properties.css.CssLineBreak {
 
