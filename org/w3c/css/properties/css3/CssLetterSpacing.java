@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, INRIA and Keio University, 2011
+// (c) COPYRIGHT MIT, INRIA, Keio University, Beihang, 2011
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#letter-spacing-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-letter-spacing
  */
 public class CssLetterSpacing extends org.w3c.css.properties.css.CssLetterSpacing {
 
