@@ -12,12 +12,11 @@ import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssOperator;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
-import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#word-spacing-property
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-word-spacing
  */
 public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
 
@@ -40,7 +39,7 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
     public CssWordSpacing(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
 
-        if (check && expression.getCount() > 3) {
+        if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
         setByUser();
@@ -49,45 +48,32 @@ public class CssWordSpacing extends org.w3c.css.properties.css.CssWordSpacing {
         CssValue val;
         char op;
 
-        while (!expression.end()) {
-            val = expression.getValue();
-            op = expression.getOperator();
+        val = expression.getValue();
+        op = expression.getOperator();
 
-            switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                    val.getCheckableValue().checkEqualsZero(ac, this);
-                case CssTypes.CSS_LENGTH:
-                    v.add(val);
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, this);
+            case CssTypes.CSS_LENGTH:
+                value = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    value = inherit;
                     break;
-                case CssTypes.CSS_PERCENTAGE:
-                    v.add(val);
+                } else if (normal.equals(val)) {
+                    value = normal;
                     break;
-                case CssTypes.CSS_IDENT:
-                    if (inherit.equals(val)) {
-                        // inherit can only be alone
-                        if (expression.getCount() > 1) {
-                            throw new InvalidParamException("value", expression.getValue(),
-                                    getPropertyName(), ac);
-                        }
-                        value = inherit;
-                        break;
-                    } else if (normal.equals(val)) {
-                        v.add(normal);
-                        break;
-                    }
-                default:
-                    throw new InvalidParamException("value", expression.getValue(),
-                            getPropertyName(), ac);
-            }
-            if (op != CssOperator.SPACE) {
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
-            }
-            expression.next();
+                }
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        getPropertyName(), ac);
         }
-        if (value != inherit) {
-            value = (v.size() == 1) ? v.get(0) : new CssValueList(v);
+        if (op != CssOperator.SPACE) {
+            throw new InvalidParamException("operator",
+                    ((new Character(op)).toString()), ac);
         }
+        expression.next();
     }
 
     public CssWordSpacing(ApplContext ac, CssExpression expression)
