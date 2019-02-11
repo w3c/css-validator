@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/WD-css-text-3-20170822/#propdef-text-align-all
+ * @spec https://www.w3.org/TR/2018/WD-css-text-3-20181212/#propdef-text-align-all
  */
 public class CssTextAlignAll extends org.w3c.css.properties.css.CssTextAlignAll {
 
