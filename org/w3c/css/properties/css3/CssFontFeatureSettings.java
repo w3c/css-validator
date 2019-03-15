@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -21,16 +21,16 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-fonts-20120823/#propdef-font-feature-settings
+ * @spec https://www.w3.org/TR/2018/REC-css-fonts-3-20180920/#propdef-font-feature-settings
  */
 public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFeatureSettings {
 
-    public static final CssIdent on, off;
+    public static final CssIdent on, off, normal;
 
     static {
         on = CssIdent.getIdent("on");
         off = CssIdent.getIdent("off");
-
+        normal = CssIdent.getIdent("normal");
     }
 
     /**
@@ -117,17 +117,25 @@ public class CssFontFeatureSettings extends org.w3c.css.properties.css.CssFontFe
             throw new InvalidParamException("unrecognize", ac);
         }
         val = exp.getValue();
-        if (val.getType() == CssTypes.CSS_STRING) {
-            String s = val.toString();
-            // limit of 4 characters + two surrounding quotes
-            if (s.length() != 6) {
+        switch (val.getType()) {
+
+            case CssTypes.CSS_STRING:
+                String s = val.toString();
+                // limit of 4 characters + two surrounding quotes
+                if (s.length() != 6) {
+                    throw new InvalidParamException("value",
+                            s, getPropertyName(), ac);
+                }
+                break;
+            case CssTypes.CSS_IDENT:
+                if (normal.equals(val) && exp.getCount() == 1) {
+                    return normal;
+                }
+                //else we throw
+            default:
                 throw new InvalidParamException("value",
-                        s, getPropertyName(), ac);
-            }
-        } else {
-            throw new InvalidParamException("value",
-                    val.toString(),
-                    getPropertyName(), ac);
+                        val.toString(),
+                        getPropertyName(), ac);
         }
         if (exp.getCount() == 1) {
             return val;
