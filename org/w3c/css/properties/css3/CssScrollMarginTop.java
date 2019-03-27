@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-top
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-margin-top
  */
 public class CssScrollMarginTop extends org.w3c.css.properties.css.CssScrollMarginTop {
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-block
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-margin-block
  */
 public class CssScrollMarginBlock extends org.w3c.css.properties.css.CssScrollMarginBlock {
 

@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-padding-bottom
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-padding-bottom
  */
 public class CssScrollPaddingBottom extends org.w3c.css.properties.css.CssScrollPaddingBottom {
 

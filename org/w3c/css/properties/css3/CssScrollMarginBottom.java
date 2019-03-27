@@ -12,7 +12,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190131/#propdef-scroll-margin-bottom
+ * @spec https://www.w3.org/TR/2019/CR-css-scroll-snap-1-20190319/#propdef-scroll-margin-bottom
  */
 public class CssScrollMarginBottom extends org.w3c.css.properties.css.CssScrollMarginBottom {
 
