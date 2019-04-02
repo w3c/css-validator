@@ -191,6 +191,7 @@ import org.w3c.css.properties.css.CssTextSizeAdjust;
 import org.w3c.css.properties.css.CssTextUnderlinePosition;
 import org.w3c.css.properties.css.CssTouchAction;
 import org.w3c.css.properties.css.CssTransform;
+import org.w3c.css.properties.css.CssTransformBox;
 import org.w3c.css.properties.css.CssTransformOrigin;
 import org.w3c.css.properties.css.CssTransformStyle;
 import org.w3c.css.properties.css.CssTransition;
@@ -438,6 +439,7 @@ public class Css3Style extends ATSCStyle {
     public CssPerspectiveOrigin cssPerspectiveOrigin;
     public CssTransformOrigin cssTransformOrigin;
     public CssTransform cssTransform;
+    public CssTransformBox cssTransformBox;
 
     public CssBoxSizing cssBoxSizing;
     public CssResize cssResize;
@@ -2293,6 +2295,15 @@ public class Css3Style extends ATSCStyle {
         return cssTransform;
     }
 
+    public CssTransformBox getTransformBox() {
+        if (cssTransformBox == null) {
+            cssTransformBox =
+                    (CssTransformBox) style.CascadingOrder(
+                            new CssTransformBox(), style, selector);
+        }
+        return cssTransformBox;
+    }
+    
     public CssImeMode getImeMode() {
         if (cssImeMode == null) {
             cssImeMode =
