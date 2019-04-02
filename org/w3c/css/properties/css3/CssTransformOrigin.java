@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#transform-origin
+ * @spec https://www.w3.org/TR/2019/CR-css-transforms-1-20190214/#propdef-transform-origin
  */
 public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformOrigin {
 
@@ -141,30 +141,37 @@ public class CssTransformOrigin extends org.w3c.css.properties.css.CssTransformO
         // then we need to ckeck the values if we got two values and
         // at least one keyword (as restrictions may occur)
         if (nb_keyword > 0 && nb_values >= 2) {
-            boolean gothorizontal = false;
-            boolean gotvertical = false;
+            boolean got_horizontal = false;
+            boolean got_vertical = false;
             CssValue v = values.get(0);
             if (v.getType() == CssTypes.CSS_IDENT) {
                 CssIdent id = (CssIdent) v;
                 // strictly horizontal or vertical
-                gothorizontal = isHorizontalIdent(id);
-                if (!gothorizontal) {
-                    gotvertical = isVerticalIdent(id);
+                got_horizontal = isHorizontalIdent(id);
+                if (!got_horizontal) {
+                    got_vertical = isVerticalIdent(id);
                 }
             }
             v = values.get(1);
             if (v.getType() == CssTypes.CSS_IDENT) {
                 CssIdent id = (CssIdent) v;
                 // yeah, it can be a single ugly test.
-                if (gothorizontal && isHorizontalIdent(id)) {
+                if (got_horizontal && isHorizontalIdent(id)) {
                     throw new InvalidParamException("value", id,
                             getPropertyName(), ac);
                 }
-                if (gotvertical && isVerticalIdent(id)) {
+                if (got_vertical && isVerticalIdent(id)) {
                     throw new InvalidParamException("value", id,
+                            getPropertyName(), ac);
+                }
+            } else {
+                // we must check that if we get vertical first, we don't have a <length-percentage>
+                if (got_vertical) {
+                    throw new InvalidParamException("value", v,
                             getPropertyName(), ac);
                 }
             }
+
         }
         // if we got 3 values, the last one must be a length
         // (number 0 has been validated before, so number is admissible)
