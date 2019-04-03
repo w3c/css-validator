@@ -1,8 +1,9 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang 2012, 2019.
 // Please first read the full copyright statement in file COPYRIGHT.html
+
 package org.w3c.css.properties.css3;
 
 import org.w3c.css.properties.css.CssProperty;
@@ -20,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#effects
+ * @spec https://www.w3.org/TR/2019/CR-css-transforms-1-20190214/#propdef-transform
  */
 public class CssTransform extends org.w3c.css.properties.css.CssTransform {
 
@@ -124,47 +125,69 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         String fname = function.getName().toLowerCase();
         // waiting for jdk7 for the string-based switch/case
 
-        // 2d functions
-        if (matrix.equals(fname)) {
-            parseExactlyNX(ac, function.getParameters(), 6, CssTypes.CSS_NUMBER, caller);
-        } else if (translate.equals(fname)) {
-            parseTranslateFunction(ac, function.getParameters(), caller);
-        } else if (translateX.equals(fname) || translateY.equals(fname)) {
-            parseTranslateAxisFunction(ac, function.getParameters(), caller);
-        } else if (scale.equals(fname)) {
-            parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_NUMBER, caller);
-        } else if (scaleX.equals(fname) || scaleY.equals(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
-        } else if (rotate.equals(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-        } else if (skew.equals(fname)) {
-            parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_ANGLE, caller);
-        } else if (skewX.equals(fname) || skewY.equals(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-            /* after this line, 3d functions */
-        } else if (matrix3d.equals(fname)) {
-            parseExactlyNX(ac, function.getParameters(), 16, CssTypes.CSS_NUMBER, caller);
-        } else if (translate3d.equals(fname)) {
-            parseTranslate3dFunction(ac, function.getParameters(), caller);
-        } else if (translateZ.endsWith(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
-        } else if (scale3d.equals(fname)) {
-            parseExactlyNX(ac, function.getParameters(), 3, CssTypes.CSS_NUMBER, caller);
-        } else if (scaleZ.equals(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
-        } else if (rotate3d.equals(fname)) {
-            parseRotate3dFunction(ac, function.getParameters(), caller);
-        } else if (rotateX.equals(fname) || rotateY.equals(fname) || rotateZ.equals(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
-        } else if (perspective.endsWith(fname)) {
-            parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
-        } else {
-            // unrecognized function
-            throw new InvalidParamException("value",
-                    func.toString(),
-                    caller.getPropertyName(), ac);
+        switch (fname) {
+            // first, 2d functions
+            case matrix:
+                parseExactlyNX(ac, function.getParameters(), 6, CssTypes.CSS_NUMBER, caller);
+                break;
+            case translate:
+                parseTranslateFunction(ac, function.getParameters(), caller);
+                break;
+            case translateX:
+            case translateY:
+                parseTranslateAxisFunction(ac, function.getParameters(), caller);
+                break;
+            case scale:
+                parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_NUMBER, caller);
+                break;
+            case scaleX:
+            case scaleY:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
+                break;
+            case rotate:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+                break;
+            case skew:
+                parseAtMostX(ac, function.getParameters(), 2, CssTypes.CSS_ANGLE, caller);
+                break;
+            case skewX:
+            case skewY:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+                break;
+            // 3d functions are only part of transform-2
+            // theyr are listed here as part of the 20120911 WD, not the transform-1 20190214 CR
+            case matrix3d:
+                parseExactlyNX(ac, function.getParameters(), 16, CssTypes.CSS_NUMBER, caller);
+                break;
+            case translate3d:
+                parseTranslate3dFunction(ac, function.getParameters(), caller);
+                break;
+            case translateZ:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
+                break;
+            case scale3d:
+                parseExactlyNX(ac, function.getParameters(), 3, CssTypes.CSS_NUMBER, caller);
+                break;
+            case scaleZ:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_NUMBER, caller);
+                break;
+            case rotate3d:
+                parseRotate3dFunction(ac, function.getParameters(), caller);
+                break;
+            case rotateX:
+            case rotateY:
+            case rotateZ:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_ANGLE, caller);
+                break;
+            case perspective:
+                parseOneX(ac, function.getParameters(), CssTypes.CSS_LENGTH, caller);
+                break;
+            // unknown function
+            default:
+                throw new InvalidParamException("value",
+                        func.toString(),
+                        caller.getPropertyName(), ac);
         }
-
     }
 
     private static void parseExactlyNX(ApplContext ac, CssExpression expression,
@@ -250,7 +273,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
     // special cases
 
 
-    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translate-function
+    // https://www.w3.org/TR/2019/CR-css-transforms-1-20190214/#funcdef-transform-translate
     private static void parseTranslateFunction(ApplContext ac, CssExpression expression, CssProperty caller)
             throws InvalidParamException {
         if (expression.getCount() > 2) {
@@ -283,7 +306,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
         }
     }
 
-    // http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#translateX-function
+    // https://www.w3.org/TR/2019/CR-css-transforms-1-20190214/#funcdef-transform-translatex
     private static void parseTranslateAxisFunction(ApplContext ac, CssExpression expression, CssProperty caller)
             throws InvalidParamException {
         if (expression.getCount() > 1) {
