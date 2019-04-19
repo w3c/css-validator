@@ -7,7 +7,6 @@
 
 package org.w3c.css.parser;
 
-import org.apache.commons.lang.StringUtils;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.atrules.css.media.MediaFeature;
@@ -318,31 +317,6 @@ public class CssPropertyFactory implements Cloneable {
     }
 
     private String findClosestPropertyName(AtRule atRule, ApplContext ac, String property) {
-        int mindist = 100000;
-        int dist;
-        Set<String> propertyList = PropertiesLoader.getProfile(ac.getPropertyKey()).keySet();
-        String bestFit = null;
-        String prefix = atRule.lookupPrefix();
-        if (!prefix.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append('@').append(atRule.keyword()).append('.').append(property);
-            property = sb.toString();
-        }
-        for (String s : propertyList) {
-            dist = StringUtils.getLevenshteinDistance(property, s);
-            if (dist >= 0 && dist < mindist) {
-                bestFit = s;
-                mindist = dist;
-                // as we didn't have a match, 1 is the best we can get.
-                if (mindist == 1) {
-                    return bestFit;
-                }
-            }
-        }
-        // arbitraty limit
-        if (mindist <= 2) {
-            return bestFit;
-        }
         return null;
     }
 
