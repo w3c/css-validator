@@ -221,15 +221,6 @@ public class StyleSheet {
         }
     }
 
-    /**
-     * dump this style sheet.
-     */
-    public void dump() {
-        StyleSheetGenerator style =
-                new StyleSheetGenerator("", this, "text", -1);
-        style.print(new PrintWriter(System.out));
-    }
-
     //part added by Sijtsche de Jong
 
     public void addCharSet(String charset) {
