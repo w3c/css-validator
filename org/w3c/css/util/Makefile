@@ -1,5 +1,5 @@
 SRCS = Messages.java Warning.java\
-Codecs.java NVPair.java Warnings.java\
+NVPair.java Warnings.java\
 InvalidParamException.java Util.java\
 FakeFile.java Date.java SortedHashtable.java
 
@@ -30,8 +30,6 @@ Warning.class:: Warning.java\
 	/u/www43/0/w3c/plehegar/Work/Java/org.w3c.css.parser/CssSelectors.class\
 	/u/www43/0/w3c/plehegar/Work/Java/org.w3c.css.properties/CssProperty.class
 Util.class:: Util.java
-Codecs.class:: Codecs.java\
-	/usr/local/java11/lib/classes.zip
 SortedHashtable.class:: SortedHashtable.java\
 	/usr/local/java11/lib/classes.zip
 FakeFile.class:: FakeFile.java\
