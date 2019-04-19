@@ -8,7 +8,6 @@
  */
 package org.w3c.css.util;
 
-import org.w3c.css.servlet.CssValidator;
 import org.w3c.www.mime.MimeType;
 import org.w3c.www.mime.MimeTypeFormatException;
 
@@ -230,7 +229,7 @@ public class HTTPURL {
         urlC.setRequestProperty("Pragma", "no-cache");
         urlC.setRequestProperty("Cache-Control", "no-cache, no-store");
         // for the fun
-        urlC.setRequestProperty("User-Agent", CssValidator.server_name);
+        // urlC.setRequestProperty("User-Agent", CssValidator.server_name);
         // referrer
         setReferrer(urlC, ref);
         // relay authorization information
