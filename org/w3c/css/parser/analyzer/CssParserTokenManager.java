@@ -6859,7 +6859,7 @@ private int jjMoveNfa_0(int startState, int curPos)
                   if (jjCanMove_0(hiByte, i1, i2, l1, l2))
                      { jjCheckNAddTwoStates(784, 785); }
                   break;
-               default : if (i1 == 0 || l1 == 0 || i2 == 0 || l2 == 0) break; else break;
+               default : if (i1 == 0 || l1 == 0 || i2 == 0 ||  l2 == 0) break; else break;
             }
          } while(i != startsAt);
       }
@@ -7088,7 +7088,7 @@ public Token getNextToken()
    {
       curChar = input_stream.BeginToken();
    }
-   catch(java.io.IOException e)
+   catch(Exception e)
    {
       jjmatchedKind = 0;
       jjmatchedPos = -1;
@@ -7194,6 +7194,7 @@ private void jjCheckNAddStates(int start, int end)
   /** Reinitialise parser. */
   public void ReInit(SimpleCharStream stream)
   {
+	
     jjmatchedPos = jjnewStateCnt = 0;
     curLexState = defaultLexState;
     input_stream = stream;
@@ -7209,9 +7210,10 @@ private void jjCheckNAddStates(int start, int end)
   }
 
   /** Reinitialise parser. */
-  public void ReInit(SimpleCharStream stream, int lexState)
+  public void ReInit( SimpleCharStream stream, int lexState)
   {
-    ReInit(stream);
+  
+    ReInit( stream);
     SwitchTo(lexState);
   }
 
@@ -7243,5 +7245,5 @@ static final long[] jjtoSpecial = {
     private final int[] jjstateSet = new int[2 * 871];
 
     
-    protected char curChar;
+    protected int curChar;
 }
