@@ -29,7 +29,13 @@ public class PseudoFactory {
             "only-child", "empty",
             "fullscreen", "default", "valid", "invalid", "in-range",
             "out-of-range", "required", "optional", "read-only",
-            "read-write", "defined", "placeholder-shown"
+            "read-write", "defined", "placeholder-shown",
+            // from selectors-4, unstable list (20190626)
+            "any-link", "local-link", "target-within", "scope",
+            "focus-visible", "focus-within", "current", "past",
+            "future", "playing", "pause", "blank", "user-invalid",
+
+
     };
 
     private static final String[] PSEUDOCLASS_CONSTANTSCSS2 = {
@@ -65,7 +71,8 @@ public class PseudoFactory {
 
     private static final String[] PSEUDOFUNCTION_CONSTANTSCSS3 = {
             "nth-child", "nth-last-child", "nth-of-type", "nth-last-of-type",
-            "lang", "not"
+            "lang", "not" // from selectors-4 unstable list (20190624)
+            , "nth-col", "nth-last-col", "is", "where", "has", "dir"
     };
 
     private static final String[] PSEUDOFUNCTION_CONSTANTSCSS2 = {
