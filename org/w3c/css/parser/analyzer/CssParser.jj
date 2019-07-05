@@ -1060,12 +1060,12 @@ void mediaquery(AtRuleMedia mediaRule) :
   String mediarestrictor = null;
 }
 {
-    ( ( ( ( n=<NOT> | n=<ONLY> ) {
+    ( LOOKAHEAD(3) ( ( ( n=<NOT> | n=<ONLY> ) {
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
    n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-   ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) |
-   (mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+   ( <AND> ( <S> )+ ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) <AND> ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
+   ( ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
    }
 }
