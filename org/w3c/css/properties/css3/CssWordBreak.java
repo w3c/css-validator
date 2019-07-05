@@ -5,8 +5,6 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
-import org.w3c.css.parser.analyzer.ParseException;
-import org.w3c.css.parser.CssError;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -20,6 +18,7 @@ import org.w3c.css.values.CssValue;
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
     public static final CssIdent[] allowed_values;
+    public static final CssIdent break_word;
 
     static {
         String[] _allowed_values = {"normal", "keep-all", "break-all",
@@ -29,6 +28,7 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
         for (String s : _allowed_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
+        break_word = CssIdent.getIdent("break-word");
     }
 
     public static final CssIdent getAllowedValue(CssIdent ident) {
@@ -65,12 +65,6 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
         char op;
 
         val = expression.getValue();
-        if ("break-word".equals(val.toString())) {
-            ac.getFrame().addError(new CssError(new ParseException(
-                            String.format(
-                                ac.getMsg().getString("warning.deprecated"),
-                                "break-word"))));
-        }
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
@@ -83,6 +77,10 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
+                }
+                // break-word is deprecated
+                if (value == break_word) {
+                    ac.getFrame().addWarning("deprecated", value.toString());
                 }
             }
         } else {
