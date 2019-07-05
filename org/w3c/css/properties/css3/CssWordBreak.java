@@ -5,6 +5,8 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.CssError;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -80,7 +82,11 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
                 }
                 // break-word is deprecated
                 if (value == break_word) {
-                    ac.getFrame().addWarning("deprecated", value.toString());
+                    ac.getFrame().addError(new CssError(new ParseException(
+                                    String.format(
+                                        ac.getMsg() //
+                                            .getString("warning.deprecated"),
+                                        "break-word"))));
                 }
             }
         } else {
