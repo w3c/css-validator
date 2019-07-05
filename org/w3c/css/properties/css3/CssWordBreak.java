@@ -5,6 +5,8 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.CssError;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -20,7 +22,8 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"normal", "keep-all", "break-all"};
+        String[] _allowed_values = {"normal", "keep-all", "break-all",
+            "break-word"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -62,6 +65,12 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
         char op;
 
         val = expression.getValue();
+        if ("break-word".equals(val.toString())) {
+            ac.getFrame().addError(new CssError(new ParseException(
+                            String.format(
+                                ac.getMsg().getString("warning.deprecated"),
+                                "break-word"))));
+        }
         op = expression.getOperator();
 
         if (val.getType() == CssTypes.CSS_IDENT) {
