@@ -427,6 +427,8 @@ error.pseudo-element-not-last: Selektorn \u201C%s\u201D kan inte anges efter pse
 error.system-font-keyword-not-sole-value: Inga andra egenskapsvärden kan användas tillsammans med \u201C%s\u201D.  Det ska vara det enda angivna värdet, exempelvis \u201Cp { font: %s; }\u201D
 warning.space: Om attributselektorn  ~= används, så får inte texten i värdet \u201C%s\u201D innehålla mellanslag.
 warning.value-unofficial: \u201C%s\u201D är inte definierat i någon specifikation som tillåtet värde för \u201C%s\u201D, men det stöds ändå i många webbläsare
+error.conflicting-charset: Motstridiga definitioner av teckenuppsättning i nätverket och @charset \u201C%s\u201D och  \u201C%s\u201D teckenuppsättning
+
 					
 
 
