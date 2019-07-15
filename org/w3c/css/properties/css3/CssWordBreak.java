@@ -18,14 +18,17 @@ import org.w3c.css.values.CssValue;
 public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
 
     public static final CssIdent[] allowed_values;
+    public static final CssIdent break_word;
 
     static {
-        String[] _allowed_values = {"normal", "keep-all", "break-all"};
+        String[] _allowed_values = {"normal", "keep-all", "break-all",
+            "break-word"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
+        break_word = CssIdent.getIdent("break-word");
     }
 
     public static final CssIdent getAllowedValue(CssIdent ident) {
@@ -74,6 +77,10 @@ public class CssWordBreak extends org.w3c.css.properties.css.CssWordBreak {
                     throw new InvalidParamException("value",
                             val.toString(),
                             getPropertyName(), ac);
+                }
+                // break-word is deprecated
+                if (value == break_word) {
+                    ac.getFrame().addWarning("deprecated", value.toString());
                 }
             }
         } else {
