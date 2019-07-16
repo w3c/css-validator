@@ -2,7 +2,7 @@ sudo: false
 language: java
 install: ant deps
 jdk:
-  - oraclejdk8
+  - openjdk8
   - oraclejdk9
 git:
   submodules: false
