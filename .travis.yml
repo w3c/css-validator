@@ -4,7 +4,6 @@ addons:
   apt:
     packages:
       - ant
-install: ant deps
 jdk:
   - openjdk8
   - oraclejdk9
