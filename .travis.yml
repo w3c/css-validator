@@ -1,5 +1,9 @@
 sudo: false
 language: java
+addons:
+  apt:
+    packages:
+      - ant
 install: ant deps
 jdk:
   - openjdk8
