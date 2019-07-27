@@ -7,6 +7,7 @@
 
 package org.w3c.css.servlet;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.w3c.css.css.CssParser;
 import org.w3c.css.css.DocumentParser;
 import org.w3c.css.css.StyleReport;
@@ -17,11 +18,14 @@ import org.w3c.css.css.TagSoupStyleSheetHandler;
 import org.w3c.css.error.ErrorReport;
 import org.w3c.css.error.ErrorReportFactory;
 import org.w3c.css.index.IndexGenerator;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.Errors;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.Codecs;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.FakeFile;
 import org.w3c.css.util.HTTPURL;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.NVPair;
 import org.w3c.css.util.Utf8Properties;
 import org.w3c.css.util.Util;
@@ -367,65 +371,76 @@ public final class CssValidator extends HttpServlet {
         // " (" + req.getRemoteAddr() + ") at " + (new Date()) );
 
         if (uri != null) {
-            // HTML document
-            try {
-                uri = HTTPURL.getURL(uri).toString(); // needed to be sure
-                // that it is a valid
-                // url
-                uri = uri.replaceAll(" ", "%20");
-                if (Util.checkURI(uri)) {
-                    DocumentParser URLparser = new DocumentParser(ac, uri);
-                    handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
-                            warningLevel, errorReport);
-                } else {
-                    res.setHeader("Rejected", "Requested URI Forbidden by Rule");
-                    handleError(res, ac, output, "Forbidden", new IOException(
-                            "URI Forbidden by rule"), false);
+            // check for scammers
+            EmailValidator ev = EmailValidator.getInstance();
+            if (ev.isValid(uri)) {
+                handleScam(ac, uri, res, output, warningLevel, errorReport);
+            } else {
+                // HTML document
+                try {
+                    uri = HTTPURL.getURL(uri).toString(); // needed to be sure
+                    // that it is a valid
+                    // url
+                    uri = uri.replaceAll(" ", "%20");
+                    if (Util.checkURI(uri)) {
+                        DocumentParser URLparser = new DocumentParser(ac, uri);
+                        handleRequest(ac, res, uri, URLparser.getStyleSheet(), output,
+                                warningLevel, errorReport);
+                    } else {
+                        res.setHeader("Rejected", "Requested URI Forbidden by Rule");
+                        handleError(res, ac, output, "Forbidden", new IOException(
+                                "URI Forbidden by rule"), false);
+                    }
+                } catch (ProtocolException pex) {
+                    if (Util.onDebug) {
+                        pex.printStackTrace();
+                    }
+                    res.setHeader("WWW-Authenticate", pex.getMessage());
+                    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                } catch (Exception e) {
+                    handleError(res, ac, output, uri, e, true);
                 }
-            } catch (ProtocolException pex) {
-                if (Util.onDebug) {
-                    pex.printStackTrace();
-                }
-                res.setHeader("WWW-Authenticate", pex.getMessage());
-                res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-            } catch (Exception e) {
-                handleError(res, ac, output, uri, e, true);
             }
         } else if (text != null) {
             String fileName = "TextArea";
             Util.verbose("- " + fileName + " Data -");
             Util.verbose(text);
             Util.verbose("- End of " + fileName + " Data");
-            InputStream is = new ByteArrayInputStream(text.getBytes());
-            fileName = "file://localhost/" + fileName;
+            EmailValidator ev = EmailValidator.getInstance();
+            if (ev.isValid(text)) {
+                handleScam(ac, text, res, output, warningLevel, errorReport);
+            } else {
+                InputStream is = new ByteArrayInputStream(text.getBytes());
+                fileName = "file://localhost/" + fileName;
 
-            try {
+                try {
 
-                if ("css".equals(type) || ("none".equals(type) && isCSS(text))) {
-                    // if CSS:
-                    parser = new StyleSheetParser();
-                    parser.parseStyleElement(ac, is, null, usermedium,
-                            new URL(fileName), 0);
+                    if ("css".equals(type) || ("none".equals(type) && isCSS(text))) {
+                        // if CSS:
+                        parser = new StyleSheetParser();
+                        parser.parseStyleElement(ac, is, null, usermedium,
+                                new URL(fileName), 0);
 
-                    handleRequest(ac, res, fileName, parser
-                            .getStyleSheet(), output, warningLevel, errorReport);
-                } else {
-                    // else, trying HTML
+                        handleRequest(ac, res, fileName, parser.getStyleSheet(),
+                                output, warningLevel, errorReport);
+                    } else {
+                        // else, trying HTML
 //                    HTMLParserStyleSheetHandler handler = new HTMLParserStyleSheetHandler(null, ac);
-                    TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
-                    handler.parse(is, fileName);
+                        TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+                        handler.parse(is, fileName);
 
-                    handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
-                            warningLevel, errorReport);
+                        handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+                                warningLevel, errorReport);
+                    }
+                } catch (ProtocolException pex) {
+                    if (Util.onDebug) {
+                        pex.printStackTrace();
+                    }
+                    res.setHeader("WWW-Authenticate", pex.getMessage());
+                    res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                } catch (Exception e) {
+                    handleError(res, ac, output, fileName, e, false);
                 }
-            } catch (ProtocolException pex) {
-                if (Util.onDebug) {
-                    pex.printStackTrace();
-                }
-                res.setHeader("WWW-Authenticate", pex.getMessage());
-                res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-            } catch (Exception e) {
-                handleError(res, ac, output, fileName, e, false);
             }
         }
         Util.verbose("CssValidator: Request terminated.\n");
@@ -667,6 +682,12 @@ public final class CssValidator extends HttpServlet {
             fileName = file.getName();
             Util.verbose("File : " + fileName);
         } else {
+            // check POSTED text for possible scam
+            EmailValidator ev = EmailValidator.getInstance();
+            if (ev.isValid(text)) {
+                handleScam(ac, text, res, output, warningLevel, errorReport);
+                return;
+            }
             ac.setFakeText(text);
             fileName = "TextArea";
             Util.verbose("- " + fileName + " Data -");
@@ -722,6 +743,27 @@ public final class CssValidator extends HttpServlet {
 
 
         Util.verbose("CssValidator: Request terminated.\n");
+    }
+
+    private void handleScam(ApplContext ac, String uri, HttpServletResponse res, String output,
+                            int warningLevel, boolean errorReport)
+            throws IOException {
+        // so it is an email and not a URL, do something clever.
+        String fileName = "email";
+        InputStream is = new ByteArrayInputStream("".getBytes());
+        fileName = "file://" + fileName;
+        try {
+            TagSoupStyleSheetHandler handler = new TagSoupStyleSheetHandler(null, ac);
+            handler.parse(is, fileName);
+            // add a warning
+            Errors e = new Errors();
+            e.addError(new CssError(new InvalidParamException("email", uri, ac)));
+            handler.getStyleSheet().addErrors(e);
+            handleRequest(ac, res, fileName, handler.getStyleSheet(), output,
+                    warningLevel, errorReport);
+        } catch (Exception e) {
+            handleError(res, ac, output, fileName, e, false);
+        }
     }
 
     private void handleRequest(ApplContext ac, HttpServletResponse res,

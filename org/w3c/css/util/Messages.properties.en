@@ -444,3 +444,5 @@ error.invalidtype: Invalid type: \u201C%s\u201D
 error.typevaluemismatch: The value \u201C%s\u201D is incompatible with its type definition <\u201C%s\u201D>
 
 error.emptymedia: In CSS2, the media type in @media is mandatory
+
+error.email: email addresses cannot be validated by this tool, you might be scammed
