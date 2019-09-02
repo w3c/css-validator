@@ -182,17 +182,24 @@ Usługa Walidatora CSS jest darmową usługą dla wszystkich - dziękujemy Ci i 
          CSS 2</td>
     </tr>
     <tr>
-      <th>język</th>
+      <th>lang</th>
       <td>Język użyty w odpowiedzi - obecnie <code>en</code>,
         <code>fr</code>, <code>it</code>, <code>ko</code>, <code>ja</code>, <code>es</code>,
         <code>zh-cn</code>, <code>nl</code>, <code>de</code>.</td>
       <td>Angielski (<code>en</code>).</td>
     </tr>
     <tr>
-      <th>ostrzeżenia</th>
+      <th>warning</th>
       <td>poziom ostrzeżenia, &quot;brak&quot; - żadnych ostrzeżeń, <code>0</code> 
 	- mniej ostrzeżeń, <code>1 </code>lub <code>2</code> - więcej ostrzeżeń</td>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>vextwarning</th>
+      <td>Pokaż rozszerzenia jako ostrzeżenia.
+        <code>true</code> jako ostrzeżenia, <code>false</code> jako błędy.
+      </td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

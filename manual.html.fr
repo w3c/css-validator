@@ -189,6 +189,12 @@ du W3C est un service public gratuit, merci de le respecter.</p>
 <td>La granularité des avertissements : <code>no</code> pour aucun avertissement, <code>0</code> pour moins, <code>1</code> ou <code>2</code> pour plus</td>
 <td>2</td>
 </tr>
+<tr>
+  <th>vextwarning</th>
+  <td>Afficher les extensions sous forme d'avertissements. <code>true</code> pour les avertissements, <code>false</code> pour les erreurs.
+  </td>
+  <td>false</td>
+</tr>
 </tbody>
 </table>
 
