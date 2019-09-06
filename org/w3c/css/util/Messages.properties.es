@@ -375,6 +375,6 @@ parser.import_not_allowed: Sólo se permite @import después de una declaración
 
 error.divisortype: El divisor debe ser un número
 error.email: Las direcciones de e-mail no pueden ser validadas por esta herramienta, podrías ser víctima de un engaño
-error.conflicting-charset: Conflicto en la definición del juego de caracteres entre la red, @charset "%s" y el juego de caracteres "%s"
-error.bg_order: En la definición de fondo de CSS3, "bg_position" debe aparecer antes que "bg_size" si ambas están presentes
+error.conflicting-charset: Conflicto en la definición del juego de caracteres entre la red, @charset \u201C%s\u201D y el juego de caracteres \u201C%s\u201D
+error.bg_order: En la definición de fondo de CSS3, \u201Cbg_position\u201D debe aparecer antes que \u201Cbg_size\u201D si ambas están presentes
 error.divzero: División entre cero
