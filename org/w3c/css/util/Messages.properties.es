@@ -14,6 +14,7 @@ css1: CSS versión 1
 css2: CSS versión 2
 css21: CSS versión 2.1
 css3: CSS versión 3
+css3svg: CSS versión 3 + SVG
 svg: SVG
 svgbasic: SVG Básico
 svgtiny: SVG Reducido
@@ -371,3 +372,9 @@ parser.charsetcss1: En CSS1 no se pueden utilizar reglas @charset
 parser.attrcss1: Los selectores de atributo no son válidos en CSS1
 parser.invalid_id_selector: Selector ID no válido
 parser.import_not_allowed: Sólo se permite @import después de una declaración válida @charset y @import
+
+error.divisortype: El divisor debe ser un número
+error.email: Las direcciones de e-mail no pueden ser validadas por esta herramienta, podrías ser víctima de un engaño
+error.conflicting-charset: Conflicto en la definición del juego de caracteres entre la red, @charset "%s" y el juego de caracteres "%s"
+error.bg_order: En la definición de fondo de CSS3, "bg_position" debe aparecer antes que "bg_size" si ambas están presentes
+error.divzero: División entre cero
