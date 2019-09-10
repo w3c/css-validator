@@ -546,19 +546,6 @@ TOKEN :
 }
 
 <DEFAULT>
-TOKEN [IGNORE_CASE] :
-{
-    < AND : "and" > 
-  | < OR  : "or"  >
-}  
-
-TOKEN [IGNORE_CASE] :
-{
-    < ONLY : "only" >
-  |  < NOT : "not" >
-}
-
-<DEFAULT>
 TOKEN :
 {
     <STRING    : <_STRING> >
@@ -1060,12 +1047,12 @@ void mediaquery(AtRuleMedia mediaRule) :
   String mediarestrictor = null;
 }
 {
-    ( LOOKAHEAD(3) ( ( ( n=<NOT> | n=<ONLY> ) {
+    ( LOOKAHEAD(3) ( ( ( n="NOT" | n="ONLY" ) {
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
    n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-   ( <AND> ( <S> )+ ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) <AND> ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
-   ( ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+   ( "AND" ( <S> )+ ( "NOT" ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) "AND" ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
+   ( ( "NOT" ( <S> )+ )* mediaexpression(mediaRule, true) ( "AND" ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
    }
 }
@@ -1143,8 +1130,8 @@ SupportsFeature supports_condition(AtRuleSupports supportsRule):
     boolean got_multi = false;
 }
 {
-    ( <NOT> ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
-    |  ( nf=supports_condition_in_parens(supportsRule) ( ( <AND> ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+    ( "NOT" ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
+    |  ( nf=supports_condition_in_parens(supportsRule) ( ( "AND" ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
 		                                           if (f == null) {
 							       f = new SupportsFeature();
 							       f.addFeature(nf);
@@ -1152,7 +1139,7 @@ SupportsFeature supports_condition(AtRuleSupports supportsRule):
 							   mf.setAnd(true);
 							   f.addFeature(mf);		    
                                                        } )+ 
-						      | ( <OR> ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+						      | ( "OR" ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
 							   if (f == null) {
 							       f = new SupportsFeature();
 							       f.addFeature(nf);
