@@ -33,7 +33,7 @@ public class PseudoFactory {
             // from selectors-4, unstable list (20190626)
             "any-link", "local-link", "target-within", "scope",
             "focus-visible", "focus-within", "current", "past",
-            "future", "playing", "pause", "blank", "user-invalid",
+            "future", "playing", "paused", "blank", "user-invalid",
 
 
     };
