@@ -73,179 +73,187 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int TILDE = 31;
   /** RegularExpression Id. */
-  int STRING = 32;
+  int AND = 32;
   /** RegularExpression Id. */
-  int INVALID = 33;
+  int OR = 33;
   /** RegularExpression Id. */
-  int IDENT = 34;
+  int ONLY = 34;
   /** RegularExpression Id. */
-  int HASHIDENT = 35;
+  int NOT = 35;
   /** RegularExpression Id. */
-  int HASH = 36;
+  int STRING = 36;
   /** RegularExpression Id. */
-  int PROGID = 37;
+  int INVALID = 37;
   /** RegularExpression Id. */
-  int RBRACE = 38;
+  int IDENT = 38;
   /** RegularExpression Id. */
-  int PREFIXMATCH = 39;
+  int HASHIDENT = 39;
   /** RegularExpression Id. */
-  int SUFFIXMATCH = 40;
+  int HASH = 40;
   /** RegularExpression Id. */
-  int SUBSTRINGMATCH = 41;
+  int PROGID = 41;
   /** RegularExpression Id. */
-  int EQ = 42;
+  int RBRACE = 42;
   /** RegularExpression Id. */
-  int SEMICOLON = 43;
+  int PREFIXMATCH = 43;
   /** RegularExpression Id. */
-  int DIV = 44;
+  int SUFFIXMATCH = 44;
   /** RegularExpression Id. */
-  int LBRACKET = 45;
+  int SUBSTRINGMATCH = 45;
   /** RegularExpression Id. */
-  int RBRACKET = 46;
+  int EQ = 46;
   /** RegularExpression Id. */
-  int ANY = 47;
+  int SEMICOLON = 47;
   /** RegularExpression Id. */
-  int DOT = 48;
+  int DIV = 48;
   /** RegularExpression Id. */
-  int LPARAN = 49;
+  int LBRACKET = 49;
   /** RegularExpression Id. */
-  int RPARAN = 50;
+  int RBRACKET = 50;
   /** RegularExpression Id. */
-  int COLON = 51;
+  int ANY = 51;
   /** RegularExpression Id. */
-  int URL = 52;
+  int DOT = 52;
   /** RegularExpression Id. */
-  int RELFONTLENGTH = 53;
+  int LPARAN = 53;
   /** RegularExpression Id. */
-  int RELVIEWLENGTH = 54;
+  int RPARAN = 54;
   /** RegularExpression Id. */
-  int ABSOLUTLENGTH = 55;
+  int COLON = 55;
   /** RegularExpression Id. */
-  int FLEX = 56;
+  int URL = 56;
   /** RegularExpression Id. */
-  int ANGLE = 57;
+  int RELFONTLENGTH = 57;
   /** RegularExpression Id. */
-  int SPL = 58;
+  int RELVIEWLENGTH = 58;
   /** RegularExpression Id. */
-  int ST = 59;
+  int ABSOLUTLENGTH = 59;
   /** RegularExpression Id. */
-  int TIME = 60;
+  int FLEX = 60;
   /** RegularExpression Id. */
-  int FREQ = 61;
+  int ANGLE = 61;
   /** RegularExpression Id. */
-  int RESOLUTION = 62;
+  int SPL = 62;
   /** RegularExpression Id. */
-  int DIMEN_9 = 63;
+  int ST = 63;
   /** RegularExpression Id. */
-  int DIMEN = 64;
+  int TIME = 64;
   /** RegularExpression Id. */
-  int PERCENTAGE = 65;
+  int FREQ = 65;
   /** RegularExpression Id. */
-  int NUMBER = 66;
+  int RESOLUTION = 66;
   /** RegularExpression Id. */
-  int IMPORTANT_SYM = 67;
+  int DIMEN_9 = 67;
   /** RegularExpression Id. */
-  int IMPORTANT_NOT = 68;
+  int DIMEN = 68;
   /** RegularExpression Id. */
-  int PSEUDOELEMENT_SYM = 69;
+  int PERCENTAGE = 69;
   /** RegularExpression Id. */
-  int CHARSET_SYM = 70;
+  int NUMBER = 70;
   /** RegularExpression Id. */
-  int PAGE_SYM = 71;
+  int IMPORTANT_SYM = 71;
   /** RegularExpression Id. */
-  int PAGE_TOP_LEFT_CORNER = 72;
+  int IMPORTANT_NOT = 72;
   /** RegularExpression Id. */
-  int PAGE_TOP_LEFT = 73;
+  int PSEUDOELEMENT_SYM = 73;
   /** RegularExpression Id. */
-  int PAGE_TOP_CENTER = 74;
+  int CHARSET_SYM = 74;
   /** RegularExpression Id. */
-  int PAGE_TOP_RIGHT = 75;
+  int PAGE_SYM = 75;
   /** RegularExpression Id. */
-  int PAGE_TOP_RIGHT_CORNER = 76;
+  int PAGE_TOP_LEFT_CORNER = 76;
   /** RegularExpression Id. */
-  int PAGE_BOTTOM_LEFT_CORNER = 77;
+  int PAGE_TOP_LEFT = 77;
   /** RegularExpression Id. */
-  int PAGE_BOTTOM_LEFT = 78;
+  int PAGE_TOP_CENTER = 78;
   /** RegularExpression Id. */
-  int PAGE_BOTTOM_CENTER = 79;
+  int PAGE_TOP_RIGHT = 79;
   /** RegularExpression Id. */
-  int PAGE_BOTTOM_RIGHT = 80;
+  int PAGE_TOP_RIGHT_CORNER = 80;
   /** RegularExpression Id. */
-  int PAGE_BOTTOM_RIGHT_CORNER = 81;
+  int PAGE_BOTTOM_LEFT_CORNER = 81;
   /** RegularExpression Id. */
-  int PAGE_LEFT_TOP = 82;
+  int PAGE_BOTTOM_LEFT = 82;
   /** RegularExpression Id. */
-  int PAGE_LEFT_MIDDLE = 83;
+  int PAGE_BOTTOM_CENTER = 83;
   /** RegularExpression Id. */
-  int PAGE_LEFT_BOTTOM = 84;
+  int PAGE_BOTTOM_RIGHT = 84;
   /** RegularExpression Id. */
-  int PAGE_RIGHT_TOP = 85;
+  int PAGE_BOTTOM_RIGHT_CORNER = 85;
   /** RegularExpression Id. */
-  int PAGE_RIGHT_MIDDLE = 86;
+  int PAGE_LEFT_TOP = 86;
   /** RegularExpression Id. */
-  int PAGE_RIGHT_BOTTOM = 87;
+  int PAGE_LEFT_MIDDLE = 87;
   /** RegularExpression Id. */
-  int IMPORT_SYM = 88;
+  int PAGE_LEFT_BOTTOM = 88;
   /** RegularExpression Id. */
-  int NAMESPACE_SYM = 89;
+  int PAGE_RIGHT_TOP = 89;
   /** RegularExpression Id. */
-  int MEDIA_SYM = 90;
+  int PAGE_RIGHT_MIDDLE = 90;
   /** RegularExpression Id. */
-  int FONT_FACE_SYM = 91;
+  int PAGE_RIGHT_BOTTOM = 91;
   /** RegularExpression Id. */
-  int KEYFRAMES_SYM = 92;
+  int IMPORT_SYM = 92;
   /** RegularExpression Id. */
-  int PREF_SYM = 93;
+  int NAMESPACE_SYM = 93;
   /** RegularExpression Id. */
-  int COLOR_PROFILE = 94;
+  int MEDIA_SYM = 94;
   /** RegularExpression Id. */
-  int A_COUNTER = 95;
+  int FONT_FACE_SYM = 95;
   /** RegularExpression Id. */
-  int COUNTER_STYLE_SYM = 96;
+  int KEYFRAMES_SYM = 96;
   /** RegularExpression Id. */
-  int PHONETIC_ALPHABET_SYM = 97;
+  int PREF_SYM = 97;
   /** RegularExpression Id. */
-  int SUPPORTS_SYM = 98;
+  int COLOR_PROFILE = 98;
   /** RegularExpression Id. */
-  int VIEWPORT_SYM = 99;
+  int A_COUNTER = 99;
   /** RegularExpression Id. */
-  int ATKEYWORD = 100;
+  int COUNTER_STYLE_SYM = 100;
   /** RegularExpression Id. */
-  int RANGE0 = 101;
+  int PHONETIC_ALPHABET_SYM = 101;
   /** RegularExpression Id. */
-  int RANGE1 = 102;
+  int SUPPORTS_SYM = 102;
   /** RegularExpression Id. */
-  int RANGE2 = 103;
+  int VIEWPORT_SYM = 103;
   /** RegularExpression Id. */
-  int RANGE3 = 104;
+  int ATKEYWORD = 104;
   /** RegularExpression Id. */
-  int RANGE4 = 105;
+  int RANGE0 = 105;
   /** RegularExpression Id. */
-  int RANGE5 = 106;
+  int RANGE1 = 106;
   /** RegularExpression Id. */
-  int RANGE6 = 107;
+  int RANGE2 = 107;
   /** RegularExpression Id. */
-  int RANGE = 108;
+  int RANGE3 = 108;
   /** RegularExpression Id. */
-  int UNI = 109;
+  int RANGE4 = 109;
   /** RegularExpression Id. */
-  int UNICODERANGE = 110;
+  int RANGE5 = 110;
   /** RegularExpression Id. */
-  int CLASS = 111;
+  int RANGE6 = 111;
   /** RegularExpression Id. */
-  int FUNCTIONLANG = 112;
+  int RANGE = 112;
   /** RegularExpression Id. */
-  int FUNCTIONNOT = 113;
+  int UNI = 113;
   /** RegularExpression Id. */
-  int FUNCTIONCALC = 114;
+  int UNICODERANGE = 114;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 115;
+  int CLASS = 115;
   /** RegularExpression Id. */
-  int FUNCTION = 116;
+  int FUNCTIONLANG = 116;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 117;
+  int FUNCTIONNOT = 117;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 118;
+  int FUNCTIONCALC = 118;
+  /** RegularExpression Id. */
+  int FUNCTIONATTR = 119;
+  /** RegularExpression Id. */
+  int FUNCTION = 120;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 121;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 122;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -284,6 +292,10 @@ public interface CssParserConstants {
     "<GREATER>",
     "<COMMA>",
     "<TILDE>",
+    "\"and\"",
+    "\"or\"",
+    "\"only\"",
+    "\"not\"",
     "<STRING>",
     "<INVALID>",
     "<IDENT>",
@@ -371,10 +383,6 @@ public interface CssParserConstants {
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
-    "\"NOT\"",
-    "\"ONLY\"",
-    "\"AND\"",
-    "\"OR\"",
     "<token of kind 123>",
     "\"|\"",
     "\"%\"",
