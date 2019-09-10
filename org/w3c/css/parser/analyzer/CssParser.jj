@@ -732,6 +732,38 @@ TOKEN [IGNORE_CASE] :
 //   < UNKNOWN : ~[] >
 //}
 
+// some useful token that con conflict with things like idents
+Token not() :
+{
+    Token n;
+}
+{
+    n="NOT" { return n; }
+}
+
+Token or() :
+{
+    Token n;
+}
+{
+    n="OR" { return n; }
+}
+
+Token and() :
+{
+    Token n;
+}
+{
+    n="AND" { return n; }
+}
+
+Token only() :
+{
+    Token n;
+}
+{
+    n="ONLY" { return n; }
+}
 /*
  * The grammar of CSS2
  */
@@ -1041,18 +1073,20 @@ void mediaquerylist(AtRuleMedia mediaRule) :
    ( <COMMA> ( <S> )* mediaquery(mediaRule) )*
 }
 
+
+
 void mediaquery(AtRuleMedia mediaRule) :
 {
   Token n;
   String mediarestrictor = null;
 }
 {
-    ( LOOKAHEAD(3) ( ( ( n="NOT" | n="ONLY" ) {
+    ( LOOKAHEAD(3) ( ( ( n=not() | n=only() ) {
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
    n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-   ( "AND" ( <S> )+ ( "NOT" ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) "AND" ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
-   ( ( "NOT" ( <S> )+ )* mediaexpression(mediaRule, true) ( "AND" ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+   ( and() ( <S> )+ ( not() ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) and() ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
+   ( ( not() ( <S> )+ )* mediaexpression(mediaRule, true) ( and() ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
    }
 }
@@ -1130,8 +1164,8 @@ SupportsFeature supports_condition(AtRuleSupports supportsRule):
     boolean got_multi = false;
 }
 {
-    ( "NOT" ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
-    |  ( nf=supports_condition_in_parens(supportsRule) ( ( "AND" ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+    ( not() ( <S> )+ nf=supports_condition_in_parens(supportsRule) { nf.setNot(true); return nf; } )
+    |  ( nf=supports_condition_in_parens(supportsRule) ( ( and() ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
 		                                           if (f == null) {
 							       f = new SupportsFeature();
 							       f.addFeature(nf);
@@ -1139,7 +1173,7 @@ SupportsFeature supports_condition(AtRuleSupports supportsRule):
 							   mf.setAnd(true);
 							   f.addFeature(mf);		    
                                                        } )+ 
-						      | ( "OR" ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
+	                                              | ( or() ( <S> )+ mf=supports_condition_in_parens(supportsRule) {
 							   if (f == null) {
 							       f = new SupportsFeature();
 							       f.addFeature(nf);
