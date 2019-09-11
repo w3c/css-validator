@@ -20,22 +20,22 @@ public class TokenMgrError extends Error
   /**
    * Lexical error occurred.
    */
-  public static final int LEXICAL_ERROR = 0;
+  static final int LEXICAL_ERROR = 0;
 
   /**
    * An attempt was made to create a second instance of a static token manager.
    */
-  public static final int STATIC_LEXER_ERROR = 1;
+  static final int STATIC_LEXER_ERROR = 1;
 
   /**
    * Tried to change to an invalid lexical state.
    */
-  public static final int INVALID_LEXICAL_STATE = 2;
+  static final int INVALID_LEXICAL_STATE = 2;
 
   /**
    * Detected (and bailed out of) an infinite loop in the token manager.
    */
-  public static final int LOOP_DETECTED = 3;
+  static final int LOOP_DETECTED = 3;
 
   /**
    * Indicates the reason why the exception is thrown. It will have
@@ -53,6 +53,8 @@ public class TokenMgrError extends Error
     for (int i = 0; i < str.length(); i++) {
       switch (str.charAt(i))
       {
+        case 0 :
+          continue;
         case '\b':
           retval.append("\\b");
           continue;
@@ -102,12 +104,11 @@ public class TokenMgrError extends Error
    *    curchar     : the offending character
    * Note: You can customize the lexical error message by modifying this method.
    */
-  protected static String LexicalErr(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, int curChar) {
-    char curChar1 = (char)curChar;
+  protected static String LexicalError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) {
     return("Lexical error at line " +
           errorLine + ", column " +
           errorColumn + ".  Encountered: " +
-          (EOFSeen ? "<EOF> " : ("\"" + addEscapes(String.valueOf(curChar1)) + "\"") + " (" + (int)curChar + "), ") +
+          (EOFSeen ? "<EOF> " : ("\"" + addEscapes(String.valueOf(curChar)) + "\"") + " (" + (int)curChar + "), ") +
           "after : \"" + addEscapes(errorAfter) + "\"");
   }
 
@@ -139,8 +140,8 @@ public class TokenMgrError extends Error
   }
 
   /** Full Constructor. */
-  public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, int curChar, int reason) {
-    this(LexicalErr(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), reason);
+  public TokenMgrError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar, int reason) {
+    this(LexicalError(EOFSeen, lexState, errorLine, errorColumn, errorAfter, curChar), reason);
   }
 }
-/* JavaCC - OriginalChecksum=8aa730919ae2540f8651db5bc248e427 (do not edit this line) */
+/* JavaCC - OriginalChecksum=a0e8995d1ac9564645c0d60018a41934 (do not edit this line) */
