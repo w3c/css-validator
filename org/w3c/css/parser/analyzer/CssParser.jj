@@ -777,6 +777,15 @@ void parserUnit() :
         }
 }
 
+Token ident() : {
+    Token n = null;
+}
+{
+    ( n=<IDENT> | n=<AND> | n=<OR> | n=<NOT> | n=<ONLY> ) {
+      return n;
+    }
+}
+
 void charset() :
 {
     Token n = null;
@@ -897,7 +906,7 @@ void namespaceDeclaration() :
     // FIXME add namespaces in context to match when a definition happens
     ( <NAMESPACE_SYM> 
       ( <S> )* 
-      ( n=<IDENT> {
+      ( n=ident() {
 	  prefix = convertIdent(n.image);
       } 
 	  ( <S> )* )?
@@ -1063,7 +1072,10 @@ void mediaquery(AtRuleMedia mediaRule) :
     ( LOOKAHEAD(3) ( ( ( n=<NOT> | n=<ONLY> ) {
             mediarestrictor = convertIdent(n.image);
        } ( <S> )+ )?
-   n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+	// should we allow "not not ?" or "not only" ?
+//   n=ident() { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+     n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+
    ( <AND> ( <S> )+ ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) <AND> ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
    ( ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
 
@@ -1077,7 +1089,7 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
   Token n;
 }
 {
-    <RPARAN> ( <S> )* n=<IDENT> {
+    <RPARAN> ( <S> )* n=ident() {
     // here we add the default media if not present
        if (defaultMedia) {
            mediaRule.addMedia(null, null, ac);
@@ -1190,7 +1202,7 @@ void general_enclosed(AtRuleSupports supportsRule):
 {
 }
 {
-    ( <FUNCTION> | <RPARAN> ) ( <S> )*  ( <IDENT> )* <LPARAN> ( <S> )*
+    ( <FUNCTION> | <RPARAN> ) ( <S> )*  ( ident() )* <LPARAN> ( <S> )*
 }
 
 void unused_production_generic_syntax() :
@@ -1339,20 +1351,20 @@ void page_selector_list(AtRulePage pageRule) :
 }
 {
     (
-     ( ( n=<IDENT> { ns = convertIdent(n.image); }  ) ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+     ( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-     | ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> ) *
     ( <COMMA> ( <S> )* (
-			( ( n=<IDENT> { ns = convertIdent(n.image); }  ) ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
+			( ( n=ident() { ns = convertIdent(n.image); }  ) ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )* ) {
 	pageRule.addSelector(ns, ps, ac);
 	ns = null; ps = null;
     }
-    | ( ":" p=<IDENT> { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
+     | ( ":" p=ident() { if (ps == null) { ps = new ArrayList(); } ps.add(":"+convertIdent(p.image)); }  )+ {
 	pageRule.addSelector(null, ps, ac);
 	ps = null;
     } ) ( <S> )* )*
@@ -1369,7 +1381,7 @@ CssSelectors keyframe_selector(CssSelectors next) :
 }
 {
     try {
-    ( n=<IDENT> {
+   ( n=ident() {
       CssIdent ident = new CssIdent();
       ident.set(convertIdent(n.image), ac);
       AtRuleKeyframes.checkSelectorValue(ident, ac);
@@ -1436,7 +1448,7 @@ void keyframes() :
 }
 {
   try {
-    <KEYFRAMES_SYM> ( <S> )+ n=<IDENT> ( <S> )* {
+    <KEYFRAMES_SYM> ( <S> )+ n=ident() ( <S> )* {
       krule.setName(convertIdent(n.image));
       if (version.compareTo(CssVersion.CSS3) < 0) {
         skipStatement();
@@ -1645,7 +1657,7 @@ void counterstyle() :
 }
 {
   try {
-    <COUNTER_STYLE_SYM> ( <S> )+ n=<IDENT> ( <S> )* {
+    <COUNTER_STYLE_SYM> ( <S> )+ n=ident() ( <S> )* {
       csrule.setName(convertIdent(n.image));
       if (version.compareTo(CssVersion.CSS3) < 0) {
         skipStatement();
@@ -1836,7 +1848,7 @@ String property() :
 {
  // ( hack? ident | hackedIdent ) ( <S> )*
     ( (hack=<[ "!", "$", "%", "&", "/", "`", "?",  "<", "|" ]> | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
-    n=<IDENT>) ( <S> )* {
+    n=ident()) ( <S> )* {
                  currentProperty = convertIdent(n.image);
                  if (hack != null && !"".equals(hack)) {
                    String hackp = hack.image+currentProperty;
@@ -2227,7 +2239,7 @@ void element_name(CssSelectors s) :
     String prefix = null;
 }
 {
-    ( LOOKAHEAD(2) (n=<IDENT> | n=<ANY>)? p="|" )? {
+    ( LOOKAHEAD(2) (n=ident() | n=<ANY>)? p="|" )? {
 	// FIXME namespace, check versions of CSS in a better way.
 	if (p != null) {
 	    // FIXME should be > CSS3
@@ -2256,7 +2268,7 @@ void element_name(CssSelectors s) :
 	    }
 	}
     }
-    ( n=<IDENT> { //              s.setElement(convertIdent(n.image), ac);
+    ( n=ident() { //              s.setElement(convertIdent(n.image), ac);
 	s.addType(new TypeSelector(prefix, convertIdent(n.image)));
     }
     | <ANY> { 
@@ -2284,7 +2296,7 @@ void attrib(CssSelectors s) :
     int selectorType = CssSelectors.ATTRIBUTE_ANY;
 }
 {
-    <LBRACKET> ( <S> )* att=<IDENT> ( <S> )*
+    <LBRACKET> ( <S> )* att=ident() ( <S> )*
 	( (<EQ> { selectorType = CssSelectors.ATTRIBUTE_EXACT; }
         | <INCLUDES> { selectorType = CssSelectors.ATTRIBUTE_ONE_OF; }
 	| <DASHMATCH> { selectorType = CssSelectors.ATTRIBUTE_BEGIN; }
@@ -2292,7 +2304,7 @@ void attrib(CssSelectors s) :
 	| <SUFFIXMATCH> { selectorType = CssSelectors.ATTRIBUTE_SUFFIX; }
 	| <SUBSTRINGMATCH> { selectorType = CssSelectors.ATTRIBUTE_SUBSTR; }
 	 ) ( <S> )* 
-	 ( val=<IDENT> 
+	 ( val=ident() 
 	     { val.image = convertIdent(val.image); }
 	   | val=<STRING> 
 	       { val.image = convertStringIndex(val.image, 1, val.image.length() -1, false);} 
@@ -2400,7 +2412,7 @@ Token language = null;
 CssExpression param = null;
 }
 {
-    <PSEUDOELEMENT_SYM> ( ( n=<IDENT>
+    <PSEUDOELEMENT_SYM> ( ( n=ident()
 	{ 
 	    try {
 	    // should be >CSS3
@@ -2419,7 +2431,7 @@ CssExpression param = null;
 	    }
 	} ) )
 	|  
-	<COLON> ( ( n=<IDENT>
+	<COLON> ( ( n=ident()
 	    { 
 		try {
 		    s.addPseudoClass(convertIdent(n.image).toLowerCase());
@@ -2431,7 +2443,7 @@ CssExpression param = null;
 		}
 	    } )
 		  // FXIXME rewrite to make :lang( use a special case
-		  | ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=<IDENT> | language=<STRING> ) ( <S> )* ) {
+		  | ( ( n=<FUNCTIONLANG> ( <S> )* (language=<NUMBER> | language=ident() | language=<STRING> ) ( <S> )* ) {
 		try {
 		    s.setPseudoFun(convertStringIndex(n.image, 0,
 						      n.image.length() -1, false).toLowerCase(),
@@ -2671,7 +2683,7 @@ CssExpression expression() :
 	// FIXME dimen should be a CssDimension()
 	| n=<DIMEN> { setValue(new CssIdent(), exp, operator, n, IDENT); } 
 	| n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); } 
-	| n=<IDENT> { setValue(new CssIdent(), exp, operator, n, IDENT); } 
+	| n=ident() { setValue(new CssIdent(), exp, operator, n, IDENT); } 
 	) ( <S> )* )+
    { return exp; }
 }     
@@ -2766,7 +2778,7 @@ void term(CssExpression exp) :
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
         | n=<DIV>  { setValue(new CssSwitch(), exp, operator, n, DIV); }
         | ( n=<RBRACKET> | n=<LBRACKET> ) {  setValue(new CssBracket(), exp, operator, n, RBRACKET); }
-        | n=<IDENT> {
+        | n=ident() {
 	/*
 	 * Common error :
 	 * H1 {
@@ -2853,7 +2865,7 @@ void mediaterm(CssExpression exp) :
       | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
      ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
-   | n=<IDENT>
+   | n=ident()
     {
 	/*
 	 * Common error :
@@ -3007,11 +3019,11 @@ Token n = null;
 CssExpression exp = null;
 }
 {
-    <FUNCTIONATTR> ( <S> )* ( n=<IDENT> ( <S> )* {
+    <FUNCTIONATTR> ( <S> )* ( n=ident() ( <S> )* {
 	    exp = new CssExpression();
 	    setValue(new CssIdent(), exp, ' ', n, IDENT);
 	} 
-	( ( n=<IDENT> | n="%" ) {
+	( ( n=ident() | n="%" ) {
 	    setValue(new CssIdent(), exp, ' ', n, IDENT); 
 	}  ( <S> )* )? ( <COMMA> { exp.setOperator(','); } ( <S> )* term(exp) )? ) <LPARAN> {
        v = new CssAttr();
@@ -3096,7 +3108,7 @@ CssValue function() :
 	    }
 	    return f;
 	}
-    }   |  p=<IDENT> <EQ> q=<NUMBER> ")" ) {
+    }   |  p=ident() <EQ> q=<NUMBER> ")" ) {
     // this one is for vendor extension like alpha(opacity=50);
         exp = new CssExpression();
         setValue(new CssIdent(), exp, ' ', p, IDENT);
