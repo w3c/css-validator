@@ -100,8 +100,7 @@ public class MediaGrid extends MediaFeature {
     public boolean equals(MediaFeature other) {
         try {
             MediaGrid mg = (MediaGrid) other;
-            return (((value == null) && (mg.value == null)) || ((value != null) && value.equals(mg.value)))
-                    && (((modifier == null) && (mg.modifier == null)) || ((modifier != null) && modifier.equals(mg.modifier)));
+            return (((value == null) && (mg.value == null)) || ((value != null) && value.equals(mg.value)));
         } catch (ClassCastException cce) {
             return false;
         }

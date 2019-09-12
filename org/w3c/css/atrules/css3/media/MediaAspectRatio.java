@@ -5,6 +5,7 @@
 
 package org.w3c.css.atrules.css3.media;
 
+import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
@@ -15,7 +16,7 @@ import org.w3c.css.values.CssValue;
 /**
  * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#aspect-ratio
  */
-public class MediaAspectRatio extends MediaFeature {
+public class MediaAspectRatio extends MediaRangeFeature {
 
     /**
      * Create a new MediaHeight

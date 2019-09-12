@@ -6,6 +6,7 @@
 package org.w3c.css.atrules.css3.media;
 
 import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -16,7 +17,8 @@ import org.w3c.css.values.CssValue;
 /**
  * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#device-width
  */
-public class MediaDeviceWidth extends MediaFeature {
+@Deprecated
+public class MediaDeviceWidth extends MediaRangeFeature {
 
     /**
      * Create a new MediaWidth
