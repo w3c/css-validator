@@ -46,17 +46,13 @@ public class MediaWidth extends MediaRangeFeature {
 
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
-                    // a bit stupid as the only value would be 0...
-                    val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_LENGTH:
-                    val.getCheckableValue().checkPositiveness(ac, this);
-                    value = val;
-                    expression.next();
+                    value = checkValue(ac, expression, getFeatureName());
                     break;
                 case CssTypes.CSS_COMPARATOR:
                     // mediaqueries-4 case, expand the comparator and check its value
                     if (modifier != null) {
-                        throw new InvalidParamException("nomodifiershortmedia",
+                        throw new InvalidParamException("nomodifierrangemedia",
                                 getFeatureName(), ac);
                     }
                     CssComparator p = (CssComparator) val;
@@ -79,6 +75,7 @@ public class MediaWidth extends MediaRangeFeature {
                     throw new InvalidParamException("value", expression.getValue(),
                             getFeatureName(), ac);
             }
+            expression.next();
             setModifier(ac, modifier);
         } else {
             if (modifier != null) {
