@@ -383,9 +383,16 @@ public interface CssParserConstants {
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
     "<HTMLENDTAG>",
-    "<token of kind 123>",
-    "\"|\"",
+    "\"!\"",
+    "\"$\"",
     "\"%\"",
+    "\"&\"",
+    "\"`\"",
+    "\"?\"",
+    "\"<\"",
+    "\"|\"",
+    "\">=\"",
+    "\"<=\"",
   };
 
 }
