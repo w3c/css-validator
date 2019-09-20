@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#resolution
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-resolution
  */
 public class MediaResolution extends MediaRangeFeature {
 
