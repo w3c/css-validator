@@ -5,8 +5,8 @@
 
 package org.w3c.css.atrules.css3.media;
 
-import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#aspect-ratio
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-aspect-ratio
  */
 public class MediaAspectRatio extends MediaRangeFeature {
 
