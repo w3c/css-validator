@@ -106,7 +106,6 @@ public class MediaHeight extends MediaRangeFeature {
             case CssTypes.CSS_LENGTH:
                 val.getCheckableValue().checkPositiveness(ac, caller);
                 value = val;
-                expression.next();
                 break;
             default:
                 throw new InvalidParamException("value", expression.getValue(),
