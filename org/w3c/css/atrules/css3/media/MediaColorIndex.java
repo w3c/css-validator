@@ -6,16 +6,18 @@
 package org.w3c.css.atrules.css3.media;
 
 import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#color-index
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-color-index
  */
-public class MediaColorIndex extends MediaFeature {
+public class MediaColorIndex extends MediaRangeFeature {
 
     /**
      * Create a new MediaColorIndex
@@ -35,20 +37,45 @@ public class MediaColorIndex extends MediaFeature {
             throws InvalidParamException {
 
         if (expression != null) {
-            if (expression.getCount() > 1) {
+            if (expression.getCount() > 2) {
                 throw new InvalidParamException("unrecognize", ac);
             }
             if (expression.getCount() == 0) {
                 throw new InvalidParamException("few-value", getFeatureName(), ac);
             }
             CssValue val = expression.getValue();
-            // it must be a >=0 integer only
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                val.getCheckableValue().checkInteger(ac, this);
-                val.getCheckableValue().checkPositiveness(ac, this);
-                value = val;
-            } else {
-                throw new InvalidParamException("unrecognize", ac);
+
+            // we could only test for comparator and let the check function do the
+            // throwing as needed, but it doesn't cost much to check toe relevant type here
+            switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    value = checkValue(ac, expression, getFeatureName());
+                    break;
+                case CssTypes.CSS_COMPARATOR:
+                    // mediaqueries-4 case, expand the comparator and check its value
+                    if (modifier != null) {
+                        throw new InvalidParamException("nomodifierrangemedia",
+                                getFeatureName(), ac);
+                    }
+                    CssComparator p = (CssComparator) val;
+                    value = checkValue(ac, p.getParameters(), getFeatureName());
+                    comparator = p.toString();
+                    expression.next();
+                    if (!expression.end()) {
+                        val = expression.getValue();
+                        if (val.getType() != CssTypes.CSS_COMPARATOR) {
+                            throw new InvalidParamException("unrecognize", ac);
+                        }
+                        CssComparator p2;
+                        p2 = (CssComparator) val;
+                        otherValue = checkValue(ac, p2.getParameters(), getFeatureName());
+                        otherComparator = p2.toString();
+                        checkComparators(ac, p, p2, getFeatureName());
+                    }
+                    break;
+                default:
+                    throw new InvalidParamException("value", expression.getValue(),
+                            getFeatureName(), ac);
             }
             setModifier(ac, modifier);
         } else {
@@ -62,6 +89,27 @@ public class MediaColorIndex extends MediaFeature {
     public MediaColorIndex(ApplContext ac, String modifier, CssExpression expression)
             throws InvalidParamException {
         this(ac, modifier, expression, false);
+    }
+
+    static CssValue checkValue(ApplContext ac, CssExpression expression, String caller)
+            throws InvalidParamException {
+        if (expression.getCount() == 0) {
+            throw new InvalidParamException("few-value", caller, ac);
+        }
+        CssValue val = expression.getValue();
+        CssValue value = null;
+
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkInteger(ac, caller);
+                val.getCheckableValue().checkPositiveness(ac, caller);
+                value = val;
+                break;
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        caller, ac);
+        }
+        return value;
     }
 
     /**

@@ -40,6 +40,7 @@ import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
+import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssFlexibleLength;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssHashIdent;
@@ -67,6 +68,7 @@ import org.w3c.css.atrules.css.AtRuleFontFace;
 import org.w3c.css.atrules.css.AtRuleKeyframes;
 import org.w3c.css.atrules.css.AtRuleMedia;
 import org.w3c.css.atrules.css.media.MediaFeature;
+import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.atrules.css.AtRulePage;
 import org.w3c.css.atrules.css.AtRulePhoneticAlphabet;
 import org.w3c.css.atrules.css.AtRulePreference;
@@ -541,6 +543,7 @@ TOKEN :
   | < PLUS      : <_W>  "+" >
   | < MINUS     : "-" >
   | < GREATER   : <_W> ">" >
+  | < GREATEREQ : <_W> ">=" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
 }
@@ -1069,17 +1072,38 @@ void mediaquery(AtRuleMedia mediaRule) :
   String mediarestrictor = null;
 }
 {
-    ( LOOKAHEAD(3) ( ( ( n=<NOT> | n=<ONLY> ) {
-            mediarestrictor = convertIdent(n.image);
-       } ( <S> )+ )?
-	// should we allow "not not ?" or "not only" ?
-//   n=ident() { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-     n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+    ( LOOKAHEAD(3) mediacondition(mediaRule, true) |
+      ( ( ( n=<NOT> | n=<ONLY> ) { mediarestrictor = convertIdent(n.image); } ( <S> )* )? n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )* ( n=<AND> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediaconditionwithoutor(mediaRule, false) )? ) )
+}
 
-   ( <AND> ( <S> )+ ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( LOOKAHEAD(2) <AND> ( <S> )+ mediaexpression(mediaRule, false) )* )* ) |
-   ( ( <NOT> ( <S> )+ )* mediaexpression(mediaRule, true) ( <AND> ( <S> )+ mediaexpression(mediaRule, false) )* ) ) {
+void mediacondition(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+    Token n;
+    String mediarestrictor = null;
+}
+{
+    ( n=<NOT> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
+    ( mediainparens(mediaRule, defaultMedia) ( ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ | ( n=<OR> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ )? )
+}
 
-   }
+void mediaconditionwithoutor(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+    Token n;
+    String mediarestrictor = null;
+}
+{
+     ( n=<NOT> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
+     ( mediainparens(mediaRule, defaultMedia) ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) )* )
+}
+
+void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+  CssExpression val = null;
+  String mediaFeatureName = null;
+  Token n;
+}
+{
+    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia) <LPARAN> ( <S> )* ) | LOOKAHEAD(4) mediarange(mediaRule, defaultMedia) | mediaexpression(mediaRule, defaultMedia) )
 }
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
@@ -1089,7 +1113,7 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
   Token n;
 }
 {
-    <RPARAN> ( <S> )* n=ident() {
+    <RPARAN> ( <S> )* n=<IDENT> {
     // here we add the default media if not present
        if (defaultMedia) {
            mediaRule.addMedia(null, null, ac);
@@ -1847,7 +1871,7 @@ String property() :
  Token hack= null; }
 {
  // ( hack? ident | hackedIdent ) ( <S> )*
-    ( (hack=<[ "!", "$", "%", "&", "/", "`", "?",  "<", "|" ]> | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
+    ( (hack="!" | hack="$" | hack="%" |  hack="&" | hack="`" | hack="?" | hack="<" | hack="|" | hack=<ANY> | hack=<EQ> | hack=<RBRACKET> | hack=<LBRACKET> | hack=<LPARAN> | hack=<RPARAN> | hack=<COLON> | hack=<TILDE> | hack=<PLUS> | hack=<COMMA> | hack=<GREATER> | hack=<DIV>)?
     n=ident()) ( <S> )* {
                  currentProperty = convertIdent(n.image);
                  if (hack != null && !"".equals(hack)) {
@@ -2703,6 +2727,51 @@ CssExpression expr() :
   { return values; }
 }
 
+void mediarange(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+  Token n;
+  Token c1 = null;
+  Token c2 = null;
+  CssValue func;
+  String mediaFeatureName;
+  CssExpression val1 = null;
+  CssExpression val2 = null;
+  CssComparator comp1 = null;
+  CssComparator comp2 = null;
+  boolean nameIsFirst = false;
+}
+{
+    ( <RPARAN> ( <S> )* ( LOOKAHEAD(3)
+	( n=ident() { nameIsFirst = true; } ( <S> )* ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* val1=mediaexpr() ) | 
+	( val1=mediaexpr() ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* n=ident() ( <S> )* ( ( ( c2=<GREATER> | c2=<GREATEREQ> | c2=<EQ> | c2="<" | c2="<=" ) ( <S> )* ) val2=mediaexpr() )?
+	)  ) <LPARAN> ( <S> )* ) {
+	  if (defaultMedia) {
+            mediaRule.addMedia(null, null, ac);
+          }
+	  mediaFeatureName = convertIdent(n.image);
+	  // c1 should always be not null.
+	  if (c1 != null) {
+	      comp1 = new CssComparator();
+	      comp1.set(c1.image, val1, ac);	      
+	  }
+	  if (c2 != null) {
+	      comp2 = new CssComparator();
+	      comp2.set(c2.image, val2, ac);
+	  }
+	  // we construct a fake one that starts with comparator then expression (doubled if necessary)
+	  CssExpression nex = new CssExpression();
+	  nex.addValue(comp1);
+	  if (comp2 != null) {
+	      nex.addValue(comp2);
+	  }
+	  MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, nex);
+	  ((MediaRangeFeature)mf).comparatorNameFirst = nameIsFirst;
+	  if (mf != null) {
+	      mediaRule.addMediaFeature(mf, ac);
+	  }
+    }
+}
+
 /**
  * @exception ParseException exception during the parse
  */
@@ -2711,7 +2780,7 @@ CssExpression mediaexpr() :
   CssExpression values = new CssExpression();
 }
 {
-  mediaterm(values) ( operator(values) mediaterm(values) )*
+    mediaterm(values) ( LOOKAHEAD(2) operator(values) mediaterm(values) )*
   { return values; }
 }
 

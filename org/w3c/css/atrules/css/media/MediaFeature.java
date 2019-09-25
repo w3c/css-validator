@@ -1,13 +1,10 @@
 package org.w3c.css.atrules.css.media;
 
 import org.w3c.css.css.StyleSheetOrigin;
-import org.w3c.css.util.ApplContext;
-import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssValue;
 
 public abstract class MediaFeature implements StyleSheetOrigin {
     public CssValue value;
-    public String modifier;
 
     /**
      * The origin of this property.
@@ -35,18 +32,6 @@ public abstract class MediaFeature implements StyleSheetOrigin {
     public abstract boolean equals(MediaFeature other);
 
     public abstract String getFeatureName();
-
-    // because of clashes in feature names / modifier, we can't check
-// reliably unwanted modifiers, they are noy only unknown media features
-    public void setModifier(ApplContext ac, String modifier)
-            throws InvalidParamException {
-//        if (modifier.equals("min") || modifier.equals("max")) {
-        this.modifier = modifier;
-//        } else {
-//            throw new InvalidParamException("invalidmediafeaturemodifier",
-//                    getFeatureName(), modifier, ac);
-//        }
-    }
 
     /**
      * Update the source file and the line.
@@ -104,11 +89,8 @@ public abstract class MediaFeature implements StyleSheetOrigin {
             return getFeatureName();
         }
         StringBuilder sb = new StringBuilder();
-        if (modifier != null) {
-            sb.append(modifier).append('-');
-        }
         sb.append(getFeatureName());
-        sb.append(':').append(value.toString());
+        sb.append(':').append(' ').append(value.toString());
         return sb.toString();
     }
 }

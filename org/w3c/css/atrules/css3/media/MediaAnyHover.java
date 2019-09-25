@@ -1,6 +1,6 @@
-// $Id$
 //
-// (c) COPYRIGHT MIT, ECRIM and Keio University, 2011
+//
+// (c) COPYRIGHT MIT, ECRIM, Keio, Beihang 2019
 // Please first read the full copyright statement in file COPYRIGHT.html
 
 package org.w3c.css.atrules.css3.media;
@@ -9,30 +9,50 @@ import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
+import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/#grid
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-any-hover
  */
-public class MediaGrid extends MediaFeature {
+public class MediaAnyHover extends MediaFeature {
 
-    /**
-     * Create a new MediaGrid
-     */
-    public MediaGrid() {
+    public static final CssIdent[] allowed_values;
+
+    static {
+        String[] _allowed_values = {"none", "hover"};
+        allowed_values = new CssIdent[_allowed_values.length];
+        int i = 0;
+        for (String s : _allowed_values) {
+            allowed_values[i++] = CssIdent.getIdent(s);
+        }
+    }
+
+    public static CssIdent getAllowedValue(CssIdent ident) {
+        for (CssIdent id : allowed_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
     }
 
     /**
-     * Create a new MediaGrid.
+     * Create a new MediaAnyHover
+     */
+    public MediaAnyHover() {
+    }
+
+    /**
+     * Create a new MediaPAnyointer
      *
      * @param expression The expression for this media feature
      * @throws org.w3c.css.util.InvalidParamException
      *          Values are incorrect
      */
-    public MediaGrid(ApplContext ac, String modifier,
-                     CssExpression expression, boolean check)
+    public MediaAnyHover(ApplContext ac, String modifier,
+                         CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (modifier != null) {
@@ -48,21 +68,26 @@ public class MediaGrid extends MediaFeature {
                 throw new InvalidParamException("few-value", getFeatureName(), ac);
             }
             CssValue val = expression.getValue();
-            // it must be a >=0 integer only
-            if (val.getType() == CssTypes.CSS_NUMBER) {
-                val.getCheckableValue().checkInteger(ac, this);
-                // FIXME TODO, calc() case.
-                CssNumber valnum = (CssNumber) val;
-                int gridval = valnum.getInt();
-                if (gridval != 0 && gridval != 1) {
-                    throw new InvalidParamException("grid",
-                            val.toString(), ac);
-                }
-                value = valnum;
-            } else {
-                throw new InvalidParamException("unrecognize", ac);
+
+            switch (val.getType()) {
+                case CssTypes.CSS_IDENT:
+                    value = getAllowedValue((CssIdent) val);
+                    if (value != null) {
+                        break;
+                    }
+                    // let it flow through the exception
+                default:
+                    throw new InvalidParamException("value", expression.getValue(),
+                            getFeatureName(), ac);
             }
+        } else {
+            // TODO add a warning for value less mediafeature that makes no sense
         }
+    }
+
+    public MediaAnyHover(ApplContext ac, String modifier, CssExpression expression)
+            throws InvalidParamException {
+        this(ac, modifier, expression, false);
     }
 
     // just in case someone wants to call it externally...
@@ -70,11 +95,6 @@ public class MediaGrid extends MediaFeature {
             throws InvalidParamException {
         throw new InvalidParamException("nomodifiermedia",
                 getFeatureName(), ac);
-    }
-
-    public MediaGrid(ApplContext ac, String modifier, CssExpression expression)
-            throws InvalidParamException {
-        this(ac, modifier, expression, false);
     }
 
     /**
@@ -89,7 +109,7 @@ public class MediaGrid extends MediaFeature {
      * Returns the name of this media feature.
      */
     public final String getFeatureName() {
-        return "grid";
+        return "any-hover";
     }
 
     /**
@@ -99,8 +119,8 @@ public class MediaGrid extends MediaFeature {
      */
     public boolean equals(MediaFeature other) {
         try {
-            MediaGrid mg = (MediaGrid) other;
-            return (((value == null) && (mg.value == null)) || ((value != null) && value.equals(mg.value)));
+            MediaAnyHover ms = (MediaAnyHover) other;
+            return (((value == null) && (ms.value == null)) || ((value != null) && value.equals(ms.value)));
         } catch (ClassCastException cce) {
             return false;
         }
