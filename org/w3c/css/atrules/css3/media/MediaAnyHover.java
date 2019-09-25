@@ -14,9 +14,9 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-hover
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/#descdef-media-any-hover
  */
-public class MediaHover extends MediaFeature {
+public class MediaAnyHover extends MediaFeature {
 
     public static final CssIdent[] allowed_values;
 
@@ -39,20 +39,20 @@ public class MediaHover extends MediaFeature {
     }
 
     /**
-     * Create a new MediaHover
+     * Create a new MediaAnyHover
      */
-    public MediaHover() {
+    public MediaAnyHover() {
     }
 
     /**
-     * Create a new MediaHover
+     * Create a new MediaPAnyointer
      *
      * @param expression The expression for this media feature
      * @throws org.w3c.css.util.InvalidParamException
      *          Values are incorrect
      */
-    public MediaHover(ApplContext ac, String modifier,
-                      CssExpression expression, boolean check)
+    public MediaAnyHover(ApplContext ac, String modifier,
+                         CssExpression expression, boolean check)
             throws InvalidParamException {
 
         if (modifier != null) {
@@ -85,7 +85,7 @@ public class MediaHover extends MediaFeature {
         }
     }
 
-    public MediaHover(ApplContext ac, String modifier, CssExpression expression)
+    public MediaAnyHover(ApplContext ac, String modifier, CssExpression expression)
             throws InvalidParamException {
         this(ac, modifier, expression, false);
     }
@@ -109,7 +109,7 @@ public class MediaHover extends MediaFeature {
      * Returns the name of this media feature.
      */
     public final String getFeatureName() {
-        return "hover";
+        return "any-hover";
     }
 
     /**
@@ -119,7 +119,7 @@ public class MediaHover extends MediaFeature {
      */
     public boolean equals(MediaFeature other) {
         try {
-            MediaHover ms = (MediaHover) other;
+            MediaAnyHover ms = (MediaAnyHover) other;
             return (((value == null) && (ms.value == null)) || ((value != null) && value.equals(ms.value)));
         } catch (ClassCastException cce) {
             return false;
