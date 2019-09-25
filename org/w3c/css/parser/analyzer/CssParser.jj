@@ -543,6 +543,7 @@ TOKEN :
   | < PLUS      : <_W>  "+" >
   | < MINUS     : "-" >
   | < GREATER   : <_W> ">" >
+  | < GREATEREQ : <_W> ">=" >
   | < COMMA     : <_W> "," >
   | < TILDE     : <_W> "~" >
 }
@@ -1071,17 +1072,38 @@ void mediaquery(AtRuleMedia mediaRule) :
   String mediarestrictor = null;
 }
 {
-    ( LOOKAHEAD(3) ( ( ( n=<NOT> | n=<ONLY> ) {
-            mediarestrictor = convertIdent(n.image);
-       } ( <S> )+ )?
-	// should we allow "not not ?" or "not only" ?
-//   n=ident() { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
-     n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )*
+    ( LOOKAHEAD(3) mediacondition(mediaRule, true) |
+      ( ( ( n=<NOT> | n=<ONLY> ) { mediarestrictor = convertIdent(n.image); } ( <S> )* )? n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )* ( n=<AND> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediaconditionwithoutor(mediaRule, false) )? ) )
+}
 
-	( LOOKAHEAD(2) <AND> ( <S> )+ ( LOOKAHEAD(2) <NOT> ( <S> )+ )* ( LOOKAHEAD(6) mediaexpression(mediaRule, true) | mediarange(mediaRule, true) ) ( LOOKAHEAD(2) <AND> ( <S> )+ (  LOOKAHEAD(6) mediaexpression(mediaRule, false) | mediarange(mediaRule, false) ) )* )* ) |
-	( ( LOOKAHEAD(2) <NOT> ( <S> )+ )* (  LOOKAHEAD(6) mediaexpression(mediaRule, true) | mediarange(mediaRule, true) ) ( LOOKAHEAD(2) <AND> ( <S> )+ (  LOOKAHEAD(6) mediaexpression(mediaRule, false) | mediarange(mediaRule, false) ) )* ) ) {
+void mediacondition(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+    Token n;
+    String mediarestrictor = null;
+}
+{
+    ( n=<NOT> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
+    ( mediainparens(mediaRule, defaultMedia) ( ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ | ( n=<OR> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ )? )
+}
 
-   }
+void mediaconditionwithoutor(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+    Token n;
+    String mediarestrictor = null;
+}
+{
+     ( n=<NOT> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
+     ( mediainparens(mediaRule, defaultMedia) ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) )* )
+}
+
+void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia) :
+{
+  CssExpression val = null;
+  String mediaFeatureName = null;
+  Token n;
+}
+{
+    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia) <LPARAN> ( <S> )* ) | LOOKAHEAD(4) mediarange(mediaRule, defaultMedia) | mediaexpression(mediaRule, defaultMedia) )
 }
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
@@ -1091,7 +1113,7 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
   Token n;
 }
 {
-    <RPARAN> ( <S> )* n=ident() {
+    <RPARAN> ( <S> )* n=<IDENT> {
     // here we add the default media if not present
        if (defaultMedia) {
            mediaRule.addMedia(null, null, ac);
@@ -2720,8 +2742,8 @@ void mediarange(AtRuleMedia mediaRule, boolean defaultMedia) :
 }
 {
     ( <RPARAN> ( <S> )* ( LOOKAHEAD(3)
-	( n=ident() { nameIsFirst = true; } ( <S> )* ( c1=<GREATER> | c1=">=" | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* val1=mediaexpr() ) | 
-        ( val1=mediaexpr() ( c1=<GREATER> | c1=">=" | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* n=ident() ( <S> )* ( ( ( c2=<GREATER> | c2=">=" | c2=<EQ> | c2="<" | c2="<=" ) ( <S> )* ) val2=mediaexpr() )?
+	( n=ident() { nameIsFirst = true; } ( <S> )* ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* val1=mediaexpr() ) | 
+	( val1=mediaexpr() ( c1=<GREATER> | c1=<GREATEREQ> | c1=<EQ> | c1="<" | c1="<=" ) ( <S> )* n=ident() ( <S> )* ( ( ( c2=<GREATER> | c2=<GREATEREQ> | c2=<EQ> | c2="<" | c2="<=" ) ( <S> )* ) val2=mediaexpr() )?
 	)  ) <LPARAN> ( <S> )* ) {
 	  if (defaultMedia) {
             mediaRule.addMedia(null, null, ac);
