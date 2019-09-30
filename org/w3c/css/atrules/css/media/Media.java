@@ -53,7 +53,8 @@ public class Media {
             return media;
         }
         StringBuilder sb = new StringBuilder();
-        boolean printAnd = false;
+        boolean printCombinator = false;
+        String combinator;
         if (only) {
             sb.append("only ");
         } else if (not) {
@@ -62,14 +63,15 @@ public class Media {
         // special case "media and (...)" or directly "(...)"
         if (media != null) {
             sb.append(media);
-            printAnd = true;
+            printCombinator = true;
         }
         if (features != null) {
             for (MediaFeature mf : features) {
-                if (printAnd) {
-                    sb.append(" and");
+                combinator = mf.getCombinator();
+                if (printCombinator && combinator != null) {
+                    sb.append(' ').append(mf.getCombinator());
                 } else {
-                    printAnd = true;
+                    printCombinator = true;
                 }
                 sb.append(" (").append(mf.toString()).append(')');
             }
