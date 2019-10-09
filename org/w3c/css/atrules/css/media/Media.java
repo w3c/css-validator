@@ -8,6 +8,7 @@ public class Media {
     boolean not;
     String media;
     ArrayList<MediaFeature> features;
+    String _ts = null;
 
     public Media() {
     }
@@ -34,6 +35,7 @@ public class Media {
 
     public void setMedia(String media) {
         this.media = media;
+        _ts = null;
     }
 
     public String getMedia() {
@@ -45,12 +47,16 @@ public class Media {
             features = new ArrayList<MediaFeature>();
         }
         features.add(mf);
+        _ts = null;
     }
 
     public String toString() {
         // simple case, return the media string
         if (!only && !not && features == null) {
             return media;
+        }
+        if (_ts != null) {
+            return _ts;
         }
         StringBuilder sb = new StringBuilder();
         boolean printCombinator = false;
@@ -69,13 +75,14 @@ public class Media {
             for (MediaFeature mf : features) {
                 combinator = mf.getCombinator();
                 if (printCombinator && combinator != null) {
-                    sb.append(' ').append(mf.getCombinator());
+                    sb.append(' ').append(combinator);
                 } else {
                     printCombinator = true;
                 }
                 sb.append(" (").append(mf.toString()).append(')');
             }
         }
-        return sb.toString();
+        _ts = sb.toString();
+        return _ts;
     }
 }
