@@ -1072,41 +1072,41 @@ void mediaquery(AtRuleMedia mediaRule) :
   String mediarestrictor = null;
 }
 {
-    ( LOOKAHEAD(3) mediacondition(mediaRule, true) |
-      ( ( ( n=<NOT> | n=<ONLY> ) { mediarestrictor = convertIdent(n.image); } ( <S> )* )? n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )* ( n=<AND> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediaconditionwithoutor(mediaRule, false) )? ) )
+    ( LOOKAHEAD(3) mediacondition(mediaRule, true, null) |
+      ( ( ( n=<NOT> | n=<ONLY> ) { mediarestrictor = convertIdent(n.image); } ( <S> )* )? n=<IDENT> { mediaRule.addMedia(mediarestrictor, convertIdent(n.image), ac); } ( <S> )* ( n=<AND> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediaconditionwithoutor(mediaRule, false, mediarestrictor) )? ) )
 }
 
-void mediacondition(AtRuleMedia mediaRule, boolean defaultMedia) :
+void mediacondition(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
+{
+    Token n;
+    String combinator = null;
+}
+{
+    ( n=<NOT> { combinator = convertIdent(n.image); } ( <S> )* mediainparens(mediaRule, defaultMedia, combinator) ) |
+	( mediainparens(mediaRule, defaultMedia, null) ( ( n=<AND> { combinator = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false, combinator) )+ | ( n=<OR> { combinator = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false, combinator) )+ )? )
+}
+
+void mediaconditionwithoutor(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
 {
     Token n;
     String mediarestrictor = null;
 }
 {
-    ( n=<NOT> { mediarestrictor = convertIdent(n.image); } ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
-    ( mediainparens(mediaRule, defaultMedia) ( ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ | ( n=<OR> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, false) )+ )? )
+    ( n=<NOT> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia, mediarestrictor) ) |
+	 ( mediainparens(mediaRule, defaultMedia, comb) ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia, mediarestrictor) )* )
 }
 
-void mediaconditionwithoutor(AtRuleMedia mediaRule, boolean defaultMedia) :
-{
-    Token n;
-    String mediarestrictor = null;
-}
-{
-     ( n=<NOT> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) ) |
-     ( mediainparens(mediaRule, defaultMedia) ( n=<AND> { mediarestrictor = convertIdent(n.image); }  ( <S> )* mediainparens(mediaRule, defaultMedia) )* )
-}
-
-void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia) :
+void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
 {
   CssExpression val = null;
   String mediaFeatureName = null;
   Token n;
 }
 {
-    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia) <LPARAN> ( <S> )* ) | LOOKAHEAD(4) mediarange(mediaRule, defaultMedia) | mediaexpression(mediaRule, defaultMedia) )
+    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia, comb) <LPARAN> ( <S> )* ) | LOOKAHEAD(4) mediarange(mediaRule, defaultMedia, comb) | mediaexpression(mediaRule, defaultMedia, comb) )
 }
 
-void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
+void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
 {
   CssExpression val = null;
   String mediaFeatureName = null;
@@ -1124,6 +1124,8 @@ void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia) :
         MediaFeature mf = handleMediaFeature(mediaRule, mediaFeatureName, val);
         if (mf != null) {
             mediaRule.addMediaFeature(mf, ac);
+	    mf.setCombinator(comb);
+	    // mf.setParens();
         }
     }
 }
@@ -2727,7 +2729,7 @@ CssExpression expr() :
   { return values; }
 }
 
-void mediarange(AtRuleMedia mediaRule, boolean defaultMedia) :
+void mediarange(AtRuleMedia mediaRule, boolean defaultMedia, String combinator) :
 {
   Token n;
   Token c1 = null;
@@ -2768,6 +2770,8 @@ void mediarange(AtRuleMedia mediaRule, boolean defaultMedia) :
 	  ((MediaRangeFeature)mf).comparatorNameFirst = nameIsFirst;
 	  if (mf != null) {
 	      mediaRule.addMediaFeature(mf, ac);
+	      mf.setCombinator(combinator);
+	    // mf.setParens();
 	  }
     }
 }

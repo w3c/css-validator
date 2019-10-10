@@ -15,7 +15,7 @@ public abstract class MediaRangeFeature extends MediaFeature {
 
 
     static public void checkComparators(ApplContext ac, CssComparator c1, CssComparator c2,
-                                 String caller) throws InvalidParamException {
+                                        String caller) throws InvalidParamException {
         if (!CssComparator.checkCompatibility(c1, c2)) {
             throw new InvalidParamException("comparator", c1, c2, ac);
         }
@@ -66,7 +66,8 @@ public abstract class MediaRangeFeature extends MediaFeature {
                     sb.append(otherValue);
                 }
             } else {
-                // we are in trouble... bail?
+                sb.append(getFeatureName());
+                sb.append(':').append(' ').append(value.toString());
             }
         }
         return sb.toString();

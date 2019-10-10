@@ -28,10 +28,29 @@ public abstract class MediaFeature implements StyleSheetOrigin {
      */
     public String sourceFile;
 
+    public String combinator = null;
+
 
     public abstract boolean equals(MediaFeature other);
 
     public abstract String getFeatureName();
+
+
+    /**
+     * Set the combinator used in more complex expressions.
+     * @param combinator, the combinator string (and, or etc...)
+     */
+    public void setCombinator(String combinator) {
+        this.combinator = combinator;
+    }
+
+    /**
+     * Get the combinator string if present, null otherwise
+     * @return  a String
+     */
+    public String getCombinator() {
+        return combinator;
+    }
 
     /**
      * Update the source file and the line.
