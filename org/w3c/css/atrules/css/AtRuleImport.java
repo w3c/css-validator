@@ -77,5 +77,15 @@ public class AtRuleImport extends AtRule {
         this.linkname = linkname;
         this.is_url = is_url;
     }
+
+	public String getLinkname() {
+		return linkname;
+	}
+
+	public AtRuleMedia getMedia() {
+		return media;
+	}
+    
+    
 }
 
