@@ -267,6 +267,7 @@ public class CssPropertyFactory implements Cloneable {
                 Class[] parametersType = {};
                 Constructor constructor = Class.forName(classname).getConstructor(parametersType);
                 Object[] parameters = {};
+                expression.next(); // consume token
                 // invoke the constructor
                 return (CssProperty) constructor.newInstance(parameters);
             } else {
