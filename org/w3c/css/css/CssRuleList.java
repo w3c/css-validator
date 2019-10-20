@@ -38,6 +38,10 @@ public class CssRuleList {
     public String getAtRule() {
         return (atRule != null) ? atRule.toString() : "";
     }
+    
+    public AtRule getAtRuleObject() {
+        return atRule;
+    }
 
     public String getAtRuleEscaped() {
         return Messages.escapeString(atRule.toString());
