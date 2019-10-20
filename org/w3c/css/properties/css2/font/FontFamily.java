@@ -143,13 +143,23 @@ public class FontFamily extends FontProperty implements CssOperator {
     }
 
     String convertString(String value) {
-        if (value.indexOf('"') != -1) {
-            return '\'' + value + '\'';
-        } else if (value.indexOf('\'') != -1) {
-            return '"' + value + '"';
-        } else {
-            return value;
-        }
+    	char cfirst = value.charAt(0);
+    	char clast  = value.charAt(value.length()-1);
+    	
+    	if (cfirst == clast
+    			&& (cfirst == '\'' || cfirst=='"')
+    	){
+    		// is already well escaped
+    		return value;
+    	}
+    	
+    	if (value.indexOf('"') != -1) {
+    		return '\'' + value + '\'';
+    	} else if (value.indexOf('\'') != -1) {
+    		return '"' + value + '"';
+    	} else {
+    		return value;
+    	}
     }
 
     /**
