@@ -88,6 +88,18 @@ public class CssURL extends CssValue {
         String urlname = s.substring(4, s.length() - 1).trim();
         this.base = base;
 
+        urlname = urlname.trim();
+        if (urlname.isEmpty()){
+        	// okay, no further modifications needed
+        }else if (urlname.charAt(0)=='"' || urlname.charAt(0)=='\''){
+        	final int l = urlname.length()-1;
+        	if (urlname.charAt(0)==urlname.charAt(l)){
+        		urlname = urlname.substring(1, l);
+        	}else{
+                throw new InvalidParamException("url", s, ac);
+        	}
+        }
+        
         value = filterURLData(urlname);
         full = null;
         if (!urlHeading.startsWith("url"))
