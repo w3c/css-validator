@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#object-fit
+ * @spec https://www.w3.org/TR/2019/CR-css-images-3-20191010/#propdef-object-fit
  */
 public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
 
