@@ -549,30 +549,41 @@ public class CssImage extends CssValue {
         CssValue val;
         char op;
         CssColor stopcol;
-        CssValue stopcolv;
-        CssValue stopval;
+        CssValue stop1, stop2;
+        ArrayList<CssValue> stop;
+        boolean prev_is_hint = false;
+        boolean got_length_percentage;
 
         while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
 
+            got_length_percentage = false;
             switch (val.getType()) {
+                case CssTypes.CSS_NUMBER:
+                    val.getLength();
+                case CssTypes.CSS_LENGTH:
+                case CssTypes.CSS_PERCENTAGE:
+                    stop1 = val;
+                    got_length_percentage = true;
+                    break;
+
                 case CssTypes.CSS_HASH_IDENT:
                     stopcol = new CssColor();
                     stopcol.setShortRGBColor(ac, val.toString());
-                    stopcolv = stopcol;
+                    stop1 = stopcol;
                     break;
                 case CssTypes.CSS_IDENT:
                     if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
-                        stopcolv = CssColorCSS3.currentColor;
+                        stop1 = CssColorCSS3.currentColor;
                         break;
                     }
                     stopcol = new CssColor();
                     stopcol.setIdentColor(ac, val.toString());
-                    stopcolv = stopcol;
+                    stop1 = stopcol;
                     break;
                 case CssTypes.CSS_COLOR:
-                    stopcolv = val;
+                    stop1 = val;
                     break;
                 default:
                     throw new InvalidParamException("value", val.toString(),
@@ -580,25 +591,79 @@ public class CssImage extends CssValue {
             }
             if (op == SPACE && expression.getRemainingCount() > 1) {
                 expression.next();
-                stopval = expression.getValue();
+                val = expression.getValue();
                 op = expression.getOperator();
 
-                switch (stopval.getType()) {
+                switch (val.getType()) {
                     case CssTypes.CSS_NUMBER:
-                        stopval.getLength();
+                        val.getLength();
                     case CssTypes.CSS_LENGTH:
                     case CssTypes.CSS_PERCENTAGE:
-                        ArrayList<CssValue> stop = new ArrayList<CssValue>(2);
-                        stop.add(stopcolv);
-                        stop.add(stopval);
+                        if (got_length_percentage) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                        stop = new ArrayList<CssValue>(2);
+                        stop.add(stop1);
+                        stop.add(val);
+                        v.add(new CssValueList(stop));
+                        break;
+                    case CssTypes.CSS_HASH_IDENT:
+                        if (!got_length_percentage) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                        stopcol = new CssColor();
+                        stopcol.setShortRGBColor(ac, val.toString());
+                        // TODO we rewrite putting color first, should we do that?
+                        stop = new ArrayList<CssValue>(2);
+                        stop.add(stopcol);
+                        stop.add(stop1);
+                        v.add(new CssValueList(stop));
+                        break;
+                    case CssTypes.CSS_IDENT:
+                        if (!got_length_percentage) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                        if (CssColorCSS3.currentColor.equals((CssIdent) val)) {
+                            stop2 = CssColorCSS3.currentColor;
+                        } else {
+                            stopcol = new CssColor();
+                            stopcol.setIdentColor(ac, val.toString());
+                            stop2 = stopcol;
+                        }
+                        // TODO we rewrite putting color first, should we do that?
+                        stop = new ArrayList<CssValue>(2);
+                        stop.add(stop2);
+                        stop.add(stop1);
+                        v.add(new CssValueList(stop));
+                        break;
+                    case CssTypes.CSS_COLOR:
+                        if (!got_length_percentage) {
+                            throw new InvalidParamException("value", val.toString(),
+                                    "color-stop", ac);
+                        }
+                        stop = new ArrayList<CssValue>(2);
+                        // TODO we rewrite putting color first, should we do that?
+                        stop.add(val);
+                        stop.add(stop1);
                         v.add(new CssValueList(stop));
                         break;
                     default:
                         throw new InvalidParamException("value", val.toString(),
                                 "color-stop", ac);
                 }
+                // we got two values, it is not a linear-color-hint
+                prev_is_hint = false;
             } else {
-                v.add(stopcolv);
+                // we can't have two hints in a row
+                if (prev_is_hint && got_length_percentage) {
+                    throw new InvalidParamException("value", stop1,
+                            "color-stop", ac);
+                }
+                v.add(stop1);
+                prev_is_hint = got_length_percentage;
             }
             expression.next();
             if (!expression.end() && op != COMMA) {
@@ -609,6 +674,7 @@ public class CssImage extends CssValue {
         }
         return v;
     }
+
 
     private CssValue checkPosition(CssExpression expression, ApplContext ac)
             throws InvalidParamException {
