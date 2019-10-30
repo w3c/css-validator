@@ -46,6 +46,7 @@ public class CssImageRendering extends org.w3c.css.properties.css.CssImageRender
         return null;
     }
 
+    // TODO should we add something specific for their replacement?
     public static final CssIdent getDeprecatedValue(CssIdent ident) {
         for (CssIdent id : deprecated_values) {
             if (id.equals(ident)) {
