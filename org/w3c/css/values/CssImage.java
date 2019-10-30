@@ -219,91 +219,99 @@ public class CssImage extends CssValue {
         CssValue val = exp.getValue();
         char op = exp.getOperator();
 
-        if (val.getType() == CssTypes.CSS_ANGLE) {
-            v.add(val);
-            if (op != COMMA) {
-                exp.starts();
-                throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
-            }
-            exp.next();
-        } else if (val.getType() == CssTypes.CSS_IDENT) {
-            CssIdent ident = (CssIdent) val;
-            if (to.equals(ident)) {
-                CssValueList vl = new CssValueList();
-                vl.add(to);
-                // we must now eat one or two valid idents
-                // this is boringly boring...
-                CssIdent v1 = null;
-                CssIdent v2 = null;
-                if (op != SPACE) {
-                    exp.starts();
-                    throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
-                }
-                exp.next();
-                if (exp.end()) {
-                    throw new InvalidParamException("few-value", name, ac);
-                }
-                val = exp.getValue();
-                op = exp.getOperator();
-                boolean isV1Vertical, isV2Vertical;
-                if (val.getType() != CssTypes.CSS_IDENT) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            name, ac);
-                }
-                v1 = getLinearGradientIdent((CssIdent) val);
-                if (v1 == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            name, ac);
-                }
-                vl.add(v1);
-                isV1Vertical = isVerticalIdent(v1);
-                exp.next();
-                if (exp.end()) {
-                    throw new InvalidParamException("few-value", name, ac);
-                }
-                if (op == SPACE) {
-                    // the operator is a space, we should have
-                    // another
-                    val = exp.getValue();
-                    op = exp.getOperator();
-                    if (val.getType() != CssTypes.CSS_IDENT) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                name, ac);
-                    }
-                    v2 = getLinearGradientIdent((CssIdent) val);
-                    if (v2 == null) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                name, ac);
-                    }
-                    isV2Vertical = isVerticalIdent(v2);
-                    if ((isV1Vertical && isV2Vertical) ||
-                            (!isV1Vertical && !isV2Vertical)) {
-                        throw new InvalidParamException("value",
-                                val.toString(),
-                                name, ac);
-                    }
-                    vl.add(v2);
-                    exp.next();
-                }
-                v.add(vl);
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                // 0 is an acceptable value since CR-css-images-3-20191010
+                val.getAngle();
+            case CssTypes.CSS_ANGLE:
+                v.add(val);
                 if (op != COMMA) {
                     exp.starts();
                     throw new InvalidParamException("operator",
                             ((new Character(op)).toString()), ac);
                 }
-            }
-            if (top.equals(ident) || bottom.equals(ident)
-                    || left.equals(ident) || right.equals(ident)) {
-                throw new InvalidParamException( //
-                        "linear-gradient-missing-to",
-                        "to " + ident, ident, ac);
-            }
+                exp.next();
+                break;
+            case CssTypes.CSS_IDENT:
+                CssIdent ident = (CssIdent) val;
+                if (to.equals(ident)) {
+                    CssValueList vl = new CssValueList();
+                    vl.add(to);
+                    // we must now eat one or two valid idents
+                    // this is boringly boring...
+                    CssIdent v1 = null;
+                    CssIdent v2 = null;
+                    if (op != SPACE) {
+                        exp.starts();
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                    exp.next();
+                    if (exp.end()) {
+                        throw new InvalidParamException("few-value", name, ac);
+                    }
+                    val = exp.getValue();
+                    op = exp.getOperator();
+                    boolean isV1Vertical, isV2Vertical;
+                    if (val.getType() != CssTypes.CSS_IDENT) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                name, ac);
+                    }
+                    v1 = getLinearGradientIdent((CssIdent) val);
+                    if (v1 == null) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                name, ac);
+                    }
+                    vl.add(v1);
+                    isV1Vertical = isVerticalIdent(v1);
+                    exp.next();
+                    if (exp.end()) {
+                        throw new InvalidParamException("few-value", name, ac);
+                    }
+                    if (op == SPACE) {
+                        // the operator is a space, we should have
+                        // another
+                        val = exp.getValue();
+                        op = exp.getOperator();
+                        if (val.getType() != CssTypes.CSS_IDENT) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    name, ac);
+                        }
+                        v2 = getLinearGradientIdent((CssIdent) val);
+                        if (v2 == null) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    name, ac);
+                        }
+                        isV2Vertical = isVerticalIdent(v2);
+                        if ((isV1Vertical && isV2Vertical) ||
+                                (!isV1Vertical && !isV2Vertical)) {
+                            throw new InvalidParamException("value",
+                                    val.toString(),
+                                    name, ac);
+                        }
+                        vl.add(v2);
+                        exp.next();
+                    }
+                    v.add(vl);
+                    if (op != COMMA) {
+                        exp.starts();
+                        throw new InvalidParamException("operator",
+                                ((new Character(op)).toString()), ac);
+                    }
+                }
+                if (top.equals(ident) || bottom.equals(ident)
+                        || left.equals(ident) || right.equals(ident)) {
+                    throw new InvalidParamException( //
+                            "linear-gradient-missing-to",
+                            "to " + ident, ident, ac);
+                }
+                break;
+            default:
+                // we defer errors to the next step
         }
         // now we a list of at least two color stops.
         ArrayList<CssValue> stops = parseColorStops(exp, ac);
