@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2019.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,22 +13,31 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/CR-css-images-3-20191010/#propdef-object-fit
+ * @spec https://www.w3.org/TR/2019/CR-css-images-3-20191010/#propdef-image-rendering
  */
-public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
+public class CssImageRendering extends org.w3c.css.properties.css.CssImageRendering {
 
-    public static final CssIdent[] allowed_values;
+    public static final CssIdent[] allowed_values, deprecated_values;
 
     static {
-        String[] _allowed_values = {"fill", "contain", "cover", "none", "scale-down"};
+        String[] _deprecated_values = {"optimizeSpeed", "optimizeQuality"};
+        String[] _allowed_values = {"auto", "smooth", "high-quality", "crisp-edges", "pixelated"};
+
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
             allowed_values[i++] = CssIdent.getIdent(s);
         }
+
+        deprecated_values = new CssIdent[_deprecated_values.length];
+        i = 0;
+        for (String s : _deprecated_values) {
+            deprecated_values[i++] = CssIdent.getIdent(s);
+        }
+
     }
 
-    public static CssIdent getAllowedIdent(CssIdent ident) {
+    public static final CssIdent getAllowedValue(CssIdent ident) {
         for (CssIdent id : allowed_values) {
             if (id.equals(ident)) {
                 return id;
@@ -37,22 +46,31 @@ public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
         return null;
     }
 
+    // TODO should we add something specific for their replacement?
+    public static final CssIdent getDeprecatedValue(CssIdent ident) {
+        for (CssIdent id : deprecated_values) {
+            if (id.equals(ident)) {
+                return id;
+            }
+        }
+        return null;
+    }
 
     /**
-     * Create a new CssObjectFit
+     * Create a new CssImageRendering
      */
-    public CssObjectFit() {
+    public CssImageRendering() {
         value = initial;
     }
 
     /**
-     * Creates a new CssObjectFit
+     * Creates a new CssImageRendering
      *
      * @param expression The expression for this property
      * @throws org.w3c.css.util.InvalidParamException
      *          Expressions are incorrect
      */
-    public CssObjectFit(ApplContext ac, CssExpression expression, boolean check)
+    public CssImageRendering(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
@@ -70,11 +88,15 @@ public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
             if (inherit.equals(ident)) {
                 value = inherit;
             } else {
-                value = getAllowedIdent(ident);
+                value = getAllowedValue(ident);
                 if (value == null) {
-                    throw new InvalidParamException("value",
-                            val.toString(),
-                            getPropertyName(), ac);
+                    value = getDeprecatedValue(ident);
+                    if (value == null) {
+                        throw new InvalidParamException("value",
+                                val.toString(),
+                                getPropertyName(), ac);
+                    }
+                    ac.getFrame().addWarning("deprecated", value.toString());
                 }
             }
         } else {
@@ -85,9 +107,10 @@ public class CssObjectFit extends org.w3c.css.properties.css.CssObjectFit {
         expression.next();
     }
 
-    public CssObjectFit(ApplContext ac, CssExpression expression)
+    public CssImageRendering(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
+
 }
 
