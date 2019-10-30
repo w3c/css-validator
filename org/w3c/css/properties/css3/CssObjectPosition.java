@@ -1,4 +1,4 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
 // (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-images-20120417/#object-position
+ * @spec hhttps://www.w3.org/TR/2019/CR-css-images-3-20191010/#the-object-position
  */
 public class CssObjectPosition extends org.w3c.css.properties.css.CssObjectPosition {
 
