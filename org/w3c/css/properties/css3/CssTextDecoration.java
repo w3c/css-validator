@@ -127,9 +127,16 @@ public class CssTextDecoration extends org.w3c.css.properties.css.CssTextDecorat
                     }
                     // if it fails, it must be a color, then...
                     if (!match && colValue == null) {
-                        CssColor c = new CssColor(ac, expression, false);
-                        colValue = c.getColor();
-                        state *= 2;
+                        try {
+                            CssColor c = new CssColor(ac, expression, false);
+                            colValue = c.getColor();
+                            state *= 2;
+                        } catch (InvalidParamException iex) {
+                            // as it is a catchall, we do not know if the intent was a color
+                            // or something else, so let's use a generic message
+                            throw new InvalidParamException("value", val.toString(),
+                                    getPropertyName(), ac);
+                        }
                         // no need to check match, as if it is not a color
                         // an exception would be fired
                     }
