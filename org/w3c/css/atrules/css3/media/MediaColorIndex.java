@@ -102,7 +102,6 @@ public class MediaColorIndex extends MediaRangeFeature {
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
                 val.getCheckableValue().checkInteger(ac, caller);
-                val.getCheckableValue().checkPositiveness(ac, caller);
                 value = val;
                 break;
             default:

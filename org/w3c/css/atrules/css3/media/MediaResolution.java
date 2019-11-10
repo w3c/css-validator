@@ -92,14 +92,8 @@ public class MediaResolution extends MediaRangeFeature {
         }
         CssValue val = expression.getValue();
         CssValue value = null;
-        // it must be a >=0 integer only
         if (val.getType() == CssTypes.CSS_RESOLUTION) {
             CssResolution valnum = (CssResolution) val;
-
-            if (valnum.getFloatValue() < 0.f) {
-                throw new InvalidParamException("negative-value",
-                        val.toString(), ac);
-            }
             value = valnum;
         } else {
             throw new InvalidParamException("unrecognize", ac);

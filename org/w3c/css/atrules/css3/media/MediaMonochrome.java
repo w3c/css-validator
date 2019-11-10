@@ -100,9 +100,7 @@ public class MediaMonochrome extends MediaRangeFeature {
 
         switch (val.getType()) {
             case CssTypes.CSS_NUMBER:
-                // a bit stupid as the only value would be 0...
                 val.getCheckableValue().checkInteger(ac, caller);
-                val.getCheckableValue().checkPositiveness(ac, caller);
                 value = val;
                 break;
             default:

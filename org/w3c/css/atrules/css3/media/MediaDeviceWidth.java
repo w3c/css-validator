@@ -10,7 +10,6 @@ import org.w3c.css.atrules.css.media.MediaRangeFeature;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
-import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
@@ -49,10 +48,8 @@ public class MediaDeviceWidth extends MediaRangeFeature {
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:
                     // a bit stupid as the only value would be 0...
-                    val = ((CssNumber) val).getLength();
                     val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_LENGTH:
-                    val.getCheckableValue().checkPositiveness(ac, this);
                     value = val;
                     expression.next();
                     break;

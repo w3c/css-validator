@@ -50,7 +50,6 @@ public class MediaDeviceHeight extends MediaRangeFeature {
                     // a bit stupid as the only value would be 0...
                     val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_LENGTH:
-                    val.getCheckableValue().checkPositiveness(ac, this);
                     value = val;
                     expression.next();
                     break;

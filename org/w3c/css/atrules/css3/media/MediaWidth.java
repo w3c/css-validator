@@ -98,7 +98,6 @@ public class MediaWidth extends MediaRangeFeature {
                 // a bit stupid as the only value would be 0...
                 val.getCheckableValue().checkEqualsZero(ac, caller);
             case CssTypes.CSS_LENGTH:
-                val.getCheckableValue().checkPositiveness(ac, caller);
                 value = val;
                 break;
             default:
