@@ -1103,7 +1103,7 @@ void mediainparens(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
   Token n;
 }
 {
-    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia, comb) <LPARAN> ( <S> )* ) | LOOKAHEAD(4) mediarange(mediaRule, defaultMedia, comb) | mediaexpression(mediaRule, defaultMedia, comb) )
+    ( LOOKAHEAD(4) ( <RPARAN> ( <S> )*  mediacondition(mediaRule, defaultMedia, comb) <LPARAN> ( <S> )* ) | LOOKAHEAD(5) mediarange(mediaRule, defaultMedia, comb) | mediaexpression(mediaRule, defaultMedia, comb) )
 }
 
 void mediaexpression(AtRuleMedia mediaRule, boolean defaultMedia, String comb) :
