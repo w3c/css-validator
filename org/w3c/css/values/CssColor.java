@@ -211,6 +211,7 @@ public class CssColor extends CssValue {
         color = null;
         rgba = new RGBA("rgb");
         boolean separator_space = (op == SPACE);
+        rgba.setModernStyle(separator_space);
 
         if (val == null || (!separator_space && (op != COMMA))) {
             throw new InvalidParamException("invalid-color", ac);

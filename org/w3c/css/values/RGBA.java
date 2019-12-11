@@ -117,15 +117,15 @@ public class RGBA extends RGB {
     /**
      * Create a new RGBA with default values
      *
-     * @param isCss3 a boolean toggling the output of RGB
-     * @param r      the red channel, an <EM>int</EM>
-     * @param g      the green channel, an <EM>int</EM>
-     * @param b      the blue channel, an <EM>int</EM>
-     * @param a      the alpha channel, an <EM>float</EM>
+     * @param isModernCss a boolean toggling the output of RGB
+     * @param r           the red channel, an <EM>int</EM>
+     * @param g           the green channel, an <EM>int</EM>
+     * @param b           the blue channel, an <EM>int</EM>
+     * @param a           the alpha channel, an <EM>float</EM>
      */
-    public RGBA(boolean isCss3, int r, int g, int b, float a) {
+    public RGBA(boolean isModernCss, int r, int g, int b, float a) {
         this(r, g, b, a);
-        this.isCss3 = isCss3;
+        this.isModernCss = isModernCss;
     }
 
     protected void setRepresentationString(String s) {
@@ -138,7 +138,7 @@ public class RGBA extends RGB {
     public String toString() {
         if (output == null) {
             StringBuilder sb = new StringBuilder();
-            if (isCss3) {
+            if (isModernCss) {
                 sb.append(RGB.functionname).append('(');
                 sb.append(vr).append(' ');
                 sb.append(vg).append(' ').append(vb);
@@ -149,9 +149,11 @@ public class RGBA extends RGB {
             } else {
                 sb.append(fname).append('(');
                 sb.append(vr).append(", ");
-                sb.append(vg).append(", ");
-                sb.append(vb).append(", ");
-                sb.append(va).append(')');
+                sb.append(vg).append(", ").append(vb);
+                if (va != null) {
+                    sb.append(", ").append(va);
+                }
+                sb.append(')');
             }
             output = sb.toString();
         }
