@@ -300,9 +300,9 @@ public class StyleSheet {
                 rulelist = new CssRuleList();
                 ruleInsertStack.add(rulelist);
                 atRuleListTree.add(rulelist);
+                atRuleListFlat.add(rulelist);
             }
             rulelist.addStyleRule(stylerule);
-            atRuleListFlat.add(rulelist);
         }
         selectortext = "";
         doNotAddRule = false;
