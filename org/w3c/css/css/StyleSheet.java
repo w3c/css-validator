@@ -272,6 +272,7 @@ public class StyleSheet {
         }
         selectortext = "";
         doNotAddRule = false;
+        properties = new ArrayList<>();
     }
 
     public void removeThisRule() {
