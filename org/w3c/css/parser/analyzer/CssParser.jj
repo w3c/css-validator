@@ -1263,16 +1263,19 @@ void page() :
     setAtRule(newRule);
     s.setAtRule(getAtRule());
     boolean isCss1 = (ac.getCssVersion() == CssVersion.CSS1);
+    boolean gotContent = false;
 }
 {
     try {
 	<PAGE_SYM> { if (!isCss1) newAtRule(newRule);
 	} ( <S> )*
 	    ( page_selector_list(newRule) )?
-	    <LBRACE> ( <S> )* ( pageContent() ) <RBRACE> ( <S> )*
+	    <LBRACE> ( <S> )* ( gotContent = pageContent() ) <RBRACE> ( <S> )*
 	    {
 		if (!isCss1) {
-		    endOfRule();
+		    if (gotContent) {
+		        endOfRule();
+		    }
 		    endOfAtRule();
 		}
 	    }
@@ -1294,7 +1297,7 @@ void page() :
     }
 }
 
-void pageContent() :
+boolean pageContent() :
 { CssProperty prop;
     ArrayList<CssProperty> v = null;
     ArrayList<CssProperty> allv = new ArrayList<CssProperty>();
@@ -1320,6 +1323,7 @@ void pageContent() :
 	       addProperty(allv);
 	       handleRule(s, allv);
 	   }
+	   return gotContent;
     }
 }
 
