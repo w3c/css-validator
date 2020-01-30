@@ -21,7 +21,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-cursor
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#cursor
  */
 public class CssCursor extends org.w3c.css.properties.css.CssCursor {
 

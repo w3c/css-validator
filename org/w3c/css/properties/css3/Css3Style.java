@@ -41,7 +41,9 @@ import org.w3c.css.properties.css.CssBoxSuppress;
 import org.w3c.css.properties.css.CssBreakAfter;
 import org.w3c.css.properties.css.CssBreakBefore;
 import org.w3c.css.properties.css.CssBreakInside;
+import org.w3c.css.properties.css.CssCaret;
 import org.w3c.css.properties.css.CssCaretColor;
+import org.w3c.css.properties.css.CssCaretShape;
 import org.w3c.css.properties.css.CssColorInterpolationFilters;
 import org.w3c.css.properties.css.CssColumnCount;
 import org.w3c.css.properties.css.CssColumnFill;
@@ -452,6 +454,8 @@ public class Css3Style extends ATSCStyle {
     public CssTextOverflow cssTextOverflow;
     public CssIcon cssIcon;
     public CssCaretColor cssCaretColor;
+    public CssCaretShape cssCaretShape;
+    public CssCaret cssCaret;
 
     public CssOverflowX cssOverflowX;
     public CssOverflowY cssOverflowY;
@@ -1655,6 +1659,24 @@ public class Css3Style extends ATSCStyle {
         return cssCaretColor;
     }
 
+    public CssCaretShape getCaretShape() {
+        if (cssCaretShape == null) {
+            cssCaretShape =
+                    (CssCaretShape) style.CascadingOrder(
+                            new CssCaretShape(), style, selector);
+        }
+        return cssCaretShape;
+    }
+
+    public CssCaret getCaret() {
+        if (cssCaret == null) {
+            cssCaret =
+                    (CssCaret) style.CascadingOrder(
+                            new CssCaret(), style, selector);
+        }
+        return cssCaret;
+    }
+
     public CssOutlineOffset getOutlineOffset() {
         if (cssOutlineOffset == null) {
             cssOutlineOffset =
@@ -2303,7 +2325,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssTransformBox;
     }
-    
+
     public CssImeMode getImeMode() {
         if (cssImeMode == null) {
             cssImeMode =

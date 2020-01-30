@@ -1,7 +1,7 @@
 //
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2015.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2020.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-resize
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-caret-shape
  */
-public class CssResize extends org.w3c.css.properties.css.CssResize {
+public class CssCaretShape extends org.w3c.css.properties.css.CssCaretShape {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"none", "both", "horizontal", "vertical"};
+        String id_values[] = {"auto", "bar", "block", "underscore"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -38,20 +38,19 @@ public class CssResize extends org.w3c.css.properties.css.CssResize {
     }
 
     /**
-     * Create a new CssResize
+     * Create a new CssCaretShape
      */
-    public CssResize() {
+    public CssCaretShape() {
         value = initial;
     }
 
     /**
-     * Creates a new CssResize
+     * Creates a new CssCaretShape
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
-    public CssResize(ApplContext ac, CssExpression expression, boolean check)
+    public CssCaretShape(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
         setByUser();
         CssValue val = expression.getValue();
@@ -80,7 +79,7 @@ public class CssResize extends org.w3c.css.properties.css.CssResize {
         expression.next();
     }
 
-    public CssResize(ApplContext ac, CssExpression expression)
+    public CssCaretShape(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
     }
