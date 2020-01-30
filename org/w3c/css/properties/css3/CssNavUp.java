@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-nav-up
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-nav-up
  */
 public class CssNavUp extends org.w3c.css.properties.css.CssNavUp {
 

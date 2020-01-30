@@ -10,7 +10,7 @@ import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-outline-width
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-outline-width
  * @see CssBorderWidth
  */
 public class CssOutlineWidth extends org.w3c.css.properties.css.CssOutlineWidth {

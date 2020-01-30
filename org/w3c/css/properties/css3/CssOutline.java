@@ -1,7 +1,7 @@
 // $Id$
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2020.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-ui-20120117/#outline
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-outline
  * @see org.w3c.css.properties.css3.CssBorderStyle
  * @see org.w3c.css.properties.css3.CssBorderWidth
  */

@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2017/PR-css-ui-3-20171214/#propdef-resize
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-resize
  */
 public class CssResize extends org.w3c.css.properties.css.CssResize {
 

@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-outline-color
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-outline-color
  */
 public class CssOutlineColor extends org.w3c.css.properties.css.CssOutlineColor {
 
