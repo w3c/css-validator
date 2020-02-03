@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static org.w3c.css.values.CssOperator.SPACE;
 
 /**
- * @spec https://www.w3.org/TR/2018/CR-css-contain-1-20181108/#propdef-contain
+ * @spec https://www.w3.org/TR/2019/REC-css-contain-1-20191121/#propdef-contain
  */
 public class CssContain extends org.w3c.css.properties.css.CssContain {
 
@@ -33,7 +33,7 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
         for (String s : _allowed_single_values) {
             allowed_single_values[i++] = CssIdent.getIdent(s);
         }
-        String[] _allowed_multiple_values = {"size", "layout", "style", "paint"};
+        String[] _allowed_multiple_values = {"size", "layout", "paint"};
         i = 0;
         allowed_multiple_values = new CssIdent[_allowed_multiple_values.length];
         for (String s : _allowed_multiple_values) {
@@ -70,8 +70,7 @@ public class CssContain extends org.w3c.css.properties.css.CssContain {
      * Creates a new CssContain
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssContain(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
