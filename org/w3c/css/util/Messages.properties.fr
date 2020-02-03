@@ -450,6 +450,10 @@ error.nomediarestrictor: Les limitations de media ne sont pas définies dans ce 
 error.nomediafeature: Les propriétés de media ne sont pas définies dans ce niveau de CSS
 error.nomodifiershortmedia: Les préfixes sont interdits pour les propriétés de media n'ayant pas de valeur
 error.nomodifiermedia: La propriété de media \u201C%s\u201D n'autorise pas l'utilisation de préfixes
+error.nomodifierrangemedia: Les préfixes sont interdits pour les propriétés de media dont les valeurs sont dans un intervalle
+error.comparator: Les comparateurs \u201C%s\u201D et \u201C%s\u201D ne peuvent être utilisés avec une propriétés de media de type \u201Crange\u201D
+warning.comparator: Les comparateurs \u201C%s\u201D et \u201C%s\u201D sont équivalents, un de deux sera ignoré
+
 error.grid: Seuls 0 et 1 sont des valeurs possibles pour 'grid'
 
 error.errortoken: Unexpected content "\u201C%s\u201D" at line \u201C%s\u201D, expecting on token of \u201C%s\u201D (skipped \u201C%s\u201D)
