@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2018/CR-css-writing-modes-3-20180524/#propdef-text-orientation
+ * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-text-orientation
  */
 public class CssTextOrientation extends org.w3c.css.properties.css.CssTextOrientation {
 
