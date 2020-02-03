@@ -1,6 +1,10 @@
 package org.w3c.css.atrules.css.media;
 
 import org.w3c.css.css.StyleSheetOrigin;
+import org.w3c.css.parser.analyzer.ParseException;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.util.ApplContext;
+import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssValue;
 
 public abstract class MediaFeature implements StyleSheetOrigin {
@@ -50,6 +54,18 @@ public abstract class MediaFeature implements StyleSheetOrigin {
      */
     public String getCombinator() {
         return combinator;
+    }
+
+    public void reportDeprecatedMediaFeature(ApplContext ac, String modifier) {
+        String feature;
+        if (modifier != null) {
+            feature = String.format("%s-%s", modifier, getFeatureName());
+        } else {
+            feature = getFeatureName();
+        }
+        ac.getFrame().addError(new CssError(new ParseException(
+                String.format(ac.getMsg().getString("deprecatedmediafeature"),
+                        feature))));
     }
 
     /**
