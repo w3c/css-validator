@@ -8,23 +8,25 @@ package org.w3c.css.atrules.css3;
 import org.w3c.css.atrules.css.media.Media;
 import org.w3c.css.atrules.css.media.MediaFeature;
 import org.w3c.css.parser.AtRule;
+import org.w3c.css.parser.CssError;
+import org.w3c.css.parser.analyzer.ParseException;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
 import java.util.ArrayList;
 
 /**
- * @spec http://www.w3.org/TR/2012/REC-css3-mediaqueries-20120619/
+ * @spec https://www.w3.org/TR/2017/CR-mediaqueries-4-20170905/
  */
 
 public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
-    static final String[] mediaCSS21 = {
-            "all", "braille", "embossed", "handheld", "print", "projection",
-            "screen", "speech", "tty", "tv"
+    static final String[] mediaType = {
+            "all", "print", "screen", "speech"
     };
 
     static final String[] deprecatedMedia = {
-            "aural"
+            "aural", "braille", "embossed", "handheld", "projection",
+            "tty", "tv"
     };
 
     /**
@@ -50,7 +52,7 @@ public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
             return this;
         }
         medium = medium.toLowerCase();
-        for (String s : mediaCSS21) {
+        for (String s : mediaType) {
             if (medium.equals(s)) {
                 media.setMedia(s);
                 allMedia.add(media);
@@ -59,8 +61,13 @@ public class AtRuleMedia extends org.w3c.css.atrules.css.AtRuleMedia {
         }
         for (String s : deprecatedMedia) {
             if (medium.equals(s)) {
-                // we add a warning as it has been deprecated
-                ac.getFrame().addWarning("deprecatedmedia", medium);
+                // error because the current Media Queries spec states that
+                // "Authors *must not* use these media types"
+                ac.getFrame().addError(
+                        new CssError(new ParseException(String.format(
+                                ac.getMsg()
+                                        .getString("warning.deprecatedmedia"),
+                                medium))));
                 allMedia.add(new Media(s));
                 return this;
             }
