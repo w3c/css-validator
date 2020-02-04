@@ -13,14 +13,15 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2019/REC-css-writing-modes-3-20191210/#propdef-writing-mode
+ * @spec https://www.w3.org/TR/2019/CR-css-writing-modes-4-20190730/#propdef-writing-mode
  */
 public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr"};
+        String[] _allowed_values = {"horizontal-tb", "vertical-rl", "vertical-lr",
+                "sideways-rl", "sideways-lr"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -48,8 +49,7 @@ public class CssWritingMode extends org.w3c.css.properties.css.CssWritingMode {
      * Creates a new CssWritingMode
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssWritingMode(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
