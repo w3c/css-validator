@@ -98,14 +98,14 @@ public final class CssFouffa extends CssParser {
         setApplContext(ac);
         // @@this is a default media ...
         /*
-       * AtRuleMedia media = new AtRuleMedia();
-       *
-       * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
-       * catch (InvalidParamException e) {} //ignore } else { try {
-       * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
-       * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
-       * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
-       */
+         * AtRuleMedia media = new AtRuleMedia();
+         *
+         * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
+         * catch (InvalidParamException e) {} //ignore } else { try {
+         * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
+         * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
+         * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
+         */
         setURL(file);
         if (Util.onDebug) {
             System.err.println("[DEBUG] CSS version " + ac.getCssVersionString() +
@@ -229,12 +229,12 @@ public final class CssFouffa extends CssParser {
         // media = new AtRuleMedia();
         // }
         /*
-       * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
-       * catch (InvalidParamException e) {} //ignore } else { try {
-       * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
-       * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
-       * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
-       */
+         * if (ac.getMedium() == null) { try { media.addMedia("all", ac); }
+         * catch (InvalidParamException e) {} //ignore } else { try {
+         * media.addMedia(ac.getMedium(), ac); } catch (Exception e) {
+         * System.err.println(e.getMessage()); try { media.addMedia("all", ac); }
+         * catch (InvalidParamException ex) {} //ignore } } setAtRule(media);
+         */
         setURL(file);
         if (Util.onDebug) {
             System.err.println("[DEBUG] CSS version " + ac.getCssVersionString() + " medium " + ac.getMedium() + " profile "
@@ -730,7 +730,7 @@ public final class CssFouffa extends CssParser {
      * @param charset the
      * @charset rule that has been found by the parser
      */
-    public void addCharSet(String charset) {
+    public void addCharSet(String charset) throws ParseException {
         for (CssValidatorListener listener : listeners) {
             listener.addCharSet(charset);
         }
@@ -741,19 +741,28 @@ public final class CssFouffa extends CssParser {
         } catch (Exception ex) {
             return;
         }
-        Charset originalCharset = ac.getCharsetObjForURL(getURL());
-        if (originalCharset == null) {
-            ac.setCharsetForURL(getURL(), c);
-            try {
-                ReInit(ac, getURL());
-            } catch (IOException ioex) {
+        boolean charsetFromBOM = ac.isCharsetFromBOM(getURL());
+        if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
+            // TODO FIXME proper execption type.
+            throw new ParseException(ac.getMsg().getString("parser.charset"));
+       //     CssError cerr = new CssError(getSourceFile(), getBeginLine(),
+           //         getBeginColumn(), getEndLine(), getEndColumn(), ex);
+         //   ac.getFrame().addError(cerr);
+        } else {
+            Charset originalCharset = ac.getCharsetObjForURL(getURL());
+            if (originalCharset == null) {
+                ac.setCharsetForURL(getURL(), c);
+                try {
+                    ReInit(ac, getURL());
+                } catch (IOException ioex) {
+                }
+            } else if (c.compareTo(originalCharset) != 0) {
+                InvalidParamException ex = new InvalidParamException("conflicting-charset",
+                        new String[]{originalCharset.toString(), charset}, ac);
+                CssError cerr = new CssError(getSourceFile(), getBeginLine(),
+                        getBeginColumn(), getEndLine(), getEndColumn(), ex);
+                ac.getFrame().addError(cerr);
             }
-        } else if (c.compareTo(originalCharset) != 0) {
-            InvalidParamException ex = new InvalidParamException("conflicting-charset",
-                    new String[]{originalCharset.toString(), charset}, ac);
-            CssError cerr = new CssError(getSourceFile(), getBeginLine(),
-                    getBeginColumn(), getEndLine(), getEndColumn(), ex);
-            ac.getFrame().addError(cerr);
         }
     }
 

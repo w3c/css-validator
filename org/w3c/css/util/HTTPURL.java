@@ -349,7 +349,7 @@ public class HTTPURL {
             UnicodeInputStream is = new UnicodeInputStream(orig_stream);
             charset = is.getEncodingFromStream();
             if (charset != null) {
-                ac.setCharsetForURL(uco.getURL(), charset);
+                ac.setCharsetForURL(uco.getURL(), charset, true);
             }
             return is;
         }
@@ -374,7 +374,7 @@ public class HTTPURL {
         }
         charset = mt.getParameterValue("charset");
         if (charset != null) {
-            ac.setCharsetForURL(uco.getURL(), charset);
+            ac.setCharsetForURL(uco.getURL(), charset, false);
         }
         return charset;
     }
