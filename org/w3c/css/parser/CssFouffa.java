@@ -742,7 +742,7 @@ public final class CssFouffa extends CssParser {
             return;
         }
         boolean charsetFromBOM = ac.isCharsetFromBOM(getURL());
-        if (ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
+        if (charsetFromBOM && ac.getCssVersion().compareTo(CssVersion.CSS3) >= 0) {
             // TODO FIXME proper execption type.
             throw new ParseException(ac.getMsg().getString("parser.charset"));
        //     CssError cerr = new CssError(getSourceFile(), getBeginLine(),
