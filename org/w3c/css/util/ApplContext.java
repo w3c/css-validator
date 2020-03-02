@@ -45,8 +45,22 @@ public class ApplContext {
         }
     }
 
+    private class BomEncoding {
+        Charset uriCharset = null;
+        boolean fromBom = false;
+
+        private BomEncoding(Charset c, boolean fb) {
+            uriCharset = c;
+            fromBom = fb;
+        }
+        private BomEncoding(Charset c) {
+            this(c, false);
+        }
+        private BomEncoding() {
+        }
+    }
     // charset definition of traversed URLs
-    private HashMap<URL, Charset> uricharsets = null;
+    private HashMap<URL, BomEncoding> uricharsets = null;
 
     // namespace definitions
     private HashMap<URL, HashMap<String, String>> namespaces = null;
@@ -399,9 +413,9 @@ public class ApplContext {
      * and its update by a @charset statement, or through
      * automatic discovery
      */
-    public void setCharsetForURL(URL url, String charset) {
+    public void setCharsetForURL(URL url, String charset, boolean from_bom) {
         if (uricharsets == null) {
-            uricharsets = new HashMap<URL, Charset>();
+            uricharsets = new HashMap<>();
         }
         Charset c = null;
         try {
@@ -412,7 +426,7 @@ public class ApplContext {
             // FIXME inform about lack of support
         }
         if (c != null) {
-            uricharsets.put(url, c);
+            uricharsets.put(url, new BomEncoding(c, from_bom));
         }
     }
 
@@ -423,9 +437,21 @@ public class ApplContext {
      */
     public void setCharsetForURL(URL url, Charset charset) {
         if (uricharsets == null) {
-            uricharsets = new HashMap<URL, Charset>();
+            uricharsets = new HashMap<URL, BomEncoding>();
         }
-        uricharsets.put(url, charset);
+        uricharsets.put(url, new BomEncoding(charset));
+    }
+
+    public boolean isCharsetFromBOM(URL url) {
+        BomEncoding b;
+        if (uricharsets == null) {
+            return false;
+        }
+        b = uricharsets.get(url);
+        if (b != null) {
+            return b.fromBom;
+        }
+        return false;
     }
 
     /**
@@ -434,13 +460,13 @@ public class ApplContext {
      * automatic discovery
      */
     public String getCharsetForURL(URL url) {
-        Charset c;
+        BomEncoding b;
         if (uricharsets == null) {
             return null;
         }
-        c = uricharsets.get(url);
-        if (c != null) {
-            return c.toString();
+        b = uricharsets.get(url);
+        if (b != null) {
+            return b.uriCharset.toString();
         }
         return null;
     }
@@ -451,11 +477,15 @@ public class ApplContext {
      * automatic discovery
      */
     public Charset getCharsetObjForURL(URL url) {
-        Charset c;
+        BomEncoding b;
         if (uricharsets == null) {
             return null;
         }
-        return uricharsets.get(url);
+        b = uricharsets.get(url);
+        if (b == null) {
+            return null;
+        }
+        return b.uriCharset;
     }
 
     /**
@@ -489,7 +519,7 @@ public class ApplContext {
             UnicodeInputStream uis = new UnicodeInputStream(is);
             String guessedCharset = uis.getEncodingFromStream();
             if (guessedCharset != null) {
-                setCharsetForURL(source, guessedCharset);
+                setCharsetForURL(source, guessedCharset, true);
             }
             return uis;
         } else {

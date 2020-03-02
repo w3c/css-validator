@@ -254,7 +254,7 @@ public abstract class CssParser {
     public abstract void handleAtRule(String ident, String string);
 
     /* added by Sijtsche Smeman */
-    public abstract void addCharSet(String charset);
+    public abstract void addCharSet(String charset) throws ParseException;
     public abstract void newAtRule(AtRule atRule);
     public abstract void endOfAtRule();
     public abstract void setImportant(boolean important);

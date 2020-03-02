@@ -621,7 +621,7 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
             baseURI = HTTPURL.getURL(baseURI, httpCL);
             documentURI = baseURI;
             if (streamEncoding != null) {
-                ac.setCharsetForURL(baseURI, streamEncoding);
+                ac.setCharsetForURL(baseURI, streamEncoding, false);
             }
         }
         if (streamEncoding != null) {
@@ -670,7 +670,7 @@ public class HTMLParserStyleSheetHandler implements ContentHandler, LexicalHandl
             baseURI = HTTPURL.getURL(baseURI, httpCL);
             documentURI = baseURI;
             if (streamEncoding != null) {
-                ac.setCharsetForURL(baseURI, streamEncoding);
+                ac.setCharsetForURL(baseURI, streamEncoding, false);
             }
         }
         if (streamEncoding != null) {
