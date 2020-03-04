@@ -16,7 +16,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#perspective
+ * @spec https://www.w3.org/TR/2020/WD-css-transforms-2-20200303/#propdef-perspective
  */
 
 public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
@@ -33,8 +33,7 @@ public class CssPerspective extends org.w3c.css.properties.css.CssPerspective {
      * Create a new CssPerspective
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Incorrect value
+     * @throws org.w3c.css.util.InvalidParamException Incorrect value
      */
     public CssPerspective(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
