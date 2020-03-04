@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/WD-css3-transforms-20120911/#transform-style
+ * @spec https://www.w3.org/TR/2020/WD-css-transforms-2-20200303/#propdef-transform-style
  */
 public class CssTransformStyle extends org.w3c.css.properties.css.CssTransformStyle {
 
