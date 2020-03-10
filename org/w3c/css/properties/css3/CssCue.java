@@ -1,21 +1,25 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2013.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2013.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssOperator;
+import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
 import java.util.ArrayList;
 
+import static org.w3c.css.values.CssOperator.SPACE;
+
 /**
- * @spec http://www.w3.org/TR/2011/REC-CSS2-20110607/aural.html#propdef-cue
+ * @spec https://www.w3.org/TR/2020/CR-css-speech-1-20200310/#cue
  */
 public class CssCue extends org.w3c.css.properties.css.CssCue {
 
@@ -44,7 +48,8 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
 
         char op;
 
-        cssCueBefore = new CssCueBefore(ac, expression, false);
+        cssCueBefore = new CssCueBefore();
+        cssCueBefore.value = checkCueValue(ac, expression, this);
         if (expression.end()) {
             cssCueAfter = new CssCueAfter();
             cssCueAfter.value = cssCueBefore.value;
@@ -55,10 +60,15 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
                 throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
-            cssCueAfter = new CssCueAfter(ac, expression, false);
+            cssCueAfter = new CssCueAfter();
+            cssCueAfter.value = checkCueValue(ac, expression, this);
             if (cssCueBefore.value == inherit || cssCueAfter.value == inherit) {
                 throw new InvalidParamException("value",
                         inherit, getPropertyName(), ac);
+            }
+            if (!expression.end()) {
+                throw new InvalidParamException("value",
+                        cssCueAfter.value, getPropertyName(), ac);
             }
             ArrayList<CssValue> values = new ArrayList<CssValue>(2);
             values.add(cssCueBefore.value);
@@ -70,6 +80,57 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
     public CssCue(ApplContext ac, CssExpression expression)
             throws InvalidParamException {
         this(ac, expression, false);
+    }
+
+    protected static CssValue checkCueValue(ApplContext ac, CssExpression expression,
+                                             CssProperty caller)
+            throws InvalidParamException {
+        CssValue val;
+        char op;
+
+        val = expression.getValue();
+        op = expression.getOperator();
+
+        switch (val.getType()) {
+            case CssTypes.CSS_URL:
+                // now let's check for a volume...
+                if (expression.getRemainingCount() > 1) {
+                    CssValue vnext = expression.getNextValue();
+                    if (vnext.getType() == CssTypes.CSS_VOLUME) {
+                        // we got a volume, so let's do extra checks, then
+                        // construct the value...
+                        if (op != SPACE) {
+                            throw new InvalidParamException("operator",
+                                    ((new Character(op)).toString()), ac);
+                        }
+                        expression.next();
+                        ArrayList<CssValue> values = new ArrayList<CssValue>(2);
+                        values.add(val);
+                        values.add(vnext);
+                        expression.next();
+                        return new CssValueList(values);
+                    }
+                }
+                expression.next();
+                return val;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    if (expression.getCount() > 1) {
+                        throw new InvalidParamException("value",
+                                inherit, caller.getPropertyName(), ac);
+                    }
+                    expression.next();
+                    return inherit;
+                }
+                if (none.equals(val)) {
+                    expression.next();
+                    return none;
+                }
+            default:
+                throw new InvalidParamException("value",
+                        val.toString(),
+                        caller.getPropertyName(), ac);
+        }
     }
 }
 
