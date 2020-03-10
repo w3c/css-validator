@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2012.
+// (c) COPYRIGHT MIT, ERCIM,Keio, Beihang, 2012.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -13,14 +13,14 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @pec http://www.w3.org/TR/2012/CR-css3-speech-20120320/#speaking-props-speak
+ * @pec https://www.w3.org/TR/2020/CR-css-speech-1-20200310/#speak
  */
 public class CssSpeak extends org.w3c.css.properties.css.CssSpeak {
 
     public static final CssIdent[] allowed_values;
 
     static {
-        String[] _allowed_values = {"normal", "none", "auto"};
+        String[] _allowed_values = {"auto", "never", "always"};
         int i = 0;
         allowed_values = new CssIdent[_allowed_values.length];
         for (String s : _allowed_values) {
@@ -48,8 +48,7 @@ public class CssSpeak extends org.w3c.css.properties.css.CssSpeak {
      * Creates a new CssSpeak
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssSpeak(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
