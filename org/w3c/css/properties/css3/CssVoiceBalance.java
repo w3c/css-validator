@@ -1,7 +1,7 @@
-// $Id$
+//
 // Author: Yves Lafon <ylafon@w3.org>
 //
-// (c) COPYRIGHT MIT, ERCIM and Keio University, 2013.
+// (c) COPYRIGHT MIT, ERCIM, Keio, Beihang, 2013.
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
@@ -14,7 +14,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2012/CR-css3-speech-20120320/#voice-balance
+ * @spec https://www.w3.org/TR/2020/CR-css-speech-1-20200310/#voice-balance
  */
 public class CssVoiceBalance extends org.w3c.css.properties.css.CssVoiceBalance {
 
@@ -49,8 +49,7 @@ public class CssVoiceBalance extends org.w3c.css.properties.css.CssVoiceBalance 
      * Creates a new CssVoiceBalance
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssVoiceBalance(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
