@@ -79,12 +79,12 @@ public class CssPause extends org.w3c.css.properties.css.CssPause {
                 throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
+            cssPauseAfter = new CssPauseAfter();
+            cssPauseAfter.value = checkPauseValue(ac, expression, this);
             if (cssPauseBefore.value == inherit || cssPauseAfter.value == inherit) {
                 throw new InvalidParamException("value",
                         inherit, getPropertyName(), ac);
             }
-            cssPauseAfter = new CssPauseAfter();
-            cssPauseAfter.value = checkPauseValue(ac, expression, this);
             ArrayList<CssValue> values = new ArrayList<CssValue>(2);
             values.add(cssPauseBefore.value);
             values.add(cssPauseAfter.value);

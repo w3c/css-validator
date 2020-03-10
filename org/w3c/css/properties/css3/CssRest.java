@@ -80,12 +80,12 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
                 throw new InvalidParamException("operator",
                         ((new Character(op)).toString()), ac);
             }
+            cssRestAfter = new CssRestAfter();
+            cssRestAfter.value = checkRestValue(ac, expression, this);
             if (cssRestBefore.value == inherit || cssRestAfter.value == inherit) {
                 throw new InvalidParamException("value",
                         inherit, getPropertyName(), ac);
             }
-            cssRestAfter = new CssRestAfter();
-            cssRestAfter.value = checkRestValue(ac, expression, this);
             ArrayList<CssValue> values = new ArrayList<CssValue>(2);
             values.add(cssRestBefore.value);
             values.add(cssRestAfter.value);
