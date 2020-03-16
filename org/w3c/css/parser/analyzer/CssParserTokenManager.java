@@ -18,6 +18,7 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
+import org.w3c.css.values.CssClamp;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssFlexibleLength;
