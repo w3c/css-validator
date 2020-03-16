@@ -249,13 +249,19 @@ public interface CssParserConstants {
   /** RegularExpression Id. */
   int FUNCTIONCALC = 119;
   /** RegularExpression Id. */
-  int FUNCTIONATTR = 120;
+  int FUNCTIONMIN = 120;
   /** RegularExpression Id. */
-  int FUNCTION = 121;
+  int FUNCTIONMAX = 121;
   /** RegularExpression Id. */
-  int HTMLSTARTTAG = 122;
+  int FUNCTIONCLAMP = 122;
   /** RegularExpression Id. */
-  int HTMLENDTAG = 123;
+  int FUNCTIONATTR = 123;
+  /** RegularExpression Id. */
+  int FUNCTION = 124;
+  /** RegularExpression Id. */
+  int HTMLSTARTTAG = 125;
+  /** RegularExpression Id. */
+  int HTMLENDTAG = 126;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -382,6 +388,9 @@ public interface CssParserConstants {
     "\"lang(\"",
     "\":not(\"",
     "<FUNCTIONCALC>",
+    "\"min(\"",
+    "\"max(\"",
+    "\"clamp(\"",
     "\"attr(\"",
     "<FUNCTION>",
     "<HTMLSTARTTAG>",
