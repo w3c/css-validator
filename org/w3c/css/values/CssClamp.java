@@ -13,20 +13,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
- * CSS max().
+ * CSS clamp().
  *
- * @spec https://www.w3.org/TR/2019/WD-css-values-4-20190131/#funcdef-max
+ * @spec https://www.w3.org/TR/2019/WD-css-values-4-20190131/#funcdef-clamp
  */
-public class CssMax extends CssCheckableValue {
+public class CssClamp extends CssCheckableValue {
 
-    public static final int type = CssTypes.CSS_MAX;
+    public static final int type = CssTypes.CSS_CLAMP;
 
     public final int getRawType() {
         return type;
     }
 
     public final int getType() {
-        if (computed_type == CssTypes.CSS_MAX) {
+        if (computed_type == CssTypes.CSS_CLAMP) {
             return type;
         }
         return computed_type;
@@ -39,34 +39,18 @@ public class CssMax extends CssCheckableValue {
 
 
     /**
-     * Create a new CssCalc
+     * Create a new CssClamp
      */
-    public CssMax() {
+    public CssClamp() {
     }
 
-    public CssMax(ApplContext ac) {
-        this(ac, null);
-    }
+    public CssClamp(ApplContext ac, CssValue v1, CssValue v2, CssValue v3) {
+        this.ac = ac;
 
-    public CssMax(CssValue value) {
-        this(null, value);
-    }
-
-    public CssMax(ApplContext ac, CssValue value) {
-        if (ac != null) {
-            this.ac = ac;
-        }
-        if (value != null) {
-            computed_type = value.getType();
-            if (values == null) {
-                values = new ArrayList<>();
-            }
-            values.add(value);
-            try {
-                computed_type = _checkAcceptableType(value.getType());
-            } catch (Exception ex) { // todo report error here or wait ?
-            }
-        }
+        values = new ArrayList<>();
+        values.add(v1);
+        values.add(v2);
+        values.add(v3);
     }
 
     public void set(String s, ApplContext ac) throws InvalidParamException {
@@ -86,7 +70,7 @@ public class CssMax extends CssCheckableValue {
      * @param value
      * @return
      */
-    public CssMax addValue(CssValue value)
+    public CssClamp addValue(CssValue value)
             throws InvalidParamException {
         boolean first = false;
         if (values == null) {
@@ -94,12 +78,12 @@ public class CssMax extends CssCheckableValue {
             first = true;
         }
         values.add(value);
-        _computeResultingType(false);
+        _computeResultingType();
         return this;
     }
 
     public void validate() throws InvalidParamException {
-        _computeResultingType(true);
+        _computeResultingType();
     }
 
     private int _checkAcceptableType(int type)
@@ -116,9 +100,9 @@ public class CssMax extends CssCheckableValue {
         return type;
     }
 
-    private void _computeResultingType(boolean first)
+    private void _computeResultingType()
             throws InvalidParamException {
-        int valtype = CssTypes.CSS_MAX;
+        int valtype = CssTypes.CSS_MIN;
         boolean firstVal = true;
         CssValue prevVal = null;
 
@@ -181,7 +165,7 @@ public class CssMax extends CssCheckableValue {
     public String toString() {
         if (_toString == null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("max(").append(toStringUnprefixed()).append(')');
+            sb.append("clamp(").append(toStringUnprefixed()).append(')');
             _toString = sb.toString();
         }
         return _toString;
@@ -229,10 +213,10 @@ public class CssMax extends CssCheckableValue {
      * @param value The other value.
      */
     public boolean equals(Object value) {
-        if (!(value instanceof CssMax)) {
+        if (!(value instanceof CssClamp)) {
             return false;
         }
-        CssMax other = (CssMax) value;
+        CssClamp other = (CssClamp) value;
         boolean match;
         // this is inherently wrong, as we should check only the min value, but in that case we
         // would need to explicitly compute them which is not done.

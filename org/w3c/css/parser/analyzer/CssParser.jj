@@ -39,6 +39,7 @@ import org.w3c.css.values.CssNumber;
 import org.w3c.css.values.CssAttr;
 import org.w3c.css.values.CssBracket;
 import org.w3c.css.values.CssCalc;
+import org.w3c.css.values.CssClamp;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssFlexibleLength;
@@ -2857,6 +2858,7 @@ void term(CssExpression exp) :
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
         | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); } 
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2949,6 +2951,7 @@ void mediaterm(CssExpression exp) :
       | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathclamp() { setValue(func, exp, operator, null, FUNCTION); }
      ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
    | n=ident()
@@ -3030,27 +3033,21 @@ CssCheckableValue mathmax() :
   }
 }
 
-/*
 CssCheckableValue mathclamp() :
 {
     CssCheckableValue v1, v2, v3;
-CssCalc c;
+CssClamp c;
 Token n;
 }
 {
-    ( n=<FUNCTIONMIN>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
+    ( n=<FUNCTIONCLAMP>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
       <COMMA> ( <S> )* v3=mathsum() ( <S> )* <LPARAN> ) {
-	
-    if (v.getRawType() != CssTypes.CSS_CALC) {
-       c = new CssCalc(v);
-    } else {
-       c = (CssCalc) v;
+	c = new CssClamp(ac, v1, v2, v3);
+	c.validate();
+	return c;
     }
-    c.validate();
-    return c;
-  }
 }
-*/
+
     
 CssCheckableValue mathcalc() :
 {
@@ -3077,6 +3074,7 @@ Token n;
        c = (CssCalc) v;
     }
     c.validate();
+    c.setImplicitFunction(false);
     return c;
   }
 }
@@ -3160,6 +3158,7 @@ char operator = ' ';
     | v=mathcalc()
     | v=mathmax()
     | v=mathmin()
+    | v=mathclamp()
     | v=attr()
 ) {
      return v;

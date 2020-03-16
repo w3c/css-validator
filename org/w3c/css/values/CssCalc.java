@@ -38,6 +38,7 @@ public class CssCalc extends CssCheckableValue {
     char operator;
     boolean hasParen = false;
     String _toString = null;
+    boolean implicit_function = true;
 
 
     /**
@@ -64,6 +65,11 @@ public class CssCalc extends CssCheckableValue {
         }
     }
 
+    public void setImplicitFunction(boolean v) {
+        implicit_function = v;
+        _toString = null;
+    }
+    
     public void set(String s, ApplContext ac) throws InvalidParamException {
         // we don't support this way of setting the value
         // as we rely on the parsing to create it incrementally
@@ -245,9 +251,14 @@ public class CssCalc extends CssCheckableValue {
 
     public String toString() {
         if (_toString == null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("calc(").append(toStringUnprefixed()).append(')');
-            _toString = sb.toString();
+            if (!implicit_function) {
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("calc(").append(toStringUnprefixed()).append(')');
+                _toString = sb.toString();
+            } else {
+                _toString = toStringUnprefixed();
+            }
         }
         return _toString;
     }
