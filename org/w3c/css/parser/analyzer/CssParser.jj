@@ -42,14 +42,16 @@ import org.w3c.css.values.CssCalc;
 import org.w3c.css.values.CssColor;
 import org.w3c.css.values.CssComparator;
 import org.w3c.css.values.CssFlexibleLength;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssFrequency;
 import org.w3c.css.values.CssHashIdent;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssImage;
+import org.w3c.css.values.CssMax;
+import org.w3c.css.values.CssMin;
 import org.w3c.css.values.CssPercentage;
-import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssSwitch;
-import org.w3c.css.values.CssFunction;
+import org.w3c.css.values.CssTime;
 import org.w3c.css.values.CssUnicodeRange;
 import org.w3c.css.values.CssResolution;
 import org.w3c.css.values.CssRatio;
@@ -719,10 +721,13 @@ TOKEN [IGNORE_CASE] :
 <DEFAULT>
 TOKEN [IGNORE_CASE] :
 {
-    < FUNCTIONLANG  : "lang(" >
-    | <FUNCTIONNOT  : ":not(" >
-    | <FUNCTIONCALC : "calc(" | "-moz-calc(" | "-webkit-calc(" >
-    | <FUNCTIONATTR : "attr(" >
+    < FUNCTIONLANG   : "lang("  >
+    | <FUNCTIONNOT   : ":not("  >
+    | <FUNCTIONCALC  : "calc(" | "-moz-calc(" | "-webkit-calc(" >
+    | <FUNCTIONMIN   : "min("   >
+    | <FUNCTIONMAX   : "max("   >
+    | <FUNCTIONCLAMP : "clamp(" >
+    | <FUNCTIONATTR  : "attr("  >
 }
 
 <DEFAULT>
@@ -2850,6 +2855,8 @@ void term(CssExpression exp) :
         ) 
       )
       | ( func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
+        | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
         | func=attr() { setValue(func, exp, operator, null, FUNCTION); }
         | func=function() { setValue(func, exp, operator, null, FUNCTION); }
         | n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
@@ -2940,6 +2947,8 @@ void mediaterm(CssExpression exp) :
     }
    | (  func=function() { setValue(func, exp, operator, null, FUNCTION); }
       | func=mathcalc() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathmax() { setValue(func, exp, operator, null, FUNCTION); }
+      | func=mathmin() { setValue(func, exp, operator, null, FUNCTION); }
      ) ) ( <S> )* )
    | (( n=<STRING> { setValue(new CssString(), exp, operator, n, STRING); }
    | n=ident()
@@ -2977,6 +2986,72 @@ void mediaterm(CssExpression exp) :
     ) ( <S> )* )
 }
 
+CssCheckableValue mathmin() :
+{
+    CssCheckableValue v;
+    CssMin c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONMIN>  ( <S> )* v=mathsum() {
+       if (v.getRawType() != CssTypes.CSS_MIN) {
+           c = new CssMin(v);
+        } else {
+           c = (CssMin) v;
+        }
+    }
+	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
+		c.addValue(v);
+	} ( <S> )* )* <LPARAN> ) {
+	c.validate();
+    return c;
+  }
+}
+
+CssCheckableValue mathmax() :
+{
+    CssCheckableValue v;
+    CssMax c;
+    Token n;
+}
+{
+    ( n=<FUNCTIONMAX>  ( <S> )* v=mathsum() {
+       if (v.getRawType() != CssTypes.CSS_MAX) {
+           c = new CssMax(v);
+        } else {
+           c = (CssMax) v;
+        }
+    }
+	( <S> )* ( <COMMA> ( <S> )* v=mathsum() {
+	        c.addValue(v);
+	} ( <S> )* )* <LPARAN> ) {
+	c.validate();
+    return c;
+  }
+}
+
+/*
+CssCheckableValue mathclamp() :
+{
+    CssCheckableValue v1, v2, v3;
+CssCalc c;
+Token n;
+}
+{
+    ( n=<FUNCTIONMIN>  ( <S> )* v1=mathsum() ( <S> )* <COMMA> ( <S> )* v2=mathsum() ( <S> )*
+      <COMMA> ( <S> )* v3=mathsum() ( <S> )* <LPARAN> ) {
+	
+    if (v.getRawType() != CssTypes.CSS_CALC) {
+       c = new CssCalc(v);
+    } else {
+       c = (CssCalc) v;
+    }
+    c.validate();
+    return c;
+  }
+}
+*/
+    
 CssCheckableValue mathcalc() :
 {
 CssCheckableValue v;
@@ -3083,6 +3158,8 @@ char operator = ' ';
     )
     | ( <RPARAN> ( <S> )* v=mathsum() ( <S> )* <LPARAN> ) { ((CssCalc) v).setParenthesis(); }
     | v=mathcalc()
+    | v=mathmax()
+    | v=mathmin()
     | v=attr()
 ) {
      return v;
