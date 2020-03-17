@@ -610,10 +610,16 @@ TOKEN [IGNORE_CASE] :
 {
   < RELFONTLENGTH  : <NUM> "em"
                    | <NUM> "ex"
+	           | <NUM> "cap"
                    | <NUM> "ch"
+	           | <NUM> "ic"
+	           | <NUM> "lh"
+	           | <NUM> "rlh"
                    | <NUM> "rem" >
   | <RELVIEWLENGTH : <NUM> "vw"
                    | <NUM> "vh"
+	           | <NUM> "vi"
+	           | <NUM> "vb"
                    | <NUM> "vmin"
                    | <NUM> "vmax" >
   | <ABSOLUTLENGTH : <NUM> "cm"
