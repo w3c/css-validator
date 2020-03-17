@@ -38,6 +38,7 @@ public class CssCalc extends CssCheckableValue {
     char operator;
     boolean hasParen = false;
     String _toString = null;
+    boolean implicit_function = true;
 
 
     /**
@@ -62,6 +63,11 @@ public class CssCalc extends CssCheckableValue {
             computed_type = value.getType();
             val1 = value;
         }
+    }
+
+    public void setImplicitFunction(boolean v) {
+        implicit_function = v;
+        _toString = null;
     }
 
     public void set(String s, ApplContext ac) throws InvalidParamException {
@@ -224,14 +230,14 @@ public class CssCalc extends CssCheckableValue {
         if (hasParen) {
             sb.append('(');
         }
-        if (val1.getRawType() == CssTypes.CSS_CALC) {
+        if (val1.getRawType() == CssTypes.CSS_CALC && ((CssCalc) val1).implicit_function) {
             sb.append(((CssCalc) val1).toStringUnprefixed());
         } else {
             sb.append(val1);
         }
         if (val2 != null) {
             sb.append(' ').append(operator).append(' ');
-            if (val2.getRawType() == CssTypes.CSS_CALC) {
+            if (val2.getRawType() == CssTypes.CSS_CALC && ((CssCalc) val1).implicit_function) {
                 sb.append(((CssCalc) val2).toStringUnprefixed());
             } else {
                 sb.append(val2);
@@ -245,9 +251,14 @@ public class CssCalc extends CssCheckableValue {
 
     public String toString() {
         if (_toString == null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("calc(").append(toStringUnprefixed()).append(')');
-            _toString = sb.toString();
+            if (!implicit_function) {
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("calc(").append(toStringUnprefixed()).append(')');
+                _toString = sb.toString();
+            } else {
+                _toString = toStringUnprefixed();
+            }
         }
         return _toString;
     }
@@ -305,7 +316,6 @@ public class CssCalc extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
-     *
      */
     public void checkPositiveness(ApplContext ac, String callername)
             throws InvalidParamException {
@@ -322,7 +332,6 @@ public class CssCalc extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
-     *
      */
     public void checkStrictPositiveness(ApplContext ac, String callername)
             throws InvalidParamException {
@@ -339,7 +348,6 @@ public class CssCalc extends CssCheckableValue {
      * @param ac         the validation context
      * @param callername the property the value is defined in
      * @throws org.w3c.css.util.InvalidParamException
-     *
      */
     public void checkInteger(ApplContext ac, String callername)
             throws InvalidParamException {
