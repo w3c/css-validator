@@ -258,7 +258,7 @@ public class ApplContext {
         // set specific version of CSS (like CSS2 and not CSS21 for MOBILE) ?
         if ((spec == null) || spec.isEmpty()) {
             version = CssVersion.getDefault();
-            profile = CssProfile.EMPTY;
+            profile = CssProfile.SVG;
         } else {
             String low = spec.toLowerCase();
             version = CssVersion.resolve(this, low);
