@@ -23,6 +23,7 @@ import org.w3c.css.selectors.IdSelector;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.CssVersion;
 import org.w3c.css.util.InvalidParamException;
+import org.w3c.css.util.Messages;
 import org.w3c.css.util.Util;
 import org.w3c.css.util.Warning;
 import org.w3c.css.util.Warnings;
@@ -232,7 +233,7 @@ public final class StyleSheetParser
             cssFouffa.parseStyle();
         } catch (Exception e) {
             Errors er = new Errors();
-            er.addError(new org.w3c.css.parser.CssError(url.toString(),
+            er.addError(new org.w3c.css.parser.CssError(Messages.escapeString(url.toString()),
                     -1, e));
             notifyErrors(er);
         } finally {
