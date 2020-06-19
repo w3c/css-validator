@@ -234,7 +234,7 @@ public final class StyleSheetParser
         } catch (Exception e) {
             Errors er = new Errors();
             er.addError(new org.w3c.css.parser.CssError(Messages.escapeString(url.toString()),
-                    -1, e));
+                    -1, new Exception(Messages.escapeString(e.getMessage()))));
             notifyErrors(er);
         } finally {
             if (doneref) {
