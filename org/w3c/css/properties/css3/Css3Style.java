@@ -44,6 +44,7 @@ import org.w3c.css.properties.css.CssBreakInside;
 import org.w3c.css.properties.css.CssCaret;
 import org.w3c.css.properties.css.CssCaretColor;
 import org.w3c.css.properties.css.CssCaretShape;
+import org.w3c.css.properties.css.CssColorAdjust;
 import org.w3c.css.properties.css.CssColorInterpolationFilters;
 import org.w3c.css.properties.css.CssColumnCount;
 import org.w3c.css.properties.css.CssColumnFill;
@@ -489,6 +490,18 @@ public class Css3Style extends ATSCStyle {
     public CssPlaceItems cssPlaceItems;
 
     public CssFontDisplay fontFaceCssFontDisplay;
+
+    public CssColorAdjust cssColorAdjust;
+
+
+    public CssColorAdjust getColorAdjust() {
+        if (cssColorAdjust == null) {
+            cssColorAdjust =
+                    (CssColorAdjust) style.CascadingOrder(new CssColorAdjust(),
+                            style, selector);
+        }
+        return cssColorAdjust;
+    }
 
     public org.w3c.css.properties.css.page.CssMarks getPageCssMarks() {
         if (pageCssMarks == null) {
