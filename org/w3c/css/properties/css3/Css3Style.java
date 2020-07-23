@@ -82,6 +82,7 @@ import org.w3c.css.properties.css.CssFontVariantEastAsian;
 import org.w3c.css.properties.css.CssFontVariantLigatures;
 import org.w3c.css.properties.css.CssFontVariantNumeric;
 import org.w3c.css.properties.css.CssFontVariantPosition;
+import org.w3c.css.properties.css.CssForcedColorAdjust;
 import org.w3c.css.properties.css.CssGap;
 import org.w3c.css.properties.css.CssGrid;
 import org.w3c.css.properties.css.CssGridArea;
@@ -492,8 +493,17 @@ public class Css3Style extends ATSCStyle {
     public CssFontDisplay fontFaceCssFontDisplay;
 
     public CssColorAdjust cssColorAdjust;
-
-
+    public CssForcedColorAdjust cssForcedColorAdjust;
+    
+    public CssForcedColorAdjust getForcedColorAdjust() {
+        if (cssForcedColorAdjust == null) {
+            cssForcedColorAdjust =
+                    (CssForcedColorAdjust) style.CascadingOrder(new CssForcedColorAdjust(),
+                            style, selector);
+        }
+        return cssForcedColorAdjust;
+    }
+    
     public CssColorAdjust getColorAdjust() {
         if (cssColorAdjust == null) {
             cssColorAdjust =
