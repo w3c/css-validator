@@ -75,9 +75,6 @@ public class CssVoiceRange extends org.w3c.css.properties.css.CssVoiceRange {
             op = expression.getOperator();
 
             switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                    // 0 can be a frequency
-                    val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_FREQUENCY:
                 case CssTypes.CSS_SEMITONE:
                 case CssTypes.CSS_PERCENTAGE:
