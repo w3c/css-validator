@@ -52,9 +52,6 @@ public class CssVoiceDuration extends org.w3c.css.properties.css.CssVoiceDuratio
         op = expression.getOperator();
 
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
-                break;
             case CssTypes.CSS_TIME:
                 CssCheckableValue t = val.getCheckableValue();
                 t.checkPositiveness(ac, this);

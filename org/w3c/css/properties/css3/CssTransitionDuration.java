@@ -49,10 +49,6 @@ public class CssTransitionDuration extends org.w3c.css.properties.css.CssTransit
             val = expression.getValue();
             op = expression.getOperator();
             switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                    val.getCheckableValue().checkEqualsZero(ac, this);
-                    values.add(val);
-                    break;
                 case CssTypes.CSS_TIME:
                     CssCheckableValue t = val.getCheckableValue();
                     t.warnPositiveness(ac, this);

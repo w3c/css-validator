@@ -108,10 +108,6 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
         op = expression.getOperator();
 
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, caller);
-                expression.next();
-                return (val);
             case CssTypes.CSS_TIME:
                 CssCheckableValue t = val.getCheckableValue();
                 t.checkPositiveness(ac, caller);

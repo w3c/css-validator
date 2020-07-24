@@ -48,8 +48,6 @@ public class CssTransitionDelay extends org.w3c.css.properties.css.CssTransition
             val = expression.getValue();
             op = expression.getOperator();
             switch (val.getType()) {
-                case CssTypes.CSS_NUMBER:
-                    val.getCheckableValue().checkEqualsZero(ac, this);
                 case CssTypes.CSS_TIME:
                     values.add(val);
                     break;
