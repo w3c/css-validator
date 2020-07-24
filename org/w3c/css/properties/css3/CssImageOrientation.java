@@ -75,8 +75,6 @@ public class CssImageOrientation extends org.w3c.css.properties.css.CssImageOrie
         ac.getFrame().addWarning("deprecatedproperty", getPropertyName());
 
         switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
             case CssTypes.CSS_ANGLE:
                 value = val;
                 // check for optional 'flip'
