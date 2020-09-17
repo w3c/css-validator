@@ -1,4 +1,7 @@
 # Master localization string file: $Id$
+# parameters use %s when ordered sequencially
+# you can use specific ordering by adding a digit after it
+# like "foo %s2 bar %s1 toto %s3 titi" parameters 1,2,3 will be at %s1, %s1 and %s3
 
 direction: ltr
 language_name: English
