@@ -46,6 +46,7 @@ import org.w3c.css.properties.css.CssCaretColor;
 import org.w3c.css.properties.css.CssCaretShape;
 import org.w3c.css.properties.css.CssColorAdjust;
 import org.w3c.css.properties.css.CssColorInterpolationFilters;
+import org.w3c.css.properties.css.CssColorScheme;
 import org.w3c.css.properties.css.CssColumnCount;
 import org.w3c.css.properties.css.CssColumnFill;
 import org.w3c.css.properties.css.CssColumnGap;
@@ -494,7 +495,17 @@ public class Css3Style extends ATSCStyle {
 
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
-    
+    public CssColorScheme cssColorScheme;
+
+    public CssColorScheme getColorScheme() {
+        if (cssColorScheme == null) {
+            cssColorScheme =
+                    (CssColorScheme) style.CascadingOrder(new CssColorScheme(),
+                            style, selector);
+        }
+        return cssColorScheme;
+    }
+
     public CssForcedColorAdjust getForcedColorAdjust() {
         if (cssForcedColorAdjust == null) {
             cssForcedColorAdjust =
