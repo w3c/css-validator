@@ -155,7 +155,7 @@ public class CssFontFamily extends org.w3c.css.properties.css.CssFontFamily {
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         checkValues(ac, values);

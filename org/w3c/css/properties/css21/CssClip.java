@@ -112,7 +112,7 @@ public class CssClip extends org.w3c.css.properties.css.CssClip {
             // special case at the end as default separator is SPACE
             if (((op != firstop) || (op != COMMA && op != SPACE)) && !expression.end()) {
                 throw new InvalidParamException("shape-separator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
     }

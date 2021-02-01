@@ -93,7 +93,7 @@ public class CssVoiceFamily extends org.w3c.css.properties.css.CssVoiceFamily {
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         value = (values.size() > 1) ? new CssLayerList(values) : values.get(0);

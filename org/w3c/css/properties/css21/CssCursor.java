@@ -109,7 +109,7 @@ public class CssCursor extends org.w3c.css.properties.css.CssCursor {
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (value != inherit) {
