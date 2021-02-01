@@ -85,7 +85,7 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
 
             }
             expression.next();
