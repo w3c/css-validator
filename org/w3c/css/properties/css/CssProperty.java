@@ -323,7 +323,7 @@ public abstract class CssProperty
     /**
      * Mark this property comes from the user
      */
-    public void setByUser() {
+    public final void setByUser() {
         byUser = true;
     }
 
