@@ -10,6 +10,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * <H3>Angle</H3>
@@ -175,7 +176,7 @@ public class CssAngle extends CssCheckableValue implements CssValueFloat {
         if (degree.compareTo(BigDecimal.ZERO) < 0) {
             degree.add(deg360);
         }
-        return degree.divide(factor, 9, BigDecimal.ROUND_HALF_DOWN).stripTrailingZeros();
+        return degree.divide(factor, 9, RoundingMode.HALF_DOWN).stripTrailingZeros();
     }
 
     public void normalizeValue() {

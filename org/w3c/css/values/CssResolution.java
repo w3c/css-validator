@@ -86,7 +86,7 @@ public class CssResolution extends CssValue {
      */
     public Object get() {
         if (isInt) {
-            return new Integer(value.intValue());
+            return Integer.valueOf(value.intValue());
         }
         return value;
     }

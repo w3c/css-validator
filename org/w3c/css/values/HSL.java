@@ -17,7 +17,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.util.Util;
 
-import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class HSL {
     String output = null;
@@ -92,7 +92,7 @@ public class HSL {
                 if (val.getRawType() == CssTypes.CSS_ANGLE) {
                     CssAngle a = (CssAngle) val;
                     float p = a.getValue();
-                    if (p > a.deg360.divide(a.factor, 2, BigDecimal.ROUND_HALF_DOWN).floatValue()) {
+                    if (p > a.deg360.divide(a.factor, 2, RoundingMode.HALF_DOWN).floatValue()) {
                         ac.getFrame().addWarning("out-of-range", Util.displayFloat(p));
                     }
                     // if a proper angle we normalize it after checking everything.

@@ -17,6 +17,7 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class HWB {
     String output = null;
@@ -92,8 +93,8 @@ public class HWB {
             b = pb.getValue();
             s = w.add(b);
             if (s.compareTo(s100) > 0) {
-                w = w.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
-                b = b.multiply(s100).divide(s, 3, BigDecimal.ROUND_HALF_UP).stripTrailingZeros();
+                w = w.multiply(s100).divide(s, 3, RoundingMode.HALF_UP).stripTrailingZeros();
+                b = b.multiply(s100).divide(s, 3, RoundingMode.HALF_UP).stripTrailingZeros();
                 pw.setValue(w);
                 pb.setValue(b);
             }
