@@ -168,7 +168,7 @@ public class CssImage extends CssValue {
             if (!exp.end() && op != COMMA) {
                 exp.starts();
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         value = (v.size() == 1) ? v.get(0) : new CssLayerList(v);
@@ -228,7 +228,7 @@ public class CssImage extends CssValue {
                 if (op != COMMA) {
                     exp.starts();
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 exp.next();
                 break;
@@ -244,7 +244,7 @@ public class CssImage extends CssValue {
                     if (op != SPACE) {
                         exp.starts();
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                     exp.next();
                     if (exp.end()) {
@@ -300,7 +300,7 @@ public class CssImage extends CssValue {
                     if (op != COMMA) {
                         exp.starts();
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                 }
                 if (top.equals(ident) || bottom.equals(ident)
@@ -669,7 +669,7 @@ public class CssImage extends CssValue {
             if (!expression.end() && op != COMMA) {
                 expression.starts();
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         return v;
