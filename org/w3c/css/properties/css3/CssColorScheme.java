@@ -105,7 +105,7 @@ public class CssColorScheme extends org.w3c.css.properties.css.CssColorScheme {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
+                        Character.toString(op),
                         ac);
             }
             expression.next();

@@ -62,7 +62,7 @@ public class CssPlaceContent extends org.w3c.css.properties.css.CssPlaceContent 
             char op = expression.getOperator();
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             values.add(val);
             alignContent.value = val;

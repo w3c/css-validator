@@ -89,7 +89,7 @@ public class CssFlexFlow extends org.w3c.css.properties.css.CssFlexFlow {
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

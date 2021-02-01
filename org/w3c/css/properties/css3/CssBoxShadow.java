@@ -99,7 +99,7 @@ public class CssBoxShadow extends org.w3c.css.properties.css.CssBoxShadow {
                     single_layer = null;
                 } else if ((op != SPACE)) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
             }
         }

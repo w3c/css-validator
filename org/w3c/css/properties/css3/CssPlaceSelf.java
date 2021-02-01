@@ -62,7 +62,7 @@ public class CssPlaceSelf extends org.w3c.css.properties.css.CssPlaceSelf {
             char op = expression.getOperator();
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             values.add(val);
             alignSelf.value = val;

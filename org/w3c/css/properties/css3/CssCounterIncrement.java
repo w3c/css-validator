@@ -91,7 +91,7 @@ public class CssCounterIncrement extends org.w3c.css.properties.css.CssCounterIn
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

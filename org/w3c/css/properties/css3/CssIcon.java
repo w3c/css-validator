@@ -80,7 +80,7 @@ import static org.w3c.css.values.CssOperator.COMMA;
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         value = (values.size() == 1) ? values.get(0) : new CssLayerList(values);

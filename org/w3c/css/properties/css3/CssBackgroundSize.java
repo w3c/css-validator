@@ -155,7 +155,7 @@ public class CssBackgroundSize extends org.w3c.css.properties.css.CssBackgroundS
                 if ((is_complete && (op != COMMA)) ||
                         (!is_complete && (op != SPACE))) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
             }
         }

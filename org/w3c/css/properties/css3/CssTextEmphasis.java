@@ -102,7 +102,7 @@ public class CssTextEmphasis extends org.w3c.css.properties.css.CssTextEmphasis 
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         // parse the style exp

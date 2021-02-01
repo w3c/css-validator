@@ -68,7 +68,7 @@ public class CssFontSynthesis extends org.w3c.css.properties.css.CssFontSynthesi
                 if (expression.getCount() > 1) {
                     if (op != CssOperator.SPACE) {
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                     expression.next();
                     val = expression.getValue();
@@ -88,7 +88,7 @@ public class CssFontSynthesis extends org.w3c.css.properties.css.CssFontSynthesi
                 if (expression.getCount() > 1) {
                     if (op != CssOperator.SPACE) {
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                     expression.next();
                     val = expression.getValue();

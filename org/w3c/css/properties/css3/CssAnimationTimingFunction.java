@@ -108,7 +108,7 @@ public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAn
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (singleVal && values.size() > 1) {
@@ -155,7 +155,7 @@ public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAn
             // check the second value
             if (op != COMMA) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             val = funcparam.getValue();
             if (val.getType() != CssTypes.CSS_IDENT) {
@@ -212,7 +212,7 @@ public class CssAnimationTimingFunction extends org.w3c.css.properties.css.CssAn
             funcparam.next();
             if (!funcparam.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         return new CssLayerList(values);

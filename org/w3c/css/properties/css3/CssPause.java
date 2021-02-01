@@ -77,7 +77,7 @@ public class CssPause extends org.w3c.css.properties.css.CssPause {
             op = expression.getOperator();
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             cssPauseAfter = new CssPauseAfter();
             cssPauseAfter.value = checkPauseValue(ac, expression, this);

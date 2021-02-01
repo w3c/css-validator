@@ -68,8 +68,7 @@ public class CssColumns extends org.w3c.css.properties.css.CssColumns {
             op = expression.getOperator();
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
+                        Character.toString(op), ac);
             }
             switch (val.getType()) {
                 case CssTypes.CSS_NUMBER:

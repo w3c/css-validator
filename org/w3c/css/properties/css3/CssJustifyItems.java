@@ -148,7 +148,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 // ok, we got a leagacy, operator check and return
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 values.add(value);
                 values.add(legacy);
@@ -167,7 +167,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {
@@ -187,7 +187,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {
@@ -225,7 +225,7 @@ public class CssJustifyItems extends org.w3c.css.properties.css.CssJustifyItems 
                 // so we got something, check the operator
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 values.add(legacy);
                 values.add(value);

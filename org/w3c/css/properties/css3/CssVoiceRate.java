@@ -109,7 +109,7 @@ public class CssVoiceRate extends org.w3c.css.properties.css.CssVoiceRate {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

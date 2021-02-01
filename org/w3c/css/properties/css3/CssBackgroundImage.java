@@ -82,7 +82,7 @@ public class CssBackgroundImage extends org.w3c.css.properties.css.CssBackground
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (values.size() == 1) {

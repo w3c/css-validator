@@ -78,7 +78,7 @@ public class CssRest extends org.w3c.css.properties.css.CssRest {
             op = expression.getOperator();
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             cssRestAfter = new CssRestAfter();
             cssRestAfter.value = checkRestValue(ac, expression, this);

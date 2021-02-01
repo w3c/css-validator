@@ -95,7 +95,7 @@ public class CssBackgroundOrigin extends org.w3c.css.properties.css.CssBackgroun
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (values.size() == 1) {

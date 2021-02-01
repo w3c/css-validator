@@ -68,7 +68,7 @@ public class CssAnimationDuration extends org.w3c.css.properties.css.CssAnimatio
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (gotinherit && values.size() > 1) {

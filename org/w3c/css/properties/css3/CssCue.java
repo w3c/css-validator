@@ -36,8 +36,7 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
      * Creates a new CssCue
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssCue(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -58,7 +57,7 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
             op = expression.getOperator();
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             cssCueAfter = new CssCueAfter();
             cssCueAfter.value = checkCueValue(ac, expression, this);
@@ -83,7 +82,7 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
     }
 
     protected static CssValue checkCueValue(ApplContext ac, CssExpression expression,
-                                             CssProperty caller)
+                                            CssProperty caller)
             throws InvalidParamException {
         CssValue val;
         char op;
@@ -101,7 +100,7 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
                         // construct the value...
                         if (op != SPACE) {
                             throw new InvalidParamException("operator",
-                                    ((new Character(op)).toString()), ac);
+                                    Character.toString(op), ac);
                         }
                         expression.next();
                         ArrayList<CssValue> values = new ArrayList<CssValue>(2);

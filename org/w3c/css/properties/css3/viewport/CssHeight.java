@@ -55,7 +55,7 @@ public class CssHeight extends org.w3c.css.properties.css.viewport.CssHeight {
             expression.next();
             if ((op != SPACE)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         value = (values.size() == 1) ? values.get(0) : new CssValueList(values);

@@ -104,7 +104,7 @@ public class CssPerspectiveOrigin extends org.w3c.css.properties.css.CssPerspect
 
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         // if we reach the end in a value that can come in pair

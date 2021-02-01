@@ -114,7 +114,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {
@@ -134,7 +134,7 @@ public class CssAlignItems extends org.w3c.css.properties.css.CssAlignItems {
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {

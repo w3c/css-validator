@@ -114,7 +114,7 @@ public class CssVoiceRange extends org.w3c.css.properties.css.CssVoiceRange {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

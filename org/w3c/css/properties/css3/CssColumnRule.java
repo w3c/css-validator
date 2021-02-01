@@ -60,7 +60,7 @@ public class CssColumnRule extends org.w3c.css.properties.css.CssColumnRule {
             op = expression.getOperator();
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
+                        Character.toString(op),
                         ac);
             }
             switch (val.getType()) {

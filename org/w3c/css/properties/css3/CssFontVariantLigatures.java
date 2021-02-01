@@ -207,7 +207,7 @@ public class CssFontVariantLigatures extends org.w3c.css.properties.css.CssFontV
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

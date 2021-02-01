@@ -56,7 +56,7 @@ public class CssGap extends org.w3c.css.properties.css.CssGap {
         if (!expression.end()) {
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             // inherit can only be alone
             if (inherit.equals(val)) {

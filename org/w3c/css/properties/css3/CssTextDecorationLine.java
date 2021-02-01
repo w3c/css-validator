@@ -119,7 +119,7 @@ public class CssTextDecorationLine extends org.w3c.css.properties.css.CssTextDec
                 }
                 if (op != CssOperator.SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 val = expression.getValue();

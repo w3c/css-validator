@@ -111,7 +111,7 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {
@@ -131,7 +131,7 @@ public class CssJustifySelf extends org.w3c.css.properties.css.CssJustifySelf {
                 values.add(value);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 if (expression.end()) {

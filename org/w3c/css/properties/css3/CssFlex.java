@@ -138,7 +138,7 @@ public class CssFlex extends org.w3c.css.properties.css.CssFlex {
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

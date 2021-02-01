@@ -103,7 +103,7 @@ public class CssBackgroundAttachment extends org.w3c.css.properties.css.CssBackg
             // and check that values are separated by commas
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
 

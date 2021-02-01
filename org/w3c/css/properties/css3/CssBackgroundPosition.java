@@ -121,7 +121,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
                     b_val = null;
                 } else if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
             }
         }
@@ -440,7 +440,7 @@ public class CssBackgroundPosition extends org.w3c.css.properties.css.CssBackgro
             v.add(val);
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

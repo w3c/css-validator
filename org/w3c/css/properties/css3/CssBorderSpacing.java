@@ -76,7 +76,7 @@ public class CssBorderSpacing extends org.w3c.css.properties.css.CssBorderSpacin
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
             i++;

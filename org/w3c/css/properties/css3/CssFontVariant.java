@@ -154,7 +154,7 @@ public class CssFontVariant extends org.w3c.css.properties.css.CssFontVariant {
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

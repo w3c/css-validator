@@ -136,7 +136,7 @@ public class CssTextEmphasisPosition extends org.w3c.css.properties.css.CssTextE
                 }
                 if (op != CssOperator.SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 expression.next();
                 val = expression.getValue();

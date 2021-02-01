@@ -103,7 +103,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             expression.next();
             if (!expression.end() && (op != SPACE)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (singleVal && values.size() > 1) {
@@ -235,7 +235,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
     }
@@ -301,7 +301,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             expression.next();
             if (!expression.end() && (op != COMMA)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
     }
@@ -359,7 +359,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             expression.next();
             if (op != COMMA) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         val = expression.getValue();
@@ -395,7 +395,7 @@ public class CssTransform extends org.w3c.css.properties.css.CssTransform {
             expression.next();
             if (op != COMMA) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         val = expression.getValue();
