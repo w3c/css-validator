@@ -53,7 +53,7 @@ public class Widths extends CssProperty implements CssOperator {
                 values.addElement(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            new Character(op),
+                            Character.toString(op),
                             getPropertyName(), ac);
                 }
                 if (expression.end()) {

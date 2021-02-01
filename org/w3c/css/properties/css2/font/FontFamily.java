@@ -24,6 +24,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
+ *
  */
 public class FontFamily extends FontProperty implements CssOperator {
 
@@ -57,10 +58,8 @@ public class FontFamily extends FontProperty implements CssOperator {
 
             if ((op != COMMA) && (op != SPACE)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
+                        Character.toString(op), ac);
             }
-
             if (val instanceof CssString) {
                 if (op == COMMA) { // "helvetica", "roman"
                     String name = (String) val.get();
@@ -143,23 +142,23 @@ public class FontFamily extends FontProperty implements CssOperator {
     }
 
     String convertString(String value) {
-    	char cfirst = value.charAt(0);
-    	char clast  = value.charAt(value.length()-1);
-    	
-    	if (cfirst == clast
-    			&& (cfirst == '\'' || cfirst=='"')
-    	){
-    		// is already well escaped
-    		return value;
-    	}
-    	
-    	if (value.indexOf('"') != -1) {
-    		return '\'' + value + '\'';
-    	} else if (value.indexOf('\'') != -1) {
-    		return '"' + value + '"';
-    	} else {
-    		return value;
-    	}
+        char cfirst = value.charAt(0);
+        char clast = value.charAt(value.length() - 1);
+
+        if (cfirst == clast
+                && (cfirst == '\'' || cfirst == '"')
+        ) {
+            // is already well escaped
+            return value;
+        }
+
+        if (value.indexOf('"') != -1) {
+            return '\'' + value + '\'';
+        } else if (value.indexOf('\'') != -1) {
+            return '"' + value + '"';
+        } else {
+            return value;
+        }
     }
 
     /**

@@ -101,7 +101,7 @@ public class CssMarks extends org.w3c.css.properties.css.CssMarks {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

@@ -102,7 +102,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
             }
             if ((op != SPACE)) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
@@ -138,7 +138,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
                     // we have another item, it must be an ident matching list-style-type.
                     if (op != COMMA) {
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                     v = exp.getValue();
                     if (v.getType() == CssTypes.CSS_IDENT) {
@@ -164,7 +164,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
                 exp.next();
                 if (op != COMMA) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
                 v = exp.getValue();
                 op = exp.getOperator();
@@ -177,7 +177,7 @@ public class CssContent extends org.w3c.css.properties.css.CssContent {
                     // we have another item, it must be an ident matching list-style-type.
                     if (op != COMMA) {
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                     v = exp.getValue();
                     if (v.getType() == CssTypes.CSS_IDENT) {

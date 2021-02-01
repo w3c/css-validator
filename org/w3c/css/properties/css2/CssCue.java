@@ -50,7 +50,7 @@ public class CssCue extends org.w3c.css.properties.css.CssCue {
             op = expression.getOperator();
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             cssCueAfter = new CssCueAfter(ac, expression, false);
             if (cssCueBefore.value == inherit || cssCueAfter.value == inherit) {
