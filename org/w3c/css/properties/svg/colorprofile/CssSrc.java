@@ -79,7 +79,8 @@ public class CssSrc extends org.w3c.css.properties.css.colorprofile.CssSrc {
                     if (sRGB.equals(val) && values.isEmpty()) {
                         value = sRGB;
                         // hack to avoid getting other values.
-                        gotIRI = gotLocal = true;
+                        gotIRI = true;
+                        gotLocal = true;
                         break;
                     }
                 default:
@@ -89,7 +90,7 @@ public class CssSrc extends org.w3c.css.properties.css.colorprofile.CssSrc {
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

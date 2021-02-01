@@ -164,7 +164,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             expression.next();
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
         }
         if (gotBasicShape || gotGeometryBox) {
@@ -220,7 +220,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
@@ -285,7 +285,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
@@ -350,7 +350,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
@@ -401,14 +401,14 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             if (gotFillRule && nbPoints == 0 && nbShapeArgs == 0) {
                 if (op != COMMA) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
             } else if (nbShapeArgs == 2) {
                 if (expression.getRemainingCount() > 1) {
                     // we don't need a COMMA at the end, so we check only before.
                     if (op != COMMA) {
                         throw new InvalidParamException("operator",
-                                ((new Character(op)).toString()), ac);
+                                Character.toString(op), ac);
                     }
                 }
                 nbPoints++;
@@ -416,7 +416,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
             } else {
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            ((new Character(op)).toString()), ac);
+                            Character.toString(op), ac);
                 }
             }
             expression.next();

@@ -185,7 +185,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
             }
             if (op != CssOperator.SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
@@ -228,7 +228,7 @@ public class CssFill extends org.w3c.css.properties.css.CssFill {
             // both space and commas can happen...
             if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }

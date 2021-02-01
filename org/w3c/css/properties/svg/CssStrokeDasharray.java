@@ -76,7 +76,7 @@ public class CssStrokeDasharray extends org.w3c.css.properties.css.CssStrokeDash
             // both space and commas can happen...
             if (op != CssOperator.SPACE && op != CssOperator.COMMA) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()), ac);
+                        Character.toString(op), ac);
             }
             expression.next();
         }
