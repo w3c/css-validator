@@ -167,12 +167,11 @@ public class StyleSheetGenerator extends StyleReport {
         context.put("currentdate", formatter.format(now));
         context.put("currentdatelong", now.getTime());
         context.put("lang", ac.getContentLanguage());
-        context.put("errors_count", new Integer(errors.getErrorCount()));
-        context.put("warnings_count", new Integer(warnings.getWarningCount()));
-        context.put("ignored-warnings_count",
-                new Integer(warnings.getIgnoredWarningCount()));
-        context.put("warning_level", new Integer(warningLevel));
-        context.put("rules_count", new Integer(items.size()));
+        context.put("errors_count", Integer.valueOf(errors.getErrorCount()));
+        context.put("warnings_count", Integer.valueOf(warnings.getWarningCount()));
+        context.put("ignored-warnings_count", Integer.valueOf(warnings.getIgnoredWarningCount()));
+        context.put("warning_level", Integer.valueOf(warningLevel));
+        context.put("rules_count", Integer.valueOf(items.size()));
         context.put("no_errors_report", Boolean.FALSE);
         context.put("charset", ac.getContentEncoding());
         context.put("cssversion", ac.getCssVersionString());
