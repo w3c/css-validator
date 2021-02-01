@@ -179,7 +179,7 @@ public class CssLength extends CssCheckableValue {
     public Object get() {
         // TODO this is old ugly crap, needed for not breaking everything
         // remove as soon as reference to get is removed...
-        return new Float(value.floatValue());
+        return value.floatValue();
     }
 
     /**

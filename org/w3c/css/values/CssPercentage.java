@@ -109,7 +109,7 @@ public class CssPercentage extends CssCheckableValue {
      */
     public Object get() {
         // TODO FIXME
-        return new Float(value.floatValue());
+        return value.floatValue();
     }
 
     /**
