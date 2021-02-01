@@ -65,7 +65,7 @@ public class WidthsATSC extends CssProperty implements CssOperator {
                 values.addElement(val);
                 if (op != SPACE) {
                     throw new InvalidParamException("operator",
-                            new Character(op),
+                            Character.toString(op),
                             getPropertyName(), ac);
                 }
                 if (expression.end()) {
@@ -154,7 +154,7 @@ public class WidthsATSC extends CssProperty implements CssOperator {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
         // @@TODO

@@ -133,8 +133,7 @@ public class CssBackgroundPositionATSC extends CssProperty
 
         if (op != SPACE)
             throw new InvalidParamException("operator",
-                    ((new Character(op)).toString()),
-                    ac);
+                    Character.toString(op), ac);
 
         if (val.equals(inherit)) {
             if (expression.getCount() > 1) {

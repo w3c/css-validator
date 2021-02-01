@@ -99,8 +99,7 @@ public class CssBorderColorATSC extends CssProperty implements CssOperator {
             case 2:
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()),
-                            ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
@@ -115,15 +114,14 @@ public class CssBorderColorATSC extends CssProperty implements CssOperator {
             case 3:
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()),
-                            ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 top = new CssBorderTopColorATSC(ac, expression);
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()), ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
@@ -137,24 +135,21 @@ public class CssBorderColorATSC extends CssProperty implements CssOperator {
             case 4:
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()),
-                            ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 top = new CssBorderTopColorATSC(ac, expression);
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()),
-                            ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }
                 right = new CssBorderRightColorATSC(ac, expression);
                 if (expression.getOperator() != SPACE)
                     throw new InvalidParamException("operator",
-                            ((new Character(expression.getOperator())).toString()),
-                            ac);
+                            Character.toString(expression.getOperator()), ac);
                 if (expression.getValue().equals(inherit)) {
                     throw new InvalidParamException("unrecognize", ac);
                 }

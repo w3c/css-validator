@@ -96,8 +96,7 @@ public class CssBorderBottomATSC extends CssProperty implements CssOperator {
 
             if (op != SPACE)
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
+                        Character.toString(op), ac);
             if (width == null) {
                 try {
                     width = new CssBorderBottomWidthATSC(ac, expression);

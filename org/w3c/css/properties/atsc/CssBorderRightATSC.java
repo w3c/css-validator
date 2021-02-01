@@ -100,7 +100,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
 
             if (op != SPACE)
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
+                        Character.toString(op),
                         ac);
             if (width == null) {
                 try {
@@ -124,56 +124,6 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
                 find = true;
             }
         }
-    /*
-	CssValue val = null;
-	char op = SPACE;
-	boolean find = true;
-
-	setByUser();
-	while (find) {
-	    find = false;
-	    val = expression.floatValue();
-	    op = expression.getOperator();
-
-	    if (val == null)
-		break;
-
-	    if (op != SPACE)
-		throw new InvalidParamException("operator",
-			((new Character(op)).toString()),
-			ac);
-
-	    if (width == null) {
-		try {
-		    width = new CssBorderRightWidthATSC(ac, expression);
-		    find = true;
-		} catch (InvalidParamException e) {
-		}
-	    }
-	    if (!find && style == null) {
-		try {
-		    style = new CssBorderRightStyleATSC(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		}
-	    }
-	    if (!find && color == null) {
-		try {
-		    color = new CssBorderRightColorATSC(ac, expression);
-		    find = true;
-		}
-		catch (InvalidParamException e) {
-		}
-	    }
-	}
-
-	if (width == null)
-	    width = new CssBorderRightWidthATSC();
-	if (style == null)
-	    style = new CssBorderRightStyleATSC();
-	if (color == null)
-	    color = new CssBorderRightColorATSC();*/
     }
 
     public CssBorderRightATSC(ApplContext ac, CssExpression expression)
@@ -351,7 +301,7 @@ public class CssBorderRightATSC extends CssProperty implements CssOperator {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
         if (property instanceof CssBorderRightATSC) {

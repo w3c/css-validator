@@ -150,8 +150,7 @@ public class CssBackgroundATSC extends CssProperty
             }
             if (op != SPACE) {
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
+                        Character.toString(op), ac);
             }
         }
     }

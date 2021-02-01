@@ -96,8 +96,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
 
             if (op != SPACE)
                 throw new InvalidParamException("operator",
-                        ((new Character(op)).toString()),
-                        ac);
+                        Character.toString(op), ac);
             if (width == null) {
                 try {
                     width = new CssBorderTopWidthATSC(ac, expression);
@@ -297,7 +296,7 @@ public class CssBorderTopATSC extends CssProperty implements CssOperator {
     /**
      * Compares two properties for equality.
      *
-     * @param value The other property.
+     * @param property The other property.
      */
     public boolean equals(CssProperty property) {
         if (property instanceof CssBorderTopATSC) {
