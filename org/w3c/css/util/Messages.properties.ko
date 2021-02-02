@@ -17,8 +17,8 @@ css3: CSS 레벨 3
 svg: SVG
 svgbasic: SVG Basic
 svgtiny: SVG Tiny
-SVG_basic: <!-- SVG Basic , deprecated as per master language file -->
-SVG_tiny: <!-- SVG Tiny , deprecated as per master language file -->
+SVG_basic: <!-- SVG Basic , deprecated, see svgbasic  -->
+SVG_tiny: <!-- SVG Tiny , deprecated, see svgtiny -->
 mobile: 모바일
 ATSC_TV_profile: ATSC TV 프로필
 TV_profile: TV 프로필
