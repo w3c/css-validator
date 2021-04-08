@@ -237,7 +237,7 @@ public class CssCalc extends CssCheckableValue {
         }
         if (val2 != null) {
             sb.append(' ').append(operator).append(' ');
-            if (val2.getRawType() == CssTypes.CSS_CALC && ((CssCalc) val1).implicit_function) {
+            if (val2.getRawType() == CssTypes.CSS_CALC && ((CssCalc) val2).implicit_function) {
                 sb.append(((CssCalc) val2).toStringUnprefixed());
             } else {
                 sb.append(val2);

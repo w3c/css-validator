@@ -3138,7 +3138,7 @@ CssCheckableValue mathproduct() :
  ( v1=mathunit() { c = new CssCalc(ac, v1); }  ( LOOKAHEAD(2) ( <S> )* 
                     (  ( o="*" ( <S> )* v2=mathunit() )
                        |
-                       ( o=<DIV> ( <S> )* ( operator=unaryOperator() )? ( n=<NUMBER> { v2 = new CssNumber(); v2.set(addOperator(operator, n.image), ac); }
+                       ( o=<DIV> ( <S> )*  ( v2=calcnumbervalue()
                        | n=<FUNCTIONVAR> ( <S> )* <CUSTOM_PROPERTY_NAME> ( <COMMA> ( <S> )* expr() )* ( <S> )* <LPARAN> )
                        )
                     ) {
@@ -3154,6 +3154,76 @@ CssCheckableValue mathproduct() :
                   )*
  ) { return c; }
 }
+
+CssCheckableValue calcnumbervalue() :
+{ Token n,o;
+  CssCheckableValue v = null;
+  char operator = ' ';
+}
+{
+ (
+ ( ( operator=unaryOperator() )? n=<NUMBER> { v = new CssNumber(); v.set(addOperator(operator, n.image), ac); } ) |
+ ( <RPARAN> ( <S> )* v=calcnumbersum() ( <S> )* <LPARAN> { try { ((CssCalc) v).setParenthesis(); } catch (Exception ex) { ex.printStackTrace();}} )
+ ) {
+  return v;
+ }
+}
+
+CssCheckableValue calcnumbersum() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+  CssCalc c, nc;
+  char operator = ' ';
+  boolean concat = false;
+  int nb_pre_sp;
+}
+{
+ ( v1=calcnumberproduct() { c = new CssCalc(ac, v1); nb_pre_sp = 0; }
+        // special case for "-" as it can't match like <PLUS> (<PLUS> is <_W>* "+")
+        ( LOOKAHEAD(2) ( o=<PLUS> | ( ( <S> { nb_pre_sp++; }  )* o=<MINUS> ) ) {
+            if (o.image.length() < 2 && nb_pre_sp == 0) {
+                throw new ParseException(ac.getMsg().getString("parser.calcwhitespace"));
+            }
+        } ( <S> )+ v2=calcnumberproduct() {
+            nb_pre_sp = 0;
+            if (concat) {
+                nc = new CssCalc(ac, c);
+                nc.addRightSide(o.image.trim(), v2);
+                c = nc;
+            } else {
+                c.addRightSide(o.image.trim(), v2);
+                concat = true;
+            }
+        }
+            )*
+   ) { return c; }
+}
+
+CssCheckableValue calcnumberproduct() :
+{ Token n,o;
+  CssCheckableValue v1 = null;
+  CssCheckableValue v2 = null;
+  CssCalc c, nc;
+  char operator = ' ';
+  boolean concat = false;
+}
+{
+ ( v1=calcnumbervalue() { c = new CssCalc(ac, v1); }
+   ( LOOKAHEAD(2) ( <S> )* ( o=<DIV> | o="*" ) ( <S> )* v2=calcnumbervalue() {
+                          if (concat) {
+                              nc = new CssCalc(ac, c);
+                              nc.addRightSide(o.image, v2);
+                              c = nc;
+                          } else {
+                              c.addRightSide(o.image, v2);
+                              concat = true;
+                          }
+                      }
+   )*
+ ) { return c; }
+}
+
 
 CssCheckableValue mathunit() :
 { Token n;
