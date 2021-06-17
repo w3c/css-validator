@@ -8,16 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-    matrix:
-    java: [8, 11]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setting JDK ${{ matrix.java }}
+      - name: Setting JDK
         uses: actions/setup-java@v2
         with:
-          java-version: ${{ matrix.java }}
+          java-version: '11'
           distribution: 'adopt'
       - name: Build with Ant
         run: ant -noinput -buildfile build.xml
