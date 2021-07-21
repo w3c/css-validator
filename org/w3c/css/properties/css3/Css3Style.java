@@ -33,6 +33,7 @@ import org.w3c.css.properties.css.CssBackgroundPositionX;
 import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
+import org.w3c.css.properties.css.CssBlockSize;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
@@ -112,6 +113,7 @@ import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
+import org.w3c.css.properties.css.CssInlineSize;
 import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssJustifyItems;
@@ -496,6 +498,26 @@ public class Css3Style extends ATSCStyle {
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
+
+    public CssBlockSize cssBlockSize;
+    public CssInlineSize cssInlineSize;
+
+    public CssInlineSize getInlineSize() {
+        if (cssInlineSize == null) {
+            cssInlineSize =
+                    (CssInlineSize) style.CascadingOrder(new CssInlineSize(),
+                            style, selector);
+        }
+        return cssInlineSize;
+    }
+    public CssBlockSize getBlockSize() {
+        if (cssBlockSize == null) {
+            cssBlockSize =
+                    (CssBlockSize) style.CascadingOrder(new CssBlockSize(),
+                            style, selector);
+        }
+        return cssBlockSize;
+    }
 
     public CssColorScheme getColorScheme() {
         if (cssColorScheme == null) {

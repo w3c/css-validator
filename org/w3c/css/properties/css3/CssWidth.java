@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
@@ -52,49 +53,16 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
      * Create a new CssWidth.
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Values are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Values are incorrect
      */
     public CssWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
 
-        CssValue val = expression.getValue();
-
         setByUser();
-
-        switch (val.getType()) {
-            case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        value = id;
-                    } else {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
-                }
-                break;
-            case CssTypes.CSS_NUMBER:
-                // only 0 can be a length...
-                CssCheckableValue p = val.getCheckableValue();
-                p.checkEqualsZero(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_LENGTH:
-            case CssTypes.CSS_PERCENTAGE:
-                p = val.getCheckableValue();
-                p.checkPositiveness(ac, this);
-                value = val;
-                break;
-            default:
-                throw new InvalidParamException("value", val, getPropertyName(), ac);
-        }
-        expression.next();
+        value = parseWidth(ac, expression, this);
     }
 
     public CssWidth(ApplContext ac, CssExpression expression)
@@ -110,4 +78,41 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         return ((value == auto) || (value == initial));
     }
 
+    public static final CssValue parseWidth(ApplContext ac, CssExpression expression,
+                                            CssProperty caller)
+            throws InvalidParamException {
+        CssValue v = null;
+        CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    v = inherit;
+                } else {
+                    CssIdent id = getAllowedIdent((CssIdent) val);
+                    if (id != null) {
+                        v = id;
+                    } else {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                }
+                break;
+            case CssTypes.CSS_NUMBER:
+                // only 0 can be a length...
+                CssCheckableValue p = val.getCheckableValue();
+                p.checkEqualsZero(ac, caller);
+                v = val;
+                break;
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                p = val.getCheckableValue();
+                p.checkPositiveness(ac, caller);
+                v = val;
+                break;
+            default:
+                throw new InvalidParamException("value", val,
+                        caller.getPropertyName(), ac);
+        }
+        expression.next();
+        return v;
+    }
 }
