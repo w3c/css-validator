@@ -5,6 +5,7 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.w3c.css.properties.css3;
 
+import org.w3c.css.properties.css.CssProperty;
 import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
@@ -60,39 +61,8 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
         }
-
-        CssValue val = expression.getValue();
-
         setByUser();
-
-        switch (val.getType()) {
-            case CssTypes.CSS_NUMBER:
-                val.getCheckableValue().checkEqualsZero(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_LENGTH:
-            case CssTypes.CSS_PERCENTAGE:
-                CssCheckableValue length = val.getCheckableValue();
-                length.checkPositiveness(ac, this);
-                value = val;
-                break;
-            case CssTypes.CSS_IDENT:
-                if (inherit.equals(val)) {
-                    value = inherit;
-                } else {
-                    CssIdent id = getAllowedIdent((CssIdent) val);
-                    if (id != null) {
-                        value = id;
-                    } else {
-                        throw new InvalidParamException("unrecognize", ac);
-                    }
-                }
-                break;
-            default:
-                throw new InvalidParamException("value", expression.getValue(),
-                        getPropertyName(), ac);
-        }
-        expression.next();
+        value = parseMaxWidth(ac, expression, this);
     }
 
     public CssMaxWidth(ApplContext ac, CssExpression expression)
@@ -100,5 +70,41 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
         this(ac, expression, false);
     }
 
+    public static CssValue parseMaxWidth(ApplContext ac, CssExpression expression,
+                                         CssProperty caller)
+            throws InvalidParamException {
+        CssValue val = expression.getValue();
+        CssValue v = null;
+
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, caller);
+                v = val;
+                break;
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                CssCheckableValue length = val.getCheckableValue();
+                length.checkPositiveness(ac, caller);
+                v = val;
+                break;
+            case CssTypes.CSS_IDENT:
+                if (inherit.equals(val)) {
+                    v = inherit;
+                } else {
+                    CssIdent id = getAllowedIdent((CssIdent) val);
+                    if (id != null) {
+                        v = id;
+                    } else {
+                        throw new InvalidParamException("unrecognize", ac);
+                    }
+                }
+                break;
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        caller.getPropertyName(), ac);
+        }
+        expression.next();
+        return v;
+    }
 }
 
