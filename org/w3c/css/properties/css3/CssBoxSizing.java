@@ -13,7 +13,7 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2015/CR-css-ui-3-20150707/#propdef-box-sizing
+ * @spec https://www.w3.org/TR/2021/WD-css-sizing-3-20210317/#propdef-box-sizing
  */
 public class CssBoxSizing extends org.w3c.css.properties.css.CssBoxSizing {
 
