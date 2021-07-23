@@ -10,21 +10,20 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#max-width
- * @spec https://www.w3.org/TR/2016/WD-css-sizing-3-20160512/#width-height-keywords
+ * @spec https://www.w3.org/TR/2021/WD-css-sizing-3-20210317/#propdef-max-width
  */
 public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
 
     public static final CssIdent[] allowed_values;
-
+    public static final String fit_content_func = "fit-content";
     static {
-        // fill to fit-content from css-sizing
-        String[] _allowed_values = {"none", "fill", "max-content", "min-content", "fit-content"};
+        String[] _allowed_values = {"none", "max-content", "min-content"};
 
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
@@ -53,8 +52,7 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
      * Creates a new CssMaxWidth
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssMaxWidth(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
@@ -87,6 +85,9 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
                 length.checkPositiveness(ac, caller);
                 v = val;
                 break;
+            case CssTypes.CSS_FUNCTION:
+                v = parseFunctionValue(ac, val, caller);
+                break;
             case CssTypes.CSS_IDENT:
                 if (inherit.equals(val)) {
                     v = inherit;
@@ -105,6 +106,35 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
         }
         expression.next();
         return v;
+    }
+    protected static CssValue parseFunctionValue(ApplContext ac, CssValue value,
+                                                 CssProperty caller)
+            throws InvalidParamException
+    {
+        CssFunction function = (CssFunction) value;
+        if (!fit_content_func.equalsIgnoreCase(function.getName())) {
+            throw new InvalidParamException("value", value.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        CssExpression expression = function.getParameters();
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, caller);
+                break;
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkPositiveness(ac, caller);
+                break;
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        caller.getPropertyName(), ac);
+        }
+        return value;
     }
 }
 
