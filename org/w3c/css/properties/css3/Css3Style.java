@@ -125,6 +125,8 @@ import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
+import org.w3c.css.properties.css.CssMinBlockSize;
+import org.w3c.css.properties.css.CssMinInlineSize;
 import org.w3c.css.properties.css.CssMixBlendMode;
 import org.w3c.css.properties.css.CssNavDown;
 import org.w3c.css.properties.css.CssNavLeft;
@@ -501,7 +503,27 @@ public class Css3Style extends ATSCStyle {
 
     public CssBlockSize cssBlockSize;
     public CssInlineSize cssInlineSize;
+    public CssMinBlockSize cssMinBlockSize;
+    public CssMinInlineSize cssMinInlineSize;
 
+    public CssMinInlineSize getMinInlineSize() {
+        if (cssMinInlineSize == null) {
+            cssMinInlineSize =
+                    (CssMinInlineSize) style.CascadingOrder(new CssMinInlineSize(),
+                            style, selector);
+        }
+        return cssMinInlineSize;
+    }
+    
+    public CssMinBlockSize getMinBlockSize() {
+        if (cssMinBlockSize == null) {
+            cssMinBlockSize =
+                    (CssMinBlockSize) style.CascadingOrder(new CssMinBlockSize(),
+                            style, selector);
+        }
+        return cssMinBlockSize;
+    }
+    
     public CssInlineSize getInlineSize() {
         if (cssInlineSize == null) {
             cssInlineSize =
@@ -510,6 +532,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssInlineSize;
     }
+    
     public CssBlockSize getBlockSize() {
         if (cssBlockSize == null) {
             cssBlockSize =
