@@ -17,14 +17,17 @@ import org.w3c.css.values.CssValue;
 
 /**
  * @spec https://www.w3.org/TR/2021/WD-css-sizing-3-20210317/#propdef-max-width
+ * @spec https://www.w3.org/TR/2021/WD-css-sizing-4-20210520/#sizing-values
  */
 public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
 
     public static final CssIdent[] allowed_values;
     public static final String fit_content_func = "fit-content";
-    static {
-        String[] _allowed_values = {"none", "max-content", "min-content"};
 
+    static {
+        String[] _allowed_values = {"none", "max-content", "min-content",
+                // following from sizing-4
+                "stretch", "fit-content", "contain"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -107,10 +110,10 @@ public class CssMaxWidth extends org.w3c.css.properties.css.CssMaxWidth {
         expression.next();
         return v;
     }
+
     protected static CssValue parseFunctionValue(ApplContext ac, CssValue value,
                                                  CssProperty caller)
-            throws InvalidParamException
-    {
+            throws InvalidParamException {
         CssFunction function = (CssFunction) value;
         if (!fit_content_func.equalsIgnoreCase(function.getName())) {
             throw new InvalidParamException("value", value.toString(),
