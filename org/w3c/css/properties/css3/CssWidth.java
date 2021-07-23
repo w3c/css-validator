@@ -10,22 +10,21 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssCheckableValue;
 import org.w3c.css.values.CssExpression;
+import org.w3c.css.values.CssFunction;
 import org.w3c.css.values.CssIdent;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec http://www.w3.org/TR/2007/WD-css3-box-20070809/#width
- * @spec https://www.w3.org/TR/2016/WD-css-sizing-3-20160512/#width-height-keywords
+ * @spec https://www.w3.org/TR/2021/WD-css-sizing-3-20210317/#propdef-width
  */
 public class CssWidth extends org.w3c.css.properties.css.CssWidth {
 
     public static final CssIdent[] allowed_values;
+    public static final String fit_content_func = "fit-content";
 
     static {
-        // fill to fit-content from css-sizing
-        String[] _allowed_values = {"auto", "fill", "max-content", "min-content", "fit-content"};
-
+        String[] _allowed_values = {"auto", "max-content", "min-content"};
         allowed_values = new CssIdent[_allowed_values.length];
         int i = 0;
         for (String s : _allowed_values) {
@@ -96,6 +95,9 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
                     }
                 }
                 break;
+            case CssTypes.CSS_FUNCTION:
+                v = parseFunctionValue(ac, val, caller);
+                break;
             case CssTypes.CSS_NUMBER:
                 // only 0 can be a length...
                 CssCheckableValue p = val.getCheckableValue();
@@ -114,5 +116,35 @@ public class CssWidth extends org.w3c.css.properties.css.CssWidth {
         }
         expression.next();
         return v;
+    }
+
+    protected static CssValue parseFunctionValue(ApplContext ac, CssValue value,
+                                                 CssProperty caller)
+            throws InvalidParamException
+    {
+        CssFunction function = (CssFunction) value;
+        if (!fit_content_func.equalsIgnoreCase(function.getName())) {
+            throw new InvalidParamException("value", value.toString(),
+                    caller.getPropertyName(), ac);
+        }
+        CssExpression expression = function.getParameters();
+        if (expression.getCount() > 1) {
+            throw new InvalidParamException("unrecognize", ac);
+        }
+        CssValue val = expression.getValue();
+        switch (val.getType()) {
+            case CssTypes.CSS_NUMBER:
+                val.getCheckableValue().checkEqualsZero(ac, caller);
+                break;
+            case CssTypes.CSS_LENGTH:
+            case CssTypes.CSS_PERCENTAGE:
+                CssCheckableValue l = val.getCheckableValue();
+                l.checkPositiveness(ac, caller);
+                break;
+            default:
+                throw new InvalidParamException("value", expression.getValue(),
+                        caller.getPropertyName(), ac);
+        }
+        return value;
     }
 }
