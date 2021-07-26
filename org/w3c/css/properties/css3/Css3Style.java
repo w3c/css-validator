@@ -159,6 +159,7 @@ import org.w3c.css.properties.css.CssOverflowY;
 import org.w3c.css.properties.css.CssPaddingBlock;
 import org.w3c.css.properties.css.CssPaddingBlockEnd;
 import org.w3c.css.properties.css.CssPaddingBlockStart;
+import org.w3c.css.properties.css.CssPaddingInlineEnd;
 import org.w3c.css.properties.css.CssPaddingInlineStart;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
@@ -543,7 +544,17 @@ public class Css3Style extends ATSCStyle {
     public CssPaddingBlockEnd cssPaddingBlockEnd;
     public CssPaddingBlock cssPaddingBlock;
     public CssPaddingInlineStart cssPaddingInlineStart;
+    public CssPaddingInlineEnd cssPaddingInlineEnd;
 
+    public CssPaddingInlineEnd getPaddingInlineEnd() {
+        if (cssPaddingInlineEnd == null) {
+            cssPaddingInlineEnd =
+                    (CssPaddingInlineEnd) style.CascadingOrder(new CssPaddingInlineEnd(),
+                            style, selector);
+        }
+        return cssPaddingInlineEnd;
+    }
+    
     public CssPaddingInlineStart getPaddingInlineStart() {
         if (cssPaddingInlineStart == null) {
             cssPaddingInlineStart =
