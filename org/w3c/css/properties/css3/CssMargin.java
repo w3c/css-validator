@@ -155,9 +155,9 @@ public class CssMargin extends org.w3c.css.properties.css.CssMargin {
 
     // for use by individual margin-* properties
 
-    protected static CssValue checkValue(ApplContext ac,
-                                         CssExpression expression,
-                                         boolean check, CssProperty caller)
+    protected static CssValue parseMargin(ApplContext ac,
+                                          CssExpression expression,
+                                          boolean check, CssProperty caller)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);

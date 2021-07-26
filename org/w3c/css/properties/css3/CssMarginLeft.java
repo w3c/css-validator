@@ -45,7 +45,7 @@ public class CssMarginLeft extends org.w3c.css.properties.css.CssMarginLeft {
     public CssMarginLeft(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
         setByUser();
-        value = CssMargin.checkValue(ac, expression, check, this);
+        value = CssMargin.parseMargin(ac, expression, check, this);
     }
 
 }
