@@ -37,6 +37,7 @@ import org.w3c.css.properties.css.CssBlockSize;
 import org.w3c.css.properties.css.CssBorderBlockEndWidth;
 import org.w3c.css.properties.css.CssBorderBlockStartWidth;
 import org.w3c.css.properties.css.CssBorderImageSource;
+import org.w3c.css.properties.css.CssBorderInlineStartWidth;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBoxSizing;
@@ -551,7 +552,17 @@ public class Css3Style extends ATSCStyle {
     public CssPaddingInline cssPaddingInline;
     public CssBorderBlockStartWidth cssBorderBlockStartWidth;
     public CssBorderBlockEndWidth cssBorderBlockEndWidth;
+    public CssBorderInlineStartWidth cssBorderInlineStartWidth;
 
+    public CssBorderInlineStartWidth getBorderInlineStartWidth() {
+        if (cssBorderInlineStartWidth == null) {
+            cssBorderInlineStartWidth =
+                    (CssBorderInlineStartWidth) style.CascadingOrder(new CssBorderInlineStartWidth(),
+                            style, selector);
+        }
+        return cssBorderInlineStartWidth;
+    }
+    
     public CssBorderBlockEndWidth getBorderBlockEndWidth() {
         if (cssBorderBlockEndWidth == null) {
             cssBorderBlockEndWidth =
