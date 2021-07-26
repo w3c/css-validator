@@ -55,7 +55,7 @@ public class CssMarginBlockStart extends CssProperty {
      * Returns the name of this property
      */
     public final String getPropertyName() {
-        return "max-width";
+        return "margin-block-start";
     }
 
     /**
