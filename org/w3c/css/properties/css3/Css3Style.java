@@ -120,6 +120,7 @@ import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarginBlockStart;
 import org.w3c.css.properties.css.CssMarkerSide;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
@@ -509,6 +510,16 @@ public class Css3Style extends ATSCStyle {
     public CssMinInlineSize cssMinInlineSize;
     public CssMaxBlockSize cssMaxBlockSize;
     public CssMaxInlineSize cssMaxInlineSize;
+    public CssMarginBlockStart cssMarginBlockStart;
+
+    public CssMarginBlockStart getMarginBlockStart() {
+        if (cssMarginBlockStart == null) {
+            cssMarginBlockStart =
+                    (CssMarginBlockStart) style.CascadingOrder(new CssMarginBlockStart(),
+                            style, selector);
+        }
+        return cssMarginBlockStart;
+    }
     
     public CssMaxInlineSize getMaxInlineSize() {
         if (cssMaxInlineSize == null) {
@@ -518,6 +529,7 @@ public class Css3Style extends ATSCStyle {
         }
         return cssMaxInlineSize;
     }
+    
     public CssMaxBlockSize getMaxBlockSize() {
         if (cssMaxBlockSize == null) {
             cssMaxBlockSize =
