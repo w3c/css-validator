@@ -31,7 +31,7 @@ public class CssBorderBottomColor extends org.w3c.css.properties.css.CssBorderBo
      */
     public CssBorderBottomColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        value = CssBorderColor.checkBorderSideColor(ac, this, expression, check);
+        value = CssBorderColor.parseBorderSideColor(ac, expression, check, this);
     }
 
     public CssBorderBottomColor(ApplContext ac, CssExpression expression)

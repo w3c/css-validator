@@ -133,8 +133,7 @@ public class CssBorderColor extends org.w3c.css.properties.css.CssBorderColor {
      * Check the border-*-color and returns a value.
      * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    protected static CssValue checkBorderSideColor(ApplContext ac, CssProperty caller, CssExpression expression,
-                                                   boolean check) throws InvalidParamException {
+    protected static CssValue parseBorderSideColor(ApplContext ac, CssExpression expression, boolean check, CssProperty caller) throws InvalidParamException {
 
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);

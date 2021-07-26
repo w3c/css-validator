@@ -31,7 +31,7 @@ public class CssBorderRightColor extends org.w3c.css.properties.css.CssBorderRig
      */
     public CssBorderRightColor(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        value = CssBorderColor.checkBorderSideColor(ac, this, expression, check);
+        value = CssBorderColor.parseBorderSideColor(ac, expression, check, this);
     }
 
     public CssBorderRightColor(ApplContext ac, CssExpression expression)
