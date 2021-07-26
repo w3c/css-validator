@@ -123,6 +123,7 @@ import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarginBlock;
 import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
+import org.w3c.css.properties.css.CssMarginInline;
 import org.w3c.css.properties.css.CssMarginInlineEnd;
 import org.w3c.css.properties.css.CssMarginInlineStart;
 import org.w3c.css.properties.css.CssMarkerSide;
@@ -519,8 +520,17 @@ public class Css3Style extends ATSCStyle {
     public CssMarginBlock cssMarginBlock;
     public CssMarginInlineStart cssMarginInlineStart;
     public CssMarginInlineEnd cssMarginInlineEnd;
+    public CssMarginInline cssMarginInline;
 
-
+    public CssMarginInline getMarginInline() {
+        if (cssMarginInline == null) {
+            cssMarginInline =
+                    (CssMarginInline) style.CascadingOrder(new CssMarginInline(),
+                            style, selector);
+        }
+        return cssMarginInline;
+    }
+    
     public CssMarginInlineEnd getMarginInlineEnd() {
         if (cssMarginInlineEnd == null) {
             cssMarginInlineEnd =
