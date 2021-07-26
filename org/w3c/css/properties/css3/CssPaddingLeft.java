@@ -45,7 +45,7 @@ public class CssPaddingLeft extends org.w3c.css.properties.css.CssPaddingLeft {
     public CssPaddingLeft(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
         setByUser();
-        value = CssPadding.checkValue(ac, expression, check, this);
+        value = CssPadding.parsePadding(ac, expression, check, this);
     }
 
 }
