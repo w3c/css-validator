@@ -36,7 +36,7 @@ public class CssColumnRuleWidth extends org.w3c.css.properties.css.CssColumnRule
                               boolean check) throws InvalidParamException {
 
         setByUser();
-        value = CssBorderWidth.checkBorderSideWidth(ac, this, expression, check);
+        value = CssBorderWidth.parseBorderSideWidth(ac, expression, check, this);
     }
 
     public CssColumnRuleWidth(ApplContext ac, CssExpression expression)
