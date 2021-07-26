@@ -114,6 +114,7 @@ import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
 import org.w3c.css.properties.css.CssInlineSize;
+import org.w3c.css.properties.css.CssInsetBlock;
 import org.w3c.css.properties.css.CssInsetBlockEnd;
 import org.w3c.css.properties.css.CssInsetBlockStart;
 import org.w3c.css.properties.css.CssIsolation;
@@ -525,7 +526,17 @@ public class Css3Style extends ATSCStyle {
     public CssMarginInline cssMarginInline;
     public CssInsetBlockStart cssInsetBlockStart;
     public CssInsetBlockEnd cssInsetBlockEnd;
+    public CssInsetBlock cssInsetBlock;
 
+    public CssInsetBlock getInsetBlock() {
+        if (cssInsetBlock == null) {
+            cssInsetBlock =
+                    (CssInsetBlock) style.CascadingOrder(new CssInsetBlock(),
+                            style, selector);
+        }
+        return cssInsetBlock;
+    }
+    
     public CssInsetBlockEnd getInsetBlockEnd() {
         if (cssInsetBlockEnd == null) {
             cssInsetBlockEnd =
