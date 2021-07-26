@@ -117,6 +117,7 @@ import org.w3c.css.properties.css.CssInlineSize;
 import org.w3c.css.properties.css.CssInsetBlock;
 import org.w3c.css.properties.css.CssInsetBlockEnd;
 import org.w3c.css.properties.css.CssInsetBlockStart;
+import org.w3c.css.properties.css.CssInsetInlineStart;
 import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssJustifyItems;
@@ -527,7 +528,17 @@ public class Css3Style extends ATSCStyle {
     public CssInsetBlockStart cssInsetBlockStart;
     public CssInsetBlockEnd cssInsetBlockEnd;
     public CssInsetBlock cssInsetBlock;
+    public CssInsetInlineStart cssInsetInlineStart;
 
+    public CssInsetInlineStart getInsetInlineStart() {
+        if (cssInsetInlineStart == null) {
+            cssInsetInlineStart =
+                    (CssInsetInlineStart) style.CascadingOrder(new CssInsetInlineStart(),
+                            style, selector);
+        }
+        return cssInsetInlineStart;
+    }
+    
     public CssInsetBlock getInsetBlock() {
         if (cssInsetBlock == null) {
             cssInsetBlock =
