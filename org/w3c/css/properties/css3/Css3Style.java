@@ -120,6 +120,7 @@ import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
 import org.w3c.css.properties.css.CssMarkerSide;
 import org.w3c.css.properties.css.CssMarqueeDirection;
@@ -511,7 +512,17 @@ public class Css3Style extends ATSCStyle {
     public CssMaxBlockSize cssMaxBlockSize;
     public CssMaxInlineSize cssMaxInlineSize;
     public CssMarginBlockStart cssMarginBlockStart;
-
+    public CssMarginBlockEnd cssMarginBlockEnd;
+    
+    public CssMarginBlockEnd getMarginBlockEnd() {
+        if (cssMarginBlockEnd == null) {
+            cssMarginBlockEnd =
+                    (CssMarginBlockEnd) style.CascadingOrder(new CssMarginBlockEnd(),
+                            style, selector);
+        }
+        return cssMarginBlockEnd;
+    }
+    
     public CssMarginBlockStart getMarginBlockStart() {
         if (cssMarginBlockStart == null) {
             cssMarginBlockStart =
