@@ -56,7 +56,7 @@ public class CssMarginBlock extends org.w3c.css.properties.css.CssMarginBlock {
         if (v.size() == 1) {
             value = v.get(0);
         } else {
-            if (inherit.equals(v.get(0)) && inherit.equals(v.get(1))) {
+            if (v.contains(inherit)) {
                 throw new InvalidParamException("value", inherit.toString(),
                         getPropertyName(), ac);
             }
