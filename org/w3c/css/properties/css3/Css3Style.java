@@ -122,6 +122,7 @@ import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
 import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
+import org.w3c.css.properties.css.CssMarginInlineStart;
 import org.w3c.css.properties.css.CssMarkerSide;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
@@ -513,6 +514,16 @@ public class Css3Style extends ATSCStyle {
     public CssMaxInlineSize cssMaxInlineSize;
     public CssMarginBlockStart cssMarginBlockStart;
     public CssMarginBlockEnd cssMarginBlockEnd;
+    public CssMarginInlineStart cssMarginInlineStart;
+
+    public CssMarginInlineStart getMarginInlineStart() {
+        if (cssMarginInlineStart == null) {
+            cssMarginInlineStart =
+                    (CssMarginInlineStart) style.CascadingOrder(new CssMarginInlineStart(),
+                            style, selector);
+        }
+        return cssMarginInlineStart;
+    }
     
     public CssMarginBlockEnd getMarginBlockEnd() {
         if (cssMarginBlockEnd == null) {
