@@ -37,7 +37,7 @@ public class CssColumnRuleStyle extends org.w3c.css.properties.css.CssColumnRule
                               boolean check) throws InvalidParamException {
 
         setByUser();
-        value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
+        value = CssBorderStyle.parseBorderSideStyle(ac, expression, check, this);
     }
 
     public CssColumnRuleStyle(ApplContext ac, CssExpression expression)
