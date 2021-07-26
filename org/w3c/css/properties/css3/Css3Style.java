@@ -120,6 +120,7 @@ import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarginBlock;
 import org.w3c.css.properties.css.CssMarginBlockEnd;
 import org.w3c.css.properties.css.CssMarginBlockStart;
 import org.w3c.css.properties.css.CssMarginInlineEnd;
@@ -515,6 +516,7 @@ public class Css3Style extends ATSCStyle {
     public CssMaxInlineSize cssMaxInlineSize;
     public CssMarginBlockStart cssMarginBlockStart;
     public CssMarginBlockEnd cssMarginBlockEnd;
+    public CssMarginBlock cssMarginBlock;
     public CssMarginInlineStart cssMarginInlineStart;
     public CssMarginInlineEnd cssMarginInlineEnd;
 
@@ -535,6 +537,15 @@ public class Css3Style extends ATSCStyle {
                             style, selector);
         }
         return cssMarginInlineStart;
+    }
+
+    public CssMarginBlock getMarginBlock() {
+        if (cssMarginBlock == null) {
+            cssMarginBlock =
+                    (CssMarginBlock) style.CascadingOrder(new CssMarginBlock(),
+                            style, selector);
+        }
+        return cssMarginBlock;
     }
     
     public CssMarginBlockEnd getMarginBlockEnd() {
