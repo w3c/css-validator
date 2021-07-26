@@ -32,7 +32,7 @@ public class CssRight extends org.w3c.css.properties.css.CssRight {
      */
     public CssRight(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        value = CssTop.checkValue(ac, expression, check, this);
+        value = CssTop.parseTop(ac, expression, check, this);
 
     }
 

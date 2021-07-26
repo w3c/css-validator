@@ -36,7 +36,7 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
      */
     public CssTop(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        value = checkValue(ac, expression, check, this);
+        value = parseTop(ac, expression, check, this);
     }
 
     public CssTop(ApplContext ac, CssExpression expression)
@@ -51,9 +51,9 @@ public class CssTop extends org.w3c.css.properties.css.CssTop {
      * @see CssLeft
      * @see CssRight
      */
-    protected static CssValue checkValue(ApplContext ac,
-                                         CssExpression expression,
-                                         boolean check, CssProperty caller)
+    protected static CssValue parseTop(ApplContext ac,
+                                       CssExpression expression,
+                                       boolean check, CssProperty caller)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);
