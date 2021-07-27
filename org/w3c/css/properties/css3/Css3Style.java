@@ -34,6 +34,7 @@ import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
 import org.w3c.css.properties.css.CssBlockSize;
+import org.w3c.css.properties.css.CssBorderBlock;
 import org.w3c.css.properties.css.CssBorderBlockColor;
 import org.w3c.css.properties.css.CssBorderBlockEnd;
 import org.w3c.css.properties.css.CssBorderBlockEndColor;
@@ -591,7 +592,17 @@ public class Css3Style extends ATSCStyle {
     public CssBorderBlockEnd  cssBorderBlockEnd;
     public CssBorderInlineStart cssBorderInlineStart;
     public CssBorderInlineEnd   cssBorderInlineEnd;
+    public CssBorderBlock   cssBorderBlock;
 
+    public CssBorderBlock getBorderBlock() {
+        if (cssBorderBlock == null) {
+            cssBorderBlock =
+                    (CssBorderBlock) style.CascadingOrder(new CssBorderBlock(),
+                            style, selector);
+        }
+        return cssBorderBlock;
+    }
+    
     public CssBorderInlineEnd getBorderInlineEnd() {
         if (cssBorderInlineEnd == null) {
             cssBorderInlineEnd =
