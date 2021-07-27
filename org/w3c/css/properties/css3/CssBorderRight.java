@@ -46,7 +46,7 @@ public class CssBorderRight extends org.w3c.css.properties.css.CssBorderRight {
      */
     public CssBorderRight(ApplContext ac, CssExpression expression,
                           boolean check) throws InvalidParamException {
-        CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
+        CssBorder.SideValues values = CssBorder.parseBorderSide(ac, expression, check, this);
         if (values.width != null) {
             _width = new CssBorderRightWidth();
             _width.setByUser();

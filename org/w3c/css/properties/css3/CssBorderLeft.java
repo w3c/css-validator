@@ -47,7 +47,7 @@ public class CssBorderLeft extends org.w3c.css.properties.css.CssBorderLeft {
      */
     public CssBorderLeft(ApplContext ac, CssExpression expression,
                          boolean check) throws InvalidParamException {
-        CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
+        CssBorder.SideValues values = CssBorder.parseBorderSide(ac, expression, check, this);
         CssValueList vl = new CssValueList();
 
         if (values.width != null) {
