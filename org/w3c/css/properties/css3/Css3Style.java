@@ -59,6 +59,7 @@ import org.w3c.css.properties.css.CssBorderInlineStartStyle;
 import org.w3c.css.properties.css.CssBorderInlineStartWidth;
 import org.w3c.css.properties.css.CssBorderInlineStyle;
 import org.w3c.css.properties.css.CssBorderInlineWidth;
+import org.w3c.css.properties.css.CssBorderStartEndRadius;
 import org.w3c.css.properties.css.CssBorderStartStartRadius;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
@@ -597,7 +598,17 @@ public class Css3Style extends ATSCStyle {
     public CssBorderBlock   cssBorderBlock;
     public CssBorderInline  cssBorderInline;
     public CssBorderStartStartRadius cssBorderStartStartRadius;
+    public CssBorderStartEndRadius cssBorderStartEndRadius;
 
+    public CssBorderStartEndRadius getBorderStartEndRadius() {
+        if (cssBorderStartEndRadius == null) {
+            cssBorderStartEndRadius =
+                    (CssBorderStartEndRadius) style.CascadingOrder(new CssBorderStartEndRadius(),
+                            style, selector);
+        }
+        return cssBorderStartEndRadius;
+    }
+    
     public CssBorderStartStartRadius getBorderStartStartRadius() {
         if (cssBorderStartStartRadius == null) {
             cssBorderStartStartRadius =
