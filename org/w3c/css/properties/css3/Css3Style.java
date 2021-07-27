@@ -46,6 +46,7 @@ import org.w3c.css.properties.css.CssBorderBlockStartStyle;
 import org.w3c.css.properties.css.CssBorderBlockStartWidth;
 import org.w3c.css.properties.css.CssBorderBlockStyle;
 import org.w3c.css.properties.css.CssBorderBlockWidth;
+import org.w3c.css.properties.css.CssBorderEndStartRadius;
 import org.w3c.css.properties.css.CssBorderImageSource;
 import org.w3c.css.properties.css.CssBorderInline;
 import org.w3c.css.properties.css.CssBorderInlineColor;
@@ -599,7 +600,17 @@ public class Css3Style extends ATSCStyle {
     public CssBorderInline  cssBorderInline;
     public CssBorderStartStartRadius cssBorderStartStartRadius;
     public CssBorderStartEndRadius cssBorderStartEndRadius;
+    public CssBorderEndStartRadius cssBorderEndStartRadius;
 
+    public CssBorderEndStartRadius getBorderEndStartRadius() {
+        if (cssBorderEndStartRadius == null) {
+            cssBorderEndStartRadius =
+                    (CssBorderEndStartRadius) style.CascadingOrder(new CssBorderEndStartRadius(),
+                            style, selector);
+        }
+        return cssBorderEndStartRadius;
+    }
+    
     public CssBorderStartEndRadius getBorderStartEndRadius() {
         if (cssBorderStartEndRadius == null) {
             cssBorderStartEndRadius =
