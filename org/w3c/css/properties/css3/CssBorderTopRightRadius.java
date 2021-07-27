@@ -33,7 +33,7 @@ public class CssBorderTopRightRadius extends org.w3c.css.properties.css.CssBorde
     public CssBorderTopRightRadius(ApplContext ac, CssExpression expression,
                                    boolean check) throws InvalidParamException {
         setByUser();
-        value = CssBorderRadius.checkBorderCornerRadius(ac, this, expression, check);
+        value = CssBorderRadius.parseBorderCornerRadius(ac, expression, check, this);
         if (value.getType() == CssTypes.CSS_VALUE_LIST) {
             CssValueList vl = (CssValueList) value;
             h_radius = vl.get(0);

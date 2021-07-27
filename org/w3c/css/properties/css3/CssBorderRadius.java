@@ -177,8 +177,7 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
      * Check the border-*-radius and returns a value.
      * It makes sense to do it only once for all the corners, so by having the code here.
      */
-    public static CssValue checkBorderCornerRadius(ApplContext ac, CssProperty caller,
-                                                   CssExpression expression, boolean check)
+    public static CssValue parseBorderCornerRadius(ApplContext ac, CssExpression expression, boolean check, CssProperty caller)
             throws InvalidParamException {
 
         if (check && expression.getCount() > 2) {
@@ -204,7 +203,7 @@ public class CssBorderRadius extends org.w3c.css.properties.css.CssBorderRadius 
                     res.add(val);
                     break;
                 case CssTypes.CSS_IDENT:
-                    if (inherit.equals((val))) {
+                    if (inherit.equals(val)) {
                         if (res.size() > 0) {
                             throw new InvalidParamException("unrecognize", ac);
                         }

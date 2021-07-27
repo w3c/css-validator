@@ -210,7 +210,7 @@ public class CssClipPath extends org.w3c.css.properties.css.CssClipPath {
                         if (nex.getCount() == 0) {
                             throw new InvalidParamException("unrecognize", ac);
                         }
-                        CssBorderRadius.checkBorderCornerRadius(ac, caller, nex, true);
+                        CssBorderRadius.parseBorderCornerRadius(ac, nex, true, caller);
                         break;
                     }
                 default:
