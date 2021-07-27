@@ -153,9 +153,9 @@ public class CssPadding extends org.w3c.css.properties.css.CssPadding {
 
     // for use by individual padding-* properties
 
-    protected static CssValue checkValue(ApplContext ac,
-                                         CssExpression expression,
-                                         boolean check, CssProperty caller)
+    protected static CssValue parsePadding(ApplContext ac,
+                                           CssExpression expression,
+                                           boolean check, CssProperty caller)
             throws InvalidParamException {
         if (check && expression.getCount() > 1) {
             throw new InvalidParamException("unrecognize", ac);

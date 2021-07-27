@@ -33,7 +33,7 @@ public class CssBorderRightStyle extends org.w3c.css.properties.css.CssBorderRig
             throws InvalidParamException {
         setByUser();
         // here we delegate to BorderWidth implementation
-        value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
+        value = CssBorderStyle.parseBorderSideStyle(ac, expression, check, this);
     }
 
     public CssBorderRightStyle(ApplContext ac, CssExpression expression)

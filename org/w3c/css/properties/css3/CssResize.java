@@ -13,14 +13,16 @@ import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 
 /**
- * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20200124/#propdef-resize
+ * @spec https://www.w3.org/TR/2020/WD-css-ui-4-20210316/#propdef-resize
+ * @spec https://www.w3.org/TR/2018/WD-css-logical-1-20180827/#resize
  */
 public class CssResize extends org.w3c.css.properties.css.CssResize {
 
     private static CssIdent[] allowed_values;
 
     static {
-        String id_values[] = {"none", "both", "horizontal", "vertical"};
+        String id_values[] = {"none", "both", "horizontal", "vertical",
+                "block", "inline"};
         allowed_values = new CssIdent[id_values.length];
         int i = 0;
         for (String s : id_values) {
@@ -48,8 +50,7 @@ public class CssResize extends org.w3c.css.properties.css.CssResize {
      * Creates a new CssResize
      *
      * @param expression The expression for this property
-     * @throws org.w3c.css.util.InvalidParamException
-     *          Expressions are incorrect
+     * @throws org.w3c.css.util.InvalidParamException Expressions are incorrect
      */
     public CssResize(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {

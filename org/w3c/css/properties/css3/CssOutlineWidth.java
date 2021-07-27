@@ -33,7 +33,7 @@ public class CssOutlineWidth extends org.w3c.css.properties.css.CssOutlineWidth 
             throws InvalidParamException {
         setByUser();
         // here we delegate to BorderWidth implementation
-        value = CssBorderWidth.checkBorderSideWidth(ac, this, expression, check);
+        value = CssBorderWidth.parseBorderSideWidth(ac, expression, check, this);
     }
 
     public CssOutlineWidth(ApplContext ac, CssExpression expression)

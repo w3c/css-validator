@@ -55,7 +55,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
         // great, it's the same thing as one side!
         CssValueList valueList = new CssValueList();
 
-        SideValues values = checkBorderSide(ac, this, expression, check);
+        SideValues values = parseBorderSide(ac, expression, check, this);
         shorthand = true;
         if (values.color != null) {
             valueList.add(values.color);
@@ -100,8 +100,7 @@ public class CssBorder extends org.w3c.css.properties.css.CssBorder {
      * Check the border-* and returns a value.
      * It makes sense to do it only once for all the sides, so by having the code here.
      */
-    protected static SideValues checkBorderSide(ApplContext ac, CssProperty caller, CssExpression expression,
-                                                boolean check) throws InvalidParamException {
+    protected static SideValues parseBorderSide(ApplContext ac, CssExpression expression, boolean check, CssProperty caller) throws InvalidParamException {
         if (check && expression.getCount() > 3) {
             throw new InvalidParamException("unrecognize", ac);
         }

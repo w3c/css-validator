@@ -33,7 +33,7 @@ public class CssBorderBottomWidth extends org.w3c.css.properties.css.CssBorderBo
             throws InvalidParamException {
         setByUser();
         // here we delegate to BorderWidth implementation
-        value = CssBorderWidth.checkBorderSideWidth(ac, this, expression, check);
+        value = CssBorderWidth.parseBorderSideWidth(ac, expression, check, this);
     }
 
     public CssBorderBottomWidth(ApplContext ac, CssExpression expression)

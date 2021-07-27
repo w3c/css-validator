@@ -32,7 +32,7 @@ public class CssLeft extends org.w3c.css.properties.css.CssLeft {
      */
     public CssLeft(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        value = CssTop.checkValue(ac, expression, check, this);
+        value = CssTop.parseTop(ac, expression, check, this);
 
     }
 

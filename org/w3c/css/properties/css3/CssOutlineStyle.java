@@ -69,7 +69,7 @@ public class CssOutlineStyle extends org.w3c.css.properties.css.CssOutlineStyle 
             expression.next();
         } else {
             // here we delegate to BorderStyle implementation
-            value = CssBorderStyle.checkBorderSideStyle(ac, this, expression, check);
+            value = CssBorderStyle.parseBorderSideStyle(ac, expression, check, this);
             // but hidden is not a valid value...
             if (hidden.equals(value)) {
                 throw new InvalidParamException("value", hidden,

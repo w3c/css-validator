@@ -49,7 +49,7 @@ public class CssBorderBottom extends org.w3c.css.properties.css.CssBorderBottom 
      */
     public CssBorderBottom(ApplContext ac, CssExpression expression,
                            boolean check) throws InvalidParamException {
-        CssBorder.SideValues values = CssBorder.checkBorderSide(ac, this, expression, check);
+        CssBorder.SideValues values = CssBorder.parseBorderSide(ac, expression, check, this);
         if (values.width != null) {
             _width = new CssBorderBottomWidth();
             _width.setByUser();

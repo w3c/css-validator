@@ -33,7 +33,36 @@ import org.w3c.css.properties.css.CssBackgroundPositionX;
 import org.w3c.css.properties.css.CssBackgroundPositionY;
 import org.w3c.css.properties.css.CssBackgroundSize;
 import org.w3c.css.properties.css.CssBaselineShift;
+import org.w3c.css.properties.css.CssBlockSize;
+import org.w3c.css.properties.css.CssBorderBlock;
+import org.w3c.css.properties.css.CssBorderBlockColor;
+import org.w3c.css.properties.css.CssBorderBlockEnd;
+import org.w3c.css.properties.css.CssBorderBlockEndColor;
+import org.w3c.css.properties.css.CssBorderBlockEndStyle;
+import org.w3c.css.properties.css.CssBorderBlockEndWidth;
+import org.w3c.css.properties.css.CssBorderBlockStart;
+import org.w3c.css.properties.css.CssBorderBlockStartColor;
+import org.w3c.css.properties.css.CssBorderBlockStartStyle;
+import org.w3c.css.properties.css.CssBorderBlockStartWidth;
+import org.w3c.css.properties.css.CssBorderBlockStyle;
+import org.w3c.css.properties.css.CssBorderBlockWidth;
+import org.w3c.css.properties.css.CssBorderEndEndRadius;
+import org.w3c.css.properties.css.CssBorderEndStartRadius;
 import org.w3c.css.properties.css.CssBorderImageSource;
+import org.w3c.css.properties.css.CssBorderInline;
+import org.w3c.css.properties.css.CssBorderInlineColor;
+import org.w3c.css.properties.css.CssBorderInlineEnd;
+import org.w3c.css.properties.css.CssBorderInlineEndColor;
+import org.w3c.css.properties.css.CssBorderInlineEndStyle;
+import org.w3c.css.properties.css.CssBorderInlineEndWidth;
+import org.w3c.css.properties.css.CssBorderInlineStart;
+import org.w3c.css.properties.css.CssBorderInlineStartColor;
+import org.w3c.css.properties.css.CssBorderInlineStartStyle;
+import org.w3c.css.properties.css.CssBorderInlineStartWidth;
+import org.w3c.css.properties.css.CssBorderInlineStyle;
+import org.w3c.css.properties.css.CssBorderInlineWidth;
+import org.w3c.css.properties.css.CssBorderStartEndRadius;
+import org.w3c.css.properties.css.CssBorderStartStartRadius;
 import org.w3c.css.properties.css.CssBoxDecorationBreak;
 import org.w3c.css.properties.css.CssBoxShadow;
 import org.w3c.css.properties.css.CssBoxSizing;
@@ -112,17 +141,35 @@ import org.w3c.css.properties.css.CssImeMode;
 import org.w3c.css.properties.css.CssInitialLetter;
 import org.w3c.css.properties.css.CssInitialLetterAlign;
 import org.w3c.css.properties.css.CssInitialLetterWrap;
+import org.w3c.css.properties.css.CssInlineSize;
+import org.w3c.css.properties.css.CssInset;
+import org.w3c.css.properties.css.CssInsetBlock;
+import org.w3c.css.properties.css.CssInsetBlockEnd;
+import org.w3c.css.properties.css.CssInsetBlockStart;
+import org.w3c.css.properties.css.CssInsetInline;
+import org.w3c.css.properties.css.CssInsetInlineEnd;
+import org.w3c.css.properties.css.CssInsetInlineStart;
 import org.w3c.css.properties.css.CssIsolation;
 import org.w3c.css.properties.css.CssJustifyContent;
 import org.w3c.css.properties.css.CssJustifyItems;
 import org.w3c.css.properties.css.CssJustifySelf;
 import org.w3c.css.properties.css.CssLightingColor;
 import org.w3c.css.properties.css.CssLineBreak;
+import org.w3c.css.properties.css.CssMarginBlock;
+import org.w3c.css.properties.css.CssMarginBlockEnd;
+import org.w3c.css.properties.css.CssMarginBlockStart;
+import org.w3c.css.properties.css.CssMarginInline;
+import org.w3c.css.properties.css.CssMarginInlineEnd;
+import org.w3c.css.properties.css.CssMarginInlineStart;
 import org.w3c.css.properties.css.CssMarkerSide;
 import org.w3c.css.properties.css.CssMarqueeDirection;
 import org.w3c.css.properties.css.CssMarqueePlayCount;
 import org.w3c.css.properties.css.CssMarqueeSpeed;
 import org.w3c.css.properties.css.CssMarqueeStyle;
+import org.w3c.css.properties.css.CssMaxBlockSize;
+import org.w3c.css.properties.css.CssMaxInlineSize;
+import org.w3c.css.properties.css.CssMinBlockSize;
+import org.w3c.css.properties.css.CssMinInlineSize;
 import org.w3c.css.properties.css.CssMixBlendMode;
 import org.w3c.css.properties.css.CssNavDown;
 import org.w3c.css.properties.css.CssNavLeft;
@@ -137,6 +184,12 @@ import org.w3c.css.properties.css.CssOverflowStyle;
 import org.w3c.css.properties.css.CssOverflowWrap;
 import org.w3c.css.properties.css.CssOverflowX;
 import org.w3c.css.properties.css.CssOverflowY;
+import org.w3c.css.properties.css.CssPaddingBlock;
+import org.w3c.css.properties.css.CssPaddingBlockEnd;
+import org.w3c.css.properties.css.CssPaddingBlockStart;
+import org.w3c.css.properties.css.CssPaddingInline;
+import org.w3c.css.properties.css.CssPaddingInlineEnd;
+import org.w3c.css.properties.css.CssPaddingInlineStart;
 import org.w3c.css.properties.css.CssPerspective;
 import org.w3c.css.properties.css.CssPerspectiveOrigin;
 import org.w3c.css.properties.css.CssPlaceContent;
@@ -496,6 +549,537 @@ public class Css3Style extends ATSCStyle {
     public CssColorAdjust cssColorAdjust;
     public CssForcedColorAdjust cssForcedColorAdjust;
     public CssColorScheme cssColorScheme;
+
+    public CssBlockSize cssBlockSize;
+    public CssInlineSize cssInlineSize;
+    public CssMinBlockSize cssMinBlockSize;
+    public CssMinInlineSize cssMinInlineSize;
+    public CssMaxBlockSize cssMaxBlockSize;
+    public CssMaxInlineSize cssMaxInlineSize;
+    public CssMarginBlockStart cssMarginBlockStart;
+    public CssMarginBlockEnd cssMarginBlockEnd;
+    public CssMarginBlock cssMarginBlock;
+    public CssMarginInlineStart cssMarginInlineStart;
+    public CssMarginInlineEnd cssMarginInlineEnd;
+    public CssMarginInline cssMarginInline;
+    public CssInsetBlockStart cssInsetBlockStart;
+    public CssInsetBlockEnd cssInsetBlockEnd;
+    public CssInsetBlock cssInsetBlock;
+    public CssInsetInlineStart cssInsetInlineStart;
+    public CssInsetInlineEnd cssInsetInlineEnd;
+    public CssInsetInline   cssInsetInline;
+    public CssInset cssInset;
+    public CssPaddingBlockStart cssPaddingBlockStart;
+    public CssPaddingBlockEnd cssPaddingBlockEnd;
+    public CssPaddingBlock cssPaddingBlock;
+    public CssPaddingInlineStart cssPaddingInlineStart;
+    public CssPaddingInlineEnd cssPaddingInlineEnd;
+    public CssPaddingInline cssPaddingInline;
+    public CssBorderBlockStartWidth cssBorderBlockStartWidth;
+    public CssBorderBlockEndWidth cssBorderBlockEndWidth;
+    public CssBorderInlineStartWidth cssBorderInlineStartWidth;
+    public CssBorderInlineEndWidth cssBorderInlineEndWidth;
+    public CssBorderBlockWidth cssBorderBlockWidth;
+    public CssBorderInlineWidth cssBorderInlineWidth;
+    public CssBorderBlockStartStyle cssBorderBlockStartStyle;
+    public CssBorderBlockEndStyle cssBorderBlockEndStyle;
+    public CssBorderBlockStyle  cssBorderBlockStyle;
+    public CssBorderInlineStartStyle cssBorderInlineStartStyle;
+    public CssBorderInlineEndStyle cssBorderInlineEndStyle;
+    public CssBorderInlineStyle cssBorderInlineStyle;
+    public CssBorderBlockStartColor cssBorderBlockStartColor;
+    public CssBorderBlockEndColor cssBorderBlockEndColor;
+    public CssBorderBlockColor cssBorderBlockColor;
+    public CssBorderInlineStartColor cssBorderInlineStartColor;
+    public CssBorderInlineEndColor cssBorderInlineEndColor;
+    public CssBorderInlineColor cssBorderInlineColor;
+    public CssBorderBlockStart  cssBorderBlockStart;
+    public CssBorderBlockEnd  cssBorderBlockEnd;
+    public CssBorderInlineStart cssBorderInlineStart;
+    public CssBorderInlineEnd   cssBorderInlineEnd;
+    public CssBorderBlock   cssBorderBlock;
+    public CssBorderInline  cssBorderInline;
+    public CssBorderStartStartRadius cssBorderStartStartRadius;
+    public CssBorderStartEndRadius cssBorderStartEndRadius;
+    public CssBorderEndStartRadius cssBorderEndStartRadius;
+    public CssBorderEndEndRadius cssBorderEndEndRadius;
+
+    public CssBorderEndEndRadius getBorderEndEndRadius() {
+        if (cssBorderEndEndRadius == null) {
+            cssBorderEndEndRadius =
+                    (CssBorderEndEndRadius) style.CascadingOrder(new CssBorderEndEndRadius(),
+                            style, selector);
+        }
+        return cssBorderEndEndRadius;
+    }
+    
+    public CssBorderEndStartRadius getBorderEndStartRadius() {
+        if (cssBorderEndStartRadius == null) {
+            cssBorderEndStartRadius =
+                    (CssBorderEndStartRadius) style.CascadingOrder(new CssBorderEndStartRadius(),
+                            style, selector);
+        }
+        return cssBorderEndStartRadius;
+    }
+    
+    public CssBorderStartEndRadius getBorderStartEndRadius() {
+        if (cssBorderStartEndRadius == null) {
+            cssBorderStartEndRadius =
+                    (CssBorderStartEndRadius) style.CascadingOrder(new CssBorderStartEndRadius(),
+                            style, selector);
+        }
+        return cssBorderStartEndRadius;
+    }
+    
+    public CssBorderStartStartRadius getBorderStartStartRadius() {
+        if (cssBorderStartStartRadius == null) {
+            cssBorderStartStartRadius =
+                    (CssBorderStartStartRadius) style.CascadingOrder(new CssBorderStartStartRadius(),
+                            style, selector);
+        }
+        return cssBorderStartStartRadius;
+    }
+    
+    public CssBorderInline getBorderInline() {
+        if (cssBorderInline == null) {
+            cssBorderInline =
+                    (CssBorderInline) style.CascadingOrder(new CssBorderInline(),
+                            style, selector);
+        }
+        return cssBorderInline;
+    }
+    
+    public CssBorderBlock getBorderBlock() {
+        if (cssBorderBlock == null) {
+            cssBorderBlock =
+                    (CssBorderBlock) style.CascadingOrder(new CssBorderBlock(),
+                            style, selector);
+        }
+        return cssBorderBlock;
+    }
+    
+    public CssBorderInlineEnd getBorderInlineEnd() {
+        if (cssBorderInlineEnd == null) {
+            cssBorderInlineEnd =
+                    (CssBorderInlineEnd) style.CascadingOrder(new CssBorderInlineEnd(),
+                            style, selector);
+        }
+        return cssBorderInlineEnd;
+    }
+    
+    public CssBorderInlineStart getBorderInlineStart() {
+        if (cssBorderInlineStart == null) {
+            cssBorderInlineStart =
+                    (CssBorderInlineStart) style.CascadingOrder(new CssBorderInlineStart(),
+                            style, selector);
+        }
+        return cssBorderInlineStart;
+    }
+    
+    public CssBorderBlockEnd getBorderBlockEnd() {
+        if (cssBorderBlockEnd == null) {
+            cssBorderBlockEnd =
+                    (CssBorderBlockEnd) style.CascadingOrder(new CssBorderBlockEnd(),
+                            style, selector);
+        }
+        return cssBorderBlockEnd;
+    }
+    
+    public CssBorderBlockStart getBorderBlockStart() {
+        if (cssBorderBlockStart == null) {
+            cssBorderBlockStart =
+                    (CssBorderBlockStart) style.CascadingOrder(new CssBorderBlockStart(),
+                            style, selector);
+        }
+        return cssBorderBlockStart;
+    }
+    
+    public CssBorderInlineColor getBorderInlineColor() {
+        if (cssBorderInlineColor == null) {
+            cssBorderInlineColor =
+                    (CssBorderInlineColor) style.CascadingOrder(new CssBorderInlineColor(),
+                            style, selector);
+        }
+        return cssBorderInlineColor;
+    }
+    
+    public CssBorderInlineEndColor getBorderInlineEndColor() {
+        if (cssBorderInlineEndColor == null) {
+            cssBorderInlineEndColor =
+                    (CssBorderInlineEndColor) style.CascadingOrder(new CssBorderInlineEndColor(),
+                            style, selector);
+        }
+        return cssBorderInlineEndColor;
+    }
+    
+    public CssBorderInlineStartColor getBorderInlineStartColor() {
+        if (cssBorderInlineStartColor == null) {
+            cssBorderInlineStartColor =
+                    (CssBorderInlineStartColor) style.CascadingOrder(new CssBorderInlineStartColor(),
+                            style, selector);
+        }
+        return cssBorderInlineStartColor;
+    }
+    
+    public CssBorderBlockColor getBorderBlockColor() {
+        if (cssBorderBlockColor == null) {
+            cssBorderBlockColor =
+                    (CssBorderBlockColor) style.CascadingOrder(new CssBorderBlockColor(),
+                            style, selector);
+        }
+        return cssBorderBlockColor;
+    }
+    
+    public CssBorderBlockEndColor getBorderBlockEndColor() {
+        if (cssBorderBlockEndColor == null) {
+            cssBorderBlockEndColor =
+                    (CssBorderBlockEndColor) style.CascadingOrder(new CssBorderBlockEndColor(),
+                            style, selector);
+        }
+        return cssBorderBlockEndColor;
+    }
+    
+    public CssBorderBlockStartColor getBorderBlockStartColor() {
+        if (cssBorderBlockStartColor == null) {
+            cssBorderBlockStartColor =
+                    (CssBorderBlockStartColor) style.CascadingOrder(new CssBorderBlockStartColor(),
+                            style, selector);
+        }
+        return cssBorderBlockStartColor;
+    }
+    
+    public CssBorderInlineStyle getBorderInlineStyle() {
+        if (cssBorderInlineStyle == null) {
+            cssBorderInlineStyle =
+                    (CssBorderInlineStyle) style.CascadingOrder(new CssBorderInlineStyle(),
+                            style, selector);
+        }
+        return cssBorderInlineStyle;
+    }
+    
+    public CssBorderInlineEndStyle getBorderInlineEndStyle() {
+        if (cssBorderInlineEndStyle == null) {
+            cssBorderInlineEndStyle =
+                    (CssBorderInlineEndStyle) style.CascadingOrder(new CssBorderInlineEndStyle(),
+                            style, selector);
+        }
+        return cssBorderInlineEndStyle;
+    }
+    
+    public CssBorderInlineStartStyle getBorderInlineStartStyle() {
+        if (cssBorderInlineStartStyle == null) {
+            cssBorderInlineStartStyle =
+                    (CssBorderInlineStartStyle) style.CascadingOrder(new CssBorderInlineStartStyle(),
+                            style, selector);
+        }
+        return cssBorderInlineStartStyle;
+    }
+    
+    public CssBorderBlockStyle getBorderBlockStyle() {
+        if (cssBorderBlockStyle == null) {
+            cssBorderBlockStyle =
+                    (CssBorderBlockStyle) style.CascadingOrder(new CssBorderBlockStyle(),
+                            style, selector);
+        }
+        return cssBorderBlockStyle;
+    }
+    
+    public CssBorderBlockEndStyle getBorderBlockEndStyle() {
+        if (cssBorderBlockEndStyle == null) {
+            cssBorderBlockEndStyle =
+                    (CssBorderBlockEndStyle) style.CascadingOrder(new CssBorderBlockEndStyle(),
+                            style, selector);
+        }
+        return cssBorderBlockEndStyle;
+    }
+    
+    public CssBorderBlockStartStyle getBorderBlockStartStyle() {
+        if (cssBorderBlockStartStyle == null) {
+            cssBorderBlockStartStyle =
+                    (CssBorderBlockStartStyle) style.CascadingOrder(new CssBorderBlockStartStyle(),
+                            style, selector);
+        }
+        return cssBorderBlockStartStyle;
+    }
+    
+    public CssBorderInlineWidth getBorderInlineWidth() {
+        if (cssBorderInlineWidth == null) {
+            cssBorderInlineWidth =
+                    (CssBorderInlineWidth) style.CascadingOrder(new CssBorderInlineWidth(),
+                            style, selector);
+        }
+        return cssBorderInlineWidth;
+    }
+    
+    public CssBorderBlockWidth getBorderBlockWidth() {
+        if (cssBorderBlockWidth == null) {
+            cssBorderBlockWidth =
+                    (CssBorderBlockWidth) style.CascadingOrder(new CssBorderBlockWidth(),
+                            style, selector);
+        }
+        return cssBorderBlockWidth;
+    }
+    
+    public CssBorderInlineEndWidth getBorderInlineEndWidth() {
+        if (cssBorderInlineEndWidth == null) {
+            cssBorderInlineEndWidth =
+                    (CssBorderInlineEndWidth) style.CascadingOrder(new CssBorderInlineEndWidth(),
+                            style, selector);
+        }
+        return cssBorderInlineEndWidth;
+    }
+    
+    public CssBorderInlineStartWidth getBorderInlineStartWidth() {
+        if (cssBorderInlineStartWidth == null) {
+            cssBorderInlineStartWidth =
+                    (CssBorderInlineStartWidth) style.CascadingOrder(new CssBorderInlineStartWidth(),
+                            style, selector);
+        }
+        return cssBorderInlineStartWidth;
+    }
+    
+    public CssBorderBlockEndWidth getBorderBlockEndWidth() {
+        if (cssBorderBlockEndWidth == null) {
+            cssBorderBlockEndWidth =
+                    (CssBorderBlockEndWidth) style.CascadingOrder(new CssBorderBlockEndWidth(),
+                            style, selector);
+        }
+        return cssBorderBlockEndWidth;
+    }
+    
+    public CssBorderBlockStartWidth getBorderBlockStartWidth() {
+        if (cssBorderBlockStartWidth == null) {
+            cssBorderBlockStartWidth =
+                    (CssBorderBlockStartWidth) style.CascadingOrder(new CssBorderBlockStartWidth(),
+                            style, selector);
+        }
+        return cssBorderBlockStartWidth;
+    }
+    
+    public CssPaddingInline getPaddingInline() {
+        if (cssPaddingInline == null) {
+            cssPaddingInline =
+                    (CssPaddingInline) style.CascadingOrder(new CssPaddingInline(),
+                            style, selector);
+        }
+        return cssPaddingInline;
+    }
+    
+    public CssPaddingInlineEnd getPaddingInlineEnd() {
+        if (cssPaddingInlineEnd == null) {
+            cssPaddingInlineEnd =
+                    (CssPaddingInlineEnd) style.CascadingOrder(new CssPaddingInlineEnd(),
+                            style, selector);
+        }
+        return cssPaddingInlineEnd;
+    }
+    
+    public CssPaddingInlineStart getPaddingInlineStart() {
+        if (cssPaddingInlineStart == null) {
+            cssPaddingInlineStart =
+                    (CssPaddingInlineStart) style.CascadingOrder(new CssPaddingInlineStart(),
+                            style, selector);
+        }
+        return cssPaddingInlineStart;
+    }
+    
+    public CssPaddingBlock getPaddingBlock() {
+        if (cssPaddingBlock == null) {
+            cssPaddingBlock =
+                    (CssPaddingBlock) style.CascadingOrder(new CssPaddingBlock(),
+                            style, selector);
+        }
+        return cssPaddingBlock;
+    }
+    
+    public CssPaddingBlockEnd getPaddingBlockEnd() {
+        if (cssPaddingBlockEnd == null) {
+            cssPaddingBlockEnd =
+                    (CssPaddingBlockEnd) style.CascadingOrder(new CssPaddingBlockEnd(),
+                            style, selector);
+        }
+        return cssPaddingBlockEnd;
+    }
+    
+    public CssPaddingBlockStart getPaddingBlockStart() {
+        if (cssPaddingBlockStart == null) {
+            cssPaddingBlockStart =
+                    (CssPaddingBlockStart) style.CascadingOrder(new CssPaddingBlockStart(),
+                            style, selector);
+        }
+        return cssPaddingBlockStart;
+    }
+    
+    public CssInset getInset() {
+        if (cssInset == null) {
+            cssInset =
+                    (CssInset) style.CascadingOrder(new CssInset(),
+                            style, selector);
+        }
+        return cssInset;
+    }
+    
+    public CssInsetInline getInsetInline() {
+        if (cssInsetInline == null) {
+            cssInsetInline =
+                    (CssInsetInline) style.CascadingOrder(new CssInsetInline(),
+                            style, selector);
+        }
+        return cssInsetInline;
+    }
+    
+    public CssInsetInlineEnd getInsetInlineEnd() {
+        if (cssInsetInlineEnd == null) {
+            cssInsetInlineEnd =
+                    (CssInsetInlineEnd) style.CascadingOrder(new CssInsetInlineEnd(),
+                            style, selector);
+        }
+        return cssInsetInlineEnd;
+    }
+    
+    public CssInsetInlineStart getInsetInlineStart() {
+        if (cssInsetInlineStart == null) {
+            cssInsetInlineStart =
+                    (CssInsetInlineStart) style.CascadingOrder(new CssInsetInlineStart(),
+                            style, selector);
+        }
+        return cssInsetInlineStart;
+    }
+    
+    public CssInsetBlock getInsetBlock() {
+        if (cssInsetBlock == null) {
+            cssInsetBlock =
+                    (CssInsetBlock) style.CascadingOrder(new CssInsetBlock(),
+                            style, selector);
+        }
+        return cssInsetBlock;
+    }
+    
+    public CssInsetBlockEnd getInsetBlockEnd() {
+        if (cssInsetBlockEnd == null) {
+            cssInsetBlockEnd =
+                    (CssInsetBlockEnd) style.CascadingOrder(new CssInsetBlockEnd(),
+                            style, selector);
+        }
+        return cssInsetBlockEnd;
+    }
+    
+    public CssInsetBlockStart getInsetBlockStart() {
+        if (cssInsetBlockStart == null) {
+            cssInsetBlockStart =
+                    (CssInsetBlockStart) style.CascadingOrder(new CssInsetBlockStart(),
+                            style, selector);
+        }
+        return cssInsetBlockStart;
+    }
+    
+    public CssMarginInline getMarginInline() {
+        if (cssMarginInline == null) {
+            cssMarginInline =
+                    (CssMarginInline) style.CascadingOrder(new CssMarginInline(),
+                            style, selector);
+        }
+        return cssMarginInline;
+    }
+    
+    public CssMarginInlineEnd getMarginInlineEnd() {
+        if (cssMarginInlineEnd == null) {
+            cssMarginInlineEnd =
+                    (CssMarginInlineEnd) style.CascadingOrder(new CssMarginInlineEnd(),
+                            style, selector);
+        }
+        return cssMarginInlineEnd;
+    }
+    
+    public CssMarginInlineStart getMarginInlineStart() {
+        if (cssMarginInlineStart == null) {
+            cssMarginInlineStart =
+                    (CssMarginInlineStart) style.CascadingOrder(new CssMarginInlineStart(),
+                            style, selector);
+        }
+        return cssMarginInlineStart;
+    }
+
+    public CssMarginBlock getMarginBlock() {
+        if (cssMarginBlock == null) {
+            cssMarginBlock =
+                    (CssMarginBlock) style.CascadingOrder(new CssMarginBlock(),
+                            style, selector);
+        }
+        return cssMarginBlock;
+    }
+    
+    public CssMarginBlockEnd getMarginBlockEnd() {
+        if (cssMarginBlockEnd == null) {
+            cssMarginBlockEnd =
+                    (CssMarginBlockEnd) style.CascadingOrder(new CssMarginBlockEnd(),
+                            style, selector);
+        }
+        return cssMarginBlockEnd;
+    }
+    
+    public CssMarginBlockStart getMarginBlockStart() {
+        if (cssMarginBlockStart == null) {
+            cssMarginBlockStart =
+                    (CssMarginBlockStart) style.CascadingOrder(new CssMarginBlockStart(),
+                            style, selector);
+        }
+        return cssMarginBlockStart;
+    }
+    
+    public CssMaxInlineSize getMaxInlineSize() {
+        if (cssMaxInlineSize == null) {
+            cssMaxInlineSize =
+                    (CssMaxInlineSize) style.CascadingOrder(new CssMaxInlineSize(),
+                            style, selector);
+        }
+        return cssMaxInlineSize;
+    }
+    
+    public CssMaxBlockSize getMaxBlockSize() {
+        if (cssMaxBlockSize == null) {
+            cssMaxBlockSize =
+                    (CssMaxBlockSize) style.CascadingOrder(new CssMaxBlockSize(),
+                            style, selector);
+        }
+        return cssMaxBlockSize;
+    }
+    
+    public CssMinInlineSize getMinInlineSize() {
+        if (cssMinInlineSize == null) {
+            cssMinInlineSize =
+                    (CssMinInlineSize) style.CascadingOrder(new CssMinInlineSize(),
+                            style, selector);
+        }
+        return cssMinInlineSize;
+    }
+    
+    public CssMinBlockSize getMinBlockSize() {
+        if (cssMinBlockSize == null) {
+            cssMinBlockSize =
+                    (CssMinBlockSize) style.CascadingOrder(new CssMinBlockSize(),
+                            style, selector);
+        }
+        return cssMinBlockSize;
+    }
+    
+    public CssInlineSize getInlineSize() {
+        if (cssInlineSize == null) {
+            cssInlineSize =
+                    (CssInlineSize) style.CascadingOrder(new CssInlineSize(),
+                            style, selector);
+        }
+        return cssInlineSize;
+    }
+    
+    public CssBlockSize getBlockSize() {
+        if (cssBlockSize == null) {
+            cssBlockSize =
+                    (CssBlockSize) style.CascadingOrder(new CssBlockSize(),
+                            style, selector);
+        }
+        return cssBlockSize;
+    }
 
     public CssColorScheme getColorScheme() {
         if (cssColorScheme == null) {

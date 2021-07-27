@@ -45,7 +45,7 @@ public class CssPaddingBottom extends org.w3c.css.properties.css.CssPaddingBotto
     public CssPaddingBottom(ApplContext ac, CssExpression expression,
                             boolean check) throws InvalidParamException {
         setByUser();
-        value = CssPadding.checkValue(ac, expression, check, this);
+        value = CssPadding.parsePadding(ac, expression, check, this);
     }
 
 }
