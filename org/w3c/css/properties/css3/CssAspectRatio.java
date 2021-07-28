@@ -9,10 +9,12 @@ import org.w3c.css.util.ApplContext;
 import org.w3c.css.util.InvalidParamException;
 import org.w3c.css.values.CssExpression;
 import org.w3c.css.values.CssIdent;
+import org.w3c.css.values.CssRatio;
 import org.w3c.css.values.CssTypes;
 import org.w3c.css.values.CssValue;
 import org.w3c.css.values.CssValueList;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.w3c.css.values.CssOperator.SPACE;
@@ -35,28 +37,47 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
      * Creates a new CssAspectRatio
      *
      * @param expression The expression for this property
-     * @throws InvalidParamException
-     *          Expressions are incorrect
+     * @throws InvalidParamException Expressions are incorrect
      */
     public CssAspectRatio(ApplContext ac, CssExpression expression, boolean check)
             throws InvalidParamException {
-        if (check && expression.getCount() > 2) {
+        if (check && expression.getCount() > 4) {
             throw new InvalidParamException("unrecognize", ac);
         }
         CssValue val;
         ArrayList<CssValue> v = new ArrayList<>();
         char op;
-
+        int ratio_state = 0;
         setByUser();
+        BigDecimal dividend = null;
+        BigDecimal divisor = null;
 
-        while(!expression.end()) {
+        while (!expression.end()) {
             val = expression.getValue();
             op = expression.getOperator();
 
             switch (val.getType()) {
-                case CssTypes.CSS_RATIO:
-                    v.add(val);
-                    break;
+                // so we are cheating and create a CssRatio when needed.
+                case CssTypes.CSS_NUMBER:
+                    if (ratio_state == 0) {
+                        dividend = val.getNumber().getBigDecimalValue();
+                        ratio_state++;
+                        break;
+                    } else if (ratio_state == 2) {
+                        divisor = val.getNumber().getBigDecimalValue();
+                        ratio_state++;
+                        v.add(new CssRatio(dividend, divisor)) ;
+                        break;
+                    }
+                    throw new InvalidParamException("value", val.toString(),
+                            getPropertyName(), ac);
+                case CssTypes.CSS_SWITCH:
+                    if (ratio_state == 1) {
+                        ratio_state++;
+                        break;
+                    }
+                    throw new InvalidParamException("value", val.toString(),
+                            getPropertyName(), ac);
                 case CssTypes.CSS_IDENT:
                     if (inherit.equals(val)) {
                         if (expression.getCount() > 1) {
@@ -82,7 +103,12 @@ public class CssAspectRatio extends org.w3c.css.properties.css.CssAspectRatio {
             }
             expression.next();
         }
-        
+        // if things are not entirely parsed
+        if (v.size() == 0) {
+            throw new InvalidParamException("value",
+                    expression.toString(),
+                    getPropertyName(), ac);
+        }
         if (v.size() > 1) {
             if (v.get(0).getType() == v.get(1).getType()) {
                 throw new InvalidParamException("value", v.get(1).toString(),
