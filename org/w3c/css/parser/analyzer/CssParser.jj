@@ -2821,7 +2821,9 @@ void term(CssExpression exp) :
 }
 {
     ( ( ( operator=unaryOperator() )?
-	( n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+        ( ( LOOKAHEAD( <NUMBER> ( <S> )* "/" ) ratio(exp, operator)
+          | n=<NUMBER> { setValue(new CssNumber(), exp, operator, n, NUMBER); }
+          )
         | n=<PERCENTAGE> { setValue(new CssPercentage(), exp, operator, n, PERCENTAGE); }
         | n=<RELFONTLENGTH> { setValue(new CssLength(), exp, operator, n, RELFONTLENGTH); }
         | n=<RELVIEWLENGTH> { setValue(new CssLength(), exp, operator, n, RELVIEWLENGTH); }
